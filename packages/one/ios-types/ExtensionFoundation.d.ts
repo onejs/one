@@ -106,7 +106,7 @@ export declare class AppExtensionPoint_Bind extends SDKHandle {
      * static func buildBlock(_ identifier: AppExtensionPoint.Identifier, _ capabilities: AppExtensionPoint.Capabilities) -> AppExtensionPoint
      * @availability iOS 26.2+
      */
-    static buildBlock9(identifier: AppExtensionPoint_Identifier, capabilities: AppExtensionPoint_Capabilities): AppExtensionPoint;
+    static buildBlock30908(identifier: AppExtensionPoint_Identifier, capabilities: AppExtensionPoint_Capabilities): AppExtensionPoint;
 }
 /**
  * struct Capabilities
@@ -289,7 +289,7 @@ export declare class AppExtensionProcess extends SDKHandle {
      * init(configuration: AppExtensionProcess.Configuration) async throws
      * @availability iOS 26.0+
      */
-    static initConfiguration28(configuration: AppExtensionProcess_Configuration): Promise<AppExtensionProcess>;
+    static initConfiguration86313(configuration: AppExtensionProcess_Configuration): Promise<AppExtensionProcess>;
     /**
      * func makeXPCSession() throws -> XPCSession
      * @availability iOS 26.0+

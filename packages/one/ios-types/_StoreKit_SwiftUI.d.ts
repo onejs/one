@@ -1130,7 +1130,7 @@ export declare class SubscriptionStoreButtonLabel extends SDKHandle {
      * static var singleLine: SubscriptionStoreButtonLabel { get }
      * @availability iOS 17.0+
      */
-    static get singleLine3(): SubscriptionStoreButtonLabel;
+    static get singleLine2388(): SubscriptionStoreButtonLabel;
     /**
      * var displayName: SubscriptionStoreButtonLabel { get }
      * @availability iOS 17.0+
@@ -1140,7 +1140,7 @@ export declare class SubscriptionStoreButtonLabel extends SDKHandle {
      * static var displayName: SubscriptionStoreButtonLabel { get }
      * @availability iOS 17.0+
      */
-    static get displayName5(): SubscriptionStoreButtonLabel;
+    static get displayName4722(): SubscriptionStoreButtonLabel;
     /**
      * var price: SubscriptionStoreButtonLabel { get }
      * @availability iOS 17.0+
@@ -1150,7 +1150,7 @@ export declare class SubscriptionStoreButtonLabel extends SDKHandle {
      * static var price: SubscriptionStoreButtonLabel { get }
      * @availability iOS 17.0+
      */
-    static get price7(): SubscriptionStoreButtonLabel;
+    static get price36425(): SubscriptionStoreButtonLabel;
     /**
      * var action: SubscriptionStoreButtonLabel { get }
      * @availability iOS 17.0+
@@ -1160,7 +1160,7 @@ export declare class SubscriptionStoreButtonLabel extends SDKHandle {
      * static var action: SubscriptionStoreButtonLabel { get }
      * @availability iOS 17.0+
      */
-    static get action9(): SubscriptionStoreButtonLabel;
+    static get action6483(): SubscriptionStoreButtonLabel;
     /**
      * static var automatic: SubscriptionStoreButtonLabel { get }
      * @availability iOS 17.0+
@@ -1175,7 +1175,7 @@ export declare class SubscriptionStoreButtonLabel extends SDKHandle {
      * static var multiline: SubscriptionStoreButtonLabel { get }
      * @availability iOS 17.0+
      */
-    static get multiline12(): SubscriptionStoreButtonLabel;
+    static get multiline93459(): SubscriptionStoreButtonLabel;
 }
 /**
  * @MainActor @preconcurrency struct SubscriptionStoreContentView<Content> where Content : StoreContent
@@ -1338,12 +1338,12 @@ export declare class SubscriptionStoreControlStyleConfiguration_Option extends S
      * subscript<T>(dynamicMember keyPath: KeyPath<Product.SubscriptionInfo, T>) -> T? { get }
      * @availability iOS 18.0+
      */
-    subscriptDynamicMember36(keyPath: SDKHandle): (unknown) | null;
+    subscriptDynamicMember5817(keyPath: SDKHandle): (unknown) | null;
     /**
      * subscript<T>(dynamicMember keyPath: KeyPath<Product, T>) -> T { get }
      * @availability iOS 18.0+
      */
-    subscriptDynamicMember37(keyPath: SDKHandle): unknown;
+    subscriptDynamicMember67124(keyPath: SDKHandle): unknown;
     /**
      * var id: Product.ID { get }
      * @availability iOS 18.0+
@@ -1394,12 +1394,12 @@ export declare class SubscriptionStoreControlStyleConfiguration_PickerOption ext
      * subscript<T>(dynamicMember keyPath: KeyPath<Product.SubscriptionInfo, T>) -> T? { get }
      * @availability iOS 18.0+
      */
-    subscriptDynamicMember26(keyPath: SDKHandle): (unknown) | null;
+    subscriptDynamicMember54530(keyPath: SDKHandle): (unknown) | null;
     /**
      * subscript<T>(dynamicMember keyPath: KeyPath<Product, T>) -> T { get }
      * @availability iOS 18.0+
      */
-    subscriptDynamicMember27(keyPath: SDKHandle): unknown;
+    subscriptDynamicMember22851(keyPath: SDKHandle): unknown;
     /**
      * var id: Product.ID { get }
      * @availability iOS 18.0+
@@ -1499,7 +1499,7 @@ export declare class SubscriptionStorePickerOption<Label = unknown> extends SDKH
      * @MainActor @preconcurrency init(_ option: SubscriptionStoreControlStyleConfiguration.PickerOption) where Label == AutomaticSubscriptionStorePickerOptionLabel
      * @availability iOS 18.0+
      */
-    static init14(option: SubscriptionStoreControlStyleConfiguration_PickerOption): Promise<$SDK22>;
+    static init43180(option: SubscriptionStoreControlStyleConfiguration_PickerOption): Promise<$SDK22>;
 }
 /**
  * typealias Body = some View

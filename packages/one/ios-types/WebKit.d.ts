@@ -281,13 +281,13 @@ export declare class WebPage extends SDKHandle {
     
      * @availability iOS 26.0+
      */
-    load739(url?: (string) | null): Promise<SDKHandle>;
+    load82259(url?: (string) | null): Promise<SDKHandle>;
     /**
      * @discardableResult @MainActor final func load(_ item: WebPage.BackForwardList.Item) -> some AsyncSequence<WebPage.NavigationEvent, any Error>
     
      * @availability iOS 26.0+
      */
-    load740(item: WebPage_BackForwardList_Item): Promise<SDKHandle>;
+    load63470(item: WebPage_BackForwardList_Item): Promise<SDKHandle>;
     /**
      * @MainActor final var title: String { get }
      * @availability iOS 26.0+
@@ -2759,12 +2759,12 @@ export declare class WKWebExtension_MatchPattern extends SDKHandle {
      * func matches(_ url: URL?) -> Bool
      * @availability iOS 18.4+
      */
-    matches413(url?: (string) | null): Promise<boolean>;
+    matches89242(url?: (string) | null): Promise<boolean>;
     /**
      * func matches(_ url: URL?, options: WKWebExtension.MatchPattern.Options = []) -> Bool
      * @availability iOS 18.4+
      */
-    matchesOptions414(url?: (string) | null, options?: WKWebExtension_MatchPattern_Options): Promise<boolean>;
+    matchesOptions31050(url?: (string) | null, options?: WKWebExtension_MatchPattern_Options): Promise<boolean>;
     /**
      * var host: String? { get }
      * @availability iOS 18.4+
@@ -3400,22 +3400,22 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func permissionStatus(for permission: WKWebExtension.Permission) -> WKWebExtensionContext.PermissionStatus
      * @availability iOS 18.4+
      */
-    permissionStatusFor318(permission: WKWebExtension_Permission): Promise<WKWebExtensionContext_PermissionStatus>;
+    permissionStatusFor51407(permission: WKWebExtension_Permission): Promise<WKWebExtensionContext_PermissionStatus>;
     /**
      * func permissionStatus(for permission: WKWebExtension.Permission, in tab: (any WKWebExtensionTab)?) -> WKWebExtensionContext.PermissionStatus
      * @availability iOS 18.4+
      */
-    permissionStatusForIn319(permission: WKWebExtension_Permission, tab?: $SDK43): Promise<WKWebExtensionContext_PermissionStatus>;
+    permissionStatusForIn75963(permission: WKWebExtension_Permission, tab?: $SDK43): Promise<WKWebExtensionContext_PermissionStatus>;
     /**
      * func permissionStatus(for url: URL) -> WKWebExtensionContext.PermissionStatus
      * @availability iOS 18.4+
      */
-    permissionStatusFor320(url: string): Promise<WKWebExtensionContext_PermissionStatus>;
+    permissionStatusFor21065(url: string): Promise<WKWebExtensionContext_PermissionStatus>;
     /**
      * func permissionStatus(for url: URL, in tab: (any WKWebExtensionTab)?) -> WKWebExtensionContext.PermissionStatus
      * @availability iOS 18.4+
      */
-    permissionStatusForIn321(url: string, tab?: $SDK43): Promise<WKWebExtensionContext_PermissionStatus>;
+    permissionStatusForIn76857(url: string, tab?: $SDK43): Promise<WKWebExtensionContext_PermissionStatus>;
     /**
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for pattern: WKWebExtension.MatchPattern)
      * @availability iOS 18.4+
@@ -3430,22 +3430,22 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for permission: WKWebExtension.Permission)
      * @availability iOS 18.4+
      */
-    setPermissionStatusFor324(status: WKWebExtensionContext_PermissionStatus, permission: WKWebExtension_Permission): Promise<void>;
+    setPermissionStatusFor3023(status: WKWebExtensionContext_PermissionStatus, permission: WKWebExtension_Permission): Promise<void>;
     /**
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for permission: WKWebExtension.Permission, expirationDate: Date?)
      * @availability iOS 18.4+
      */
-    setPermissionStatusForExpirationDate325(status: WKWebExtensionContext_PermissionStatus, permission: WKWebExtension_Permission, expirationDate?: $SDK49): Promise<void>;
+    setPermissionStatusForExpirationDate9336(status: WKWebExtensionContext_PermissionStatus, permission: WKWebExtension_Permission, expirationDate?: $SDK49): Promise<void>;
     /**
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for url: URL)
      * @availability iOS 18.4+
      */
-    setPermissionStatusFor326(status: WKWebExtensionContext_PermissionStatus, url: string): Promise<void>;
+    setPermissionStatusFor98953(status: WKWebExtensionContext_PermissionStatus, url: string): Promise<void>;
     /**
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for url: URL, expirationDate: Date?)
      * @availability iOS 18.4+
      */
-    setPermissionStatusForExpirationDate327(status: WKWebExtensionContext_PermissionStatus, url: string, expirationDate?: $SDK49): Promise<void>;
+    setPermissionStatusForExpirationDate22950(status: WKWebExtensionContext_PermissionStatus, url: string, expirationDate?: $SDK49): Promise<void>;
     /**
      * func userGesturePerformed(in tab: any WKWebExtensionTab)
      * @availability iOS 18.4+
@@ -3768,7 +3768,7 @@ export declare class WKWebExtensionController extends SDKHandle {
      * func extensionContext(for URL: URL) -> WKWebExtensionContext?
      * @availability iOS 18.4+
      */
-    extensionContextFor378(URL: string): Promise<$SDK35>;
+    extensionContextFor45587(URL: string): Promise<$SDK35>;
     /**
      * func dataRecord(ofTypes dataTypes: Set<WKWebExtension.DataType>, for extensionContext: WKWebExtensionContext) async -> WKWebExtension.DataRecord?
      * @availability iOS 18.4+
@@ -4202,7 +4202,7 @@ export declare class WKWebView extends SDKHandle {
      * func load(_ url: URL) -> WKNavigation?
      * @availability iOS 27.0+
      */
-    load466(url: string): Promise<(WKNavigation) | null>;
+    load38340(url: string): Promise<(WKNavigation) | null>;
     /**
      * func pauseAllMediaPlayback() async
      * @availability iOS 15.0+

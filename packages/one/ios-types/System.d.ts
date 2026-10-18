@@ -717,7 +717,7 @@ export declare const FileDescriptor: {
      * static func open(_ path: FilePath, _ mode: FileDescriptor.AccessMode, options: FileDescriptor.OpenOptions = FileDescriptor.OpenOptions(), permissions: FilePermissions? = nil, retryOnInterrupt: Bool = true) throws -> FileDescriptor
      * @availability iOS 14.0+
      */
-    openOptionsPermissionsRetryOnInterrupt51(path: FilePath, mode: FileDescriptor_AccessMode, options?: FileDescriptor_OpenOptions, permissions?: (FilePermissions) | null, retryOnInterrupt?: boolean): FileDescriptor;
+    openOptionsPermissionsRetryOnInterrupt52194(path: FilePath, mode: FileDescriptor_AccessMode, options?: FileDescriptor_OpenOptions, permissions?: (FilePermissions) | null, retryOnInterrupt?: boolean): FileDescriptor;
     /**
      * static func pipe(options: FileDescriptor.PipeOptions) throws(Errno) -> (readEnd: FileDescriptor, writeEnd: FileDescriptor)
      * @availability iOS 27.0+
@@ -1311,17 +1311,17 @@ export declare class FilePath extends SDKHandle {
      * init(platformString: String)
      * @availability iOS 15.0+
      */
-    static initPlatformString304(platformString: string): FilePath;
+    static initPlatformString11582(platformString: string): FilePath;
     /**
      * init(platformString: [CInterop.PlatformChar])
      * @availability iOS 15.0+
      */
-    static initPlatformString305(platformString: Array<number>): FilePath;
+    static initPlatformString17098(platformString: Array<number>): FilePath;
     /**
      * init(platformString: inout CInterop.PlatformChar)
      * @availability iOS 15.0+
      */
-    static initPlatformString306(platformString: number): {
+    static initPlatformString31620(platformString: number): {
         $ret: FilePath;
         $out: {
             "platformString": number;
@@ -1397,7 +1397,7 @@ export declare class FilePath extends SDKHandle {
      * init<C>(root: FilePath.Root?, _ components: C) where C : Collection, C.Element == FilePath.Component
      * @availability iOS 15.0+
      */
-    static initRoot331(root: (FilePath_Root) | null, components: $SDK4): FilePath;
+    static initRoot46201(root: (FilePath_Root) | null, components: $SDK4): FilePath;
     /**
      * func stat(relativeTo fd: FileDescriptor, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno) -> Stat
      * @availability iOS 27.0+
@@ -1427,12 +1427,12 @@ export declare class FilePath extends SDKHandle {
      * mutating func append(_ other: String)
      * @availability iOS 15.0+
      */
-    append337(other: string): void;
+    append2980(other: string): void;
     /**
      * mutating func append<C>(_ components: C) where C : Collection, C.Element == FilePath.Component
      * @availability iOS 15.0+
      */
-    append338(components: $SDK4): void;
+    append3484(components: $SDK4): void;
     /**
      * var length: Int { get }
      * @availability iOS 14.0+
@@ -1459,19 +1459,19 @@ export declare class FilePath extends SDKHandle {
     init(cString: String)
      * @availability iOS 14.0+
      */
-    static initCString343(cString: string): FilePath;
+    static initCString90738(cString: string): FilePath;
     /**
      * @backDeployed(before: macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0)
     init(cString: [CChar])
      * @availability iOS 14.0+
      */
-    static initCString344(cString: Array<number>): FilePath;
+    static initCString59262(cString: Array<number>): FilePath;
     /**
      * @backDeployed(before: macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0)
     init(cString: inout CChar)
      * @availability iOS 14.0+
      */
-    static initCString345(cString: number): {
+    static initCString93128(cString: number): {
         $ret: FilePath;
         $out: {
             "cString": number;
@@ -1496,12 +1496,12 @@ export declare class FilePath extends SDKHandle {
      * func appending(_ other: String) -> FilePath
      * @availability iOS 15.0+
      */
-    appending362(other: string): FilePath;
+    appending55732(other: string): FilePath;
     /**
      * func appending<C>(_ components: C) -> FilePath where C : Collection, C.Element == FilePath.Component
      * @availability iOS 15.0+
      */
-    appending363(components: $SDK4): FilePath;
+    appending13260(components: $SDK4): FilePath;
     /**
      * var `extension`: String? { get set }
      * @availability iOS 15.0+
@@ -1522,7 +1522,7 @@ export declare class FilePath extends SDKHandle {
      * init(_ string: String)
      * @availability iOS 14.0+
      */
-    static init368(string: string): FilePath;
+    static init73031(string: string): FilePath;
 }
 /**
  * struct Component
@@ -1548,17 +1548,17 @@ export declare class FilePath_Component extends SDKHandle {
      * init?(platformString: String)
      * @availability iOS 15.0+
      */
-    static initPlatformString351(platformString: string): (FilePath_Component) | null;
+    static initPlatformString9538(platformString: string): (FilePath_Component) | null;
     /**
      * init?(platformString: [CInterop.PlatformChar])
      * @availability iOS 15.0+
      */
-    static initPlatformString352(platformString: Array<number>): (FilePath_Component) | null;
+    static initPlatformString20462(platformString: Array<number>): (FilePath_Component) | null;
     /**
      * init?(platformString: inout CInterop.PlatformChar)
      * @availability iOS 15.0+
      */
-    static initPlatformString353(platformString: number): {
+    static initPlatformString57144(platformString: number): {
         $ret: (FilePath_Component) | null;
         $out: {
             "platformString": number;
@@ -1716,17 +1716,17 @@ export declare class FilePath_Root extends SDKHandle {
      * init?(platformString: String)
      * @availability iOS 15.0+
      */
-    static initPlatformString319(platformString: string): (FilePath_Root) | null;
+    static initPlatformString98740(platformString: string): (FilePath_Root) | null;
     /**
      * init?(platformString: [CInterop.PlatformChar])
      * @availability iOS 15.0+
      */
-    static initPlatformString320(platformString: Array<number>): (FilePath_Root) | null;
+    static initPlatformString34288(platformString: Array<number>): (FilePath_Root) | null;
     /**
      * init?(platformString: inout CInterop.PlatformChar)
      * @availability iOS 15.0+
      */
-    static initPlatformString321(platformString: number): {
+    static initPlatformString48946(platformString: number): {
         $ret: (FilePath_Root) | null;
         $out: {
             "platformString": number;
@@ -2239,7 +2239,7 @@ export declare const Stat: {
      * init(_ path: FilePath, relativeTo fd: FileDescriptor, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
      */
-    initRelativeToFlagsRetryOnInterrupt142(path: FilePath, fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
+    initRelativeToFlagsRetryOnInterrupt18061(path: FilePath, fd: FileDescriptor, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
     /**
      * init(_ fd: FileDescriptor, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
@@ -2254,7 +2254,7 @@ export declare const Stat: {
      * init(_ path: FilePath, followTargetSymlink: Bool = true, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
      */
-    initFollowTargetSymlinkRetryOnInterrupt145(path: FilePath, followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat;
+    initFollowTargetSymlinkRetryOnInterrupt95195(path: FilePath, followTargetSymlink?: boolean, retryOnInterrupt?: boolean): Stat;
     /**
      * init(_ path: UnsafePointer<CChar>, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
@@ -2264,7 +2264,7 @@ export declare const Stat: {
      * init(_ path: FilePath, flags: Stat.Flags, retryOnInterrupt: Bool = true) throws(Errno)
      * @availability iOS 27.0+
      */
-    initFlagsRetryOnInterrupt147(path: FilePath, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
+    initFlagsRetryOnInterrupt43608(path: FilePath, flags: Stat_Flags, retryOnInterrupt?: boolean): Stat;
 };
 /**
  * @frozen struct Flags

@@ -437,7 +437,7 @@ export declare class ImageAnalysisInteraction extends SDKHandle {
      * @MainActor convenience init(_ delegate: any ImageAnalysisInteractionDelegate)
      * @availability iOS 16.0+
      */
-    static init104(delegate: SDKHandle): Promise<ImageAnalysisInteraction>;
+    static init35637(delegate: SDKHandle): Promise<ImageAnalysisInteraction>;
 }
 /**
  * struct InteractionTypes
@@ -593,17 +593,17 @@ export declare class ImageAnalyzer extends SDKHandle {
      * final func analyze(_ pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, configuration: ImageAnalyzer.Configuration) async throws -> ImageAnalysis
      * @availability iOS 16.0+
      */
-    analyzeOrientationConfiguration32(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis>;
+    analyzeOrientationConfiguration77848(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis>;
     /**
      * final func analyze(_ ciImage: CIImage, orientation: CGImagePropertyOrientation, configuration: ImageAnalyzer.Configuration) async throws -> ImageAnalysis
      * @availability iOS 16.0+
      */
-    analyzeOrientationConfiguration33(ciImage: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis>;
+    analyzeOrientationConfiguration98324(ciImage: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis>;
     /**
      * final func analyze(_ image: UIImage, orientation: UIImage.Orientation, configuration: ImageAnalyzer.Configuration) async throws -> ImageAnalysis
      * @availability iOS 16.0+
      */
-    analyzeOrientationConfiguration34(image: _UIKit_UIImage, orientation: _UIKit_UIImage_Orientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis>;
+    analyzeOrientationConfiguration55325(image: _UIKit_UIImage, orientation: _UIKit_UIImage_Orientation, configuration: ImageAnalyzer_Configuration): Promise<ImageAnalysis>;
     /**
      * final func analyze(_ image: UIImage, configuration: ImageAnalyzer.Configuration) async throws -> ImageAnalysis
      * @availability iOS 16.0+

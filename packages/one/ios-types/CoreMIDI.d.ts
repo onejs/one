@@ -7,18 +7,15 @@ type $SDK1 = [number, number, number, number];
 type $SDK2 = [number, number, number, number, number];
 type $SDK15 = ((arg0: SDKHandle) => Promise<void>);
 type $SDK16 = ((arg0: SDKHandle) => Promise<SDKHandle>);
-type $SDK17 = ((arg0: SDKHandle) => SDKHandle);
-type $SDK20 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
-type $SDK23 = ((arg0: SDKHandle, arg1: (SDKHandle) | null) => Promise<void>);
-type $SDK24 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
-type $SDK26 = ((arg0: SDKHandle) => void);
-type $SDK27 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
-type $SDK28 = [MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint];
-type $SDK31 = ((arg0: SDKHandle, arg1: (SDKHandle) | null) => void);
-type $SDK32 = Array<MIDIUMPMutableFunctionBlock>;
-type $SDK34 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
-type $SDK35 = "count" | "timeStamp" | SDKHandle;
-type $SDK38 = ((arg0: SDKHandle, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => void);
+type $SDK18 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+type $SDK21 = ((arg0: SDKHandle, arg1: (SDKHandle) | null) => Promise<void>);
+type $SDK22 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+type $SDK24 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+type $SDK25 = [MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint];
+type $SDK28 = ((arg0: SDKHandle, arg1: (SDKHandle) | null) => void);
+type $SDK29 = Array<MIDIUMPMutableFunctionBlock>;
+type $SDK31 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+type $SDK32 = "count" | "timeStamp" | SDKHandle;
 /**
  * class MIDI2DeviceInfo
  * @availability iOS 18.0+
@@ -720,13 +717,10 @@ export type MIDIDeviceRef = number;
 export declare class MIDIDriverInterface extends SDKHandle {
     /** var AddRef: (UnsafeMutableRawPointer) -> ULONG */
     get AddRef(): $SDK16;
-    set AddRef(value: $SDK17);
     /** var QueryInterface: (UnsafeMutableRawPointer, REFIID, UnsafeMutablePointer<LPVOID?>?) -> HRESULT */
     get QueryInterface(): ((arg0: SDKHandle, arg1: SDKHandle, arg2: (SDKHandle) | null) => Promise<SDKHandle>);
-    set QueryInterface(value: ((arg0: SDKHandle, arg1: SDKHandle, arg2: (unknown) | null) => SDKHandle));
     /** var Release: (UnsafeMutableRawPointer) -> ULONG */
     get Release(): $SDK16;
-    set Release(value: $SDK17);
 }
 /** typealias MIDIDriverRef = UnsafeMutablePointer<UnsafeMutablePointer<MIDIDriverInterface>> */
 export type MIDIDriverRef = unknown;
@@ -832,10 +826,10 @@ export declare class MIDIEventPacket extends SDKHandle {
     get wordCount(): number;
     set wordCount(value: number);
     /** var words: (UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32) */
-    get words(): $SDK20;
-    set words(value: $SDK20);
+    get words(): $SDK18;
+    set words(value: $SDK18);
     /** init(timeStamp: MIDITimeStamp, wordCount: UInt32, words: (UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32, UInt32)) */
-    static initTimeStampWordCountWords(timeStamp: number, wordCount: number, words: $SDK20): MIDIEventPacket;
+    static initTimeStampWordCountWords(timeStamp: number, wordCount: number, words: $SDK18): MIDIEventPacket;
     /** init() */
     static init(): MIDIEventPacket;
 }
@@ -895,7 +889,7 @@ export declare class MIDIEventPacket_WordCollection extends SDKHandle {
      * init?(_ p: UnsafePointer<MIDIEventPacket>?)
      * @availability iOS 14.0+
      */
-    static init709(p?: (SDKHandle) | null): (MIDIEventPacket_WordCollection) | null;
+    static init17528(p?: (SDKHandle) | null): (MIDIEventPacket_WordCollection) | null;
     /**
      * subscript(index: MIDIEventPacket.WordCollection.Index) -> MIDIEventPacket.WordCollection.Element { get }
      * @availability iOS 14.0+
@@ -1233,7 +1227,7 @@ export declare const MIDINotificationMessageID: {
 /** typealias MIDINotifyBlock = (UnsafePointer<MIDINotification>) -> Void */
 export type MIDINotifyBlock = $SDK15;
 /** typealias MIDINotifyProc = (UnsafePointer<MIDINotification>, UnsafeMutableRawPointer?) -> Void */
-export type MIDINotifyProc = $SDK23;
+export type MIDINotifyProc = $SDK21;
 /** struct MIDIObjectAddRemoveNotification */
 export declare class MIDIObjectAddRemoveNotification extends SDKHandle {
     /** var child: MIDIObjectRef */
@@ -1290,8 +1284,8 @@ export declare const MIDIObjectType: {
 /** struct MIDIPacket */
 export declare class MIDIPacket extends SDKHandle {
     /** var data: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) */
-    get data(): $SDK24;
-    set data(value: $SDK24);
+    get data(): $SDK22;
+    set data(value: $SDK22);
     /** var length: UInt16 */
     get length(): number;
     set length(value: number);
@@ -1299,7 +1293,7 @@ export declare class MIDIPacket extends SDKHandle {
     get timeStamp(): number;
     set timeStamp(value: number);
     /** init(timeStamp: MIDITimeStamp, length: UInt16, data: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8)) */
-    static initTimeStampLengthData(timeStamp: number, length: number, data: $SDK24): MIDIPacket;
+    static initTimeStampLengthData(timeStamp: number, length: number, data: $SDK22): MIDIPacket;
     /** init() */
     static init(): MIDIPacket;
 }
@@ -1359,7 +1353,7 @@ export declare class MIDIPacket_ByteCollection extends SDKHandle {
      * init?(_ p: UnsafePointer<MIDIPacket>?)
      * @availability iOS 13.0+
      */
-    static init656(p?: (SDKHandle) | null): (MIDIPacket_ByteCollection) | null;
+    static init82271(p?: (SDKHandle) | null): (MIDIPacket_ByteCollection) | null;
     /**
      * subscript(index: MIDIPacket.ByteCollection.Index) -> MIDIPacket.ByteCollection.Element { get }
      * @availability iOS 13.0+
@@ -1549,7 +1543,7 @@ export declare class MIDIProtocolID extends SDKHandle {
  * @availability iOS 9.0+
  * @deprecated iOS 100000.0
  */
-export type MIDIReadBlock = $SDK23;
+export type MIDIReadBlock = $SDK21;
 /**
  * typealias MIDIReadProc = (UnsafePointer<MIDIPacketList>, UnsafeMutableRawPointer?, UnsafeMutableRawPointer?) -> Void
  * @availability iOS 4.2+
@@ -1557,7 +1551,7 @@ export type MIDIReadBlock = $SDK23;
  */
 export type MIDIReadProc = ((arg0: SDKHandle, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<void>);
 /** typealias MIDIReceiveBlock = (UnsafePointer<MIDIEventList>, UnsafeMutableRawPointer?) -> Void */
-export type MIDIReceiveBlock = $SDK23;
+export type MIDIReceiveBlock = $SDK21;
 /** typealias MIDISetupRef = MIDIObjectRef */
 export type MIDISetupRef = number;
 /** struct MIDISysexSendRequest */
@@ -1570,7 +1564,6 @@ export declare class MIDISysexSendRequest extends SDKHandle {
     set complete(value: boolean);
     /** var completionProc: MIDICompletionProc */
     get completionProc(): $SDK15;
-    set completionProc(value: $SDK26);
     /** var completionRefCon: UnsafeMutableRawPointer? */
     get completionRefCon(): (SDKHandle) | null;
     set completionRefCon(value: (SDKHandle) | null);
@@ -1583,8 +1576,6 @@ export declare class MIDISysexSendRequest extends SDKHandle {
     /** var reserved: (UInt8, UInt8, UInt8) */
     get reserved(): $SDK0;
     set reserved(value: $SDK0);
-    /** init(destination: MIDIEndpointRef, data: UnsafePointer<UInt8>, bytesToSend: UInt32, complete: DarwinBoolean, reserved: (UInt8, UInt8, UInt8), completionProc: MIDICompletionProc, completionRefCon: UnsafeMutableRawPointer?) */
-    static init(destination: number, data: SDKHandle, bytesToSend: number, complete: boolean, reserved: $SDK0, completionProc: $SDK26, completionRefCon?: (SDKHandle) | null): MIDISysexSendRequest;
 }
 /** struct MIDISysexSendRequestUMP */
 export declare class MIDISysexSendRequestUMP extends SDKHandle {
@@ -1593,7 +1584,6 @@ export declare class MIDISysexSendRequestUMP extends SDKHandle {
     set complete(value: boolean);
     /** var completionProc: MIDICompletionProcUMP */
     get completionProc(): $SDK15;
-    set completionProc(value: $SDK26);
     /** var completionRefCon: UnsafeMutableRawPointer? */
     get completionRefCon(): (SDKHandle) | null;
     set completionRefCon(value: (SDKHandle) | null);
@@ -1606,8 +1596,6 @@ export declare class MIDISysexSendRequestUMP extends SDKHandle {
     /** var wordsToSend: UInt32 */
     get wordsToSend(): number;
     set wordsToSend(value: number);
-    /** init(destination: MIDIEndpointRef, words: UnsafeMutablePointer<UInt32>, wordsToSend: UInt32, complete: DarwinBoolean, completionProc: MIDICompletionProcUMP, completionRefCon: UnsafeMutableRawPointer?) */
-    static init(destination: number, words: SDKHandle, wordsToSend: number, complete: boolean, completionProc: $SDK26, completionRefCon?: (SDKHandle) | null): MIDISysexSendRequestUMP;
 }
 /** enum MIDISysExStatus */
 export type MIDISysExStatus = "complete" | "start" | "continue" | "end" | "mixedDataSetHeader" | "mixedDataSetPayload";
@@ -1639,14 +1627,14 @@ export declare class MIDIThruConnectionEndpoint extends SDKHandle {
 /** struct MIDIThruConnectionParams */
 export declare class MIDIThruConnectionParams extends SDKHandle {
     /** var channelMap: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) */
-    get channelMap(): $SDK27;
-    set channelMap(value: $SDK27);
+    get channelMap(): $SDK24;
+    set channelMap(value: $SDK24);
     /** var channelPressure: MIDITransform */
     get channelPressure(): MIDITransform;
     set channelPressure(value: MIDITransform);
     /** var destinations: (MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint) */
-    get destinations(): $SDK28;
-    set destinations(value: $SDK28);
+    get destinations(): $SDK25;
+    set destinations(value: $SDK25);
     /** var filterOutAllControls: UInt8 */
     get filterOutAllControls(): number;
     set filterOutAllControls(value: number);
@@ -1705,8 +1693,8 @@ export declare class MIDIThruConnectionParams extends SDKHandle {
     get reserved3(): $SDK1;
     set reserved3(value: $SDK1);
     /** var sources: (MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint) */
-    get sources(): $SDK28;
-    set sources(value: $SDK28);
+    get sources(): $SDK25;
+    set sources(value: $SDK25);
     /** var velocity: MIDITransform */
     get velocity(): MIDITransform;
     set velocity(value: MIDITransform);
@@ -1714,7 +1702,7 @@ export declare class MIDIThruConnectionParams extends SDKHandle {
     get version(): number;
     set version(value: number);
     /** init(version: UInt32, numSources: UInt32, sources: (MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint), numDestinations: UInt32, destinations: (MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint, MIDIThruConnectionEndpoint), channelMap: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8), lowVelocity: UInt8, highVelocity: UInt8, lowNote: UInt8, highNote: UInt8, noteNumber: MIDITransform, velocity: MIDITransform, keyPressure: MIDITransform, channelPressure: MIDITransform, programChange: MIDITransform, pitchBend: MIDITransform, filterOutSysEx: UInt8, filterOutMTC: UInt8, filterOutBeatClock: UInt8, filterOutTuneRequest: UInt8, reserved2: (UInt8, UInt8, UInt8), filterOutAllControls: UInt8, numControlTransforms: UInt16, numMaps: UInt16, reserved3: (UInt16, UInt16, UInt16, UInt16)) */
-    static initVersionNumSourcesSourcesNumDestinationsDestinationsChannelMapLowVelocityHighVelocityLowNoteHighNoteNoteNumberVelocityKeyPressureChannelPressureProgramChangePitchBendFilterOutSysExFilterOutMTCFilterOutBeatClockFilterOutTuneRequestReserved2FilterOutAllControlsNumControlTransformsNumMapsReserved3(version: number, numSources: number, sources: $SDK28, numDestinations: number, destinations: $SDK28, channelMap: $SDK27, lowVelocity: number, highVelocity: number, lowNote: number, highNote: number, noteNumber: MIDITransform, velocity: MIDITransform, keyPressure: MIDITransform, channelPressure: MIDITransform, programChange: MIDITransform, pitchBend: MIDITransform, filterOutSysEx: number, filterOutMTC: number, filterOutBeatClock: number, filterOutTuneRequest: number, reserved2: $SDK0, filterOutAllControls: number, numControlTransforms: number, numMaps: number, reserved3: $SDK1): MIDIThruConnectionParams;
+    static initVersionNumSourcesSourcesNumDestinationsDestinationsChannelMapLowVelocityHighVelocityLowNoteHighNoteNoteNumberVelocityKeyPressureChannelPressureProgramChangePitchBendFilterOutSysExFilterOutMTCFilterOutBeatClockFilterOutTuneRequestReserved2FilterOutAllControlsNumControlTransformsNumMapsReserved3(version: number, numSources: number, sources: $SDK25, numDestinations: number, destinations: $SDK25, channelMap: $SDK24, lowVelocity: number, highVelocity: number, lowNote: number, highNote: number, noteNumber: MIDITransform, velocity: MIDITransform, keyPressure: MIDITransform, channelPressure: MIDITransform, programChange: MIDITransform, pitchBend: MIDITransform, filterOutSysEx: number, filterOutMTC: number, filterOutBeatClock: number, filterOutTuneRequest: number, reserved2: $SDK0, filterOutAllControls: number, numControlTransforms: number, numMaps: number, reserved3: $SDK1): MIDIThruConnectionParams;
     /** init() */
     static init(): MIDIThruConnectionParams;
 }
@@ -2026,12 +2014,12 @@ export declare class MIDIUMPMutableEndpoint extends MIDIUMPEndpoint {
      * init?(name: String, deviceInfo: MIDI2DeviceInfo, productInstanceID: String, midiProtocol MIDIProtocol: MIDIProtocolID, destinationCallback: @escaping MIDIReceiveBlock)
      * @availability iOS 18.0+
      */
-    static init(name: string, deviceInfo: MIDI2DeviceInfo, productInstanceID: string, MIDIProtocol: MIDIProtocolID, destinationCallback: $SDK31): (MIDIUMPMutableEndpoint) | null;
+    static init(name: string, deviceInfo: MIDI2DeviceInfo, productInstanceID: string, MIDIProtocol: MIDIProtocolID, destinationCallback: $SDK28): (MIDIUMPMutableEndpoint) | null;
     /**
      * func registerFunctionBlocks(_ functionBlocks: [MIDIUMPMutableFunctionBlock], markAsStatic: Bool) throws
      * @availability iOS 18.0+
      */
-    registerFunctionBlocks(functionBlocks: $SDK32, markAsStatic: boolean): void;
+    registerFunctionBlocks(functionBlocks: $SDK29, markAsStatic: boolean): void;
     /**
      * func setEnabled(_ isEnabled: Bool) throws
      * @availability iOS 18.0+
@@ -2051,8 +2039,8 @@ export declare class MIDIUMPMutableEndpoint extends MIDIUMPEndpoint {
      * var mutableFunctionBlocks: [MIDIUMPMutableFunctionBlock] { get set }
      * @availability iOS 18.0+
      */
-    get mutableFunctionBlocks(): $SDK32;
-    set mutableFunctionBlocks(value: $SDK32);
+    get mutableFunctionBlocks(): $SDK29;
+    set mutableFunctionBlocks(value: $SDK29);
 }
 declare const MIDIUMPMutableFunctionBlock_base: Omit<typeof MIDIUMPFunctionBlock, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MIDIUMPFunctionBlock, "umpEndpoint">);
 /**
@@ -2142,10 +2130,10 @@ export declare const MIDIUtilityStatus: {
 /** struct MIDIValueMap */
 export declare class MIDIValueMap extends SDKHandle {
     /** var value: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) */
-    get value(): $SDK34;
-    set value(value: $SDK34);
+    get value(): $SDK31;
+    set value(value: $SDK31);
     /** init(value: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8)) */
-    static initValue(value: $SDK34): MIDIValueMap;
+    static initValue(value: $SDK31): MIDIValueMap;
     /** init() */
     static init(): MIDIValueMap;
 }
@@ -2263,7 +2251,7 @@ export declare class UnsafeMutableMIDIEventPacketPointer extends SDKHandle {
      * init(_ p: UnsafeMutablePointer<MIDIEventPacket>)
      * @availability iOS 14.0+
      */
-    static init645(p: SDKHandle): UnsafeMutableMIDIEventPacketPointer;
+    static init26183(p: SDKHandle): UnsafeMutableMIDIEventPacketPointer;
     /**
      * subscript(index: UnsafeMutableMIDIEventPacketPointer.Index) -> UnsafeMutableMIDIEventPacketPointer.Element { get nonmutating set }
      * @availability iOS 14.0+
@@ -2294,7 +2282,7 @@ export type UnsafeMutableMIDIEventPacketPointer_Iterator = MIDIEventPacket_WordS
  * typealias SubSequence = Slice<UnsafeMutableMIDIEventPacketPointer>
  * @availability iOS 14.0+
  */
-export type UnsafeMutableMIDIEventPacketPointer_SubSequence = $SDK35;
+export type UnsafeMutableMIDIEventPacketPointer_SubSequence = $SDK32;
 /**
  * struct UnsafeMutableMIDIPacketListPointer
  * @availability iOS 13.0+
@@ -2339,7 +2327,7 @@ export declare class UnsafeMutableMIDIPacketListPointer extends SDKHandle {
      * init(_ p: UnsafeMutablePointer<MIDIPacketList>, byteSize: Int)
      * @availability iOS 13.0+
      */
-    static initByteSize636(p: SDKHandle, byteSize: number): UnsafeMutableMIDIPacketListPointer;
+    static initByteSize21778(p: SDKHandle, byteSize: number): UnsafeMutableMIDIPacketListPointer;
 }
 /**
  * typealias Element = UnsafePointer<MIDIPacket>
@@ -2392,7 +2380,7 @@ export declare class UnsafeMutableMIDIPacketPointer extends SDKHandle {
      * init(_ p: UnsafeMutablePointer<MIDIPacket>)
      * @availability iOS 13.0+
      */
-    static init617(p: SDKHandle): UnsafeMutableMIDIPacketPointer;
+    static init50230(p: SDKHandle): UnsafeMutableMIDIPacketPointer;
     /**
      * subscript(index: UnsafeMutableMIDIPacketPointer.Index) -> UnsafeMutableMIDIPacketPointer.Element { get nonmutating set }
      * @availability iOS 13.0+
@@ -2423,7 +2411,7 @@ export type UnsafeMutableMIDIPacketPointer_Iterator = MIDIPacket_ByteSequence_It
  * typealias SubSequence = Slice<UnsafeMutableMIDIPacketPointer>
  * @availability iOS 13.0+
  */
-export type UnsafeMutableMIDIPacketPointer_SubSequence = $SDK35;
+export type UnsafeMutableMIDIPacketPointer_SubSequence = $SDK32;
 /** func MIDI1UPChannelPressure(_ group: UInt8, _ channel: UInt8, _ value: UInt8) -> MIDIMessage_32 */
 export declare function MIDI1UPChannelPressure(group: number, channel: number, value: number): number;
 /** func MIDI1UPChannelVoiceMessage(_ group: UInt8, _ status: UInt8, _ channel: UInt8, _ data1: UInt8, _ data2: UInt8) -> MIDIMessage_32 */
@@ -2519,11 +2507,6 @@ export declare function MIDIBluetoothDriverActivateAllConnections(): number;
  */
 export declare function MIDIBluetoothDriverDisconnect(uuid: _CoreFoundation_CFString): number;
 /**
- * func MIDIClientCreate(_ name: CFString, _ notifyProc: MIDINotifyProc?, _ notifyRefCon: UnsafeMutableRawPointer?, _ outClient: UnsafeMutablePointer<MIDIClientRef>) -> OSStatus
- * @availability iOS 4.2+
- */
-export declare function MIDIClientCreate(name: _CoreFoundation_CFString, notifyProc: (((arg0: SDKHandle, arg1: (SDKHandle) | null) => void)) | null, notifyRefCon: (SDKHandle) | null, outClient: SDKHandle): number;
-/**
  * func MIDIClientCreateWithBlock(_ name: CFString, _ outClient: UnsafeMutablePointer<MIDIClientRef>, _ notifyBlock: MIDINotifyBlock?) -> OSStatus
  * @availability iOS 9.0+
  */
@@ -2536,22 +2519,16 @@ export declare function MIDIClientDispose(client: number): number;
 /** func MIDIDeltaClockstampTicksPerQuarterNoteMessage(_ ticksPerQuarterNote: UInt16) -> MIDIMessage_32 */
 export declare function MIDIDeltaClockstampTicksPerQuarterNoteMessage(ticksPerQuarterNote: number): number;
 /**
- * func MIDIDestinationCreate(_ client: MIDIClientRef, _ name: CFString, _ readProc: MIDIReadProc, _ refCon: UnsafeMutableRawPointer?, _ outDest: UnsafeMutablePointer<MIDIEndpointRef>) -> OSStatus
- * @availability iOS 4.2+
- * @deprecated iOS 100000.0
- */
-export declare function MIDIDestinationCreate(client: number, name: _CoreFoundation_CFString, readProc: $SDK38, refCon: (SDKHandle) | null, outDest: SDKHandle): number;
-/**
  * func MIDIDestinationCreateWithBlock(_ client: MIDIClientRef, _ name: CFString, _ outDest: UnsafeMutablePointer<MIDIEndpointRef>, _ readBlock: @escaping MIDIReadBlock) -> OSStatus
  * @availability iOS 9.0+
  * @deprecated iOS 100000.0
  */
-export declare function MIDIDestinationCreateWithBlock(client: number, name: _CoreFoundation_CFString, outDest: SDKHandle, readBlock: $SDK31): number;
+export declare function MIDIDestinationCreateWithBlock(client: number, name: _CoreFoundation_CFString, outDest: SDKHandle, readBlock: $SDK28): number;
 /**
  * func MIDIDestinationCreateWithProtocol(_ client: MIDIClientRef, _ name: CFString, _ protocol: MIDIProtocolID, _ outDest: UnsafeMutablePointer<MIDIEndpointRef>, _ readBlock: @escaping MIDIReceiveBlock) -> OSStatus
  * @availability iOS 14.0+
  */
-export declare function MIDIDestinationCreateWithProtocol(client: number, name: _CoreFoundation_CFString, protocol: MIDIProtocolID, outDest: SDKHandle, readBlock: $SDK31): number;
+export declare function MIDIDestinationCreateWithProtocol(client: number, name: _CoreFoundation_CFString, protocol: MIDIProtocolID, outDest: SDKHandle, readBlock: $SDK28): number;
 /**
  * func MIDIDeviceAddEntity(_ device: MIDIDeviceRef, _ name: CFString, _ embedded: Bool, _ numSourceEndpoints: Int, _ numDestinationEndpoints: Int, _ newEntity: UnsafeMutablePointer<MIDIEntityRef>) -> OSStatus
  * @availability iOS 4.2+
@@ -2654,11 +2631,6 @@ export declare function MIDIEntityGetSource(entity: number, sourceIndex0: number
  */
 export declare function MIDIEventListAdd(evtlist: SDKHandle, listSize: number, curPacket: SDKHandle, time: number, wordCount: number, words: SDKHandle): SDKHandle;
 /**
- * func MIDIEventListForEachEvent(_ evtlist: UnsafePointer<MIDIEventList>!, _ visitor: MIDIEventVisitor!, _ visitorContext: UnsafeMutableRawPointer!)
- * @availability iOS 15.0+
- */
-export declare function MIDIEventListForEachEvent(evtlist?: (SDKHandle) | null, visitor?: (((arg0: (SDKHandle) | null, arg1: number, arg2: MIDIUniversalMessage) => void)) | null, visitorContext?: (SDKHandle) | null): void;
-/**
  * func MIDIEventListInit(_ evtlist: UnsafeMutablePointer<MIDIEventList>, _ protocol: MIDIProtocolID) -> UnsafeMutablePointer<MIDIEventPacket>
  * @availability iOS 14.0+
  */
@@ -2721,22 +2693,16 @@ export declare function MIDIGetNumberOfSources(): number;
  */
 export declare function MIDIGetSource(sourceIndex0: number): number;
 /**
- * func MIDIInputPortCreate(_ client: MIDIClientRef, _ portName: CFString, _ readProc: MIDIReadProc, _ refCon: UnsafeMutableRawPointer?, _ outPort: UnsafeMutablePointer<MIDIPortRef>) -> OSStatus
- * @availability iOS 4.2+
- * @deprecated iOS 100000.0
- */
-export declare function MIDIInputPortCreate(client: number, portName: _CoreFoundation_CFString, readProc: $SDK38, refCon: (SDKHandle) | null, outPort: SDKHandle): number;
-/**
  * func MIDIInputPortCreateWithBlock(_ client: MIDIClientRef, _ portName: CFString, _ outPort: UnsafeMutablePointer<MIDIPortRef>, _ readBlock: @escaping MIDIReadBlock) -> OSStatus
  * @availability iOS 9.0+
  * @deprecated iOS 100000.0
  */
-export declare function MIDIInputPortCreateWithBlock(client: number, portName: _CoreFoundation_CFString, outPort: SDKHandle, readBlock: $SDK31): number;
+export declare function MIDIInputPortCreateWithBlock(client: number, portName: _CoreFoundation_CFString, outPort: SDKHandle, readBlock: $SDK28): number;
 /**
  * func MIDIInputPortCreateWithProtocol(_ client: MIDIClientRef, _ portName: CFString, _ protocol: MIDIProtocolID, _ outPort: UnsafeMutablePointer<MIDIPortRef>, _ receiveBlock: @escaping MIDIReceiveBlock) -> OSStatus
  * @availability iOS 14.0+
  */
-export declare function MIDIInputPortCreateWithProtocol(client: number, portName: _CoreFoundation_CFString, protocol: MIDIProtocolID, outPort: SDKHandle, receiveBlock: $SDK31): number;
+export declare function MIDIInputPortCreateWithProtocol(client: number, portName: _CoreFoundation_CFString, protocol: MIDIProtocolID, outPort: SDKHandle, receiveBlock: $SDK28): number;
 /** func MIDIJitterReductionClockMessage(_ senderClockTime: UInt16) -> MIDIMessage_32 */
 export declare function MIDIJitterReductionClockMessage(senderClockTime: number): number;
 /** func MIDIJitterReductionTimestampMessage(_ senderClockTimestamp: UInt16) -> MIDIMessage_32 */

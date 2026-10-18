@@ -1779,7 +1779,7 @@ export declare class PDFPage extends SDKHandle {
      * func selection(for rect: CGRect) -> PDFSelection?
      * @availability iOS 11.0+
      */
-    selectionFor386(rect: $SDK1): (PDFSelection) | null;
+    selectionFor81500(rect: $SDK1): (PDFSelection) | null;
     /**
      * func selectionForWord(at point: CGPoint) -> PDFSelection?
      * @availability iOS 11.0+
@@ -1809,7 +1809,7 @@ export declare class PDFPage extends SDKHandle {
      * func transform(for box: PDFDisplayBox) -> CGAffineTransform
      * @availability iOS 11.0+
      */
-    transformFor392(box: PDFDisplayBox): _CoreFoundation_CGAffineTransform;
+    transformFor40611(box: PDFDisplayBox): _CoreFoundation_CGAffineTransform;
     /**
      * var annotations: [PDFAnnotation] { get }
      * @availability iOS 11.0+
@@ -1923,7 +1923,7 @@ export declare class PDFSelection extends SDKHandle {
      * func add(_ selections: [PDFSelection])
      * @availability iOS 11.0+
      */
-    add406(selections: Array<PDFSelection>): void;
+    add83020(selections: Array<PDFSelection>): void;
     /**
      * func bounds(for page: PDFPage) -> CGRect
      * @availability iOS 11.0+
@@ -2110,12 +2110,12 @@ export declare class PDFView extends SDKHandle {
      * func convert(_ rect: CGRect, from page: PDFPage) -> CGRect
      * @availability iOS 11.0+
      */
-    convertFrom441(rect: $SDK1, page: PDFPage): $SDK1;
+    convertFrom86829(rect: $SDK1, page: PDFPage): $SDK1;
     /**
      * func convert(_ rect: CGRect, to page: PDFPage) -> CGRect
      * @availability iOS 11.0+
      */
-    convertTo442(rect: $SDK1, page: PDFPage): $SDK1;
+    convertTo23162(rect: $SDK1, page: PDFPage): $SDK1;
     /**
      * @IBAction func copy(_ sender: Any?)
      * @availability iOS 11.0+
@@ -2165,7 +2165,7 @@ export declare class PDFView extends SDKHandle {
      * func go(to page: PDFPage)
      * @availability iOS 11.0+
      */
-    goTo452(page: PDFPage): void;
+    goTo50003(page: PDFPage): void;
     /**
      * @IBAction func goToPreviousPage(_ sender: Any?)
      * @availability iOS 11.0+
@@ -2180,7 +2180,7 @@ export declare class PDFView extends SDKHandle {
      * func go(to selection: PDFSelection)
      * @availability iOS 11.0+
      */
-    goTo455(selection: PDFSelection): void;
+    goTo16108(selection: PDFSelection): void;
     /** init() */
     static init(): PDFView;
     /**

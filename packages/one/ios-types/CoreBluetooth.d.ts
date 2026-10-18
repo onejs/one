@@ -167,7 +167,7 @@ export declare class CBManager extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 13.1
      */
-    get authorization94(): CBManagerAuthorization;
+    get authorization8916(): CBManagerAuthorization;
     /**
      * var state: CBManagerState { get }
      * @availability iOS 10.0+
@@ -799,7 +799,7 @@ export declare class CBPeripheral extends CBPeer {
      * func readValue(for descriptor: CBDescriptor)
      * @availability iOS 5.0+
      */
-    readValueFor122(descriptor: CBDescriptor): void;
+    readValueFor17880(descriptor: CBDescriptor): void;
     /**
      * func setNotifyValue(_ enabled: Bool, for characteristic: CBCharacteristic)
      * @availability iOS 5.0+

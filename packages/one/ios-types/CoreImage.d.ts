@@ -344,7 +344,7 @@ export declare class CIColor extends SDKHandle {
      * var blue: CGFloat { get }
      * @availability iOS 5.0+
      */
-    get blue336(): number;
+    get blue80112(): number;
     /**
      * var colorSpace: CGColorSpace { get }
      * @availability iOS 5.0+
@@ -359,7 +359,7 @@ export declare class CIColor extends SDKHandle {
      * var green: CGFloat { get }
      * @availability iOS 5.0+
      */
-    get green339(): number;
+    get green44967(): number;
     /**
      * var numberOfComponents: Int { get }
      * @availability iOS 5.0+
@@ -369,7 +369,7 @@ export declare class CIColor extends SDKHandle {
      * var red: CGFloat { get }
      * @availability iOS 5.0+
      */
-    get red341(): number;
+    get red50843(): number;
     /**
      * var stringRepresentation: String { get }
      * @availability iOS 5.0+
@@ -457,17 +457,17 @@ export declare class CIContext extends SDKHandle {
      * func calculateHDRStats(for buffer: CVPixelBuffer)
      * @availability iOS 26.0+
      */
-    calculateHDRStatsFor360(buffer: _CoreVideo_CVBuffer): void;
+    calculateHDRStatsFor85938(buffer: _CoreVideo_CVBuffer): void;
     /**
      * func calculateHDRStats(for surface: IOSurfaceRef)
      * @availability iOS 26.0+
      */
-    calculateHDRStatsFor361(surface: _IOSurface_IOSurfaceRef): void;
+    calculateHDRStatsFor62120(surface: _IOSurface_IOSurfaceRef): void;
     /**
      * func calculateHDRStats(for image: CIImage) -> CIImage?
      * @availability iOS 26.0+
      */
-    calculateHDRStatsFor362(image: CIImage): (CIImage) | null;
+    calculateHDRStatsFor78106(image: CIImage): (CIImage) | null;
     /**
      * func clearCaches()
      * @availability iOS 10.0+
@@ -566,7 +566,7 @@ export declare class CIContext extends SDKHandle {
      * func render(_ image: CIImage, to surface: IOSurfaceRef, bounds: CGRect, colorSpace: CGColorSpace?)
      * @availability iOS 5.0+
      */
-    renderToBoundsColorSpace383(image: CIImage, surface: _IOSurface_IOSurfaceRef, bounds: $SDK1, colorSpace?: $SDK6): void;
+    renderToBoundsColorSpace89905(image: CIImage, surface: _IOSurface_IOSurfaceRef, bounds: $SDK1, colorSpace?: $SDK6): void;
     /**
      * func render(_ image: CIImage, to texture: any MTLTexture, commandBuffer: (any MTLCommandBuffer)?, bounds: CGRect, colorSpace: CGColorSpace)
      * @availability iOS 9.0+
@@ -1027,7 +1027,7 @@ export declare class CIFilterShape extends SDKHandle {
      * func intersect(with r: CGRect) -> CIFilterShape
      * @availability iOS 9.0+
      */
-    intersectWith453(r: $SDK1): CIFilterShape;
+    intersectWith98276(r: $SDK1): CIFilterShape;
     /**
      * func transform(by m: CGAffineTransform, interior flag: Bool) -> CIFilterShape
      * @availability iOS 9.0+
@@ -1042,7 +1042,7 @@ export declare class CIFilterShape extends SDKHandle {
      * func union(with r: CGRect) -> CIFilterShape
      * @availability iOS 9.0+
      */
-    unionWith456(r: $SDK1): CIFilterShape;
+    unionWith85338(r: $SDK1): CIFilterShape;
     /**
      * var extent: CGRect { get }
      * @availability iOS 9.0+

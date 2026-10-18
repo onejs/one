@@ -36,7 +36,7 @@ export declare class NWParameters extends SDKHandle {
      * final func wifiAware(_ configurator: (inout WAParameters) -> Void) -> Self
      * @availability iOS 26.0+
      */
-    wifiAware4(configurator: ((arg0: WAParameters) => void)): _Network_NWParameters;
+    wifiAware7940(configurator: ((arg0: WAParameters) => void)): _Network_NWParameters;
 }
 export declare class NWPath extends SDKHandle {
     /**
@@ -671,7 +671,7 @@ export declare class WASharedSecret_Context extends SDKHandle {
      * init?(_ string: String)
      * @availability iOS 26.4+
      */
-    static init44(string: string): (WASharedSecret_Context) | null;
+    static init37833(string: string): (WASharedSecret_Context) | null;
 }
 /**
  * struct DerivationMethod
@@ -708,7 +708,7 @@ export declare class WASharedSecret_ProtocolName extends SDKHandle {
      * init?(_ string: String)
      * @availability iOS 26.4+
      */
-    static init39(string: string): (WASharedSecret_ProtocolName) | null;
+    static init33821(string: string): (WASharedSecret_ProtocolName) | null;
 }
 /**
  * struct WASubscribableService

@@ -31,7 +31,7 @@ export declare class AddPassToWalletButton<Fallback = unknown> extends SDKHandle
      * nonisolated init(_ configuration: PKAddSecureElementPassConfiguration, onCompletion: @escaping (Result<[PKSecureElementPass], any Error>) -> Void)
      * @availability iOS 16.0+
      */
-    static initOnCompletion26(configuration: _PassKit_PKAddSecureElementPassConfiguration, onCompletion: $SDK1): Promise<$SDK0>;
+    static initOnCompletion63283(configuration: _PassKit_PKAddSecureElementPassConfiguration, onCompletion: $SDK1): Promise<$SDK0>;
 }
 /**
  * typealias Body = some View

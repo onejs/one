@@ -105,12 +105,12 @@ export declare class Attachment<Content = unknown> extends SDKHandle {
      * init(_ pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 27.0+
      */
-    static initOrientation5(pixelBuffer: _CoreVideo_CVBuffer, orientation?: $SDK3): $SDK2;
+    static initOrientation19088(pixelBuffer: _CoreVideo_CVBuffer, orientation?: $SDK3): $SDK2;
     /**
      * init(_ ciImage: CIImage, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 27.0+
      */
-    static initOrientation6(ciImage: _CoreImage_CIImage, orientation?: $SDK3): $SDK2;
+    static initOrientation7102(ciImage: _CoreImage_CIImage, orientation?: $SDK3): $SDK2;
 }
 /**
  * typealias PartiallyGenerated = Self
@@ -256,7 +256,7 @@ export declare class DynamicGenerationSchema extends SDKHandle {
      * init(name: String, description: String? = nil, anyOf choices: [String])
      * @availability iOS 26.0+
      */
-    static initNameDescriptionAnyOf447(name: string, description: (string) | null, choices: Array<string>): DynamicGenerationSchema;
+    static initNameDescriptionAnyOf6353(name: string, description: (string) | null, choices: Array<string>): DynamicGenerationSchema;
     /**
      * static var null: DynamicGenerationSchema { get }
      * @availability iOS 26.4+
@@ -449,7 +449,7 @@ export declare class GeneratedContent extends SDKHandle {
      * func value<Value>(_ type: Value.Type = Value.self, forProperty property: String) throws -> Value where Value : ConvertibleFromGeneratedContent
      * @availability iOS 26.0+
      */
-    valueForProperty205(property: string): number;
+    valueForProperty41093(property: string): number;
     /**
      * func value<Value>(_ type: Value.Type = Value.self) throws -> Value where Value : ConvertibleFromGeneratedContent
      * @availability iOS 26.0+
@@ -474,7 +474,7 @@ export declare class GeneratedContent extends SDKHandle {
      * init(_ value: some ConvertibleToGeneratedContent)
      * @availability iOS 26.0+
      */
-    static init210(value: SDKHandle): GeneratedContent;
+    static init83790(value: SDKHandle): GeneratedContent;
 }
 /**
  * enum Kind
@@ -545,7 +545,7 @@ export declare class GenerationGuide<Value = unknown> extends SDKHandle {
      * static func count<Element>(_ count: Int) -> GenerationGuide<[Element]> where Value == [Element]
      * @availability iOS 26.0+
      */
-    static count167(count: number): $SDK9;
+    static count21523(count: number): $SDK9;
     /**
      * static func element<Element>(_ guide: GenerationGuide<Element>) -> GenerationGuide<[Element]> where Value == [Element]
      * @availability iOS 26.0+
@@ -585,47 +585,47 @@ export declare class GenerationGuide<Value = unknown> extends SDKHandle {
      * static func range(_ range: ClosedRange<Float>) -> GenerationGuide<Float>
      * @availability iOS 26.0+
      */
-    static range175(range: SDKHandle): GenerationGuide<number>;
+    static range38979(range: SDKHandle): GenerationGuide<number>;
     /**
      * static func maximum(_ value: Float) -> GenerationGuide<Float>
      * @availability iOS 26.0+
      */
-    static maximum176(value: number): GenerationGuide<number>;
+    static maximum19423(value: number): GenerationGuide<number>;
     /**
      * static func minimum(_ value: Float) -> GenerationGuide<Float>
      * @availability iOS 26.0+
      */
-    static minimum177(value: number): GenerationGuide<number>;
+    static minimum35033(value: number): GenerationGuide<number>;
     /**
      * static func range(_ range: ClosedRange<Int>) -> GenerationGuide<Int>
      * @availability iOS 26.0+
      */
-    static range178(range: SDKHandle): GenerationGuide<number>;
+    static range61894(range: SDKHandle): GenerationGuide<number>;
     /**
      * static func maximum(_ value: Int) -> GenerationGuide<Int>
      * @availability iOS 26.0+
      */
-    static maximum179(value: number): GenerationGuide<number>;
+    static maximum26712(value: number): GenerationGuide<number>;
     /**
      * static func minimum(_ value: Int) -> GenerationGuide<Int>
      * @availability iOS 26.0+
      */
-    static minimum180(value: number): GenerationGuide<number>;
+    static minimum75018(value: number): GenerationGuide<number>;
     /**
      * static func range(_ range: ClosedRange<Decimal>) -> GenerationGuide<Decimal>
      * @availability iOS 26.0+
      */
-    static range181(range: SDKHandle): $SDK11;
+    static range56578(range: SDKHandle): $SDK11;
     /**
      * static func maximum(_ value: Decimal) -> GenerationGuide<Decimal>
      * @availability iOS 26.0+
      */
-    static maximum182(value: _Foundation_Decimal): $SDK11;
+    static maximum79040(value: _Foundation_Decimal): $SDK11;
     /**
      * static func minimum(_ value: Decimal) -> GenerationGuide<Decimal>
      * @availability iOS 26.0+
      */
-    static minimum183(value: _Foundation_Decimal): $SDK11;
+    static minimum37386(value: _Foundation_Decimal): $SDK11;
 }
 /**
  * struct GenerationID
@@ -875,7 +875,7 @@ export declare class Instructions extends SDKHandle {
      * init(_ content: some InstructionsRepresentable)
      * @availability iOS 26.0+
      */
-    static init144(content: SDKHandle): Instructions;
+    static init78303(content: SDKHandle): Instructions;
 }
 /**
  * typealias Body = some DynamicInstructions
@@ -926,7 +926,7 @@ export declare class InstructionsBuilder extends SDKHandle {
      * @export(implementation) static func buildExpression<I>(_ expression: I) -> I where I : InstructionsRepresentable
      * @availability iOS 26.0+
      */
-    static buildExpression308(expression: number): number;
+    static buildExpression39964(expression: number): number;
     /**
      * @export(implementation) static func buildLimitedAvailability(_ instructions: some InstructionsRepresentable) -> Instructions
      * @availability iOS 26.0+
@@ -1852,7 +1852,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * final func streamResponse<Content>(to prompt: String, generating type: Content.Type = Content.self, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
      * @availability iOS 26.0+
      */
-    streamResponseToIncludeSchemaInPromptOptions365(prompt: string, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK25;
+    streamResponseToIncludeSchemaInPromptOptions49503(prompt: string, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK25;
     /**
      * final func streamResponse<Content>(to prompt: Prompt, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
      * @availability iOS 27.0+
@@ -1862,7 +1862,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * final func streamResponse<Content>(to prompt: String, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
      * @availability iOS 27.0+
      */
-    streamResponseToGeneratingOptionsContextOptionsMetadata367(prompt: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK26;
+    streamResponseToGeneratingOptionsContextOptionsMetadata69944(prompt: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK26;
     /**
      * final func streamResponse(to prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 26.0+
@@ -1872,7 +1872,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * final func streamResponse(to prompt: String, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 26.0+
      */
-    streamResponseToSchemaIncludeSchemaInPromptOptions369(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK27;
+    streamResponseToSchemaIncludeSchemaInPromptOptions56182(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK27;
     /**
      * final func streamResponse(to prompt: Prompt, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 27.0+
@@ -1882,7 +1882,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * final func streamResponse(to prompt: String, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 27.0+
      */
-    streamResponseToSchemaOptionsContextOptionsMetadata371(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK27;
+    streamResponseToSchemaOptionsContextOptionsMetadata77454(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK27;
     /**
      * final func streamResponse(to prompt: Prompt, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<String>
      * @availability iOS 27.0+
@@ -1892,7 +1892,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * final func streamResponse(to prompt: String, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<String>
      * @availability iOS 27.0+
      */
-    streamResponseToOptionsContextOptionsMetadata373(prompt: string, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK18;
+    streamResponseToOptionsContextOptionsMetadata41858(prompt: string, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK18;
     /**
      * final func streamResponse(to prompt: Prompt, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<String>
      * @availability iOS 26.0+
@@ -1902,7 +1902,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * final func streamResponse(to prompt: String, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<String>
      * @availability iOS 26.0+
      */
-    streamResponseToOptions375(prompt: string, options?: GenerationOptions): $SDK18;
+    streamResponseToOptions65097(prompt: string, options?: GenerationOptions): $SDK18;
     /**
      * final func streamResponse(schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions(), @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 26.0+
@@ -1960,12 +1960,12 @@ export declare class LanguageModelSession extends SDKHandle {
      * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], @InstructionsBuilder instructions: () throws -> Instructions) rethrows
      * @availability iOS 26.0+
      */
-    static initModelInstructions416(model: SystemLanguageModel, instructions: (() => Instructions)): LanguageModelSession;
+    static initModelInstructions11508(model: SystemLanguageModel, instructions: (() => Instructions)): LanguageModelSession;
     /**
      * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], instructions: String? = nil)
      * @availability iOS 26.0+
      */
-    static initModelInstructions417(model?: SystemLanguageModel, instructions?: (string) | null): LanguageModelSession;
+    static initModelInstructions81584(model?: SystemLanguageModel, instructions?: (string) | null): LanguageModelSession;
     /**
      * final var usage: LanguageModelSession.Usage { get }
      * @availability iOS 27.0+
@@ -1985,7 +1985,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: String, generating type: Content.Type = Content.self, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<Content> where Content : Generable
      * @availability iOS 26.0+
      */
-    respondToIncludeSchemaInPromptOptions422(prompt: string, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK32>;
+    respondToIncludeSchemaInPromptOptions42884(prompt: string, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK32>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: Prompt, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<Content> where Content : Generable
      * @availability iOS 27.0+
@@ -1995,7 +1995,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: String, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<Content> where Content : Generable
      * @availability iOS 27.0+
      */
-    respondToGeneratingOptionsContextOptionsMetadata424(prompt: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK33>;
+    respondToGeneratingOptionsContextOptionsMetadata53237(prompt: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK33>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<GeneratedContent>
      * @availability iOS 26.0+
@@ -2005,7 +2005,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<GeneratedContent>
      * @availability iOS 26.0+
      */
-    respondToSchemaIncludeSchemaInPromptOptions426(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK34>;
+    respondToSchemaIncludeSchemaInPromptOptions36651(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK34>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<GeneratedContent>
      * @availability iOS 27.0+
@@ -2015,7 +2015,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<GeneratedContent>
      * @availability iOS 27.0+
      */
-    respondToSchemaOptionsContextOptionsMetadata428(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK34>;
+    respondToSchemaOptionsContextOptionsMetadata41640(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK34>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<String>
      * @availability iOS 27.0+
@@ -2025,7 +2025,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<String>
      * @availability iOS 27.0+
      */
-    respondToOptionsContextOptionsMetadata430(prompt: string, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK17>;
+    respondToOptionsContextOptionsMetadata6997(prompt: string, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK17>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<String>
      * @availability iOS 26.0+
@@ -2035,7 +2035,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<String>
      * @availability iOS 26.0+
      */
-    respondToOptions432(prompt: string, options?: GenerationOptions): Promise<$SDK17>;
+    respondToOptions26720(prompt: string, options?: GenerationOptions): Promise<$SDK17>;
 }
 /**
  * struct AnyDynamicProfile
@@ -2819,7 +2819,7 @@ export declare class Prompt extends SDKHandle {
      * init(_ content: some PromptRepresentable)
      * @availability iOS 26.0+
      */
-    static init602(content: SDKHandle): Prompt;
+    static init35397(content: SDKHandle): Prompt;
 }
 /**
  * @resultBuilder struct PromptBuilder
@@ -2855,7 +2855,7 @@ export declare class PromptBuilder extends SDKHandle {
      * @export(implementation) static func buildExpression<P>(_ expression: P) -> P where P : PromptRepresentable
      * @availability iOS 26.0+
      */
-    static buildExpression150(expression: number): number;
+    static buildExpression41437(expression: number): number;
     /**
      * @export(implementation) static func buildLimitedAvailability(_ prompt: some PromptRepresentable) -> Prompt
      * @availability iOS 26.0+
@@ -2905,12 +2905,12 @@ export declare class SystemLanguageModel extends SDKHandle {
      * nonisolated(nonsending) final func tokenCount(for schema: GenerationSchema) async throws -> Int
      * @availability iOS 26.4+
      */
-    tokenCountFor313(schema: GenerationSchema): Promise<number>;
+    tokenCountFor79776(schema: GenerationSchema): Promise<number>;
     /**
      * nonisolated(nonsending) final func tokenCount(for prompt: some PromptRepresentable) async throws -> Int
      * @availability iOS 26.4+
      */
-    tokenCountFor314(prompt: SDKHandle): Promise<number>;
+    tokenCountFor15824(prompt: SDKHandle): Promise<number>;
     /**
      * @backDeployed(before: iOS 26.4, macOS 26.4, visionOS 26.4)
     final var contextSize: Int { get }
@@ -3300,7 +3300,7 @@ export declare class Transcript_HistoryView extends SDKHandle {
      * subscript(bounds: Range<Transcript.HistoryView.Index>) -> Transcript.HistoryView { get set }
      * @availability iOS 27.0+
      */
-    subscript24(bounds: SDKHandle): Transcript_HistoryView;
+    subscript34821(bounds: SDKHandle): Transcript_HistoryView;
 }
 /**
  * typealias ArrayLiteralElement = Transcript.Entry
@@ -3395,12 +3395,12 @@ export declare class Transcript_ImageAttachment extends SDKHandle {
      * init(_ pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 27.0+
      */
-    static initOrientation57(pixelBuffer: _CoreVideo_CVBuffer, orientation?: $SDK3): Transcript_ImageAttachment;
+    static initOrientation56194(pixelBuffer: _CoreVideo_CVBuffer, orientation?: $SDK3): Transcript_ImageAttachment;
     /**
      * init(_ ciImage: CIImage, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 27.0+
      */
-    static initOrientation58(ciImage: _CoreImage_CIImage, orientation?: $SDK3): Transcript_ImageAttachment;
+    static initOrientation16012(ciImage: _CoreImage_CIImage, orientation?: $SDK3): Transcript_ImageAttachment;
 }
 /**
  * typealias Index = Int

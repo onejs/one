@@ -260,7 +260,7 @@ export declare class ReplaceSymbolEffect extends SDKHandle {
      * static var upUp: ReplaceSymbolEffect { get }
      * @availability iOS 18.0+
      */
-    static get upUp54(): ReplaceSymbolEffect;
+    static get upUp31977(): ReplaceSymbolEffect;
     /**
      * func magic(fallback: ReplaceSymbolEffect) -> ReplaceSymbolEffect.MagicReplace
      * @availability iOS 18.0+
@@ -275,7 +275,7 @@ export declare class ReplaceSymbolEffect extends SDKHandle {
      * static var offUp: ReplaceSymbolEffect { get }
      * @availability iOS 18.0+
      */
-    static get offUp57(): ReplaceSymbolEffect;
+    static get offUp97284(): ReplaceSymbolEffect;
     /**
      * var downUp: ReplaceSymbolEffect { get }
      * @availability iOS 17.0+
@@ -285,7 +285,7 @@ export declare class ReplaceSymbolEffect extends SDKHandle {
      * static var downUp: ReplaceSymbolEffect { get }
      * @availability iOS 18.0+
      */
-    static get downUp59(): ReplaceSymbolEffect;
+    static get downUp4288(): ReplaceSymbolEffect;
     /**
      * var byLayer: ReplaceSymbolEffect { get }
      * @availability iOS 17.0+
@@ -391,7 +391,7 @@ export declare class SymbolEffectOptions extends SDKHandle {
      * static var nonRepeating: SymbolEffectOptions { get }
      * @availability iOS 17.0+
      */
-    static get nonRepeating62(): SymbolEffectOptions;
+    static get nonRepeating3194(): SymbolEffectOptions;
     /**
      * func speed(_ speed: Double) -> SymbolEffectOptions
      * @availability iOS 17.0+
@@ -401,7 +401,7 @@ export declare class SymbolEffectOptions extends SDKHandle {
      * static func speed(_ speed: Double) -> SymbolEffectOptions
      * @availability iOS 17.0+
      */
-    static speed67(speed: number): SymbolEffectOptions;
+    static speed7257(speed: number): SymbolEffectOptions;
     /**
      * func `repeat`(_ behavior: SymbolEffectOptions.RepeatBehavior) -> SymbolEffectOptions
      * @availability iOS 18.0+
@@ -411,19 +411,19 @@ export declare class SymbolEffectOptions extends SDKHandle {
      * static func `repeat`(_ behavior: SymbolEffectOptions.RepeatBehavior) -> SymbolEffectOptions
      * @availability iOS 18.0+
      */
-    static repeat69(behavior: SymbolEffectOptions_RepeatBehavior): SymbolEffectOptions;
+    static repeat32339(behavior: SymbolEffectOptions_RepeatBehavior): SymbolEffectOptions;
     /**
      * func `repeat`(_ count: Int?) -> SymbolEffectOptions
      * @availability iOS 17.0+
      * @deprecated iOS 100000.0
      */
-    repeat70(count?: (number) | null): SymbolEffectOptions;
+    repeat96399(count?: (number) | null): SymbolEffectOptions;
     /**
      * static func `repeat`(_ count: Int?) -> SymbolEffectOptions
      * @availability iOS 17.0+
      * @deprecated iOS 100000.0
      */
-    static repeat71(count?: (number) | null): SymbolEffectOptions;
+    static repeat8111(count?: (number) | null): SymbolEffectOptions;
     /**
      * static var `default`: SymbolEffectOptions { get }
      * @availability iOS 17.0+
@@ -440,7 +440,7 @@ export declare class SymbolEffectOptions extends SDKHandle {
      * @availability iOS 17.0+
      * @deprecated iOS 100000.0
      */
-    static get repeating74(): SymbolEffectOptions;
+    static get repeating64259(): SymbolEffectOptions;
 }
 /**
  * struct RepeatBehavior

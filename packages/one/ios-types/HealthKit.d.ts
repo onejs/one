@@ -259,16 +259,16 @@ export declare class HKQuery extends SDKHandle {
      */
     static predicateForObjectsFrom(devices: Array<HKDevice>): _Foundation_NSPredicate;
     /** class func predicateForObjects(from source: HKSource) -> NSPredicate */
-    static predicateForObjectsFrom729(source: HKSource): _Foundation_NSPredicate;
+    static predicateForObjectsFrom84340(source: HKSource): _Foundation_NSPredicate;
     /**
      * class func predicateForObjects(from sourceRevisions: Set<HKSourceRevision>) -> NSPredicate
      * @availability iOS 9.0+
      */
-    static predicateForObjectsFrom730(sourceRevisions: Array<HKSourceRevision>): _Foundation_NSPredicate;
+    static predicateForObjectsFrom12058(sourceRevisions: Array<HKSourceRevision>): _Foundation_NSPredicate;
     /** class func predicateForObjects(from sources: Set<HKSource>) -> NSPredicate */
-    static predicateForObjectsFrom731(sources: Array<HKSource>): _Foundation_NSPredicate;
+    static predicateForObjectsFrom41455(sources: Array<HKSource>): _Foundation_NSPredicate;
     /** class func predicateForObjects(from workout: HKWorkout) -> NSPredicate */
-    static predicateForObjectsFrom732(workout: HKWorkout): _Foundation_NSPredicate;
+    static predicateForObjectsFrom74200(workout: HKWorkout): _Foundation_NSPredicate;
     /**
      * class func predicateForObjects(withDeviceProperty key: String, allowedValues: Set<String>) -> NSPredicate
      * @availability iOS 9.0+
@@ -291,9 +291,9 @@ export declare class HKQuery extends SDKHandle {
     /** class func predicateForStatesOfMind(with association: HKStateOfMind.Association) -> NSPredicate */
     static predicateForStatesOfMindWith(association: HKStateOfMind_Association): _Foundation_NSPredicate;
     /** class func predicateForStatesOfMind(with kind: HKStateOfMind.Kind) -> NSPredicate */
-    static predicateForStatesOfMindWith742(kind: HKStateOfMind_Kind): _Foundation_NSPredicate;
+    static predicateForStatesOfMindWith92358(kind: HKStateOfMind_Kind): _Foundation_NSPredicate;
     /** class func predicateForStatesOfMind(with label: HKStateOfMind.Label) -> NSPredicate */
-    static predicateForStatesOfMindWith743(label: HKStateOfMind_Label): _Foundation_NSPredicate;
+    static predicateForStatesOfMindWith55314(label: HKStateOfMind_Label): _Foundation_NSPredicate;
     /** class func predicateForStatesOfMind(withValence valence: Double, operatorType: NSComparisonPredicate.Operator) -> NSPredicate */
     static predicateForStatesOfMindWithValenceOperatorType(valence: number, operatorType: _Foundation_NSComparisonPredicate_Operator): _Foundation_NSPredicate;
     /**
@@ -3278,7 +3278,7 @@ export declare class HKHealthStore extends SDKHandle {
      * func delete(_ objects: [HKObject]) async throws
      * @availability iOS 9.0+
      */
-    deleteWithCompletion598(objects: Array<HKObject>, completion: $SDK31): void;
+    deleteWithCompletion64175(objects: Array<HKObject>, completion: $SDK31): void;
     /**
      * func deleteObjects(of objectType: HKObjectType, predicate: NSPredicate) async throws -> Int
      * @availability iOS 9.0+
@@ -3361,7 +3361,7 @@ export declare class HKHealthStore extends SDKHandle {
      * func save(_ objects: [HKObject]) async throws
      * @availability iOS 8.0+
      */
-    saveWithCompletion617(objects: Array<HKObject>, completion: $SDK31): void;
+    saveWithCompletion30981(objects: Array<HKObject>, completion: $SDK31): void;
     /**
      * func splitTotalEnergy(_ totalEnergy: HKQuantity, start startDate: Date, end endDate: Date, resultsHandler: @escaping @Sendable (HKQuantity?, HKQuantity?, (any Error)?) -> Void)
      * @availability iOS 9.0+
@@ -3790,7 +3790,7 @@ export declare class HKLiveWorkoutBuilder extends HKLiveWorkoutBuilder_base {
      * func elapsedTime(at date: Date) -> TimeInterval
      * @availability iOS 12.0+
      */
-    elapsedTime976(date: globalThis.Date): number;
+    elapsedTime76675(date: globalThis.Date): number;
 }
 /**
  * protocol HKLiveWorkoutBuilderDelegate : NSObjectProtocol
@@ -5924,7 +5924,7 @@ export declare class HKUnit extends SDKHandle {
     /** class func moleUnit(with prefix: HKMetricPrefix, molarMass gramsPerMole: Double) -> Self */
     static moleUnitWithMolarMass(prefix: HKMetricPrefix, gramsPerMole: number): HKUnit;
     /** class func moleUnit(withMolarMass gramsPerMole: Double) -> Self */
-    static moleUnitWithMolarMass879(gramsPerMole: number): HKUnit;
+    static moleUnitWithMolarMass80621(gramsPerMole: number): HKUnit;
     /** class func ounce() -> Self */
     static ounce(): HKUnit;
     /** class func pascal() -> Self */

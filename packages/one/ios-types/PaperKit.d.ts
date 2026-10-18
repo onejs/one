@@ -227,7 +227,7 @@ export declare class ImageMarkup extends SDKHandle {
      * mutating func replaceImage(with image: CGImage)
      * @availability iOS 27.0+
      */
-    replaceImageWith155(image: _CoreGraphics_CGImage): void;
+    replaceImageWith25937(image: _CoreGraphics_CGImage): void;
     /**
      * var featureSet: FeatureSet { get }
      * @availability iOS 27.0+
@@ -844,12 +844,12 @@ export declare class MarkupOrderedSet extends SDKHandle {
      * subscript(id: MarkupOrderedSet.ElementID) -> MarkupOrderedSet.Element? { get set }
      * @availability iOS 27.0+
      */
-    subscript320(id: MarkupOrderedSet_ElementID): (SDKHandle) | null;
+    subscript31870(id: MarkupOrderedSet_ElementID): (SDKHandle) | null;
     /**
      * subscript(index: Int) -> MarkupOrderedSet.Element { get }
      * @availability iOS 27.0+
      */
-    subscript321(index: number): SDKHandle;
+    subscript64709(index: number): SDKHandle;
 }
 /**
  * typealias Element = any Markup
@@ -1015,7 +1015,7 @@ export declare class PaperMarkup extends SDKHandle {
      * mutating func insertNewTextbox(attributedText: NSAttributedString, frame: CGRect, rotation: CGFloat = 0)
      * @availability iOS 26.0+
      */
-    insertNewTextboxAttributedTextFrameRotation95(attributedText: _Foundation_NSAttributedString, frame: $SDK3, rotation?: number): void;
+    insertNewTextboxAttributedTextFrameRotation68161(attributedText: _Foundation_NSAttributedString, frame: $SDK3, rotation?: number): void;
     /**
      * mutating func transformContent(_ transform: CGAffineTransform)
      * @availability iOS 26.0+
@@ -1061,7 +1061,7 @@ export declare class PaperMarkup extends SDKHandle {
      * mutating func append(contentsOf other: PaperMarkup)
      * @availability iOS 26.0+
      */
-    appendContentsOf105(other: PaperMarkup): void;
+    appendContentsOf77581(other: PaperMarkup): void;
     /**
      * init(bounds: CGRect)
      * @availability iOS 26.0+
@@ -1201,7 +1201,7 @@ export declare class PaperMarkupViewController extends SDKHandle {
      * @MainActor @preconcurrency func setContentVisibleFrame(_ rect: CGRect, animated: Bool)
      * @availability iOS 26.0+
      */
-    setContentVisibleFrame59(rect: $SDK3, animated: boolean): Promise<void>;
+    setContentVisibleFrame66674(rect: $SDK3, animated: boolean): Promise<void>;
     /**
      * @MainActor @preconcurrency var indirectPointerTouchMode: PaperMarkupViewController.TouchMode { get set }
      * @availability iOS 26.0+

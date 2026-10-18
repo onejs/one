@@ -104,6 +104,14 @@ const parameterName = (name: string, i: number) => {
   return reserved.has(value) ? `${value}_` : value
 }
 
+// a name that still collides takes a number from its declaration, never its place in
+// the table, so pruning another entry never renames it
+const stableNumber = (key: string) => {
+  let hash = 0x811c9dc5
+  for (let i = 0; i < key.length; i++) hash = Math.imul(hash ^ key.charCodeAt(i), 0x01000193)
+  return ((hash >>> 0) % 100000).toString()
+}
+
 // property getter/setter pairs share a name; callable overloads use swift labels.
 export function facadeNames(entries: readonly E[]): Map<string, string> {
   const groups = new Map<string, E[]>()
@@ -130,7 +138,7 @@ export function facadeNames(entries: readonly E[]): Map<string, string> {
       if (!e.owner && reserved.has(name)) name += 'Value'
       const base = name
       for (let suffix = 0; used.has(name) && used.get(name) !== e.usr; suffix++)
-        name = `${base}${e.id}${suffix || ''}`
+        name = `${base}${stableNumber(e.usr)}${suffix || ''}`
       used.set(name, e.usr)
       names.set(e.key, name)
     }
@@ -203,7 +211,7 @@ class Facade {
           this.names.set(e.key, name)
           break
         }
-        name = `${base}${e.id}${suffix || ''}`
+        name = `${base}${stableNumber(e.usr)}${suffix || ''}`
       }
     }
   }

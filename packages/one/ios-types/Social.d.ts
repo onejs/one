@@ -157,7 +157,7 @@ export declare class SLComposeViewController extends SDKHandle {
      * func add(_ url: URL!) -> Bool
      * @availability iOS 6.0+
      */
-    add37(url?: (string) | null): boolean;
+    add77170(url?: (string) | null): boolean;
     /** init() */
     static init(): SLComposeViewController;
     /**

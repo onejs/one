@@ -207,7 +207,7 @@ export declare class TranslationSession extends SDKHandle {
      * func translate(_ string: String) async throws -> TranslationSession.Response
      * @availability iOS 18.0+
      */
-    translate55(string: string): Promise<TranslationSession_Response>;
+    translate9306(string: string): Promise<TranslationSession_Response>;
 }
 /**
  * struct BatchResponse
@@ -299,7 +299,7 @@ export declare class TranslationSession_Request extends SDKHandle {
      * init(sourceText: String, clientIdentifier: String? = nil)
      * @availability iOS 18.0+
      */
-    static initSourceTextClientIdentifier34(sourceText: string, clientIdentifier?: (string) | null): TranslationSession_Request;
+    static initSourceTextClientIdentifier35269(sourceText: string, clientIdentifier?: (string) | null): TranslationSession_Request;
     /**
      * var sourceText: String
      * @availability iOS 18.0+

@@ -59,29 +59,29 @@ type $SDK38 = (SymbolRenderingMode) | null;
 type $SDK39 = (SymbolVariableValueMode) | null;
 type $SDK40 = (SymbolColorRenderingMode) | null;
 type $SDK41 = (globalThis.Date) | null;
-type $SDK48 = ((arg0: GraphicsContext) => void);
-type $SDK51 = (GraphicsContext_Shading) | null;
-type $SDK54 = PlaceholderContentView<unknown>;
-type $SDK58 = _Combine_PassthroughSubject<void, never>;
-type $SDK61 = (_Foundation_Formatter) | null;
-type $SDK62 = Array<MeshGradient_BezierPoint>;
-type $SDK65 = AnimatablePair<SDKHandle, AnimatablePair<number, number>>;
-type $SDK67 = ({
+type $SDK47 = ((arg0: GraphicsContext) => void);
+type $SDK50 = (GraphicsContext_Shading) | null;
+type $SDK53 = PlaceholderContentView<unknown>;
+type $SDK57 = _Combine_PassthroughSubject<void, never>;
+type $SDK60 = (_Foundation_Formatter) | null;
+type $SDK61 = Array<MeshGradient_BezierPoint>;
+type $SDK64 = AnimatablePair<SDKHandle, AnimatablePair<number, number>>;
+type $SDK66 = ({
     x: number;
     y: number;
 }) | null;
-type $SDK72 = AnimatablePair<SDKHandle, AnimatablePair<number, AnimatablePair<number, number>>>;
-type $SDK73 = AnimatablePair<SDKHandle, AnimatablePair<AnimatablePair<number, number>, AnimatablePair<number, number>>>;
-type $SDK78 = AnimatablePair<number, AnimatablePair<number, number>>;
-type $SDK79 = Array<_Foundation_Date_ComponentsFormatStyle_Field>;
-type $SDK80 = Array<Text_Layout_CharacterIndex>;
-type $SDK81 = Array<Text_LayoutKey_AnchoredLayout>;
-type $SDK82 = Anchor<{
+type $SDK71 = AnimatablePair<SDKHandle, AnimatablePair<number, AnimatablePair<number, number>>>;
+type $SDK72 = AnimatablePair<SDKHandle, AnimatablePair<AnimatablePair<number, number>, AnimatablePair<number, number>>>;
+type $SDK77 = AnimatablePair<number, AnimatablePair<number, number>>;
+type $SDK78 = Array<_Foundation_Date_ComponentsFormatStyle_Field>;
+type $SDK79 = Array<Text_Layout_CharacterIndex>;
+type $SDK80 = Array<Text_LayoutKey_AnchoredLayout>;
+type $SDK81 = Anchor<{
     x: number;
     y: number;
 }>;
-type $SDK84 = TimeDataSource<SDKHandle>;
-type $SDK85 = TransformedShape<SDKHandle>;
+type $SDK83 = TimeDataSource<SDKHandle>;
+type $SDK84 = TransformedShape<SDKHandle>;
 /**
  * struct AccessibilityActionCategory
  * @availability iOS 18.0+
@@ -106,17 +106,17 @@ export declare class AccessibilityActionCategory extends SDKHandle {
      * init(_ name: some StringProtocol)
      * @availability iOS 18.0+
      */
-    static init1175(name: SDKHandle): AccessibilityActionCategory;
+    static init54449(name: SDKHandle): AccessibilityActionCategory;
     /**
      * init(_ nameKey: LocalizedStringKey)
      * @availability iOS 18.0+
      */
-    static init1176(nameKey: LocalizedStringKey): AccessibilityActionCategory;
+    static init44537(nameKey: LocalizedStringKey): AccessibilityActionCategory;
     /**
      * init(_ name: Text)
      * @availability iOS 18.0+
      */
-    static init1177(name: Text): AccessibilityActionCategory;
+    static init47462(name: Text): AccessibilityActionCategory;
 }
 /**
  * struct AccessibilityActionKind
@@ -163,12 +163,12 @@ export declare class AccessibilityCustomContentKey extends SDKHandle {
      * init(_ labelKey: LocalizedStringKey, id: String)
      * @availability iOS 15.0+
      */
-    static initId1194(labelKey: LocalizedStringKey, id: string): AccessibilityCustomContentKey;
+    static initId98528(labelKey: LocalizedStringKey, id: string): AccessibilityCustomContentKey;
     /**
      * init(_ label: Text, id: String)
      * @availability iOS 15.0+
      */
-    static initId1195(label: Text, id: string): AccessibilityCustomContentKey;
+    static initId12589(label: Text, id: string): AccessibilityCustomContentKey;
     /**
      * init(_ label: LocalizedStringResource)
      * @availability iOS 26.0+
@@ -178,7 +178,7 @@ export declare class AccessibilityCustomContentKey extends SDKHandle {
      * init(_ labelKey: LocalizedStringKey)
      * @availability iOS 15.0+
      */
-    static init1197(labelKey: LocalizedStringKey): AccessibilityCustomContentKey;
+    static init3514(labelKey: LocalizedStringKey): AccessibilityCustomContentKey;
 }
 /**
  * struct AccessibilityDirectTouchOptions
@@ -753,7 +753,7 @@ export declare class Anchor_Source<Value = unknown> extends SDKHandle {
      * init<T>(_ anchor: Anchor<T>.Source?) where Value == T?
      * @availability iOS 13.0+
      */
-    static init1652(anchor?: (Anchor_Source<unknown>) | null): Anchor_Source<(unknown) | null>;
+    static init73288(anchor?: (Anchor_Source<unknown>) | null): Anchor_Source<(unknown) | null>;
 }
 /**
  * @frozen struct Angle
@@ -786,7 +786,7 @@ export declare class Angle extends SDKHandle {
      * static func degrees(_ degrees: Double) -> Angle
      * @availability iOS 13.0+
      */
-    static degrees1508(degrees: number): Angle;
+    static degrees91512(degrees: number): Angle;
     /**
      * init(radians: Double)
      * @availability iOS 13.0+
@@ -802,7 +802,7 @@ export declare class Angle extends SDKHandle {
      * static func radians(_ radians: Double) -> Angle
      * @availability iOS 13.0+
      */
-    static radians1512(radians: number): Angle;
+    static radians25777(radians: number): Angle;
     /**
      * init()
      * @availability iOS 13.0+
@@ -954,7 +954,7 @@ export declare class Animation extends SDKHandle {
      * static func timingCurve(_ p1x: Double, _ p1y: Double, _ p2x: Double, _ p2y: Double, duration: TimeInterval = 0.35) -> Animation
      * @availability iOS 13.0+
      */
-    static timingCurveDuration1801(p1x: number, p1y: number, p2x: number, p2y: number, duration?: number): Animation;
+    static timingCurveDuration57879(p1x: number, p1y: number, p2x: number, p2y: number, duration?: number): Animation;
     /**
      * var customMirror: Mirror { get }
      * @availability iOS 13.0+
@@ -1284,7 +1284,7 @@ export declare class AnyLayout extends SDKHandle {
      * func explicitAlignment(of guide: VerticalAlignment, in bounds: CGRect, proposal: ProposedViewSize, subviews: AnyLayout.Subviews, cache: inout AnyLayout.Cache) -> CGFloat?
      * @availability iOS 16.0+
      */
-    explicitAlignmentOfInProposalSubviewsCache1843(guide: VerticalAlignment, bounds: $SDK6, proposal: ProposedViewSize, subviews: LayoutSubviews, cache: AnyLayout_Cache): {
+    explicitAlignmentOfInProposalSubviewsCache662(guide: VerticalAlignment, bounds: $SDK6, proposal: ProposedViewSize, subviews: LayoutSubviews, cache: AnyLayout_Cache): {
         $ret: (number) | null;
         $out: {
             "cache": AnyLayout_Cache;
@@ -2145,7 +2145,7 @@ export declare class Binding<Value = unknown> extends SDKHandle {
      * func transaction(_ transaction: Transaction) -> Binding<Value>
      * @availability iOS 13.0+
      */
-    transaction1728(transaction: Transaction): Binding<unknown>;
+    transaction59249(transaction: Transaction): Binding<unknown>;
     /**
      * var wrappedValue: Value { get nonmutating set }
      * @availability iOS 13.0+
@@ -2186,12 +2186,12 @@ export declare class Binding<Value = unknown> extends SDKHandle {
      * init<V>(_ base: Binding<V>) where Value == AnyHashable, V : Hashable
      * @availability iOS 13.0+
      */
-    static init1737(base: Binding<number>): Binding<unknown>;
+    static init16056(base: Binding<number>): Binding<unknown>;
     /**
      * init?(_ base: Binding<Value?>)
      * @availability iOS 13.0+
      */
-    static init1738(base: Binding<(unknown) | null>): (Binding<unknown>) | null;
+    static init51273(base: Binding<(unknown) | null>): (Binding<unknown>) | null;
 }
 /**
  * typealias Element = Binding<Value.Element>
@@ -2666,18 +2666,18 @@ export declare class Color extends SDKHandle {
      * init(_ resolved: Color.Resolved)
      * @availability iOS 17.0+
      */
-    static init1587(resolved: Color_Resolved): Color;
+    static init85145(resolved: Color_Resolved): Color;
     /**
      * init(_ resource: ColorResource)
      * @availability iOS 17.0+
      */
-    static init1588(resource: _DeveloperToolsSupport_ColorResource): Color;
+    static init50051(resource: _DeveloperToolsSupport_ColorResource): Color;
     /**
      * init(_ cgColor: CGColor)
      * @availability iOS 14.0+
      * @deprecated iOS 100000.0
      */
-    static init1589(cgColor: _CoreGraphics_CGColor): Color;
+    static init51359(cgColor: _CoreGraphics_CGColor): Color;
 }
 /**
  * typealias Body = Never
@@ -4775,7 +4775,7 @@ export declare class Font extends SDKHandle {
      * func monospaced(_ isActive: Bool) -> Font
      * @availability iOS 26.0+
      */
-    monospaced1284(isActive: boolean): Font;
+    monospaced30059(isActive: boolean): Font;
     /**
      * static let subheadline: Font
      * @availability iOS 13.0+
@@ -4795,7 +4795,7 @@ export declare class Font extends SDKHandle {
      * func lowercaseSmallCaps(_ isActive: Bool) -> Font
      * @availability iOS 26.0+
      */
-    lowercaseSmallCaps1288(isActive: boolean): Font;
+    lowercaseSmallCaps1507(isActive: boolean): Font;
     /**
      * func uppercaseSmallCaps() -> Font
      * @availability iOS 13.0+
@@ -4805,7 +4805,7 @@ export declare class Font extends SDKHandle {
      * func uppercaseSmallCaps(_ isActive: Bool) -> Font
      * @availability iOS 26.0+
      */
-    uppercaseSmallCaps1290(isActive: boolean): Font;
+    uppercaseSmallCaps98364(isActive: boolean): Font;
     /**
      * static let body: Font
      * @availability iOS 13.0+
@@ -4820,7 +4820,7 @@ export declare class Font extends SDKHandle {
      * func bold(_ isActive: Bool) -> Font
      * @availability iOS 26.0+
      */
-    bold1293(isActive: boolean): Font;
+    bold91310(isActive: boolean): Font;
     /**
      * static let title: Font
      * @availability iOS 13.0+
@@ -4855,7 +4855,7 @@ export declare class Font extends SDKHandle {
      * func italic(_ isActive: Bool) -> Font
      * @availability iOS 26.0+
      */
-    italic1316(isActive: boolean): Font;
+    italic41867(isActive: boolean): Font;
     /**
      * func scaled(by factor: CGFloat) -> Font
      * @availability iOS 26.0+
@@ -4871,7 +4871,7 @@ export declare class Font extends SDKHandle {
      * static func system(size: CGFloat, weight: Font.Weight? = nil, design: Font.Design? = nil) -> Font
      * @availability iOS 16.0+
      */
-    static systemSizeWeightDesign1319(size: number, weight?: (Font_Weight) | null, design?: (Font_Design) | null): Font;
+    static systemSizeWeightDesign6513(size: number, weight?: (Font_Weight) | null, design?: (Font_Design) | null): Font;
     /**
      * static func system(_ style: Font.TextStyle, design: Font.Design? = nil, weight: Font.Weight? = nil) -> Font
      * @availability iOS 16.0+
@@ -4952,7 +4952,7 @@ export declare class Font extends SDKHandle {
      * func smallCaps(_ isActive: Bool) -> Font
      * @availability iOS 26.0+
      */
-    smallCaps1348(isActive: boolean): Font;
+    smallCaps43824(isActive: boolean): Font;
     /**
      * init(_ font: CTFont)
      * @availability iOS 13.0+
@@ -5353,7 +5353,6 @@ export declare class GeometryReader<Content = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     get content(): ((arg0: GeometryProxy) => Promise<SDKHandle>);
-    set content(value: ((arg0: GeometryProxy) => SDKHandle));
 }
 /**
  * typealias Body = Never
@@ -5634,7 +5633,7 @@ export declare class GraphicsContext extends SDKHandle {
      * mutating func clipToLayer(opacity: Double = 1, options: GraphicsContext.ClipOptions = ClipOptions(), content: (inout GraphicsContext) throws -> Void) rethrows
      * @availability iOS 15.0+
      */
-    clipToLayer(opacity: number, options: GraphicsContext_ClipOptions, content: $SDK48): void;
+    clipToLayer(opacity: number, options: GraphicsContext_ClipOptions, content: $SDK47): void;
     /**
      * mutating func concatenate(_ matrix: CGAffineTransform)
      * @availability iOS 15.0+
@@ -5679,22 +5678,22 @@ export declare class GraphicsContext extends SDKHandle {
      * func draw(_ image: Image, at point: CGPoint, anchor: UnitPoint = .center)
      * @availability iOS 15.0+
      */
-    drawAtAnchor551(image: Image, point: $SDK4, anchor?: UnitPoint): void;
+    drawAtAnchor95337(image: Image, point: $SDK4, anchor?: UnitPoint): void;
     /**
      * func draw(_ text: GraphicsContext.ResolvedText, at point: CGPoint, anchor: UnitPoint = .center)
      * @availability iOS 15.0+
      */
-    drawAtAnchor552(text: GraphicsContext_ResolvedText, point: $SDK4, anchor?: UnitPoint): void;
+    drawAtAnchor21319(text: GraphicsContext_ResolvedText, point: $SDK4, anchor?: UnitPoint): void;
     /**
      * func draw(_ image: GraphicsContext.ResolvedImage, at point: CGPoint, anchor: UnitPoint = .center)
      * @availability iOS 15.0+
      */
-    drawAtAnchor553(image: GraphicsContext_ResolvedImage, point: $SDK4, anchor?: UnitPoint): void;
+    drawAtAnchor47802(image: GraphicsContext_ResolvedImage, point: $SDK4, anchor?: UnitPoint): void;
     /**
      * func draw(_ symbol: GraphicsContext.ResolvedSymbol, at point: CGPoint, anchor: UnitPoint = .center)
      * @availability iOS 15.0+
      */
-    drawAtAnchor554(symbol: GraphicsContext_ResolvedSymbol, point: $SDK4, anchor?: UnitPoint): void;
+    drawAtAnchor50030(symbol: GraphicsContext_ResolvedSymbol, point: $SDK4, anchor?: UnitPoint): void;
     /**
      * func draw(_ image: Image, in rect: CGRect, style: FillStyle = FillStyle())
      * @availability iOS 15.0+
@@ -5704,7 +5703,7 @@ export declare class GraphicsContext extends SDKHandle {
      * func draw(_ image: GraphicsContext.ResolvedImage, in rect: CGRect, style: FillStyle = FillStyle())
      * @availability iOS 15.0+
      */
-    drawInStyle556(image: GraphicsContext_ResolvedImage, rect: $SDK6, style?: FillStyle): void;
+    drawInStyle25258(image: GraphicsContext_ResolvedImage, rect: $SDK6, style?: FillStyle): void;
     /**
      * func draw(_ text: Text, in rect: CGRect)
      * @availability iOS 15.0+
@@ -5714,12 +5713,12 @@ export declare class GraphicsContext extends SDKHandle {
      * func draw(_ text: GraphicsContext.ResolvedText, in rect: CGRect)
      * @availability iOS 15.0+
      */
-    drawIn558(text: GraphicsContext_ResolvedText, rect: $SDK6): void;
+    drawIn93574(text: GraphicsContext_ResolvedText, rect: $SDK6): void;
     /**
      * func draw(_ symbol: GraphicsContext.ResolvedSymbol, in rect: CGRect)
      * @availability iOS 15.0+
      */
-    drawIn559(symbol: GraphicsContext_ResolvedSymbol, rect: $SDK6): void;
+    drawIn18655(symbol: GraphicsContext_ResolvedSymbol, rect: $SDK6): void;
     /**
      * func draw(_ run: Text.Layout.Run, options: Text.Layout.DrawingOptions = .init())
      * @availability iOS 17.0+
@@ -5729,12 +5728,12 @@ export declare class GraphicsContext extends SDKHandle {
      * func draw(_ line: Text.Layout.Line, options: Text.Layout.DrawingOptions = .init())
      * @availability iOS 17.0+
      */
-    drawOptions561(line: Text_Layout_Line, options?: Text_Layout_DrawingOptions): void;
+    drawOptions75326(line: Text_Layout_Line, options?: Text_Layout_DrawingOptions): void;
     /**
      * func draw(_ slice: Text.Layout.RunSlice, options: Text.Layout.DrawingOptions = .init())
      * @availability iOS 17.0+
      */
-    drawOptions562(slice: Text_Layout_RunSlice, options?: Text_Layout_DrawingOptions): void;
+    drawOptions63387(slice: Text_Layout_RunSlice, options?: Text_Layout_DrawingOptions): void;
     /**
      * func fill(_ path: Path, with shading: GraphicsContext.Shading, style: FillStyle = FillStyle())
      * @availability iOS 15.0+
@@ -5770,12 +5769,12 @@ export declare class GraphicsContext extends SDKHandle {
      * func resolve(_ image: Image) -> GraphicsContext.ResolvedImage
      * @availability iOS 15.0+
      */
-    resolve606(image: Image): GraphicsContext_ResolvedImage;
+    resolve38418(image: Image): GraphicsContext_ResolvedImage;
     /**
      * func resolve(_ shading: GraphicsContext.Shading) -> GraphicsContext.Shading
      * @availability iOS 15.0+
      */
-    resolve607(shading: GraphicsContext_Shading): GraphicsContext_Shading;
+    resolve89852(shading: GraphicsContext_Shading): GraphicsContext_Shading;
     /**
      * mutating func scaleBy(x: CGFloat, y: CGFloat)
      * @availability iOS 15.0+
@@ -5796,7 +5795,7 @@ export declare class GraphicsContext extends SDKHandle {
      * func drawLayer(content: (inout GraphicsContext) throws -> Void) rethrows
      * @availability iOS 15.0+
      */
-    drawLayer(content: $SDK48): void;
+    drawLayer(content: $SDK47): void;
     /**
      * var transform: CGAffineTransform { get set }
      * @availability iOS 15.0+
@@ -6239,8 +6238,8 @@ export declare class GraphicsContext_ResolvedImage extends SDKHandle {
      * var shading: GraphicsContext.Shading?
      * @availability iOS 15.0+
      */
-    get shading(): $SDK51;
-    set shading(value: $SDK51);
+    get shading(): $SDK50;
+    set shading(value: $SDK50);
     /**
      * let baseline: CGFloat
      * @availability iOS 15.0+
@@ -6314,7 +6313,7 @@ export declare class GraphicsContext_Shading extends SDKHandle {
      * static func conicGradient(_ gradient: Gradient, center: CGPoint, angle: Angle = Angle(), options: GraphicsContext.GradientOptions = GradientOptions()) -> GraphicsContext.Shading
      * @availability iOS 15.0+
      */
-    static conicGradientCenterAngleOptions589(gradient: Gradient, center: $SDK4, angle?: Angle, options?: GraphicsContext_GradientOptions): GraphicsContext_Shading;
+    static conicGradientCenterAngleOptions36822(gradient: Gradient, center: $SDK4, angle?: Angle, options?: GraphicsContext_GradientOptions): GraphicsContext_Shading;
     /**
      * static func linearGradient(_ gradient: AnyGradient, startPoint: CGPoint, endPoint: CGPoint, options: GraphicsContext.GradientOptions = GradientOptions()) -> GraphicsContext.Shading
      * @availability iOS 18.0+
@@ -6324,7 +6323,7 @@ export declare class GraphicsContext_Shading extends SDKHandle {
      * static func linearGradient(_ gradient: Gradient, startPoint: CGPoint, endPoint: CGPoint, options: GraphicsContext.GradientOptions = GradientOptions()) -> GraphicsContext.Shading
      * @availability iOS 15.0+
      */
-    static linearGradientStartPointEndPointOptions591(gradient: Gradient, startPoint: $SDK4, endPoint: $SDK4, options?: GraphicsContext_GradientOptions): GraphicsContext_Shading;
+    static linearGradientStartPointEndPointOptions95406(gradient: Gradient, startPoint: $SDK4, endPoint: $SDK4, options?: GraphicsContext_GradientOptions): GraphicsContext_Shading;
     /**
      * static func radialGradient(_ gradient: AnyGradient, startCenter: CGPoint, startRadius: CGFloat, endCenter: CGPoint, endRadius: CGFloat, options: GraphicsContext.GradientOptions = GradientOptions()) -> GraphicsContext.Shading
      * @availability iOS 18.2+
@@ -6334,7 +6333,7 @@ export declare class GraphicsContext_Shading extends SDKHandle {
      * static func radialGradient(_ gradient: Gradient, startCenter: CGPoint, startRadius: CGFloat, endCenter: CGPoint, endRadius: CGFloat, options: GraphicsContext.GradientOptions = GradientOptions()) -> GraphicsContext.Shading
      * @availability iOS 18.2+
      */
-    static radialGradientStartCenterStartRadiusEndCenterEndRadiusOptions593(gradient: Gradient, startCenter: $SDK4, startRadius: number, endCenter: $SDK4, endRadius: number, options?: GraphicsContext_GradientOptions): GraphicsContext_Shading;
+    static radialGradientStartCenterStartRadiusEndCenterEndRadiusOptions99395(gradient: Gradient, startCenter: $SDK4, startRadius: number, endCenter: $SDK4, endRadius: number, options?: GraphicsContext_GradientOptions): GraphicsContext_Shading;
     /**
      * static func radialGradient(_ gradient: AnyGradient, center: CGPoint, startRadius: CGFloat, endRadius: CGFloat, options: GraphicsContext.GradientOptions = GradientOptions()) -> GraphicsContext.Shading
      * @availability iOS 18.0+
@@ -6344,7 +6343,7 @@ export declare class GraphicsContext_Shading extends SDKHandle {
      * static func radialGradient(_ gradient: Gradient, center: CGPoint, startRadius: CGFloat, endRadius: CGFloat, options: GraphicsContext.GradientOptions = GradientOptions()) -> GraphicsContext.Shading
      * @availability iOS 15.0+
      */
-    static radialGradientCenterStartRadiusEndRadiusOptions595(gradient: Gradient, center: $SDK4, startRadius: number, endRadius: number, options?: GraphicsContext_GradientOptions): GraphicsContext_Shading;
+    static radialGradientCenterStartRadiusEndRadiusOptions59147(gradient: Gradient, center: $SDK4, startRadius: number, endRadius: number, options?: GraphicsContext_GradientOptions): GraphicsContext_Shading;
     /**
      * static func color(_ colorSpace: Color.RGBColorSpace = .sRGB, red: Double, green: Double, blue: Double, opacity: Double = 1) -> GraphicsContext.Shading
      * @availability iOS 15.0+
@@ -6823,7 +6822,7 @@ export declare class IdentityTransition extends SDKHandle {
  * typealias Body = IdentityTransition.Content
  * @availability iOS 17.0+
  */
-export type IdentityTransition_Body = $SDK54;
+export type IdentityTransition_Body = $SDK53;
 /**
  * @frozen struct Image
  * @availability iOS 13.0+
@@ -6893,7 +6892,7 @@ export declare class Image extends SDKHandle {
      * init(size: CGSize, label: Text? = nil, opaque: Bool = false, colorMode: ColorRenderingMode = .nonLinear, renderer: @escaping (inout GraphicsContext) -> Void)
      * @availability iOS 16.0+
      */
-    static initSizeLabelOpaqueColorModeRenderer(size: $SDK14, label: (Text) | null, opaque: boolean, colorMode: ColorRenderingMode, renderer: $SDK48): Image;
+    static initSizeLabelOpaqueColorModeRenderer(size: $SDK14, label: (Text) | null, opaque: boolean, colorMode: ColorRenderingMode, renderer: $SDK47): Image;
     /**
      * func resizable(capInsets: EdgeInsets = EdgeInsets(), resizingMode: Image.ResizingMode = .stretch) -> Image
      * @availability iOS 13.0+
@@ -7062,7 +7061,7 @@ export declare class ImageRenderer<Content = unknown> extends SDKHandle {
      * final let objectWillChange: PassthroughSubject<Void, Never>
      * @availability iOS 16.0+
      */
-    get objectWillChange(): $SDK58;
+    get objectWillChange(): $SDK57;
     /**
      * @MainActor final var allowedDynamicRange: Image.DynamicRange? { get set }
      * @availability iOS 26.0+
@@ -7109,7 +7108,7 @@ export declare class ImageRenderer<Content = unknown> extends SDKHandle {
  * typealias ObjectWillChangePublisher = PassthroughSubject<Void, Never>
  * @availability iOS 16.0+
  */
-export type ImageRenderer_ObjectWillChangePublisher<Content = unknown> = $SDK58;
+export type ImageRenderer_ObjectWillChangePublisher<Content = unknown> = $SDK57;
 /**
  * protocol InsettableShape : Shape
  * @availability iOS 13.0+
@@ -7356,12 +7355,12 @@ export declare class LayoutSubviews extends SDKHandle {
      * subscript(bounds: Range<Int>) -> LayoutSubviews { get }
      * @availability iOS 16.0+
      */
-    subscript405(bounds: SDKHandle): LayoutSubviews;
+    subscript64883(bounds: SDKHandle): LayoutSubviews;
     /**
      * subscript<S>(indices: S) -> LayoutSubviews where S : Sequence, S.Element == Int { get }
      * @availability iOS 16.0+
      */
-    subscript406(indices: Array<number>): LayoutSubviews;
+    subscript55965(indices: Array<number>): LayoutSubviews;
 }
 /**
  * typealias Element = LayoutSubview
@@ -7550,12 +7549,12 @@ export declare class LocalizedStringKey_StringInterpolation extends SDKHandle {
      * mutating func appendInterpolation<Subject>(_ subject: Subject, formatter: Formatter? = nil) where Subject : ReferenceConvertible
      * @availability iOS 13.0+
      */
-    appendInterpolationFormatter(subject: ArrayBuffer, formatter?: $SDK61): void;
+    appendInterpolationFormatter(subject: ArrayBuffer, formatter?: $SDK60): void;
     /**
      * mutating func appendInterpolation<Subject>(_ subject: Subject, formatter: Formatter? = nil) where Subject : NSObject
      * @availability iOS 13.0+
      */
-    appendInterpolationFormatter924(subject: SDKHandle, formatter?: $SDK61): void;
+    appendInterpolationFormatter28845(subject: SDKHandle, formatter?: $SDK60): void;
     /**
      * mutating func appendInterpolation(_ attributedString: AttributedString)
      * @availability iOS 15.0+
@@ -7565,47 +7564,47 @@ export declare class LocalizedStringKey_StringInterpolation extends SDKHandle {
      * mutating func appendInterpolation(_ resource: LocalizedStringResource)
      * @availability iOS 16.0+
      */
-    appendInterpolation926(resource: _Foundation_LocalizedStringResource): void;
+    appendInterpolation10481(resource: _Foundation_LocalizedStringResource): void;
     /**
      * mutating func appendInterpolation(_ interval: DateInterval)
      * @availability iOS 14.0+
      */
-    appendInterpolation927(interval: _Foundation_DateInterval): void;
+    appendInterpolation77286(interval: _Foundation_DateInterval): void;
     /**
      * @export(implementation) mutating func appendInterpolation(_ attributedSubstring: AttributedSubstring)
      * @availability iOS 15.0+
      */
-    appendInterpolation928(attributedSubstring: _Foundation_AttributedSubstring): void;
+    appendInterpolation22549(attributedSubstring: _Foundation_AttributedSubstring): void;
     /**
      * mutating func appendInterpolation(_ text: Text)
      * @availability iOS 14.0+
      */
-    appendInterpolation929(text: Text): void;
+    appendInterpolation32465(text: Text): void;
     /**
      * mutating func appendInterpolation(_ image: Image)
      * @availability iOS 14.0+
      */
-    appendInterpolation930(image: Image): void;
+    appendInterpolation17910(image: Image): void;
     /**
      * mutating func appendInterpolation(_ dates: ClosedRange<Date>)
      * @availability iOS 14.0+
      */
-    appendInterpolation931(dates: SDKHandle): void;
+    appendInterpolation56635(dates: SDKHandle): void;
     /**
      * mutating func appendInterpolation(_ string: String)
      * @availability iOS 13.0+
      */
-    appendInterpolation932(string: string): void;
+    appendInterpolation13844(string: string): void;
     /**
      * @export(implementation) mutating func appendInterpolation(_ substring: Substring)
      * @availability iOS 13.0+
      */
-    appendInterpolation933(substring: string): void;
+    appendInterpolation91284(substring: string): void;
     /**
      * @export(implementation) mutating func appendInterpolation<T>(_ object: T)
      * @availability iOS 13.0+
      */
-    appendInterpolation934(object: unknown): void;
+    appendInterpolation73634(object: unknown): void;
     /**
      * mutating func appendLiteral(_ literal: String)
      * @availability iOS 13.0+
@@ -7773,12 +7772,12 @@ export declare class MeshGradient extends SDKHandle {
      * @export(implementation) nonisolated init(width: Int, height: Int, bezierPoints: [MeshGradient.BezierPoint], resolvedColors: [Color.Resolved], background: Color = .clear, smoothsColors: Bool = true, colorSpace: Gradient.ColorSpace = .device)
      * @availability iOS 18.0+
      */
-    static initWidthHeightBezierPointsResolvedColorsBackgroundSmoothsColorsColorSpace(width: number, height: number, bezierPoints: $SDK62, resolvedColors: Array<Color_Resolved>, background?: Color, smoothsColors?: boolean, colorSpace?: Gradient_ColorSpace): MeshGradient;
+    static initWidthHeightBezierPointsResolvedColorsBackgroundSmoothsColorsColorSpace(width: number, height: number, bezierPoints: $SDK61, resolvedColors: Array<Color_Resolved>, background?: Color, smoothsColors?: boolean, colorSpace?: Gradient_ColorSpace): MeshGradient;
     /**
      * @export(implementation) nonisolated init(width: Int, height: Int, bezierPoints: [MeshGradient.BezierPoint], colors: [Color], background: Color = .clear, smoothsColors: Bool = true, colorSpace: Gradient.ColorSpace = .device)
      * @availability iOS 18.0+
      */
-    static initWidthHeightBezierPointsColorsBackgroundSmoothsColorsColorSpace(width: number, height: number, bezierPoints: $SDK62, colors: Array<Color>, background?: Color, smoothsColors?: boolean, colorSpace?: Gradient_ColorSpace): MeshGradient;
+    static initWidthHeightBezierPointsColorsBackgroundSmoothsColorsColorSpace(width: number, height: number, bezierPoints: $SDK61, colors: Array<Color>, background?: Color, smoothsColors?: boolean, colorSpace?: Gradient_ColorSpace): MeshGradient;
     /**
      * @export(implementation) nonisolated init(width: Int, height: Int, points: [SIMD2<Float>], resolvedColors: [Color.Resolved], background: Color = .clear, smoothsColors: Bool = true, colorSpace: Gradient.ColorSpace = .device)
      * @availability iOS 18.0+
@@ -8033,8 +8032,8 @@ export declare class OffsetShape<Content = unknown> extends SDKHandle {
      * nonisolated var animatableData: OffsetShape<Content>.AnimatableData { get set }
      * @availability iOS 13.0+
      */
-    get animatableData(): $SDK65;
-    set animatableData(value: $SDK65);
+    get animatableData(): $SDK64;
+    set animatableData(value: $SDK64);
     /**
      * nonisolated var layoutDirectionBehavior: LayoutDirectionBehavior { get }
      * @availability iOS 17.0+
@@ -8072,7 +8071,7 @@ export declare class OffsetShape<Content = unknown> extends SDKHandle {
  * typealias AnimatableData = AnimatablePair<Content.AnimatableData, CGSize.AnimatableData>
  * @availability iOS 13.0+
  */
-export type OffsetShape_AnimatableData<Content = unknown> = $SDK65;
+export type OffsetShape_AnimatableData<Content = unknown> = $SDK64;
 /**
  * typealias Body
  * @availability iOS 13.0+
@@ -8166,7 +8165,7 @@ export declare class OpenURLAction_Result extends SDKHandle {
      * static func systemAction(_ url: URL) -> OpenURLAction.Result
      * @availability iOS 15.0+
      */
-    static systemAction358(url: string): Promise<OpenURLAction_Result>;
+    static systemAction63773(url: string): Promise<OpenURLAction_Result>;
     /**
      * static let handled: OpenURLAction.Result
      * @availability iOS 15.0+
@@ -8298,7 +8297,7 @@ export declare class Path extends SDKHandle {
      * var currentPoint: CGPoint? { get }
      * @availability iOS 13.0+
      */
-    get currentPoint(): $SDK67;
+    get currentPoint(): $SDK66;
     /**
      * func intersection(_ other: Path, eoFill: Bool = false) -> Path
      * @availability iOS 17.0+
@@ -8431,27 +8430,27 @@ export declare class Path extends SDKHandle {
      * init?(_ string: String)
      * @availability iOS 13.0+
      */
-    static init1389(string: string): (Path) | null;
+    static init96046(string: string): (Path) | null;
     /**
      * init(_ path: CGMutablePath)
      * @availability iOS 13.0+
      */
-    static init1390(path: _CoreGraphics_CGMutablePath): Path;
+    static init97(path: _CoreGraphics_CGMutablePath): Path;
     /**
      * init(_ rect: CGRect)
      * @availability iOS 13.0+
      */
-    static init1391(rect: $SDK6): Path;
+    static init74420(rect: $SDK6): Path;
     /**
      * init(_ path: CGPath)
      * @availability iOS 13.0+
      */
-    static init1392(path: _CoreGraphics_CGPath): Path;
+    static init71238(path: _CoreGraphics_CGPath): Path;
     /**
      * init(_ callback: (inout Path) -> ())
      * @availability iOS 13.0+
      */
-    static init1393(callback: ((arg0: Path) => void)): Path;
+    static init97022(callback: ((arg0: Path) => void)): Path;
 }
 /**
  * typealias AnimatableData = EmptyAnimatableData
@@ -8685,12 +8684,12 @@ export declare class ProjectionTransform extends SDKHandle {
      * init(_ m: CGAffineTransform)
      * @availability iOS 13.0+
      */
-    static init1035(m: _CoreFoundation_CGAffineTransform): ProjectionTransform;
+    static init14237(m: _CoreFoundation_CGAffineTransform): ProjectionTransform;
     /**
      * init(_ m: CATransform3D)
      * @availability iOS 13.0+
      */
-    static init1036(m: _QuartzCore_CATransform3D): ProjectionTransform;
+    static init11927(m: _QuartzCore_CATransform3D): ProjectionTransform;
 }
 /**
  * enum Prominence
@@ -9076,8 +9075,8 @@ export declare class RotatedShape<Content = unknown> extends SDKHandle {
      * nonisolated var animatableData: RotatedShape<Content>.AnimatableData { get set }
      * @availability iOS 13.0+
      */
-    get animatableData(): $SDK72;
-    set animatableData(value: $SDK72);
+    get animatableData(): $SDK71;
+    set animatableData(value: $SDK71);
     /**
      * nonisolated var layoutDirectionBehavior: LayoutDirectionBehavior { get }
      * @availability iOS 17.0+
@@ -9121,7 +9120,7 @@ export declare class RotatedShape<Content = unknown> extends SDKHandle {
  * typealias AnimatableData = AnimatablePair<Content.AnimatableData, AnimatablePair<Angle.AnimatableData, UnitPoint.AnimatableData>>
  * @availability iOS 13.0+
  */
-export type RotatedShape_AnimatableData<Content = unknown> = $SDK72;
+export type RotatedShape_AnimatableData<Content = unknown> = $SDK71;
 /**
  * typealias Body
  * @availability iOS 13.0+
@@ -9396,8 +9395,8 @@ export declare class ScaledShape<Content = unknown> extends SDKHandle {
      * nonisolated var animatableData: ScaledShape<Content>.AnimatableData { get set }
      * @availability iOS 13.0+
      */
-    get animatableData(): $SDK73;
-    set animatableData(value: $SDK73);
+    get animatableData(): $SDK72;
+    set animatableData(value: $SDK72);
     /**
      * nonisolated var layoutDirectionBehavior: LayoutDirectionBehavior { get }
      * @availability iOS 17.0+
@@ -9441,7 +9440,7 @@ export declare class ScaledShape<Content = unknown> extends SDKHandle {
  * typealias AnimatableData = AnimatablePair<Content.AnimatableData, AnimatablePair<CGSize.AnimatableData, UnitPoint.AnimatableData>>
  * @availability iOS 13.0+
  */
-export type ScaledShape_AnimatableData<Content = unknown> = $SDK73;
+export type ScaledShape_AnimatableData<Content = unknown> = $SDK72;
 /**
  * typealias Body
  * @availability iOS 13.0+
@@ -9593,7 +9592,7 @@ export declare class ScrollPosition extends SDKHandle {
      * var point: CGPoint? { get }
      * @availability iOS 18.0+
      */
-    get point(): $SDK67;
+    get point(): $SDK66;
     /**
      * init(idType: (some Hashable & Sendable).Type = Never.self, x: CGFloat, y: CGFloat)
      * @availability iOS 18.0+
@@ -9865,12 +9864,12 @@ export declare class Shader_Argument extends SDKHandle {
      * @export(implementation) static func float2(_ point: CGPoint) -> Shader.Argument
      * @availability iOS 17.0+
      */
-    static float21680(point: $SDK4): Shader_Argument;
+    static float251054(point: $SDK4): Shader_Argument;
     /**
      * @export(implementation) static func float2(_ vector: CGVector) -> Shader.Argument
      * @availability iOS 17.0+
      */
-    static float21681(vector: {
+    static float252054(vector: {
         dx: number;
         dy: number;
     }): Shader_Argument;
@@ -9878,7 +9877,7 @@ export declare class Shader_Argument extends SDKHandle {
      * @export(implementation) static func float2<T>(_ x: T, _ y: T) -> Shader.Argument where T : BinaryFloatingPoint
      * @availability iOS 17.0+
      */
-    static float21682(x: number, y: number): Shader_Argument;
+    static float277807(x: number, y: number): Shader_Argument;
     /**
      * @export(implementation) static func float3<T>(_ x: T, _ y: T, _ z: T) -> Shader.Argument where T : BinaryFloatingPoint
      * @availability iOS 17.0+
@@ -10384,8 +10383,8 @@ export declare class StrokeStyle extends SDKHandle {
      * var animatableData: StrokeStyle.AnimatableData { get set }
      * @availability iOS 13.0+
      */
-    get animatableData(): $SDK78;
-    set animatableData(value: $SDK78);
+    get animatableData(): $SDK77;
+    set animatableData(value: $SDK77);
     /**
      * var dash: [CGFloat]
      * @availability iOS 13.0+
@@ -10426,7 +10425,7 @@ export declare class StrokeStyle extends SDKHandle {
  * typealias AnimatableData = AnimatablePair<CGFloat, AnimatablePair<CGFloat, CGFloat>>
  * @availability iOS 13.0+
  */
-export type StrokeStyle_AnimatableData = $SDK78;
+export type StrokeStyle_AnimatableData = $SDK77;
 /**
  * nonisolated struct Subview
  * @availability iOS 18.0+
@@ -10488,7 +10487,7 @@ export declare class SubviewsCollection extends SDKHandle {
      * subscript(index: Int) -> Subview { get }
      * @availability iOS 18.0+
      */
-    subscript945(index: number): Subview;
+    subscript49574(index: number): Subview;
 }
 /**
  * typealias Body = Never
@@ -10544,7 +10543,7 @@ export declare class SubviewsCollectionSlice extends SDKHandle {
      * subscript(bounds: Range<Int>) -> SubviewsCollectionSlice { get }
      * @availability iOS 18.0+
      */
-    subscript1129(bounds: SDKHandle): SubviewsCollectionSlice;
+    subscript70879(bounds: SDKHandle): SubviewsCollectionSlice;
 }
 /**
  * typealias Body = Never
@@ -10664,7 +10663,7 @@ export declare class SymbolVariants extends SDKHandle {
      * static let fill: SymbolVariants
      * @availability iOS 15.0+
      */
-    static get fill471(): SymbolVariants;
+    static get fill51854(): SymbolVariants;
     /**
      * static let none: SymbolVariants
      * @availability iOS 15.0+
@@ -10679,7 +10678,7 @@ export declare class SymbolVariants extends SDKHandle {
      * static let slash: SymbolVariants
      * @availability iOS 15.0+
      */
-    static get slash474(): SymbolVariants;
+    static get slash85479(): SymbolVariants;
     /**
      * var circle: SymbolVariants { get }
      * @availability iOS 15.0+
@@ -10689,7 +10688,7 @@ export declare class SymbolVariants extends SDKHandle {
      * static let circle: SymbolVariants
      * @availability iOS 15.0+
      */
-    static get circle476(): SymbolVariants;
+    static get circle14187(): SymbolVariants;
     /**
      * var square: SymbolVariants { get }
      * @availability iOS 15.0+
@@ -10699,7 +10698,7 @@ export declare class SymbolVariants extends SDKHandle {
      * static let square: SymbolVariants
      * @availability iOS 15.0+
      */
-    static get square478(): SymbolVariants;
+    static get square86022(): SymbolVariants;
     /**
      * func contains(_ other: SymbolVariants) -> Bool
      * @availability iOS 15.0+
@@ -10714,7 +10713,7 @@ export declare class SymbolVariants extends SDKHandle {
      * static let rectangle: SymbolVariants
      * @availability iOS 15.0+
      */
-    static get rectangle481(): SymbolVariants;
+    static get rectangle48319(): SymbolVariants;
 }
 /**
  * enum SystemFormatStyle
@@ -10741,7 +10740,7 @@ export declare class SystemFormatStyle_DateOffset extends SDKHandle {
      * init(to anchor: Date, allowedFields: Set<Date.ComponentsFormatStyle.Field> = [.year, .month, .week, .day, .hour, .minute, .second], maxFieldCount: Int = 2, sign: NumberFormatStyleConfiguration.SignDisplayStrategy = .automatic)
      * @availability iOS 18.0+
      */
-    static init(anchor: globalThis.Date, allowedFields?: $SDK79, maxFieldCount?: number, sign?: _Foundation_NumberFormatStyleConfiguration_SignDisplayStrategy): SystemFormatStyle_DateOffset;
+    static init(anchor: globalThis.Date, allowedFields?: $SDK78, maxFieldCount?: number, sign?: _Foundation_NumberFormatStyleConfiguration_SignDisplayStrategy): SystemFormatStyle_DateOffset;
     /**
      * func input(after referenceDate: Date) -> Date?
      * @availability iOS 18.0+
@@ -10797,7 +10796,7 @@ export declare class SystemFormatStyle_DateReference extends SDKHandle {
      * init(to date: Date, allowedFields: Set<Date.RelativeFormatStyle.Field> = [.year, .month, .day, .hour, .minute], maxFieldCount: Int = 2, thresholdField: Date.RelativeFormatStyle.Field = .day)
      * @availability iOS 18.0+
      */
-    static init(date: globalThis.Date, allowedFields?: $SDK79, maxFieldCount?: number, thresholdField?: _Foundation_Date_ComponentsFormatStyle_Field): SystemFormatStyle_DateReference;
+    static init(date: globalThis.Date, allowedFields?: $SDK78, maxFieldCount?: number, thresholdField?: _Foundation_Date_ComponentsFormatStyle_Field): SystemFormatStyle_DateReference;
     /**
      * func input(after referenceDate: Date) -> Date?
      * @availability iOS 18.0+
@@ -11023,7 +11022,7 @@ export declare class Text extends SDKHandle {
      * func typesettingLanguage(_ language: TypesettingLanguage, isEnabled: Bool = true) -> Text
      * @availability iOS 17.0+
      */
-    typesettingLanguageIsEnabled1409(language: TypesettingLanguage, isEnabled?: boolean): Text;
+    typesettingLanguageIsEnabled51448(language: TypesettingLanguage, isEnabled?: boolean): Text;
     /**
      * func speechAnnouncementsQueued(_ value: Bool = true) -> Text
      * @availability iOS 15.0+
@@ -11048,7 +11047,7 @@ export declare class Text extends SDKHandle {
      * nonisolated func bold(_ isActive: Bool) -> Text
      * @availability iOS 16.0+
      */
-    bold1417(isActive: boolean): Text;
+    bold33576(isActive: boolean): Text;
     /**
      * nonisolated func font(_ font: Font?) -> Text
      * @availability iOS 13.0+
@@ -11063,7 +11062,7 @@ export declare class Text extends SDKHandle {
      * nonisolated func italic(_ isActive: Bool) -> Text
      * @availability iOS 16.0+
      */
-    italic1467(isActive: boolean): Text;
+    italic41109(isActive: boolean): Text;
     /**
      * nonisolated func kerning(_ kerning: CGFloat) -> Text
      * @availability iOS 13.0+
@@ -11113,7 +11112,7 @@ export declare class Text extends SDKHandle {
      * init<Subject>(_ subject: Subject, formatter: Formatter) where Subject : NSObject
      * @availability iOS 14.0+
      */
-    static initFormatter1494(subject: SDKHandle, formatter: _Foundation_Formatter): Text;
+    static initFormatter95052(subject: SDKHandle, formatter: _Foundation_Formatter): Text;
     /**
      * init(_ key: LocalizedStringKey, tableName: String? = nil, bundle: Bundle? = nil, comment: StaticString? = nil)
      * @availability iOS 13.0+
@@ -11128,27 +11127,27 @@ export declare class Text extends SDKHandle {
      * init(_ attributedContent: AttributedString)
      * @availability iOS 15.0+
      */
-    static init1497(attributedContent: _Foundation_AttributedString): Text;
+    static init22014(attributedContent: _Foundation_AttributedString): Text;
     /**
      * init(_ resource: LocalizedStringResource)
      * @availability iOS 16.0+
      */
-    static init1498(resource: _Foundation_LocalizedStringResource): Text;
+    static init16285(resource: _Foundation_LocalizedStringResource): Text;
     /**
      * init(_ dates: ClosedRange<Date>)
      * @availability iOS 14.0+
      */
-    static init1499(dates: SDKHandle): Text;
+    static init59775(dates: SDKHandle): Text;
     /**
      * init<S>(_ content: S) where S : StringProtocol
      * @availability iOS 13.0+
      */
-    static init1500(content: string): Text;
+    static init2201(content: string): Text;
     /**
      * init(_ image: Image)
      * @availability iOS 14.0+
      */
-    static init1501(image: Image): Text;
+    static init43831(image: Image): Text;
 }
 /**
  * struct AlignmentStrategy
@@ -11392,7 +11391,7 @@ export declare class Text_Layout_Run extends SDKHandle {
      * var characterIndices: [Text.Layout.CharacterIndex] { get }
      * @availability iOS 17.0+
      */
-    get characterIndices(): $SDK80;
+    get characterIndices(): $SDK79;
     /**
      * var typographicBounds: Text.Layout.TypographicBounds { get }
      * @availability iOS 17.0+
@@ -11412,7 +11411,7 @@ export declare class Text_Layout_Run extends SDKHandle {
      * subscript(bounds: Range<Int>) -> Text.Layout.RunSlice { get }
      * @availability iOS 17.0+
      */
-    subscript1446(bounds: SDKHandle): Text_Layout_RunSlice;
+    subscript56275(bounds: SDKHandle): Text_Layout_RunSlice;
 }
 /**
  * typealias Element = Text.Layout.RunSlice
@@ -11453,7 +11452,7 @@ export declare class Text_Layout_RunSlice extends SDKHandle {
      * var characterIndices: [Text.Layout.CharacterIndex] { get }
      * @availability iOS 17.0+
      */
-    get characterIndices(): $SDK80;
+    get characterIndices(): $SDK79;
     /**
      * var typographicBounds: Text.Layout.TypographicBounds { get }
      * @availability iOS 17.0+
@@ -11490,7 +11489,7 @@ export declare class Text_Layout_RunSlice extends SDKHandle {
      * subscript(bounds: Range<Int>) -> Text.Layout.RunSlice { get }
      * @availability iOS 17.0+
      */
-    subscript1463(bounds: SDKHandle): Text_Layout_RunSlice;
+    subscript39744(bounds: SDKHandle): Text_Layout_RunSlice;
 }
 /**
  * typealias Element = Text.Layout.RunSlice
@@ -11577,7 +11576,7 @@ export declare class Text_LayoutKey extends SDKHandle {
      * static var defaultValue: Text.LayoutKey.Value { get }
      * @availability iOS 17.0+
      */
-    static get defaultValue(): $SDK81;
+    static get defaultValue(): $SDK80;
 }
 /**
  * struct AnchoredLayout
@@ -11594,14 +11593,14 @@ export declare class Text_LayoutKey_AnchoredLayout extends SDKHandle {
      * var origin: Anchor<CGPoint>
      * @availability iOS 17.0+
      */
-    get origin(): $SDK82;
-    set origin(value: $SDK82);
+    get origin(): $SDK81;
+    set origin(value: $SDK81);
 }
 /**
  * typealias Value = [Text.LayoutKey.AnchoredLayout]
  * @availability iOS 17.0+
  */
-export type Text_LayoutKey_Value = $SDK81;
+export type Text_LayoutKey_Value = $SDK80;
 /**
  * struct LineStyle
  * @availability iOS 15.0+
@@ -11808,17 +11807,17 @@ export declare class TimeDataSource<Value = unknown> extends SDKHandle {
      * static func durationOffset(to date: Date) -> TimeDataSource<Duration>
      * @availability iOS 18.0+
      */
-    static durationOffset(date: globalThis.Date): $SDK84;
+    static durationOffset(date: globalThis.Date): $SDK83;
     /**
      * static func dateRange(startingAt date: Date) -> TimeDataSource<Range<Date>>
      * @availability iOS 18.0+
      */
-    static dateRangeStartingAt(date: globalThis.Date): $SDK84;
+    static dateRangeStartingAt(date: globalThis.Date): $SDK83;
     /**
      * static func dateRange(endingAt date: Date) -> TimeDataSource<Range<Date>>
      * @availability iOS 18.0+
      */
-    static dateRangeEndingAt(date: globalThis.Date): $SDK84;
+    static dateRangeEndingAt(date: globalThis.Date): $SDK83;
 }
 /**
  * protocol TimelineSchedule
@@ -11935,8 +11934,8 @@ export declare class TransformedShape<Content = unknown> extends SDKHandle {
      * nonisolated var animatableData: TransformedShape<Content>.AnimatableData { get set }
      * @availability iOS 13.0+
      */
-    get animatableData(): $SDK85;
-    set animatableData(value: $SDK85);
+    get animatableData(): $SDK84;
+    set animatableData(value: $SDK84);
     /**
      * nonisolated var layoutDirectionBehavior: LayoutDirectionBehavior { get }
      * @availability iOS 17.0+
@@ -11956,7 +11955,7 @@ export declare class TransformedShape<Content = unknown> extends SDKHandle {
      * init(shape: Content, transform: CGAffineTransform)
      * @availability iOS 13.0+
      */
-    static init(shape: SDKHandle, transform: _CoreFoundation_CGAffineTransform): $SDK85;
+    static init(shape: SDKHandle, transform: _CoreFoundation_CGAffineTransform): $SDK84;
     /**
      * var shape: Content
      * @availability iOS 13.0+
@@ -11989,13 +11988,13 @@ export interface Transition {
      * @ContentBuilder @MainActor @preconcurrency func body(content: Self.Content, phase: TransitionPhase) -> Self.Body
      * @availability iOS 17.0+
      */
-    "bodyContentPhase"?: (arg0: $SDK54, arg1: TransitionPhase) => unknown;
+    "bodyContentPhase"?: (arg0: $SDK53, arg1: TransitionPhase) => unknown;
 }
 /**
  * typealias Content = PlaceholderContentView<Self>
  * @availability iOS 17.0+
  */
-export type Transition_Content = $SDK54;
+export type Transition_Content = $SDK53;
 /**
  * @frozen enum TransitionPhase
  * @availability iOS 17.0+
@@ -12538,7 +12537,7 @@ export declare class ViewBuilder extends SDKHandle {
      * @export(implementation) static func buildBlock<Content>(_ content: Content) -> Content
      * @availability iOS 13.0+
      */
-    static buildBlock187(content: unknown): unknown;
+    static buildBlock33579(content: unknown): unknown;
     /**
      * @export(implementation) static func buildEither<TrueContent, FalseContent>(first: TrueContent) -> _ConditionalContent<TrueContent, FalseContent>
      * @availability iOS 13.0+
@@ -12584,7 +12583,7 @@ export declare class ViewDimensions extends SDKHandle {
      * subscript(explicit guide: HorizontalAlignment) -> CGFloat? { get }
      * @availability iOS 13.0+
      */
-    subscriptExplicit490(guide: HorizontalAlignment): (number) | null;
+    subscriptExplicit74831(guide: HorizontalAlignment): (number) | null;
     /**
      * subscript(guide: VerticalAlignment) -> CGFloat { get }
      * @availability iOS 13.0+
@@ -12594,7 +12593,7 @@ export declare class ViewDimensions extends SDKHandle {
      * subscript(guide: HorizontalAlignment) -> CGFloat { get }
      * @availability iOS 13.0+
      */
-    subscript492(guide: HorizontalAlignment): number;
+    subscript30079(guide: HorizontalAlignment): number;
 }
 /**
  * @MainActor @preconcurrency protocol ViewModifier
@@ -12774,5 +12773,5 @@ export declare function withTransaction(transaction: Transaction, body: (() => u
  * @export(implementation) func withTransaction<R, V>(_ keyPath: WritableKeyPath<Transaction, V>, _ value: V, _ body: () throws -> R) rethrows -> R
  * @availability iOS 13.0+
  */
-export declare function withTransaction679(keyPath: SDKHandle, value: unknown, body: (() => unknown)): unknown;
+export declare function withTransaction33189(keyPath: SDKHandle, value: unknown, body: (() => unknown)): unknown;
 export {};

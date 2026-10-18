@@ -391,7 +391,7 @@ export declare class SearchSource extends SDKHandle {
      * static func coreSpotlight(_ source: CoreSpotlightSource) -> SearchSource
      * @availability iOS 27.0+
      */
-    static coreSpotlight140(source: CoreSpotlightSource): SearchSource;
+    static coreSpotlight27974(source: CoreSpotlightSource): SearchSource;
     /**
      * static var files: SearchSource { get }
      * @availability iOS 27.0+
@@ -401,7 +401,7 @@ export declare class SearchSource extends SDKHandle {
      * static func files(_ source: FileSource) -> SearchSource
      * @availability iOS 27.0+
      */
-    static files142(source: FileSource): SearchSource;
+    static files47574(source: FileSource): SearchSource;
 }
 /**
  * struct SearchStatistic
@@ -558,7 +558,7 @@ export declare class SpotlightSearchTool_ContentDomain extends SDKHandle {
      * static func visualMedia(_ config: SpotlightSearchTool.ContentDomain.VisualMedia) -> SpotlightSearchTool.ContentDomain
      * @availability iOS 27.0+
      */
-    static visualMedia28(config: SpotlightSearchTool_ContentDomain_VisualMedia): SpotlightSearchTool_ContentDomain;
+    static visualMedia9085(config: SpotlightSearchTool_ContentDomain_VisualMedia): SpotlightSearchTool_ContentDomain;
     /**
      * static var communications: SpotlightSearchTool.ContentDomain { get }
      * @availability iOS 27.0+
@@ -568,7 +568,7 @@ export declare class SpotlightSearchTool_ContentDomain extends SDKHandle {
      * static func communications(_ config: SpotlightSearchTool.ContentDomain.Communications) -> SpotlightSearchTool.ContentDomain
      * @availability iOS 27.0+
      */
-    static communications41(config: SpotlightSearchTool_ContentDomain_Communications): SpotlightSearchTool_ContentDomain;
+    static communications69731(config: SpotlightSearchTool_ContentDomain_Communications): SpotlightSearchTool_ContentDomain;
     /**
      * static var audio: SpotlightSearchTool.ContentDomain { get }
      * @availability iOS 27.0+
@@ -578,7 +578,7 @@ export declare class SpotlightSearchTool_ContentDomain extends SDKHandle {
      * static func audio(_ config: SpotlightSearchTool.ContentDomain.Audio) -> SpotlightSearchTool.ContentDomain
      * @availability iOS 27.0+
      */
-    static audio61(config: SpotlightSearchTool_ContentDomain_Audio): SpotlightSearchTool_ContentDomain;
+    static audio50583(config: SpotlightSearchTool_ContentDomain_Audio): SpotlightSearchTool_ContentDomain;
     /**
      * static var items: SpotlightSearchTool.ContentDomain { get }
      * @availability iOS 27.0+
@@ -588,7 +588,7 @@ export declare class SpotlightSearchTool_ContentDomain extends SDKHandle {
      * static func items(_ config: SpotlightSearchTool.ContentDomain.Items) -> SpotlightSearchTool.ContentDomain
      * @availability iOS 27.0+
      */
-    static items63(config: SpotlightSearchTool_ContentDomain_Items): SpotlightSearchTool_ContentDomain;
+    static items59019(config: SpotlightSearchTool_ContentDomain_Items): SpotlightSearchTool_ContentDomain;
     /**
      * static var calendar: SpotlightSearchTool.ContentDomain { get }
      * @availability iOS 27.0+
@@ -598,7 +598,7 @@ export declare class SpotlightSearchTool_ContentDomain extends SDKHandle {
      * static func calendar(_ config: SpotlightSearchTool.ContentDomain.Calendar) -> SpotlightSearchTool.ContentDomain
      * @availability iOS 27.0+
      */
-    static calendar74(config: SpotlightSearchTool_ContentDomain_Calendar): SpotlightSearchTool_ContentDomain;
+    static calendar81497(config: SpotlightSearchTool_ContentDomain_Calendar): SpotlightSearchTool_ContentDomain;
     /**
      * static var documents: SpotlightSearchTool.ContentDomain { get }
      * @availability iOS 27.0+
@@ -608,7 +608,7 @@ export declare class SpotlightSearchTool_ContentDomain extends SDKHandle {
      * static func documents(_ config: SpotlightSearchTool.ContentDomain.Documents) -> SpotlightSearchTool.ContentDomain
      * @availability iOS 27.0+
      */
-    static documents85(config: SpotlightSearchTool_ContentDomain_Documents): SpotlightSearchTool_ContentDomain;
+    static documents33007(config: SpotlightSearchTool_ContentDomain_Documents): SpotlightSearchTool_ContentDomain;
 }
 /**
  * struct Audio

@@ -1461,7 +1461,7 @@ export declare class MDLMaterial extends SDKHandle {
      * subscript(name: String) -> MDLMaterialProperty? { get }
      * @availability iOS 9.0+
      */
-    subscript224(name: string): $SDK7;
+    subscript11387(name: string): $SDK7;
     /**
      * func properties(with semantic: MDLMaterialSemantic) -> [MDLMaterialProperty]
      * @availability iOS 11.0+
@@ -1984,7 +1984,7 @@ export declare class MDLMesh extends MDLMesh_base {
      * func boundingBox(atTime time: TimeInterval) -> MDLAxisAlignedBoundingBox
      * @availability iOS 9.0+
      */
-    boundingBox367(time: number): MDLAxisAlignedBoundingBox;
+    boundingBox16697(time: number): MDLAxisAlignedBoundingBox;
 }
 /**
  * protocol MDLMeshBuffer : NSCopying, NSObjectProtocol
@@ -3562,7 +3562,7 @@ export declare class MDLVoxelArray extends MDLVoxelArray_base {
      * func boundingBox(atTime time: TimeInterval) -> MDLAxisAlignedBoundingBox
      * @availability iOS 9.0+
      */
-    boundingBox367(time: number): MDLAxisAlignedBoundingBox;
+    boundingBox16697(time: number): MDLAxisAlignedBoundingBox;
 }
 /** typealias MDLVoxelIndex = vector_int4 */
 export type MDLVoxelIndex = SDKHandle;

@@ -2,8 +2,7 @@
 import { SDKHandle } from 'one/ios-runtime';
 import type { CFError as _CoreFoundation_CFError, CFDictionary as _CoreFoundation_CFDictionary, CFString as _CoreFoundation_CFString, CFComparisonResult as _CoreFoundation_CFComparisonResult, CFData as _CoreFoundation_CFData, CFArray as _CoreFoundation_CFArray, CFNumber as _CoreFoundation_CFNumber } from "one/ios/CoreFoundation";
 type $SDK2 = (_CoreFoundation_CFString) | null;
-type $SDK3 = (((arg0: (unknown) | null, arg1: (_CoreFoundation_CFDictionary) | null, arg2: (SDKHandle) | null) => void)) | null;
-type $SDK7 = (_CoreFoundation_CFNumber) | null;
+type $SDK6 = (_CoreFoundation_CFNumber) | null;
 /**
  * typealias ABAddressBookRequestAccessCompletionHandler = (Bool, CFError?) -> Void
  * @availability iOS 2.0+
@@ -220,12 +219,6 @@ export declare function ABAddressBookGetSourceWithRecordID(addressBook: (unknown
  */
 export declare function ABAddressBookHasUnsavedChanges(addressBook?: (unknown) | null): boolean;
 /**
- * func ABAddressBookRegisterExternalChangeCallback(_ addressBook: ABAddressBook!, _ callback: ABExternalChangeCallback!, _ context: UnsafeMutableRawPointer!)
- * @availability iOS 2.0+
- * @deprecated iOS 9.0
- */
-export declare function ABAddressBookRegisterExternalChangeCallback(addressBook?: (unknown) | null, callback?: $SDK3, context?: (SDKHandle) | null): void;
-/**
  * func ABAddressBookRequestAccessWithCompletion(_ addressBook: ABAddressBook!, _ completion: ABAddressBookRequestAccessCompletionHandler!)
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
@@ -237,12 +230,6 @@ export declare function ABAddressBookRequestAccessWithCompletion(addressBook?: (
  * @deprecated iOS 9.0
  */
 export declare function ABAddressBookRevert(addressBook?: (unknown) | null): void;
-/**
- * func ABAddressBookUnregisterExternalChangeCallback(_ addressBook: ABAddressBook!, _ callback: ABExternalChangeCallback!, _ context: UnsafeMutableRawPointer!)
- * @availability iOS 2.0+
- * @deprecated iOS 9.0
- */
-export declare function ABAddressBookUnregisterExternalChangeCallback(addressBook?: (unknown) | null, callback?: $SDK3, context?: (SDKHandle) | null): void;
 /**
  * func ABGroupCopyArrayOfAllMembers(_ group: ABRecord!) -> Unmanaged<CFArray>!
  * @availability iOS 2.0+
@@ -822,13 +809,13 @@ export declare const kABPersonJobTitleProperty: number;
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export declare const kABPersonKindOrganization: $SDK7;
+export declare const kABPersonKindOrganization: $SDK6;
 /**
  * let kABPersonKindPerson: CFNumber!
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export declare const kABPersonKindPerson: $SDK7;
+export declare const kABPersonKindPerson: $SDK6;
 /**
  * let kABPersonKindProperty: ABPropertyID
  * @availability iOS 2.0+

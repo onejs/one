@@ -44,7 +44,7 @@ export declare class MSConversation extends SDKHandle {
      * func insert(_ sticker: MSSticker) async throws
      * @availability iOS 10.0+
      */
-    insertCompletionHandler6(sticker: MSSticker, completionHandler?: $SDK0): void;
+    insertCompletionHandler47219(sticker: MSSticker, completionHandler?: $SDK0): void;
     /**
      * func insertText(_ text: String) async throws
      * @availability iOS 10.0+
@@ -64,7 +64,7 @@ export declare class MSConversation extends SDKHandle {
      * func send(_ sticker: MSSticker) async throws
      * @availability iOS 11.0+
      */
-    sendCompletionHandler10(sticker: MSSticker, completionHandler?: $SDK0): void;
+    sendCompletionHandler39136(sticker: MSSticker, completionHandler?: $SDK0): void;
     /**
      * func sendText(_ text: String) async throws
      * @availability iOS 11.0+

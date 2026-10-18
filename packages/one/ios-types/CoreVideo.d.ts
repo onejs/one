@@ -13,15 +13,15 @@ type $SDK8 = (CVPixelBufferPadding) | null;
 type $SDK9 = (CVPixelFormatDescription) | null;
 type $SDK10 = (Array<CVPixelFormatType>) | null;
 type $SDK12 = ((arg0: unknown) => Promise<SDKHandle>);
-type $SDK21 = Array<CVImageStereoDisplayMaskRectangle_EdgePoint>;
-type $SDK23 = CVAttachmentAccess<CVPixelBufferAttachmentKeyDefinitions>;
-type $SDK26 = (CVAttachmentContainer<CVPixelBufferAttachmentKeyDefinitions>) | null;
-type $SDK30 = (CVPixelFormatDescription_ComponentRange) | null;
-type $SDK31 = (_CoreGraphics_CGBitmapInfo) | null;
-type $SDK36 = (_CoreFoundation_CFDictionary) | null;
-type $SDK37 = (_CoreFoundation_CFString) | null;
-type $SDK40 = (_CoreFoundation_CFAllocator) | null;
-type $SDK43 = (_CoreFoundation_CFArray) | null;
+type $SDK20 = Array<CVImageStereoDisplayMaskRectangle_EdgePoint>;
+type $SDK22 = CVAttachmentAccess<CVPixelBufferAttachmentKeyDefinitions>;
+type $SDK25 = (CVAttachmentContainer<CVPixelBufferAttachmentKeyDefinitions>) | null;
+type $SDK29 = (CVPixelFormatDescription_ComponentRange) | null;
+type $SDK30 = (_CoreGraphics_CGBitmapInfo) | null;
+type $SDK34 = (_CoreFoundation_CFDictionary) | null;
+type $SDK35 = (_CoreFoundation_CFString) | null;
+type $SDK38 = (_CoreFoundation_CFAllocator) | null;
+type $SDK41 = (_CoreFoundation_CFArray) | null;
 export declare class CGRect extends SDKHandle {
     /**
      * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CGRect?
@@ -236,37 +236,37 @@ export declare class CVBuffer_Attributes extends SDKHandle {
      * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVPixelFormatType>) -> CVPixelFormatType? { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember758(keyPath: SDKHandle): (CVPixelFormatType) | null;
+    subscriptDynamicMember69989(keyPath: SDKHandle): (CVPixelFormatType) | null;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVPixelBufferPadding?>) -> CVPixelBufferPadding? { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember759(keyPath: SDKHandle): $SDK8;
+    subscriptDynamicMember32426(keyPath: SDKHandle): $SDK8;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVPixelFormatDescription.Compatibility>) -> CVPixelFormatDescription.Compatibility { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember760(keyPath: SDKHandle): CVPixelFormatDescription_Compatibility;
+    subscriptDynamicMember55683(keyPath: SDKHandle): CVPixelFormatDescription_Compatibility;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVPixelFormatDescription?>) -> CVPixelFormatDescription? { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember761(keyPath: SDKHandle): $SDK9;
+    subscriptDynamicMember51874(keyPath: SDKHandle): $SDK9;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVBuffer.CreationAttributes.Backing>) -> CVBuffer.CreationAttributes.Backing { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember762(keyPath: SDKHandle): CVBuffer_CreationAttributes_Backing;
+    subscriptDynamicMember9180(keyPath: SDKHandle): CVBuffer_CreationAttributes_Backing;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, Bool>) -> Bool? { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember763(keyPath: SDKHandle): (boolean) | null;
+    subscriptDynamicMember67348(keyPath: SDKHandle): (boolean) | null;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, Int?>) -> Int? { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember764(keyPath: SDKHandle): (number) | null;
+    subscriptDynamicMember66626(keyPath: SDKHandle): (number) | null;
     /**
      * init(pixelFormatTypes: [CVPixelFormatType]? = nil, size: CVImageSize? = nil, compatibility: CVPixelFormatDescription.Compatibility = [], bytesPerRowAlignment: Int? = nil, planeAlignment: Int? = nil, extendedPixels: CVPixelBufferPadding? = nil)
      * @availability iOS 26.0+
@@ -490,7 +490,6 @@ export type CVFillExtendedPixelsCallBack = ((arg0: CVBuffer, arg1: (SDKHandle) |
 export declare class CVFillExtendedPixelsCallBackData extends SDKHandle {
     /** var fillCallBack: CVFillExtendedPixelsCallBack? */
     get fillCallBack(): (((arg0: CVBuffer, arg1: (SDKHandle) | null) => Promise<boolean>)) | null;
-    set fillCallBack(value: (((arg0: CVBuffer, arg1: (SDKHandle) | null) => boolean)) | null);
     /** var refCon: UnsafeMutableRawPointer? */
     get refCon(): (SDKHandle) | null;
     set refCon(value: (SDKHandle) | null);
@@ -882,7 +881,7 @@ export declare class CVImageStereoDisplayMaskRectangle extends SDKHandle {
      * init(maskRectangle: CVImageDisplayMaskRectangle, leftEdgePoints: [CVImageStereoDisplayMaskRectangle.EdgePoint], rightEdgePoints: [CVImageStereoDisplayMaskRectangle.EdgePoint])
      * @availability iOS 27.0+
      */
-    static init(maskRectangle: CVImageDisplayMaskRectangle, leftEdgePoints: $SDK21, rightEdgePoints: $SDK21): CVImageStereoDisplayMaskRectangle;
+    static init(maskRectangle: CVImageDisplayMaskRectangle, leftEdgePoints: $SDK20, rightEdgePoints: $SDK20): CVImageStereoDisplayMaskRectangle;
     /**
      * var maskRectangle: CVImageDisplayMaskRectangle
      * @availability iOS 27.0+
@@ -893,14 +892,14 @@ export declare class CVImageStereoDisplayMaskRectangle extends SDKHandle {
      * var leftEdgePoints: [CVImageStereoDisplayMaskRectangle.EdgePoint]
      * @availability iOS 27.0+
      */
-    get leftEdgePoints(): $SDK21;
-    set leftEdgePoints(value: $SDK21);
+    get leftEdgePoints(): $SDK20;
+    set leftEdgePoints(value: $SDK20);
     /**
      * var rightEdgePoints: [CVImageStereoDisplayMaskRectangle.EdgePoint]
      * @availability iOS 27.0+
      */
-    get rightEdgePoints(): $SDK21;
-    set rightEdgePoints(value: $SDK21);
+    get rightEdgePoints(): $SDK20;
+    set rightEdgePoints(value: $SDK20);
     /**
      * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CVImageStereoDisplayMaskRectangle?
      * @availability iOS 27.0+
@@ -999,7 +998,7 @@ export declare class CVMutablePixelBuffer extends SDKHandle {
  * typealias Attachments = CVAttachmentAccess<CVPixelBufferAttachmentKeyDefinitions>
  * @availability iOS 27.0+
  */
-export type CVMutablePixelBuffer_Attachments = $SDK23;
+export type CVMutablePixelBuffer_Attachments = $SDK22;
 /**
  * typealias Buffer = CVPixelBuffer
  * @availability iOS 26.0+
@@ -1115,8 +1114,8 @@ export declare class CVPixelBufferAttributes extends SDKHandle {
      * var attachments: CVAttachmentContainer<CVPixelBufferAttachmentKeyDefinitions>? { get set }
      * @availability iOS 27.0+
      */
-    get attachments(): $SDK26;
-    set attachments(value: $SDK26);
+    get attachments(): $SDK25;
+    set attachments(value: $SDK25);
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVPixelFormatType>) -> CVPixelFormatType? { get set }
      * @availability iOS 26.0+
@@ -1126,37 +1125,37 @@ export declare class CVPixelBufferAttributes extends SDKHandle {
      * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVPixelFormatDescription.Compatibility>) -> CVPixelFormatDescription.Compatibility { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember600(keyPath: SDKHandle): CVPixelFormatDescription_Compatibility;
+    subscriptDynamicMember56834(keyPath: SDKHandle): CVPixelFormatDescription_Compatibility;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVPixelFormatDescription?>) -> CVPixelFormatDescription? { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember601(keyPath: SDKHandle): $SDK9;
+    subscriptDynamicMember27911(keyPath: SDKHandle): $SDK9;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVPixelBufferPadding?>) -> CVPixelBufferPadding? { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember602(keyPath: SDKHandle): $SDK8;
+    subscriptDynamicMember91426(keyPath: SDKHandle): $SDK8;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVPixelBufferCreationAttributes.Backing>) -> CVPixelBufferCreationAttributes.Backing { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember603(keyPath: SDKHandle): CVPixelBufferCreationAttributes_Backing;
+    subscriptDynamicMember74861(keyPath: SDKHandle): CVPixelBufferCreationAttributes_Backing;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVImageSize>) -> CVImageSize? { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember604(keyPath: SDKHandle): (CVImageSize) | null;
+    subscriptDynamicMember22177(keyPath: SDKHandle): (CVImageSize) | null;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, Bool>) -> Bool? { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember605(keyPath: SDKHandle): (boolean) | null;
+    subscriptDynamicMember90849(keyPath: SDKHandle): (boolean) | null;
     /**
      * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, Int?>) -> Int? { get set }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember606(keyPath: SDKHandle): (number) | null;
+    subscriptDynamicMember61709(keyPath: SDKHandle): (number) | null;
     /**
      * init(pixelFormatTypes: [CVPixelFormatType]? = nil, size: CVImageSize? = nil, compatibility: CVPixelFormatDescription.Compatibility = [], bytesPerRowAlignment: Int? = nil, planeAlignment: Int? = nil, extendedPixels: CVPixelBufferPadding? = nil)
      * @availability iOS 26.0+
@@ -1188,8 +1187,8 @@ export declare class CVPixelBufferCreationAttributes extends SDKHandle {
      * var attachments: CVAttachmentContainer<CVPixelBufferAttachmentKeyDefinitions>?
      * @availability iOS 27.0+
      */
-    get attachments(): $SDK26;
-    set attachments(value: $SDK26);
+    get attachments(): $SDK25;
+    set attachments(value: $SDK25);
     /**
      * var compatibility: CVPixelFormatDescription.Compatibility
      * @availability iOS 26.0+
@@ -1212,7 +1211,7 @@ export declare class CVPixelBufferCreationAttributes extends SDKHandle {
      * init(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility: CVPixelFormatDescription.Compatibility = [], bytesPerRowAlignment: Int? = nil, planeAlignment: Int? = nil, extendedPixels: CVPixelBufferPadding? = nil, attachments: CVAttachmentContainer<CVPixelBufferAttachmentKeyDefinitions>? = nil)
      * @availability iOS 27.0+
      */
-    static initPixelFormatTypeSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixelsAttachments(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8, attachments?: $SDK26): CVPixelBufferCreationAttributes;
+    static initPixelFormatTypeSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixelsAttachments(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8, attachments?: $SDK25): CVPixelBufferCreationAttributes;
     /**
      * init(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility: CVPixelFormatDescription.Compatibility = [], bytesPerRowAlignment: Int? = nil, planeAlignment: Int? = nil, extendedPixels: CVPixelBufferPadding? = nil)
      * @availability iOS 26.0+
@@ -1355,7 +1354,7 @@ export interface CVPixelBufferRepresentable {
  * typealias Attachments = CVAttachmentAccess<CVPixelBufferAttachmentKeyDefinitions>
  * @availability iOS 27.0+
  */
-export type CVPixelBufferRepresentable_Attachments = $SDK23;
+export type CVPixelBufferRepresentable_Attachments = $SDK22;
 /**
  * struct CVPixelFormatDescription
  * @availability iOS 26.0+
@@ -1365,7 +1364,7 @@ export declare class CVPixelFormatDescription extends SDKHandle {
      * init(pixelFormatType: CVPixelFormatType, name: String, components: CVPixelFormatDescription.Components, componentRange: CVPixelFormatDescription.ComponentRange? = nil, planeConfiguration: CVPixelFormatDescription.PlaneConfiguration)
      * @availability iOS 26.0+
      */
-    static init(pixelFormatType: CVPixelFormatType, name: string, components: CVPixelFormatDescription_Components, componentRange: $SDK30, planeConfiguration: CVPixelFormatDescription_PlaneConfiguration): CVPixelFormatDescription;
+    static init(pixelFormatType: CVPixelFormatType, name: string, components: CVPixelFormatDescription_Components, componentRange: $SDK29, planeConfiguration: CVPixelFormatDescription_PlaneConfiguration): CVPixelFormatDescription;
     /**
      * var pixelFormatType: CVPixelFormatType
      * @availability iOS 26.0+
@@ -1382,8 +1381,8 @@ export declare class CVPixelFormatDescription extends SDKHandle {
      * var componentRange: CVPixelFormatDescription.ComponentRange?
      * @availability iOS 26.0+
      */
-    get componentRange(): $SDK30;
-    set componentRange(value: $SDK30);
+    get componentRange(): $SDK29;
+    set componentRange(value: $SDK29);
     /**
      * var planeConfiguration: CVPixelFormatDescription.PlaneConfiguration
      * @availability iOS 26.0+
@@ -1563,8 +1562,8 @@ export declare class CVPixelFormatDescription_PixelLayout extends SDKHandle {
      * var cgBitmapInfo: CGBitmapInfo?
      * @availability iOS 26.0+
      */
-    get cgBitmapInfo(): $SDK31;
-    set cgBitmapInfo(value: $SDK31);
+    get cgBitmapInfo(): $SDK30;
+    set cgBitmapInfo(value: $SDK30);
     /**
      * var blockAlignment: CVPixelFormatDescription.Dimensions
      * @availability iOS 26.0+
@@ -1577,11 +1576,6 @@ export declare class CVPixelFormatDescription_PixelLayout extends SDKHandle {
      */
     get bitsPerComponent(): (number) | null;
     set bitsPerComponent(value: (number) | null);
-    /**
-     * var fillExtendedPixels: (@Sendable (inout CVMutablePixelBuffer) -> Void)?
-     * @availability iOS 26.0+
-     */
-    set fillExtendedPixels(value: (((arg0: CVMutablePixelBuffer) => void)) | null);
     /**
      * var blockSize: CVImageSize
      * @availability iOS 26.0+
@@ -1852,7 +1846,7 @@ export declare class CVReadOnlyPixelBuffer extends SDKHandle {
      * final func withUnsafeBuffer<R>(_ body: (CVPixelBuffer) throws -> sending R) rethrows -> sending R
      * @availability iOS 26.0+
      */
-    withUnsafeBuffer564(body: ((arg0: CVBuffer) => unknown)): unknown;
+    withUnsafeBuffer39343(body: ((arg0: CVBuffer) => unknown)): unknown;
     /**
      * init(unsafeBuffer: sending CVPixelBuffer)
      * @availability iOS 26.0+
@@ -1863,7 +1857,7 @@ export declare class CVReadOnlyPixelBuffer extends SDKHandle {
  * typealias Attachments = CVAttachmentAccess<CVPixelBufferAttachmentKeyDefinitions>
  * @availability iOS 27.0+
  */
-export type CVReadOnlyPixelBuffer_Attachments = $SDK23;
+export type CVReadOnlyPixelBuffer_Attachments = $SDK22;
 /**
  * typealias Buffer = CVPixelBuffer
  * @availability iOS 26.0+
@@ -2027,7 +2021,7 @@ export declare class CVSMPTETime extends SDKHandle {
      */
     static initSubframesSubframeDivisorCounterTypeFlagsHoursMinutesSecondsFrames(subframes: number, subframeDivisor: number, counter: number, type: CVSMPTETimeType, flags: CVSMPTETimeFlags, hours: number, minutes: number, seconds: number, frames: number): CVSMPTETime;
     /** init(subframes: Int16, subframeDivisor: Int16, counter: UInt32, type: UInt32, flags: UInt32, hours: Int16, minutes: Int16, seconds: Int16, frames: Int16) */
-    static initSubframesSubframeDivisorCounterTypeFlagsHoursMinutesSecondsFrames791(subframes: number, subframeDivisor: number, counter: number, type: number, flags: number, hours: number, minutes: number, seconds: number, frames: number): CVSMPTETime;
+    static initSubframesSubframeDivisorCounterTypeFlagsHoursMinutesSecondsFrames38671(subframes: number, subframeDivisor: number, counter: number, type: number, flags: number, hours: number, minutes: number, seconds: number, frames: number): CVSMPTETime;
     /** init() */
     static init(): CVSMPTETime;
 }
@@ -2176,7 +2170,7 @@ export declare function CVBufferCopyAttachment(buffer: CVBuffer, key: _CoreFound
  * func CVBufferCopyAttachments(_ buffer: CVBuffer, _ attachmentMode: CVAttachmentMode) -> CFDictionary?
  * @availability iOS 15.0+
  */
-export declare function CVBufferCopyAttachments(buffer: CVBuffer, attachmentMode: CVAttachmentMode): $SDK36;
+export declare function CVBufferCopyAttachments(buffer: CVBuffer, attachmentMode: CVAttachmentMode): $SDK34;
 /**
  * func CVBufferGetAttachment(_ buffer: CVBuffer, _ key: CFString, _ attachmentMode: UnsafeMutablePointer<CVAttachmentMode>?) -> Unmanaged<CFTypeRef>?
  * @availability iOS 4.0+
@@ -2188,7 +2182,7 @@ export declare function CVBufferGetAttachment(buffer: CVBuffer, key: _CoreFounda
  * @availability iOS 4.0+
  * @deprecated iOS 15.0
  */
-export declare function CVBufferGetAttachments(buffer: CVBuffer, attachmentMode: CVAttachmentMode): $SDK36;
+export declare function CVBufferGetAttachments(buffer: CVBuffer, attachmentMode: CVAttachmentMode): $SDK34;
 /**
  * func CVBufferHasAttachment(_ buffer: CVBuffer, _ key: CFString) -> Bool
  * @availability iOS 15.0+
@@ -2223,7 +2217,7 @@ export declare function CVBufferSetAttachments(buffer: CVBuffer, theAttachments:
  * func CVColorPrimariesGetIntegerCodePointForString(_ colorPrimariesString: CFString?) -> Int32
  * @availability iOS 11.0+
  */
-export declare function CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString?: $SDK37): number;
+export declare function CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString?: $SDK35): number;
 /**
  * func CVColorPrimariesGetStringForIntegerCodePoint(_ colorPrimariesCodePoint: Int32) -> Unmanaged<CFString>?
  * @availability iOS 11.0+
@@ -2273,7 +2267,7 @@ export declare function CVIsCompressedPixelFormatAvailable(pixelFormatType: SDKH
  * func CVMetalBufferCacheCreate(_ allocator: CFAllocator?, _ cacheAttributes: CFDictionary?, _ metalDevice: any MTLDevice, _ cacheOut: UnsafeMutablePointer<CVMetalBufferCache?>) -> CVReturn
  * @availability iOS 18.0+
  */
-export declare function CVMetalBufferCacheCreate(allocator: $SDK40, cacheAttributes: $SDK36, metalDevice: SDKHandle): {
+export declare function CVMetalBufferCacheCreate(allocator: $SDK38, cacheAttributes: $SDK34, metalDevice: SDKHandle): {
     $ret: number;
     $out: {
         "cacheOut": (CVMetalBufferCache) | null;
@@ -2283,7 +2277,7 @@ export declare function CVMetalBufferCacheCreate(allocator: $SDK40, cacheAttribu
  * func CVMetalBufferCacheCreateBufferFromImage(_ allocator: CFAllocator?, _ bufferCache: CVMetalBufferCache, _ imageBuffer: CVImageBuffer, _ bufferOut: UnsafeMutablePointer<CVMetalBuffer?>) -> CVReturn
  * @availability iOS 18.0+
  */
-export declare function CVMetalBufferCacheCreateBufferFromImage(allocator: $SDK40, bufferCache: CVMetalBufferCache, imageBuffer: CVBuffer): {
+export declare function CVMetalBufferCacheCreateBufferFromImage(allocator: $SDK38, bufferCache: CVMetalBufferCache, imageBuffer: CVBuffer): {
     $ret: number;
     $out: {
         "bufferOut": (CVBuffer) | null;
@@ -2313,7 +2307,7 @@ export declare function CVMetalBufferGetTypeID(): number;
  * func CVMetalTextureCacheCreate(_ allocator: CFAllocator?, _ cacheAttributes: CFDictionary?, _ metalDevice: any MTLDevice, _ textureAttributes: CFDictionary?, _ cacheOut: UnsafeMutablePointer<CVMetalTextureCache?>) -> CVReturn
  * @availability iOS 8.0+
  */
-export declare function CVMetalTextureCacheCreate(allocator: $SDK40, cacheAttributes: $SDK36, metalDevice: SDKHandle, textureAttributes?: $SDK36): {
+export declare function CVMetalTextureCacheCreate(allocator: $SDK38, cacheAttributes: $SDK34, metalDevice: SDKHandle, textureAttributes?: $SDK34): {
     $ret: number;
     $out: {
         "cacheOut": (CVMetalTextureCache) | null;
@@ -2323,7 +2317,7 @@ export declare function CVMetalTextureCacheCreate(allocator: $SDK40, cacheAttrib
  * func CVMetalTextureCacheCreateTextureFromImage(_ allocator: CFAllocator?, _ textureCache: CVMetalTextureCache, _ sourceImage: CVImageBuffer, _ textureAttributes: CFDictionary?, _ pixelFormat: MTLPixelFormat, _ width: Int, _ height: Int, _ planeIndex: Int, _ textureOut: UnsafeMutablePointer<CVMetalTexture?>) -> CVReturn
  * @availability iOS 8.0+
  */
-export declare function CVMetalTextureCacheCreateTextureFromImage(allocator: $SDK40, textureCache: CVMetalTextureCache, sourceImage: CVBuffer, textureAttributes: $SDK36, pixelFormat: _Metal_MTLPixelFormat, width: number, height: number, planeIndex: number): {
+export declare function CVMetalTextureCacheCreateTextureFromImage(allocator: $SDK38, textureCache: CVMetalTextureCache, sourceImage: CVBuffer, textureAttributes: $SDK34, pixelFormat: _Metal_MTLPixelFormat, width: number, height: number, planeIndex: number): {
     $ret: number;
     $out: {
         "textureOut": (CVBuffer) | null;
@@ -2364,7 +2358,7 @@ export declare function CVMetalTextureIsFlipped(image: CVBuffer): boolean;
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export declare function CVOpenGLESTextureCacheCreate(allocator: $SDK40, cacheAttributes: $SDK36, eaglContext: _OpenGLES_EAGLContext, textureAttributes?: $SDK36): {
+export declare function CVOpenGLESTextureCacheCreate(allocator: $SDK38, cacheAttributes: $SDK34, eaglContext: _OpenGLES_EAGLContext, textureAttributes?: $SDK34): {
     $ret: number;
     $out: {
         "cacheOut": (CVOpenGLESTextureCache) | null;
@@ -2375,7 +2369,7 @@ export declare function CVOpenGLESTextureCacheCreate(allocator: $SDK40, cacheAtt
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export declare function CVOpenGLESTextureCacheCreateTextureFromImage(allocator: $SDK40, textureCache: CVOpenGLESTextureCache, sourceImage: CVBuffer, textureAttributes: $SDK36, target: number, internalFormat: number, width: number, height: number, format: number, type: number, planeIndex: number): {
+export declare function CVOpenGLESTextureCacheCreateTextureFromImage(allocator: $SDK38, textureCache: CVOpenGLESTextureCache, sourceImage: CVBuffer, textureAttributes: $SDK34, target: number, internalFormat: number, width: number, height: number, format: number, type: number, planeIndex: number): {
     $ret: number;
     $out: {
         "textureOut": (CVBuffer) | null;
@@ -2432,7 +2426,7 @@ export declare function CVPixelBufferCopyCreationAttributes(pixelBuffer: CVBuffe
  * func CVPixelBufferCreate(_ allocator: CFAllocator?, _ width: Int, _ height: Int, _ pixelFormatType: OSType, _ pixelBufferAttributes: CFDictionary?, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
  * @availability iOS 4.0+
  */
-export declare function CVPixelBufferCreate(allocator: $SDK40, width: number, height: number, pixelFormatType: SDKHandle, pixelBufferAttributes?: $SDK36): {
+export declare function CVPixelBufferCreate(allocator: $SDK38, width: number, height: number, pixelFormatType: SDKHandle, pixelBufferAttributes?: $SDK34): {
     $ret: number;
     $out: {
         "pixelBufferOut": (CVBuffer) | null;
@@ -2442,20 +2436,10 @@ export declare function CVPixelBufferCreate(allocator: $SDK40, width: number, he
  * func CVPixelBufferCreateResolvedAttributesDictionary(_ allocator: CFAllocator?, _ attributes: CFArray?, _ resolvedDictionaryOut: UnsafeMutablePointer<CFDictionary?>) -> CVReturn
  * @availability iOS 4.0+
  */
-export declare function CVPixelBufferCreateResolvedAttributesDictionary(allocator?: $SDK40, attributes?: $SDK43): {
+export declare function CVPixelBufferCreateResolvedAttributesDictionary(allocator?: $SDK38, attributes?: $SDK41): {
     $ret: number;
     $out: {
-        "resolvedDictionaryOut": $SDK36;
-    };
-};
-/**
- * func CVPixelBufferCreateWithBytes(_ allocator: CFAllocator?, _ width: Int, _ height: Int, _ pixelFormatType: OSType, _ baseAddress: UnsafeMutableRawPointer, _ bytesPerRow: Int, _ releaseCallback: CVPixelBufferReleaseBytesCallback?, _ releaseRefCon: UnsafeMutableRawPointer?, _ pixelBufferAttributes: CFDictionary?, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
- * @availability iOS 4.0+
- */
-export declare function CVPixelBufferCreateWithBytes(allocator: $SDK40, width: number, height: number, pixelFormatType: SDKHandle, baseAddress: SDKHandle, bytesPerRow: number, releaseCallback?: (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => void)) | null, releaseRefCon?: (SDKHandle) | null, pixelBufferAttributes?: $SDK36): {
-    $ret: number;
-    $out: {
-        "pixelBufferOut": (CVBuffer) | null;
+        "resolvedDictionaryOut": $SDK34;
     };
 };
 /**
@@ -2537,7 +2521,7 @@ export declare function CVPixelBufferGetWidthOfPlane(pixelBuffer: CVBuffer, plan
  * func CVPixelBufferIsCompatibleWithAttributes(_ pixelBuffer: CVPixelBuffer, _ attributes: CFDictionary?) -> Bool
  * @availability iOS 4.0+
  */
-export declare function CVPixelBufferIsCompatibleWithAttributes(pixelBuffer: CVBuffer, attributes?: $SDK36): boolean;
+export declare function CVPixelBufferIsCompatibleWithAttributes(pixelBuffer: CVBuffer, attributes?: $SDK34): boolean;
 /**
  * func CVPixelBufferIsPlanar(_ pixelBuffer: CVPixelBuffer) -> Bool
  * @availability iOS 4.0+
@@ -2552,7 +2536,7 @@ export declare function CVPixelBufferLockBaseAddress(pixelBuffer: CVBuffer, lock
  * func CVPixelBufferPoolCreate(_ allocator: CFAllocator?, _ poolAttributes: CFDictionary?, _ pixelBufferAttributes: CFDictionary?, _ poolOut: UnsafeMutablePointer<CVPixelBufferPool?>) -> CVReturn
  * @availability iOS 4.0+
  */
-export declare function CVPixelBufferPoolCreate(allocator?: $SDK40, poolAttributes?: $SDK36, pixelBufferAttributes?: $SDK36): {
+export declare function CVPixelBufferPoolCreate(allocator?: $SDK38, poolAttributes?: $SDK34, pixelBufferAttributes?: $SDK34): {
     $ret: number;
     $out: {
         "poolOut": (CVPixelBufferPool) | null;
@@ -2562,7 +2546,7 @@ export declare function CVPixelBufferPoolCreate(allocator?: $SDK40, poolAttribut
  * func CVPixelBufferPoolCreatePixelBuffer(_ allocator: CFAllocator?, _ pixelBufferPool: CVPixelBufferPool, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
  * @availability iOS 4.0+
  */
-export declare function CVPixelBufferPoolCreatePixelBuffer(allocator: $SDK40, pixelBufferPool: CVPixelBufferPool): {
+export declare function CVPixelBufferPoolCreatePixelBuffer(allocator: $SDK38, pixelBufferPool: CVPixelBufferPool): {
     $ret: number;
     $out: {
         "pixelBufferOut": (CVBuffer) | null;
@@ -2572,7 +2556,7 @@ export declare function CVPixelBufferPoolCreatePixelBuffer(allocator: $SDK40, pi
  * func CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(_ allocator: CFAllocator?, _ pixelBufferPool: CVPixelBufferPool, _ auxAttributes: CFDictionary?, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
  * @availability iOS 4.0+
  */
-export declare function CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(allocator: $SDK40, pixelBufferPool: CVPixelBufferPool, auxAttributes?: $SDK36): {
+export declare function CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(allocator: $SDK38, pixelBufferPool: CVPixelBufferPool, auxAttributes?: $SDK34): {
     $ret: number;
     $out: {
         "pixelBufferOut": (CVBuffer) | null;
@@ -2584,12 +2568,12 @@ export declare function CVPixelBufferPoolFlush(pool: CVPixelBufferPool, options:
  * func CVPixelBufferPoolGetAttributes(_ pool: CVPixelBufferPool) -> CFDictionary?
  * @availability iOS 4.0+
  */
-export declare function CVPixelBufferPoolGetAttributes(pool: CVPixelBufferPool): $SDK36;
+export declare function CVPixelBufferPoolGetAttributes(pool: CVPixelBufferPool): $SDK34;
 /**
  * func CVPixelBufferPoolGetPixelBufferAttributes(_ pool: CVPixelBufferPool) -> CFDictionary?
  * @availability iOS 4.0+
  */
-export declare function CVPixelBufferPoolGetPixelBufferAttributes(pool: CVPixelBufferPool): $SDK36;
+export declare function CVPixelBufferPoolGetPixelBufferAttributes(pool: CVPixelBufferPool): $SDK34;
 /**
  * func CVPixelBufferPoolGetTypeID() -> CFTypeID
  * @availability iOS 4.0+
@@ -2604,12 +2588,12 @@ export declare function CVPixelBufferUnlockBaseAddress(pixelBuffer: CVBuffer, un
  * func CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(_ allocator: CFAllocator?) -> CFArray?
  * @availability iOS 4.0+
  */
-export declare function CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(allocator?: $SDK40): $SDK43;
+export declare function CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(allocator?: $SDK38): $SDK41;
 /**
  * func CVPixelFormatDescriptionCreateWithPixelFormatType(_ allocator: CFAllocator?, _ pixelFormat: OSType) -> CFDictionary?
  * @availability iOS 4.0+
  */
-export declare function CVPixelFormatDescriptionCreateWithPixelFormatType(allocator: $SDK40, pixelFormat: SDKHandle): $SDK36;
+export declare function CVPixelFormatDescriptionCreateWithPixelFormatType(allocator: $SDK38, pixelFormat: SDKHandle): $SDK34;
 /**
  * func CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(_ description: CFDictionary, _ pixelFormat: OSType)
  * @availability iOS 4.0+
@@ -2624,7 +2608,7 @@ export declare function CVPixelFormatTypeCopyFourCharCodeString(pixelFormat: SDK
  * func CVTransferFunctionGetIntegerCodePointForString(_ transferFunctionString: CFString?) -> Int32
  * @availability iOS 11.0+
  */
-export declare function CVTransferFunctionGetIntegerCodePointForString(transferFunctionString?: $SDK37): number;
+export declare function CVTransferFunctionGetIntegerCodePointForString(transferFunctionString?: $SDK35): number;
 /**
  * func CVTransferFunctionGetStringForIntegerCodePoint(_ transferFunctionCodePoint: Int32) -> Unmanaged<CFString>?
  * @availability iOS 11.0+
@@ -2634,7 +2618,7 @@ export declare function CVTransferFunctionGetStringForIntegerCodePoint(transferF
  * func CVYCbCrMatrixGetIntegerCodePointForString(_ yCbCrMatrixString: CFString?) -> Int32
  * @availability iOS 11.0+
  */
-export declare function CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString?: $SDK37): number;
+export declare function CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString?: $SDK35): number;
 /**
  * func CVYCbCrMatrixGetStringForIntegerCodePoint(_ yCbCrMatrixCodePoint: Int32) -> Unmanaged<CFString>?
  * @availability iOS 11.0+

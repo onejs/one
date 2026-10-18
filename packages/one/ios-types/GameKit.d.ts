@@ -88,12 +88,12 @@ export declare class GKAccessPoint extends SDKHandle {
      * func trigger(gameActivity: GKGameActivity) async
      * @availability iOS 26.0+
      */
-    triggerGameActivityHandler33(gameActivity: GKGameActivity, handler?: ((() => void)) | null): void;
+    triggerGameActivityHandler53451(gameActivity: GKGameActivity, handler?: ((() => void)) | null): void;
     /**
      * func trigger(gameActivityDefinitionID: String) async
      * @availability iOS 26.0+
      */
-    triggerGameActivityDefinitionIDHandler34(gameActivityDefinitionID: string, handler?: ((() => void)) | null): void;
+    triggerGameActivityDefinitionIDHandler47507(gameActivityDefinitionID: string, handler?: ((() => void)) | null): void;
     /**
      * func trigger(handler: @escaping () -> Void)
      * @availability iOS 14.0+
@@ -2998,7 +2998,7 @@ export declare class GKScore extends SDKHandle {
      * @availability iOS 6.0+
      * @deprecated iOS 14.0
      */
-    static reportWithEligibleChallengesWithCompletionHandler421(scores: Array<GKScore>, challenges: Array<GKChallenge>, completionHandler?: $SDK3): void;
+    static reportWithEligibleChallengesWithCompletionHandler70774(scores: Array<GKScore>, challenges: Array<GKChallenge>, completionHandler?: $SDK3): void;
     /**
      * func challengeComposeController(withMessage message: String?, players: [GKPlayer]?, completion completionHandler: GKChallengeComposeHandler? = nil) -> UIViewController
      * @availability iOS 17.0+

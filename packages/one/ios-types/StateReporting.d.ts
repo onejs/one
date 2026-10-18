@@ -20,77 +20,77 @@ export declare class ReportableMetadataValue extends SDKHandle {
      * init(_ value: CGFloat)
      * @availability iOS 27.0+
      */
-    static init1(value: number): ReportableMetadataValue;
+    static init12321(value: number): ReportableMetadataValue;
     /**
      * init(_ value: String)
      * @availability iOS 27.0+
      */
-    static init2(value: string): ReportableMetadataValue;
+    static init35071(value: string): ReportableMetadataValue;
     /**
      * init(_ value: Bool)
      * @availability iOS 27.0+
      */
-    static init3(value: boolean): ReportableMetadataValue;
+    static init81318(value: boolean): ReportableMetadataValue;
     /**
      * init(_ value: Double)
      * @availability iOS 27.0+
      */
-    static init4(value: number): ReportableMetadataValue;
+    static init39560(value: number): ReportableMetadataValue;
     /**
      * init(_ value: Float)
      * @availability iOS 27.0+
      */
-    static init5(value: number): ReportableMetadataValue;
+    static init4682(value: number): ReportableMetadataValue;
     /**
      * init(_ value: Int)
      * @availability iOS 27.0+
      */
-    static init6(value: number): ReportableMetadataValue;
+    static init78325(value: number): ReportableMetadataValue;
     /**
      * init(_ value: UInt)
      * @availability iOS 27.0+
      */
-    static init7(value: number): ReportableMetadataValue;
+    static init67441(value: number): ReportableMetadataValue;
     /**
      * init(_ value: Int8)
      * @availability iOS 27.0+
      */
-    static init8(value: number): ReportableMetadataValue;
+    static init82505(value: number): ReportableMetadataValue;
     /**
      * init(_ value: Int16)
      * @availability iOS 27.0+
      */
-    static init9(value: number): ReportableMetadataValue;
+    static init90161(value: number): ReportableMetadataValue;
     /**
      * init(_ value: Int32)
      * @availability iOS 27.0+
      */
-    static init10(value: number): ReportableMetadataValue;
+    static init86007(value: number): ReportableMetadataValue;
     /**
      * init(_ value: Int64)
      * @availability iOS 27.0+
      */
-    static init11(value: number): ReportableMetadataValue;
+    static init23348(value: number): ReportableMetadataValue;
     /**
      * init(_ value: UInt8)
      * @availability iOS 27.0+
      */
-    static init12(value: number): ReportableMetadataValue;
+    static init22635(value: number): ReportableMetadataValue;
     /**
      * init(_ value: UInt16)
      * @availability iOS 27.0+
      */
-    static init13(value: number): ReportableMetadataValue;
+    static init32571(value: number): ReportableMetadataValue;
     /**
      * init(_ value: UInt32)
      * @availability iOS 27.0+
      */
-    static init14(value: number): ReportableMetadataValue;
+    static init73709(value: number): ReportableMetadataValue;
     /**
      * init(_ value: UInt64)
      * @availability iOS 27.0+
      */
-    static init15(value: number): ReportableMetadataValue;
+    static init92134(value: number): ReportableMetadataValue;
 }
 /**
  * final class StateReporter<StableMetadata, VolatileMetadata> where StableMetadata : ReportableMetadata, VolatileMetadata : ReportableMetadata

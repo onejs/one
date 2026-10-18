@@ -19,7 +19,7 @@ export declare class AskCenter extends SDKHandle {
      * final func ask(_ question: PermissionQuestion<SignificantAppUpdateTopic>, in viewController: UIViewController) async throws
      * @availability iOS 26.2+
      */
-    askIn3(question: $SDK0, viewController: _UIKit_UIViewController): Promise<void>;
+    askIn61031(question: $SDK0, viewController: _UIKit_UIViewController): Promise<void>;
 }
 export declare class CommunicationLimits extends SDKHandle {
     /**

@@ -60,7 +60,7 @@ export declare class AudioChannelLayout_UnsafeMutablePointer extends SDKHandle {
      * init(_ p: UnsafeMutablePointer<AudioChannelLayout>)
      * @availability iOS 13.0+
      */
-    static init48(p: SDKHandle): AudioChannelLayout_UnsafeMutablePointer;
+    static init253(p: SDKHandle): AudioChannelLayout_UnsafeMutablePointer;
     /**
      * subscript(index: AudioChannelLayout.UnsafeMutablePointer.Index) -> AudioChannelLayout.UnsafeMutablePointer.Element { get nonmutating set }
      * @availability iOS 13.0+
@@ -127,7 +127,7 @@ export declare class AudioChannelLayout_UnsafePointer extends SDKHandle {
      * init?(_ p: UnsafePointer<AudioChannelLayout>?)
      * @availability iOS 13.0+
      */
-    static init38(p?: (SDKHandle) | null): (AudioChannelLayout_UnsafePointer) | null;
+    static init69219(p?: (SDKHandle) | null): (AudioChannelLayout_UnsafePointer) | null;
     /**
      * subscript(index: AudioChannelLayout.UnsafePointer.Index) -> AudioChannelLayout.UnsafePointer.Element { get }
      * @availability iOS 13.0+
@@ -291,7 +291,7 @@ export declare class UnsafeMutableAudioBufferListPointer extends SDKHandle {
     /** init?(_ p: UnsafeMutablePointer<AudioBufferList>?) */
     static init(p?: (SDKHandle) | null): (UnsafeMutableAudioBufferListPointer) | null;
     /** init(_ p: UnsafeMutablePointer<AudioBufferList>) */
-    static init8(p: SDKHandle): UnsafeMutableAudioBufferListPointer;
+    static init13092(p: SDKHandle): UnsafeMutableAudioBufferListPointer;
     /** subscript(index: UnsafeMutableAudioBufferListPointer.Index) -> UnsafeMutableAudioBufferListPointer.Element { get nonmutating set } */
     subscript(index: number): _CoreAudioTypes_AudioBuffer;
 }

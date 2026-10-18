@@ -855,7 +855,7 @@ export declare class EKRecurrenceDayOfWeek extends SDKHandle {
      */
     static initWeekNumber(dayOfTheWeek: EKWeekday, weekNumber: number): EKRecurrenceDayOfWeek;
     /** init() */
-    static init145(): EKRecurrenceDayOfWeek;
+    static init55703(): EKRecurrenceDayOfWeek;
     /**
      * init(dayOfTheWeek: EKWeekday, weekNumber: Int)
      * @availability iOS 4.0+

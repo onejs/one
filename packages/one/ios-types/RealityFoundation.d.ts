@@ -803,7 +803,7 @@ export declare class Entity extends SDKHandle {
      * nonisolated(nonsending) static func write(_ entities: [Entity], to url: URL, options: Entity.WriteOptions = WriteOptions()) async throws
      * @availability iOS 27.0+
      */
-    static writeToOptions3873(entities: Array<Entity>, url: string, options?: Entity_WriteOptions): Promise<void>;
+    static writeToOptions40275(entities: Array<Entity>, url: string, options?: Entity_WriteOptions): Promise<void>;
     /**
      * @MainActor @preconcurrency var anchor: (any HasAnchoring)? { get }
      * @availability iOS 13.0+
@@ -893,7 +893,7 @@ export declare class AnchorEntity extends AnchorEntity_base {
      * @MainActor @preconcurrency convenience init(world position: SIMD3<Float>)
      * @availability iOS 13.0+
      */
-    static initWorld345(position: SDKHandle): Promise<AnchorEntity>;
+    static initWorld83054(position: SDKHandle): Promise<AnchorEntity>;
     /**
      * @MainActor @preconcurrency required init()
      * @availability iOS 13.0+
@@ -913,7 +913,7 @@ export declare class AnchorEntity extends AnchorEntity_base {
      * @MainActor @preconcurrency init(_ target: AnchoringComponent.Target)
      * @availability iOS 13.0+
      */
-    static init349(target: AnchoringComponent_Target): Promise<AnchorEntity>;
+    static init87284(target: AnchoringComponent_Target): Promise<AnchorEntity>;
 }
 /**
  * struct AnchoringComponent
@@ -1740,12 +1740,12 @@ export declare class AnimationLibraryComponent_AnimationCollection extends SDKHa
      * subscript(position: AnimationLibraryComponent.AnimationCollection.Index) -> AnimationLibraryComponent.AnimationCollection.Element { get }
      * @availability iOS 18.0+
      */
-    subscript3282(position: AnimationLibraryComponent_AnimationCollection_Index): $SDK25;
+    subscript22305(position: AnimationLibraryComponent_AnimationCollection_Index): $SDK25;
     /**
      * subscript(bounds: Range<AnimationLibraryComponent.AnimationCollection.Index>) -> AnimationLibraryComponent.AnimationCollection.SubSequence { get }
      * @availability iOS 18.0+
      */
-    subscript3283(bounds: SDKHandle): SDKHandle;
+    subscript94245(bounds: SDKHandle): SDKHandle;
 }
 /**
  * typealias Element = (key: String, value: AnimationResource)
@@ -1972,12 +1972,12 @@ export declare class AnimationState<Value = unknown> extends SDKHandle {
      * var defaultSource: JointTransforms? { get }
      * @availability iOS 18.0+
      */
-    get defaultSource777(): $SDK27;
+    get defaultSource93890(): $SDK27;
     /**
      * var defaultTarget: JointTransforms? { get }
      * @availability iOS 18.0+
      */
-    get defaultTarget778(): $SDK27;
+    get defaultTarget39026(): $SDK27;
     /**
      * func defaultSourceJoints(index: Int, count: Int, transforms: inout [Transform]) -> Bool
      * @availability iOS 18.0+
@@ -2248,7 +2248,7 @@ export declare class Audio_Absorption extends SDKHandle {
      * init(_ coefficients: [Float])
      * @availability iOS 27.0+
      */
-    static init3559(coefficients: Array<number>): Audio_Absorption;
+    static init68751(coefficients: Array<number>): Audio_Absorption;
 }
 /**
  * typealias Key = Float
@@ -2453,7 +2453,7 @@ export declare class Audio_Scattering extends SDKHandle {
      * init(_ coefficients: [Float])
      * @availability iOS 27.0+
      */
-    static init3563(coefficients: Array<number>): Audio_Scattering;
+    static init90326(coefficients: Array<number>): Audio_Scattering;
 }
 /**
  * typealias Key = Float
@@ -3664,7 +3664,7 @@ export declare class BlendShapeWeights extends SDKHandle {
      * init<S>(_ weights: S) where S : Sequence, S.Element == Float
      * @availability iOS 18.0+
      */
-    static init1583(weights: Array<number>): BlendShapeWeights;
+    static init7649(weights: Array<number>): BlendShapeWeights;
     /**
      * subscript(index: BlendShapeWeights.Index) -> Float { get set }
      * @availability iOS 18.0+
@@ -3836,7 +3836,7 @@ export declare class BlendShapeWeightsSet extends SDKHandle {
      * subscript(index: BlendShapeWeightsSet.Index) -> BlendShapeWeightsSet.Element { get set }
      * @availability iOS 18.0+
      */
-    subscript2219(index: number): BlendShapeWeightsData;
+    subscript77229(index: number): BlendShapeWeightsData;
 }
 /**
  * typealias Element = BlendShapeWeightsData
@@ -4161,7 +4161,7 @@ export declare class BodyTrackingComponent extends SDKHandle {
      * init(_ target: BodyTrackingComponent.Target)
      * @availability iOS 13.0+
      */
-    static init2421(target: BodyTrackingComponent_Target): BodyTrackingComponent;
+    static init20015(target: BodyTrackingComponent_Target): BodyTrackingComponent;
 }
 /**
  * enum Target
@@ -4225,7 +4225,7 @@ export declare class BoundingBox extends SDKHandle {
      * func union(_ point: SIMD3<Float>) -> BoundingBox
      * @availability iOS 13.0+
      */
-    union183(point: SDKHandle): BoundingBox;
+    union54674(point: SDKHandle): BoundingBox;
     /**
      * var center: SIMD3<Float> { get }
      * @availability iOS 13.0+
@@ -4250,7 +4250,7 @@ export declare class BoundingBox extends SDKHandle {
      * func contains(_ point: SIMD3<Float>) -> Bool
      * @availability iOS 13.0+
      */
-    contains188(point: SDKHandle): boolean;
+    contains32870(point: SDKHandle): boolean;
     /**
      * mutating func formUnion(_ other: BoundingBox)
      * @availability iOS 13.0+
@@ -4260,7 +4260,7 @@ export declare class BoundingBox extends SDKHandle {
      * mutating func formUnion(_ point: SIMD3<Float>)
      * @availability iOS 13.0+
      */
-    formUnion190(point: SDKHandle): void;
+    formUnion24355(point: SDKHandle): void;
     /**
      * mutating func transform(by transform: float4x4)
      * @availability iOS 13.0+
@@ -4275,7 +4275,7 @@ export declare class BoundingBox extends SDKHandle {
      * init(_ rect3D: Rect3D)
      * @availability iOS 18.0+
      */
-    static init193(rect3D: _Spatial_Rect3D): BoundingBox;
+    static init89264(rect3D: _Spatial_Rect3D): BoundingBox;
 }
 /**
  * struct BoundingBoxCalculator
@@ -5519,12 +5519,12 @@ export declare class CustomMaterial_CustomMaterialTexture extends SDKHandle {
      * init(_ resource: TextureResource, _ swizzle: MTLTextureSwizzleChannels)
      * @availability iOS 18.0+
      */
-    static init808(resource: TextureResource, swizzle: _Metal_MTLTextureSwizzleChannels): CustomMaterial_CustomMaterialTexture;
+    static init33104(resource: TextureResource, swizzle: _Metal_MTLTextureSwizzleChannels): CustomMaterial_CustomMaterialTexture;
     /**
      * init(_ resource: TextureResource)
      * @availability iOS 15.0+
      */
-    static init809(resource: TextureResource): CustomMaterial_CustomMaterialTexture;
+    static init97329(resource: TextureResource): CustomMaterial_CustomMaterialTexture;
 }
 /**
  * struct EmissiveColor
@@ -6197,7 +6197,7 @@ export declare class Entity_ChildCollection extends SDKHandle {
      * @MainActor @preconcurrency func replaceAll<S>(_ children: S, preservingWorldTransforms: Bool = false) where S : Sequence, S.Element : Entity
      * @availability iOS 13.0+
      */
-    replaceAllPreservingWorldTransforms3797(children: Array<Entity>, preservingWorldTransforms?: boolean): Promise<void>;
+    replaceAllPreservingWorldTransforms69951(children: Array<Entity>, preservingWorldTransforms?: boolean): Promise<void>;
     /**
      * @MainActor @preconcurrency func replaceAll<S>(_ children: S) where S : Sequence, S.Element : Entity
      * @availability iOS 18.0+
@@ -6232,12 +6232,12 @@ export declare class Entity_ChildCollection extends SDKHandle {
      * @MainActor @preconcurrency func append(contentsOf array: [Entity], preservingWorldTransforms: Bool = false)
      * @availability iOS 13.0+
      */
-    appendContentsOfPreservingWorldTransforms3804(array: Array<Entity>, preservingWorldTransforms?: boolean): Promise<void>;
+    appendContentsOfPreservingWorldTransforms12861(array: Array<Entity>, preservingWorldTransforms?: boolean): Promise<void>;
     /**
      * @MainActor @preconcurrency func append<S>(contentsOf sequence: S, preservingWorldTransforms: Bool = false) where S : Sequence, S.Element : Entity
      * @availability iOS 13.0+
      */
-    appendContentsOfPreservingWorldTransforms3805(sequence: Array<Entity>, preservingWorldTransforms?: boolean): Promise<void>;
+    appendContentsOfPreservingWorldTransforms91272(sequence: Array<Entity>, preservingWorldTransforms?: boolean): Promise<void>;
     /**
      * @MainActor @preconcurrency func append<S>(contentsOf sequence: S) where S : Sequence, S.Element : Entity
      * @availability iOS 18.0+
@@ -6496,7 +6496,7 @@ export declare class Entity_ComponentSet_Indices extends SDKHandle {
      * subscript(bounds: Range<Entity.ComponentSet.Indices.Index>) -> Entity.ComponentSet.Indices { get }
      * @availability iOS 18.0+
      */
-    subscript3764(bounds: SDKHandle): Promise<Entity_ComponentSet_Indices>;
+    subscript65426(bounds: SDKHandle): Promise<Entity_ComponentSet_Indices>;
 }
 /**
  * typealias Element = Entity.ComponentSet.Index
@@ -6558,7 +6558,7 @@ export declare class Entity_ConfigurationCatalog extends SDKHandle {
      * init(configurationSets: [Entity.ConfigurationCatalog.ConfigurationSet], combinations: [Entity.ConfigurationCatalog.ConfigurationCombination]) throws
      * @availability iOS 18.0+
      */
-    static initConfigurationSetsCombinations3841(configurationSets: Array<Entity_ConfigurationCatalog_ConfigurationSet>, combinations: $SDK53): Promise<Entity_ConfigurationCatalog>;
+    static initConfigurationSetsCombinations45872(configurationSets: Array<Entity_ConfigurationCatalog_ConfigurationSet>, combinations: $SDK53): Promise<Entity_ConfigurationCatalog>;
     /**
      * var configurationSets: [String : Entity.ConfigurationCatalog.ConfigurationSet] { get }
      * @availability iOS 18.0+
@@ -6641,7 +6641,7 @@ export declare class Entity_ConfigurationCatalog_ConfigurationSet extends SDKHan
      * init(id: String, configurations: [Entity.ConfigurationCatalog.Configuration], defaultConfigurationId: String? = nil) throws
      * @availability iOS 18.0+
      */
-    static initIdConfigurationsDefaultConfigurationId3838(id: string, configurations: Array<Entity_ConfigurationCatalog_Configuration>, defaultConfigurationId?: (string) | null): Promise<Entity_ConfigurationCatalog_ConfigurationSet>;
+    static initIdConfigurationsDefaultConfigurationId72167(id: string, configurations: Array<Entity_ConfigurationCatalog_Configuration>, defaultConfigurationId?: (string) | null): Promise<Entity_ConfigurationCatalog_ConfigurationSet>;
     /**
      * var id: String { get }
      * @availability iOS 18.0+
@@ -6952,7 +6952,7 @@ export declare class EnvironmentResource extends SDKHandle {
      * @MainActor convenience init(equirectangular cgImage: CGImage, options: EnvironmentResource.CreateOptions) async throws
      * @availability iOS 27.0+
      */
-    static initEquirectangularOptions2032(cgImage: _CoreGraphics_CGImage, options: EnvironmentResource_CreateOptions): Promise<EnvironmentResource>;
+    static initEquirectangularOptions57422(cgImage: _CoreGraphics_CGImage, options: EnvironmentResource_CreateOptions): Promise<EnvironmentResource>;
     /**
      * @MainActor @preconcurrency convenience init(equirectangular cgImage: CGImage, withName resourceName: String? = nil) throws
      * @availability iOS 18.0+
@@ -6964,7 +6964,7 @@ export declare class EnvironmentResource extends SDKHandle {
      * @availability iOS 18.0+
      * @deprecated iOS 100000.0
      */
-    static initEquirectangularWithName2034(cgImage: _CoreGraphics_CGImage, resourceName?: (string) | null): Promise<EnvironmentResource>;
+    static initEquirectangularWithName66002(cgImage: _CoreGraphics_CGImage, resourceName?: (string) | null): Promise<EnvironmentResource>;
     /**
      * @MainActor @preconcurrency convenience init(cube cubeTexture: TextureResource, options: EnvironmentResource.CreateOptions) throws
      * @availability iOS 18.0+
@@ -6974,7 +6974,7 @@ export declare class EnvironmentResource extends SDKHandle {
      * @MainActor @preconcurrency convenience init(cube cubeTexture: TextureResource, options: EnvironmentResource.CreateOptions) async throws
      * @availability iOS 18.0+
      */
-    static initCubeOptions2036(cubeTexture: TextureResource, options: EnvironmentResource_CreateOptions): Promise<EnvironmentResource>;
+    static initCubeOptions12915(cubeTexture: TextureResource, options: EnvironmentResource_CreateOptions): Promise<EnvironmentResource>;
     /**
      * @MainActor @preconcurrency static func load(named name: String, in bundle: Bundle? = nil) throws -> EnvironmentResource
      * @availability iOS 13.0+
@@ -7491,146 +7491,146 @@ export declare class FromToByAnimation<Value = unknown> extends SDKHandle {
      * var byValue: BlendShapeWeights? { get set }
      * @availability iOS 18.0+
      */
-    get byValue1651(): $SDK70;
-    set byValue1652(value: $SDK70);
+    get byValue36059(): $SDK70;
+    set byValue36059(value: $SDK70);
     /**
      * var toValue: BlendShapeWeights? { get set }
      * @availability iOS 18.0+
      */
-    get toValue1653(): $SDK70;
-    set toValue1654(value: $SDK70);
+    get toValue30219(): $SDK70;
+    set toValue30219(value: $SDK70);
     /**
      * var fromValue: BlendShapeWeights? { get set }
      * @availability iOS 18.0+
      */
-    get fromValue1655(): $SDK70;
-    set fromValue1656(value: $SDK70);
+    get fromValue62030(): $SDK70;
+    set fromValue62030(value: $SDK70);
     /**
      * var byValue: Transform? { get set }
      * @availability iOS 15.0+
      */
-    get byValue1657(): (Transform) | null;
-    set byValue1658(value: (Transform) | null);
+    get byValue50769(): (Transform) | null;
+    set byValue50769(value: (Transform) | null);
     /**
      * var toValue: Transform? { get set }
      * @availability iOS 15.0+
      */
-    get toValue1659(): (Transform) | null;
-    set toValue1660(value: (Transform) | null);
+    get toValue60865(): (Transform) | null;
+    set toValue60865(value: (Transform) | null);
     /**
      * var fromValue: Transform? { get set }
      * @availability iOS 15.0+
      */
-    get fromValue1661(): (Transform) | null;
-    set fromValue1662(value: (Transform) | null);
+    get fromValue52136(): (Transform) | null;
+    set fromValue52136(value: (Transform) | null);
     /**
      * var byValue: Double? { get set }
      * @availability iOS 15.0+
      */
-    get byValue1663(): (number) | null;
-    set byValue1664(value: (number) | null);
+    get byValue91746(): (number) | null;
+    set byValue91746(value: (number) | null);
     /**
      * var toValue: Double? { get set }
      * @availability iOS 15.0+
      */
-    get toValue1665(): (number) | null;
-    set toValue1666(value: (number) | null);
+    get toValue18002(): (number) | null;
+    set toValue18002(value: (number) | null);
     /**
      * var fromValue: Double? { get set }
      * @availability iOS 15.0+
      */
-    get fromValue1667(): (number) | null;
-    set fromValue1668(value: (number) | null);
+    get fromValue94771(): (number) | null;
+    set fromValue94771(value: (number) | null);
     /**
      * var byValue: Float? { get set }
      * @availability iOS 15.0+
      */
-    get byValue1669(): (number) | null;
-    set byValue1670(value: (number) | null);
+    get byValue32182(): (number) | null;
+    set byValue32182(value: (number) | null);
     /**
      * var toValue: Float? { get set }
      * @availability iOS 15.0+
      */
-    get toValue1671(): (number) | null;
-    set toValue1672(value: (number) | null);
+    get toValue42406(): (number) | null;
+    set toValue42406(value: (number) | null);
     /**
      * var fromValue: Float? { get set }
      * @availability iOS 15.0+
      */
-    get fromValue1673(): (number) | null;
-    set fromValue1674(value: (number) | null);
+    get fromValue65471(): (number) | null;
+    set fromValue65471(value: (number) | null);
     /**
      * var byValue: simd_quatf? { get set }
      * @availability iOS 15.0+
      */
-    get byValue1675(): (SDKHandle) | null;
-    set byValue1676(value: (SDKHandle) | null);
+    get byValue19007(): (SDKHandle) | null;
+    set byValue19007(value: (SDKHandle) | null);
     /**
      * var toValue: simd_quatf? { get set }
      * @availability iOS 15.0+
      */
-    get toValue1677(): (SDKHandle) | null;
-    set toValue1678(value: (SDKHandle) | null);
+    get toValue84863(): (SDKHandle) | null;
+    set toValue84863(value: (SDKHandle) | null);
     /**
      * var fromValue: simd_quatf? { get set }
      * @availability iOS 15.0+
      */
-    get fromValue1679(): (SDKHandle) | null;
-    set fromValue1680(value: (SDKHandle) | null);
+    get fromValue29234(): (SDKHandle) | null;
+    set fromValue29234(value: (SDKHandle) | null);
     /**
      * var byValue: SIMD2<Float>? { get set }
      * @availability iOS 15.0+
      */
-    get byValue1681(): (SDKHandle) | null;
-    set byValue1682(value: (SDKHandle) | null);
+    get byValue46579(): (SDKHandle) | null;
+    set byValue46579(value: (SDKHandle) | null);
     /**
      * var toValue: SIMD2<Float>? { get set }
      * @availability iOS 15.0+
      */
-    get toValue1683(): (SDKHandle) | null;
-    set toValue1684(value: (SDKHandle) | null);
+    get toValue97071(): (SDKHandle) | null;
+    set toValue97071(value: (SDKHandle) | null);
     /**
      * var fromValue: SIMD2<Float>? { get set }
      * @availability iOS 15.0+
      */
-    get fromValue1685(): (SDKHandle) | null;
-    set fromValue1686(value: (SDKHandle) | null);
+    get fromValue63030(): (SDKHandle) | null;
+    set fromValue63030(value: (SDKHandle) | null);
     /**
      * var byValue: SIMD3<Float>? { get set }
      * @availability iOS 15.0+
      */
-    get byValue1687(): (SDKHandle) | null;
-    set byValue1688(value: (SDKHandle) | null);
+    get byValue32510(): (SDKHandle) | null;
+    set byValue32510(value: (SDKHandle) | null);
     /**
      * var toValue: SIMD3<Float>? { get set }
      * @availability iOS 15.0+
      */
-    get toValue1689(): (SDKHandle) | null;
-    set toValue1690(value: (SDKHandle) | null);
+    get toValue61294(): (SDKHandle) | null;
+    set toValue61294(value: (SDKHandle) | null);
     /**
      * var fromValue: SIMD3<Float>? { get set }
      * @availability iOS 15.0+
      */
-    get fromValue1691(): (SDKHandle) | null;
-    set fromValue1692(value: (SDKHandle) | null);
+    get fromValue15307(): (SDKHandle) | null;
+    set fromValue15307(value: (SDKHandle) | null);
     /**
      * var byValue: SIMD4<Float>? { get set }
      * @availability iOS 15.0+
      */
-    get byValue1693(): (SDKHandle) | null;
-    set byValue1694(value: (SDKHandle) | null);
+    get byValue62605(): (SDKHandle) | null;
+    set byValue62605(value: (SDKHandle) | null);
     /**
      * var toValue: SIMD4<Float>? { get set }
      * @availability iOS 15.0+
      */
-    get toValue1695(): (SDKHandle) | null;
-    set toValue1696(value: (SDKHandle) | null);
+    get toValue40137(): (SDKHandle) | null;
+    set toValue40137(value: (SDKHandle) | null);
     /**
      * var fromValue: SIMD4<Float>? { get set }
      * @availability iOS 15.0+
      */
-    get fromValue1697(): (SDKHandle) | null;
-    set fromValue1698(value: (SDKHandle) | null);
+    get fromValue99140(): (SDKHandle) | null;
+    set fromValue99140(value: (SDKHandle) | null);
 }
 /**
  * struct GeometricPin
@@ -7938,7 +7938,7 @@ export declare class HoverEffectComponent extends SDKHandle {
      * init(_ hoverEffect: HoverEffectComponent.HoverEffect)
      * @availability iOS 18.0+
      */
-    static init2257(hoverEffect: HoverEffectComponent_HoverEffect): HoverEffectComponent;
+    static init33333(hoverEffect: HoverEffectComponent_HoverEffect): HoverEffectComponent;
 }
 /**
  * struct GroupID
@@ -8236,12 +8236,12 @@ export declare class IKComponent_ConstraintCollection extends SDKHandle {
      * subscript(name: String) -> IKComponent.ConstraintCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript243(name: string): $SDK73;
+    subscript41475(name: string): $SDK73;
     /**
      * subscript(position: IKComponent.ConstraintCollection.Index) -> IKComponent.ConstraintCollection.Element { get set }
      * @availability iOS 18.0+
      */
-    subscript244(position: number): IKComponent_Constraint;
+    subscript65015(position: number): IKComponent_Constraint;
 }
 /**
  * typealias Element = IKComponent.Constraint
@@ -8366,12 +8366,12 @@ export declare class IKComponent_JointCollection extends SDKHandle {
      * subscript(name: String) -> IKComponent.JointCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript220(name: string): $SDK74;
+    subscript4078(name: string): $SDK74;
     /**
      * subscript(position: IKComponent.JointCollection.Index) -> IKComponent.JointCollection.Element { get set }
      * @availability iOS 18.0+
      */
-    subscript221(position: number): IKComponent_Joint;
+    subscript5106(position: number): IKComponent_Joint;
 }
 /**
  * typealias Element = IKComponent.Joint
@@ -8509,7 +8509,7 @@ export declare class IKComponent_SolverCollection extends SDKHandle {
      * subscript(position: IKComponent.SolverCollection.Index) -> IKComponent.SolverCollection.Element { get set }
      * @availability iOS 18.0+
      */
-    subscript232(position: number): IKComponent_Solver;
+    subscript23528(position: number): IKComponent_Solver;
 }
 /**
  * typealias Element = IKComponent.Solver
@@ -8804,12 +8804,12 @@ export declare class IKRig_ConstraintsCollection extends SDKHandle {
      * subscript(name: String) -> IKRig.ConstraintsCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript3654(name: string): $SDK79;
+    subscript65550(name: string): $SDK79;
     /**
      * subscript(position: IKRig.ConstraintsCollection.Index) -> IKRig.ConstraintsCollection.Element { get set }
      * @availability iOS 18.0+
      */
-    subscript3655(position: number): IKRig_Constraint;
+    subscript24754(position: number): IKRig_Constraint;
     /**
      * init(_ elements: [IKRig.ConstraintsCollection.Element])
      * @availability iOS 18.0+
@@ -9019,12 +9019,12 @@ export declare class IKRig_JointCollection extends SDKHandle {
      * subscript(name: String) -> IKRig.JointCollection.Element? { get set }
      * @availability iOS 18.0+
      */
-    subscript3640(name: string): (IKRig_Joint) | null;
+    subscript6747(name: string): (IKRig_Joint) | null;
     /**
      * subscript(position: IKRig.JointCollection.Index) -> IKRig.JointCollection.Element { get set }
      * @availability iOS 18.0+
      */
-    subscript3641(position: number): IKRig_Joint;
+    subscript87199(position: number): IKRig_Joint;
 }
 /**
  * typealias Element = IKRig.Joint
@@ -9284,7 +9284,7 @@ export declare class JointTransforms extends SDKHandle {
      * init<S>(_ transforms: S) where S : Sequence, S.Element == Transform
      * @availability iOS 15.0+
      */
-    static init1164(transforms: Array<Transform>): JointTransforms;
+    static init93259(transforms: Array<Transform>): JointTransforms;
 }
 /**
  * typealias ArrayLiteralElement = Transform
@@ -10475,7 +10475,7 @@ export declare class MaterialParameters_Texture_Sampler extends SDKHandle {
      * init(_ v: MTLSamplerDescriptor)
      * @availability iOS 15.0+
      */
-    static init1859(v: _Metal_MTLSamplerDescriptor): MaterialParameters_Texture_Sampler;
+    static init54802(v: _Metal_MTLSamplerDescriptor): MaterialParameters_Texture_Sampler;
 }
 /**
  * enum Value
@@ -10589,12 +10589,12 @@ export declare class MeshBuffer<Element = unknown> extends SDKHandle {
      * func forEach(_ body: (Element, Element, Element) throws -> Void) rethrows
      * @availability iOS 15.0+
      */
-    forEach117(body: ((arg0: unknown, arg1: unknown, arg2: unknown) => void)): void;
+    forEach21513(body: ((arg0: unknown, arg1: unknown, arg2: unknown) => void)): void;
     /**
      * func forEach(_ body: (Element, Element, Element, Element) throws -> Void) rethrows
      * @availability iOS 15.0+
      */
-    forEach118(body: ((arg0: unknown, arg1: unknown, arg2: unknown, arg3: unknown) => void)): void;
+    forEach51613(body: ((arg0: unknown, arg1: unknown, arg2: unknown, arg3: unknown) => void)): void;
     /**
      * var elements: [Element] { get }
      * @availability iOS 15.0+
@@ -10619,172 +10619,172 @@ export declare class MeshBuffer<Element = unknown> extends SDKHandle {
      * init<S>(_ sequence: S) where S : Sequence, S.Element == MeshJointInfluence
      * @availability iOS 18.0+
      */
-    static init124(sequence: $SDK101): $SDK100;
+    static init29517(sequence: $SDK101): $SDK100;
     /**
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 15.0+
      */
-    static initElementsIndices125(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
+    static initElementsIndices78668(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
     /**
      * init(_ array: [Element])
      * @availability iOS 15.0+
      */
-    static init126(array: Array<number>): MeshBuffer<number>;
+    static init88685(array: Array<number>): MeshBuffer<number>;
     /**
      * init<S>(_ sequence: S) where S : Sequence, S.Element == Double
      * @availability iOS 15.0+
      */
-    static init127(sequence: Array<number>): MeshBuffer<number>;
+    static init65033(sequence: Array<number>): MeshBuffer<number>;
     /**
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 15.0+
      */
-    static initElementsIndices128(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
-    /**
-     * init(_ array: [Element])
-     * @availability iOS 15.0+
-     */
-    static init129(array: Array<number>): MeshBuffer<number>;
-    /**
-     * init<S>(_ sequence: S) where S : Sequence, S.Element == Float
-     * @availability iOS 15.0+
-     */
-    static init130(sequence: Array<number>): MeshBuffer<number>;
-    /**
-     * init(elements: [Element], indices: [UInt32])
-     * @availability iOS 15.0+
-     */
-    static initElementsIndices131(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
-    /**
-     * init(_ array: [Element])
-     * @availability iOS 15.0+
-     */
-    static init132(array: Array<number>): MeshBuffer<number>;
-    /**
-     * init<S>(_ sequence: S) where S : Sequence, S.Element == Int8
-     * @availability iOS 15.0+
-     */
-    static init133(sequence: Array<number>): MeshBuffer<number>;
-    /**
-     * init(elements: [Element], indices: [UInt32])
-     * @availability iOS 15.0+
-     */
-    static initElementsIndices134(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
+    static initElementsIndices64542(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
     /**
      * init(_ array: [Element])
      * @availability iOS 15.0+
      */
     static init135(array: Array<number>): MeshBuffer<number>;
     /**
-     * init<S>(_ sequence: S) where S : Sequence, S.Element == Int16
+     * init<S>(_ sequence: S) where S : Sequence, S.Element == Float
      * @availability iOS 15.0+
      */
-    static init136(sequence: Array<number>): MeshBuffer<number>;
+    static init72179(sequence: Array<number>): MeshBuffer<number>;
     /**
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 15.0+
      */
-    static initElementsIndices137(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
+    static initElementsIndices28011(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
     /**
      * init(_ array: [Element])
      * @availability iOS 15.0+
      */
-    static init138(array: Array<number>): MeshBuffer<number>;
+    static init98876(array: Array<number>): MeshBuffer<number>;
+    /**
+     * init<S>(_ sequence: S) where S : Sequence, S.Element == Int8
+     * @availability iOS 15.0+
+     */
+    static init2782(sequence: Array<number>): MeshBuffer<number>;
+    /**
+     * init(elements: [Element], indices: [UInt32])
+     * @availability iOS 15.0+
+     */
+    static initElementsIndices24307(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
+    /**
+     * init(_ array: [Element])
+     * @availability iOS 15.0+
+     */
+    static init60084(array: Array<number>): MeshBuffer<number>;
+    /**
+     * init<S>(_ sequence: S) where S : Sequence, S.Element == Int16
+     * @availability iOS 15.0+
+     */
+    static init57974(sequence: Array<number>): MeshBuffer<number>;
+    /**
+     * init(elements: [Element], indices: [UInt32])
+     * @availability iOS 15.0+
+     */
+    static initElementsIndices91237(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
+    /**
+     * init(_ array: [Element])
+     * @availability iOS 15.0+
+     */
+    static init47678(array: Array<number>): MeshBuffer<number>;
     /**
      * init<S>(_ sequence: S) where S : Sequence, S.Element == Int32
      * @availability iOS 15.0+
      */
-    static init139(sequence: Array<number>): MeshBuffer<number>;
+    static init81648(sequence: Array<number>): MeshBuffer<number>;
     /**
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 15.0+
      */
-    static initElementsIndices140(elements: Array<SDKHandle>, indices: Array<number>): MeshBuffer<SDKHandle>;
+    static initElementsIndices73997(elements: Array<SDKHandle>, indices: Array<number>): MeshBuffer<SDKHandle>;
     /**
      * init(_ array: [Element])
      * @availability iOS 15.0+
      */
-    static init141(array: Array<SDKHandle>): MeshBuffer<SDKHandle>;
+    static init41694(array: Array<SDKHandle>): MeshBuffer<SDKHandle>;
     /**
      * init<S>(_ sequence: S) where S : Sequence, S.Element == SIMD2<Float>
      * @availability iOS 15.0+
      */
-    static init142(sequence: Array<SDKHandle>): MeshBuffer<SDKHandle>;
+    static init90440(sequence: Array<SDKHandle>): MeshBuffer<SDKHandle>;
     /**
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 15.0+
      */
-    static initElementsIndices143(elements: Array<SDKHandle>, indices: Array<number>): MeshBuffer<SDKHandle>;
+    static initElementsIndices76976(elements: Array<SDKHandle>, indices: Array<number>): MeshBuffer<SDKHandle>;
     /**
      * init(_ array: [Element])
      * @availability iOS 15.0+
      */
-    static init144(array: Array<SDKHandle>): MeshBuffer<SDKHandle>;
+    static init38361(array: Array<SDKHandle>): MeshBuffer<SDKHandle>;
     /**
      * init<S>(_ sequence: S) where S : Sequence, S.Element == SIMD3<Float>
      * @availability iOS 15.0+
      */
-    static init145(sequence: Array<SDKHandle>): MeshBuffer<SDKHandle>;
+    static init33765(sequence: Array<SDKHandle>): MeshBuffer<SDKHandle>;
     /**
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 15.0+
      */
-    static initElementsIndices146(elements: Array<SDKHandle>, indices: Array<number>): MeshBuffer<SDKHandle>;
+    static initElementsIndices76979(elements: Array<SDKHandle>, indices: Array<number>): MeshBuffer<SDKHandle>;
     /**
      * init(_ array: [Element])
      * @availability iOS 15.0+
      */
-    static init147(array: Array<SDKHandle>): MeshBuffer<SDKHandle>;
+    static init92700(array: Array<SDKHandle>): MeshBuffer<SDKHandle>;
     /**
      * init<S>(_ sequence: S) where S : Sequence, S.Element == SIMD4<Float>
      * @availability iOS 15.0+
      */
-    static init148(sequence: Array<SDKHandle>): MeshBuffer<SDKHandle>;
+    static init42366(sequence: Array<SDKHandle>): MeshBuffer<SDKHandle>;
     /**
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 15.0+
      */
-    static initElementsIndices149(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
+    static initElementsIndices18961(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
     /**
      * init(_ array: [Element])
      * @availability iOS 15.0+
      */
-    static init150(array: Array<number>): MeshBuffer<number>;
+    static init52026(array: Array<number>): MeshBuffer<number>;
     /**
      * init<S>(_ sequence: S) where S : Sequence, S.Element == UInt8
      * @availability iOS 15.0+
      */
-    static init151(sequence: Array<number>): MeshBuffer<number>;
+    static init47508(sequence: Array<number>): MeshBuffer<number>;
     /**
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 15.0+
      */
-    static initElementsIndices152(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
+    static initElementsIndices25249(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
     /**
      * init(_ array: [Element])
      * @availability iOS 15.0+
      */
-    static init153(array: Array<number>): MeshBuffer<number>;
+    static init6218(array: Array<number>): MeshBuffer<number>;
     /**
      * init<S>(_ sequence: S) where S : Sequence, S.Element == UInt16
      * @availability iOS 15.0+
      */
-    static init154(sequence: Array<number>): MeshBuffer<number>;
+    static init68(sequence: Array<number>): MeshBuffer<number>;
     /**
      * init(elements: [Element], indices: [UInt32])
      * @availability iOS 15.0+
      */
-    static initElementsIndices155(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
+    static initElementsIndices7199(elements: Array<number>, indices: Array<number>): MeshBuffer<number>;
     /**
      * init(_ array: [Element])
      * @availability iOS 15.0+
      */
-    static init156(array: Array<number>): MeshBuffer<number>;
+    static init9720(array: Array<number>): MeshBuffer<number>;
     /**
      * init<S>(_ sequence: S) where S : Sequence, S.Element == UInt32
      * @availability iOS 15.0+
      */
-    static init157(sequence: Array<number>): MeshBuffer<number>;
+    static init36754(sequence: Array<number>): MeshBuffer<number>;
 }
 /**
  * typealias Element = Element
@@ -10847,7 +10847,7 @@ export declare class MeshBuffers extends SDKHandle {
      * static func textureCoordinates(_ index: Int) -> MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 27.0+
      */
-    static textureCoordinates296(index: number): $SDK102;
+    static textureCoordinates66245(index: number): $SDK102;
     /**
      * static let textureCoordinates1: MeshBuffers.Semantic<SIMD2<Float>>
      * @availability iOS 27.0+
@@ -11617,12 +11617,12 @@ export declare class MeshInstanceCollection extends SDKHandle {
      * subscript(position: Int) -> MeshResource.Instance { get }
      * @availability iOS 18.0+
      */
-    subscript2652(position: number): MeshResource_Instance;
+    subscript50106(position: number): MeshResource_Instance;
     /**
      * init(_ instances: [MeshResource.Instance])
      * @availability iOS 15.0+
      */
-    static init2653(instances: Array<MeshResource_Instance>): MeshInstanceCollection;
+    static init17600(instances: Array<MeshResource_Instance>): MeshInstanceCollection;
 }
 /**
  * typealias ArrayLiteralElement = MeshResource.Instance
@@ -11816,12 +11816,12 @@ export declare class MeshModelCollection extends SDKHandle {
      * subscript(position: Int) -> MeshResource.Model { get }
      * @availability iOS 18.0+
      */
-    subscript2110(position: number): MeshResource_Model;
+    subscript31106(position: number): MeshResource_Model;
     /**
      * init(_ models: [MeshResource.Model])
      * @availability iOS 15.0+
      */
-    static init2111(models: Array<MeshResource_Model>): MeshModelCollection;
+    static init33784(models: Array<MeshResource_Model>): MeshModelCollection;
 }
 /**
  * typealias ArrayLiteralElement = MeshResource.Model
@@ -11943,12 +11943,12 @@ export declare class MeshPartCollection extends SDKHandle {
      * subscript(position: Int) -> MeshResource.Part { get }
      * @availability iOS 18.0+
      */
-    subscript1890(position: number): MeshResource_Part;
+    subscript78007(position: number): MeshResource_Part;
     /**
      * init(_ parts: [MeshResource.Part])
      * @availability iOS 15.0+
      */
-    static init1891(parts: Array<MeshResource_Part>): MeshPartCollection;
+    static init18469(parts: Array<MeshResource_Part>): MeshPartCollection;
 }
 /**
  * typealias ArrayLiteralElement = MeshResource.Part
@@ -12010,7 +12010,7 @@ export declare class MeshResource extends SDKHandle {
      * @MainActor @preconcurrency static func generateBox(size: SIMD3<Float>, cornerRadius: Float = 0) -> MeshResource
      * @availability iOS 13.0+
      */
-    static generateBoxSizeCornerRadius495(size: SDKHandle, cornerRadius?: number): Promise<MeshResource>;
+    static generateBoxSizeCornerRadius34756(size: SDKHandle, cornerRadius?: number): Promise<MeshResource>;
     /**
      * @MainActor @preconcurrency static func generateBox(size: SIMD3<Float>, majorCornerRadius: Float = 0.2, minorCornerRadius: Float = 0.05) -> MeshResource
      * @availability iOS 18.0+
@@ -12043,7 +12043,7 @@ export declare class MeshResource extends SDKHandle {
      * @availability iOS 15.0+
      * @deprecated iOS 18.0
      */
-    static generateAsyncFrom501(descriptors: Array<MeshDescriptor>): Promise<$SDK120>;
+    static generateAsyncFrom36111(descriptors: Array<MeshDescriptor>): Promise<$SDK120>;
     /**
      * @MainActor @preconcurrency static func generatePlane(width: Float, depth: Float, cornerRadius: Float = 0) -> MeshResource
      * @availability iOS 13.0+
@@ -12083,7 +12083,7 @@ export declare class MeshResource extends SDKHandle {
      * @MainActor @preconcurrency convenience init(shape resource: ShapeResource)
      * @availability iOS 18.0+
      */
-    static initShape547(resource: ShapeResource): Promise<MeshResource>;
+    static initShape58693(resource: ShapeResource): Promise<MeshResource>;
     /**
      * @MainActor @preconcurrency var bounds: BoundingBox { get }
      * @availability iOS 13.0+
@@ -12098,7 +12098,7 @@ export declare class MeshResource extends SDKHandle {
      * nonisolated func replace(with content: MeshResource.Contents) async throws
      * @availability iOS 18.0+
      */
-    replaceWith550(content: MeshResource_Contents): Promise<void>;
+    replaceWith57252(content: MeshResource_Contents): Promise<void>;
     /**
      * @MainActor @preconcurrency var contents: MeshResource.Contents { get }
      * @availability iOS 15.0+
@@ -12113,7 +12113,7 @@ export declare class MeshResource extends SDKHandle {
      * @MainActor @preconcurrency static func generate(from descriptors: [MeshDescriptor]) throws -> MeshResource
      * @availability iOS 15.0+
      */
-    static generateFrom582(descriptors: Array<MeshDescriptor>): Promise<MeshResource>;
+    static generateFrom7892(descriptors: Array<MeshDescriptor>): Promise<MeshResource>;
     /**
      * @MainActor @preconcurrency convenience init(extruding string: AttributedString, textOptions: MeshResource.GenerateTextOptions = GenerateTextOptions(), extrusionOptions: MeshResource.ShapeExtrusionOptions = ShapeExtrusionOptions()) throws
      * @availability iOS 18.0+
@@ -12123,7 +12123,7 @@ export declare class MeshResource extends SDKHandle {
      * nonisolated convenience init(extruding string: AttributedString, textOptions: MeshResource.GenerateTextOptions = GenerateTextOptions(), extrusionOptions: MeshResource.ShapeExtrusionOptions = ShapeExtrusionOptions()) async throws
      * @availability iOS 18.0+
      */
-    static initExtrudingTextOptionsExtrusionOptions584(string: _Foundation_AttributedString, textOptions?: MeshResource_GenerateTextOptions, extrusionOptions?: MeshResource_ShapeExtrusionOptions): Promise<MeshResource>;
+    static initExtrudingTextOptionsExtrusionOptions68213(string: _Foundation_AttributedString, textOptions?: MeshResource_GenerateTextOptions, extrusionOptions?: MeshResource_ShapeExtrusionOptions): Promise<MeshResource>;
 }
 /**
  * struct Contents
@@ -12573,12 +12573,12 @@ export declare class MeshSkeletonCollection extends SDKHandle {
      * subscript(position: Int) -> MeshResource.Skeleton { get }
      * @availability iOS 18.0+
      */
-    subscript2676(position: number): MeshResource_Skeleton;
+    subscript52910(position: number): MeshResource_Skeleton;
     /**
      * init(_ skeletons: [MeshResource.Skeleton])
      * @availability iOS 18.0+
      */
-    static init2677(skeletons: Array<MeshResource_Skeleton>): MeshSkeletonCollection;
+    static init44980(skeletons: Array<MeshResource_Skeleton>): MeshSkeletonCollection;
 }
 /**
  * typealias ArrayLiteralElement = MeshResource.Skeleton
@@ -12989,7 +12989,7 @@ export declare class NavigationMeshResource extends SDKHandle {
      * convenience init(meshDescriptor: MeshDescriptor, offMeshConnections: [NavigationMeshResource.OffMeshConnection] = [], configuration: NavigationMeshResource.Configuration) async throws
      * @availability iOS 27.0+
      */
-    static initMeshDescriptorOffMeshConnectionsConfiguration2735(meshDescriptor: MeshDescriptor, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
+    static initMeshDescriptorOffMeshConnectionsConfiguration92272(meshDescriptor: MeshDescriptor, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
     /**
      * convenience init(polygonIndices: [[Int]], vertices: [SIMD3<Float>], offMeshConnections: [NavigationMeshResource.OffMeshConnection], configuration: NavigationMeshResource.Configuration, areas: [NavigationMeshResource.Area], flags: [[NavigationMeshResource.Flag]], heightData: NavigationMeshResource.HeightData) throws
      * @availability iOS 27.0+
@@ -13019,7 +13019,7 @@ export declare class NavigationMeshResource extends SDKHandle {
      * convenience init(triangleIndices: [UInt32], vertices: [SIMD3<Float>], offMeshConnections: [NavigationMeshResource.OffMeshConnection] = [], configuration: NavigationMeshResource.Configuration) async throws
      * @availability iOS 27.0+
      */
-    static initTriangleIndicesVerticesOffMeshConnectionsConfiguration2741(triangleIndices: Array<number>, vertices: Array<SDKHandle>, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
+    static initTriangleIndicesVerticesOffMeshConnectionsConfiguration92546(triangleIndices: Array<number>, vertices: Array<SDKHandle>, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
     /**
      * func markAreaInCylinder(position: SIMD3<Float>, radius: Float, halfHeight: Float, area: NavigationMeshResource.Area)
      * @availability iOS 27.0+
@@ -13069,7 +13069,7 @@ export declare class NavigationMeshResource extends SDKHandle {
      * convenience init(mesh: MeshResource, offMeshConnections: [NavigationMeshResource.OffMeshConnection] = [], configuration: NavigationMeshResource.Configuration) async throws
      * @availability iOS 27.0+
      */
-    static initMeshOffMeshConnectionsConfiguration2757(mesh: MeshResource, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
+    static initMeshOffMeshConnectionsConfiguration60929(mesh: MeshResource, offMeshConnections: $SDK142, configuration: NavigationMeshResource_Configuration): Promise<NavigationMeshResource>;
     /**
      * var areas: [NavigationMeshResource.Area] { get }
      * @availability iOS 27.0+
@@ -13095,7 +13095,7 @@ export declare class NavigationMeshResource extends SDKHandle {
      * convenience init(named name: String, in bundle: Bundle? = nil) async throws
      * @availability iOS 27.0+
      */
-    static initNamedIn2766(name: string, bundle?: $SDK6): Promise<NavigationMeshResource>;
+    static initNamedIn82766(name: string, bundle?: $SDK6): Promise<NavigationMeshResource>;
     /**
      * var vertices: [SIMD3<Float>] { get }
      * @availability iOS 27.0+
@@ -14300,7 +14300,7 @@ export declare class PhotogrammetrySample extends SDKHandle {
      * init(contentsOf url: URL) async throws
      * @availability iOS 18.0+
      */
-    static initContentsOf2293(url: string): Promise<PhotogrammetrySample>;
+    static initContentsOf25187(url: string): Promise<PhotogrammetrySample>;
     /**
      * var objectMask: CVPixelBuffer? { get set }
      * @availability iOS 17.0+
@@ -14455,7 +14455,7 @@ export declare class PhotogrammetrySession extends SDKHandle {
      * convenience init<S>(input: S, configuration: PhotogrammetrySession.Configuration = Configuration()) throws where S : Sequence, S.Element == PhotogrammetrySample
      * @availability iOS 17.0+
      */
-    static initInputConfiguration2474(input: Array<PhotogrammetrySample>, configuration?: PhotogrammetrySession_Configuration): PhotogrammetrySession;
+    static initInputConfiguration8932(input: Array<PhotogrammetrySample>, configuration?: PhotogrammetrySession_Configuration): PhotogrammetrySession;
     /**
      * func cancel()
      * @availability iOS 17.0+
@@ -16213,7 +16213,7 @@ export declare class PhysicsJoints extends SDKHandle {
      * init(_ sequence: any Sequence<any PhysicsJoint>)
      * @availability iOS 18.0+
      */
-    static init673(sequence: SDKHandle): PhysicsJoints;
+    static init93291(sequence: SDKHandle): PhysicsJoints;
 }
 /**
  * typealias ArrayLiteralElement = any PhysicsJoint
@@ -17683,7 +17683,7 @@ export declare class ReferenceComponent extends SDKHandle {
      * @MainActor static func loadReference(at entity: Entity) async throws
      * @availability iOS 18.0+
      */
-    static loadReferenceAt1913(entity: Entity): Promise<void>;
+    static loadReferenceAt46131(entity: Entity): Promise<void>;
     /**
      * static func releaseReference(at entity: Entity) throws
      * @availability iOS 18.0+
@@ -17800,7 +17800,7 @@ export declare class RenderLayer_Set extends SDKHandle {
      * init<S>(_ sequence: S) where S : Sequence, S.Element == RenderLayer
      * @availability iOS 27.0+
      */
-    static init330(sequence: Array<RenderLayer>): RenderLayer_Set;
+    static init17557(sequence: Array<RenderLayer>): RenderLayer_Set;
 }
 /**
  * typealias ArrayLiteralElement = RenderLayer
@@ -18210,50 +18210,50 @@ export declare class SampledAnimation<Value = unknown> extends SDKHandle {
      * var frames: [BlendShapeWeights] { get set }
      * @availability iOS 18.0+
      */
-    get frames1483(): $SDK188;
-    set frames1484(value: $SDK188);
+    get frames61181(): $SDK188;
+    set frames61181(value: $SDK188);
     /**
      * var frames: [Transform] { get set }
      * @availability iOS 15.0+
      */
-    get frames1485(): Array<Transform>;
-    set frames1486(value: Array<Transform>);
+    get frames70201(): Array<Transform>;
+    set frames70201(value: Array<Transform>);
     /**
      * var frames: [Double] { get set }
      * @availability iOS 15.0+
      */
-    get frames1487(): Array<number>;
-    set frames1488(value: Array<number>);
+    get frames44380(): Array<number>;
+    set frames44380(value: Array<number>);
     /**
      * var frames: [Float] { get set }
      * @availability iOS 15.0+
      */
-    get frames1489(): Array<number>;
-    set frames1490(value: Array<number>);
+    get frames30348(): Array<number>;
+    set frames30348(value: Array<number>);
     /**
      * var frames: [simd_quatf] { get set }
      * @availability iOS 15.0+
      */
-    get frames1491(): Array<SDKHandle>;
-    set frames1492(value: Array<SDKHandle>);
+    get frames8233(): Array<SDKHandle>;
+    set frames8233(value: Array<SDKHandle>);
     /**
      * var frames: [SIMD2<Float>] { get set }
      * @availability iOS 15.0+
      */
-    get frames1493(): Array<SDKHandle>;
-    set frames1494(value: Array<SDKHandle>);
+    get frames54439(): Array<SDKHandle>;
+    set frames54439(value: Array<SDKHandle>);
     /**
      * var frames: [SIMD3<Float>] { get set }
      * @availability iOS 15.0+
      */
-    get frames1495(): Array<SDKHandle>;
-    set frames1496(value: Array<SDKHandle>);
+    get frames35752(): Array<SDKHandle>;
+    set frames35752(value: Array<SDKHandle>);
     /**
      * var frames: [SIMD4<Float>] { get set }
      * @availability iOS 15.0+
      */
-    get frames1497(): Array<SDKHandle>;
-    set frames1498(value: Array<SDKHandle>);
+    get frames50169(): Array<SDKHandle>;
+    set frames50169(value: Array<SDKHandle>);
 }
 /**
  * struct SkeletalAnimationOperation
@@ -18460,7 +18460,7 @@ export declare class Scene_AnchorCollection extends SDKHandle {
      * @MainActor @preconcurrency func replaceAll<S>(_ entities: S) where S : Sequence, S.Element : HasAnchoring
      * @availability iOS 13.0+
      */
-    replaceAll3692(entities: Array<AnchorEntity>): Promise<void>;
+    replaceAll84303(entities: Array<AnchorEntity>): Promise<void>;
     /**
      * @MainActor @preconcurrency var startIndex: Int { get }
      * @availability iOS 13.0+
@@ -18490,7 +18490,7 @@ export declare class Scene_AnchorCollection extends SDKHandle {
      * @MainActor @preconcurrency func append<S>(contentsOf sequence: S) where S : Sequence, S.Element : HasAnchoring
      * @availability iOS 13.0+
      */
-    appendContentsOf3698(sequence: Array<AnchorEntity>): Promise<void>;
+    appendContentsOf19285(sequence: Array<AnchorEntity>): Promise<void>;
     /**
      * @MainActor @preconcurrency func append(_ entity: any HasAnchoring)
      * @availability iOS 13.0+
@@ -18848,7 +18848,7 @@ export declare class ShaderGraphMaterial extends SDKHandle {
      * init(named name: String, from data: Data) async throws
      * @availability iOS 18.0+
      */
-    static initNamedFrom2170(name: string, data: ArrayBuffer): Promise<ShaderGraphMaterial>;
+    static initNamedFrom14551(name: string, data: ArrayBuffer): Promise<ShaderGraphMaterial>;
     /**
      * init(program: ShaderGraphMaterial.Program)
      * @availability iOS 27.0+
@@ -18978,7 +18978,7 @@ export declare class ShapeResource extends SDKHandle {
      * nonisolated static func generateConvex(from mesh: MeshResource) async throws -> ShapeResource
      * @availability iOS 13.0+
      */
-    static generateConvexFrom677(mesh: MeshResource): Promise<ShapeResource>;
+    static generateConvexFrom11093(mesh: MeshResource): Promise<ShapeResource>;
     /**
      * @MainActor @preconcurrency static func generateSphere(radius: Float) -> ShapeResource
      * @availability iOS 13.0+
@@ -19241,7 +19241,7 @@ export declare class SkeletalPoseSet extends SDKHandle {
      * subscript(index: SkeletalPoseSet.Index) -> SkeletalPoseSet.Element { get set }
      * @availability iOS 18.0+
      */
-    subscript1266(index: number): SkeletalPose;
+    subscript3367(index: number): SkeletalPose;
 }
 /**
  * typealias Element = SkeletalPose
@@ -19409,7 +19409,7 @@ export declare class SkeletonResource_JointBuilder extends SDKHandle {
      * static func buildExpression(_ expression: [SkeletonResource.Joint]) -> [SkeletonResource.Joint]
      * @availability iOS 27.0+
      */
-    static buildExpression1500(expression: $SDK195): $SDK195;
+    static buildExpression41642(expression: $SDK195): $SDK195;
 }
 /**
  * struct SkinningDeformer
@@ -20142,37 +20142,37 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency convenience init(dimensions: TextureResource.Dimensions2D, format: TextureResource.Format, contents: TextureResource.Contents) async throws
      * @availability iOS 18.0+
      */
-    static initDimensionsFormatContents1270(dimensions: TextureResource_Dimensions2D, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
+    static initDimensionsFormatContents20223(dimensions: TextureResource_Dimensions2D, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency convenience init(dimensions: TextureResource.Dimensions3D, format: TextureResource.Format, contents: TextureResource.Contents) throws
      * @availability iOS 18.0+
      */
-    static initDimensionsFormatContents1271(dimensions: TextureResource_Dimensions3D, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
+    static initDimensionsFormatContents87302(dimensions: TextureResource_Dimensions3D, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency convenience init(dimensions: TextureResource.Dimensions3D, format: TextureResource.Format, contents: TextureResource.Contents) async throws
      * @availability iOS 18.0+
      */
-    static initDimensionsFormatContents1272(dimensions: TextureResource_Dimensions3D, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
+    static initDimensionsFormatContents70264(dimensions: TextureResource_Dimensions3D, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency convenience init(dimensions: TextureResource.DimensionsCube, format: TextureResource.Format, contents: TextureResource.Contents) throws
      * @availability iOS 18.0+
      */
-    static initDimensionsFormatContents1273(dimensions: TextureResource_DimensionsCube, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
+    static initDimensionsFormatContents13246(dimensions: TextureResource_DimensionsCube, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency convenience init(dimensions: TextureResource.DimensionsCube, format: TextureResource.Format, contents: TextureResource.Contents) async throws
      * @availability iOS 18.0+
      */
-    static initDimensionsFormatContents1274(dimensions: TextureResource_DimensionsCube, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
+    static initDimensionsFormatContents66848(dimensions: TextureResource_DimensionsCube, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency convenience init(dimensions: TextureResource.Dimensions2DArray, format: TextureResource.Format, contents: TextureResource.Contents) throws
      * @availability iOS 18.0+
      */
-    static initDimensionsFormatContents1275(dimensions: TextureResource_Dimensions2DArray, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
+    static initDimensionsFormatContents27781(dimensions: TextureResource_Dimensions2DArray, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency convenience init(dimensions: TextureResource.Dimensions2DArray, format: TextureResource.Format, contents: TextureResource.Contents) async throws
      * @availability iOS 18.0+
      */
-    static initDimensionsFormatContents1276(dimensions: TextureResource_Dimensions2DArray, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
+    static initDimensionsFormatContents57915(dimensions: TextureResource_Dimensions2DArray, format: TextureResource_Format, contents: TextureResource_Contents): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency var arrayLength: Int { get }
      * @availability iOS 18.0+
@@ -20203,7 +20203,7 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency convenience init(cubeFromImage cgImage: CGImage, named resourceName: String? = nil, options: TextureResource.CreateOptions) async throws
      * @availability iOS 18.0+
      */
-    static initCubeFromImageNamedOptions1317(cgImage: _CoreGraphics_CGImage, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static initCubeFromImageNamedOptions94072(cgImage: _CoreGraphics_CGImage, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency var drawableQueue: TextureResource.DrawableQueue? { get }
      * @availability iOS 15.0+
@@ -20224,7 +20224,7 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency static func texture2DArray(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) async throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static texture2DArraySlicesNamedOptions1322(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static texture2DArraySlicesNamedOptions4110(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency var mipmapLevelCount: Int { get }
      * @availability iOS 15.0+
@@ -20239,7 +20239,7 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency convenience init(cubeFromEquirectangular cgImage: CGImage, named resourceName: String? = nil, quality: TextureResource.SamplingQuality = .fast, faceSize: Int? = nil, options: TextureResource.CreateOptions) async throws
      * @availability iOS 18.0+
      */
-    static initCubeFromEquirectangularNamedQualityFaceSizeOptions1326(cgImage: _CoreGraphics_CGImage, resourceName: (string) | null, quality: EnvironmentResource_CreateOptions_SamplingQuality, faceSize: (number) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static initCubeFromEquirectangularNamedQualityFaceSizeOptions82509(cgImage: _CoreGraphics_CGImage, resourceName: (string) | null, quality: EnvironmentResource_CreateOptions_SamplingQuality, faceSize: (number) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency func copy(to texture: any MTLTexture) throws
      * @availability iOS 15.0+
@@ -20249,7 +20249,7 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency func copy(to texture: any MTLTexture) async throws
      * @availability iOS 18.0+
      */
-    copyTo1328(texture: SDKHandle): Promise<void>;
+    copyTo33360(texture: SDKHandle): Promise<void>;
     /**
      * @MainActor @preconcurrency static func cube(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
      * @availability iOS 18.0+
@@ -20259,7 +20259,7 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency static func cube(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) async throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static cubeSlicesNamedOptions1330(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static cubeSlicesNamedOptions866(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency static func load(contentsOf url: URL, withName resourceName: String? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
      * @availability iOS 15.0+
@@ -20284,7 +20284,7 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency convenience init(image cgImage: CGImage, withName resourceName: String? = nil, options: TextureResource.CreateOptions) async throws
      * @availability iOS 18.0+
      */
-    static initImageWithNameOptions1335(cgImage: _CoreGraphics_CGImage, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static initImageWithNameOptions98315(cgImage: _CoreGraphics_CGImage, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency var width: Int { get }
      * @availability iOS 15.0+
@@ -20353,7 +20353,7 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency static func texture3D(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) async throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static texture3DSlicesNamedOptions1363(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static texture3DSlicesNamedOptions94552(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
 }
 /**
  * struct Compression
@@ -20772,7 +20772,7 @@ export declare class Transform extends SDKHandle {
      * init(projectiveTransform: ProjectiveTransform3DFloat)
      * @availability iOS 26.0+
      */
-    static initProjectiveTransform3928(projectiveTransform: _Spatial_ProjectiveTransform3DFloat): Transform;
+    static initProjectiveTransform30286(projectiveTransform: _Spatial_ProjectiveTransform3DFloat): Transform;
     /**
      * var translation: SIMD3<Float>
      * @availability iOS 13.0+
@@ -20831,7 +20831,7 @@ export declare class Transform extends SDKHandle {
      * init(_ transform: AffineTransform3D)
      * @availability iOS 18.0+
      */
-    static init3943(transform: _Spatial_AffineTransform3D): Transform;
+    static init58499(transform: _Spatial_AffineTransform3D): Transform;
 }
 /**
  * protocol TransientComponent : Component

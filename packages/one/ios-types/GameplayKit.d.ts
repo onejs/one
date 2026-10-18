@@ -264,7 +264,7 @@ export declare class GKBehavior extends SDKHandle {
      * subscript(goal: GKGoal) -> NSNumber! { get set }
      * @availability iOS 9.0+
      */
-    subscript58(goal: GKGoal): (_Foundation_NSNumber) | null;
+    subscript22683(goal: GKGoal): (_Foundation_NSNumber) | null;
     /**
      * func removeAllGoals()
      * @availability iOS 9.0+
@@ -494,7 +494,7 @@ export declare class GKCompositeBehavior extends GKCompositeBehavior_base {
     /** subscript(idx: Int) -> GKBehavior { get } */
     subscript(idx: number): GKBehavior;
     /** subscript(behavior: GKBehavior) -> NSNumber { get set } */
-    subscript108(behavior: GKBehavior): _Foundation_NSNumber;
+    subscript78642(behavior: GKBehavior): _Foundation_NSNumber;
     /** func removeAllBehaviors() */
     removeAllBehaviors(): void;
     /** func remove(_ behavior: GKBehavior) */
@@ -793,7 +793,7 @@ export declare class GKGoal extends SDKHandle {
      * convenience init(toAvoid obstacles: [GKObstacle], maxPredictionTime: TimeInterval)
      * @availability iOS 9.0+
      */
-    static initToAvoidMaxPredictionTime148(obstacles: Array<GKObstacle>, maxPredictionTime: number): GKGoal;
+    static initToAvoidMaxPredictionTime53812(obstacles: Array<GKObstacle>, maxPredictionTime: number): GKGoal;
     /**
      * convenience init(toCohereWith agents: [GKAgent], maxDistance: Float, maxAngle: Float)
      * @availability iOS 9.0+
@@ -868,7 +868,7 @@ export declare class GKGraph extends SDKHandle {
      * init(_ nodes: [GKGraphNode])
      * @availability iOS 9.0+
      */
-    static init163(nodes: Array<GKGraphNode>): GKGraph;
+    static init78101(nodes: Array<GKGraphNode>): GKGraph;
     /**
      * func remove(_ nodes: [GKGraphNode])
      * @availability iOS 9.0+
@@ -1267,7 +1267,7 @@ export declare class GKNoise extends SDKHandle {
      * convenience init(_ noiseSource: GKNoiseSource)
      * @availability iOS 10.0+
      */
-    static init241(noiseSource: GKNoiseSource): GKNoise;
+    static init29009(noiseSource: GKNoiseSource): GKNoise;
     /**
      * init(_ noiseSource: GKNoiseSource, gradientColors: [NSNumber : UIColor])
      * @availability iOS 10.0+
@@ -1307,7 +1307,7 @@ export declare class GKNoise extends SDKHandle {
      * func raiseToPower(_ noise: GKNoise)
      * @availability iOS 10.0+
      */
-    raiseToPower249(noise: GKNoise): void;
+    raiseToPower59746(noise: GKNoise): void;
     /**
      * func remapValues(toCurveWithControlPoints controlPoints: [NSNumber : NSNumber])
      * @availability iOS 10.0+
@@ -1354,7 +1354,7 @@ export declare class GKNoiseMap extends SDKHandle {
      * convenience init(_ noise: GKNoise)
      * @availability iOS 10.0+
      */
-    static init258(noise: GKNoise): GKNoiseMap;
+    static init54582(noise: GKNoise): GKNoiseMap;
     /**
      * init(_ noise: GKNoise, size: vector_double2, origin: vector_double2, sampleCount: vector_int2, seamless: Bool)
      * @availability iOS 10.0+
@@ -1541,7 +1541,7 @@ export declare class GKObstacleGraph<NodeType = unknown> extends GKObstacleGraph
      * var nodes: [GKGraphNode]? { get }
      * @availability iOS 9.0+
      */
-    get nodes165(): $SDK7;
+    get nodes54666(): $SDK7;
 }
 /**
  * class GKOctree<ElementType> where ElementType : NSObject
@@ -1653,7 +1653,7 @@ export declare class GKPath extends SDKHandle {
      * convenience init(points: [SIMD3<Float>], radius: Float, cyclical: Bool)
      * @availability iOS 10.0+
      */
-    static initPointsRadiusCyclical446(points: Array<SDKHandle>, radius: number, cyclical: boolean): GKPath;
+    static initPointsRadiusCyclical32223(points: Array<SDKHandle>, radius: number, cyclical: boolean): GKPath;
 }
 declare const GKPerlinNoiseSource_base: Omit<typeof GKCoherentNoiseSource, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKCoherentNoiseSource);
 /**
@@ -1847,7 +1847,7 @@ export declare class GKRuleSystem extends SDKHandle {
      * func add(_ rules: [GKRule])
      * @availability iOS 9.0+
      */
-    add356(rules: Array<GKRule>): void;
+    add24460(rules: Array<GKRule>): void;
     /**
      * func assertFact(_ fact: any NSObjectProtocol)
      * @availability iOS 9.0+

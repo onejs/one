@@ -3545,17 +3545,17 @@ export declare class ImageRequestHandler extends SDKHandle {
      * convenience init(_ data: Data, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 18.0+
      */
-    static initOrientation904(data: ArrayBuffer, orientation?: $SDK112): ImageRequestHandler;
+    static initOrientation72505(data: ArrayBuffer, orientation?: $SDK112): ImageRequestHandler;
     /**
      * convenience init(_ image: CGImage, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 18.0+
      */
-    static initOrientation905(image: _CoreGraphics_CGImage, orientation?: $SDK112): ImageRequestHandler;
+    static initOrientation74092(image: _CoreGraphics_CGImage, orientation?: $SDK112): ImageRequestHandler;
     /**
      * convenience init(_ image: CIImage, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 18.0+
      */
-    static initOrientation906(image: _CoreImage_CIImage, orientation?: $SDK112): ImageRequestHandler;
+    static initOrientation75182(image: _CoreImage_CIImage, orientation?: $SDK112): ImageRequestHandler;
     /**
      * convenience init(_ pixelBuffer: CVPixelBuffer, depthData: AVDepthData? = nil, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 18.0+
@@ -3565,7 +3565,7 @@ export declare class ImageRequestHandler extends SDKHandle {
      * convenience init(_ sampleBuffer: CMSampleBuffer, depthData: AVDepthData? = nil, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 18.0+
      */
-    static initDepthDataOrientation908(sampleBuffer: _CoreMedia_CMSampleBuffer, depthData?: $SDK113, orientation?: $SDK112): ImageRequestHandler;
+    static initDepthDataOrientation47195(sampleBuffer: _CoreMedia_CMSampleBuffer, depthData?: $SDK113, orientation?: $SDK112): ImageRequestHandler;
 }
 /**
  * struct ImageTranslationAlignmentObservation
@@ -4766,22 +4766,22 @@ export declare class TargetedImageRequestHandler extends SDKHandle {
      * convenience init(source: CGImage, target: CGImage, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 18.0+
      */
-    static initSourceTargetOrientation1367(source: _CoreGraphics_CGImage, target: _CoreGraphics_CGImage, orientation?: $SDK112): TargetedImageRequestHandler;
+    static initSourceTargetOrientation27468(source: _CoreGraphics_CGImage, target: _CoreGraphics_CGImage, orientation?: $SDK112): TargetedImageRequestHandler;
     /**
      * convenience init(source: CVPixelBuffer, target: CVPixelBuffer, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 18.0+
      */
-    static initSourceTargetOrientation1368(source: _CoreVideo_CVBuffer, target: _CoreVideo_CVBuffer, orientation?: $SDK112): TargetedImageRequestHandler;
+    static initSourceTargetOrientation19059(source: _CoreVideo_CVBuffer, target: _CoreVideo_CVBuffer, orientation?: $SDK112): TargetedImageRequestHandler;
     /**
      * convenience init(source: CMSampleBuffer, target: CMSampleBuffer, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 18.0+
      */
-    static initSourceTargetOrientation1369(source: _CoreMedia_CMSampleBuffer, target: _CoreMedia_CMSampleBuffer, orientation?: $SDK112): TargetedImageRequestHandler;
+    static initSourceTargetOrientation27038(source: _CoreMedia_CMSampleBuffer, target: _CoreMedia_CMSampleBuffer, orientation?: $SDK112): TargetedImageRequestHandler;
     /**
      * convenience init(source: CIImage, target: CIImage, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 18.0+
      */
-    static initSourceTargetOrientation1370(source: _CoreImage_CIImage, target: _CoreImage_CIImage, orientation?: $SDK112): TargetedImageRequestHandler;
+    static initSourceTargetOrientation30265(source: _CoreImage_CIImage, target: _CoreImage_CIImage, orientation?: $SDK112): TargetedImageRequestHandler;
     /**
      * convenience init(sourceURL: URL, targetURL: URL, orientation: CGImagePropertyOrientation? = nil)
      * @availability iOS 18.0+
@@ -6298,7 +6298,7 @@ export declare class VNContoursObservation extends VNContoursObservation_base {
      * func contour(at indexPath: IndexPath) throws -> VNContour
      * @availability iOS 14.0+
      */
-    contourAt281(indexPath: _Foundation_IndexPath): VNContour;
+    contourAt8849(indexPath: _Foundation_IndexPath): VNContour;
     /** init() */
     static init(): VNContoursObservation;
     /**
@@ -6435,7 +6435,7 @@ export declare class VNDetectBarcodesRequest extends VNDetectBarcodesRequest_bas
      * func supportedSymbologies() throws -> [VNBarcodeSymbology]
      * @availability iOS 15.0+
      */
-    supportedSymbologies304(): $SDK163;
+    supportedSymbologies15691(): $SDK163;
     /**
      * var coalesceCompositeSymbologies: Bool { get set }
      * @availability iOS 17.0+
@@ -6538,7 +6538,7 @@ export declare class VNPoint extends SDKHandle {
      * func distance(_ point: VNPoint) -> Double
      * @availability iOS 14.0+
      */
-    distance518(point: VNPoint): number;
+    distance13672(point: VNPoint): number;
     /** init() */
     static init(): VNPoint;
     /**
@@ -7381,7 +7381,7 @@ export declare class VNGeometryUtils extends SDKHandle {
      * class func boundingCircle(for points: [VNPoint]) throws -> VNCircle
      * @availability iOS 14.0+
      */
-    static boundingCircleFor445(points: Array<VNPoint>): VNCircle;
+    static boundingCircleFor24437(points: Array<VNPoint>): VNCircle;
     /**
      * class func boundingCircle(forSIMDPoints points: UnsafePointer<simd_float2>, pointCount: Int) throws -> VNCircle
      * @availability iOS 14.0+
@@ -8713,32 +8713,32 @@ export declare class VNSequenceRequestHandler extends SDKHandle {
      * func perform(_ requests: [VNRequest], on image: CIImage) throws
      * @availability iOS 11.0+
      */
-    performOn591(requests: Array<VNRequest>, image: _CoreImage_CIImage): void;
+    performOn59259(requests: Array<VNRequest>, image: _CoreImage_CIImage): void;
     /**
      * func perform(_ requests: [VNRequest], on image: CIImage, orientation: CGImagePropertyOrientation) throws
      * @availability iOS 11.0+
      */
-    performOnOrientation592(requests: Array<VNRequest>, image: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation): void;
+    performOnOrientation83887(requests: Array<VNRequest>, image: _CoreImage_CIImage, orientation: _ImageIO_CGImagePropertyOrientation): void;
     /**
      * func perform(_ requests: [VNRequest], on sampleBuffer: CMSampleBuffer) throws
      * @availability iOS 14.0+
      */
-    performOn593(requests: Array<VNRequest>, sampleBuffer: _CoreMedia_CMSampleBuffer): void;
+    performOn41956(requests: Array<VNRequest>, sampleBuffer: _CoreMedia_CMSampleBuffer): void;
     /**
      * func perform(_ requests: [VNRequest], on sampleBuffer: CMSampleBuffer, orientation: CGImagePropertyOrientation) throws
      * @availability iOS 14.0+
      */
-    performOnOrientation594(requests: Array<VNRequest>, sampleBuffer: _CoreMedia_CMSampleBuffer, orientation: _ImageIO_CGImagePropertyOrientation): void;
+    performOnOrientation19828(requests: Array<VNRequest>, sampleBuffer: _CoreMedia_CMSampleBuffer, orientation: _ImageIO_CGImagePropertyOrientation): void;
     /**
      * func perform(_ requests: [VNRequest], on pixelBuffer: CVPixelBuffer) throws
      * @availability iOS 11.0+
      */
-    performOn595(requests: Array<VNRequest>, pixelBuffer: _CoreVideo_CVBuffer): void;
+    performOn16019(requests: Array<VNRequest>, pixelBuffer: _CoreVideo_CVBuffer): void;
     /**
      * func perform(_ requests: [VNRequest], on pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation) throws
      * @availability iOS 11.0+
      */
-    performOnOrientation596(requests: Array<VNRequest>, pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation): void;
+    performOnOrientation71447(requests: Array<VNRequest>, pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation): void;
     /**
      * func perform(_ requests: [VNRequest], onImageData imageData: Data) throws
      * @availability iOS 11.0+

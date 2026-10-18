@@ -408,7 +408,7 @@ export declare class MPSGraph extends MPSGraph_base {
      * func constant(_ scalar: Double, shape: [NSNumber], dataType: MPSDataType) -> MPSGraphTensor
      * @availability iOS 14.0+
      */
-    constantShapeDataType80(scalar: number, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor;
+    constantShapeDataType74923(scalar: number, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor;
     /**
      * func convolution2DDataGradient(_ incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: [NSNumber], forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
      * @availability iOS 14.0+
@@ -693,7 +693,7 @@ export declare class MPSGraph extends MPSGraph_base {
      * func dropout(_ tensor: MPSGraphTensor, rate: MPSGraphTensor, name: String?) -> MPSGraphTensor
      * @availability iOS 14.0+
      */
-    dropoutRateName137(tensor: MPSGraphTensor, rate: MPSGraphTensor, name?: (string) | null): MPSGraphTensor;
+    dropoutRateName85178(tensor: MPSGraphTensor, rate: MPSGraphTensor, name?: (string) | null): MPSGraphTensor;
     /**
      * func encode(to commandBuffer: MPSCommandBuffer, feeds: [MPSGraphTensor : MPSGraphTensorData], targetOperations: [MPSGraphOperation]?, resultsDictionary: [MPSGraphTensor : MPSGraphTensorData], executionDescriptor: MPSGraphExecutionDescriptor?)
      * @availability iOS 14.0+
@@ -3535,12 +3535,12 @@ export declare class MPSGraphTensorData extends MPSGraphTensorData_base {
      * init(_ imageBatch: [MPSImage])
      * @availability iOS 14.0+
      */
-    static init773(imageBatch: Array<_MetalPerformanceShaders_MPSImage>): MPSGraphTensorData;
+    static init38798(imageBatch: Array<_MetalPerformanceShaders_MPSImage>): MPSGraphTensorData;
     /**
      * init(_ matrix: MPSMatrix)
      * @availability iOS 14.0+
      */
-    static init774(matrix: _MetalPerformanceShaders_MPSMatrix): MPSGraphTensorData;
+    static init54852(matrix: _MetalPerformanceShaders_MPSMatrix): MPSGraphTensorData;
     /**
      * init(_ matrix: MPSMatrix, rank: Int)
      * @availability iOS 14.0+
@@ -3550,17 +3550,17 @@ export declare class MPSGraphTensorData extends MPSGraphTensorData_base {
      * init(_ ndarray: MPSNDArray)
      * @availability iOS 14.0+
      */
-    static init776(ndarray: _MetalPerformanceShaders_MPSNDArray): MPSGraphTensorData;
+    static init72488(ndarray: _MetalPerformanceShaders_MPSNDArray): MPSGraphTensorData;
     /**
      * init(_ vector: MPSVector)
      * @availability iOS 14.0+
      */
-    static init777(vector: _MetalPerformanceShaders_MPSVector): MPSGraphTensorData;
+    static init19774(vector: _MetalPerformanceShaders_MPSVector): MPSGraphTensorData;
     /**
      * init(_ vector: MPSVector, rank: Int)
      * @availability iOS 14.0+
      */
-    static initRank778(vector: _MetalPerformanceShaders_MPSVector, rank: number): MPSGraphTensorData;
+    static initRank2406(vector: _MetalPerformanceShaders_MPSVector, rank: number): MPSGraphTensorData;
     /**
      * init(_ buffer: any MTLBuffer, shape: [NSNumber], dataType: MPSDataType)
      * @availability iOS 14.0+

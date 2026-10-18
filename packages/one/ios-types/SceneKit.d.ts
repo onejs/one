@@ -11,44 +11,44 @@ import type { CAAnimation as _QuartzCore_CAAnimation, CAMediaTimingFunction as _
 import type { SKTransition as _SpriteKit_SKTransition } from "one/ios/SpriteKit";
 import type { UIColor as _UIKit_UIColor, UIImage as _UIKit_UIImage, UIBezierPath as _UIKit_UIBezierPath, UIFont as _UIKit_UIFont } from "one/ios/UIKit";
 type $SDK0 = (Array<SCNAnimationEvent>) | null;
-type $SDK17 = ((() => Promise<void>)) | null;
-type $SDK20 = Array<SCNGeometrySource>;
-type $SDK21 = (Array<SCNGeometryElement>) | null;
-type $SDK22 = (Array<_Foundation_NSNumber>) | null;
-type $SDK26 = (Array<SCNLevelOfDetail>) | null;
-type $SDK27 = (SCNGeometryTessellator) | null;
+type $SDK16 = ((() => Promise<void>)) | null;
+type $SDK19 = Array<SCNGeometrySource>;
+type $SDK20 = (Array<SCNGeometryElement>) | null;
+type $SDK21 = (Array<_Foundation_NSNumber>) | null;
+type $SDK25 = (Array<SCNLevelOfDetail>) | null;
+type $SDK26 = (SCNGeometryTessellator) | null;
+type $SDK28 = {
+    width: number;
+    height: number;
+};
 type $SDK29 = {
-    width: number;
-    height: number;
-};
-type $SDK30 = {
     x: number;
     y: number;
 };
-type $SDK34 = (Array<_Foundation_NSValue>) | null;
-type $SDK37 = ((arg0: SCNNode, arg1: NativeOut<boolean>) => void);
-type $SDK38 = (Record<string, unknown>) | null;
-type $SDK40 = (Array<_CoreImage_CIFilter>) | null;
-type $SDK41 = (Array<SCNParticleSystem>) | null;
-type $SDK46 = (SCNParticleSystem_ParticleProperty) | null;
-type $SDK47 = (NativeMap<SCNParticleSystem_ParticleProperty, SCNParticlePropertyController>) | null;
-type $SDK48 = (SCNParticleSystem) | null;
-type $SDK49 = (SCNPhysicsShape) | null;
-type $SDK50 = (NativeMap<SCNPhysicsShape_Option, unknown>) | null;
-type $SDK52 = Array<SCNPhysicsContact>;
-type $SDK53 = (NativeMap<SCNPhysicsWorld_TestOption, unknown>) | null;
-type $SDK58 = (_OpenGLES_EAGLContext) | null;
-type $SDK59 = (NativeMap<unknown, unknown>) | null;
-type $SDK60 = {
+type $SDK33 = (Array<_Foundation_NSValue>) | null;
+type $SDK36 = ((arg0: SCNNode, arg1: NativeOut<boolean>) => void);
+type $SDK37 = (Record<string, unknown>) | null;
+type $SDK39 = (Array<_CoreImage_CIFilter>) | null;
+type $SDK40 = (Array<SCNParticleSystem>) | null;
+type $SDK45 = (SCNParticleSystem_ParticleProperty) | null;
+type $SDK46 = (NativeMap<SCNParticleSystem_ParticleProperty, SCNParticlePropertyController>) | null;
+type $SDK47 = (SCNParticleSystem) | null;
+type $SDK48 = (SCNPhysicsShape) | null;
+type $SDK49 = (NativeMap<SCNPhysicsShape_Option, unknown>) | null;
+type $SDK51 = Array<SCNPhysicsContact>;
+type $SDK52 = (NativeMap<SCNPhysicsWorld_TestOption, unknown>) | null;
+type $SDK57 = (_OpenGLES_EAGLContext) | null;
+type $SDK58 = (NativeMap<unknown, unknown>) | null;
+type $SDK59 = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-type $SDK61 = (NativeMap<SCNSceneSource_LoadingOption, unknown>) | null;
-type $SDK69 = (((arg0: number, arg1: number, arg2: (SCNNode) | null, arg3: SCNRenderer) => Promise<void>)) | null;
-type $SDK70 = (_UIKit_UIBezierPath) | null;
-type $SDK72 = (_QuartzCore_CAMediaTimingFunction) | null;
+type $SDK60 = (NativeMap<SCNSceneSource_LoadingOption, unknown>) | null;
+type $SDK68 = (((arg0: number, arg1: number, arg2: (SCNNode) | null, arg3: SCNRenderer) => Promise<void>)) | null;
+type $SDK69 = (_UIKit_UIBezierPath) | null;
+type $SDK71 = (_QuartzCore_CAMediaTimingFunction) | null;
 export declare class CAAnimation extends SDKHandle {
     /**
      * init(SCNAnimation animation: SCNAnimation)
@@ -211,7 +211,6 @@ export declare class SCNAction extends SDKHandle {
     set speed(value: number);
     /** var timingFunction: SCNActionTimingFunction? { get set } */
     get timingFunction(): (((arg0: number) => Promise<number>)) | null;
-    set timingFunction(value: (((arg0: number) => number)) | null);
     /** var timingMode: SCNActionTimingMode { get set } */
     get timingMode(): SCNActionTimingMode;
     set timingMode(value: SCNActionTimingMode);
@@ -547,13 +546,13 @@ export declare class SCNAudioPlayer extends SDKHandle {
      * var didFinishPlayback: (() -> Void)? { get set }
      * @availability iOS 9.0+
      */
-    get didFinishPlayback(): $SDK17;
+    get didFinishPlayback(): $SDK16;
     set didFinishPlayback(value: ((() => void)) | null);
     /**
      * var willStartPlayback: (() -> Void)? { get set }
      * @availability iOS 9.0+
      */
-    get willStartPlayback(): $SDK17;
+    get willStartPlayback(): $SDK16;
     set willStartPlayback(value: ((() => void)) | null);
 }
 /**
@@ -718,16 +717,16 @@ export interface SCNBoundingVolume {
 /** class SCNGeometry */
 export declare class SCNGeometry extends SDKHandle {
     /** convenience init(sources: [SCNGeometrySource], elements: [SCNGeometryElement]?) */
-    static initSourcesElements(sources: $SDK20, elements?: $SDK21): SCNGeometry;
+    static initSourcesElements(sources: $SDK19, elements?: $SDK20): SCNGeometry;
     /**
      * convenience init(sources: [SCNGeometrySource], elements: [SCNGeometryElement]?, sourceChannels: [NSNumber]?)
      * @availability iOS 16.0+
      */
-    static initSourcesElementsSourceChannels(sources: $SDK20, elements?: $SDK21, sourceChannels?: $SDK22): SCNGeometry;
+    static initSourcesElementsSourceChannels(sources: $SDK19, elements?: $SDK20, sourceChannels?: $SDK21): SCNGeometry;
     /** func element(at elementIndex: Int) -> SCNGeometryElement */
     element(elementIndex: number): SCNGeometryElement;
     /** func sources(for semantic: SCNGeometrySource.Semantic) -> [SCNGeometrySource] */
-    sourcesFor(semantic: SCNGeometrySource_Semantic): $SDK20;
+    sourcesFor(semantic: SCNGeometrySource_Semantic): $SDK19;
     /** init() */
     static init(): SCNGeometry;
     /** func insertMaterial(_ material: SCNMaterial, at index: Int) */
@@ -755,12 +754,12 @@ export declare class SCNGeometry extends SDKHandle {
      * var geometrySourceChannels: [NSNumber]? { get }
      * @availability iOS 16.0+
      */
-    get geometrySourceChannels(): $SDK22;
+    get geometrySourceChannels(): $SDK21;
     /** var sources: [SCNGeometrySource] { get } */
-    get sources(): $SDK20;
+    get sources(): $SDK19;
     /** var levelsOfDetail: [SCNLevelOfDetail]? { get set } */
-    get levelsOfDetail(): $SDK26;
-    set levelsOfDetail(value: $SDK26);
+    get levelsOfDetail(): $SDK25;
+    set levelsOfDetail(value: $SDK25);
     /** var materials: [SCNMaterial] { get set } */
     get materials(): Array<SCNMaterial>;
     set materials(value: Array<SCNMaterial>);
@@ -774,8 +773,8 @@ export declare class SCNGeometry extends SDKHandle {
      * var tessellator: SCNGeometryTessellator? { get set }
      * @availability iOS 11.0+
      */
-    get tessellator(): $SDK27;
-    set tessellator(value: $SDK27);
+    get tessellator(): $SDK26;
+    set tessellator(value: $SDK26);
     /**
      * var wantsAdaptiveSubdivision: Bool { get set }
      * @availability iOS 11.0+
@@ -842,7 +841,7 @@ export declare class SCNCamera extends SDKHandle {
      * func projectionTransform(withViewportSize viewportSize: CGSize) -> SCNMatrix4
      * @availability iOS 13.0+
      */
-    projectionTransformWithViewportSize(viewportSize: $SDK29): SCNMatrix4;
+    projectionTransformWithViewportSize(viewportSize: $SDK28): SCNMatrix4;
     /**
      * var aperture: CGFloat { get set }
      * @availability iOS 8.0+
@@ -1170,7 +1169,7 @@ export declare class SCNCameraController extends SDKHandle {
      * func beginInteraction(_ location: CGPoint, withViewport viewport: CGSize)
      * @availability iOS 11.0+
      */
-    beginInteraction(location: $SDK30, viewport: $SDK29): void;
+    beginInteraction(location: $SDK29, viewport: $SDK28): void;
     /**
      * func clearRoll()
      * @availability iOS 11.0+
@@ -1180,12 +1179,12 @@ export declare class SCNCameraController extends SDKHandle {
      * func continueInteraction(_ location: CGPoint, withViewport viewport: CGSize, sensitivity: CGFloat)
      * @availability iOS 11.0+
      */
-    continueInteraction(location: $SDK30, viewport: $SDK29, sensitivity: number): void;
+    continueInteraction(location: $SDK29, viewport: $SDK28, sensitivity: number): void;
     /**
      * func dolly(by delta: Float, onScreenPoint point: CGPoint, viewport: CGSize)
      * @availability iOS 11.0+
      */
-    dollyByOnScreenPointViewport(delta: number, point: $SDK30, viewport: $SDK29): void;
+    dollyByOnScreenPointViewport(delta: number, point: $SDK29, viewport: $SDK28): void;
     /**
      * func dolly(toTarget delta: Float)
      * @availability iOS 11.0+
@@ -1195,7 +1194,7 @@ export declare class SCNCameraController extends SDKHandle {
      * func endInteraction(_ location: CGPoint, withViewport viewport: CGSize, velocity: CGPoint)
      * @availability iOS 11.0+
      */
-    endInteraction(location: $SDK30, viewport: $SDK29, velocity: $SDK30): void;
+    endInteraction(location: $SDK29, viewport: $SDK28, velocity: $SDK29): void;
     /**
      * func frameNodes(_ nodes: [SCNNode])
      * @availability iOS 11.0+
@@ -1212,7 +1211,7 @@ export declare class SCNCameraController extends SDKHandle {
      * func roll(by delta: Float, aroundScreenPoint point: CGPoint, viewport: CGSize)
      * @availability iOS 11.0+
      */
-    roll(delta: number, point: $SDK30, viewport: $SDK29): void;
+    roll(delta: number, point: $SDK29, viewport: $SDK28): void;
     /**
      * func rotateBy(x deltaX: Float, y deltaY: Float)
      * @availability iOS 11.0+
@@ -1852,7 +1851,7 @@ export declare class SCNHitTestResult extends SDKHandle {
     /** init() */
     static init(): SCNHitTestResult;
     /** func textureCoordinates(withMappingChannel channel: Int) -> CGPoint */
-    textureCoordinates(channel: number): $SDK30;
+    textureCoordinates(channel: number): $SDK29;
     /**
      * var boneNode: SCNNode? { get }
      * @availability iOS 10.0+
@@ -1981,8 +1980,8 @@ export declare class SCNLight extends SDKHandle {
      * var areaPolygonVertices: [NSValue]? { get set }
      * @availability iOS 13.0+
      */
-    get areaPolygonVertices(): $SDK34;
-    set areaPolygonVertices(value: $SDK34);
+    get areaPolygonVertices(): $SDK33;
+    set areaPolygonVertices(value: $SDK33);
     /**
      * var areaType: SCNLightAreaType { get set }
      * @availability iOS 13.0+
@@ -2123,8 +2122,8 @@ export declare class SCNLight extends SDKHandle {
     get shadowColor(): unknown;
     set shadowColor(value: unknown);
     /** var shadowMapSize: CGSize { get set } */
-    get shadowMapSize(): $SDK29;
-    set shadowMapSize(value: $SDK29);
+    get shadowMapSize(): $SDK28;
+    set shadowMapSize(value: $SDK28);
     /** var shadowMode: SCNShadowMode { get set } */
     get shadowMode(): SCNShadowMode;
     set shadowMode(value: SCNShadowMode);
@@ -2408,7 +2407,7 @@ export declare class SCNMaterialProperty extends SDKHandle {
      * class func precomputedLightingEnvironmentContents(with url: URL) throws -> Any
      * @availability iOS 17.0+
      */
-    static precomputedLightingEnvironmentContentsWith853(url: string): unknown;
+    static precomputedLightingEnvironmentContentsWith21998(url: string): unknown;
     /**
      * class func precomputedLightingEnvironmentData(forContents contents: Any, device: (any MTLDevice)?) throws -> Data
      * @availability iOS 17.0+
@@ -2515,9 +2514,9 @@ export declare class SCNMatrix4 extends SDKHandle {
     /** init(_ m: float4x4) */
     static init(m: SDKHandle): SCNMatrix4;
     /** init(_ m: double4x4) */
-    static init1661(m: SDKHandle): SCNMatrix4;
+    static init67618(m: SDKHandle): SCNMatrix4;
     /** init() */
-    static init1662(): SCNMatrix4;
+    static init14026(): SCNMatrix4;
 }
 /** class SCNMorpher */
 export declare class SCNMorpher extends SDKHandle {
@@ -2640,16 +2639,16 @@ export declare class SCNNode extends SDKHandle {
      */
     convertVectorTo(vector: SCNVector3, node?: (SCNNode) | null): SCNVector3;
     /** func enumerateChildNodes(_ block: (SCNNode, UnsafeMutablePointer<ObjCBool>) -> Void) */
-    enumerateChildNodes(block: $SDK37): void;
+    enumerateChildNodes(block: $SDK36): void;
     /**
      * func enumerateHierarchy(_ block: (SCNNode, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 10.0+
      */
-    enumerateHierarchy(block: $SDK37): void;
+    enumerateHierarchy(block: $SDK36): void;
     /** func flattenedClone() -> Self */
     flattenedClone(): SCNNode;
     /** func hitTestWithSegment(from pointA: SCNVector3, to pointB: SCNVector3, options: [String : Any]? = nil) -> [SCNHitTestResult] */
-    hitTestWithSegment(pointA: SCNVector3, pointB: SCNVector3, options?: $SDK38): Array<SCNHitTestResult>;
+    hitTestWithSegment(pointA: SCNVector3, pointB: SCNVector3, options?: $SDK37): Array<SCNHitTestResult>;
     /** init() */
     static init(): SCNNode;
     /** func insertChildNode(_ child: SCNNode, at index: Int) */
@@ -2780,8 +2779,8 @@ export declare class SCNNode extends SDKHandle {
     get eulerAngles(): SCNVector3;
     set eulerAngles(value: SCNVector3);
     /** var filters: [CIFilter]? { get set } */
-    get filters(): $SDK40;
-    set filters(value: $SDK40);
+    get filters(): $SDK39;
+    set filters(value: $SDK39);
     /**
      * var focusBehavior: SCNNodeFocusBehavior { get set }
      * @availability iOS 11.0+
@@ -2818,7 +2817,7 @@ export declare class SCNNode extends SDKHandle {
     /** var parent: SCNNode? { get } */
     get parent(): (SCNNode) | null;
     /** var particleSystems: [SCNParticleSystem]? { get } */
-    get particleSystems(): $SDK41;
+    get particleSystems(): $SDK40;
     /** var isPaused: Bool { get set } */
     get isPaused(): boolean;
     set isPaused(value: boolean);
@@ -3047,8 +3046,8 @@ export declare class SCNParticlePropertyController extends SDKHandle {
     get inputOrigin(): (SCNNode) | null;
     set inputOrigin(value: (SCNNode) | null);
     /** var inputProperty: SCNParticleSystem.ParticleProperty? { get set } */
-    get inputProperty(): $SDK46;
-    set inputProperty(value: $SDK46);
+    get inputProperty(): $SDK45;
+    set inputProperty(value: $SDK45);
     /** var inputScale: CGFloat { get set } */
     get inputScale(): number;
     set inputScale(value: number);
@@ -3243,8 +3242,8 @@ export declare class SCNParticleSystem extends SDKHandle {
     get particleVelocityVariation(): number;
     set particleVelocityVariation(value: number);
     /** var propertyControllers: [SCNParticleSystem.ParticleProperty : SCNParticlePropertyController]? { get set } */
-    get propertyControllers(): $SDK47;
-    set propertyControllers(value: $SDK47);
+    get propertyControllers(): $SDK46;
+    set propertyControllers(value: $SDK46);
     /** var sortingMode: SCNParticleSortingMode { get set } */
     get sortingMode(): SCNParticleSortingMode;
     set sortingMode(value: SCNParticleSortingMode);
@@ -3258,14 +3257,14 @@ export declare class SCNParticleSystem extends SDKHandle {
     get stretchFactor(): number;
     set stretchFactor(value: number);
     /** var systemSpawnedOnCollision: SCNParticleSystem? { get set } */
-    get systemSpawnedOnCollision(): $SDK48;
-    set systemSpawnedOnCollision(value: $SDK48);
+    get systemSpawnedOnCollision(): $SDK47;
+    set systemSpawnedOnCollision(value: $SDK47);
     /** var systemSpawnedOnDying: SCNParticleSystem? { get set } */
-    get systemSpawnedOnDying(): $SDK48;
-    set systemSpawnedOnDying(value: $SDK48);
+    get systemSpawnedOnDying(): $SDK47;
+    set systemSpawnedOnDying(value: $SDK47);
     /** var systemSpawnedOnLiving: SCNParticleSystem? { get set } */
-    get systemSpawnedOnLiving(): $SDK48;
-    set systemSpawnedOnLiving(value: $SDK48);
+    get systemSpawnedOnLiving(): $SDK47;
+    set systemSpawnedOnLiving(value: $SDK47);
     /** var warmupDuration: CGFloat { get set } */
     get warmupDuration(): number;
     set warmupDuration(value: number);
@@ -3341,7 +3340,7 @@ export declare class SCNPhysicsBallSocketJoint extends SCNPhysicsBallSocketJoint
 /** class SCNPhysicsBody */
 export declare class SCNPhysicsBody extends SDKHandle {
     /** convenience init(type: SCNPhysicsBodyType, shape: SCNPhysicsShape?) */
-    static initTypeShape(type: SCNPhysicsBodyType, shape?: $SDK49): SCNPhysicsBody;
+    static initTypeShape(type: SCNPhysicsBodyType, shape?: $SDK48): SCNPhysicsBody;
     /** class func dynamic() -> Self */
     static dynamic(): SCNPhysicsBody;
     /** class func kinematic() -> Self */
@@ -3440,8 +3439,8 @@ export declare class SCNPhysicsBody extends SDKHandle {
     get momentOfInertia(): SCNVector3;
     set momentOfInertia(value: SCNVector3);
     /** var physicsShape: SCNPhysicsShape? { get set } */
-    get physicsShape(): $SDK49;
-    set physicsShape(value: $SDK49);
+    get physicsShape(): $SDK48;
+    set physicsShape(value: $SDK48);
     /** var restitution: CGFloat { get set } */
     get restitution(): number;
     set restitution(value: number);
@@ -3663,18 +3662,18 @@ export declare class SCNPhysicsHingeJoint extends SCNPhysicsHingeJoint_base {
 /** class SCNPhysicsShape */
 export declare class SCNPhysicsShape extends SDKHandle {
     /** convenience init(geometry: SCNGeometry, options: [SCNPhysicsShape.Option : Any]? = nil) */
-    static initGeometryOptions(geometry: SCNGeometry, options?: $SDK50): SCNPhysicsShape;
+    static initGeometryOptions(geometry: SCNGeometry, options?: $SDK49): SCNPhysicsShape;
     /** convenience init(node: SCNNode, options: [SCNPhysicsShape.Option : Any]? = nil) */
-    static initNodeOptions(node: SCNNode, options?: $SDK50): SCNPhysicsShape;
+    static initNodeOptions(node: SCNNode, options?: $SDK49): SCNPhysicsShape;
     /** convenience init(shapes: [SCNPhysicsShape], transforms: [NSValue]?) */
-    static initShapesTransforms(shapes: Array<SCNPhysicsShape>, transforms?: $SDK34): SCNPhysicsShape;
+    static initShapesTransforms(shapes: Array<SCNPhysicsShape>, transforms?: $SDK33): SCNPhysicsShape;
     /** init() */
     static init(): SCNPhysicsShape;
     /**
      * var options: [SCNPhysicsShape.Option : Any]? { get }
      * @availability iOS 9.0+
      */
-    get options(): $SDK50;
+    get options(): $SDK49;
     /**
      * var sourceObject: Any { get }
      * @availability iOS 9.0+
@@ -3684,7 +3683,7 @@ export declare class SCNPhysicsShape extends SDKHandle {
      * var transforms: [NSValue]? { get }
      * @availability iOS 9.0+
      */
-    get transforms(): $SDK34;
+    get transforms(): $SDK33;
 }
 /** struct Option */
 export declare class SCNPhysicsShape_Option extends SDKHandle {
@@ -3830,15 +3829,15 @@ export declare class SCNPhysicsWorld extends SDKHandle {
     /** func addBehavior(_ behavior: SCNPhysicsBehavior) */
     addBehavior(behavior: SCNPhysicsBehavior): void;
     /** func contactTestBetween(_ bodyA: SCNPhysicsBody, _ bodyB: SCNPhysicsBody, options: [SCNPhysicsWorld.TestOption : Any]? = nil) -> [SCNPhysicsContact] */
-    contactTestBetween(bodyA: SCNPhysicsBody, bodyB: SCNPhysicsBody, options?: $SDK53): $SDK52;
+    contactTestBetween(bodyA: SCNPhysicsBody, bodyB: SCNPhysicsBody, options?: $SDK52): $SDK51;
     /** func contactTest(with body: SCNPhysicsBody, options: [SCNPhysicsWorld.TestOption : Any]? = nil) -> [SCNPhysicsContact] */
-    contactTest(body: SCNPhysicsBody, options?: $SDK53): $SDK52;
+    contactTest(body: SCNPhysicsBody, options?: $SDK52): $SDK51;
     /** func convexSweepTest(with shape: SCNPhysicsShape, from: SCNMatrix4, to: SCNMatrix4, options: [SCNPhysicsWorld.TestOption : Any]? = nil) -> [SCNPhysicsContact] */
-    convexSweepTest(shape: SCNPhysicsShape, from: SCNMatrix4, to: SCNMatrix4, options?: $SDK53): $SDK52;
+    convexSweepTest(shape: SCNPhysicsShape, from: SCNMatrix4, to: SCNMatrix4, options?: $SDK52): $SDK51;
     /** init() */
     static init(): SCNPhysicsWorld;
     /** func rayTestWithSegment(from origin: SCNVector3, to dest: SCNVector3, options: [SCNPhysicsWorld.TestOption : Any]? = nil) -> [SCNHitTestResult] */
-    rayTestWithSegment(origin: SCNVector3, dest: SCNVector3, options?: $SDK53): Array<SCNHitTestResult>;
+    rayTestWithSegment(origin: SCNVector3, dest: SCNVector3, options?: $SDK52): Array<SCNHitTestResult>;
     /** func removeAllBehaviors() */
     removeAllBehaviors(): void;
     /** func removeBehavior(_ behavior: SCNPhysicsBehavior) */
@@ -3920,7 +3919,7 @@ export declare class SCNProgram extends SDKHandle {
     /** func semantic(forSymbol symbol: String) -> String? */
     semantic(symbol: string): (string) | null;
     /** func setSemantic(_ semantic: String?, forSymbol symbol: String, options: [String : Any]? = nil) */
-    setSemantic(semantic: (string) | null, symbol: string, options?: $SDK38): void;
+    setSemantic(semantic: (string) | null, symbol: string, options?: $SDK37): void;
     /** unowned(unsafe) var delegate: (any SCNProgramDelegate)? { get set } */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<SCNProgramDelegate> | SDKHandle) | null);
@@ -4046,12 +4045,12 @@ export declare class SCNReferenceNode extends SCNReferenceNode_base {
 /** class SCNRenderer */
 export declare class SCNRenderer extends SDKHandle {
     /** convenience init(context: EAGLContext?, options: [AnyHashable : Any]? = nil) */
-    static initContextOptions(context?: $SDK58, options?: $SDK59): SCNRenderer;
+    static initContextOptions(context?: $SDK57, options?: $SDK58): SCNRenderer;
     /**
      * convenience init(device: (any MTLDevice)?, options: [AnyHashable : Any]? = nil)
      * @availability iOS 9.0+
      */
-    static initDeviceOptions(device?: (SDKHandle) | null, options?: $SDK59): SCNRenderer;
+    static initDeviceOptions(device?: (SDKHandle) | null, options?: $SDK58): SCNRenderer;
     /** init() */
     static init(): SCNRenderer;
     /**
@@ -4066,17 +4065,17 @@ export declare class SCNRenderer extends SDKHandle {
      * func render(atTime time: CFTimeInterval, viewport: CGRect, commandBuffer: any MTLCommandBuffer, passDescriptor renderPassDescriptor: MTLRenderPassDescriptor)
      * @availability iOS 9.0+
      */
-    renderAtTimeViewportCommandBufferPassDescriptor(time: number, viewport: $SDK60, commandBuffer: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor): void;
+    renderAtTimeViewportCommandBufferPassDescriptor(time: number, viewport: $SDK59, commandBuffer: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor): void;
     /**
      * func render(withViewport viewport: CGRect, commandBuffer: any MTLCommandBuffer, passDescriptor renderPassDescriptor: MTLRenderPassDescriptor)
      * @availability iOS 11.0+
      */
-    renderWithViewportCommandBufferPassDescriptor(viewport: $SDK60, commandBuffer: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor): void;
+    renderWithViewportCommandBufferPassDescriptor(viewport: $SDK59, commandBuffer: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor): void;
     /**
      * func snapshot(atTime time: CFTimeInterval, with size: CGSize, antialiasingMode: SCNAntialiasingMode) -> UIImage
      * @availability iOS 10.0+
      */
-    snapshot(time: number, size: $SDK29, antialiasingMode: SCNAntialiasingMode): _UIKit_UIImage;
+    snapshot(time: number, size: $SDK28, antialiasingMode: SCNAntialiasingMode): _UIKit_UIImage;
     /**
      * func update(atTime time: CFTimeInterval)
      * @availability iOS 11.0+
@@ -4166,9 +4165,9 @@ export declare class SCNScene extends SDKHandle {
     /** convenience init?(named name: String) */
     static initNamed(name: string): (SCNScene) | null;
     /** convenience init?(named name: String, inDirectory directory: String?, options: [SCNSceneSource.LoadingOption : Any]? = nil) */
-    static initNamedInDirectoryOptions(name: string, directory?: (string) | null, options?: $SDK61): (SCNScene) | null;
+    static initNamedInDirectoryOptions(name: string, directory?: (string) | null, options?: $SDK60): (SCNScene) | null;
     /** convenience init(url: URL, options: [SCNSceneSource.LoadingOption : Any]? = nil) throws */
-    static initUrlOptions(url: string, options?: $SDK61): SCNScene;
+    static initUrlOptions(url: string, options?: $SDK60): SCNScene;
     /** func addParticleSystem(_ system: SCNParticleSystem, transform: SCNMatrix4) */
     addParticleSystem(system: SCNParticleSystem, transform: SCNMatrix4): void;
     /** func attribute(forKey key: String) -> Any? */
@@ -4185,7 +4184,7 @@ export declare class SCNScene extends SDKHandle {
      * func write(to url: URL, options: [String : Any]? = nil, delegate: (any SCNSceneExportDelegate)?, progressHandler: SCNSceneExportProgressHandler? = nil) -> Bool
      * @availability iOS 10.0+
      */
-    write(url: string, options?: $SDK38, delegate?: (Implements<SCNSceneExportDelegate> | SDKHandle) | null, progressHandler?: (((arg0: number, arg1: (NativeError) | null, arg2: NativeOut<boolean>) => void)) | null): boolean;
+    write(url: string, options?: $SDK37, delegate?: (Implements<SCNSceneExportDelegate> | SDKHandle) | null, progressHandler?: (((arg0: number, arg1: (NativeError) | null, arg2: NativeOut<boolean>) => void)) | null): boolean;
     /** var background: SCNMaterialProperty { get } */
     get background(): SCNMaterialProperty;
     /** var fogColor: Any { get set } */
@@ -4206,7 +4205,7 @@ export declare class SCNScene extends SDKHandle {
      */
     get lightingEnvironment(): SCNMaterialProperty;
     /** var particleSystems: [SCNParticleSystem]? { get } */
-    get particleSystems(): $SDK41;
+    get particleSystems(): $SDK40;
     /** var isPaused: Bool { get set } */
     get isPaused(): boolean;
     set isPaused(value: boolean);
@@ -4268,7 +4267,7 @@ export interface SCNSceneRenderer {
      */
     "presentWithIncomingPointOfView"?: (arg0: SCNScene, arg1: _SpriteKit_SKTransition, arg2: (SCNNode) | null) => void;
     /** func hitTest(_ point: CGPoint, options: [SCNHitTestOption : Any]? = nil) -> [SCNHitTestResult] */
-    "hitTestOptions"?: (arg0: $SDK30, arg1: (NativeMap<SCNHitTestOption, unknown>) | null) => Array<SCNHitTestResult>;
+    "hitTestOptions"?: (arg0: $SDK29, arg1: (NativeMap<SCNHitTestOption, unknown>) | null) => Array<SCNHitTestResult>;
     /** func isNode(_ node: SCNNode, insideFrustumOf pointOfView: SCNNode) -> Bool */
     "isNodeInsideFrustumOf"?: (arg0: SCNNode, arg1: SCNNode) => boolean;
     /**
@@ -4310,15 +4309,15 @@ export declare class SCNSceneSource extends SDKHandle {
     /** init() */
     static init(): SCNSceneSource;
     /** init?(data: Data, options: [SCNSceneSource.LoadingOption : Any]? = nil) */
-    static initDataOptions(data: ArrayBuffer, options?: $SDK61): (SCNSceneSource) | null;
+    static initDataOptions(data: ArrayBuffer, options?: $SDK60): (SCNSceneSource) | null;
     /** init?(url: URL, options: [SCNSceneSource.LoadingOption : Any]? = nil) */
-    static initUrlOptions(url: string, options?: $SDK61): (SCNSceneSource) | null;
+    static initUrlOptions(url: string, options?: $SDK60): (SCNSceneSource) | null;
     /** func property(forKey key: String) -> Any? */
     property(key: string): (unknown) | null;
     /** func scene(options: [SCNSceneSource.LoadingOption : Any]? = nil) throws -> SCNScene */
-    sceneOptions(options?: $SDK61): SCNScene;
+    sceneOptions(options?: $SDK60): SCNScene;
     /** func scene(options: [SCNSceneSource.LoadingOption : Any]? = nil, statusHandler: SCNSceneSourceStatusHandler? = nil) -> SCNScene? */
-    sceneOptionsStatusHandler(options?: $SDK61, statusHandler?: (((arg0: number, arg1: SCNSceneSourceStatus, arg2: (NativeError) | null, arg3: NativeOut<boolean>) => void)) | null): (SCNScene) | null;
+    sceneOptionsStatusHandler(options?: $SDK60, statusHandler?: (((arg0: number, arg1: SCNSceneSourceStatus, arg2: (NativeError) | null, arg3: NativeOut<boolean>) => void)) | null): (SCNScene) | null;
     /** var data: Data? { get } */
     get data(): (ArrayBuffer) | null;
     /** var url: URL? { get } */
@@ -4388,9 +4387,9 @@ export type SCNSceneSourceStatusHandler = ((arg0: number, arg1: SCNSceneSourceSt
 /** protocol SCNShadable : NSObjectProtocol */
 export interface SCNShadable {
     /** optional func handleBinding(ofSymbol symbol: String, handler block: SCNBindingBlock? = nil) */
-    "handleBindingOfSymbolHandler"?: (arg0: string, arg1: $SDK69) => void;
+    "handleBindingOfSymbolHandler"?: (arg0: string, arg1: $SDK68) => void;
     /** optional func handleUnbinding(ofSymbol symbol: String, handler block: SCNBindingBlock? = nil) */
-    "handleUnbindingOfSymbolHandler"?: (arg0: string, arg1: $SDK69) => void;
+    "handleUnbindingOfSymbolHandler"?: (arg0: string, arg1: $SDK68) => void;
 }
 /** struct SCNShaderModifierEntryPoint */
 export declare class SCNShaderModifierEntryPoint extends SDKHandle {
@@ -4415,15 +4414,15 @@ declare const SCNShape_base: Omit<typeof SCNGeometry, "init" | "prototype"> & (n
 /** class SCNShape */
 export declare class SCNShape extends SCNShape_base {
     /** convenience init(path: UIBezierPath?, extrusionDepth: CGFloat) */
-    static initPathExtrusionDepth(path: $SDK70, extrusionDepth: number): SCNShape;
+    static initPathExtrusionDepth(path: $SDK69, extrusionDepth: number): SCNShape;
     /** init() */
     static init(): SCNShape;
     /** var chamferMode: SCNChamferMode { get set } */
     get chamferMode(): SCNChamferMode;
     set chamferMode(value: SCNChamferMode);
     /** @NSCopying var chamferProfile: UIBezierPath? { get set } */
-    get chamferProfile(): $SDK70;
-    set chamferProfile(value: $SDK70);
+    get chamferProfile(): $SDK69;
+    set chamferProfile(value: $SDK69);
     /** var chamferRadius: CGFloat { get set } */
     get chamferRadius(): number;
     set chamferRadius(value: number);
@@ -4431,13 +4430,13 @@ export declare class SCNShape extends SCNShape_base {
     get extrusionDepth(): number;
     set extrusionDepth(value: number);
     /** @NSCopying var path: UIBezierPath? { get set } */
-    get path(): $SDK70;
-    set path(value: $SDK70);
+    get path(): $SDK69;
+    set path(value: $SDK69);
 }
 /** class SCNSkinner */
 export declare class SCNSkinner extends SDKHandle {
     /** convenience init(baseGeometry: SCNGeometry?, bones: [SCNNode], boneInverseBindTransforms: [NSValue]?, boneWeights: SCNGeometrySource, boneIndices: SCNGeometrySource) */
-    static initBaseGeometryBonesBoneInverseBindTransformsBoneWeightsBoneIndices(baseGeometry: (SCNGeometry) | null, bones: Array<SCNNode>, boneInverseBindTransforms: $SDK34, boneWeights: SCNGeometrySource, boneIndices: SCNGeometrySource): SCNSkinner;
+    static initBaseGeometryBonesBoneInverseBindTransformsBoneWeightsBoneIndices(baseGeometry: (SCNGeometry) | null, bones: Array<SCNNode>, boneInverseBindTransforms: $SDK33, boneWeights: SCNGeometrySource, boneIndices: SCNGeometrySource): SCNSkinner;
     /** init() */
     static init(): SCNSkinner;
     /** var baseGeometry: SCNGeometry? { get set } */
@@ -4449,7 +4448,7 @@ export declare class SCNSkinner extends SDKHandle {
     /** var boneIndices: SCNGeometrySource { get } */
     get boneIndices(): SCNGeometrySource;
     /** var boneInverseBindTransforms: [NSValue]? { get } */
-    get boneInverseBindTransforms(): $SDK34;
+    get boneInverseBindTransforms(): $SDK33;
     /** var boneWeights: SCNGeometrySource { get } */
     get boneWeights(): SCNGeometrySource;
     /** var bones: [SCNNode] { get } */
@@ -4554,14 +4553,14 @@ export declare class SCNText extends SCNText_base {
     get alignmentMode(): string;
     set alignmentMode(value: string);
     /** @NSCopying var chamferProfile: UIBezierPath? { get set } */
-    get chamferProfile(): $SDK70;
-    set chamferProfile(value: $SDK70);
+    get chamferProfile(): $SDK69;
+    set chamferProfile(value: $SDK69);
     /** var chamferRadius: CGFloat { get set } */
     get chamferRadius(): number;
     set chamferRadius(value: number);
     /** var containerFrame: CGRect { get set } */
-    get containerFrame(): $SDK60;
-    set containerFrame(value: $SDK60);
+    get containerFrame(): $SDK59;
+    set containerFrame(value: $SDK59);
     /** var extrusionDepth: CGFloat { get set } */
     get extrusionDepth(): number;
     set extrusionDepth(value: number);
@@ -4639,10 +4638,10 @@ export declare class SCNTransaction extends SDKHandle {
     static get animationDuration(): number;
     static set animationDuration(value: number);
     /** @NSCopying class var animationTimingFunction: CAMediaTimingFunction? { get set } */
-    static get animationTimingFunction(): $SDK72;
-    static set animationTimingFunction(value: $SDK72);
+    static get animationTimingFunction(): $SDK71;
+    static set animationTimingFunction(value: $SDK71);
     /** class var completionBlock: (() -> Void)? { get set } */
-    static get completionBlock(): $SDK17;
+    static get completionBlock(): $SDK16;
     static set completionBlock(value: ((() => void)) | null);
     /** class var disableActions: Bool { get set } */
     static get disableActions(): boolean;
@@ -4706,17 +4705,17 @@ export declare class SCNVector3 extends SDKHandle {
     /** init(_ x: CGFloat, _ y: CGFloat, _ z: CGFloat) */
     static init(x: number, y: number, z: number): SCNVector3;
     /** init(_ x: Double, _ y: Double, _ z: Double) */
-    static init1665(x: number, y: number, z: number): SCNVector3;
+    static init54797(x: number, y: number, z: number): SCNVector3;
     /** init(_ x: Float, _ y: Float, _ z: Float) */
-    static init1666(x: number, y: number, z: number): SCNVector3;
+    static init56153(x: number, y: number, z: number): SCNVector3;
     /** init(_ x: Int, _ y: Int, _ z: Int) */
-    static init1667(x: number, y: number, z: number): SCNVector3;
+    static init12297(x: number, y: number, z: number): SCNVector3;
     /** init(_ v: SIMD3<Double>) */
-    static init1668(v: SDKHandle): SCNVector3;
+    static init57929(v: SDKHandle): SCNVector3;
     /** init(_ v: SIMD3<Float>) */
-    static init1669(v: SDKHandle): SCNVector3;
+    static init93695(v: SDKHandle): SCNVector3;
     /** init() */
-    static init1670(): SCNVector3;
+    static init3315(): SCNVector3;
 }
 /** struct SCNVector4 */
 export declare class SCNVector4 extends SDKHandle {
@@ -4737,24 +4736,24 @@ export declare class SCNVector4 extends SDKHandle {
     /** init(_ x: CGFloat, _ y: CGFloat, _ z: CGFloat, _ w: CGFloat) */
     static init(x: number, y: number, z: number, w: number): SCNVector4;
     /** init(_ x: Double, _ y: Double, _ z: Double, _ w: Double) */
-    static init1673(x: number, y: number, z: number, w: number): SCNVector4;
+    static init98833(x: number, y: number, z: number, w: number): SCNVector4;
     /** init(_ x: Float, _ y: Float, _ z: Float, _ w: Float) */
-    static init1674(x: number, y: number, z: number, w: number): SCNVector4;
+    static init50137(x: number, y: number, z: number, w: number): SCNVector4;
     /** init(_ x: Int, _ y: Int, _ z: Int, _ w: Int) */
-    static init1675(x: number, y: number, z: number, w: number): SCNVector4;
+    static init35049(x: number, y: number, z: number, w: number): SCNVector4;
     /** init(_ v: SIMD4<Double>) */
-    static init1676(v: SDKHandle): SCNVector4;
+    static init90219(v: SDKHandle): SCNVector4;
     /** init(_ v: SIMD4<Float>) */
-    static init1677(v: SDKHandle): SCNVector4;
+    static init92901(v: SDKHandle): SCNVector4;
     /** init() */
-    static init1678(): SCNVector4;
+    static init42708(): SCNVector4;
 }
 /** class SCNView */
 export declare class SCNView extends SDKHandle {
     /** init() */
     static init(): SCNView;
     /** init(frame: CGRect, options: [String : Any]? = nil) */
-    static initFrameOptions(frame: $SDK60, options?: $SDK38): SCNView;
+    static initFrameOptions(frame: $SDK59, options?: $SDK37): SCNView;
     /** @IBAction func pause(_ sender: Any?) */
     pause(sender?: (unknown) | null): void;
     /** @IBAction func play(_ sender: Any?) */
@@ -4784,8 +4783,8 @@ export declare class SCNView extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 12.0
      */
-    get eaglContext(): $SDK58;
-    set eaglContext(value: $SDK58);
+    get eaglContext(): $SDK57;
+    set eaglContext(value: $SDK57);
     /** var preferredFramesPerSecond: Int { get set } */
     get preferredFramesPerSecond(): number;
     set preferredFramesPerSecond(value: number);

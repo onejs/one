@@ -93,7 +93,7 @@ export declare class DispatchQueue extends DispatchObject {
     /** @preconcurrency func getSpecific<T>(key: DispatchSpecificKey<T>) -> T? where T : Sendable */
     getSpecificKey(key: $SDK0): (number) | null;
     /** @preconcurrency class func getSpecific<T>(key: DispatchSpecificKey<T>) -> T? where T : Sendable */
-    static getSpecificKey128(key: $SDK0): (number) | null;
+    static getSpecificKey25069(key: $SDK0): (number) | null;
     /** @preconcurrency func setSpecific<T>(key: DispatchSpecificKey<T>, value: T?) where T : Sendable */
     setSpecific(key: $SDK0, value?: (number) | null): void;
     /**
@@ -105,12 +105,12 @@ export declare class DispatchQueue extends DispatchObject {
      * func asyncAndWait<T>(execute work: () throws -> T) rethrows -> T
      * @availability iOS 12.0+
      */
-    asyncAndWaitExecute131(work: (() => unknown)): unknown;
+    asyncAndWaitExecute14709(work: (() => unknown)): unknown;
     /**
      * func asyncAndWait(execute workItem: DispatchWorkItem)
      * @availability iOS 12.0+
      */
-    asyncAndWaitExecute132(workItem: DispatchWorkItem): void;
+    asyncAndWaitExecute62953(workItem: DispatchWorkItem): void;
     /**
      * func asyncAfterUnsafe(wallDeadline: DispatchWallTime, qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], execute work: @escaping () -> Void)
      * @availability iOS 17.0+
@@ -148,12 +148,12 @@ export declare class DispatchQueue extends DispatchObject {
     /** func sync<T>(flags: DispatchWorkItemFlags, execute work: () throws -> T) rethrows -> T */
     syncFlagsExecute(flags: DispatchWorkItemFlags, work: (() => unknown)): unknown;
     /** func sync<T>(execute work: () throws -> T) rethrows -> T */
-    syncExecute166(work: (() => unknown)): unknown;
+    syncExecute85623(work: (() => unknown)): unknown;
     /**
      * func sync(execute workItem: DispatchWorkItem)
      * @availability iOS 8.0+
      */
-    syncExecute167(workItem: DispatchWorkItem): void;
+    syncExecute33183(workItem: DispatchWorkItem): void;
     /** @preconcurrency func async(group: DispatchGroup? = nil, qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], execute work: @escaping @Sendable () -> Void) */
     asyncGroupQosFlagsExecute(group: (DispatchGroup) | null, qos: DispatchQoS, flags: DispatchWorkItemFlags, work: (() => void)): void;
     /**
@@ -257,7 +257,7 @@ export declare class DispatchData extends SDKHandle {
     /** init(bytesNoCopy bytes: UnsafeBufferPointer<UInt8>, deallocator: DispatchData.Deallocator = .free) */
     static initBytesNoCopyDeallocator(bytes: Uint8Array, deallocator?: DispatchData_Deallocator): DispatchData;
     /** init(bytesNoCopy bytes: UnsafeRawBufferPointer, deallocator: DispatchData.Deallocator = .free) */
-    static initBytesNoCopyDeallocator49(bytes: ArrayBuffer, deallocator?: DispatchData_Deallocator): DispatchData;
+    static initBytesNoCopyDeallocator16434(bytes: ArrayBuffer, deallocator?: DispatchData_Deallocator): DispatchData;
     /** func makeIterator() -> DispatchData.Iterator */
     makeIterator(): DispatchDataIterator;
     /** func enumerateBytes(_ block: (UnsafeBufferPointer<UInt8>, Int, inout Bool) -> Void) */
@@ -267,7 +267,7 @@ export declare class DispatchData extends SDKHandle {
     /** init(bytes buffer: UnsafeBufferPointer<UInt8>) */
     static initBytes(buffer: Uint8Array): DispatchData;
     /** init(bytes buffer: UnsafeRawBufferPointer) */
-    static initBytes54(buffer: ArrayBuffer): DispatchData;
+    static initBytes9142(buffer: ArrayBuffer): DispatchData;
     /** var count: Int { get } */
     get count(): number;
     /** static let empty: DispatchData */
@@ -281,9 +281,9 @@ export declare class DispatchData extends SDKHandle {
     /** mutating func append(_ other: DispatchData) */
     append(other: DispatchData): void;
     /** mutating func append<SourceType>(_ buffer: UnsafeBufferPointer<SourceType>) */
-    append61(buffer: unknown[]): void;
+    append35900(buffer: unknown[]): void;
     /** mutating func append(_ bytes: UnsafeRawBufferPointer) */
-    append62(bytes: ArrayBuffer): void;
+    append90667(bytes: ArrayBuffer): void;
     /** func region(location: Int) -> (data: DispatchData, offset: Int) */
     region(location: number): {
         "data": DispatchData;
@@ -296,17 +296,17 @@ export declare class DispatchData extends SDKHandle {
     /** func copyBytes<DestinationType>(to buffer: UnsafeMutableBufferPointer<DestinationType>, from range: Range<DispatchData.Index>? = nil) -> Int */
     copyBytesToFrom(buffer: unknown[], range?: (SDKHandle) | null): number;
     /** func copyBytes(to pointer: UnsafeMutablePointer<UInt8>, from range: Range<DispatchData.Index>) */
-    copyBytesToFrom67(pointer: SDKHandle, range: SDKHandle): void;
+    copyBytesToFrom39331(pointer: SDKHandle, range: SDKHandle): void;
     /** func copyBytes(to pointer: UnsafeMutableRawBufferPointer, from range: Range<DispatchData.Index>) */
-    copyBytesToFrom68(pointer: ArrayBuffer, range: SDKHandle): void;
+    copyBytesToFrom82678(pointer: ArrayBuffer, range: SDKHandle): void;
     /** func copyBytes(to pointer: UnsafeMutablePointer<UInt8>, count: Int) */
     copyBytesToCount(pointer: SDKHandle, count: number): void;
     /** func copyBytes(to pointer: UnsafeMutableRawBufferPointer, count: Int) */
-    copyBytesToCount70(pointer: ArrayBuffer, count: number): void;
+    copyBytesToCount15035(pointer: ArrayBuffer, count: number): void;
     /** subscript(bounds: Range<Int>) -> Slice<DispatchData> { get } */
     subscript(bounds: SDKHandle): SDKHandle;
     /** subscript(index: DispatchData.Index) -> UInt8 { get } */
-    subscript72(index: number): number;
+    subscript22988(index: number): number;
 }
 /** enum Deallocator */
 export declare class DispatchData_Deallocator extends SDKHandle {
@@ -396,7 +396,7 @@ export declare class DispatchIO extends DispatchObject {
     /** convenience init(type: DispatchIO.StreamType, path: UnsafePointer<Int8>, oflag: Int32, mode: mode_t, queue: DispatchQueue, cleanupHandler: @escaping (Int32) -> Void) */
     static initTypePathOflagModeQueueCleanupHandler(type: DispatchIO_StreamType, path: SDKHandle, oflag: number, mode: SDKHandle, queue: DispatchQueue, cleanupHandler: $SDK1): DispatchIO;
     /** convenience init?(type: DispatchIO.StreamType, path: UnsafePointer<Int8>, oflag: Int32, mode: mode_t, queue: DispatchQueue, cleanupHandler: @escaping (Int32) -> Void) */
-    static initTypePathOflagModeQueueCleanupHandler109(type: DispatchIO_StreamType, path: SDKHandle, oflag: number, mode: SDKHandle, queue: DispatchQueue, cleanupHandler: $SDK1): (DispatchIO) | null;
+    static initTypePathOflagModeQueueCleanupHandler9271(type: DispatchIO_StreamType, path: SDKHandle, oflag: number, mode: SDKHandle, queue: DispatchQueue, cleanupHandler: $SDK1): (DispatchIO) | null;
     /** func close(flags: DispatchIO.CloseFlags = []) */
     close(flags?: DispatchIO_CloseFlags): void;
     /** class func write(toFileDescriptor: Int32, data: DispatchData, runningHandlerOn queue: DispatchQueue, handler: @escaping (DispatchData?, Int32) -> Void) */
@@ -634,7 +634,7 @@ export declare class DispatchQueue_SchedulerTimeType_Stride extends SDKHandle {
      * static func seconds(_ s: Int) -> DispatchQueue.SchedulerTimeType.Stride
      * @availability iOS 13.0+
      */
-    static seconds153(s: number): DispatchQueue_SchedulerTimeType_Stride;
+    static seconds17141(s: number): DispatchQueue_SchedulerTimeType_Stride;
     /**
      * var magnitude: Int { get set }
      * @availability iOS 13.0+

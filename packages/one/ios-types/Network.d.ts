@@ -520,7 +520,7 @@ export declare const IPv4Address: {
      * init?(_ string: String)
      * @availability iOS 12.0+
      */
-    init669(string: string): (IPv4Address) | null;
+    init46997(string: string): (IPv4Address) | null;
 };
 /**
  * struct IPv6Address
@@ -633,7 +633,7 @@ export declare const IPv6Address: {
      * init?(_ string: String)
      * @availability iOS 12.0+
      */
-    init692(string: string): (IPv6Address) | null;
+    init40195(string: string): (IPv6Address) | null;
 };
 /**
  * enum Scope
@@ -742,7 +742,7 @@ export declare class NetworkChannel<ApplicationProtocol = unknown> extends SDKHa
      * func sendIdempotent<Content>(_ content: Content, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) where Content : DataProtocol
      * @availability iOS 26.0+
      */
-    sendIdempotent586(content: ArrayBuffer): void;
+    sendIdempotent70447(content: ArrayBuffer): void;
     /**
      * func ping<Content>(_ content: Content? = nil, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) async throws where Content : DataProtocol
      * @availability iOS 26.0+
@@ -762,7 +762,7 @@ export declare class NetworkChannel<ApplicationProtocol = unknown> extends SDKHa
      * func send<Content>(_ content: Content, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) async throws where Content : DataProtocol
      * @availability iOS 26.0+
      */
-    send590(content: ArrayBuffer): Promise<void>;
+    send1536(content: ArrayBuffer): Promise<void>;
     /**
      * func close(code: NWProtocolWebSocket.CloseCode = .protocolCode(.normalClosure), reason: String? = nil, @ProtocolMetadataBuilder metadata builder: () -> [NWProtocolMetadata] = {[]}) async throws
      * @availability iOS 26.0+
@@ -772,7 +772,7 @@ export declare class NetworkChannel<ApplicationProtocol = unknown> extends SDKHa
      * func receive() async throws -> ApplicationProtocol.Message<Data>
      * @availability iOS 26.0+
      */
-    receive592(): Promise<"count" | SDKHandle>;
+    receive32396(): Promise<"count" | SDKHandle>;
 }
 /**
  * typealias ID = String
@@ -836,7 +836,7 @@ export declare class NetworkConnection<ApplicationProtocol = unknown> extends Ne
      * convenience init(to provider: any Connectable, using builder: NWParametersBuilder<ApplicationProtocol>)
      * @availability iOS 26.0+
      */
-    static initToUsing562(provider: Implements<Connectable> | SDKHandle, builder: $SDK15): NetworkConnection<QUIC>;
+    static initToUsing65965(provider: Implements<Connectable> | SDKHandle, builder: $SDK15): NetworkConnection<QUIC>;
     /**
      * final func start() -> Self
      * @availability iOS 26.0+
@@ -1792,7 +1792,7 @@ export declare class NWConnection extends SDKHandle {
      * @preconcurrency final func send<Content>(content: Content?, contentContext: NWConnection.ContentContext = .defaultMessage, isComplete: Bool = true, completion: NWConnection.SendCompletion) where Content : DataProtocol
      * @availability iOS 13.0+
      */
-    sendContentContentContextIsCompleteCompletion788(content: (ArrayBuffer) | null, contentContext: NWConnection_ContentContext, isComplete: boolean, completion: NWConnection_SendCompletion): void;
+    sendContentContentContextIsCompleteCompletion50355(content: (ArrayBuffer) | null, contentContext: NWConnection_ContentContext, isComplete: boolean, completion: NWConnection_SendCompletion): void;
     /**
      * final func batch(_ block: () -> Void)
      * @availability iOS 12.0+
@@ -2651,7 +2651,7 @@ export declare class NWListener_Service extends SDKHandle {
      * init(name: String? = nil, type: String, domain: String? = nil, txtRecord: NWTXTRecord)
      * @availability iOS 13.0+
      */
-    static initNameTypeDomainTxtRecord645(name: (string) | null, type: string, domain: (string) | null, txtRecord: NWTXTRecord): NWListener_Service;
+    static initNameTypeDomainTxtRecord45304(name: (string) | null, type: string, domain: (string) | null, txtRecord: NWTXTRecord): NWListener_Service;
     /**
      * let name: String?
      * @availability iOS 12.0+
@@ -3358,7 +3358,7 @@ export declare class NWProtocolFramer_Instance extends SDKHandle {
      * final func writeOutput<Output>(data: Output) where Output : DataProtocol
      * @availability iOS 13.0+
      */
-    writeOutputData1010(data: ArrayBuffer): void;
+    writeOutputData25578(data: ArrayBuffer): void;
     /**
      * final func deliverInput(data: Data, message: NWProtocolFramer.Message, isComplete: Bool)
      * @availability iOS 13.0+
@@ -3567,7 +3567,7 @@ export declare class NWProtocolIP_Metadata extends NWProtocolMetadata {
      * func serviceClass(_ serviceClass: NWParameters.ServiceClass) -> Self
      * @availability iOS 26.0+
      */
-    serviceClass884(serviceClass: NWParameters_ServiceClass): NWProtocolIP_Metadata;
+    serviceClass28776(serviceClass: NWParameters_ServiceClass): NWProtocolIP_Metadata;
     /**
      * var ecn: NWProtocolIP.ECN { get set }
      * @availability iOS 12.0+
@@ -3578,7 +3578,7 @@ export declare class NWProtocolIP_Metadata extends NWProtocolMetadata {
      * func ecn(_ ecn: NWProtocolIP.ECN) -> Self
      * @availability iOS 26.0+
      */
-    ecn887(ecn: NWProtocolIP_ECN): NWProtocolIP_Metadata;
+    ecn61475(ecn: NWProtocolIP_ECN): NWProtocolIP_Metadata;
     /**
      * init()
      * @availability iOS 12.0+
@@ -4317,17 +4317,17 @@ export declare class NWTXTRecord extends SDKHandle {
      * init(_ dictionary: [String : String] = [:])
      * @availability iOS 13.0+
      */
-    static init712(dictionary?: Record<string, string>): NWTXTRecord;
+    static init95449(dictionary?: Record<string, string>): NWTXTRecord;
     /**
      * init(_ dataDictionary: [String : Data])
      * @availability iOS 26.4+
      */
-    static init713(dataDictionary: Record<string, ArrayBuffer>): NWTXTRecord;
+    static init27839(dataDictionary: Record<string, ArrayBuffer>): NWTXTRecord;
     /**
      * init(_ entryDictionary: [String : NWTXTRecord.Entry])
      * @availability iOS 26.4+
      */
-    static init714(entryDictionary: $SDK105): NWTXTRecord;
+    static init14563(entryDictionary: $SDK105): NWTXTRecord;
     /**
      * subscript(position: NWTXTRecord.Index) -> NWTXTRecord.Element { get }
      * @availability iOS 13.0+
@@ -4337,7 +4337,7 @@ export declare class NWTXTRecord extends SDKHandle {
      * subscript(key: String) -> String? { get set }
      * @availability iOS 13.0+
      */
-    subscript716(key: string): (string) | null;
+    subscript75626(key: string): (string) | null;
 }
 /**
  * typealias Element = (key: String, value: NWTXTRecord.Entry)

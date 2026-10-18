@@ -209,7 +209,7 @@ export declare class CHHapticEngine extends SDKHandle {
      * func playPattern(from fileURL: URL) throws
      * @availability iOS 13.0+
      */
-    playPatternFrom57(fileURL: string): void;
+    playPatternFrom83173(fileURL: string): void;
     /**
      * func registerAudioResource(_ resourceURL: URL, options: [AnyHashable : Any] = [:]) throws -> CHHapticAudioResourceID
      * @availability iOS 13.0+

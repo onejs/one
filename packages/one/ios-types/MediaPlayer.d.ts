@@ -1901,17 +1901,17 @@ export declare class MPMusicPlayerController extends SDKHandle {
      * func setQueue(with itemCollection: MPMediaItemCollection)
      * @availability iOS 3.0+
      */
-    setQueueWith411(itemCollection: MPMediaItemCollection): void;
+    setQueueWith17497(itemCollection: MPMediaItemCollection): void;
     /**
      * func setQueue(with query: MPMediaQuery)
      * @availability iOS 3.0+
      */
-    setQueueWith412(query: MPMediaQuery): void;
+    setQueueWith78008(query: MPMediaQuery): void;
     /**
      * func setQueue(with storeIDs: [String])
      * @availability iOS 9.3+
      */
-    setQueueWith413(storeIDs: Array<string>): void;
+    setQueueWith89099(storeIDs: Array<string>): void;
     /**
      * func skipToBeginning()
      * @availability iOS 3.0+

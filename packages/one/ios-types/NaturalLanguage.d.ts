@@ -239,7 +239,7 @@ export declare class NLEmbedding extends SDKHandle {
      * @nonobjc func neighbors(for vector: [Double], maximumCount maxCount: Int, distanceType: NLDistanceType = .cosine) -> [(String, NLDistance)]
      * @availability iOS 13.0+
      */
-    neighborsForMaximumCountDistanceType224(vector: Array<number>, maxCount: number, distanceType?: NLDistanceType): Array<[string, number]>;
+    neighborsForMaximumCountDistanceType78787(vector: Array<number>, maxCount: number, distanceType?: NLDistanceType): Array<[string, number]>;
 }
 /**
  * class NLGazetteer

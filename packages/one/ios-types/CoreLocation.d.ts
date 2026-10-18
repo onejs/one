@@ -735,7 +735,7 @@ export declare class CLLocationManager extends SDKHandle {
      * var authorizationStatus: CLAuthorizationStatus { get }
      * @availability iOS 14.0+
      */
-    get authorizationStatus93(): CLAuthorizationStatus;
+    get authorizationStatus2871(): CLAuthorizationStatus;
     /**
      * var isAuthorizedForWidgetUpdates: Bool { get }
      * @availability iOS 14.0+

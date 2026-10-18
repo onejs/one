@@ -46,7 +46,7 @@ export declare class LinkMetadata extends SDKHandle {
      * nonisolated init(fetching url: URL, timeout: Duration = .seconds(30), includeSubresources: Bool = true) async throws
      * @availability iOS 26.4+
      */
-    static initFetchingTimeoutIncludeSubresources42(url: string, timeout?: SDKHandle, includeSubresources?: boolean): Promise<LinkMetadata>;
+    static initFetchingTimeoutIncludeSubresources27880(url: string, timeout?: SDKHandle, includeSubresources?: boolean): Promise<LinkMetadata>;
     /**
      * nonisolated init?(_ metadata: sending LPLinkMetadata)
      * @availability iOS 26.4+
@@ -222,7 +222,7 @@ export declare class LPMetadataProvider extends SDKHandle {
      * func startFetchingMetadata(for URL: URL) async throws -> LPLinkMetadata
      * @availability iOS 13.0+
      */
-    startFetchingMetadataForCompletionHandler24(URL: string, completionHandler: $SDK1): void;
+    startFetchingMetadataForCompletionHandler54315(URL: string, completionHandler: $SDK1): void;
     /**
      * var shouldFetchSubresources: Bool { get set }
      * @availability iOS 13.0+

@@ -338,7 +338,7 @@ export declare class GroupSessionEvent_Action extends SDKHandle {
     /** static let updatedQueue: GroupSessionEvent.Action */
     static get updatedQueue(): GroupSessionEvent_Action;
     /** static func updatedQueue(_ change: GroupSessionEvent.Action.QueueChange) -> GroupSessionEvent.Action */
-    static updatedQueue8(change: GroupSessionEvent_Action_QueueChange): GroupSessionEvent_Action;
+    static updatedQueue9711(change: GroupSessionEvent_Action_QueueChange): GroupSessionEvent_Action;
     /**
      * static let play: GroupSessionEvent.Action
      * @availability iOS 15.0+
@@ -473,11 +473,11 @@ export declare class GroupSessionMessenger extends SDKHandle {
     /** final func send(_ value: Data, to participants: Participants = .all, completion: @escaping ((any Error)?) -> Void) */
     sendToCompletion(value: ArrayBuffer, participants: Participants, completion: $SDK6): void;
     /** final func send<Message>(_ value: Message, to participants: Participants = .all, completion: @escaping ((any Error)?) -> Void) where Message : Decodable, Message : Encodable */
-    sendToCompletion70(value: number, participants: Participants, completion: $SDK6): void;
+    sendToCompletion24296(value: number, participants: Participants, completion: $SDK6): void;
     /** final func send(_ value: Data, to participants: Participants = .all) async throws */
     sendTo(value: ArrayBuffer, participants?: Participants): Promise<void>;
     /** final func send<Message>(_ value: Message, to participants: Participants = .all) async throws where Message : Decodable, Message : Encodable */
-    sendTo72(value: number, participants?: Participants): Promise<void>;
+    sendTo78309(value: number, participants?: Participants): Promise<void>;
     /** final func messages<Message>(of type: Message.Type) -> GroupSessionMessenger.Messages<Message> where Message : Decodable, Message : Encodable */
     messages(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): GroupSessionMessenger_Messages<unknown>;
 }

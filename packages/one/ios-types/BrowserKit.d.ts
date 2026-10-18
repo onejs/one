@@ -170,12 +170,12 @@ export declare class BEBrowserDataExportManager extends SDKHandle {
      * static var userActivityType: String { get }
      * @availability iOS 26.4+
      */
-    static get userActivityType69(): string;
+    static get userActivityType24094(): string;
     /**
      * static var exportTokenUserInfoKey: String { get }
      * @availability iOS 26.4+
      */
-    static get exportTokenUserInfoKey70(): string;
+    static get exportTokenUserInfoKey45680(): string;
 }
 declare const BEBrowserDataExtension_base: Omit<typeof BEBrowserData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => BEBrowserData);
 /**
@@ -310,12 +310,12 @@ export declare class BEBrowserDataImportManager extends SDKHandle {
      * static var userActivityType: String { get }
      * @availability iOS 26.4+
      */
-    static get userActivityType72(): string;
+    static get userActivityType6649(): string;
     /**
      * static var importTokenUserInfoKey: String { get }
      * @availability iOS 26.4+
      */
-    static get importTokenUserInfoKey73(): string;
+    static get importTokenUserInfoKey9918(): string;
 }
 declare const BEBrowserDataReadingListItem_base: Omit<typeof BEBrowserData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => BEBrowserData);
 /**

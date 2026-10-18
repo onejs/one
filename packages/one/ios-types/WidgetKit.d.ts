@@ -505,17 +505,17 @@ export declare class IntentRecommendation<T = unknown> extends SDKHandle {
      * init(intent: T, description: LocalizedStringKey)
      * @availability iOS 16.0+
      */
-    static initIntentDescription89(intent: _Intents_INIntent, description: _SwiftUICore_LocalizedStringKey): $SDK5;
+    static initIntentDescription61273(intent: _Intents_INIntent, description: _SwiftUICore_LocalizedStringKey): $SDK5;
     /**
      * init(intent: T, description: Text)
      * @availability iOS 16.0+
      */
-    static initIntentDescription90(intent: _Intents_INIntent, description: _SwiftUICore_Text): $SDK5;
+    static initIntentDescription4176(intent: _Intents_INIntent, description: _SwiftUICore_Text): $SDK5;
     /**
      * init<S>(intent: T, description: S) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initIntentDescription91(intent: _Intents_INIntent, description: string): $SDK5;
+    static initIntentDescription44801(intent: _Intents_INIntent, description: string): $SDK5;
 }
 /**
  * protocol IntentTimelineProvider

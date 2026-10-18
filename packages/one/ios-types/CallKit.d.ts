@@ -142,7 +142,7 @@ export declare class CXCallController extends SDKHandle {
      * func requestTransaction(with actions: [CXAction]) async throws
      * @availability iOS 11.0+
      */
-    requestTransactionWithCompletion26(actions: Array<CXAction>, completion: $SDK0): void;
+    requestTransactionWithCompletion79419(actions: Array<CXAction>, completion: $SDK0): void;
     /**
      * var callObserver: CXCallObserver { get }
      * @availability iOS 10.0+

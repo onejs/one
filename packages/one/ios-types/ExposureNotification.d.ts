@@ -812,12 +812,6 @@ export declare class ENManager extends SDKHandle {
      */
     setExposureNotificationEnabled(enabled: boolean, completionHandler: $SDK13): void;
     /**
-     * var activityHandler: ENActivityHandler? { get set }
-     * @availability iOS 12.5+
-     * @deprecated iOS 27.0
-     */
-    set activityHandler(value: (((arg0: ENActivityFlags) => void)) | null);
-    /**
      * var diagnosisKeysAvailableHandler: ENDiagnosisKeysAvailableHandler? { get set }
      * @availability iOS 14.4+
      * @deprecated iOS 27.0

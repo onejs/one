@@ -30,7 +30,7 @@ type $SDK11 = {
 type $SDK15 = (PKStrokeRenderStateReference) | null;
 type $SDK16 = Implements<PKToolPickerObserver> | SDKHandle;
 type $SDK17 = (_UIKit_UIBarButtonItem) | null;
-type $SDK21 = Record<number, _UIKit_UIImage>;
+type $SDK20 = Record<number, _UIKit_UIImage>;
 /**
  * class PKCanvasView
  * @availability iOS 13.0+
@@ -891,7 +891,7 @@ export declare class PKStrokePath extends SDKHandle {
      * subscript(range: ClosedRange<CGFloat>) -> PKStrokePath { get }
      * @availability iOS 27.0+
      */
-    subscript207(range: $SDK3): PKStrokePath;
+    subscript52479(range: $SDK3): PKStrokePath;
 }
 /**
  * struct ConvertedBezierPoint
@@ -1363,7 +1363,7 @@ export declare class PKStrokeRenderStateReference extends SDKHandle {
      * convenience init(_ swiftValue: PKStroke.RenderState)
      * @availability iOS 27.0+
      */
-    static init289(swiftValue: PKStroke_RenderState): PKStrokeRenderStateReference;
+    static init10417(swiftValue: PKStroke_RenderState): PKStrokeRenderStateReference;
 }
 /**
  * protocol PKTool
@@ -1595,13 +1595,12 @@ export declare class PKToolPickerCustomItem_Configuration extends SDKHandle {
      * @availability iOS 18.0+
      */
     get imageProvider(): (((arg0: PKToolPickerCustomItem) => Promise<_UIKit_UIImage>)) | null;
-    set imageProvider(value: (((arg0: PKToolPickerCustomItem) => _UIKit_UIImage)) | null);
     /**
      * var widthVariants: [CGFloat : UIImage]
      * @availability iOS 18.0+
      */
-    get widthVariants(): $SDK21;
-    set widthVariants(value: $SDK21);
+    get widthVariants(): $SDK20;
+    set widthVariants(value: $SDK20);
     /**
      * var allowsColorSelection: Bool
      * @availability iOS 18.0+
@@ -1619,7 +1618,6 @@ export declare class PKToolPickerCustomItem_Configuration extends SDKHandle {
      * @availability iOS 18.0+
      */
     get viewControllerProvider(): (((arg0: PKToolPickerCustomItem) => Promise<_UIKit_UIViewController>)) | null;
-    set viewControllerProvider(value: (((arg0: PKToolPickerCustomItem) => _UIKit_UIViewController)) | null);
     /**
      * var name: String
      * @availability iOS 18.0+

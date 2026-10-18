@@ -32,35 +32,34 @@ type $SDK24 = _Foundation_Measurement<_Foundation_UnitAngle>;
 type $SDK25 = (_Foundation_Measurement<_Foundation_UnitAngle>) | null;
 type $SDK31 = Array<CPListImageRowItemElement>;
 type $SDK32 = (((arg0: SDKHandle, arg1: (() => void)) => Promise<void>)) | null;
-type $SDK33 = (((arg0: SDKHandle, arg1: (() => Promise<void>)) => void)) | null;
-type $SDK38 = (CPListTemplateDetailsHeader) | null;
-type $SDK39 = (CPAssistantCellConfiguration) | null;
-type $SDK40 = (Array<CPGridButton>) | null;
-type $SDK41 = (CPTravelEstimates) | null;
-type $SDK42 = (Array<_Foundation_Measurement<_Foundation_UnitAngle>>) | null;
-type $SDK44 = Array<CPMapPanelSection>;
-type $SDK45 = (CPMapPanelButtonConfiguration) | null;
-type $SDK47 = (((arg0: CPMapPanelItem, arg1: (() => Promise<void>)) => void)) | null;
-type $SDK49 = (CPTripPreviewTextConfiguration) | null;
-type $SDK52 = {
+type $SDK36 = (CPListTemplateDetailsHeader) | null;
+type $SDK37 = (CPAssistantCellConfiguration) | null;
+type $SDK38 = (Array<CPGridButton>) | null;
+type $SDK39 = (CPTravelEstimates) | null;
+type $SDK40 = (Array<_Foundation_Measurement<_Foundation_UnitAngle>>) | null;
+type $SDK42 = Array<CPMapPanelSection>;
+type $SDK43 = (CPMapPanelButtonConfiguration) | null;
+type $SDK45 = (((arg0: CPMapPanelItem, arg1: (() => Promise<void>)) => void)) | null;
+type $SDK47 = (CPTripPreviewTextConfiguration) | null;
+type $SDK50 = {
     x: number;
     y: number;
 };
-type $SDK53 = (CPMessageListItemTrailingConfiguration) | null;
-type $SDK54 = (_Foundation_Measurement<_Foundation_UnitLength>) | null;
-type $SDK55 = (_Foundation_TimeZone) | null;
-type $SDK56 = Array<CPLocationCoordinate3D>;
-type $SDK57 = (((arg0: CPNowPlayingButton) => void)) | null;
-type $SDK58 = (CPNowPlayingSportsEventStatus) | null;
-type $SDK59 = (CPNowPlayingSportsClock) | null;
-type $SDK60 = Implements<CPNowPlayingTemplateObserver> | SDKHandle;
-type $SDK63 = Array<CPPointOfInterest>;
-type $SDK65 = _Foundation_Measurement<_Foundation_UnitMass>;
-type $SDK66 = _Foundation_Measurement<_Foundation_UnitEnergy>;
-type $SDK72 = Array<_UIKit_UIOpenURLContext>;
-type $SDK76 = (CPSportsOverlay) | null;
-type $SDK77 = _Foundation_Measurement<_Foundation_UnitLength>;
-type $SDK79 = (CPTemplateApplicationScene) | null;
+type $SDK51 = (CPMessageListItemTrailingConfiguration) | null;
+type $SDK52 = (_Foundation_Measurement<_Foundation_UnitLength>) | null;
+type $SDK53 = (_Foundation_TimeZone) | null;
+type $SDK54 = Array<CPLocationCoordinate3D>;
+type $SDK55 = (((arg0: CPNowPlayingButton) => void)) | null;
+type $SDK56 = (CPNowPlayingSportsEventStatus) | null;
+type $SDK57 = (CPNowPlayingSportsClock) | null;
+type $SDK58 = Implements<CPNowPlayingTemplateObserver> | SDKHandle;
+type $SDK61 = Array<CPPointOfInterest>;
+type $SDK63 = _Foundation_Measurement<_Foundation_UnitMass>;
+type $SDK64 = _Foundation_Measurement<_Foundation_UnitEnergy>;
+type $SDK70 = Array<_UIKit_UIOpenURLContext>;
+type $SDK74 = (CPSportsOverlay) | null;
+type $SDK75 = _Foundation_Measurement<_Foundation_UnitLength>;
+type $SDK77 = (CPTemplateApplicationScene) | null;
 /**
  * @MainActor class CPTemplate
  * @availability iOS 12.0+
@@ -1244,7 +1243,6 @@ export declare class CPListImageRowItem extends SDKHandle {
      * @availability iOS 14.0+
      */
     get handler(): Promise<$SDK32>;
-    setHandler(value?: $SDK33): Promise<void>;
     /**
      * var imageTitles: [String] { get }
      * @availability iOS 17.4+
@@ -1256,7 +1254,6 @@ export declare class CPListImageRowItem extends SDKHandle {
      * @availability iOS 14.0+
      */
     get listImageRowHandler(): Promise<(((arg0: CPListImageRowItem, arg1: number, arg2: (() => void)) => Promise<void>)) | null>;
-    setListImageRowHandler(value?: (((arg0: CPListImageRowItem, arg1: number, arg2: (() => Promise<void>)) => void)) | null): Promise<void>;
     /**
      * var text: String? { get set }
      * @availability iOS 14.0+
@@ -1561,7 +1558,6 @@ export declare class CPListItem extends SDKHandle {
      * @availability iOS 14.0+
      */
     get handler(): Promise<$SDK32>;
-    setHandler(value?: $SDK33): Promise<void>;
     /**
      * var image: UIImage? { get }
      * @availability iOS 12.0+
@@ -1718,7 +1714,7 @@ export declare class CPListSection extends SDKHandle {
      * convenience init(items: [CPListItem], header: String?, sectionIndexTitle: String?)
      * @availability iOS 12.0+
      */
-    static initItemsHeaderSectionIndexTitle825(items: Array<CPListItem>, header?: (string) | null, sectionIndexTitle?: (string) | null): CPListSection;
+    static initItemsHeaderSectionIndexTitle52736(items: Array<CPListItem>, header?: (string) | null, sectionIndexTitle?: (string) | null): CPListSection;
     /**
      * convenience init(items: [any CPListTemplateItem])
      * @availability iOS 14.0+
@@ -1728,7 +1724,7 @@ export declare class CPListSection extends SDKHandle {
      * convenience init(items: [CPListItem])
      * @availability iOS 12.0+
      */
-    static initItems827(items: Array<CPListItem>): CPListSection;
+    static initItems71363(items: Array<CPListItem>): CPListSection;
 }
 /**
  * @MainActor class CPListTemplate
@@ -1764,7 +1760,7 @@ export declare class CPListTemplate extends CPTemplate {
      * init(title: String?, listHeader: CPListTemplateDetailsHeader?, sections: [CPListSection], assistantCellConfiguration: CPAssistantCellConfiguration?)
      * @availability iOS 26.4+
      */
-    static initTitleListHeaderSectionsAssistantCellConfiguration(title: (string) | null, listHeader: $SDK38, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK39): Promise<CPListTemplate>;
+    static initTitleListHeaderSectionsAssistantCellConfiguration(title: (string) | null, listHeader: $SDK36, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK37): Promise<CPListTemplate>;
     /**
      * init(title: String?, sections: [CPListSection])
      * @availability iOS 12.0+
@@ -1774,12 +1770,12 @@ export declare class CPListTemplate extends CPTemplate {
      * init(title: String?, sections: [CPListSection], assistantCellConfiguration: CPAssistantCellConfiguration?)
      * @availability iOS 15.0+
      */
-    static initTitleSectionsAssistantCellConfiguration(title: (string) | null, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK39): Promise<CPListTemplate>;
+    static initTitleSectionsAssistantCellConfiguration(title: (string) | null, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK37): Promise<CPListTemplate>;
     /**
      * init(title: String?, sections: [CPListSection], assistantCellConfiguration: CPAssistantCellConfiguration?, headerGridButtons: [CPGridButton]?)
      * @availability iOS 26.0+
      */
-    static initTitleSectionsAssistantCellConfigurationHeaderGridButtons(title: (string) | null, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK39, headerGridButtons?: $SDK40): Promise<CPListTemplate>;
+    static initTitleSectionsAssistantCellConfigurationHeaderGridButtons(title: (string) | null, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK37, headerGridButtons?: $SDK38): Promise<CPListTemplate>;
     /**
      * func updateSections(_ sections: [CPListSection])
      * @availability iOS 12.0+
@@ -1789,8 +1785,8 @@ export declare class CPListTemplate extends CPTemplate {
      * var assistantCellConfiguration: CPAssistantCellConfiguration? { get set }
      * @availability iOS 15.0+
      */
-    get assistantCellConfiguration(): Promise<$SDK39>;
-    setAssistantCellConfiguration(value?: $SDK39): Promise<void>;
+    get assistantCellConfiguration(): Promise<$SDK37>;
+    setAssistantCellConfiguration(value?: $SDK37): Promise<void>;
     /**
      * weak var delegate: (any CPListTemplateDelegate)? { get set }
      * @availability iOS 12.0+
@@ -1814,8 +1810,8 @@ export declare class CPListTemplate extends CPTemplate {
      * var headerGridButtons: [CPGridButton]? { get set }
      * @availability iOS 26.0+
      */
-    get headerGridButtons(): Promise<$SDK40>;
-    setHeaderGridButtons(value?: $SDK40): Promise<void>;
+    get headerGridButtons(): Promise<$SDK38>;
+    setHeaderGridButtons(value?: $SDK38): Promise<void>;
     /**
      * var itemCount: Int { get }
      * @availability iOS 14.0+
@@ -1825,8 +1821,8 @@ export declare class CPListTemplate extends CPTemplate {
      * var listHeader: CPListTemplateDetailsHeader? { get set }
      * @availability iOS 26.4+
      */
-    get listHeader(): Promise<$SDK38>;
-    setListHeader(value?: $SDK38): Promise<void>;
+    get listHeader(): Promise<$SDK36>;
+    setListHeader(value?: $SDK36): Promise<void>;
     /**
      * var sectionCount: Int { get }
      * @availability iOS 14.0+
@@ -2019,8 +2015,8 @@ export declare class CPManeuver extends SDKHandle {
      * var initialTravelEstimates: CPTravelEstimates? { get set }
      * @availability iOS 12.0+
      */
-    get initialTravelEstimates(): $SDK41;
-    set initialTravelEstimates(value: $SDK41);
+    get initialTravelEstimates(): $SDK39;
+    set initialTravelEstimates(value: $SDK39);
     /**
      * var instructionVariants: [String] { get set }
      * @availability iOS 12.0+
@@ -2031,8 +2027,8 @@ export declare class CPManeuver extends SDKHandle {
      * var junctionElementAngles: Set<Measurement<UnitAngle>>? { get set }
      * @availability iOS 17.4+
      */
-    get junctionElementAngles(): $SDK42;
-    set junctionElementAngles(value: $SDK42);
+    get junctionElementAngles(): $SDK40;
+    set junctionElementAngles(value: $SDK40);
     /**
      * var junctionExitAngle: Measurement<UnitAngle>? { get set }
      * @availability iOS 17.4+
@@ -2235,12 +2231,12 @@ export declare class CPMapPanel extends CPMapPanel_base {
      * init(title: String?, sections: [CPMapPanelSection], buttonConfiguration: CPMapPanelButtonConfiguration?)
      * @availability iOS 27.0+
      */
-    static init(title: (string) | null, sections: $SDK44, buttonConfiguration?: $SDK45): CPMapPanel;
+    static init(title: (string) | null, sections: $SDK42, buttonConfiguration?: $SDK43): CPMapPanel;
     /**
      * var buttonConfiguration: CPMapPanelButtonConfiguration? { get }
      * @availability iOS 27.0+
      */
-    get buttonConfiguration(): $SDK45;
+    get buttonConfiguration(): $SDK43;
     /**
      * weak var delegate: (any CPMapPanel.Delegate)? { get set }
      * @availability iOS 27.0+
@@ -2251,8 +2247,8 @@ export declare class CPMapPanel extends CPMapPanel_base {
      * var sections: [CPMapPanelSection] { get set }
      * @availability iOS 27.0+
      */
-    get sections(): $SDK44;
-    set sections(value: $SDK44);
+    get sections(): $SDK42;
+    set sections(value: $SDK42);
     /**
      * var title: String? { get }
      * @availability iOS 27.0+
@@ -2316,8 +2312,8 @@ export declare class CPMapPanelButtonConfiguration extends CPMapPanelButtonConfi
      * @NSCopying var travelEstimates: CPTravelEstimates? { get set }
      * @availability iOS 27.0+
      */
-    get travelEstimates(): $SDK41;
-    set travelEstimates(value: $SDK41);
+    get travelEstimates(): $SDK39;
+    set travelEstimates(value: $SDK39);
 }
 /**
  * class CPPanelItem
@@ -2362,32 +2358,32 @@ export declare class CPMapPanelItem extends CPPanelItem {
      * init(chargingStationConnection: CPChargingStationConnection, handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
      * @availability iOS 27.0+
      */
-    static initChargingStationConnectionHandler(chargingStationConnection: CPChargingStationConnection, handler?: $SDK47): CPMapPanelItem;
+    static initChargingStationConnectionHandler(chargingStationConnection: CPChargingStationConnection, handler?: $SDK45): CPMapPanelItem;
     /**
      * init(mapTemplateWaypoint: CPMapTemplateWaypoint, image: UIImage?, handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
      * @availability iOS 27.0+
      */
-    static initMapTemplateWaypointImageHandler(mapTemplateWaypoint: CPMapTemplateWaypoint, image?: (_UIKit_UIImage) | null, handler?: $SDK47): CPMapPanelItem;
+    static initMapTemplateWaypointImageHandler(mapTemplateWaypoint: CPMapTemplateWaypoint, image?: (_UIKit_UIImage) | null, handler?: $SDK45): CPMapPanelItem;
     /**
      * init(routeChoice: CPRouteChoice, handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
      * @availability iOS 27.0+
      */
-    static initRouteChoiceHandler(routeChoice: CPRouteChoice, handler?: $SDK47): CPMapPanelItem;
+    static initRouteChoiceHandler(routeChoice: CPRouteChoice, handler?: $SDK45): CPMapPanelItem;
     /**
      * init(routeDetails: [CPRouteDetail], handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
      * @availability iOS 27.0+
      */
-    static initRouteDetailsHandler(routeDetails: Array<CPRouteDetail>, handler?: $SDK47): CPMapPanelItem;
+    static initRouteDetailsHandler(routeDetails: Array<CPRouteDetail>, handler?: $SDK45): CPMapPanelItem;
     /**
      * init(travelEstimates: CPTravelEstimates, handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
      * @availability iOS 27.0+
      */
-    static initTravelEstimatesHandler(travelEstimates: CPTravelEstimates, handler?: $SDK47): CPMapPanelItem;
+    static initTravelEstimatesHandler(travelEstimates: CPTravelEstimates, handler?: $SDK45): CPMapPanelItem;
     /**
      * init(trip: CPTrip, handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
      * @availability iOS 27.0+
      */
-    static initTripHandler(trip: CPTrip, handler?: $SDK47): CPMapPanelItem;
+    static initTripHandler(trip: CPTrip, handler?: $SDK45): CPMapPanelItem;
 }
 /**
  * class CPMapPanelSection
@@ -2469,17 +2465,17 @@ export declare class CPMapTemplate extends CPMapTemplate_base {
      * func showRouteChoicesPreview(for tripPreview: CPTrip, textConfiguration: CPTripPreviewTextConfiguration?)
      * @availability iOS 12.0+
      */
-    showRouteChoicesPreview(tripPreview: CPTrip, textConfiguration?: $SDK49): Promise<void>;
+    showRouteChoicesPreview(tripPreview: CPTrip, textConfiguration?: $SDK47): Promise<void>;
     /**
      * func showTripPreviews(_ tripPreviews: [CPTrip], selectedTrip: CPTrip?, textConfiguration: CPTripPreviewTextConfiguration?)
      * @availability iOS 14.0+
      */
-    showTripPreviewsSelectedTripTextConfiguration(tripPreviews: Array<CPTrip>, selectedTrip?: (CPTrip) | null, textConfiguration?: $SDK49): Promise<void>;
+    showTripPreviewsSelectedTripTextConfiguration(tripPreviews: Array<CPTrip>, selectedTrip?: (CPTrip) | null, textConfiguration?: $SDK47): Promise<void>;
     /**
      * func showTripPreviews(_ tripPreviews: [CPTrip], textConfiguration: CPTripPreviewTextConfiguration?)
      * @availability iOS 12.0+
      */
-    showTripPreviewsTextConfiguration(tripPreviews: Array<CPTrip>, textConfiguration?: $SDK49): Promise<void>;
+    showTripPreviewsTextConfiguration(tripPreviews: Array<CPTrip>, textConfiguration?: $SDK47): Promise<void>;
     /**
      * func startNavigationSession(for trip: CPTrip) -> CPNavigationSession
      * @availability iOS 12.0+
@@ -2663,12 +2659,12 @@ export interface CPMapTemplateDelegate {
      * optional func mapTemplate(_ mapTemplate: CPMapTemplate, didUpdatePanGestureWithTranslation translation: CGPoint, velocity: CGPoint)
      * @availability iOS 12.0+
      */
-    "mapTemplateDidUpdatePanGestureWithTranslationVelocity"?: (arg0: CPMapTemplate, arg1: $SDK52, arg2: $SDK52) => void;
+    "mapTemplateDidUpdatePanGestureWithTranslationVelocity"?: (arg0: CPMapTemplate, arg1: $SDK50, arg2: $SDK50) => void;
     /**
      * optional func mapTemplate(_ mapTemplate: CPMapTemplate, didEndPanGestureWithVelocity velocity: CGPoint)
      * @availability iOS 12.0+
      */
-    "mapTemplateDidEndPanGestureWithVelocity"?: (arg0: CPMapTemplate, arg1: $SDK52) => void;
+    "mapTemplateDidEndPanGestureWithVelocity"?: (arg0: CPMapTemplate, arg1: $SDK50) => void;
     /**
      * optional func mapTemplateDidBeginZoomGesture(_ mapTemplate: CPMapTemplate)
      * @availability iOS 26.0+
@@ -2678,7 +2674,7 @@ export interface CPMapTemplateDelegate {
      * optional func mapTemplate(_ mapTemplate: CPMapTemplate, didUpdateZoomGestureWithCenter center: CGPoint, scale: CGFloat, velocity: CGFloat)
      * @availability iOS 26.0+
      */
-    "mapTemplateDidUpdateZoomGestureWithCenterScaleVelocity"?: (arg0: CPMapTemplate, arg1: $SDK52, arg2: number, arg3: number) => void;
+    "mapTemplateDidUpdateZoomGestureWithCenterScaleVelocity"?: (arg0: CPMapTemplate, arg1: $SDK50, arg2: number, arg3: number) => void;
     /**
      * optional func mapTemplate(_ mapTemplate: CPMapTemplate, didEndZoomGestureWithVelocity velocity: CGFloat)
      * @availability iOS 26.0+
@@ -2693,7 +2689,7 @@ export interface CPMapTemplateDelegate {
      * optional func mapTemplate(_ mapTemplate: CPMapTemplate, didRotateWithCenter center: CGPoint, rotation: CGFloat, velocity: CGFloat)
      * @availability iOS 26.0+
      */
-    "mapTemplateDidRotateWithCenterRotationVelocity"?: (arg0: CPMapTemplate, arg1: $SDK52, arg2: number, arg3: number) => void;
+    "mapTemplateDidRotateWithCenterRotationVelocity"?: (arg0: CPMapTemplate, arg1: $SDK50, arg2: number, arg3: number) => void;
     /**
      * optional func mapTemplate(_ mapTemplate: CPMapTemplate, rotationDidEndWithVelocity velocity: CGFloat)
      * @availability iOS 26.0+
@@ -2708,12 +2704,12 @@ export interface CPMapTemplateDelegate {
      * optional func mapTemplate(_ mapTemplate: CPMapTemplate, pitchWithCenter center: CGPoint)
      * @availability iOS 26.0+
      */
-    "mapTemplatePitchWithCenter"?: (arg0: CPMapTemplate, arg1: $SDK52) => void;
+    "mapTemplatePitchWithCenter"?: (arg0: CPMapTemplate, arg1: $SDK50) => void;
     /**
      * optional func mapTemplate(_ mapTemplate: CPMapTemplate, pitchEndedWithCenter center: CGPoint)
      * @availability iOS 26.0+
      */
-    "mapTemplatePitchEndedWithCenter"?: (arg0: CPMapTemplate, arg1: $SDK52) => void;
+    "mapTemplatePitchEndedWithCenter"?: (arg0: CPMapTemplate, arg1: $SDK50) => void;
     /**
      * optional func mapTemplate(_ mapTemplate: CPMapTemplate, willShow navigationAlert: CPNavigationAlert)
      * @availability iOS 12.0+
@@ -2830,12 +2826,12 @@ export declare class CPMessageListItem extends SDKHandle {
      * init(conversationIdentifier: String, text: String, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration: CPMessageListItemTrailingConfiguration?, detailText: String?, trailingText: String?)
      * @availability iOS 14.0+
      */
-    static initConversationIdentifierTextLeadingConfigurationTrailingConfigurationDetailTextTrailingText(conversationIdentifier: string, text: string, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration?: $SDK53, detailText?: (string) | null, trailingText?: (string) | null): CPMessageListItem;
+    static initConversationIdentifierTextLeadingConfigurationTrailingConfigurationDetailTextTrailingText(conversationIdentifier: string, text: string, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration?: $SDK51, detailText?: (string) | null, trailingText?: (string) | null): CPMessageListItem;
     /**
      * init(fullName: String, phoneOrEmailAddress: String, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration: CPMessageListItemTrailingConfiguration?, detailText: String?, trailingText: String?)
      * @availability iOS 14.0+
      */
-    static initFullNamePhoneOrEmailAddressLeadingConfigurationTrailingConfigurationDetailTextTrailingText(fullName: string, phoneOrEmailAddress: string, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration?: $SDK53, detailText?: (string) | null, trailingText?: (string) | null): CPMessageListItem;
+    static initFullNamePhoneOrEmailAddressLeadingConfigurationTrailingConfigurationDetailTextTrailingText(fullName: string, phoneOrEmailAddress: string, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration?: $SDK51, detailText?: (string) | null, trailingText?: (string) | null): CPMessageListItem;
     /**
      * var conversationIdentifier: String? { get set }
      * @availability iOS 14.0+
@@ -2882,8 +2878,8 @@ export declare class CPMessageListItem extends SDKHandle {
      * var trailingConfiguration: CPMessageListItemTrailingConfiguration? { get set }
      * @availability iOS 14.0+
      */
-    get trailingConfiguration(): $SDK53;
-    set trailingConfiguration(value: $SDK53);
+    get trailingConfiguration(): $SDK51;
+    set trailingConfiguration(value: $SDK51);
     /**
      * var trailingText: String? { get set }
      * @availability iOS 14.0+
@@ -3118,7 +3114,7 @@ export declare class CPNavigationSession extends SDKHandle {
      * func add(_ maneuvers: [CPManeuver])
      * @availability iOS 17.4+
      */
-    add519(maneuvers: Array<CPManeuver>): Promise<void>;
+    add56920(maneuvers: Array<CPManeuver>): Promise<void>;
     /**
      * func addRouteSegments(_ routeSegments: [CPRouteSegment])
      * @availability iOS 26.4+
@@ -3258,7 +3254,7 @@ export declare class CPNavigationWaypoint extends SDKHandle {
      * var locationThreshold: Measurement<UnitLength>? { get }
      * @availability iOS 26.4+
      */
-    get locationThreshold(): $SDK54;
+    get locationThreshold(): $SDK52;
     /**
      * var name: String? { get }
      * @availability iOS 26.4+
@@ -3274,27 +3270,27 @@ export declare class CPNavigationWaypoint extends SDKHandle {
      * var timeZone: TimeZone? { get }
      * @availability iOS 26.4+
      */
-    get timeZone(): $SDK55;
+    get timeZone(): $SDK53;
     /**
      * convenience init(centerPoint: CPLocationCoordinate3D, locationThreshold: Measurement<UnitLength>?, nameVariants: [String], addressVariants: [String], entryPoints: [CPLocationCoordinate3D], timeZone: TimeZone?)
      * @availability iOS 26.4+
      */
-    static initCenterPointLocationThresholdNameVariantsAddressVariantsEntryPointsTimeZone(centerPoint: CPLocationCoordinate3D, locationThreshold: $SDK54, nameVariants: Array<string>, addressVariants: Array<string>, entryPoints: $SDK56, timeZone?: $SDK55): CPNavigationWaypoint;
+    static initCenterPointLocationThresholdNameVariantsAddressVariantsEntryPointsTimeZone(centerPoint: CPLocationCoordinate3D, locationThreshold: $SDK52, nameVariants: Array<string>, addressVariants: Array<string>, entryPoints: $SDK54, timeZone?: $SDK53): CPNavigationWaypoint;
     /**
      * convenience init(centerPoint: CPLocationCoordinate3D, locationThreshold: Measurement<UnitLength>?, name: String?, address: String?, entryPoints: [CPLocationCoordinate3D], timeZone: TimeZone?)
      * @availability iOS 26.4+
      */
-    static initCenterPointLocationThresholdNameAddressEntryPointsTimeZone(centerPoint: CPLocationCoordinate3D, locationThreshold: $SDK54, name: (string) | null, address: (string) | null, entryPoints: $SDK56, timeZone?: $SDK55): CPNavigationWaypoint;
+    static initCenterPointLocationThresholdNameAddressEntryPointsTimeZone(centerPoint: CPLocationCoordinate3D, locationThreshold: $SDK52, name: (string) | null, address: (string) | null, entryPoints: $SDK54, timeZone?: $SDK53): CPNavigationWaypoint;
     /**
      * var entryPoints: [CPLocationCoordinate3D] { get }
      * @availability iOS 26.4+
      */
-    get entryPoints(): $SDK56;
+    get entryPoints(): $SDK54;
     /**
      * convenience init(mapItem: MKMapItem, locationThreshold: Measurement<UnitLength>?, entryPoints: [CPLocationCoordinate3D])
      * @availability iOS 26.4+
      */
-    static initMapItemLocationThresholdEntryPoints(mapItem: _MapKit_MKMapItem, locationThreshold: $SDK54, entryPoints: $SDK56): CPNavigationWaypoint;
+    static initMapItemLocationThresholdEntryPoints(mapItem: _MapKit_MKMapItem, locationThreshold: $SDK52, entryPoints: $SDK54): CPNavigationWaypoint;
 }
 /**
  * @MainActor class CPNowPlayingButton
@@ -3307,7 +3303,7 @@ export declare class CPNowPlayingButton extends SDKHandle {
      * init(handler: ((CPNowPlayingButton) -> Void)? = nil)
      * @availability iOS 14.0+
      */
-    static initHandler(handler?: $SDK57): Promise<CPNowPlayingButton>;
+    static initHandler(handler?: $SDK55): Promise<CPNowPlayingButton>;
     /**
      * var isEnabled: Bool { get set }
      * @availability iOS 14.0+
@@ -3342,7 +3338,7 @@ export declare class CPNowPlayingImageButton extends CPNowPlayingImageButton_bas
      * init(image: UIImage, handler: ((CPNowPlayingButton) -> Void)? = nil)
      * @availability iOS 14.0+
      */
-    static initImageHandler(image: _UIKit_UIImage, handler?: $SDK57): Promise<CPNowPlayingImageButton>;
+    static initImageHandler(image: _UIKit_UIImage, handler?: $SDK55): Promise<CPNowPlayingImageButton>;
     /**
      * var image: UIImage? { get }
      * @availability iOS 14.0+
@@ -3374,7 +3370,7 @@ export declare class CPNowPlayingModeSports extends CPNowPlayingModeSports_base 
      * init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus: CPNowPlayingSportsEventStatus?, backgroundArtwork: UIImage?)
      * @availability iOS 18.4+
      */
-    static initLeftTeamRightTeamEventStatusBackgroundArtwork(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus?: $SDK58, backgroundArtwork?: (_UIKit_UIImage) | null): Promise<CPNowPlayingModeSports>;
+    static initLeftTeamRightTeamEventStatusBackgroundArtwork(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus?: $SDK56, backgroundArtwork?: (_UIKit_UIImage) | null): Promise<CPNowPlayingModeSports>;
     /**
      * @NSCopying var backgroundArtwork: UIImage? { get }
      * @availability iOS 18.4+
@@ -3384,7 +3380,7 @@ export declare class CPNowPlayingModeSports extends CPNowPlayingModeSports_base 
      * var eventStatus: CPNowPlayingSportsEventStatus? { get }
      * @availability iOS 18.4+
      */
-    get eventStatus(): Promise<$SDK58>;
+    get eventStatus(): Promise<$SDK56>;
     /**
      * var leftTeam: CPNowPlayingSportsTeam { get }
      * @availability iOS 18.4+
@@ -3472,12 +3468,12 @@ export declare class CPNowPlayingSportsEventStatus extends SDKHandle {
      * init(eventStatusText: [String]?, eventStatusImage: UIImage?, eventClock: CPNowPlayingSportsClock?)
      * @availability iOS 18.4+
      */
-    static init(eventStatusText?: (Array<string>) | null, eventStatusImage?: (_UIKit_UIImage) | null, eventClock?: $SDK59): Promise<CPNowPlayingSportsEventStatus>;
+    static init(eventStatusText?: (Array<string>) | null, eventStatusImage?: (_UIKit_UIImage) | null, eventClock?: $SDK57): Promise<CPNowPlayingSportsEventStatus>;
     /**
      * @NSCopying var eventClock: CPNowPlayingSportsClock? { get }
      * @availability iOS 18.4+
      */
-    get eventClock(): Promise<$SDK59>;
+    get eventClock(): Promise<$SDK57>;
     /**
      * @NSCopying var eventStatusImage: UIImage? { get }
      * @availability iOS 18.4+
@@ -3570,12 +3566,12 @@ export declare class CPNowPlayingTemplate extends CPTemplate {
      * func add(_ observer: any CPNowPlayingTemplateObserver)
      * @availability iOS 14.0+
      */
-    add(observer: $SDK60): Promise<void>;
+    add(observer: $SDK58): Promise<void>;
     /**
      * func remove(_ observer: any CPNowPlayingTemplateObserver)
      * @availability iOS 14.0+
      */
-    remove(observer: $SDK60): Promise<void>;
+    remove(observer: $SDK58): Promise<void>;
     /**
      * func updateNowPlayingButtons(_ nowPlayingButtons: [CPNowPlayingButton])
      * @availability iOS 14.0+
@@ -3804,12 +3800,12 @@ export declare class CPPointOfInterestTemplate extends CPPointOfInterestTemplate
      * init(title: String, pointsOfInterest: [CPPointOfInterest], selectedIndex: Int)
      * @availability iOS 14.0+
      */
-    static init(title: string, pointsOfInterest: $SDK63, selectedIndex: number): Promise<CPPointOfInterestTemplate>;
+    static init(title: string, pointsOfInterest: $SDK61, selectedIndex: number): Promise<CPPointOfInterestTemplate>;
     /**
      * func setPointsOfInterest(_ pointsOfInterest: [CPPointOfInterest], selectedIndex: Int)
      * @availability iOS 14.0+
      */
-    setPointsOfInterest(pointsOfInterest: $SDK63, selectedIndex: number): Promise<void>;
+    setPointsOfInterest(pointsOfInterest: $SDK61, selectedIndex: number): Promise<void>;
     /**
      * weak var pointOfInterestDelegate: (any CPPointOfInterestTemplateDelegate)? { get set }
      * @availability iOS 14.0+
@@ -3820,7 +3816,7 @@ export declare class CPPointOfInterestTemplate extends CPPointOfInterestTemplate
      * var pointsOfInterest: [CPPointOfInterest] { get }
      * @availability iOS 14.0+
      */
-    get pointsOfInterest(): Promise<$SDK63>;
+    get pointsOfInterest(): Promise<$SDK61>;
     /**
      * var selectedIndex: Int { get set }
      * @availability iOS 14.0+
@@ -3876,7 +3872,7 @@ export declare class CPRouteChoice extends SDKHandle {
      * init(summaryVariants: [String], additionalInformationVariants: [String], selectionSummaryVariants: [String], travelEstimates: CPTravelEstimates?)
      * @availability iOS 27.0+
      */
-    static initSummaryVariantsAdditionalInformationVariantsSelectionSummaryVariantsTravelEstimates(summaryVariants: Array<string>, additionalInformationVariants: Array<string>, selectionSummaryVariants: Array<string>, travelEstimates?: $SDK41): CPRouteChoice;
+    static initSummaryVariantsAdditionalInformationVariantsSelectionSummaryVariantsTravelEstimates(summaryVariants: Array<string>, additionalInformationVariants: Array<string>, selectionSummaryVariants: Array<string>, travelEstimates?: $SDK39): CPRouteChoice;
     /**
      * var additionalInformationVariants: [String]? { get }
      * @availability iOS 12.0+
@@ -3896,7 +3892,7 @@ export declare class CPRouteChoice extends SDKHandle {
      * var travelEstimates: CPTravelEstimates? { get }
      * @availability iOS 27.0+
      */
-    get travelEstimates(): $SDK41;
+    get travelEstimates(): $SDK39;
     /**
      * var userInfo: Any? { get set }
      * @availability iOS 12.0+
@@ -3918,7 +3914,7 @@ export declare class CPRouteDetail extends SDKHandle {
      * convenience init(carbonFootprint: Measurement<UnitMass>)
      * @availability iOS 27.0+
      */
-    static initCarbonFootprint(carbonFootprint: $SDK65): Promise<CPRouteDetail>;
+    static initCarbonFootprint(carbonFootprint: $SDK63): Promise<CPRouteDetail>;
     /**
      * convenience init(ecoScore value: Double)
      * @availability iOS 27.0+
@@ -3928,12 +3924,12 @@ export declare class CPRouteDetail extends SDKHandle {
      * convenience init(emissions: Measurement<UnitMass>)
      * @availability iOS 27.0+
      */
-    static initEmissions(emissions: $SDK65): Promise<CPRouteDetail>;
+    static initEmissions(emissions: $SDK63): Promise<CPRouteDetail>;
     /**
      * convenience init(fuelEnergy: Measurement<UnitEnergy>)
      * @availability iOS 27.0+
      */
-    static initFuelEnergy(fuelEnergy: $SDK66): Promise<CPRouteDetail>;
+    static initFuelEnergy(fuelEnergy: $SDK64): Promise<CPRouteDetail>;
     /**
      * convenience init(fuelLevel: Measurement<UnitVolume>)
      * @availability iOS 27.0+
@@ -3943,7 +3939,7 @@ export declare class CPRouteDetail extends SDKHandle {
      * convenience init(fuelMass: Measurement<UnitMass>)
      * @availability iOS 27.0+
      */
-    static initFuelMass(fuelMass: $SDK65): Promise<CPRouteDetail>;
+    static initFuelMass(fuelMass: $SDK63): Promise<CPRouteDetail>;
     /**
      * convenience init(hov hovInfo: String)
      * @availability iOS 27.0+
@@ -3958,7 +3954,7 @@ export declare class CPRouteDetail extends SDKHandle {
      * convenience init(kilowattHours: Measurement<UnitEnergy>)
      * @availability iOS 27.0+
      */
-    static initKilowattHours(kilowattHours: $SDK66): Promise<CPRouteDetail>;
+    static initKilowattHours(kilowattHours: $SDK64): Promise<CPRouteDetail>;
     /**
      * convenience init(parking: String)
      * @availability iOS 27.0+
@@ -4091,12 +4087,12 @@ export declare class CPRouteSegment extends SDKHandle {
      * var coordinates: [CPLocationCoordinate3D] { get }
      * @availability iOS 26.4+
      */
-    get coordinates(): $SDK56;
+    get coordinates(): $SDK54;
     /**
      * convenience init(origin: CPNavigationWaypoint, destination: CPNavigationWaypoint, maneuvers: [CPManeuver], laneGuidances: [CPLaneGuidance], currentManeuvers: [CPManeuver], currentLaneGuidance: CPLaneGuidance, tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates, coordinates: [CPLocationCoordinate3D])
      * @availability iOS 26.4+
      */
-    static init(origin: CPNavigationWaypoint, destination: CPNavigationWaypoint, maneuvers: Array<CPManeuver>, laneGuidances: Array<CPLaneGuidance>, currentManeuvers: Array<CPManeuver>, currentLaneGuidance: CPLaneGuidance, tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates, coordinates: $SDK56): CPRouteSegment;
+    static init(origin: CPNavigationWaypoint, destination: CPNavigationWaypoint, maneuvers: Array<CPManeuver>, laneGuidances: Array<CPLaneGuidance>, currentManeuvers: Array<CPManeuver>, currentLaneGuidance: CPLaneGuidance, tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates, coordinates: $SDK54): CPRouteSegment;
 }
 /**
  * enum CPRouteSource
@@ -4209,12 +4205,12 @@ export declare class CPSportsOverlay extends SDKHandle {
      * init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus: CPNowPlayingSportsEventStatus?)
      * @availability iOS 26.4+
      */
-    static init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus?: $SDK58): Promise<CPSportsOverlay>;
+    static init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus?: $SDK56): Promise<CPSportsOverlay>;
     /**
      * var eventStatus: CPNowPlayingSportsEventStatus? { get }
      * @availability iOS 26.4+
      */
-    get eventStatus(): Promise<$SDK58>;
+    get eventStatus(): Promise<$SDK56>;
     /**
      * var leftTeam: CPNowPlayingSportsTeam { get }
      * @availability iOS 26.4+
@@ -4318,7 +4314,7 @@ export interface CPTemplateApplicationDashboardSceneDelegate {
     "sceneWillResignActive"?: (arg0: _UIKit_UIScene) => void;
     "sceneWillEnterForeground"?: (arg0: _UIKit_UIScene) => void;
     "sceneDidEnterBackground"?: (arg0: _UIKit_UIScene) => void;
-    "sceneOpenURLContexts"?: (arg0: _UIKit_UIScene, arg1: $SDK72) => void;
+    "sceneOpenURLContexts"?: (arg0: _UIKit_UIScene, arg1: $SDK70) => void;
     "sceneRestoreInteractionStateWith"?: (arg0: _UIKit_UIScene, arg1: _Foundation_NSUserActivity) => void;
     "sceneWillContinueUserActivityWithType"?: (arg0: _UIKit_UIScene, arg1: string) => void;
     "sceneContinue"?: (arg0: _UIKit_UIScene, arg1: _Foundation_NSUserActivity) => void;
@@ -4368,7 +4364,7 @@ export interface CPTemplateApplicationInstrumentClusterSceneDelegate {
     "sceneWillResignActive"?: (arg0: _UIKit_UIScene) => void;
     "sceneWillEnterForeground"?: (arg0: _UIKit_UIScene) => void;
     "sceneDidEnterBackground"?: (arg0: _UIKit_UIScene) => void;
-    "sceneOpenURLContexts"?: (arg0: _UIKit_UIScene, arg1: $SDK72) => void;
+    "sceneOpenURLContexts"?: (arg0: _UIKit_UIScene, arg1: $SDK70) => void;
     "sceneRestoreInteractionStateWith"?: (arg0: _UIKit_UIScene, arg1: _Foundation_NSUserActivity) => void;
     "sceneWillContinueUserActivityWithType"?: (arg0: _UIKit_UIScene, arg1: string) => void;
     "sceneContinue"?: (arg0: _UIKit_UIScene, arg1: _Foundation_NSUserActivity) => void;
@@ -4428,7 +4424,7 @@ export interface CPTemplateApplicationSceneDelegate {
     "sceneWillResignActive"?: (arg0: _UIKit_UIScene) => void;
     "sceneWillEnterForeground"?: (arg0: _UIKit_UIScene) => void;
     "sceneDidEnterBackground"?: (arg0: _UIKit_UIScene) => void;
-    "sceneOpenURLContexts"?: (arg0: _UIKit_UIScene, arg1: $SDK72) => void;
+    "sceneOpenURLContexts"?: (arg0: _UIKit_UIScene, arg1: $SDK70) => void;
     "sceneRestoreInteractionStateWith"?: (arg0: _UIKit_UIScene, arg1: _Foundation_NSUserActivity) => void;
     "sceneWillContinueUserActivityWithType"?: (arg0: _UIKit_UIScene, arg1: string) => void;
     "sceneContinue"?: (arg0: _UIKit_UIScene, arg1: _Foundation_NSUserActivity) => void;
@@ -4519,7 +4515,7 @@ export declare class CPThumbnailImage extends SDKHandle {
      * init(image: UIImage, imageOverlay: CPImageOverlay?, sportsOverlay: CPSportsOverlay?)
      * @availability iOS 26.4+
      */
-    static initImageImageOverlaySportsOverlay(image: _UIKit_UIImage, imageOverlay?: (CPImageOverlay) | null, sportsOverlay?: $SDK76): Promise<CPThumbnailImage>;
+    static initImageImageOverlaySportsOverlay(image: _UIKit_UIImage, imageOverlay?: (CPImageOverlay) | null, sportsOverlay?: $SDK74): Promise<CPThumbnailImage>;
     /**
      * var image: UIImage { get set }
      * @availability iOS 26.4+
@@ -4536,8 +4532,8 @@ export declare class CPThumbnailImage extends SDKHandle {
      * var sportsOverlay: CPSportsOverlay? { get set }
      * @availability iOS 26.4+
      */
-    get sportsOverlay(): Promise<$SDK76>;
-    setSportsOverlay(value?: $SDK76): Promise<void>;
+    get sportsOverlay(): Promise<$SDK74>;
+    setSportsOverlay(value?: $SDK74): Promise<void>;
 }
 /**
  * enum CPTimeRemainingColor
@@ -4572,27 +4568,27 @@ export declare class CPTravelEstimates extends SDKHandle {
      * init(distanceRemaining: Measurement<UnitLength>, distanceRemainingToDisplay: Measurement<UnitLength>, timeRemaining time: TimeInterval)
      * @availability iOS 17.4+
      */
-    static initDistanceRemainingDistanceRemainingToDisplayTimeRemaining(distanceRemaining: $SDK77, distanceRemainingToDisplay: $SDK77, time: number): CPTravelEstimates;
+    static initDistanceRemainingDistanceRemainingToDisplayTimeRemaining(distanceRemaining: $SDK75, distanceRemainingToDisplay: $SDK75, time: number): CPTravelEstimates;
     /**
      * init(distanceRemaining: Measurement<UnitLength>, distanceRemainingToDisplay: Measurement<UnitLength>, timeRemaining time: TimeInterval, routeDetails: [CPRouteDetail])
      * @availability iOS 27.0+
      */
-    static initDistanceRemainingDistanceRemainingToDisplayTimeRemainingRouteDetails(distanceRemaining: $SDK77, distanceRemainingToDisplay: $SDK77, time: number, routeDetails: Array<CPRouteDetail>): CPTravelEstimates;
+    static initDistanceRemainingDistanceRemainingToDisplayTimeRemainingRouteDetails(distanceRemaining: $SDK75, distanceRemainingToDisplay: $SDK75, time: number, routeDetails: Array<CPRouteDetail>): CPTravelEstimates;
     /**
      * init(distanceRemaining distance: Measurement<UnitLength>, timeRemaining time: TimeInterval)
      * @availability iOS 12.0+
      */
-    static initDistanceRemainingTimeRemaining(distance: $SDK77, time: number): CPTravelEstimates;
+    static initDistanceRemainingTimeRemaining(distance: $SDK75, time: number): CPTravelEstimates;
     /**
      * var distanceRemaining: Measurement<UnitLength> { get }
      * @availability iOS 12.0+
      */
-    get distanceRemaining(): $SDK77;
+    get distanceRemaining(): $SDK75;
     /**
      * var distanceRemainingToDisplay: Measurement<UnitLength> { get }
      * @availability iOS 17.4+
      */
-    get distanceRemainingToDisplay(): $SDK77;
+    get distanceRemainingToDisplay(): $SDK75;
     /**
      * var routeDetails: [CPRouteDetail] { get }
      * @availability iOS 27.0+
@@ -4830,8 +4826,8 @@ export declare class CPWindow extends SDKHandle {
      * weak var templateApplicationScene: CPTemplateApplicationScene? { get set }
      * @availability iOS 12.0+
      */
-    get templateApplicationScene(): $SDK79;
-    set templateApplicationScene(value: $SDK79);
+    get templateApplicationScene(): $SDK77;
+    set templateApplicationScene(value: $SDK77);
 }
 export declare class UISceneSession_Role extends SDKHandle {
     /**

@@ -1523,7 +1523,7 @@ export declare class CNSaveRequest extends SDKHandle {
      * func add(_ group: CNMutableGroup, toContainerWithIdentifier identifier: String?)
      * @availability iOS 9.0+
      */
-    addToContainerWithIdentifier565(group: CNMutableGroup, identifier?: (string) | null): void;
+    addToContainerWithIdentifier62692(group: CNMutableGroup, identifier?: (string) | null): void;
     /**
      * func addMember(_ contact: CNContact, to group: CNGroup)
      * @availability iOS 9.0+
@@ -1538,7 +1538,7 @@ export declare class CNSaveRequest extends SDKHandle {
      * func delete(_ group: CNMutableGroup)
      * @availability iOS 9.0+
      */
-    delete568(group: CNMutableGroup): void;
+    delete55357(group: CNMutableGroup): void;
     /** init() */
     static init(): CNSaveRequest;
     /**
@@ -1555,7 +1555,7 @@ export declare class CNSaveRequest extends SDKHandle {
      * func update(_ group: CNMutableGroup)
      * @availability iOS 9.0+
      */
-    update572(group: CNMutableGroup): void;
+    update36751(group: CNMutableGroup): void;
     /**
      * var shouldRefetchContacts: Bool { get set }
      * @availability iOS 15.4+

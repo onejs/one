@@ -57,7 +57,7 @@ export declare class MeshResource extends SDKHandle {
      * nonisolated convenience init(extruding path: Path, extrusionOptions: MeshResource.ShapeExtrusionOptions = ShapeExtrusionOptions()) async throws
      * @availability iOS 18.0+
      */
-    static initExtrudingExtrusionOptions1(path: _SwiftUICore_Path, extrusionOptions?: _RealityFoundation_MeshResource_ShapeExtrusionOptions): Promise<_RealityFoundation_MeshResource>;
+    static initExtrudingExtrusionOptions95500(path: _SwiftUICore_Path, extrusionOptions?: _RealityFoundation_MeshResource_ShapeExtrusionOptions): Promise<_RealityFoundation_MeshResource>;
 }
 export declare class MeshResource_ShapeExtrusionOptions extends SDKHandle {
     /**

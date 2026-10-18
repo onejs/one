@@ -3,11 +3,9 @@ import { SDKHandle } from 'one/ios-runtime';
 import type { CFArray as _CoreFoundation_CFArray, CFError as _CoreFoundation_CFError, CFAllocator as _CoreFoundation_CFAllocator, CFRunLoop as _CoreFoundation_CFRunLoop, CFString as _CoreFoundation_CFString } from "one/ios/CoreFoundation";
 import type { DispatchQueue as _Dispatch_DispatchQueue } from "one/ios/Dispatch";
 type $SDK1 = (((arg0: SDKHandle) => Promise<SDKHandle>)) | null;
-type $SDK2 = (((arg0: SDKHandle) => SDKHandle)) | null;
-type $SDK3 = (((arg0: SDKHandle) => Promise<void>)) | null;
-type $SDK4 = (((arg0: SDKHandle) => void)) | null;
-type $SDK8 = (SCNetworkReachability) | null;
-type $SDK9 = (_CoreFoundation_CFAllocator) | null;
+type $SDK2 = (((arg0: SDKHandle) => Promise<void>)) | null;
+type $SDK6 = (SCNetworkReachability) | null;
+type $SDK7 = (_CoreFoundation_CFAllocator) | null;
 /** typealias AuthorizationRef = OpaquePointer */
 export type AuthorizationRef = SDKHandle;
 /** typealias SCBondInterface = SCNetworkInterface */
@@ -24,16 +22,13 @@ export type SCDynamicStoreCallBack = ((arg0: SCDynamicStore, arg1: _CoreFoundati
 export declare class SCDynamicStoreContext extends SDKHandle {
     /** var copyDescription: ((UnsafeRawPointer) -> Unmanaged<CFString>)? */
     get copyDescription(): $SDK1;
-    set copyDescription(value: $SDK2);
     /** var info: UnsafeMutableRawPointer? */
     get info(): (SDKHandle) | null;
     set info(value: (SDKHandle) | null);
     /** var release: ((UnsafeRawPointer) -> Void)? */
-    get release(): $SDK3;
-    set release(value: $SDK4);
+    get release(): $SDK2;
     /** var retain: ((UnsafeRawPointer) -> UnsafeRawPointer)? */
     get retain(): $SDK1;
-    set retain(value: $SDK2);
     /** var version: CFIndex */
     get version(): number;
     set version(value: number);
@@ -49,16 +44,13 @@ export type SCNetworkConnectionCallBack = ((arg0: SCNetworkConnection, arg1: SCN
 export declare class SCNetworkConnectionContext extends SDKHandle {
     /** var copyDescription: ((UnsafeRawPointer) -> Unmanaged<CFString>)? */
     get copyDescription(): $SDK1;
-    set copyDescription(value: $SDK2);
     /** var info: UnsafeMutableRawPointer? */
     get info(): (SDKHandle) | null;
     set info(value: (SDKHandle) | null);
     /** var release: ((UnsafeRawPointer) -> Void)? */
-    get release(): $SDK3;
-    set release(value: $SDK4);
+    get release(): $SDK2;
     /** var retain: ((UnsafeRawPointer) -> UnsafeRawPointer)? */
     get retain(): $SDK1;
-    set retain(value: $SDK2);
     /** var version: CFIndex */
     get version(): number;
     set version(value: number);
@@ -94,16 +86,13 @@ export type SCNetworkReachabilityCallBack = ((arg0: SCNetworkReachability, arg1:
 export declare class SCNetworkReachabilityContext extends SDKHandle {
     /** var copyDescription: ((UnsafeRawPointer) -> Unmanaged<CFString>)? */
     get copyDescription(): $SDK1;
-    set copyDescription(value: $SDK2);
     /** var info: UnsafeMutableRawPointer? */
     get info(): (SDKHandle) | null;
     set info(value: (SDKHandle) | null);
     /** var release: ((UnsafeRawPointer) -> Void)? */
-    get release(): $SDK3;
-    set release(value: $SDK4);
+    get release(): $SDK2;
     /** var retain: ((UnsafeRawPointer) -> UnsafeRawPointer)? */
     get retain(): $SDK1;
-    set retain(value: $SDK2);
     /** var version: CFIndex */
     get version(): number;
     set version(value: number);
@@ -157,16 +146,13 @@ export type SCPreferencesCallBack = ((arg0: SCPreferences, arg1: SCPreferencesNo
 export declare class SCPreferencesContext extends SDKHandle {
     /** var copyDescription: ((UnsafeRawPointer) -> Unmanaged<CFString>)? */
     get copyDescription(): $SDK1;
-    set copyDescription(value: $SDK2);
     /** var info: UnsafeMutableRawPointer? */
     get info(): (SDKHandle) | null;
     set info(value: (SDKHandle) | null);
     /** var release: ((UnsafeRawPointer) -> Void)? */
-    get release(): $SDK3;
-    set release(value: $SDK4);
+    get release(): $SDK2;
     /** var retain: ((UnsafeRawPointer) -> UnsafeRawPointer)? */
     get retain(): $SDK1;
-    set retain(value: $SDK2);
     /** var version: CFIndex */
     get version(): number;
     set version(value: number);
@@ -201,19 +187,19 @@ export declare function SCErrorString(status: number): SDKHandle;
  * @availability iOS 2.0+
  * @deprecated iOS 17.4
  */
-export declare function SCNetworkReachabilityCreateWithAddress(allocator: $SDK9, address: SDKHandle): $SDK8;
+export declare function SCNetworkReachabilityCreateWithAddress(allocator: $SDK7, address: SDKHandle): $SDK6;
 /**
  * func SCNetworkReachabilityCreateWithAddressPair(_ allocator: CFAllocator?, _ localAddress: UnsafePointer<sockaddr>?, _ remoteAddress: UnsafePointer<sockaddr>?) -> SCNetworkReachability?
  * @availability iOS 2.0+
  * @deprecated iOS 17.4
  */
-export declare function SCNetworkReachabilityCreateWithAddressPair(allocator?: $SDK9, localAddress?: (SDKHandle) | null, remoteAddress?: (SDKHandle) | null): $SDK8;
+export declare function SCNetworkReachabilityCreateWithAddressPair(allocator?: $SDK7, localAddress?: (SDKHandle) | null, remoteAddress?: (SDKHandle) | null): $SDK6;
 /**
  * func SCNetworkReachabilityCreateWithName(_ allocator: CFAllocator?, _ nodename: UnsafePointer<CChar>) -> SCNetworkReachability?
  * @availability iOS 2.0+
  * @deprecated iOS 17.4
  */
-export declare function SCNetworkReachabilityCreateWithName(allocator: $SDK9, nodename: SDKHandle): $SDK8;
+export declare function SCNetworkReachabilityCreateWithName(allocator: $SDK7, nodename: SDKHandle): $SDK6;
 /**
  * func SCNetworkReachabilityGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
@@ -226,12 +212,6 @@ export declare function SCNetworkReachabilityGetTypeID(): number;
  * @deprecated iOS 17.4
  */
 export declare function SCNetworkReachabilityScheduleWithRunLoop(target: SCNetworkReachability, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): boolean;
-/**
- * func SCNetworkReachabilitySetCallback(_ target: SCNetworkReachability, _ callout: SCNetworkReachabilityCallBack?, _ context: UnsafeMutablePointer<SCNetworkReachabilityContext>?) -> Bool
- * @availability iOS 2.0+
- * @deprecated iOS 17.4
- */
-export declare function SCNetworkReachabilitySetCallback(target: SCNetworkReachability, callout?: (((arg0: SCNetworkReachability, arg1: SCNetworkReachabilityFlags, arg2: (SDKHandle) | null) => void)) | null, context?: (SDKHandle) | null): boolean;
 /**
  * func SCNetworkReachabilitySetDispatchQueue(_ target: SCNetworkReachability, _ queue: dispatch_queue_t?) -> Bool
  * @availability iOS 4.0+

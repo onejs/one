@@ -186,7 +186,7 @@ export declare class ComputeGraphSimulation extends SDKHandle {
      * final func setBuffer(_ buffer: (any MTLBuffer)?, bufferOffset: Int = 0, at location: ComputeNodeGraph.Assembly.Location)
      * @availability iOS 27.0+
      */
-    setBufferBufferOffsetAt284(buffer: (SDKHandle) | null, bufferOffset: number, location: ComputeNodeGraph_Assembly_Location): void;
+    setBufferBufferOffsetAt35335(buffer: (SDKHandle) | null, bufferOffset: number, location: ComputeNodeGraph_Assembly_Location): void;
 }
 /**
  * struct AdvanceParams
@@ -755,9 +755,9 @@ export declare class ComputeNodeGraph_Node extends SDKHandle {
     /** @discardableResult mutating func setInput(_ name: String, _ value: Data) -> Bool */
     setInput(name: string, value: ArrayBuffer): boolean;
     /** @discardableResult mutating func setInput(_ name: String, _ value: String) -> Bool */
-    setInput29(name: string, value: string): boolean;
+    setInput89477(name: string, value: string): boolean;
     /** @discardableResult mutating func setInput(_ name: String, _ value: Bool) -> Bool */
-    setInput30(name: string, value: boolean): boolean;
+    setInput52874(name: string, value: boolean): boolean;
     /**
      * var uniforms: [Data?]
      * @availability iOS 27.0+
@@ -845,7 +845,7 @@ export declare class ComputeNodeGraph_Pipelines extends SDKHandle {
      * init(descriptor: ComputeNodeGraph.PipelinesDescriptor) async throws
      * @availability iOS 27.0+
      */
-    static initDescriptor215(descriptor: ComputeNodeGraph_PipelinesDescriptor): Promise<ComputeNodeGraph_Pipelines>;
+    static initDescriptor87074(descriptor: ComputeNodeGraph_PipelinesDescriptor): Promise<ComputeNodeGraph_Pipelines>;
     /**
      * var options: ComputeNodeGraph.Pipelines.Options { get }
      * @availability iOS 27.0+
@@ -865,7 +865,7 @@ export declare class ComputeNodeGraph_Pipelines extends SDKHandle {
      * init(_ graph: ComputeNodeGraph) async throws
      * @availability iOS 27.0+
      */
-    static init223(graph: ComputeNodeGraph): Promise<ComputeNodeGraph_Pipelines>;
+    static init48792(graph: ComputeNodeGraph): Promise<ComputeNodeGraph_Pipelines>;
 }
 /**
  * struct Options

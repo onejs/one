@@ -31,7 +31,7 @@ export declare class AnyCancellable extends SDKHandle {
      * final func store<C>(in collection: inout C) where C : RangeReplaceableCollection, C.Element == AnyCancellable
      * @availability iOS 13.0+
      */
-    storeIn47(collection: Array<AnyCancellable>): {
+    storeIn88072(collection: Array<AnyCancellable>): {
         $ret: null;
         $out: {
             "collection": Array<AnyCancellable>;
@@ -51,7 +51,7 @@ export declare class AnyCancellable extends SDKHandle {
      * init(_ cancel: @escaping () -> Void)
      * @availability iOS 13.0+
      */
-    static init50(cancel: (() => void)): AnyCancellable;
+    static init89168(cancel: (() => void)): AnyCancellable;
 }
 /**
  * @frozen struct AnyPublisher<Output, Failure> where Failure : Error
@@ -199,7 +199,7 @@ export declare class CombineIdentifier extends SDKHandle {
      * init(_ obj: AnyObject)
      * @availability iOS 13.0+
      */
-    static init3(obj: unknown): CombineIdentifier;
+    static init57701(obj: unknown): CombineIdentifier;
 }
 /**
  * protocol ConnectablePublisher<Output, Failure> : Publisher
@@ -317,7 +317,7 @@ export declare class Future<Output = unknown, Failure = unknown> extends SDKHand
      * final var value: Output { get async }
      * @availability iOS 15.0+
      */
-    get value110(): Promise<unknown>;
+    get value70286(): Promise<unknown>;
     /**
      * init(_ attemptToFulfill: @escaping (@escaping Future<Output, Failure>.Promise) -> Void)
      * @availability iOS 13.0+
@@ -430,7 +430,7 @@ export declare class ImmediateScheduler_SchedulerTimeType_Stride extends SDKHand
      * static func seconds(_ s: Int) -> ImmediateScheduler.SchedulerTimeType.Stride
      * @availability iOS 13.0+
      */
-    static seconds59(s: number): ImmediateScheduler_SchedulerTimeType_Stride;
+    static seconds46315(s: number): ImmediateScheduler_SchedulerTimeType_Stride;
     /**
      * var magnitude: Int
      * @availability iOS 13.0+
@@ -2287,7 +2287,7 @@ export declare class Subscribers_Demand extends SDKHandle {
      * static func max(_ value: Int) -> Subscribers.Demand
      * @availability iOS 13.0+
      */
-    static max32(value: number): Subscribers_Demand;
+    static max64605(value: number): Subscribers_Demand;
     /**
      * static let none: Subscribers.Demand
      * @availability iOS 13.0+
@@ -2343,7 +2343,7 @@ export declare class Subscribers_Sink<Input = unknown, Failure = unknown> extend
      * final func receive(completion: Subscribers.Completion<Failure>)
      * @availability iOS 13.0+
      */
-    receiveCompletion17(completion: $SDK3): void;
+    receiveCompletion88476(completion: $SDK3): void;
     /**
      * final func receive(subscription: any Subscription)
      * @availability iOS 13.0+

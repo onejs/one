@@ -274,11 +274,11 @@ export declare class Label<Title = unknown, Icon = unknown> extends SDKHandle {
      * nonisolated init(_ applicationToken: ApplicationToken)
      * @availability iOS 15.2+
      */
-    static init35(applicationToken: _ManagedSettings_Token<_ManagedSettings_Application>): $SDK9;
+    static init69976(applicationToken: _ManagedSettings_Token<_ManagedSettings_Application>): $SDK9;
     /**
      * nonisolated init(_ webDomainToken: WebDomainToken)
      * @availability iOS 15.2+
      */
-    static init36(webDomainToken: _ManagedSettings_Token<_ManagedSettings_WebDomain>): $SDK9;
+    static init33463(webDomainToken: _ManagedSettings_Token<_ManagedSettings_WebDomain>): $SDK9;
 }
 export {};

@@ -9491,20 +9491,10 @@ export declare function MTLSamplePositionMake(x: number, y: number): MTLSamplePo
 /** func MTLSizeMake(_ width: Int, _ height: Int, _ depth: Int) -> MTLSize */
 export declare function MTLSizeMake(width: number, height: number, depth: number): MTLSize;
 /**
- * var MTLAttributeStrideStatic: Int { get }
- * @availability iOS 17.0+
- */
-export declare const MTLAttributeStrideStatic: number;
-/**
  * let MTLBinaryArchiveDomain: String
  * @availability iOS 14.0+
  */
 export declare const MTLBinaryArchiveDomain: string;
-/**
- * var MTLBufferLayoutStrideDynamic: Int { get }
- * @availability iOS 17.0+
- */
-export declare const MTLBufferLayoutStrideDynamic: number;
 /**
  * let MTLCaptureErrorDomain: String
  * @availability iOS 13.0+

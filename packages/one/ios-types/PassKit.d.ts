@@ -69,7 +69,7 @@ export declare class JPKIPassContents_AuthenticationRequest<IdentityType = unkno
      * init(type: JPKIPassContents.SigningIdentity.AuthenticationType)
      * @availability iOS 18.0+
      */
-    static initType721(type: JPKIPassContents_SigningIdentity_AuthenticationType): $SDK3;
+    static initType21560(type: JPKIPassContents_SigningIdentity_AuthenticationType): $SDK3;
 }
 /**
  * struct Certificate<IdentityType> where IdentityType : JPKIPassContents.Identity
@@ -134,7 +134,7 @@ export declare class JPKIPassContents_SigningIdentity extends SDKHandle {
      * func signature(for data: [Data], using request: JPKIPassContents.AuthenticationRequest<JPKIPassContents.SigningIdentity>) async throws -> [JPKIPassContents.Signature<JPKIPassContents.SigningIdentity>]
      * @availability iOS 18.0+
      */
-    signatureForUsing718(data: Array<ArrayBuffer>, request: $SDK3): Promise<Array<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>>>;
+    signatureForUsing82568(data: Array<ArrayBuffer>, request: $SDK3): Promise<Array<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>>>;
 }
 /**
  * enum AuthenticationType
@@ -176,7 +176,7 @@ export declare class JPKIPassContents_UserIdentity extends SDKHandle {
      * func signature(for data: [Data], using request: JPKIPassContents.AuthenticationRequest<JPKIPassContents.UserIdentity>) async throws -> [JPKIPassContents.Signature<JPKIPassContents.UserIdentity>]
      * @availability iOS 18.0+
      */
-    signatureForUsing712(data: Array<ArrayBuffer>, request: $SDK2): Promise<Array<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>>>;
+    signatureForUsing98569(data: Array<ArrayBuffer>, request: $SDK2): Promise<Array<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>>>;
 }
 /**
  * enum AuthenticationType
@@ -2263,7 +2263,7 @@ export declare class PKPassLibrary extends SDKHandle {
      * @availability iOS 9.0+
      * @deprecated iOS 100000.0
      */
-    isPaymentPassActivationAvailable393(): boolean;
+    isPaymentPassActivationAvailable10337(): boolean;
     /**
      * func openPaymentSetup()
      * @availability iOS 8.3+
@@ -2304,7 +2304,7 @@ export declare class PKPassLibrary extends SDKHandle {
      * func present(_ pass: PKSecureElementPass)
      * @availability iOS 13.4+
      */
-    present401(pass: PKSecureElementPass): void;
+    present75366(pass: PKSecureElementPass): void;
     /**
      * func remotePaymentPasses() -> [PKPaymentPass]
      * @availability iOS 9.0+

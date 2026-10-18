@@ -36,12 +36,12 @@ export declare class AccessibilityNotification_Announcement extends SDKHandle {
      * init(_ announcement: String)
      * @availability iOS 17.0+
      */
-    static init208(announcement: string): AccessibilityNotification_Announcement;
+    static init86601(announcement: string): AccessibilityNotification_Announcement;
     /**
      * init(_ announcement: NSAttributedString)
      * @availability iOS 17.0+
      */
-    static init209(announcement: _Foundation_NSAttributedString): AccessibilityNotification_Announcement;
+    static init11535(announcement: _Foundation_NSAttributedString): AccessibilityNotification_Announcement;
 }
 /**
  * struct LayoutChanged
@@ -68,12 +68,12 @@ export declare class AccessibilityNotification_PageScrolled extends SDKHandle {
      * init(_ announcement: String)
      * @availability iOS 17.0+
      */
-    static init211(announcement: string): AccessibilityNotification_PageScrolled;
+    static init80161(announcement: string): AccessibilityNotification_PageScrolled;
     /**
      * init(_ announcement: NSAttributedString)
      * @availability iOS 17.0+
      */
-    static init212(announcement: _Foundation_NSAttributedString): AccessibilityNotification_PageScrolled;
+    static init30647(announcement: _Foundation_NSAttributedString): AccessibilityNotification_PageScrolled;
 }
 /**
  * struct ScreenChanged
@@ -1044,7 +1044,7 @@ export declare class AXDataPoint extends SDKHandle {
      * convenience init(x: Double, y: Double? = nil, additionalValues: [AXDataPoint.Value] = [], label: String? = nil)
      * @availability iOS 15.0+
      */
-    static initXYAdditionalValuesLabel223(x: number, y?: (number) | null, additionalValues?: Array<AXDataPoint_Value>, label?: (string) | null): AXDataPoint;
+    static initXYAdditionalValuesLabel66813(x: number, y?: (number) | null, additionalValues?: Array<AXDataPoint_Value>, label?: (string) | null): AXDataPoint;
 }
 /**
  * enum Value
@@ -1631,7 +1631,6 @@ export declare class AXNumericDataAxisDescriptor extends SDKHandle {
      * @availability iOS 15.0+
      */
     get valueDescriptionProvider(): ((arg0: number) => Promise<string>);
-    set valueDescriptionProvider(value: ((arg0: number) => string));
     /**
      * var gridlinePositions: [Double] { get set }
      * @availability iOS 15.0+

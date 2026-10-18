@@ -97,7 +97,7 @@ export declare class MLComputePlan extends SDKHandle {
      * func deviceUsage(for operation: MLModelStructure.Program.Operation) -> MLComputePlan.DeviceUsage?
      * @availability iOS 17.4+
      */
-    deviceUsageFor208(operation: MLModelStructure_Program_Operation): $SDK1;
+    deviceUsageFor32006(operation: MLModelStructure_Program_Operation): $SDK1;
     /**
      * func estimatedCost(of operation: MLModelStructure.Program.Operation) -> MLComputePlan.Cost?
      * @availability iOS 17.4+
@@ -505,7 +505,7 @@ export declare class MLFeatureValue extends SDKHandle {
      * convenience init(_ value: MLSendableFeatureValue)
      * @availability iOS 18.0+
      */
-    static init457(value: MLSendableFeatureValue): MLFeatureValue;
+    static init26977(value: MLSendableFeatureValue): MLFeatureValue;
 }
 /** struct ImageOption */
 export declare class MLFeatureValue_ImageOption extends SDKHandle {
@@ -671,7 +671,7 @@ export declare class MLModel extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 100000.0
      */
-    static compileModelAt79(modelURL: string): string;
+    static compileModelAt10374(modelURL: string): string;
     /**
      * class func load(asset: MLModelAsset, configuration: MLModelConfiguration) async throws -> MLModel
      * @availability iOS 16.0+
@@ -738,27 +738,27 @@ export declare class MLModel extends SDKHandle {
      * func prediction(from input: any MLFeatureProvider, using state: MLState, options: MLPredictionOptions = MLPredictionOptions()) async throws -> any MLFeatureProvider
      * @availability iOS 18.0+
      */
-    predictionFromUsingOptions468(input: SDKHandle, state: MLState, options?: MLPredictionOptions): Promise<SDKHandle>;
+    predictionFromUsingOptions91549(input: SDKHandle, state: MLState, options?: MLPredictionOptions): Promise<SDKHandle>;
     /**
      * func prediction(from inputs: [String : MLTensor], using state: MLState) async throws -> [String : MLTensor]
      * @availability iOS 18.0+
      */
-    predictionFromUsing469(inputs: $SDK15, state: MLState): Promise<$SDK15>;
+    predictionFromUsing53525(inputs: $SDK15, state: MLState): Promise<$SDK15>;
     /**
      * func prediction(from input: any MLFeatureProvider, options: MLPredictionOptions = MLPredictionOptions()) async throws -> any MLFeatureProvider
      * @availability iOS 17.0+
      */
-    predictionFromOptions470(input: SDKHandle, options?: MLPredictionOptions): Promise<SDKHandle>;
+    predictionFromOptions37517(input: SDKHandle, options?: MLPredictionOptions): Promise<SDKHandle>;
     /**
      * func prediction(from inputs: [String : MLTensor]) async throws -> [String : MLTensor]
      * @availability iOS 18.0+
      */
-    predictionFrom471(inputs: $SDK15): Promise<$SDK15>;
+    predictionFrom13483(inputs: $SDK15): Promise<$SDK15>;
     /**
      * class func compileModel(at url: URL) async throws -> URL
      * @availability iOS 16.0+
      */
-    static compileModelAt472(url: string): Promise<string>;
+    static compileModelAt94960(url: string): Promise<string>;
     /**
      * class func compileModel(at url: URL, completionHandler handler: @escaping (Result<URL, any Error>) -> Void)
      * @availability iOS 16.0+
@@ -1249,7 +1249,7 @@ export declare class MLMultiArray extends SDKHandle {
     /** subscript(idx: Int) -> NSNumber { get set } */
     subscript(idx: number): _Foundation_NSNumber;
     /** subscript(key: [NSNumber]) -> NSNumber { get set } */
-    subscript129(key: $SDK31): _Foundation_NSNumber;
+    subscript66708(key: $SDK31): _Foundation_NSNumber;
     /**
      * func transfer(to destinationMultiArray: MLMultiArray)
      * @availability iOS 18.0+
@@ -1305,17 +1305,17 @@ export declare class MLMultiArray extends SDKHandle {
      * convenience init<C>(_ data: C) throws where C : Collection, C.Element == Double
      * @availability iOS 13.0+
      */
-    static init450(data: Array<number>): MLMultiArray;
+    static init65635(data: Array<number>): MLMultiArray;
     /**
      * convenience init<C>(_ data: C) throws where C : Collection, C.Element == Float
      * @availability iOS 13.0+
      */
-    static init451(data: Array<number>): MLMultiArray;
+    static init98457(data: Array<number>): MLMultiArray;
     /**
      * convenience init<C>(_ data: C) throws where C : Collection, C.Element : FixedWidthInteger
      * @availability iOS 13.0+
      */
-    static init452(data: Array<number>): MLMultiArray;
+    static init99583(data: Array<number>): MLMultiArray;
 }
 /**
  * class MLMultiArrayConstraint
@@ -1697,62 +1697,62 @@ export declare class MLSendableFeatureValue extends SDKHandle {
      * init(_ value: [String : Double])
      * @availability iOS 18.0+
      */
-    static init327(value: Record<string, number>): MLSendableFeatureValue;
+    static init43385(value: Record<string, number>): MLSendableFeatureValue;
     /**
      * init(_ value: [String : Int])
      * @availability iOS 18.0+
      */
-    static init328(value: Record<string, number>): MLSendableFeatureValue;
+    static init23582(value: Record<string, number>): MLSendableFeatureValue;
     /**
      * init(_ value: [Int : Double])
      * @availability iOS 18.0+
      */
-    static init329(value: Record<number, number>): MLSendableFeatureValue;
+    static init80083(value: Record<number, number>): MLSendableFeatureValue;
     /**
      * init(_ value: String)
      * @availability iOS 18.0+
      */
-    static init330(value: string): MLSendableFeatureValue;
+    static init583(value: string): MLSendableFeatureValue;
     /**
      * init(_ value: [String])
      * @availability iOS 18.0+
      */
-    static init331(value: Array<string>): MLSendableFeatureValue;
+    static init52967(value: Array<string>): MLSendableFeatureValue;
     /**
      * init(_ value: Double)
      * @availability iOS 18.0+
      */
-    static init332(value: number): MLSendableFeatureValue;
+    static init35792(value: number): MLSendableFeatureValue;
     /**
      * init(_ value: Float)
      * @availability iOS 18.0+
      */
-    static init333(value: number): MLSendableFeatureValue;
+    static init63570(value: number): MLSendableFeatureValue;
     /**
      * init?(_ value: MLFeatureValue)
      * @availability iOS 18.0+
      */
-    static init334(value: MLFeatureValue): (MLSendableFeatureValue) | null;
+    static init76659(value: MLFeatureValue): (MLSendableFeatureValue) | null;
     /**
      * init(_ value: Int)
      * @availability iOS 18.0+
      */
-    static init335(value: number): MLSendableFeatureValue;
+    static init22541(value: number): MLSendableFeatureValue;
     /**
      * init(_ value: Int32)
      * @availability iOS 18.0+
      */
-    static init336(value: number): MLSendableFeatureValue;
+    static init89631(value: number): MLSendableFeatureValue;
     /**
      * init(_ value: Float16)
      * @availability iOS 18.0+
      */
-    static init337(value: number): MLSendableFeatureValue;
+    static init63256(value: number): MLSendableFeatureValue;
     /**
      * init<Scalar>(_ value: MLShapedArray<Scalar>) where Scalar : MLShapedArrayScalar
      * @availability iOS 18.0+
      */
-    static init338(value: MLShapedArray<number>): MLSendableFeatureValue;
+    static init70181(value: MLShapedArray<number>): MLSendableFeatureValue;
 }
 /**
  * class MLSequence
@@ -1944,12 +1944,12 @@ export declare class MLShapedArray<Scalar = unknown> extends SDKHandle {
      * subscript<C>(indices: C) -> MLShapedArraySlice<Scalar> where C : Collection, C.Element == Int { get set }
      * @availability iOS 15.0+
      */
-    subscript239(indices: Array<number>): $SDK43;
+    subscript30778(indices: Array<number>): $SDK43;
     /**
      * subscript<C>(sliceRanges: C) -> MLShapedArraySlice<Scalar> where C : Collection, C.Element == Range<Int> { get set }
      * @availability iOS 15.0+
      */
-    subscript240(sliceRanges: Array<SDKHandle>): $SDK43;
+    subscript2169(sliceRanges: Array<SDKHandle>): $SDK43;
     /**
      * init(_ multiArray: MLMultiArray)
      * @availability iOS 18.0+
@@ -2164,7 +2164,7 @@ export declare class MLShapedArraySlice<Scalar = unknown> extends SDKHandle {
      * subscript<C>(sliceRanges: C) -> MLShapedArraySlice<Scalar> where C : Collection, C.Element == Range<Int> { get set }
      * @availability iOS 15.0+
      */
-    subscript293(sliceRanges: Array<SDKHandle>): $SDK43;
+    subscript96786(sliceRanges: Array<SDKHandle>): $SDK43;
 }
 /**
  * typealias ArrayLiteralElement = Scalar
@@ -2620,12 +2620,12 @@ export declare class MLTensor extends SDKHandle {
      * func clamped(to bounds: PartialRangeFrom<Float>) -> MLTensor
      * @availability iOS 18.0+
      */
-    clampedTo410(bounds: SDKHandle): MLTensor;
+    clampedTo84394(bounds: SDKHandle): MLTensor;
     /**
      * func clamped(to bounds: PartialRangeThrough<Float>) -> MLTensor
      * @availability iOS 18.0+
      */
-    clampedTo411(bounds: SDKHandle): MLTensor;
+    clampedTo17076(bounds: SDKHandle): MLTensor;
     /**
      * func product(keepRank: Bool = false) -> MLTensor
      * @availability iOS 18.0+
@@ -2703,7 +2703,7 @@ export declare class MLTensor extends SDKHandle {
      * init(repeating repeatedValue: Float, shape: [Int])
      * @availability iOS 18.0+
      */
-    static initRepeatingShape426(repeatedValue: number, shape: Array<number>): MLTensor;
+    static initRepeatingShape31494(repeatedValue: number, shape: Array<number>): MLTensor;
     /**
      * func replacing(with replacement: MLTensor, where mask: MLTensor) -> MLTensor
      * @availability iOS 18.0+
@@ -2713,7 +2713,7 @@ export declare class MLTensor extends SDKHandle {
      * func replacing(with replacement: some MLTensorScalar, where mask: MLTensor) -> MLTensor
      * @availability iOS 18.0+
      */
-    replacingWithWhere428(replacement: SDKHandle, mask: MLTensor): MLTensor;
+    replacingWithWhere75710(replacement: SDKHandle, mask: MLTensor): MLTensor;
     /**
      * func replacing(with replacement: MLTensor, atIndices indices: MLTensor, alongAxis axis: Int) -> MLTensor
      * @availability iOS 18.0+

@@ -144,7 +144,7 @@ export declare class AnalyzerInput extends SDKHandle {
      * init(buffer: AVAudioPCMBuffer)
      * @availability iOS 26.0+
      */
-    static initBuffer165(buffer: _AVFAudio_AVAudioPCMBuffer): AnalyzerInput;
+    static initBuffer73090(buffer: _AVFAudio_AVAudioPCMBuffer): AnalyzerInput;
     /**
      * var buffer: AVAudioPCMBuffer { get }
      * @availability iOS 26.0+

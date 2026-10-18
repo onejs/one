@@ -1353,7 +1353,7 @@ export declare class ARGeoAnchor extends ARAnchor {
      * @nonobjc convenience init(name: String, coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil)
      * @availability iOS 14.0+
      */
-    static initNameCoordinateAltitude459(name: string, coordinate: $SDK12, altitude?: (number) | null): ARGeoAnchor;
+    static initNameCoordinateAltitude88158(name: string, coordinate: $SDK12, altitude?: (number) | null): ARGeoAnchor;
     /**
      * @nonobjc var altitude: CLLocationDistance? { get }
      * @availability iOS 14.0+
@@ -2115,7 +2115,7 @@ export declare class ARReferenceImage extends SDKHandle {
      * init(_ pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, physicalWidth: CGFloat)
      * @availability iOS 11.3+
      */
-    static initOrientationPhysicalWidth310(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, physicalWidth: number): ARReferenceImage;
+    static initOrientationPhysicalWidth40754(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, physicalWidth: number): ARReferenceImage;
     /**
      * func validate() async throws
      * @availability iOS 13.0+

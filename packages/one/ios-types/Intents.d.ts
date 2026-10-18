@@ -4421,7 +4421,7 @@ export declare class INInteraction extends SDKHandle {
      * class func delete(with identifiers: [String]) async throws
      * @availability iOS 10.0+
      */
-    static deleteWithCompletion620(identifiers: Array<string>, completion?: $SDK45): void;
+    static deleteWithCompletion91169(identifiers: Array<string>, completion?: $SDK45): void;
     /**
      * func donate() async throws
      * @availability iOS 10.0+
@@ -8238,8 +8238,8 @@ export declare class INRideOption extends SDKHandle {
      * @nonobjc var usesMeteredFare: NSNumber? { get set }
      * @availability iOS 10.0+
      */
-    get usesMeteredFare1709(): $SDK36;
-    set usesMeteredFare1710(value: $SDK36);
+    get usesMeteredFare51416(): $SDK36;
+    set usesMeteredFare51416(value: $SDK36);
 }
 /**
  * class INRidePartySizeOption

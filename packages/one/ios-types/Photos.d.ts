@@ -31,25 +31,24 @@ type $SDK29 = {
 type $SDK36 = PHFetchResult<PHCollectionList>;
 type $SDK37 = (PHAdjustmentData) | null;
 type $SDK38 = (_AVFoundation_AVAsset) | null;
-type $SDK44 = (_Foundation_NSPredicate) | null;
-type $SDK45 = (Array<_Foundation_NSSortDescriptor>) | null;
-type $SDK46 = PHFetchResultChangeDetails<PHObject>;
-type $SDK48 = (_Foundation_IndexSet) | null;
-type $SDK49 = {
+type $SDK42 = (_Foundation_NSPredicate) | null;
+type $SDK43 = (Array<_Foundation_NSSortDescriptor>) | null;
+type $SDK44 = PHFetchResultChangeDetails<PHObject>;
+type $SDK46 = (_Foundation_IndexSet) | null;
+type $SDK47 = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-type $SDK50 = (((arg0: number, arg1: (NativeError) | null, arg2: NativeOut<boolean>, arg3: (NativeMap<unknown, unknown>) | null) => Promise<void>)) | null;
-type $SDK51 = (((arg0: number, arg1: (NativeError) | null, arg2: NativeOut<boolean>, arg3: (NativeMap<unknown, unknown>) | null) => void)) | null;
-type $SDK53 = (Record<string, unknown>) | null;
-type $SDK61 = ((arg0: PHAuthorizationStatus) => void);
-type $SDK62 = (PHAssetResourceUploadJobOptions) | null;
-type $SDK64 = Implements<PHPhotoLibraryAvailabilityObserver> | SDKHandle;
-type $SDK65 = Implements<PHPhotoLibraryChangeObserver> | SDKHandle;
-type $SDK66 = Implements<PHPhotoLibraryPersistentChangesObserver> | SDKHandle;
-type $SDK68 = NativeMap<PHCloudIdentifier, SDKHandle>;
+type $SDK48 = (((arg0: number, arg1: (NativeError) | null, arg2: NativeOut<boolean>, arg3: (NativeMap<unknown, unknown>) | null) => Promise<void>)) | null;
+type $SDK50 = (Record<string, unknown>) | null;
+type $SDK57 = ((arg0: PHAuthorizationStatus) => void);
+type $SDK58 = (PHAssetResourceUploadJobOptions) | null;
+type $SDK60 = Implements<PHPhotoLibraryAvailabilityObserver> | SDKHandle;
+type $SDK61 = Implements<PHPhotoLibraryChangeObserver> | SDKHandle;
+type $SDK62 = Implements<PHPhotoLibraryPersistentChangesObserver> | SDKHandle;
+type $SDK64 = NativeMap<PHCloudIdentifier, SDKHandle>;
 /**
  * enum PHAccessLevel
  * @availability iOS 14.0+
@@ -887,7 +886,7 @@ export declare class PHAssetResource extends SDKHandle {
      * class func assetResources(for livePhoto: PHLivePhoto) -> [PHAssetResource]
      * @availability iOS 9.1+
      */
-    static assetResourcesFor151(livePhoto: PHLivePhoto): Array<PHAssetResource>;
+    static assetResourcesFor23698(livePhoto: PHLivePhoto): Array<PHAssetResource>;
     /** init() */
     static init(): PHAssetResource;
     /**
@@ -1387,7 +1386,7 @@ export declare class PHChange extends SDKHandle {
      * func changeDetails<T>(for fetchResult: PHFetchResult<T>) -> PHFetchResultChangeDetails<T>? where T : PHObject
      * @availability iOS 8.0+
      */
-    changeDetailsFor487(fetchResult: PHFetchResult<PHObject>): (PHFetchResultChangeDetails<PHObject>) | null;
+    changeDetailsFor25684(fetchResult: PHFetchResult<PHObject>): (PHFetchResultChangeDetails<PHObject>) | null;
 }
 /**
  * class PHCloudIdentifier
@@ -1698,7 +1697,6 @@ export declare class PHContentEditingInputRequestOptions extends SDKHandle {
      * @availability iOS 8.0+
      */
     get canHandleAdjustmentData(): ((arg0: PHAdjustmentData) => Promise<boolean>);
-    set canHandleAdjustmentData(value: ((arg0: PHAdjustmentData) => boolean));
     /**
      * var isNetworkAccessAllowed: Bool { get set }
      * @availability iOS 8.0+
@@ -1716,7 +1714,6 @@ export declare class PHContentEditingInputRequestOptions extends SDKHandle {
      * @availability iOS 8.0+
      */
     get progressHandler(): (((arg0: number, arg1: NativeOut<boolean>) => Promise<void>)) | null;
-    set progressHandler(value: (((arg0: number, arg1: NativeOut<boolean>) => void)) | null);
     /**
      * var skipsDisplaySizeImage: Bool { get set }
      * @availability iOS 27.0+
@@ -1803,8 +1800,8 @@ export declare class PHFetchOptions extends SDKHandle {
      * var predicate: NSPredicate? { get set }
      * @availability iOS 8.0+
      */
-    get predicate(): $SDK44;
-    set predicate(value: $SDK44);
+    get predicate(): $SDK42;
+    set predicate(value: $SDK42);
     /**
      * var prefetchAssetExtendedMetadata: Bool { get set }
      * @availability iOS 27.0+
@@ -1815,8 +1812,8 @@ export declare class PHFetchOptions extends SDKHandle {
      * var sortDescriptors: [NSSortDescriptor]? { get set }
      * @availability iOS 8.0+
      */
-    get sortDescriptors(): $SDK45;
-    set sortDescriptors(value: $SDK45);
+    get sortDescriptors(): $SDK43;
+    set sortDescriptors(value: $SDK43);
     /**
      * var wantsIncrementalChangeDetails: Bool { get set }
      * @availability iOS 8.0+
@@ -1839,19 +1836,19 @@ export declare class PHFetchResultChangeDetails<ObjectType = unknown> extends SD
      * convenience init(from fromResult: PHFetchResult<ObjectType>, to toResult: PHFetchResult<ObjectType>, changedObjects: [ObjectType])
      * @availability iOS 8.0+
      */
-    static initFromToChangedObjects(fromResult: PHFetchResult<PHObject>, toResult: PHFetchResult<PHObject>, changedObjects: Array<PHObject>): $SDK46;
+    static initFromToChangedObjects(fromResult: PHFetchResult<PHObject>, toResult: PHFetchResult<PHObject>, changedObjects: Array<PHObject>): $SDK44;
     /**
      * func enumerateMoves(_ handler: @escaping (Int, Int) -> Void)
      * @availability iOS 8.0+
      */
     enumerateMoves(handler: ((arg0: number, arg1: number) => void)): void;
     /** init() */
-    static init(): $SDK46;
+    static init(): $SDK44;
     /**
      * var changedIndexes: IndexSet? { get }
      * @availability iOS 8.0+
      */
-    get changedIndexes(): $SDK48;
+    get changedIndexes(): $SDK46;
     /**
      * var changedObjects: [ObjectType] { get }
      * @availability iOS 8.0+
@@ -1881,7 +1878,7 @@ export declare class PHFetchResultChangeDetails<ObjectType = unknown> extends SD
      * var insertedIndexes: IndexSet? { get }
      * @availability iOS 8.0+
      */
-    get insertedIndexes(): $SDK48;
+    get insertedIndexes(): $SDK46;
     /**
      * var insertedObjects: [ObjectType] { get }
      * @availability iOS 8.0+
@@ -1891,7 +1888,7 @@ export declare class PHFetchResultChangeDetails<ObjectType = unknown> extends SD
      * var removedIndexes: IndexSet? { get }
      * @availability iOS 8.0+
      */
-    get removedIndexes(): $SDK48;
+    get removedIndexes(): $SDK46;
     /**
      * var removedObjects: [ObjectType] { get }
      * @availability iOS 8.0+
@@ -1949,8 +1946,8 @@ export declare class PHImageRequestOptions extends SDKHandle {
      * var normalizedCropRect: CGRect { get set }
      * @availability iOS 8.0+
      */
-    get normalizedCropRect(): $SDK49;
-    set normalizedCropRect(value: $SDK49);
+    get normalizedCropRect(): $SDK47;
+    set normalizedCropRect(value: $SDK47);
     /**
      * var preferHDR: Bool { get set }
      * @availability iOS 17.0+
@@ -1961,8 +1958,7 @@ export declare class PHImageRequestOptions extends SDKHandle {
      * var progressHandler: PHAssetImageProgressHandler? { get set }
      * @availability iOS 8.0+
      */
-    get progressHandler(): $SDK50;
-    set progressHandler(value: $SDK51);
+    get progressHandler(): $SDK48;
     /**
      * var resizeMode: PHImageRequestOptionsResizeMode { get set }
      * @availability iOS 8.0+
@@ -2064,12 +2060,12 @@ export declare class PHLivePhotoEditingContext extends SDKHandle {
      * func livePhotoForPlayback(targetSize: CGSize, options: [String : Any]? = nil) async throws -> PHLivePhoto
      * @availability iOS 10.0+
      */
-    prepareLivePhotoForPlayback(targetSize: $SDK29, options: $SDK53, handler: ((arg0: (PHLivePhoto) | null, arg1: (NativeError) | null) => void)): void;
+    prepareLivePhotoForPlayback(targetSize: $SDK29, options: $SDK50, handler: ((arg0: (PHLivePhoto) | null, arg1: (NativeError) | null) => void)): void;
     /**
      * func saveLivePhoto(to output: PHContentEditingOutput, options: [String : Any]? = nil) async throws
      * @availability iOS 10.0+
      */
-    saveLivePhoto(output: PHContentEditingOutput, options: $SDK53, handler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void;
+    saveLivePhoto(output: PHContentEditingOutput, options: $SDK50, handler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void;
     /**
      * var audioVolume: Float { get set }
      * @availability iOS 10.0+
@@ -2086,7 +2082,6 @@ export declare class PHLivePhotoEditingContext extends SDKHandle {
      * @availability iOS 10.0+
      */
     get frameProcessor(): (((arg0: SDKHandle, arg1: (SDKHandle) | null) => Promise<(_CoreImage_CIImage) | null>)) | null;
-    set frameProcessor(value: (((arg0: SDKHandle, arg1: (unknown) | null) => (_CoreImage_CIImage) | null)) | null);
     /**
      * var fullSizeImage: CIImage { get }
      * @availability iOS 10.0+
@@ -2176,8 +2171,7 @@ export declare class PHLivePhotoRequestOptions extends SDKHandle {
      * var progressHandler: PHAssetImageProgressHandler? { get set }
      * @availability iOS 9.1+
      */
-    get progressHandler(): $SDK50;
-    set progressHandler(value: $SDK51);
+    get progressHandler(): $SDK48;
     /**
      * var version: PHImageRequestOptionsVersion { get set }
      * @availability iOS 9.1+
@@ -2340,12 +2334,12 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 100000.0
      */
-    static requestAuthorization(handler: $SDK61): void;
+    static requestAuthorization(handler: $SDK57): void;
     /**
      * class func requestAuthorization(for accessLevel: PHAccessLevel) async -> PHAuthorizationStatus
      * @availability iOS 14.0+
      */
-    static requestAuthorizationForHandler(accessLevel: PHAccessLevel, handler: $SDK61): void;
+    static requestAuthorizationForHandler(accessLevel: PHAccessLevel, handler: $SDK57): void;
     /**
      * class func shared() -> PHPhotoLibrary
      * @availability iOS 8.0+
@@ -2360,7 +2354,7 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * func enableUploadJobExtension(with options: PHAssetResourceUploadJobOptions?) throws
      * @availability iOS 27.0+
      */
-    enableUploadJobExtension(options?: $SDK62): void;
+    enableUploadJobExtension(options?: $SDK58): void;
     /**
      * func fetchPersistentChanges(since token: PHPersistentChangeToken) throws -> PHPersistentChangeFetchResult
      * @availability iOS 16.0+
@@ -2382,17 +2376,17 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * func register(_ observer: any PHPhotoLibraryAvailabilityObserver)
      * @availability iOS 13.0+
      */
-    register(observer: $SDK64): void;
+    register(observer: $SDK60): void;
     /**
      * func register(_ observer: any PHPhotoLibraryChangeObserver)
      * @availability iOS 8.0+
      */
-    register397(observer: $SDK65): void;
+    register69872(observer: $SDK61): void;
     /**
      * func register(_ observer: any PHPhotoLibraryPersistentChangesObserver)
      * @availability iOS 27.0+
      */
-    register398(observer: $SDK66): void;
+    register41946(observer: $SDK62): void;
     /**
      * func setUploadJobExtensionEnabled(_ enable: Bool) throws
      * @availability iOS 26.1+
@@ -2408,17 +2402,17 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * func unregisterAvailabilityObserver(_ observer: any PHPhotoLibraryAvailabilityObserver)
      * @availability iOS 13.0+
      */
-    unregisterAvailabilityObserver(observer: $SDK64): void;
+    unregisterAvailabilityObserver(observer: $SDK60): void;
     /**
      * func unregisterChangeObserver(_ observer: any PHPhotoLibraryChangeObserver)
      * @availability iOS 8.0+
      */
-    unregisterChangeObserver(observer: $SDK65): void;
+    unregisterChangeObserver(observer: $SDK61): void;
     /**
      * func unregisterPersistentChangesObserver(_ observer: any PHPhotoLibraryPersistentChangesObserver)
      * @availability iOS 27.0+
      */
-    unregisterPersistentChangesObserver(observer: $SDK66): void;
+    unregisterPersistentChangesObserver(observer: $SDK62): void;
     /**
      * var currentChangeToken: PHPersistentChangeToken { get }
      * @availability iOS 16.0+
@@ -2438,7 +2432,7 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * var uploadJobExtensionOptions: PHAssetResourceUploadJobOptions? { get }
      * @availability iOS 27.0+
      */
-    get uploadJobExtensionOptions(): $SDK62;
+    get uploadJobExtensionOptions(): $SDK58;
     /**
      * func cloudIdentifierMappings(forLocalIdentifiers localIdentifiers: [String]) -> [String : Result<PHCloudIdentifier, any Error>]
      * @availability iOS 15.0+
@@ -2448,12 +2442,12 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * func localIdentifierMappings(for cloudIdentifiers: [PHCloudIdentifier]) -> [PHCloudIdentifier : Result<String, any Error>]
      * @availability iOS 15.0+
      */
-    localIdentifierMappingsFor(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK68;
+    localIdentifierMappingsFor(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK64;
     /**
      * func localIdentifierMappings(forSynced cloudIdentifiers: [PHCloudIdentifier]) -> [PHCloudIdentifier : Result<String, any Error>]
      * @availability iOS 27.0+
      */
-    localIdentifierMappingsForSynced(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK68;
+    localIdentifierMappingsForSynced(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK64;
 }
 /**
  * protocol PHPhotoLibraryAvailabilityObserver : NSObjectProtocol
@@ -2672,8 +2666,7 @@ export declare class PHVideoRequestOptions extends SDKHandle {
      * var progressHandler: PHAssetVideoProgressHandler? { get set }
      * @availability iOS 8.0+
      */
-    get progressHandler(): $SDK50;
-    set progressHandler(value: $SDK51);
+    get progressHandler(): $SDK48;
     /**
      * var version: PHVideoRequestOptionsVersion { get set }
      * @availability iOS 8.0+

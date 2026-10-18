@@ -11,15 +11,14 @@ type $SDK8 = DiscontiguousColumnSlice<number>;
 type $SDK9 = Array<((arg0: string) => Promise<(globalThis.Date) | null>)>;
 type $SDK10 = Array<((arg0: string) => (globalThis.Date) | null)>;
 type $SDK11 = ((arg0: globalThis.Date) => Promise<string>);
-type $SDK12 = ((arg0: globalThis.Date) => string);
-type $SDK14 = ((arg0: (unknown) | null, arg1: (unknown) | null) => (unknown) | null);
-type $SDK15 = ((arg0: (unknown) | null, arg1: (unknown) | null, arg2: (unknown) | null) => (unknown) | null);
-type $SDK17 = {
+type $SDK13 = ((arg0: (unknown) | null, arg1: (unknown) | null) => (unknown) | null);
+type $SDK14 = ((arg0: (unknown) | null, arg1: (unknown) | null, arg2: (unknown) | null) => (unknown) | null);
+type $SDK16 = {
     "rows": number;
     "columns": number;
 };
-type $SDK20 = _Foundation_IntegerFormatStyle<number>;
-type $SDK21 = _Foundation_FloatingPointFormatStyle<number>;
+type $SDK19 = _Foundation_IntegerFormatStyle<number>;
+type $SDK20 = _Foundation_FloatingPointFormatStyle<number>;
 /**
  * struct AnyCategoricalSummary
  * @availability iOS 15.0+
@@ -63,7 +62,7 @@ export declare class AnyCategoricalSummary extends SDKHandle {
      * init<T>(_ summary: CategoricalSummary<T>) where T : Hashable
      * @availability iOS 15.0+
      */
-    static init351(summary: $SDK1): AnyCategoricalSummary;
+    static init86069(summary: $SDK1): AnyCategoricalSummary;
 }
 /**
  * struct AnyColumn
@@ -130,7 +129,7 @@ export declare class AnyColumn extends SDKHandle {
      * mutating func append(contentsOf other: AnyColumn)
      * @availability iOS 15.0+
      */
-    appendContentsOf438(other: AnyColumn): void;
+    appendContentsOf97210(other: AnyColumn): void;
     /**
      * mutating func append(_ element: Any?)
      * @availability iOS 15.0+
@@ -165,12 +164,12 @@ export declare class AnyColumn extends SDKHandle {
      * subscript<C>(mask: C) -> AnyColumnSlice where C : Collection, C.Element == Bool { get }
      * @availability iOS 15.0+
      */
-    subscript445(mask: Array<boolean>): AnyColumnSlice;
+    subscript89099(mask: Array<boolean>): AnyColumnSlice;
     /**
      * subscript(position: Int) -> Any? { get set }
      * @availability iOS 15.0+
      */
-    subscript446(position: number): (unknown) | null;
+    subscript36140(position: number): (unknown) | null;
 }
 /**
  * typealias Element = Any?
@@ -299,7 +298,7 @@ export declare class AnyColumnSlice extends SDKHandle {
      * subscript(position: Int) -> Any? { get set }
      * @availability iOS 15.0+
      */
-    subscript188(position: number): (unknown) | null;
+    subscript88042(position: number): (unknown) | null;
 }
 /**
  * typealias Element = Any?
@@ -461,7 +460,7 @@ export declare class Column<WrappedElement = unknown> extends SDKHandle {
      * mutating func append(_ element: Column<WrappedElement>.Element)
      * @availability iOS 15.0+
      */
-    append400(element: (unknown) | null): void;
+    append63987(element: (unknown) | null): void;
     /**
      * func filter(_ isIncluded: (Column<WrappedElement>.Element) throws -> Bool) rethrows -> DiscontiguousColumnSlice<WrappedElement>
      * @availability iOS 15.0+
@@ -496,7 +495,7 @@ export declare class Column<WrappedElement = unknown> extends SDKHandle {
      * mutating func transform(_ transform: (WrappedElement) throws -> WrappedElement) rethrows
      * @availability iOS 15.0+
      */
-    transform407(transform: ((arg0: unknown) => unknown)): void;
+    transform60933(transform: ((arg0: unknown) => unknown)): void;
     /**
      * func numericSummary() -> NumericSummary<WrappedElement>
      * @availability iOS 15.0+
@@ -526,17 +525,17 @@ export declare class Column<WrappedElement = unknown> extends SDKHandle {
      * func numericSummary() -> NumericSummary<Double>
      * @availability iOS 15.0+
      */
-    numericSummary413(): NumericSummary<number>;
+    numericSummary83584(): NumericSummary<number>;
     /**
      * func standardDeviation(deltaDegreesOfFreedom: Int = 1) -> Double?
      * @availability iOS 15.0+
      */
-    standardDeviationDeltaDegreesOfFreedom414(deltaDegreesOfFreedom?: number): (number) | null;
+    standardDeviationDeltaDegreesOfFreedom81666(deltaDegreesOfFreedom?: number): (number) | null;
     /**
      * func mean() -> Double?
      * @availability iOS 15.0+
      */
-    mean415(): (number) | null;
+    mean26908(): (number) | null;
     /**
      * func sum() -> WrappedElement
      * @availability iOS 15.0+
@@ -556,12 +555,12 @@ export declare class Column<WrappedElement = unknown> extends SDKHandle {
      * subscript(bounds: Range<Int>) -> ColumnSlice<WrappedElement> { get set }
      * @availability iOS 15.0+
      */
-    subscript419(bounds: SDKHandle): ColumnSlice<unknown>;
+    subscript44431(bounds: SDKHandle): ColumnSlice<unknown>;
     /**
      * subscript<R>(range: R) -> ColumnSlice<WrappedElement> where R : RangeExpression, R.Bound == Int { get set }
      * @availability iOS 15.0+
      */
-    subscript420(range: SDKHandle): ColumnSlice<unknown>;
+    subscript5224(range: SDKHandle): ColumnSlice<unknown>;
     /**
      * init(_ slice: ColumnSlice<WrappedElement>)
      * @availability iOS 15.0+
@@ -571,7 +570,7 @@ export declare class Column<WrappedElement = unknown> extends SDKHandle {
      * subscript(position: Int) -> Column<WrappedElement>.Element { get set }
      * @availability iOS 15.0+
      */
-    subscript422(position: number): (unknown) | null;
+    subscript52386(position: number): (unknown) | null;
 }
 /**
  * typealias Element = WrappedElement?
@@ -799,17 +798,17 @@ export declare class ColumnSlice<WrappedElement = unknown> extends SDKHandle {
      * func numericSummary() -> NumericSummary<Double>
      * @availability iOS 15.0+
      */
-    numericSummary152(): NumericSummary<number>;
+    numericSummary947(): NumericSummary<number>;
     /**
      * func standardDeviation(deltaDegreesOfFreedom: Int = 1) -> Double?
      * @availability iOS 15.0+
      */
-    standardDeviationDeltaDegreesOfFreedom153(deltaDegreesOfFreedom?: number): (number) | null;
+    standardDeviationDeltaDegreesOfFreedom66200(deltaDegreesOfFreedom?: number): (number) | null;
     /**
      * func mean() -> Double?
      * @availability iOS 15.0+
      */
-    mean154(): (number) | null;
+    mean65126(): (number) | null;
     /**
      * func sum() -> WrappedElement
      * @availability iOS 15.0+
@@ -829,7 +828,7 @@ export declare class ColumnSlice<WrappedElement = unknown> extends SDKHandle {
      * subscript(position: Int) -> ColumnSlice<WrappedElement>.Element { get set }
      * @availability iOS 15.0+
      */
-    subscript158(position: number): (unknown) | null;
+    subscript44104(position: number): (unknown) | null;
 }
 /**
  * typealias Element = WrappedElement?
@@ -1011,7 +1010,6 @@ export declare class CSVWritingOptions extends SDKHandle {
      * @availability iOS 15.4+
      */
     get dateFormatter(): $SDK11;
-    set dateFormatter(value: $SDK12);
     /**
      * var falseEncoding: String
      * @availability iOS 15.0+
@@ -1096,7 +1094,7 @@ export declare class DataFrame extends SDKHandle {
      * @discardableResult mutating func removeColumn<T>(_ id: ColumnID<T>) -> Column<T>
      * @availability iOS 15.0+
      */
-    removeColumn29(id: ColumnID<unknown>): Column<unknown>;
+    removeColumn71940(id: ColumnID<unknown>): Column<unknown>;
     /**
      * mutating func renameColumn(_ name: String, to newName: String)
      * @availability iOS 15.0+
@@ -1121,17 +1119,17 @@ export declare class DataFrame extends SDKHandle {
      * mutating func replaceColumn<T, U>(_ id: ColumnID<T>, with newColumn: Column<U>)
      * @availability iOS 15.0+
      */
-    replaceColumnWith34(id: ColumnID<unknown>, newColumn: Column<unknown>): void;
+    replaceColumnWith45742(id: ColumnID<unknown>, newColumn: Column<unknown>): void;
     /**
      * mutating func replaceColumn(_ name: String, with newColumn: AnyColumn)
      * @availability iOS 15.0+
      */
-    replaceColumnWith35(name: string, newColumn: AnyColumn): void;
+    replaceColumnWith80022(name: string, newColumn: AnyColumn): void;
     /**
      * mutating func replaceColumn<T>(_ name: String, with newColumn: Column<T>)
      * @availability iOS 15.0+
      */
-    replaceColumnWith36(name: string, newColumn: Column<unknown>): void;
+    replaceColumnWith91187(name: string, newColumn: Column<unknown>): void;
     /**
      * mutating func appendEmptyRow()
      * @availability iOS 15.0+
@@ -1141,22 +1139,22 @@ export declare class DataFrame extends SDKHandle {
      * mutating func combineColumns<E1, E2, R>(_ columnID1: ColumnID<E1>, _ columnID2: ColumnID<E2>, into newColumnName: String, transform: (E1?, E2?) throws -> R?) rethrows
      * @availability iOS 15.0+
      */
-    combineColumnsIntoTransform(columnID1: ColumnID<unknown>, columnID2: ColumnID<unknown>, newColumnName: string, transform: $SDK14): void;
+    combineColumnsIntoTransform(columnID1: ColumnID<unknown>, columnID2: ColumnID<unknown>, newColumnName: string, transform: $SDK13): void;
     /**
      * mutating func combineColumns<E1, E2, R>(_ columnName1: String, _ columnName2: String, into newColumnName: String, transform: (E1?, E2?) throws -> R?) rethrows
      * @availability iOS 15.0+
      */
-    combineColumnsIntoTransform39(columnName1: string, columnName2: string, newColumnName: string, transform: $SDK14): void;
+    combineColumnsIntoTransform49209(columnName1: string, columnName2: string, newColumnName: string, transform: $SDK13): void;
     /**
      * mutating func combineColumns<E1, E2, E3, R>(_ columnID1: ColumnID<E1>, _ columnID2: ColumnID<E2>, _ columnID3: ColumnID<E3>, into newColumnName: String, transform: (E1?, E2?, E3?) throws -> R?) rethrows
      * @availability iOS 15.0+
      */
-    combineColumnsIntoTransform40(columnID1: ColumnID<unknown>, columnID2: ColumnID<unknown>, columnID3: ColumnID<unknown>, newColumnName: string, transform: $SDK15): void;
+    combineColumnsIntoTransform30675(columnID1: ColumnID<unknown>, columnID2: ColumnID<unknown>, columnID3: ColumnID<unknown>, newColumnName: string, transform: $SDK14): void;
     /**
      * mutating func combineColumns<E1, E2, E3, R>(_ columnName1: String, _ columnName2: String, _ columnName3: String, into newColumnName: String, transform: (E1?, E2?, E3?) throws -> R?) rethrows
      * @availability iOS 15.0+
      */
-    combineColumnsIntoTransform41(columnName1: string, columnName2: string, columnName3: string, newColumnName: string, transform: $SDK15): void;
+    combineColumnsIntoTransform27399(columnName1: string, columnName2: string, columnName3: string, newColumnName: string, transform: $SDK14): void;
     /**
      * func containsColumn<T>(_ id: ColumnID<T>) -> Bool
      * @availability iOS 15.4+
@@ -1166,7 +1164,7 @@ export declare class DataFrame extends SDKHandle {
      * func containsColumn(_ name: String) -> Bool
      * @availability iOS 16.0+
      */
-    containsColumn43(name: string): boolean;
+    containsColumn17205(name: string): boolean;
     /**
      * mutating func transformColumn<From, To>(_ id: ColumnID<From>, _ transform: (From) throws -> To?) rethrows
      * @availability iOS 15.0+
@@ -1176,17 +1174,17 @@ export declare class DataFrame extends SDKHandle {
      * mutating func transformColumn<From, To>(_ id: ColumnID<From>, _ transform: (From?) throws -> To?) rethrows
      * @availability iOS 15.0+
      */
-    transformColumn45(id: ColumnID<unknown>, transform: $SDK3): void;
+    transformColumn10996(id: ColumnID<unknown>, transform: $SDK3): void;
     /**
      * mutating func transformColumn<From, To>(_ name: String, _ transform: (From) throws -> To?) rethrows
      * @availability iOS 15.0+
      */
-    transformColumn46(name: string, transform: $SDK6): void;
+    transformColumn83894(name: string, transform: $SDK6): void;
     /**
      * mutating func transformColumn<From, To>(_ name: String, _ transform: (From?) throws -> To?) rethrows
      * @availability iOS 15.0+
      */
-    transformColumn47(name: string, transform: $SDK3): void;
+    transformColumn83300(name: string, transform: $SDK3): void;
     /**
      * var debugDescription: String { get }
      * @availability iOS 15.0+
@@ -1237,7 +1235,7 @@ export declare class DataFrame extends SDKHandle {
      * var shape: (rows: Int, columns: Int) { get }
      * @availability iOS 15.0+
      */
-    get shape(): $SDK17;
+    get shape(): $SDK16;
     /**
      * mutating func append(valuesByColumn dictionary: [String : Any?])
      * @availability iOS 15.0+
@@ -1257,7 +1255,7 @@ export declare class DataFrame extends SDKHandle {
      * mutating func append(column: AnyColumn)
      * @availability iOS 15.0+
      */
-    appendColumn105(column: AnyColumn): void;
+    appendColumn3352(column: AnyColumn): void;
     /**
      * mutating func append(rowsOf other: DataFrame)
      * @availability iOS 15.0+
@@ -1272,7 +1270,7 @@ export declare class DataFrame extends SDKHandle {
      * mutating func append(_ other: DataFrame)
      * @availability iOS 15.0+
      */
-    append108(other: DataFrame): void;
+    append64411(other: DataFrame): void;
     /**
      * subscript(column index: Int) -> AnyColumn { get set }
      * @availability iOS 15.0+
@@ -1302,7 +1300,7 @@ export declare class DataFrame extends SDKHandle {
      * mutating func insert(column: AnyColumn, at index: Int)
      * @availability iOS 15.0+
      */
-    insertColumnAt114(column: AnyColumn, index: number): void;
+    insertColumnAt82928(column: AnyColumn, index: number): void;
     /**
      * func prefix(_ maxLength: Int) -> DataFrame.Slice
      * @availability iOS 15.0+
@@ -1357,7 +1355,7 @@ export declare class DataFrame extends SDKHandle {
      * init(_ other: DataFrame.Slice)
      * @availability iOS 15.0+
      */
-    static init125(other: DataFrame_Slice): DataFrame;
+    static init64035(other: DataFrame_Slice): DataFrame;
     /**
      * subscript<T>(id: ColumnID<T>) -> Column<T> { get set }
      * @availability iOS 15.0+
@@ -1368,23 +1366,23 @@ export declare class DataFrame extends SDKHandle {
     subscript(columnName: String) -> AnyColumn { get set }
      * @availability iOS 15.0+
      */
-    subscript127(columnName: string): AnyColumn;
+    subscript29591(columnName: string): AnyColumn;
     /**
      * subscript<C>(mask: C) -> DataFrame.Slice where C : Collection, C.Element == Bool { get }
      * @availability iOS 15.0+
      */
-    subscript128(mask: Array<boolean>): DataFrame_Slice;
+    subscript3107(mask: Array<boolean>): DataFrame_Slice;
     /**
      * subscript<S>(columnNames: S) -> DataFrame where S : Sequence, S.Element == String { get }
      * @availability iOS 15.0+
      */
-    subscript129(columnNames: Array<string>): DataFrame;
+    subscript35327(columnNames: Array<string>): DataFrame;
     /**
      * @backDeployed(before: macOS 15.4, iOS 18.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
     subscript<T>(columnName: String, type: T.Type = T.self) -> [T?] { get set }
      * @availability iOS 15.0+
      */
-    subscript130(columnName: string): Array<(unknown) | null>;
+    subscript4051(columnName: string): Array<(unknown) | null>;
 }
 /**
  * typealias ColumnType = AnyColumn
@@ -1465,17 +1463,17 @@ export declare class DataFrame_Row extends SDKHandle {
      * subscript<T>(columnID: ColumnID<T>) -> T? { get set }
      * @availability iOS 15.0+
      */
-    subscript64(columnID: ColumnID<unknown>): (unknown) | null;
+    subscript79167(columnID: ColumnID<unknown>): (unknown) | null;
     /**
      * subscript(columnName: String) -> Any? { get set }
      * @availability iOS 15.0+
      */
-    subscript65(columnName: string): (unknown) | null;
+    subscript87246(columnName: string): (unknown) | null;
     /**
      * subscript(position: Int) -> Any? { get set }
      * @availability iOS 15.0+
      */
-    subscript66(position: number): (unknown) | null;
+    subscript96016(position: number): (unknown) | null;
 }
 /**
  * typealias Element = Any?
@@ -1541,7 +1539,7 @@ export declare class DataFrame_Rows extends SDKHandle {
      * subscript(bounds: Range<Int>) -> DataFrame.Rows { get set }
      * @availability iOS 15.0+
      */
-    subscript74(bounds: SDKHandle): DataFrame_Rows;
+    subscript55752(bounds: SDKHandle): DataFrame_Rows;
 }
 /**
  * typealias Element = DataFrame.Row
@@ -1608,7 +1606,7 @@ export declare class DataFrame_Slice extends SDKHandle {
      * var shape: (rows: Int, columns: Int) { get }
      * @availability iOS 15.0+
      */
-    get shape(): $SDK17;
+    get shape(): $SDK16;
     /**
      * func filter<T>(on columnID: ColumnID<T>, _ isIncluded: (T?) throws -> Bool) rethrows -> DataFrame.Slice
      * @availability iOS 15.0+
@@ -1668,12 +1666,12 @@ export declare class DataFrame_Slice extends SDKHandle {
      * subscript(columnName: String) -> AnyColumnSlice { get }
      * @availability iOS 15.0+
      */
-    subscript99(columnName: string): AnyColumnSlice;
+    subscript75194(columnName: string): AnyColumnSlice;
     /**
      * subscript<S>(columnNames: S) -> DataFrame.Slice where S : Sequence, S.Element == String { get }
      * @availability iOS 15.0+
      */
-    subscript100(columnNames: Array<string>): DataFrame_Slice;
+    subscript87752(columnNames: Array<string>): DataFrame_Slice;
 }
 /**
  * typealias ColumnType = AnyColumnSlice
@@ -1811,17 +1809,17 @@ export declare class DiscontiguousColumnSlice<WrappedElement = unknown> extends 
      * func numericSummary() -> NumericSummary<Double>
      * @availability iOS 15.0+
      */
-    numericSummary375(): NumericSummary<number>;
+    numericSummary56122(): NumericSummary<number>;
     /**
      * func standardDeviation(deltaDegreesOfFreedom: Int = 1) -> Double?
      * @availability iOS 15.0+
      */
-    standardDeviationDeltaDegreesOfFreedom376(deltaDegreesOfFreedom?: number): (number) | null;
+    standardDeviationDeltaDegreesOfFreedom29806(deltaDegreesOfFreedom?: number): (number) | null;
     /**
      * func mean() -> Double?
      * @availability iOS 15.0+
      */
-    mean377(): (number) | null;
+    mean60696(): (number) | null;
     /**
      * func sum() -> WrappedElement
      * @availability iOS 15.0+
@@ -1841,17 +1839,17 @@ export declare class DiscontiguousColumnSlice<WrappedElement = unknown> extends 
      * subscript<R>(range: R) -> DiscontiguousColumnSlice<WrappedElement> where R : RangeExpression, R.Bound == Int { get set }
      * @availability iOS 15.0+
      */
-    subscript381(range: SDKHandle): $SDK4;
+    subscript93698(range: SDKHandle): $SDK4;
     /**
      * subscript(range: UnboundedRange) -> DiscontiguousColumnSlice<WrappedElement> { get set }
      * @availability iOS 15.0+
      */
-    subscript382(range: SDKHandle): $SDK4;
+    subscript82204(range: SDKHandle): $SDK4;
     /**
      * subscript(position: Int) -> DiscontiguousColumnSlice<WrappedElement>.Element { get set }
      * @availability iOS 15.0+
      */
-    subscript383(position: number): (unknown) | null;
+    subscript57566(position: number): (unknown) | null;
 }
 /**
  * typealias Element = WrappedElement?
@@ -1958,8 +1956,8 @@ export declare class FormattingOptions extends SDKHandle {
      * var integerFormatStyle: IntegerFormatStyle<Int> { get set }
      * @availability iOS 15.4+
      */
-    get integerFormatStyle(): $SDK20;
-    set integerFormatStyle(value: $SDK20);
+    get integerFormatStyle(): $SDK19;
+    set integerFormatStyle(value: $SDK19);
     /**
      * var includesColumnTypes: Bool
      * @availability iOS 15.0+
@@ -1970,8 +1968,8 @@ export declare class FormattingOptions extends SDKHandle {
      * var floatingPointFormatStyle: FloatingPointFormatStyle<Double> { get set }
      * @availability iOS 15.4+
      */
-    get floatingPointFormatStyle(): $SDK21;
-    set floatingPointFormatStyle(value: $SDK21);
+    get floatingPointFormatStyle(): $SDK20;
+    set floatingPointFormatStyle(value: $SDK20);
     /**
      * var includesRowAndColumnCounts: Bool
      * @availability iOS 17.0+
@@ -2070,7 +2068,6 @@ export declare class JSONWritingOptions extends SDKHandle {
      * @availability iOS 16.0+
      */
     get dateFormatter(): $SDK11;
-    set dateFormatter(value: $SDK12);
     /**
      * var sortKeys: Bool
      * @availability iOS 16.0+

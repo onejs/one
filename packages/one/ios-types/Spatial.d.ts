@@ -82,7 +82,7 @@ export declare class AffineTransform3D extends SDKHandle {
      * init(truncating transform: ProjectiveTransform3D)
      * @availability iOS 17.0+
      */
-    static initTruncating34(transform: ProjectiveTransform3D): AffineTransform3D;
+    static initTruncating63499(transform: ProjectiveTransform3D): AffineTransform3D;
     /**
      * func rotated(by rotation: Rotation3D) -> AffineTransform3D
      * @availability iOS 16.0+
@@ -92,7 +92,7 @@ export declare class AffineTransform3D extends SDKHandle {
      * func rotated(by quaternion: simd_quatd) -> AffineTransform3D
      * @availability iOS 16.0+
      */
-    rotatedBy36(quaternion: SDKHandle): AffineTransform3D;
+    rotatedBy49800(quaternion: SDKHandle): AffineTransform3D;
     /**
      * func scaled(by scale: Size3D) -> AffineTransform3D
      * @availability iOS 16.0+
@@ -133,12 +133,12 @@ export declare class AffineTransform3D extends SDKHandle {
      * func translated(by size: Size3D) -> AffineTransform3D
      * @availability iOS 16.0+
      */
-    translatedBy754(size: Size3D): AffineTransform3D;
+    translatedBy63138(size: Size3D): AffineTransform3D;
     /**
      * init(truncating matrix: simd_float4x4)
      * @availability iOS 18.0+
      */
-    static initTruncating755(matrix: SDKHandle): AffineTransform3D;
+    static initTruncating50825(matrix: SDKHandle): AffineTransform3D;
     /**
      * func changeBasis(from: AffineTransform3D = .identity, to: AffineTransform3D) -> AffineTransform3D?
      * @availability iOS 18.0+
@@ -153,7 +153,7 @@ export declare class AffineTransform3D extends SDKHandle {
      * init(translation: Size3D)
      * @availability iOS 16.0+
      */
-    static initTranslation758(translation: Size3D): AffineTransform3D;
+    static initTranslation40947(translation: Size3D): AffineTransform3D;
     /**
      * var translation: Vector3D { get set }
      * @availability iOS 16.0+
@@ -194,7 +194,7 @@ export declare class AffineTransform3D extends SDKHandle {
      * init(scale: Size3D = Size3D(width: 1.0, height: 1, depth: 1), rotation: Rotation3D = .zero, translation: Vector3D = .zero)
      * @availability iOS 16.0+
      */
-    static initScaleRotationTranslation767(scale?: Size3D, rotation?: Rotation3D, translation?: Vector3D): AffineTransform3D;
+    static initScaleRotationTranslation39069(scale?: Size3D, rotation?: Rotation3D, translation?: Vector3D): AffineTransform3D;
     /**
      * init(shear: AxisWithFactors)
      * @availability iOS 16.0+
@@ -204,17 +204,17 @@ export declare class AffineTransform3D extends SDKHandle {
      * init?(matrix: simd_float4x4)
      * @availability iOS 16.0+
      */
-    static initMatrix769(matrix: SDKHandle): (AffineTransform3D) | null;
+    static initMatrix68970(matrix: SDKHandle): (AffineTransform3D) | null;
     /**
      * init?(matrix: simd_double4x4)
      * @availability iOS 16.0+
      */
-    static initMatrix770(matrix: SDKHandle): (AffineTransform3D) | null;
+    static initMatrix33370(matrix: SDKHandle): (AffineTransform3D) | null;
     /**
      * init(matrix: simd_float4x3)
      * @availability iOS 16.0+
      */
-    static initMatrix771(matrix: SDKHandle): AffineTransform3D;
+    static initMatrix56657(matrix: SDKHandle): AffineTransform3D;
     /**
      * var offset: Vector3D { get set }
      * @availability iOS 16.0+
@@ -265,32 +265,32 @@ export declare class AffineTransform3D extends SDKHandle {
      * init()
      * @availability iOS 16.0+
      */
-    static init782(): AffineTransform3D;
+    static init4476(): AffineTransform3D;
     /**
      * init?(_ matrix: simd_float4x4)
      * @availability iOS 16.0+
      */
-    static init783(matrix: SDKHandle): (AffineTransform3D) | null;
+    static init51967(matrix: SDKHandle): (AffineTransform3D) | null;
     /**
      * init?(_ matrix: simd_double4x4)
      * @availability iOS 16.0+
      */
-    static init784(matrix: SDKHandle): (AffineTransform3D) | null;
+    static init50055(matrix: SDKHandle): (AffineTransform3D) | null;
     /**
      * init(_ transform: AffineTransform3DFloat)
      * @availability iOS 26.0+
      */
-    static init785(transform: AffineTransform3DFloat): AffineTransform3D;
+    static init74456(transform: AffineTransform3DFloat): AffineTransform3D;
     /**
      * init(_ matrix: simd_float4x3)
      * @availability iOS 16.0+
      */
-    static init786(matrix: SDKHandle): AffineTransform3D;
+    static init64960(matrix: SDKHandle): AffineTransform3D;
     /**
      * init()
      * @availability iOS 16.0+
      */
-    static init787(): AffineTransform3D;
+    static init74606(): AffineTransform3D;
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -426,7 +426,7 @@ export declare class AffineTransform3DFloat extends SDKHandle {
      * init(truncating transform: ProjectiveTransform3DFloat)
      * @availability iOS 26.0+
      */
-    static initTruncating15(transform: ProjectiveTransform3DFloat): AffineTransform3DFloat;
+    static initTruncating93513(transform: ProjectiveTransform3DFloat): AffineTransform3DFloat;
     /**
      * func rotated(by rotation: Rotation3DFloat) -> AffineTransform3DFloat
      * @availability iOS 26.0+
@@ -436,7 +436,7 @@ export declare class AffineTransform3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf) -> AffineTransform3DFloat
      * @availability iOS 26.0+
      */
-    rotatedBy17(quaternion: SDKHandle): AffineTransform3DFloat;
+    rotatedBy78002(quaternion: SDKHandle): AffineTransform3DFloat;
     /**
      * func scaled(by scale: Size3DFloat) -> AffineTransform3DFloat
      * @availability iOS 26.0+
@@ -474,7 +474,7 @@ export declare class AffineTransform3DFloat extends SDKHandle {
      * init(truncating matrix: simd_double4x4)
      * @availability iOS 26.0+
      */
-    static initTruncating868(matrix: SDKHandle): AffineTransform3DFloat;
+    static initTruncating9639(matrix: SDKHandle): AffineTransform3DFloat;
     /**
      * func changeBasis(from: AffineTransform3DFloat = .identity, to: AffineTransform3DFloat) -> AffineTransform3DFloat?
      * @availability iOS 26.0+
@@ -560,22 +560,22 @@ export declare class AffineTransform3DFloat extends SDKHandle {
      * init()
      * @availability iOS 26.0+
      */
-    static init886(): AffineTransform3DFloat;
+    static init54764(): AffineTransform3DFloat;
     /**
      * init(_ transform: AffineTransform3D)
      * @availability iOS 26.0+
      */
-    static init887(transform: AffineTransform3D): AffineTransform3DFloat;
+    static init50539(transform: AffineTransform3D): AffineTransform3DFloat;
     /**
      * init(_ matrix: simd_double4x3)
      * @availability iOS 26.0+
      */
-    static init888(matrix: SDKHandle): AffineTransform3DFloat;
+    static init31936(matrix: SDKHandle): AffineTransform3DFloat;
     /**
      * init()
      * @availability iOS 26.0+
      */
-    static init889(): AffineTransform3DFloat;
+    static init25726(): AffineTransform3DFloat;
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -717,22 +717,22 @@ export declare class Angle2D extends SDKHandle {
      * init<T>(degrees: T) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    static initDegrees949(degrees: number): Angle2D;
+    static initDegrees21144(degrees: number): Angle2D;
     /**
      * static func degrees(_ degrees: Double) -> Angle2D
      * @availability iOS 17.0+
      */
-    static degrees950(degrees: number): Angle2D;
+    static degrees81281(degrees: number): Angle2D;
     /**
      * init<T>(radians: T) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    static initRadians951(radians: number): Angle2D;
+    static initRadians10623(radians: number): Angle2D;
     /**
      * static func radians(_ radians: Double) -> Angle2D
      * @availability iOS 17.0+
      */
-    static radians952(radians: number): Angle2D;
+    static radians91124(radians: number): Angle2D;
     /**
      * init(_ angle: Angle2DFloat)
      * @availability iOS 26.0+
@@ -742,12 +742,12 @@ export declare class Angle2D extends SDKHandle {
      * init(radians: Double)
      * @availability iOS 16.0+
      */
-    static initRadians954(radians: number): Angle2D;
+    static initRadians17394(radians: number): Angle2D;
     /**
      * init()
      * @availability iOS 16.0+
      */
-    static init955(): Angle2D;
+    static init77930(): Angle2D;
 }
 /**
  * struct Angle2DFloat
@@ -826,7 +826,7 @@ export declare class Angle2DFloat extends SDKHandle {
      * init<T>(degrees: T) where T : BinaryFloatingPoint
      * @availability iOS 26.0+
      */
-    static initDegrees476(degrees: number): Angle2DFloat;
+    static initDegrees77438(degrees: number): Angle2DFloat;
     /**
      * var degrees: Float { get }
      * @availability iOS 26.0+
@@ -836,17 +836,17 @@ export declare class Angle2DFloat extends SDKHandle {
      * static func degrees(_ degrees: Float) -> Angle2DFloat
      * @availability iOS 26.0+
      */
-    static degrees478(degrees: number): Angle2DFloat;
+    static degrees52837(degrees: number): Angle2DFloat;
     /**
      * init<T>(radians: T) where T : BinaryFloatingPoint
      * @availability iOS 26.0+
      */
-    static initRadians479(radians: number): Angle2DFloat;
+    static initRadians37613(radians: number): Angle2DFloat;
     /**
      * static func radians(_ radians: Float) -> Angle2DFloat
      * @availability iOS 26.0+
      */
-    static radians480(radians: number): Angle2DFloat;
+    static radians36284(radians: number): Angle2DFloat;
     /**
      * init(_ angle: Angle2D)
      * @availability iOS 26.0+
@@ -856,12 +856,12 @@ export declare class Angle2DFloat extends SDKHandle {
      * init(radians: Float)
      * @availability iOS 26.0+
      */
-    static initRadians482(radians: number): Angle2DFloat;
+    static initRadians68418(radians: number): Angle2DFloat;
     /**
      * init()
      * @availability iOS 26.0+
      */
-    static init483(): Angle2DFloat;
+    static init40000(): Angle2DFloat;
 }
 /** struct Axis3D */
 export type Axis3D = "x" | "y" | "z";
@@ -1048,7 +1048,7 @@ export declare class EulerAngles extends SDKHandle {
      * init(angles: simd_float3, order: EulerAngles.Order)
      * @availability iOS 16.0+
      */
-    static initAnglesOrder536(angles: SDKHandle, order: EulerAngles): EulerAngles;
+    static initAnglesOrder17621(angles: SDKHandle, order: EulerAngles): EulerAngles;
     /**
      * init(_ x: Angle2D, _ y: Angle2D, _ z: Angle2D, order: EulerAngles.Order)
      * @availability iOS 17.0+
@@ -1117,7 +1117,7 @@ export declare class Point3D extends SDKHandle {
      * func applying(_ transform: ProjectiveTransform3D) -> Point3D
      * @availability iOS 16.0+
      */
-    applying45(transform: ProjectiveTransform3D): Point3D;
+    applying2397(transform: ProjectiveTransform3D): Point3D;
     /**
      * func clamped(to rect: Rect3D) -> Point3D
      * @availability iOS 16.0+
@@ -1157,12 +1157,12 @@ export declare class Point3D extends SDKHandle {
      * func rotated(by quaternion: simd_quatd) -> Point3D
      * @availability iOS 16.0+
      */
-    rotatedBy66(quaternion: SDKHandle): Point3D;
+    rotatedBy92204(quaternion: SDKHandle): Point3D;
     /**
      * func rotated(by quaternion: simd_quatd, around pivot: Point3D) -> Point3D
      * @availability iOS 16.0+
      */
-    rotatedByAround67(quaternion: SDKHandle, pivot: Point3D): Point3D;
+    rotatedByAround74328(quaternion: SDKHandle, pivot: Point3D): Point3D;
     /**
      * func rotation(to other: Point3D) -> Rotation3D
      * @availability iOS 16.0+
@@ -1183,7 +1183,7 @@ export declare class Point3D extends SDKHandle {
      * func unapplying(_ transform: ProjectiveTransform3D) -> Point3D
      * @availability iOS 16.0+
      */
-    unapplying71(transform: ProjectiveTransform3D): Point3D;
+    unapplying47776(transform: ProjectiveTransform3D): Point3D;
     /**
      * static let infinity: Point3D
      * @availability iOS 16.0+
@@ -1227,17 +1227,17 @@ export declare class Point3D extends SDKHandle {
      * func translated(by size: Size3D) -> Point3D
      * @availability iOS 16.0+
      */
-    translatedBy1077(size: Size3D): Point3D;
+    translatedBy46426(size: Size3D): Point3D;
     /**
      * func unapplying(_ pose: ScaledPose3D) -> Point3D
      * @availability iOS 18.0+
      */
-    unapplying1078(pose: ScaledPose3D): Point3D;
+    unapplying97777(pose: ScaledPose3D): Point3D;
     /**
      * func unapplying(_ pose: Pose3D) -> Point3D
      * @availability iOS 16.0+
      */
-    unapplying1079(pose: Pose3D): Point3D;
+    unapplying85026(pose: Pose3D): Point3D;
     /**
      * var description: String { get }
      * @availability iOS 16.0+
@@ -1257,7 +1257,7 @@ export declare class Point3D extends SDKHandle {
      * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    static initXYZ1083(x: number, y: number, z: number): Point3D;
+    static initXYZ39734(x: number, y: number, z: number): Point3D;
     /**
      * func isApproximatelyEqual(to other: Point3D, tolerance: Double = sqrt(.ulpOfOne)) -> Bool
      * @availability iOS 18.0+
@@ -1283,12 +1283,12 @@ export declare class Point3D extends SDKHandle {
      * func applying(_ scaledPose: ScaledPose3D) -> Point3D
      * @availability iOS 18.0+
      */
-    applying1089(scaledPose: ScaledPose3D): Point3D;
+    applying84967(scaledPose: ScaledPose3D): Point3D;
     /**
      * func applying(_ pose: Pose3D) -> Point3D
      * @availability iOS 16.0+
      */
-    applying1090(pose: Pose3D): Point3D;
+    applying5132(pose: Pose3D): Point3D;
     /**
      * init(_ point: Point3DFloat)
      * @availability iOS 26.0+
@@ -1298,37 +1298,37 @@ export declare class Point3D extends SDKHandle {
      * init(_ xyz: Vector3D)
      * @availability iOS 16.0+
      */
-    static init1092(xyz: Vector3D): Point3D;
+    static init2995(xyz: Vector3D): Point3D;
     /**
      * init(_ coords: SphericalCoordinates3D)
      * @availability iOS 18.0+
      */
-    static init1093(coords: SphericalCoordinates3D): Point3D;
+    static init63521(coords: SphericalCoordinates3D): Point3D;
     /**
      * init(_ size: Size3D)
      * @availability iOS 16.0+
      */
-    static init1094(size: Size3D): Point3D;
+    static init83816(size: Size3D): Point3D;
     /**
      * init(_ xyz: simd_double3)
      * @availability iOS 16.0+
      */
-    static init1095(xyz: SDKHandle): Point3D;
+    static init81629(xyz: SDKHandle): Point3D;
     /**
      * init(_ xyz: simd_float3)
      * @availability iOS 16.0+
      */
-    static init1096(xyz: SDKHandle): Point3D;
+    static init22947(xyz: SDKHandle): Point3D;
     /**
      * init(_ source: simd_packed_double4)
      * @availability iOS 26.0+
      */
-    static init1097(source: SDKHandle): Point3D;
+    static init39640(source: SDKHandle): Point3D;
     /**
      * init()
      * @availability iOS 16.0+
      */
-    static init1098(): Point3D;
+    static init19110(): Point3D;
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -1399,7 +1399,7 @@ export declare class Point3DFloat extends SDKHandle {
      * func applying(_ transform: ProjectiveTransform3DFloat) -> Point3DFloat
      * @availability iOS 26.0+
      */
-    applying49(transform: ProjectiveTransform3DFloat): Point3DFloat;
+    applying97943(transform: ProjectiveTransform3DFloat): Point3DFloat;
     /**
      * func clamped(to rect: Rect3DFloat) -> Point3DFloat
      * @availability iOS 26.0+
@@ -1434,12 +1434,12 @@ export declare class Point3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf) -> Point3DFloat
      * @availability iOS 26.0+
      */
-    rotatedBy56(quaternion: SDKHandle): Point3DFloat;
+    rotatedBy66624(quaternion: SDKHandle): Point3DFloat;
     /**
      * func rotated(by quaternion: simd_quatf, around pivot: Point3DFloat) -> Point3DFloat
      * @availability iOS 26.0+
      */
-    rotatedByAround57(quaternion: SDKHandle, pivot: Point3DFloat): Point3DFloat;
+    rotatedByAround22162(quaternion: SDKHandle, pivot: Point3DFloat): Point3DFloat;
     /**
      * func translated(by offset: Vector3DFloat) -> Point3DFloat
      * @availability iOS 26.0+
@@ -1454,7 +1454,7 @@ export declare class Point3DFloat extends SDKHandle {
      * func unapplying(_ transform: ProjectiveTransform3DFloat) -> Point3DFloat
      * @availability iOS 26.0+
      */
-    unapplying60(transform: ProjectiveTransform3DFloat): Point3DFloat;
+    unapplying1026(transform: ProjectiveTransform3DFloat): Point3DFloat;
     /** static let infinity: Point3DFloat */
     static get infinity(): Point3DFloat;
     /** static let zero: Point3DFloat */
@@ -1492,12 +1492,12 @@ export declare class Point3DFloat extends SDKHandle {
      * func unapplying(_ pose: ScaledPose3DFloat) -> Point3DFloat
      * @availability iOS 26.0+
      */
-    unapplying613(pose: ScaledPose3DFloat): Point3DFloat;
+    unapplying50866(pose: ScaledPose3DFloat): Point3DFloat;
     /**
      * func unapplying(_ pose: Pose3DFloat) -> Point3DFloat
      * @availability iOS 26.0+
      */
-    unapplying614(pose: Pose3DFloat): Point3DFloat;
+    unapplying55767(pose: Pose3DFloat): Point3DFloat;
     /**
      * var description: String { get }
      * @availability iOS 26.0+
@@ -1517,7 +1517,7 @@ export declare class Point3DFloat extends SDKHandle {
      * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
      * @availability iOS 26.0+
      */
-    static initXYZ618(x: number, y: number, z: number): Point3DFloat;
+    static initXYZ27816(x: number, y: number, z: number): Point3DFloat;
     /**
      * func isApproximatelyEqual(to other: Point3DFloat, tolerance: Float = sqrt(.ulpOfOne)) -> Bool
      * @availability iOS 26.0+
@@ -1527,12 +1527,12 @@ export declare class Point3DFloat extends SDKHandle {
      * func applying(_ scaledPose: ScaledPose3DFloat) -> Point3DFloat
      * @availability iOS 26.0+
      */
-    applying620(scaledPose: ScaledPose3DFloat): Point3DFloat;
+    applying55104(scaledPose: ScaledPose3DFloat): Point3DFloat;
     /**
      * func applying(_ pose: Pose3DFloat) -> Point3DFloat
      * @availability iOS 26.0+
      */
-    applying621(pose: Pose3DFloat): Point3DFloat;
+    applying20217(pose: Pose3DFloat): Point3DFloat;
     /**
      * func distance(to other: Point3DFloat) -> Float
      * @availability iOS 26.0+
@@ -1547,37 +1547,37 @@ export declare class Point3DFloat extends SDKHandle {
      * init(_ size: Size3DFloat)
      * @availability iOS 26.0+
      */
-    static init624(size: Size3DFloat): Point3DFloat;
+    static init38521(size: Size3DFloat): Point3DFloat;
     /**
      * init(_ xyz: Vector3DFloat)
      * @availability iOS 26.0+
      */
-    static init625(xyz: Vector3DFloat): Point3DFloat;
+    static init10841(xyz: Vector3DFloat): Point3DFloat;
     /**
      * init(_ point: Point3D)
      * @availability iOS 26.0+
      */
-    static init626(point: Point3D): Point3DFloat;
+    static init81729(point: Point3D): Point3DFloat;
     /**
      * init(_ xyz: simd_double3)
      * @availability iOS 26.0+
      */
-    static init627(xyz: SDKHandle): Point3DFloat;
+    static init76159(xyz: SDKHandle): Point3DFloat;
     /**
      * init(_ xyz: simd_float3)
      * @availability iOS 26.0+
      */
-    static init628(xyz: SDKHandle): Point3DFloat;
+    static init13929(xyz: SDKHandle): Point3DFloat;
     /**
      * init(_ source: simd_packed_float4)
      * @availability iOS 26.0+
      */
-    static init629(source: SDKHandle): Point3DFloat;
+    static init25396(source: SDKHandle): Point3DFloat;
     /**
      * init()
      * @availability iOS 26.0+
      */
-    static init630(): Point3DFloat;
+    static init70276(): Point3DFloat;
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -1665,7 +1665,7 @@ export declare class Pose3D extends SDKHandle {
      * func translated(by size: Size3D) -> Pose3D
      * @availability iOS 16.0+
      */
-    translatedBy984(size: Size3D): Pose3D;
+    translatedBy72346(size: Size3D): Pose3D;
     /**
      * var description: String { get }
      * @availability iOS 16.0+
@@ -1685,7 +1685,7 @@ export declare class Pose3D extends SDKHandle {
      * func concatenating(_ transform: ScaledPose3D) -> ScaledPose3D
      * @availability iOS 18.0+
      */
-    concatenating988(transform: ScaledPose3D): ScaledPose3D;
+    concatenating63023(transform: ScaledPose3D): ScaledPose3D;
     /**
      * func isApproximatelyEqual(to other: Pose3D, tolerance: Double = sqrt(.ulpOfOne)) -> Bool
      * @availability iOS 16.0+
@@ -1705,7 +1705,7 @@ export declare class Pose3D extends SDKHandle {
      * init?(matrix: simd_double4x4)
      * @availability iOS 16.0+
      */
-    static initMatrix992(matrix: SDKHandle): (Pose3D) | null;
+    static initMatrix96210(matrix: SDKHandle): (Pose3D) | null;
     /**
      * var matrix: simd_double4x4 { get }
      * @availability iOS 16.0+
@@ -1735,7 +1735,7 @@ export declare class Pose3D extends SDKHandle {
      * func rotated(by rotation: Rotation3D) -> Pose3D
      * @availability iOS 16.0+
      */
-    rotatedBy998(rotation: Rotation3D): Pose3D;
+    rotatedBy97519(rotation: Rotation3D): Pose3D;
     /**
      * func applying(_ transform: ProjectiveTransform3D) -> Pose3D
      * @availability iOS 27.0+
@@ -1760,12 +1760,12 @@ export declare class Pose3D extends SDKHandle {
      * init(position: simd_double3 = .zero, rotation: simd_quatd)
      * @availability iOS 16.0+
      */
-    static initPositionRotation1003(position: SDKHandle, rotation: SDKHandle): Pose3D;
+    static initPositionRotation12983(position: SDKHandle, rotation: SDKHandle): Pose3D;
     /**
      * init(position: simd_float3 = .zero, rotation: simd_quatf)
      * @availability iOS 16.0+
      */
-    static initPositionRotation1004(position: SDKHandle, rotation: SDKHandle): Pose3D;
+    static initPositionRotation32075(position: SDKHandle, rotation: SDKHandle): Pose3D;
     /**
      * init?(transform: AffineTransform3D)
      * @availability iOS 16.0+
@@ -1775,7 +1775,7 @@ export declare class Pose3D extends SDKHandle {
      * init?(transform: ProjectiveTransform3D)
      * @availability iOS 16.0+
      */
-    static initTransform1006(transform: ProjectiveTransform3D): (Pose3D) | null;
+    static initTransform52696(transform: ProjectiveTransform3D): (Pose3D) | null;
     /**
      * init?(_ matrix: simd_float4x4)
      * @availability iOS 16.0+
@@ -1785,22 +1785,22 @@ export declare class Pose3D extends SDKHandle {
      * init?(_ matrix: simd_double4x4)
      * @availability iOS 16.0+
      */
-    static init1008(matrix: SDKHandle): (Pose3D) | null;
+    static init18543(matrix: SDKHandle): (Pose3D) | null;
     /**
      * init(_ pose: Pose3DFloat)
      * @availability iOS 26.0+
      */
-    static init1009(pose: Pose3DFloat): Pose3D;
+    static init208(pose: Pose3DFloat): Pose3D;
     /**
      * init(position: Point3D, rotation: Rotation3D)
      * @availability iOS 16.0+
      */
-    static initPositionRotation1010(position: Point3D, rotation: Rotation3D): Pose3D;
+    static initPositionRotation57303(position: Point3D, rotation: Rotation3D): Pose3D;
     /**
      * init()
      * @availability iOS 16.0+
      */
-    static init1011(): Pose3D;
+    static init39526(): Pose3D;
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -1903,7 +1903,7 @@ export declare class Pose3DFloat extends SDKHandle {
      * func concatenating(_ transform: ScaledPose3DFloat) -> ScaledPose3DFloat
      * @availability iOS 26.0+
      */
-    concatenating544(transform: ScaledPose3DFloat): ScaledPose3DFloat;
+    concatenating79614(transform: ScaledPose3DFloat): ScaledPose3DFloat;
     /**
      * func isApproximatelyEqual(to other: Pose3DFloat, tolerance: Float = sqrt(.ulpOfOne)) -> Bool
      * @availability iOS 26.0+
@@ -1943,7 +1943,7 @@ export declare class Pose3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf) -> Pose3DFloat
      * @availability iOS 26.0+
      */
-    rotatedBy552(quaternion: SDKHandle): Pose3DFloat;
+    rotatedBy10834(quaternion: SDKHandle): Pose3DFloat;
     /**
      * func applying(_ transform: ProjectiveTransform3DFloat) -> Pose3DFloat
      * @availability iOS 27.0+
@@ -1968,7 +1968,7 @@ export declare class Pose3DFloat extends SDKHandle {
      * init(position: simd_float3 = .zero, rotation: simd_quatf)
      * @availability iOS 26.0+
      */
-    static initPositionRotation557(position: SDKHandle, rotation: SDKHandle): Pose3DFloat;
+    static initPositionRotation66407(position: SDKHandle, rotation: SDKHandle): Pose3DFloat;
     /**
      * init?(transform: AffineTransform3DFloat)
      * @availability iOS 26.0+
@@ -1978,7 +1978,7 @@ export declare class Pose3DFloat extends SDKHandle {
      * init?(transform: ProjectiveTransform3DFloat)
      * @availability iOS 26.0+
      */
-    static initTransform559(transform: ProjectiveTransform3DFloat): (Pose3DFloat) | null;
+    static initTransform19709(transform: ProjectiveTransform3DFloat): (Pose3DFloat) | null;
     /**
      * init?(_ matrix: simd_float4x4)
      * @availability iOS 26.0+
@@ -1988,17 +1988,17 @@ export declare class Pose3DFloat extends SDKHandle {
      * init(_ pose: Pose3D)
      * @availability iOS 26.0+
      */
-    static init561(pose: Pose3D): Pose3DFloat;
+    static init32887(pose: Pose3D): Pose3DFloat;
     /**
      * init(position: Point3DFloat, rotation: Rotation3DFloat)
      * @availability iOS 26.0+
      */
-    static initPositionRotation562(position: Point3DFloat, rotation: Rotation3DFloat): Pose3DFloat;
+    static initPositionRotation33371(position: Point3DFloat, rotation: Rotation3DFloat): Pose3DFloat;
     /**
      * init()
      * @availability iOS 26.0+
      */
-    static init563(): Pose3DFloat;
+    static init30730(): Pose3DFloat;
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -2191,7 +2191,7 @@ export declare class ProjectiveTransform3D extends SDKHandle {
      * init(_ transform: AffineTransform3D)
      * @availability iOS 16.0+
      */
-    static init106(transform: AffineTransform3D): ProjectiveTransform3D;
+    static init30089(transform: AffineTransform3D): ProjectiveTransform3D;
     /**
      * init(fovY: Angle2D, aspectRatio: Double, nearZ: Double, farZ: Double)
      * @availability iOS 18.0+
@@ -2223,7 +2223,7 @@ export declare class ProjectiveTransform3D extends SDKHandle {
      * func rotated(by quaternion: simd_quatd) -> ProjectiveTransform3D
      * @availability iOS 16.0+
      */
-    rotatedBy112(quaternion: SDKHandle): ProjectiveTransform3D;
+    rotatedBy1264(quaternion: SDKHandle): ProjectiveTransform3D;
     /**
      * func scaled(by scale: Size3D) -> ProjectiveTransform3D
      * @availability iOS 16.0+
@@ -2264,7 +2264,7 @@ export declare class ProjectiveTransform3D extends SDKHandle {
      * func translated(by size: Size3D) -> ProjectiveTransform3D
      * @availability iOS 16.0+
      */
-    translatedBy838(size: Size3D): ProjectiveTransform3D;
+    translatedBy86539(size: Size3D): ProjectiveTransform3D;
     /**
      * var description: String { get }
      * @availability iOS 16.0+
@@ -2274,7 +2274,7 @@ export declare class ProjectiveTransform3D extends SDKHandle {
      * init(translation: Size3D)
      * @availability iOS 16.0+
      */
-    static initTranslation840(translation: Size3D): ProjectiveTransform3D;
+    static initTranslation37038(translation: Size3D): ProjectiveTransform3D;
     /**
      * var translation: Vector3D { get set }
      * @availability iOS 16.0+
@@ -2315,7 +2315,7 @@ export declare class ProjectiveTransform3D extends SDKHandle {
      * init(scale: Size3D = Size3D(width: 1.0, height: 1, depth: 1), rotation: Rotation3D = .zero, translation: Vector3D = .zero)
      * @availability iOS 16.0+
      */
-    static initScaleRotationTranslation849(scale?: Size3D, rotation?: Rotation3D, translation?: Vector3D): ProjectiveTransform3D;
+    static initScaleRotationTranslation71410(scale?: Size3D, rotation?: Rotation3D, translation?: Vector3D): ProjectiveTransform3D;
     /**
      * var scale: Size3D? { get }
      * @availability iOS 16.0+
@@ -2330,7 +2330,7 @@ export declare class ProjectiveTransform3D extends SDKHandle {
      * init(matrix: simd_float4x4)
      * @availability iOS 16.0+
      */
-    static initMatrix852(matrix: SDKHandle): ProjectiveTransform3D;
+    static initMatrix17069(matrix: SDKHandle): ProjectiveTransform3D;
     /**
      * var offset: Vector3D { get set }
      * @availability iOS 16.0+
@@ -2376,22 +2376,22 @@ export declare class ProjectiveTransform3D extends SDKHandle {
      * init()
      * @availability iOS 16.0+
      */
-    static init862(): ProjectiveTransform3D;
+    static init26901(): ProjectiveTransform3D;
     /**
      * init(_ transform: ProjectiveTransform3DFloat)
      * @availability iOS 26.0+
      */
-    static init863(transform: ProjectiveTransform3DFloat): ProjectiveTransform3D;
+    static init68251(transform: ProjectiveTransform3DFloat): ProjectiveTransform3D;
     /**
      * init(_ matrix: simd_float4x4)
      * @availability iOS 16.0+
      */
-    static init864(matrix: SDKHandle): ProjectiveTransform3D;
+    static init88572(matrix: SDKHandle): ProjectiveTransform3D;
     /**
      * init()
      * @availability iOS 16.0+
      */
-    static init865(): ProjectiveTransform3D;
+    static init85817(): ProjectiveTransform3D;
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -2522,7 +2522,7 @@ export declare class ProjectiveTransform3DFloat extends SDKHandle {
      * init(_ transform: AffineTransform3DFloat)
      * @availability iOS 26.0+
      */
-    static init86(transform: AffineTransform3DFloat): ProjectiveTransform3DFloat;
+    static init29719(transform: AffineTransform3DFloat): ProjectiveTransform3DFloat;
     /**
      * init(fovY: Angle2DFloat, aspectRatio: Float, nearZ: Float, farZ: Float)
      * @availability iOS 26.0+
@@ -2542,7 +2542,7 @@ export declare class ProjectiveTransform3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf) -> ProjectiveTransform3DFloat
      * @availability iOS 26.0+
      */
-    rotatedBy90(quaternion: SDKHandle): ProjectiveTransform3DFloat;
+    rotatedBy43566(quaternion: SDKHandle): ProjectiveTransform3DFloat;
     /**
      * func scaled(by scale: Size3DFloat) -> ProjectiveTransform3DFloat
      * @availability iOS 26.0+
@@ -2656,22 +2656,22 @@ export declare class ProjectiveTransform3DFloat extends SDKHandle {
      * init()
      * @availability iOS 26.0+
      */
-    static init918(): ProjectiveTransform3DFloat;
+    static init69738(): ProjectiveTransform3DFloat;
     /**
      * init(_ transform: ProjectiveTransform3D)
      * @availability iOS 26.0+
      */
-    static init919(transform: ProjectiveTransform3D): ProjectiveTransform3DFloat;
+    static init65573(transform: ProjectiveTransform3D): ProjectiveTransform3DFloat;
     /**
      * init(_ matrix: simd_double4x4)
      * @availability iOS 26.0+
      */
-    static init920(matrix: SDKHandle): ProjectiveTransform3DFloat;
+    static init47155(matrix: SDKHandle): ProjectiveTransform3DFloat;
     /**
      * init()
      * @availability iOS 26.0+
      */
-    static init921(): ProjectiveTransform3DFloat;
+    static init31608(): ProjectiveTransform3DFloat;
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -2801,7 +2801,7 @@ export declare class Ray3D extends SDKHandle {
      * func translated(by size: Size3D) -> Ray3D
      * @availability iOS 16.0+
      */
-    translatedBy958(size: Size3D): Ray3D;
+    translatedBy42390(size: Size3D): Ray3D;
     /**
      * func unapplying(_ scaledPose: ScaledPose3D) -> Ray3D
      * @availability iOS 18.0+
@@ -2811,17 +2811,17 @@ export declare class Ray3D extends SDKHandle {
      * func unapplying(_ transform: AffineTransform3D) -> Ray3D
      * @availability iOS 17.0+
      */
-    unapplying960(transform: AffineTransform3D): Ray3D;
+    unapplying45786(transform: AffineTransform3D): Ray3D;
     /**
      * func unapplying(_ transform: ProjectiveTransform3D) -> Ray3D
      * @availability iOS 17.0+
      */
-    unapplying961(transform: ProjectiveTransform3D): Ray3D;
+    unapplying2691(transform: ProjectiveTransform3D): Ray3D;
     /**
      * func unapplying(_ pose: Pose3D) -> Ray3D
      * @availability iOS 17.0+
      */
-    unapplying962(pose: Pose3D): Ray3D;
+    unapplying29422(pose: Pose3D): Ray3D;
     /**
      * var description: String { get }
      * @availability iOS 16.0+
@@ -2851,17 +2851,17 @@ export declare class Ray3D extends SDKHandle {
      * init(origin: Point3D = .zero, direction: Vector3D)
      * @availability iOS 16.0+
      */
-    static initOriginDirection968(origin: Point3D, direction: Vector3D): Ray3D;
+    static initOriginDirection88617(origin: Point3D, direction: Vector3D): Ray3D;
     /**
      * init(origin: simd_double3 = .zero, direction: simd_double3)
      * @availability iOS 16.0+
      */
-    static initOriginDirection969(origin: SDKHandle, direction: SDKHandle): Ray3D;
+    static initOriginDirection51440(origin: SDKHandle, direction: SDKHandle): Ray3D;
     /**
      * init(origin: simd_float3 = .zero, direction: simd_float3)
      * @availability iOS 16.0+
      */
-    static initOriginDirection970(origin: SDKHandle, direction: SDKHandle): Ray3D;
+    static initOriginDirection5118(origin: SDKHandle, direction: SDKHandle): Ray3D;
     /**
      * func rotated(by quaternion: simd_quatd, around pivot: Point3D) -> Ray3D
      * @availability iOS 17.0+
@@ -2871,7 +2871,7 @@ export declare class Ray3D extends SDKHandle {
      * func rotated(by rotation: Rotation3D, around pivot: Point3D) -> Ray3D
      * @availability iOS 17.0+
      */
-    rotatedByAround972(rotation: Rotation3D, pivot: Point3D): Ray3D;
+    rotatedByAround10824(rotation: Rotation3D, pivot: Point3D): Ray3D;
     /**
      * func rotated(by quaternion: simd_quatd) -> Ray3D
      * @availability iOS 16.0+
@@ -2881,7 +2881,7 @@ export declare class Ray3D extends SDKHandle {
      * func rotated(by rotation: Rotation3D) -> Ray3D
      * @availability iOS 16.0+
      */
-    rotatedBy974(rotation: Rotation3D): Ray3D;
+    rotatedBy30755(rotation: Rotation3D): Ray3D;
     /**
      * func applying(_ scaledPose: ScaledPose3D) -> Ray3D
      * @availability iOS 18.0+
@@ -2891,17 +2891,17 @@ export declare class Ray3D extends SDKHandle {
      * func applying(_ transform: AffineTransform3D) -> Ray3D
      * @availability iOS 17.0+
      */
-    applying976(transform: AffineTransform3D): Ray3D;
+    applying11592(transform: AffineTransform3D): Ray3D;
     /**
      * func applying(_ transform: ProjectiveTransform3D) -> Ray3D
      * @availability iOS 17.0+
      */
-    applying977(transform: ProjectiveTransform3D): Ray3D;
+    applying56857(transform: ProjectiveTransform3D): Ray3D;
     /**
      * func applying(_ pose: Pose3D) -> Ray3D
      * @availability iOS 16.0+
      */
-    applying978(pose: Pose3D): Ray3D;
+    applying21312(pose: Pose3D): Ray3D;
     /**
      * var isFinite: Bool { get }
      * @availability iOS 17.0+
@@ -2916,7 +2916,7 @@ export declare class Ray3D extends SDKHandle {
      * init()
      * @availability iOS 16.0+
      */
-    static init981(): Ray3D;
+    static init39042(): Ray3D;
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -3029,17 +3029,17 @@ export declare class Ray3DFloat extends SDKHandle {
      * func unapplying(_ transform: AffineTransform3DFloat) -> Ray3DFloat
      * @availability iOS 26.0+
      */
-    unapplying487(transform: AffineTransform3DFloat): Ray3DFloat;
+    unapplying28203(transform: AffineTransform3DFloat): Ray3DFloat;
     /**
      * func unapplying(_ transform: ProjectiveTransform3DFloat) -> Ray3DFloat
      * @availability iOS 26.0+
      */
-    unapplying488(transform: ProjectiveTransform3DFloat): Ray3DFloat;
+    unapplying42960(transform: ProjectiveTransform3DFloat): Ray3DFloat;
     /**
      * func unapplying(_ pose: Pose3DFloat) -> Ray3DFloat
      * @availability iOS 26.0+
      */
-    unapplying489(pose: Pose3DFloat): Ray3DFloat;
+    unapplying89563(pose: Pose3DFloat): Ray3DFloat;
     /**
      * var description: String { get }
      * @availability iOS 26.0+
@@ -3069,12 +3069,12 @@ export declare class Ray3DFloat extends SDKHandle {
      * init(origin: Point3DFloat = .zero, direction: Vector3DFloat)
      * @availability iOS 26.0+
      */
-    static initOriginDirection495(origin: Point3DFloat, direction: Vector3DFloat): Ray3DFloat;
+    static initOriginDirection19664(origin: Point3DFloat, direction: Vector3DFloat): Ray3DFloat;
     /**
      * init(origin: simd_float3 = .zero, direction: simd_float3)
      * @availability iOS 26.0+
      */
-    static initOriginDirection496(origin: SDKHandle, direction: SDKHandle): Ray3DFloat;
+    static initOriginDirection16564(origin: SDKHandle, direction: SDKHandle): Ray3DFloat;
     /**
      * func rotated(by rotation: Rotation3DFloat, around pivot: Point3DFloat) -> Ray3DFloat
      * @availability iOS 26.0+
@@ -3084,7 +3084,7 @@ export declare class Ray3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf, around pivot: Point3DFloat) -> Ray3DFloat
      * @availability iOS 26.0+
      */
-    rotatedByAround498(quaternion: SDKHandle, pivot: Point3DFloat): Ray3DFloat;
+    rotatedByAround87476(quaternion: SDKHandle, pivot: Point3DFloat): Ray3DFloat;
     /**
      * func rotated(by rotation: Rotation3DFloat) -> Ray3DFloat
      * @availability iOS 26.0+
@@ -3094,7 +3094,7 @@ export declare class Ray3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf) -> Ray3DFloat
      * @availability iOS 26.0+
      */
-    rotatedBy500(quaternion: SDKHandle): Ray3DFloat;
+    rotatedBy52468(quaternion: SDKHandle): Ray3DFloat;
     /**
      * func applying(_ scaledPose: ScaledPose3DFloat) -> Ray3DFloat
      * @availability iOS 26.0+
@@ -3104,17 +3104,17 @@ export declare class Ray3DFloat extends SDKHandle {
      * func applying(_ transform: AffineTransform3DFloat) -> Ray3DFloat
      * @availability iOS 26.0+
      */
-    applying502(transform: AffineTransform3DFloat): Ray3DFloat;
+    applying17461(transform: AffineTransform3DFloat): Ray3DFloat;
     /**
      * func applying(_ transform: ProjectiveTransform3DFloat) -> Ray3DFloat
      * @availability iOS 26.0+
      */
-    applying503(transform: ProjectiveTransform3DFloat): Ray3DFloat;
+    applying92642(transform: ProjectiveTransform3DFloat): Ray3DFloat;
     /**
      * func applying(_ pose: Pose3DFloat) -> Ray3DFloat
      * @availability iOS 26.0+
      */
-    applying504(pose: Pose3DFloat): Ray3DFloat;
+    applying77189(pose: Pose3DFloat): Ray3DFloat;
     /**
      * var isFinite: Bool { get }
      * @availability iOS 26.0+
@@ -3129,7 +3129,7 @@ export declare class Ray3DFloat extends SDKHandle {
      * init()
      * @availability iOS 26.0+
      */
-    static init507(): Ray3DFloat;
+    static init55560(): Ray3DFloat;
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -3200,7 +3200,7 @@ export declare class Rect3D extends SDKHandle {
      * func applying(_ transform: ProjectiveTransform3D) -> Rect3D
      * @availability iOS 16.0+
      */
-    applying121(transform: ProjectiveTransform3D): Rect3D;
+    applying92335(transform: ProjectiveTransform3D): Rect3D;
     /**
      * func contains(point other: Point3D) -> Bool
      * @availability iOS 16.0+
@@ -3285,12 +3285,12 @@ export declare class Rect3D extends SDKHandle {
      * func rotated(by quaternion: simd_quatd) -> Rect3D
      * @availability iOS 16.0+
      */
-    rotatedBy164(quaternion: SDKHandle): Rect3D;
+    rotatedBy83504(quaternion: SDKHandle): Rect3D;
     /**
      * func rotated(by quaternion: simd_quatd, around pivot: Point3D) -> Rect3D
      * @availability iOS 16.0+
      */
-    rotatedByAround165(quaternion: SDKHandle, pivot: Point3D): Rect3D;
+    rotatedByAround39598(quaternion: SDKHandle, pivot: Point3D): Rect3D;
     /**
      * func scaled(by scale: Size3D) -> Rect3D
      * @availability iOS 16.0+
@@ -3342,12 +3342,12 @@ export declare class Rect3D extends SDKHandle {
      * init(origin: Point3D, size: Size3D)
      * @availability iOS 16.0+
      */
-    static initOriginSize1012(origin: Point3D, size: Size3D): Rect3D;
+    static initOriginSize65198(origin: Point3D, size: Size3D): Rect3D;
     /**
      * func translated(by size: Size3D) -> Rect3D
      * @availability iOS 16.0+
      */
-    translatedBy1013(size: Size3D): Rect3D;
+    translatedBy59021(size: Size3D): Rect3D;
     /**
      * func unapplying(_ scaledPose: ScaledPose3D) -> Rect3D
      * @availability iOS 18.0+
@@ -3357,17 +3357,17 @@ export declare class Rect3D extends SDKHandle {
      * func unapplying(_ transform: AffineTransform3D) -> Rect3D
      * @availability iOS 16.0+
      */
-    unapplying1015(transform: AffineTransform3D): Rect3D;
+    unapplying3453(transform: AffineTransform3D): Rect3D;
     /**
      * func unapplying(_ transform: ProjectiveTransform3D) -> Rect3D
      * @availability iOS 16.0+
      */
-    unapplying1016(transform: ProjectiveTransform3D): Rect3D;
+    unapplying35784(transform: ProjectiveTransform3D): Rect3D;
     /**
      * func unapplying(_ pose: Pose3D) -> Rect3D
      * @availability iOS 16.0+
      */
-    unapplying1017(pose: Pose3D): Rect3D;
+    unapplying39689(pose: Pose3D): Rect3D;
     /**
      * func containsAny(of points: [Point3D]) -> Bool
      * @availability iOS 16.0+
@@ -3442,32 +3442,32 @@ export declare class Rect3D extends SDKHandle {
      * init(center: Vector3D = .zero, size: Vector3D)
      * @availability iOS 16.0+
      */
-    static initCenterSize1032(center: Vector3D, size: Vector3D): Rect3D;
+    static initCenterSize80186(center: Vector3D, size: Vector3D): Rect3D;
     /**
      * init(center: simd_double3 = .zero, size: simd_double3)
      * @availability iOS 16.0+
      */
-    static initCenterSize1033(center: SDKHandle, size: SDKHandle): Rect3D;
+    static initCenterSize67077(center: SDKHandle, size: SDKHandle): Rect3D;
     /**
      * init(center: simd_float3 = .zero, size: simd_float3)
      * @availability iOS 16.0+
      */
-    static initCenterSize1034(center: SDKHandle, size: SDKHandle): Rect3D;
+    static initCenterSize55647(center: SDKHandle, size: SDKHandle): Rect3D;
     /**
      * init(origin: Vector3D = .zero, size: Vector3D)
      * @availability iOS 16.0+
      */
-    static initOriginSize1035(origin: Vector3D, size: Vector3D): Rect3D;
+    static initOriginSize30819(origin: Vector3D, size: Vector3D): Rect3D;
     /**
      * init(origin: simd_double3 = .zero, size: simd_double3)
      * @availability iOS 16.0+
      */
-    static initOriginSize1036(origin: SDKHandle, size: SDKHandle): Rect3D;
+    static initOriginSize72206(origin: SDKHandle, size: SDKHandle): Rect3D;
     /**
      * init(origin: simd_float3 = .zero, size: simd_float3)
      * @availability iOS 16.0+
      */
-    static initOriginSize1037(origin: SDKHandle, size: SDKHandle): Rect3D;
+    static initOriginSize91456(origin: SDKHandle, size: SDKHandle): Rect3D;
     /**
      * init(points: [Point3D])
      * @availability iOS 16.0+
@@ -3482,12 +3482,12 @@ export declare class Rect3D extends SDKHandle {
      * func applying(_ scaledPose: ScaledPose3D) -> Rect3D
      * @availability iOS 18.0+
      */
-    applying1040(scaledPose: ScaledPose3D): Rect3D;
+    applying22312(scaledPose: ScaledPose3D): Rect3D;
     /**
      * func applying(_ pose: Pose3D) -> Rect3D
      * @availability iOS 16.0+
      */
-    applying1041(pose: Pose3D): Rect3D;
+    applying23769(pose: Pose3D): Rect3D;
     /**
      * func contains(anyOf points: [Point3D]) -> Bool
      * @availability iOS 16.0+
@@ -3522,7 +3522,7 @@ export declare class Rect3D extends SDKHandle {
      * init()
      * @availability iOS 16.0+
      */
-    static init1048(): Rect3D;
+    static init80175(): Rect3D;
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -3593,7 +3593,7 @@ export declare class Rect3DFloat extends SDKHandle {
      * func applying(_ transform: ProjectiveTransform3DFloat) -> Rect3DFloat
      * @availability iOS 26.0+
      */
-    applying125(transform: ProjectiveTransform3DFloat): Rect3DFloat;
+    applying30461(transform: ProjectiveTransform3DFloat): Rect3DFloat;
     /**
      * func contains(point other: Point3DFloat) -> Bool
      * @availability iOS 26.0+
@@ -3683,12 +3683,12 @@ export declare class Rect3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf) -> Rect3DFloat
      * @availability iOS 26.0+
      */
-    rotatedBy143(quaternion: SDKHandle): Rect3DFloat;
+    rotatedBy46216(quaternion: SDKHandle): Rect3DFloat;
     /**
      * func rotated(by quaternion: simd_quatf, around pivot: Point3DFloat) -> Rect3DFloat
      * @availability iOS 26.0+
      */
-    rotatedByAround144(quaternion: SDKHandle, pivot: Point3DFloat): Rect3DFloat;
+    rotatedByAround98628(quaternion: SDKHandle, pivot: Point3DFloat): Rect3DFloat;
     /**
      * func scaled(by scale: Size3DFloat) -> Rect3DFloat
      * @availability iOS 26.0+
@@ -3734,7 +3734,7 @@ export declare class Rect3DFloat extends SDKHandle {
      * init(origin: Point3DFloat, size: Size3DFloat)
      * @availability iOS 26.0+
      */
-    static initOriginSize564(origin: Point3DFloat, size: Size3DFloat): Rect3DFloat;
+    static initOriginSize65486(origin: Point3DFloat, size: Size3DFloat): Rect3DFloat;
     /**
      * func unapplying(_ scaledPose: ScaledPose3DFloat) -> Rect3DFloat
      * @availability iOS 26.0+
@@ -3744,17 +3744,17 @@ export declare class Rect3DFloat extends SDKHandle {
      * func unapplying(_ transform: AffineTransform3DFloat) -> Rect3DFloat
      * @availability iOS 26.0+
      */
-    unapplying566(transform: AffineTransform3DFloat): Rect3DFloat;
+    unapplying47908(transform: AffineTransform3DFloat): Rect3DFloat;
     /**
      * func unapplying(_ transform: ProjectiveTransform3DFloat) -> Rect3DFloat
      * @availability iOS 26.0+
      */
-    unapplying567(transform: ProjectiveTransform3DFloat): Rect3DFloat;
+    unapplying93907(transform: ProjectiveTransform3DFloat): Rect3DFloat;
     /**
      * func unapplying(_ pose: Pose3DFloat) -> Rect3DFloat
      * @availability iOS 26.0+
      */
-    unapplying568(pose: Pose3DFloat): Rect3DFloat;
+    unapplying3896(pose: Pose3DFloat): Rect3DFloat;
     /**
      * var description: String { get }
      * @availability iOS 26.0+
@@ -3779,32 +3779,32 @@ export declare class Rect3DFloat extends SDKHandle {
      * init(center: Vector3DFloat = .zero, size: Vector3DFloat)
      * @availability iOS 26.0+
      */
-    static initCenterSize573(center: Vector3DFloat, size: Vector3DFloat): Rect3DFloat;
+    static initCenterSize82956(center: Vector3DFloat, size: Vector3DFloat): Rect3DFloat;
     /**
      * init(center: simd_double3 = .zero, size: simd_double3)
      * @availability iOS 26.0+
      */
-    static initCenterSize574(center: SDKHandle, size: SDKHandle): Rect3DFloat;
+    static initCenterSize52279(center: SDKHandle, size: SDKHandle): Rect3DFloat;
     /**
      * init(center: simd_float3 = .zero, size: simd_float3)
      * @availability iOS 26.0+
      */
-    static initCenterSize575(center: SDKHandle, size: SDKHandle): Rect3DFloat;
+    static initCenterSize43421(center: SDKHandle, size: SDKHandle): Rect3DFloat;
     /**
      * init(origin: Vector3DFloat = .zero, size: Vector3DFloat)
      * @availability iOS 26.0+
      */
-    static initOriginSize576(origin: Vector3DFloat, size: Vector3DFloat): Rect3DFloat;
+    static initOriginSize31215(origin: Vector3DFloat, size: Vector3DFloat): Rect3DFloat;
     /**
      * init(origin: simd_double3 = .zero, size: simd_double3)
      * @availability iOS 26.0+
      */
-    static initOriginSize577(origin: SDKHandle, size: SDKHandle): Rect3DFloat;
+    static initOriginSize79764(origin: SDKHandle, size: SDKHandle): Rect3DFloat;
     /**
      * init(origin: simd_float3 = .zero, size: simd_float3)
      * @availability iOS 26.0+
      */
-    static initOriginSize578(origin: SDKHandle, size: SDKHandle): Rect3DFloat;
+    static initOriginSize32818(origin: SDKHandle, size: SDKHandle): Rect3DFloat;
     /**
      * init(points: [Point3DFloat])
      * @availability iOS 26.0+
@@ -3819,12 +3819,12 @@ export declare class Rect3DFloat extends SDKHandle {
      * func applying(_ scaledPose: ScaledPose3DFloat) -> Rect3DFloat
      * @availability iOS 26.0+
      */
-    applying581(scaledPose: ScaledPose3DFloat): Rect3DFloat;
+    applying5507(scaledPose: ScaledPose3DFloat): Rect3DFloat;
     /**
      * func applying(_ pose: Pose3DFloat) -> Rect3DFloat
      * @availability iOS 26.0+
      */
-    applying582(pose: Pose3DFloat): Rect3DFloat;
+    applying70360(pose: Pose3DFloat): Rect3DFloat;
     /**
      * func contains(anyOf points: [Point3DFloat]) -> Bool
      * @availability iOS 26.0+
@@ -3849,7 +3849,7 @@ export declare class Rect3DFloat extends SDKHandle {
      * init()
      * @availability iOS 26.0+
      */
-    static init587(): Rect3DFloat;
+    static init22853(): Rect3DFloat;
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -4021,12 +4021,12 @@ export declare class Rotation3D extends SDKHandle {
      * init(quaternion: simd_quatd)
      * @availability iOS 16.0+
      */
-    static initQuaternion509(quaternion: SDKHandle): Rotation3D;
+    static initQuaternion76540(quaternion: SDKHandle): Rotation3D;
     /**
      * init(quaternion: simd_quatf)
      * @availability iOS 16.0+
      */
-    static initQuaternion510(quaternion: SDKHandle): Rotation3D;
+    static initQuaternion70374(quaternion: SDKHandle): Rotation3D;
     /**
      * func swingTwist(twistAxis: RotationAxis3D) -> (swing: Rotation3D, twist: Rotation3D)
      * @availability iOS 17.0+
@@ -4096,7 +4096,7 @@ export declare class Rotation3D extends SDKHandle {
      * func rotated(by quaternion: simd_quatd) -> Rotation3D
      * @availability iOS 17.0+
      */
-    rotatedBy525(quaternion: SDKHandle): Rotation3D;
+    rotatedBy67528(quaternion: SDKHandle): Rotation3D;
     /**
      * func applying(_ transform: ProjectiveTransform3D) -> Rotation3D
      * @availability iOS 27.0+
@@ -4117,27 +4117,27 @@ export declare class Rotation3D extends SDKHandle {
      * init(_ rotation: Rotation3DFloat)
      * @availability iOS 26.0+
      */
-    static init529(rotation: Rotation3DFloat): Rotation3D;
+    static init50532(rotation: Rotation3DFloat): Rotation3D;
     /**
      * init(_ quaternion: simd_quatd)
      * @availability iOS 16.0+
      */
-    static init530(quaternion: SDKHandle): Rotation3D;
+    static init42427(quaternion: SDKHandle): Rotation3D;
     /**
      * init(_ quaternion: simd_quatf)
      * @availability iOS 16.0+
      */
-    static init531(quaternion: SDKHandle): Rotation3D;
+    static init98869(quaternion: SDKHandle): Rotation3D;
     /**
      * init(_ source: simd_packed_double4)
      * @availability iOS 26.0+
      */
-    static init532(source: SDKHandle): Rotation3D;
+    static init15708(source: SDKHandle): Rotation3D;
     /**
      * init()
      * @availability iOS 16.0+
      */
-    static init533(): Rotation3D;
+    static init61098(): Rotation3D;
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -4322,7 +4322,7 @@ export declare class Rotation3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf) -> Rotation3DFloat
      * @availability iOS 26.0+
      */
-    rotatedBy740(quaternion: SDKHandle): Rotation3DFloat;
+    rotatedBy56809(quaternion: SDKHandle): Rotation3DFloat;
     /**
      * func applying(_ transform: ProjectiveTransform3DFloat) -> Rotation3DFloat
      * @availability iOS 27.0+
@@ -4342,27 +4342,27 @@ export declare class Rotation3DFloat extends SDKHandle {
      * init(_ rotation: Rotation3D)
      * @availability iOS 26.0+
      */
-    static init744(rotation: Rotation3D): Rotation3DFloat;
+    static init76276(rotation: Rotation3D): Rotation3DFloat;
     /**
      * init(_ quaternion: simd_quatd)
      * @availability iOS 26.0+
      */
-    static init745(quaternion: SDKHandle): Rotation3DFloat;
+    static init31072(quaternion: SDKHandle): Rotation3DFloat;
     /**
      * init(_ quaternion: simd_quatf)
      * @availability iOS 26.0+
      */
-    static init746(quaternion: SDKHandle): Rotation3DFloat;
+    static init1738(quaternion: SDKHandle): Rotation3DFloat;
     /**
      * init(_ source: simd_packed_float4)
      * @availability iOS 26.0+
      */
-    static init747(source: SDKHandle): Rotation3DFloat;
+    static init38047(source: SDKHandle): Rotation3DFloat;
     /**
      * init()
      * @availability iOS 26.0+
      */
-    static init748(): Rotation3DFloat;
+    static init76481(): Rotation3DFloat;
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -4464,7 +4464,7 @@ export declare class RotationAxis3D extends SDKHandle {
      * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    static initXYZ703(x: number, y: number, z: number): RotationAxis3D;
+    static initXYZ73711(x: number, y: number, z: number): RotationAxis3D;
     /**
      * static let x: RotationAxis3D
      * @availability iOS 16.0+
@@ -4474,8 +4474,8 @@ export declare class RotationAxis3D extends SDKHandle {
      * var x: Double { get set }
      * @availability iOS 16.0+
      */
-    get x705(): number;
-    set x706(value: number);
+    get x82189(): number;
+    set x82189(value: number);
     /**
      * static let y: RotationAxis3D
      * @availability iOS 16.0+
@@ -4485,8 +4485,8 @@ export declare class RotationAxis3D extends SDKHandle {
      * var y: Double { get set }
      * @availability iOS 16.0+
      */
-    get y708(): number;
-    set y709(value: number);
+    get y29646(): number;
+    set y29646(value: number);
     /**
      * static let z: RotationAxis3D
      * @availability iOS 16.0+
@@ -4496,8 +4496,8 @@ export declare class RotationAxis3D extends SDKHandle {
      * var z: Double { get set }
      * @availability iOS 16.0+
      */
-    get z711(): number;
-    set z712(value: number);
+    get z10947(): number;
+    set z10947(value: number);
     /**
      * static let xy: RotationAxis3D
      * @availability iOS 16.0+
@@ -4533,27 +4533,27 @@ export declare class RotationAxis3D extends SDKHandle {
      * init(_ xyz: Vector3D)
      * @availability iOS 16.0+
      */
-    static init720(xyz: Vector3D): RotationAxis3D;
+    static init97180(xyz: Vector3D): RotationAxis3D;
     /**
      * init(_ xyz: simd_double3)
      * @availability iOS 16.0+
      */
-    static init721(xyz: SDKHandle): RotationAxis3D;
+    static init19736(xyz: SDKHandle): RotationAxis3D;
     /**
      * init(_ xyz: simd_float3)
      * @availability iOS 16.0+
      */
-    static init722(xyz: SDKHandle): RotationAxis3D;
+    static init56274(xyz: SDKHandle): RotationAxis3D;
     /**
      * init(_ source: simd_packed_double4)
      * @availability iOS 26.0+
      */
-    static init723(source: SDKHandle): RotationAxis3D;
+    static init61725(source: SDKHandle): RotationAxis3D;
     /**
      * init()
      * @availability iOS 16.0+
      */
-    static init724(): RotationAxis3D;
+    static init72533(): RotationAxis3D;
 }
 /**
  * struct RotationAxis3DFloat
@@ -4592,7 +4592,7 @@ export declare class RotationAxis3DFloat extends SDKHandle {
      * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
      * @availability iOS 26.0+
      */
-    static initXYZ816(x: number, y: number, z: number): RotationAxis3DFloat;
+    static initXYZ82827(x: number, y: number, z: number): RotationAxis3DFloat;
     /**
      * static let x: RotationAxis3DFloat
      * @availability iOS 26.0+
@@ -4602,8 +4602,8 @@ export declare class RotationAxis3DFloat extends SDKHandle {
      * var x: Float { get set }
      * @availability iOS 26.0+
      */
-    get x818(): number;
-    set x819(value: number);
+    get x53467(): number;
+    set x53467(value: number);
     /**
      * static let y: RotationAxis3DFloat
      * @availability iOS 26.0+
@@ -4613,8 +4613,8 @@ export declare class RotationAxis3DFloat extends SDKHandle {
      * var y: Float { get set }
      * @availability iOS 26.0+
      */
-    get y821(): number;
-    set y822(value: number);
+    get y21148(): number;
+    set y21148(value: number);
     /**
      * static let z: RotationAxis3DFloat
      * @availability iOS 26.0+
@@ -4624,8 +4624,8 @@ export declare class RotationAxis3DFloat extends SDKHandle {
      * var z: Float { get set }
      * @availability iOS 26.0+
      */
-    get z824(): number;
-    set z825(value: number);
+    get z14333(): number;
+    set z14333(value: number);
     /**
      * static let xy: RotationAxis3DFloat
      * @availability iOS 26.0+
@@ -4655,27 +4655,27 @@ export declare class RotationAxis3DFloat extends SDKHandle {
      * init(_ axis: RotationAxis3D)
      * @availability iOS 26.0+
      */
-    static init831(axis: RotationAxis3D): RotationAxis3DFloat;
+    static init49614(axis: RotationAxis3D): RotationAxis3DFloat;
     /**
      * init(_ xyz: simd_double3)
      * @availability iOS 26.0+
      */
-    static init832(xyz: SDKHandle): RotationAxis3DFloat;
+    static init98996(xyz: SDKHandle): RotationAxis3DFloat;
     /**
      * init(_ xyz: simd_float3)
      * @availability iOS 26.0+
      */
-    static init833(xyz: SDKHandle): RotationAxis3DFloat;
+    static init64478(xyz: SDKHandle): RotationAxis3DFloat;
     /**
      * init(_ source: simd_packed_float4)
      * @availability iOS 26.0+
      */
-    static init834(source: SDKHandle): RotationAxis3DFloat;
+    static init68855(source: SDKHandle): RotationAxis3DFloat;
     /**
      * init()
      * @availability iOS 26.0+
      */
-    static init835(): RotationAxis3DFloat;
+    static init94713(): RotationAxis3DFloat;
 }
 /**
  * protocol Scalable3D
@@ -4774,7 +4774,7 @@ export declare class ScaledPose3D extends SDKHandle {
      * func translated(by size: Size3D) -> ScaledPose3D
      * @availability iOS 18.0+
      */
-    translatedBy633(size: Size3D): ScaledPose3D;
+    translatedBy25809(size: Size3D): ScaledPose3D;
     /**
      * var description: String { get }
      * @availability iOS 18.0+
@@ -4794,7 +4794,7 @@ export declare class ScaledPose3D extends SDKHandle {
      * func concatenating(_ transform: Pose3D) -> ScaledPose3D
      * @availability iOS 18.0+
      */
-    concatenating637(transform: Pose3D): ScaledPose3D;
+    concatenating54535(transform: Pose3D): ScaledPose3D;
     /**
      * func isApproximatelyEqual(to other: ScaledPose3D, tolerance: Double = sqrt(.ulpOfOne)) -> Bool
      * @availability iOS 18.0+
@@ -4834,7 +4834,7 @@ export declare class ScaledPose3D extends SDKHandle {
      * func rotated(by rotation: Rotation3D) -> ScaledPose3D
      * @availability iOS 18.0+
      */
-    rotatedBy645(rotation: Rotation3D): ScaledPose3D;
+    rotatedBy84406(rotation: Rotation3D): ScaledPose3D;
     /**
      * static var identity: ScaledPose3D { get }
      * @availability iOS 18.0+
@@ -4854,12 +4854,12 @@ export declare class ScaledPose3D extends SDKHandle {
      * init(position: simd_double3 = .zero, rotation: simd_quatd, scale: Double = 1)
      * @availability iOS 18.0+
      */
-    static initPositionRotationScale649(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3D;
+    static initPositionRotationScale5588(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3D;
     /**
      * init(position: simd_float3 = .zero, rotation: simd_quatf, scale: Float = 1)
      * @availability iOS 18.0+
      */
-    static initPositionRotationScale650(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3D;
+    static initPositionRotationScale72222(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3D;
     /**
      * init?(transform: AffineTransform3D)
      * @availability iOS 18.0+
@@ -4869,7 +4869,7 @@ export declare class ScaledPose3D extends SDKHandle {
      * init?(transform: ProjectiveTransform3D)
      * @availability iOS 18.0+
      */
-    static initTransform652(transform: ProjectiveTransform3D): (ScaledPose3D) | null;
+    static initTransform81077(transform: ProjectiveTransform3D): (ScaledPose3D) | null;
     /**
      * init?(_ matrix: simd_float4x4)
      * @availability iOS 18.0+
@@ -4879,14 +4879,14 @@ export declare class ScaledPose3D extends SDKHandle {
      * init?(_ matrix: simd_double4x4)
      * @availability iOS 18.0+
      */
-    static init654(matrix: SDKHandle): (ScaledPose3D) | null;
+    static init96470(matrix: SDKHandle): (ScaledPose3D) | null;
     /**
      * init(_ pose: ScaledPose3DFloat)
      * @availability iOS 26.0+
      */
-    static init655(pose: ScaledPose3DFloat): ScaledPose3D;
+    static init64461(pose: ScaledPose3DFloat): ScaledPose3D;
     /** init() */
-    static init656(): ScaledPose3D;
+    static init73635(): ScaledPose3D;
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -4983,7 +4983,7 @@ export declare class ScaledPose3DFloat extends SDKHandle {
      * func concatenating(_ transform: Pose3DFloat) -> ScaledPose3DFloat
      * @availability iOS 26.0+
      */
-    concatenating793(transform: Pose3DFloat): ScaledPose3DFloat;
+    concatenating96912(transform: Pose3DFloat): ScaledPose3DFloat;
     /**
      * func isApproximatelyEqual(to other: ScaledPose3DFloat, tolerance: Float = sqrt(.ulpOfOne)) -> Bool
      * @availability iOS 26.0+
@@ -5023,7 +5023,7 @@ export declare class ScaledPose3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf) -> ScaledPose3DFloat
      * @availability iOS 26.0+
      */
-    rotatedBy801(quaternion: SDKHandle): ScaledPose3DFloat;
+    rotatedBy67970(quaternion: SDKHandle): ScaledPose3DFloat;
     /**
      * static var identity: ScaledPose3DFloat { get }
      * @availability iOS 26.0+
@@ -5043,7 +5043,7 @@ export declare class ScaledPose3DFloat extends SDKHandle {
      * init(position: simd_float3 = .zero, rotation: simd_quatf, scale: Float = 1)
      * @availability iOS 26.0+
      */
-    static initPositionRotationScale805(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3DFloat;
+    static initPositionRotationScale31997(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3DFloat;
     /**
      * init?(transform: AffineTransform3DFloat)
      * @availability iOS 26.0+
@@ -5053,7 +5053,7 @@ export declare class ScaledPose3DFloat extends SDKHandle {
      * init?(transform: ProjectiveTransform3DFloat)
      * @availability iOS 26.0+
      */
-    static initTransform807(transform: ProjectiveTransform3DFloat): (ScaledPose3DFloat) | null;
+    static initTransform89780(transform: ProjectiveTransform3DFloat): (ScaledPose3DFloat) | null;
     /**
      * init?(_ matrix: simd_float4x4)
      * @availability iOS 26.0+
@@ -5063,11 +5063,11 @@ export declare class ScaledPose3DFloat extends SDKHandle {
      * init(_ pose: ScaledPose3D)
      * @availability iOS 26.0+
      */
-    static init809(pose: ScaledPose3D): ScaledPose3DFloat;
+    static init51775(pose: ScaledPose3D): ScaledPose3DFloat;
     /** init(position: Point3DFloat, rotation: Rotation3DFloat, scale: Float) */
-    static initPositionRotationScale810(position: Point3DFloat, rotation: Rotation3DFloat, scale: number): ScaledPose3DFloat;
+    static initPositionRotationScale70319(position: Point3DFloat, rotation: Rotation3DFloat, scale: number): ScaledPose3DFloat;
     /** init() */
-    static init811(): ScaledPose3DFloat;
+    static init34842(): ScaledPose3DFloat;
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -5170,7 +5170,7 @@ export declare class Size3D extends SDKHandle {
      * func applying(_ transform: ProjectiveTransform3D) -> Size3D
      * @availability iOS 16.0+
      */
-    applying188(transform: ProjectiveTransform3D): Size3D;
+    applying83077(transform: ProjectiveTransform3D): Size3D;
     /**
      * func contains(point other: Point3D) -> Bool
      * @availability iOS 16.0+
@@ -5205,7 +5205,7 @@ export declare class Size3D extends SDKHandle {
      * func rotated(by quaternion: simd_quatd) -> Size3D
      * @availability iOS 16.0+
      */
-    rotatedBy207(quaternion: SDKHandle): Size3D;
+    rotatedBy29826(quaternion: SDKHandle): Size3D;
     /**
      * func scaled(by scale: Size3D) -> Size3D
      * @availability iOS 16.0+
@@ -5269,17 +5269,17 @@ export declare class Size3D extends SDKHandle {
      * func unapplying(_ transform: AffineTransform3D) -> Size3D
      * @availability iOS 16.0+
      */
-    unapplying1051(transform: AffineTransform3D): Size3D;
+    unapplying21518(transform: AffineTransform3D): Size3D;
     /**
      * func unapplying(_ transform: ProjectiveTransform3D) -> Size3D
      * @availability iOS 16.0+
      */
-    unapplying1052(transform: ProjectiveTransform3D): Size3D;
+    unapplying22975(transform: ProjectiveTransform3D): Size3D;
     /**
      * func unapplying(_ pose: Pose3D) -> Size3D
      * @availability iOS 16.0+
      */
-    unapplying1053(pose: Pose3D): Size3D;
+    unapplying46554(pose: Pose3D): Size3D;
     /**
      * func containsAny(of points: [Point3D]) -> Bool
      * @availability iOS 16.0+
@@ -5325,7 +5325,7 @@ export declare class Size3D extends SDKHandle {
      * init<T>(width: T, height: T, depth: T) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    static initWidthHeightDepth1063(width: number, height: number, depth: number): Size3D;
+    static initWidthHeightDepth30320(width: number, height: number, depth: number): Size3D;
     /**
      * func sheared(_ shear: AxisWithFactors) -> Size3D
      * @availability iOS 16.0+
@@ -5335,12 +5335,12 @@ export declare class Size3D extends SDKHandle {
      * func applying(_ scaledPose: ScaledPose3D) -> Size3D
      * @availability iOS 18.0+
      */
-    applying1065(scaledPose: ScaledPose3D): Size3D;
+    applying58719(scaledPose: ScaledPose3D): Size3D;
     /**
      * func applying(_ pose: Pose3D) -> Size3D
      * @availability iOS 16.0+
      */
-    applying1066(pose: Pose3D): Size3D;
+    applying44116(pose: Pose3D): Size3D;
     /**
      * func contains(anyOf points: [Point3D]) -> Bool
      * @availability iOS 16.0+
@@ -5360,32 +5360,32 @@ export declare class Size3D extends SDKHandle {
      * init(_ xyz: Vector3D)
      * @availability iOS 16.0+
      */
-    static init1070(xyz: Vector3D): Size3D;
+    static init62779(xyz: Vector3D): Size3D;
     /**
      * init(_ point: Point3D)
      * @availability iOS 16.0+
      */
-    static init1071(point: Point3D): Size3D;
+    static init40312(point: Point3D): Size3D;
     /**
      * init(_ xyz: simd_double3)
      * @availability iOS 16.0+
      */
-    static init1072(xyz: SDKHandle): Size3D;
+    static init53157(xyz: SDKHandle): Size3D;
     /**
      * init(_ xyz: simd_float3)
      * @availability iOS 16.0+
      */
-    static init1073(xyz: SDKHandle): Size3D;
+    static init61867(xyz: SDKHandle): Size3D;
     /**
      * init(_ source: simd_packed_double4)
      * @availability iOS 26.0+
      */
-    static init1074(source: SDKHandle): Size3D;
+    static init21696(source: SDKHandle): Size3D;
     /**
      * init()
      * @availability iOS 16.0+
      */
-    static init1075(): Size3D;
+    static init26542(): Size3D;
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -5456,7 +5456,7 @@ export declare class Size3DFloat extends SDKHandle {
      * func applying(_ transform: ProjectiveTransform3DFloat) -> Size3DFloat
      * @availability iOS 26.0+
      */
-    applying192(transform: ProjectiveTransform3DFloat): Size3DFloat;
+    applying1641(transform: ProjectiveTransform3DFloat): Size3DFloat;
     /**
      * func contains(point other: Point3DFloat) -> Bool
      * @availability iOS 26.0+
@@ -5491,7 +5491,7 @@ export declare class Size3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf) -> Size3DFloat
      * @availability iOS 26.0+
      */
-    rotatedBy199(quaternion: SDKHandle): Size3DFloat;
+    rotatedBy6992(quaternion: SDKHandle): Size3DFloat;
     /**
      * func scaled(by scale: Size3DFloat) -> Size3DFloat
      * @availability iOS 26.0+
@@ -5549,17 +5549,17 @@ export declare class Size3DFloat extends SDKHandle {
      * func unapplying(_ transform: AffineTransform3DFloat) -> Size3DFloat
      * @availability iOS 26.0+
      */
-    unapplying590(transform: AffineTransform3DFloat): Size3DFloat;
+    unapplying16485(transform: AffineTransform3DFloat): Size3DFloat;
     /**
      * func unapplying(_ transform: ProjectiveTransform3DFloat) -> Size3DFloat
      * @availability iOS 26.0+
      */
-    unapplying591(transform: ProjectiveTransform3DFloat): Size3DFloat;
+    unapplying81554(transform: ProjectiveTransform3DFloat): Size3DFloat;
     /**
      * func unapplying(_ pose: Pose3DFloat) -> Size3DFloat
      * @availability iOS 26.0+
      */
-    unapplying592(pose: Pose3DFloat): Size3DFloat;
+    unapplying821(pose: Pose3DFloat): Size3DFloat;
     /**
      * var description: String { get }
      * @availability iOS 26.0+
@@ -5594,7 +5594,7 @@ export declare class Size3DFloat extends SDKHandle {
      * init<T>(width: T, height: T, depth: T) where T : BinaryFloatingPoint
      * @availability iOS 26.0+
      */
-    static initWidthHeightDepth599(width: number, height: number, depth: number): Size3DFloat;
+    static initWidthHeightDepth27956(width: number, height: number, depth: number): Size3DFloat;
     /**
      * func sheared(_ shear: AxisWithFactors) -> Size3DFloat
      * @availability iOS 26.0+
@@ -5604,12 +5604,12 @@ export declare class Size3DFloat extends SDKHandle {
      * func applying(_ scaledPose: ScaledPose3DFloat) -> Size3DFloat
      * @availability iOS 26.0+
      */
-    applying601(scaledPose: ScaledPose3DFloat): Size3DFloat;
+    applying13490(scaledPose: ScaledPose3DFloat): Size3DFloat;
     /**
      * func applying(_ pose: Pose3DFloat) -> Size3DFloat
      * @availability iOS 26.0+
      */
-    applying602(pose: Pose3DFloat): Size3DFloat;
+    applying45143(pose: Pose3DFloat): Size3DFloat;
     /**
      * func contains(anyOf points: [Point3DFloat]) -> Bool
      * @availability iOS 26.0+
@@ -5629,32 +5629,32 @@ export declare class Size3DFloat extends SDKHandle {
      * init(_ xyz: Vector3DFloat)
      * @availability iOS 26.0+
      */
-    static init606(xyz: Vector3DFloat): Size3DFloat;
+    static init3159(xyz: Vector3DFloat): Size3DFloat;
     /**
      * init(_ size: Size3D)
      * @availability iOS 26.0+
      */
-    static init607(size: Size3D): Size3DFloat;
+    static init12223(size: Size3D): Size3DFloat;
     /**
      * init(_ xyz: simd_double3)
      * @availability iOS 26.0+
      */
-    static init608(xyz: SDKHandle): Size3DFloat;
+    static init69089(xyz: SDKHandle): Size3DFloat;
     /**
      * init(_ xyz: simd_float3)
      * @availability iOS 26.0+
      */
-    static init609(xyz: SDKHandle): Size3DFloat;
+    static init8599(xyz: SDKHandle): Size3DFloat;
     /**
      * init(_ source: simd_packed_float4)
      * @availability iOS 26.0+
      */
-    static init610(source: SDKHandle): Size3DFloat;
+    static init85758(source: SDKHandle): Size3DFloat;
     /**
      * init()
      * @availability iOS 26.0+
      */
-    static init611(): Size3DFloat;
+    static init30786(): Size3DFloat;
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -5780,27 +5780,27 @@ export declare class SphericalCoordinates3D extends SDKHandle {
      * init(_ vector: Vector3D)
      * @availability iOS 18.0+
      */
-    static init895(vector: Vector3D): SphericalCoordinates3D;
+    static init34404(vector: Vector3D): SphericalCoordinates3D;
     /**
      * init(_ point: Point3D)
      * @availability iOS 18.0+
      */
-    static init896(point: Point3D): SphericalCoordinates3D;
+    static init55927(point: Point3D): SphericalCoordinates3D;
     /**
      * init(_ vector: simd_double3)
      * @availability iOS 18.0+
      */
-    static init897(vector: SDKHandle): SphericalCoordinates3D;
+    static init19488(vector: SDKHandle): SphericalCoordinates3D;
     /**
      * init(_ source: simd_packed_double4)
      * @availability iOS 26.0+
      */
-    static init898(source: SDKHandle): SphericalCoordinates3D;
+    static init39141(source: SDKHandle): SphericalCoordinates3D;
     /**
      * init()
      * @availability iOS 18.0+
      */
-    static init899(): SphericalCoordinates3D;
+    static init61341(): SphericalCoordinates3D;
 }
 /**
  * struct SphericalCoordinates3DFloat
@@ -5865,27 +5865,27 @@ export declare class SphericalCoordinates3DFloat extends SDKHandle {
      * init(_ vector: Vector3DFloat)
      * @availability iOS 26.0+
      */
-    static init927(vector: Vector3DFloat): SphericalCoordinates3DFloat;
+    static init75424(vector: Vector3DFloat): SphericalCoordinates3DFloat;
     /**
      * init(_ coords: SphericalCoordinates3D)
      * @availability iOS 26.0+
      */
-    static init928(coords: SphericalCoordinates3D): SphericalCoordinates3DFloat;
+    static init92049(coords: SphericalCoordinates3D): SphericalCoordinates3DFloat;
     /**
      * init(_ vector: simd_float3)
      * @availability iOS 26.0+
      */
-    static init929(vector: SDKHandle): SphericalCoordinates3DFloat;
+    static init70017(vector: SDKHandle): SphericalCoordinates3DFloat;
     /**
      * init(_ source: simd_packed_float4)
      * @availability iOS 26.0+
      */
-    static init930(source: SDKHandle): SphericalCoordinates3DFloat;
+    static init58636(source: SDKHandle): SphericalCoordinates3DFloat;
     /**
      * init()
      * @availability iOS 26.0+
      */
-    static init931(): SphericalCoordinates3DFloat;
+    static init2236(): SphericalCoordinates3DFloat;
 }
 /**
  * protocol Transform3DProtocol : SpatialTypeProtocol
@@ -6053,17 +6053,17 @@ export declare class Vector3D extends SDKHandle {
      * func unapplying(_ transform: AffineTransform3D) -> Vector3D
      * @availability iOS 16.0+
      */
-    unapplying427(transform: AffineTransform3D): Vector3D;
+    unapplying1261(transform: AffineTransform3D): Vector3D;
     /**
      * func unapplying(_ transform: ProjectiveTransform3D) -> Vector3D
      * @availability iOS 16.0+
      */
-    unapplying428(transform: ProjectiveTransform3D): Vector3D;
+    unapplying96568(transform: ProjectiveTransform3D): Vector3D;
     /**
      * func unapplying(_ pose: Pose3D) -> Vector3D
      * @availability iOS 16.0+
      */
-    unapplying429(pose: Pose3D): Vector3D;
+    unapplying1497(pose: Pose3D): Vector3D;
     /**
      * var description: String { get }
      * @availability iOS 16.0+
@@ -6093,7 +6093,7 @@ export declare class Vector3D extends SDKHandle {
      * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    static initXYZ435(x: number, y: number, z: number): Vector3D;
+    static initXYZ86701(x: number, y: number, z: number): Vector3D;
     /**
      * static let up: Vector3D
      * @availability iOS 16.0+
@@ -6143,7 +6143,7 @@ export declare class Vector3D extends SDKHandle {
      * func rotated(by rotation: Rotation3D) -> Vector3D
      * @availability iOS 16.0+
      */
-    rotatedBy445(rotation: Rotation3D): Vector3D;
+    rotatedBy32266(rotation: Rotation3D): Vector3D;
     /**
      * func sheared(_ shear: AxisWithFactors) -> Vector3D
      * @availability iOS 16.0+
@@ -6158,17 +6158,17 @@ export declare class Vector3D extends SDKHandle {
      * func applying(_ transform: AffineTransform3D) -> Vector3D
      * @availability iOS 16.0+
      */
-    applying448(transform: AffineTransform3D): Vector3D;
+    applying33501(transform: AffineTransform3D): Vector3D;
     /**
      * func applying(_ transform: ProjectiveTransform3D) -> Vector3D
      * @availability iOS 16.0+
      */
-    applying449(transform: ProjectiveTransform3D): Vector3D;
+    applying26088(transform: ProjectiveTransform3D): Vector3D;
     /**
      * func applying(_ pose: Pose3D) -> Vector3D
      * @availability iOS 16.0+
      */
-    applying450(pose: Pose3D): Vector3D;
+    applying9385(pose: Pose3D): Vector3D;
     /**
      * func rotation(to other: Vector3D) -> Rotation3D
      * @availability iOS 16.0+
@@ -6203,42 +6203,42 @@ export declare class Vector3D extends SDKHandle {
      * init(_ axis: RotationAxis3D)
      * @availability iOS 16.0+
      */
-    static init457(axis: RotationAxis3D): Vector3D;
+    static init65124(axis: RotationAxis3D): Vector3D;
     /**
      * init(_ coords: SphericalCoordinates3D)
      * @availability iOS 18.0+
      */
-    static init458(coords: SphericalCoordinates3D): Vector3D;
+    static init57812(coords: SphericalCoordinates3D): Vector3D;
     /**
      * init(_ size: Size3D)
      * @availability iOS 16.0+
      */
-    static init459(size: Size3D): Vector3D;
+    static init96699(size: Size3D): Vector3D;
     /**
      * init(_ point: Point3D)
      * @availability iOS 16.0+
      */
-    static init460(point: Point3D): Vector3D;
+    static init26545(point: Point3D): Vector3D;
     /**
      * init(_ xyz: simd_double3)
      * @availability iOS 16.0+
      */
-    static init461(xyz: SDKHandle): Vector3D;
+    static init51462(xyz: SDKHandle): Vector3D;
     /**
      * init(_ xyz: simd_float3)
      * @availability iOS 16.0+
      */
-    static init462(xyz: SDKHandle): Vector3D;
+    static init78140(xyz: SDKHandle): Vector3D;
     /**
      * init(_ source: simd_packed_double4)
      * @availability iOS 26.0+
      */
-    static init463(source: SDKHandle): Vector3D;
+    static init28359(source: SDKHandle): Vector3D;
     /**
      * init()
      * @availability iOS 16.0+
      */
-    static init464(): Vector3D;
+    static init65919(): Vector3D;
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -6367,17 +6367,17 @@ export declare class Vector3DFloat extends SDKHandle {
      * func unapplying(_ transform: AffineTransform3DFloat) -> Vector3DFloat
      * @availability iOS 26.0+
      */
-    unapplying661(transform: AffineTransform3DFloat): Vector3DFloat;
+    unapplying3669(transform: AffineTransform3DFloat): Vector3DFloat;
     /**
      * func unapplying(_ transform: ProjectiveTransform3DFloat) -> Vector3DFloat
      * @availability iOS 26.0+
      */
-    unapplying662(transform: ProjectiveTransform3DFloat): Vector3DFloat;
+    unapplying57954(transform: ProjectiveTransform3DFloat): Vector3DFloat;
     /**
      * func unapplying(_ pose: Pose3DFloat) -> Vector3DFloat
      * @availability iOS 26.0+
      */
-    unapplying663(pose: Pose3DFloat): Vector3DFloat;
+    unapplying76453(pose: Pose3DFloat): Vector3DFloat;
     /**
      * var description: String { get }
      * @availability iOS 26.0+
@@ -6407,7 +6407,7 @@ export declare class Vector3DFloat extends SDKHandle {
      * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
      * @availability iOS 26.0+
      */
-    static initXYZ669(x: number, y: number, z: number): Vector3DFloat;
+    static initXYZ67034(x: number, y: number, z: number): Vector3DFloat;
     /**
      * static let up: Vector3DFloat
      * @availability iOS 26.0+
@@ -6457,7 +6457,7 @@ export declare class Vector3DFloat extends SDKHandle {
      * func rotated(by quaternion: simd_quatf) -> Vector3DFloat
      * @availability iOS 26.0+
      */
-    rotatedBy679(quaternion: SDKHandle): Vector3DFloat;
+    rotatedBy24026(quaternion: SDKHandle): Vector3DFloat;
     /**
      * func sheared(_ shear: AxisWithFactors) -> Vector3DFloat
      * @availability iOS 26.0+
@@ -6472,17 +6472,17 @@ export declare class Vector3DFloat extends SDKHandle {
      * func applying(_ transform: AffineTransform3DFloat) -> Vector3DFloat
      * @availability iOS 26.0+
      */
-    applying682(transform: AffineTransform3DFloat): Vector3DFloat;
+    applying41255(transform: AffineTransform3DFloat): Vector3DFloat;
     /**
      * func applying(_ transform: ProjectiveTransform3DFloat) -> Vector3DFloat
      * @availability iOS 26.0+
      */
-    applying683(transform: ProjectiveTransform3DFloat): Vector3DFloat;
+    applying64228(transform: ProjectiveTransform3DFloat): Vector3DFloat;
     /**
      * func applying(_ pose: Pose3DFloat) -> Vector3DFloat
      * @availability iOS 26.0+
      */
-    applying684(pose: Pose3DFloat): Vector3DFloat;
+    applying20519(pose: Pose3DFloat): Vector3DFloat;
     /**
      * func rotation(to other: Vector3DFloat) -> Rotation3DFloat
      * @availability iOS 26.0+
@@ -6517,42 +6517,42 @@ export declare class Vector3DFloat extends SDKHandle {
      * init(_ coords: SphericalCoordinates3DFloat)
      * @availability iOS 26.0+
      */
-    static init691(coords: SphericalCoordinates3DFloat): Vector3DFloat;
+    static init47528(coords: SphericalCoordinates3DFloat): Vector3DFloat;
     /**
      * init(_ size: Size3DFloat)
      * @availability iOS 26.0+
      */
-    static init692(size: Size3DFloat): Vector3DFloat;
+    static init68627(size: Size3DFloat): Vector3DFloat;
     /**
      * init(_ point: Point3DFloat)
      * @availability iOS 26.0+
      */
-    static init693(point: Point3DFloat): Vector3DFloat;
+    static init42463(point: Point3DFloat): Vector3DFloat;
     /**
      * init(_ vector: Vector3D)
      * @availability iOS 26.0+
      */
-    static init694(vector: Vector3D): Vector3DFloat;
+    static init26095(vector: Vector3D): Vector3DFloat;
     /**
      * init(_ xyz: simd_double3)
      * @availability iOS 26.0+
      */
-    static init695(xyz: SDKHandle): Vector3DFloat;
+    static init55921(xyz: SDKHandle): Vector3DFloat;
     /**
      * init(_ xyz: simd_float3)
      * @availability iOS 26.0+
      */
-    static init696(xyz: SDKHandle): Vector3DFloat;
+    static init25127(xyz: SDKHandle): Vector3DFloat;
     /**
      * init(_ source: simd_packed_float4)
      * @availability iOS 26.0+
      */
-    static init697(source: SDKHandle): Vector3DFloat;
+    static init2478(source: SDKHandle): Vector3DFloat;
     /**
      * init()
      * @availability iOS 26.0+
      */
-    static init698(): Vector3DFloat;
+    static init34322(): Vector3DFloat;
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -6731,7 +6731,7 @@ export declare function cos(angle: Angle2D): number;
  * func cos(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export declare function cos412(angle: Angle2DFloat): number;
+export declare function cos98929(angle: Angle2DFloat): number;
 /**
  * func sin(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
@@ -6741,7 +6741,7 @@ export declare function sin(angle: Angle2D): number;
  * func sin(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export declare function sin414(angle: Angle2DFloat): number;
+export declare function sin34202(angle: Angle2DFloat): number;
 /**
  * func tan(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
@@ -6751,7 +6751,7 @@ export declare function tan(angle: Angle2D): number;
  * func tan(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export declare function tan416(angle: Angle2DFloat): number;
+export declare function tan86505(angle: Angle2DFloat): number;
 /**
  * func cosh(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
@@ -6761,7 +6761,7 @@ export declare function cosh(angle: Angle2D): number;
  * func cosh(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export declare function cosh418(angle: Angle2DFloat): number;
+export declare function cosh84532(angle: Angle2DFloat): number;
 /**
  * func sinh(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
@@ -6771,7 +6771,7 @@ export declare function sinh(angle: Angle2D): number;
  * func sinh(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export declare function sinh420(angle: Angle2DFloat): number;
+export declare function sinh71789(angle: Angle2DFloat): number;
 /**
  * func tanh(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
@@ -6781,7 +6781,7 @@ export declare function tanh(angle: Angle2D): number;
  * func tanh(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export declare function tanh422(angle: Angle2DFloat): number;
+export declare function tanh4040(angle: Angle2DFloat): number;
 /**
  * let x: Axis3D
  * @availability iOS 16.0+

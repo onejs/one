@@ -1557,7 +1557,7 @@ export declare class LayerHierarchyHostingTransactionCoordinator extends SDKHand
      * @MainActor func add(_ hostingView: LayerHierarchyHostingView)
      * @availability iOS 17.4+
      */
-    add87(hostingView: LayerHierarchyHostingView): Promise<void>;
+    add23805(hostingView: LayerHierarchyHostingView): Promise<void>;
     /**
      * @MainActor func commit()
      * @availability iOS 17.4+

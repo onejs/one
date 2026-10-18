@@ -362,7 +362,7 @@ export declare class MusicPlayer_Queue extends SDKHandle {
      * func insert<S>(_ entries: S, position: MusicPlayer.Queue.EntryInsertionPosition) async throws where S : Sequence, S.Element == MusicPlayer.Queue.Entry
      * @availability iOS 15.0+
      */
-    insertPosition322(entries: $SDK11, position: MusicPlayer_Queue_EntryInsertionPosition): Promise<void>;
+    insertPosition19337(entries: $SDK11, position: MusicPlayer_Queue_EntryInsertionPosition): Promise<void>;
     /**
      * required init(playlist: Playlist, startingAt startPlaylistEntry: Playlist.Entry)
      * @availability iOS 16.4+
@@ -491,7 +491,7 @@ export declare class ApplicationMusicPlayer_Queue_Entries extends SDKHandle {
      * subscript(bounds: Range<ApplicationMusicPlayer.Queue.Entries.Index>) -> ApplicationMusicPlayer.Queue.Entries.SubSequence { get set }
      * @availability iOS 15.0+
      */
-    subscript17(bounds: SDKHandle): SDKHandle;
+    subscript45748(bounds: SDKHandle): SDKHandle;
 }
 /**
  * typealias ArrayLiteralElement = MusicPlayer.Queue.Entry
@@ -1137,17 +1137,17 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static let albums: MusicRelationshipProperty<Song, Album>
      * @availability iOS 15.0+
      */
-    static get albums48(): MusicRelationshipProperty<Song, Album>;
+    static get albums21855(): MusicRelationshipProperty<Song, Album>;
     /**
      * static let genres: MusicRelationshipProperty<Song, Genre>
      * @availability iOS 15.0+
      */
-    static get genres49(): MusicRelationshipProperty<Song, Genre>;
+    static get genres24911(): MusicRelationshipProperty<Song, Genre>;
     /**
      * static let artists: MusicRelationshipProperty<Song, Artist>
      * @availability iOS 15.0+
      */
-    static get artists50(): $SDK25;
+    static get artists81815(): $SDK25;
     /**
      * static let station: MusicRelationshipProperty<Song, Station>
      * @availability iOS 15.0+
@@ -1157,7 +1157,7 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static var artistURL: MusicExtendedAttributeProperty<Song, URL> { get }
      * @availability iOS 15.0+
      */
-    static get artistURL52(): MusicExtendedAttributeProperty<Song, string>;
+    static get artistURL46360(): MusicExtendedAttributeProperty<Song, string>;
     /**
      * static let composers: MusicRelationshipProperty<Song, Artist>
      * @availability iOS 15.0+
@@ -1172,7 +1172,7 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static let audioVariants: MusicExtendedAttributeProperty<Album, [AudioVariant]>
      * @availability iOS 16.0+
      */
-    static get audioVariants55(): MusicExtendedAttributeProperty<Album, Array<AudioVariant>>;
+    static get audioVariants78766(): MusicExtendedAttributeProperty<Album, Array<AudioVariant>>;
     /**
      * static let otherVersions: MusicRelationshipProperty<Album, Album>
      * @availability iOS 15.0+
@@ -1192,7 +1192,7 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static let genres: MusicRelationshipProperty<Album, Genre>
      * @availability iOS 15.0+
      */
-    static get genres59(): MusicRelationshipProperty<Album, Genre>;
+    static get genres44382(): MusicRelationshipProperty<Album, Genre>;
     /**
      * static let tracks: MusicRelationshipProperty<Album, Track>
      * @availability iOS 15.0+
@@ -1202,7 +1202,7 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static let artists: MusicRelationshipProperty<Album, Artist>
      * @availability iOS 15.0+
      */
-    static get artists61(): MusicRelationshipProperty<Album, Artist>;
+    static get artists87718(): MusicRelationshipProperty<Album, Artist>;
     /**
      * static let appearsOn: MusicRelationshipProperty<Album, Playlist>
      * @availability iOS 15.0+
@@ -1212,7 +1212,7 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static var artistURL: MusicExtendedAttributeProperty<Album, URL> { get }
      * @availability iOS 15.0+
      */
-    static get artistURL63(): MusicExtendedAttributeProperty<Album, string>;
+    static get artistURL54785(): MusicExtendedAttributeProperty<Album, string>;
     /**
      * static let topMusicVideos: MusicRelationshipProperty<Artist, MusicVideo>
      * @availability iOS 15.0+
@@ -1232,7 +1232,7 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static let musicVideos: MusicRelationshipProperty<Artist, MusicVideo>
      * @availability iOS 15.0+
      */
-    static get musicVideos67(): $SDK37;
+    static get musicVideos97853(): $SDK37;
     /**
      * static let latestRelease: MusicRelationshipProperty<Artist, Album>
      * @availability iOS 15.0+
@@ -1267,12 +1267,12 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static let albums: MusicRelationshipProperty<Artist, Album>
      * @availability iOS 15.0+
      */
-    static get albums74(): $SDK38;
+    static get albums25743(): $SDK38;
     /**
      * static let genres: MusicRelationshipProperty<Artist, Genre>
      * @availability iOS 15.0+
      */
-    static get genres75(): MusicRelationshipProperty<Artist, Genre>;
+    static get genres2815(): MusicRelationshipProperty<Artist, Genre>;
     /**
      * static let singles: MusicRelationshipProperty<Artist, Album>
      * @availability iOS 15.0+
@@ -1282,7 +1282,7 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static let station: MusicRelationshipProperty<Artist, Station>
      * @availability iOS 15.0+
      */
-    static get station77(): MusicRelationshipProperty<Artist, Station>;
+    static get station25427(): MusicRelationshipProperty<Artist, Station>;
     /**
      * static let topSongs: MusicRelationshipProperty<Artist, Song>
      * @availability iOS 15.0+
@@ -1297,7 +1297,7 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static let playlists: MusicRelationshipProperty<Curator, Playlist>
      * @availability iOS 15.4+
      */
-    static get playlists80(): MusicRelationshipProperty<Curator, Playlist>;
+    static get playlists77177(): MusicRelationshipProperty<Curator, Playlist>;
     /**
      * static let moreByCurator: MusicRelationshipProperty<Playlist, Playlist>
      * @availability iOS 15.0+
@@ -1312,7 +1312,7 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static let tracks: MusicRelationshipProperty<Playlist, Track>
      * @availability iOS 15.0+
      */
-    static get tracks83(): MusicRelationshipProperty<Playlist, Track>;
+    static get tracks46457(): MusicRelationshipProperty<Playlist, Track>;
     /**
      * static let curator: MusicRelationshipProperty<Playlist, Curator>
      * @availability iOS 16.0+
@@ -1332,7 +1332,7 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * static let playlists: MusicRelationshipProperty<RadioShow, Playlist>
      * @availability iOS 15.4+
      */
-    static get playlists87(): MusicRelationshipProperty<RadioShow, Playlist>;
+    static get playlists53095(): MusicRelationshipProperty<RadioShow, Playlist>;
 }
 /**
  * class MusicAttributeProperty<Root, Value> where Value : Decodable

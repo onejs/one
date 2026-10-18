@@ -7,45 +7,40 @@ type $SDK3 = (_CoreFoundation_CFDictionary) | null;
 type $SDK4 = ("animatableData" | SDKHandle) | null;
 type $SDK5 = (_CoreFoundation_CFData) | null;
 type $SDK6 = (_CoreFoundation_CFString) | null;
-type $SDK7 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => void)) | null;
+type $SDK7 = {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+};
 type $SDK8 = {
     x: number;
     y: number;
-    width: number;
-    height: number;
 };
 type $SDK9 = {
-    x: number;
-    y: number;
-};
-type $SDK10 = {
     width: number;
     height: number;
 };
-type $SDK11 = (CGPDFMarkedContentItem) | null;
+type $SDK10 = (CGPDFMarkedContentItem) | null;
+type $SDK11 = Array<{
+    x: number;
+    y: number;
+}>;
 type $SDK12 = Array<{
     x: number;
     y: number;
-}>;
-type $SDK13 = Array<{
-    x: number;
-    y: number;
     width: number;
     height: number;
 }>;
-type $SDK14 = (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => Promise<number>)) | null;
-type $SDK15 = (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => number)) | null;
-type $SDK16 = (((arg0: (SDKHandle) | null) => Promise<void>)) | null;
-type $SDK17 = (((arg0: (SDKHandle) | null) => void)) | null;
-type $SDK18 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => Promise<number>);
-type $SDK19 = ((arg0: (SDKHandle) | null) => Promise<void>);
-type $SDK29 = ((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<void>);
-type $SDK34 = (_CoreFoundation_CFArray) | null;
-type $SDK36 = (((arg0: (SDKHandle) | null, arg1: "animatableData" | SDKHandle, arg2: "animatableData" | SDKHandle) => void)) | null;
-type $SDK45 = (((arg0: (SDKHandle) | null, arg1: CGContext) => void)) | null;
-type $SDK50 = (CGPDFDictionaryRef) | null;
-type $SDK52 = (_Foundation_Locale_Language) | null;
-type $SDK54 = {
+type $SDK13 = (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => Promise<number>)) | null;
+type $SDK14 = (((arg0: (SDKHandle) | null) => Promise<void>)) | null;
+type $SDK15 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => Promise<number>);
+type $SDK16 = ((arg0: (SDKHandle) | null) => Promise<void>);
+type $SDK22 = ((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<void>);
+type $SDK26 = (_CoreFoundation_CFArray) | null;
+type $SDK39 = (CGPDFDictionaryRef) | null;
+type $SDK41 = (_Foundation_Locale_Language) | null;
+type $SDK43 = {
     dx: number;
     dy: number;
 };
@@ -84,7 +79,7 @@ export declare class CGAffineTransform extends SDKHandle {
      * init(_ components: CGAffineTransformComponents)
      * @availability iOS 16.0+
      */
-    static init812(components: _CoreFoundation_CGAffineTransformComponents): _CoreFoundation_CGAffineTransform;
+    static init58803(components: _CoreFoundation_CGAffineTransformComponents): _CoreFoundation_CGAffineTransform;
 }
 /** typealias CGBitmapContextReleaseDataCallback = (UnsafeMutableRawPointer?, UnsafeMutableRawPointer?) -> Void */
 export type CGBitmapContextReleaseDataCallback = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>);
@@ -323,7 +318,7 @@ export declare class CGBitmapParameters extends SDKHandle {
      * subscript<T>(dynamicMember keyPath: KeyPath<__CGBitmapParameters, T>) -> T { get }
      * @availability iOS 26.0+
      */
-    subscriptDynamicMember628(keyPath: SDKHandle): unknown;
+    subscriptDynamicMember56275(keyPath: SDKHandle): unknown;
 }
 /** enum CGBlendMode */
 export type CGBlendMode = "normal" | "multiply" | "screen" | "overlay" | "darken" | "lighten" | "colorDodge" | "colorBurn" | "softLight" | "hardLight" | "difference" | "exclusion" | "hue" | "saturation" | "color" | "luminosity" | "clear" | "copy" | "sourceIn" | "sourceOut" | "sourceAtop" | "destinationOver" | "destinationIn" | "destinationOut" | "destinationAtop" | "xor" | "plusDarker" | "plusLighter";
@@ -1024,11 +1019,6 @@ export declare class CGContext extends SDKHandle {
      */
     makeImage(): (CGImage) | null;
     /**
-     * init?(data: UnsafeMutableRawPointer?, width: Int, height: Int, bitsPerComponent: Int, bytesPerRow: Int, space: CGColorSpace?, bitmapInfo: CGBitmapInfo, releaseCallback: CGBitmapContextReleaseDataCallback?, releaseInfo: UnsafeMutableRawPointer?)
-     * @availability iOS 4.0+
-     */
-    static initDataWidthHeightBitsPerComponentBytesPerRowSpaceBitmapInfoReleaseCallbackReleaseInfo(data: (SDKHandle) | null, width: number, height: number, bitsPerComponent: number, bytesPerRow: number, space: (CGColorSpace) | null, bitmapInfo: CGBitmapInfo, releaseCallback?: $SDK7, releaseInfo?: (SDKHandle) | null): (CGContext) | null;
-    /**
      * var alphaInfo: CGImageAlphaInfo { get }
      * @availability iOS 2.0+
      */
@@ -1077,7 +1067,7 @@ export declare class CGContext extends SDKHandle {
      * func addEllipse(in rect: CGRect)
      * @availability iOS 2.0+
      */
-    addEllipse(rect: $SDK8): void;
+    addEllipse(rect: $SDK7): void;
     /**
      * func addPath(_ path: CGPath)
      * @availability iOS 2.0+
@@ -1087,7 +1077,7 @@ export declare class CGContext extends SDKHandle {
      * func addRect(_ rect: CGRect)
      * @availability iOS 2.0+
      */
-    addRect(rect: $SDK8): void;
+    addRect(rect: $SDK7): void;
     /**
      * func beginPage(mediaBox: UnsafePointer<CGRect>?)
      * @availability iOS 2.0+
@@ -1107,22 +1097,22 @@ export declare class CGContext extends SDKHandle {
      * func beginTransparencyLayer(in rect: CGRect, auxiliaryInfo auxInfo: CFDictionary?)
      * @availability iOS 2.0+
      */
-    beginTransparencyLayerInAuxiliaryInfo(rect: $SDK8, auxInfo?: $SDK3): void;
+    beginTransparencyLayerInAuxiliaryInfo(rect: $SDK7, auxInfo?: $SDK3): void;
     /**
      * func clear(_ rect: CGRect)
      * @availability iOS 2.0+
      */
-    clear(rect: $SDK8): void;
+    clear(rect: $SDK7): void;
     /**
      * func clip(to rect: CGRect, mask: CGImage)
      * @availability iOS 2.0+
      */
-    clipToMask(rect: $SDK8, mask: CGImage): void;
+    clipToMask(rect: $SDK7, mask: CGImage): void;
     /**
      * func clip(to rect: CGRect)
      * @availability iOS 2.0+
      */
-    clipTo(rect: $SDK8): void;
+    clipTo(rect: $SDK7): void;
     /**
      * func closePath()
      * @availability iOS 2.0+
@@ -1137,32 +1127,32 @@ export declare class CGContext extends SDKHandle {
      * func convertToDeviceSpace(_ point: CGPoint) -> CGPoint
      * @availability iOS 2.0+
      */
-    convertToDeviceSpace(point: $SDK9): $SDK9;
+    convertToDeviceSpace(point: $SDK8): $SDK8;
     /**
      * func convertToUserSpace(_ point: CGPoint) -> CGPoint
      * @availability iOS 2.0+
      */
-    convertToUserSpace(point: $SDK9): $SDK9;
+    convertToUserSpace(point: $SDK8): $SDK8;
     /**
      * func convertToDeviceSpace(_ rect: CGRect) -> CGRect
      * @availability iOS 2.0+
      */
-    convertToDeviceSpace121(rect: $SDK8): $SDK8;
+    convertToDeviceSpace18191(rect: $SDK7): $SDK7;
     /**
      * func convertToUserSpace(_ rect: CGRect) -> CGRect
      * @availability iOS 2.0+
      */
-    convertToUserSpace122(rect: $SDK8): $SDK8;
+    convertToUserSpace42604(rect: $SDK7): $SDK7;
     /**
      * func convertToDeviceSpace(_ size: CGSize) -> CGSize
      * @availability iOS 2.0+
      */
-    convertToDeviceSpace123(size: $SDK10): $SDK10;
+    convertToDeviceSpace39714(size: $SDK9): $SDK9;
     /**
      * func convertToUserSpace(_ size: CGSize) -> CGSize
      * @availability iOS 2.0+
      */
-    convertToUserSpace124(size: $SDK10): $SDK10;
+    convertToUserSpace3229(size: $SDK9): $SDK9;
     /**
      * var path: CGPath? { get }
      * @availability iOS 2.0+
@@ -1172,7 +1162,7 @@ export declare class CGContext extends SDKHandle {
      * func drawLinearGradient(_ gradient: CGGradient, start startPoint: CGPoint, end endPoint: CGPoint, options: CGGradientDrawingOptions)
      * @availability iOS 2.0+
      */
-    drawLinearGradient(gradient: CGGradient, startPoint: $SDK9, endPoint: $SDK9, options: CGGradientDrawingOptions): void;
+    drawLinearGradient(gradient: CGGradient, startPoint: $SDK8, endPoint: $SDK8, options: CGGradientDrawingOptions): void;
     /**
      * func drawPDFPage(_ page: CGPDFPage)
      * @availability iOS 2.0+
@@ -1187,7 +1177,7 @@ export declare class CGContext extends SDKHandle {
      * func drawRadialGradient(_ gradient: CGGradient, startCenter: CGPoint, startRadius: CGFloat, endCenter: CGPoint, endRadius: CGFloat, options: CGGradientDrawingOptions)
      * @availability iOS 2.0+
      */
-    drawRadialGradient(gradient: CGGradient, startCenter: $SDK9, startRadius: number, endCenter: $SDK9, endRadius: number, options: CGGradientDrawingOptions): void;
+    drawRadialGradient(gradient: CGGradient, startCenter: $SDK8, startRadius: number, endCenter: $SDK8, endRadius: number, options: CGGradientDrawingOptions): void;
     /**
      * func drawShading(_ shading: CGShading)
      * @availability iOS 2.0+
@@ -1207,12 +1197,12 @@ export declare class CGContext extends SDKHandle {
      * func fillEllipse(in rect: CGRect)
      * @availability iOS 2.0+
      */
-    fillEllipse(rect: $SDK8): void;
+    fillEllipse(rect: $SDK7): void;
     /**
      * func fill(_ rect: CGRect)
      * @availability iOS 2.0+
      */
-    fill(rect: $SDK8): void;
+    fill(rect: $SDK7): void;
     /**
      * func flush()
      * @availability iOS 2.0+
@@ -1227,7 +1217,7 @@ export declare class CGContext extends SDKHandle {
      * var boundingBoxOfClipPath: CGRect { get }
      * @availability iOS 2.0+
      */
-    get boundingBoxOfClipPath(): $SDK8;
+    get boundingBoxOfClipPath(): $SDK7;
     /**
      * var interpolationQuality: CGInterpolationQuality { get set }
      * @availability iOS 2.0+
@@ -1238,12 +1228,12 @@ export declare class CGContext extends SDKHandle {
      * var boundingBoxOfPath: CGRect { get }
      * @availability iOS 2.0+
      */
-    get boundingBoxOfPath(): $SDK8;
+    get boundingBoxOfPath(): $SDK7;
     /**
      * var currentPointOfPath: CGPoint { get }
      * @availability iOS 2.0+
      */
-    get currentPointOfPath(): $SDK9;
+    get currentPointOfPath(): $SDK8;
     /**
      * var textMatrix: CGAffineTransform { get set }
      * @availability iOS 2.0+
@@ -1269,7 +1259,7 @@ export declare class CGContext extends SDKHandle {
      * func pathContains(_ point: CGPoint, mode: CGPathDrawingMode) -> Bool
      * @availability iOS 2.0+
      */
-    pathContains(point: $SDK9, mode: CGPathDrawingMode): boolean;
+    pathContains(point: $SDK8, mode: CGPathDrawingMode): boolean;
     /**
      * func replacePathWithStrokedPath()
      * @availability iOS 2.0+
@@ -1361,7 +1351,7 @@ export declare class CGContext extends SDKHandle {
      * func setFillColor(_ color: CGColor)
      * @availability iOS 2.0+
      */
-    setFillColor168(color: CGColor): void;
+    setFillColor49658(color: CGColor): void;
     /**
      * func setFillPattern(_ pattern: CGPattern, colorComponents components: UnsafePointer<CGFloat>)
      * @availability iOS 2.0+
@@ -1416,7 +1406,7 @@ export declare class CGContext extends SDKHandle {
      * func setPatternPhase(_ phase: CGSize)
      * @availability iOS 2.0+
      */
-    setPatternPhase(phase: $SDK10): void;
+    setPatternPhase(phase: $SDK9): void;
     /**
      * func setFillColor(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
      * @availability iOS 2.0+
@@ -1436,12 +1426,12 @@ export declare class CGContext extends SDKHandle {
      * func setShadow(offset: CGSize, blur: CGFloat)
      * @availability iOS 2.0+
      */
-    setShadowOffsetBlur(offset: $SDK10, blur: number): void;
+    setShadowOffsetBlur(offset: $SDK9, blur: number): void;
     /**
      * func setShadow(offset: CGSize, blur: CGFloat, color: CGColor?)
      * @availability iOS 2.0+
      */
-    setShadowOffsetBlurColor(offset: $SDK10, blur: number, color?: (CGColor) | null): void;
+    setShadowOffsetBlurColor(offset: $SDK9, blur: number, color?: (CGColor) | null): void;
     /**
      * func setShouldAntialias(_ shouldAntialias: Bool)
      * @availability iOS 2.0+
@@ -1476,7 +1466,7 @@ export declare class CGContext extends SDKHandle {
      * func setStrokeColor(_ color: CGColor)
      * @availability iOS 2.0+
      */
-    setStrokeColor191(color: CGColor): void;
+    setStrokeColor46187(color: CGColor): void;
     /**
      * func setStrokePattern(_ pattern: CGPattern, colorComponents components: UnsafePointer<CGFloat>)
      * @availability iOS 2.0+
@@ -1491,7 +1481,7 @@ export declare class CGContext extends SDKHandle {
      * func strokeEllipse(in rect: CGRect)
      * @availability iOS 2.0+
      */
-    strokeEllipse(rect: $SDK8): void;
+    strokeEllipse(rect: $SDK7): void;
     /**
      * func strokePath()
      * @availability iOS 2.0+
@@ -1501,12 +1491,12 @@ export declare class CGContext extends SDKHandle {
      * func stroke(_ rect: CGRect)
      * @availability iOS 2.0+
      */
-    stroke(rect: $SDK8): void;
+    stroke(rect: $SDK7): void;
     /**
      * func stroke(_ rect: CGRect, width: CGFloat)
      * @availability iOS 2.0+
      */
-    strokeWidth(rect: $SDK8, width: number): void;
+    strokeWidth(rect: $SDK7, width: number): void;
     /**
      * func synchronize()
      * @availability iOS 2.0+
@@ -1526,7 +1516,7 @@ export declare class CGContext extends SDKHandle {
      * func addDestination(_ name: CFString, at point: CGPoint)
      * @availability iOS 2.0+
      */
-    addDestination(name: _CoreFoundation_CFString, point: $SDK9): void;
+    addDestination(name: _CoreFoundation_CFString, point: $SDK8): void;
     /**
      * func addDocumentMetadata(_ metadata: CFData?)
      * @availability iOS 4.0+
@@ -1541,7 +1531,7 @@ export declare class CGContext extends SDKHandle {
      * func beginMarkedContentSequence(_ tagType: CGPDFTagType) -> CGPDFMarkedContentItem?
      * @availability iOS 27.0+
      */
-    beginMarkedContentSequence(tagType: CGPDFTagType): $SDK11;
+    beginMarkedContentSequence(tagType: CGPDFTagType): $SDK10;
     /**
      * func beginNonStructuralMarkedContentSequence(_ tagType: CGPDFTagType)
      * @availability iOS 27.0+
@@ -1551,7 +1541,7 @@ export declare class CGContext extends SDKHandle {
      * func beginObjectReference() -> CGPDFMarkedContentItem?
      * @availability iOS 27.0+
      */
-    beginObjectReference(): $SDK11;
+    beginObjectReference(): $SDK10;
     /**
      * func beginPDFPage(_ pageInfo: CFDictionary?)
      * @availability iOS 2.0+
@@ -1591,29 +1581,23 @@ export declare class CGContext extends SDKHandle {
      * func setDestination(_ name: CFString, for rect: CGRect)
      * @availability iOS 2.0+
      */
-    setDestination(name: _CoreFoundation_CFString, rect: $SDK8): void;
+    setDestination(name: _CoreFoundation_CFString, rect: $SDK7): void;
     /**
      * func setURL(_ url: CFURL, for rect: CGRect)
      * @availability iOS 2.0+
      */
-    setURL(url: _CoreFoundation_CFURL, rect: $SDK8): void;
+    setURL(url: _CoreFoundation_CFURL, rect: $SDK7): void;
     /**
      * init?(data: UnsafeMutableRawPointer?, width: Int, height: Int, bitsPerComponent: Int, bytesPerRow: Int, space: CGColorSpace, bitmapInfo: UInt32)
      * @availability iOS 2.0+
      * @deprecated iOS 100000.0
      */
-    static initDataWidthHeightBitsPerComponentBytesPerRowSpaceBitmapInfo453(data: (SDKHandle) | null, width: number, height: number, bitsPerComponent: number, bytesPerRow: number, space: CGColorSpace, bitmapInfo: number): (CGContext) | null;
-    /**
-     * init?(data: UnsafeMutableRawPointer?, width: Int, height: Int, bitsPerComponent: Int, bytesPerRow: Int, space: CGColorSpace, bitmapInfo: UInt32, releaseCallback: CGBitmapContextReleaseDataCallback?, releaseInfo: UnsafeMutableRawPointer?)
-     * @availability iOS 4.0+
-     * @deprecated iOS 100000.0
-     */
-    static initDataWidthHeightBitsPerComponentBytesPerRowSpaceBitmapInfoReleaseCallbackReleaseInfo454(data: (SDKHandle) | null, width: number, height: number, bitsPerComponent: number, bytesPerRow: number, space: CGColorSpace, bitmapInfo: number, releaseCallback?: $SDK7, releaseInfo?: (SDKHandle) | null): (CGContext) | null;
+    static initDataWidthHeightBitsPerComponentBytesPerRowSpaceBitmapInfo91056(data: (SDKHandle) | null, width: number, height: number, bitsPerComponent: number, bytesPerRow: number, space: CGColorSpace, bitmapInfo: number): (CGContext) | null;
     /**
      * func showGlyphs(_ glyphs: [CGGlyph], at positions: [CGPoint])
      * @availability iOS 7.0+
      */
-    showGlyphs(glyphs: Array<number>, positions: $SDK12): void;
+    showGlyphs(glyphs: Array<number>, positions: $SDK11): void;
     /**
      * func setLineDash(phase: CGFloat, lengths: [CGFloat])
      * @availability iOS 7.0+
@@ -1623,18 +1607,18 @@ export declare class CGContext extends SDKHandle {
      * func addQuadCurve(to end: CGPoint, control: CGPoint)
      * @availability iOS 7.0+
      */
-    addQuadCurve(end: $SDK9, control: $SDK9): void;
+    addQuadCurve(end: $SDK8, control: $SDK8): void;
     /**
      * var textPosition: CGPoint { get set }
      * @availability iOS 7.0+
      */
-    get textPosition(): $SDK9;
-    set textPosition(value: $SDK9);
+    get textPosition(): $SDK8;
+    set textPosition(value: $SDK8);
     /**
      * func strokeLineSegments(between points: [CGPoint])
      * @availability iOS 7.0+
      */
-    strokeLineSegments(points: $SDK12): void;
+    strokeLineSegments(points: $SDK11): void;
     /**
      * var contentToneMappingInfo: CGContentToneMappingInfo { get set }
      * @availability iOS 26.0+
@@ -1645,7 +1629,7 @@ export declare class CGContext extends SDKHandle {
      * func clip(to rects: [CGRect])
      * @availability iOS 7.0+
      */
-    clipTo750(rects: $SDK13): void;
+    clipTo99427(rects: $SDK12): void;
     /**
      * func clip(using rule: CGPathFillRule = .winding)
      * @availability iOS 7.0+
@@ -1655,62 +1639,62 @@ export declare class CGContext extends SDKHandle {
      * func draw(_ layer: CGLayer, at point: CGPoint)
      * @availability iOS 7.0+
      */
-    drawAt(layer: CGLayer, point: $SDK9): void;
+    drawAt(layer: CGLayer, point: $SDK8): void;
     /**
      * func draw(_ image: CGImage, in rect: CGRect, by toneMapping: CGToneMapping = .default, options: CFDictionary?) -> Bool
      * @availability iOS 18.0+
      */
-    drawInByOptions(image: CGImage, rect: $SDK8, toneMapping?: CGToneMapping, options?: $SDK3): boolean;
+    drawInByOptions(image: CGImage, rect: $SDK7, toneMapping?: CGToneMapping, options?: $SDK3): boolean;
     /**
      * func draw(_ image: CGImage, in rect: CGRect, byTiling: Bool = false)
      * @availability iOS 7.0+
      */
-    drawInByTiling(image: CGImage, rect: $SDK8, byTiling?: boolean): void;
+    drawInByTiling(image: CGImage, rect: $SDK7, byTiling?: boolean): void;
     /**
      * func draw(_ layer: CGLayer, in rect: CGRect)
      * @availability iOS 7.0+
      */
-    drawIn(layer: CGLayer, rect: $SDK8): void;
+    drawIn(layer: CGLayer, rect: $SDK7): void;
     /**
      * func fill(_ rects: [CGRect])
      * @availability iOS 7.0+
      */
-    fill756(rects: $SDK13): void;
+    fill95899(rects: $SDK12): void;
     /**
      * func move(to point: CGPoint)
      * @availability iOS 7.0+
      */
-    move(point: $SDK9): void;
+    move(point: $SDK8): void;
     /**
      * func addArc(tangent1End: CGPoint, tangent2End: CGPoint, radius: CGFloat)
      * @availability iOS 7.0+
      */
-    addArcTangent1EndTangent2EndRadius(tangent1End: $SDK9, tangent2End: $SDK9, radius: number): void;
+    addArcTangent1EndTangent2EndRadius(tangent1End: $SDK8, tangent2End: $SDK8, radius: number): void;
     /**
      * func addArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool)
      * @availability iOS 7.0+
      */
-    addArcCenterRadiusStartAngleEndAngleClockwise(center: $SDK9, radius: number, startAngle: number, endAngle: number, clockwise: boolean): void;
+    addArcCenterRadiusStartAngleEndAngleClockwise(center: $SDK8, radius: number, startAngle: number, endAngle: number, clockwise: boolean): void;
     /**
      * func addLine(to point: CGPoint)
      * @availability iOS 7.0+
      */
-    addLine(point: $SDK9): void;
+    addLine(point: $SDK8): void;
     /**
      * func addCurve(to end: CGPoint, control1: CGPoint, control2: CGPoint)
      * @availability iOS 7.0+
      */
-    addCurve(end: $SDK9, control1: $SDK9, control2: $SDK9): void;
+    addCurve(end: $SDK8, control1: $SDK8, control2: $SDK8): void;
     /**
      * func addLines(between points: [CGPoint])
      * @availability iOS 7.0+
      */
-    addLines(points: $SDK12): void;
+    addLines(points: $SDK11): void;
     /**
      * func addRects(_ rects: [CGRect])
      * @availability iOS 7.0+
      */
-    addRects(rects: $SDK13): void;
+    addRects(rects: $SDK12): void;
     /**
      * func fillPath(using rule: CGPathFillRule = .winding)
      * @availability iOS 7.0+
@@ -1765,18 +1749,16 @@ export declare class CGDataConsumer extends SDKHandle {
 /** struct CGDataConsumerCallbacks */
 export declare class CGDataConsumerCallbacks extends SDKHandle {
     /** var putBytes: CGDataConsumerPutBytesCallback? */
-    get putBytes(): $SDK14;
-    set putBytes(value: $SDK15);
+    get putBytes(): $SDK13;
     /** var releaseConsumer: CGDataConsumerReleaseInfoCallback? */
-    get releaseConsumer(): $SDK16;
-    set releaseConsumer(value: $SDK17);
+    get releaseConsumer(): $SDK14;
     /** init() */
     static init(): CGDataConsumerCallbacks;
 }
 /** typealias CGDataConsumerPutBytesCallback = (UnsafeMutableRawPointer?, UnsafeRawPointer, Int) -> Int */
-export type CGDataConsumerPutBytesCallback = $SDK18;
+export type CGDataConsumerPutBytesCallback = $SDK15;
 /** typealias CGDataConsumerReleaseInfoCallback = (UnsafeMutableRawPointer?) -> Void */
-export type CGDataConsumerReleaseInfoCallback = $SDK19;
+export type CGDataConsumerReleaseInfoCallback = $SDK16;
 /** class CGDataProvider */
 export declare class CGDataProvider extends SDKHandle {
     /**
@@ -1799,11 +1781,6 @@ export declare class CGDataProvider extends SDKHandle {
      * @availability iOS 2.0+
      */
     static initData(data: _CoreFoundation_CFData): (CGDataProvider) | null;
-    /**
-     * init?(dataInfo info: UnsafeMutableRawPointer?, data: UnsafeRawPointer, size: Int, releaseData: CGDataProviderReleaseDataCallback)
-     * @availability iOS 2.0+
-     */
-    static initDataInfoDataSizeReleaseData(info: (SDKHandle) | null, data: SDKHandle, size: number, releaseData: ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => void)): (CGDataProvider) | null;
     /**
      * init?(filename: UnsafePointer<CChar>)
      * @availability iOS 2.0+
@@ -1829,16 +1806,12 @@ export declare class CGDataProvider extends SDKHandle {
 export declare class CGDataProviderDirectCallbacks extends SDKHandle {
     /** var getBytePointer: CGDataProviderGetBytePointerCallback? */
     get getBytePointer(): (((arg0: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null;
-    set getBytePointer(value: (((arg0: (SDKHandle) | null) => (SDKHandle) | null)) | null);
     /** var getBytesAtPosition: CGDataProviderGetBytesAtPositionCallback? */
     get getBytesAtPosition(): (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: number) => Promise<number>)) | null;
-    set getBytesAtPosition(value: (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: number) => number)) | null);
     /** var releaseBytePointer: CGDataProviderReleaseBytePointerCallback? */
     get releaseBytePointer(): (((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<void>)) | null;
-    set releaseBytePointer(value: (((arg0: (SDKHandle) | null, arg1: SDKHandle) => void)) | null);
     /** var releaseInfo: CGDataProviderReleaseInfoCallback? */
-    get releaseInfo(): $SDK16;
-    set releaseInfo(value: $SDK17);
+    get releaseInfo(): $SDK14;
     /** var version: UInt32 */
     get version(): number;
     set version(value: number);
@@ -1850,29 +1823,25 @@ export type CGDataProviderGetBytePointerCallback = ((arg0: (SDKHandle) | null) =
 /** typealias CGDataProviderGetBytesAtPositionCallback = (UnsafeMutableRawPointer?, UnsafeMutableRawPointer, off_t, Int) -> Int */
 export type CGDataProviderGetBytesAtPositionCallback = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: number) => Promise<number>);
 /** typealias CGDataProviderGetBytesCallback = (UnsafeMutableRawPointer?, UnsafeMutableRawPointer, Int) -> Int */
-export type CGDataProviderGetBytesCallback = $SDK18;
+export type CGDataProviderGetBytesCallback = $SDK15;
 /** typealias CGDataProviderReleaseBytePointerCallback = (UnsafeMutableRawPointer?, UnsafeRawPointer) -> Void */
-export type CGDataProviderReleaseBytePointerCallback = $SDK29;
+export type CGDataProviderReleaseBytePointerCallback = $SDK22;
 /** typealias CGDataProviderReleaseDataCallback = (UnsafeMutableRawPointer?, UnsafeRawPointer, Int) -> Void */
 export type CGDataProviderReleaseDataCallback = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => Promise<void>);
 /** typealias CGDataProviderReleaseInfoCallback = (UnsafeMutableRawPointer?) -> Void */
-export type CGDataProviderReleaseInfoCallback = $SDK19;
+export type CGDataProviderReleaseInfoCallback = $SDK16;
 /** typealias CGDataProviderRewindCallback = (UnsafeMutableRawPointer?) -> Void */
-export type CGDataProviderRewindCallback = $SDK19;
+export type CGDataProviderRewindCallback = $SDK16;
 /** struct CGDataProviderSequentialCallbacks */
 export declare class CGDataProviderSequentialCallbacks extends SDKHandle {
     /** var getBytes: CGDataProviderGetBytesCallback? */
-    get getBytes(): $SDK14;
-    set getBytes(value: $SDK15);
+    get getBytes(): $SDK13;
     /** var releaseInfo: CGDataProviderReleaseInfoCallback? */
-    get releaseInfo(): $SDK16;
-    set releaseInfo(value: $SDK17);
+    get releaseInfo(): $SDK14;
     /** var rewind: CGDataProviderRewindCallback? */
-    get rewind(): $SDK16;
-    set rewind(value: $SDK17);
+    get rewind(): $SDK14;
     /** var skipForward: CGDataProviderSkipForwardCallback? */
     get skipForward(): (((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<SDKHandle>)) | null;
-    set skipForward(value: (((arg0: (SDKHandle) | null, arg1: SDKHandle) => SDKHandle)) | null);
     /** var version: UInt32 */
     get version(): number;
     set version(value: number);
@@ -1920,12 +1889,12 @@ export declare class CGFont extends SDKHandle {
      * var tableTags: CFArray? { get }
      * @availability iOS 2.0+
      */
-    get tableTags(): $SDK34;
+    get tableTags(): $SDK26;
     /**
      * var variationAxes: CFArray? { get }
      * @availability iOS 2.0+
      */
-    get variationAxes(): $SDK34;
+    get variationAxes(): $SDK26;
     /**
      * var variations: CFDictionary? { get }
      * @availability iOS 2.0+
@@ -1955,7 +1924,7 @@ export declare class CGFont extends SDKHandle {
      * init?(_ name: CFString)
      * @availability iOS 2.0+
      */
-    static init228(name: _CoreFoundation_CFString): (CGFont) | null;
+    static init52239(name: _CoreFoundation_CFString): (CGFont) | null;
     /**
      * var ascent: Int32 { get }
      * @availability iOS 2.0+
@@ -1975,7 +1944,7 @@ export declare class CGFont extends SDKHandle {
      * var fontBBox: CGRect { get }
      * @availability iOS 2.0+
      */
-    get fontBBox(): $SDK8;
+    get fontBBox(): $SDK7;
     /**
      * func getGlyphAdvances(glyphs: UnsafePointer<CGGlyph>, count: Int, advances: UnsafeMutablePointer<Int32>) -> Bool
      * @availability iOS 2.0+
@@ -2072,22 +2041,18 @@ export declare class CGFunction extends SDKHandle {
 export declare class CGFunctionCallbacks extends SDKHandle {
     /** var evaluate: CGFunctionEvaluateCallback? */
     get evaluate(): (((arg0: (SDKHandle) | null, arg1: "animatableData" | SDKHandle, arg2: "animatableData" | SDKHandle) => Promise<void>)) | null;
-    set evaluate(value: $SDK36);
     /** var releaseInfo: CGFunctionReleaseInfoCallback? */
-    get releaseInfo(): $SDK16;
-    set releaseInfo(value: $SDK17);
+    get releaseInfo(): $SDK14;
     /** var version: UInt32 */
     get version(): number;
     set version(value: number);
-    /** init(version: UInt32, evaluate: CGFunctionEvaluateCallback?, releaseInfo: CGFunctionReleaseInfoCallback?) */
-    static initVersionEvaluateReleaseInfo(version: number, evaluate?: $SDK36, releaseInfo?: $SDK17): CGFunctionCallbacks;
     /** init() */
     static init(): CGFunctionCallbacks;
 }
 /** typealias CGFunctionEvaluateCallback = (UnsafeMutableRawPointer?, UnsafePointer<CGFloat>, UnsafeMutablePointer<CGFloat>) -> Void */
 export type CGFunctionEvaluateCallback = ((arg0: (SDKHandle) | null, arg1: "animatableData" | SDKHandle, arg2: "animatableData" | SDKHandle) => Promise<void>);
 /** typealias CGFunctionReleaseInfoCallback = (UnsafeMutableRawPointer?) -> Void */
-export type CGFunctionReleaseInfoCallback = $SDK19;
+export type CGFunctionReleaseInfoCallback = $SDK16;
 /** typealias CGGlyph = CGFontIndex */
 export type CGGlyph = number;
 /** enum CGGlyphDeprecatedEnum */
@@ -2185,7 +2150,7 @@ export declare class CGImage extends SDKHandle {
      * func cropping(to rect: CGRect) -> CGImage?
      * @availability iOS 2.0+
      */
-    cropping(rect: $SDK8): (CGImage) | null;
+    cropping(rect: $SDK7): (CGImage) | null;
     /**
      * init?(jpegDataProviderSource source: CGDataProvider, decode: UnsafePointer<CGFloat>?, shouldInterpolate: Bool, intent: CGColorRenderingIntent)
      * @availability iOS 2.0+
@@ -2441,7 +2406,7 @@ export declare class CGLayer extends SDKHandle {
      * init?(_ context: CGContext, size: CGSize, auxiliaryInfo: CFDictionary?)
      * @availability iOS 2.0+
      */
-    static init(context: CGContext, size: $SDK10, auxiliaryInfo?: $SDK3): (CGLayer) | null;
+    static init(context: CGContext, size: $SDK9, auxiliaryInfo?: $SDK3): (CGLayer) | null;
     /**
      * var context: CGContext? { get }
      * @availability iOS 2.0+
@@ -2451,7 +2416,7 @@ export declare class CGLayer extends SDKHandle {
      * var size: CGSize { get }
      * @availability iOS 2.0+
      */
-    get size(): $SDK10;
+    get size(): $SDK9;
     /**
      * class var typeID: CFTypeID { get }
      * @availability iOS 2.0+
@@ -2472,11 +2437,6 @@ export declare const CGLineJoin: {
 };
 /** class CGPath */
 export declare class CGPath extends SDKHandle {
-    /**
-     * func apply(info: UnsafeMutableRawPointer?, function: CGPathApplierFunction)
-     * @availability iOS 2.0+
-     */
-    apply(info: (SDKHandle) | null, function_: ((arg0: (SDKHandle) | null, arg1: SDKHandle) => void)): void;
     /**
      * func applyWithBlock(_ block: (UnsafePointer<CGPathElement>) -> Void)
      * @availability iOS 11.0+
@@ -2506,32 +2466,32 @@ export declare class CGPath extends SDKHandle {
      * init(ellipseIn rect: CGRect, transform: UnsafePointer<CGAffineTransform>?)
      * @availability iOS 5.0+
      */
-    static initEllipseInTransform(rect: $SDK8, transform?: (SDKHandle) | null): CGPath;
+    static initEllipseInTransform(rect: $SDK7, transform?: (SDKHandle) | null): CGPath;
     /**
      * init(rect: CGRect, transform: UnsafePointer<CGAffineTransform>?)
      * @availability iOS 4.0+
      */
-    static initRectTransform(rect: $SDK8, transform?: (SDKHandle) | null): CGPath;
+    static initRectTransform(rect: $SDK7, transform?: (SDKHandle) | null): CGPath;
     /**
      * init(roundedRect rect: CGRect, cornerWidth: CGFloat, cornerHeight: CGFloat, transform: UnsafePointer<CGAffineTransform>?)
      * @availability iOS 7.0+
      */
-    static initRoundedRectCornerWidthCornerHeightTransform(rect: $SDK8, cornerWidth: number, cornerHeight: number, transform?: (SDKHandle) | null): CGPath;
+    static initRoundedRectCornerWidthCornerHeightTransform(rect: $SDK7, cornerWidth: number, cornerHeight: number, transform?: (SDKHandle) | null): CGPath;
     /**
      * var boundingBox: CGRect { get }
      * @availability iOS 2.0+
      */
-    get boundingBox(): $SDK8;
+    get boundingBox(): $SDK7;
     /**
      * var currentPoint: CGPoint { get }
      * @availability iOS 2.0+
      */
-    get currentPoint(): $SDK9;
+    get currentPoint(): $SDK8;
     /**
      * var boundingBoxOfPath: CGRect { get }
      * @availability iOS 4.0+
      */
-    get boundingBoxOfPath(): $SDK8;
+    get boundingBoxOfPath(): $SDK7;
     /**
      * class var typeID: CFTypeID { get }
      * @availability iOS 2.0+
@@ -2606,7 +2566,7 @@ export declare class CGPath extends SDKHandle {
      * func contains(_ point: CGPoint, using rule: CGPathFillRule = .winding, transform: CGAffineTransform = .identity) -> Bool
      * @availability iOS 7.0+
      */
-    contains(point: $SDK9, rule?: CGPathFillRule, transform?: _CoreFoundation_CGAffineTransform): boolean;
+    contains(point: $SDK8, rule?: CGPathFillRule, transform?: _CoreFoundation_CGAffineTransform): boolean;
     /**
      * func flattened(threshold: CGFloat) -> CGPath
      * @availability iOS 16.0+
@@ -2634,65 +2594,65 @@ export declare class CGMutablePath extends CGPath {
      * func addEllipse(in rect: CGRect, transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addEllipse(rect: $SDK8, transform?: _CoreFoundation_CGAffineTransform): void;
+    addEllipse(rect: $SDK7, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func addQuadCurve(to end: CGPoint, control: CGPoint, transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addQuadCurve(end: $SDK9, control: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void;
+    addQuadCurve(end: $SDK8, control: $SDK8, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func addRelativeArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, delta: CGFloat, transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addRelativeArc(center: $SDK9, radius: number, startAngle: number, delta: number, transform?: _CoreFoundation_CGAffineTransform): void;
+    addRelativeArc(center: $SDK8, radius: number, startAngle: number, delta: number, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func addRoundedRect(in rect: CGRect, cornerWidth: CGFloat, cornerHeight: CGFloat, transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addRoundedRect(rect: $SDK8, cornerWidth: number, cornerHeight: number, transform?: _CoreFoundation_CGAffineTransform): void;
+    addRoundedRect(rect: $SDK7, cornerWidth: number, cornerHeight: number, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func move(to point: CGPoint, transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    move(point: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void;
+    move(point: $SDK8, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func addArc(tangent1End: CGPoint, tangent2End: CGPoint, radius: CGFloat, transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addArcTangent1EndTangent2EndRadiusTransform(tangent1End: $SDK9, tangent2End: $SDK9, radius: number, transform?: _CoreFoundation_CGAffineTransform): void;
+    addArcTangent1EndTangent2EndRadiusTransform(tangent1End: $SDK8, tangent2End: $SDK8, radius: number, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func addArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool, transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addArcCenterRadiusStartAngleEndAngleClockwiseTransform(center: $SDK9, radius: number, startAngle: number, endAngle: number, clockwise: boolean, transform?: _CoreFoundation_CGAffineTransform): void;
+    addArcCenterRadiusStartAngleEndAngleClockwiseTransform(center: $SDK8, radius: number, startAngle: number, endAngle: number, clockwise: boolean, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func addLine(to point: CGPoint, transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addLine(point: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void;
+    addLine(point: $SDK8, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func addRect(_ rect: CGRect, transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addRect(rect: $SDK8, transform?: _CoreFoundation_CGAffineTransform): void;
+    addRect(rect: $SDK7, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func addCurve(to end: CGPoint, control1: CGPoint, control2: CGPoint, transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addCurve(end: $SDK9, control1: $SDK9, control2: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void;
+    addCurve(end: $SDK8, control1: $SDK8, control2: $SDK8, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func addLines(between points: [CGPoint], transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addLines(points: $SDK12, transform?: _CoreFoundation_CGAffineTransform): void;
+    addLines(points: $SDK11, transform?: _CoreFoundation_CGAffineTransform): void;
     /**
      * func addRects(_ rects: [CGRect], transform: CGAffineTransform = .identity)
      * @availability iOS 7.0+
      */
-    addRects(rects: $SDK13, transform?: _CoreFoundation_CGAffineTransform): void;
+    addRects(rects: $SDK12, transform?: _CoreFoundation_CGAffineTransform): void;
 }
 /** typealias CGPathApplierFunction = (UnsafeMutableRawPointer?, UnsafePointer<CGPathElement>) -> Void */
-export type CGPathApplierFunction = $SDK29;
+export type CGPathApplierFunction = $SDK22;
 /** typealias CGPathApplyBlock = (UnsafePointer<CGPathElement>) -> Void */
 export type CGPathApplyBlock = ((arg0: SDKHandle) => Promise<void>);
 /** enum CGPathDrawingMode */
@@ -2746,7 +2706,7 @@ export declare class CGPattern extends SDKHandle {
      * init?(info: UnsafeMutableRawPointer?, bounds: CGRect, matrix: CGAffineTransform, xStep: CGFloat, yStep: CGFloat, tiling: CGPatternTiling, isColored: Bool, callbacks: UnsafePointer<CGPatternCallbacks>)
      * @availability iOS 2.0+
      */
-    static init(info: (SDKHandle) | null, bounds: $SDK8, matrix: _CoreFoundation_CGAffineTransform, xStep: number, yStep: number, tiling: CGPatternTiling, isColored: boolean, callbacks: SDKHandle): (CGPattern) | null;
+    static init(info: (SDKHandle) | null, bounds: $SDK7, matrix: _CoreFoundation_CGAffineTransform, xStep: number, yStep: number, tiling: CGPatternTiling, isColored: boolean, callbacks: SDKHandle): (CGPattern) | null;
     /**
      * class var typeID: CFTypeID { get }
      * @availability iOS 2.0+
@@ -2757,22 +2717,18 @@ export declare class CGPattern extends SDKHandle {
 export declare class CGPatternCallbacks extends SDKHandle {
     /** var drawPattern: CGPatternDrawPatternCallback? */
     get drawPattern(): (((arg0: (SDKHandle) | null, arg1: CGContext) => Promise<void>)) | null;
-    set drawPattern(value: $SDK45);
     /** var releaseInfo: CGPatternReleaseInfoCallback? */
-    get releaseInfo(): $SDK16;
-    set releaseInfo(value: $SDK17);
+    get releaseInfo(): $SDK14;
     /** var version: UInt32 */
     get version(): number;
     set version(value: number);
-    /** init(version: UInt32, drawPattern: CGPatternDrawPatternCallback?, releaseInfo: CGPatternReleaseInfoCallback?) */
-    static initVersionDrawPatternReleaseInfo(version: number, drawPattern?: $SDK45, releaseInfo?: $SDK17): CGPatternCallbacks;
     /** init() */
     static init(): CGPatternCallbacks;
 }
 /** typealias CGPatternDrawPatternCallback = (UnsafeMutableRawPointer?, CGContext) -> Void */
 export type CGPatternDrawPatternCallback = ((arg0: (SDKHandle) | null, arg1: CGContext) => Promise<void>);
 /** typealias CGPatternReleaseInfoCallback = (UnsafeMutableRawPointer?) -> Void */
-export type CGPatternReleaseInfoCallback = $SDK19;
+export type CGPatternReleaseInfoCallback = $SDK16;
 /** enum CGPatternTiling */
 export type CGPatternTiling = "noDistortion" | "constantSpacingMinimalDistortion" | "constantSpacing";
 export declare const CGPatternTiling: {
@@ -2858,7 +2814,7 @@ export declare class CGPDFDocument extends SDKHandle {
      * init?(_ url: CFURL)
      * @availability iOS 2.0+
      */
-    static init341(url: _CoreFoundation_CFURL): (CGPDFDocument) | null;
+    static init39260(url: _CoreFoundation_CFURL): (CGPDFDocument) | null;
     /**
      * var accessPermissions: CGPDFAccessPermissions { get }
      * @availability iOS 11.0+
@@ -2868,7 +2824,7 @@ export declare class CGPDFDocument extends SDKHandle {
      * var catalog: CGPDFDictionaryRef? { get }
      * @availability iOS 2.0+
      */
-    get catalog(): $SDK50;
+    get catalog(): $SDK39;
     /**
      * var fileIdentifier: CGPDFArrayRef? { get }
      * @availability iOS 2.0+
@@ -2878,7 +2834,7 @@ export declare class CGPDFDocument extends SDKHandle {
      * var info: CGPDFDictionaryRef? { get }
      * @availability iOS 2.0+
      */
-    get info(): $SDK50;
+    get info(): $SDK39;
     /**
      * var numberOfPages: Int { get }
      * @availability iOS 2.0+
@@ -2951,12 +2907,12 @@ export declare class CGPDFPage extends SDKHandle {
      * func getBoxRect(_ box: CGPDFBox) -> CGRect
      * @availability iOS 2.0+
      */
-    getBoxRect(box: CGPDFBox): $SDK8;
+    getBoxRect(box: CGPDFBox): $SDK7;
     /**
      * var dictionary: CGPDFDictionaryRef? { get }
      * @availability iOS 2.0+
      */
-    get dictionary(): $SDK50;
+    get dictionary(): $SDK39;
     /**
      * var document: CGPDFDocument? { get }
      * @availability iOS 2.0+
@@ -2966,7 +2922,7 @@ export declare class CGPDFPage extends SDKHandle {
      * func getDrawingTransform(_ box: CGPDFBox, rect: CGRect, rotate: Int32, preserveAspectRatio: Bool) -> CGAffineTransform
      * @availability iOS 2.0+
      */
-    getDrawingTransform(box: CGPDFBox, rect: $SDK8, rotate: number, preserveAspectRatio: boolean): _CoreFoundation_CGAffineTransform;
+    getDrawingTransform(box: CGPDFBox, rect: $SDK7, rotate: number, preserveAspectRatio: boolean): _CoreFoundation_CGAffineTransform;
     /**
      * var pageNumber: Int { get }
      * @availability iOS 2.0+
@@ -3046,7 +3002,7 @@ export declare class CGPDFStructureElement_Attributes extends SDKHandle {
      * init(title: String? = nil, language: Locale.Language? = nil, alternativeText: String? = nil, expansionText: String? = nil, actualText: String? = nil)
      * @availability iOS 27.0+
      */
-    static init(title?: (string) | null, language?: $SDK52, alternativeText?: (string) | null, expansionText?: (string) | null, actualText?: (string) | null): CGPDFStructureElement_Attributes;
+    static init(title?: (string) | null, language?: $SDK41, alternativeText?: (string) | null, expansionText?: (string) | null, actualText?: (string) | null): CGPDFStructureElement_Attributes;
     /**
      * var title: String?
      * @availability iOS 27.0+
@@ -3057,8 +3013,8 @@ export declare class CGPDFStructureElement_Attributes extends SDKHandle {
      * var language: Locale.Language?
      * @availability iOS 27.0+
      */
-    get language(): $SDK52;
-    set language(value: $SDK52);
+    get language(): $SDK41;
+    set language(value: $SDK41);
 }
 /** struct CGPDFTagProperty */
 export declare class CGPDFTagProperty extends SDKHandle {
@@ -3117,17 +3073,17 @@ export declare class CGPoint extends SDKHandle {
      * init(x: Double, y: Double)
      * @availability iOS 7.0+
      */
-    static initXY(x: number, y: number): $SDK9;
+    static initXY(x: number, y: number): $SDK8;
     /**
      * init(x: Int, y: Int)
      * @availability iOS 7.0+
      */
-    static initXY906(x: number, y: number): $SDK9;
+    static initXY88394(x: number, y: number): $SDK8;
     /**
      * init?(dictionaryRepresentation dict: CFDictionary)
      * @availability iOS 7.0+
      */
-    static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK9) | null;
+    static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK8) | null;
     /** var dictionaryRepresentation: CFDictionary { get } */
     get dictionaryRepresentation(): _CoreFoundation_CFDictionary;
     /**
@@ -3139,18 +3095,18 @@ export declare class CGPoint extends SDKHandle {
      * static var zero: CGPoint { get }
      * @availability iOS 7.0+
      */
-    static get zero(): $SDK9;
+    static get zero(): $SDK8;
     /** func equalTo(_ point2: CGPoint) -> Bool */
-    equalTo(point2: $SDK9): boolean;
+    equalTo(point2: $SDK8): boolean;
     /** func applying(_ t: CGAffineTransform) -> CGPoint */
-    applying(t: _CoreFoundation_CGAffineTransform): $SDK9;
+    applying(t: _CoreFoundation_CGAffineTransform): $SDK8;
 }
 export declare class CGRect extends SDKHandle {
     /**
      * func intersects(_ rect2: CGRect) -> Bool
      * @availability iOS 7.0+
      */
-    intersects(rect2: $SDK8): boolean;
+    intersects(rect2: $SDK7): boolean;
     /**
      * var isInfinite: Bool { get }
      * @availability iOS 7.0+
@@ -3165,12 +3121,12 @@ export declare class CGRect extends SDKHandle {
      * func intersection(_ r2: CGRect) -> CGRect
      * @availability iOS 7.0+
      */
-    intersection(r2: $SDK8): $SDK8;
+    intersection(r2: $SDK7): $SDK7;
     /**
      * var standardized: CGRect { get }
      * @availability iOS 7.0+
      */
-    get standardized(): $SDK8;
+    get standardized(): $SDK7;
     /**
      * var debugDescription: String { get }
      * @availability iOS 7.0+
@@ -3180,22 +3136,22 @@ export declare class CGRect extends SDKHandle {
      * init(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat)
      * @availability iOS 7.0+
      */
-    static initXYWidthHeight(x: number, y: number, width: number, height: number): $SDK8;
+    static initXYWidthHeight(x: number, y: number, width: number, height: number): $SDK7;
     /**
      * init(x: Double, y: Double, width: Double, height: Double)
      * @availability iOS 7.0+
      */
-    static initXYWidthHeight865(x: number, y: number, width: number, height: number): $SDK8;
+    static initXYWidthHeight39990(x: number, y: number, width: number, height: number): $SDK7;
     /**
      * init(x: Int, y: Int, width: Int, height: Int)
      * @availability iOS 7.0+
      */
-    static initXYWidthHeight866(x: number, y: number, width: number, height: number): $SDK8;
+    static initXYWidthHeight53166(x: number, y: number, width: number, height: number): $SDK7;
     /**
      * init?(dictionaryRepresentation dict: CFDictionary)
      * @availability iOS 7.0+
      */
-    static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK8) | null;
+    static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK7) | null;
     /**
      * var dictionaryRepresentation: CFDictionary { get }
      * @availability iOS 7.0+
@@ -3240,17 +3196,17 @@ export declare class CGRect extends SDKHandle {
      * static var null: CGRect { get }
      * @availability iOS 7.0+
      */
-    static get null(): $SDK8;
+    static get null(): $SDK7;
     /**
      * static var zero: CGRect { get }
      * @availability iOS 7.0+
      */
-    static get zero(): $SDK8;
+    static get zero(): $SDK7;
     /**
      * func union(_ r2: CGRect) -> CGRect
      * @availability iOS 7.0+
      */
-    union(r2: $SDK8): $SDK8;
+    union(r2: $SDK7): $SDK7;
     /**
      * var width: CGFloat { get }
      * @availability iOS 7.0+
@@ -3288,44 +3244,44 @@ export declare class CGRect extends SDKHandle {
      * func equalTo(_ rect2: CGRect) -> Bool
      * @availability iOS 7.0+
      */
-    equalTo(rect2: $SDK8): boolean;
+    equalTo(rect2: $SDK7): boolean;
     /**
      * func insetBy(dx: CGFloat, dy: CGFloat) -> CGRect
      * @availability iOS 7.0+
      */
-    insetBy(dx: number, dy: number): $SDK8;
+    insetBy(dx: number, dy: number): $SDK7;
     /**
      * var isEmpty: Bool { get }
      * @availability iOS 7.0+
      */
     get isEmpty(): boolean;
     /** func applying(_ t: CGAffineTransform) -> CGRect */
-    applying(t: _CoreFoundation_CGAffineTransform): $SDK8;
+    applying(t: _CoreFoundation_CGAffineTransform): $SDK7;
     /**
      * func contains(_ rect2: CGRect) -> Bool
      * @availability iOS 7.0+
      */
-    contains(rect2: $SDK8): boolean;
+    contains(rect2: $SDK7): boolean;
     /**
      * func contains(_ point: CGPoint) -> Bool
      * @availability iOS 7.0+
      */
-    contains888(point: $SDK9): boolean;
+    contains5598(point: $SDK8): boolean;
     /**
      * static var infinite: CGRect { get }
      * @availability iOS 7.0+
      */
-    static get infinite(): $SDK8;
+    static get infinite(): $SDK7;
     /**
      * var integral: CGRect { get }
      * @availability iOS 7.0+
      */
-    get integral(): $SDK8;
+    get integral(): $SDK7;
     /**
      * func offsetBy(dx: CGFloat, dy: CGFloat) -> CGRect
      * @availability iOS 7.0+
      */
-    offsetBy(dx: number, dy: number): $SDK8;
+    offsetBy(dx: number, dy: number): $SDK7;
 }
 /** class CGRenderingBufferProvider */
 export declare class CGRenderingBufferProvider extends SDKHandle {
@@ -3352,22 +3308,22 @@ export declare class CGShading extends SDKHandle {
      * init?(axialSpace space: CGColorSpace, start: CGPoint, end: CGPoint, function: CGFunction, extendStart: Bool, extendEnd: Bool)
      * @availability iOS 2.0+
      */
-    static initAxialSpaceStartEndFunctionExtendStartExtendEnd(space: CGColorSpace, start: $SDK9, end: $SDK9, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null;
+    static initAxialSpaceStartEndFunctionExtendStartExtendEnd(space: CGColorSpace, start: $SDK8, end: $SDK8, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null;
     /**
      * init?(axialHeadroom headroom: Float, space: CGColorSpace, start: CGPoint, end: CGPoint, function: CGFunction, extendStart: Bool, extendEnd: Bool)
      * @availability iOS 26.0+
      */
-    static initAxialHeadroomSpaceStartEndFunctionExtendStartExtendEnd(headroom: number, space: CGColorSpace, start: $SDK9, end: $SDK9, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null;
+    static initAxialHeadroomSpaceStartEndFunctionExtendStartExtendEnd(headroom: number, space: CGColorSpace, start: $SDK8, end: $SDK8, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null;
     /**
      * init?(radialSpace space: CGColorSpace, start: CGPoint, startRadius: CGFloat, end: CGPoint, endRadius: CGFloat, function: CGFunction, extendStart: Bool, extendEnd: Bool)
      * @availability iOS 2.0+
      */
-    static initRadialSpaceStartStartRadiusEndEndRadiusFunctionExtendStartExtendEnd(space: CGColorSpace, start: $SDK9, startRadius: number, end: $SDK9, endRadius: number, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null;
+    static initRadialSpaceStartStartRadiusEndEndRadiusFunctionExtendStartExtendEnd(space: CGColorSpace, start: $SDK8, startRadius: number, end: $SDK8, endRadius: number, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null;
     /**
      * init?(radialHeadroom headroom: Float, space: CGColorSpace, start: CGPoint, startRadius: CGFloat, end: CGPoint, endRadius: CGFloat, function: CGFunction, extendStart: Bool, extendEnd: Bool)
      * @availability iOS 26.0+
      */
-    static initRadialHeadroomSpaceStartStartRadiusEndEndRadiusFunctionExtendStartExtendEnd(headroom: number, space: CGColorSpace, start: $SDK9, startRadius: number, end: $SDK9, endRadius: number, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null;
+    static initRadialHeadroomSpaceStartStartRadiusEndEndRadiusFunctionExtendStartExtendEnd(headroom: number, space: CGColorSpace, start: $SDK8, startRadius: number, end: $SDK8, endRadius: number, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null;
     /**
      * var contentHeadroom: Float { get }
      * @availability iOS 26.0+
@@ -3394,7 +3350,7 @@ export declare class CGSize extends SDKHandle {
      * init?(dictionaryRepresentation dict: CFDictionary)
      * @availability iOS 7.0+
      */
-    static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK10) | null;
+    static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK9) | null;
     /** var dictionaryRepresentation: CFDictionary { get } */
     get dictionaryRepresentation(): _CoreFoundation_CFDictionary;
     /**
@@ -3406,21 +3362,21 @@ export declare class CGSize extends SDKHandle {
      * static var zero: CGSize { get }
      * @availability iOS 7.0+
      */
-    static get zero(): $SDK10;
+    static get zero(): $SDK9;
     /**
      * init(width: Double, height: Double)
      * @availability iOS 7.0+
      */
-    static initWidthHeight(width: number, height: number): $SDK10;
+    static initWidthHeight(width: number, height: number): $SDK9;
     /**
      * init(width: Int, height: Int)
      * @availability iOS 7.0+
      */
-    static initWidthHeight899(width: number, height: number): $SDK10;
+    static initWidthHeight55777(width: number, height: number): $SDK9;
     /** func equalTo(_ size2: CGSize) -> Bool */
-    equalTo(size2: $SDK10): boolean;
+    equalTo(size2: $SDK9): boolean;
     /** func applying(_ t: CGAffineTransform) -> CGSize */
-    applying(t: _CoreFoundation_CGAffineTransform): $SDK10;
+    applying(t: _CoreFoundation_CGAffineTransform): $SDK9;
 }
 /** enum CGTextDrawingMode */
 export type CGTextDrawingMode = "fill" | "stroke" | "fillStroke" | "invisible" | "fillClip" | "strokeClip" | "fillStrokeClip" | "clip";
@@ -3450,17 +3406,17 @@ export declare class CGVector extends SDKHandle {
      * init(dx: Double, dy: Double)
      * @availability iOS 7.0+
      */
-    static initDxDy(dx: number, dy: number): $SDK54;
+    static initDxDy(dx: number, dy: number): $SDK43;
     /**
      * init(dx: Int, dy: Int)
      * @availability iOS 7.0+
      */
-    static initDxDy916(dx: number, dy: number): $SDK54;
+    static initDxDy48840(dx: number, dy: number): $SDK43;
     /**
      * static var zero: CGVector { get }
      * @availability iOS 7.0+
      */
-    static get zero(): $SDK54;
+    static get zero(): $SDK43;
 }
 /** class ColorSyncProfile */
 export declare class ColorSyncProfile extends SDKHandle {
@@ -3584,7 +3540,7 @@ export declare function CGColorSpaceUsesITUR_2100TF(arg0: CGColorSpace): boolean
  * func CGContextDrawConicGradient(_ c: CGContext, _ gradient: CGGradient?, _ center: CGPoint, _ angle: CGFloat)
  * @availability iOS 17.0+
  */
-export declare function CGContextDrawConicGradient(c: CGContext, gradient: (CGGradient) | null, center: $SDK9, angle: number): void;
+export declare function CGContextDrawConicGradient(c: CGContext, gradient: (CGGradient) | null, center: $SDK8, angle: number): void;
 /**
  * func CGContextGetEDRTargetHeadroom(_ c: CGContext) -> Float
  * @availability iOS 18.0+
@@ -3592,8 +3548,6 @@ export declare function CGContextDrawConicGradient(c: CGContext, gradient: (CGGr
 export declare function CGContextGetEDRTargetHeadroom(c: CGContext): number;
 /** func CGConvertColorDataWithFormat(_ width: Int, _ height: Int, _ dst_data: UnsafeMutableRawPointer!, _ dst_format: CGColorDataFormat, _ src_data: UnsafeMutableRawPointer!, _ src_format: CGColorDataFormat, _ options: CFDictionary!) -> Bool */
 export declare function CGConvertColorDataWithFormat(width: number, height: number, dst_data: (SDKHandle) | null, dst_format: CGColorDataFormat, src_data: (SDKHandle) | null, src_format: CGColorDataFormat, options?: $SDK3): boolean;
-/** func CGErrorSetCallback(_ callback: CGErrorCallback!) */
-export declare function CGErrorSetCallback(callback?: ((() => void)) | null): void;
 /**
  * func CGImageCreateCopyWithContentHeadroom(_ headroom: Float, _ image: CGImage) -> CGImage?
  * @availability iOS 18.0+
@@ -3626,7 +3580,7 @@ export declare function CGPDFArrayGetCount(array: CGPDFArrayRef): number;
 export declare function CGPDFArrayGetDictionary(array: CGPDFArrayRef, index: number): {
     $ret: boolean;
     $out: {
-        "value": $SDK50;
+        "value": $SDK39;
     };
 };
 /**
@@ -3703,7 +3657,7 @@ export declare function CGPDFContentStreamGetResource(cs: SDKHandle, category: S
  * func CGPDFContentStreamGetStreams(_ cs: CGPDFContentStreamRef) -> CFArray?
  * @availability iOS 2.0+
  */
-export declare function CGPDFContentStreamGetStreams(cs: SDKHandle): $SDK34;
+export declare function CGPDFContentStreamGetStreams(cs: SDKHandle): $SDK26;
 /**
  * func CGPDFContentStreamRelease(_ cs: CGPDFContentStreamRef)
  * @availability iOS 2.0+
@@ -3736,11 +3690,6 @@ export declare function CGPDFContextSetPageTagStructureTree(context: CGContext, 
 /** func CGPDFContextSetParentTree(_ context: CGContext, _ parentTreeDictionary: CGPDFDictionaryRef) */
 export declare function CGPDFContextSetParentTree(context: CGContext, parentTreeDictionary: CGPDFDictionaryRef): void;
 /**
- * func CGPDFDictionaryApplyFunction(_ dict: CGPDFDictionaryRef, _ function: CGPDFDictionaryApplierFunction, _ info: UnsafeMutableRawPointer?)
- * @availability iOS 2.0+
- */
-export declare function CGPDFDictionaryApplyFunction(dict: CGPDFDictionaryRef, function_: ((arg0: SDKHandle, arg1: CGPDFObjectRef, arg2: (SDKHandle) | null) => void), info?: (SDKHandle) | null): void;
-/**
  * func CGPDFDictionaryGetArray(_ dict: CGPDFDictionaryRef, _ key: UnsafePointer<CChar>, _ value: UnsafeMutablePointer<CGPDFArrayRef?>?) -> Bool
  * @availability iOS 2.0+
  */
@@ -3767,7 +3716,7 @@ export declare function CGPDFDictionaryGetCount(dict: CGPDFDictionaryRef): numbe
 export declare function CGPDFDictionaryGetDictionary(dict: CGPDFDictionaryRef, key: SDKHandle): {
     $ret: boolean;
     $out: {
-        "value": $SDK50;
+        "value": $SDK39;
     };
 };
 /**
@@ -3846,11 +3795,6 @@ export declare function CGPDFOperatorTableRelease(table: SDKHandle): void;
  */
 export declare function CGPDFOperatorTableRetain(table: SDKHandle): SDKHandle;
 /**
- * func CGPDFOperatorTableSetCallback(_ table: CGPDFOperatorTableRef, _ name: UnsafePointer<CChar>, _ callback: CGPDFOperatorCallback)
- * @availability iOS 2.0+
- */
-export declare function CGPDFOperatorTableSetCallback(table: SDKHandle, name: SDKHandle, callback: ((arg0: SDKHandle, arg1: (SDKHandle) | null) => void)): void;
-/**
  * func CGPDFScannerCreate(_ cs: CGPDFContentStreamRef, _ table: CGPDFOperatorTableRef?, _ info: UnsafeMutableRawPointer?) -> CGPDFScannerRef
  * @availability iOS 2.0+
  */
@@ -3882,7 +3826,7 @@ export declare function CGPDFScannerPopBoolean(scanner: SDKHandle, value?: (SDKH
 export declare function CGPDFScannerPopDictionary(scanner: SDKHandle): {
     $ret: boolean;
     $out: {
-        "value": $SDK50;
+        "value": $SDK39;
     };
 };
 /**
@@ -3961,7 +3905,7 @@ export declare function CGPDFStreamCopyData(stream: CGPDFStreamRef, format: SDKH
  * func CGPDFStreamGetDictionary(_ stream: CGPDFStreamRef) -> CGPDFDictionaryRef?
  * @availability iOS 2.0+
  */
-export declare function CGPDFStreamGetDictionary(stream: CGPDFStreamRef): $SDK50;
+export declare function CGPDFStreamGetDictionary(stream: CGPDFStreamRef): $SDK39;
 /**
  * func CGPDFStringCopyDate(_ string: CGPDFStringRef) -> CFDate?
  * @availability iOS 2.0+
@@ -3986,19 +3930,19 @@ export declare function CGPDFStringGetLength(string: CGPDFStringRef): number;
  * func CGPointApplyAffineTransform(_ point: CGPoint, _ t: CGAffineTransform) -> CGPoint
  * @availability iOS 2.0+
  */
-export declare function CGPointApplyAffineTransform(point: $SDK9, t: _CoreFoundation_CGAffineTransform): $SDK9;
+export declare function CGPointApplyAffineTransform(point: $SDK8, t: _CoreFoundation_CGAffineTransform): $SDK8;
 /**
  * func CGPointCreateDictionaryRepresentation(_ point: CGPoint) -> CFDictionary
  * @availability iOS 2.0+
  */
-export declare function CGPointCreateDictionaryRepresentation(point: $SDK9): _CoreFoundation_CFDictionary;
+export declare function CGPointCreateDictionaryRepresentation(point: $SDK8): _CoreFoundation_CFDictionary;
 /**
  * func CGPointEqualToPoint(_ point1: CGPoint, _ point2: CGPoint) -> Bool
  * @availability iOS 2.0+
  */
-export declare function CGPointEqualToPoint(point1: $SDK9, point2: $SDK9): boolean;
+export declare function CGPointEqualToPoint(point1: $SDK8, point2: $SDK8): boolean;
 /** func CGPointMake(_ x: CGFloat, _ y: CGFloat) -> CGPoint */
-export declare function CGPointMake(x: number, y: number): $SDK9;
+export declare function CGPointMake(x: number, y: number): $SDK8;
 /**
  * func CGPointMakeWithDictionaryRepresentation(_ dict: CFDictionary, _ point: UnsafeMutablePointer<CGPoint>) -> Bool
  * @availability iOS 2.0+
@@ -4008,104 +3952,104 @@ export declare function CGPointMakeWithDictionaryRepresentation(dict: _CoreFound
  * func CGRectApplyAffineTransform(_ rect: CGRect, _ t: CGAffineTransform) -> CGRect
  * @availability iOS 2.0+
  */
-export declare function CGRectApplyAffineTransform(rect: $SDK8, t: _CoreFoundation_CGAffineTransform): $SDK8;
+export declare function CGRectApplyAffineTransform(rect: $SDK7, t: _CoreFoundation_CGAffineTransform): $SDK7;
 /**
  * func CGRectContainsPoint(_ rect: CGRect, _ point: CGPoint) -> Bool
  * @availability iOS 2.0+
  */
-export declare function CGRectContainsPoint(rect: $SDK8, point: $SDK9): boolean;
+export declare function CGRectContainsPoint(rect: $SDK7, point: $SDK8): boolean;
 /**
  * func CGRectContainsRect(_ rect1: CGRect, _ rect2: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export declare function CGRectContainsRect(rect1: $SDK8, rect2: $SDK8): boolean;
+export declare function CGRectContainsRect(rect1: $SDK7, rect2: $SDK7): boolean;
 /**
  * func CGRectCreateDictionaryRepresentation(_: CGRect) -> CFDictionary
  * @availability iOS 2.0+
  */
-export declare function CGRectCreateDictionaryRepresentation(arg0: $SDK8): _CoreFoundation_CFDictionary;
+export declare function CGRectCreateDictionaryRepresentation(arg0: $SDK7): _CoreFoundation_CFDictionary;
 /**
  * func CGRectEqualToRect(_ rect1: CGRect, _ rect2: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export declare function CGRectEqualToRect(rect1: $SDK8, rect2: $SDK8): boolean;
+export declare function CGRectEqualToRect(rect1: $SDK7, rect2: $SDK7): boolean;
 /**
  * func CGRectGetHeight(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export declare function CGRectGetHeight(rect: $SDK8): number;
+export declare function CGRectGetHeight(rect: $SDK7): number;
 /**
  * func CGRectGetMaxX(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export declare function CGRectGetMaxX(rect: $SDK8): number;
+export declare function CGRectGetMaxX(rect: $SDK7): number;
 /**
  * func CGRectGetMaxY(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export declare function CGRectGetMaxY(rect: $SDK8): number;
+export declare function CGRectGetMaxY(rect: $SDK7): number;
 /**
  * func CGRectGetMidX(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export declare function CGRectGetMidX(rect: $SDK8): number;
+export declare function CGRectGetMidX(rect: $SDK7): number;
 /**
  * func CGRectGetMidY(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export declare function CGRectGetMidY(rect: $SDK8): number;
+export declare function CGRectGetMidY(rect: $SDK7): number;
 /**
  * func CGRectGetMinX(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export declare function CGRectGetMinX(rect: $SDK8): number;
+export declare function CGRectGetMinX(rect: $SDK7): number;
 /**
  * func CGRectGetMinY(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export declare function CGRectGetMinY(rect: $SDK8): number;
+export declare function CGRectGetMinY(rect: $SDK7): number;
 /**
  * func CGRectGetWidth(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export declare function CGRectGetWidth(rect: $SDK8): number;
+export declare function CGRectGetWidth(rect: $SDK7): number;
 /**
  * func CGRectInset(_ rect: CGRect, _ dx: CGFloat, _ dy: CGFloat) -> CGRect
  * @availability iOS 2.0+
  */
-export declare function CGRectInset(rect: $SDK8, dx: number, dy: number): $SDK8;
+export declare function CGRectInset(rect: $SDK7, dx: number, dy: number): $SDK7;
 /**
  * func CGRectIntegral(_ rect: CGRect) -> CGRect
  * @availability iOS 2.0+
  */
-export declare function CGRectIntegral(rect: $SDK8): $SDK8;
+export declare function CGRectIntegral(rect: $SDK7): $SDK7;
 /**
  * func CGRectIntersection(_ r1: CGRect, _ r2: CGRect) -> CGRect
  * @availability iOS 2.0+
  */
-export declare function CGRectIntersection(r1: $SDK8, r2: $SDK8): $SDK8;
+export declare function CGRectIntersection(r1: $SDK7, r2: $SDK7): $SDK7;
 /**
  * func CGRectIntersectsRect(_ rect1: CGRect, _ rect2: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export declare function CGRectIntersectsRect(rect1: $SDK8, rect2: $SDK8): boolean;
+export declare function CGRectIntersectsRect(rect1: $SDK7, rect2: $SDK7): boolean;
 /**
  * func CGRectIsEmpty(_ rect: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export declare function CGRectIsEmpty(rect: $SDK8): boolean;
+export declare function CGRectIsEmpty(rect: $SDK7): boolean;
 /**
  * func CGRectIsInfinite(_ rect: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export declare function CGRectIsInfinite(rect: $SDK8): boolean;
+export declare function CGRectIsInfinite(rect: $SDK7): boolean;
 /**
  * func CGRectIsNull(_ rect: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export declare function CGRectIsNull(rect: $SDK8): boolean;
+export declare function CGRectIsNull(rect: $SDK7): boolean;
 /** func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect */
-export declare function CGRectMake(x: number, y: number, width: number, height: number): $SDK8;
+export declare function CGRectMake(x: number, y: number, width: number, height: number): $SDK7;
 /**
  * func CGRectMakeWithDictionaryRepresentation(_ dict: CFDictionary, _ rect: UnsafeMutablePointer<CGRect>) -> Bool
  * @availability iOS 2.0+
@@ -4115,41 +4059,41 @@ export declare function CGRectMakeWithDictionaryRepresentation(dict: _CoreFounda
  * func CGRectOffset(_ rect: CGRect, _ dx: CGFloat, _ dy: CGFloat) -> CGRect
  * @availability iOS 2.0+
  */
-export declare function CGRectOffset(rect: $SDK8, dx: number, dy: number): $SDK8;
+export declare function CGRectOffset(rect: $SDK7, dx: number, dy: number): $SDK7;
 /**
  * func CGRectStandardize(_ rect: CGRect) -> CGRect
  * @availability iOS 2.0+
  */
-export declare function CGRectStandardize(rect: $SDK8): $SDK8;
+export declare function CGRectStandardize(rect: $SDK7): $SDK7;
 /**
  * func CGRectUnion(_ r1: CGRect, _ r2: CGRect) -> CGRect
  * @availability iOS 2.0+
  */
-export declare function CGRectUnion(r1: $SDK8, r2: $SDK8): $SDK8;
+export declare function CGRectUnion(r1: $SDK7, r2: $SDK7): $SDK7;
 /**
  * func CGSizeApplyAffineTransform(_ size: CGSize, _ t: CGAffineTransform) -> CGSize
  * @availability iOS 2.0+
  */
-export declare function CGSizeApplyAffineTransform(size: $SDK10, t: _CoreFoundation_CGAffineTransform): $SDK10;
+export declare function CGSizeApplyAffineTransform(size: $SDK9, t: _CoreFoundation_CGAffineTransform): $SDK9;
 /**
  * func CGSizeCreateDictionaryRepresentation(_ size: CGSize) -> CFDictionary
  * @availability iOS 2.0+
  */
-export declare function CGSizeCreateDictionaryRepresentation(size: $SDK10): _CoreFoundation_CFDictionary;
+export declare function CGSizeCreateDictionaryRepresentation(size: $SDK9): _CoreFoundation_CFDictionary;
 /**
  * func CGSizeEqualToSize(_ size1: CGSize, _ size2: CGSize) -> Bool
  * @availability iOS 2.0+
  */
-export declare function CGSizeEqualToSize(size1: $SDK10, size2: $SDK10): boolean;
+export declare function CGSizeEqualToSize(size1: $SDK9, size2: $SDK9): boolean;
 /** func CGSizeMake(_ width: CGFloat, _ height: CGFloat) -> CGSize */
-export declare function CGSizeMake(width: number, height: number): $SDK10;
+export declare function CGSizeMake(width: number, height: number): $SDK9;
 /**
  * func CGSizeMakeWithDictionaryRepresentation(_ dict: CFDictionary, _ size: UnsafeMutablePointer<CGSize>) -> Bool
  * @availability iOS 2.0+
  */
 export declare function CGSizeMakeWithDictionaryRepresentation(dict: _CoreFoundation_CFDictionary, size: $SDK2): boolean;
 /** func CGVectorMake(_ dx: CGFloat, _ dy: CGFloat) -> CGVector */
-export declare function CGVectorMake(dx: number, dy: number): $SDK54;
+export declare function CGVectorMake(dx: number, dy: number): $SDK43;
 /**
  * func j0(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
@@ -4379,27 +4323,27 @@ export declare const CGAffineTransformIdentity: _CoreFoundation_CGAffineTransfor
  * let CGPointZero: CGPoint
  * @availability iOS 2.0+
  */
-export declare const CGPointZero: $SDK9;
+export declare const CGPointZero: $SDK8;
 /**
  * let CGRectInfinite: CGRect
  * @availability iOS 2.0+
  */
-export declare const CGRectInfinite: $SDK8;
+export declare const CGRectInfinite: $SDK7;
 /**
  * let CGRectNull: CGRect
  * @availability iOS 2.0+
  */
-export declare const CGRectNull: $SDK8;
+export declare const CGRectNull: $SDK7;
 /**
  * let CGRectZero: CGRect
  * @availability iOS 2.0+
  */
-export declare const CGRectZero: $SDK8;
+export declare const CGRectZero: $SDK7;
 /**
  * let CGSizeZero: CGSize
  * @availability iOS 2.0+
  */
-export declare const CGSizeZero: $SDK10;
+export declare const CGSizeZero: $SDK9;
 /**
  * var kCGBitmapByteOrder16Host: CGBitmapInfo { get }
  * @deprecated iOS 100000.0

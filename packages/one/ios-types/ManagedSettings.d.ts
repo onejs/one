@@ -29,8 +29,8 @@ export declare class AccountSettings extends SDKHandle {
      * var lockAccounts: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get lockAccounts62(): (boolean) | null;
-    set lockAccounts63(value: (boolean) | null);
+    get lockAccounts30315(): (boolean) | null;
+    set lockAccounts30315(value: (boolean) | null);
 }
 /**
  * struct ActivityCategory
@@ -103,8 +103,8 @@ export declare class ApplicationSettings extends SDKHandle {
      * var denyAppRemoval: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get denyAppRemoval11(): (boolean) | null;
-    set denyAppRemoval12(value: (boolean) | null);
+    get denyAppRemoval91849(): (boolean) | null;
+    set denyAppRemoval91849(value: (boolean) | null);
     /**
      * static let blockedApplications: SettingMetadata<Set<Application>>
      * @availability iOS 15.0+
@@ -114,8 +114,8 @@ export declare class ApplicationSettings extends SDKHandle {
      * var blockedApplications: Set<Application>? { get set }
      * @availability iOS 15.0+
      */
-    get blockedApplications14(): $SDK4;
-    set blockedApplications15(value: $SDK4);
+    get blockedApplications79767(): $SDK4;
+    set blockedApplications79767(value: $SDK4);
     /**
      * static let denyAppInstallation: SettingMetadata<Bool>
      * @availability iOS 15.0+
@@ -125,8 +125,8 @@ export declare class ApplicationSettings extends SDKHandle {
      * var denyAppInstallation: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get denyAppInstallation17(): (boolean) | null;
-    set denyAppInstallation18(value: (boolean) | null);
+    get denyAppInstallation56640(): (boolean) | null;
+    set denyAppInstallation56640(value: (boolean) | null);
 }
 /**
  * typealias ApplicationToken = Token<Application>
@@ -147,8 +147,8 @@ export declare class AppStoreSettings extends SDKHandle {
      * var denyInAppPurchases: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get denyInAppPurchases65(): (boolean) | null;
-    set denyInAppPurchases66(value: (boolean) | null);
+    get denyInAppPurchases8418(): (boolean) | null;
+    set denyInAppPurchases8418(value: (boolean) | null);
     /**
      * static let maximumRating: BoundedSettingMetadata<Int>
      * @availability iOS 15.0+
@@ -158,8 +158,8 @@ export declare class AppStoreSettings extends SDKHandle {
      * var maximumRating: Int? { get set }
      * @availability iOS 15.0+
      */
-    get maximumRating68(): (number) | null;
-    set maximumRating69(value: (number) | null);
+    get maximumRating3053(): (number) | null;
+    set maximumRating3053(value: (number) | null);
     /**
      * static let requirePasswordForPurchases: SettingMetadata<Bool>
      * @availability iOS 15.0+
@@ -169,8 +169,8 @@ export declare class AppStoreSettings extends SDKHandle {
      * var requirePasswordForPurchases: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get requirePasswordForPurchases71(): (boolean) | null;
-    set requirePasswordForPurchases72(value: (boolean) | null);
+    get requirePasswordForPurchases85277(): (boolean) | null;
+    set requirePasswordForPurchases85277(value: (boolean) | null);
 }
 /**
  * struct BoundedSettingMetadata<Value> where Value : Comparable
@@ -192,8 +192,8 @@ export declare class CellularSettings extends SDKHandle {
      * var lockCellularPlan: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get lockCellularPlan74(): (boolean) | null;
-    set lockCellularPlan75(value: (boolean) | null);
+    get lockCellularPlan80410(): (boolean) | null;
+    set lockCellularPlan80410(value: (boolean) | null);
     /**
      * static let lockAppCellularData: SettingMetadata<Bool>
      * @availability iOS 15.0+
@@ -203,8 +203,8 @@ export declare class CellularSettings extends SDKHandle {
      * var lockAppCellularData: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get lockAppCellularData77(): (boolean) | null;
-    set lockAppCellularData78(value: (boolean) | null);
+    get lockAppCellularData15263(): (boolean) | null;
+    set lockAppCellularData15263(value: (boolean) | null);
     /**
      * static let lockESIM: SettingMetadata<Bool>
      * @availability iOS 15.0+
@@ -214,8 +214,8 @@ export declare class CellularSettings extends SDKHandle {
      * var lockESIM: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get lockESIM80(): (boolean) | null;
-    set lockESIM81(value: (boolean) | null);
+    get lockESIM78860(): (boolean) | null;
+    set lockESIM78860(value: (boolean) | null);
 }
 /**
  * struct DateAndTimeSettings
@@ -231,8 +231,8 @@ export declare class DateAndTimeSettings extends SDKHandle {
      * var requireAutomaticDateAndTime: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get requireAutomaticDateAndTime20(): (boolean) | null;
-    set requireAutomaticDateAndTime21(value: (boolean) | null);
+    get requireAutomaticDateAndTime66734(): (boolean) | null;
+    set requireAutomaticDateAndTime66734(value: (boolean) | null);
 }
 /**
  * struct GameCenterSettings
@@ -248,8 +248,8 @@ export declare class GameCenterSettings extends SDKHandle {
      * var denyAddingFriends: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get denyAddingFriends2(): (boolean) | null;
-    set denyAddingFriends3(value: (boolean) | null);
+    get denyAddingFriends10201(): (boolean) | null;
+    set denyAddingFriends10201(value: (boolean) | null);
     /**
      * static let denyMultiplayerGaming: SettingMetadata<Bool>
      * @availability iOS 15.0+
@@ -259,8 +259,8 @@ export declare class GameCenterSettings extends SDKHandle {
      * var denyMultiplayerGaming: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get denyMultiplayerGaming5(): (boolean) | null;
-    set denyMultiplayerGaming6(value: (boolean) | null);
+    get denyMultiplayerGaming29045(): (boolean) | null;
+    set denyMultiplayerGaming29045(value: (boolean) | null);
 }
 /**
  * protocol ManagedSettingsGroup
@@ -402,7 +402,7 @@ export declare class ManagedSettingsStore extends SDKHandle {
      * static func refresh(_ tokens: inout [ActivityCategoryToken]) throws
      * @availability iOS 26.5+
      */
-    static refresh123(tokens: $SDK10): {
+    static refresh97087(tokens: $SDK10): {
         $ret: null;
         $out: {
             "tokens": $SDK10;
@@ -412,7 +412,7 @@ export declare class ManagedSettingsStore extends SDKHandle {
      * static func refresh(_ tokens: inout [WebDomainToken]) throws
      * @availability iOS 26.5+
      */
-    static refresh124(tokens: Array<Token<WebDomain>>): {
+    static refresh85832(tokens: Array<Token<WebDomain>>): {
         $ret: null;
         $out: {
             "tokens": Array<Token<WebDomain>>;
@@ -510,8 +510,8 @@ export declare class MediaSettings extends SDKHandle {
      * var denyMusicService: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get denyMusicService26(): (boolean) | null;
-    set denyMusicService27(value: (boolean) | null);
+    get denyMusicService25823(): (boolean) | null;
+    set denyMusicService25823(value: (boolean) | null);
     /**
      * static let maximumMovieRating: BoundedSettingMetadata<Int>
      * @availability iOS 15.0+
@@ -521,8 +521,8 @@ export declare class MediaSettings extends SDKHandle {
      * var maximumMovieRating: Int? { get set }
      * @availability iOS 15.0+
      */
-    get maximumMovieRating29(): (number) | null;
-    set maximumMovieRating30(value: (number) | null);
+    get maximumMovieRating36895(): (number) | null;
+    set maximumMovieRating36895(value: (number) | null);
     /**
      * static let denyExplicitContent: SettingMetadata<Bool>
      * @availability iOS 15.0+
@@ -532,8 +532,8 @@ export declare class MediaSettings extends SDKHandle {
      * var denyExplicitContent: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get denyExplicitContent32(): (boolean) | null;
-    set denyExplicitContent33(value: (boolean) | null);
+    get denyExplicitContent37435(): (boolean) | null;
+    set denyExplicitContent37435(value: (boolean) | null);
     /**
      * static let maximumTVShowRating: BoundedSettingMetadata<Int>
      * @availability iOS 15.0+
@@ -543,8 +543,8 @@ export declare class MediaSettings extends SDKHandle {
      * var maximumTVShowRating: Int? { get set }
      * @availability iOS 15.0+
      */
-    get maximumTVShowRating35(): (number) | null;
-    set maximumTVShowRating36(value: (number) | null);
+    get maximumTVShowRating67261(): (number) | null;
+    set maximumTVShowRating67261(value: (number) | null);
     /**
      * static let denyBookstoreErotica: SettingMetadata<Bool>
      * @availability iOS 15.0+
@@ -554,8 +554,8 @@ export declare class MediaSettings extends SDKHandle {
      * var denyBookstoreErotica: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get denyBookstoreErotica38(): (boolean) | null;
-    set denyBookstoreErotica39(value: (boolean) | null);
+    get denyBookstoreErotica265(): (boolean) | null;
+    set denyBookstoreErotica265(value: (boolean) | null);
 }
 /**
  * struct PasscodeSettings
@@ -571,8 +571,8 @@ export declare class PasscodeSettings extends SDKHandle {
      * var lockPasscode: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get lockPasscode83(): (boolean) | null;
-    set lockPasscode84(value: (boolean) | null);
+    get lockPasscode90707(): (boolean) | null;
+    set lockPasscode90707(value: (boolean) | null);
 }
 /**
  * struct SafariSettings
@@ -588,8 +588,8 @@ export declare class SafariSettings extends SDKHandle {
      * var cookiePolicy: SafariSettings.CookiePolicy? { get set }
      * @availability iOS 15.0+
      */
-    get cookiePolicy44(): $SDK12;
-    set cookiePolicy45(value: $SDK12);
+    get cookiePolicy41587(): $SDK12;
+    set cookiePolicy41587(value: $SDK12);
     /**
      * static let denyAutoFill: SettingMetadata<Bool>
      * @availability iOS 15.0+
@@ -599,8 +599,8 @@ export declare class SafariSettings extends SDKHandle {
      * var denyAutoFill: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get denyAutoFill47(): (boolean) | null;
-    set denyAutoFill48(value: (boolean) | null);
+    get denyAutoFill87254(): (boolean) | null;
+    set denyAutoFill87254(value: (boolean) | null);
 }
 /**
  * enum CookiePolicy
@@ -681,12 +681,12 @@ export declare class ShieldActionDelegate extends SDKHandle {
      * func handle(action: ShieldAction, for category: ActivityCategoryToken, completionHandler: @escaping (ShieldActionResponse) -> Void)
      * @availability iOS 15.0+
      */
-    handleActionForCompletionHandler144(action: ShieldAction, category: Token<ActivityCategory>, completionHandler: $SDK13): void;
+    handleActionForCompletionHandler10232(action: ShieldAction, category: Token<ActivityCategory>, completionHandler: $SDK13): void;
     /**
      * func handle(action: ShieldAction, for webDomain: WebDomainToken, completionHandler: @escaping (ShieldActionResponse) -> Void)
      * @availability iOS 15.0+
      */
-    handleActionForCompletionHandler145(action: ShieldAction, webDomain: Token<WebDomain>, completionHandler: $SDK13): void;
+    handleActionForCompletionHandler21179(action: ShieldAction, webDomain: Token<WebDomain>, completionHandler: $SDK13): void;
 }
 /**
  * enum ShieldActionResponse
@@ -724,8 +724,8 @@ export declare class ShieldSettings extends SDKHandle {
      * var webDomains: Set<WebDomainToken>? { get set }
      * @availability iOS 15.0+
      */
-    get webDomains50(): $SDK15;
-    set webDomains51(value: $SDK15);
+    get webDomains92061(): $SDK15;
+    set webDomains92061(value: $SDK15);
     /**
      * static let applications: SettingMetadata<Set<ApplicationToken>>
      * @availability iOS 15.0+
@@ -735,8 +735,8 @@ export declare class ShieldSettings extends SDKHandle {
      * var applications: Set<ApplicationToken>? { get set }
      * @availability iOS 15.0+
      */
-    get applications53(): $SDK17;
-    set applications54(value: $SDK17);
+    get applications26206(): $SDK17;
+    set applications26206(value: $SDK17);
     /**
      * static let webDomainCategories: SettingMetadata<ShieldSettings.ActivityCategoryPolicy<WebDomain>>
      * @availability iOS 15.0+
@@ -746,8 +746,8 @@ export declare class ShieldSettings extends SDKHandle {
      * var webDomainCategories: ShieldSettings.ActivityCategoryPolicy<WebDomain>? { get set }
      * @availability iOS 15.0+
      */
-    get webDomainCategories56(): $SDK19;
-    set webDomainCategories57(value: $SDK19);
+    get webDomainCategories59764(): $SDK19;
+    set webDomainCategories59764(value: $SDK19);
     /**
      * static let applicationCategories: SettingMetadata<ShieldSettings.ActivityCategoryPolicy<Application>>
      * @availability iOS 15.0+
@@ -757,8 +757,8 @@ export declare class ShieldSettings extends SDKHandle {
      * var applicationCategories: ShieldSettings.ActivityCategoryPolicy<Application>? { get set }
      * @availability iOS 15.0+
      */
-    get applicationCategories59(): $SDK21;
-    set applicationCategories60(value: $SDK21);
+    get applicationCategories61189(): $SDK21;
+    set applicationCategories61189(value: $SDK21);
 }
 /**
  * enum ActivityCategoryPolicy<Activity>
@@ -780,8 +780,8 @@ export declare class SiriSettings extends SDKHandle {
      * var denySiri: Bool? { get set }
      * @availability iOS 15.0+
      */
-    get denySiri23(): (boolean) | null;
-    set denySiri24(value: (boolean) | null);
+    get denySiri19645(): (boolean) | null;
+    set denySiri19645(value: (boolean) | null);
 }
 /**
  * struct Token<T>
@@ -803,8 +803,8 @@ export declare class WebContentSettings extends SDKHandle {
      * var blockedByFilter: WebContentSettings.FilterPolicy? { get set }
      * @availability iOS 15.0+
      */
-    get blockedByFilter8(): $SDK23;
-    set blockedByFilter9(value: $SDK23);
+    get blockedByFilter31965(): $SDK23;
+    set blockedByFilter31965(value: $SDK23);
 }
 /**
  * enum FilterPolicy

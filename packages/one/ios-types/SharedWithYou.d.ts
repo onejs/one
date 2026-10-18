@@ -302,7 +302,7 @@ export declare class SWHighlightCenter extends SDKHandle {
      * func collaborationHighlight(forIdentifier: String) throws -> SWCollaborationHighlight
      * @availability iOS 16.0+
      */
-    collaborationHighlightForIdentifier70(forIdentifier: string): SWCollaborationHighlight;
+    collaborationHighlightForIdentifier13931(forIdentifier: string): SWCollaborationHighlight;
 }
 /** protocol SWHighlightCenterDelegate : NSObjectProtocol */
 export interface SWHighlightCenterDelegate {

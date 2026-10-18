@@ -10,20 +10,19 @@ type $SDK3 = {
 type $SDK4 = "animatableData" | SDKHandle;
 type $SDK6 = (_CoreFoundation_CFString) | null;
 type $SDK9 = ((arg0: SDKHandle) => Promise<void>);
-type $SDK11 = ((arg0: SDKHandle) => Promise<number>);
-type $SDK12 = ((arg0: SDKHandle) => number);
-type $SDK13 = (_CoreFoundation_CFArray) | null;
-type $SDK14 = (_CoreFoundation_CFDictionary) | null;
-type $SDK16 = (CTFontDescriptor) | null;
-type $SDK18 = (_CoreFoundation_CFSet) | null;
-type $SDK20 = ("animatableData" | SDKHandle) | null;
-type $SDK21 = {
+type $SDK10 = ((arg0: SDKHandle) => Promise<number>);
+type $SDK11 = (_CoreFoundation_CFArray) | null;
+type $SDK12 = (_CoreFoundation_CFDictionary) | null;
+type $SDK14 = (CTFontDescriptor) | null;
+type $SDK16 = (_CoreFoundation_CFSet) | null;
+type $SDK18 = ("animatableData" | SDKHandle) | null;
+type $SDK19 = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-type $SDK23 = (_CoreGraphics_CGContext) | null;
+type $SDK21 = (_CoreGraphics_CGContext) | null;
 /**
  * struct ALMXGlyphEntry
  * @availability iOS 1.0+
@@ -393,13 +392,13 @@ export declare class CTFont extends SDKHandle {
     /** init(_ uiType: CTFontUIFontType, size: CGFloat, language: CFString?) */
     static initSizeLanguage(uiType: CTFontUIFontType, size: number, language?: $SDK6): CTFont;
     /** init(_ descriptor: CTFontDescriptor, size: CGFloat) */
-    static initSize1063(descriptor: CTFontDescriptor, size: number): CTFont;
+    static initSize18249(descriptor: CTFontDescriptor, size: number): CTFont;
     /** init(_ descriptor: CTFontDescriptor, transform matrix: CGAffineTransform) */
     static initTransform(descriptor: CTFontDescriptor, matrix: _CoreFoundation_CGAffineTransform): CTFont;
     /** init(_ name: CFString, size: CGFloat) */
-    static initSize1065(name: _CoreFoundation_CFString, size: number): CTFont;
+    static initSize91390(name: _CoreFoundation_CFString, size: number): CTFont;
     /** init(_ name: CFString, transform matrix: CGAffineTransform) */
-    static initTransform1066(name: _CoreFoundation_CFString, matrix: _CoreFoundation_CGAffineTransform): CTFont;
+    static initTransform95962(name: _CoreFoundation_CFString, matrix: _CoreFoundation_CGAffineTransform): CTFont;
 }
 /** class CTFontCollection */
 export declare class CTFontCollection extends SDKHandle {
@@ -909,16 +908,12 @@ export declare class CTRunDelegate extends SDKHandle {
 export declare class CTRunDelegateCallbacks extends SDKHandle {
     /** var dealloc: CTRunDelegateDeallocateCallback */
     get dealloc(): $SDK9;
-    set dealloc(value: ((arg0: SDKHandle) => void));
     /** var getAscent: CTRunDelegateGetAscentCallback */
-    get getAscent(): $SDK11;
-    set getAscent(value: $SDK12);
+    get getAscent(): $SDK10;
     /** var getDescent: CTRunDelegateGetDescentCallback */
-    get getDescent(): $SDK11;
-    set getDescent(value: $SDK12);
+    get getDescent(): $SDK10;
     /** var getWidth: CTRunDelegateGetWidthCallback */
-    get getWidth(): $SDK11;
-    set getWidth(value: $SDK12);
+    get getWidth(): $SDK10;
     /** var version: CFIndex */
     get version(): number;
     set version(value: number);
@@ -926,11 +921,11 @@ export declare class CTRunDelegateCallbacks extends SDKHandle {
 /** typealias CTRunDelegateDeallocateCallback = (UnsafeMutableRawPointer) -> Void */
 export type CTRunDelegateDeallocateCallback = $SDK9;
 /** typealias CTRunDelegateGetAscentCallback = (UnsafeMutableRawPointer) -> CGFloat */
-export type CTRunDelegateGetAscentCallback = $SDK11;
+export type CTRunDelegateGetAscentCallback = $SDK10;
 /** typealias CTRunDelegateGetDescentCallback = (UnsafeMutableRawPointer) -> CGFloat */
-export type CTRunDelegateGetDescentCallback = $SDK11;
+export type CTRunDelegateGetDescentCallback = $SDK10;
 /** typealias CTRunDelegateGetWidthCallback = (UnsafeMutableRawPointer) -> CGFloat */
-export type CTRunDelegateGetWidthCallback = $SDK11;
+export type CTRunDelegateGetWidthCallback = $SDK10;
 /** struct CTRunStatus */
 export type CTRunStatus = Array<"rightToLeft" | "nonMonotonic" | "hasNonIdentityMatrix">;
 export declare const CTRunStatus: {
@@ -3049,27 +3044,27 @@ export declare function CTFontCollectionCopyFontAttributes(collection: CTFontCol
  * func CTFontCollectionCreateCopyWithFontDescriptors(_ original: CTFontCollection, _ queryDescriptors: CFArray?, _ options: CFDictionary?) -> CTFontCollection
  * @availability iOS 3.2+
  */
-export declare function CTFontCollectionCreateCopyWithFontDescriptors(original: CTFontCollection, queryDescriptors?: $SDK13, options?: $SDK14): CTFontCollection;
+export declare function CTFontCollectionCreateCopyWithFontDescriptors(original: CTFontCollection, queryDescriptors?: $SDK11, options?: $SDK12): CTFontCollection;
 /**
  * func CTFontCollectionCreateFromAvailableFonts(_ options: CFDictionary?) -> CTFontCollection
  * @availability iOS 3.2+
  */
-export declare function CTFontCollectionCreateFromAvailableFonts(options?: $SDK14): CTFontCollection;
+export declare function CTFontCollectionCreateFromAvailableFonts(options?: $SDK12): CTFontCollection;
 /**
  * func CTFontCollectionCreateMatchingFontDescriptors(_ collection: CTFontCollection) -> CFArray?
  * @availability iOS 3.2+
  */
-export declare function CTFontCollectionCreateMatchingFontDescriptors(collection: CTFontCollection): $SDK13;
+export declare function CTFontCollectionCreateMatchingFontDescriptors(collection: CTFontCollection): $SDK11;
 /**
  * func CTFontCollectionCreateMatchingFontDescriptorsWithOptions(_ collection: CTFontCollection, _ options: CFDictionary?) -> CFArray?
  * @availability iOS 12.0+
  */
-export declare function CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection: CTFontCollection, options?: $SDK14): $SDK13;
+export declare function CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection: CTFontCollection, options?: $SDK12): $SDK11;
 /**
  * func CTFontCollectionCreateWithFontDescriptors(_ queryDescriptors: CFArray?, _ options: CFDictionary?) -> CTFontCollection
  * @availability iOS 3.2+
  */
-export declare function CTFontCollectionCreateWithFontDescriptors(queryDescriptors?: $SDK13, options?: $SDK14): CTFontCollection;
+export declare function CTFontCollectionCreateWithFontDescriptors(queryDescriptors?: $SDK11, options?: $SDK12): CTFontCollection;
 /**
  * func CTFontCollectionGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
@@ -3084,7 +3079,7 @@ export declare function CTFontCopyAttribute(font: CTFont, attribute: _CoreFounda
  * func CTFontCopyAvailableTables(_ font: CTFont, _ options: CTFontTableOptions) -> CFArray?
  * @availability iOS 3.2+
  */
-export declare function CTFontCopyAvailableTables(font: CTFont, options: CTFontTableOptions): $SDK13;
+export declare function CTFontCopyAvailableTables(font: CTFont, options: CTFontTableOptions): $SDK11;
 /**
  * func CTFontCopyCharacterSet(_ font: CTFont) -> CFCharacterSet
  * @availability iOS 3.2+
@@ -3094,7 +3089,7 @@ export declare function CTFontCopyCharacterSet(font: CTFont): _CoreFoundation_CF
  * func CTFontCopyDefaultCascadeListForLanguages(_ font: CTFont, _ languagePrefList: CFArray?) -> CFArray?
  * @availability iOS 6.0+
  */
-export declare function CTFontCopyDefaultCascadeListForLanguages(font: CTFont, languagePrefList?: $SDK13): $SDK13;
+export declare function CTFontCopyDefaultCascadeListForLanguages(font: CTFont, languagePrefList?: $SDK11): $SDK11;
 /**
  * func CTFontCopyDisplayName(_ font: CTFont) -> CFString
  * @availability iOS 3.2+
@@ -3109,12 +3104,12 @@ export declare function CTFontCopyFamilyName(font: CTFont): _CoreFoundation_CFSt
  * func CTFontCopyFeatureSettings(_ font: CTFont) -> CFArray?
  * @availability iOS 3.2+
  */
-export declare function CTFontCopyFeatureSettings(font: CTFont): $SDK13;
+export declare function CTFontCopyFeatureSettings(font: CTFont): $SDK11;
 /**
  * func CTFontCopyFeatures(_ font: CTFont) -> CFArray?
  * @availability iOS 3.2+
  */
-export declare function CTFontCopyFeatures(font: CTFont): $SDK13;
+export declare function CTFontCopyFeatures(font: CTFont): $SDK11;
 /**
  * func CTFontCopyFontDescriptor(_ font: CTFont) -> CTFontDescriptor
  * @availability iOS 3.2+
@@ -3159,17 +3154,17 @@ export declare function CTFontCopyTraits(font: CTFont): _CoreFoundation_CFDictio
  * func CTFontCopyVariation(_ font: CTFont) -> CFDictionary?
  * @availability iOS 3.2+
  */
-export declare function CTFontCopyVariation(font: CTFont): $SDK14;
+export declare function CTFontCopyVariation(font: CTFont): $SDK12;
 /**
  * func CTFontCopyVariationAxes(_ font: CTFont) -> CFArray?
  * @availability iOS 3.2+
  */
-export declare function CTFontCopyVariationAxes(font: CTFont): $SDK13;
+export declare function CTFontCopyVariationAxes(font: CTFont): $SDK11;
 /**
  * func CTFontCreateCopyWithAttributes(_ font: CTFont, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?, _ attributes: CTFontDescriptor?) -> CTFont
  * @availability iOS 3.2+
  */
-export declare function CTFontCreateCopyWithAttributes(font: CTFont, size: number, matrix?: (SDKHandle) | null, attributes?: $SDK16): CTFont;
+export declare function CTFontCreateCopyWithAttributes(font: CTFont, size: number, matrix?: (SDKHandle) | null, attributes?: $SDK14): CTFont;
 /**
  * func CTFontCreateCopyWithFamily(_ font: CTFont, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?, _ family: CFString) -> CTFont?
  * @availability iOS 3.2+
@@ -3214,7 +3209,7 @@ export declare function CTFontCreateWithFontDescriptorAndOptions(descriptor: CTF
  * func CTFontCreateWithGraphicsFont(_ graphicsFont: CGFont, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?, _ attributes: CTFontDescriptor?) -> CTFont
  * @availability iOS 3.2+
  */
-export declare function CTFontCreateWithGraphicsFont(graphicsFont: _CoreGraphics_CGFont, size: number, matrix?: (SDKHandle) | null, attributes?: $SDK16): CTFont;
+export declare function CTFontCreateWithGraphicsFont(graphicsFont: _CoreGraphics_CGFont, size: number, matrix?: (SDKHandle) | null, attributes?: $SDK14): CTFont;
 /**
  * func CTFontCreateWithName(_ name: CFString, _ size: CGFloat, _ matrix: UnsafePointer<CGAffineTransform>?) -> CTFont
  * @availability iOS 3.2+
@@ -3244,7 +3239,7 @@ export declare function CTFontDescriptorCreateCopyWithAttributes(original: CTFon
  * func CTFontDescriptorCreateCopyWithFamily(_ original: CTFontDescriptor, _ family: CFString) -> CTFontDescriptor?
  * @availability iOS 7.0+
  */
-export declare function CTFontDescriptorCreateCopyWithFamily(original: CTFontDescriptor, family: _CoreFoundation_CFString): $SDK16;
+export declare function CTFontDescriptorCreateCopyWithFamily(original: CTFontDescriptor, family: _CoreFoundation_CFString): $SDK14;
 /**
  * func CTFontDescriptorCreateCopyWithFeature(_ original: CTFontDescriptor, _ featureTypeIdentifier: CFNumber, _ featureSelectorIdentifier: CFNumber) -> CTFontDescriptor
  * @availability iOS 3.2+
@@ -3254,7 +3249,7 @@ export declare function CTFontDescriptorCreateCopyWithFeature(original: CTFontDe
  * func CTFontDescriptorCreateCopyWithSymbolicTraits(_ original: CTFontDescriptor, _ symTraitValue: CTFontSymbolicTraits, _ symTraitMask: CTFontSymbolicTraits) -> CTFontDescriptor?
  * @availability iOS 7.0+
  */
-export declare function CTFontDescriptorCreateCopyWithSymbolicTraits(original: CTFontDescriptor, symTraitValue: CTFontSymbolicTraits, symTraitMask: CTFontSymbolicTraits): $SDK16;
+export declare function CTFontDescriptorCreateCopyWithSymbolicTraits(original: CTFontDescriptor, symTraitValue: CTFontSymbolicTraits, symTraitMask: CTFontSymbolicTraits): $SDK14;
 /**
  * func CTFontDescriptorCreateCopyWithVariation(_ original: CTFontDescriptor, _ variationIdentifier: CFNumber, _ variationValue: CGFloat) -> CTFontDescriptor
  * @availability iOS 3.2+
@@ -3264,12 +3259,12 @@ export declare function CTFontDescriptorCreateCopyWithVariation(original: CTFont
  * func CTFontDescriptorCreateMatchingFontDescriptor(_ descriptor: CTFontDescriptor, _ mandatoryAttributes: CFSet?) -> CTFontDescriptor?
  * @availability iOS 3.2+
  */
-export declare function CTFontDescriptorCreateMatchingFontDescriptor(descriptor: CTFontDescriptor, mandatoryAttributes?: $SDK18): $SDK16;
+export declare function CTFontDescriptorCreateMatchingFontDescriptor(descriptor: CTFontDescriptor, mandatoryAttributes?: $SDK16): $SDK14;
 /**
  * func CTFontDescriptorCreateMatchingFontDescriptors(_ descriptor: CTFontDescriptor, _ mandatoryAttributes: CFSet?) -> CFArray?
  * @availability iOS 3.2+
  */
-export declare function CTFontDescriptorCreateMatchingFontDescriptors(descriptor: CTFontDescriptor, mandatoryAttributes?: $SDK18): $SDK13;
+export declare function CTFontDescriptorCreateMatchingFontDescriptors(descriptor: CTFontDescriptor, mandatoryAttributes?: $SDK16): $SDK11;
 /**
  * func CTFontDescriptorCreateWithAttributes(_ attributes: CFDictionary) -> CTFontDescriptor
  * @availability iOS 3.2+
@@ -3302,7 +3297,7 @@ export declare function CTFontDrawImageFromAdaptiveImageProviderAtPoint(font: CT
  * func CTFontGetAdvancesForGlyphs(_ font: CTFont, _ orientation: CTFontOrientation, _ glyphs: UnsafePointer<CGGlyph>, _ advances: UnsafeMutablePointer<CGSize>?, _ count: CFIndex) -> Double
  * @availability iOS 3.2+
  */
-export declare function CTFontGetAdvancesForGlyphs(font: CTFont, orientation: CTFontOrientation, glyphs: SDKHandle, advances: $SDK20, count: number): number;
+export declare function CTFontGetAdvancesForGlyphs(font: CTFont, orientation: CTFontOrientation, glyphs: SDKHandle, advances: $SDK18, count: number): number;
 /**
  * func CTFontGetAscent(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
@@ -3312,12 +3307,12 @@ export declare function CTFontGetAscent(font: CTFont): number;
  * func CTFontGetBoundingBox(_ font: CTFont) -> CGRect
  * @availability iOS 3.2+
  */
-export declare function CTFontGetBoundingBox(font: CTFont): $SDK21;
+export declare function CTFontGetBoundingBox(font: CTFont): $SDK19;
 /**
  * func CTFontGetBoundingRectsForGlyphs(_ font: CTFont, _ orientation: CTFontOrientation, _ glyphs: UnsafePointer<CGGlyph>, _ boundingRects: UnsafeMutablePointer<CGRect>?, _ count: CFIndex) -> CGRect
  * @availability iOS 3.2+
  */
-export declare function CTFontGetBoundingRectsForGlyphs(font: CTFont, orientation: CTFontOrientation, glyphs: SDKHandle, boundingRects: $SDK20, count: number): $SDK21;
+export declare function CTFontGetBoundingRectsForGlyphs(font: CTFont, orientation: CTFontOrientation, glyphs: SDKHandle, boundingRects: $SDK18, count: number): $SDK19;
 /**
  * func CTFontGetCapHeight(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
@@ -3352,7 +3347,7 @@ export declare function CTFontGetLeading(font: CTFont): number;
  * func CTFontGetLigatureCaretPositions(_ font: CTFont, _ glyph: CGGlyph, _ positions: UnsafeMutablePointer<CGFloat>?, _ maxPositions: CFIndex) -> CFIndex
  * @availability iOS 3.2+
  */
-export declare function CTFontGetLigatureCaretPositions(font: CTFont, glyph: number, positions: $SDK20, maxPositions: number): number;
+export declare function CTFontGetLigatureCaretPositions(font: CTFont, glyph: number, positions: $SDK18, maxPositions: number): number;
 /**
  * func CTFontGetMatrix(_ font: CTFont) -> CGAffineTransform
  * @availability iOS 3.2+
@@ -3362,7 +3357,7 @@ export declare function CTFontGetMatrix(font: CTFont): _CoreFoundation_CGAffineT
  * func CTFontGetOpticalBoundsForGlyphs(_ font: CTFont, _ glyphs: UnsafePointer<CGGlyph>, _ boundingRects: UnsafeMutablePointer<CGRect>?, _ count: CFIndex, _ options: CFOptionFlags) -> CGRect
  * @availability iOS 6.0+
  */
-export declare function CTFontGetOpticalBoundsForGlyphs(font: CTFont, glyphs: SDKHandle, boundingRects: $SDK20, count: number, options: number): $SDK21;
+export declare function CTFontGetOpticalBoundsForGlyphs(font: CTFont, glyphs: SDKHandle, boundingRects: $SDK18, count: number, options: number): $SDK19;
 /**
  * func CTFontGetSize(_ font: CTFont) -> CGFloat
  * @availability iOS 3.2+
@@ -3392,7 +3387,7 @@ export declare function CTFontGetTypeID(): number;
  * func CTFontGetTypographicBoundsForAdaptiveImageProvider(_ font: CTFont, _ provider: (any CTAdaptiveImageProviding)?) -> CGRect
  * @availability iOS 18.0+
  */
-export declare function CTFontGetTypographicBoundsForAdaptiveImageProvider(font: CTFont, provider?: (SDKHandle) | null): $SDK21;
+export declare function CTFontGetTypographicBoundsForAdaptiveImageProvider(font: CTFont, provider?: (SDKHandle) | null): $SDK19;
 /**
  * func CTFontGetUIFontType(_ font: CTFont) -> CTFontUIFontType
  * @availability iOS 13.0+
@@ -3447,7 +3442,7 @@ export declare function CTFontManagerCopyRegisteredFontDescriptors(scope: CTFont
  * func CTFontManagerCreateFontDescriptorFromData(_ data: CFData) -> CTFontDescriptor?
  * @availability iOS 7.0+
  */
-export declare function CTFontManagerCreateFontDescriptorFromData(data: _CoreFoundation_CFData): $SDK16;
+export declare function CTFontManagerCreateFontDescriptorFromData(data: _CoreFoundation_CFData): $SDK14;
 /**
  * func CTFontManagerCreateFontDescriptorsFromData(_ data: CFData) -> CFArray
  * @availability iOS 11.0+
@@ -3457,7 +3452,7 @@ export declare function CTFontManagerCreateFontDescriptorsFromData(data: _CoreFo
  * func CTFontManagerCreateFontDescriptorsFromURL(_ fileURL: CFURL) -> CFArray?
  * @availability iOS 7.0+
  */
-export declare function CTFontManagerCreateFontDescriptorsFromURL(fileURL: _CoreFoundation_CFURL): $SDK13;
+export declare function CTFontManagerCreateFontDescriptorsFromURL(fileURL: _CoreFoundation_CFURL): $SDK11;
 /**
  * func CTFontManagerRequestFonts(_ fontDescriptors: CFArray, _ completionHandler: @escaping (CFArray) -> Void)
  * @availability iOS 13.0+
@@ -3472,7 +3467,7 @@ export declare function CTFrameDraw(frame: CTFrame, context: _CoreGraphics_CGCon
  * func CTFrameGetFrameAttributes(_ frame: CTFrame) -> CFDictionary?
  * @availability iOS 3.2+
  */
-export declare function CTFrameGetFrameAttributes(frame: CTFrame): $SDK14;
+export declare function CTFrameGetFrameAttributes(frame: CTFrame): $SDK12;
 /**
  * func CTFrameGetLineOrigins(_ frame: CTFrame, _ range: CFRange, _ origins: UnsafeMutablePointer<CGPoint>)
  * @availability iOS 3.2+
@@ -3507,7 +3502,7 @@ export declare function CTFrameGetVisibleStringRange(frame: CTFrame): _CoreFound
  * func CTFramesetterCreateFrame(_ framesetter: CTFramesetter, _ stringRange: CFRange, _ path: CGPath, _ frameAttributes: CFDictionary?) -> CTFrame
  * @availability iOS 3.2+
  */
-export declare function CTFramesetterCreateFrame(framesetter: CTFramesetter, stringRange: _CoreFoundation_CFRange, path: _CoreGraphics_CGPath, frameAttributes?: $SDK14): CTFrame;
+export declare function CTFramesetterCreateFrame(framesetter: CTFramesetter, stringRange: _CoreFoundation_CFRange, path: _CoreGraphics_CGPath, frameAttributes?: $SDK12): CTFrame;
 /**
  * func CTFramesetterCreateWithAttributedString(_ attrString: CFAttributedString) -> CTFramesetter
  * @availability iOS 3.2+
@@ -3532,7 +3527,7 @@ export declare function CTFramesetterGetTypesetter(framesetter: CTFramesetter): 
  * func CTFramesetterSuggestFrameSizeWithConstraints(_ framesetter: CTFramesetter, _ stringRange: CFRange, _ frameAttributes: CFDictionary?, _ constraints: CGSize, _ fitRange: UnsafeMutablePointer<CFRange>?) -> CGSize
  * @availability iOS 3.2+
  */
-export declare function CTFramesetterSuggestFrameSizeWithConstraints(framesetter: CTFramesetter, stringRange: _CoreFoundation_CFRange, frameAttributes: $SDK14, constraints: $SDK3, fitRange?: (SDKHandle) | null): $SDK3;
+export declare function CTFramesetterSuggestFrameSizeWithConstraints(framesetter: CTFramesetter, stringRange: _CoreFoundation_CFRange, frameAttributes: $SDK12, constraints: $SDK3, fitRange?: (SDKHandle) | null): $SDK3;
 /**
  * func CTGetCoreTextVersion() -> UInt32
  * @availability iOS 3.2+
@@ -3603,7 +3598,7 @@ export declare function CTLineDraw(line: CTLine, context: _CoreGraphics_CGContex
  * func CTLineGetBoundsWithOptions(_ line: CTLine, _ options: CTLineBoundsOptions) -> CGRect
  * @availability iOS 6.0+
  */
-export declare function CTLineGetBoundsWithOptions(line: CTLine, options: CTLineBoundsOptions): $SDK21;
+export declare function CTLineGetBoundsWithOptions(line: CTLine, options: CTLineBoundsOptions): $SDK19;
 /**
  * func CTLineGetGlyphCount(_ line: CTLine) -> CFIndex
  * @availability iOS 3.2+
@@ -3618,12 +3613,12 @@ export declare function CTLineGetGlyphRuns(line: CTLine): _CoreFoundation_CFArra
  * func CTLineGetImageBounds(_ line: CTLine, _ context: CGContext?) -> CGRect
  * @availability iOS 3.2+
  */
-export declare function CTLineGetImageBounds(line: CTLine, context?: $SDK23): $SDK21;
+export declare function CTLineGetImageBounds(line: CTLine, context?: $SDK21): $SDK19;
 /**
  * func CTLineGetOffsetForStringIndex(_ line: CTLine, _ charIndex: CFIndex, _ secondaryOffset: UnsafeMutablePointer<CGFloat>?) -> CGFloat
  * @availability iOS 3.2+
  */
-export declare function CTLineGetOffsetForStringIndex(line: CTLine, charIndex: number, secondaryOffset?: $SDK20): number;
+export declare function CTLineGetOffsetForStringIndex(line: CTLine, charIndex: number, secondaryOffset?: $SDK18): number;
 /**
  * func CTLineGetPenOffsetForFlush(_ line: CTLine, _ flushFactor: CGFloat, _ flushWidth: Double) -> Double
  * @availability iOS 3.2+
@@ -3656,7 +3651,7 @@ export declare function CTLineGetTypeID(): number;
  * func CTLineGetTypographicBounds(_ line: CTLine, _ ascent: UnsafeMutablePointer<CGFloat>?, _ descent: UnsafeMutablePointer<CGFloat>?, _ leading: UnsafeMutablePointer<CGFloat>?) -> Double
  * @availability iOS 3.2+
  */
-export declare function CTLineGetTypographicBounds(line: CTLine, ascent?: $SDK20, descent?: $SDK20, leading?: $SDK20): number;
+export declare function CTLineGetTypographicBounds(line: CTLine, ascent?: $SDK18, descent?: $SDK18, leading?: $SDK18): number;
 /**
  * func CTParagraphStyleCreate(_ settings: UnsafePointer<CTParagraphStyleSetting>?, _ settingCount: Int) -> CTParagraphStyle
  * @availability iOS 3.2+
@@ -3741,7 +3736,7 @@ export declare function CTRunGetAdvances(run: CTRun, range: _CoreFoundation_CFRa
  * func CTRunGetAdvancesPtr(_ run: CTRun) -> UnsafePointer<CGSize>?
  * @availability iOS 3.2+
  */
-export declare function CTRunGetAdvancesPtr(run: CTRun): $SDK20;
+export declare function CTRunGetAdvancesPtr(run: CTRun): $SDK18;
 /**
  * func CTRunGetAttributes(_ run: CTRun) -> CFDictionary
  * @availability iOS 3.2+
@@ -3751,7 +3746,7 @@ export declare function CTRunGetAttributes(run: CTRun): _CoreFoundation_CFDictio
  * func CTRunGetBaseAdvancesAndOrigins(_ runRef: CTRun, _ range: CFRange, _ advancesBuffer: UnsafeMutablePointer<CGSize>?, _ originsBuffer: UnsafeMutablePointer<CGPoint>?)
  * @availability iOS 9.0+
  */
-export declare function CTRunGetBaseAdvancesAndOrigins(runRef: CTRun, range: _CoreFoundation_CFRange, advancesBuffer?: $SDK20, originsBuffer?: $SDK20): void;
+export declare function CTRunGetBaseAdvancesAndOrigins(runRef: CTRun, range: _CoreFoundation_CFRange, advancesBuffer?: $SDK18, originsBuffer?: $SDK18): void;
 /**
  * func CTRunGetGlyphCount(_ run: CTRun) -> CFIndex
  * @availability iOS 3.2+
@@ -3771,7 +3766,7 @@ export declare function CTRunGetGlyphsPtr(run: CTRun): (SDKHandle) | null;
  * func CTRunGetImageBounds(_ run: CTRun, _ context: CGContext?, _ range: CFRange) -> CGRect
  * @availability iOS 3.2+
  */
-export declare function CTRunGetImageBounds(run: CTRun, context: $SDK23, range: _CoreFoundation_CFRange): $SDK21;
+export declare function CTRunGetImageBounds(run: CTRun, context: $SDK21, range: _CoreFoundation_CFRange): $SDK19;
 /**
  * func CTRunGetPositions(_ run: CTRun, _ range: CFRange, _ buffer: UnsafeMutablePointer<CGPoint>)
  * @availability iOS 3.2+
@@ -3781,7 +3776,7 @@ export declare function CTRunGetPositions(run: CTRun, range: _CoreFoundation_CFR
  * func CTRunGetPositionsPtr(_ run: CTRun) -> UnsafePointer<CGPoint>?
  * @availability iOS 3.2+
  */
-export declare function CTRunGetPositionsPtr(run: CTRun): $SDK20;
+export declare function CTRunGetPositionsPtr(run: CTRun): $SDK18;
 /**
  * func CTRunGetStatus(_ run: CTRun) -> CTRunStatus
  * @availability iOS 3.2+
@@ -3816,12 +3811,12 @@ export declare function CTRunGetTypeID(): number;
  * func CTRunGetTypographicBounds(_ run: CTRun, _ range: CFRange, _ ascent: UnsafeMutablePointer<CGFloat>?, _ descent: UnsafeMutablePointer<CGFloat>?, _ leading: UnsafeMutablePointer<CGFloat>?) -> Double
  * @availability iOS 3.2+
  */
-export declare function CTRunGetTypographicBounds(run: CTRun, range: _CoreFoundation_CFRange, ascent?: $SDK20, descent?: $SDK20, leading?: $SDK20): number;
+export declare function CTRunGetTypographicBounds(run: CTRun, range: _CoreFoundation_CFRange, ascent?: $SDK18, descent?: $SDK18, leading?: $SDK18): number;
 /**
  * func CTTextTabCreate(_ alignment: CTTextAlignment, _ location: Double, _ options: CFDictionary?) -> CTTextTab
  * @availability iOS 3.2+
  */
-export declare function CTTextTabCreate(alignment: CTTextAlignment, location: number, options?: $SDK14): CTTextTab;
+export declare function CTTextTabCreate(alignment: CTTextAlignment, location: number, options?: $SDK12): CTTextTab;
 /**
  * func CTTextTabGetAlignment(_ tab: CTTextTab) -> CTTextAlignment
  * @availability iOS 3.2+
@@ -3836,7 +3831,7 @@ export declare function CTTextTabGetLocation(tab: CTTextTab): number;
  * func CTTextTabGetOptions(_ tab: CTTextTab) -> CFDictionary?
  * @availability iOS 3.2+
  */
-export declare function CTTextTabGetOptions(tab: CTTextTab): $SDK14;
+export declare function CTTextTabGetOptions(tab: CTTextTab): $SDK12;
 /**
  * func CTTextTabGetTypeID() -> CFTypeID
  * @availability iOS 3.2+
@@ -3861,7 +3856,7 @@ export declare function CTTypesetterCreateWithAttributedString(string: _CoreFoun
  * func CTTypesetterCreateWithAttributedStringAndOptions(_ string: CFAttributedString, _ options: CFDictionary?) -> CTTypesetter?
  * @availability iOS 3.2+
  */
-export declare function CTTypesetterCreateWithAttributedStringAndOptions(string: _CoreFoundation_CFAttributedString, options?: $SDK14): (CTTypesetter) | null;
+export declare function CTTypesetterCreateWithAttributedStringAndOptions(string: _CoreFoundation_CFAttributedString, options?: $SDK12): (CTTypesetter) | null;
 /**
  * func CTTypesetterGetTypeID() -> CFTypeID
  * @availability iOS 3.2+

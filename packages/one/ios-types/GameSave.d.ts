@@ -114,7 +114,7 @@ export declare class GSSyncedDirectory extends SDKHandle {
     /** func finishSyncing(_ statusDisplay: UIWindow) async */
     finishSyncingCompletionHandler(statusDisplay: _UIKit_UIWindow, completion: (() => void)): void;
     /** func finishSyncing() async */
-    finishSyncingCompletionHandler3(completion: (() => void)): void;
+    finishSyncingCompletionHandler90901(completion: (() => void)): void;
     /** func resolveConflicts(with version: GSSyncedDirectoryVersion) */
     resolveConflicts(version: GSSyncedDirectoryVersion): void;
     /** func triggerPendingUpload() async -> Bool */

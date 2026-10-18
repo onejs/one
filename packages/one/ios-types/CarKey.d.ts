@@ -99,7 +99,7 @@ export declare class CarKeyRemoteControlSession extends SDKHandle {
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    perform14(enduringAction: RemoteKeylessEntryEnduringAction): RemoteKeylessEntryEnduringAction_EnduringExecutionRequest;
+    perform98822(enduringAction: RemoteKeylessEntryEnduringAction): RemoteKeylessEntryEnduringAction_EnduringExecutionRequest;
 }
 /**
  * struct Attestation

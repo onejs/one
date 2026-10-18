@@ -201,7 +201,7 @@ export declare class CustomerEngagement_ShoppingCart_Summary_LineItem extends SD
      * init(label: String, value: Decimal)
      * @availability iOS 27.0+
      */
-    static initLabelValue109(label: string, value: _Foundation_Decimal): CustomerEngagement_ShoppingCart_Summary_LineItem;
+    static initLabelValue76028(label: string, value: _Foundation_Decimal): CustomerEngagement_ShoppingCart_Summary_LineItem;
     /**
      * let label: String
      * @availability iOS 27.0+
@@ -2455,7 +2455,7 @@ export declare class PaymentCardReaderSession extends SDKHandle {
      * @availability iOS 15.4+
      * @deprecated iOS 16.0
      */
-    readPaymentCardEventHandler34(request: PaymentCardVerificationRequest, eventHandler?: $SDK44): Promise<PaymentCardReadResult>;
+    readPaymentCardEventHandler79723(request: PaymentCardVerificationRequest, eventHandler?: $SDK44): Promise<PaymentCardReadResult>;
     /**
      * func readPaymentCard(_ request: PaymentCardTransactionRequest) async throws -> PaymentCardReadResult
      * @availability iOS 16.0+
@@ -2465,7 +2465,7 @@ export declare class PaymentCardReaderSession extends SDKHandle {
      * func readPaymentCard(_ request: PaymentCardVerificationRequest) async throws -> PaymentCardReadResult
      * @availability iOS 16.0+
      */
-    readPaymentCard36(request: PaymentCardVerificationRequest): Promise<PaymentCardReadResult>;
+    readPaymentCard78689(request: PaymentCardVerificationRequest): Promise<PaymentCardReadResult>;
     /**
      * func cancelRead() async throws -> Bool
      * @availability iOS 15.4+

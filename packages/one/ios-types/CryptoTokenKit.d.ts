@@ -289,7 +289,7 @@ export declare class TKSmartCard extends SDKHandle {
     final func send(ins: UInt8, p1: UInt8, p2: UInt8, data: Data? = nil, le: Int? = nil) async throws -> (sw: UInt16, response: Data)
      * @availability iOS 13.0+
      */
-    sendInsP1P2DataLe228(ins: number, p1: number, p2: number, data?: (ArrayBuffer) | null, le?: (number) | null): Promise<$SDK6>;
+    sendInsP1P2DataLe45476(ins: number, p1: number, p2: number, data?: (ArrayBuffer) | null, le?: (number) | null): Promise<$SDK6>;
 }
 /**
  * class TKSmartCardATR

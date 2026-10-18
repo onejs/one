@@ -1012,12 +1012,12 @@ export declare class ClassificationDistribution<Label = unknown> extends SDKHand
      * subscript(label: Label) -> Float? { get }
      * @availability iOS 16.0+
      */
-    subscript513(label: number): (number) | null;
+    subscript33028(label: number): (number) | null;
     /**
      * subscript(bounds: Range<Int>) -> Slice<ClassificationDistribution<Label>> { get }
      * @availability iOS 16.0+
      */
-    subscript514(bounds: SDKHandle): SDKHandle;
+    subscript19732(bounds: SDKHandle): SDKHandle;
 }
 /**
  * typealias Element = Classification<Label>
@@ -1141,7 +1141,7 @@ export declare class ClassificationMetrics<Label = unknown> extends SDKHandle {
      * init<Predicted, Correct>(_ predicted: Predicted, _ groundTruth: Correct) where Label == Predicted.Element, Predicted : Collection, Correct : Collection, Predicted.Element == Correct.Element
      * @availability iOS 16.0+
      */
-    static init409(predicted: Array<number>, groundTruth: Array<number>): $SDK25;
+    static init94512(predicted: Array<number>, groundTruth: Array<number>): $SDK25;
 }
 /**
  * protocol Classifier : Transformer
@@ -3367,7 +3367,7 @@ export declare class LinearTransformer<Element = unknown> extends SDKHandle {
      * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
      * @availability iOS 16.0+
      */
-    appliedToEventHandler295(input: number, eventHandler?: $SDK7): number;
+    appliedToEventHandler7721(input: number, eventHandler?: $SDK7): number;
 }
 /**
  * typealias Input = Element
@@ -5176,7 +5176,7 @@ export declare class SlidingWindows<Scalar = unknown> extends SDKHandle {
      * subscript(bounds: Range<Int>) -> Slice<SlidingWindows<Scalar>> { get }
      * @availability iOS 18.0+
      */
-    subscript206(bounds: SDKHandle): SDKHandle;
+    subscript48200(bounds: SDKHandle): SDKHandle;
 }
 /**
  * typealias Element = MLShapedArray<Scalar>

@@ -38,7 +38,7 @@ export declare class LibraryContentBuilder extends SDKHandle {
      * static func buildExpression(_ items: [LibraryItem]) -> [LibraryItem]
      * @availability iOS 14.0+
      */
-    static buildExpression17(items: Array<LibraryItem>): Array<LibraryItem>;
+    static buildExpression84173(items: Array<LibraryItem>): Array<LibraryItem>;
 }
 /**
  * protocol LibraryContentProvider

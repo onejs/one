@@ -2036,27 +2036,27 @@ export declare class WeatherService extends SDKHandle {
      * @preconcurrency final func weather<T1, T2, T3, T4, T5>(for location: CLLocation, including dataSet1: WeatherQuery<T1>, _ dataSet2: WeatherQuery<T2>, _ dataSet3: WeatherQuery<T3>, _ dataSet4: WeatherQuery<T4>, _ dataSet5: WeatherQuery<T5>) async throws -> (T1, T2, T3, T4, T5) where T1 : Sendable, T2 : Sendable, T3 : Sendable, T4 : Sendable, T5 : Sendable
      * @availability iOS 16.0+
      */
-    weatherForIncluding245(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>, dataSet4: WeatherQuery<number>, dataSet5: WeatherQuery<number>): Promise<[number, number, number, number, number]>;
+    weatherForIncluding11867(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>, dataSet4: WeatherQuery<number>, dataSet5: WeatherQuery<number>): Promise<[number, number, number, number, number]>;
     /**
      * @preconcurrency final func weather<T1, T2, T3, T4>(for location: CLLocation, including dataSet1: WeatherQuery<T1>, _ dataSet2: WeatherQuery<T2>, _ dataSet3: WeatherQuery<T3>, _ dataSet4: WeatherQuery<T4>) async throws -> (T1, T2, T3, T4) where T1 : Sendable, T2 : Sendable, T3 : Sendable, T4 : Sendable
      * @availability iOS 16.0+
      */
-    weatherForIncluding246(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>, dataSet4: WeatherQuery<number>): Promise<[number, number, number, number]>;
+    weatherForIncluding48270(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>, dataSet4: WeatherQuery<number>): Promise<[number, number, number, number]>;
     /**
      * @preconcurrency final func weather<T1, T2, T3>(for location: CLLocation, including dataSet1: WeatherQuery<T1>, _ dataSet2: WeatherQuery<T2>, _ dataSet3: WeatherQuery<T3>) async throws -> (T1, T2, T3) where T1 : Sendable, T2 : Sendable, T3 : Sendable
      * @availability iOS 16.0+
      */
-    weatherForIncluding247(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>): Promise<[number, number, number]>;
+    weatherForIncluding66675(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>, dataSet3: WeatherQuery<number>): Promise<[number, number, number]>;
     /**
      * @preconcurrency final func weather<T1, T2>(for location: CLLocation, including dataSet1: WeatherQuery<T1>, _ dataSet2: WeatherQuery<T2>) async throws -> (T1, T2) where T1 : Sendable, T2 : Sendable
      * @availability iOS 16.0+
      */
-    weatherForIncluding248(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>): Promise<[number, number]>;
+    weatherForIncluding90072(location: __LocationEssentials_CLLocation, dataSet1: WeatherQuery<number>, dataSet2: WeatherQuery<number>): Promise<[number, number]>;
     /**
      * @preconcurrency final func weather<T>(for location: CLLocation, including dataSet: WeatherQuery<T>) async throws -> T where T : Sendable
      * @availability iOS 16.0+
      */
-    weatherForIncluding249(location: __LocationEssentials_CLLocation, dataSet: WeatherQuery<number>): Promise<number>;
+    weatherForIncluding80774(location: __LocationEssentials_CLLocation, dataSet: WeatherQuery<number>): Promise<number>;
     /**
      * final func weather(for location: CLLocation) async throws -> Weather
      * @availability iOS 16.0+

@@ -2,26 +2,22 @@
 import { SDKHandle, type NativeMap } from 'one/ios-runtime';
 import type { CFString as _CoreFoundation_CFString, CFAllocator as _CoreFoundation_CFAllocator } from "one/ios/CoreFoundation";
 import type { NSNumber as _Foundation_NSNumber } from "one/ios/Foundation";
-type $SDK2 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null) => Promise<boolean>)) | null;
-type $SDK3 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (unknown) | null) => boolean)) | null;
-type $SDK6 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null;
-type $SDK7 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (unknown) | null) => (SDKHandle) | null)) | null;
-type $SDK13 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => void)) | null;
-type $SDK14 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null, arg4: (SDKHandle) | null) => Promise<boolean>)) | null;
-type $SDK15 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null, arg4: (unknown) | null) => boolean)) | null;
-type $SDK23 = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null) => Promise<boolean>);
-type $SDK28 = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>);
-type $SDK32 = {
+type $SDK1 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null) => Promise<boolean>)) | null;
+type $SDK3 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null;
+type $SDK7 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null, arg4: (SDKHandle) | null) => Promise<boolean>)) | null;
+type $SDK15 = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null) => Promise<boolean>);
+type $SDK20 = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>);
+type $SDK24 = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-type $SDK33 = {
+type $SDK25 = {
     width: number;
     height: number;
 };
-type $SDK37 = (_CoreFoundation_CFString) | null;
+type $SDK29 = (_CoreFoundation_CFString) | null;
 /** typealias JSChar = UInt16 */
 export type JSChar = number;
 /** typealias JSClassAttributes = UInt32 */
@@ -36,34 +32,25 @@ export declare class JSClassDefinition extends SDKHandle {
     set className(value: (SDKHandle) | null);
     /** var convertToType: JSObjectConvertToTypeCallback! */
     get convertToType(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: JSType, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null;
-    set convertToType(value: (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: JSType, arg3: (unknown) | null) => (SDKHandle) | null)) | null);
     /** var deleteProperty: JSObjectDeletePropertyCallback! */
-    get deleteProperty(): $SDK2;
-    set deleteProperty(value: $SDK3);
+    get deleteProperty(): $SDK1;
     /** var finalize: JSObjectFinalizeCallback! */
     get finalize(): (((arg0: (SDKHandle) | null) => Promise<void>)) | null;
-    set finalize(value: (((arg0: (SDKHandle) | null) => void)) | null);
     /** var getProperty: JSObjectGetPropertyCallback! */
-    get getProperty(): $SDK6;
-    set getProperty(value: $SDK7);
+    get getProperty(): $SDK3;
     /** var getPropertyNames: JSObjectGetPropertyNamesCallback! */
     get getPropertyNames(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<void>)) | null;
-    set getPropertyNames(value: (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => void)) | null);
     /** var hasInstance: JSObjectHasInstanceCallback! */
-    get hasInstance(): $SDK2;
-    set hasInstance(value: $SDK3);
+    get hasInstance(): $SDK1;
     /** var hasProperty: JSObjectHasPropertyCallback! */
     get hasProperty(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<boolean>)) | null;
-    set hasProperty(value: (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => boolean)) | null);
     /** var initialize: JSObjectInitializeCallback! */
     get initialize(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>)) | null;
-    set initialize(value: $SDK13);
     /** var parentClass: JSClassRef! */
     get parentClass(): (SDKHandle) | null;
     set parentClass(value: (SDKHandle) | null);
     /** var setProperty: JSObjectSetPropertyCallback! */
-    get setProperty(): $SDK14;
-    set setProperty(value: $SDK15);
+    get setProperty(): $SDK7;
     /** var staticFunctions: UnsafePointer<JSStaticFunction>! */
     get staticFunctions(): (SDKHandle) | null;
     set staticFunctions(value: (SDKHandle) | null);
@@ -205,7 +192,7 @@ export type JSObjectCallAsFunctionCallback = ((arg0: (SDKHandle) | null, arg1: (
 /** typealias JSObjectConvertToTypeCallback = (JSContextRef?, JSObjectRef?, JSType, UnsafeMutablePointer<JSValueRef?>?) -> JSValueRef? */
 export type JSObjectConvertToTypeCallback = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: JSType, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>);
 /** typealias JSObjectDeletePropertyCallback = (JSContextRef?, JSObjectRef?, JSStringRef?, UnsafeMutablePointer<JSValueRef?>?) -> Bool */
-export type JSObjectDeletePropertyCallback = $SDK23;
+export type JSObjectDeletePropertyCallback = $SDK15;
 /** typealias JSObjectFinalizeCallback = (JSObjectRef?) -> Void */
 export type JSObjectFinalizeCallback = ((arg0: (SDKHandle) | null) => Promise<void>);
 /** typealias JSObjectGetPropertyCallback = (JSContextRef?, JSObjectRef?, JSStringRef?, UnsafeMutablePointer<JSValueRef?>?) -> JSValueRef? */
@@ -213,11 +200,11 @@ export type JSObjectGetPropertyCallback = ((arg0: (SDKHandle) | null, arg1: (SDK
 /** typealias JSObjectGetPropertyNamesCallback = (JSContextRef?, JSObjectRef?, JSPropertyNameAccumulatorRef?) -> Void */
 export type JSObjectGetPropertyNamesCallback = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<void>);
 /** typealias JSObjectHasInstanceCallback = (JSContextRef?, JSObjectRef?, JSValueRef?, UnsafeMutablePointer<JSValueRef?>?) -> Bool */
-export type JSObjectHasInstanceCallback = $SDK23;
+export type JSObjectHasInstanceCallback = $SDK15;
 /** typealias JSObjectHasPropertyCallback = (JSContextRef?, JSObjectRef?, JSStringRef?) -> Bool */
 export type JSObjectHasPropertyCallback = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<boolean>);
 /** typealias JSObjectInitializeCallback = (JSContextRef?, JSObjectRef?) -> Void */
-export type JSObjectInitializeCallback = $SDK28;
+export type JSObjectInitializeCallback = $SDK20;
 /** typealias JSObjectRef = OpaquePointer */
 export type JSObjectRef = SDKHandle;
 /** typealias JSObjectSetPropertyCallback = (JSContextRef?, JSObjectRef?, JSStringRef?, JSValueRef?, UnsafeMutablePointer<JSValueRef?>?) -> Bool */
@@ -257,14 +244,12 @@ export declare class JSStaticValue extends SDKHandle {
     get attributes(): number;
     set attributes(value: number);
     /** var getProperty: JSObjectGetPropertyCallback! */
-    get getProperty(): $SDK6;
-    set getProperty(value: $SDK7);
+    get getProperty(): $SDK3;
     /** var name: UnsafePointer<CChar>! */
     get name(): (SDKHandle) | null;
     set name(value: (SDKHandle) | null);
     /** var setProperty: JSObjectSetPropertyCallback! */
-    get setProperty(): $SDK14;
-    set setProperty(value: $SDK15);
+    get setProperty(): $SDK7;
     /** init() */
     static init(): JSStaticValue;
 }
@@ -282,7 +267,7 @@ export declare const JSType: {
     init(rawValue: number): JSType;
 };
 /** typealias JSTypedArrayBytesDeallocator = (UnsafeMutableRawPointer?, UnsafeMutableRawPointer?) -> Void */
-export type JSTypedArrayBytesDeallocator = $SDK28;
+export type JSTypedArrayBytesDeallocator = $SDK20;
 /**
  * struct JSTypedArrayType
  * @availability iOS 10.0+
@@ -342,17 +327,17 @@ export declare class JSValue extends SDKHandle {
      * init?(newBigIntFrom int64: Int64, in context: JSContext)
      * @availability iOS 18.0+
      */
-    static initNewBigIntFromIn219(int64: number, context: JSContext): (JSValue) | null;
+    static initNewBigIntFromIn9283(int64: number, context: JSContext): (JSValue) | null;
     /**
      * init?(newBigIntFrom string: String, in context: JSContext)
      * @availability iOS 18.0+
      */
-    static initNewBigIntFromIn220(string: string, context: JSContext): (JSValue) | null;
+    static initNewBigIntFromIn35821(string: string, context: JSContext): (JSValue) | null;
     /**
      * init?(newBigIntFrom uint64: UInt64, in context: JSContext)
      * @availability iOS 18.0+
      */
-    static initNewBigIntFromIn221(uint64: number, context: JSContext): (JSValue) | null;
+    static initNewBigIntFromIn52428(uint64: number, context: JSContext): (JSValue) | null;
     /**
      * init!(newErrorFromMessage message: String!, in context: JSContext!)
      * @availability iOS 7.0+
@@ -406,9 +391,9 @@ export declare class JSValue extends SDKHandle {
     /** init!(range: NSRange, in context: JSContext!) */
     static initRangeIn(range: SDKHandle, context?: (JSContext) | null): JSValue;
     /** init!(rect: CGRect, in context: JSContext!) */
-    static initRectIn(rect: $SDK32, context?: (JSContext) | null): JSValue;
+    static initRectIn(rect: $SDK24, context?: (JSContext) | null): JSValue;
     /** init!(size: CGSize, in context: JSContext!) */
-    static initSizeIn(size: $SDK33, context?: (JSContext) | null): JSValue;
+    static initSizeIn(size: $SDK25, context?: (JSContext) | null): JSValue;
     /**
      * init!(uInt32 value: UInt32, in context: JSContext!)
      * @availability iOS 7.0+
@@ -433,17 +418,17 @@ export declare class JSValue extends SDKHandle {
      * func compare(_ other: Int64) -> JSRelationCondition
      * @availability iOS 18.0+
      */
-    compare239(other: number): JSRelationCondition;
+    compare16380(other: number): JSRelationCondition;
     /**
      * func compare(_ other: JSValue) -> JSRelationCondition
      * @availability iOS 18.0+
      */
-    compare240(other: JSValue): JSRelationCondition;
+    compare72217(other: JSValue): JSRelationCondition;
     /**
      * func compare(_ other: UInt64) -> JSRelationCondition
      * @availability iOS 18.0+
      */
-    compare241(other: number): JSRelationCondition;
+    compare61657(other: number): JSRelationCondition;
     /**
      * func construct(withArguments arguments: [Any]!) -> JSValue!
      * @availability iOS 7.0+
@@ -547,9 +532,9 @@ export declare class JSValue extends SDKHandle {
     /** func toRange() -> NSRange */
     toRange(): SDKHandle;
     /** func toRect() -> CGRect */
-    toRect(): $SDK32;
+    toRect(): $SDK24;
     /** func toSize() -> CGSize */
-    toSize(): $SDK33;
+    toSize(): $SDK25;
     /**
      * func toString() -> String!
      * @availability iOS 7.0+
@@ -911,16 +896,6 @@ export declare function JSObjectIsFunction(ctx?: (SDKHandle) | null, object?: (S
 /** func JSObjectMake(_ ctx: JSContextRef!, _ jsClass: JSClassRef!, _ data: UnsafeMutableRawPointer!) -> JSObjectRef! */
 export declare function JSObjectMake(ctx?: (SDKHandle) | null, jsClass?: (SDKHandle) | null, data?: (SDKHandle) | null): (SDKHandle) | null;
 /**
- * func JSObjectMakeArrayBufferWithBytesNoCopy(_ ctx: JSContextRef!, _ bytes: UnsafeMutableRawPointer!, _ byteLength: Int, _ bytesDeallocator: JSTypedArrayBytesDeallocator!, _ deallocatorContext: UnsafeMutableRawPointer!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSObjectRef!
- * @availability iOS 10.0+
- */
-export declare function JSObjectMakeArrayBufferWithBytesNoCopy(ctx: (SDKHandle) | null, bytes: (SDKHandle) | null, byteLength: number, bytesDeallocator?: $SDK13, deallocatorContext?: (SDKHandle) | null): {
-    $ret: (SDKHandle) | null;
-    $out: {
-        "exception": (SDKHandle) | null;
-    };
-};
-/**
  * func JSObjectMakeDeferredPromise(_ ctx: JSContextRef!, _ resolve: UnsafeMutablePointer<JSObjectRef?>!, _ reject: UnsafeMutablePointer<JSObjectRef?>!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSObjectRef!
  * @availability iOS 13.0+
  */
@@ -957,16 +932,6 @@ export declare function JSObjectMakeTypedArrayWithArrayBuffer(ctx: (SDKHandle) |
  * @availability iOS 10.0+
  */
 export declare function JSObjectMakeTypedArrayWithArrayBufferAndOffset(ctx: (SDKHandle) | null, arrayType: JSTypedArrayType, buffer: (SDKHandle) | null, byteOffset: number, length: number): {
-    $ret: (SDKHandle) | null;
-    $out: {
-        "exception": (SDKHandle) | null;
-    };
-};
-/**
- * func JSObjectMakeTypedArrayWithBytesNoCopy(_ ctx: JSContextRef!, _ arrayType: JSTypedArrayType, _ bytes: UnsafeMutableRawPointer!, _ byteLength: Int, _ bytesDeallocator: JSTypedArrayBytesDeallocator!, _ deallocatorContext: UnsafeMutableRawPointer!, _ exception: UnsafeMutablePointer<JSValueRef?>!) -> JSObjectRef!
- * @availability iOS 10.0+
- */
-export declare function JSObjectMakeTypedArrayWithBytesNoCopy(ctx: (SDKHandle) | null, arrayType: JSTypedArrayType, bytes: (SDKHandle) | null, byteLength: number, bytesDeallocator?: $SDK13, deallocatorContext?: (SDKHandle) | null): {
     $ret: (SDKHandle) | null;
     $out: {
         "exception": (SDKHandle) | null;
@@ -1011,9 +976,9 @@ export declare function JSPropertyNameArrayRelease(array?: (SDKHandle) | null): 
 /** func JSPropertyNameArrayRetain(_ array: JSPropertyNameArrayRef!) -> JSPropertyNameArrayRef! */
 export declare function JSPropertyNameArrayRetain(array?: (SDKHandle) | null): (SDKHandle) | null;
 /** func JSStringCopyCFString(_ alloc: CFAllocator!, _ string: JSStringRef!) -> CFString! */
-export declare function JSStringCopyCFString(alloc?: (_CoreFoundation_CFAllocator) | null, string?: (SDKHandle) | null): $SDK37;
+export declare function JSStringCopyCFString(alloc?: (_CoreFoundation_CFAllocator) | null, string?: (SDKHandle) | null): $SDK29;
 /** func JSStringCreateWithCFString(_ string: CFString!) -> JSStringRef! */
-export declare function JSStringCreateWithCFString(string?: $SDK37): (SDKHandle) | null;
+export declare function JSStringCreateWithCFString(string?: $SDK29): (SDKHandle) | null;
 /** func JSStringCreateWithCharacters(_ chars: UnsafePointer<JSChar>!, _ numChars: Int) -> JSStringRef! */
 export declare function JSStringCreateWithCharacters(chars: (SDKHandle) | null, numChars: number): (SDKHandle) | null;
 /** func JSStringCreateWithUTF8CString(_ string: UnsafePointer<CChar>!) -> JSStringRef! */

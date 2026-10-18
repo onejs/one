@@ -12,11 +12,11 @@ type $SDK11 = (_AVFAudio_AVAudioTime) | null;
 type $SDK13 = Record<string, PHASEGroupPresetSetting>;
 type $SDK15 = (PHASENumberMetaParameter) | null;
 type $SDK16 = ((arg0: NativeOut<boolean>, arg1: SDKHandle, arg2: number, arg3: SDKHandle) => Promise<number>);
-type $SDK18 = ((arg0: PHASEPushStreamCompletionCallbackCondition) => void);
-type $SDK21 = (((arg0: PHASESoundEvent_SeekHandlerReason) => void)) | null;
-type $SDK22 = (((arg0: PHASESoundEvent_StartHandlerReason) => void)) | null;
-type $SDK26 = (PHASEDistanceModelParameters) | null;
-type $SDK27 = (PHASEDirectivityModelParameters) | null;
+type $SDK17 = ((arg0: PHASEPushStreamCompletionCallbackCondition) => void);
+type $SDK20 = (((arg0: PHASESoundEvent_SeekHandlerReason) => void)) | null;
+type $SDK21 = (((arg0: PHASESoundEvent_StartHandlerReason) => void)) | null;
+type $SDK25 = (PHASEDistanceModelParameters) | null;
+type $SDK26 = (PHASEDirectivityModelParameters) | null;
 /**
  * class PHASEDefinition
  * @availability iOS 15.0+
@@ -1294,7 +1294,6 @@ export declare class PHASEPullStreamNode extends PHASEStreamNode {
      * @availability iOS 18.0+
      */
     get renderHandler(): $SDK16;
-    set renderHandler(value: ((arg0: NativeOut<boolean>, arg1: SDKHandle, arg2: number, arg3: SDKHandle) => number));
 }
 /**
  * class PHASEPullStreamNodeDefinition
@@ -1365,12 +1364,12 @@ export declare class PHASEPushStreamNode extends PHASEPushStreamNode_base {
      * func scheduleBuffer(buffer: AVAudioPCMBuffer, time when: AVAudioTime?, options: PHASEPushStreamBufferOptions = [], completionCallbackType: PHASEPushStreamCompletionCallbackCondition) async -> PHASEPushStreamCompletionCallbackCondition
      * @availability iOS 15.0+
      */
-    scheduleBufferBufferTimeOptionsCompletionCallbackTypeCompletionHandler(buffer: _AVFAudio_AVAudioPCMBuffer, when: $SDK11, options: PHASEPushStreamBufferOptions, completionCallbackType: PHASEPushStreamCompletionCallbackCondition, completionHandler: $SDK18): void;
+    scheduleBufferBufferTimeOptionsCompletionCallbackTypeCompletionHandler(buffer: _AVFAudio_AVAudioPCMBuffer, when: $SDK11, options: PHASEPushStreamBufferOptions, completionCallbackType: PHASEPushStreamCompletionCallbackCondition, completionHandler: $SDK17): void;
     /**
      * func scheduleBuffer(buffer: AVAudioPCMBuffer, completionCallbackType: PHASEPushStreamCompletionCallbackCondition) async -> PHASEPushStreamCompletionCallbackCondition
      * @availability iOS 15.0+
      */
-    scheduleBufferBufferCompletionCallbackTypeCompletionHandler(buffer: _AVFAudio_AVAudioPCMBuffer, completionCallbackType: PHASEPushStreamCompletionCallbackCondition, completionHandler: $SDK18): void;
+    scheduleBufferBufferCompletionCallbackTypeCompletionHandler(buffer: _AVFAudio_AVAudioPCMBuffer, completionCallbackType: PHASEPushStreamCompletionCallbackCondition, completionHandler: $SDK17): void;
     /**
      * var format: AVAudioFormat { get }
      * @availability iOS 15.0+
@@ -1578,22 +1577,22 @@ export declare class PHASESoundEvent extends SDKHandle {
      * func seek(to time: Double) async -> PHASESoundEvent.SeekHandlerReason
      * @availability iOS 15.0+
      */
-    seekToCompletion(time: number, handler?: $SDK21): void;
+    seekToCompletion(time: number, handler?: $SDK20): void;
     /**
      * func seek(to time: Double, resumeAt engineTime: AVAudioTime) async -> PHASESoundEvent.SeekHandlerReason
      * @availability iOS 26.0+
      */
-    seekToResumeAtCompletion(time: number, engineTime: _AVFAudio_AVAudioTime, handler?: $SDK21): void;
+    seekToResumeAtCompletion(time: number, engineTime: _AVFAudio_AVAudioTime, handler?: $SDK20): void;
     /**
      * func start(at when: AVAudioTime?) async -> PHASESoundEvent.StartHandlerReason
      * @availability iOS 26.0+
      */
-    startAtCompletion(when?: $SDK11, handler?: $SDK22): void;
+    startAtCompletion(when?: $SDK11, handler?: $SDK21): void;
     /**
      * func start() async -> PHASESoundEvent.StartHandlerReason
      * @availability iOS 15.0+
      */
-    startCompletion(handler?: $SDK22): void;
+    startCompletion(handler?: $SDK21): void;
     /**
      * func stopAndInvalidate()
      * @availability iOS 15.0+
@@ -1757,20 +1756,20 @@ export declare class PHASESpatialMixerDefinition extends PHASEMixerDefinition {
      * var distanceModelParameters: PHASEDistanceModelParameters? { get set }
      * @availability iOS 15.0+
      */
-    get distanceModelParameters(): $SDK26;
-    set distanceModelParameters(value: $SDK26);
+    get distanceModelParameters(): $SDK25;
+    set distanceModelParameters(value: $SDK25);
     /**
      * var listenerDirectivityModelParameters: PHASEDirectivityModelParameters? { get set }
      * @availability iOS 15.0+
      */
-    get listenerDirectivityModelParameters(): $SDK27;
-    set listenerDirectivityModelParameters(value: $SDK27);
+    get listenerDirectivityModelParameters(): $SDK26;
+    set listenerDirectivityModelParameters(value: $SDK26);
     /**
      * var sourceDirectivityModelParameters: PHASEDirectivityModelParameters? { get set }
      * @availability iOS 15.0+
      */
-    get sourceDirectivityModelParameters(): $SDK27;
-    set sourceDirectivityModelParameters(value: $SDK27);
+    get sourceDirectivityModelParameters(): $SDK26;
+    set sourceDirectivityModelParameters(value: $SDK26);
     /**
      * var spatialPipeline: PHASESpatialPipeline { get }
      * @availability iOS 15.0+

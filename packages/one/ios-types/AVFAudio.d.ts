@@ -554,13 +554,13 @@ export declare class AVAudioEngine extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 16.0
      */
-    connectMIDIToFormat294(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void;
+    connectMIDIToFormat86448(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void;
     /**
      * func connectMIDI(_ sourceNode: AVAudioNode, to destinationNodes: [AVAudioNode], format: AVAudioFormat?, eventListBlock tapBlock: AUMIDIEventListBlock? = nil)
      * @availability iOS 16.0+
      * @deprecated iOS 27.0
      */
-    connectMIDIToFormat295(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void;
+    connectMIDIToFormat39598(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void;
     /**
      * func detach(_ node: AVAudioNode)
      * @availability iOS 8.0+
@@ -580,7 +580,7 @@ export declare class AVAudioEngine extends SDKHandle {
      * func disconnectMIDI(_ sourceNode: AVAudioNode, from destinationNodes: [AVAudioNode])
      * @availability iOS 12.0+
      */
-    disconnectMIDIFrom299(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>): void;
+    disconnectMIDIFrom21581(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>): void;
     /**
      * func disconnectMIDIInput(_ node: AVAudioNode)
      * @availability iOS 12.0+
@@ -1106,7 +1106,7 @@ export declare class AVAudioFile extends SDKHandle {
      * func write(from buffer: AVReadOnlyAudioPCMBuffer) throws
      * @availability iOS 27.0+
      */
-    writeFrom1003(buffer: AVReadOnlyAudioPCMBuffer): void;
+    writeFrom78254(buffer: AVReadOnlyAudioPCMBuffer): void;
 }
 /**
  * class AVAudioFormat
@@ -1404,7 +1404,7 @@ export declare class AVAudioPCMBuffer extends AVAudioPCMBuffer_base {
      * convenience init(copying readOnlyBuffer: AVReadOnlyAudioPCMBuffer)
      * @availability iOS 27.0+
      */
-    static initCopying1029(readOnlyBuffer: AVReadOnlyAudioPCMBuffer): AVAudioPCMBuffer;
+    static initCopying63595(readOnlyBuffer: AVReadOnlyAudioPCMBuffer): AVAudioPCMBuffer;
 }
 /**
  * enum ChannelData
@@ -1722,7 +1722,7 @@ export declare class AVAudioPlayerNode extends AVAudioPlayerNode_base {
      * func scheduleBuffer(_ buffer: AVAudioPCMBuffer, atTime when: AVAudioTime? = nil, options: AVAudioPlayerNodeBufferOptions = [], completionCallbackType callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler: (@Sendable () -> Void)?)
      * @availability iOS 27.0+
      */
-    scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler1032(buffer: AVAudioPCMBuffer, when: (AVAudioTime) | null, options: AVAudioPlayerNodeBufferOptions, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: ((() => void)) | null): void;
+    scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler5497(buffer: AVAudioPCMBuffer, when: (AVAudioTime) | null, options: AVAudioPlayerNodeBufferOptions, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: ((() => void)) | null): void;
 }
 /** struct AVAudioPlayerNodeBufferOptions */
 export type AVAudioPlayerNodeBufferOptions = Array<"loops" | "interrupts" | "interruptsAtLoop">;
@@ -1966,7 +1966,7 @@ export declare class AVAudioSequencer extends SDKHandle {
      * func load(from fileURL: URL, options: AVMusicSequenceLoadOptions = []) throws
      * @availability iOS 9.0+
      */
-    loadFromOptions530(fileURL: string, options?: AVMusicSequenceLoadOptions): void;
+    loadFromOptions86023(fileURL: string, options?: AVMusicSequenceLoadOptions): void;
     /**
      * func prepareToPlay()
      * @availability iOS 9.0+
@@ -3778,7 +3778,7 @@ export declare class AVAudioUnitComponentManager extends SDKHandle {
      * func components(matching predicate: NSPredicate) -> [AVAudioUnitComponent]
      * @availability iOS 9.0+
      */
-    componentsMatching702(predicate: _Foundation_NSPredicate): Array<AVAudioUnitComponent>;
+    componentsMatching12733(predicate: _Foundation_NSPredicate): Array<AVAudioUnitComponent>;
     /** init() */
     static init(): AVAudioUnitComponentManager;
     /**

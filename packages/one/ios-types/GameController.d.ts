@@ -3573,22 +3573,22 @@ export declare class GCPhysicalInputElementCollection<T = unknown> extends SDKHa
      * subscript(elementName: GCAxisElementName) -> T? { get }
      * @availability iOS 16.0+
      */
-    subscript823(elementName: GCAxisElementName): (SDKHandle) | null;
+    subscript89440(elementName: GCAxisElementName): (SDKHandle) | null;
     /**
      * subscript(elementName: GCButtonElementName) -> T? { get }
      * @availability iOS 16.0+
      */
-    subscript824(elementName: GCButtonElementName): (SDKHandle) | null;
+    subscript20909(elementName: GCButtonElementName): (SDKHandle) | null;
     /**
      * subscript(elementName: GCSwitchElementName) -> T? { get }
      * @availability iOS 16.0+
      */
-    subscript825(elementName: GCSwitchElementName): (SDKHandle) | null;
+    subscript52213(elementName: GCSwitchElementName): (SDKHandle) | null;
     /**
      * subscript(elementName: GCPhysicalInputElementName) -> T? { get }
      * @availability iOS 16.0+
      */
-    subscript826(elementName: GCPhysicalInputElementName): (SDKHandle) | null;
+    subscript28148(elementName: GCPhysicalInputElementName): (SDKHandle) | null;
 }
 /**
  * typealias Element = T

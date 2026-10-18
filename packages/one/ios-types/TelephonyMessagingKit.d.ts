@@ -912,32 +912,32 @@ export declare class RCSService extends SDKHandle {
      * final func sendMessage(_ content: RCSMessage.CustomReaction, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
      * @availability iOS 27.0+
      */
-    sendMessageToUsingMessageID119(content: RCSMessage_CustomReaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
+    sendMessageToUsingMessageID11187(content: RCSMessage_CustomReaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
     /**
      * final func sendMessage(_ content: RCSMessage.GeolocationPush, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
      * @availability iOS 26.0+
      */
-    sendMessageToUsingMessageID120(content: RCSMessage_GeolocationPush, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
+    sendMessageToUsingMessageID10310(content: RCSMessage_GeolocationPush, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
     /**
      * final func sendMessage(_ content: RCSMessage.ComposingIndicator, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
      * @availability iOS 26.0+
      */
-    sendMessageToUsingMessageID121(content: RCSMessage_ComposingIndicator, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
+    sendMessageToUsingMessageID63683(content: RCSMessage_ComposingIndicator, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
     /**
      * final func sendMessage(_ content: RCSMessage.Text, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
      * @availability iOS 26.0+
      */
-    sendMessageToUsingMessageID122(content: RCSMessage_Text, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
+    sendMessageToUsingMessageID18525(content: RCSMessage_Text, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
     /**
      * final func sendMessage(_ content: RCSMessage.Reply, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
      * @availability iOS 27.0+
      */
-    sendMessageToUsingMessageID123(content: RCSMessage_Reply, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
+    sendMessageToUsingMessageID56827(content: RCSMessage_Reply, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
     /**
      * final func sendMessage(_ content: RCSMessage.Reaction, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
      * @availability iOS 27.0+
      */
-    sendMessageToUsingMessageID124(content: RCSMessage_Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
+    sendMessageToUsingMessageID94469(content: RCSMessage_Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void>;
     /**
      * final func configuration(for cellularServiceID: CellularServiceID) throws -> RCSService.Configuration
      * @availability iOS 26.0+
@@ -2614,27 +2614,27 @@ export declare class RCSService_SendEncryptedMessageRequest extends SDKHandle {
      * init(content: RCSMessage.CustomReaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
      * @availability iOS 27.0+
      */
-    static initContentDestinationCellularServiceIDMessageID273(content: RCSMessage_CustomReaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
+    static initContentDestinationCellularServiceIDMessageID49504(content: RCSMessage_CustomReaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
     /**
      * init(content: RCSMessage.GeolocationPush, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
      * @availability iOS 26.5+
      */
-    static initContentDestinationCellularServiceIDMessageID274(content: RCSMessage_GeolocationPush, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
+    static initContentDestinationCellularServiceIDMessageID5563(content: RCSMessage_GeolocationPush, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
     /**
      * init(content: RCSMessage.Text, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
      * @availability iOS 26.5+
      */
-    static initContentDestinationCellularServiceIDMessageID275(content: RCSMessage_Text, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
+    static initContentDestinationCellularServiceIDMessageID14420(content: RCSMessage_Text, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
     /**
      * init(content: RCSMessage.Reply, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
      * @availability iOS 27.0+
      */
-    static initContentDestinationCellularServiceIDMessageID276(content: RCSMessage_Reply, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
+    static initContentDestinationCellularServiceIDMessageID71492(content: RCSMessage_Reply, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
     /**
      * init(content: RCSMessage.Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
      * @availability iOS 27.0+
      */
-    static initContentDestinationCellularServiceIDMessageID277(content: RCSMessage_Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
+    static initContentDestinationCellularServiceIDMessageID82708(content: RCSMessage_Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
 }
 /**
  * struct Result

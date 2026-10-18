@@ -153,7 +153,7 @@ export declare class Map<Content = unknown> extends SDKHandle {
      * @MainActor @preconcurrency init<SelectedValue>(bounds: MapCameraBounds? = nil, interactionModes: MapInteractionModes = .all, selection: Binding<SelectedValue?>, scope: Namespace.ID? = nil) where Content == MapContentView<SelectedValue, EmptyMapContent>, SelectedValue : Hashable
      * @availability iOS 17.0+
      */
-    static initBoundsInteractionModesSelectionScope8(bounds: $SDK4, interactionModes: MapInteractionModes, selection: _SwiftUICore_Binding<(number) | null>, scope?: $SDK5): Promise<Map<MapContentView<number, EmptyMapContent>>>;
+    static initBoundsInteractionModesSelectionScope83905(bounds: $SDK4, interactionModes: MapInteractionModes, selection: _SwiftUICore_Binding<(number) | null>, scope?: $SDK5): Promise<Map<MapContentView<number, EmptyMapContent>>>;
     /**
      * @MainActor @preconcurrency init(mapRect: Binding<MKMapRect>, interactionModes: MapInteractionModes = .all, showsUserLocation: Bool = false, userTrackingMode: Binding<MapUserTrackingMode>? = nil) where Content == _DefaultMapContent
      * @availability iOS 14.0+
@@ -243,7 +243,7 @@ export declare class MapCameraBounds extends SDKHandle {
      * init(centerCoordinateBounds: MKMapRect, minimumDistance: Double? = nil, maximumDistance: Double? = nil)
      * @availability iOS 17.0+
      */
-    static initCenterCoordinateBoundsMinimumDistanceMaximumDistance14(centerCoordinateBounds: _MapKit_MKMapRect, minimumDistance?: (number) | null, maximumDistance?: (number) | null): MapCameraBounds;
+    static initCenterCoordinateBoundsMinimumDistanceMaximumDistance23743(centerCoordinateBounds: _MapKit_MKMapRect, minimumDistance?: (number) | null, maximumDistance?: (number) | null): MapCameraBounds;
     /**
      * init(minimumDistance: Double? = nil, maximumDistance: Double? = nil)
      * @availability iOS 17.0+
@@ -304,7 +304,7 @@ export declare class MapCameraPosition extends SDKHandle {
      * static func rect(_ rect: MKMapRect) -> MapCameraPosition
      * @availability iOS 17.0+
      */
-    static rect25(rect: _MapKit_MKMapRect): MapCameraPosition;
+    static rect21034(rect: _MapKit_MKMapRect): MapCameraPosition;
     /**
      * var camera: MapCamera? { get }
      * @availability iOS 17.0+
@@ -314,7 +314,7 @@ export declare class MapCameraPosition extends SDKHandle {
      * static func camera(_ camera: MapCamera) -> MapCameraPosition
      * @availability iOS 17.0+
      */
-    static camera27(camera: MapCamera): MapCameraPosition;
+    static camera3160(camera: MapCamera): MapCameraPosition;
     /**
      * var region: MKCoordinateRegion? { get }
      * @availability iOS 17.0+
@@ -324,7 +324,7 @@ export declare class MapCameraPosition extends SDKHandle {
      * static func region(_ region: MKCoordinateRegion) -> MapCameraPosition
      * @availability iOS 17.0+
      */
-    static region29(region: _MapKit_MKCoordinateRegion): MapCameraPosition;
+    static region99780(region: _MapKit_MKCoordinateRegion): MapCameraPosition;
     /**
      * static var automatic: MapCameraPosition { get }
      * @availability iOS 17.0+
@@ -571,7 +571,7 @@ export declare class MapItemDetailSelectionAccessoryStyle extends SDKHandle {
      * static func callout(_ style: MapItemDetailSelectionAccessoryStyle.CalloutStyle = .automatic) -> MapItemDetailSelectionAccessoryStyle
      * @availability iOS 18.0+
      */
-    static callout50(style?: MapItemDetailSelectionAccessoryStyle_CalloutStyle): MapItemDetailSelectionAccessoryStyle;
+    static callout73599(style?: MapItemDetailSelectionAccessoryStyle_CalloutStyle): MapItemDetailSelectionAccessoryStyle;
     /**
      * static var caption: MapItemDetailSelectionAccessoryStyle { get }
      * @availability iOS 18.0+
@@ -696,7 +696,7 @@ export declare class MapPolyline extends SDKHandle {
      * init(_ route: MKRoute)
      * @availability iOS 17.0+
      */
-    static init100(route: _MapKit_MKRoute): MapPolyline;
+    static init74616(route: _MapKit_MKRoute): MapPolyline;
 }
 /**
  * typealias Body = Never
@@ -738,7 +738,7 @@ export declare class MapProxy extends SDKHandle {
      * func camera(framing rect: MKMapRect) -> MapCamera
      * @availability iOS 17.0+
      */
-    cameraFraming56(rect: _MapKit_MKMapRect): MapCamera;
+    cameraFraming43310(rect: _MapKit_MKMapRect): MapCamera;
 }
 /**
  * @MainActor @preconcurrency struct MapReader<Content> where Content : View
@@ -818,7 +818,7 @@ export declare class MapSelection<SelectionValue = unknown> extends SDKHandle {
      * init(_ value: SelectionValue)
      * @availability iOS 18.0+
      */
-    static init106(value: number): MapSelection<number>;
+    static init72414(value: number): MapSelection<number>;
 }
 /**
  * struct MapStyle
@@ -934,12 +934,12 @@ export declare class Marker<Label = unknown> extends SDKHandle {
      * @MainActor @preconcurrency init(_ titleKey: LocalizedStringKey, coordinate: CLLocationCoordinate2D) where Label == Text
      * @availability iOS 17.0+
      */
-    static initCoordinate119(titleKey: _SwiftUICore_LocalizedStringKey, coordinate: $SDK14): Promise<$SDK24>;
+    static initCoordinate97602(titleKey: _SwiftUICore_LocalizedStringKey, coordinate: $SDK14): Promise<$SDK24>;
     /**
      * @MainActor @preconcurrency init<S>(_ title: S, coordinate: CLLocationCoordinate2D) where Label == Text, S : StringProtocol
      * @availability iOS 17.0+
      */
-    static initCoordinate120(title: string, coordinate: $SDK14): Promise<$SDK24>;
+    static initCoordinate34649(title: string, coordinate: $SDK14): Promise<$SDK24>;
 }
 /**
  * typealias Body = Never

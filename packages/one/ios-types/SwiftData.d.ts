@@ -1324,7 +1324,7 @@ export declare class Schema_Attribute_Option extends SDKHandle {
      * static func transformable(by transformerType: ValueTransformer.Type) -> Schema.Attribute.Option
      * @availability iOS 17.0+
      */
-    static transformableBy244(transformerType: string): Schema_Attribute_Option;
+    static transformableBy3509(transformerType: string): Schema_Attribute_Option;
     /**
      * static var externalStorage: Schema.Attribute.Option { get }
      * @availability iOS 17.0+

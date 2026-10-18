@@ -516,7 +516,7 @@ export declare class CKContainer extends SDKHandle {
      * @preconcurrency func accept(_ metadatas: [CKShare.Metadata], completionHandler: @escaping @Sendable (Result<[CKShare.Metadata : Result<CKShare, any Error>], any Error>) -> Void)
      * @availability iOS 15.0+
      */
-    acceptCompletionHandler687(metadatas: Array<CKShare_Metadata>, completionHandler: $SDK27): void;
+    acceptCompletionHandler19311(metadatas: Array<CKShare_Metadata>, completionHandler: $SDK27): void;
     /**
      * func accept(_ metadatas: [CKShare.Metadata]) async throws -> [CKShare.Metadata : Result<CKShare, any Error>]
      * @availability iOS 15.0+
@@ -526,7 +526,7 @@ export declare class CKContainer extends SDKHandle {
      * func accept(_ metadata: CKShare.Metadata) async throws -> CKShare
      * @availability iOS 15.0+
      */
-    accept689(metadata: CKShare_Metadata): Promise<CKShare>;
+    accept27794(metadata: CKShare_Metadata): Promise<CKShare>;
 }
 /**
  * typealias CKContainer_Application_PermissionBlock = CKContainer.ApplicationPermissionBlock
@@ -624,12 +624,12 @@ export declare class CKDatabase extends SDKHandle {
     /** func save(_ record: CKRecord, completionHandler: @escaping @Sendable (CKRecord?, (any Error)?) -> Void) */
     saveCompletionHandler(record: CKRecord, completionHandler: $SDK35): void;
     /** func save(_ zone: CKRecordZone, completionHandler: @escaping @Sendable (CKRecordZone?, (any Error)?) -> Void) */
-    saveCompletionHandler78(zone: CKRecordZone, completionHandler: $SDK36): void;
+    saveCompletionHandler10675(zone: CKRecordZone, completionHandler: $SDK36): void;
     /**
      * func save(_ subscription: CKSubscription, completionHandler: @escaping @Sendable (CKSubscription?, (any Error)?) -> Void)
      * @availability iOS 8.0+
      */
-    saveCompletionHandler79(subscription: CKSubscription, completionHandler: $SDK39): void;
+    saveCompletionHandler5505(subscription: CKSubscription, completionHandler: $SDK39): void;
     /**
      * var databaseScope: CKDatabase.Scope { get }
      * @availability iOS 10.0+
@@ -763,12 +763,12 @@ export declare class CKDatabase extends SDKHandle {
      * func save(_ subscription: CKSubscription) async throws -> CKSubscription
      * @availability iOS 15.0+
      */
-    save642(subscription: CKSubscription): Promise<CKSubscription>;
+    save87972(subscription: CKSubscription): Promise<CKSubscription>;
     /**
      * func save(_ record: CKRecord) async throws -> CKRecord
      * @availability iOS 15.0+
      */
-    save643(record: CKRecord): Promise<CKRecord>;
+    save91437(record: CKRecord): Promise<CKRecord>;
     /**
      * @preconcurrency func fetch(withCursor queryCursor: CKQueryOperation.Cursor, desiredKeys: [CKRecord.FieldKey]? = nil, resultsLimit: Int = CKQueryOperation.maximumResults, completionHandler: @escaping @Sendable (Result<(matchResults: [(CKRecord.ID, Result<CKRecord, any Error>)], queryCursor: CKQueryOperation.Cursor?), any Error>) -> Void)
      * @availability iOS 15.0+
@@ -2684,7 +2684,7 @@ export declare class CKRecord extends SDKHandle {
      * func setParent(_ parentRecordID: CKRecord.ID?)
      * @availability iOS 10.0+
      */
-    setParent366(parentRecordID?: (CKRecord_ID) | null): void;
+    setParent16582(parentRecordID?: (CKRecord_ID) | null): void;
     /**
      * var creationDate: Date? { get }
      * @availability iOS 8.0+
@@ -2775,7 +2775,7 @@ export declare class CKRecord extends SDKHandle {
      * subscript(key: CKRecord.FieldKey) -> (any __CKRecordObjCValue)? { get set }
      * @availability iOS 8.0+
      */
-    subscript860(key: string): (SDKHandle) | null;
+    subscript3079(key: string): (SDKHandle) | null;
 }
 /**
  * typealias CKRecord_Reference_Action = CKRecord.ReferenceAction
@@ -3112,7 +3112,7 @@ export declare class CKRecordZone_ID extends SDKHandle {
      * convenience init(zoneName: String = CKRecordZone.ID.defaultZoneName, ownerName: String = CKCurrentUserDefaultName)
      * @availability iOS 10.0+
      */
-    static initZoneNameOwnerName696(zoneName?: string, ownerName?: string): CKRecordZone_ID;
+    static initZoneNameOwnerName33926(zoneName?: string, ownerName?: string): CKRecordZone_ID;
 }
 /**
  * class CKRecordZoneNotification
@@ -4324,7 +4324,7 @@ export declare class CKSyncEngine_SendChangesOptions_Scope extends SDKHandle {
      * func contains(_ recordID: CKRecord.ID) -> Bool
      * @availability iOS 17.0+
      */
-    contains489(recordID: CKRecord_ID): boolean;
+    contains86583(recordID: CKRecord_ID): boolean;
 }
 /**
  * final class State

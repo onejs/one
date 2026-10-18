@@ -103,7 +103,7 @@ export declare class ImagePlaygroundConcept extends SDKHandle {
      * static func image(_ image: CGImage) -> ImagePlaygroundConcept
      * @availability iOS 18.1+
      */
-    static image44(image: _CoreGraphics_CGImage): ImagePlaygroundConcept;
+    static image80359(image: _CoreGraphics_CGImage): ImagePlaygroundConcept;
     /**
      * static func drawing(_ drawing: PKDrawing) -> ImagePlaygroundConcept
      * @availability iOS 18.1+

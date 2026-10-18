@@ -59,12 +59,12 @@ export declare class USDArray<Element = unknown> extends SDKHandle {
      * init()
      * @availability iOS 27.0+
      */
-    static init447(): USDArray<number>;
+    static init98238(): USDArray<number>;
     /**
      * init()
      * @availability iOS 27.0+
      */
-    static init448(): USDArray<number>;
+    static init38428(): USDArray<number>;
     /**
      * subscript(index: Int) -> Element { get }
      * @availability iOS 27.0+
@@ -167,7 +167,7 @@ export declare class USDLayer extends SDKHandle {
      * func setTimeSample<T>(at path: USDLayer.Path, time: USDLayer.TimeCode, value: T) where T : USDValueProtocol
      * @availability iOS 27.0+
      */
-    setTimeSampleAtTimeValue512(path: USDLayer_Path, time: USDLayer_TimeCode, value: number): void;
+    setTimeSampleAtTimeValue99996(path: USDLayer_Path, time: USDLayer_TimeCode, value: number): void;
     /**
      * var startTimeCode: USDLayer.TimeCode? { get nonmutating set }
      * @availability iOS 27.0+
@@ -194,7 +194,7 @@ export declare class USDLayer extends SDKHandle {
      * func importContents(from string: String) throws
      * @availability iOS 27.0+
      */
-    importContentsFrom530(string: string): void;
+    importContentsFrom88962(string: string): void;
     /**
      * func eraseTimeSample(at path: USDLayer.Path, time: USDLayer.TimeCode)
      * @availability iOS 27.0+
@@ -255,7 +255,7 @@ export declare class USDLayer extends SDKHandle {
      * func export(to path: FilePath) throws
      * @availability iOS 27.0+
      */
-    exportTo600(path: _System_FilePath): void;
+    exportTo63861(path: _System_FilePath): void;
     /**
      * func fields(at path: USDLayer.Path) -> [USDToken]
      * @availability iOS 27.0+
@@ -296,7 +296,7 @@ export declare class USDLayer extends SDKHandle {
      * func setField<T>(at path: USDLayer.Path, name: USDToken, value: T) where T : USDValueProtocol
      * @availability iOS 27.0+
      */
-    setFieldAtNameValue614(path: USDLayer_Path, name: USDToken, value: number): void;
+    setFieldAtNameValue77907(path: USDLayer_Path, name: USDToken, value: number): void;
     /**
      * func specType(at path: USDLayer.Path) -> USDLayer.SpecType?
      * @availability iOS 27.0+
@@ -352,7 +352,7 @@ export declare class USDLayer_AssetPath extends SDKHandle {
      * init(_ path: String)
      * @availability iOS 27.0+
      */
-    static init623(path: string): USDLayer_AssetPath;
+    static init37830(path: string): USDLayer_AssetPath;
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -587,12 +587,12 @@ export declare class USDLayer_ListOperation<T = unknown> extends SDKHandle {
      * init(explicitItems: [UInt])
      * @availability iOS 27.0+
      */
-    static initExplicitItems509(explicitItems: Array<number>): $SDK11;
+    static initExplicitItems13658(explicitItems: Array<number>): $SDK11;
     /**
      * init(prependedItems: [UInt] = [], appendedItems: [UInt] = [], deletedItems: [UInt] = [])
      * @availability iOS 27.0+
      */
-    static initPrependedItemsAppendedItemsDeletedItems510(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK11;
+    static initPrependedItemsAppendedItemsDeletedItems70000(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK11;
 }
 /**
  * enum ListOperationType
@@ -792,7 +792,7 @@ export declare class USDLayer_Path extends SDKHandle {
      * init(_ path: String)
      * @availability iOS 27.0+
      */
-    static init566(path: string): USDLayer_Path;
+    static init11239(path: string): USDLayer_Path;
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -878,7 +878,7 @@ export declare class USDLayer_PathExpression extends SDKHandle {
      * init(_ expression: String)
      * @availability iOS 27.0+
      */
-    static init527(expression: string): USDLayer_PathExpression;
+    static init85788(expression: string): USDLayer_PathExpression;
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -927,37 +927,37 @@ export declare class USDLayer_Spec extends SDKHandle {
      * init(_ pseudoRootSpec: USDPrim.PseudoRootSpec)
      * @availability iOS 27.0+
      */
-    static init584(pseudoRootSpec: USDPrim_PseudoRootSpec): USDLayer_Spec;
+    static init4617(pseudoRootSpec: USDPrim_PseudoRootSpec): USDLayer_Spec;
     /**
      * init(_ variantSetSpec: USDPrim.VariantSetSpec)
      * @availability iOS 27.0+
      */
-    static init585(variantSetSpec: USDPrim_VariantSetSpec): USDLayer_Spec;
+    static init70836(variantSetSpec: USDPrim_VariantSetSpec): USDLayer_Spec;
     /**
      * init(_ variantSpec: USDPrim.VariantSpec)
      * @availability iOS 27.0+
      */
-    static init586(variantSpec: USDPrim_VariantSpec): USDLayer_Spec;
+    static init12632(variantSpec: USDPrim_VariantSpec): USDLayer_Spec;
     /**
      * init(_ relationshipSpec: USDPrim.Relationship.Spec)
      * @availability iOS 27.0+
      */
-    static init587(relationshipSpec: USDPrim_Relationship_Spec): USDLayer_Spec;
+    static init12505(relationshipSpec: USDPrim_Relationship_Spec): USDLayer_Spec;
     /**
      * init(_ propertySpec: USDPrim.Property.Spec)
      * @availability iOS 27.0+
      */
-    static init588(propertySpec: USDPrim_Property_Spec): USDLayer_Spec;
+    static init27699(propertySpec: USDPrim_Property_Spec): USDLayer_Spec;
     /**
      * init(_ attributeSpec: USDPrim.Attribute.Spec)
      * @availability iOS 27.0+
      */
-    static init589(attributeSpec: USDPrim_Attribute_Spec): USDLayer_Spec;
+    static init20465(attributeSpec: USDPrim_Attribute_Spec): USDLayer_Spec;
     /**
      * init(_ primSpec: USDPrim.Spec)
      * @availability iOS 27.0+
      */
-    static init590(primSpec: USDPrim_Spec): USDLayer_Spec;
+    static init68150(primSpec: USDPrim_Spec): USDLayer_Spec;
 }
 /**
  * protocol FieldCollection
@@ -1339,7 +1339,7 @@ export declare class USDPrim extends SDKHandle {
      * init?(_ object: USDStage.Object)
      * @availability iOS 27.0+
      */
-    static init439(object: USDStage_Object): (USDPrim) | null;
+    static init62301(object: USDStage_Object): (USDPrim) | null;
 }
 /**
  * struct Attribute
@@ -1431,12 +1431,12 @@ export declare class USDPrim_Attribute extends SDKHandle {
      * init?(_ object: USDStage.Object)
      * @availability iOS 27.0+
      */
-    static init407(object: USDStage_Object): (USDPrim_Attribute) | null;
+    static init82640(object: USDStage_Object): (USDPrim_Attribute) | null;
     /**
      * init?(_ object: USDPrim.Property)
      * @availability iOS 27.0+
      */
-    static init408(object: USDPrim_Property): (USDPrim_Attribute) | null;
+    static init98942(object: USDPrim_Property): (USDPrim_Attribute) | null;
 }
 /**
  * struct Spec
@@ -1542,7 +1542,7 @@ export declare class USDPrim_Attribute_Spec extends SDKHandle {
      * init?(_ spec: USDLayer.Spec)
      * @availability iOS 27.0+
      */
-    static init331(spec: USDLayer_Spec): (USDPrim_Attribute_Spec) | null;
+    static init27266(spec: USDLayer_Spec): (USDPrim_Attribute_Spec) | null;
 }
 /**
  * protocol Value : Sendable
@@ -2134,17 +2134,17 @@ export declare class USDPrim_Property extends SDKHandle {
      * init?(_ object: USDStage.Object)
      * @availability iOS 27.0+
      */
-    static init292(object: USDStage_Object): (USDPrim_Property) | null;
+    static init63742(object: USDStage_Object): (USDPrim_Property) | null;
     /**
      * init(_ relationship: USDPrim.Relationship)
      * @availability iOS 27.0+
      */
-    static init293(relationship: USDPrim_Relationship): USDPrim_Property;
+    static init17027(relationship: USDPrim_Relationship): USDPrim_Property;
     /**
      * init(_ object: USDPrim.Attribute)
      * @availability iOS 27.0+
      */
-    static init294(object: USDPrim_Attribute): USDPrim_Property;
+    static init8511(object: USDPrim_Attribute): USDPrim_Property;
 }
 /**
  * struct Spec
@@ -2229,7 +2229,7 @@ export declare class USDPrim_Property_Spec extends SDKHandle {
      * init?(_ spec: USDLayer.Spec)
      * @availability iOS 27.0+
      */
-    static init279(spec: USDLayer_Spec): (USDPrim_Property_Spec) | null;
+    static init6968(spec: USDLayer_Spec): (USDPrim_Property_Spec) | null;
 }
 /**
  * protocol SymmetryCollection
@@ -2262,7 +2262,7 @@ export declare class USDPrim_PseudoRootSpec extends SDKHandle {
      * init?(_ spec: USDLayer.Spec)
      * @availability iOS 27.0+
      */
-    static init89(spec: USDLayer_Spec): (USDPrim_PseudoRootSpec) | null;
+    static init9208(spec: USDLayer_Spec): (USDPrim_PseudoRootSpec) | null;
 }
 /**
  * struct Reference
@@ -2405,12 +2405,12 @@ export declare class USDPrim_Relationship extends SDKHandle {
      * init?(_ object: USDStage.Object)
      * @availability iOS 27.0+
      */
-    static init80(object: USDStage_Object): (USDPrim_Relationship) | null;
+    static init16044(object: USDStage_Object): (USDPrim_Relationship) | null;
     /**
      * init?(_ object: USDPrim.Property)
      * @availability iOS 27.0+
      */
-    static init81(object: USDPrim_Property): (USDPrim_Relationship) | null;
+    static init38946(object: USDPrim_Property): (USDPrim_Relationship) | null;
 }
 /**
  * struct Spec
@@ -2526,7 +2526,7 @@ export declare class USDPrim_Relationship_Spec extends SDKHandle {
      * init?(_ spec: USDLayer.Spec)
      * @availability iOS 27.0+
      */
-    static init70(spec: USDLayer_Spec): (USDPrim_Relationship_Spec) | null;
+    static init24430(spec: USDLayer_Spec): (USDPrim_Relationship_Spec) | null;
 }
 /**
  * struct Spec
@@ -2886,12 +2886,12 @@ export declare class USDPrim_Spec extends SDKHandle {
      * init?(_ spec: USDLayer.Spec)
      * @availability iOS 27.0+
      */
-    static init229(spec: USDLayer_Spec): (USDPrim_Spec) | null;
+    static init59807(spec: USDLayer_Spec): (USDPrim_Spec) | null;
     /**
      * init(_ pseudoRoot: USDPrim.PseudoRootSpec)
      * @availability iOS 27.0+
      */
-    static init230(pseudoRoot: USDPrim_PseudoRootSpec): USDPrim_Spec;
+    static init27140(pseudoRoot: USDPrim_PseudoRootSpec): USDPrim_Spec;
 }
 /**
  * struct SpecializeCollection
@@ -3045,7 +3045,7 @@ export declare class USDPrim_VariantSetSpec extends SDKHandle {
      * init?(owner: USDPrim.VariantSpec, name: USDToken)
      * @availability iOS 27.0+
      */
-    static initOwnerName93(owner: USDPrim_VariantSpec, name: USDToken): (USDPrim_VariantSetSpec) | null;
+    static initOwnerName47189(owner: USDPrim_VariantSpec, name: USDToken): (USDPrim_VariantSetSpec) | null;
     /**
      * var owner: USDLayer.Spec? { get }
      * @availability iOS 27.0+
@@ -3065,7 +3065,7 @@ export declare class USDPrim_VariantSetSpec extends SDKHandle {
      * init?(_ spec: USDLayer.Spec)
      * @availability iOS 27.0+
      */
-    static init97(spec: USDLayer_Spec): (USDPrim_VariantSetSpec) | null;
+    static init11999(spec: USDLayer_Spec): (USDPrim_VariantSetSpec) | null;
 }
 /**
  * typealias VariantsMap = Dictionary<USDToken, [USDToken]>
@@ -3116,7 +3116,7 @@ export declare class USDPrim_VariantSpec extends SDKHandle {
      * init?(_ spec: USDLayer.Spec)
      * @availability iOS 27.0+
      */
-    static init33(spec: USDLayer_Spec): (USDPrim_VariantSpec) | null;
+    static init62147(spec: USDLayer_Spec): (USDPrim_VariantSpec) | null;
 }
 /**
  * struct USDStage
@@ -3194,7 +3194,7 @@ export declare class USDStage extends SDKHandle {
      * func exportPackage(to path: FilePath, options: USDStage.ExportOptions = []) throws
      * @availability iOS 27.0+
      */
-    exportPackageToOptions650(path: _System_FilePath, options?: USDStage_ExportOptions): void;
+    exportPackageToOptions63733(path: _System_FilePath, options?: USDStage_ExportOptions): void;
     /**
      * func exportPackage(options: USDStage.ExportOptions = []) throws -> Data
      * @availability iOS 27.0+
@@ -3236,7 +3236,7 @@ export declare class USDStage extends SDKHandle {
      * func exportFlattened(to path: FilePath) throws
      * @availability iOS 27.0+
      */
-    exportFlattenedTo660(path: _System_FilePath): void;
+    exportFlattenedTo38657(path: _System_FilePath): void;
     /**
      * func saveSessionLayers() throws
      * @availability iOS 27.0+
@@ -3448,22 +3448,22 @@ export declare class USDStage_Object extends SDKHandle {
      * init(_ relationship: USDPrim.Relationship)
      * @availability iOS 27.0+
      */
-    static init724(relationship: USDPrim_Relationship): USDStage_Object;
+    static init32719(relationship: USDPrim_Relationship): USDStage_Object;
     /**
      * init(_ property: USDPrim.Property)
      * @availability iOS 27.0+
      */
-    static init725(property: USDPrim_Property): USDStage_Object;
+    static init86659(property: USDPrim_Property): USDStage_Object;
     /**
      * init(_ attribute: USDPrim.Attribute)
      * @availability iOS 27.0+
      */
-    static init726(attribute: USDPrim_Attribute): USDStage_Object;
+    static init34475(attribute: USDPrim_Attribute): USDStage_Object;
     /**
      * init(_ prim: USDPrim)
      * @availability iOS 27.0+
      */
-    static init727(prim: USDPrim): USDStage_Object;
+    static init67664(prim: USDPrim): USDStage_Object;
 }
 /**
  * protocol MetadataCollection
@@ -3539,7 +3539,7 @@ export declare class USDStage_TimeCode extends SDKHandle {
      * init(preTime timeCode: USDLayer.TimeCode)
      * @availability iOS 27.0+
      */
-    static initPreTime734(timeCode: USDLayer_TimeCode): USDStage_TimeCode;
+    static initPreTime19859(timeCode: USDLayer_TimeCode): USDStage_TimeCode;
     /**
      * var isPreTime: Bool { get }
      * @availability iOS 27.0+
@@ -3584,7 +3584,7 @@ export declare class USDStage_TimeCode extends SDKHandle {
      * init(_ timeCode: USDLayer.TimeCode)
      * @availability iOS 27.0+
      */
-    static init743(timeCode: USDLayer_TimeCode): USDStage_TimeCode;
+    static init28332(timeCode: USDLayer_TimeCode): USDStage_TimeCode;
 }
 /**
  * typealias FloatLiteralType = Double
@@ -3660,7 +3660,7 @@ export declare class USDToken extends SDKHandle {
      * init(_ name: String)
      * @availability iOS 27.0+
      */
-    static init761(name: string): USDToken;
+    static init36178(name: string): USDToken;
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -3802,7 +3802,7 @@ export declare class USDValue extends SDKHandle {
      * init<T>(_ value: T) where T : USDValueProtocol
      * @availability iOS 27.0+
      */
-    static init998(value: number): USDValue;
+    static init9821(value: number): USDValue;
 }
 /**
  * @frozen struct Matrix2d
@@ -3920,7 +3920,7 @@ export declare class USDValue_Matrix3d extends SDKHandle {
      * init(_ matrix: double3x3)
      * @availability iOS 27.0+
      */
-    static init970(matrix: SDKHandle): USDValue_Matrix3d;
+    static init18381(matrix: SDKHandle): USDValue_Matrix3d;
     /**
      * subscript(index: Int) -> USDValue.Matrix3d.VectorType { get set }
      * @availability iOS 27.0+
@@ -3966,7 +3966,7 @@ export declare class USDValue_Matrix3f extends SDKHandle {
      * init(_ matrix: float3x3)
      * @availability iOS 27.0+
      */
-    static init977(matrix: SDKHandle): USDValue_Matrix3f;
+    static init10355(matrix: SDKHandle): USDValue_Matrix3f;
     /**
      * subscript(index: Int) -> USDValue.Matrix3f.VectorType { get set }
      * @availability iOS 27.0+
@@ -4017,12 +4017,12 @@ export declare class USDValue_Matrix4d extends SDKHandle {
      * init(_ projectiveTransform: ProjectiveTransform3D)
      * @availability iOS 27.0+
      */
-    static init985(projectiveTransform: _Spatial_ProjectiveTransform3D): USDValue_Matrix4d;
+    static init33152(projectiveTransform: _Spatial_ProjectiveTransform3D): USDValue_Matrix4d;
     /**
      * init(_ projectiveTransform: ProjectiveTransform3DFloat)
      * @availability iOS 27.0+
      */
-    static init986(projectiveTransform: _Spatial_ProjectiveTransform3DFloat): USDValue_Matrix4d;
+    static init85405(projectiveTransform: _Spatial_ProjectiveTransform3DFloat): USDValue_Matrix4d;
     /**
      * subscript(index: Int) -> USDValue.Matrix4d.VectorType { get set }
      * @availability iOS 27.0+
@@ -4068,7 +4068,7 @@ export declare class USDValue_Matrix4f extends SDKHandle {
      * init(_ projectiveTransform: ProjectiveTransform3DFloat)
      * @availability iOS 27.0+
      */
-    static init993(projectiveTransform: _Spatial_ProjectiveTransform3DFloat): USDValue_Matrix4f;
+    static init62011(projectiveTransform: _Spatial_ProjectiveTransform3DFloat): USDValue_Matrix4f;
     /**
      * subscript(index: Int) -> USDValue.Matrix4f.VectorType { get set }
      * @availability iOS 27.0+
@@ -4265,12 +4265,12 @@ export declare class USDValue_Vec2d extends SDKHandle {
      * init(_ x: Double, _ y: Double)
      * @availability iOS 27.0+
      */
-    static init802(x: number, y: number): USDValue_Vec2d;
+    static init58230(x: number, y: number): USDValue_Vec2d;
     /**
      * init(_ simd: SIMD2<Double>)
      * @availability iOS 27.0+
      */
-    static init803(simd: SDKHandle): USDValue_Vec2d;
+    static init64665(simd: SDKHandle): USDValue_Vec2d;
     /**
      * subscript(index: Int) -> Double { get set }
      * @availability iOS 27.0+
@@ -4318,12 +4318,12 @@ export declare class USDValue_Vec2f extends SDKHandle {
      * init(_ x: Float, _ y: Float)
      * @availability iOS 27.0+
      */
-    static init813(x: number, y: number): USDValue_Vec2f;
+    static init28008(x: number, y: number): USDValue_Vec2f;
     /**
      * init(_ simd: SIMD2<Float>)
      * @availability iOS 27.0+
      */
-    static init814(simd: SDKHandle): USDValue_Vec2f;
+    static init7273(simd: SDKHandle): USDValue_Vec2f;
     /**
      * subscript(index: Int) -> Float { get set }
      * @availability iOS 27.0+
@@ -4371,7 +4371,7 @@ export declare class USDValue_Vec2h extends SDKHandle {
      * init(_ x: Float16, _ y: Float16)
      * @availability iOS 27.0+
      */
-    static init824(x: number, y: number): USDValue_Vec2h;
+    static init16805(x: number, y: number): USDValue_Vec2h;
     /**
      * subscript(index: Int) -> Float16 { get set }
      * @availability iOS 27.0+
@@ -4419,17 +4419,17 @@ export declare class USDValue_Vec2i extends SDKHandle {
      * init(_ x: Int, _ y: Int)
      * @availability iOS 27.0+
      */
-    static init834(x: number, y: number): USDValue_Vec2i;
+    static init38321(x: number, y: number): USDValue_Vec2i;
     /**
      * init(_ x: Int32, _ y: Int32)
      * @availability iOS 27.0+
      */
-    static init835(x: number, y: number): USDValue_Vec2i;
+    static init24323(x: number, y: number): USDValue_Vec2i;
     /**
      * init(_ simd: SIMD2<Int32>)
      * @availability iOS 27.0+
      */
-    static init836(simd: SDKHandle): USDValue_Vec2i;
+    static init97661(simd: SDKHandle): USDValue_Vec2i;
     /**
      * subscript(index: Int) -> Int32 { get set }
      * @availability iOS 27.0+
@@ -4483,12 +4483,12 @@ export declare class USDValue_Vec3d extends SDKHandle {
      * init(_ x: Double, _ y: Double, _ z: Double)
      * @availability iOS 27.0+
      */
-    static init848(x: number, y: number, z: number): USDValue_Vec3d;
+    static init29309(x: number, y: number, z: number): USDValue_Vec3d;
     /**
      * init(_ simd: SIMD3<Double>)
      * @availability iOS 27.0+
      */
-    static init849(simd: SDKHandle): USDValue_Vec3d;
+    static init58297(simd: SDKHandle): USDValue_Vec3d;
     /**
      * subscript(index: Int) -> Double { get set }
      * @availability iOS 27.0+
@@ -4547,12 +4547,12 @@ export declare class USDValue_Vec3f extends SDKHandle {
      * init(_ x: Float, _ y: Float, _ z: Float)
      * @availability iOS 27.0+
      */
-    static init861(x: number, y: number, z: number): USDValue_Vec3f;
+    static init80687(x: number, y: number, z: number): USDValue_Vec3f;
     /**
      * init(_ simd: SIMD3<Float>)
      * @availability iOS 27.0+
      */
-    static init862(simd: SDKHandle): USDValue_Vec3f;
+    static init50765(simd: SDKHandle): USDValue_Vec3f;
     /**
      * subscript(index: Int) -> Float { get set }
      * @availability iOS 27.0+
@@ -4611,7 +4611,7 @@ export declare class USDValue_Vec3h extends SDKHandle {
      * init(_ x: Float16, _ y: Float16, _ z: Float16)
      * @availability iOS 27.0+
      */
-    static init874(x: number, y: number, z: number): USDValue_Vec3h;
+    static init83342(x: number, y: number, z: number): USDValue_Vec3h;
     /**
      * subscript(index: Int) -> Float16 { get set }
      * @availability iOS 27.0+
@@ -4665,17 +4665,17 @@ export declare class USDValue_Vec3i extends SDKHandle {
      * init(_ x: Int, _ y: Int, _ z: Int)
      * @availability iOS 27.0+
      */
-    static init886(x: number, y: number, z: number): USDValue_Vec3i;
+    static init99266(x: number, y: number, z: number): USDValue_Vec3i;
     /**
      * init(_ x: Int32, _ y: Int32, _ z: Int32)
      * @availability iOS 27.0+
      */
-    static init887(x: number, y: number, z: number): USDValue_Vec3i;
+    static init64832(x: number, y: number, z: number): USDValue_Vec3i;
     /**
      * init(_ simd: SIMD3<Int32>)
      * @availability iOS 27.0+
      */
-    static init888(simd: SDKHandle): USDValue_Vec3i;
+    static init4209(simd: SDKHandle): USDValue_Vec3i;
     /**
      * subscript(index: Int) -> Int32 { get set }
      * @availability iOS 27.0+
@@ -4735,12 +4735,12 @@ export declare class USDValue_Vec4d extends SDKHandle {
      * init(_ x: Double, _ y: Double, _ z: Double, _ w: Double)
      * @availability iOS 27.0+
      */
-    static init902(x: number, y: number, z: number, w: number): USDValue_Vec4d;
+    static init72079(x: number, y: number, z: number, w: number): USDValue_Vec4d;
     /**
      * init(_ simd: SIMD4<Double>)
      * @availability iOS 27.0+
      */
-    static init903(simd: SDKHandle): USDValue_Vec4d;
+    static init48225(simd: SDKHandle): USDValue_Vec4d;
     /**
      * subscript(index: Int) -> Double { get set }
      * @availability iOS 27.0+
@@ -4805,12 +4805,12 @@ export declare class USDValue_Vec4f extends SDKHandle {
      * init(_ x: Float, _ y: Float, _ z: Float, _ w: Float)
      * @availability iOS 27.0+
      */
-    static init917(x: number, y: number, z: number, w: number): USDValue_Vec4f;
+    static init47957(x: number, y: number, z: number, w: number): USDValue_Vec4f;
     /**
      * init(_ simd: SIMD4<Float>)
      * @availability iOS 27.0+
      */
-    static init918(simd: SDKHandle): USDValue_Vec4f;
+    static init27745(simd: SDKHandle): USDValue_Vec4f;
     /**
      * subscript(index: Int) -> Float { get set }
      * @availability iOS 27.0+
@@ -4875,7 +4875,7 @@ export declare class USDValue_Vec4h extends SDKHandle {
      * init(_ x: Float16, _ y: Float16, _ z: Float16, _ w: Float16)
      * @availability iOS 27.0+
      */
-    static init932(x: number, y: number, z: number, w: number): USDValue_Vec4h;
+    static init58828(x: number, y: number, z: number, w: number): USDValue_Vec4h;
     /**
      * subscript(index: Int) -> Float16 { get set }
      * @availability iOS 27.0+
@@ -4935,17 +4935,17 @@ export declare class USDValue_Vec4i extends SDKHandle {
      * init(_ x: Int, _ y: Int, _ z: Int, _ w: Int)
      * @availability iOS 27.0+
      */
-    static init946(x: number, y: number, z: number, w: number): USDValue_Vec4i;
+    static init2540(x: number, y: number, z: number, w: number): USDValue_Vec4i;
     /**
      * init(_ x: Int32, _ y: Int32, _ z: Int32, _ w: Int32)
      * @availability iOS 27.0+
      */
-    static init947(x: number, y: number, z: number, w: number): USDValue_Vec4i;
+    static init53398(x: number, y: number, z: number, w: number): USDValue_Vec4i;
     /**
      * init(_ simd: SIMD4<Int32>)
      * @availability iOS 27.0+
      */
-    static init948(simd: SDKHandle): USDValue_Vec4i;
+    static init1801(simd: SDKHandle): USDValue_Vec4i;
     /**
      * subscript(index: Int) -> Int32 { get set }
      * @availability iOS 27.0+

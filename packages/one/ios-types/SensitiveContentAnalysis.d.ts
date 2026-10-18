@@ -139,7 +139,7 @@ export declare class SCVideoStreamAnalyzer extends SDKHandle {
      * func beginAnalysis(of decompressionSession: VTDecompressionSession) throws
      * @availability iOS 26.0+
      */
-    beginAnalysisOf14(decompressionSession: _VideoToolbox_VTDecompressionSession): void;
+    beginAnalysisOf33840(decompressionSession: _VideoToolbox_VTDecompressionSession): void;
     /**
      * func continueStream()
      * @availability iOS 26.0+

@@ -15,41 +15,40 @@ type $SDK12 = NSFetchRequest<Implements<NSFetchRequestResult> | SDKHandle>;
 type $SDK13 = Array<NSManagedObjectID>;
 type $SDK14 = NSFetchRequest<SDKHandle>;
 type $SDK15 = Array<Record<string, unknown>>;
-type $SDK18 = (NSEntityDescription) | null;
-type $SDK21 = (Array<Record<string, unknown>>) | null;
-type $SDK23 = (NSManagedObject) | null;
-type $SDK28 = (NSPersistentHistoryToken) | null;
-type $SDK29 = (((arg0: NSStagedMigrationManager, arg1: NSCustomMigrationStage) => Promise<void>)) | null;
-type $SDK30 = (((arg0: NSStagedMigrationManager, arg1: NSCustomMigrationStage) => void)) | null;
-type $SDK31 = (_Foundation_NSExpression) | null;
-type $SDK34 = Array<NSFetchIndexDescription>;
-type $SDK38 = Array<NSEntityDescription>;
-type $SDK39 = Record<string, NSEntityDescription>;
-type $SDK40 = (Array<NSPropertyMapping>) | null;
-type $SDK41 = (NSFetchRequest<SDKHandle>) | null;
-type $SDK42 = (NSFetchRequest<Implements<NSFetchRequestResult> | SDKHandle>) | null;
-type $SDK43 = NSFetchedResultsController<SDKHandle>;
-type $SDK44 = (_Foundation_IndexPath) | null;
-type $SDK46 = Array<NSFetchIndexElementDescription>;
-type $SDK48 = (NSPropertyDescription) | null;
-type $SDK49 = (NSManagedObjectContext) | null;
-type $SDK52 = (NSQueryGenerationToken) | null;
-type $SDK53 = (_Foundation_UndoManager) | null;
-type $SDK62 = (NSManagedObjectModel) | null;
-type $SDK63 = (Array<_Foundation_Bundle>) | null;
-type $SDK69 = (Record<string, string>) | null;
-type $SDK71 = (Array<NSEntityMapping>) | null;
-type $SDK74 = (Array<NSManagedObject>) | null;
-type $SDK75 = ((arg0: NSPersistentStoreDescription, arg1: (NativeError) | null) => void);
-type $SDK77 = Array<NSPersistentStoreDescription>;
-type $SDK81 = (NSPersistentHistoryTransaction) | null;
-type $SDK87 = Array<NSPersistentStore>;
-type $SDK89 = ({
+type $SDK17 = (NSEntityDescription) | null;
+type $SDK19 = (Array<Record<string, unknown>>) | null;
+type $SDK21 = (NSManagedObject) | null;
+type $SDK26 = (NSPersistentHistoryToken) | null;
+type $SDK27 = (((arg0: NSStagedMigrationManager, arg1: NSCustomMigrationStage) => Promise<void>)) | null;
+type $SDK28 = (_Foundation_NSExpression) | null;
+type $SDK31 = Array<NSFetchIndexDescription>;
+type $SDK35 = Array<NSEntityDescription>;
+type $SDK36 = Record<string, NSEntityDescription>;
+type $SDK37 = (Array<NSPropertyMapping>) | null;
+type $SDK38 = (NSFetchRequest<SDKHandle>) | null;
+type $SDK39 = (NSFetchRequest<Implements<NSFetchRequestResult> | SDKHandle>) | null;
+type $SDK40 = NSFetchedResultsController<SDKHandle>;
+type $SDK41 = (_Foundation_IndexPath) | null;
+type $SDK43 = Array<NSFetchIndexElementDescription>;
+type $SDK45 = (NSPropertyDescription) | null;
+type $SDK46 = (NSManagedObjectContext) | null;
+type $SDK49 = (NSQueryGenerationToken) | null;
+type $SDK50 = (_Foundation_UndoManager) | null;
+type $SDK59 = (NSManagedObjectModel) | null;
+type $SDK60 = (Array<_Foundation_Bundle>) | null;
+type $SDK66 = (Record<string, string>) | null;
+type $SDK68 = (Array<NSEntityMapping>) | null;
+type $SDK71 = (Array<NSManagedObject>) | null;
+type $SDK72 = ((arg0: NSPersistentStoreDescription, arg1: (NativeError) | null) => void);
+type $SDK74 = Array<NSPersistentStoreDescription>;
+type $SDK78 = (NSPersistentHistoryTransaction) | null;
+type $SDK84 = Array<NSPersistentStore>;
+type $SDK86 = ({
     "oldValue": NSPersistentStore;
     "newValue": NSPersistentStore;
 }) | null;
-type $SDK92 = (NSPersistentCloudKitContainerOptions) | null;
-type $SDK94 = (NSRelationshipDescription) | null;
+type $SDK89 = (NSPersistentCloudKitContainerOptions) | null;
+type $SDK91 = (NSRelationshipDescription) | null;
 export declare class CocoaError extends SDKHandle {
     /**
      * static var managedObjectMergeError: CocoaError.Code { get }
@@ -430,7 +429,7 @@ export declare class CocoaError extends SDKHandle {
      * var persistentStoreSaveConflicts: [NSMergeConflict]? { get }
      * @availability iOS 3.0+
      */
-    get persistentStoreSaveConflicts976(): (Array<NSMergeConflict>) | null;
+    get persistentStoreSaveConflicts38738(): (Array<NSMergeConflict>) | null;
     /**
      * static var persistentStoreIncompleteSave: CocoaError.Code { get }
      * @availability iOS 3.0+
@@ -1534,12 +1533,11 @@ export declare class NSBatchInsertRequest extends NSBatchInsertRequest_base {
      * @availability iOS 14.0+
      */
     get dictionaryHandler(): (((arg0: _Foundation_NSMutableDictionary) => Promise<boolean>)) | null;
-    set dictionaryHandler(value: (((arg0: _Foundation_NSMutableDictionary) => boolean)) | null);
     /**
      * var entity: NSEntityDescription? { get }
      * @availability iOS 13.0+
      */
-    get entity(): $SDK18;
+    get entity(): $SDK17;
     /**
      * var entityName: String { get }
      * @availability iOS 13.0+
@@ -1550,13 +1548,12 @@ export declare class NSBatchInsertRequest extends NSBatchInsertRequest_base {
      * @availability iOS 14.0+
      */
     get managedObjectHandler(): (((arg0: NSManagedObject) => Promise<boolean>)) | null;
-    set managedObjectHandler(value: (((arg0: NSManagedObject) => boolean)) | null);
     /**
      * var objectsToInsert: [[String : Any]]? { get set }
      * @availability iOS 13.0+
      */
-    get objectsToInsert(): $SDK21;
-    set objectsToInsert(value: $SDK21);
+    get objectsToInsert(): $SDK19;
+    set objectsToInsert(value: $SDK19);
     /**
      * var resultType: NSBatchInsertRequestResultType { get set }
      * @availability iOS 13.0+
@@ -1705,7 +1702,7 @@ export declare class NSConstraintConflict extends SDKHandle {
      * init(constraint contraint: [String], database databaseObject: NSManagedObject?, databaseSnapshot: [AnyHashable : Any]?, conflicting conflictingObjects: [NSManagedObject], conflictingSnapshots: [Any])
      * @availability iOS 9.0+
      */
-    static initConstraintDatabaseDatabaseSnapshotConflictingConflictingSnapshots(contraint: Array<string>, databaseObject: $SDK23, databaseSnapshot: $SDK6, conflictingObjects: Array<NSManagedObject>, conflictingSnapshots: Array<unknown>): NSConstraintConflict;
+    static initConstraintDatabaseDatabaseSnapshotConflictingConflictingSnapshots(contraint: Array<string>, databaseObject: $SDK21, databaseSnapshot: $SDK6, conflictingObjects: Array<NSManagedObject>, conflictingSnapshots: Array<unknown>): NSConstraintConflict;
     /**
      * var conflictingObjects: [NSManagedObject] { get }
      * @availability iOS 9.0+
@@ -1730,7 +1727,7 @@ export declare class NSConstraintConflict extends SDKHandle {
      * var databaseObject: NSManagedObject? { get }
      * @availability iOS 9.0+
      */
-    get databaseObject(): $SDK23;
+    get databaseObject(): $SDK21;
     /**
      * var databaseSnapshot: [String : Any]? { get }
      * @availability iOS 9.0+
@@ -1818,7 +1815,7 @@ export declare class NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage exten
      * let historyToken: NSPersistentHistoryToken?
      * @availability iOS 27.0+
      */
-    get historyToken(): $SDK28;
+    get historyToken(): $SDK26;
     /**
      * static func makeNotification(_ message: NSCoreDataCoreSpotlightDelegate.IndexDidUpdateMessage) -> Notification
      * @availability iOS 27.0+
@@ -1879,14 +1876,12 @@ export declare class NSCustomMigrationStage extends NSCustomMigrationStage_base 
      * var didMigrateHandler: ((NSStagedMigrationManager, NSCustomMigrationStage) throws -> Void)? { get set }
      * @availability iOS 17.0+
      */
-    get didMigrateHandler(): $SDK29;
-    set didMigrateHandler(value: $SDK30);
+    get didMigrateHandler(): $SDK27;
     /**
      * var willMigrateHandler: ((NSStagedMigrationManager, NSCustomMigrationStage) throws -> Void)? { get set }
      * @availability iOS 17.0+
      */
-    get willMigrateHandler(): $SDK29;
-    set willMigrateHandler(value: $SDK30);
+    get willMigrateHandler(): $SDK27;
 }
 /** enum NSDeleteRule */
 export type NSDeleteRule = "noActionDeleteRule" | "nullifyDeleteRule" | "cascadeDeleteRule" | "denyDeleteRule";
@@ -1906,8 +1901,8 @@ export declare class NSDerivedAttributeDescription extends NSDerivedAttributeDes
      * var derivationExpression: NSExpression? { get set }
      * @availability iOS 13.0+
      */
-    get derivationExpression(): $SDK31;
-    set derivationExpression(value: $SDK31);
+    get derivationExpression(): $SDK28;
+    set derivationExpression(value: $SDK28);
 }
 /**
  * class NSEntityDescription
@@ -1918,7 +1913,7 @@ export declare class NSEntityDescription extends SDKHandle {
      * class func entity(forEntityName entityName: String, in context: NSManagedObjectContext) -> NSEntityDescription?
      * @availability iOS 3.0+
      */
-    static entity(entityName: string, context: NSManagedObjectContext): $SDK18;
+    static entity(entityName: string, context: NSManagedObjectContext): $SDK17;
     /**
      * class func insertNewObject(forEntityName entityName: String, into context: NSManagedObjectContext) -> NSManagedObject
      * @availability iOS 3.0+
@@ -1964,8 +1959,8 @@ export declare class NSEntityDescription extends SDKHandle {
      * var indexes: [NSFetchIndexDescription] { get set }
      * @availability iOS 11.0+
      */
-    get indexes(): $SDK34;
-    set indexes(value: $SDK34);
+    get indexes(): $SDK31;
+    set indexes(value: $SDK31);
     /**
      * var managedObjectClassName: String! { get set }
      * @availability iOS 3.0+
@@ -2009,18 +2004,18 @@ export declare class NSEntityDescription extends SDKHandle {
      * var subentities: [NSEntityDescription] { get set }
      * @availability iOS 3.0+
      */
-    get subentities(): $SDK38;
-    set subentities(value: $SDK38);
+    get subentities(): $SDK35;
+    set subentities(value: $SDK35);
     /**
      * var subentitiesByName: [String : NSEntityDescription] { get }
      * @availability iOS 3.0+
      */
-    get subentitiesByName(): $SDK39;
+    get subentitiesByName(): $SDK36;
     /**
      * unowned(unsafe) var superentity: NSEntityDescription? { get }
      * @availability iOS 3.0+
      */
-    get superentity(): $SDK18;
+    get superentity(): $SDK17;
     /**
      * var uniquenessConstraints: [[Any]] { get set }
      * @availability iOS 9.0+
@@ -2056,8 +2051,8 @@ export declare class NSEntityMapping extends SDKHandle {
      * var attributeMappings: [NSPropertyMapping]? { get set }
      * @availability iOS 3.0+
      */
-    get attributeMappings(): $SDK40;
-    set attributeMappings(value: $SDK40);
+    get attributeMappings(): $SDK37;
+    set attributeMappings(value: $SDK37);
     /**
      * var destinationEntityName: String? { get set }
      * @availability iOS 3.0+
@@ -2092,8 +2087,8 @@ export declare class NSEntityMapping extends SDKHandle {
      * var relationshipMappings: [NSPropertyMapping]? { get set }
      * @availability iOS 3.0+
      */
-    get relationshipMappings(): $SDK40;
-    set relationshipMappings(value: $SDK40);
+    get relationshipMappings(): $SDK37;
+    set relationshipMappings(value: $SDK37);
     /**
      * var sourceEntityName: String? { get set }
      * @availability iOS 3.0+
@@ -2110,8 +2105,8 @@ export declare class NSEntityMapping extends SDKHandle {
      * var sourceExpression: NSExpression? { get set }
      * @availability iOS 3.0+
      */
-    get sourceExpression(): $SDK31;
-    set sourceExpression(value: $SDK31);
+    get sourceExpression(): $SDK28;
+    set sourceExpression(value: $SDK28);
     /**
      * var userInfo: [AnyHashable : Any]? { get set }
      * @availability iOS 3.0+
@@ -2180,8 +2175,8 @@ export declare class NSExpressionDescription extends NSExpressionDescription_bas
      * var expression: NSExpression? { get set }
      * @availability iOS 3.0+
      */
-    get expression(): $SDK31;
-    set expression(value: $SDK31);
+    get expression(): $SDK28;
+    set expression(value: $SDK28);
     /**
      * var expressionResultType: NSAttributeType { get set }
      * @availability iOS 3.0+
@@ -2207,8 +2202,8 @@ export declare class NSFetchedPropertyDescription extends NSFetchedPropertyDescr
      * var fetchRequest: NSFetchRequest<any NSFetchRequestResult>? { get set }
      * @availability iOS 3.0+
      */
-    get fetchRequest(): $SDK41;
-    set fetchRequest(value: $SDK42);
+    get fetchRequest(): $SDK38;
+    set fetchRequest(value: $SDK39);
 }
 /**
  * enum NSFetchedResultsChangeType
@@ -2234,27 +2229,27 @@ export interface NSFetchedResultsControllerDelegate {
      * optional func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshot)
      * @availability iOS 13.0+
      */
-    "controllerDidChangeContentWith"?: (arg0: $SDK43, arg1: _UIKit_NSDiffableDataSourceSnapshotReference | SDKHandle) => void;
+    "controllerDidChangeContentWith"?: (arg0: $SDK40, arg1: _UIKit_NSDiffableDataSourceSnapshotReference | SDKHandle) => void;
     /**
      * optional func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?)
      * @availability iOS 8.0+
      */
-    "controllerDidChangeAtForNewIndexPath"?: (arg0: $SDK43, arg1: unknown, arg2: $SDK44, arg3: NSFetchedResultsChangeType, arg4: $SDK44) => void;
+    "controllerDidChangeAtForNewIndexPath"?: (arg0: $SDK40, arg1: unknown, arg2: $SDK41, arg3: NSFetchedResultsChangeType, arg4: $SDK41) => void;
     /**
      * optional func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChange sectionInfo: any NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType)
      * @availability iOS 3.0+
      */
-    "controllerDidChangeAtSectionIndexFor"?: (arg0: $SDK43, arg1: SDKHandle, arg2: number, arg3: NSFetchedResultsChangeType) => void;
+    "controllerDidChangeAtSectionIndexFor"?: (arg0: $SDK40, arg1: SDKHandle, arg2: number, arg3: NSFetchedResultsChangeType) => void;
     /**
      * optional func controllerWillChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>)
      * @availability iOS 3.0+
      */
-    "controllerWillChangeContent"?: (arg0: $SDK43) => void;
+    "controllerWillChangeContent"?: (arg0: $SDK40) => void;
     /**
      * optional func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>)
      * @availability iOS 3.0+
      */
-    "controllerDidChangeContent"?: (arg0: $SDK43) => void;
+    "controllerDidChangeContent"?: (arg0: $SDK40) => void;
 }
 /** protocol NSFetchedResultsSectionInfo */
 export interface NSFetchedResultsSectionInfo {
@@ -2275,13 +2270,13 @@ export declare class NSFetchIndexDescription extends SDKHandle {
      * var elements: [NSFetchIndexElementDescription] { get set }
      * @availability iOS 11.0+
      */
-    get elements(): $SDK46;
-    set elements(value: $SDK46);
+    get elements(): $SDK43;
+    set elements(value: $SDK43);
     /**
      * unowned(unsafe) var entity: NSEntityDescription? { get }
      * @availability iOS 11.0+
      */
-    get entity(): $SDK18;
+    get entity(): $SDK17;
     /**
      * var name: String { get set }
      * @availability iOS 11.0+
@@ -2328,7 +2323,7 @@ export declare class NSFetchIndexElementDescription extends SDKHandle {
      * var property: NSPropertyDescription? { get }
      * @availability iOS 11.0+
      */
-    get property(): $SDK48;
+    get property(): $SDK45;
     /**
      * var propertyName: String? { get }
      * @availability iOS 11.0+
@@ -2419,7 +2414,7 @@ export declare class NSIncrementalStore extends NSIncrementalStore_base {
      * func execute(_ request: NSPersistentStoreRequest, with context: NSManagedObjectContext?) throws -> Any
      * @availability iOS 5.0+
      */
-    execute(request: NSPersistentStoreRequest, context?: $SDK49): unknown;
+    execute(request: NSPersistentStoreRequest, context?: $SDK46): unknown;
     /**
      * func loadMetadata() throws
      * @availability iOS 5.0+
@@ -2444,7 +2439,7 @@ export declare class NSIncrementalStore extends NSIncrementalStore_base {
      * func newValue(forRelationship relationship: NSRelationshipDescription, forObjectWith objectID: NSManagedObjectID, with context: NSManagedObjectContext?) throws -> Any
      * @availability iOS 5.0+
      */
-    newValue(relationship: NSRelationshipDescription, objectID: NSManagedObjectID, context?: $SDK49): unknown;
+    newValue(relationship: NSRelationshipDescription, objectID: NSManagedObjectID, context?: $SDK46): unknown;
     /**
      * func newValuesForObject(with objectID: NSManagedObjectID, with context: NSManagedObjectContext) throws -> NSIncrementalStoreNode
      * @availability iOS 5.0+
@@ -2602,7 +2597,7 @@ export declare class NSManagedObject extends SDKHandle {
      * init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?)
      * @availability iOS 3.0+
      */
-    static initEntityInsertInto(entity: NSEntityDescription, context?: $SDK49): NSManagedObject;
+    static initEntityInsertInto(entity: NSEntityDescription, context?: $SDK46): NSManagedObject;
     /**
      * func objectIDs(forRelationshipNamed key: String) -> [NSManagedObjectID]
      * @availability iOS 8.3+
@@ -2692,7 +2687,7 @@ export declare class NSManagedObject extends SDKHandle {
      * var entity: NSEntityDescription { get }
      * @availability iOS 3.0+
      */
-    get entity443(): NSEntityDescription;
+    get entity2423(): NSEntityDescription;
     /**
      * var isFault: Bool { get }
      * @availability iOS 3.0+
@@ -2722,7 +2717,7 @@ export declare class NSManagedObject extends SDKHandle {
      * unowned(unsafe) var managedObjectContext: NSManagedObjectContext? { get }
      * @availability iOS 3.0+
      */
-    get managedObjectContext(): $SDK49;
+    get managedObjectContext(): $SDK46;
     /**
      * var objectID: NSManagedObjectID { get }
      * @availability iOS 3.0+
@@ -2826,7 +2821,7 @@ export declare class NSManagedObjectContext extends SDKHandle {
      * func registeredObject(for objectID: NSManagedObjectID) -> NSManagedObject?
      * @availability iOS 3.0+
      */
-    registeredObject(objectID: NSManagedObjectID): $SDK23;
+    registeredObject(objectID: NSManagedObjectID): $SDK21;
     /**
      * func object(with objectID: NSManagedObjectID) -> NSManagedObject
      * @availability iOS 3.0+
@@ -2891,12 +2886,12 @@ export declare class NSManagedObjectContext extends SDKHandle {
      * func setQueryGenerationFrom(_ generation: NSQueryGenerationToken?) throws
      * @availability iOS 10.0+
      */
-    setQueryGenerationFrom(generation?: $SDK52): void;
+    setQueryGenerationFrom(generation?: $SDK49): void;
     /**
      * func shouldHandleInaccessibleFault(_ fault: NSManagedObject, for oid: NSManagedObjectID, triggeredByProperty property: NSPropertyDescription?) -> Bool
      * @availability iOS 9.0+
      */
-    shouldHandleInaccessibleFault(fault: NSManagedObject, oid: NSManagedObjectID, property?: $SDK48): boolean;
+    shouldHandleInaccessibleFault(fault: NSManagedObject, oid: NSManagedObjectID, property?: $SDK45): boolean;
     /**
      * func tryLock() -> Bool
      * @availability iOS 3.0+
@@ -2956,8 +2951,8 @@ export declare class NSManagedObjectContext extends SDKHandle {
      * var parent: NSManagedObjectContext? { get set }
      * @availability iOS 5.0+
      */
-    get parent(): $SDK49;
-    set parent(value: $SDK49);
+    get parent(): $SDK46;
+    set parent(value: $SDK46);
     /**
      * var persistentStoreCoordinator: NSPersistentStoreCoordinator? { get set }
      * @availability iOS 3.0+
@@ -2974,7 +2969,7 @@ export declare class NSManagedObjectContext extends SDKHandle {
      * var queryGenerationToken: NSQueryGenerationToken? { get }
      * @availability iOS 10.0+
      */
-    get queryGenerationToken(): $SDK52;
+    get queryGenerationToken(): $SDK49;
     /**
      * var registeredObjects: Set<NSManagedObject> { get }
      * @availability iOS 3.0+
@@ -3008,8 +3003,8 @@ export declare class NSManagedObjectContext extends SDKHandle {
      * var undoManager: UndoManager? { get set }
      * @availability iOS 3.0+
      */
-    get undoManager(): $SDK53;
-    set undoManager(value: $SDK53);
+    get undoManager(): $SDK50;
+    set undoManager(value: $SDK50);
     /**
      * var updatedObjects: Set<NSManagedObject> { get }
      * @availability iOS 3.0+
@@ -3034,7 +3029,7 @@ export declare class NSManagedObjectContext extends SDKHandle {
      * @preconcurrency nonisolated func performAndWait<T>(_ block: @Sendable () throws -> T) rethrows -> T
      * @availability iOS 15.0+
      */
-    performAndWait1066(block: (() => unknown)): unknown;
+    performAndWait17958(block: (() => unknown)): unknown;
     /**
      * static let didSaveObjectsNotification: Notification.Name
      * @availability iOS 3.0+
@@ -3059,7 +3054,7 @@ export declare class NSManagedObjectContext extends SDKHandle {
      * nonisolated convenience init(_ type: NSManagedObjectContext.ConcurrencyType)
      * @availability iOS 15.0+
      */
-    static init1114(type: NSManagedObjectContext_ConcurrencyType): NSManagedObjectContext;
+    static init96570(type: NSManagedObjectContext_ConcurrencyType): NSManagedObjectContext;
 }
 /**
  * struct ConcurrencyType
@@ -3123,7 +3118,7 @@ export declare class NSManagedObjectContext_DidMergeChangesAsyncMessage extends 
      * let historyToken: NSPersistentHistoryToken?
      * @availability iOS 27.0+
      */
-    get historyToken(): $SDK28;
+    get historyToken(): $SDK26;
     /**
      * let refreshedIDs: Set<NSManagedObjectID>
      * @availability iOS 27.0+
@@ -3138,7 +3133,7 @@ export declare class NSManagedObjectContext_DidMergeChangesAsyncMessage extends 
      * let queryGeneration: NSQueryGenerationToken?
      * @availability iOS 27.0+
      */
-    get queryGeneration(): $SDK52;
+    get queryGeneration(): $SDK49;
     /**
      * static func makeNotification(_ message: NSManagedObjectContext.DidMergeChangesAsyncMessage) -> Notification
      * @availability iOS 27.0+
@@ -3189,7 +3184,7 @@ export declare class NSManagedObjectContext_DidMergeChangesMessage extends SDKHa
      * let historyToken: NSPersistentHistoryToken?
      * @availability iOS 27.0+
      */
-    get historyToken(): $SDK28;
+    get historyToken(): $SDK26;
     /**
      * let refreshedIDs: Set<NSManagedObjectID>
      * @availability iOS 27.0+
@@ -3204,7 +3199,7 @@ export declare class NSManagedObjectContext_DidMergeChangesMessage extends SDKHa
      * let queryGeneration: NSQueryGenerationToken?
      * @availability iOS 27.0+
      */
-    get queryGeneration(): $SDK52;
+    get queryGeneration(): $SDK49;
     /**
      * @MainActor static func makeNotification(_ message: NSManagedObjectContext.DidMergeChangesMessage) -> Notification
      * @availability iOS 27.0+
@@ -3240,12 +3235,12 @@ export declare class NSManagedObjectContext_DidSaveMessage extends SDKHandle {
      * let historyToken: NSPersistentHistoryToken?
      * @availability iOS 27.0+
      */
-    get historyToken(): $SDK28;
+    get historyToken(): $SDK26;
     /**
      * let queryGeneration: NSQueryGenerationToken?
      * @availability iOS 27.0+
      */
-    get queryGeneration(): $SDK52;
+    get queryGeneration(): $SDK49;
     /**
      * @MainActor static func makeNotification(_ message: NSManagedObjectContext.DidSaveMessage) -> Notification
      * @availability iOS 27.0+
@@ -3321,12 +3316,12 @@ export declare class NSManagedObjectContext_DidSaveObjectIDsAsyncMessage extends
      * let historyToken: NSPersistentHistoryToken?
      * @availability iOS 27.0+
      */
-    get historyToken(): $SDK28;
+    get historyToken(): $SDK26;
     /**
      * let queryGeneration: NSQueryGenerationToken?
      * @availability iOS 27.0+
      */
-    get queryGeneration(): $SDK52;
+    get queryGeneration(): $SDK49;
     /**
      * static func makeNotification(_ message: NSManagedObjectContext.DidSaveObjectIDsAsyncMessage) -> Notification
      * @availability iOS 27.0+
@@ -3387,12 +3382,12 @@ export declare class NSManagedObjectContext_DidSaveObjectIDsMessage extends SDKH
      * let historyToken: NSPersistentHistoryToken?
      * @availability iOS 27.0+
      */
-    get historyToken(): $SDK28;
+    get historyToken(): $SDK26;
     /**
      * let queryGeneration: NSQueryGenerationToken?
      * @availability iOS 27.0+
      */
-    get queryGeneration(): $SDK52;
+    get queryGeneration(): $SDK49;
     /**
      * @MainActor static func makeNotification(_ message: NSManagedObjectContext.DidSaveObjectIDsMessage) -> Notification
      * @availability iOS 27.0+
@@ -3582,12 +3577,12 @@ export declare class NSManagedObjectModel extends SDKHandle {
      * class func mergedModel(from bundles: [Bundle]?) -> NSManagedObjectModel?
      * @availability iOS 3.0+
      */
-    static mergedModelFrom(bundles?: $SDK63): $SDK62;
+    static mergedModelFrom(bundles?: $SDK60): $SDK59;
     /**
      * class func mergedModel(from bundles: [Bundle]?, forStoreMetadata metadata: [String : Any]) -> NSManagedObjectModel?
      * @availability iOS 3.0+
      */
-    static mergedModelFromForStoreMetadata(bundles: $SDK63, metadata: Record<string, unknown>): $SDK62;
+    static mergedModelFromForStoreMetadata(bundles: $SDK60, metadata: Record<string, unknown>): $SDK59;
     /**
      * init?(byMerging models: [NSManagedObjectModel]?)
      * @availability iOS 3.0+
@@ -3607,12 +3602,12 @@ export declare class NSManagedObjectModel extends SDKHandle {
      * func fetchRequestFromTemplate(withName name: String, substitutionVariables variables: [String : Any]) -> NSFetchRequest<any NSFetchRequestResult>?
      * @availability iOS 3.0+
      */
-    fetchRequestFromTemplate(name: string, variables: Record<string, unknown>): $SDK41;
+    fetchRequestFromTemplate(name: string, variables: Record<string, unknown>): $SDK38;
     /**
      * func fetchRequestTemplate(forName name: String) -> NSFetchRequest<any NSFetchRequestResult>?
      * @availability iOS 3.0+
      */
-    fetchRequestTemplate(name: string): $SDK41;
+    fetchRequestTemplate(name: string): $SDK38;
     /**
      * init()
      * @availability iOS 3.0+
@@ -3632,12 +3627,12 @@ export declare class NSManagedObjectModel extends SDKHandle {
      * func setEntities(_ entities: [NSEntityDescription], forConfigurationName configuration: String)
      * @availability iOS 3.0+
      */
-    setEntities(entities: $SDK38, configuration: string): void;
+    setEntities(entities: $SDK35, configuration: string): void;
     /**
      * func setFetchRequestTemplate(_ fetchRequestTemplate: NSFetchRequest<any NSFetchRequestResult>?, forName name: String)
      * @availability iOS 3.0+
      */
-    setFetchRequestTemplate(fetchRequestTemplate: $SDK42, name: string): void;
+    setFetchRequestTemplate(fetchRequestTemplate: $SDK39, name: string): void;
     /**
      * var configurations: [String] { get }
      * @availability iOS 3.0+
@@ -3647,13 +3642,13 @@ export declare class NSManagedObjectModel extends SDKHandle {
      * var entities: [NSEntityDescription] { get set }
      * @availability iOS 3.0+
      */
-    get entities(): $SDK38;
-    set entities(value: $SDK38);
+    get entities(): $SDK35;
+    set entities(value: $SDK35);
     /**
      * var entitiesByName: [String : NSEntityDescription] { get }
      * @availability iOS 3.0+
      */
-    get entitiesByName(): $SDK39;
+    get entitiesByName(): $SDK36;
     /**
      * var entityVersionHashesByName: [String : Data] { get }
      * @availability iOS 3.0+
@@ -3668,8 +3663,8 @@ export declare class NSManagedObjectModel extends SDKHandle {
      * var localizationDictionary: [String : String]? { get set }
      * @availability iOS 3.0+
      */
-    get localizationDictionary(): $SDK69;
-    set localizationDictionary(value: $SDK69);
+    get localizationDictionary(): $SDK66;
+    set localizationDictionary(value: $SDK66);
     /**
      * var versionChecksum: String { get }
      * @availability iOS 17.0+
@@ -3732,7 +3727,7 @@ export declare class NSMappingModel extends SDKHandle {
      * init?(from bundles: [Bundle]?, forSourceModel sourceModel: NSManagedObjectModel?, destinationModel: NSManagedObjectModel?)
      * @availability iOS 3.0+
      */
-    static initFromForSourceModelDestinationModel(bundles?: $SDK63, sourceModel?: $SDK62, destinationModel?: $SDK62): (NSMappingModel) | null;
+    static initFromForSourceModelDestinationModel(bundles?: $SDK60, sourceModel?: $SDK59, destinationModel?: $SDK59): (NSMappingModel) | null;
     /** init() */
     static init(): NSMappingModel;
     /**
@@ -3744,8 +3739,8 @@ export declare class NSMappingModel extends SDKHandle {
      * var entityMappings: [NSEntityMapping]! { get set }
      * @availability iOS 3.0+
      */
-    get entityMappings(): $SDK71;
-    set entityMappings(value: $SDK71);
+    get entityMappings(): $SDK68;
+    set entityMappings(value: $SDK68);
     /**
      * var entityMappingsByName: [String : NSEntityMapping] { get }
      * @availability iOS 3.0+
@@ -3874,12 +3869,12 @@ export declare class NSMigrationManager extends SDKHandle {
      * func destinationEntity(for mEntity: NSEntityMapping) -> NSEntityDescription?
      * @availability iOS 3.0+
      */
-    destinationEntity(mEntity: NSEntityMapping): $SDK18;
+    destinationEntity(mEntity: NSEntityMapping): $SDK17;
     /**
      * func destinationInstances(forEntityMappingName mappingName: String, sourceInstances: [NSManagedObject]?) -> [NSManagedObject]
      * @availability iOS 3.0+
      */
-    destinationInstances(mappingName: string, sourceInstances?: $SDK74): Array<NSManagedObject>;
+    destinationInstances(mappingName: string, sourceInstances?: $SDK71): Array<NSManagedObject>;
     /** init() */
     static init(): NSMigrationManager;
     /**
@@ -3901,12 +3896,12 @@ export declare class NSMigrationManager extends SDKHandle {
      * func sourceEntity(for mEntity: NSEntityMapping) -> NSEntityDescription?
      * @availability iOS 3.0+
      */
-    sourceEntity(mEntity: NSEntityMapping): $SDK18;
+    sourceEntity(mEntity: NSEntityMapping): $SDK17;
     /**
      * func sourceInstances(forEntityMappingName mappingName: String, destinationInstances: [NSManagedObject]?) -> [NSManagedObject]
      * @availability iOS 3.0+
      */
-    sourceInstances(mappingName: string, destinationInstances?: $SDK74): Array<NSManagedObject>;
+    sourceInstances(mappingName: string, destinationInstances?: $SDK71): Array<NSManagedObject>;
     /**
      * var currentEntityMapping: NSEntityMapping { get }
      * @availability iOS 3.0+
@@ -4044,7 +4039,7 @@ export declare class NSPersistentContainer extends SDKHandle {
      * func loadPersistentStores(completionHandler block: @escaping (NSPersistentStoreDescription, (any Error)?) -> Void)
      * @availability iOS 10.0+
      */
-    loadPersistentStores(block: $SDK75): void;
+    loadPersistentStores(block: $SDK72): void;
     /**
      * func newBackgroundContext() -> NSManagedObjectContext
      * @availability iOS 10.0+
@@ -4074,8 +4069,8 @@ export declare class NSPersistentContainer extends SDKHandle {
      * var persistentStoreDescriptions: [NSPersistentStoreDescription] { get set }
      * @availability iOS 10.0+
      */
-    get persistentStoreDescriptions(): $SDK77;
-    set persistentStoreDescriptions(value: $SDK77);
+    get persistentStoreDescriptions(): $SDK74;
+    set persistentStoreDescriptions(value: $SDK74);
     /**
      * var viewContext: NSManagedObjectContext { get }
      * @availability iOS 10.0+
@@ -4085,7 +4080,7 @@ export declare class NSPersistentContainer extends SDKHandle {
      * class var defaultDirectoryURL: URL { get }
      * @availability iOS 15.0+
      */
-    static get defaultDirectoryURL1006(): string;
+    static get defaultDirectoryURL18515(): string;
 }
 declare const NSPersistentCloudKitContainer_base: Omit<typeof NSPersistentContainer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentContainer);
 /**
@@ -4225,7 +4220,7 @@ export declare class NSPersistentCloudKitContainerEventRequest extends NSPersist
      * class func fetchEvents(after event: NSPersistentCloudKitContainer.Event?) -> Self
      * @availability iOS 14.0+
      */
-    static fetchEventsAfter608(event?: (NSPersistentCloudKitContainer_Event) | null): NSPersistentCloudKitContainerEventRequest;
+    static fetchEventsAfter78992(event?: (NSPersistentCloudKitContainer_Event) | null): NSPersistentCloudKitContainerEventRequest;
     /**
      * class func fetchEvents(matchingFetch fetchRequest: NSFetchRequest<any NSFetchRequestResult>) -> Self
      * @availability iOS 14.0+
@@ -4308,17 +4303,17 @@ export declare class NSPersistentHistoryChange extends SDKHandle {
      * class func entityDescription(with context: NSManagedObjectContext) -> NSEntityDescription?
      * @availability iOS 13.0+
      */
-    static entityDescriptionWith(context: NSManagedObjectContext): $SDK18;
+    static entityDescriptionWith(context: NSManagedObjectContext): $SDK17;
     /**
      * class var entityDescription: NSEntityDescription? { get }
      * @availability iOS 13.0+
      */
-    static get entityDescription(): $SDK18;
+    static get entityDescription(): $SDK17;
     /**
      * class var fetchRequest: NSFetchRequest<any NSFetchRequestResult>? { get }
      * @availability iOS 13.0+
      */
-    static get fetchRequest(): $SDK41;
+    static get fetchRequest(): $SDK38;
     /** init() */
     static init(): NSPersistentHistoryChange;
     /**
@@ -4345,7 +4340,7 @@ export declare class NSPersistentHistoryChange extends SDKHandle {
      * var transaction: NSPersistentHistoryTransaction? { get }
      * @availability iOS 11.0+
      */
-    get transaction(): $SDK81;
+    get transaction(): $SDK78;
     /**
      * var updatedProperties: Set<NSPropertyDescription>? { get }
      * @availability iOS 11.0+
@@ -4367,12 +4362,12 @@ export declare class NSPersistentHistoryChangeRequest extends NSPersistentHistor
      * class func deleteHistory(before token: NSPersistentHistoryToken?) -> Self
      * @availability iOS 11.0+
      */
-    static deleteHistoryBefore642(token?: $SDK28): NSPersistentHistoryChangeRequest;
+    static deleteHistoryBefore69750(token?: $SDK26): NSPersistentHistoryChangeRequest;
     /**
      * class func deleteHistory(before transaction: NSPersistentHistoryTransaction?) -> Self
      * @availability iOS 11.0+
      */
-    static deleteHistoryBefore643(transaction?: $SDK81): NSPersistentHistoryChangeRequest;
+    static deleteHistoryBefore14581(transaction?: $SDK78): NSPersistentHistoryChangeRequest;
     /**
      * class func fetchHistory(after date: Date) -> Self
      * @availability iOS 11.0+
@@ -4382,12 +4377,12 @@ export declare class NSPersistentHistoryChangeRequest extends NSPersistentHistor
      * class func fetchHistory(after token: NSPersistentHistoryToken?) -> Self
      * @availability iOS 11.0+
      */
-    static fetchHistoryAfter645(token?: $SDK28): NSPersistentHistoryChangeRequest;
+    static fetchHistoryAfter57090(token?: $SDK26): NSPersistentHistoryChangeRequest;
     /**
      * class func fetchHistory(after transaction: NSPersistentHistoryTransaction?) -> Self
      * @availability iOS 11.0+
      */
-    static fetchHistoryAfter646(transaction?: $SDK81): NSPersistentHistoryChangeRequest;
+    static fetchHistoryAfter11593(transaction?: $SDK78): NSPersistentHistoryChangeRequest;
     /**
      * class func fetchHistory(withFetch fetchRequest: NSFetchRequest<any NSFetchRequestResult>) -> Self
      * @availability iOS 13.0+
@@ -4399,8 +4394,8 @@ export declare class NSPersistentHistoryChangeRequest extends NSPersistentHistor
      * var fetchRequest: NSFetchRequest<any NSFetchRequestResult>? { get set }
      * @availability iOS 13.0+
      */
-    get fetchRequest(): $SDK41;
-    set fetchRequest(value: $SDK42);
+    get fetchRequest(): $SDK38;
+    set fetchRequest(value: $SDK39);
     /**
      * var resultType: NSPersistentHistoryResultType { get set }
      * @availability iOS 11.0+
@@ -4411,7 +4406,7 @@ export declare class NSPersistentHistoryChangeRequest extends NSPersistentHistor
      * var token: NSPersistentHistoryToken? { get }
      * @availability iOS 11.0+
      */
-    get token(): $SDK28;
+    get token(): $SDK26;
 }
 /**
  * enum NSPersistentHistoryChangeType
@@ -4473,17 +4468,17 @@ export declare class NSPersistentHistoryTransaction extends SDKHandle {
      * class func entityDescription(with context: NSManagedObjectContext) -> NSEntityDescription?
      * @availability iOS 13.0+
      */
-    static entityDescriptionWith(context: NSManagedObjectContext): $SDK18;
+    static entityDescriptionWith(context: NSManagedObjectContext): $SDK17;
     /**
      * class var entityDescription: NSEntityDescription? { get }
      * @availability iOS 13.0+
      */
-    static get entityDescription(): $SDK18;
+    static get entityDescription(): $SDK17;
     /**
      * class var fetchRequest: NSFetchRequest<any NSFetchRequestResult>? { get }
      * @availability iOS 13.0+
      */
-    static get fetchRequest(): $SDK41;
+    static get fetchRequest(): $SDK38;
     /** init() */
     static init(): NSPersistentHistoryTransaction;
     /**
@@ -4634,7 +4629,7 @@ export declare class NSPersistentStoreCoordinator extends SDKHandle {
      * func addPersistentStore(with storeDescription: NSPersistentStoreDescription, completionHandler block: @escaping (NSPersistentStoreDescription, (any Error)?) -> Void)
      * @availability iOS 10.0+
      */
-    addPersistentStoreWithCompletionHandler(storeDescription: NSPersistentStoreDescription, block: $SDK75): void;
+    addPersistentStoreWithCompletionHandler(storeDescription: NSPersistentStoreDescription, block: $SDK72): void;
     /**
      * func addPersistentStore(ofType storeType: String, configurationName configuration: String?, at storeURL: URL?, options: [AnyHashable : Any]? = nil) throws -> NSPersistentStore
      * @availability iOS 3.0+
@@ -4644,7 +4639,7 @@ export declare class NSPersistentStoreCoordinator extends SDKHandle {
      * func currentPersistentHistoryToken(fromStores stores: [Any]?) -> NSPersistentHistoryToken?
      * @availability iOS 12.0+
      */
-    currentPersistentHistoryToken(stores?: (Array<unknown>) | null): $SDK28;
+    currentPersistentHistoryToken(stores?: (Array<unknown>) | null): $SDK26;
     /**
      * func destroyPersistentStore(at url: URL, ofType storeType: String, options: [AnyHashable : Any]? = nil) throws
      * @availability iOS 9.0+
@@ -4755,7 +4750,7 @@ export declare class NSPersistentStoreCoordinator extends SDKHandle {
      * var persistentStores: [NSPersistentStore] { get }
      * @availability iOS 3.0+
      */
-    get persistentStores(): $SDK87;
+    get persistentStores(): $SDK84;
     /**
      * func addPersistentStore(type: NSPersistentStore.StoreType, configuration: String? = nil, at storeURL: URL, options: [AnyHashable : Any]? = nil) throws -> NSPersistentStore
      * @availability iOS 15.0+
@@ -4795,7 +4790,7 @@ export declare class NSPersistentStoreCoordinator extends SDKHandle {
      * @preconcurrency func performAndWait<T>(_ block: @Sendable () throws -> T) rethrows -> T
      * @availability iOS 15.0+
      */
-    performAndWait1129(block: (() => unknown)): unknown;
+    performAndWait483(block: (() => unknown)): unknown;
     /**
      * func managedObjectID(for string: String) -> NSManagedObjectID?
      * @availability iOS 18.0+
@@ -4821,7 +4816,7 @@ export declare class NSPersistentStoreCoordinator_RemoteChangeMessage extends SD
      * let historyToken: NSPersistentHistoryToken?
      * @availability iOS 27.0+
      */
-    get historyToken(): $SDK28;
+    get historyToken(): $SDK26;
     /**
      * static func makeNotification(_ message: NSPersistentStoreCoordinator.RemoteChangeMessage) -> Notification
      * @availability iOS 27.0+
@@ -4862,7 +4857,7 @@ export declare class NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage ex
      * var uuidChangedStores: (oldValue: NSPersistentStore, newValue: NSPersistentStore)? { get }
      * @availability iOS 27.0+
      */
-    get uuidChangedStores(): $SDK89;
+    get uuidChangedStores(): $SDK86;
     /**
      * static func makeMessage(_ notification: Notification) -> NSPersistentStoreCoordinator.StoresDidChangeAsyncMessage?
      * @availability iOS 27.0+
@@ -4872,12 +4867,12 @@ export declare class NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage ex
      * var addedStores: [NSPersistentStore] { get }
      * @availability iOS 27.0+
      */
-    get addedStores(): $SDK87;
+    get addedStores(): $SDK84;
     /**
      * var removedStores: [NSPersistentStore] { get }
      * @availability iOS 27.0+
      */
-    get removedStores(): $SDK87;
+    get removedStores(): $SDK84;
     /**
      * static func makeNotification(_ message: NSPersistentStoreCoordinator.StoresDidChangeAsyncMessage) -> Notification
      * @availability iOS 27.0+
@@ -4908,7 +4903,7 @@ export declare class NSPersistentStoreCoordinator_StoresDidChangeMessage extends
      * var uuidChangedStores: (oldValue: NSPersistentStore, newValue: NSPersistentStore)? { get }
      * @availability iOS 27.0+
      */
-    get uuidChangedStores(): $SDK89;
+    get uuidChangedStores(): $SDK86;
     /**
      * @MainActor static func makeMessage(_ notification: Notification) -> NSPersistentStoreCoordinator.StoresDidChangeMessage?
      * @availability iOS 27.0+
@@ -4918,12 +4913,12 @@ export declare class NSPersistentStoreCoordinator_StoresDidChangeMessage extends
      * var addedStores: [NSPersistentStore] { get }
      * @availability iOS 27.0+
      */
-    get addedStores(): $SDK87;
+    get addedStores(): $SDK84;
     /**
      * var removedStores: [NSPersistentStore] { get }
      * @availability iOS 27.0+
      */
-    get removedStores(): $SDK87;
+    get removedStores(): $SDK84;
     /**
      * @MainActor static func makeNotification(_ message: NSPersistentStoreCoordinator.StoresDidChangeMessage) -> Notification
      * @availability iOS 27.0+
@@ -4972,8 +4967,8 @@ export declare class NSPersistentStoreDescription extends SDKHandle {
      * var cloudKitContainerOptions: NSPersistentCloudKitContainerOptions? { get set }
      * @availability iOS 13.0+
      */
-    get cloudKitContainerOptions(): $SDK92;
-    set cloudKitContainerOptions(value: $SDK92);
+    get cloudKitContainerOptions(): $SDK89;
+    set cloudKitContainerOptions(value: $SDK89);
     /**
      * var configuration: String? { get set }
      * @availability iOS 10.0+
@@ -5070,8 +5065,8 @@ export declare class NSPropertyMapping extends SDKHandle {
      * var valueExpression: NSExpression? { get set }
      * @availability iOS 3.0+
      */
-    get valueExpression(): $SDK31;
-    set valueExpression(value: $SDK31);
+    get valueExpression(): $SDK28;
+    set valueExpression(value: $SDK28);
 }
 /**
  * class NSQueryGenerationToken
@@ -5104,14 +5099,14 @@ export declare class NSRelationshipDescription extends NSRelationshipDescription
      * unowned(unsafe) var destinationEntity: NSEntityDescription? { get set }
      * @availability iOS 3.0+
      */
-    get destinationEntity(): $SDK18;
-    set destinationEntity(value: $SDK18);
+    get destinationEntity(): $SDK17;
+    set destinationEntity(value: $SDK17);
     /**
      * unowned(unsafe) var inverseRelationship: NSRelationshipDescription? { get set }
      * @availability iOS 3.0+
      */
-    get inverseRelationship(): $SDK94;
-    set inverseRelationship(value: $SDK94);
+    get inverseRelationship(): $SDK91;
+    set inverseRelationship(value: $SDK91);
     /**
      * var maxCount: Int { get set }
      * @availability iOS 3.0+
@@ -5153,27 +5148,27 @@ export declare class NSSaveChangesRequest extends NSSaveChangesRequest_base {
      * init(inserted insertedObjects: Set<NSManagedObject>?, updated updatedObjects: Set<NSManagedObject>?, deleted deletedObjects: Set<NSManagedObject>?, locked lockedObjects: Set<NSManagedObject>?)
      * @availability iOS 5.0+
      */
-    static initInsertedUpdatedDeletedLocked(insertedObjects?: $SDK74, updatedObjects?: $SDK74, deletedObjects?: $SDK74, lockedObjects?: $SDK74): NSSaveChangesRequest;
+    static initInsertedUpdatedDeletedLocked(insertedObjects?: $SDK71, updatedObjects?: $SDK71, deletedObjects?: $SDK71, lockedObjects?: $SDK71): NSSaveChangesRequest;
     /**
      * var deletedObjects: Set<NSManagedObject>? { get }
      * @availability iOS 5.0+
      */
-    get deletedObjects(): $SDK74;
+    get deletedObjects(): $SDK71;
     /**
      * var insertedObjects: Set<NSManagedObject>? { get }
      * @availability iOS 5.0+
      */
-    get insertedObjects(): $SDK74;
+    get insertedObjects(): $SDK71;
     /**
      * var lockedObjects: Set<NSManagedObject>? { get }
      * @availability iOS 5.0+
      */
-    get lockedObjects(): $SDK74;
+    get lockedObjects(): $SDK71;
     /**
      * var updatedObjects: Set<NSManagedObject>? { get }
      * @availability iOS 5.0+
      */
-    get updatedObjects(): $SDK74;
+    get updatedObjects(): $SDK71;
 }
 /** struct NSSnapshotEventType */
 export type NSSnapshotEventType = Array<"undoInsertion" | "undoDeletion" | "undoUpdate" | "rollback" | "refresh" | "mergePolicy">;

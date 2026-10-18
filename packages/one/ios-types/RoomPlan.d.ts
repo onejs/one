@@ -134,7 +134,7 @@ export declare class CapturedRoom_ModelProvider extends SDKHandle {
      * mutating func setModelFileURL(_ url: URL?, for attributes: [any CapturedRoomAttribute]) throws
      * @availability iOS 17.0+
      */
-    setModelFileURLFor4(url: (string) | null, attributes: Array<SDKHandle>): void;
+    setModelFileURLFor64378(url: (string) | null, attributes: Array<SDKHandle>): void;
     /**
      * func modelFileURL(for category: CapturedRoom.Object.Category) throws -> URL?
      * @availability iOS 17.0+
@@ -144,12 +144,12 @@ export declare class CapturedRoom_ModelProvider extends SDKHandle {
      * func modelFileURL(for object: CapturedRoom.Object) throws -> URL?
      * @availability iOS 17.0+
      */
-    modelFileURLFor6(object: CapturedRoom_Object): (string) | null;
+    modelFileURLFor12765(object: CapturedRoom_Object): (string) | null;
     /**
      * func modelFileURL(for attributes: [any CapturedRoomAttribute]) throws -> URL?
      * @availability iOS 17.0+
      */
-    modelFileURLFor7(attributes: Array<SDKHandle>): (string) | null;
+    modelFileURLFor298(attributes: Array<SDKHandle>): (string) | null;
     /**
      * var modelFileURLs: [URL] { get }
      * @availability iOS 17.0+

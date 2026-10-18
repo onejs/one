@@ -277,7 +277,7 @@ export declare class DefaultContactProviderDomain extends SDKHandle {
      * static let identifier: String
      * @availability iOS 18.0+
      */
-    static get identifier1(): string;
+    static get identifier2256(): string;
     /**
      * let displayName: String
      * @availability iOS 18.0+

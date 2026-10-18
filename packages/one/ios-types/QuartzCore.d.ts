@@ -411,12 +411,12 @@ export declare class CALayer extends SDKHandle {
      * func convert(_ r: CGRect, from l: CALayer?) -> CGRect
      * @availability iOS 2.0+
      */
-    convertFrom365(r: $SDK6, l?: (CALayer) | null): $SDK6;
+    convertFrom59317(r: $SDK6, l?: (CALayer) | null): $SDK6;
     /**
      * func convert(_ r: CGRect, to l: CALayer?) -> CGRect
      * @availability iOS 2.0+
      */
-    convertTo366(r: $SDK6, l?: (CALayer) | null): $SDK6;
+    convertTo90208(r: $SDK6, l?: (CALayer) | null): $SDK6;
     /**
      * func convertTime(_ t: CFTimeInterval, from l: CALayer?) -> CFTimeInterval
      * @availability iOS 2.0+
@@ -550,7 +550,7 @@ export declare class CALayer extends SDKHandle {
      * func setNeedsDisplay(_ r: CGRect)
      * @availability iOS 2.0+
      */
-    setNeedsDisplay394(r: $SDK6): void;
+    setNeedsDisplay81283(r: $SDK6): void;
     /**
      * func setNeedsLayout()
      * @availability iOS 2.0+
@@ -2225,7 +2225,7 @@ export declare class CAScrollLayer extends CAScrollLayer_base {
      * func scroll(to r: CGRect)
      * @availability iOS 2.0+
      */
-    scrollTo598(r: $SDK6): void;
+    scrollTo90898(r: $SDK6): void;
     /**
      * var scrollMode: CAScrollLayerScrollMode { get set }
      * @availability iOS 2.0+

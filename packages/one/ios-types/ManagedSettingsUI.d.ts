@@ -105,7 +105,7 @@ export declare class ShieldConfigurationDataSource extends SDKHandle {
      * func configuration(shielding webDomain: WebDomain, in category: ActivityCategory) -> ShieldConfiguration
      * @availability iOS 15.0+
      */
-    configurationShieldingIn16(webDomain: _ManagedSettings_WebDomain, category: _ManagedSettings_ActivityCategory): ShieldConfiguration;
+    configurationShieldingIn69477(webDomain: _ManagedSettings_WebDomain, category: _ManagedSettings_ActivityCategory): ShieldConfiguration;
     /**
      * func configuration(shielding application: Application) -> ShieldConfiguration
      * @availability iOS 15.0+
@@ -115,6 +115,6 @@ export declare class ShieldConfigurationDataSource extends SDKHandle {
      * func configuration(shielding webDomain: WebDomain) -> ShieldConfiguration
      * @availability iOS 15.0+
      */
-    configurationShielding18(webDomain: _ManagedSettings_WebDomain): ShieldConfiguration;
+    configurationShielding90850(webDomain: _ManagedSettings_WebDomain): ShieldConfiguration;
 }
 export {};

@@ -27,7 +27,7 @@ export declare class PhotosPicker<Label = unknown> extends SDKHandle {
      * nonisolated init<S>(_ title: S, selection: Binding<[PhotosPickerItem]>, maxSelectionCount: Int? = nil, selectionBehavior: PhotosPickerSelectionBehavior = .default, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic, photoLibrary: PHPhotoLibrary) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncodingPhotoLibrary14(title: string, selection: $SDK1, maxSelectionCount: (number) | null, selectionBehavior: PhotosPickerSelectionBehavior, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0>;
+    static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncodingPhotoLibrary71217(title: string, selection: $SDK1, maxSelectionCount: (number) | null, selectionBehavior: PhotosPickerSelectionBehavior, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0>;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<[PhotosPickerItem]>, maxSelectionCount: Int? = nil, selectionBehavior: PhotosPickerSelectionBehavior = .default, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic)
      * @availability iOS 16.0+
@@ -37,7 +37,7 @@ export declare class PhotosPicker<Label = unknown> extends SDKHandle {
      * nonisolated init<S>(_ title: S, selection: Binding<[PhotosPickerItem]>, maxSelectionCount: Int? = nil, selectionBehavior: PhotosPickerSelectionBehavior = .default, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncoding16(title: string, selection: $SDK1, maxSelectionCount?: (number) | null, selectionBehavior?: PhotosPickerSelectionBehavior, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0>;
+    static initSelectionMaxSelectionCountSelectionBehaviorMatchingPreferredItemEncoding9462(title: string, selection: $SDK1, maxSelectionCount?: (number) | null, selectionBehavior?: PhotosPickerSelectionBehavior, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0>;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<PhotosPickerItem?>, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic, photoLibrary: PHPhotoLibrary)
      * @availability iOS 16.0+
@@ -47,7 +47,7 @@ export declare class PhotosPicker<Label = unknown> extends SDKHandle {
      * nonisolated init<S>(_ title: S, selection: Binding<PhotosPickerItem?>, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic, photoLibrary: PHPhotoLibrary) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initSelectionMatchingPreferredItemEncodingPhotoLibrary18(title: string, selection: $SDK3, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0>;
+    static initSelectionMatchingPreferredItemEncodingPhotoLibrary43487(title: string, selection: $SDK3, filter: $SDK2, preferredItemEncoding: PhotosPickerItem_EncodingDisambiguationPolicy, photoLibrary: _Photos_PHPhotoLibrary): Promise<$SDK0>;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<PhotosPickerItem?>, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic)
      * @availability iOS 16.0+
@@ -57,7 +57,7 @@ export declare class PhotosPicker<Label = unknown> extends SDKHandle {
      * nonisolated init<S>(_ title: S, selection: Binding<PhotosPickerItem?>, matching filter: PHPickerFilter? = nil, preferredItemEncoding: PhotosPickerItem.EncodingDisambiguationPolicy = .automatic) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initSelectionMatchingPreferredItemEncoding20(title: string, selection: $SDK3, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0>;
+    static initSelectionMatchingPreferredItemEncoding50544(title: string, selection: $SDK3, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0>;
 }
 /**
  * typealias Body = some View

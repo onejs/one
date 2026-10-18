@@ -31,22 +31,22 @@ export declare class BEAudioSession extends SDKHandle {
      * init(audioSession: AVAudioSession)
      * @availability iOS 26.0+
      */
-    static initAudioSession9(audioSession: _AVFAudio_AVAudioSession): BEAudioSession;
+    static initAudioSession19121(audioSession: _AVFAudio_AVAudioSession): BEAudioSession;
     /**
      * func setPreferredOutput(_ outPort: AVAudioSessionPortDescription?) throws
      * @availability iOS 26.0+
      */
-    setPreferredOutput10(outPort?: $SDK0): void;
+    setPreferredOutput81081(outPort?: $SDK0): void;
     /**
      * var availableOutputs: [AVAudioSessionPortDescription]? { get }
      * @availability iOS 26.0+
      */
-    get availableOutputs11(): (Array<_AVFAudio_AVAudioSessionPortDescription>) | null;
+    get availableOutputs52961(): (Array<_AVFAudio_AVAudioSessionPortDescription>) | null;
     /**
      * var preferredOutput: AVAudioSessionPortDescription? { get }
      * @availability iOS 26.0+
      */
-    get preferredOutput12(): $SDK0;
+    get preferredOutput63622(): $SDK0;
 }
 /**
  * func be_kevent(_ kq: Int32, _ changelist: UnsafePointer<kevent>!, _ nchanges: Int32, _ eventlist: UnsafeMutablePointer<kevent>!, _ nevents: Int32, _ be_flags: UInt32) -> Int32

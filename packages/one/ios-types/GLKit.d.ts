@@ -847,7 +847,7 @@ export declare class GLKTextureLoader extends SDKHandle {
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    static textureWithContentsOfOptions383(url: string, options?: $SDK2): GLKTextureInfo;
+    static textureWithContentsOfOptions57937(url: string, options?: $SDK2): GLKTextureInfo;
     /**
      * class func texture(withName name: String, scaleFactor: CGFloat, bundle: Bundle?, options: [String : NSNumber]? = nil) throws -> GLKTextureInfo
      * @availability iOS 5.0+
@@ -903,7 +903,7 @@ export declare class GLKTextureLoader extends SDKHandle {
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    textureWithContentsOfOptionsQueueCompletionHandler393(url: string, options: $SDK2, queue: $SDK4, block: $SDK5): void;
+    textureWithContentsOfOptionsQueueCompletionHandler85308(url: string, options: $SDK2, queue: $SDK4, block: $SDK5): void;
     /**
      * func texture(withName name: String, scaleFactor: CGFloat, bundle: Bundle?, options: [String : NSNumber]? = nil, queue: dispatch_queue_t?) async throws -> GLKTextureInfo
      * @availability iOS 5.0+

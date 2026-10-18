@@ -33,10 +33,10 @@ type $SDK9 = {
     dy: number;
 };
 type $SDK11 = ((arg0: number) => Promise<number>);
-type $SDK13 = (_AVFAudio_AVAudioNode) | null;
-type $SDK15 = (SKKeyframeSequence) | null;
-type $SDK17 = (_Foundation_NSAttributedString) | null;
-type $SDK20 = (_CoreGraphics_CGPath) | null;
+type $SDK12 = (_AVFAudio_AVAudioNode) | null;
+type $SDK14 = (SKKeyframeSequence) | null;
+type $SDK16 = (_Foundation_NSAttributedString) | null;
+type $SDK19 = (_CoreGraphics_CGPath) | null;
 /** @MainActor class SKNode */
 export declare class SKNode extends SDKHandle {
     /** convenience init?(fileNamed filename: String) */
@@ -390,7 +390,7 @@ export declare class SKAction extends SDKHandle {
     /** class func colorize(with color: UIColor, colorBlendFactor: CGFloat, duration: TimeInterval) -> SKAction */
     static colorizeWithColorBlendFactorDuration(color: _UIKit_UIColor, colorBlendFactor: number, duration: number): SKAction;
     /** class func colorize(withColorBlendFactor colorBlendFactor: CGFloat, duration sec: TimeInterval) -> SKAction */
-    static colorizeWithColorBlendFactorDuration84(colorBlendFactor: number, sec: number): SKAction;
+    static colorizeWithColorBlendFactorDuration96566(colorBlendFactor: number, sec: number): SKAction;
     /** class func customAction(withDuration duration: TimeInterval, actionBlock block: @escaping (SKNode, CGFloat) -> Void) -> SKAction */
     static customAction(duration: number, block: ((arg0: SKNode, arg1: number) => void)): SKAction;
     /** class func fadeAlpha(by factor: CGFloat, duration: TimeInterval) -> SKAction */
@@ -462,12 +462,12 @@ export declare class SKAction extends SDKHandle {
      * class func reach(to node: SKNode, rootNode root: SKNode, duration sec: TimeInterval) -> SKAction
      * @availability iOS 8.0+
      */
-    static reachToRootNodeDuration108(node: SKNode, root: SKNode, sec: number): SKAction;
+    static reachToRootNodeDuration83424(node: SKNode, root: SKNode, sec: number): SKAction;
     /**
      * class func reach(to node: SKNode, rootNode root: SKNode, velocity: CGFloat) -> SKAction
      * @availability iOS 8.0+
      */
-    static reachToRootNodeVelocity109(node: SKNode, root: SKNode, velocity: number): SKAction;
+    static reachToRootNodeVelocity73997(node: SKNode, root: SKNode, velocity: number): SKAction;
     /** class func removeFromParent() -> SKAction */
     static removeFromParent(): SKAction;
     /** class func `repeat`(_ action: SKAction, count: Int) -> SKAction */
@@ -502,7 +502,7 @@ export declare class SKAction extends SDKHandle {
      * class func scale(to size: CGSize, duration: TimeInterval) -> SKAction
      * @availability iOS 10.0+
      */
-    static scaleToDuration125(size: $SDK7, duration: number): SKAction;
+    static scaleToDuration90142(size: $SDK7, duration: number): SKAction;
     /** class func scaleX(by xScale: CGFloat, y yScale: CGFloat, duration: TimeInterval) -> SKAction */
     static scaleXByYDuration(xScale: number, yScale: number, duration: number): SKAction;
     /** class func scaleX(to scale: CGFloat, duration: TimeInterval) -> SKAction */
@@ -591,7 +591,6 @@ export declare class SKAction extends SDKHandle {
      * @availability iOS 8.0+
      */
     get timingFunction(): $SDK11;
-    set timingFunction(value: ((arg0: number) => number));
     /** var timingMode: SKActionTimingMode { get set } */
     get timingMode(): SKActionTimingMode;
     set timingMode(value: SKActionTimingMode);
@@ -712,7 +711,7 @@ export declare class SKAudioNode extends SKAudioNode_base {
      * init(avAudioNode node: AVAudioNode?)
      * @availability iOS 9.0+
      */
-    static initAvAudioNode(node?: $SDK13): SKAudioNode;
+    static initAvAudioNode(node?: $SDK12): SKAudioNode;
     /**
      * init?(coder aDecoder: NSCoder)
      * @availability iOS 9.0+
@@ -738,8 +737,8 @@ export declare class SKAudioNode extends SKAudioNode_base {
      * var avAudioNode: AVAudioNode? { get set }
      * @availability iOS 9.0+
      */
-    get avAudioNode(): $SDK13;
-    set avAudioNode(value: $SDK13);
+    get avAudioNode(): $SDK12;
+    set avAudioNode(value: $SDK12);
     /**
      * var isPositional: Bool { get set }
      * @availability iOS 9.0+
@@ -794,7 +793,7 @@ export declare class SKConstraint extends SDKHandle {
      * class func distance(_ range: SKRange, to point: CGPoint) -> Self
      * @availability iOS 8.0+
      */
-    static distanceTo188(range: SKRange, point: $SDK1): SKConstraint;
+    static distanceTo84365(range: SKRange, point: $SDK1): SKConstraint;
     /**
      * class func distance(_ range: SKRange, to point: CGPoint, in node: SKNode) -> Self
      * @availability iOS 8.0+
@@ -814,7 +813,7 @@ export declare class SKConstraint extends SDKHandle {
      * class func orient(to point: CGPoint, offset radians: SKRange) -> Self
      * @availability iOS 8.0+
      */
-    static orientToOffset192(point: $SDK1, radians: SKRange): SKConstraint;
+    static orientToOffset32460(point: $SDK1, radians: SKRange): SKConstraint;
     /**
      * class func positionX(_ range: SKRange) -> Self
      * @availability iOS 8.0+
@@ -946,8 +945,8 @@ export declare class SKEmitterNode extends SKEmitterNode_base {
     get particleAlphaRange(): number;
     set particleAlphaRange(value: number);
     /** var particleAlphaSequence: SKKeyframeSequence? { get set } */
-    get particleAlphaSequence(): $SDK15;
-    set particleAlphaSequence(value: $SDK15);
+    get particleAlphaSequence(): $SDK14;
+    set particleAlphaSequence(value: $SDK14);
     /** var particleAlphaSpeed: CGFloat { get set } */
     get particleAlphaSpeed(): number;
     set particleAlphaSpeed(value: number);
@@ -973,8 +972,8 @@ export declare class SKEmitterNode extends SKEmitterNode_base {
     get particleColorBlendFactorRange(): number;
     set particleColorBlendFactorRange(value: number);
     /** var particleColorBlendFactorSequence: SKKeyframeSequence? { get set } */
-    get particleColorBlendFactorSequence(): $SDK15;
-    set particleColorBlendFactorSequence(value: $SDK15);
+    get particleColorBlendFactorSequence(): $SDK14;
+    set particleColorBlendFactorSequence(value: $SDK14);
     /** var particleColorBlendFactorSpeed: CGFloat { get set } */
     get particleColorBlendFactorSpeed(): number;
     set particleColorBlendFactorSpeed(value: number);
@@ -997,8 +996,8 @@ export declare class SKEmitterNode extends SKEmitterNode_base {
     get particleColorRedSpeed(): number;
     set particleColorRedSpeed(value: number);
     /** var particleColorSequence: SKKeyframeSequence? { get set } */
-    get particleColorSequence(): $SDK15;
-    set particleColorSequence(value: $SDK15);
+    get particleColorSequence(): $SDK14;
+    set particleColorSequence(value: $SDK14);
     /** var particleLifetime: CGFloat { get set } */
     get particleLifetime(): number;
     set particleLifetime(value: number);
@@ -1033,8 +1032,8 @@ export declare class SKEmitterNode extends SKEmitterNode_base {
     get particleScaleRange(): number;
     set particleScaleRange(value: number);
     /** var particleScaleSequence: SKKeyframeSequence? { get set } */
-    get particleScaleSequence(): $SDK15;
-    set particleScaleSequence(value: $SDK15);
+    get particleScaleSequence(): $SDK14;
+    set particleScaleSequence(value: $SDK14);
     /** var particleScaleSpeed: CGFloat { get set } */
     get particleScaleSpeed(): number;
     set particleScaleSpeed(value: number);
@@ -1274,7 +1273,7 @@ export declare class SKLabelNode extends SKLabelNode_base {
      * convenience init(attributedText: NSAttributedString?)
      * @availability iOS 11.0+
      */
-    static initAttributedText(attributedText?: $SDK17): SKLabelNode;
+    static initAttributedText(attributedText?: $SDK16): SKLabelNode;
     /** convenience init(text: String?) */
     static initText(text?: (string) | null): SKLabelNode;
     /** init() */
@@ -1285,8 +1284,8 @@ export declare class SKLabelNode extends SKLabelNode_base {
      * @NSCopying var attributedText: NSAttributedString? { get set }
      * @availability iOS 11.0+
      */
-    get attributedText(): $SDK17;
-    set attributedText(value: $SDK17);
+    get attributedText(): $SDK16;
+    set attributedText(value: $SDK16);
     /** var blendMode: SKBlendMode { get set } */
     get blendMode(): SKBlendMode;
     set blendMode(value: SKBlendMode);
@@ -1515,7 +1514,7 @@ export declare class SKPhysicsBody extends SDKHandle {
     /** init(edgeLoopFrom path: CGPath) */
     static initEdgeLoopFrom(path: _CoreGraphics_CGPath): SKPhysicsBody;
     /** init(edgeLoopFrom rect: CGRect) */
-    static initEdgeLoopFrom499(rect: $SDK0): SKPhysicsBody;
+    static initEdgeLoopFrom15402(rect: $SDK0): SKPhysicsBody;
     /** init(polygonFrom path: CGPath) */
     static initPolygonFrom(path: _CoreGraphics_CGPath): SKPhysicsBody;
     /** init(rectangleOf s: CGSize) */
@@ -1869,12 +1868,12 @@ export declare class SKReferenceNode extends SKReferenceNode_base {
      * init(fileNamed fileName: String?)
      * @availability iOS 9.0+
      */
-    static initFileNamed635(fileName?: (string) | null): SKReferenceNode;
+    static initFileNamed20498(fileName?: (string) | null): SKReferenceNode;
     /**
      * init(url: URL?)
      * @availability iOS 9.0+
      */
-    static initUrl636(url?: (string) | null): SKReferenceNode;
+    static initUrl30004(url?: (string) | null): SKReferenceNode;
     /**
      * func resolve()
      * @availability iOS 9.0+
@@ -1937,7 +1936,7 @@ export declare class SKRegion extends SDKHandle {
      * var path: CGPath? { get }
      * @availability iOS 8.0+
      */
-    get path(): $SDK20;
+    get path(): $SDK19;
 }
 /**
  * class SKRenderer
@@ -2313,8 +2312,8 @@ export declare class SKShapeNode extends SKShapeNode_base {
     get miterLimit(): number;
     set miterLimit(value: number);
     /** var path: CGPath? { get set } */
-    get path(): $SDK20;
-    set path(value: $SDK20);
+    get path(): $SDK19;
+    set path(value: $SDK19);
     /** var strokeColor: UIColor { get set } */
     get strokeColor(): _UIKit_UIColor;
     set strokeColor(value: _UIKit_UIColor);
@@ -3110,7 +3109,7 @@ export declare class SKTransition extends SDKHandle {
     /** class func fade(with color: UIColor, duration sec: TimeInterval) -> SKTransition */
     static fadeWithDuration(color: _UIKit_UIColor, sec: number): SKTransition;
     /** class func fade(withDuration sec: TimeInterval) -> SKTransition */
-    static fadeWithDuration939(sec: number): SKTransition;
+    static fadeWithDuration91727(sec: number): SKTransition;
     /** class func flipHorizontal(withDuration sec: TimeInterval) -> SKTransition */
     static flipHorizontal(sec: number): SKTransition;
     /** class func flipVertical(withDuration sec: TimeInterval) -> SKTransition */
@@ -3166,37 +3165,37 @@ export declare class SKUniform extends SDKHandle {
      * @availability iOS 7.0+
      * @deprecated iOS 10.0
      */
-    static initNameFloat954(name: string, value: SDKHandle): SKUniform;
+    static initNameFloat4990(name: string, value: SDKHandle): SKUniform;
     /**
      * init(name: String, float value: GLKMatrix3)
      * @availability iOS 7.0+
      * @deprecated iOS 10.0
      */
-    static initNameFloat955(name: string, value: SDKHandle): SKUniform;
+    static initNameFloat75259(name: string, value: SDKHandle): SKUniform;
     /**
      * init(name: String, float value: GLKMatrix4)
      * @availability iOS 7.0+
      * @deprecated iOS 10.0
      */
-    static initNameFloat956(name: string, value: SDKHandle): SKUniform;
+    static initNameFloat90728(name: string, value: SDKHandle): SKUniform;
     /**
      * init(name: String, float value: GLKVector2)
      * @availability iOS 7.0+
      * @deprecated iOS 10.0
      */
-    static initNameFloat957(name: string, value: SDKHandle): SKUniform;
+    static initNameFloat49744(name: string, value: SDKHandle): SKUniform;
     /**
      * init(name: String, float value: GLKVector3)
      * @availability iOS 7.0+
      * @deprecated iOS 10.0
      */
-    static initNameFloat958(name: string, value: SDKHandle): SKUniform;
+    static initNameFloat73029(name: string, value: SDKHandle): SKUniform;
     /**
      * init(name: String, float value: GLKVector4)
      * @availability iOS 7.0+
      * @deprecated iOS 10.0
      */
-    static initNameFloat959(name: string, value: SDKHandle): SKUniform;
+    static initNameFloat64006(name: string, value: SDKHandle): SKUniform;
     /**
      * init(name: String, matrixFloat2x2 value: matrix_float2x2)
      * @availability iOS 10.0+

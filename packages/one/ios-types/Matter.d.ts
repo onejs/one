@@ -73328,13 +73328,13 @@ export declare class MTRClusterAccountLogin extends MTRGenericCluster {
      * func logout(with params: MTRAccountLoginClusterLogoutParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    logoutWithExpectedValuesExpectedValueIntervalCompletion14776(params: $SDK13, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    logoutWithExpectedValuesExpectedValueIntervalCompletion50337(params: $SDK13, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func logout(with params: MTRAccountLoginClusterLogoutParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    logoutWithExpectedValuesExpectedValueIntervalCompletionHandler14777(params: $SDK13, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    logoutWithExpectedValuesExpectedValueIntervalCompletionHandler3559(params: $SDK13, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func readAttributeAcceptedCommandList(with params: MTRReadParams?) -> [String : Any]?
      * @availability iOS 16.1+
@@ -73624,7 +73624,7 @@ export declare class MTRClusterActivatedCarbonFilterMonitoring extends MTRGeneri
      * func resetCondition(with params: MTRActivatedCarbonFilterMonitoringClusterResetConditionParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 17.6+
      */
-    resetConditionWithExpectedValuesExpectedValueIntervalCompletion14830(params: $SDK15, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    resetConditionWithExpectedValuesExpectedValueIntervalCompletion65893(params: $SDK15, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func writeAttributeLastChangedTime(withValue dataValueDictionary: [String : Any], expectedValueInterval expectedValueIntervalMs: NSNumber)
      * @availability iOS 17.6+
@@ -73729,13 +73729,13 @@ export declare class MTRClusterAdministratorCommissioning extends MTRGenericClus
      * func revokeCommissioning(with params: MTRAdministratorCommissioningClusterRevokeCommissioningParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    revokeCommissioningWithExpectedValuesExpectedValueIntervalCompletion14849(params: $SDK16, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    revokeCommissioningWithExpectedValuesExpectedValueIntervalCompletion93650(params: $SDK16, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func revokeCommissioning(with params: MTRAdministratorCommissioningClusterRevokeCommissioningParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    revokeCommissioningWithExpectedValuesExpectedValueIntervalCompletionHandler14850(params: $SDK16, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    revokeCommissioningWithExpectedValuesExpectedValueIntervalCompletionHandler87022(params: $SDK16, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
 }
 /**
  * class MTRClusterAirQuality
@@ -73874,7 +73874,7 @@ export declare class MTRClusterApplicationLauncher extends MTRGenericCluster {
      * func hideApp(with params: MTRApplicationLauncherClusterHideAppParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRApplicationLauncherClusterLauncherResponseParams
      * @availability iOS 16.4+
      */
-    hideAppWithExpectedValuesExpectedValueIntervalCompletion14874(params: $SDK22, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK21): void;
+    hideAppWithExpectedValuesExpectedValueIntervalCompletion40506(params: $SDK22, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK21): void;
     /**
      * func hideApp(with params: MTRApplicationLauncherClusterHideAppParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRApplicationLauncherClusterLauncherResponseParams
      * @availability iOS 16.1+
@@ -73901,7 +73901,7 @@ export declare class MTRClusterApplicationLauncher extends MTRGenericCluster {
      * func launchApp(with params: MTRApplicationLauncherClusterLaunchAppParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRApplicationLauncherClusterLauncherResponseParams
      * @availability iOS 16.4+
      */
-    launchAppWithExpectedValuesExpectedValueIntervalCompletion14879(params: $SDK23, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK21): void;
+    launchAppWithExpectedValuesExpectedValueIntervalCompletion80333(params: $SDK23, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK21): void;
     /**
      * func launchApp(with params: MTRApplicationLauncherClusterLaunchAppParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRApplicationLauncherClusterLauncherResponseParams
      * @availability iOS 16.1+
@@ -73952,7 +73952,7 @@ export declare class MTRClusterApplicationLauncher extends MTRGenericCluster {
      * func stopApp(with params: MTRApplicationLauncherClusterStopAppParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRApplicationLauncherClusterLauncherResponseParams
      * @availability iOS 16.4+
      */
-    stopAppWithExpectedValuesExpectedValueIntervalCompletion14889(params: $SDK24, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK21): void;
+    stopAppWithExpectedValuesExpectedValueIntervalCompletion30162(params: $SDK24, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK21): void;
     /**
      * func stopApp(with params: MTRApplicationLauncherClusterStopAppParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRApplicationLauncherClusterLauncherResponseParams
      * @availability iOS 16.1+
@@ -74309,13 +74309,13 @@ export declare class MTRClusterBarrierControl extends MTRGenericCluster {
      * @availability iOS 16.4+
      * @deprecated iOS 18.2
      */
-    barrierControlStopWithExpectedValuesExpectedValueIntervalCompletion14954(params: $SDK27, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    barrierControlStopWithExpectedValuesExpectedValueIntervalCompletion33099(params: $SDK27, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func barrierControlStop(with params: MTRBarrierControlClusterBarrierControlStopParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    barrierControlStopWithExpectedValuesExpectedValueIntervalCompletionHandler14955(params: $SDK27, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    barrierControlStopWithExpectedValuesExpectedValueIntervalCompletionHandler7501(params: $SDK27, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * init?(device: MTRDevice, endpoint: UInt16, queue: dispatch_queue_t)
      * @availability iOS 16.1+
@@ -74696,7 +74696,7 @@ export declare class MTRClusterBasic extends MTRClusterBasic_base {
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    mfgSpecificPingWithExpectedValuesExpectedValueIntervalCompletionHandler14987(params: $SDK31, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    mfgSpecificPingWithExpectedValuesExpectedValueIntervalCompletionHandler25625(params: $SDK31, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
 }
 /**
  * class MTRClusterBinaryInputBasic
@@ -75446,7 +75446,7 @@ export declare class MTRClusterChannel extends MTRGenericCluster {
      * func programGuide(with params: MTRChannelClusterGetProgramGuideParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRChannelClusterProgramGuideResponseParams
      * @availability iOS 18.4+
      */
-    getProgramGuideWithExpectedValuesExpectedValueIntervalCompletion15154(params: $SDK39, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK38): void;
+    getProgramGuideWithExpectedValuesExpectedValueIntervalCompletion10022(params: $SDK39, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK38): void;
     /**
      * init?(device: MTRDevice, endpoint: UInt16, queue: dispatch_queue_t)
      * @availability iOS 16.1+
@@ -76436,7 +76436,7 @@ export declare class MTRClusterDeviceEnergyManagement extends MTRGenericCluster 
      * func cancelPowerAdjustRequest(with params: MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
      */
-    cancelPowerAdjustRequestWithExpectedValuesExpectedValueIntervalCompletion15335(params: $SDK46, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    cancelPowerAdjustRequestWithExpectedValuesExpectedValueIntervalCompletion97899(params: $SDK46, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func cancelRequest(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
@@ -76446,7 +76446,7 @@ export declare class MTRClusterDeviceEnergyManagement extends MTRGenericCluster 
      * func cancelRequest(with params: MTRDeviceEnergyManagementClusterCancelRequestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
      */
-    cancelRequestWithExpectedValuesExpectedValueIntervalCompletion15337(params: $SDK47, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    cancelRequestWithExpectedValuesExpectedValueIntervalCompletion62869(params: $SDK47, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * init?(device: MTRDevice, endpointID: NSNumber, queue: dispatch_queue_t)
      * @availability iOS 18.4+
@@ -76546,7 +76546,7 @@ export declare class MTRClusterDeviceEnergyManagement extends MTRGenericCluster 
      * func resumeRequest(with params: MTRDeviceEnergyManagementClusterResumeRequestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
      */
-    resumeRequestWithExpectedValuesExpectedValueIntervalCompletion15357(params: $SDK48, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    resumeRequestWithExpectedValuesExpectedValueIntervalCompletion69820(params: $SDK48, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func startTimeAdjustRequest(with params: MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
@@ -76788,7 +76788,7 @@ export declare class MTRClusterDoorLock extends MTRGenericCluster {
      * func clearAliroReaderConfig(with params: MTRDoorLockClusterClearAliroReaderConfigParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
      */
-    clearAliroReaderConfigWithExpectedValuesExpectedValueIntervalCompletion15399(params: $SDK53, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    clearAliroReaderConfigWithExpectedValuesExpectedValueIntervalCompletion64177(params: $SDK53, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func clearCredential(with params: MTRDoorLockClusterClearCredentialParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
@@ -76919,7 +76919,7 @@ export declare class MTRClusterDoorLock extends MTRGenericCluster {
      * func lockDoor(with params: MTRDoorLockClusterLockDoorParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    lockDoorWithExpectedValuesExpectedValueIntervalCompletion15423(params: $SDK59, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    lockDoorWithExpectedValuesExpectedValueIntervalCompletion61931(params: $SDK59, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func lockDoor(with params: MTRDoorLockClusterLockDoorParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
@@ -77245,7 +77245,7 @@ export declare class MTRClusterDoorLock extends MTRGenericCluster {
      * func unboltDoor(with params: MTRDoorLockClusterUnboltDoorParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
      */
-    unboltDoorWithExpectedValuesExpectedValueIntervalCompletion15487(params: $SDK61, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    unboltDoorWithExpectedValuesExpectedValueIntervalCompletion48430(params: $SDK61, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func unlockDoor(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 17.4+
@@ -77255,7 +77255,7 @@ export declare class MTRClusterDoorLock extends MTRGenericCluster {
      * func unlockDoor(with params: MTRDoorLockClusterUnlockDoorParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    unlockDoorWithExpectedValuesExpectedValueIntervalCompletion15489(params: $SDK62, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    unlockDoorWithExpectedValuesExpectedValueIntervalCompletion16046(params: $SDK62, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func unlockDoor(with params: MTRDoorLockClusterUnlockDoorParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
@@ -77555,13 +77555,13 @@ export declare class MTRClusterElectricalMeasurement extends MTRGenericCluster {
      * @availability iOS 16.4+
      * @deprecated iOS 18.2
      */
-    getProfileInfoCommandWithExpectedValuesExpectedValueIntervalCompletion15545(params: $SDK66, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    getProfileInfoCommandWithExpectedValuesExpectedValueIntervalCompletion79689(params: $SDK66, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func profileInfoCommand(with params: MTRElectricalMeasurementClusterGetProfileInfoCommandParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    getProfileInfoCommandWithExpectedValuesExpectedValueIntervalCompletionHandler15546(params: $SDK66, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    getProfileInfoCommandWithExpectedValuesExpectedValueIntervalCompletionHandler1871(params: $SDK66, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * init?(device: MTRDevice, endpoint: UInt16, queue: dispatch_queue_t)
      * @availability iOS 16.1+
@@ -78614,7 +78614,7 @@ export declare class MTRClusterEnergyEVSE extends MTRGenericCluster {
      * func clearTargets(with params: MTREnergyEVSEClusterClearTargetsParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
      */
-    clearTargetsWithExpectedValuesExpectedValueIntervalCompletion15724(params: $SDK67, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    clearTargetsWithExpectedValuesExpectedValueIntervalCompletion64341(params: $SDK67, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func disable(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
@@ -78624,7 +78624,7 @@ export declare class MTRClusterEnergyEVSE extends MTRGenericCluster {
      * func disable(with params: MTREnergyEVSEClusterDisableParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
      */
-    disableWithExpectedValuesExpectedValueIntervalCompletion15726(params: $SDK68, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    disableWithExpectedValuesExpectedValueIntervalCompletion36286(params: $SDK68, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func enableCharging(with params: MTREnergyEVSEClusterEnableChargingParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
@@ -78769,7 +78769,7 @@ export declare class MTRClusterEnergyEVSE extends MTRGenericCluster {
      * func startDiagnostics(with params: MTREnergyEVSEClusterStartDiagnosticsParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
      */
-    startDiagnosticsWithExpectedValuesExpectedValueIntervalCompletion15755(params: $SDK71, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    startDiagnosticsWithExpectedValuesExpectedValueIntervalCompletion60586(params: $SDK71, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func writeAttributeApproximateEVEfficiency(withValue dataValueDictionary: [String : Any], expectedValueInterval expectedValueIntervalMs: NSNumber)
      * @availability iOS 18.4+
@@ -78953,13 +78953,13 @@ export declare class MTRClusterEthernetNetworkDiagnostics extends MTRGenericClus
      * func resetCounts(with params: MTREthernetNetworkDiagnosticsClusterResetCountsParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    resetCountsWithExpectedValuesExpectedValueIntervalCompletion15789(params: $SDK73, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    resetCountsWithExpectedValuesExpectedValueIntervalCompletion13(params: $SDK73, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func resetCounts(with params: MTREthernetNetworkDiagnosticsClusterResetCountsParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    resetCountsWithExpectedValuesExpectedValueIntervalCompletionHandler15790(params: $SDK73, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    resetCountsWithExpectedValuesExpectedValueIntervalCompletionHandler11851(params: $SDK73, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
 }
 /**
  * class MTRClusterFanControl
@@ -79369,13 +79369,13 @@ export declare class MTRClusterGeneralCommissioning extends MTRGenericCluster {
      * func commissioningComplete(with params: MTRGeneralCommissioningClusterCommissioningCompleteParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRGeneralCommissioningClusterCommissioningCompleteResponseParams
      * @availability iOS 16.4+
      */
-    commissioningCompleteWithExpectedValuesExpectedValueIntervalCompletion15865(params: $SDK77, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK76): void;
+    commissioningCompleteWithExpectedValuesExpectedValueIntervalCompletion45818(params: $SDK77, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK76): void;
     /**
      * func commissioningComplete(with params: MTRGeneralCommissioningClusterCommissioningCompleteParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRGeneralCommissioningClusterCommissioningCompleteResponseParams
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    commissioningCompleteWithExpectedValuesExpectedValueIntervalCompletionHandler15866(params: $SDK77, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK76): void;
+    commissioningCompleteWithExpectedValuesExpectedValueIntervalCompletionHandler11542(params: $SDK77, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK76): void;
     /**
      * init?(device: MTRDevice, endpoint: UInt16, queue: dispatch_queue_t)
      * @availability iOS 16.1+
@@ -79576,7 +79576,7 @@ export declare class MTRClusterGeneralDiagnostics extends MTRGenericCluster {
      * func timeSnapshot(with params: MTRGeneralDiagnosticsClusterTimeSnapshotParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams
      * @availability iOS 18.4+
      */
-    timeSnapshotWithExpectedValuesExpectedValueIntervalCompletion15904(params: $SDK81, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK80): void;
+    timeSnapshotWithExpectedValuesExpectedValueIntervalCompletion68224(params: $SDK81, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK80): void;
 }
 /**
  * class MTRClusterGroupKeyManagement
@@ -79603,7 +79603,7 @@ export declare class MTRClusterGroupKeyManagement extends MTRGenericCluster {
      * func keySetReadAllIndices(with params: MTRGroupKeyManagementClusterKeySetReadAllIndicesParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams
      * @availability iOS 16.4+
      */
-    keySetReadAllIndicesWithExpectedValuesExpectedValueIntervalCompletion15908(params: $SDK83, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK82): void;
+    keySetReadAllIndicesWithExpectedValuesExpectedValueIntervalCompletion10339(params: $SDK83, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK82): void;
     /**
      * func keySetReadAllIndices(with params: MTRGroupKeyManagementClusterKeySetReadAllIndicesParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams
      * @availability iOS 16.1+
@@ -79793,13 +79793,13 @@ export declare class MTRClusterGroups extends MTRGenericCluster {
      * func removeAllGroups(with params: MTRGroupsClusterRemoveAllGroupsParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    removeAllGroupsWithExpectedValuesExpectedValueIntervalCompletion15943(params: $SDK87, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    removeAllGroupsWithExpectedValuesExpectedValueIntervalCompletion13012(params: $SDK87, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func removeAllGroups(with params: MTRGroupsClusterRemoveAllGroupsParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    removeAllGroupsWithExpectedValuesExpectedValueIntervalCompletionHandler15944(params: $SDK87, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    removeAllGroupsWithExpectedValuesExpectedValueIntervalCompletionHandler43940(params: $SDK87, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func removeGroup(with params: MTRGroupsClusterRemoveGroupParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRGroupsClusterRemoveGroupResponseParams
      * @availability iOS 16.4+
@@ -79897,7 +79897,7 @@ export declare class MTRClusterHEPAFilterMonitoring extends MTRGenericCluster {
      * func resetCondition(with params: MTRHEPAFilterMonitoringClusterResetConditionParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 17.6+
      */
-    resetConditionWithExpectedValuesExpectedValueIntervalCompletion15962(params: $SDK90, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    resetConditionWithExpectedValuesExpectedValueIntervalCompletion18659(params: $SDK90, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func writeAttributeLastChangedTime(withValue dataValueDictionary: [String : Any], expectedValueInterval expectedValueIntervalMs: NSNumber)
      * @availability iOS 17.6+
@@ -81136,13 +81136,13 @@ export declare class MTRClusterLowPower extends MTRGenericCluster {
      * func sleep(with params: MTRLowPowerClusterSleepParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    sleepWithExpectedValuesExpectedValueIntervalCompletion16126(params: $SDK95, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    sleepWithExpectedValuesExpectedValueIntervalCompletion73671(params: $SDK95, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func sleep(with params: MTRLowPowerClusterSleepParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    sleepWithExpectedValuesExpectedValueIntervalCompletionHandler16127(params: $SDK95, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    sleepWithExpectedValuesExpectedValueIntervalCompletionHandler81153(params: $SDK95, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
 }
 /**
  * class MTRClusterMediaInput
@@ -81164,13 +81164,13 @@ export declare class MTRClusterMediaInput extends MTRGenericCluster {
      * func hideStatus(with params: MTRMediaInputClusterHideInputStatusParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    hideStatusWithExpectedValuesExpectedValueIntervalCompletion16130(params: $SDK96, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    hideStatusWithExpectedValuesExpectedValueIntervalCompletion65195(params: $SDK96, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func hideStatus(with params: MTRMediaInputClusterHideInputStatusParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    hideStatusWithExpectedValuesExpectedValueIntervalCompletionHandler16131(params: $SDK96, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    hideStatusWithExpectedValuesExpectedValueIntervalCompletionHandler6829(params: $SDK96, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * init?(device: MTRDevice, endpoint: UInt16, queue: dispatch_queue_t)
      * @availability iOS 16.1+
@@ -81254,13 +81254,13 @@ export declare class MTRClusterMediaInput extends MTRGenericCluster {
      * func showStatus(with params: MTRMediaInputClusterShowInputStatusParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    showStatusWithExpectedValuesExpectedValueIntervalCompletion16147(params: $SDK97, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    showStatusWithExpectedValuesExpectedValueIntervalCompletion92010(params: $SDK97, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func showStatus(with params: MTRMediaInputClusterShowInputStatusParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    showStatusWithExpectedValuesExpectedValueIntervalCompletionHandler16148(params: $SDK97, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    showStatusWithExpectedValuesExpectedValueIntervalCompletionHandler65382(params: $SDK97, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
 }
 /**
  * class MTRClusterMediaPlayback
@@ -81286,7 +81286,7 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * func deactivateTextTrack(with params: MTRMediaPlaybackClusterDeactivateTextTrackParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
      */
-    deactivateTextTrackWithExpectedValuesExpectedValueIntervalCompletion16152(params: $SDK100, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    deactivateTextTrackWithExpectedValuesExpectedValueIntervalCompletion59940(params: $SDK100, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func fastForward(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
@@ -81302,13 +81302,13 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * func fastForward(with params: MTRMediaPlaybackClusterFastForwardParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
      */
-    fastForwardWithExpectedValuesExpectedValueIntervalCompletion16155(params: $SDK102, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
+    fastForwardWithExpectedValuesExpectedValueIntervalCompletion80781(params: $SDK102, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
     /**
      * func fastForward(with params: MTRMediaPlaybackClusterFastForwardParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    fastForwardWithExpectedValuesExpectedValueIntervalCompletionHandler16156(params: $SDK102, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
+    fastForwardWithExpectedValuesExpectedValueIntervalCompletionHandler49355(params: $SDK102, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
     /**
      * init?(device: MTRDevice, endpoint: UInt16, queue: dispatch_queue_t)
      * @availability iOS 16.1+
@@ -81335,13 +81335,13 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * func next(with params: MTRMediaPlaybackClusterNextParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
      */
-    nextWithExpectedValuesExpectedValueIntervalCompletion16161(params: $SDK103, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
+    nextWithExpectedValuesExpectedValueIntervalCompletion51519(params: $SDK103, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
     /**
      * func next(with params: MTRMediaPlaybackClusterNextParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    nextWithExpectedValuesExpectedValueIntervalCompletionHandler16162(params: $SDK103, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
+    nextWithExpectedValuesExpectedValueIntervalCompletionHandler86745(params: $SDK103, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
     /**
      * func pause(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
@@ -81357,13 +81357,13 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * func pause(with params: MTRMediaPlaybackClusterPauseParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
      */
-    pauseWithExpectedValuesExpectedValueIntervalCompletion16165(params: $SDK104, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
+    pauseWithExpectedValuesExpectedValueIntervalCompletion15090(params: $SDK104, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
     /**
      * func pause(with params: MTRMediaPlaybackClusterPauseParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    pauseWithExpectedValuesExpectedValueIntervalCompletionHandler16166(params: $SDK104, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
+    pauseWithExpectedValuesExpectedValueIntervalCompletionHandler73198(params: $SDK104, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
     /**
      * func play(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
@@ -81379,13 +81379,13 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * func play(with params: MTRMediaPlaybackClusterPlayParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
      */
-    playWithExpectedValuesExpectedValueIntervalCompletion16169(params: $SDK105, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
+    playWithExpectedValuesExpectedValueIntervalCompletion26810(params: $SDK105, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
     /**
      * func play(with params: MTRMediaPlaybackClusterPlayParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    playWithExpectedValuesExpectedValueIntervalCompletionHandler16170(params: $SDK105, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
+    playWithExpectedValuesExpectedValueIntervalCompletionHandler84118(params: $SDK105, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
     /**
      * func previous(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
@@ -81401,13 +81401,13 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * func previous(with params: MTRMediaPlaybackClusterPreviousParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
      */
-    previousWithExpectedValuesExpectedValueIntervalCompletion16173(params: $SDK106, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
+    previousWithExpectedValuesExpectedValueIntervalCompletion4359(params: $SDK106, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
     /**
      * func previous(with params: MTRMediaPlaybackClusterPreviousParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    previousWithExpectedValuesExpectedValueIntervalCompletionHandler16174(params: $SDK106, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
+    previousWithExpectedValuesExpectedValueIntervalCompletionHandler1761(params: $SDK106, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
     /**
      * func readAttributeAcceptedCommandList(with params: MTRReadParams?) -> [String : Any]?
      * @availability iOS 16.1+
@@ -81483,13 +81483,13 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * func rewind(with params: MTRMediaPlaybackClusterRewindParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
      */
-    rewindWithExpectedValuesExpectedValueIntervalCompletion16189(params: $SDK107, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
+    rewindWithExpectedValuesExpectedValueIntervalCompletion70593(params: $SDK107, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
     /**
      * func rewind(with params: MTRMediaPlaybackClusterRewindParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    rewindWithExpectedValuesExpectedValueIntervalCompletionHandler16190(params: $SDK107, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
+    rewindWithExpectedValuesExpectedValueIntervalCompletionHandler49191(params: $SDK107, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
     /**
      * func seek(with params: MTRMediaPlaybackClusterSeekParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
@@ -81538,13 +81538,13 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * func startOver(with params: MTRMediaPlaybackClusterStartOverParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
      */
-    startOverWithExpectedValuesExpectedValueIntervalCompletion16199(params: $SDK108, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
+    startOverWithExpectedValuesExpectedValueIntervalCompletion56166(params: $SDK108, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
     /**
      * func startOver(with params: MTRMediaPlaybackClusterStartOverParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    startOverWithExpectedValuesExpectedValueIntervalCompletionHandler16200(params: $SDK108, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
+    startOverWithExpectedValuesExpectedValueIntervalCompletionHandler27626(params: $SDK108, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
     /**
      * func stop(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.1+
@@ -81556,7 +81556,7 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    stopWithExpectedValuesExpectedValueIntervalCompletionHandler16202(params: $SDK109, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
+    stopWithExpectedValuesExpectedValueIntervalCompletionHandler47049(params: $SDK109, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK101): void;
     /**
      * func stop(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
@@ -81566,7 +81566,7 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * func stop(with params: MTRMediaPlaybackClusterStopParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRMediaPlaybackClusterPlaybackResponseParams
      * @availability iOS 16.4+
      */
-    stopWithExpectedValuesExpectedValueIntervalCompletion16204(params: $SDK110, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
+    stopWithExpectedValuesExpectedValueIntervalCompletion14808(params: $SDK110, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
 }
 /**
  * class MTRClusterMessages
@@ -82019,7 +82019,7 @@ export declare class MTRClusterNetworkCommissioning extends MTRGenericCluster {
      * func scanNetworks(with params: MTRNetworkCommissioningClusterScanNetworksParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRNetworkCommissioningClusterScanNetworksResponseParams
      * @availability iOS 16.4+
      */
-    scanNetworksWithExpectedValuesExpectedValueIntervalCompletion16287(params: $SDK115, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK114): void;
+    scanNetworksWithExpectedValuesExpectedValueIntervalCompletion49554(params: $SDK115, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK114): void;
     /**
      * func scanNetworks(with params: MTRNetworkCommissioningClusterScanNetworksParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRNetworkCommissioningClusterScanNetworksResponseParams
      * @availability iOS 16.1+
@@ -82436,13 +82436,13 @@ export declare class MTRClusterOnOff extends MTRGenericCluster {
      * func off(with params: MTROnOffClusterOffParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    offWithExpectedValuesExpectedValueIntervalCompletion16386(params: $SDK117, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    offWithExpectedValuesExpectedValueIntervalCompletion38816(params: $SDK117, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func off(with params: MTROnOffClusterOffParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    offWithExpectedValuesExpectedValueIntervalCompletionHandler16387(params: $SDK117, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    offWithExpectedValuesExpectedValueIntervalCompletionHandler13544(params: $SDK117, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func on(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
@@ -82458,13 +82458,13 @@ export declare class MTRClusterOnOff extends MTRGenericCluster {
      * func on(with params: MTROnOffClusterOnParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    onWithExpectedValuesExpectedValueIntervalCompletion16390(params: $SDK118, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    onWithExpectedValuesExpectedValueIntervalCompletion94198(params: $SDK118, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func on(with params: MTROnOffClusterOnParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    onWithExpectedValuesExpectedValueIntervalCompletionHandler16391(params: $SDK118, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    onWithExpectedValuesExpectedValueIntervalCompletionHandler91002(params: $SDK118, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func onWithRecallGlobalScene(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
@@ -82480,13 +82480,13 @@ export declare class MTRClusterOnOff extends MTRGenericCluster {
      * func onWithRecallGlobalScene(with params: MTROnOffClusterOnWithRecallGlobalSceneParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    onWithRecallGlobalSceneWithExpectedValuesExpectedValueIntervalCompletion16394(params: $SDK119, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    onWithRecallGlobalSceneWithExpectedValuesExpectedValueIntervalCompletion20276(params: $SDK119, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func onWithRecallGlobalScene(with params: MTROnOffClusterOnWithRecallGlobalSceneParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    onWithRecallGlobalSceneWithExpectedValuesExpectedValueIntervalCompletionHandler16395(params: $SDK119, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    onWithRecallGlobalSceneWithExpectedValuesExpectedValueIntervalCompletionHandler18660(params: $SDK119, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func onWithTimedOff(with params: MTROnOffClusterOnWithTimedOffParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
@@ -82563,13 +82563,13 @@ export declare class MTRClusterOnOff extends MTRGenericCluster {
      * func toggle(with params: MTROnOffClusterToggleParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    toggleWithExpectedValuesExpectedValueIntervalCompletion16410(params: $SDK120, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    toggleWithExpectedValuesExpectedValueIntervalCompletion89253(params: $SDK120, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func toggle(with params: MTROnOffClusterToggleParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    toggleWithExpectedValuesExpectedValueIntervalCompletionHandler16411(params: $SDK120, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    toggleWithExpectedValuesExpectedValueIntervalCompletionHandler10243(params: $SDK120, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func writeAttributeOffWaitTime(withValue dataValueDictionary: [String : Any], expectedValueInterval expectedValueIntervalMs: NSNumber)
      * @availability iOS 16.1+
@@ -82853,7 +82853,7 @@ export declare class MTRClusterOperationalState extends MTRGenericCluster {
      * func pause(with params: MTROperationalStateClusterPauseParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTROperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 17.4+
      */
-    pauseWithExpectedValuesExpectedValueIntervalCompletion16460(params: $SDK127, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK126): void;
+    pauseWithExpectedValuesExpectedValueIntervalCompletion14906(params: $SDK127, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK126): void;
     /**
      * func readAttributeAcceptedCommandList(with params: MTRReadParams?) -> [String : Any]?
      * @availability iOS 17.4+
@@ -82918,7 +82918,7 @@ export declare class MTRClusterOperationalState extends MTRGenericCluster {
      * func resume(with params: MTROperationalStateClusterResumeParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTROperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 17.4+
      */
-    resumeWithExpectedValuesExpectedValueIntervalCompletion16473(params: $SDK128, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK126): void;
+    resumeWithExpectedValuesExpectedValueIntervalCompletion71789(params: $SDK128, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK126): void;
     /**
      * func start(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTROperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 17.4+
@@ -82928,7 +82928,7 @@ export declare class MTRClusterOperationalState extends MTRGenericCluster {
      * func start(with params: MTROperationalStateClusterStartParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTROperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 17.4+
      */
-    startWithExpectedValuesExpectedValueIntervalCompletion16475(params: $SDK129, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK126): void;
+    startWithExpectedValuesExpectedValueIntervalCompletion20768(params: $SDK129, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK126): void;
     /**
      * func stop(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTROperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 17.4+
@@ -82938,7 +82938,7 @@ export declare class MTRClusterOperationalState extends MTRGenericCluster {
      * func stop(with params: MTROperationalStateClusterStopParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTROperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 17.4+
      */
-    stopWithExpectedValuesExpectedValueIntervalCompletion16477(params: $SDK130, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK126): void;
+    stopWithExpectedValuesExpectedValueIntervalCompletion33760(params: $SDK130, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK126): void;
 }
 /**
  * class MTRClusterOTASoftwareUpdateProvider
@@ -83206,7 +83206,7 @@ export declare class MTRClusterOvenCavityOperationalState extends MTRGenericClus
      * func start(with params: MTROvenCavityOperationalStateClusterStartParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTROvenCavityOperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 18.4+
      */
-    startWithExpectedValuesExpectedValueIntervalCompletion16500(params: $SDK137, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK136): void;
+    startWithExpectedValuesExpectedValueIntervalCompletion88804(params: $SDK137, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK136): void;
     /**
      * func stop(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTROvenCavityOperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 18.4+
@@ -83216,7 +83216,7 @@ export declare class MTRClusterOvenCavityOperationalState extends MTRGenericClus
      * func stop(with params: MTROvenCavityOperationalStateClusterStopParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTROvenCavityOperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 18.4+
      */
-    stopWithExpectedValuesExpectedValueIntervalCompletion16502(params: $SDK138, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK136): void;
+    stopWithExpectedValuesExpectedValueIntervalCompletion97212(params: $SDK138, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK136): void;
 }
 /**
  * class MTRClusterOvenMode
@@ -84532,7 +84532,7 @@ export declare class MTRClusterRVCOperationalState extends MTRGenericCluster {
      * func goHome(with params: MTRRVCOperationalStateClusterGoHomeParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRRVCOperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 18.4+
      */
-    goHomeWithExpectedValuesExpectedValueIntervalCompletion16702(params: $SDK144, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK143): void;
+    goHomeWithExpectedValuesExpectedValueIntervalCompletion33056(params: $SDK144, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK143): void;
     /**
      * init?(device: MTRDevice, endpointID: NSNumber, queue: dispatch_queue_t)
      * @availability iOS 17.4+
@@ -84547,7 +84547,7 @@ export declare class MTRClusterRVCOperationalState extends MTRGenericCluster {
      * func pause(with params: MTRRVCOperationalStateClusterPauseParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRRVCOperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 17.4+
      */
-    pauseWithExpectedValuesExpectedValueIntervalCompletion16705(params: $SDK145, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK143): void;
+    pauseWithExpectedValuesExpectedValueIntervalCompletion1699(params: $SDK145, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK143): void;
     /**
      * func readAttributeAcceptedCommandList(with params: MTRReadParams?) -> [String : Any]?
      * @availability iOS 17.4+
@@ -84612,7 +84612,7 @@ export declare class MTRClusterRVCOperationalState extends MTRGenericCluster {
      * func resume(with params: MTRRVCOperationalStateClusterResumeParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRRVCOperationalStateClusterOperationalCommandResponseParams
      * @availability iOS 17.4+
      */
-    resumeWithExpectedValuesExpectedValueIntervalCompletion16718(params: $SDK146, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK143): void;
+    resumeWithExpectedValuesExpectedValueIntervalCompletion56078(params: $SDK146, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK143): void;
 }
 /**
  * class MTRClusterRVCRunMode
@@ -84850,7 +84850,7 @@ export declare class MTRClusterSmokeCOAlarm extends MTRGenericCluster {
      * func selfTestRequest(with params: MTRSmokeCOAlarmClusterSelfTestRequestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 17.6+
      */
-    selfTestRequestWithExpectedValuesExpectedValueIntervalCompletion16808(params: $SDK150, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    selfTestRequestWithExpectedValuesExpectedValueIntervalCompletion85844(params: $SDK150, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func writeAttributeSmokeSensitivityLevel(withValue dataValueDictionary: [String : Any], expectedValueInterval expectedValueIntervalMs: NSNumber)
      * @availability iOS 17.6+
@@ -84938,13 +84938,13 @@ export declare class MTRClusterSoftwareDiagnostics extends MTRGenericCluster {
      * func resetWatermarks(with params: MTRSoftwareDiagnosticsClusterResetWatermarksParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    resetWatermarksWithExpectedValuesExpectedValueIntervalCompletion16824(params: $SDK151, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    resetWatermarksWithExpectedValuesExpectedValueIntervalCompletion8542(params: $SDK151, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func resetWatermarks(with params: MTRSoftwareDiagnosticsClusterResetWatermarksParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    resetWatermarksWithExpectedValuesExpectedValueIntervalCompletionHandler16825(params: $SDK151, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    resetWatermarksWithExpectedValuesExpectedValueIntervalCompletionHandler92994(params: $SDK151, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
 }
 /**
  * class MTRClusterStateCacheContainer
@@ -85731,7 +85731,7 @@ export declare class MTRClusterUnitTesting extends MTRGenericCluster {
      * func testNotHandled(with params: MTRUnitTestingClusterTestNotHandledParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    testNotHandledWithExpectedValuesExpectedValueIntervalCompletion17332(params: $SDK163, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    testNotHandledWithExpectedValuesExpectedValueIntervalCompletion1886(params: $SDK163, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func testNullableOptionalRequest(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRUnitTestingClusterTestNullableOptionalResponseParams
      * @availability iOS 17.4+
@@ -85741,7 +85741,7 @@ export declare class MTRClusterUnitTesting extends MTRGenericCluster {
      * func testNullableOptionalRequest(with params: MTRUnitTestingClusterTestNullableOptionalRequestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRUnitTestingClusterTestNullableOptionalResponseParams
      * @availability iOS 16.4+
      */
-    testNullableOptionalRequestWithExpectedValuesExpectedValueIntervalCompletion17334(params: $SDK165, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK164): void;
+    testNullableOptionalRequestWithExpectedValuesExpectedValueIntervalCompletion30169(params: $SDK165, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK164): void;
     /**
      * func testSimpleArgumentRequest(with params: MTRUnitTestingClusterTestSimpleArgumentRequestParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRUnitTestingClusterTestSimpleArgumentResponseParams
      * @availability iOS 16.4+
@@ -85756,7 +85756,7 @@ export declare class MTRClusterUnitTesting extends MTRGenericCluster {
      * func testSimpleOptionalArgumentRequest(with params: MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    testSimpleOptionalArgumentRequestWithExpectedValuesExpectedValueIntervalCompletion17337(params: $SDK167, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    testSimpleOptionalArgumentRequestWithExpectedValuesExpectedValueIntervalCompletion39029(params: $SDK167, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func testSpecific(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRUnitTestingClusterTestSpecificResponseParams
      * @availability iOS 16.4+
@@ -85766,7 +85766,7 @@ export declare class MTRClusterUnitTesting extends MTRGenericCluster {
      * func testSpecific(with params: MTRUnitTestingClusterTestSpecificParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRUnitTestingClusterTestSpecificResponseParams
      * @availability iOS 16.4+
      */
-    testSpecificWithExpectedValuesExpectedValueIntervalCompletion17339(params: $SDK169, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK168): void;
+    testSpecificWithExpectedValuesExpectedValueIntervalCompletion42369(params: $SDK169, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK168): void;
     /**
      * func testStructArgumentRequest(with params: MTRUnitTestingClusterTestStructArgumentRequestParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRUnitTestingClusterBooleanResponseParams
      * @availability iOS 16.4+
@@ -85786,7 +85786,7 @@ export declare class MTRClusterUnitTesting extends MTRGenericCluster {
      * func testUnknownCommand(with params: MTRUnitTestingClusterTestUnknownCommandParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    testUnknownCommandWithExpectedValuesExpectedValueIntervalCompletion17343(params: $SDK171, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    testUnknownCommandWithExpectedValuesExpectedValueIntervalCompletion30276(params: $SDK171, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func test(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
@@ -85796,7 +85796,7 @@ export declare class MTRClusterUnitTesting extends MTRGenericCluster {
      * func test(with params: MTRUnitTestingClusterTestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    testWithExpectedValuesExpectedValueIntervalCompletion17345(params: $SDK172, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    testWithExpectedValuesExpectedValueIntervalCompletion40989(params: $SDK172, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func timedInvokeRequest(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
@@ -85806,7 +85806,7 @@ export declare class MTRClusterUnitTesting extends MTRGenericCluster {
      * func timedInvokeRequest(with params: MTRUnitTestingClusterTimedInvokeRequestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    timedInvokeRequestWithExpectedValuesExpectedValueIntervalCompletion17347(params: $SDK173, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    timedInvokeRequestWithExpectedValuesExpectedValueIntervalCompletion69337(params: $SDK173, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func writeAttributeBitmap16(withValue dataValueDictionary: [String : Any], expectedValueInterval expectedValueIntervalMs: NSNumber)
      * @availability iOS 16.4+
@@ -86724,7 +86724,7 @@ export declare class MTRClusterTestCluster extends MTRClusterTestCluster_base {
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    testNotHandledWithExpectedValuesExpectedValueIntervalCompletionHandler16888(params: $SDK184, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    testNotHandledWithExpectedValuesExpectedValueIntervalCompletionHandler23502(params: $SDK184, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func testNullableOptionalRequest(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRTestClusterClusterTestNullableOptionalResponseParams
      * @availability iOS 16.1+
@@ -86736,7 +86736,7 @@ export declare class MTRClusterTestCluster extends MTRClusterTestCluster_base {
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    testNullableOptionalRequestWithExpectedValuesExpectedValueIntervalCompletionHandler16890(params: $SDK186, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK185): void;
+    testNullableOptionalRequestWithExpectedValuesExpectedValueIntervalCompletionHandler73643(params: $SDK186, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK185): void;
     /**
      * func testSimpleArgumentRequest(with params: MTRTestClusterClusterTestSimpleArgumentRequestParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRTestClusterClusterTestSimpleArgumentResponseParams
      * @availability iOS 16.1+
@@ -86754,7 +86754,7 @@ export declare class MTRClusterTestCluster extends MTRClusterTestCluster_base {
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    testSimpleOptionalArgumentRequestWithExpectedValuesExpectedValueIntervalCompletionHandler16893(params: $SDK188, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    testSimpleOptionalArgumentRequestWithExpectedValuesExpectedValueIntervalCompletionHandler61127(params: $SDK188, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func testSpecific(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRTestClusterClusterTestSpecificResponseParams
      * @availability iOS 16.1+
@@ -86766,7 +86766,7 @@ export declare class MTRClusterTestCluster extends MTRClusterTestCluster_base {
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    testSpecificWithExpectedValuesExpectedValueIntervalCompletionHandler16895(params: $SDK190, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK189): void;
+    testSpecificWithExpectedValuesExpectedValueIntervalCompletionHandler56835(params: $SDK190, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK189): void;
     /**
      * func testStructArgumentRequest(with params: MTRTestClusterClusterTestStructArgumentRequestParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRTestClusterClusterBooleanResponseParams
      * @availability iOS 16.1+
@@ -86790,7 +86790,7 @@ export declare class MTRClusterTestCluster extends MTRClusterTestCluster_base {
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    testUnknownCommandWithExpectedValuesExpectedValueIntervalCompletionHandler16899(params: $SDK192, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    testUnknownCommandWithExpectedValuesExpectedValueIntervalCompletionHandler63656(params: $SDK192, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func test(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
@@ -86802,7 +86802,7 @@ export declare class MTRClusterTestCluster extends MTRClusterTestCluster_base {
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    testWithExpectedValuesExpectedValueIntervalCompletionHandler16901(params: $SDK193, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    testWithExpectedValuesExpectedValueIntervalCompletionHandler76759(params: $SDK193, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func timedInvokeRequest(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
@@ -86814,7 +86814,7 @@ export declare class MTRClusterTestCluster extends MTRClusterTestCluster_base {
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    timedInvokeRequestWithExpectedValuesExpectedValueIntervalCompletionHandler16903(params: $SDK194, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    timedInvokeRequestWithExpectedValuesExpectedValueIntervalCompletionHandler39603(params: $SDK194, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
 }
 /**
  * class MTRClusterThermostat
@@ -86841,13 +86841,13 @@ export declare class MTRClusterThermostat extends MTRGenericCluster {
      * func clearWeeklySchedule(with params: MTRThermostatClusterClearWeeklyScheduleParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    clearWeeklyScheduleWithExpectedValuesExpectedValueIntervalCompletion16907(params: $SDK197, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    clearWeeklyScheduleWithExpectedValuesExpectedValueIntervalCompletion26357(params: $SDK197, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func clearWeeklySchedule(with params: MTRThermostatClusterClearWeeklyScheduleParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    clearWeeklyScheduleWithExpectedValuesExpectedValueIntervalCompletionHandler16908(params: $SDK197, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    clearWeeklyScheduleWithExpectedValuesExpectedValueIntervalCompletionHandler33875(params: $SDK197, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func weeklySchedule(with params: MTRThermostatClusterGetWeeklyScheduleParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRThermostatClusterGetWeeklyScheduleResponseParams
      * @availability iOS 16.4+
@@ -87619,7 +87619,7 @@ export declare class MTRClusterThreadBorderRouterManagement extends MTRGenericCl
      * func activeDatasetRequest(with params: MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRThreadBorderRouterManagementClusterDatasetResponseParams
      * @availability iOS 18.4+
      */
-    getActiveDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion17059(params: $SDK200, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK199): void;
+    getActiveDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion64292(params: $SDK200, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK199): void;
     /**
      * func pendingDatasetRequest(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRThreadBorderRouterManagementClusterDatasetResponseParams
      * @availability iOS 18.4+
@@ -87629,7 +87629,7 @@ export declare class MTRClusterThreadBorderRouterManagement extends MTRGenericCl
      * func pendingDatasetRequest(with params: MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRThreadBorderRouterManagementClusterDatasetResponseParams
      * @availability iOS 18.4+
      */
-    getPendingDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion17061(params: $SDK201, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK199): void;
+    getPendingDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion54993(params: $SDK201, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK199): void;
     /**
      * init?(device: MTRDevice, endpointID: NSNumber, queue: dispatch_queue_t)
      * @availability iOS 18.4+
@@ -88084,13 +88084,13 @@ export declare class MTRClusterThreadNetworkDiagnostics extends MTRGenericCluste
      * func resetCounts(with params: MTRThreadNetworkDiagnosticsClusterResetCountsParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    resetCountsWithExpectedValuesExpectedValueIntervalCompletion17150(params: $SDK204, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    resetCountsWithExpectedValuesExpectedValueIntervalCompletion64610(params: $SDK204, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func resetCounts(with params: MTRThreadNetworkDiagnosticsClusterResetCountsParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    resetCountsWithExpectedValuesExpectedValueIntervalCompletionHandler17151(params: $SDK204, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    resetCountsWithExpectedValuesExpectedValueIntervalCompletionHandler80478(params: $SDK204, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
 }
 /**
  * class MTRClusterThreadNetworkDirectory
@@ -88590,7 +88590,7 @@ export declare class MTRClusterValveConfigurationAndControl extends MTRGenericCl
      * func close(with params: MTRValveConfigurationAndControlClusterCloseParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 17.6+
      */
-    closeWithExpectedValuesExpectedValueIntervalCompletion17523(params: $SDK208, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    closeWithExpectedValuesExpectedValueIntervalCompletion343(params: $SDK208, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * init?(device: MTRDevice, endpointID: NSNumber, queue: dispatch_queue_t)
      * @availability iOS 17.6+
@@ -88605,7 +88605,7 @@ export declare class MTRClusterValveConfigurationAndControl extends MTRGenericCl
      * func open(with params: MTRValveConfigurationAndControlClusterOpenParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 17.6+
      */
-    openWithExpectedValuesExpectedValueIntervalCompletion17526(params: $SDK209, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    openWithExpectedValuesExpectedValueIntervalCompletion94493(params: $SDK209, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func readAttributeAcceptedCommandList(with params: MTRReadParams?) -> [String : Any]?
      * @availability iOS 17.6+
@@ -88786,7 +88786,7 @@ export declare class MTRClusterWaterHeaterManagement extends MTRGenericCluster {
      * func cancelBoost(with params: MTRWaterHeaterManagementClusterCancelBoostParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 18.4+
      */
-    cancelBoostWithExpectedValuesExpectedValueIntervalCompletion17558(params: $SDK210, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    cancelBoostWithExpectedValuesExpectedValueIntervalCompletion82023(params: $SDK210, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * init?(device: MTRDevice, endpointID: NSNumber, queue: dispatch_queue_t)
      * @availability iOS 18.4+
@@ -89032,13 +89032,13 @@ export declare class MTRClusterWiFiNetworkDiagnostics extends MTRGenericCluster 
      * func resetCounts(with params: MTRWiFiNetworkDiagnosticsClusterResetCountsParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    resetCountsWithExpectedValuesExpectedValueIntervalCompletion17604(params: $SDK212, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    resetCountsWithExpectedValuesExpectedValueIntervalCompletion23159(params: $SDK212, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func resetCounts(with params: MTRWiFiNetworkDiagnosticsClusterResetCountsParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    resetCountsWithExpectedValuesExpectedValueIntervalCompletionHandler17605(params: $SDK212, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    resetCountsWithExpectedValuesExpectedValueIntervalCompletionHandler2993(params: $SDK212, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
 }
 /**
  * class MTRClusterWiFiNetworkManagement
@@ -89059,7 +89059,7 @@ export declare class MTRClusterWiFiNetworkManagement extends MTRGenericCluster {
      * func networkPassphraseRequest(with params: MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws -> MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams
      * @availability iOS 18.4+
      */
-    networkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion17608(params: $SDK214, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK213): void;
+    networkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion57924(params: $SDK214, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK213): void;
     /**
      * func readAttributeAcceptedCommandList(with params: MTRReadParams?) -> [String : Any]?
      * @availability iOS 18.4+
@@ -89116,13 +89116,13 @@ export declare class MTRClusterWindowCovering extends MTRGenericCluster {
      * func downOrClose(with params: MTRWindowCoveringClusterDownOrCloseParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    downOrCloseWithExpectedValuesExpectedValueIntervalCompletion17618(params: $SDK215, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    downOrCloseWithExpectedValuesExpectedValueIntervalCompletion52569(params: $SDK215, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func downOrClose(with params: MTRWindowCoveringClusterDownOrCloseParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    downOrCloseWithExpectedValuesExpectedValueIntervalCompletionHandler17619(params: $SDK215, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    downOrCloseWithExpectedValuesExpectedValueIntervalCompletionHandler67487(params: $SDK215, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func goToLiftPercentage(with params: MTRWindowCoveringClusterGoToLiftPercentageParams, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
@@ -89328,13 +89328,13 @@ export declare class MTRClusterWindowCovering extends MTRGenericCluster {
      * func stopMotion(with params: MTRWindowCoveringClusterStopMotionParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    stopMotionWithExpectedValuesExpectedValueIntervalCompletion17659(params: $SDK216, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    stopMotionWithExpectedValuesExpectedValueIntervalCompletion3570(params: $SDK216, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func stopMotion(with params: MTRWindowCoveringClusterStopMotionParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    stopMotionWithExpectedValuesExpectedValueIntervalCompletionHandler17660(params: $SDK216, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    stopMotionWithExpectedValuesExpectedValueIntervalCompletionHandler18542(params: $SDK216, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func upOrOpen(withExpectedValues expectedValues: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
@@ -89350,13 +89350,13 @@ export declare class MTRClusterWindowCovering extends MTRGenericCluster {
      * func upOrOpen(with params: MTRWindowCoveringClusterUpOrOpenParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.4+
      */
-    upOrOpenWithExpectedValuesExpectedValueIntervalCompletion17663(params: $SDK217, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    upOrOpenWithExpectedValuesExpectedValueIntervalCompletion75512(params: $SDK217, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
     /**
      * func upOrOpen(with params: MTRWindowCoveringClusterUpOrOpenParams?, expectedValues expectedDataValueDictionaries: [[String : Any]]?, expectedValueInterval expectedValueIntervalMs: NSNumber?) async throws
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    upOrOpenWithExpectedValuesExpectedValueIntervalCompletionHandler17664(params: $SDK217, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    upOrOpenWithExpectedValuesExpectedValueIntervalCompletionHandler92512(params: $SDK217, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
     /**
      * func writeAttributeMode(withValue dataValueDictionary: [String : Any], expectedValueInterval expectedValueIntervalMs: NSNumber)
      * @availability iOS 16.1+
@@ -93868,8 +93868,8 @@ export declare class MTRCommissioningParameters extends SDKHandle {
      * var csrNonce: Data? { get set }
      * @availability iOS 16.4+
      */
-    get csrNonce18022(): (ArrayBuffer) | null;
-    set csrNonce18023(value: (ArrayBuffer) | null);
+    get csrNonce20026(): (ArrayBuffer) | null;
+    set csrNonce20026(value: (ArrayBuffer) | null);
     /**
      * var deviceAttestationDelegate: (any MTRDeviceAttestationDelegate)? { get set }
      * @availability iOS 16.1+
@@ -95362,7 +95362,7 @@ export declare class MTRDeviceController extends SDKHandle {
      * func remove(_ endpoint: MTRServerEndpoint)
      * @availability iOS 17.6+
      */
-    remove18297(endpoint: MTRServerEndpoint): void;
+    remove38489(endpoint: MTRServerEndpoint): void;
     /**
      * func remove(_ endpoint: MTRServerEndpoint, queue: dispatch_queue_t) async
      * @availability iOS 17.6+
@@ -113148,7 +113148,7 @@ export declare class MTRSetupPayload extends SDKHandle {
      * @availability iOS 16.2+
      * @deprecated iOS 17.6
      */
-    qrCodeString21235(): {
+    qrCodeString72627(): {
         $ret: (string) | null;
         $out: {
             "error": (_Foundation_NSError) | null;

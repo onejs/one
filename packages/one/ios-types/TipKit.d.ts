@@ -432,7 +432,7 @@ export declare class Tips_Event<DonationInfo = unknown> extends SDKHandle {
      * func sendDonation(_ completion: (@Sendable () -> Void)? = nil) where DonationInfo == Tips.EmptyDonation
      * @availability iOS 17.0+
      */
-    sendDonation87(completion?: ((() => void)) | null): void;
+    sendDonation24251(completion?: ((() => void)) | null): void;
     /**
      * func deleteDonations() async throws
      * @availability iOS 26.0+
@@ -447,7 +447,7 @@ export declare class Tips_Event<DonationInfo = unknown> extends SDKHandle {
      * init(id: String, donationLimit: Tips.DonationLimit)
      * @availability iOS 26.0+
      */
-    static initIdDonationLimit90(id: string, donationLimit: Tips_DonationLimit): Tips_Event<number>;
+    static initIdDonationLimit30434(id: string, donationLimit: Tips_DonationLimit): Tips_Event<number>;
     /**
      * init(id: String) where DonationInfo == Tips.EmptyDonation
      * @availability iOS 17.0+
@@ -457,7 +457,7 @@ export declare class Tips_Event<DonationInfo = unknown> extends SDKHandle {
      * init(id: String)
      * @availability iOS 17.0+
      */
-    static initId92(id: string): Tips_Event<number>;
+    static initId86586(id: string): Tips_Event<number>;
     /**
      * func donate() async where DonationInfo == Tips.EmptyDonation
      * @availability iOS 17.0+
@@ -467,7 +467,7 @@ export declare class Tips_Event<DonationInfo = unknown> extends SDKHandle {
      * func donate(_ donation: DonationInfo) async
      * @availability iOS 17.0+
      */
-    donate94(donation: number): Promise<void>;
+    donate76458(donation: number): Promise<void>;
     /**
      * var donations: [Tips.Event<DonationInfo>.Donation] { get }
      * @availability iOS 17.0+

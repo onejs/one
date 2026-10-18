@@ -3,11 +3,11 @@ import { SDKHandle } from 'one/ios-runtime';
 import type { CFAllocator as _CoreFoundation_CFAllocator, CFString as _CoreFoundation_CFString } from "one/ios/CoreFoundation";
 import type { CMFormatDescription as _CoreMedia_CMFormatDescription } from "one/ios/CoreMedia";
 type $SDK0 = (((arg0: MTAudioProcessingTap) => Promise<void>)) | null;
-type $SDK1 = (((arg0: MTAudioProcessingTap) => void)) | null;
-type $SDK6 = ((arg0: MTAudioProcessingTap, arg1: number, arg2: number, arg3: SDKHandle, arg4: SDKHandle, arg5: SDKHandle) => Promise<void>);
-type $SDK8 = ((arg0: MTAudioProcessingTap) => Promise<void>);
-type $SDK12 = (_CoreFoundation_CFAllocator) | null;
-type $SDK14 = (_CoreFoundation_CFString) | null;
+type $SDK3 = ((arg0: MTAudioProcessingTap, arg1: number, arg2: number, arg3: SDKHandle, arg4: SDKHandle, arg5: SDKHandle) => Promise<void>);
+type $SDK4 = ((arg0: MTAudioProcessingTap) => Promise<void>);
+type $SDK7 = (MTAudioProcessingTap) | null;
+type $SDK8 = (_CoreFoundation_CFAllocator) | null;
+type $SDK10 = (_CoreFoundation_CFString) | null;
 /** class MTAudioProcessingTap */
 export declare class MTAudioProcessingTap extends SDKHandle {
 }
@@ -27,31 +27,26 @@ export declare class MTAudioProcessingTapCallbacks extends SDKHandle {
      * @availability iOS 6.0+
      */
     get finalize(): $SDK0;
-    set finalize(value: $SDK1);
     /**
      * var `init`: MTAudioProcessingTapInitCallback?
      * @availability iOS 6.0+
      */
     get init(): (((arg0: MTAudioProcessingTap, arg1: (SDKHandle) | null, arg2: SDKHandle) => Promise<void>)) | null;
-    set init(value: (((arg0: MTAudioProcessingTap, arg1: (SDKHandle) | null, arg2: unknown) => void)) | null);
     /**
      * var prepare: MTAudioProcessingTapPrepareCallback?
      * @availability iOS 6.0+
      */
     get prepare(): (((arg0: MTAudioProcessingTap, arg1: number, arg2: SDKHandle) => Promise<void>)) | null;
-    set prepare(value: (((arg0: MTAudioProcessingTap, arg1: number, arg2: SDKHandle) => void)) | null);
     /**
      * var process: MTAudioProcessingTapProcessCallback
      * @availability iOS 6.0+
      */
-    get process(): $SDK6;
-    set process(value: ((arg0: MTAudioProcessingTap, arg1: number, arg2: number, arg3: SDKHandle, arg4: SDKHandle, arg5: SDKHandle) => void));
+    get process(): $SDK3;
     /**
      * var unprepare: MTAudioProcessingTapUnprepareCallback?
      * @availability iOS 6.0+
      */
     get unprepare(): $SDK0;
-    set unprepare(value: $SDK1);
     /**
      * var version: Int32
      * @availability iOS 6.0+
@@ -62,7 +57,7 @@ export declare class MTAudioProcessingTapCallbacks extends SDKHandle {
 /** typealias MTAudioProcessingTapCreationFlags = UInt32 */
 export type MTAudioProcessingTapCreationFlags = number;
 /** typealias MTAudioProcessingTapFinalizeCallback = (MTAudioProcessingTap) -> Void */
-export type MTAudioProcessingTapFinalizeCallback = $SDK8;
+export type MTAudioProcessingTapFinalizeCallback = $SDK4;
 /** typealias MTAudioProcessingTapFlags = UInt32 */
 export type MTAudioProcessingTapFlags = number;
 /** typealias MTAudioProcessingTapInitCallback = (MTAudioProcessingTap, UnsafeMutableRawPointer?, UnsafeMutablePointer<UnsafeMutableRawPointer?>) -> Void */
@@ -70,27 +65,27 @@ export type MTAudioProcessingTapInitCallback = ((arg0: MTAudioProcessingTap, arg
 /** typealias MTAudioProcessingTapPrepareCallback = (MTAudioProcessingTap, CMItemCount, UnsafePointer<AudioStreamBasicDescription>) -> Void */
 export type MTAudioProcessingTapPrepareCallback = ((arg0: MTAudioProcessingTap, arg1: number, arg2: SDKHandle) => Promise<void>);
 /** typealias MTAudioProcessingTapProcessCallback = (MTAudioProcessingTap, CMItemCount, MTAudioProcessingTapFlags, UnsafeMutablePointer<AudioBufferList>, UnsafeMutablePointer<CMItemCount>, UnsafeMutablePointer<MTAudioProcessingTapFlags>) -> Void */
-export type MTAudioProcessingTapProcessCallback = $SDK6;
+export type MTAudioProcessingTapProcessCallback = $SDK3;
 /** typealias MTAudioProcessingTapUnprepareCallback = (MTAudioProcessingTap) -> Void */
-export type MTAudioProcessingTapUnprepareCallback = $SDK8;
+export type MTAudioProcessingTapUnprepareCallback = $SDK4;
 /**
  * func MTAudioProcessingTapCreate(_ allocator: CFAllocator?, _ callbacks: UnsafePointer<MTAudioProcessingTapCallbacks>, _ flags: MTAudioProcessingTapCreationFlags, _ tapOut: UnsafeMutablePointer<MTAudioProcessingTap?>) -> OSStatus
  * @availability iOS 6.0+
  */
-export declare function MTAudioProcessingTapCreate(allocator: $SDK12, callbacks: SDKHandle, flags: number): {
+export declare function MTAudioProcessingTapCreate(allocator: $SDK8, callbacks: SDKHandle, flags: number): {
     $ret: number;
     $out: {
-        "tapOut": (MTAudioProcessingTap) | null;
+        "tapOut": $SDK7;
     };
 };
 /**
  * func MTAudioProcessingTapCreateWithPreferredFormat(_ allocator: CFAllocator?, _ callbacks: UnsafePointer<MTAudioProcessingTapCallbacks>, _ flags: MTAudioProcessingTapCreationFlags, _ preferredFormat: CMAudioFormatDescription?, _ tapOut: UnsafeMutablePointer<MTAudioProcessingTap?>) -> OSStatus
  * @availability iOS 27.0+
  */
-export declare function MTAudioProcessingTapCreateWithPreferredFormat(allocator: $SDK12, callbacks: SDKHandle, flags: number, preferredFormat?: (_CoreMedia_CMFormatDescription) | null): {
+export declare function MTAudioProcessingTapCreateWithPreferredFormat(allocator: $SDK8, callbacks: SDKHandle, flags: number, preferredFormat?: (_CoreMedia_CMFormatDescription) | null): {
     $ret: number;
     $out: {
-        "tapOut": (MTAudioProcessingTap) | null;
+        "tapOut": $SDK7;
     };
 };
 /**
@@ -112,12 +107,12 @@ export declare function MTAudioProcessingTapGetTypeID(): number;
  * func MTCopyLocalizedNameForMediaSubType(_ mediaType: CMMediaType, _ mediaSubType: FourCharCode) -> CFString?
  * @availability iOS 6.0+
  */
-export declare function MTCopyLocalizedNameForMediaSubType(mediaType: SDKHandle, mediaSubType: SDKHandle): $SDK14;
+export declare function MTCopyLocalizedNameForMediaSubType(mediaType: SDKHandle, mediaSubType: SDKHandle): $SDK10;
 /**
  * func MTCopyLocalizedNameForMediaType(_ mediaType: CMMediaType) -> CFString?
  * @availability iOS 6.0+
  */
-export declare function MTCopyLocalizedNameForMediaType(mediaType: SDKHandle): $SDK14;
+export declare function MTCopyLocalizedNameForMediaType(mediaType: SDKHandle): $SDK10;
 /** var kMTAudioProcessingTapCallbacksVersion_0: Int32 { get } */
 export declare const kMTAudioProcessingTapCallbacksVersion_0: number;
 /** var kMTAudioProcessingTapCreationFlag_PostEffects: MTAudioProcessingTapCreationFlags { get } */

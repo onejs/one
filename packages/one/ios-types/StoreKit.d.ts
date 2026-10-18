@@ -876,7 +876,7 @@ export declare class Product extends SDKHandle {
      * @MainActor func purchase(confirmIn scene: some UIScene, options: Set<Product.PurchaseOption> = []) async throws -> Product.PurchaseResult
      * @availability iOS 17.0+
      */
-    purchaseConfirmInOptions770(scene: _UIKit_UIScene, options?: $SDK8): Promise<Product_PurchaseResult>;
+    purchaseConfirmInOptions44435(scene: _UIKit_UIScene, options?: $SDK8): Promise<Product_PurchaseResult>;
 }
 /**
  * typealias ID = String
@@ -1079,17 +1079,17 @@ export declare class Product_PurchaseOption extends SDKHandle {
      * static func custom(key: String, value: String) -> Product.PurchaseOption
      * @availability iOS 15.0+
      */
-    static customKeyValue588(key: string, value: string): Product_PurchaseOption;
+    static customKeyValue95246(key: string, value: string): Product_PurchaseOption;
     /**
      * static func custom(key: String, value: Bool) -> Product.PurchaseOption
      * @availability iOS 15.0+
      */
-    static customKeyValue589(key: string, value: boolean): Product_PurchaseOption;
+    static customKeyValue81115(key: string, value: boolean): Product_PurchaseOption;
     /**
      * static func custom(key: String, value: Double) -> Product.PurchaseOption
      * @availability iOS 15.0+
      */
-    static customKeyValue590(key: string, value: number): Product_PurchaseOption;
+    static customKeyValue24829(key: string, value: number): Product_PurchaseOption;
     /**
      * static func quantity(_ quantity: Int) -> Product.PurchaseOption
      * @availability iOS 15.0+
@@ -3304,7 +3304,7 @@ export declare class SKPaymentQueue extends SDKHandle {
      * @availability iOS 3.0+
      * @deprecated iOS 18.0
      */
-    add174(observer: $SDK37): void;
+    add71084(observer: $SDK37): void;
     /**
      * func cancel(_ downloads: [SKDownload])
      * @availability iOS 6.0+
@@ -5170,92 +5170,92 @@ export declare class VerificationResult<SignedType = unknown> extends SDKHandle 
      * var deviceVerification: Data { get }
      * @availability iOS 16.0+
      */
-    get deviceVerification495(): ArrayBuffer;
+    get deviceVerification43932(): ArrayBuffer;
     /**
      * var deviceVerificationNonce: UUID { get }
      * @availability iOS 16.0+
      */
-    get deviceVerificationNonce496(): string;
+    get deviceVerificationNonce49139(): string;
     /**
      * var headerData: Data { get }
      * @availability iOS 16.0+
      */
-    get headerData497(): ArrayBuffer;
+    get headerData80579(): ArrayBuffer;
     /**
      * var signedData: Data { get }
      * @availability iOS 16.0+
      */
-    get signedData498(): ArrayBuffer;
+    get signedData96986(): ArrayBuffer;
     /**
      * var signedDate: Date { get }
      * @availability iOS 16.0+
      */
-    get signedDate499(): globalThis.Date;
+    get signedDate63934(): globalThis.Date;
     /**
      * var payloadData: Data { get }
      * @availability iOS 16.0+
      */
-    get payloadData500(): ArrayBuffer;
+    get payloadData82417(): ArrayBuffer;
     /**
      * var signatureData: Data { get }
      * @availability iOS 16.0+
      */
-    get signatureData501(): ArrayBuffer;
+    get signatureData98739(): ArrayBuffer;
     /**
      * var jwsRepresentation: String { get }
      * @availability iOS 16.0+
      */
-    get jwsRepresentation502(): string;
+    get jwsRepresentation27364(): string;
     /**
      * var signature: P256.Signing.ECDSASignature { get }
      * @availability iOS 16.0+
      */
-    get signature503(): _CryptoKit_P256_Signing_ECDSASignature;
+    get signature83437(): _CryptoKit_P256_Signing_ECDSASignature;
     /**
      * var deviceVerification: Data { get }
      * @availability iOS 15.0+
      */
-    get deviceVerification504(): ArrayBuffer;
+    get deviceVerification2976(): ArrayBuffer;
     /**
      * var deviceVerificationNonce: UUID { get }
      * @availability iOS 15.0+
      */
-    get deviceVerificationNonce505(): string;
+    get deviceVerificationNonce55855(): string;
     /**
      * var headerData: Data { get }
      * @availability iOS 15.0+
      */
-    get headerData506(): ArrayBuffer;
+    get headerData5797(): ArrayBuffer;
     /**
      * var signedData: Data { get }
      * @availability iOS 15.0+
      */
-    get signedData507(): ArrayBuffer;
+    get signedData62824(): ArrayBuffer;
     /**
      * var signedDate: Date { get }
      * @availability iOS 15.0+
      */
-    get signedDate508(): globalThis.Date;
+    get signedDate80884(): globalThis.Date;
     /**
      * var payloadData: Data { get }
      * @availability iOS 15.0+
      */
-    get payloadData509(): ArrayBuffer;
+    get payloadData65487(): ArrayBuffer;
     /**
      * var signatureData: Data { get }
      * @availability iOS 15.0+
      */
-    get signatureData510(): ArrayBuffer;
+    get signatureData16253(): ArrayBuffer;
     /**
      * var jwsRepresentation: String { get }
      * @availability iOS 15.0+
      */
-    get jwsRepresentation511(): string;
+    get jwsRepresentation21432(): string;
     /**
      * var signature: P256.Signing.ECDSASignature { get }
      * @availability iOS 15.0+
      */
-    get signature512(): _CryptoKit_P256_Signing_ECDSASignature;
+    get signature3169(): _CryptoKit_P256_Signing_ECDSASignature;
 }
 /**
  * enum VerificationError

@@ -176,6 +176,5 @@ export declare class UIView extends SDKHandle {
      * @availability iOS 18.4+
      */
     get appEntityUIElementProvider(): Promise<(((arg0: _UIKit_UIView, arg1: _AppIntents_AppEntityUIElementsContext) => Promise<Array<_AppIntents_AppEntityUIElement>>)) | null>;
-    setAppEntityUIElementProvider(value?: (((arg0: _UIKit_UIView, arg1: _AppIntents_AppEntityUIElementsContext) => Array<_AppIntents_AppEntityUIElement>)) | null): Promise<void>;
 }
 export {};

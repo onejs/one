@@ -428,12 +428,12 @@ export declare class AppSchema extends SDKHandle {
      * init(_ schema: some AppSchemaEntity)
      * @availability iOS 18.0+
      */
-    static init383(schema: Implements<AppSchemaEntity> | SDKHandle): AppSchema;
+    static init72054(schema: Implements<AppSchemaEntity> | SDKHandle): AppSchema;
     /**
      * init(_ schema: some AppSchemaIntent)
      * @availability iOS 18.0+
      */
-    static init384(schema: Implements<AppSchemaIntent> | SDKHandle): AppSchema;
+    static init63367(schema: Implements<AppSchemaIntent> | SDKHandle): AppSchema;
 }
 /**
  * protocol AssistantIntent : AppSchema.Kind
@@ -981,7 +981,7 @@ export declare class AppShortcutsBuilder extends SDKHandle {
      * static func buildOptional(_ component: (any _AppShortcutsContentEmitterMarker & _AppShortcutsContentMarker & _LimitedAvailabilityAppShortcutsContentMarker)?) -> [AppShortcut]
      * @availability iOS 17.4+
      */
-    static buildOptional58(component?: ((SDKHandle) & (SDKHandle) & (SDKHandle)) | null): Array<AppShortcut>;
+    static buildOptional19352(component?: ((SDKHandle) & (SDKHandle) & (SDKHandle)) | null): Array<AppShortcut>;
     /**
      * static func buildExpression(_ component: AppShortcut) -> AppShortcut
      * @availability iOS 16.0+
@@ -991,7 +991,7 @@ export declare class AppShortcutsBuilder extends SDKHandle {
      * static func buildExpression(_ component: AppShortcut) -> [AppShortcut]
      * @availability iOS 17.4+
      */
-    static buildExpression60(component: AppShortcut): Array<AppShortcut>;
+    static buildExpression69621(component: AppShortcut): Array<AppShortcut>;
     /**
      * static func buildLimitedAvailability(_ components: [AppShortcut]) -> any _AppShortcutsContentMarker & _LimitedAvailabilityAppShortcutsContentMarker
      * @availability iOS 17.4+
@@ -3652,7 +3652,7 @@ export declare const IntentModes: {
      * static func foreground(_ foregroundMode: IntentModes.ForegroundMode) -> IntentModes
      * @availability iOS 26.0+
      */
-    foreground407(foregroundMode: IntentModes_ForegroundMode): IntentModes;
+    foreground60895(foregroundMode: IntentModes_ForegroundMode): IntentModes;
     /**
      * init(rawValue: Int)
      * @availability iOS 26.0+
@@ -4886,7 +4886,7 @@ export declare class OpenURLIntent extends SDKHandle {
      * init(_ url: URL)
      * @availability iOS 18.0+
      */
-    static init460(url: string): OpenURLIntent;
+    static init42381(url: string): OpenURLIntent;
 }
 /**
  * typealias Case = ParameterSummaryCaseCondition

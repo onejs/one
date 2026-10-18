@@ -29,7 +29,7 @@ export declare class DeviceActivityAuthorization extends SDKHandle {
      * static var isAuthorized: Bool { get }
      * @availability iOS 17.0+
      */
-    static get isAuthorized2(): boolean;
+    static get isAuthorized57125(): boolean;
     /**
      * @objc static var isOverridden: Bool { get set }
      * @availability iOS 17.0+

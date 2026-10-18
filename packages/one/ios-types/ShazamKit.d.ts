@@ -329,7 +329,7 @@ export declare class SHMediaItem extends SDKHandle {
      * func songs() async throws -> [Song]
      * @availability iOS 27.0+
      */
-    songs93(): Promise<Array<_MusicKit_Song>>;
+    songs2497(): Promise<Array<_MusicKit_Song>>;
 }
 /**
  * class SHMatchedMediaItem

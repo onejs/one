@@ -175,7 +175,7 @@ export declare class MKAddressRepresentations extends SDKHandle {
      * var cityWithContext: String? { get }
      * @availability iOS 26.0+
      */
-    get cityWithContext209(): (string) | null;
+    get cityWithContext19911(): (string) | null;
     /**
      * var regionName: String? { get }
      * @availability iOS 26.0+
@@ -529,7 +529,7 @@ export declare class MKOverlayRenderer extends SDKHandle {
      * func setNeedsDisplay(_ mapRect: MKMapRect)
      * @availability iOS 7.0+
      */
-    setNeedsDisplay736(mapRect: MKMapRect): void;
+    setNeedsDisplay78809(mapRect: MKMapRect): void;
     /**
      * func setNeedsDisplay(_ mapRect: MKMapRect, zoomScale: MKZoomScale)
      * @availability iOS 7.0+
@@ -788,7 +788,7 @@ export declare class MKCoordinateRegion extends SDKHandle {
     /** init(center: CLLocationCoordinate2D, span: MKCoordinateSpan) */
     static initCenterSpan(center: $SDK3, span: MKCoordinateSpan): MKCoordinateRegion;
     /** init() */
-    static init906(): MKCoordinateRegion;
+    static init63636(): MKCoordinateRegion;
 }
 /** struct MKCoordinateSpan */
 export declare class MKCoordinateSpan extends SDKHandle {
@@ -1529,7 +1529,7 @@ export declare class MKLocalSearch extends SDKHandle {
      * init(request: MKLocalSearch.Request)
      * @availability iOS 6.1+
      */
-    static initRequest371(request: MKLocalSearch_Request): MKLocalSearch;
+    static initRequest3144(request: MKLocalSearch_Request): MKLocalSearch;
     /**
      * func start() async throws -> MKLocalSearch.Response
      * @availability iOS 6.1+
@@ -2455,7 +2455,7 @@ export declare class MKMapPoint extends SDKHandle {
     /** init(x: Double, y: Double) */
     static initXY(x: number, y: number): MKMapPoint;
     /** init() */
-    static init894(): MKMapPoint;
+    static init47782(): MKMapPoint;
 }
 /** struct MKMapRect */
 export declare class MKMapRect extends SDKHandle {
@@ -2468,7 +2468,7 @@ export declare class MKMapRect extends SDKHandle {
      * func contains(_ rect2: MKMapRect) -> Bool
      * @availability iOS 4.0+
      */
-    contains28(rect2: MKMapRect): boolean;
+    contains93149(rect2: MKMapRect): boolean;
     /** var height: Double { get } */
     get height(): number;
     /** var maxX: Double { get } */
@@ -2931,7 +2931,7 @@ export declare class MKMapView extends SDKHandle {
      * @availability iOS 4.0+
      * @deprecated iOS 13.0
      */
-    viewFor609(overlay: SDKHandle): MKOverlayView;
+    viewFor41435(overlay: SDKHandle): MKOverlayView;
     /**
      * var annotationVisibleRect: CGRect { get }
      * @availability iOS 3.0+
@@ -3347,7 +3347,7 @@ export declare class MKMultiPolygon extends MKMultiPolygon_base {
      * init(_ polygons: [MKPolygon])
      * @availability iOS 13.0+
      */
-    static init688(polygons: Array<MKPolygon>): MKMultiPolygon;
+    static init91596(polygons: Array<MKPolygon>): MKMultiPolygon;
     /**
      * var polygons: [MKPolygon] { get }
      * @availability iOS 13.0+
@@ -3385,7 +3385,7 @@ export declare class MKMultiPolyline extends MKMultiPolyline_base {
      * init(_ polylines: [MKPolyline])
      * @availability iOS 13.0+
      */
-    static init694(polylines: Array<MKPolyline>): MKMultiPolyline;
+    static init79182(polylines: Array<MKPolyline>): MKMultiPolyline;
     /**
      * var polylines: [MKPolyline] { get }
      * @availability iOS 13.0+
@@ -4305,7 +4305,7 @@ export declare class MKSelectionAccessory_MapItemDetailPresentationStyle extends
      * static func callout(_ style: MKSelectionAccessory.MapItemDetailPresentationStyle.CalloutStyle = .automatic) -> MKSelectionAccessory.MapItemDetailPresentationStyle
      * @availability iOS 18.0+
      */
-    static callout936(style?: MKSelectionAccessory_MapItemDetailPresentationStyle_CalloutStyle): MKSelectionAccessory_MapItemDetailPresentationStyle;
+    static callout46858(style?: MKSelectionAccessory_MapItemDetailPresentationStyle_CalloutStyle): MKSelectionAccessory_MapItemDetailPresentationStyle;
     /**
      * static func automatic(presentationViewController: UIViewController? = nil) -> MKSelectionAccessory.MapItemDetailPresentationStyle
      * @availability iOS 18.0+

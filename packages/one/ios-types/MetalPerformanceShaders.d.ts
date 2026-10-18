@@ -10524,31 +10524,31 @@ export declare class MPSNDArrayUnaryKernel extends MPSNDArrayUnaryKernel_base {
      * @availability iOS 13.0+
      * @deprecated iOS 14.0
      */
-    dilationRates2146(sourceIndex: number): MPSNDArraySizes;
+    dilationRates69176(sourceIndex: number): MPSNDArraySizes;
     /**
      * func edgeMode(atSourceIndex sourceIndex: Int) -> MPSImageEdgeMode
      * @availability iOS 13.0+
      * @deprecated iOS 14.0
      */
-    edgeMode2147(sourceIndex: number): MPSImageEdgeMode;
+    edgeMode43923(sourceIndex: number): MPSImageEdgeMode;
     /**
      * func kernelSizes(forSourceIndex sourceIndex: Int) -> MPSNDArraySizes
      * @availability iOS 13.0+
      * @deprecated iOS 14.0
      */
-    kernelSizes2152(sourceIndex: number): MPSNDArraySizes;
+    kernelSizes47380(sourceIndex: number): MPSNDArraySizes;
     /**
      * func offsets(atSourceIndex sourceIndex: Int) -> MPSNDArrayOffsets
      * @availability iOS 13.0+
      * @deprecated iOS 14.0
      */
-    offsets2153(sourceIndex: number): MPSNDArrayOffsets;
+    offsets62095(sourceIndex: number): MPSNDArrayOffsets;
     /**
      * func strides(forSourceIndex sourceIndex: Int) -> MPSNDArrayOffsets
      * @availability iOS 13.0+
      * @deprecated iOS 14.0
      */
-    strides2155(sourceIndex: number): MPSNDArrayOffsets;
+    strides11981(sourceIndex: number): MPSNDArrayOffsets;
 }
 declare const MPSNDArrayIdentity_base: Omit<typeof MPSNDArrayUnaryKernel, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayUnaryKernel);
 /**
@@ -11281,7 +11281,7 @@ export declare class MPSNNForwardLossNode extends MPSNNForwardLossNode_base {
      * init(source: MPSNNImageNode, labels: MPSNNImageNode, weights: MPSNNImageNode?, lossDescriptor descriptor: MPSCNNLossDescriptor)
      * @availability iOS 13.0+
      */
-    static initSourceLabelsWeightsLossDescriptor2303(source: MPSNNImageNode, labels: MPSNNImageNode, weights: (MPSNNImageNode) | null, descriptor: MPSCNNLossDescriptor): MPSNNForwardLossNode;
+    static initSourceLabelsWeightsLossDescriptor93335(source: MPSNNImageNode, labels: MPSNNImageNode, weights: (MPSNNImageNode) | null, descriptor: MPSCNNLossDescriptor): MPSNNForwardLossNode;
     /**
      * init(sources sourceNodes: [MPSNNImageNode], lossDescriptor descriptor: MPSCNNLossDescriptor)
      * @availability iOS 13.0+
@@ -11884,7 +11884,7 @@ export declare class MPSNNLossGradientNode extends MPSNNGradientFilterNode {
      * init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, weights: MPSNNImageNode?, gradientState: MPSNNGradientStateNode?, lossDescriptor descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: Bool)
      * @availability iOS 13.0+
      */
-    static initSourceGradientSourceImageLabelsWeightsGradientStateLossDescriptorIsLabelsGradientFilter2415(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, weights: (MPSNNImageNode) | null, gradientState: $SDK40, descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: boolean): MPSNNLossGradientNode;
+    static initSourceGradientSourceImageLabelsWeightsGradientStateLossDescriptorIsLabelsGradientFilter76398(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, weights: (MPSNNImageNode) | null, gradientState: $SDK40, descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: boolean): MPSNNLossGradientNode;
     /**
      * init(sources sourceNodes: [MPSNNImageNode], gradientState: MPSNNGradientStateNode?, lossDescriptor descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: Bool)
      * @availability iOS 13.0+

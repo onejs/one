@@ -1364,7 +1364,7 @@ export declare class ASAuthorizationPublicKeyCredentialPRFAssertionInput extends
      * static func perCredentialInputValues(_ perCredentialInputValues: [Data : ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues]) -> ASAuthorizationPublicKeyCredentialPRFAssertionInput
      * @availability iOS 18.0+
      */
-    static perCredentialInputValues742(perCredentialInputValues: NativeMap<ArrayBuffer, ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues>): ASAuthorizationPublicKeyCredentialPRFAssertionInput;
+    static perCredentialInputValues9744(perCredentialInputValues: NativeMap<ArrayBuffer, ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues>): ASAuthorizationPublicKeyCredentialPRFAssertionInput;
     /**
      * let inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues?
      * @availability iOS 18.0+
@@ -1439,7 +1439,7 @@ export declare class ASAuthorizationPublicKeyCredentialPRFRegistrationInput exte
      * static func inputValues(_ inputValues: ASAuthorizationPublicKeyCredentialPRFRegistrationInput.InputValues) -> ASAuthorizationPublicKeyCredentialPRFRegistrationInput
      * @availability iOS 18.0+
      */
-    static inputValues761(inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues): ASAuthorizationPublicKeyCredentialPRFRegistrationInput;
+    static inputValues57409(inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues): ASAuthorizationPublicKeyCredentialPRFRegistrationInput;
     /**
      * static var checkForSupport: ASAuthorizationPublicKeyCredentialPRFRegistrationInput { get }
      * @availability iOS 18.0+
@@ -1615,8 +1615,8 @@ export declare class ASAuthorizationSecurityKeyPublicKeyCredentialAssertionReque
      * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionInput? { get set }
      * @availability iOS 26.4+
      */
-    get prf826(): $SDK13;
-    set prf827(value: $SDK13);
+    get prf20777(): $SDK13;
+    set prf20777(value: $SDK13);
 }
 /**
  * class ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor
@@ -2194,7 +2194,7 @@ export declare class ASCredentialIdentityStore extends SDKHandle {
      * func removeCredentialIdentities(_ credentialIdentities: [any ASCredentialIdentity]) async throws
      * @availability iOS 17.0+
      */
-    removeCredentialIdentitiesCompletion202(credentialIdentities: Array<SDKHandle>, completion?: $SDK34): void;
+    removeCredentialIdentitiesCompletion70031(credentialIdentities: Array<SDKHandle>, completion?: $SDK34): void;
     /**
      * func replaceCredentialIdentities(with newCredentialIdentities: [ASPasswordCredentialIdentity]) async throws
      * @availability iOS 12.0+
@@ -2216,7 +2216,7 @@ export declare class ASCredentialIdentityStore extends SDKHandle {
      * func saveCredentialIdentities(_ credentialIdentities: [any ASCredentialIdentity]) async throws
      * @availability iOS 17.0+
      */
-    saveCredentialIdentitiesCompletion206(credentialIdentities: Array<SDKHandle>, completion?: $SDK34): void;
+    saveCredentialIdentitiesCompletion16884(credentialIdentities: Array<SDKHandle>, completion?: $SDK34): void;
     /**
      * func credentialIdentities(forService serviceIdentifier: ASCredentialServiceIdentifier? = nil, credentialIdentityTypes: ASCredentialIdentityStore.IdentityTypes = []) async -> [any ASCredentialIdentity]
      * @availability iOS 17.4+
@@ -2426,7 +2426,7 @@ export declare class ASCredentialProviderViewController extends SDKHandle {
      * func prepareInterface(for savePasswordRequest: ASSavePasswordRequest)
      * @availability iOS 26.2+
      */
-    prepareInterfaceFor229(savePasswordRequest: ASSavePasswordRequest): void;
+    prepareInterfaceFor1521(savePasswordRequest: ASSavePasswordRequest): void;
     /**
      * func prepareInterfaceForUserChoosingTextToInsert()
      * @availability iOS 18.0+
@@ -2442,7 +2442,7 @@ export declare class ASCredentialProviderViewController extends SDKHandle {
      * func prepareInterfaceToProvideCredential(for credentialRequest: any ASCredentialRequest)
      * @availability iOS 17.0+
      */
-    prepareInterfaceToProvideCredentialFor232(credentialRequest: SDKHandle): void;
+    prepareInterfaceToProvideCredentialFor64482(credentialRequest: SDKHandle): void;
     /**
      * func prepareOneTimeCodeCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier])
      * @availability iOS 18.0+
@@ -2458,7 +2458,7 @@ export declare class ASCredentialProviderViewController extends SDKHandle {
      * func provideCredentialWithoutUserInteraction(for credentialRequest: any ASCredentialRequest)
      * @availability iOS 17.0+
      */
-    provideCredentialWithoutUserInteractionFor235(credentialRequest: SDKHandle): void;
+    provideCredentialWithoutUserInteractionFor49470(credentialRequest: SDKHandle): void;
     /**
      * func reportAllAcceptedPublicKeyCredentials(forRelyingParty relyingParty: String, userHandle: Data, acceptedCredentialIDs: [Data])
      * @availability iOS 12.0+
@@ -4375,7 +4375,7 @@ export declare class ASPasskeyCredentialIdentity extends SDKHandle {
      * convenience init(relyingPartyIdentifier: String, userName: String, credentialID: Data, userHandle: Data, recordIdentifier: String? = nil)
      * @availability iOS 17.0+
      */
-    static initRelyingPartyIdentifierUserNameCredentialIDUserHandleRecordIdentifier855(relyingPartyIdentifier: string, userName: string, credentialID: ArrayBuffer, userHandle: ArrayBuffer, recordIdentifier?: (string) | null): ASPasskeyCredentialIdentity;
+    static initRelyingPartyIdentifierUserNameCredentialIDUserHandleRecordIdentifier15118(relyingPartyIdentifier: string, userName: string, credentialID: ArrayBuffer, userHandle: ArrayBuffer, recordIdentifier?: (string) | null): ASPasskeyCredentialIdentity;
 }
 /**
  * class ASPasskeyCredentialRequest
@@ -4417,12 +4417,12 @@ export declare class ASPasskeyCredentialRequest extends SDKHandle {
      * convenience init(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: Data, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: [ASCOSEAlgorithmIdentifier], extensionInput: ASPasskeyAssertionCredentialExtensionInput?)
      * @availability iOS 18.0+
      */
-    static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithmsExtensionInput851(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK60, extensionInput?: $SDK62): ASPasskeyCredentialRequest;
+    static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithmsExtensionInput55448(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK60, extensionInput?: $SDK62): ASPasskeyCredentialRequest;
     /**
      * convenience init(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: Data, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: [ASCOSEAlgorithmIdentifier])
      * @availability iOS 17.0+
      */
-    static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithms852(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK60): ASPasskeyCredentialRequest;
+    static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithms89961(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK60): ASPasskeyCredentialRequest;
     /**
      * var supportedAlgorithms: [ASCOSEAlgorithmIdentifier] { get }
      * @availability iOS 17.0+

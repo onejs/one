@@ -2467,7 +2467,7 @@ export declare class AVAssetWriter extends SDKHandle {
      * func add(_ inputGroup: AVAssetWriterInputGroup)
      * @availability iOS 7.0+
      */
-    add1537(inputGroup: AVAssetWriterInputGroup): void;
+    add78932(inputGroup: AVAssetWriterInputGroup): void;
     /**
      * func canAdd(_ input: AVAssetWriterInput) -> Bool
      * @availability iOS 4.1+
@@ -2477,7 +2477,7 @@ export declare class AVAssetWriter extends SDKHandle {
      * func canAdd(_ inputGroup: AVAssetWriterInputGroup) -> Bool
      * @availability iOS 7.0+
      */
-    canAdd1539(inputGroup: AVAssetWriterInputGroup): boolean;
+    canAdd93102(inputGroup: AVAssetWriterInputGroup): boolean;
     /**
      * func canApply(outputSettings: [String : Any]?, forMediaType mediaType: AVMediaType) -> Bool
      * @availability iOS 4.1+
@@ -2909,7 +2909,7 @@ export declare class AVAssetWriterInput_CaptionReceiver extends SDKHandle {
      * func appendImmediately(_ caption: AVCaption) throws -> Bool
      * @availability iOS 26.0+
      */
-    appendImmediately4293(caption: AVCaption): boolean;
+    appendImmediately11268(caption: AVCaption): boolean;
     /**
      * nonisolated(nonsending) func append(_ captionGroup: AVCaptionGroup) async throws
      * @availability iOS 26.0+
@@ -2919,7 +2919,7 @@ export declare class AVAssetWriterInput_CaptionReceiver extends SDKHandle {
      * nonisolated(nonsending) func append(_ caption: AVCaption) async throws
      * @availability iOS 26.0+
      */
-    append4295(caption: AVCaption): Promise<void>;
+    append66766(caption: AVCaption): Promise<void>;
     /**
      * func finish()
      * @availability iOS 26.0+
@@ -3084,7 +3084,7 @@ export declare class AVAssetWriterInputCaptionAdaptor extends SDKHandle {
      * @availability iOS 18.0+
      * @deprecated iOS 27.0
      */
-    append1629(captionGroup: AVCaptionGroup): boolean;
+    append13840(captionGroup: AVCaptionGroup): boolean;
     /**
      * init(assetWriterInput input: AVAssetWriterInput)
      * @availability iOS 18.0+
@@ -3698,7 +3698,7 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var isPlayable: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isPlayable4081(): $SDK119;
+    static get isPlayable592(): $SDK119;
     /**
      * static var isReadable: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
@@ -3733,12 +3733,12 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var commonMetadata: AVAsyncProperty<Root, [AVMetadataItem]> { get }
      * @availability iOS 15.0+
      */
-    static get commonMetadata4088(): $SDK123;
+    static get commonMetadata64628(): $SDK123;
     /**
      * static var preferredVolume: AVAsyncProperty<Root, Float> { get }
      * @availability iOS 15.0+
      */
-    static get preferredVolume4089(): AVAsyncProperty<AVAsset, number>;
+    static get preferredVolume7140(): AVAsyncProperty<AVAsset, number>;
     /**
      * static var containsFragments: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
@@ -3753,7 +3753,7 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var preferredTransform: AVAsyncProperty<Root, CGAffineTransform> { get }
      * @availability iOS 15.0+
      */
-    static get preferredTransform4092(): AVAsyncProperty<AVAsset, _CoreFoundation_CGAffineTransform>;
+    static get preferredTransform37796(): AVAsyncProperty<AVAsset, _CoreFoundation_CGAffineTransform>;
     /**
      * static var canContainFragments: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
@@ -3783,7 +3783,7 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var availableMetadataFormats: AVAsyncProperty<Root, [AVMetadataFormat]> { get }
      * @availability iOS 15.0+
      */
-    static get availableMetadataFormats4098(): AVAsyncProperty<AVAsset, Array<AVMetadataFormat>>;
+    static get availableMetadataFormats74915(): AVAsyncProperty<AVAsset, Array<AVMetadataFormat>>;
     /**
      * static var minimumTimeOffsetFromLive: AVAsyncProperty<Root, CMTime> { get }
      * @availability iOS 15.0+
@@ -3813,7 +3813,7 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var tracks: AVAsyncProperty<Root, [AVAssetTrack]> { get }
      * @availability iOS 15.0+
      */
-    static get tracks4104(): AVAsyncProperty<AVAsset, Array<AVAssetTrack>>;
+    static get tracks60966(): AVAsyncProperty<AVAsset, Array<AVAssetTrack>>;
     /**
      * static var duration: AVAsyncProperty<Root, CMTime> { get }
      * @availability iOS 15.0+
@@ -3823,7 +3823,7 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var metadata: AVAsyncProperty<Root, [AVMetadataItem]> { get }
      * @availability iOS 15.0+
      */
-    static get metadata4106(): $SDK123;
+    static get metadata69018(): $SDK123;
 }
 /**
  * class AVAsyncProperty<Root, Value>
@@ -5557,7 +5557,7 @@ export declare class AVCaptureDevice extends SDKHandle {
      * func deviceWhiteBalanceGains(for tempAndTintValues: AVCaptureDevice.WhiteBalanceTemperatureAndTintValues) -> AVCaptureDevice.WhiteBalanceGains
      * @availability iOS 8.0+
      */
-    deviceWhiteBalanceGainsFor1862(tempAndTintValues: AVCaptureDevice_WhiteBalanceTemperatureAndTintValues): AVCaptureDevice_WhiteBalanceGains;
+    deviceWhiteBalanceGainsFor57995(tempAndTintValues: AVCaptureDevice_WhiteBalanceTemperatureAndTintValues): AVCaptureDevice_WhiteBalanceGains;
     /**
      * func hasMediaType(_ mediaType: AVMediaType) -> Bool
      * @availability iOS 4.0+
@@ -7461,7 +7461,7 @@ export declare class AVCaptureDeviceInput extends AVCaptureDeviceInput_base {
      * var ports: [AVCaptureInput.Port] { get }
      * @availability iOS 4.0+
      */
-    get ports2193(): $SDK155;
+    get ports88360(): $SDK155;
 }
 /**
  * class AVCaptureExternalDisplayConfiguration
@@ -11505,7 +11505,7 @@ export declare class AVError extends SDKHandle {
     /** var device: String? { get } */
     get device(): (string) | null;
     /** var device: AVCaptureDevice? { get } */
-    get device4131(): $SDK168;
+    get device43143(): $SDK168;
     /**
      * var fileType: AVFileType? { get }
      * @availability iOS 8.0+
@@ -11514,7 +11514,7 @@ export declare class AVError extends SDKHandle {
     /** var mediaType: String? { get } */
     get mediaType(): (string) | null;
     /** var mediaType: AVMediaType? { get } */
-    get mediaType4134(): (AVMediaType) | null;
+    get mediaType72037(): (AVMediaType) | null;
     /** static var decodeFailed: AVError.Code { get } */
     static get decodeFailed(): AVError_Code;
     /**
@@ -17331,7 +17331,7 @@ export declare class AVMutableComposition extends AVMutableComposition_base {
     final func insertTimeRange(_ timeRange: CMTimeRange, of asset: AVAsset, at time: CMTime, isolation: isolated (any Actor)? = #isolation) async throws
      * @availability iOS 16.0+
      */
-    insertTimeRangeOfAt4413(timeRange: _CoreMedia_CMTimeRange, asset: AVAsset, time: _CoreMedia_CMTime): Promise<void>;
+    insertTimeRangeOfAt11368(timeRange: _CoreMedia_CMTimeRange, asset: AVAsset, time: _CoreMedia_CMTime): Promise<void>;
 }
 declare const AVMutableCompositionTrack_base: Omit<typeof AVCompositionTrack, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCompositionTrack, "isEnabled" | "extendedLanguageTag" | "languageCode" | "naturalTimeScale" | "preferredTransform" | "preferredVolume" | "segments">);
 /**
@@ -18155,7 +18155,7 @@ export declare class AVTimedMetadataGroup extends AVTimedMetadataGroup_base {
      * convenience init?(sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>)
      * @availability iOS 26.0+
      */
-    static initSampleBuffer4415(sampleBuffer: $SDK85): (AVTimedMetadataGroup) | null;
+    static initSampleBuffer97876(sampleBuffer: $SDK85): (AVTimedMetadataGroup) | null;
 }
 declare const AVMutableTimedMetadataGroup_base: Omit<typeof AVTimedMetadataGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVTimedMetadataGroup, "items" | "timeRange">);
 /**
@@ -18998,12 +18998,12 @@ export declare class AVPlayer extends SDKHandle {
      */
     seekToCompletionHandler(date: globalThis.Date, completionHandler: $SDK23): Promise<void>;
     /** nonisolated func seek(to time: CMTime) */
-    seekTo3431(time: _CoreMedia_CMTime): Promise<void>;
+    seekTo47742(time: _CoreMedia_CMTime): Promise<void>;
     /**
      * nonisolated func seek(to time: CMTime) async -> Bool
      * @availability iOS 5.0+
      */
-    seekToCompletionHandler3432(time: _CoreMedia_CMTime, completionHandler: $SDK23): Promise<void>;
+    seekToCompletionHandler28014(time: _CoreMedia_CMTime, completionHandler: $SDK23): Promise<void>;
     /** nonisolated func seek(to time: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime) */
     seekToToleranceBeforeToleranceAfter(time: _CoreMedia_CMTime, toleranceBefore: _CoreMedia_CMTime, toleranceAfter: _CoreMedia_CMTime): Promise<void>;
     /**
@@ -19132,7 +19132,7 @@ export declare class AVPlayer extends SDKHandle {
     setPreventsDisplaySleepDuringVideoPlayback(value: boolean): Promise<void>;
     /** nonisolated var rate: Float { get set } */
     get rate(): Promise<number>;
-    setRate3471(value: number): Promise<void>;
+    setRate26889(value: number): Promise<void>;
     /**
      * nonisolated var reasonForWaitingToPlay: AVPlayer.WaitingReason? { get }
      * @availability iOS 10.0+
@@ -19857,7 +19857,7 @@ export declare class AVPlayerItem extends SDKHandle {
      * nonisolated func add(_ output: AVPlayerItemOutput)
      * @availability iOS 6.0+
      */
-    add3544(output: AVPlayerItemOutput): Promise<void>;
+    add17831(output: AVPlayerItemOutput): Promise<void>;
     /**
      * nonisolated func cancelPendingSeeks()
      * @availability iOS 5.0+
@@ -19872,7 +19872,7 @@ export declare class AVPlayerItem extends SDKHandle {
      * nonisolated func copy(with zone: NSZone? = nil) -> Any
      * @availability iOS 4.0+
      */
-    copy3547(): Promise<unknown>;
+    copy43054(): Promise<unknown>;
     /** nonisolated func currentDate() -> Date? */
     currentDate(): Promise<$SDK52>;
     /** nonisolated func currentTime() -> CMTime */
@@ -19922,7 +19922,7 @@ export declare class AVPlayerItem extends SDKHandle {
      * nonisolated func remove(_ output: AVPlayerItemOutput)
      * @availability iOS 6.0+
      */
-    remove3558(output: AVPlayerItemOutput): Promise<void>;
+    remove83984(output: AVPlayerItemOutput): Promise<void>;
     /**
      * @MainActor func seek(to date: Date) -> Bool
      * @availability iOS 4.0+
@@ -19939,12 +19939,12 @@ export declare class AVPlayerItem extends SDKHandle {
      * @availability iOS 4.0+
      * @deprecated iOS 11.0
      */
-    seekTo3561(time: _CoreMedia_CMTime): Promise<void>;
+    seekTo7067(time: _CoreMedia_CMTime): Promise<void>;
     /**
      * nonisolated func seek(to time: CMTime) async -> Bool
      * @availability iOS 5.0+
      */
-    seekToCompletionHandler3562(time: _CoreMedia_CMTime, completionHandler?: $SDK303): Promise<void>;
+    seekToCompletionHandler63979(time: _CoreMedia_CMTime, completionHandler?: $SDK303): Promise<void>;
     /**
      * func seek(to time: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime)
      * @availability iOS 4.0+
@@ -20255,22 +20255,22 @@ export declare class AVPlayerItem extends SDKHandle {
      * nonisolated func seek(to date: Date) async -> Bool
      * @availability iOS 16.0+
      */
-    seekTo4231(date: globalThis.Date): Promise<boolean>;
+    seekTo48628(date: globalThis.Date): Promise<boolean>;
     /**
      * @MainActor @preconcurrency convenience init(asset: AVAsset, automaticallyLoadedAssetKeys: [AVPartialAsyncProperty<AVAsset>] = [])
      * @availability iOS 15.0+
      */
-    static initAssetAutomaticallyLoadedAssetKeys4232(asset: AVAsset, automaticallyLoadedAssetKeys?: $SDK323): Promise<AVPlayerItem>;
+    static initAssetAutomaticallyLoadedAssetKeys8573(asset: AVAsset, automaticallyLoadedAssetKeys?: $SDK323): Promise<AVPlayerItem>;
     /**
      * nonisolated convenience init(asset: any AVAsset & Sendable, automaticallyLoadedAssetKeys: [AVPartialAsyncProperty<AVAsset>])
      * @availability iOS 15.0+
      */
-    static initAssetAutomaticallyLoadedAssetKeys4233(asset: (AVAsset) & (SDKHandle), automaticallyLoadedAssetKeys: $SDK323): Promise<AVPlayerItem>;
+    static initAssetAutomaticallyLoadedAssetKeys49425(asset: (AVAsset) & (SDKHandle), automaticallyLoadedAssetKeys: $SDK323): Promise<AVPlayerItem>;
     /**
      * nonisolated convenience init(asset: any AVAsset & Sendable)
      * @availability iOS 4.0+
      */
-    static initAsset4234(asset: (AVAsset) & (SDKHandle)): Promise<AVPlayerItem>;
+    static initAsset5358(asset: (AVAsset) & (SDKHandle)): Promise<AVPlayerItem>;
 }
 /** enum Status */
 export type AVPlayerItem_Status = "unknown" | "readyToPlay" | "failed";
@@ -21121,7 +21121,7 @@ export declare class AVPlayerItemVideoOutput extends AVPlayerItemVideoOutput_bas
      * convenience init(pixelBufferAttributes: CVPixelBufferAttributes)
      * @availability iOS 26.0+
      */
-    static initPixelBufferAttributes4458(pixelBufferAttributes: _CoreVideo_CVPixelBufferAttributes): AVPlayerItemVideoOutput;
+    static initPixelBufferAttributes55832(pixelBufferAttributes: _CoreVideo_CVPixelBufferAttributes): AVPlayerItemVideoOutput;
     /**
      * func pixelBufferAndDisplayTime(forItemTime itemTime: CMTime) -> (pixelBuffer: CVReadOnlyPixelBuffer?, itemTimeForDisplay: CMTime)
      * @availability iOS 26.0+
@@ -22008,7 +22008,7 @@ export declare class AVSampleBufferRenderSynchronizer extends SDKHandle {
      * func sampleBufferReceiver(adding renderer: AVSampleBufferVideoRenderer) -> sending AVSampleBufferVideoRenderer.Receiver
      * @availability iOS 27.0+
      */
-    sampleBufferReceiverAdding4564(renderer: AVSampleBufferVideoRenderer): AVSampleBufferVideoRenderer_Receiver;
+    sampleBufferReceiverAdding2367(renderer: AVSampleBufferVideoRenderer): AVSampleBufferVideoRenderer_Receiver;
     /**
      * func removeReceiver(_ receiver: sending AVSampleBufferAudioRenderer.Receiver, at time: CMTime) async -> Bool
      * @availability iOS 27.0+
@@ -22018,7 +22018,7 @@ export declare class AVSampleBufferRenderSynchronizer extends SDKHandle {
      * func removeReceiver(_ receiver: sending AVSampleBufferVideoRenderer.Receiver, at time: CMTime) async -> Bool
      * @availability iOS 27.0+
      */
-    removeReceiverAt4566(receiver: AVSampleBufferVideoRenderer_Receiver, time: _CoreMedia_CMTime): Promise<boolean>;
+    removeReceiverAt78322(receiver: AVSampleBufferVideoRenderer_Receiver, time: _CoreMedia_CMTime): Promise<boolean>;
 }
 /**
  * class AVSampleBufferRequest
@@ -23346,12 +23346,12 @@ export declare class NSCoder extends SDKHandle {
      * func encode(_ timeMapping: CMTimeMapping, forKey key: String)
      * @availability iOS 4.0+
      */
-    encodeForKey4033(timeMapping: _CoreMedia_CMTimeMapping, key: string): void;
+    encodeForKey24229(timeMapping: _CoreMedia_CMTimeMapping, key: string): void;
     /**
      * func encode(_ timeRange: CMTimeRange, forKey key: String)
      * @availability iOS 4.0+
      */
-    encodeForKey4034(timeRange: _CoreMedia_CMTimeRange, key: string): void;
+    encodeForKey36886(timeRange: _CoreMedia_CMTimeRange, key: string): void;
 }
 export declare class NSNotification_Name extends SDKHandle {
     /**
