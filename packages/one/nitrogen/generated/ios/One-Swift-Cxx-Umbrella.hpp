@@ -278,8 +278,6 @@ namespace margelo::nitro::one { class HybridOneScreenCaptureSpec; }
 namespace margelo::nitro::one { class HybridOneScreenOrientationSpec; }
 // Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
-// Forward declaration of `HybridOneShareSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneShareSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
 // Forward declaration of `HybridOneSpeechSynthesisSpec` to properly resolve imports.
@@ -470,12 +468,6 @@ namespace margelo::nitro::one { enum class ScreenOrientationValue; }
 namespace margelo::nitro::one { enum class SecureStoreAccessibility; }
 // Forward declaration of `SecureStoreOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct SecureStoreOptions; }
-// Forward declaration of `ShareItemType` to properly resolve imports.
-namespace margelo::nitro::one { enum class ShareItemType; }
-// Forward declaration of `ShareItem` to properly resolve imports.
-namespace margelo::nitro::one { struct ShareItem; }
-// Forward declaration of `ShareResult` to properly resolve imports.
-namespace margelo::nitro::one { struct ShareResult; }
 // Forward declaration of `SizeClass` to properly resolve imports.
 namespace margelo::nitro::one { struct SizeClass; }
 // Forward declaration of `SpeechErrorCode` to properly resolve imports.
@@ -639,7 +631,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneScreenCaptureSpec.hpp"
 #include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
-#include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
 #include "HybridOneSpeechSynthesisSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
@@ -735,9 +726,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ScreenOrientationValue.hpp"
 #include "SecureStoreAccessibility.hpp"
 #include "SecureStoreOptions.hpp"
-#include "ShareItem.hpp"
-#include "ShareItemType.hpp"
-#include "ShareResult.hpp"
 #include "SizeClass.hpp"
 #include "SpeechErrorCode.hpp"
 #include "SpeechEvent.hpp"
@@ -869,8 +857,6 @@ namespace One { class HybridOneScreenCaptureSpec_cxx; }
 namespace One { class HybridOneScreenOrientationSpec_cxx; }
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSecureStoreSpec_cxx; }
-// Forward declaration of `HybridOneShareSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneShareSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSynthesisSpec_cxx` to properly resolve imports.

@@ -246,8 +246,6 @@ namespace margelo::nitro::one { class HybridOneScreenCaptureSpec; }
 namespace margelo::nitro::one { class HybridOneScreenOrientationSpec; }
 // Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
-// Forward declaration of `HybridOneShareSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneShareSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
 // Forward declaration of `HybridOneSpeechSynthesisSpec` to properly resolve imports.
@@ -410,12 +408,6 @@ namespace margelo::nitro::one { enum class ScreenCaptureState; }
 namespace margelo::nitro::one { enum class ScreenOrientationValue; }
 // Forward declaration of `SecureStoreAccessibility` to properly resolve imports.
 namespace margelo::nitro::one { enum class SecureStoreAccessibility; }
-// Forward declaration of `ShareItemType` to properly resolve imports.
-namespace margelo::nitro::one { enum class ShareItemType; }
-// Forward declaration of `ShareItem` to properly resolve imports.
-namespace margelo::nitro::one { struct ShareItem; }
-// Forward declaration of `ShareResult` to properly resolve imports.
-namespace margelo::nitro::one { struct ShareResult; }
 // Forward declaration of `SizeClass` to properly resolve imports.
 namespace margelo::nitro::one { struct SizeClass; }
 // Forward declaration of `SpeechErrorCode` to properly resolve imports.
@@ -536,8 +528,6 @@ namespace One { class HybridOneScreenCaptureSpec_cxx; }
 namespace One { class HybridOneScreenOrientationSpec_cxx; }
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSecureStoreSpec_cxx; }
-// Forward declaration of `HybridOneShareSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneShareSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSynthesisSpec_cxx` to properly resolve imports.
@@ -664,7 +654,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneScreenCaptureSpec.hpp"
 #include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
-#include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
 #include "HybridOneSpeechSynthesisSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
@@ -746,9 +735,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ScreenCaptureState.hpp"
 #include "ScreenOrientationValue.hpp"
 #include "SecureStoreAccessibility.hpp"
-#include "ShareItem.hpp"
-#include "ShareItemType.hpp"
-#include "ShareResult.hpp"
 #include "SizeClass.hpp"
 #include "SpeechErrorCode.hpp"
 #include "SpeechEvent.hpp"
@@ -6426,72 +6412,6 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneSecureStoreSpec>
   using std__weak_ptr_HybridOneSecureStoreSpec_ = std::weak_ptr<HybridOneSecureStoreSpec>;
   inline std__weak_ptr_HybridOneSecureStoreSpec_ weakify_std__shared_ptr_HybridOneSecureStoreSpec_(const std::shared_ptr<HybridOneSecureStoreSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: std::shared_ptr<Promise<ShareResult>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<ShareResult>>`.
-   */
-  using std__shared_ptr_Promise_ShareResult__ = std::shared_ptr<Promise<ShareResult>>;
-  inline std::shared_ptr<Promise<ShareResult>> create_std__shared_ptr_Promise_ShareResult__() noexcept {
-    return Promise<ShareResult>::create();
-  }
-  inline PromiseHolder<ShareResult> wrap_std__shared_ptr_Promise_ShareResult__(std::shared_ptr<Promise<ShareResult>> promise) noexcept {
-    return PromiseHolder<ShareResult>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(const ShareResult& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const ShareResult&)>`.
-   */
-  using Func_void_ShareResult = std::function<void(const ShareResult& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const ShareResult& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_ShareResult_Wrapper final {
-  public:
-    explicit Func_void_ShareResult_Wrapper(std::function<void(const ShareResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const ShareResult& /* result */)>>(std::move(func))) {}
-    inline void call(ShareResult result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const ShareResult& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_ShareResult create_Func_void_ShareResult(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_ShareResult_Wrapper wrap_Func_void_ShareResult(Func_void_ShareResult value) noexcept {
-    return Func_void_ShareResult_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::vector<ShareItem>
-  /**
-   * Specialized version of `std::vector<ShareItem>`.
-   */
-  using std__vector_ShareItem_ = std::vector<ShareItem>;
-  inline std::vector<ShareItem> create_std__vector_ShareItem_(size_t size) noexcept {
-    std::vector<ShareItem> vector;
-    vector.reserve(size);
-    return vector;
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneShareSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneShareSpec>`.
-   */
-  using std__shared_ptr_HybridOneShareSpec_ = std::shared_ptr<HybridOneShareSpec>;
-  std::shared_ptr<HybridOneShareSpec> create_std__shared_ptr_HybridOneShareSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneShareSpec_(std__shared_ptr_HybridOneShareSpec_ cppType);
-  
-  // pragma MARK: std::weak_ptr<HybridOneShareSpec>
-  using std__weak_ptr_HybridOneShareSpec_ = std::weak_ptr<HybridOneShareSpec>;
-  inline std__weak_ptr_HybridOneShareSpec_ weakify_std__shared_ptr_HybridOneShareSpec_(const std::shared_ptr<HybridOneShareSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<ShareResult>>>
-  using Result_std__shared_ptr_Promise_ShareResult___ = Result<std::shared_ptr<Promise<ShareResult>>>;
-  inline Result_std__shared_ptr_Promise_ShareResult___ create_Result_std__shared_ptr_Promise_ShareResult___(const std::shared_ptr<Promise<ShareResult>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<ShareResult>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_ShareResult___ create_Result_std__shared_ptr_Promise_ShareResult___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<ShareResult>>>::withError(error);
-  }
   
   // pragma MARK: std::shared_ptr<Promise<SpeechPermissionResponse>>
   /**

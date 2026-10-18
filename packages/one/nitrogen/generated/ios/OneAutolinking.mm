@@ -40,7 +40,6 @@
 #include "HybridOneLocationSpecSwift.hpp"
 #include "HybridOneFileSystemSpecSwift.hpp"
 #include "HybridOneAudioSpecSwift.hpp"
-#include "HybridOneShareSpecSwift.hpp"
 #include "HybridOnePhotoLibrarySpecSwift.hpp"
 #include "HybridOneImageManipulatorSpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
@@ -279,13 +278,6 @@
     "OneAudio",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneAudioSpec> hybridObject = One::OneAutolinking::createOneAudio();
-      return hybridObject;
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneShare",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneShareSpec> hybridObject = One::OneAutolinking::createOneShare();
       return hybridObject;
     }
   );

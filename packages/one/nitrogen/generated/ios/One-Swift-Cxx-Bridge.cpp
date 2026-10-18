@@ -56,7 +56,6 @@
 #include "HybridOneScreenCaptureSpecSwift.hpp"
 #include "HybridOneScreenOrientationSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
-#include "HybridOneShareSpecSwift.hpp"
 #include "HybridOneSpeechSpecSwift.hpp"
 #include "HybridOneSpeechSynthesisSpecSwift.hpp"
 #include "HybridOneUpdatesSpecSwift.hpp"
@@ -1623,30 +1622,6 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneSecureStoreSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
-    return swiftPart.toUnsafe();
-  }
-  
-  // pragma MARK: std::function<void(const ShareResult& /* result */)>
-  Func_void_ShareResult create_Func_void_ShareResult(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_ShareResult::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const ShareResult& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneShareSpec>
-  std::shared_ptr<HybridOneShareSpec> create_std__shared_ptr_HybridOneShareSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
-    One::HybridOneShareSpec_cxx swiftPart = One::HybridOneShareSpec_cxx::fromUnsafe(swiftUnsafePointer);
-    return std::make_shared<margelo::nitro::one::HybridOneShareSpecSwift>(swiftPart);
-  }
-  void* NON_NULL get_std__shared_ptr_HybridOneShareSpec_(std__shared_ptr_HybridOneShareSpec_ cppType) {
-    std::shared_ptr<margelo::nitro::one::HybridOneShareSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneShareSpecSwift>(cppType);
-    #ifdef NITRO_DEBUG
-    if (swiftWrapper == nullptr) [[unlikely]] {
-      throw std::runtime_error("Class \"HybridOneShareSpec\" is not implemented in Swift!");
-    }
-    #endif
-    One::HybridOneShareSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   

@@ -127,7 +127,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAudio" }
     },
     "OneShare": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneShare" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneShare" }
     },
     "OnePhotoLibrary": {
