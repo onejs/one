@@ -298,8 +298,6 @@ namespace margelo::nitro::one { class HybridOneShareSpec; }
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
 // Forward declaration of `HybridOneSpeechSynthesisSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSynthesisSpec; }
-// Forward declaration of `HybridOneStoreReviewSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneStoreReviewSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneUpdatesSpec; }
 // Forward declaration of `ImageCrop` to properly resolve imports.
@@ -673,7 +671,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
 #include "HybridOneSpeechSynthesisSpec.hpp"
-#include "HybridOneStoreReviewSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImageCrop.hpp"
 #include "ImagePickerAsset.hpp"
@@ -917,8 +914,6 @@ namespace One { class HybridOneShareSpec_cxx; }
 namespace One { class HybridOneSpeechSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSynthesisSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSynthesisSpec_cxx; }
-// Forward declaration of `HybridOneStoreReviewSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneStoreReviewSpec_cxx; }
 // Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneUpdatesSpec_cxx; }
 

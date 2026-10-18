@@ -336,18 +336,6 @@ public final class OneAutolinking {
     return HybridOnePrint.self is any RecyclableView.Type
   }
   
-  public static func createOneStoreReview() -> bridge.std__shared_ptr_HybridOneStoreReviewSpec_ {
-    let hybridObject = HybridOneStoreReview()
-    return { () -> bridge.std__shared_ptr_HybridOneStoreReviewSpec_ in
-      let __cxxWrapped = hybridObject.getCxxWrapper()
-      return __cxxWrapped.getCxxPart()
-    }()
-  }
-  
-  public static func isOneStoreReviewRecyclable() -> Bool {
-    return HybridOneStoreReview.self is any RecyclableView.Type
-  }
-  
   public static func createOneQuickActions() -> bridge.std__shared_ptr_HybridOneQuickActionsSpec_ {
     let hybridObject = HybridOneQuickActions()
     return { () -> bridge.std__shared_ptr_HybridOneQuickActionsSpec_ in

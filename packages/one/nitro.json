@@ -111,7 +111,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOnePrint" }
     },
     "OneStoreReview": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneStoreReview" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneStoreReview" }
     },
     "OneQuickActions": {
