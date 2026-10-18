@@ -2831,9 +2831,9 @@ async function run(config: Config) {
     const openDownloads = async (name: string) => {
       await expect(`${name}-presented`, picker)
       tapMatching(config, 'Document picker roots', 'Open from', (node) => node.contentDescription === 'Show roots')
-      await expect(`${name}-roots`, (nodes) => nodes.filter((node) =>
+      const rootsSnapshot = await expect(`${name}-roots`, (nodes) => nodes.filter((node) =>
         node.text === 'Downloads' && node.resourceId === 'android:id/title').length === 1)
-      const roots = snapshot(config).nodes.filter((node) =>
+      const roots = rootsSnapshot.nodes.filter((node) =>
         node.text === 'Downloads' && node.resourceId === 'android:id/title')
       if (roots.length !== 1) throw new Error(`Downloads drawer row count: ${roots.length}`)
       // system list rows delegate item clicks; their label need not be clickable.
@@ -2841,7 +2841,7 @@ async function run(config: Config) {
       adbText(config, ['shell', 'input', 'tap',
         String(Math.round((rootBounds.left + rootBounds.right) / 2)),
         String(Math.round((rootBounds.top + rootBounds.bottom) / 2))])
-      await expect(`${name}-seed-visible`, (nodes) =>
+      return await expect(`${name}-seed-visible`, (nodes) =>
         !nodes.some((node) => node.resourceId === 'com.google.android.documentsui:id/drawer_roots') &&
         nodes.some((node) => node.resourceId === 'com.google.android.documentsui:id/breadcrumb_text' && node.text === 'Downloads') &&
         seeds.every((seed) => nodes.some((node) => node.text === seed.name)))
@@ -2872,8 +2872,7 @@ async function run(config: Config) {
       const single = await expect('document-picker-single-readable-copy', (nodes) => copiesMatch(nodes, [seeds[0]]))
       await checkBytes('document-picker-single-exact-bytes', single, [seeds[0]])
       tapFresh(config, 'Multiple document picker', { id: 'one-native-document-picker-multiple' })
-      await openDownloads('document-picker-multiple')
-      const current = snapshot(config)
+      const current = await openDownloads('document-picker-multiple')
       const row = current.nodes.find((node) => node.text === seeds[0].name)!
       const bounds = validBounds(row, 'First multi-select document')
       const x = String(Math.round((bounds.left + bounds.right) / 2))
