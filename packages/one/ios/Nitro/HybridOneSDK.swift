@@ -18,6 +18,10 @@ final class HybridOneSDK: HybridOneSDKSpec {
 
   typealias SyncDispatch = (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)]) -> OneSDKResult
 
+  private static func observationError(_ error: Error) -> OneSDKResult {
+    OneSDKResult(data: OneSDKValues.map(["error": error.localizedDescription]), handles: [])
+  }
+
   private static func observationListener(_ listener: @escaping (OneSDKResult) -> Void) -> (Any) -> Void {
     { value in
       let call = OneSDKCall(handles: [])
@@ -37,7 +41,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
           let observation = try table.observe(Int(id), call, kind, Self.observationListener(listener))
           lifetime.install { observation.cancel() }
         } catch {
-          listener(OneSDKResult(data: OneSDKValues.map(["error": error.localizedDescription]), handles: []))
+          listener(Self.observationError(error))
         }
       }
     }
@@ -51,7 +55,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
     }
     let emit = Self.observationListener(listener)
     let fail: (Error) -> Void = { error in
-      listener(OneSDKResult(data: OneSDKValues.map(["error": error.localizedDescription]), handles: []))
+      listener(Self.observationError(error))
     }
     let subscription: OneSDKSubscription
     switch kind {
@@ -61,10 +65,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
       }
       subscription = OneSDKObservations.publisher(publisher, emit, fail)
     case "sequence":
-      guard let sequence = handle.box.value as? any AsyncSequence else {
-        throw oneNativeError("E_SDK", "handle is not an AsyncSequence")
-      }
-      subscription = OneSDKObservations.sequence(sequence, emit, fail)
+      subscription = try handle.box.subscribeSequence(emit, fail)
     default: throw oneNativeError("E_SDK", "unknown stream kind \(kind)")
     }
     return { subscription.cancel() }
@@ -93,7 +94,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
     }
   }
 
-  private static func result(_ value: Any, _ call: OneSDKCall) throws -> OneSDKResult {
+  private static func result(_ value: Any, _ call: OneSDKCall) -> OneSDKResult {
     call.retainImplementations()
     return OneSDKResult(data: OneSDKValues.map(["value": value]), handles: call.handlesOut.map { HybridOneSDKHandle($0) })
   }
@@ -108,7 +109,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
     do {
       let table = try OneSDKTables.table(module)
       let call = try Self.prepare(data, handles, dispatch, argumentNames: table.argumentNames(Int(id)))
-      return try Self.result(try table.sync(Int(id), call), call)
+      return Self.result(try table.sync(Int(id), call), call)
     } catch {
       throw Self.failure(module, id, error)
     }
@@ -122,7 +123,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
       let table = try OneSDKTables.table(module)
       let call = try Self.prepare(data, handles, dispatch, syncDispatch, argumentNames: table.argumentNames(Int(id)))
       defer { call.endSynchronousCallbacks() }
-      return try Self.result(try table.sync(Int(id), call), call)
+      return Self.result(try table.sync(Int(id), call), call)
     } catch { throw Self.failure(module, id, error) }
   }
 
@@ -133,7 +134,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
       throw oneNativeError("E_SDK", "expected a callable sdk handle")
     }
     let call = try Self.prepare(data, handles, dispatch)
-    return Promise.async { try Self.result(try await function.call(call), call) }
+    return Promise.async { Self.result(try await function.call(call), call) }
   }
 
   func callAsync(
@@ -149,7 +150,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
     }
     return Promise.async {
       do {
-        return try Self.result(try await table.async(Int(id), call), call)
+        return Self.result(try await table.async(Int(id), call), call)
       } catch {
         throw Self.failure(module, id, error)
       }
@@ -164,7 +165,7 @@ private enum OneSDKValues {
   static func unpack(_ value: AnyValue) -> Any {
     switch value {
     case .null: return NSNull()
-    case .bool(let value): return value
+    case .bool(let value): return NSNumber(value: value)
     case .number(let value): return NSNumber(value: value)
     case .int64(let value): return NSNumber(value: value)
     case .string(let value): return value
@@ -188,9 +189,9 @@ private enum OneSDKValues {
     var result: [String: Any] = [:]
     for key in map.getAllKeys() {
       if map.isNull(key: key) { result[key] = NSNull() }
-      else if map.isBool(key: key) { result[key] = map.getBoolean(key: key) }
-      else if map.isDouble(key: key) { result[key] = map.getDouble(key: key) }
-      else if map.isInt64(key: key) { result[key] = map.getInt64(key: key) }
+      else if map.isBool(key: key) { result[key] = unpack(.bool(map.getBoolean(key: key))) }
+      else if map.isDouble(key: key) { result[key] = unpack(.number(map.getDouble(key: key))) }
+      else if map.isInt64(key: key) { result[key] = unpack(.int64(map.getInt64(key: key))) }
       else if map.isString(key: key) { result[key] = map.getString(key: key) }
       else if map.isArray(key: key) { result[key] = map.getArray(key: key).map(unpack) }
       else if map.isObject(key: key) { result[key] = map.getObject(key: key).mapValues(unpack) }
@@ -201,15 +202,15 @@ private enum OneSDKValues {
   static func map(_ values: [String: Any]) -> AnyMap {
     let result = AnyMap(withPreallocatedSize: values.count)
     for (key, value) in values {
-      switch pack(value) {
-      case .null: result.setNull(key: key)
-      case .bool(let value): result.setBoolean(key: key, value: value)
-      case .number(let value): result.setDouble(key: key, value: value)
-      case .int64(let value): result.setInt64(key: key, value: value)
-      case .string(let value): result.setString(key: key, value: value)
-      case .array(let value): result.setArray(key: key, value: value)
-      case .object(let value): result.setObject(key: key, value: value)
+      if value is NSNull { result.setNull(key: key) }
+      else if let value = value as? String { result.setString(key: key, value: value) }
+      else if let value = value as? NSNumber {
+        if CFGetTypeID(value) == CFBooleanGetTypeID() { result.setBoolean(key: key, value: value.boolValue) }
+        else { result.setDouble(key: key, value: value.doubleValue) }
       }
+      else if let value = value as? [Any] { result.setArray(key: key, value: value.map(pack)) }
+      else if let value = value as? [String: Any] { result.setObject(key: key, value: value.mapValues(pack)) }
+      else { preconditionFailure("invalid sdk wire value: \(type(of: value))") }
     }
     return result
   }

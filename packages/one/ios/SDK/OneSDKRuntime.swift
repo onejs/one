@@ -35,7 +35,26 @@ public enum OneSDKError: LocalizedError, CustomStringConvertible {
 // (structs, payload enums) are copied in, as swift copies them.
 public final class OneSDKHandleBox {
   public var value: Any
-  public init(_ value: Any) { self.value = value }
+  public let identity: String
+  private let sequenceLock = NSLock()
+  private var sequenceObservation: OneSDKSequenceObservation?
+
+  public init(_ value: Any) {
+    self.value = value
+    self.identity = OneSDKObjectIdentity.identity(value)
+  }
+
+  public func subscribeSequence(_ emit: @escaping (Any) -> Void, _ fail: @escaping (Error) -> Void) throws -> OneSDKSubscription {
+    sequenceLock.lock()
+    guard let sequence = value as? any AsyncSequence else {
+      sequenceLock.unlock()
+      throw OneSDKError.unsupported("handle is not an AsyncSequence")
+    }
+    if sequenceObservation == nil { sequenceObservation = OneSDKSequenceObservation(sequence) }
+    let observation = sequenceObservation!
+    sequenceLock.unlock()
+    return observation.subscribe(emit, fail)
+  }
   public var typeName: String { String(reflecting: type(of: value)) }
   // a class instance's superclasses, nearest first, so javascript wraps a
   // private subclass (an sdk often returns one) in the nearest class it knows
@@ -48,6 +67,25 @@ public final class OneSDKHandleBox {
       at = class_getSuperclass(current)
     }
     return names
+  }
+}
+
+// weak pointer keys distinguish native references without retaining them or
+// reusing an address after deallocation. swift value handles have their own id.
+private enum OneSDKObjectIdentity {
+  private static let lock = NSLock()
+  nonisolated(unsafe) private static let identities = NSMapTable<AnyObject, NSString>(
+    keyOptions: [.weakMemory, .objectPointerPersonality], valueOptions: .strongMemory)
+
+  static func identity(_ value: Any) -> String {
+    guard type(of: value) is AnyClass else { return UUID().uuidString }
+    let object = value as AnyObject
+    lock.lock()
+    defer { lock.unlock() }
+    if let identity = identities.object(forKey: object) { return identity as String }
+    let identity = UUID().uuidString
+    identities.setObject(identity as NSString, forKey: object)
+    return identity
   }
 }
 
@@ -251,14 +289,12 @@ public final class OneSDKCall {
 
   func addHandle(_ box: OneSDKHandleBox) -> Any {
     handlesOut.append(box)
-    var ref: [String: Any] = ["$h": handlesOut.count - 1, "$t": box.typeName]
+    var ref: [String: Any] = ["$h": handlesOut.count - 1, "$t": box.typeName, "$id": box.identity]
     let superclasses = box.superclassNames
     if !superclasses.isEmpty { ref["$s"] = superclasses }
     if box.value is OneSDKCallable { ref["$fn"] = true }
     return ref
   }
-
-
 }
 
 // a javascript function held by native code
@@ -721,24 +757,72 @@ public enum OneSDKObservations {
     subscription.install { cancellable.cancel() }
     return subscription
   }
+}
 
-  public static func sequence<S: AsyncSequence>(
-    _ sequence: S, _ emit: @escaping (Any) -> Void, _ fail: @escaping (Error) -> Void
-  ) -> OneSDKSubscription {
-    let subscription = OneSDKSubscription()
-    let task = Task { [weak subscription] in
+// one iterator per handle, with a latest-value snapshot for remounts. removing
+// a listener gates delivery immediately; releasing the handle cancels iteration.
+private final class OneSDKSequenceObservation: @unchecked Sendable {
+  private let lock = NSRecursiveLock()
+  private final class Listener {
+    weak var subscription: OneSDKSubscription?
+    let emit: (Any) -> Void
+    let fail: (Error) -> Void
+    init(_ subscription: OneSDKSubscription, _ emit: @escaping (Any) -> Void, _ fail: @escaping (Error) -> Void) {
+      self.subscription = subscription
+      self.emit = emit
+      self.fail = fail
+    }
+  }
+  private var listeners: [UUID: Listener] = [:]
+  private var latest: Result<Any, Error>?
+  private var task: Task<Void, Never>?
+
+  init<S: AsyncSequence>(_ sequence: S) {
+    task = Task { [weak self] in
       do {
         for try await value in sequence {
           try Task.checkCancellation()
-          subscription?.deliver { emit(value) }
+          self?.publish(.success(value))
         }
       } catch is CancellationError {
-      } catch {
-        subscription?.deliver { fail(error) }
+      } catch { self?.publish(.failure(error)) }
+    }
+  }
+
+  deinit { task?.cancel() }
+
+  func subscribe(_ emit: @escaping (Any) -> Void, _ fail: @escaping (Error) -> Void) -> OneSDKSubscription {
+    let id = UUID()
+    let subscription = OneSDKSubscription()
+    lock.lock()
+    let listener = Listener(subscription, emit, fail)
+    listeners[id] = listener
+    if let latest { deliver(latest, to: listener) }
+    lock.unlock()
+    subscription.install { [weak self] in self?.remove(id) }
+    return subscription
+  }
+
+  private func remove(_ id: UUID) {
+    lock.lock()
+    listeners[id] = nil
+    lock.unlock()
+  }
+
+  private func deliver(_ value: Result<Any, Error>, to listener: Listener) {
+    listener.subscription?.deliver {
+      switch value {
+      case .success(let value): listener.emit(value)
+      case .failure(let error): listener.fail(error)
       }
     }
-    subscription.install { task.cancel() }
-    return subscription
+  }
+
+  private func publish(_ value: Result<Any, Error>) {
+    lock.lock()
+    defer { lock.unlock() }
+    latest = value
+    for listener in Array(listeners.values) { deliver(value, to: listener) }
   }
 }
 

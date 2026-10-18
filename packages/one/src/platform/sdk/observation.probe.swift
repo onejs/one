@@ -49,21 +49,52 @@ import Observation
     precondition(published == [1], "publisher emitted after cancellation")
 
     let source = AsyncStream<Int>.makeStream()
-    let received = AsyncStream<Int>.makeStream()
-    var sequenced: [Int] = []
-    let sequence = OneSDKObservations.sequence(source.stream, {
-      sequenced.append($0 as! Int)
-      received.continuation.yield($0 as! Int)
+    let received = AsyncStream<String>.makeStream()
+    var box: OneSDKHandleBox? = OneSDKHandleBox(source.stream)
+    var first: [Int] = []
+    var second: [Int] = []
+    let one = try box!.subscribeSequence({
+      first.append($0 as! Int)
+      received.continuation.yield("one")
+    }, { _ in preconditionFailure() })
+    let two = try box!.subscribeSequence({
+      second.append($0 as! Int)
+      received.continuation.yield("two")
     }, { _ in preconditionFailure() })
     var values = received.stream.makeAsyncIterator()
     source.continuation.yield(1)
-    let element = await values.next()
-    precondition(element == 1)
-    sequence.cancel()
+    _ = await values.next()
+    _ = await values.next()
+    precondition(first == [1] && second == [1], "subscribers competed for stream values")
+    one.cancel()
     source.continuation.yield(2)
-    source.continuation.finish()
-    precondition(sequenced == [1], "sequence emitted after cancellation")
+    _ = await values.next()
+    precondition(first == [1] && second == [1, 2], "cancel affected another subscriber")
+    two.cancel()
+    let remount = try box!.subscribeSequence({
+      second.append($0 as! Int)
+      received.continuation.yield("remount")
+    }, { _ in preconditionFailure() })
+    _ = await values.next()
+    precondition(second == [1, 2, 2], "remount did not receive latest snapshot")
+    source.continuation.yield(3)
+    _ = await values.next()
+    precondition(second == [1, 2, 2, 3], "remount ended stream")
+    remount.cancel()
+    let terminated = AsyncStream<Void>.makeStream()
+    source.continuation.onTermination = { _ in terminated.continuation.yield(()) }
+    box = nil
+    var end = terminated.stream.makeAsyncIterator()
+    _ = await end.next()
     received.continuation.finish()
-    print("PASS: KVO, Observable, Combine, AsyncSequence changes and teardown")
+    terminated.continuation.finish()
+
+    // singleton/child reference ids survive temporary boxes. value handles stay distinct.
+    let native = NSObject()
+    precondition(OneSDKHandleBox(native).identity == OneSDKHandleBox(native).identity)
+    precondition(OneSDKHandleBox(counter).identity == OneSDKHandleBox(counter).identity)
+    precondition(OneSDKHandleBox(NSObject()).identity != OneSDKHandleBox(NSObject()).identity)
+    precondition(OneSDKHandleBox(source.stream).identity != OneSDKHandleBox(source.stream).identity)
+    print("PASS: KVO, Observable, Combine teardown; AsyncSequence fanout, independent cancel, remount, handle-release cancellation; native reference identity")
   }
 }

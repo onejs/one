@@ -12,9 +12,10 @@ export type NativeMap<K, V> = Map<K, V>;
 export type Handle<_Name = string, _Args = unknown> = SDKHandle;
 export declare class SDKHandle {
     readonly $handle: OneSDKHandle;
-    constructor($handle: OneSDKHandle);
+    readonly $identity: string | OneSDKHandle;
+    constructor($handle: OneSDKHandle, $identity?: string | OneSDKHandle);
 }
-type Wrapper = new (handle: OneSDKHandle) => SDKHandle;
+type Wrapper = new (handle: OneSDKHandle, identity?: string) => SDKHandle;
 type PropertyTable = {
     module: string;
     properties: Record<string, number>;
@@ -39,4 +40,3 @@ export declare function observeSDKProperty<T>(object: SDKHandle, property: strin
 export declare function subscribeSDK<T>(object: SDKHandle, kind: 'publisher' | 'sequence', value: (value: T) => void, error: (error: Error) => void): () => void;
 export { useSDKProperty, useSDKPublisher, useSDKAsyncSequence } from './react';
 export type { SDKState } from './react';
-//# sourceMappingURL=wire.d.ts.map

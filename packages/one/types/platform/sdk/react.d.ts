@@ -21,4 +21,3 @@ export declare function useSDKProperty<T extends SDKHandle, K extends keyof T & 
 export declare function useSDKPublisher<T>(object: SDKHandle | null | undefined): SDKState<T>;
 export declare function useSDKAsyncSequence<T>(object: SDKHandle | null | undefined): SDKState<T>;
 export {};
-//# sourceMappingURL=react.d.ts.map

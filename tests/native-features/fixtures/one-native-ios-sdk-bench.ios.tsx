@@ -62,6 +62,22 @@ function ObservedProgress({ progress }: { progress: Progress }) {
     : `Observed progress: ${state.value ?? 'pending'}`}</Text>
 }
 
+function ObservedSingleton() {
+  const [renders, setRenders] = useState(0)
+  const object = ProcessInfo.processInfo
+  const state = useSDKProperty(object, 'thermalState')
+  return <>
+    <Text testID="sdk-singleton-value">{state.status === 'error'
+      ? `Singleton error: ${state.error.message}`
+      : `Singleton thermal: ${state.value ?? 'pending'}`}</Text>
+    <Text>{`Singleton renders requested: ${renders}`}</Text>
+    <Pressable testID="sdk-singleton-render" onPress={() => setRenders((value) => value + 1)}>
+      <Text>Render singleton again</Text>
+    </Pressable>
+    <Text testID="sdk-singleton-identity">{`Singleton identity: ${object === ProcessInfo.processInfo ? 'stable' : 'changed'}`}</Text>
+  </>
+}
+
 export default function OneNativeIosSdkBench() {
   const [result, setResult] = useState('Ready')
   const progress = useMemo(() => Progress.initTotalUnitCount(4), [])
@@ -74,7 +90,7 @@ export default function OneNativeIosSdkBench() {
         try { setResult(await valueBenchmark()) }
         catch (error) { setResult(String(error)) }
       }}><Text>Measure Nitro values</Text></Pressable>
-      {mounted ? <ObservedProgress progress={progress} /> : <Text>Observation unmounted</Text>}
+      {mounted ? <><ObservedProgress progress={progress} /><ObservedSingleton /></> : <Text>Observation unmounted</Text>}
       <Pressable testID="sdk-observation-increment" onPress={() => { progress.completedUnitCount += 1 }}>
         <Text>Advance native progress</Text>
       </Pressable>
