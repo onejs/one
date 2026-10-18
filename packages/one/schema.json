@@ -4622,28 +4622,9 @@
       "name": "OneNativeButton",
       "publicName": "Button",
       "props": {
-        "label": {
-          "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
-        },
-        "subtitle": {
-          "type": "string"
-        },
-        "systemImage": {
-          "type": "string"
-        },
         "buttonRole": {
           "type": "string",
           "enum": "ButtonRole"
-        },
-        "buttonStyle": {
-          "type": "string",
-          "enum": "PrimitiveButtonStyle"
-        },
-        "disclosureIndicator": {
-          "type": "boolean"
         }
       },
       "events": {

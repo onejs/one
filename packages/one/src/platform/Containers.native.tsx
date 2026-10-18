@@ -8,7 +8,8 @@ import {
   type ElementRef,
   type ReactNode,
 } from 'react'
-import { Platform } from 'react-native'
+import { Platform, PlatformColor } from 'react-native'
+import { Image, Label, Text } from './generated/Controls.native'
 import { dispatchSDKEvent, swiftStyleNative, validSDKEventValue } from './generated/swiftStyleNative'
 import { viewSlotArguments, viewSlotAvailability, viewSlotEvents } from './generated/viewSlots'
 import NativeButton from './specs/OneNativeButtonNativeComponent'
@@ -855,6 +856,7 @@ export function ViewThatFits({ axes = 'both', children, style, swiftStyle, ...pr
 // a button renders text from its label props or a custom label view from its
 // children, never both: children are the whole Button(action:) label, so any text
 // label content alongside them is ambiguous and fails here instead of in SwiftUI.
+// the label props build the same children, so SwiftUI draws one label either way.
 export function Button({
   onPress,
   label = '',
@@ -887,21 +889,46 @@ export function Button({
     Number.parseFloat(String(Platform.Version))
   )
   assertOneNativeChildren(children, 'Swift.Button')
+  // an icon-only button shows the image alone, so no title spacing is reserved
+  const primary = hasChildren ? (
+    children
+  ) : label && systemImage ? (
+    <Label label={label} systemImage={systemImage} />
+  ) : systemImage ? (
+    <Image systemName={systemImage} />
+  ) : (
+    <Text text={label} />
+  )
+  const disclosed = disclosureIndicator ? (
+    // swiftui's default spacing, which the stack gives no value for
+    <HStack spacing={8}>
+      {primary}
+      <Spacer />
+      <Image systemName="chevron.right" colorRole="secondary" />
+    </HStack>
+  ) : (
+    primary
+  )
+  const content = subtitle ? (
+    <VStack spacing={2}>
+      {disclosed}
+      <Text
+        text={subtitle}
+        swiftStyle={{ font: 'subheadline', foregroundStyle: PlatformColor('secondaryLabel') }}
+      />
+    </VStack>
+  ) : (
+    disclosed
+  )
   return (
     <NativeButton
       {...props}
       style={style}
-      {...swiftStyleProps(swiftStyle)}
-      label={label}
-      disabled={disabled}
-      subtitle={subtitle}
-      systemImage={systemImage}
+      {...swiftStyleProps({ buttonStyle, ...(disabled ? { disabled } : {}), ...swiftStyle })}
       buttonRole={buttonRole}
-      buttonStyle={buttonStyle}
-      disclosureIndicator={disclosureIndicator}
-      onNativeButtonPress={({ nativeEvent }) => onPress?.()}
+      onNativeButtonPress={() => onPress?.()}
     >
-      <InsideContainer value={true}>{children}</InsideContainer>
+      <InsideContainer value={true}>{content}</InsideContainer>
     </NativeButton>
   )
 }
