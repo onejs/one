@@ -3,7 +3,7 @@
 // option sets and raw-value constants their javascript form. swift infers each
 // argument's type from the call, so the table names types only to pick an
 // overload.
-import { Bridge, inUniverse, judge, outPointee, callbackOut, pickOf, type DeclarationInfo, type Generics } from './bridge'
+import { Bridge, isObservableSDKProperty, inUniverse, judge, outPointee, callbackOut, pickOf, type DeclarationInfo, type Generics } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
 import { parameterDefaults, parameterType, parseType, typeText, type SwiftType } from './types'
 import { emitProtocols } from './emit-protocols'
@@ -25,6 +25,7 @@ export type Entry = {
   specialization?: Record<string, SwiftType>
   receiver?: SwiftType
   syncCallbacks?: boolean
+  observable?: boolean
   swift: string
 }
 
@@ -630,6 +631,10 @@ ${needsCheck(version) ? `@available(iOS ${version}, *)\n` : ''}extension ${info.
 ${methods.join('\n')}
 }`
   })
+  for (const e of entries) {
+    const getter = e.receiver ? `let o: ${swiftType(e.receiver)} = try c.receiver(); return c.out(o.${member(e.name)})` : undefined
+    e.observable = isObservableSDKProperty(e, getter)
+  }
   return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, [...conformances, ...(conformancesOnly ? [] : openings)], () => emitProtocols(graph, bridge, all, exclude, skipped)) }
 }
 
@@ -692,7 +697,7 @@ ${slice.map((e) => `    case ${e.id}: ${e.main ? `return try await { @MainActor 
     return out
   }
   const observed = entries.flatMap((e) => {
-    if (e.kind !== 'get' || e.isAsync || !e.receiver || /(?:try|await) o\./.test(e.swift)) return []
+    if (!isObservableSDKProperty(e) || !e.receiver) return []
     const type = swiftType(e.receiver)
     const getter = `let o: ${type} = try c.receiver(); return c.out(o.${member(e.name)})`
     const path = String.fromCharCode(92) + type + '.' + member(e.name)

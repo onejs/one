@@ -5,6 +5,16 @@
 import type { Graph, Symbol } from './graph'
 import { parameterDefaults, parameterType, parseType, typeText, type SwiftType, TypeParseError } from './types'
 
+// persist this decision before app manifests omit swift bodies, so both emitters
+// expose exactly the getters the native table can observe.
+export function isObservableSDKProperty(entry: {
+  kind: string; isAsync: boolean; receiver?: unknown; swift?: string; observable?: boolean
+}, getter?: string): boolean {
+  if (entry.observable !== undefined) return entry.observable
+  return entry.kind === 'get' && !entry.isAsync && !!entry.receiver &&
+    !!getter && !!entry.swift?.includes(getter) && !/(?:try|await) o\./.test(entry.swift)
+}
+
 export type DeclarationInfo = {
   usr: string
   module: string

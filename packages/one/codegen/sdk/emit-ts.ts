@@ -1,5 +1,6 @@
 import {
   Bridge,
+  isObservableSDKProperty,
   NO_GENERICS,
   callbackOut,
   outPointee,
@@ -827,7 +828,7 @@ class Facade {
         ...own.map((entry) => ({ entry, name: this.names.get(entry.key)! })),
       ])
       const observedProperties = Object.fromEntries(own
-        .filter((e) => e.kind === 'get' && !this.static(e) && !e.isAsync)
+        .filter((e) => isObservableSDKProperty(e))
         .map((e) => [this.names.get(e.key)!, e.id]))
       this.names = names
       declarations.push(
