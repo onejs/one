@@ -817,6 +817,16 @@ export const components = [
   {
     name: 'OneNativeDisclosureGroup',
     publicName: 'DisclosureGroup',
+    host: {
+      view: 'DisclosureGroup',
+      binding: { label: 'isExpanded', prop: 'isExpanded', event: 'onNativeDisclosureGroupIsExpandedChange' },
+      arguments: { label: 'label' },
+      children: 'content',
+      modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'],
+      layout: 'measured',
+      boundedHeight: true,
+      scheme: true,
+    },
     props: {
       label: 'string',
       isExpanded: 'boolean',

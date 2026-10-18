@@ -31,6 +31,9 @@ export type HostRecipe = {
   aliases?: Record<string, Record<string, string>>
   // applied to the children inside the view builder
   childModifier?: string
+  // a stack the children share inside the view builder, where the SDK view would lay
+  // each child out on its own
+  childStack?: string
   // modifiers SwiftUI applies to the call before the container's style; `$label` is
   // that argument's converted value and `@prop` the prop's model value
   modifiers?: readonly string[]
@@ -39,6 +42,15 @@ export type HostRecipe = {
   layout: 'leaf' | 'container' | 'measured'
   // measured only while the height is not set from React
   boundedHeight?: boolean
+  // measured only while this Swift condition holds; `@prop` is the prop's model value
+  measuredWhen?: string
+  // an initializer label that takes a Binding React controls: the value comes from
+  // `prop` with the acknowledgedEvent and revision props, and a change the user makes
+  // reaches React through `event`
+  binding?: { label: string; prop: string; event: string }
+  // takes the environment props (color scheme, type size, control size, locale, tint,
+  // enabled) and applies them around the view
+  environment?: boolean
   // standalone, follow the color scheme of the window it sits in
   scheme?: boolean
   // with no swiftStyle, apply nothing, so a transparent group adds no layer
@@ -75,6 +87,8 @@ const indent = (text: string, by: number) =>
 const upper = (name: string) => name[0].toUpperCase() + name.slice(1)
 const swiftField = (type: string) =>
   type.startsWith('boolean') ? 'Bool' : type.startsWith('Double') ? 'Double' : 'String'
+// the props OneNativeEnvironmentModel.configure takes, in its order
+const ENVIRONMENT = ['colorScheme', 'dynamicTypeSize', 'controlSize', 'locale', 'tint', 'isEnabled']
 const objcArgument = (prop: string, type: string) =>
   type.startsWith('string') ? `RCTNSStringFromString(next.${prop})` : `next.${prop}`
 
@@ -110,7 +124,10 @@ export function emitContainerHosts(
         if (!(prop in component.props)) fail(`@${prop} is not in the spec`)
         return `model.${prop}`
       })
-    const childrenBody = `ForEach(children.items) { child in child.content }${recipe.childModifier ? `\n  ${recipe.childModifier}` : ''}`
+    const eachChild = `ForEach(children.items) { child in child.content }${recipe.childModifier ? `\n  ${recipe.childModifier}` : ''}`
+    const childrenBody = recipe.childStack
+      ? `${recipe.childStack} {\n  ${indent(eachChild, 2)}\n}`
+      : eachChild
     const contentBody = recipe.childrenFallback
       ? `if children.items.isEmpty {\n  Text(model.${recipe.childrenFallback})\n} else {\n  ${indent(childrenBody, 2)}\n}`
       : childrenBody
@@ -123,6 +140,7 @@ export function emitContainerHosts(
           ...Object.keys(recipe.labels ?? {}),
         ].filter((label) => !without.includes(label)),
         ...(recipe.children ? [recipe.children] : []),
+        ...(recipe.binding ? [recipe.binding.label] : []),
       ])
 
     // the SDK initializer with exactly these labels besides defaulted ones. its generic
@@ -172,6 +190,14 @@ export function emitContainerHosts(
       const label = parameter.label
       if (label === recipe.children) {
         return { label, prop: '', closure: true, swift: contentBody }
+      }
+      if (label === recipe.binding?.label) {
+        return {
+          label,
+          prop: '',
+          closure: false,
+          swift: 'Binding(get: { model.controlled.value }, set: { value in model.change(value) })',
+        }
       }
       const shown = recipe.labels?.[label]
       if (shown) {
@@ -335,8 +361,17 @@ ${cases.join('\n')}
       model(modifier.replace(/\$(\w+)/g, (_, label: string) => converted(label)))
     )
 
+    const binding = recipe.binding
+    const bound = binding ? [binding.prop, 'acknowledgedEvent', 'revision'] : []
+    for (const prop of bound) if (!(prop in component.props)) fail(`binding prop ${prop} is not in the spec`)
+    const boundType = binding ? swiftField(component.props[binding.prop]) : ''
+    const environment = recipe.environment === true
+    if (environment)
+      for (const prop of ENVIRONMENT)
+        if (!(prop in component.props)) fail(`environment prop ${prop} is not in the spec`)
     const props = Object.entries(component.props).filter(
-      ([, type]) => !/ColorValue/.test(type)
+      ([prop, type]) =>
+        !/ColorValue/.test(type) && !(environment && ENVIRONMENT.includes(prop)) && !bound.includes(prop)
     )
     const leaf = recipe.layout === 'leaf'
     const measured = recipe.layout === 'measured'
@@ -382,32 +417,41 @@ ${cases.join('\n')}
         ? [{ prop: 'boundedHeight', kind: 'Bool', initial: 'false' }]
         : []),
     ]
-    const hasModel = fields.length > 0 || measured
+    const hasModel = fields.length > 0 || measured || binding !== undefined
     const contentFields = [
       ...(hasModel ? [`  @ObservedObject var model: ${short}Model`] : []),
       ...(leaf ? [] : ['  @ObservedObject var children: OneNativeChildren']),
       '  @ObservedObject var style: OneNativeContainerStyle',
+      ...(environment ? ['  @ObservedObject var environment: OneNativeEnvironmentModel'] : []),
       ...(leaf ? [] : ['  let standalone: Bool']),
       ...(scheme ? ['  @ObservedObject var bridge: OneNativeSchemeBridge'] : []),
     ]
+    const styled = [
+      gated,
+      ...modifiers,
+      `.oneNativeContainerStyle(style${recipe.skipEmptyStyle ? ', skipWhenEmpty: true' : ''})`,
+    ].join('\n')
+    const measuredWhen = [
+      'standalone',
+      ...(recipe.boundedHeight ? ['!model.boundedHeight'] : []),
+      ...(recipe.measuredWhen ? [model(recipe.measuredWhen)] : []),
+    ].join(' && ')
     const body = [
-      indent(gated, 4),
-      ...modifiers.map((modifier) => `    ${modifier}`),
-      `    .oneNativeContainerStyle(style${recipe.skipEmptyStyle ? ', skipWhenEmpty: true' : ''})`,
-      ...(measured
-        ? [
-            `    .oneNativeMeasured(standalone${recipe.boundedHeight ? ' && !model.boundedHeight' : ''}, model.onHeight)`,
-          ]
-        : []),
+      indent(environment ? `OneNativeEnvironment(model: environment, content: ${styled})` : styled, 4),
+      ...(measured ? [`    .oneNativeMeasured(${measuredWhen}, model.onHeight)`] : []),
       ...(scheme ? ['    .oneNativeScheme(standalone, bridge.scheme)'] : []),
     ]
     const contentArguments = [
       ...(hasModel ? ['model: model'] : []),
       ...(leaf ? [] : ['children: children']),
       'style: style',
+      ...(environment ? ['environment: environment'] : []),
       ...(leaf ? [] : ['standalone: standalone']),
       ...(scheme ? ['bridge: bridge'] : []),
     ].join(', ')
+    const initialBound = binding
+      ? (recipe.initial?.[binding.prop] ?? (boundType === 'Bool' ? 'false' : boundType === 'Double' ? '0' : '""'))
+      : ''
     const configured = fields
     const swift = `${header}import SwiftUI
 import UIKit
@@ -415,7 +459,23 @@ ${
   hasModel
     ? `
 private final class ${short}Model: ObservableObject {
-${fields.map(({ prop, kind, initial }) => `  @Published var ${prop}: ${kind} = ${initial}`).join('\n')}${measured ? '\n  var onHeight: ((CGFloat) -> Void)?' : ''}
+${[
+  ...(binding ? [`  @Published var controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
+  ...fields.map(({ prop, kind, initial }) => `  @Published var ${prop}: ${kind} = ${initial}`),
+  ...(measured ? ['  var onHeight: ((CGFloat) -> Void)?'] : []),
+  ...(binding
+    ? [
+        '  var active = false',
+        `  var onChange: ((${boundType}, Int, Int) -> Void)?`,
+        '',
+        `  func change(_ value: ${boundType}) {`,
+        '    guard active, controlled.value != value else { return }',
+        '    controlled.change(value)',
+        '    onChange?(value, controlled.eventCount, controlled.revision)',
+        '  }',
+      ]
+    : []),
+].join('\n')}
 }
 `
     : ''
@@ -431,8 +491,10 @@ ${conversions.length ? `\n${conversions.join('\n\n')}\n` : ''}
 @objcMembers
 public final class ${name}View: ${leaf ? 'OneNativeStyledLeafView' : 'OneNativeContainerView'} {
 ${[
+  ...(binding ? [`  public var onChange: ((${boundType}, Int, Int) -> Void)?`] : []),
   ...(measured ? ['  public var onMeasure: ((CGFloat) -> Void)?'] : []),
   ...(hasModel ? [`  private let model: ${short}Model`] : []),
+  ...(environment ? ['  private let environment: OneNativeEnvironmentModel'] : []),
   ...(scheme
     ? [
         '  private let bridge: OneNativeSchemeBridge',
@@ -444,13 +506,16 @@ ${[
   public init() {
 ${[
   ...(hasModel ? [`    let model = ${short}Model()`, '    self.model = model'] : []),
+  ...(environment
+    ? ['    let environment = OneNativeEnvironmentModel()', '    self.environment = environment']
+    : []),
   ...(scheme
     ? ['    let bridge = OneNativeSchemeBridge()', '    self.bridge = bridge']
     : []),
 ].join('\n')}
     super.init(styled: { ${leaf ? 'style' : 'children, style, standalone'} in
       AnyView(${short}Content(${contentArguments}))
-    })${measured ? '\n    model.onHeight = { [weak self] height in self?.onMeasure?(height) }' : ''}${
+    })${binding ? '\n    model.onChange = { [weak self] value, count, revision in\n      self?.onChange?(value, count, revision)\n    }' : ''}${measured ? '\n    model.onHeight = { [weak self] height in self?.onMeasure?(height) }' : ''}${
       scheme
         ? `
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
@@ -472,10 +537,33 @@ ${
 `
     : ''
 }${
-      configured.length
+      configured.length || binding
         ? `
-  public func configure(${configured.map(({ prop, kind }) => `${prop}: ${kind}`).join(', ')}) {
-${configured.map(({ prop }) => `    if model.${prop} != ${prop} { model.${prop} = ${prop} }`).join('\n')}
+  public func configure(${[
+    ...(binding ? [`${binding.prop}: ${boundType}`, 'acknowledgedEvent: Int', 'revision: Int'] : []),
+    ...configured.map(({ prop, kind }) => `${prop}: ${kind}`),
+  ].join(', ')}) {
+${[
+  ...(binding
+    ? [
+        `    if let next = model.controlled.applying(${binding.prop}, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }`,
+      ]
+    : []),
+  ...configured.map(({ prop }) => `    if model.${prop} != ${prop} { model.${prop} = ${prop} }`),
+].join('\n')}
+  }
+${binding ? '\n  public override func setActive(_ active: Bool) { model.active = active }\n' : ''}`
+        : ''
+    }${
+      environment
+        ? `
+  public func configureEnvironment(
+    colorScheme: String, dynamicTypeSize: String, controlSize: String, locale: String,
+    tint: UIColor?, isEnabled: String
+  ) {
+    environment.configure(
+      colorScheme: colorScheme, dynamicTypeSize: dynamicTypeSize, controlSize: controlSize,
+      locale: locale, tint: tint, isEnabled: isEnabled)
   }
 `
         : ''
@@ -488,10 +576,14 @@ ${configured.map(({ prop }) => `    if model.${prop} != ${prop} { model.${prop} 
 `
         : ''
     }${
-      hasModel && fields.length
+      (hasModel && fields.length) || environment || binding
         ? `
   public override func reset() {
-${fields.map(({ prop, initial }) => `    model.${prop} = ${initial}`).join('\n')}
+${[
+  ...(binding ? ['    model.active = false', `    model.controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
+  ...fields.map(({ prop, initial }) => `    model.${prop} = ${initial}`),
+  ...(environment ? ['    environment.reset()'] : []),
+].join('\n')}
     super.reset()
   }
 `
@@ -517,16 +609,25 @@ ${fields.map(({ prop, initial }) => `    model.${prop} = ${initial}`).join('\n')
 #endif
 `
     )
-    const configure = configured.length
-      ? `  [_nativeView configureWith${upper(configured[0].prop)}:${configured
-          .map(({ prop }, index) => {
-            const value =
-              prop === 'boundedHeight'
-                ? 'boundedHeight'
-                : objcArgument(prop, component.props[prop])
-            return index === 0 ? value : `\n      ${prop}:${value}`
-          })
+    const objcConfigured = [
+      ...bound.map((prop) => ({ prop, value: `next.${prop}` })),
+      ...configured.map(({ prop }) => ({
+        prop,
+        value: prop === 'boundedHeight' ? 'boundedHeight' : objcArgument(prop, component.props[prop]),
+      })),
+    ]
+    const configure = objcConfigured.length
+      ? `  [_nativeView configureWith${upper(objcConfigured[0].prop)}:${objcConfigured
+          .map(({ prop, value }, index) => (index === 0 ? value : `\n      ${prop}:${value}`))
           .join('')}];\n`
+      : ''
+    const configureEnvironment = environment
+      ? `  [_nativeView configureEnvironmentWithColorScheme:RCTNSStringFromString(next.colorScheme)
+      dynamicTypeSize:RCTNSStringFromString(next.dynamicTypeSize)
+      controlSize:RCTNSStringFromString(next.controlSize)
+      locale:RCTNSStringFromString(next.locale)
+      tint:next.tint ? RCTUIColorFromSharedColor(next.tint) : nil
+      isEnabled:RCTNSStringFromString(next.isEnabled)];\n`
       : ''
     outputs.set(
       `ios/Generated/${name}ComponentView.mm`,
@@ -566,6 +667,17 @@ ${
 `
 }    self.contentView = _nativeView;
 ${
+  binding
+    ? `    __weak ${name}ComponentView *weakChanged = self;
+    _nativeView.onChange = ^(${boundType === 'Bool' ? 'BOOL' : boundType === 'Double' ? 'double' : 'NSString *'} value, NSInteger eventCount, NSInteger revision) {
+      ${name}ComponentView *strongSelf = weakChanged;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const ${name}EventEmitter>(strongSelf->_eventEmitter);
+      emitter->${binding.event}({.value = ${boundType === 'Bool' ? '(bool)value' : boundType === 'Double' ? 'value' : 'std::string(value.UTF8String)'}, .eventCount = (int)eventCount, .revision = (int)revision});
+    };
+`
+    : ''
+}${
   measured
     ? `    __weak ${name}ComponentView *weakSelf = self;
     _nativeView.onMeasure = ^(CGFloat height) {
@@ -586,7 +698,7 @@ ${
   const bool boundedHeight = !height.isUndefined() && !height.isAuto();
 `
     : ''
-}${configure}  [super updateProps:props oldProps:oldProps];
+}${configure}${configureEnvironment}  [super updateProps:props oldProps:oldProps];
 }
 ${
   leaf

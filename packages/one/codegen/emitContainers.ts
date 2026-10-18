@@ -77,6 +77,7 @@ export const containerComponents = [
   {
     name: 'OneNativeForm',
     publicName: 'Form',
+    host: { view: 'Form', children: 'content', initial: { sizing: '"fill"' }, measuredWhen: '@sizing == "content"', environment: true, layout: 'measured' },
     props: { sizing: 'string', ...environmentProps },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     // scroll modifiers such as scrollContentBackground reach the Form through swiftStyle.
@@ -104,6 +105,7 @@ export const containerComponents = [
   {
     name: 'OneNativeLabeledContent',
     publicName: 'LabeledContent',
+    host: { view: 'LabeledContent', labels: { label: { title: 'label', systemImage: 'systemImage' } }, children: 'content', childrenFallback: 'value', childStack: 'HStack(spacing: 0)', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'], layout: 'measured' },
     props: { label: 'string', value: 'string', systemImage: 'string' },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
