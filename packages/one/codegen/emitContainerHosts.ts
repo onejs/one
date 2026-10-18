@@ -14,6 +14,13 @@ export type HostRecipe = {
   // or the SDK modifier the host applies to React's children, stacked in `childStack`.
   // its labels fill as an initializer's do
   modifier?: string
+  // the modifier draws a surface: it applies to a clear view behind the stacked children,
+  // so each child keeps its own accessibility frame, and `modifiers` lay out the stack
+  // the surface fills
+  surface?: boolean
+  // methods of an argument's SDK type called on its converted value: an argument label to
+  // each method and the prop that fills the method's one parameter
+  chains?: Record<string, Record<string, string>>
   // a view builder label that shows the `slot` React mounts among the children, which
   // SwiftUI presents outside the surface while the binding is true. `modifiers` apply to
   // the presented content, `@prop` as below
@@ -97,8 +104,15 @@ export type HostRecipe = {
   context?: { event?: string; values?: Record<string, string>; commands?: Record<string, string> }
   // an initializer label whose generic type the SDK builds with static members of the
   // protocol it conforms to: `prop` names the member, and `arguments` fills the members'
-  // labels from props
-  builder?: { label: string; prop: string; members: readonly string[]; arguments: Record<string, string> }
+  // labels from props. a member with overloads is the one that takes the most of them.
+  // `optional` leaves the label out while the prop is empty, so the SDK default applies
+  builder?: {
+    label: string
+    prop: string
+    members: readonly string[]
+    arguments: Record<string, string>
+    optional?: boolean
+  }
 }
 
 // a row of a data-driven view: React's content for one item, which the view finds by the
@@ -140,11 +154,15 @@ const indent = (text: string, by: number) =>
     .replace(/\n +(#)/g, '\n$1')
 const upper = (name: string) => name[0].toUpperCase() + name.slice(1)
 const swiftField = (type: string) =>
-  type.startsWith('boolean') ? 'Bool' : type.startsWith('Double') ? 'Double' : 'String'
+  type.startsWith('boolean') ? 'Bool' : type.startsWith('Double') ? 'Double' : type.startsWith('ColorValue') ? 'UIColor?' : 'String'
 // the props OneNativeEnvironmentModel.configure takes, in its order
 const ENVIRONMENT = ['colorScheme', 'dynamicTypeSize', 'controlSize', 'locale', 'tint', 'isEnabled']
 const objcArgument = (prop: string, type: string) =>
-  type.startsWith('string') ? `RCTNSStringFromString(next.${prop})` : `next.${prop}`
+  type.startsWith('string')
+    ? `RCTNSStringFromString(next.${prop})`
+    : type.startsWith('ColorValue')
+      ? `next.${prop} ? RCTUIColorFromSharedColor(next.${prop}) : nil`
+      : `next.${prop}`
 const NUMBERS = ['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat']
 // core graphics lies outside the swiftui inventory, so its geometry is spelled here: a
 // field to its path on the value
@@ -509,6 +527,10 @@ export function emitContainerHosts(
     if (!recipe.view === !recipe.modifier) fail('a host names its view or its modifier')
     if (recipe.modifier && (!recipe.childStack || recipe.children))
       fail('a modifier host stacks the children it modifies')
+    if (recipe.surface && (!recipe.modifier || recipe.presented))
+      fail('a surface is a modifier drawn behind the children')
+    for (const label of Object.keys(recipe.chains ?? {}))
+      if (!(label in args)) fail(`chain ${label} is not an argument`)
     if (presented && !recipe.binding) fail('a presented slot shows while its binding is true')
     const presentedSlot = presented && components.find((c) => c.name === presented.slot)?.host
     if (presented && (!presentedSlot || !('slot' in presentedSlot)))
@@ -619,10 +641,15 @@ export function emitContainerHosts(
         const base = parameter.type.replace(/\?$/, '')
         const fn = `oneNative${short}${upper(prop)}`
         const aliases = recipe.aliases?.[prop] ?? {}
+        // a type newer than the floor makes the conversion as new as the type
+        const declared = inventory.find(
+          (d) => ['struct', 'enum'].includes(d.kind) && d.owner === '' && d.name === ownerKey(base) && present(d)
+        )
+        const since = declared && ios(declared) > floor ? ios(declared) : floor
         const cases = [
           ...(value!.optional ? ['  case "": return nil'] : []),
           ...value!.cases!.map((item) =>
-            item.ios > floor
+            item.ios > since
               ? `  case ${JSON.stringify(item.name)}:${sdkGuard(item.ios, `    if #available(iOS ${item.ios}, *) { return ${base}.${item.name} }`, '')}\n    preconditionFailure("${name} ${prop} ${item.name} requires iOS ${item.ios}")`
               : `  case ${JSON.stringify(item.name)}: return ${base}.${item.name}`
           ),
@@ -630,7 +657,8 @@ export function emitContainerHosts(
             ([alias, swift]) => `  case ${JSON.stringify(alias)}: return ${swift}`
           ),
         ]
-        conversions.push(`private func ${fn}(_ value: String) -> ${parameter.type} {
+        if (!conversions.some((c) => c.includes(` ${fn}(`)))
+          conversions.push(`${since > floor ? `@available(iOS ${since}, *)\n` : ''}private func ${fn}(_ value: String) -> ${parameter.type} {
   switch value {
 ${cases.join('\n')}
   default: preconditionFailure("invalid ${name} ${prop}: \\(value)")
@@ -697,26 +725,37 @@ ${cases.join('\n')}
 
     // a call per member the built argument can be, chosen by the member's prop
     const builder = recipe.builder
-    const builtCall = (initializer: Declaration, call: string) => {
-      if (!builder) return call
+    // `bare` is the call without the builder label, shown while an optional builder's prop
+    // is empty
+    const builtCall = (initializer: Declaration, call: string, bare?: string) => {
+      if (!builder || !call.includes(BUILT)) return call
       const parameter = initializer.parameters.find((p) => p.label === builder.label)!
-      // the view's own generic constraint is recorded on its members, not its initializers
-      const conformance = inventory
-        .filter((d) => d === initializer || ownerKey(d.owner).startsWith(ownerKey(initializer.owner)))
-        .flatMap((d) => d.requirements ?? [])
-        .map((r) => new RegExp(`^${parameter.type} : (.+)$`).exec(r)?.[1])
-        .find(Boolean)
+      // the view's own generic constraint is recorded on its members, not its initializers;
+      // an opaque parameter names its protocol
+      const conformance =
+        /^some ([\w.]+)$/.exec(parameter.type)?.[1] ??
+        inventory
+          .filter((d) => d === initializer || ownerKey(d.owner).startsWith(ownerKey(initializer.owner)))
+          .flatMap((d) => d.requirements ?? [])
+          .map((r) => new RegExp(`^${parameter.type} : (.+)$`).exec(r)?.[1])
+          .find(Boolean)
       if (!conformance) fail(`${builder.label}: ${parameter.type} is not a generic the SDK builds`)
+      if (builder.optional && parameter.defaultValue === undefined)
+        fail(`${builder.label} has no SDK default to leave the label out for`)
       const cases = builder.members.map((member) => {
-        const found = inventory.filter(
+        const usable = inventory.filter(
           (d) =>
             ownerKey(d.owner) === ownerKey(conformance!) &&
             d.name === member &&
             (d.requirements ?? []).some((r) => r.startsWith('Self == ')) &&
             present(d) &&
-            ios(d) <= floor
+            ios(d) <= floor &&
+            d.parameters.every((p) => p.label in builder.arguments || p.defaultValue !== undefined)
         )
-        if (found.length !== 1) fail(`${conformance} has ${found.length} members named ${member}`)
+        const taken = (d: Declaration) => d.parameters.filter((p) => p.label in builder.arguments).length
+        const most = Math.max(...usable.map(taken))
+        const found = usable.filter((d) => taken(d) === most)
+        if (found.length !== 1) fail(`${conformance} has ${found.length} members named ${member} taking the most builder arguments`)
         const [declaration] = found
         const element = (type: string) =>
           (declaration.requirements ?? [])
@@ -752,6 +791,7 @@ ${cases.join('\n')}
         const built = declaration.kind === 'func' ? `.${member}(${passed.join(', ')})` : `.${member}`
         return `case ${JSON.stringify(member)}:\n  ${indent(call.replace(BUILT, built), 2)}`
       })
+      if (bare !== undefined) cases.unshift(`case "":\n  ${indent(bare, 2)}`)
       // configure rejects any other member, so this default never shows
       return `Group {\n  switch model.${builder.prop} {\n  ${indent(cases.join('\n'), 2)}\n  default:\n    EmptyView()\n  }\n}`
     }
@@ -782,22 +822,62 @@ ${cases.join('\n')}
       const sort = sorted ? `, ${columns.sortUsing}: ${short}Sort(column: column.id)` : ''
       return `${columns.each}(model.decodedColumns) { column in\n  ${columns.column}(LocalizedStringKey(column.title)${sort}) { item in\n    ${indent(mountedRows, 4)}\n  }\n}`
     }
-    const callFor = (without: readonly string[]) => {
+    // the chained methods an argument's converted value takes, each filled from its prop
+    const chain = (initializer: Declaration, parameter: Declaration['parameters'][number], value: Argument): Argument => {
+      const methods = recipe.chains?.[parameter.label]
+      if (!methods) return value
+      if (value.closure) fail(`${parameter.label} is a builder, which takes no chain`)
+      const base = parameter.type.replace(/\?$/, '')
+      const calls = Object.entries(methods).map(([method, prop]) => {
+        const kind = component.props[prop] ?? fail(`chain prop ${prop} is not in the spec`)
+        const found = inventory.filter(
+          (d) =>
+            d.kind === 'func' &&
+            !d.isStatic &&
+            ownerKey(d.owner) === ownerKey(base) &&
+            d.name === method &&
+            d.type !== undefined &&
+            ownerKey(d.type) === ownerKey(base) &&
+            d.parameters.length === 1 &&
+            present(d)
+        )
+        if (found.length !== 1) fail(`${base} has ${found.length} methods ${method} returning it from one value`)
+        const [declaration] = found
+        if (ios(declaration) > ios(initializer))
+          fail(`${base}.${method} needs iOS ${ios(declaration)}, past the call's ${ios(initializer)}`)
+        const [p] = declaration.parameters
+        const field = `model.${prop}`
+        const type = p.type.replace(/\?$/, '')
+        const passed =
+          type === 'Swift.Bool' && kind.startsWith('boolean')
+            ? field
+            : type === 'SwiftUICore.Color' && kind.startsWith('ColorValue') && p.type.endsWith('?')
+              ? `${field}.map { SwiftUICore.Color(uiColor: $0) }`
+              : NUMBERS.includes(type) && kind.startsWith('Double')
+                ? type === 'Swift.Double' ? field : `${type.split('.').at(-1)}(${field})`
+                : fail(`${base}.${method} ${p.label}: ${p.type} cannot come from ${prop}: ${kind}`)
+        return `.${method}(${p.label === '_' ? '' : `${p.label}: `}${passed})`
+      })
+      return { ...value, swift: `${value.swift}${calls.join('')}` }
+    }
+    const callFor = (without: readonly string[]): { initializer: Declaration; values: Argument[]; call: string } => {
       const initializer = initializerFor(wanted(without))
       const used = initializer.parameters.filter((p) => wanted(without).has(p.label))
       const sorted = recipe.binding !== undefined && !without.includes(recipe.binding.label)
-      const values = used.map((p) => argumentFor(p, sorted))
+      const values = used.map((p) => chain(initializer, p, argumentFor(p, sorted)))
       const rendered = values.map((value) => {
         const swift = value.closure
           ? `{${value.parameter ? ` ${value.parameter} in` : ''}\n  ${indent(value.swift, 2)}\n}`
           : value.swift
         return value.label === '_' ? swift : `${value.label}: ${swift}`
       })
+      const optional = builder?.optional && !without.includes(builder.label)
       const call = builtCall(
         initializer,
         recipe.modifier
-          ? `${contentBody}\n.${recipe.modifier}(${rendered.join(', ')})`
-          : `${recipe.view}(${rendered.join(', ')})`
+          ? `${recipe.surface ? 'Color.clear\n.contentShape(Rectangle())' : contentBody}\n.${recipe.modifier}(${rendered.join(', ')})`
+          : `${recipe.view}(${rendered.join(', ')})`,
+        optional ? callFor([...without, builder!.label]).call : undefined
       )
       const urls = values.filter((value) => value.url)
       return {
@@ -994,10 +1074,12 @@ ${cases.join('\n')}
     if (environment)
       for (const prop of ENVIRONMENT)
         if (!(prop in component.props)) fail(`environment prop ${prop} is not in the spec`)
+    // a color reaches the model only where a chain converts it
+    const chained = Object.values(recipe.chains ?? {}).flatMap((methods) => Object.values(methods))
     const props = Object.entries(component.props).filter(
       ([prop, type]) =>
-        !/ColorValue/.test(type) && !(environment && ENVIRONMENT.includes(prop)) && !bound.includes(prop) &&
-        !selected.includes(prop)
+        (!/ColorValue/.test(type) || chained.includes(prop)) && !(environment && ENVIRONMENT.includes(prop)) &&
+        !bound.includes(prop) && !selected.includes(prop)
     )
     const leaf = recipe.layout === 'leaf'
     const measured = recipe.layout === 'measured'
@@ -1035,9 +1117,9 @@ ${cases.join('\n')}
         const kind = swiftField(type)
         const initial =
           recipe.initial?.[prop] ??
-          (prop === recipe.builder?.prop ? JSON.stringify(recipe.builder.members[0]) : undefined) ??
+          (prop === recipe.builder?.prop ? (recipe.builder.optional ? '""' : JSON.stringify(recipe.builder.members[0])) : undefined) ??
           sdkDefault(prop, kind) ??
-          (kind === 'Bool' ? 'false' : kind === 'Double' ? '0' : '""')
+          (kind === 'Bool' ? 'false' : kind === 'Double' ? '0' : kind === 'UIColor?' ? 'nil' : '""')
         return { prop, kind, initial }
       }),
       ...(recipe.boundedHeight
@@ -1059,9 +1141,11 @@ ${cases.join('\n')}
       ...(leaf ? [] : ['  let standalone: Bool']),
       ...(scheme ? ['  @ObservedObject var bridge: OneNativeSchemeBridge'] : []),
     ]
+    // a surface fills the stack behind the children, so the stack's modifiers lay it out first
     const styled = [
-      gated,
-      ...modifiers,
+      ...(recipe.surface
+        ? [`${contentBody}${modifiers.map((modifier) => `\n${modifier}`).join('')}\n.background {\n  ${indent(gated, 2)}\n}`]
+        : [gated, ...modifiers]),
       `.oneNativeContainerStyle(style${recipe.skipEmptyStyle ? ', skipWhenEmpty: true' : ''})`,
     ].join('\n')
     const measuredWhen = [
@@ -1362,7 +1446,7 @@ ${
 ${[
   ...(recipe.builder
     ? [
-        `    precondition([${recipe.builder.members.map((m) => JSON.stringify(m)).join(', ')}].contains(${recipe.builder.prop}), "invalid ${name} ${recipe.builder.prop}: \\(${recipe.builder.prop})")`,
+        `    precondition([${[...(recipe.builder.optional ? [''] : []), ...recipe.builder.members].map((m) => JSON.stringify(m)).join(', ')}].contains(${recipe.builder.prop}), "invalid ${name} ${recipe.builder.prop}: \\(${recipe.builder.prop})")`,
       ]
     : []),
   ...(binding

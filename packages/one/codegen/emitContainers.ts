@@ -397,16 +397,24 @@ export const containerComponents = [
   {
     name: 'OneNativeGlass',
     publicName: 'Glass',
-    // a glass surface takes the box React Native gave it.
+    // a glass surface takes the box React Native gave it, behind the children it lays out
+    // from the top leading corner. material and color scheme reach it through swiftStyle.
+    host: {
+      modifier: 'glassEffect',
+      surface: true,
+      childStack: 'VStack(alignment: .leading, spacing: 0)',
+      arguments: { _: 'glassEffect' },
+      chains: { _: { interactive: 'interactive', tint: 'tint' } },
+      builder: { label: 'in', prop: 'shape', members: ['capsule', 'circle', 'ellipse', 'rect', 'containerRelative'], arguments: { cornerRadius: 'cornerRadius' }, optional: true },
+      modifiers: ['.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)'],
+      layout: 'container',
+    },
     props: {
-      material: 'string?',
       glassEffect: 'string?',
       interactive: 'boolean?',
       shape: 'string?',
       cornerRadius: 'Double?',
       tint: 'ColorValue?',
-      // the appearance the glass draws in, like a host's; tint stays the glass's own.
-      colorScheme: environmentProps.colorScheme,
     },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,

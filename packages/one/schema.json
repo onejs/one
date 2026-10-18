@@ -4684,9 +4684,6 @@
       "name": "OneNativeGlass",
       "publicName": "Glass",
       "props": {
-        "material": {
-          "type": "string"
-        },
         "glassEffect": {
           "type": "string"
         },
@@ -4701,9 +4698,6 @@
         },
         "tint": {
           "type": "ColorValue"
-        },
-        "colorScheme": {
-          "type": "string"
         }
       },
       "events": {
