@@ -48,6 +48,12 @@ export default function OneNativeIosSdk() {
         const response = await session.respondToOptions432('What color is a clear daytime sky?')
         return `${String(response.content)} (${response.rawContent.jsonString})`
       })
+      // the caller picks the generic Content type, so the model answers as an Int
+      await settle(report, 'ModelInt', async () => {
+        const session = LanguageModelSession.initModelInstructions417(undefined, 'Answer with a number.')
+        const response = await session.respondToGeneratingOptionsContextOptionsMetadata424('How many legs does a spider have?', 'Int')
+        return `${typeof response.content} ${String(response.content)} (${response.rawContent.jsonString})`
+      })
     }
     setStatus('done')
   }
