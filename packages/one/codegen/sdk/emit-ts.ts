@@ -414,6 +414,7 @@ class Facade {
         params.slice(i + 1).every((p) => p.hasDefault || p.optional)
       let type = this.type(this.concrete(e, p.type), true)
       if (p.keyPaths?.length) type = [...p.keyPaths.map(quote), 'SDKHandle'].join(' | ')
+      if (p.typeNames?.length) type = p.typeNames.map(quote).join(' | ')
       return {
         name,
         declaration: `${name}${optional ? '?' : ''}: ${type}`,

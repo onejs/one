@@ -3,7 +3,7 @@
 // option sets and raw-value constants their javascript form. swift infers each
 // argument's type from the call, so the table names types only to pick an
 // overload.
-import { Bridge, inUniverse, judge, outPointee, callbackOut, type DeclarationInfo } from './bridge'
+import { Bridge, inUniverse, judge, outPointee, callbackOut, pickOf, type DeclarationInfo, type Generics } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
 import { parameterDefaults, parameterType, parseType, typeText, type SwiftType } from './types'
 import { emitProtocols } from './emit-protocols'
@@ -18,7 +18,8 @@ export type Entry = {
   isAsync: boolean
   main: boolean
   // an out parameter takes no argument; its written value comes back under its name
-  params: { label: string; name: string; type: SwiftType; optional: boolean; hasDefault: boolean; out?: boolean; inout?: boolean; keyPaths?: string[] }[]
+  // typeNames: a generic parameter's type the caller names, from these choices
+  params: { label: string; name: string; type: SwiftType; optional: boolean; hasDefault: boolean; out?: boolean; inout?: boolean; keyPaths?: string[]; typeNames?: string[] }[]
   returns?: SwiftType
   // the concrete witness for each generic parameter and associated type.
   specialization?: Record<string, SwiftType>
@@ -300,16 +301,16 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     }
     const specialization = generics.params.size ? Object.fromEntries(generics.resolved) : undefined
     const ownerParams = new Set((ownerSymbol?.swiftGenerics?.parameters ?? []).map((p) => p.name))
-    // inside an extension of the owner its own generic parameters stay open
-    const replaceWith = (open: boolean) => (source: string) => {
-      const names = [...generics.resolved.keys()].filter((name) => !open || !ownerParams.has(name) && name !== 'Self')
+    // generic parameters bound where the entry runs stay open
+    const replaceWith = (open: Set<string>) => (source: string) => {
+      const names = [...generics.resolved.keys()].filter((name) => !open.has(name))
         .sort((a, b) => b.length - a.length)
       if (!names.length) return source
       const escaped = names.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
       return source.replace(new RegExp(`(?<![A-Za-z0-9_.])(?:${escaped.join('|')})(?![A-Za-z0-9_])`, 'g'),
         (name) => typeText(bridge.substitute(generics.resolved.get(name)!, generics)))
     }
-    const replaceTypes = replaceWith(false)
+    const replaceTypes = replaceWith(new Set())
     const specializedOwner = (info: DeclarationInfo) => {
       const used = new Set<string>()
       return `${info.module}.${info.path.map((name, i) => {
@@ -400,8 +401,18 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     const mutating = /\bmutating\b/.test(decl)
     const open = (kind === 'swift.method' || kind === 'swift.subscript') && opens(usr)
     const writeBack = open ? 'self = o' : 'c.setReceiver(o)'
-    const replace = open ? replaceWith(true) : replaceTypes
     const parameters = symbol.functionSignature?.parameters ?? []
+    // a caller-named generic runs a local generic function with P open; one
+    // the compiler rejects falls back to the canonical witness, which needs
+    // the type parameter to have a default
+    const pickable = pickOf(bridge, symbol, ownerSymbol, generics)
+    const pick = pickable && !exclude.has(`pick:${usr}`) ? pickable : undefined
+    if (pickable && !pick && parameterDefaults(symbol.declarationFragments ?? [])[pickable.param] === undefined) {
+      skipped.push({ usr, path, reason: exclude.get(`pick:${usr}`)! })
+      continue
+    }
+    const replace = open ? replaceWith(new Set([...ownerParams, 'Self'])) : pick ? replaceWith(new Set([pick.name])) : replaceTypes
+    let pickAt = -1
     const hoisted: string[] = []
     const args: string[] = []
     const outs: string[] = []
@@ -411,6 +422,14 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     const defaults = parameterDefaults(symbol.declarationFragments ?? [])
     parameters.forEach((parameter, i) => {
       const defaultValue = defaults[i]
+      if (pick && i === pick.param) {
+        pickAt = params.length
+        const argLabel = labels[i] ?? '_'
+        params.push({ label: argLabel, name: parameter.internalName ?? parameter.name, type: parameterType(parameter.declarationFragments), optional: false,
+          hasDefault: defaultValue !== undefined, typeNames: pick.choices.map((c) => c.name) })
+        args.push(`${argLabel === '_' ? '' : `${label(argLabel)}: `}t`)
+        return
+      }
       // swift fills a parameter the bridge cannot carry, or one defaulting to a
       // caller macro such as #isolation, so javascript never passes it. judge
       // let an unbridgeable parameter through only when it has a default.
@@ -551,10 +570,26 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     } else {
       lines.push(`return c.out(${effects}${call})`)
     }
+    let body = lines.join('; ')
+    let entrySpecialization = specialization
+    let entryReturns = returnType
+    if (pick && pickAt >= 0) {
+      // javascript names the type; its value types read as unknown
+      const any: SwiftType = { k: 'named', name: 'Any', args: [] }
+      const chosen: Generics = { ...generics, resolved: new Map([...generics.resolved, [pick.name, any]]) }
+      entrySpecialization = Object.fromEntries(chosen.resolved)
+      entryReturns = returnType && bridge.functions(bridge.substitute(parseType(symbol.functionSignature?.returns ?? []), chosen))
+      const waits = isAsync || main
+      const fallback = pick.choices.find((c) => c.name === 'String') ?? pick.choices[0]
+      const name = defaults[pick.param] !== undefined ? `try c.arg(${pickAt}, or: ${JSON.stringify(fallback.name)}) as String` : `try c.arg(${pickAt}) as String`
+      body = `func oneSDKPick<${pick.name}: ${pick.requirements.join(' & ')}>(_ t: ${pick.name}.Type) ${waits ? 'async ' : ''}throws -> Any { ${body} }; ` +
+        `let type: String = ${name}; switch type { ${pick.choices.map((c) => `case ${JSON.stringify(c.name)}: return try ${waits ? 'await ' : ''}oneSDKPick(${c.swift}.self)`).join('; ')}; ` +
+        `default: throw OneSDKError.badArgument(index: ${pickAt}, expected: ${JSON.stringify(pick.choices.map((c) => c.name).join(' | '))}, got: type) }`
+    }
     push({
-      id: 0, key: usr, usr, owner, name: base, kind: entryKind, isAsync, main, params, specialization, receiver, syncCallbacks: syncCallbacks || undefined,
-      returns: returnType,
-      swift: guarded(availableFrom(usr, [...params.map((p) => p.type), ...(returnType ? [returnType] : []), ...Object.values(open ? {} : specialization ?? {})]), lines.join('; ')),
+      id: 0, key: usr, usr, owner, name: base, kind: entryKind, isAsync, main, params, specialization: entrySpecialization, receiver, syncCallbacks: syncCallbacks || undefined,
+      returns: entryReturns,
+      swift: guarded(availableFrom(usr, [...params.map((p) => p.type), ...(returnType ? [returnType] : []), ...Object.values(open || pick ? {} : specialization ?? {})]), body),
     }, open, mutating)
   }
 

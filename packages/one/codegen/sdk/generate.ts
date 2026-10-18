@@ -98,7 +98,8 @@ export function rejected(swift: string, output: ModuleOutput, errors: string[]) 
     const entryCase = /^\s+case (\d+): /.exec(lines[line] ?? '')
     if (entryCase) {
       const entry = output.entries.find((e) => e.id === Number(entryCase[1]))
-      const key = entry && (opening ? `open:${entry.key}` : entry.key)
+      // a caller-named generic falls back to the canonical witness
+      const key = entry && (opening ? `open:${entry.key}` : lines[line].includes('func oneSDKPick<') ? `pick:${entry.key}` : entry.key)
       if (key && !out.has(key)) out.set(key, reason)
       continue
     }

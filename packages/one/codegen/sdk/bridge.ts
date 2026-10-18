@@ -314,6 +314,25 @@ export class Bridge {
     return witness
   }
 
+  // the public types a caller may name for a generic parameter with these
+  // conformance requirements:
+  // standard values and concrete sdk types that conform to all of them and
+  // cross as results; a protocol most of the sdk conforms to offers only the
+  // standard values
+  pickable(requirements: Constraint[], limit = 24): { name: string; swift: string }[] {
+    const pools = requirements.map((c) => new Set(c.rhsPrecise ? this.index.get(c.rhsPrecise)?.conformers ?? [] : []))
+    const usrs = [...(pools[0] ?? [])].filter((usr) => pools.every((p) => p.has(usr)))
+    const values = Object.entries(VALUE_NAMES).filter(([name, usr]) => usrs.includes(usr) && !['Never', 'Void', 'Error'].includes(name))
+      .map(([name]) => ({ name, swift: name }))
+    const types = usrs.map((usr) => this.index.get(usr)).filter((info): info is DeclarationInfo =>
+      !!info && ['class', 'struct', 'enum', 'actor'].includes(info.kind) && !info.genericParameters?.length &&
+      !info.path.some((p) => p.startsWith('_')) && !Object.values(VALUE_NAMES).includes(info.usr) &&
+      this.type({ k: 'named', name: `${info.module}.${info.path.join('.')}`, usr: info.usr, args: [] }, 'output', NO_GENERICS).ok)
+      .map((info) => ({ name: tsName(`${info.module}.${info.path.join('.')}`), swift: `${info.module}.${info.path.map((p) => /^[A-Za-z_]\w*$/.test(p) ? p : `\`${p}\``).join('.')}` }))
+      .sort((a, b) => (a.name < b.name ? -1 : 1))
+    return types.length > limit ? values : [...values, ...types]
+  }
+
   type(type: SwiftType, position: Position, generics: Generics): Bridged {
     switch (type.k) {
       case 'optional': {
@@ -747,6 +766,31 @@ function aliasTarget(symbol: Symbol): SwiftType | undefined {
   }
 }
 
+// a method generic over a type its caller names through a `P.Type` parameter,
+// with only conformance requirements on P, takes that type by name from the
+// public conformers of those requirements
+export function pickOf(bridge: Bridge, symbol: Symbol, owner: Symbol | undefined, generics: Generics) {
+  const own = [...generics.params].filter((name) => !generics.owned.has(name))
+  if (own.length !== 1 || owner?.swiftGenerics?.parameters?.length || symbol.kind.identifier === 'swift.init') return undefined
+  const name = own[0]
+  const requirements = [...constraintsOf(symbol), ...(symbol.swiftExtension?.constraints ?? []) as Constraint[]]
+  if (!requirements.length || !requirements.every((c) => c.kind === 'conformance' && c.lhs === name)) return undefined
+  const param = (symbol.functionSignature?.parameters ?? []).findIndex((p) => {
+    try {
+      const t = parameterType(p.declarationFragments)
+      return t.k === 'metatype' && t.t.k === 'named' && t.t.name === name
+    } catch { return false }
+  })
+  if (param < 0) return undefined
+  const choices = bridge.pickable(requirements)
+  if (choices.length < 2) return undefined
+  const types = requirements.map((c) => {
+    const info = c.rhsPrecise ? bridge.index.get(c.rhsPrecise) : undefined
+    return info ? `${info.module}.${info.path.join('.')}` : c.rhs
+  })
+  return { name, param, choices, requirements: types }
+}
+
 export function judge(bridge: Bridge, symbol: Symbol, owner: Symbol | undefined): Verdict {
   const kind = symbol.kind.identifier
   const own = kind === 'swift.typealias' ? (symbol.swiftGenerics?.parameters ?? []).map((p) => p.name) : []
@@ -783,7 +827,9 @@ export function judge(bridge: Bridge, symbol: Symbol, owner: Symbol | undefined)
       kind === 'swift.init' || kind === 'swift.subscript' || kind === 'swift.type.subscript') {
       const signature = symbol.functionSignature
       const defaults = parameterDefaults(symbol.declarationFragments ?? [])
+      const pick = pickOf(bridge, symbol, owner, generics)
       for (const [i, parameter] of (signature?.parameters ?? []).entries()) {
+        if (pick?.param === i) continue
         const b = bridge.type(parameterType(parameter.declarationFragments), 'input', generics)
         // a call leaves a defaulted parameter out, so its type need not bridge
         if (!b.ok && defaults[i] === undefined) return { covered: false, reason: b.reason }
