@@ -58,7 +58,12 @@ export function buildOneMetroResolverOverrides({
           )
         }
 
-        const sdkFacade = resolveIosSdkImport(projectRoot, moduleName, platform)
+        const sdkFacade = resolveIosSdkImport(
+          projectRoot,
+          moduleName,
+          platform,
+          context.originModulePath
+        )
         if (sdkFacade) {
           return { type: 'sourceFile', filePath: sdkFacade }
         }

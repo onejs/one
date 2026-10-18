@@ -91,11 +91,9 @@ export interface LabeledContentProps extends ViewProps {
 export interface ButtonProps extends OneNativeViewProps {
   onPress?: () => void
   label?: string
-  disabled?: boolean
   subtitle?: string
   systemImage?: SFSymbolName | ''
   buttonRole?: Styles.ButtonRole | ''
-  buttonStyle?: Styles.PrimitiveButtonStyle
   disclosureIndicator?: boolean
   children?: ReactNode
 }

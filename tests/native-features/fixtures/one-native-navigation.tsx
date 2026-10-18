@@ -53,7 +53,7 @@ export default function OneNativeNavigation() {
             <One.iOS.ToolbarItem placement="principal">
               <One.iOS.Picker
                 label="Mailbox"
-                pickerStyle="segmented"
+                swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}
                 selection={page}
                 onSelectionChange={setPage}
                 options={[

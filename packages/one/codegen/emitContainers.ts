@@ -377,8 +377,8 @@ export const containerComponents = [
     name: 'OneNativeButton',
     publicName: 'Button',
     // a button is a measured container whose children are the SDK Button's label. React
-    // builds the label its label props describe from the same children, and sends the
-    // style and enabled state as swiftStyle.
+    // builds the label its label props describe from the same children; buttonStyle and
+    // disabled come from swiftStyle like any other modifier.
     host: {
       view: 'Button',
       arguments: { role: 'buttonRole' },
@@ -806,11 +806,9 @@ export interface LabeledContentProps extends ViewProps {
 export interface ButtonProps extends OneNativeViewProps {
   onPress?: () => void
   label?: string
-  disabled?: boolean
   subtitle?: string
   systemImage?: SFSymbolName | ''
   buttonRole?: Styles.ButtonRole | ''
-  buttonStyle?: Styles.PrimitiveButtonStyle
   disclosureIndicator?: boolean
   children?: ReactNode
 }

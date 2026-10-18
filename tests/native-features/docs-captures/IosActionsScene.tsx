@@ -45,7 +45,7 @@ export function IosActionsScene() {
           />
         </One.iOS.Section>
         <One.iOS.Section>
-          <One.iOS.Button label="Save" buttonStyle="borderedProminent" />
+          <One.iOS.Button label="Save" swiftStyle={{ buttonStyle: 'borderedProminent' }} />
         </One.iOS.Section>
       </One.iOS.Form>
     </View>

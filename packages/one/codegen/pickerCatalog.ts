@@ -11,7 +11,6 @@ export const pickerControls: Control[] = [
         default: '',
         payload: { name: 'PickerOption', element: { value: 'string', label: 'string' } },
       },
-      pickerStyle: { type: 'string', default: 'automatic', enum: 'PickerStyle' },
     },
     constructors: [
       {
@@ -32,22 +31,11 @@ export const pickerControls: Control[] = [
         }
       } label: {
         Text(model.label)
-      }
-      .oneNativePickerStyle(model.pickerStyle)
-      .oneNativeSegmentedFill(model.pickerStyle)`,
-    extraSwift: `private extension View {
-  // a segmented picker spans its row the way Settings does instead of hugging its
-  // segments, so callers never have to encode the fill themselves.
-  @ViewBuilder func oneNativeSegmentedFill(_ style: String) -> some View {
-    if style == "segmented" { self.frame(maxWidth: .infinity) }
-    else { self }
-  }
-}`,
+      }`,
     validate: `  if (!Array.isArray(options) || options.some(option => typeof option?.value !== 'string' || typeof option?.label !== 'string')) throw new Error('Picker options must contain string value and label fields')
   if (!options.length) throw new Error('Picker options must not be empty')
   if (new Set(options.map(option => option.value)).size !== options.length) throw new Error('Picker option values must be unique')
-  if (!options.some(option => option.value === selection)) throw new Error('Picker selection must match an option value')
-  if (pickerStyle === 'navigationLink') throw new Error('PickerStyle.navigationLink requires a native navigation context that One Native does not provide yet')`,
+  if (!options.some(option => option.value === selection)) throw new Error('Picker selection must match an option value')`,
   },
   {
     name: 'DatePicker',
@@ -81,7 +69,6 @@ export const pickerControls: Control[] = [
         default: 'dateAndTime',
         publicType: "'date' | 'hourAndMinute' | 'dateAndTime'",
       },
-      datePickerStyle: { type: 'string', default: 'automatic', enum: 'DatePickerStyle' },
     },
     constructors: [
       {
@@ -102,8 +89,7 @@ export const pickerControls: Control[] = [
         set: { value in model.change(value.timeIntervalSince1970 * 1000) }
       ), in: Date(timeIntervalSince1970: model.minimumDate / 1000)...Date(timeIntervalSince1970: model.maximumDate / 1000), displayedComponents: oneNativeDatePickerComponents(model.displayedComponents)) {
         Text(model.label)
-      }
-      .oneNativeDatePickerStyle(model.datePickerStyle)`,
+      }`,
     extraSwift: `private func oneNativeDatePickerComponents(_ value: String) -> DatePicker<Text>.Components {
   switch value {
   case "date": return .date

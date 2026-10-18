@@ -23,7 +23,7 @@ export default function OneNativePickerPalette() {
       <One.iOS.Picker
         label="Palette choice"
         options={options}
-        pickerStyle="palette"
+        swiftStyle={{ pickerStyle: 'palette' }}
         selection={palette}
         onSelectionChange={setPalette}
         style={styles.picker}
@@ -33,7 +33,7 @@ export default function OneNativePickerPalette() {
       <One.iOS.Picker
         label="Segmented choice"
         options={options}
-        pickerStyle="segmented"
+        swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}
         selection={segmented}
         onSelectionChange={setSegmented}
         style={styles.picker}

@@ -30,7 +30,7 @@ import { One } from 'one'
 function Status() {
   return (
     <One.iOS.VStack spacing={8}>
-      <One.iOS.Image systemName="wifi" imageScale="large" />
+      <One.iOS.Image systemName="wifi" swiftStyle={{ imageScale: 'large' }} />
       <One.iOS.RoundedRectangle fill="blue" cornerRadius={12} style={{ height: 64 }} />
     </One.iOS.VStack>
   )
@@ -68,7 +68,10 @@ import { One } from 'one'
 function Weather() {
   return (
     <>
-      <One.iOS.Image systemName="cloud.sun.rain.fill" symbolRenderingMode="multicolor" imageScale="large" />
+      <One.iOS.Image
+        systemName="cloud.sun.rain.fill"
+        swiftStyle={{ symbolRenderingMode: 'multicolor', imageScale: 'large' }}
+      />
       <One.iOS.Image systemName="wifi" variableValue={0.5} />
     </>
   )
@@ -82,16 +85,14 @@ function Weather() {
     { name: 'systemName', type: 'SFSymbolName | ""', default: '""', description: 'The SF Symbol to draw.' },
     { name: 'uri', type: 'string', default: '""', description: 'A remote image to draw in place of a symbol. It fills its frame.' },
     { name: 'renderingMode', type: '"original" | "template"', default: '"original"', description: 'template lets a toolbar tint a remote image.' },
-    { name: 'symbolRenderingMode', type: 'SymbolRenderingMode | ""', default: '""', description: 'monochrome, multicolor, hierarchical, or palette.' },
-    { name: 'symbolVariant', type: 'SymbolVariants | ""', default: '""', description: 'none, circle, square, rectangle, fill, or slash.' },
-    { name: 'imageScale', type: 'ImageScale | ""', default: '""', description: 'small, medium, or large.' },
     { name: 'variableValue', type: 'number', description: 'From 0 to 1, for symbols that fill in steps.' },
     { name: 'colorRole', type: 'IconColorRole | ""', default: '""', description: 'A system color role, as in One.UI.Icon.' },
     { name: 'resizable', type: 'boolean', default: 'false', description: 'Scales a symbol to its frame instead of its point size.' },
   ]}
 />
 
-`""` leaves a modifier unset. Size a symbol with
+`symbolRenderingMode`, `symbolVariant`, and `imageScale` are SwiftUI modifiers
+set through `swiftStyle`. Size a symbol with
 `swiftStyle={{ fontSize }}` and give the view a matching `width` and
 `height`, or React Native lays it out smaller than the glyph and neighbors
 overlap it.

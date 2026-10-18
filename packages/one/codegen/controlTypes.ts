@@ -130,7 +130,6 @@ export type Control = {
 
 export const commonFields = {
   label: { type: 'string', default: '' },
-  disabled: { type: 'boolean', default: false },
 } as const
 
 // a list of buttons that report an id back, shared by the dialogs and by the empty state.

@@ -5,8 +5,7 @@ import UIKit
 import PassKit
 
 private final class AddPassToWalletButtonModel: ObservableObject {
-  @Published var addPassToWalletButtonStyle: String = "black"
-  @Published var disabled: Bool = false
+
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -16,7 +15,7 @@ private final class AddPassToWalletButtonModel: ObservableObject {
   var onPress: ((Int) -> Void)?
   private var pressCount = 0
   func press() {
-    guard active, !disabled else { return }
+    guard active else { return }
     pressCount += 1
     onPress?(pressCount)
   }
@@ -43,9 +42,8 @@ private final class AddPassToWalletButtonModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ addPassToWalletButtonStyle: String, disabled: Bool) {
-    if model.addPassToWalletButtonStyle != addPassToWalletButtonStyle { model.addPassToWalletButtonStyle = addPassToWalletButtonStyle }
-    if model.disabled != disabled { model.disabled = disabled }
+  public func configure() {
+
   }
 
 
@@ -91,18 +89,7 @@ private struct AddPassToWalletButtonContent: View {
     AddPassToWalletButton {
         model.press()
       }
-      .oneNativeWalletButtonStyle(model.addPassToWalletButtonStyle)
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
-  }
-}
-private extension View {
-  @ViewBuilder func oneNativeWalletButtonStyle(_ value: String) -> some View {
-    switch value {
-    case "black": self.addPassToWalletButtonStyle(.black)
-    case "blackOutline": self.addPassToWalletButtonStyle(.blackOutline)
-    default: let _ = preconditionFailure("invalid AddPassToWalletButtonStyle: \(value)"); self
-    }
   }
 }

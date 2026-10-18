@@ -55,8 +55,9 @@ same render.
 
 Every control on this page also accepts `accessibilityLabel`,
 `accessibilityHint`, `accessibilityValue`, `testID`, `style`, `onLayout`, and
-`swiftStyle`. Most accept `disabled`; `EditButton` and
-`SignInWithAppleButton` do not.
+`swiftStyle`. Set `swiftStyle={{ disabled: true }}` to dim a control and block
+its input. Styles such as `buttonStyle` and `toggleStyle` are SwiftUI modifiers
+set the same way.
 
 ## How it works
 
@@ -67,9 +68,10 @@ handle binds by id, so every bound view converges on the same value without a
 React render, and writes through the handle stay silent. Raising `revision`
 with a new value resets the control from the outside.
 
-Buttons report taps and take no value. Styles and roles use SwiftUI names,
-checked against the device's iOS version, and symbols use SF Symbol names. The
-system buttons render Apple's own controls with their system artwork and
+Buttons report taps and take no value. Styles, set through `swiftStyle`, and
+roles use SwiftUI names, checked against the device's iOS version, and symbols
+use SF Symbol names.
+The system buttons render Apple's own controls with their system artwork and
 behavior: the paste button pastes strings, the share link opens the share
 sheet, and the location button carries CoreLocation's one-time authorization.
 
@@ -86,7 +88,7 @@ function SaveButton({ save }: { save: () => void }) {
     <One.iOS.Button
       label="Save"
       systemImage="checkmark"
-      buttonStyle="borderedProminent"
+      swiftStyle={{ buttonStyle: 'borderedProminent' }}
       onPress={save}
     />
   )
@@ -102,15 +104,15 @@ function SaveButton({ save }: { save: () => void }) {
     { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol shown with the title.' },
     { name: 'subtitle', type: 'string', default: '""', description: 'A second line under the title.' },
     { name: 'buttonRole', type: 'ButtonRole | ""', default: '""', description: 'destructive, cancel, confirm, or close.' },
-    { name: 'buttonStyle', type: 'PrimitiveButtonStyle', default: '"automatic"', description: 'automatic, glass, glassProminent, borderless, plain, bordered, or borderedProminent.' },
     { name: 'disclosureIndicator', type: 'boolean', default: 'false', description: 'Shows a chevron, as in a navigation row.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
     { name: 'children', type: 'ReactNode', description: 'Custom content in place of label and systemImage.' },
   ]}
 />
 
-Use `swiftStyle={{ controlSize: 'extraLarge' }}` to apply SwiftUI's
-`.controlSize(_:)` to a standalone button.
+`buttonStyle` and `disabled` are SwiftUI modifiers set through `swiftStyle`.
+`buttonStyle` is `automatic`, `glass`, `glassProminent`, `borderless`, `plain`,
+`bordered`, or `borderedProminent`. Use `swiftStyle={{ controlSize: 'extraLarge' }}`
+to apply SwiftUI's `.controlSize(_:)` to a standalone button.
 
 ## Toggle
 
@@ -141,10 +143,11 @@ function MuteSwitch() {
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isOn to reset it from outside.' },
     { name: 'label', type: 'string', description: 'The text before the switch.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', description: 'An SF Symbol before the label.' },
-    { name: 'toggleStyle', type: 'ToggleStyle', default: '"automatic"', description: 'automatic, switch, or button.' },
-    { name: 'disabled', type: 'boolean', description: 'Dims the toggle and ignores taps.' },
   ]}
 />
+
+`toggleStyle` and `disabled` are SwiftUI modifiers set through `swiftStyle`.
+`toggleStyle` is `automatic`, `switch`, or `button`.
 
 ## Slider
 
@@ -189,9 +192,10 @@ function Volume() {
     { name: 'maximumValueLabel', type: 'string', description: 'Text at the high end.' },
     { name: 'minimumValueImage', type: 'string', description: 'An SF Symbol at the low end.' },
     { name: 'maximumValueImage', type: 'string', description: 'An SF Symbol at the high end.' },
-    { name: 'disabled', type: 'boolean', description: 'Dims the slider and ignores drags.' },
   ]}
 />
+
+`disabled` is a SwiftUI modifier set through `swiftStyle`.
 
 ## Stepper
 
@@ -228,9 +232,10 @@ function PartySize() {
     { name: 'minimumValue', type: 'number', default: '0', description: 'The lowest value.' },
     { name: 'maximumValue', type: 'number', default: '100', description: 'The highest value.' },
     { name: 'step', type: 'number', default: '1', description: 'The amount each tap adds or removes.' },
-    { name: 'disabled', type: 'boolean', description: 'Dims the stepper and ignores taps.' },
   ]}
 />
+
+`disabled` is a SwiftUI modifier set through `swiftStyle`.
 
 ## PasteButton
 
@@ -259,9 +264,10 @@ function PasteField() {
   source="generated/controlTypes.ts#PasteButtonProps"
   data={[
     { name: 'onPaste', type: '(values: readonly string[]) => void', description: 'Every string from one paste.' },
-    { name: 'disabled', type: 'boolean', description: 'Dims the button and ignores taps.' },
   ]}
 />
+
+`disabled` is a SwiftUI modifier set through `swiftStyle`.
 
 ## ShareLink
 
@@ -288,9 +294,10 @@ Changing `item` and `itemType` changes what the next share sheet receives.
     { name: 'itemType', type: '"text" | "url"', description: 'How iOS receives the item. A URL gets a link preview.' },
     { name: 'subject', type: 'string', description: 'A subject, for activities such as Mail.' },
     { name: 'message', type: 'string', description: 'Text shared with the item.' },
-    { name: 'disabled', type: 'boolean', description: 'Dims the button and ignores taps.' },
   ]}
 />
+
+`disabled` is a SwiftUI modifier set through `swiftStyle`.
 
 ## SignInWithAppleButton
 
@@ -337,9 +344,9 @@ identityToken, authorizationCode }`, `{ type: 'failed', message }`, or
 ## PayWithApplePayButton
 
 `PayWithApplePayButton` shows the system Apple Pay button and runs `onPress`
-on tap. `label` picks the artwork's verb and `payWithApplePayButtonStyle`
-picks its color. The button only reports the tap: presenting the payment sheet
-takes native code.
+on tap. `label` picks the artwork's verb and the `payWithApplePayButtonStyle`
+modifier in `swiftStyle` picks its color. The button only reports the tap:
+presenting the payment sheet takes native code.
 
 ```tsx
 import { One } from 'one'
@@ -348,7 +355,7 @@ function CheckoutButton({ startCheckout }: { startCheckout: () => void }) {
   return (
     <One.iOS.PayWithApplePayButton
       label="buy"
-      payWithApplePayButtonStyle="black"
+      swiftStyle={{ payWithApplePayButtonStyle: 'black' }}
       onPress={startCheckout}
     />
   )
@@ -361,15 +368,17 @@ function CheckoutButton({ startCheckout }: { startCheckout: () => void }) {
   data={[
     { name: 'onPress', type: '() => void', description: 'Runs on tap.' },
     { name: 'label', type: 'PayWithApplePayButtonLabel', default: '"plain"', description: 'plain, buy, addMoney, book, checkout, continue, contribute, donate, inStore, order, reload, rent, setUp, subscribe, support, tip, or topUp.' },
-    { name: 'payWithApplePayButtonStyle', type: 'PayWithApplePayButtonStyle', default: '"black"', description: 'white, whiteOutline, black, or automatic.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
   ]}
 />
+
+`payWithApplePayButtonStyle` and `disabled` are SwiftUI modifiers set through
+`swiftStyle`. The style is `white`, `whiteOutline`, `black`, or `automatic`.
 
 ## AddPassToWalletButton
 
 `AddPassToWalletButton` shows the system add-to-wallet button and runs
-`onPress` on tap. The artwork has no label variant, only the two black styles.
+`onPress` on tap. The artwork has no label variant, only the two black styles, set with the
+`addPassToWalletButtonStyle` modifier in `swiftStyle`.
 Adding the pass itself takes native code.
 
 ```tsx
@@ -378,7 +387,7 @@ import { One } from 'one'
 function WalletButton({ addPass }: { addPass: () => void }) {
   return (
     <One.iOS.AddPassToWalletButton
-      addPassToWalletButtonStyle="blackOutline"
+      swiftStyle={{ addPassToWalletButtonStyle: 'blackOutline' }}
       onPress={addPass}
     />
   )
@@ -390,10 +399,11 @@ function WalletButton({ addPass }: { addPass: () => void }) {
   source="generated/controlTypes.ts#AddPassToWalletButtonProps"
   data={[
     { name: 'onPress', type: '() => void', description: 'Runs on tap.' },
-    { name: 'addPassToWalletButtonStyle', type: 'AddPassToWalletButtonStyle', default: '"black"', description: 'black or blackOutline.' },
-    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
   ]}
 />
+
+`addPassToWalletButtonStyle` and `disabled` are SwiftUI modifiers set through
+`swiftStyle`. The style is `black` or `blackOutline`.
 
 ## EditButton
 

@@ -60,7 +60,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.label)
-    disabled:next.disabled systemImage:RCTNSStringFromString(next.systemImage) maxSelectionCount:next.maxSelectionCount selectionBehavior:RCTNSStringFromString(next.selectionBehavior) filter:RCTNSStringFromString(next.filter) preferredItemEncoding:RCTNSStringFromString(next.preferredItemEncoding)];
+    systemImage:RCTNSStringFromString(next.systemImage) maxSelectionCount:next.maxSelectionCount selectionBehavior:RCTNSStringFromString(next.selectionBehavior) filter:RCTNSStringFromString(next.filter) preferredItemEncoding:RCTNSStringFromString(next.preferredItemEncoding)];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test

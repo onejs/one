@@ -16,7 +16,7 @@ export default function OneNativeButton() {
       <One.iOS.Button
         testID="one-native-button-bordered"
         label="Bordered"
-        buttonStyle="bordered"
+        swiftStyle={{ buttonStyle: 'bordered' }}
         onPress={() => press('bordered')}
       />
       <GestureHandlerRootView style={styles.gestureRoot}>

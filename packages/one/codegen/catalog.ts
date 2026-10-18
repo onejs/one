@@ -21,43 +21,13 @@ export const modifiers = [
   { name: 'menuOrder', type: 'MenuOrder' },
   { name: 'presentationCompactAdaptation', type: 'PresentationAdaptation' },
   { name: 'presentationDragIndicator', type: 'Visibility', module: 'SwiftUICore' },
-  { name: 'pickerStyle', type: 'PickerStyle' },
-  { name: 'datePickerStyle', type: 'DatePickerStyle' },
-  { name: 'toggleStyle', type: 'ToggleStyle' },
   {
     name: 'menuActionDismissBehavior',
     type: 'MenuActionDismissBehavior',
   },
   { name: 'controlGroupStyle', type: 'ControlGroupStyle' },
   { name: 'tabViewStyle', type: 'TabViewStyle' },
-  { name: 'buttonStyle', type: 'PrimitiveButtonStyle' },
-  { name: 'progressViewStyle', type: 'ProgressViewStyle' },
-  { name: 'gaugeStyle', type: 'GaugeStyle' },
   { name: 'listStyle', type: 'ListStyle' },
-  { name: 'textFieldStyle', type: 'TextFieldStyle' },
-  { name: 'submitLabel', type: 'SubmitLabel' },
-  {
-    name: 'textInputAutocapitalization',
-    type: 'TextInputAutocapitalization',
-    optional: true,
-  },
-  {
-    name: 'symbolRenderingMode',
-    type: 'SymbolRenderingMode',
-    module: 'SwiftUICore',
-    optional: true,
-  },
-  {
-    name: 'symbolVariant',
-    type: 'SymbolVariants',
-    module: 'SwiftUICore',
-  },
-  {
-    name: 'imageScale',
-    type: 'ImageScale',
-    swiftType: 'Image.Scale',
-    module: 'SwiftUICore',
-  },
   {
     name: 'webViewBackForwardNavigationGestures',
     type: 'BackForwardNavigationGesturesBehavior',
@@ -223,9 +193,6 @@ export const styleFields: readonly StyleField[] = [
 export const enumTypes = [
   'MenuOrder',
   'Visibility',
-  'PickerStyle',
-  'DatePickerStyle',
-  'ToggleStyle',
   'MenuActionDismissBehavior',
   'TabViewStyle',
   'ButtonRole',
@@ -236,12 +203,6 @@ export const enumTypes = [
   'TabSectionExpansion',
   'SpringLoadingBehavior',
   'ControlGroupStyle',
-  'PrimitiveButtonStyle',
-  'ProgressViewStyle',
-  'GaugeStyle',
-  'TextFieldStyle',
-  'SubmitLabel',
-  'TextInputAutocapitalization',
   'Axis',
   'Edge',
   'PresentationAdaptation',
@@ -249,9 +210,6 @@ export const enumTypes = [
   'ColorScheme',
   'DynamicTypeSize',
   'ControlSize',
-  'SymbolRenderingMode',
-  'SymbolVariants',
-  'ImageScale',
   'PhotosPickerSelectionBehavior',
   'EncodingDisambiguationPolicy',
   'BackForwardNavigationGesturesBehavior',
@@ -264,12 +222,7 @@ export const enumTypes = [
   // because deprecation lands in newer SDKs first.
   'ToolbarItemPlacement',
   'SpacerSizing',
-  // PassKit button artwork: the style structs and the buy/book/checkout label list.
-  // the style modifiers take these structs as concrete parameters rather than through a
-  // generic Style protocol, so the recipes map cases by hand and only the value types
-  // are listed here.
-  'PayWithApplePayButtonStyle',
-  'AddPassToWalletButtonStyle',
+  // the PassKit buy/book/checkout label list the Apple Pay button takes as an argument.
   'PayWithApplePayButtonLabel',
 ]
 export const fields = {

@@ -437,7 +437,7 @@ function Controls() {
           { value: 'alpha', label: 'Alpha' },
           { value: 'beta', label: 'Beta' },
         ]}
-        pickerStyle="menu"
+        swiftStyle={{ pickerStyle: 'menu' }}
       />
       <One.iOS.DatePicker
         label="Appointment"
@@ -446,7 +446,7 @@ function Controls() {
         minimumDate={new Date('2026-01-01T00:00:00Z')}
         maximumDate={new Date('2026-12-31T23:59:59Z')}
         displayedComponents="date"
-        datePickerStyle="compact"
+        swiftStyle={{ datePickerStyle: 'compact' }}
       />
       <One.iOS.ColorPicker
         label="Accent"
@@ -477,26 +477,29 @@ function Controls() {
 ```
 
 `Picker` options are `{ value, label }` strings. The list must not be empty,
-values must be unique, and `selection` must match one of them. Supported
-`pickerStyle` values are `automatic`, `menu`, `segmented`, `wheel`, `inline`,
-`tabs`, and `palette`.
+values must be unique, and `selection` must match one of them. `pickerStyle` is
+a SwiftUI modifier set through `swiftStyle`, and its supported values are
+`automatic`, `menu`, `segmented`, `wheel`, `inline`, `tabs`, and `palette`.
+Outside a Form, a segmented Picker keeps its natural width; pass
+`swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}` to fill the row.
+Inside a Form row it fills on its own.
 `palette` is accepted outside Menu; on an iOS 27 iPhone it presented as a
 segmented Picker. Earlier iOS presentations are unproven. A Picker embedded
 in Menu content uses the `Menu` item's `type: 'picker'` shape above.
-`navigationLink` throws because it requires a native
-navigation context. Outside a native Form, iOS renders the inline
+`navigationLink` needs an enclosing NavigationStack to push its choices.
+Outside a native Form, iOS renders the inline
 picker as a wheel; the standalone host reserves the same height.
 
 `DatePicker` `selection`, `minimumDate`, and `maximumDate` are `Date` values.
 Omitted bounds default to a wide range. The selection must be a finite date inside
 that range, and `minimumDate` must not be after `maximumDate`.
 `displayedComponents` is `date`, `hourAndMinute`, or `dateAndTime` (default).
-`datePickerStyle` is `automatic`, `compact`, `graphical`, or `wheel`.
+`datePickerStyle` is a `swiftStyle` modifier: `automatic`, `compact`, `graphical`, or `wheel`.
 
 `ColorPicker` `selection` is `#RRGGBB` or `#RRGGBBAA`. `supportsOpacity` defaults
 to true.
 
-`Toggle` `isOn` is a boolean or a `useNativeState` handle. `toggleStyle` is `automatic`, `button`, or `switch`.
+`Toggle` `isOn` is a boolean or a `useNativeState` handle. `toggleStyle` is a `swiftStyle` modifier: `automatic`, `button`, or `switch`.
 `systemImage` is an optional SF Symbol shown beside the label through SwiftUI's
 `Toggle(_:systemImage:isOn:)`; an omitted image keeps the text-only toggle.
 
@@ -509,7 +512,8 @@ greater than 0, and `value` must sit in that range. Defaults are 0, 100, and 1.
 `maximumValueImage`. An image wins over a label on the same side. A slider that
 sets none of the four keeps SwiftUI's label-free slider.
 
-Every control also accepts `label`, `disabled`, and `revision`.
+Every control also accepts `label` and `revision`. Disable one with
+`swiftStyle={{ disabled: true }}`.
 
 ## Buttons, indicators, and text input
 
@@ -529,18 +533,17 @@ function Leaves() {
       <One.iOS.Label label="Starred" systemImage="star.fill" />
       <One.iOS.Image
         systemName="star.fill"
-        symbolRenderingMode="hierarchical"
-        imageScale="medium"
+        swiftStyle={{ symbolRenderingMode: 'hierarchical', imageScale: 'medium' }}
       />
       <One.iOS.Button
         label="Delete"
         systemImage="trash"
         buttonRole="destructive"
-        buttonStyle="bordered"
+        swiftStyle={{ buttonStyle: 'bordered' }}
         onPress={() => remove()}
       />
       <One.iOS.ProgressView label="Uploading" value={0.4} total={1} />
-      <One.iOS.ProgressView label="Working" progressViewStyle="circular" />
+      <One.iOS.ProgressView label="Working" swiftStyle={{ progressViewStyle: 'circular' }} />
       <One.iOS.Gauge
         label="Speed"
         value={72}
@@ -549,14 +552,14 @@ function Leaves() {
         currentValueLabel="72"
         minimumValueLabel="0"
         maximumValueLabel="120"
-        gaugeStyle="accessoryCircular"
+        swiftStyle={{ gaugeStyle: 'accessoryCircular' }}
       />
       <One.iOS.TextField
         label="Name"
         prompt="Your name"
         text={name}
         onTextChange={setName}
-        submitLabel="done"
+        swiftStyle={{ submitLabel: 'done' }}
         onSubmit={() => save(name)}
       />
       <One.iOS.SecureField label="Password" text={secret} onTextChange={setSecret} />
@@ -567,13 +570,14 @@ function Leaves() {
 
 `Text` renders its `text` verbatim, so it never looks up a localized string. `Label`
 pairs a `label` with a required `systemImage` SF Symbol and localizes the label the way
-SwiftUI does. `Image` renders an SF Symbol with `systemName` (`SFSymbolName`, exported from `one`), optional `symbolRenderingMode`,
-`symbolVariant`, `imageScale`, and `variableValue`, or a remote image with `uri` (exactly one of
+SwiftUI does. `Image` renders an SF Symbol with `systemName` (`SFSymbolName`, exported from `one`), optional `variableValue`, or a remote image with `uri` (exactly one of
 the two). A `uri` image loads into `Image(uiImage:)`, fills the frame `swiftStyle` gives it, and
 keeps its own colors, so as a `Button`'s label in a toolbar it becomes the bar item's image: the
 iPhone Duo's edge dock takes it into the item's pill, where `AsyncImage` would stay page content.
 `renderingMode: 'template'` draws it as a template instead, so an app asset glyph takes the
 bar's tint like an SF Symbol.
+`symbolRenderingMode`, `symbolVariant`, and `imageScale` are SwiftUI modifiers set through
+`swiftStyle`.
 All three are display only: they have no events and no controlled value, and they are most useful
 as rows inside a container.
 
@@ -584,44 +588,49 @@ and the `label`, `systemImage`, and `subtitle` props must be omitted; passing bo
 is a validation error. `Text` stays text-only and never takes children. `buttonRole`
 is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
 `buttonRole` because React Native's `ViewProps` already owns `role` for the
-accessibility role. `confirm` and `close` need iOS 26. `buttonStyle` is
-`automatic`, `plain`, `borderless`, `bordered`, `borderedProminent`, `glass`,
+accessibility role. `confirm` and `close` need iOS 26. The `buttonStyle`
+modifier in `swiftStyle` is `automatic`, `plain`, `borderless`, `bordered`, `borderedProminent`, `glass`,
 or `glassProminent`; the two `glass` styles need iOS 26. Values above the
 runtime version throw from the adapter. `onPress` does
-not fire while `disabled`. `disclosureIndicator` shapes the button as the row iOS uses
+not fire while `swiftStyle.disabled` is true. `disclosureIndicator` shapes the button as the row iOS uses
 for something that opens: the label, a `Spacer`, and a trailing secondary chevron,
 filling the width the button is given. It is what makes a `Button` inside a `One.iOS.Form`
 read as "Change flight >".
 
 `ProgressView` shows determinate progress when `value` is set and an
 indeterminate spinner when it is omitted. `total` defaults to 1 and must be
-greater than 0; `value` must sit between 0 and `total`. `progressViewStyle` is
-`automatic`, `linear`, or `circular`.
+greater than 0; `value` must sit between 0 and `total`. The `progressViewStyle`
+modifier in `swiftStyle` is `automatic`, `linear`, or `circular`.
 
 `Gauge` takes finite `value`, `minimumValue` (default 0), and `maximumValue`
 (default 1), with `value` inside that range. `currentValueLabel`,
 `minimumValueLabel`, and `maximumValueLabel` are plain strings; an empty string
-renders empty text rather than omitting the label. `gaugeStyle` is `automatic`,
+renders empty text rather than omitting the label. The `gaugeStyle` modifier in
+`swiftStyle` is `automatic`,
 `linearCapacity`, `accessoryLinear`, `accessoryLinearCapacity`,
 `accessoryCircular`, or `accessoryCircularCapacity`.
 
 `TextField` and `SecureField` take a controlled `text` string and report edits
 through `onTextChange`, using the same acknowledgement and `revision` reset as the
-other controls. `prompt` is the placeholder. `submitLabel` names the return key
-and `onSubmit` fires when it is pressed. `textInputAutocapitalization` is `never`,
-`words`, `sentences`, or `characters`; an empty value leaves the system default.
-`autocorrectionDisabled` defaults to false. `TextField` also takes `axis`:
-`vertical` makes it grow to multiple lines.
+other controls. `prompt` is the placeholder, and `onSubmit` fires when
+return is pressed. `TextField` also takes `axis`: `vertical` makes it grow to
+multiple lines.
+
+`textFieldStyle`, `submitLabel`, `textInputAutocapitalization`,
+`autocorrectionDisabled`, `keyboardType`, and `textContentType` are SwiftUI
+modifiers set through `swiftStyle`, using SwiftUI's case names. `submitLabel` names
+the return key. `textInputAutocapitalization` is `never`, `words`, `sentences`, or
+`characters`. `keyboardType` sets UIKit's `UIKeyboardType` (`default`, `numberPad`,
+`decimalPad`, `emailAddress`, `URL`, etc.), and `textContentType` configures
+semantic text content; `null` means none.
 
 Programmatic focus is controlled through `focused` and `onFocusChange` using the shared
-controlled protocol, mapped to SwiftUI's `@FocusState`. `keyboardType` sets UIKit's
-`UIKeyboardType` (`default`, `numberPad`, `decimalPad`, `emailAddress`, etc.) and `textContentType`
-configures semantic text content.
+controlled protocol, mapped to SwiftUI's `@FocusState`.
 
 `TextEditor` is SwiftUI's multi-line editor. It takes the same controlled `text`,
-`onTextChange`, `revision`, `focused`, `textInputAutocapitalization`,
-`autocorrectionDisabled`, `keyboardType`, and `textContentType` as `TextField`, and
-nothing else: SwiftUI gives it no label, placeholder, style, or submit, and return
+`onTextChange`, `revision`, and `focused` as `TextField`, plus the
+`textInputAutocapitalization`, `autocorrectionDisabled`, `keyboardType`, and
+`textContentType` modifiers in `swiftStyle`, and nothing else: SwiftUI gives it no label, placeholder, style, or submit, and return
 inserts a newline. It has no ideal size, so it fills the box React Native gives it
 and scrolls its text inside that box. Name it with `accessibilityLabel`.
 
@@ -1130,7 +1139,7 @@ function Mailbox() {
           <One.iOS.ToolbarItem placement="principal">
             <One.iOS.Picker
               label="Mailbox"
-              pickerStyle="segmented"
+              swiftStyle={{ pickerStyle: 'segmented', maxWidth: Infinity }}
               selection={page}
               onSelectionChange={setPage}
               options={[

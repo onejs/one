@@ -42,8 +42,6 @@ type OneNativeStyleNative = Readonly<{
   sdkModifiers?: string
 }>
 interface NativeProps extends ViewProps {
-  addPassToWalletButtonStyle: string
-  disabled: boolean
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeAddPassToWalletButtonPress?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>

@@ -8,15 +8,24 @@ export const IOS_FACADES = 'node_modules/.one/ios'
 const IMPORT = /^one\/ios\/([A-Za-z_][A-Za-z0-9_]*)$/
 
 // the file `one/ios/<Framework>` resolves to; undefined for any other import
-export function resolveIosSdkImport(root: string, source: string, platform: string | null) {
+export function resolveIosSdkImport(
+  root: string,
+  source: string,
+  platform: string | null,
+  importer: string | undefined
+) {
   const match = IMPORT.exec(source)
   if (!match) return
   if (platform !== 'ios') {
-    throw new Error(`[one] ${source} is an iOS framework; import it from an .ios.ts file`)
+    throw new Error(
+      `[one] ${source} is an iOS framework; import it from an .ios.ts file (imported by ${importer ?? 'an entry'})`
+    )
   }
   const file = join(root, IOS_FACADES, `${match[1]}.ts`)
   if (!existsSync(file)) {
-    throw new Error(`[one] ${source} has no generated bindings; run one prebuild`)
+    throw new Error(
+      `[one] ${source} has no generated bindings; run one prebuild (imported by ${importer ?? 'an entry'})`
+    )
   }
   return file
 }

@@ -17,27 +17,6 @@
       "visible": 15,
       "hidden": 15
     },
-    "PickerStyle": {
-      "wheel": 13,
-      "inline": 14,
-      "automatic": 13,
-      "segmented": 13,
-      "tabs": 27,
-      "palette": 17,
-      "navigationLink": 16,
-      "menu": 14
-    },
-    "DatePickerStyle": {
-      "wheel": 13,
-      "automatic": 13,
-      "graphical": 14,
-      "compact": 14
-    },
-    "ToggleStyle": {
-      "button": 15,
-      "automatic": 13,
-      "switch": 13
-    },
     "MenuActionDismissBehavior": {
       "automatic": 16.4,
       "enabled": 16.4,
@@ -91,51 +70,6 @@
       "menu": 16.4,
       "compactMenu": 16.4
     },
-    "PrimitiveButtonStyle": {
-      "automatic": 13,
-      "glass": 26,
-      "borderless": 13,
-      "glassProminent": 26,
-      "plain": 13,
-      "bordered": 15,
-      "borderedProminent": 15
-    },
-    "ProgressViewStyle": {
-      "linear": 14,
-      "circular": 14,
-      "automatic": 14
-    },
-    "GaugeStyle": {
-      "accessoryCircularCapacity": 16,
-      "linearCapacity": 16,
-      "accessoryLinear": 16,
-      "accessoryLinearCapacity": 16,
-      "automatic": 16,
-      "accessoryCircular": 16
-    },
-    "TextFieldStyle": {
-      "automatic": 13,
-      "roundedBorder": 13,
-      "bordered": 27,
-      "plain": 13
-    },
-    "SubmitLabel": {
-      "done": 15,
-      "go": 15,
-      "send": 15,
-      "join": 15,
-      "route": 15,
-      "search": 15,
-      "return": 15,
-      "next": 15,
-      "continue": 15
-    },
-    "TextInputAutocapitalization": {
-      "never": 15,
-      "words": 15,
-      "sentences": 15,
-      "characters": 15
-    },
     "Axis": {
       "horizontal": 13,
       "vertical": 13
@@ -182,25 +116,6 @@
       "regular": 15,
       "large": 15,
       "extraLarge": 17
-    },
-    "SymbolRenderingMode": {
-      "monochrome": 15,
-      "multicolor": 15,
-      "hierarchical": 15,
-      "palette": 15
-    },
-    "SymbolVariants": {
-      "none": 15,
-      "circle": 15,
-      "square": 15,
-      "rectangle": 15,
-      "fill": 15,
-      "slash": 15
-    },
-    "ImageScale": {
-      "small": 13,
-      "medium": 13,
-      "large": 13
     },
     "PhotosPickerSelectionBehavior": {
       "default": 16,
@@ -267,16 +182,6 @@
       "flexible": 26,
       "fixed": 26
     },
-    "PayWithApplePayButtonStyle": {
-      "white": 16,
-      "whiteOutline": 16,
-      "black": 16,
-      "automatic": 16
-    },
-    "AddPassToWalletButtonStyle": {
-      "black": 16,
-      "blackOutline": 16
-    },
     "PayWithApplePayButtonLabel": {
       "plain": 16,
       "buy": 16,
@@ -339,51 +244,6 @@
       "requirements": []
     },
     {
-      "name": "pickerStyle",
-      "type": "PickerStyle",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.PickerStyle"
-      ]
-    },
-    {
-      "name": "datePickerStyle",
-      "type": "DatePickerStyle",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.DatePickerStyle"
-      ]
-    },
-    {
-      "name": "toggleStyle",
-      "type": "ToggleStyle",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.ToggleStyle"
-      ]
-    },
-    {
       "name": "menuActionDismissBehavior",
       "type": "MenuActionDismissBehavior",
       "ios": 16.4,
@@ -427,51 +287,6 @@
       ]
     },
     {
-      "name": "buttonStyle",
-      "type": "PrimitiveButtonStyle",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.PrimitiveButtonStyle"
-      ]
-    },
-    {
-      "name": "progressViewStyle",
-      "type": "ProgressViewStyle",
-      "ios": 14,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.ProgressViewStyle"
-      ]
-    },
-    {
-      "name": "gaugeStyle",
-      "type": "GaugeStyle",
-      "ios": 16,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.GaugeStyle"
-      ]
-    },
-    {
       "name": "listStyle",
       "type": "ListStyle",
       "ios": 13,
@@ -485,92 +300,6 @@
       "requirements": [
         "S : SwiftUI.ListStyle"
       ]
-    },
-    {
-      "name": "textFieldStyle",
-      "type": "TextFieldStyle",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "style",
-          "type": "S"
-        }
-      ],
-      "requirements": [
-        "S : SwiftUI.TextFieldStyle"
-      ]
-    },
-    {
-      "name": "submitLabel",
-      "type": "SubmitLabel",
-      "ios": 15,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "submitLabel",
-          "type": "SwiftUI.SubmitLabel"
-        }
-      ],
-      "requirements": []
-    },
-    {
-      "name": "textInputAutocapitalization",
-      "type": "TextInputAutocapitalization",
-      "optional": true,
-      "ios": 15,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "autocapitalization",
-          "type": "SwiftUI.TextInputAutocapitalization?"
-        }
-      ],
-      "requirements": []
-    },
-    {
-      "name": "symbolRenderingMode",
-      "type": "SymbolRenderingMode",
-      "module": "SwiftUICore",
-      "optional": true,
-      "ios": 15,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "mode",
-          "type": "SwiftUICore.SymbolRenderingMode?"
-        }
-      ],
-      "requirements": []
-    },
-    {
-      "name": "symbolVariant",
-      "type": "SymbolVariants",
-      "module": "SwiftUICore",
-      "ios": 15,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "variant",
-          "type": "SwiftUICore.SymbolVariants"
-        }
-      ],
-      "requirements": []
-    },
-    {
-      "name": "imageScale",
-      "type": "ImageScale",
-      "swiftType": "Image.Scale",
-      "module": "SwiftUICore",
-      "ios": 13,
-      "parameters": [
-        {
-          "label": "_",
-          "name": "scale",
-          "type": "SwiftUICore.Image.Scale"
-        }
-      ],
-      "requirements": []
     },
     {
       "name": "webViewBackForwardNavigationGestures",

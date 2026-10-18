@@ -47,9 +47,7 @@ interface NativeProps extends ViewProps {
   revision: Int32
   syncStateId: Int32
   label: string
-  disabled: boolean
   systemImage: string
-  toggleStyle: string
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeToggleValueChange?: DirectEventHandler<

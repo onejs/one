@@ -15,7 +15,7 @@ export const leafControls: Control[] = [
     // String that SwiftUI supplies for the user's paste action.
     name: 'PasteButton',
     actions: [{ prop: 'onPaste', event: 'Paste', payload: { values: 'jsonStrings' } }],
-    fields: { disabled: commonFields.disabled },
+    fields: {},
     constructors: [
       {
         type: 'PasteButton',
@@ -98,11 +98,6 @@ export const leafControls: Control[] = [
         derived: true,
         nativeValue: 'value === undefined',
       },
-      progressViewStyle: {
-        type: 'string',
-        default: 'automatic',
-        enum: 'ProgressViewStyle',
-      },
     },
     constructors: [
       {
@@ -124,8 +119,7 @@ export const leafControls: Control[] = [
         } else {
           ProgressView(value: model.value, total: model.total) { Text(model.label) }
         }
-      }
-      .oneNativeProgressViewStyle(model.progressViewStyle)`,
+      }`,
     validate: `  if (value !== undefined && !Number.isFinite(value)) throw new Error('ProgressView value must be a finite number or undefined')
   if (!Number.isFinite(total) || total <= 0) throw new Error('ProgressView total must be a finite number greater than 0')
   if (value !== undefined && (value < 0 || value > total)) throw new Error('ProgressView value must be between 0 and total')`,
@@ -140,7 +134,6 @@ export const leafControls: Control[] = [
       currentValueLabel: { type: 'string', default: '' },
       minimumValueLabel: { type: 'string', default: '' },
       maximumValueLabel: { type: 'string', default: '' },
-      gaugeStyle: { type: 'string', default: 'automatic', enum: 'GaugeStyle' },
     },
     constructors: [
       {
@@ -184,8 +177,7 @@ export const leafControls: Control[] = [
         Text(model.minimumValueLabel)
       } maximumValueLabel: {
         Text(model.maximumValueLabel)
-      }
-      .oneNativeGaugeStyle(model.gaugeStyle)`,
+      }`,
     validate: `  if (![value, minimumValue, maximumValue].every(Number.isFinite)) throw new Error('Gauge value, minimumValue, and maximumValue must be finite numbers')
   if (minimumValue >= maximumValue) throw new Error('Gauge minimumValue must be less than maximumValue')
   if (value < minimumValue || value > maximumValue) throw new Error('Gauge value must be within minimumValue and maximumValue')`,
@@ -203,21 +195,6 @@ export const leafControls: Control[] = [
         type: 'string',
         default: 'original',
         publicType: "'original' | 'template'",
-      },
-      symbolRenderingMode: {
-        type: 'string',
-        default: '',
-        enum: 'SymbolRenderingMode',
-      },
-      symbolVariant: {
-        type: 'string',
-        default: '',
-        enum: 'SymbolVariants',
-      },
-      imageScale: {
-        type: 'string',
-        default: '',
-        enum: 'ImageScale',
       },
       variableValue: {
         type: 'Double',
@@ -264,9 +241,6 @@ export const leafControls: Control[] = [
           Image(systemName: model.systemName)
         }
       }
-      .oneNativeSymbolRenderingMode(model.symbolRenderingMode)
-      .oneNativeSymbolVariant(model.symbolVariant)
-      .oneNativeImageScale(model.imageScale)
       .oneNativeColorRole(model.colorRole)`,
     validate: `  if (!systemName === !uri) throw new Error('Image takes exactly one of systemName (an SF Symbol name) or uri (a remote image)')
   if (renderingMode !== 'original' && renderingMode !== 'template') throw new Error("Image renderingMode must be 'original' or 'template'")

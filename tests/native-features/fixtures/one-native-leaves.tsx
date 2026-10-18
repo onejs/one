@@ -64,10 +64,12 @@ export default function OneNativeLeaves() {
         },
       })),
     prompt: 'Type a leaf note',
-    submitLabel: 'done' as const,
-    textFieldStyle: 'roundedBorder' as const,
-    textInputAutocapitalization: 'never' as const,
-    autocorrectionDisabled: true,
+    swiftStyle: {
+      submitLabel: 'done',
+      textFieldStyle: 'roundedBorder',
+      textInputAutocapitalization: 'never',
+      autocorrectionDisabled: true,
+    } as const,
     style: styles.nativeControl,
   }
   const status: [string, string | number][] = [
@@ -156,8 +158,7 @@ export default function OneNativeLeaves() {
           <>
             <One.iOS.Button
               label="Press leaf"
-              disabled={disabled}
-              buttonStyle={buttonStyle}
+              swiftStyle={{ disabled, buttonStyle }}
               buttonRole={destructive ? 'destructive' : ''}
               onPress={() => setPresses((count) => count + 1)}
               style={styles.nativeControl}
@@ -184,8 +185,8 @@ export default function OneNativeLeaves() {
             label="Leaf progress"
             value={progress}
             total={1}
-            progressViewStyle={progressViewStyle}
             style={styles.nativeControl}
+            swiftStyle={{ progressViewStyle }}
             testID="one-native-leaf-progress"
           />
         ) : null}
@@ -198,8 +199,8 @@ export default function OneNativeLeaves() {
             currentValueLabel={String(gauge)}
             minimumValueLabel="0"
             maximumValueLabel="100"
-            gaugeStyle={gaugeStyle}
             style={styles.nativeControl}
+            swiftStyle={{ gaugeStyle }}
             testID="one-native-leaf-gauge"
           />
         ) : null}
@@ -221,12 +222,10 @@ export default function OneNativeLeaves() {
         {category === 'Image' ? (
           <One.iOS.Image
             systemName={imageSystemName}
-            symbolRenderingMode={symbolRenderingMode}
-            symbolVariant={symbolVariant}
-            imageScale={imageScale}
             variableValue={variableValue}
             accessibilityLabel="Leaf image"
             style={styles.nativeControl}
+            swiftStyle={{ symbolRenderingMode, symbolVariant, imageScale }}
             testID="one-native-leaf-image"
           />
         ) : null}

@@ -182,21 +182,18 @@ export default function OneNativeControls() {
       <View style={styles.nativeArea}>
         {category === 'Picker' ? (
           <One.iOS.Picker
-            disabled={false}
             label="Favorite Greek letter"
             onSelectionChange={(value) => recordChange('Picker', value)}
             options={pickerOptions}
-            pickerStyle={pickerStyle}
             revision={controls.Picker.revision}
             selection={controls.Picker.value as string}
             style={styles.nativeControl}
+            swiftStyle={{ pickerStyle, maxWidth: pickerStyle === 'segmented' ? Infinity : undefined }}
             testID="one-native-control"
           />
         ) : null}
         {category === 'Date' ? (
           <One.iOS.DatePicker
-            datePickerStyle={datePickerStyle}
-            disabled={false}
             displayedComponents="date"
             label="Date"
             maximumDate={maximumDate}
@@ -205,6 +202,7 @@ export default function OneNativeControls() {
             revision={controls.Date.revision}
             selection={controls.Date.value as Date}
             style={styles.nativeControl}
+            swiftStyle={{ datePickerStyle }}
             testID="one-native-control"
           />
         ) : null}
@@ -220,8 +218,7 @@ export default function OneNativeControls() {
               />
             </View>
             <One.iOS.ColorPicker
-              disabled={false}
-              label="Accent color"
+                label="Accent color"
               onSelectionChange={(value) => recordChange('Color', value)}
               revision={controls.Color.revision}
               selection={controls.Color.value as string}
@@ -233,20 +230,18 @@ export default function OneNativeControls() {
         ) : null}
         {category === 'Toggle' ? (
           <One.iOS.Toggle
-            disabled={false}
             isOn={controls.Toggle.value as boolean}
             label="Enable notifications"
             systemImage="bell.fill"
             onIsOnChange={(value) => recordChange('Toggle', value)}
             revision={controls.Toggle.revision}
             style={styles.nativeControl}
+            swiftStyle={{ toggleStyle: 'switch' }}
             testID="one-native-control"
-            toggleStyle="switch"
           />
         ) : null}
         {category === 'Slider' ? (
           <One.iOS.Slider
-            disabled={false}
             label="Volume"
             maximumValue={100}
             minimumValue={0}
@@ -260,7 +255,6 @@ export default function OneNativeControls() {
         ) : null}
         {category === 'Stepper' ? (
           <One.iOS.Stepper
-            disabled={false}
             label="Guests"
             maximumValue={10}
             minimumValue={0}
@@ -286,10 +280,9 @@ export default function OneNativeControls() {
               onTextChange={setField1Text}
               prompt="First field"
               style={styles.fieldControl}
-              submitLabel="next"
+              swiftStyle={{ submitLabel: 'next', textFieldStyle: 'roundedBorder' }}
               testID="one-native-focus-field-1"
               text={field1Text}
-              textFieldStyle="roundedBorder"
             />
             <One.iOS.TextField
               focused={field2Focused}
@@ -302,14 +295,12 @@ export default function OneNativeControls() {
               onTextChange={setField2Text}
               prompt="Second field"
               style={styles.fieldControl}
-              submitLabel="done"
+              swiftStyle={{ submitLabel: 'done', textFieldStyle: 'roundedBorder' }}
               testID="one-native-focus-field-2"
               text={field2Text}
-              textFieldStyle="roundedBorder"
             />
             <One.iOS.TextField
               focused={numericFocused}
-              keyboardType="numberPad"
               label="Numeric"
               onFocusChange={setNumericFocused}
               onSubmit={() => {
@@ -319,10 +310,9 @@ export default function OneNativeControls() {
               onTextChange={setNumericText}
               prompt="Numeric field"
               style={styles.fieldControl}
-              submitLabel="done"
+              swiftStyle={{ submitLabel: 'done', textFieldStyle: 'roundedBorder', keyboardType: 'numberPad' }}
               testID="one-native-focus-field-numeric"
               text={numericText}
-              textFieldStyle="roundedBorder"
             />
           </View>
         ) : null}

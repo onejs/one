@@ -6,7 +6,6 @@ import UIKit
 private final class ColorPickerModel: ObservableObject {
   @Published var controlled = OneNativeControlled<String>("#000000")
   @Published var label: String = ""
-  @Published var disabled: Bool = false
   @Published var supportsOpacity: Bool = true
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
@@ -16,7 +15,7 @@ private final class ColorPickerModel: ObservableObject {
 
   var onChange: ((String, Int, Int) -> Void)?
   func change(_ value: String) {
-    guard active, !disabled, controlled.value != value else { return }
+    guard active, controlled.value != value else { return }
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
   }
@@ -43,10 +42,9 @@ private final class ColorPickerModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, supportsOpacity: Bool) {
+  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, supportsOpacity: Bool) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
-    if model.disabled != disabled { model.disabled = disabled }
     if model.supportsOpacity != supportsOpacity { model.supportsOpacity = supportsOpacity }
   }
 
@@ -94,7 +92,6 @@ private struct ColorPickerContent: View {
         get: { oneNativeDecodeColor(model.controlled.value) },
         set: { value in model.change(oneNativeEncodeColor(value, supportsOpacity: model.supportsOpacity)) }
       ), supportsOpacity: model.supportsOpacity)
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

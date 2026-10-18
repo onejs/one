@@ -59,7 +59,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.value)
-    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled pickerStyle:RCTNSStringFromString(next.pickerStyle)];
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label)];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test

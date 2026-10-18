@@ -53,13 +53,13 @@ describe('enterKeyHintToReturnKeyType', () => {
 })
 
 describe('iosKeyboardType', () => {
-  it('maps RN types to the UIKit names the spec carries', () => {
+  it('maps RN types to the swiftStyle keyboard names', () => {
     expect(iosKeyboardType('default')).toBe('default')
     expect(iosKeyboardType('ascii-capable')).toBe('asciiCapable')
     expect(iosKeyboardType('numbers-and-punctuation')).toBe(
       'numbersAndPunctuation'
     )
-    expect(iosKeyboardType('url')).toBe('url')
+    expect(iosKeyboardType('url')).toBe('URL')
     expect(iosKeyboardType('number-pad')).toBe('numberPad')
     expect(iosKeyboardType('phone-pad')).toBe('phonePad')
     expect(iosKeyboardType('name-phone-pad')).toBe('namePhonePad')
@@ -128,13 +128,13 @@ describe('androidImeAction', () => {
 })
 
 describe('autoCompleteToTextContentType', () => {
-  it('maps web tokens to the UIKit content types', () => {
+  it('maps web tokens to the swiftStyle content types', () => {
     expect(autoCompleteToTextContentType('email')).toBe('emailAddress')
     expect(autoCompleteToTextContentType('tel')).toBe('telephoneNumber')
     expect(autoCompleteToTextContentType('new-password')).toBe('newPassword')
     expect(autoCompleteToTextContentType('one-time-code')).toBe('oneTimeCode')
     expect(autoCompleteToTextContentType('postal-code')).toBe('postalCode')
-    expect(autoCompleteToTextContentType('off')).toBe('none')
+    expect(autoCompleteToTextContentType('off')).toBe(null)
     expect(autoCompleteToTextContentType('url')).toBe('URL')
   })
 

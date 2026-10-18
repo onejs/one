@@ -8,7 +8,6 @@ export const formControls: Control[] = [
     fields: {
       ...commonFields,
       systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
-      toggleStyle: { type: 'string', default: 'automatic', enum: 'ToggleStyle' },
     },
     constructors: [
       {
@@ -44,8 +43,7 @@ export const formControls: Control[] = [
             set: { value in model.change(value) }
           ))
         }
-      }
-      .oneNativeToggleStyle(model.toggleStyle)`,
+      }`,
     validate: `  if (typeof isOn !== 'boolean' && !isSyncState(isOn)) throw new Error('Toggle isOn must be a boolean or NativeState handle')
   if (typeof systemImage !== 'string') throw new Error('Toggle systemImage must be a string')`,
   },

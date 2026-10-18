@@ -1,6 +1,5 @@
 import type { ColorValue, ViewProps } from 'react-native';
 import type * as Styles from './swiftui';
-import type { KeyboardType, TextContentType } from '../textTypes';
 import type { IconColorRole } from '../ui/iconRoles';
 import type { SFSymbolName } from './sfSymbolNames';
 import type { AreaChartStyle, BarChartStyle, ChartDataPoint, ChartType, LineChartStyle, PieChartStyle, PointChartStyle, RectangleChartStyle, RuleChartStyle } from '../chartTypes';
@@ -2473,27 +2472,22 @@ export interface PickerProps extends OneNativeViewProps {
     onSelectionChange: (value: string) => void;
     revision?: number;
     label?: string;
-    disabled?: boolean;
     options: readonly PickerOption[];
-    pickerStyle?: Styles.PickerStyle;
 }
 export interface DatePickerProps extends OneNativeViewProps {
     selection: Date;
     onSelectionChange: (value: Date) => void;
     revision?: number;
     label?: string;
-    disabled?: boolean;
     minimumDate?: Date;
     maximumDate?: Date;
     displayedComponents?: 'date' | 'hourAndMinute' | 'dateAndTime';
-    datePickerStyle?: Styles.DatePickerStyle;
 }
 export interface ColorPickerProps extends OneNativeViewProps {
     selection: string;
     onSelectionChange: (value: string) => void;
     revision?: number;
     label?: string;
-    disabled?: boolean;
     supportsOpacity?: boolean;
 }
 export interface MultiDatePickerProps extends OneNativeViewProps {
@@ -2501,7 +2495,6 @@ export interface MultiDatePickerProps extends OneNativeViewProps {
     onSelectionChange: (value: readonly Date[]) => void;
     revision?: number;
     label?: string;
-    disabled?: boolean;
     minimumDate?: Date;
     maximumDate?: Date;
 }
@@ -2510,16 +2503,13 @@ export interface ToggleProps extends OneNativeViewProps {
     onIsOnChange: (value: boolean) => void;
     revision?: number;
     label?: string;
-    disabled?: boolean;
     systemImage?: SFSymbolName | '';
-    toggleStyle?: Styles.ToggleStyle;
 }
 export interface SliderProps extends OneNativeViewProps {
     value: number | NativeState<number>;
     onValueChange: (value: number) => void;
     revision?: number;
     label?: string;
-    disabled?: boolean;
     minimumValue?: number;
     maximumValue?: number;
     step?: number;
@@ -2533,55 +2523,44 @@ export interface StepperProps extends OneNativeViewProps {
     onValueChange: (value: number) => void;
     revision?: number;
     label?: string;
-    disabled?: boolean;
     minimumValue?: number;
     maximumValue?: number;
     step?: number;
 }
 export interface PasteButtonProps extends OneNativeViewProps {
     onPaste?: (values: readonly string[]) => void;
-    disabled?: boolean;
 }
 export interface TextProps extends OneNativeViewProps {
     text?: string;
 }
 export interface LabelProps extends OneNativeViewProps {
     label?: string;
-    disabled?: boolean;
     systemImage?: SFSymbolName | '';
 }
 export interface ProgressViewProps extends OneNativeViewProps {
     label?: string;
-    disabled?: boolean;
     value?: number;
     total?: number;
-    progressViewStyle?: Styles.ProgressViewStyle;
 }
 export interface GaugeProps extends OneNativeViewProps {
     label?: string;
-    disabled?: boolean;
     value?: number;
     minimumValue?: number;
     maximumValue?: number;
     currentValueLabel?: string;
     minimumValueLabel?: string;
     maximumValueLabel?: string;
-    gaugeStyle?: Styles.GaugeStyle;
 }
 export interface ImageProps extends OneNativeViewProps {
     systemName?: SFSymbolName | '';
     uri?: string;
     renderingMode?: 'original' | 'template';
-    symbolRenderingMode?: Styles.SymbolRenderingMode | '';
-    symbolVariant?: Styles.SymbolVariants | '';
-    imageScale?: Styles.ImageScale | '';
     variableValue?: number;
     colorRole?: IconColorRole | '';
     resizable?: boolean;
 }
 export interface ShareLinkProps extends OneNativeViewProps {
     label?: string;
-    disabled?: boolean;
     systemImage?: SFSymbolName | '';
     item?: string;
     itemType?: 'text' | 'url';
@@ -2704,7 +2683,6 @@ export interface PhotosPickerProps extends OneNativeViewProps {
     onPickItemIdentifier?: (itemIdentifier: string, index: number, count: number) => void;
     onPickError?: (message: string) => void;
     label?: string;
-    disabled?: boolean;
     systemImage?: SFSymbolName | '';
     maxSelectionCount?: number;
     selectionBehavior?: Styles.PhotosPickerSelectionBehavior;
@@ -2761,13 +2739,9 @@ export interface SignInWithAppleButtonProps extends OneNativeViewProps {
 export interface PayWithApplePayButtonProps extends OneNativeViewProps {
     onPress?: () => void;
     label?: Styles.PayWithApplePayButtonLabel;
-    payWithApplePayButtonStyle?: Styles.PayWithApplePayButtonStyle;
-    disabled?: boolean;
 }
 export interface AddPassToWalletButtonProps extends OneNativeViewProps {
     onPress?: () => void;
-    addPassToWalletButtonStyle?: Styles.AddPassToWalletButtonStyle;
-    disabled?: boolean;
 }
 export interface MapProps extends OneNativeViewProps {
     onRegionChange?: (latitude: number, longitude: number, distance: number) => void;
@@ -2791,14 +2765,7 @@ export interface TextFieldProps extends OneNativeViewProps {
     focusRevision?: number;
     onSubmit?: () => void;
     label?: string;
-    disabled?: boolean;
     prompt?: string;
-    textFieldStyle?: Styles.TextFieldStyle;
-    submitLabel?: Styles.SubmitLabel | '';
-    textInputAutocapitalization?: Styles.TextInputAutocapitalization | '';
-    autocorrectionDisabled?: boolean;
-    keyboardType?: KeyboardType | '';
-    textContentType?: TextContentType | '';
     axis?: Styles.Axis;
 }
 export interface SecureFieldProps extends OneNativeViewProps {
@@ -2810,14 +2777,7 @@ export interface SecureFieldProps extends OneNativeViewProps {
     focusRevision?: number;
     onSubmit?: () => void;
     label?: string;
-    disabled?: boolean;
     prompt?: string;
-    textFieldStyle?: Styles.TextFieldStyle;
-    submitLabel?: Styles.SubmitLabel | '';
-    textInputAutocapitalization?: Styles.TextInputAutocapitalization | '';
-    autocorrectionDisabled?: boolean;
-    keyboardType?: KeyboardType | '';
-    textContentType?: TextContentType | '';
 }
 export interface TextEditorProps extends OneNativeViewProps {
     text: string | NativeState<string>;
@@ -2826,11 +2786,6 @@ export interface TextEditorProps extends OneNativeViewProps {
     focused?: boolean;
     onFocusChange?: (focused: boolean) => void;
     focusRevision?: number;
-    disabled?: boolean;
-    textInputAutocapitalization?: Styles.TextInputAutocapitalization | '';
-    autocorrectionDisabled?: boolean;
-    keyboardType?: KeyboardType | '';
-    textContentType?: TextContentType | '';
 }
 export interface AlertProps extends OneNativeViewProps {
     isPresented: boolean;

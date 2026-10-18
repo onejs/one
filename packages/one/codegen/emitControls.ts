@@ -273,7 +273,6 @@ ${styleFields
     header +
     `import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
-import type { KeyboardType, TextContentType } from '../textTypes'
 import type { IconColorRole } from '../ui/iconRoles'
 import type { SFSymbolName } from './sfSymbolNames'
 ${[...new Set(controls.flatMap((control) => control.typeImports ?? []))].map((line) => `${line}\n`).join('')}${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
@@ -311,7 +310,7 @@ export type OneNativeViewProps = Pick<
       .join('')
   let adapters =
     header +
-    `import { Platform } from 'react-native'\nimport { assertTextInputOptions } from '../textTypes'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport { swiftStyleNative${hasSDKEvents ? ', dispatchSDKEvent' : ''} } from './swiftStyleNative'\nimport type * as Types from './controlTypes'\n` +
+    `import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport { swiftStyleNative${hasSDKEvents ? ', dispatchSDKEvent' : ''} } from './swiftStyleNative'\nimport type * as Types from './controlTypes'\n` +
     "import { iconColorRoles } from '../ui/iconRoles'\n" +
     [...new Set(controls.flatMap((control) => control.adapterImports ?? []))]
       .map((line) => `${line}\n`)
@@ -344,7 +343,6 @@ export type OneNativeViewProps = Pick<
       ([, field]) => field.type === 'objects' || field.type === 'strings'
     )
     const enumFields = publicFields.filter(([, field]) => field.enum)
-    const disabled = Object.hasOwn(fields, 'disabled')
     // a measured control reports the height SwiftUI measured, so it supplies its own shadow
     // node and the spec must not generate one. fill and presentation controls are sized by
     // React Native, so they keep the shadow node codegen writes.
@@ -662,7 +660,7 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
     ]
     // objective-c names the selector from the first label, so it is always unlabeled.
     if (!value && configure.length) configure[0].label = `_ ${configure[0].label}`
-    const guards = ['active', ...(disabled ? ['!disabled'] : [])]
+    const guards = ['active']
     outputs.set(
       `ios/Generated/${nativeName}View.swift`,
       header +
@@ -873,7 +871,7 @@ ${
       }
 `
     : ''
-}${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility${control.decorativeWhenUnlabeled ? ', decorativeWhenUnlabeled: true' : ''})
+}      .oneNativeAccessibility(model.accessibility${control.decorativeWhenUnlabeled ? ', decorativeWhenUnlabeled: true' : ''})
       .oneNativeStyle(model.swiftStyle${hasSDKEvents ? ', emit: model.emitSDKEvent' : ''})
   }
 }

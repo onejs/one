@@ -1119,15 +1119,8 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "options": {
           "type": "ReadonlyArray<PickerOption>"
-        },
-        "pickerStyle": {
-          "type": "string",
-          "enum": "PickerStyle"
         }
       },
       "events": {
@@ -1178,9 +1171,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "minimumDate": {
           "type": "Double"
         },
@@ -1189,10 +1179,6 @@
         },
         "displayedComponents": {
           "type": "string"
-        },
-        "datePickerStyle": {
-          "type": "string",
-          "enum": "DatePickerStyle"
         }
       },
       "events": {
@@ -1242,9 +1228,6 @@
         },
         "label": {
           "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
         },
         "supportsOpacity": {
           "type": "boolean"
@@ -1297,9 +1280,6 @@
         },
         "label": {
           "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
         },
         "minimumDate": {
           "type": "Double"
@@ -1359,15 +1339,8 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "systemImage": {
           "type": "string"
-        },
-        "toggleStyle": {
-          "type": "string",
-          "enum": "ToggleStyle"
         }
       },
       "events": {
@@ -1421,9 +1394,6 @@
         },
         "label": {
           "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
         },
         "minimumValue": {
           "type": "Double"
@@ -1499,9 +1469,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "minimumValue": {
           "type": "Double"
         },
@@ -1548,11 +1515,7 @@
     {
       "name": "OneNativePasteButton",
       "publicName": "PasteButton",
-      "props": {
-        "disabled": {
-          "type": "boolean"
-        }
-      },
+      "props": {},
       "events": {
         "onNativeSDKEvent": {
           "name": {
@@ -1615,9 +1578,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "systemImage": {
           "type": "string"
         }
@@ -1646,9 +1606,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "value": {
           "type": "Double"
         },
@@ -1657,10 +1614,6 @@
         },
         "indeterminate": {
           "type": "boolean"
-        },
-        "progressViewStyle": {
-          "type": "string",
-          "enum": "ProgressViewStyle"
         }
       },
       "events": {
@@ -1687,9 +1640,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "value": {
           "type": "Double"
         },
@@ -1707,10 +1657,6 @@
         },
         "maximumValueLabel": {
           "type": "string"
-        },
-        "gaugeStyle": {
-          "type": "string",
-          "enum": "GaugeStyle"
         }
       },
       "events": {
@@ -1742,18 +1688,6 @@
         },
         "renderingMode": {
           "type": "string"
-        },
-        "symbolRenderingMode": {
-          "type": "string",
-          "enum": "SymbolRenderingMode"
-        },
-        "symbolVariant": {
-          "type": "string",
-          "enum": "SymbolVariants"
-        },
-        "imageScale": {
-          "type": "string",
-          "enum": "ImageScale"
         },
         "variableValue": {
           "type": "Double"
@@ -1791,9 +1725,6 @@
       "props": {
         "label": {
           "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
         },
         "systemImage": {
           "type": "string"
@@ -2387,9 +2318,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "systemImage": {
           "type": "string"
         },
@@ -2736,13 +2664,6 @@
         "label": {
           "type": "string",
           "enum": "PayWithApplePayButtonLabel"
-        },
-        "payWithApplePayButtonStyle": {
-          "type": "string",
-          "enum": "PayWithApplePayButtonStyle"
-        },
-        "disabled": {
-          "type": "boolean"
         }
       },
       "events": {
@@ -2775,15 +2696,7 @@
     {
       "name": "OneNativeAddPassToWalletButton",
       "publicName": "AddPassToWalletButton",
-      "props": {
-        "addPassToWalletButtonStyle": {
-          "type": "string",
-          "enum": "AddPassToWalletButtonStyle"
-        },
-        "disabled": {
-          "type": "boolean"
-        }
-      },
+      "props": {},
       "events": {
         "onNativeSDKEvent": {
           "name": {
@@ -2962,31 +2875,7 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "prompt": {
-          "type": "string"
-        },
-        "textFieldStyle": {
-          "type": "string",
-          "enum": "TextFieldStyle"
-        },
-        "submitLabel": {
-          "type": "string",
-          "enum": "SubmitLabel"
-        },
-        "textInputAutocapitalization": {
-          "type": "string",
-          "enum": "TextInputAutocapitalization"
-        },
-        "autocorrectionDisabled": {
-          "type": "boolean"
-        },
-        "keyboardType": {
-          "type": "string"
-        },
-        "textContentType": {
           "type": "string"
         },
         "axis": {
@@ -3076,31 +2965,7 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "prompt": {
-          "type": "string"
-        },
-        "textFieldStyle": {
-          "type": "string",
-          "enum": "TextFieldStyle"
-        },
-        "submitLabel": {
-          "type": "string",
-          "enum": "SubmitLabel"
-        },
-        "textInputAutocapitalization": {
-          "type": "string",
-          "enum": "TextInputAutocapitalization"
-        },
-        "autocorrectionDisabled": {
-          "type": "boolean"
-        },
-        "keyboardType": {
-          "type": "string"
-        },
-        "textContentType": {
           "type": "string"
         }
       },
@@ -3182,22 +3047,6 @@
         },
         "focusRevision": {
           "type": "Int32"
-        },
-        "disabled": {
-          "type": "boolean"
-        },
-        "textInputAutocapitalization": {
-          "type": "string",
-          "enum": "TextInputAutocapitalization"
-        },
-        "autocorrectionDisabled": {
-          "type": "boolean"
-        },
-        "keyboardType": {
-          "type": "string"
-        },
-        "textContentType": {
-          "type": "string"
         }
       },
       "events": {
@@ -5546,27 +5395,6 @@
       "visible": 15,
       "hidden": 15
     },
-    "PickerStyle": {
-      "wheel": 13,
-      "inline": 14,
-      "automatic": 13,
-      "segmented": 13,
-      "tabs": 27,
-      "palette": 17,
-      "navigationLink": 16,
-      "menu": 14
-    },
-    "DatePickerStyle": {
-      "wheel": 13,
-      "automatic": 13,
-      "graphical": 14,
-      "compact": 14
-    },
-    "ToggleStyle": {
-      "button": 15,
-      "automatic": 13,
-      "switch": 13
-    },
     "MenuActionDismissBehavior": {
       "automatic": 16.4,
       "enabled": 16.4,
@@ -5620,51 +5448,6 @@
       "menu": 16.4,
       "compactMenu": 16.4
     },
-    "PrimitiveButtonStyle": {
-      "automatic": 13,
-      "glass": 26,
-      "borderless": 13,
-      "glassProminent": 26,
-      "plain": 13,
-      "bordered": 15,
-      "borderedProminent": 15
-    },
-    "ProgressViewStyle": {
-      "linear": 14,
-      "circular": 14,
-      "automatic": 14
-    },
-    "GaugeStyle": {
-      "accessoryCircularCapacity": 16,
-      "linearCapacity": 16,
-      "accessoryLinear": 16,
-      "accessoryLinearCapacity": 16,
-      "automatic": 16,
-      "accessoryCircular": 16
-    },
-    "TextFieldStyle": {
-      "automatic": 13,
-      "roundedBorder": 13,
-      "bordered": 27,
-      "plain": 13
-    },
-    "SubmitLabel": {
-      "done": 15,
-      "go": 15,
-      "send": 15,
-      "join": 15,
-      "route": 15,
-      "search": 15,
-      "return": 15,
-      "next": 15,
-      "continue": 15
-    },
-    "TextInputAutocapitalization": {
-      "never": 15,
-      "words": 15,
-      "sentences": 15,
-      "characters": 15
-    },
     "Axis": {
       "horizontal": 13,
       "vertical": 13
@@ -5711,25 +5494,6 @@
       "regular": 15,
       "large": 15,
       "extraLarge": 17
-    },
-    "SymbolRenderingMode": {
-      "monochrome": 15,
-      "multicolor": 15,
-      "hierarchical": 15,
-      "palette": 15
-    },
-    "SymbolVariants": {
-      "none": 15,
-      "circle": 15,
-      "square": 15,
-      "rectangle": 15,
-      "fill": 15,
-      "slash": 15
-    },
-    "ImageScale": {
-      "small": 13,
-      "medium": 13,
-      "large": 13
     },
     "PhotosPickerSelectionBehavior": {
       "default": 16,
@@ -5795,16 +5559,6 @@
     "SpacerSizing": {
       "flexible": 26,
       "fixed": 26
-    },
-    "PayWithApplePayButtonStyle": {
-      "white": 16,
-      "whiteOutline": 16,
-      "black": 16,
-      "automatic": 16
-    },
-    "AddPassToWalletButtonStyle": {
-      "black": 16,
-      "blackOutline": 16
     },
     "PayWithApplePayButtonLabel": {
       "plain": 16,

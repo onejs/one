@@ -845,11 +845,9 @@ export function ViewThatFits({ axes = 'both', children, style, swiftStyle, ...pr
 export function Button({
   onPress,
   label = '',
-  disabled = false,
   subtitle = '',
   systemImage = '',
   buttonRole = '',
-  buttonStyle = 'automatic',
   disclosureIndicator = false,
   children,
   swiftStyle,
@@ -868,11 +866,6 @@ export function Button({
       buttonRole,
       Number.parseFloat(String(Platform.Version))
     )
-  assertSwiftUIValue(
-    'PrimitiveButtonStyle',
-    buttonStyle,
-    Number.parseFloat(String(Platform.Version))
-  )
   assertOneNativeChildren(children, 'Swift.Button')
   // an icon-only button shows the image alone, so no title spacing is reserved
   const primary = hasChildren ? (
@@ -909,7 +902,7 @@ export function Button({
     <NativeButton
       {...props}
       style={style}
-      {...swiftStyleProps({ buttonStyle, ...(disabled ? { disabled } : {}), ...swiftStyle })}
+      {...swiftStyleProps(swiftStyle)}
       buttonRole={buttonRole}
       onNativeButtonPress={() => onPress?.()}
     >

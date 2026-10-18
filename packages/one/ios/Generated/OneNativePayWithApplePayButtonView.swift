@@ -6,8 +6,6 @@ import PassKit
 
 private final class PayWithApplePayButtonModel: ObservableObject {
   @Published var label: String = "plain"
-  @Published var payWithApplePayButtonStyle: String = "black"
-  @Published var disabled: Bool = false
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -17,7 +15,7 @@ private final class PayWithApplePayButtonModel: ObservableObject {
   var onPress: ((Int) -> Void)?
   private var pressCount = 0
   func press() {
-    guard active, !disabled else { return }
+    guard active else { return }
     pressCount += 1
     onPress?(pressCount)
   }
@@ -44,10 +42,8 @@ private final class PayWithApplePayButtonModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ label: String, payWithApplePayButtonStyle: String, disabled: Bool) {
+  public func configure(_ label: String) {
     if model.label != label { model.label = label }
-    if model.payWithApplePayButtonStyle != payWithApplePayButtonStyle { model.payWithApplePayButtonStyle = payWithApplePayButtonStyle }
-    if model.disabled != disabled { model.disabled = disabled }
   }
 
 
@@ -93,23 +89,7 @@ private struct PayWithApplePayButtonContent: View {
     PayWithApplePayButton(OneNativeGenerated.payWithApplePayButtonLabel(model.label)) {
         model.press()
       }
-      .oneNativePayButtonStyle(model.payWithApplePayButtonStyle)
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
-  }
-}
-// the style structs carry their cases as static lets on a concrete parameter, so the
-// generic style helper cannot select them and the recipe maps them instead. swiftc
-// -typecheck against the SDK is what proves each case still exists.
-private extension View {
-  @ViewBuilder func oneNativePayButtonStyle(_ value: String) -> some View {
-    switch value {
-    case "white": self.payWithApplePayButtonStyle(.white)
-    case "whiteOutline": self.payWithApplePayButtonStyle(.whiteOutline)
-    case "black": self.payWithApplePayButtonStyle(.black)
-    case "automatic": self.payWithApplePayButtonStyle(.automatic)
-    default: let _ = preconditionFailure("invalid PayWithApplePayButtonStyle: \(value)"); self
-    }
   }
 }

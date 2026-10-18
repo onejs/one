@@ -97,13 +97,15 @@ export function TextInput({
     focusRevision,
     onSubmit: onSubmitEditing ? handleSubmit : undefined,
     prompt: placeholder,
-    disabled: !editable,
-    submitLabel: returnKeyType ? iosSubmitLabel(returnKeyType) : undefined,
-    textInputAutocapitalization:
-      autoCapitalize === 'none' ? 'never' : autoCapitalize,
-    autocorrectionDisabled: autoCorrect === false,
-    keyboardType: keyboardType ? iosKeyboardType(keyboardType) : undefined,
-    textContentType: autoCompleteToTextContentType(autoComplete),
+    swiftStyle: {
+      disabled: !editable,
+      submitLabel: returnKeyType ? iosSubmitLabel(returnKeyType) : undefined,
+      textInputAutocapitalization:
+        autoCapitalize === 'none' ? 'never' : autoCapitalize,
+      autocorrectionDisabled: autoCorrect === false,
+      keyboardType: keyboardType ? iosKeyboardType(keyboardType) : undefined,
+      textContentType: autoCompleteToTextContentType(autoComplete),
+    },
     testID,
     style,
   }

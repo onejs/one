@@ -8,7 +8,6 @@ export type * from './listTypes';
 export type { CanvasColorMode, CanvasPoint, CanvasProps, CanvasRect, CanvasSize, CanvasSymbol, CanvasText, FillStyle, GraphicsContext, RoundedCornerStyle, StrokeStyle, } from './canvas';
 export type * from './gridTypes';
 export type * from './groupTypes';
-export type * from './textTypes';
 export type { MapControlsSlot, MapWithControlsProps } from './mapControls';
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';

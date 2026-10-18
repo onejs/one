@@ -6,7 +6,6 @@ import UIKit
 private final class MultiDatePickerModel: ObservableObject {
   @Published var controlled = OneNativeControlled<String>("[]")
   @Published var label: String = ""
-  @Published var disabled: Bool = false
   @Published var minimumDate: Double = -62135769600000
   @Published var maximumDate: Double = 64092211200000
   @Published var accessibility = OneNativeAccessibility()
@@ -17,7 +16,7 @@ private final class MultiDatePickerModel: ObservableObject {
 
   var onChange: ((String, Int, Int) -> Void)?
   func change(_ value: String) {
-    guard active, !disabled, controlled.value != value else { return }
+    guard active, controlled.value != value else { return }
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
   }
@@ -44,10 +43,9 @@ private final class MultiDatePickerModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumDate: Double, maximumDate: Double) {
+  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, minimumDate: Double, maximumDate: Double) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
-    if model.disabled != disabled { model.disabled = disabled }
     if model.minimumDate != minimumDate { model.minimumDate = minimumDate }
     if model.maximumDate != maximumDate { model.maximumDate = maximumDate }
   }
@@ -96,7 +94,6 @@ private struct MultiDatePickerContent: View {
         get: { oneNativeDecodeDates(model.controlled.value) },
         set: { value in model.change(oneNativeEncodeDates(value)) }
       ), in: Date(timeIntervalSince1970: model.minimumDate / 1000)..<Date(timeIntervalSince1970: model.maximumDate / 1000))
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

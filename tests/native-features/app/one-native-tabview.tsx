@@ -71,8 +71,8 @@ export default function OneNativeTabView() {
         <Text style={styles.buttonText}>Reset customization</Text>
       </Pressable>
       <One.iOS.HStack>
-        <One.iOS.Button testID="test-glass" label="/" buttonStyle="glass" onPress={() => log('test-glass')} />
-        <One.iOS.Button testID="test-plain" label="iOS" systemImage="iphone" buttonStyle="plain" onPress={() => log('test-plain')} />
+        <One.iOS.Button testID="test-glass" label="/" swiftStyle={{ buttonStyle: 'glass' }} onPress={() => log('test-glass')} />
+        <One.iOS.Button testID="test-plain" label="iOS" systemImage="iphone" swiftStyle={{ buttonStyle: 'plain' }} onPress={() => log('test-plain')} />
       </One.iOS.HStack>
     </View>
   )
@@ -129,8 +129,8 @@ export default function OneNativeTabView() {
             <Text style={styles.accessoryText}>Preview · {selection}</Text>
           </Pressable>
           <One.iOS.HStack style={{ minWidth: 120 }}>
-            <One.iOS.Button testID="test-acc-glass" label="/" buttonStyle="glass" onPress={() => log('acc-glass')} />
-            <One.iOS.Button testID="test-acc-plain" label="iOS" systemImage="iphone" buttonStyle="plain" onPress={() => log('acc-plain')} />
+            <One.iOS.Button testID="test-acc-glass" label="/" swiftStyle={{ buttonStyle: 'glass' }} onPress={() => log('acc-glass')} />
+            <One.iOS.Button testID="test-acc-plain" label="iOS" systemImage="iphone" swiftStyle={{ buttonStyle: 'plain' }} onPress={() => log('acc-plain')} />
           </One.iOS.HStack>
         </View>
       </One.iOS.TabViewBottomAccessory>

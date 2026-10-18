@@ -6,7 +6,6 @@ import UIKit
 private final class StepperModel: ObservableObject {
   @Published var controlled = OneNativeControlled<Double>(0)
   @Published var label: String = ""
-  @Published var disabled: Bool = false
   @Published var minimumValue: Double = 0
   @Published var maximumValue: Double = 100
   @Published var step: Double = 1
@@ -35,7 +34,7 @@ private final class StepperModel: ObservableObject {
   }
   var onChange: ((Double, Int, Int) -> Void)?
   func change(_ value: Double) {
-    guard active, !disabled, controlled.value != value else { return }
+    guard active, controlled.value != value else { return }
     controlled.change(value)
     if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }
     onChange?(value, controlled.eventCount, controlled.revision)
@@ -63,11 +62,10 @@ private final class StepperModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, syncStateId: Int, label: String, disabled: Bool, minimumValue: Double, maximumValue: Double, step: Double) {
+  public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, syncStateId: Int, label: String, minimumValue: Double, maximumValue: Double, step: Double) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     model.bindSyncState(syncStateId)
     if model.label != label { model.label = label }
-    if model.disabled != disabled { model.disabled = disabled }
     if model.minimumValue != minimumValue { model.minimumValue = minimumValue }
     if model.maximumValue != maximumValue { model.maximumValue = maximumValue }
     if model.step != step { model.step = step }
@@ -119,7 +117,6 @@ private struct StepperContent: View {
       ), in: model.minimumValue...model.maximumValue, step: model.step) {
         Text(model.label)
       } onEditingChanged: { _ in }
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

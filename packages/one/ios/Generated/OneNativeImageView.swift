@@ -7,9 +7,6 @@ private final class ImageModel: ObservableObject {
   @Published var systemName: String = ""
   @Published var uri: String = ""
   @Published var renderingMode: String = "original"
-  @Published var symbolRenderingMode: String = ""
-  @Published var symbolVariant: String = ""
-  @Published var imageScale: String = ""
   @Published var variableValue: Double = 0
   @Published var hasVariableValue: Bool = false
   @Published var colorRole: String = ""
@@ -42,13 +39,10 @@ private final class ImageModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ systemName: String, uri: String, renderingMode: String, symbolRenderingMode: String, symbolVariant: String, imageScale: String, variableValue: Double, hasVariableValue: Bool, colorRole: String, resizable: Bool) {
+  public func configure(_ systemName: String, uri: String, renderingMode: String, variableValue: Double, hasVariableValue: Bool, colorRole: String, resizable: Bool) {
     if model.systemName != systemName { model.systemName = systemName }
     if model.uri != uri { model.uri = uri }
     if model.renderingMode != renderingMode { model.renderingMode = renderingMode }
-    if model.symbolRenderingMode != symbolRenderingMode { model.symbolRenderingMode = symbolRenderingMode }
-    if model.symbolVariant != symbolVariant { model.symbolVariant = symbolVariant }
-    if model.imageScale != imageScale { model.imageScale = imageScale }
     if model.variableValue != variableValue { model.variableValue = variableValue }
     if model.hasVariableValue != hasVariableValue { model.hasVariableValue = hasVariableValue }
     if model.colorRole != colorRole { model.colorRole = colorRole }
@@ -109,9 +103,6 @@ private struct ImageContent: View {
           Image(systemName: model.systemName)
         }
       }
-      .oneNativeSymbolRenderingMode(model.symbolRenderingMode)
-      .oneNativeSymbolVariant(model.symbolVariant)
-      .oneNativeImageScale(model.imageScale)
       .oneNativeColorRole(model.colorRole)
       .oneNativeAccessibility(model.accessibility, decorativeWhenUnlabeled: true)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)

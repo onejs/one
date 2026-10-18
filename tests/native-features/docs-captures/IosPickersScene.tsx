@@ -26,7 +26,7 @@ export function IosPickersScene() {
             label="Seat"
             selection={seat}
             onSelectionChange={setSeat}
-            pickerStyle="segmented"
+            swiftStyle={{ pickerStyle: 'segmented' }}
             options={[
               { value: 'window', label: 'Window' },
               { value: 'middle', label: 'Middle' },

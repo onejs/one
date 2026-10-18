@@ -18,15 +18,14 @@ export default function OneNativeControlSize() {
       <One.iOS.VStack swiftStyle={{ controlSize: size }} style={styles.control}>
         <One.iOS.Button
           label="Inherited size"
-          buttonStyle="borderedProminent"
+          swiftStyle={{ buttonStyle: 'borderedProminent' }}
           testID="one-native-control-size-inherited"
           onPress={() => setTaps((value) => value + 1)}
         />
       </One.iOS.VStack>
       <One.iOS.Button
         label="Direct size"
-        buttonStyle="borderedProminent"
-        swiftStyle={{ controlSize: size }}
+        swiftStyle={{ buttonStyle: 'borderedProminent', controlSize: size }}
         style={styles.control}
         testID="one-native-control-size-direct"
         onPress={() => setTaps((value) => value + 1)}

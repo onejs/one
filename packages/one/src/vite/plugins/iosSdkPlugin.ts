@@ -8,8 +8,8 @@ export function iosSdkPlugin(platform: 'ios' | 'android', root: string): Plugin 
     name: 'one:ios-sdk',
     resolveId: {
       filter: { id: /^one\/ios\// },
-      handler(source) {
-        return resolveIosSdkImport(root, source, platform)
+      handler(source, importer) {
+        return resolveIosSdkImport(root, source, platform, importer)
       },
     },
   }

@@ -6,9 +6,7 @@ import UIKit
 private final class PickerModel: ObservableObject {
   @Published var controlled = OneNativeControlled<String>("")
   @Published var label: String = ""
-  @Published var disabled: Bool = false
   @Published var options: [OneNativePickerOption] = []
-  @Published var pickerStyle: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -17,7 +15,7 @@ private final class PickerModel: ObservableObject {
 
   var onChange: ((String, Int, Int) -> Void)?
   func change(_ value: String) {
-    guard active, !disabled, controlled.value != value else { return }
+    guard active, controlled.value != value else { return }
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
   }
@@ -44,11 +42,9 @@ private final class PickerModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, pickerStyle: String) {
+  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
-    if model.disabled != disabled { model.disabled = disabled }
-    if model.pickerStyle != pickerStyle { model.pickerStyle = pickerStyle }
   }
   public func setOptions(_ items: [[String: Any]]) { model.options = items.map { OneNativePickerOption(value: $0["value"] as! String, label: $0["label"] as! String) } }
 
@@ -101,18 +97,7 @@ private struct PickerContent: View {
       } label: {
         Text(model.label)
       }
-      .oneNativePickerStyle(model.pickerStyle)
-      .oneNativeSegmentedFill(model.pickerStyle)
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
-  }
-}
-private extension View {
-  // a segmented picker spans its row the way Settings does instead of hugging its
-  // segments, so callers never have to encode the fill themselves.
-  @ViewBuilder func oneNativeSegmentedFill(_ style: String) -> some View {
-    if style == "segmented" { self.frame(maxWidth: .infinity) }
-    else { self }
   }
 }

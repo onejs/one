@@ -67,7 +67,7 @@ export declare function GridRow({ alignment, children, style, swiftStyle, ...pro
 export declare function LabeledContent({ label, value, systemImage, children, style, swiftStyle, ...props }: LabeledContentProps): import("react").JSX.Element;
 export declare function GroupBox({ label, children, style, swiftStyle, ...props }: GroupBoxProps): import("react").JSX.Element;
 export declare function ViewThatFits({ axes, children, style, swiftStyle, ...props }: ViewThatFitsProps): import("react").JSX.Element;
-export declare function Button({ onPress, label, disabled, subtitle, systemImage, buttonRole, buttonStyle, disclosureIndicator, children, swiftStyle, style, ...props }: ButtonProps): import("react").JSX.Element;
+export declare function Button({ onPress, label, subtitle, systemImage, buttonRole, disclosureIndicator, children, swiftStyle, style, ...props }: ButtonProps): import("react").JSX.Element;
 export declare function Glass({ material, glassEffect, interactive, shape, cornerRadius, tint, colorScheme, children, style, swiftStyle, ...props }: GlassProps): import("react").JSX.Element;
 export declare function GlassEffectContainer({ spacing, children, style, swiftStyle, ...props }: GlassEffectContainerProps): import("react").JSX.Element;
 export declare function GeometryReader({ children, style, swiftStyle, ...props }: GeometryReaderProps): import("react").JSX.Element;
