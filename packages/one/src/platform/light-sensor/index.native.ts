@@ -1,21 +1,13 @@
-import { NitroModules } from 'react-native-nitro-modules'
-import type { OneLightSensor } from '../specs/OneLightSensor.nitro'
+import { lightSensorNative as native } from './backend'
 import type { LightSensorMeasurement, LightSensorSubscription } from './types'
 import { assertLightSensorListener, assertUpdateInterval } from './validate'
 
 export type { LightSensorMeasurement, LightSensorSubscription } from './types'
 
-// ambient light matching expo-sensors' LightSensor, backed by the
-// OneLightSensor nitro hybrid object (created on first use and cached).
-// the first listener starts the native sensor, so the first event can
-// never race the subscription.
-let hybrid: OneLightSensor | undefined
-
-function native(): OneLightSensor {
-  hybrid ??= NitroModules.createHybridObject<OneLightSensor>('OneLightSensor')
-  return hybrid
-}
-
+// ambient light matching expo-sensors' LightSensor, backed by the platform
+// backend (generated-free js on ios, the cached OneLightSensor nitro hybrid
+// object everywhere else). the first listener starts the native sensor, so
+// the first event can never race the subscription.
 function isAvailable(): boolean {
   return native().isAvailable()
 }
