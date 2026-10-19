@@ -474,7 +474,8 @@ function Controls() {
 
 `Picker` options are `Text` children whose `swiftStyle.tag` is the option
 value, as in SwiftUI's `Picker` content builder. Tags must be unique, and
-`selection` must match one of them. `pickerStyle` is
+`selection` must match one of them. Options must be direct `Text` children;
+`Text` nested in Fragments or custom wrappers is rejected. `pickerStyle` is
 a SwiftUI modifier set through `swiftStyle`, and its supported values are
 `automatic`, `menu`, `segmented`, `wheel`, `inline`, `tabs`, and `palette`.
 Outside a Form, a segmented Picker keeps its natural width; pass

@@ -70,6 +70,15 @@ export default function OneNativeControls() {
   const [supportsOpacity, setSupportsOpacity] = useState(true)
   const [pickerStyleIndex, setPickerStyleIndex] = useState(0)
   const [dateStyleIndex, setDateStyleIndex] = useState(0)
+  const [dynamicOptions, setDynamicOptions] = useState(false)
+  const [dynamicChoices, setDynamicChoices] = useState([
+    { key: 'opt-1', label: 'Alpha', value: 'alpha' },
+    { key: 'opt-2', label: 'Beta', value: 'beta' },
+    { key: 'opt-3', label: 'Gamma', value: 'gamma' },
+  ])
+  const [dynamicSelection, setDynamicSelection] = useState('alpha')
+  const [dynamicObserved, setDynamicObserved] = useState('alpha')
+  const [dynamicEvents, setDynamicEvents] = useState(0)
   const [field1Text, setField1Text] = useState('')
   const [field2Text, setField2Text] = useState('')
   const [numericText, setNumericText] = useState('')
@@ -181,23 +190,46 @@ export default function OneNativeControls() {
       )}
       <View style={styles.nativeArea}>
         {category === 'Picker' ? (
-          <One.iOS.Picker
-            label="Favorite Greek letter"
-            onSelectionChange={(value) => recordChange('Picker', value)}
-            revision={controls.Picker.revision}
-            selection={controls.Picker.value as string}
-            style={styles.nativeControl}
-            swiftStyle={{ pickerStyle, maxWidth: pickerStyle === 'segmented' ? Infinity : undefined }}
-            testID="one-native-control"
-          >
-            {pickerChoices.map((choice) => (
-              <One.iOS.Text
-                key={choice.value}
-                text={choice.label}
-                swiftStyle={{ tag: choice.value }}
-              />
-            ))}
-          </One.iOS.Picker>
+          dynamicOptions ? (
+            <One.iOS.Picker
+              label="Dynamic Greek letter"
+              onSelectionChange={(value) => {
+                setDynamicSelection(value)
+                setDynamicObserved(value)
+                setDynamicEvents((count) => count + 1)
+              }}
+              selection={dynamicSelection}
+              style={styles.nativeControl}
+              swiftStyle={{ pickerStyle, maxWidth: pickerStyle === 'segmented' ? Infinity : undefined }}
+              testID="one-native-control-dynamic"
+            >
+              {dynamicChoices.map((choice) => (
+                <One.iOS.Text
+                  key={choice.key}
+                  text={choice.label}
+                  swiftStyle={{ tag: choice.value }}
+                />
+              ))}
+            </One.iOS.Picker>
+          ) : (
+            <One.iOS.Picker
+              label="Favorite Greek letter"
+              onSelectionChange={(value) => recordChange('Picker', value)}
+              revision={controls.Picker.revision}
+              selection={controls.Picker.value as string}
+              style={styles.nativeControl}
+              swiftStyle={{ pickerStyle, maxWidth: pickerStyle === 'segmented' ? Infinity : undefined }}
+              testID="one-native-control"
+            >
+              {pickerChoices.map((choice) => (
+                <One.iOS.Text
+                  key={choice.value}
+                  text={choice.label}
+                  swiftStyle={{ tag: choice.value }}
+                />
+              ))}
+            </One.iOS.Picker>
+          )
         ) : null}
         {category === 'Date' ? (
           <One.iOS.DatePicker
@@ -329,6 +361,106 @@ export default function OneNativeControls() {
             ? `Style: ${datePickerStyle} · Reject: ${rejectChanges ? 'on' : 'off'}`
             : `Revision: ${control.revision} · Reject: ${rejectChanges ? 'on' : 'off'}`}
       </Text>
+
+      {category === 'Picker' && (
+        <View style={styles.actions}>
+          <View style={styles.action}>
+            <Button
+              onPress={() => setDynamicOptions((value) => !value)}
+              testID="one-native-picker-dynamic-toggle"
+              title={dynamicOptions ? 'Static options' : 'Dynamic options'}
+            />
+          </View>
+        </View>
+      )}
+      {category === 'Picker' && dynamicOptions && (
+        <>
+          <View style={styles.actions}>
+            <View style={styles.action}>
+              <Button
+                onPress={() =>
+                  setDynamicChoices((choices) =>
+                    choices.length < 2 ? choices : [...choices.slice(1), choices[0]]
+                  )
+                }
+                testID="one-native-picker-dynamic-rotate"
+                title="Rotate"
+              />
+            </View>
+            <View style={styles.action}>
+              <Button
+                onPress={() =>
+                  setDynamicChoices((choices) =>
+                    choices.some((choice) => choice.value === 'delta')
+                      ? choices
+                      : [...choices, { key: 'opt-4', label: 'Delta', value: 'delta' }]
+                  )
+                }
+                testID="one-native-picker-dynamic-add"
+                title="Add Delta"
+              />
+            </View>
+            <View style={styles.action}>
+              <Button
+                onPress={() => {
+                  if (dynamicChoices.length < 2) return
+                  const next = dynamicChoices.slice(0, -1)
+                  const removed = dynamicChoices[dynamicChoices.length - 1]
+                  setDynamicChoices(next)
+                  if (removed.value === dynamicSelection) setDynamicSelection(next[0].value)
+                }}
+                testID="one-native-picker-dynamic-remove"
+                title="Remove last"
+              />
+            </View>
+          </View>
+          <View style={styles.actions}>
+            <View style={styles.action}>
+              <Button
+                onPress={() => {
+                  const current = dynamicChoices.find((choice) => choice.key === 'opt-1')
+                  if (!current) return
+                  const next = current.value === 'alpha' ? 'alpha2' : 'alpha'
+                  setDynamicChoices(
+                    dynamicChoices.map((choice) =>
+                      choice.key === 'opt-1' ? { ...choice, value: next } : choice
+                    )
+                  )
+                  if (dynamicSelection === current.value) setDynamicSelection(next)
+                }}
+                testID="one-native-picker-dynamic-retag"
+                title="Retag opt-1"
+              />
+            </View>
+            <View style={styles.action}>
+              <Button
+                onPress={() => {
+                  setDynamicChoices([
+                    { key: 'opt-1', label: 'Alpha', value: 'alpha' },
+                    { key: 'opt-2', label: 'Beta', value: 'beta' },
+                    { key: 'opt-3', label: 'Gamma', value: 'gamma' },
+                  ])
+                  setDynamicSelection('alpha')
+                  setDynamicObserved('alpha')
+                  setDynamicEvents(0)
+                }}
+                testID="one-native-picker-dynamic-reset"
+                title="Reset options"
+              />
+            </View>
+          </View>
+          <Text numberOfLines={1} style={styles.statusText}>
+            Dynamic value:{' '}
+            <Text testID="one-native-picker-dynamic-value">{dynamicSelection}</Text>
+          </Text>
+          <Text numberOfLines={1} style={styles.statusText}>
+            Dynamic request:{' '}
+            <Text testID="one-native-picker-dynamic-request">
+              {dynamicObserved} (#{dynamicEvents})
+            </Text>
+          </Text>
+        </>
+      )}
 
       {category === 'Focus' ? (
         <View style={styles.actions}>

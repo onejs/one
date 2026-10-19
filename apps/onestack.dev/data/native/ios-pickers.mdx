@@ -79,6 +79,8 @@ iOS version.
 `Picker` picks one string from its option children. Each option is a `Text`
 view whose `swiftStyle.tag` is its value, as in SwiftUI's `Picker`
 content builder. Tags must be unique and the selection must match one tag.
+Options must be direct `Text` children; `Text` nested in Fragments or custom
+wrapper components is rejected, so map option data to `Text` directly.
 
 ```tsx
 import { useState } from 'react'
