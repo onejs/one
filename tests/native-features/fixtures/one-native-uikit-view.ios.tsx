@@ -36,7 +36,7 @@ export default function OneNativeUIKitView() {
     <View style={styles.screen}>
       <Pressable testID="one-native-uikit-view-replace" style={styles.replace}
         onPress={() => setGeneration((value) => value + 1)}>
-        <Text>{`Replace calendars (${generation})`}</Text>
+        <Text>{`Replace calendars (${generation}); event ${composedEventGeneration ?? 'none'}`}</Text>
       </Pressable>
       <Text testID="one-native-uikit-view-standalone-day">
         Standalone day: {standaloneDay ?? 'none'}
@@ -50,7 +50,6 @@ export default function OneNativeUIKitView() {
       )}
       <Text testID="one-native-uikit-view-composed-day">
         Composed day: {composedDay ?? 'none'}
-        {composedEventGeneration === null ? '' : ` (generation ${composedEventGeneration})`}
       </Text>
       {composed && (
         <One.iOS.VStack style={styles.calendar}>
