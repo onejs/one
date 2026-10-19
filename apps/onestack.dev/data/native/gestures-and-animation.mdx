@@ -82,6 +82,34 @@ arguments. Animated styles subscribe to shared values and recompute on
 the UI side; `withTiming` drives the value back on a curve without
 further callbacks.
 
+## SwiftUI gestures on iOS views
+
+`One.iOS` views also take SwiftUI's own gestures through `swiftStyle`, with
+`gesture`, `highPriorityGesture` and `simultaneousGesture`. Each takes a
+`kind` (`drag`, `tap`, `spatialTap`, `longPress`, `magnify`, `rotate`), the
+gesture's initializer options, and callbacks:
+
+```tsx
+<One.iOS.Text
+  text="Drag me"
+  swiftStyle={{
+    gesture: {
+      kind: 'drag',
+      minimumDistance: 4,
+      onChanged: ({ translation }) => setDragging(translation.height > 0),
+      onEnded: ({ translation, velocity, predictedEndTranslation }) =>
+        settle(predictedEndTranslation.height),
+    },
+  }}
+/>
+```
+
+`onEnded` receives the gesture's value: for a drag, its `location`,
+`translation`, `velocity` and predicted end. `onChanged` is available on
+every kind except `tap`, and native only reports changes when you pass it.
+Each change crosses to JavaScript, so use it for state and haptics, not to
+follow the finger; for that, use the Gesture Handler setup above.
+
 ## API reference
 
 <PropsTable

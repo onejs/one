@@ -179,6 +179,7 @@ declare module 'one' {
         | `/one-native-state`
         | `/one-native-storage`
         | `/one-native-store-review`
+        | `/one-native-swift-gestures`
         | `/one-native-swipe-actions`
         | `/one-native-system`
         | `/one-native-tab-lifecycle`

@@ -592,6 +592,25 @@ func oneNativeSDKValueContentTransition(_ value: Any, _ context: String) -> Swif
   }()
 }
 
+func oneNativeSDKValueCoordinateSpace(_ value: Any, _ context: String) -> SwiftUI.CoordinateSpace {
+  let record = OneNativeSDKRecord(value, context)
+  return { () -> SwiftUI.CoordinateSpace in
+    switch record.kind {
+    case "global":
+      switch record.overload([(labels: [], required: [])], chain: []) {
+      case 0: return SwiftUI.CoordinateSpace.global
+      default: preconditionFailure("invalid \(context): \(record.kind)")
+      }
+    case "local":
+      switch record.overload([(labels: [], required: [])], chain: []) {
+      case 0: return SwiftUI.CoordinateSpace.local
+      default: preconditionFailure("invalid \(context): \(record.kind)")
+      }
+    default: preconditionFailure("invalid \(context): \(record.kind)")
+    }
+  }()
+}
+
 func oneNativeSDKValueEdge(_ value: Any, _ context: String) -> SwiftUI.Edge {
   let record = OneNativeSDKRecord(value, context)
   return { () -> SwiftUI.Edge in

@@ -9,7 +9,7 @@ import type {
 } from './controlTypes'
 import { deriveLeafSwift } from './derive'
 import type { DerivedModifier, EventValueSchema } from './deriveSDK'
-import { collectValues, hasRecords, recordTS, valueKey, valueTypesTS } from './emitValues'
+import { collectValues, fieldsTS, hasRecords, recordTS, valueKey, valueTypesTS } from './emitValues'
 import type { Declaration } from './inventory'
 
 const swiftScalar = (type: ActionPayloadType) =>
@@ -240,7 +240,11 @@ ${styleFields
                   : modifier.kind === 'optionalEnum'
                     ? `SDK${upper(modifier.name)} | null`
                     : modifier.kind === 'gesture'
-                      ? modifier.gestureOptions!.map((option) => `Readonly<{ kind: ${JSON.stringify(option.name)}; onEnded: ${option.eventValue ? `(value: ${eventValueType(option.eventValue)})` : '()'} => void }>`).join(' | ')
+                      ? modifier.gestureOptions!.map((option) => {
+                        const callback = `${option.eventValue ? `(value: ${eventValueType(option.eventValue)})` : '()'} => void`
+                        return `Readonly<{ ${[`kind: ${JSON.stringify(option.name)}`, ...fieldsTS(option.options),
+                          ...(option.changed ? [`onChanged?: ${callback}`] : []), `onEnded: ${callback}`].join('; ')} }>`
+                      }).join(' | ')
                     : modifier.kind === 'defaultFocusBoolean'
                       ? 'boolean'
                     : modifier.kind === 'dragContainer'

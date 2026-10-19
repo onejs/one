@@ -2049,6 +2049,7 @@ export type SDKContentTransitionValue =
   | 'opacity'
   | 'interpolate'
   | SDKContentTransitionRecord
+export type SDKCoordinateSpaceValue = 'global' | 'local'
 export type SDKEdgeValue = 'top' | 'leading' | 'bottom' | 'trailing'
 export type SDKFontRecord =
   | Readonly<{
@@ -3040,14 +3041,41 @@ export interface OneNativeStyle {
   gesture?:
     | Readonly<{
         kind: 'drag'
+        minimumDistance?: number
+        coordinateSpace?: SDKCoordinateSpaceValue
+        onChanged?: (value: {
+          location: { x: number; y: number }
+          startLocation: { x: number; y: number }
+          translation: { width: number; height: number }
+          velocity: { width: number; height: number }
+          predictedEndLocation: { x: number; y: number }
+          predictedEndTranslation: { width: number; height: number }
+        }) => void
         onEnded: (value: {
           location: { x: number; y: number }
           startLocation: { x: number; y: number }
+          translation: { width: number; height: number }
+          velocity: { width: number; height: number }
+          predictedEndLocation: { x: number; y: number }
+          predictedEndTranslation: { width: number; height: number }
         }) => void
       }>
-    | Readonly<{ kind: 'longPress'; onEnded: (value: boolean) => void }>
+    | Readonly<{
+        kind: 'longPress'
+        minimumDuration?: number
+        maximumDistance?: number
+        onChanged?: (value: boolean) => void
+        onEnded: (value: boolean) => void
+      }>
     | Readonly<{
         kind: 'magnify'
+        minimumScaleDelta?: number
+        onChanged?: (value: {
+          magnification: number
+          velocity: number
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
         onEnded: (value: {
           magnification: number
           velocity: number
@@ -3057,6 +3085,12 @@ export interface OneNativeStyle {
       }>
     | Readonly<{
         kind: 'rotate'
+        onChanged?: (value: {
+          rotation: { radians: number }
+          velocity: { radians: number }
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
         onEnded: (value: {
           rotation: { radians: number }
           velocity: { radians: number }
@@ -3066,9 +3100,12 @@ export interface OneNativeStyle {
       }>
     | Readonly<{
         kind: 'spatialTap'
+        count?: number
+        coordinateSpace?: SDKCoordinateSpaceValue
+        onChanged?: (value: { location: { x: number; y: number } }) => void
         onEnded: (value: { location: { x: number; y: number } }) => void
       }>
-    | Readonly<{ kind: 'tap'; onEnded: () => void }>
+    | Readonly<{ kind: 'tap'; count?: number; onEnded: () => void }>
   gestureWithUITapRecognizer?: () => void
   glassEffectID?: Readonly<{ id: string | null }>
   glassEffectTransition?: SDKGlassEffectTransition
@@ -3092,14 +3129,41 @@ export interface OneNativeStyle {
   highPriorityGesture?:
     | Readonly<{
         kind: 'drag'
+        minimumDistance?: number
+        coordinateSpace?: SDKCoordinateSpaceValue
+        onChanged?: (value: {
+          location: { x: number; y: number }
+          startLocation: { x: number; y: number }
+          translation: { width: number; height: number }
+          velocity: { width: number; height: number }
+          predictedEndLocation: { x: number; y: number }
+          predictedEndTranslation: { width: number; height: number }
+        }) => void
         onEnded: (value: {
           location: { x: number; y: number }
           startLocation: { x: number; y: number }
+          translation: { width: number; height: number }
+          velocity: { width: number; height: number }
+          predictedEndLocation: { x: number; y: number }
+          predictedEndTranslation: { width: number; height: number }
         }) => void
       }>
-    | Readonly<{ kind: 'longPress'; onEnded: (value: boolean) => void }>
+    | Readonly<{
+        kind: 'longPress'
+        minimumDuration?: number
+        maximumDistance?: number
+        onChanged?: (value: boolean) => void
+        onEnded: (value: boolean) => void
+      }>
     | Readonly<{
         kind: 'magnify'
+        minimumScaleDelta?: number
+        onChanged?: (value: {
+          magnification: number
+          velocity: number
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
         onEnded: (value: {
           magnification: number
           velocity: number
@@ -3109,6 +3173,12 @@ export interface OneNativeStyle {
       }>
     | Readonly<{
         kind: 'rotate'
+        onChanged?: (value: {
+          rotation: { radians: number }
+          velocity: { radians: number }
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
         onEnded: (value: {
           rotation: { radians: number }
           velocity: { radians: number }
@@ -3118,9 +3188,12 @@ export interface OneNativeStyle {
       }>
     | Readonly<{
         kind: 'spatialTap'
+        count?: number
+        coordinateSpace?: SDKCoordinateSpaceValue
+        onChanged?: (value: { location: { x: number; y: number } }) => void
         onEnded: (value: { location: { x: number; y: number } }) => void
       }>
-    | Readonly<{ kind: 'tap'; onEnded: () => void }>
+    | Readonly<{ kind: 'tap'; count?: number; onEnded: () => void }>
   hoverEffectDisabled?: boolean
   hoverEffectWithHoverEffect?: SDKHoverEffectWithHoverEffect
   hoverEffectWithHoverEffectFromSwiftUICore?: SDKHoverEffectWithHoverEffectFromSwiftUICore
@@ -3897,14 +3970,41 @@ export interface OneNativeStyle {
   simultaneousGesture?:
     | Readonly<{
         kind: 'drag'
+        minimumDistance?: number
+        coordinateSpace?: SDKCoordinateSpaceValue
+        onChanged?: (value: {
+          location: { x: number; y: number }
+          startLocation: { x: number; y: number }
+          translation: { width: number; height: number }
+          velocity: { width: number; height: number }
+          predictedEndLocation: { x: number; y: number }
+          predictedEndTranslation: { width: number; height: number }
+        }) => void
         onEnded: (value: {
           location: { x: number; y: number }
           startLocation: { x: number; y: number }
+          translation: { width: number; height: number }
+          velocity: { width: number; height: number }
+          predictedEndLocation: { x: number; y: number }
+          predictedEndTranslation: { width: number; height: number }
         }) => void
       }>
-    | Readonly<{ kind: 'longPress'; onEnded: (value: boolean) => void }>
+    | Readonly<{
+        kind: 'longPress'
+        minimumDuration?: number
+        maximumDistance?: number
+        onChanged?: (value: boolean) => void
+        onEnded: (value: boolean) => void
+      }>
     | Readonly<{
         kind: 'magnify'
+        minimumScaleDelta?: number
+        onChanged?: (value: {
+          magnification: number
+          velocity: number
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
         onEnded: (value: {
           magnification: number
           velocity: number
@@ -3914,6 +4014,12 @@ export interface OneNativeStyle {
       }>
     | Readonly<{
         kind: 'rotate'
+        onChanged?: (value: {
+          rotation: { radians: number }
+          velocity: { radians: number }
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
         onEnded: (value: {
           rotation: { radians: number }
           velocity: { radians: number }
@@ -3923,9 +4029,12 @@ export interface OneNativeStyle {
       }>
     | Readonly<{
         kind: 'spatialTap'
+        count?: number
+        coordinateSpace?: SDKCoordinateSpaceValue
+        onChanged?: (value: { location: { x: number; y: number } }) => void
         onEnded: (value: { location: { x: number; y: number } }) => void
       }>
-    | Readonly<{ kind: 'tap'; onEnded: () => void }>
+    | Readonly<{ kind: 'tap'; count?: number; onEnded: () => void }>
   siriTipViewStyle?: SDKSiriTipViewStyle
   sliderThumbVisibility?: SDKSliderThumbVisibility
   speechAdjustedPitch?: number

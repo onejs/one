@@ -6590,6 +6590,24 @@
           "name": "drag",
           "type": "SwiftUI.DragGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDistance",
+              "label": "minimumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -6604,6 +6622,30 @@
                 "value": {
                   "kind": "point"
                 }
+              },
+              {
+                "name": "translation",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "predictedEndLocation",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "predictedEndTranslation",
+                "value": {
+                  "kind": "size"
+                }
               }
             ]
           }
@@ -6612,6 +6654,23 @@
           "name": "longPress",
           "type": "SwiftUI.LongPressGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDuration",
+              "label": "minimumDuration",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "maximumDistance",
+              "label": "maximumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "boolean"
           }
@@ -6620,6 +6679,16 @@
           "name": "magnify",
           "type": "SwiftUI.MagnifyGesture",
           "ios": 17,
+          "options": [
+            {
+              "field": "minimumScaleDelta",
+              "label": "minimumScaleDelta",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "0.01"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -6668,6 +6737,8 @@
           "name": "rotate",
           "type": "SwiftUI.RotateGesture",
           "ios": 17,
+          "options": [],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -6732,6 +6803,24 @@
           "name": "spatialTap",
           "type": "SwiftUI.SpatialTapGesture",
           "ios": 16,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -6747,7 +6836,16 @@
         {
           "name": "tap",
           "type": "SwiftUICore.TapGesture",
-          "ios": 13
+          "ios": 13,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            }
+          ]
         }
       ],
       "ios": 13
@@ -7062,6 +7160,24 @@
           "name": "drag",
           "type": "SwiftUI.DragGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDistance",
+              "label": "minimumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -7076,6 +7192,30 @@
                 "value": {
                   "kind": "point"
                 }
+              },
+              {
+                "name": "translation",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "predictedEndLocation",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "predictedEndTranslation",
+                "value": {
+                  "kind": "size"
+                }
               }
             ]
           }
@@ -7084,6 +7224,23 @@
           "name": "longPress",
           "type": "SwiftUI.LongPressGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDuration",
+              "label": "minimumDuration",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "maximumDistance",
+              "label": "maximumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "boolean"
           }
@@ -7092,6 +7249,16 @@
           "name": "magnify",
           "type": "SwiftUI.MagnifyGesture",
           "ios": 17,
+          "options": [
+            {
+              "field": "minimumScaleDelta",
+              "label": "minimumScaleDelta",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "0.01"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -7140,6 +7307,8 @@
           "name": "rotate",
           "type": "SwiftUI.RotateGesture",
           "ios": 17,
+          "options": [],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -7204,6 +7373,24 @@
           "name": "spatialTap",
           "type": "SwiftUI.SpatialTapGesture",
           "ios": 16,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -7219,7 +7406,16 @@
         {
           "name": "tap",
           "type": "SwiftUICore.TapGesture",
-          "ios": 13
+          "ios": 13,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            }
+          ]
         }
       ],
       "ios": 13
@@ -13638,6 +13834,24 @@
           "name": "drag",
           "type": "SwiftUI.DragGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDistance",
+              "label": "minimumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -13652,6 +13866,30 @@
                 "value": {
                   "kind": "point"
                 }
+              },
+              {
+                "name": "translation",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "size"
+                }
+              },
+              {
+                "name": "predictedEndLocation",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "predictedEndTranslation",
+                "value": {
+                  "kind": "size"
+                }
               }
             ]
           }
@@ -13660,6 +13898,23 @@
           "name": "longPress",
           "type": "SwiftUI.LongPressGesture",
           "ios": 13,
+          "options": [
+            {
+              "field": "minimumDuration",
+              "label": "minimumDuration",
+              "type": "Swift.Double",
+              "kind": "number",
+              "defaultValue": "0.5"
+            },
+            {
+              "field": "maximumDistance",
+              "label": "maximumDistance",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "10"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "boolean"
           }
@@ -13668,6 +13923,16 @@
           "name": "magnify",
           "type": "SwiftUI.MagnifyGesture",
           "ios": 17,
+          "options": [
+            {
+              "field": "minimumScaleDelta",
+              "label": "minimumScaleDelta",
+              "type": "CoreFoundation.CGFloat",
+              "kind": "number",
+              "defaultValue": "0.01"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -13716,6 +13981,8 @@
           "name": "rotate",
           "type": "SwiftUI.RotateGesture",
           "ios": 17,
+          "options": [],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -13780,6 +14047,24 @@
           "name": "spatialTap",
           "type": "SwiftUI.SpatialTapGesture",
           "ios": 16,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            },
+            {
+              "field": "coordinateSpace",
+              "label": "coordinateSpace",
+              "type": "SwiftUICore.CoordinateSpace",
+              "kind": "enum",
+              "value": "CoordinateSpace",
+              "defaultValue": ".local"
+            }
+          ],
+          "changed": true,
           "eventValue": {
             "kind": "object",
             "fields": [
@@ -13795,7 +14080,16 @@
         {
           "name": "tap",
           "type": "SwiftUICore.TapGesture",
-          "ios": 13
+          "ios": 13,
+          "options": [
+            {
+              "field": "count",
+              "label": "count",
+              "type": "Swift.Int",
+              "kind": "number",
+              "defaultValue": "1"
+            }
+          ]
         }
       ],
       "ios": 13
@@ -18612,6 +18906,22 @@
           ]
         }
       ],
+      "chain": []
+    },
+    "CoordinateSpace": {
+      "type": "SwiftUICore.CoordinateSpace",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "global",
+          "ios": 13
+        },
+        {
+          "name": "local",
+          "ios": 13
+        }
+      ],
+      "factories": [],
       "chain": []
     },
     "Edge": {

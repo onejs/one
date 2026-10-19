@@ -1133,17 +1133,28 @@ describe('SDK callback and binding transport', () => {
     const onTap = vi.fn()
     const onDrag = vi.fn()
     const onLongPress = vi.fn()
+    const onDragChanged = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {
       gesture: { kind: 'tap', onEnded: onTap },
-      highPriorityGesture: { kind: 'drag', onEnded: onDrag },
+      highPriorityGesture: { kind: 'drag', minimumDistance: 4, coordinateSpace: 'global',
+        onChanged: onDragChanged, onEnded: onDrag },
       simultaneousGesture: { kind: 'longPress', onEnded: onLongPress },
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['gesture', 'tap'],
-      ['highPriorityGesture', 'drag'],
+      ['highPriorityGesture', '{"kind":"drag","minimumDistance":4,"coordinateSpace":"global","onChanged":true}'],
       ['simultaneousGesture', 'longPress'],
     ])
-    const drag = { location: { x: 20, y: 30 }, startLocation: { x: 5, y: 10 } }
+    const drag = {
+      location: { x: 20, y: 30 }, startLocation: { x: 5, y: 10 },
+      translation: { width: 15, height: 20 }, velocity: { width: 300, height: 400 },
+      predictedEndLocation: { x: 80, y: 110 }, predictedEndTranslation: { width: 75, height: 100 },
+    }
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'highPriorityGesture.onChanged', value: JSON.stringify(drag),
+    } })
+    expect(onDragChanged).toHaveBeenCalledWith(drag)
+    expect(onDrag).not.toHaveBeenCalled()
     element.props.onNativeSDKEvent({ nativeEvent: { name: 'gesture', value: '' } })
     element.props.onNativeSDKEvent({ nativeEvent: {
       name: 'highPriorityGesture', value: JSON.stringify(drag),
@@ -1157,6 +1168,15 @@ describe('SDK callback and binding transport', () => {
     expect(() => Controls.Text({ text: 'example', swiftStyle: {
       gesture: { kind: 'unknown' as 'tap', onEnded: onTap },
     } })).toThrow('SDK gesture and callback')
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'drag', minimumDistance: Number.NaN, onEnded: onDrag },
+    } })).toThrow('gesture.minimumDistance must be finite')
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'tap', onChanged: onTap, onEnded: onTap } as never,
+    } })).toThrow('gesture.onChanged is not available for tap')
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'gesture.onChanged', value: '',
+    } })).toThrow('invalid gesture')
     expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
       name: 'highPriorityGesture', value: '{"location":{"x":20,"y":"bad"}}',
     } })).toThrow('invalid gesture event')

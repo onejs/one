@@ -29,6 +29,7 @@ export function collectValues(derived: readonly DerivedModifier[]) {
   for (const modifier of derived) {
     if (modifier.value) visit(modifier.value)
     for (const factory of modifier.factories ?? []) visitFactory(factory)
+    for (const option of modifier.gestureOptions ?? []) visitFactory({ name: option.name, ios: option.ios, parameters: option.options })
     for (const argument of modifier.arguments ?? [])
       if (argument.kind === 'enum' && argument.value) visit(argument.value)
   }
@@ -253,7 +254,7 @@ ${decoders.join('\n\n')}
 const parameterTS = (parameter: DerivedFactoryParameter) =>
   parameter.kind === 'enum' ? `SDK${valueKey(parameter.value!.type)}Value` : parameter.kind
 
-const fieldsTS = (parameters: readonly DerivedFactoryParameter[]) =>
+export const fieldsTS = (parameters: readonly DerivedFactoryParameter[]) =>
   parameters.map((parameter) => `${parameter.field}${parameter.defaultValue === undefined ? '' : '?'}: ${parameterTS(parameter)}`)
 
 // the record union for a set of cases and factories, with chained methods on every member.
@@ -278,7 +279,7 @@ export type SDK${key}Value = ${names ? `${names} | ` : ''}SDK${key}Record`
 }
 
 type ShapeParameter = { field: string; kind: string; optional?: true; integer?: true; value?: string }
-const shapeParameters = (parameters: readonly DerivedFactoryParameter[]): ShapeParameter[] =>
+export const shapeParameters = (parameters: readonly DerivedFactoryParameter[]): ShapeParameter[] =>
   parameters.map((parameter) => ({
     field: parameter.field,
     kind: parameter.kind,

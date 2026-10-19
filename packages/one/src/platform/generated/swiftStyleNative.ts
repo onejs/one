@@ -1361,6 +1361,10 @@ const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null
       fields: [
         { name: 'location', value: { kind: 'point' } },
         { name: 'startLocation', value: { kind: 'point' } },
+        { name: 'translation', value: { kind: 'size' } },
+        { name: 'velocity', value: { kind: 'size' } },
+        { name: 'predictedEndLocation', value: { kind: 'point' } },
+        { name: 'predictedEndTranslation', value: { kind: 'size' } },
       ],
     },
     longPress: { kind: 'boolean' },
@@ -1424,6 +1428,10 @@ const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null
       fields: [
         { name: 'location', value: { kind: 'point' } },
         { name: 'startLocation', value: { kind: 'point' } },
+        { name: 'translation', value: { kind: 'size' } },
+        { name: 'velocity', value: { kind: 'size' } },
+        { name: 'predictedEndLocation', value: { kind: 'point' } },
+        { name: 'predictedEndTranslation', value: { kind: 'size' } },
       ],
     },
     longPress: { kind: 'boolean' },
@@ -1487,6 +1495,10 @@ const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null
       fields: [
         { name: 'location', value: { kind: 'point' } },
         { name: 'startLocation', value: { kind: 'point' } },
+        { name: 'translation', value: { kind: 'size' } },
+        { name: 'velocity', value: { kind: 'size' } },
+        { name: 'predictedEndLocation', value: { kind: 'point' } },
+        { name: 'predictedEndTranslation', value: { kind: 'size' } },
       ],
     },
     longPress: { kind: 'boolean' },
@@ -1543,6 +1555,138 @@ const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null
       fields: [{ name: 'location', value: { kind: 'point' } }],
     },
     tap: null,
+  },
+}
+// each gesture's initializer options and whether it reports changes.
+const sdkGestureInputs: Record<
+  string,
+  Record<string, { parameters: readonly SDKValueParameter[]; changed: boolean }>
+> = {
+  gesture: {
+    drag: {
+      parameters: [
+        { field: 'minimumDistance', kind: 'number', optional: true },
+        {
+          field: 'coordinateSpace',
+          kind: 'enum',
+          optional: true,
+          value: 'CoordinateSpace',
+        },
+      ],
+      changed: true,
+    },
+    longPress: {
+      parameters: [
+        { field: 'minimumDuration', kind: 'number', optional: true },
+        { field: 'maximumDistance', kind: 'number', optional: true },
+      ],
+      changed: true,
+    },
+    magnify: {
+      parameters: [{ field: 'minimumScaleDelta', kind: 'number', optional: true }],
+      changed: true,
+    },
+    rotate: { parameters: [], changed: true },
+    spatialTap: {
+      parameters: [
+        { field: 'count', kind: 'number', optional: true, integer: true },
+        {
+          field: 'coordinateSpace',
+          kind: 'enum',
+          optional: true,
+          value: 'CoordinateSpace',
+        },
+      ],
+      changed: true,
+    },
+    tap: {
+      parameters: [{ field: 'count', kind: 'number', optional: true, integer: true }],
+      changed: false,
+    },
+  },
+  highPriorityGesture: {
+    drag: {
+      parameters: [
+        { field: 'minimumDistance', kind: 'number', optional: true },
+        {
+          field: 'coordinateSpace',
+          kind: 'enum',
+          optional: true,
+          value: 'CoordinateSpace',
+        },
+      ],
+      changed: true,
+    },
+    longPress: {
+      parameters: [
+        { field: 'minimumDuration', kind: 'number', optional: true },
+        { field: 'maximumDistance', kind: 'number', optional: true },
+      ],
+      changed: true,
+    },
+    magnify: {
+      parameters: [{ field: 'minimumScaleDelta', kind: 'number', optional: true }],
+      changed: true,
+    },
+    rotate: { parameters: [], changed: true },
+    spatialTap: {
+      parameters: [
+        { field: 'count', kind: 'number', optional: true, integer: true },
+        {
+          field: 'coordinateSpace',
+          kind: 'enum',
+          optional: true,
+          value: 'CoordinateSpace',
+        },
+      ],
+      changed: true,
+    },
+    tap: {
+      parameters: [{ field: 'count', kind: 'number', optional: true, integer: true }],
+      changed: false,
+    },
+  },
+  simultaneousGesture: {
+    drag: {
+      parameters: [
+        { field: 'minimumDistance', kind: 'number', optional: true },
+        {
+          field: 'coordinateSpace',
+          kind: 'enum',
+          optional: true,
+          value: 'CoordinateSpace',
+        },
+      ],
+      changed: true,
+    },
+    longPress: {
+      parameters: [
+        { field: 'minimumDuration', kind: 'number', optional: true },
+        { field: 'maximumDistance', kind: 'number', optional: true },
+      ],
+      changed: true,
+    },
+    magnify: {
+      parameters: [{ field: 'minimumScaleDelta', kind: 'number', optional: true }],
+      changed: true,
+    },
+    rotate: { parameters: [], changed: true },
+    spatialTap: {
+      parameters: [
+        { field: 'count', kind: 'number', optional: true, integer: true },
+        {
+          field: 'coordinateSpace',
+          kind: 'enum',
+          optional: true,
+          value: 'CoordinateSpace',
+        },
+      ],
+      changed: true,
+    },
+    tap: {
+      parameters: [{ field: 'count', kind: 'number', optional: true, integer: true }],
+      changed: false,
+    },
   },
 }
 const sdkCodableOptional: Record<string, boolean> = { tabViewCustomization: true }
@@ -2554,6 +2698,7 @@ const sdkValueShapes: Record<string, SDKValueShape> = {
     ],
     chain: [],
   },
+  CoordinateSpace: { cases: ['global', 'local'], factories: [], chain: [] },
   Edge: { cases: ['top', 'leading', 'bottom', 'trailing'], factories: [], chain: [] },
   Font: {
     cases: [
@@ -3248,6 +3393,57 @@ export function sdkValueText(value: unknown, key: string, context: string): stri
   return typeof parsed === 'string' ? parsed : text
 }
 
+// a gesture's text for native: its kind alone, or a record of the kind, its initializer
+// options and whether onChanged is set. options are checked as the JSON native reads.
+function sdkGestureText(value: unknown, name: string): string {
+  const config = value as Record<string, unknown> | null
+  if (
+    !config ||
+    typeof config !== 'object' ||
+    Array.isArray(config) ||
+    typeof config.kind !== 'string' ||
+    !Object.hasOwn(sdkGestureOptions[name], config.kind) ||
+    typeof config.onEnded !== 'function'
+  )
+    throw new Error(name + ' must be an SDK gesture and callback')
+  const kind = config.kind
+  const input = sdkGestureInputs[name][kind]
+  if (
+    config.onChanged !== undefined &&
+    (!input.changed || typeof config.onChanged !== 'function')
+  )
+    throw new Error(
+      name +
+        '.onChanged ' +
+        (input.changed ? 'must be a function' : 'is not available for ' + kind)
+    )
+  const given = Object.keys(config).filter(
+    (field) =>
+      field !== 'kind' &&
+      field !== 'onEnded' &&
+      field !== 'onChanged' &&
+      config[field] !== undefined
+  )
+  if (!fitsSDKOverload(given, input.parameters))
+    throw new Error(
+      name +
+        '.' +
+        kind +
+        ' takes ' +
+        (input.parameters.map((parameter) => parameter.field).join(', ') || 'no options')
+    )
+  if (!given.length && config.onChanged === undefined) return kind
+  const options: Record<string, unknown> = JSON.parse(
+    JSON.stringify(Object.fromEntries(given.map((field) => [field, config[field]])))
+  )
+  checkSDKParameters(options, given, input.parameters, name)
+  return JSON.stringify({
+    kind,
+    ...options,
+    ...(config.onChanged ? { onChanged: true } : {}),
+  })
+}
+
 // the text withAnimation and PhaseAnimator hand native for an SDK Animation.
 export function encodeSDKAnimation(
   value: SDKAnimationValue,
@@ -3497,16 +3693,7 @@ export function swiftStyleNative(
         continue
       }
       if (kind === 'gesture') {
-        if (
-          !value ||
-          typeof value !== 'object' ||
-          Array.isArray(value) ||
-          typeof (value as { kind?: unknown }).kind !== 'string' ||
-          !Object.hasOwn(sdkGestureOptions[name], (value as { kind: string }).kind) ||
-          typeof (value as { onEnded?: unknown }).onEnded !== 'function'
-        )
-          throw new Error(name + ' must be an SDK gesture and callback')
-        sdkModifiers.push([name, (value as { kind: string }).kind])
+        sdkModifiers.push([name, sdkGestureText(value, name)])
         continue
       }
       if (kind === 'visualEffect') {
@@ -4029,6 +4216,27 @@ export function dispatchSDKEvent(
   if (separator !== -1) {
     const parent = name.slice(0, separator)
     const field = name.slice(separator + 1)
+    if (
+      sdkKinds[parent as keyof typeof sdkKinds] === 'gesture' &&
+      field === 'onChanged'
+    ) {
+      const config = (style as Record<string, unknown> | undefined)?.[parent] as
+        | { kind: string; onChanged?: (value?: unknown) => void }
+        | undefined
+      const shape = config && sdkGestureOptions[parent]?.[config.kind]
+      if (shape === undefined || !sdkGestureInputs[parent][config!.kind].changed)
+        throw new Error(name + ' emitted an invalid gesture')
+      if (shape === null) {
+        if (value !== '') throw new Error(name + ' emitted an invalid gesture event')
+        config?.onChanged?.()
+      } else {
+        const payload: unknown = JSON.parse(value)
+        if (!validSDKEventValue(payload, shape))
+          throw new Error(name + ' emitted an invalid gesture event')
+        config?.onChanged?.(payload)
+      }
+      return
+    }
     if (sdkKinds[parent as keyof typeof sdkKinds] === 'pickerSelection') {
       const picker = (style as Record<string, unknown> | undefined)?.[parent] as
         | {

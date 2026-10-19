@@ -209,6 +209,11 @@ const testScreens = [
     testID: 'nav-one-native-host',
   },
   {
+    href: '/one-native-swift-gestures',
+    label: 'One Native Swift Gestures',
+    testID: 'nav-one-native-swift-gestures',
+  },
+  {
     href: '/one-native-control-size',
     label: 'One Native Control Size',
     testID: 'nav-one-native-control-size',

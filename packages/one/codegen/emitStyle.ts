@@ -2,7 +2,7 @@ import type { StyleField } from './catalog'
 import type { DerivedModifier, DerivedViewSlot, EventValueSchema } from './deriveSDK'
 import { eventValueType } from './emitControls'
 import { sdkGuard } from './sdkGuard'
-import { callArguments, collectValues, emitValueDecoders, hasRecords, recordSwitchSwift, valueKey, valueShapesTS, valueValidatorTS } from './emitValues'
+import { callArguments, collectValues, emitValueDecoders, hasRecords, recordSwitchSwift, shapeParameters, valueKey, valueShapesTS, valueValidatorTS } from './emitValues'
 
 const eventValueSwift = (value: EventValueSchema, expression: string): string => {
   if (value.kind === 'number') return `Double(${expression})`
@@ -485,17 +485,26 @@ ${parsedArguments}
       }
       if (modifier.kind === 'gesture')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    switch value {
+    let record = OneNativeSDKRecord(value, ${JSON.stringify(modifier.name)})
+    switch record.kind {
 ${modifier.gestureOptions!.map((option) => {
-          const ended = option.eventValue
+          const report = (event: string) => option.eventValue
             ? `{ item in
         let payload = ${eventValueSwift(option.eventValue, 'item')}
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name}.${option.name} event") }
-        emit(${JSON.stringify(modifier.name)}, encoded)
+        emit(${JSON.stringify(event)}, encoded)
       }`
-            : `{ _ in emit(${JSON.stringify(modifier.name)}, "") }`
-          const call = `self.${modifier.sdkName ?? modifier.name}(${option.type}().onEnded(${ended}))`
+            : `{ _ in emit(${JSON.stringify(event)}, "") }`
+          const gesture = `${option.type}(${callArguments({ name: 'init', ios: option.ios, parameters: option.options }, 'record', JSON.stringify(`${modifier.name}.${option.name}`))})`
+          const ended = `.onEnded(${report(modifier.name)})`
+          const call = option.changed
+            ? `if record.boolean("onChanged") == true {
+        self.${modifier.sdkName ?? modifier.name}(${gesture}.onChanged(${report(`${modifier.name}.onChanged`)})${ended})
+      } else {
+        self.${modifier.sdkName ?? modifier.name}(${gesture}${ended})
+      }`
+            : `self.${modifier.sdkName ?? modifier.name}(${gesture}${ended})`
           return `    case ${JSON.stringify(option.name)}:
       ${option.ios > 17 ? sdkGuard(option.ios, `if #available(iOS ${option.ios}, *) { ${call} } else { self }`, 'self') : call}`
         }).join('\n')}
@@ -1145,6 +1154,8 @@ const sdkAsyncStringFields: Record<string, { predicate: string; callback: string
 const sdkSessionRequests: Record<string, { inputField: string; outputFields: readonly string[] }> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'sessionRequest').map((modifier) => [modifier.name, { inputField: modifier.sessionRequest!.inputField, outputFields: modifier.sessionRequest!.outputFields }]))) }
 const sdkAsyncObjectRequestBindings: Record<string, string> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'asyncObjectRequest').map((modifier) => [modifier.name, modifier.predicateLabel])))}
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
+// each gesture's initializer options and whether it reports changes.
+const sdkGestureInputs: Record<string, Record<string, { parameters: readonly SDKValueParameter[]; changed: boolean }>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, { parameters: shapeParameters(option.options), changed: Boolean(option.changed) }]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
 const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; unique?: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape; value?: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, unique, fields, eventValue, value }) => ({ field, kind, optional, ...(unique ? { unique } : {}), ...(kind === 'enum' && hasRecords(value) ? { value: valueKey(value!.type) } : {}), ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
 // SDK values a modifier takes as a case name or a record, by modifier name.
@@ -1152,6 +1163,27 @@ const sdkModifierValues: Record<string, string> = ${JSON.stringify(Object.fromEn
   modifier.kind === 'style' && modifier.factories?.length ? [[modifier.name, `style:${modifier.name}`]]
     : hasRecords(modifier.value) ? [[modifier.name, valueKey(modifier.value!.type)]] : [])))}
 ${valueValidatorTS(valueShapesTS(values, derived))}
+
+// a gesture's text for native: its kind alone, or a record of the kind, its initializer
+// options and whether onChanged is set. options are checked as the JSON native reads.
+function sdkGestureText(value: unknown, name: string): string {
+  const config = value as Record<string, unknown> | null
+  if (!config || typeof config !== 'object' || Array.isArray(config) || typeof config.kind !== 'string' ||
+    !Object.hasOwn(sdkGestureOptions[name], config.kind) || typeof config.onEnded !== 'function')
+    throw new Error(name + ' must be an SDK gesture and callback')
+  const kind = config.kind
+  const input = sdkGestureInputs[name][kind]
+  if (config.onChanged !== undefined && (!input.changed || typeof config.onChanged !== 'function'))
+    throw new Error(name + '.onChanged ' + (input.changed ? 'must be a function' : 'is not available for ' + kind))
+  const given = Object.keys(config).filter((field) =>
+    field !== 'kind' && field !== 'onEnded' && field !== 'onChanged' && config[field] !== undefined)
+  if (!fitsSDKOverload(given, input.parameters))
+    throw new Error(name + '.' + kind + ' takes ' + (input.parameters.map((parameter) => parameter.field).join(', ') || 'no options'))
+  if (!given.length && config.onChanged === undefined) return kind
+  const options: Record<string, unknown> = JSON.parse(JSON.stringify(Object.fromEntries(given.map((field) => [field, config[field]]))))
+  checkSDKParameters(options, given, input.parameters, name)
+  return JSON.stringify({ kind, ...options, ...(config.onChanged ? { onChanged: true } : {}) })
+}
 
 // the text withAnimation and PhaseAnimator hand native for an SDK Animation.
 export function encodeSDKAnimation(value: SDKAnimationValue, context = 'animation'): string {
@@ -1288,12 +1320,7 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
         continue
       }
       if (kind === 'gesture') {
-        if (!value || typeof value !== 'object' || Array.isArray(value) ||
-          typeof (value as { kind?: unknown }).kind !== 'string' ||
-          !Object.hasOwn(sdkGestureOptions[name], (value as { kind: string }).kind) ||
-          typeof (value as { onEnded?: unknown }).onEnded !== 'function')
-          throw new Error(name + ' must be an SDK gesture and callback')
-        sdkModifiers.push([name, (value as { kind: string }).kind])
+        sdkModifiers.push([name, sdkGestureText(value, name)])
         continue
       }
       if (kind === 'visualEffect') {
@@ -1570,6 +1597,22 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
   if (separator !== -1) {
     const parent = name.slice(0, separator)
     const field = name.slice(separator + 1)
+    if (sdkKinds[parent as keyof typeof sdkKinds] === 'gesture' && field === 'onChanged') {
+      const config = (style as Record<string, unknown> | undefined)?.[parent] as
+        { kind: string; onChanged?: (value?: unknown) => void } | undefined
+      const shape = config && sdkGestureOptions[parent]?.[config.kind]
+      if (shape === undefined || !sdkGestureInputs[parent][config!.kind].changed)
+        throw new Error(name + ' emitted an invalid gesture')
+      if (shape === null) {
+        if (value !== '') throw new Error(name + ' emitted an invalid gesture event')
+        config?.onChanged?.()
+      } else {
+        const payload: unknown = JSON.parse(value)
+        if (!validSDKEventValue(payload, shape)) throw new Error(name + ' emitted an invalid gesture event')
+        config?.onChanged?.(payload)
+      }
+      return
+    }
     if (sdkKinds[parent as keyof typeof sdkKinds] === 'pickerSelection') {
       const picker = (style as Record<string, unknown> | undefined)?.[parent] as {
         isPresented: { onChange: (value: boolean) => void }; onSelection: (id: string) => void

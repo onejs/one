@@ -73,7 +73,7 @@ export type DerivedModifier = {
   eventPair?: true
   eventInputs?: readonly string[]
   visualPhase?: true
-  gestureOptions?: readonly { name: string; type: string; ios: number; eventValue?: EventValueSchema }[]
+  gestureOptions?: readonly { name: string; type: string; ios: number; options: readonly DerivedFactoryParameter[]; changed?: true; eventValue?: EventValueSchema }[]
   transformMember?: string
   environmentKey?: string
   environmentTransform?: 'toggle' | 'add'
@@ -373,7 +373,10 @@ export const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number
     const value = factoryValueOf(module, owner.join('.'), baseType, cases, depth)
     return { kind: 'enum', type, optional, cases, ...(value ? { value } : {}) }
   }
-  return Object.assign(valueOf, { factoriesOf: (declarations: readonly Declaration[]) => factoriesOf(declarations, 0) })
+  return Object.assign(valueOf, {
+    parameterOf: (parameter: Declaration['parameters'][number]) => factoryParameterOf(parameter, 0),
+    factoriesOf: (declarations: readonly Declaration[]) => factoriesOf(declarations, 0),
+  })
 }
 
 export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
@@ -509,7 +512,9 @@ export function deriveModifiers(
   const urlResultOf = (type: string) =>
     (/^@escaping \((?:_ [A-Za-z]\w*: )?Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void$/.exec(type) ??
       /^\(\(Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void\)\?$/.exec(type))?.[1]
-  const eventValueOf = (type: string, version: number, seen = new Set<string>()): EventValueSchema | undefined => {
+  // computed fields are read only for gesture values: the inventory does not mark async or
+  // throwing getters, such as StoreKit's Product.latestTransaction.
+  const eventValueOf = (type: string, version: number, seen = new Set<string>(), computedFields = false): EventValueSchema | undefined => {
     const result = /^Swift\.Result<(.+), any Swift\.Error>$/.exec(type)
     if (result) {
       const value = eventValueOf(result[1], version, seen)
@@ -594,9 +599,16 @@ export function deriveModifiers(
       return raw ? { kind: 'object', fields: [{ name: 'rawValue',
         value: { kind: raw.type === 'Swift.String' ? 'string' : 'number' } }] } : undefined
     }
-    const fields = inventory.filter((d) => d.module === module && (d.owner === owner || d.owner === type) &&
-      d.kind === 'var' && d.stored && present(d) && ios(d) <= version)
-    if (!fields.length || new Set(fields.map((field) => field.name)).size !== fields.length) return
+    const members = inventory.filter((d) => d.module === module && (d.owner === owner || d.owner === type) &&
+      d.kind === 'var' && present(d) && ios(d) <= version)
+    const stored = members.filter((d) => d.stored)
+    if (!stored.length || new Set(stored.map((field) => field.name)).size !== stored.length) return
+    // public computed fields read like stored ones, such as DragGesture.Value.velocity. a
+    // name declared more than once is left out rather than guessed.
+    const computed = computedFields
+      ? members.filter((d) => !d.stored && !stored.some((field) => field.name === d.name))
+      : []
+    const fields = [...stored, ...computed.filter((d) => computed.filter((other) => other.name === d.name).length === 1)]
     const next = new Set([...seen, type])
     const mapped = fields.flatMap((field) => {
       const value = eventValueOf(field.type ?? '', version, next)
@@ -668,23 +680,39 @@ export function deriveModifiers(
       /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling))
     return factories.length ? { factories } : {}
   }
+  const changed = inventory.some((d) => d.module === 'SwiftUICore' && d.owner.split('.').at(-1) === 'Gesture' &&
+    d.kind === 'func' && d.name === 'onChanged' && present(d) &&
+    d.requirements?.length === 1 && d.requirements[0] === 'Self.Value : Swift.Equatable')
   const gestureOptions = inventory.filter((d) => d.kind === 'struct' && d.owner === '' &&
     !d.generic && /^[A-Z]/.test(d.name) &&
     d.inheritedTypes?.includes('SwiftUICore.Gesture') && present(d) && ios(d) <= ceiling)
     .flatMap((gesture) => {
-      const constructor = inventory.find((d) => d.module === gesture.module &&
+      // the earliest initializer, so options never raise the gesture's availability, then the
+      // one with the most options JavaScript can spell. the rest keep their defaults.
+      const constructor = inventory.filter((d) => d.module === gesture.module &&
         (d.owner === gesture.name || d.owner === `${gesture.module}.${gesture.name}`) &&
         d.kind === 'init' && d.parameters.every((parameter) => parameter.defaultValue !== undefined) &&
         present(d) && ios(d) <= ceiling)
+        .map((d) => ({ declaration: d, options: d.parameters.flatMap((parameter) => {
+          const option = valueOf.parameterOf(parameter)
+          return option && !['kind', 'onChanged', 'onEnded'].includes(option.field) ? [option] : []
+        }) }))
+        .sort((a, b) => ios(a.declaration) - ios(b.declaration) || b.options.length - a.options.length)[0]
       if (!constructor) return []
       const eventValue = gesture.name === 'LongPressGesture'
         ? { kind: 'boolean' as const }
         : gesture.name === 'TapGesture'
           ? undefined
-          : eventValueOf(`${gesture.module}.${gesture.name}.Value`, Math.max(ios(gesture), ios(constructor)))
+          : eventValueOf(`${gesture.module}.${gesture.name}.Value`, Math.max(ios(gesture), ios(constructor.declaration)), undefined, true)
       if (!eventValue && gesture.name !== 'TapGesture') return []
+      // Gesture.onChanged requires an Equatable Value; LongPressGesture's Value is Bool.
+      const changes = changed && (gesture.name === 'LongPressGesture' || inventory.some((d) =>
+        d.module === gesture.module && d.kind === 'struct' && d.name === 'Value' &&
+        (d.owner === gesture.name || d.owner === `${gesture.module}.${gesture.name}`) &&
+        d.inheritedTypes?.includes('Swift.Equatable') && present(d)))
       return [{ name: gesture.name[0].toLowerCase() + gesture.name.slice(1).replace(/Gesture$/, ''),
-        type: `${gesture.module}.${gesture.name}`, ios: Math.max(ios(gesture), ios(constructor)),
+        type: `${gesture.module}.${gesture.name}`, ios: Math.max(ios(gesture), ios(constructor.declaration)),
+        options: constructor.options, ...(changes ? { changed: true as const } : {}),
         ...(eventValue ? { eventValue } : {}) }]
     })
     .sort((a, b) => a.name.localeCompare(b.name))
