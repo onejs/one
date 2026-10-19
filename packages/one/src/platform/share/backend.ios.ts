@@ -60,8 +60,7 @@ async function share(items: ShareItem[]): Promise<ShareResult> {
     }
     return await new Promise<ShareResult>((resolve, reject) => {
       let finishing = false
-      // uikit drops a dismissal requested while the presentation is still in
-      // flight, and attaching can take most of a second on a first share.
+      // dismiss only after uikit completes the presentation.
       let presented: () => void
       const presentation = new Promise<void>((done) => { presented = done })
       void controller.setCompletionWithItemsHandler((activityType, completed, _items, error) => {
