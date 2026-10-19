@@ -355,3 +355,136 @@ describe('keyed markers', () => {
     )
   })
 })
+
+const pagedInventory: Declaration[] = [
+  declaration({
+    owner: 'SwiftUI.TabView',
+    kind: 'init',
+    name: 'init',
+    parameters: [
+      { label: 'selection', name: 'selection', type: 'SwiftUICore.Binding<Swift.String>?' },
+      { label: 'content', name: 'content', type: '() -> Content' },
+    ],
+    requirements: ['SelectionValue : Swift.Hashable', 'Content : SwiftUICore.View'],
+  }),
+]
+
+const pageSlot = {
+  name: 'OneNativeTab',
+  publicName: 'Tab',
+  props: { tabId: 'string', kind: 'string' },
+  events: {},
+}
+
+const pagedHost = {
+  name: 'OneNativeSwiftPager',
+  publicName: 'Pager',
+  props: { selection: 'string', acknowledgedEvent: 'Int32', revision: 'Int32' },
+  events: {
+    onNativePagerSelectionChange: { selection: 'string', eventCount: 'Int32', revision: 'Int32' },
+  },
+  host: {
+    view: 'TabView',
+    binding: { label: 'selection', prop: 'selection', event: 'onNativePagerSelectionChange' },
+    pages: {
+      label: 'content',
+      slot: 'OneNativeTab',
+      key: 'tabId',
+      item: 'OneNativeTabItem',
+      header: 'OneNativeTabViewComponentView.h',
+      fields: { kind: '@"page"', title: '@""' },
+    },
+    modifiers: ['.tabViewStyle(.page)'],
+    layout: 'container',
+    scheme: true,
+    skipEmptyStyle: true,
+  },
+}
+
+const emitPaged = (components: readonly unknown[]) => {
+  const outputs = new Map<string, string>()
+  emitContainerHosts('', outputs, pagedInventory, 17, 27, components as never)
+  return outputs
+}
+
+describe('paged hosts', () => {
+  it('shows native pages from the SDK TabView call tagged by id', () => {
+    const outputs = emitPaged([pagedHost, pageSlot])
+    const swift = outputs.get('ios/Generated/OneNativeSwiftPagerView.swift')!
+    expect(swift).toContain('TabView(selection: Binding(')
+    expect(swift).toContain('ForEach(model.pages) { page in')
+    expect(swift).toContain(
+      'OneNativeSlot(content: page.view, mode: .fill, layoutHost: model.host, onLayout: page.onLayout)'
+    )
+    expect(swift).toContain('.tag(page.id)')
+    expect(swift).toContain('.tabViewStyle(.page)')
+    expect(swift).toContain('.id(model.pageRevision)')
+    expect(swift).toContain('model.host = self')
+  })
+
+  it('keeps keyed page identities and bumps the revision on topology change only', () => {
+    const outputs = emitPaged([pagedHost, pageSlot])
+    const swift = outputs.get('ios/Generated/OneNativeSwiftPagerView.swift')!
+    expect(swift).toContain('public func setPages(_ pages: [OneNativeTabItem])')
+    expect(swift).toContain('model.pages.map(\\.id) != pages.map(\\.id)')
+    expect(swift).toContain('mounted[page.id]')
+    expect(swift).toContain('current.view === page.view')
+    expect(swift).toContain('if topologyChanged { model.pageRevision += 1 }')
+    expect(swift).toContain('pages.contains(where: { $0.id == value })')
+    expect(swift).toContain('model.pages = []')
+    expect(swift).toContain('model.pageRevision = 0')
+  })
+
+  it('mounts native pages through the backref and publishes items on layout', () => {
+    const outputs = emitPaged([pagedHost, pageSlot])
+    const header = outputs.get('ios/Generated/OneNativeSwiftPagerComponentView.h')!
+    expect(header).toContain('#import "OneNativeTabViewComponentView.h"')
+    expect(header).toContain('<OneNativePageHost>')
+    const mm = outputs.get('ios/Generated/OneNativeSwiftPagerComponentView.mm')!
+    expect(mm).toContain('NSMutableArray<OneNativeTabComponentView *> *_pages')
+    expect(mm).toContain('NSAssert([child isKindOfClass:OneNativeTabComponentView.class]')
+    expect(mm).toContain('page.tabs = self')
+    expect(mm).toContain('[_pages insertObject:page atIndex:index]')
+    expect(mm).toContain('initWithId:page.tabId kind:@"page" title:@"" view:page onLayout:')
+    expect(mm).toContain('if (strongPage.tabs) [strongPage updateNativeFrame:frame]')
+    expect(mm).toContain('[_nativeView setPages:items]')
+    expect(mm).toContain('page.tabs = nil')
+    expect(mm).toContain('[_pages removeAllObjects]')
+    expect(mm).toContain('_pagesDirty = NO')
+  })
+
+  it('rejects pages without a controlled selection or beside other content', () => {
+    const { binding: _, ...noBinding } = pagedHost.host as typeof pagedHost.host & {
+      binding?: unknown
+    }
+    expect(() => emitPaged([{ ...pagedHost, host: noBinding }, pageSlot])).toThrow(
+      'pages move under a controlled selection'
+    )
+    const childish = { ...pagedHost, host: { ...pagedHost.host, children: 'content' } }
+    expect(() => emitPaged([childish, pageSlot])).toThrow('children or pages')
+    const marked = {
+      ...pagedHost,
+      host: { ...pagedHost.host, marker: { label: 'content', slot: 'OneNativeTab' } },
+    }
+    expect(() => emitPaged([marked, pageSlot])).toThrow('marker or pages')
+  })
+
+  it('rejects pages naming no slot, a key the slot does not carry, or a non-string selection', () => {
+    const missing = {
+      ...pagedHost,
+      host: { ...pagedHost.host, pages: { ...pagedHost.host.pages, slot: 'OneNativeMissing' } },
+    }
+    expect(() => emitPaged([missing, pageSlot])).toThrow('names no component')
+    const unkeyed = {
+      ...pagedHost,
+      host: { ...pagedHost.host, pages: { ...pagedHost.host.pages, key: 'missingId' } },
+    }
+    expect(() => emitPaged([unkeyed, pageSlot])).toThrow('must be a string prop')
+    const numeric = {
+      ...pagedHost,
+      props: { ...pagedHost.props, selection: 'Double' },
+      host: pagedHost.host,
+    }
+    expect(() => emitPaged([numeric, pageSlot])).toThrow('their binding is a string')
+  })
+})

@@ -60,6 +60,23 @@ export type HostRecipe = {
     sortUsing: string
     sortable: string
   }
+  // a builder label that shows identified native pages React mounts as `slot` views,
+  // keyed by the slot's string `key` prop. the host builds one `item` per mounted page,
+  // with the page's view and a frame callback, and SwiftUI tags each page by its id.
+  // `fields` fills the item's initializer after its id, in selector order, as ObjC
+  // expressions where `page` is the mounted slot view; the id reads `page.<key>` and
+  // the view and layout callback close the selector. the item keeps an `id`, a `view`
+  // and an `onLayout`, and the slot view keeps a `tabs` backref the host clears and an
+  // `updateNativeFrame` the callback runs while the backref stands. `header` is the
+  // ObjC header declaring the slot view and the page-host protocol.
+  pages?: {
+    label: string
+    slot: string
+    key: string
+    item: string
+    header: string
+    fields: Record<string, string>
+  }
   // initializer label to the prop that fills it. a view builder label takes `Text(prop)`.
   arguments?: Record<string, string>
   // the view builder label that takes React's children
@@ -498,6 +515,7 @@ export function emitContainerHosts(
           ...(recipe.items ? [recipe.items.label, ...(recipe.items.children ? [recipe.items.children] : [])] : []),
           ...(recipe.columns ? [recipe.columns.label] : []),
           ...(recipe.presented ? [recipe.presented.label] : []),
+          ...(recipe.pages ? [recipe.pages.label] : []),
         ].filter((label) => !without.includes(label))
       )
     // the keys a mounted row is found by, in the order its view declares them
@@ -589,8 +607,28 @@ export function emitContainerHosts(
     const marker = recipe.marker
     const viewSlot = recipe.viewSlot
     const key = marker?.key
+    const pages = recipe.pages
     const markerComponent = marker ? components.find((c) => c.name === marker.slot) : undefined
     if (marker && !markerComponent) fail(`marker slot ${marker.slot} names no component`)
+    const pageComponent = pages ? components.find((c) => c.name === pages.slot) : undefined
+    if (pages && !pageComponent) fail(`pages slot ${pages.slot} names no component`)
+    if (pages && pageComponent?.props[pages.key] !== 'string')
+      fail(`pages key ${pages.key} must be a string prop of ${pages.slot}`)
+    if (pages && !pages.item) fail('pages name their item')
+    if (pages && !pages.header) fail('pages name their header')
+    if (pages && !pages.label) fail('pages name their builder label')
+    if (pages && recipe.modifier) fail('pages fill a view builder, not a modifier')
+    if (pages && !recipe.binding) fail('pages move under a controlled selection')
+    if (pages && recipe.layout !== 'container') fail('pages fill a container')
+    if (pages && recipe.children) fail('a host shows children or pages, not both')
+    if (pages && marker) fail('a host captures a marker or pages, not both')
+    if (pages && recipe.items) fail('a host shows data rows or pages, not both')
+    if (pages && recipe.columns) fail('a host shows columns or pages, not both')
+    if (pages && presented) fail('a host presents content or pages, not both')
+    if (pages && recipe.selection) fail('pages move under a binding, not a selection')
+    if (pages && recipe.context) fail('pages fill the builder, which hands SwiftUI no value')
+    if (pages && (recipe.childStack || recipe.childModifier || recipe.childrenFallback))
+      fail('pages fill the builder, not the children')
     const markerConfigures = markerComponent ? Object.keys(markerComponent.props).length > 0 : false
     // every label of the SDK call has one owner: two roles claiming it would
     // silently render only the first one argumentFor checks
@@ -609,6 +647,7 @@ export function emitContainerHosts(
     }
     if (recipe.columns) roleLabels.push([recipe.columns.label, 'columns'])
     if (presented) roleLabels.push([presented.label, 'presented'])
+    if (pages) roleLabels.push([pages.label, 'pages'])
     if (marker) roleLabels.push([marker.label, 'marker'])
     if (key) {
       roleLabels.push([key.label, 'marker key'])
@@ -654,6 +693,7 @@ export function emitContainerHosts(
         recipe.items !== undefined ||
         recipe.columns !== undefined ||
         recipe.presented !== undefined ||
+        recipe.pages !== undefined ||
         recipe.builder !== undefined ||
         recipe.childrenFallback !== undefined ||
         Object.keys(recipe.labels ?? {}).length > 0 ||
@@ -682,6 +722,11 @@ export function emitContainerHosts(
     let contextType = ''
     // the rows React mounted for one item, found in the lookup the body builds once
     const mountedRows = `ForEach(mounted[[${rowLookup}]] ?? []) { row in\n  row.content\n}`
+    // the native pages React mounted, each tagged by its id so SwiftUI reconciles
+    // inserted and reordered pages against their content
+    const pagedBody = pages
+      ? `ForEach(model.pages) { page in\n  OneNativeSlot(content: page.view, mode: .fill, layoutHost: model.host, onLayout: page.onLayout)\n    .tag(page.id)\n}`
+      : ''
     const argumentFor = (
       parameter: Declaration['parameters'][number],
       sorted: boolean,
@@ -719,6 +764,9 @@ export function emitContainerHosts(
       }
       if (label === presented?.label) {
         return { label, prop: '', closure: true, swift: presentedBody }
+      }
+      if (label === pages?.label) {
+        return { label, prop: '', closure: true, swift: pagedBody }
       }
       if (label === recipe.children && recipe.items) {
         return { label, prop: '', closure: true, parameter: 'item', swift: mountedRows }
@@ -1129,9 +1177,14 @@ ${cases.join('\n')}
         fail(`modifier refers to $${label}, which is not a converted argument`)
       return value!.swift
     }
-    const modifiers = (recipe.modifiers ?? []).map((modifier) =>
-      model(modifier.replace(/\$(\w+)/g, (_, label: string) => converted(label)))
-    )
+    const modifiers = [
+      ...(recipe.modifiers ?? []).map((modifier) =>
+        model(modifier.replace(/\$(\w+)/g, (_, label: string) => converted(label)))
+      ),
+      // a topology change rebuilds the pages under a new identity, so SwiftUI drops
+      // removed pages instead of reusing the page at the same position
+      ...(pages ? ['.id(model.pageRevision)'] : []),
+    ]
 
     // the handed value's members, read from the SDK. a typealias reads as its type.
     const aliased = (type: string) =>
@@ -1282,6 +1335,7 @@ ${cases.join('\n')}
     const bindingField = Object.keys(bindingEvent)[0]
     if (binding && Object.keys(bindingEvent).join(',') !== `${bindingField},eventCount,revision`)
       fail(`${binding.event} must carry the value, eventCount and revision`)
+    if (pages && boundType !== 'String') fail('pages are keyed by id, so their binding is a string')
     const slotEvent = viewSlot
       ? (component.events?.[viewSlot.event] ?? fail(`slot event ${viewSlot.event} is not in the spec`))
       : {}
@@ -1547,6 +1601,13 @@ ${[
         '  }',
       ]
     : []),
+  ...(pages
+    ? [
+        `  @Published var pages: [${pages.item}] = []`,
+        '  @Published var pageRevision = 0',
+        '  weak var host: UIView?',
+      ]
+    : []),
   ...(accessible ? ['  @Published var accessibility = OneNativeAccessibility()'] : []),
   ...(binding || selection || action || contextValues.length ? ['  var active = false'] : []),
   ...(action
@@ -1615,7 +1676,9 @@ ${[
         `  var onChange: ((${boundType}, Int, Int) -> Void)?`,
         '',
         `  func change(_ value: ${boundType}) {`,
-        '    guard active, controlled.value != value else { return }',
+        pages
+          ? '    guard active, controlled.value != value, pages.contains(where: { $0.id == value }) else { return }'
+          : '    guard active, controlled.value != value else { return }',
         '    controlled.change(value)',
         '    onChange?(value, controlled.eventCount, controlled.revision)',
         '  }',
@@ -1711,7 +1774,7 @@ public final class ${name}View: ${leaf ? 'OneNativeStyledLeafView' : 'OneNativeC
 ${viewFields.length ? `${viewFields.join('\n')}\n\n` : ''}  public init() {
 ${initLines.length ? `${initLines.join('\n')}\n` : ''}    super.init(styled: { ${leaf ? 'style' : 'children, style, standalone'} in
       AnyView(${short}Content(${contentArguments}))
-    })${selection ? '\n    model.onSelectionChange = { [weak self] selection in\n      self?.onSelectionChange?(selection)\n    }' : ''}${binding ? '\n    model.onChange = { [weak self] value, count, revision in\n      self?.onChange?(value, count, revision)\n    }' : ''}${action ? '\n    model.onAction = { [weak self] count in self?.onAction?(count) }' : ''}${measured ? '\n    model.onHeight = { [weak self] height in self?.onMeasure?(height) }' : ''}${viewSlot ? '\n    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }' : ''}${
+    })${pages ? '\n    model.host = self' : ''}${selection ? '\n    model.onSelectionChange = { [weak self] selection in\n      self?.onSelectionChange?(selection)\n    }' : ''}${binding ? '\n    model.onChange = { [weak self] value, count, revision in\n      self?.onChange?(value, count, revision)\n    }' : ''}${action ? '\n    model.onAction = { [weak self] count in self?.onAction?(count) }' : ''}${measured ? '\n    model.onHeight = { [weak self] height in self?.onMeasure?(height) }' : ''}${viewSlot ? '\n    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }' : ''}${
       contextValues.length
         ? `\n    model.onContext = { [weak self] context in\n      self?.onContext?(${contextFields.map((f) => `context.${f.name}`).join(', ')})\n    }`
         : ''
@@ -1864,6 +1927,22 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
 `
         : ''
     }${
+      pages
+        ? `
+  public func setPages(_ pages: [${pages.item}]) {
+    let topologyChanged = model.pages.map(\\.id) != pages.map(\\.id)
+    // keep keyed page identities stable so SwiftUI reconciles inserted and reordered
+    // pages against their content instead of reusing the page at the same position.
+    let mounted = Dictionary(uniqueKeysWithValues: model.pages.map { ($0.id, $0) })
+    model.pages = pages.map { page in
+      guard let current = mounted[page.id], current.view === page.view else { return page }
+      return current
+    }
+    if topologyChanged { model.pageRevision += 1 }
+  }
+`
+        : ''
+    }${
       marker
         ? `
   public override func propagateActive(_ active: Bool) {
@@ -1972,6 +2051,7 @@ ${[
   ...(contextValues.length ? ['    model.latest = nil'] : []),
   ...(items ? ['    model.items = []', '    model.slots = [:]'] : []),
   ...(columns ? ['    model.decodedColumns = []'] : []),
+  ...(pages ? ['    model.pages = []', '    model.pageRevision = 0'] : []),
   ...(contextCommands.length ? ['    model.resetContext()'] : []),
 ].join('\n')}
     super.reset()
@@ -1994,7 +2074,7 @@ ${[
       `ios/Generated/${name}ComponentView.h`,
       `${header}#ifdef __cplusplus
 #import ${baseImport}
-@interface ${name}ComponentView : ${base}
+${pages ? `#import "${pages.header}"\n` : ''}@interface ${name}ComponentView : ${base}${pages ? ' <OneNativePageHost>' : ''}
 @end
 #endif
 `
@@ -2025,6 +2105,16 @@ ${[
       tint:next.tint ? RCTUIColorFromSharedColor(next.tint) : nil
       isEnabled:RCTNSStringFromString(next.isEnabled)];\n`
       : ''
+    // one item per mounted page: the id reads the page's key, the fields fill the
+    // initializer in selector order, and the view with its frame callback closes it
+    const pageItem = pages
+      ? `initWithId:page.${pages.key}${Object.entries(pages.fields)
+          .map(([label, expression]) => ` ${label}:${expression}`)
+          .join('')} view:page onLayout:^(CGRect frame) {\n` +
+        `        ${pages.slot}ComponentView *strongPage = weakPage;\n` +
+        `        if (strongPage.tabs) [strongPage updateNativeFrame:frame];\n` +
+        `      }`
+      : ''
     outputs.set(
       `ios/Generated/${name}ComponentView.mm`,
       `${header}#import "${name}ComponentView.h"
@@ -2032,12 +2122,12 @@ ${[
 #import "One-Swift.h"
 #import "OneNativeContainerStyle.h"
 ${measured || markerLayout ? `#import "${name}ShadowNode.h"` : '#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>'}
-#import <React/RCTConversions.h>${contextMethods.length ? '\n#import <react/renderer/components/OneNativeSpec/RCTComponentViewHelpers.h>' : ''}${presented ? `\n#import "${presented.slot}ComponentView.h"` : ''}
+#import <React/RCTConversions.h>${contextMethods.length ? '\n#import <react/renderer/components/OneNativeSpec/RCTComponentViewHelpers.h>' : ''}${presented ? `\n#import "${presented.slot}ComponentView.h"` : ''}${pages ? `\n#import "${pages.header}"` : ''}
 
 using namespace facebook::react;
 ${contextMethods.length ? `\n@interface ${name}ComponentView () <RCT${name}ViewProtocol>\n@end\n` : ''}
 @implementation ${name}ComponentView {
-  ${name}View *_nativeView;
+  ${name}View *_nativeView;${pages ? `\n  NSMutableArray<${pages.slot}ComponentView *> *_pages;\n  BOOL _pagesDirty;` : ''}
 }
 
 + (ComponentDescriptorProvider)componentDescriptorProvider {
@@ -2047,7 +2137,7 @@ ${contextMethods.length ? `\n@interface ${name}ComponentView () <RCT${name}ViewP
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const ${name}Props>();
-    _nativeView = [${name}View new];
+    _nativeView = [${name}View new];${pages ? `\n    _pages = [NSMutableArray new];` : ''}
 ${
   leaf
     ? `${hasSwiftStyle ? `    __weak ${name}ComponentView *weakSelf = self;
@@ -2152,6 +2242,47 @@ ${
 }
 `
     : ''
+}${
+  pages
+    ? `
+// pages mount as native views, so the host keeps them and publishes one item per
+// page on layout; a page reports through its backref while it stands
+- (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  NSAssert([child isKindOfClass:${pages.slot}ComponentView.class], @"${name} requires ${pages.slot} children");
+  ${pages.slot}ComponentView *page = (${pages.slot}ComponentView *)child;
+  page.tabs = self;
+  [_pages insertObject:page atIndex:index];
+  [self invalidatePages];
+}
+
+- (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  ${pages.slot}ComponentView *page = (${pages.slot}ComponentView *)child;
+  page.tabs = nil;
+  [_pages removeObjectIdenticalTo:page];
+  [page removeFromSuperview];
+  [self invalidatePages];
+}
+
+- (void)invalidatePages {
+  _pagesDirty = YES;
+  [self setNeedsLayout];
+}
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  if (!_pagesDirty) return;
+  _pagesDirty = NO;
+  NSMutableArray *items = [NSMutableArray new];
+  for (${pages.slot}ComponentView *page in _pages) {
+    __weak ${pages.slot}ComponentView *weakPage = page;
+    ${pages.item} *item = [[${pages.item} alloc]
+      ${pageItem}];
+    [items addObject:item];
+  }
+  [_nativeView setPages:items];
+}
+`
+    : ''
 }
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
 ${hasSwiftStyle || objcConfigured.length || environment || accessible ? `  const auto &next = *std::static_pointer_cast<const ${name}Props>(props);\n` : ''}${
@@ -2201,7 +2332,16 @@ ${contextMethods
   [_nativeView reset];
 }
 `
-    : ''
+    : pages
+      ? `
+- (void)prepareForRecycle {
+  [super prepareForRecycle];
+  for (${pages.slot}ComponentView *page in _pages) page.tabs = nil;
+  [_pages removeAllObjects];
+  _pagesDirty = NO;
+}
+`
+      : ''
 }
 @end
 `

@@ -1010,6 +1010,30 @@ export const components = [
   {
     name: 'OneNativeSwiftPager',
     publicName: 'Pager',
+    host: {
+      view: 'TabView',
+      binding: { label: 'selection', prop: 'selection', event: 'onNativePagerSelectionChange' },
+      pages: {
+        label: 'content',
+        slot: 'OneNativeTab',
+        key: 'tabId',
+        item: 'OneNativeTabItem',
+        header: 'OneNativeTabViewComponentView.h',
+        fields: {
+          kind: '@"page"',
+          title: '@""',
+          systemImage: '@""',
+          badge: '@""',
+          role: '@""',
+          slotHeight: '0',
+          tabModifiers: '@"{}"',
+        },
+      },
+      modifiers: ['.tabViewStyle(.page)'],
+      layout: 'container',
+      scheme: true,
+      skipEmptyStyle: true,
+    },
     props: {
       selection: 'string',
       acknowledgedEvent: 'Int32',
