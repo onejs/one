@@ -14,10 +14,7 @@ private struct DividerContent: View {
 
 @objcMembers
 public final class OneNativeDividerView: OneNativeStyledLeafView {
-
-
   public init() {
-
     super.init(styled: { style in
       AnyView(DividerContent(style: style))
     })
