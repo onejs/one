@@ -38,8 +38,6 @@ interface NativeProps extends ViewProps {
     revision: Int32;
     arrowEdge: string;
     presentationCompactAdaptation: string;
-    contentWidth: Double;
-    contentHeight: Double;
     swiftStyle?: OneNativeStyleNative;
     onNativePopoverIsPresentedChange?: DirectEventHandler<Readonly<{
         isPresented: boolean;
