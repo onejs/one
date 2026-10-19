@@ -67,9 +67,15 @@ export function UIKitContent({
   useEffect(() => {
     if (!wantsView) return
     let active = true
-    void callSDKAsync<UIView>('OneNativeViews', 3, null, [contentId]).then((view) => {
-      if (active) deliver.current?.(view)
-    })
+    // native rejects the read once the content unmounts, which only an inactive effect sees
+    void callSDKAsync<UIView>('OneNativeViews', 3, null, [contentId]).then(
+      (view) => {
+        if (active) deliver.current?.(view)
+      },
+      (error) => {
+        if (active) throw error
+      }
+    )
     return () => {
       active = false
     }
