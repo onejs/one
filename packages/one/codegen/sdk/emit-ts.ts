@@ -403,20 +403,47 @@ class Facade {
       resolved: new Map(Object.entries(e.specialization ?? {})),
     })
   }
+  // an objective-c owner's open parameter stays generic in typescript
+  objcParam(e: E, type: SwiftType): string | undefined {
+    if (type.k !== 'named' || type.args.length || type.usr) return undefined
+    const info = this.infos.get(cleanOwner(e.owner ?? ''))
+    const witnesses = info && this.bridge.index.get(info.usr)?.objcWitnesses
+    if (!info?.genericParameters?.includes(type.name) || !witnesses?.length) return undefined
+    return type.name
+  }
+  objcInit(e: E): { union: string } | undefined {
+    if (e.kind !== 'init') return undefined
+    const info = this.infos.get(cleanOwner(e.owner ?? ''))
+    const witnesses = info && this.bridge.index.get(info.usr)?.objcWitnesses
+    if (!info?.genericParameters?.length || !witnesses?.length) return undefined
+    if (!e.params.some((p) => this.objcParam(e, this.concrete(e, p.type)))) return undefined
+    const union = witnesses.map((u) => {
+      const w = this.bridge.index.get(u)
+      return w ? this.reference(w) : 'SDKHandle'
+    }).join(' | ')
+    return { union }
+  }
   result(e: E) {
     const concrete = e.returns ? this.concrete(e, e.returns) : undefined
     const unwrapped = (concrete && unmanagedReturn(concrete, e.name)?.inner) ?? concrete
-    let result = unwrapped ? this.type(unwrapped) : 'void'
+    const openName = unwrapped && (this.objcParam(e, unwrapped) ??
+      (unwrapped.k === 'optional' ? this.objcParam(e, unwrapped.t) : undefined))
+    let result = openName
+      ? (unwrapped!.k === 'optional' ? `(${openName}) | null` : openName)
+      : unwrapped ? this.type(unwrapped) : 'void'
     if (e.kind === 'init') {
       const info =
         e.receiver?.k === 'named'
           ? this.info(e.receiver)
           : this.infos.get(cleanOwner(e.owner ?? ''))
-      result = e.receiver
-        ? this.type(e.receiver)
-        : info
-          ? this.reference(info)
-          : 'SDKHandle'
+      const objc = this.objcInit(e)
+      result = objc && info
+        ? `${this.reference(info)}<T>`
+        : e.receiver
+          ? this.type(e.receiver)
+          : info
+            ? this.reference(info)
+            : 'SDKHandle'
       const declaration =
         this.symbols
           .get(e.usr)
@@ -442,7 +469,10 @@ class Facade {
       const optional =
         (p.hasDefault || p.optional) &&
         params.slice(i + 1).every((p) => p.hasDefault || p.optional)
-      let type = this.type(this.concrete(e, p.type), true)
+      const open = this.objcParam(e, this.concrete(e, p.type))
+      let type = open
+        ? ((e.kind === 'init' || e.kind === 'static') ? 'T' : open)
+        : this.type(this.concrete(e, p.type), true)
       if (p.keyPaths?.length) type = [...p.keyPaths.map(quote), 'SDKHandle'].join(' | ')
       if (p.typeNames?.length) type = p.typeNames.map(quote).join(' | ')
       return {
@@ -560,7 +590,9 @@ class Facade {
       return `${this.static(e) ? 'static ' : ''}set ${name}(${this.params(e)
         .map((p) => p.declaration.replace('?:', ':'))
         .join(', ')})`
-    return `${this.static(e) ? 'static ' : ''}${this.memberName(e)}(${this.params(e)
+    const objc = this.objcInit(e)
+    const typeParams = objc ? `<T extends ${objc.union}>` : ''
+    return `${this.static(e) ? 'static ' : ''}${this.memberName(e)}${typeParams}(${this.params(e)
       .map((p) => p.declaration)
       .join(', ')}): ${returned}`
   }

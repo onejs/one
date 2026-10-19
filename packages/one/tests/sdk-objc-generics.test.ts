@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { Bridge, judge } from '../codegen/sdk/bridge'
 import { emitModule } from '../codegen/sdk/emit'
+import { emitFacade } from '../codegen/sdk/emit-ts'
 import type { Fragment, Graph, Symbol } from '../codegen/sdk/graph'
 
 vi.mock('../codegen/sdk/graph', async (importOriginal) => {
@@ -147,5 +148,18 @@ describe('objc generic owners', () => {
     expect(output.swift).toContain('TestModule.TestA')
     expect(output.swift).toContain('TestModule.TestB')
     expect(output.swift).toContain('badArgument')
+  })
+
+  it('keeps the value generic in typescript', () => {
+    const bridge = bridgeWithWitnesses()
+    const output = emitModule(graphWith([labelSymbol(), valueSymbol(), initSymbol()]), bridge, new Map())
+    const facade = emitFacade(
+      { module: 'TestModule', entries: output.entries.map(({ swift, ...e }) => e), skipped: output.skipped },
+      bridge
+    )
+    expect(facade).toContain('class TestLabeled<Value = unknown>')
+    expect(facade).toContain('get value(): Value')
+    expect(facade).toContain('TestA')
+    expect(facade).toContain('TestB')
   })
 })
