@@ -279,6 +279,284 @@ export const navigationHost = {
     },
   },
 } as const
+
+// the tab view host's fixed SDK surface: the modern and legacy TabView
+// initializers, the String TabSection initializer, the TabViewCustomization
+// Codable round-trip, the tabView and bar-visibility View modifiers, every
+// TabContent method the tabs and sections call, the four label styles, and
+// the toolbar, accessory, and container placements. ios is the exact SDK
+// version each declaration ships; floor marks the call sites no availability
+// gate covers, which must stay at or below it. the Tab initializer is the
+// tabConstructor above, reused rather than restated; tabViewStyle, the tab
+// enums, the NavigationStack and toolbar content inside each tab, and the
+// view slots come from their own mappings. generic views (Text, Label,
+// Button, ForEach) and universal modifiers (tag, badge, background) stay
+// unvalidated the way Menu and Navigation leave them. UIKit (the tab bar
+// controller delegate interception and scroll view naming) ships no scanned
+// inventory and stays explicit semantic mapping in the emitter.
+export const tabViewHost = {
+  view: {
+    type: 'TabView',
+    parameters: [
+      { label: 'selection', type: 'SwiftUICore.Binding<SelectionValue>' },
+      { label: 'content', type: '() -> C' },
+    ],
+    ios: 18,
+  },
+  // deprecated but still shipped: the pre-18 path resolves here, so selection
+  // is present-based rather than available-based.
+  legacyView: {
+    type: 'TabView',
+    parameters: [
+      { label: 'selection', type: 'SwiftUICore.Binding<SelectionValue>?' },
+      { label: 'content', type: '() -> Content' },
+    ],
+    ios: 13,
+    floor: true,
+  },
+  section: {
+    type: 'TabSection',
+    parameters: [
+      { label: '_', type: 'S' },
+      { label: 'content', type: '() -> Content' },
+    ],
+    requirements: [
+      'Content : SwiftUI.TabContent',
+      'SelectionValue : Swift.Hashable',
+      'Header == SwiftUICore.Text',
+      'Footer == SwiftUICore.EmptyView',
+      'S : Swift.StringProtocol',
+    ],
+    ios: 18,
+  },
+  customization: {
+    type: 'TabViewCustomization',
+    init: { parameters: [] as const },
+    encode: {
+      name: 'encode',
+      parameters: [{ label: 'to', type: 'any Swift.Encoder' }],
+    },
+    decode: {
+      parameters: [{ label: 'from', type: 'any Swift.Decoder' }],
+    },
+    ios: 18,
+  },
+  modifiers: [
+    {
+      name: 'tabViewCustomization',
+      parameters: [{ label: '_', type: 'SwiftUICore.Binding<SwiftUI.TabViewCustomization>?' }],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'tabViewBottomAccessory',
+      parameters: [
+        { label: 'isEnabled', type: 'Swift.Bool' },
+        { label: 'content', type: '() -> Content' },
+      ],
+      requirements: ['Content : SwiftUICore.View'],
+      ios: 26.1,
+    },
+    {
+      name: 'toolbarVisibility',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Visibility' },
+        { label: 'for', type: 'SwiftUI.ToolbarPlacement' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'labelStyle',
+      parameters: [{ label: '_', type: 'S' }],
+      requirements: ['S : SwiftUI.LabelStyle'],
+      ios: 14,
+      floor: true,
+    },
+    {
+      name: 'containerBackground',
+      parameters: [
+        { label: '_', type: 'S' },
+        { label: 'for', type: 'SwiftUI.ContainerBackgroundPlacement' },
+      ],
+      requirements: ['S : SwiftUICore.ShapeStyle'],
+      ios: 17,
+    },
+  ],
+  // deprecated but still shipped: the pre-18 path resolves here.
+  legacyModifiers: [
+    {
+      name: 'toolbar',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Visibility' },
+        { label: 'for', type: 'SwiftUI.ToolbarPlacement' },
+      ],
+      requirements: [],
+      ios: 16,
+      floor: true,
+    },
+    {
+      name: 'tabItem',
+      parameters: [{ label: '_', type: '() -> V' }],
+      requirements: ['V : SwiftUICore.View'],
+      ios: 13,
+      floor: true,
+    },
+  ],
+  // every TabContent method the emitted tabs and sections call. the SDK
+  // declares the placement pairs variadic (for placements: ...); the
+  // extractor spells one `for`, which every call arity resolves to.
+  tabContent: [
+    { name: 'badge', parameters: [{ label: '_', type: 'SwiftUICore.Text?' }], requirements: [], ios: 18 },
+    { name: 'hidden', parameters: [{ label: '_', type: 'Swift.Bool' }], requirements: [], ios: 18 },
+    {
+      name: 'accessibilityLabel',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Text' },
+        { label: 'isEnabled', type: 'Swift.Bool' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'accessibilityHint',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Text' },
+        { label: 'isEnabled', type: 'Swift.Bool' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'accessibilityValue',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Text' },
+        { label: 'isEnabled', type: 'Swift.Bool' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'accessibilityIdentifier',
+      parameters: [
+        { label: '_', type: 'Swift.String' },
+        { label: 'isEnabled', type: 'Swift.Bool' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    { name: 'disabled', parameters: [{ label: '_', type: 'Swift.Bool' }], requirements: [], ios: 18.4 },
+    { name: 'customizationID', parameters: [{ label: '_', type: 'Swift.String' }], requirements: [], ios: 18 },
+    {
+      name: 'customizationBehavior',
+      parameters: [
+        { label: '_', type: 'SwiftUI.TabCustomizationBehavior' },
+        { label: 'for', type: 'SwiftUI.AdaptableTabBarPlacement' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'defaultVisibility',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Visibility' },
+        { label: 'for', type: 'SwiftUI.AdaptableTabBarPlacement' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'springLoadingBehavior',
+      parameters: [{ label: '_', type: 'SwiftUI.SpringLoadingBehavior' }],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'tabPlacement',
+      parameters: [{ label: '_', type: 'SwiftUI.TabPlacement' }],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'sectionActions',
+      parameters: [{ label: 'content', type: '() -> Content' }],
+      requirements: ['Content : SwiftUICore.View'],
+      ios: 18,
+    },
+    {
+      name: 'defaultSectionExpansion',
+      parameters: [{ label: '_', type: 'SwiftUI.TabSectionExpansion' }],
+      requirements: [],
+      ios: 27,
+    },
+    {
+      name: 'help',
+      parameters: [{ label: '_', type: 'SwiftUICore.Text' }],
+      requirements: [],
+      ios: 27,
+    },
+  ],
+  labelStyles: [
+    { member: 'automatic', type: 'SwiftUI.DefaultLabelStyle', ios: 14 },
+    { member: 'iconOnly', type: 'SwiftUI.IconOnlyLabelStyle', ios: 14 },
+    { member: 'titleAndIcon', type: 'SwiftUI.TitleAndIconLabelStyle', ios: 14.5 },
+    { member: 'titleOnly', type: 'SwiftUI.TitleOnlyLabelStyle', ios: 14 },
+  ],
+  placements: {
+    tabBar: { owner: 'ToolbarPlacement', member: 'tabBar', type: 'SwiftUI.ToolbarPlacement', ios: 16, floor: true },
+    navigation: {
+      owner: 'ContainerBackgroundPlacement',
+      member: 'navigation',
+      type: 'SwiftUI.ContainerBackgroundPlacement',
+      ios: 18,
+    },
+    accessory: {
+      owner: 'TabViewBottomAccessoryPlacement',
+      members: ['inline', 'expanded'],
+      type: 'TabViewBottomAccessoryPlacement',
+      ios: 26,
+    },
+    accessoryEnvironment: {
+      owner: 'SwiftUICore.EnvironmentValues',
+      name: 'tabViewBottomAccessoryPlacement',
+      type: 'SwiftUI.TabViewBottomAccessoryPlacement?',
+      ios: 26,
+    },
+  },
+  // the view configure selector in order: Swift label to the spec prop that
+  // fills it and the exact spec type the model reads.
+  configure: [
+    { label: 'tabViewStyle', prop: 'tabViewStyle', type: 'string' },
+    { label: 'tabBarVisibility', prop: 'tabBarVisibility', type: 'string' },
+    { label: 'customization', prop: 'customization', type: 'string' },
+    { label: 'customizable', prop: 'customizable', type: 'boolean' },
+    { label: 'bottomAccessoryEnabled', prop: 'bottomAccessoryEnabled', type: 'boolean' },
+  ],
+  selection: [
+    { label: '_', prop: 'selection', type: 'string' },
+    { label: 'acknowledgedEvent', prop: 'acknowledgedEvent', type: 'Int32' },
+    { label: 'revision', prop: 'revision', type: 'Int32' },
+  ],
+  // the page item the Fabric glue builds per mounted Tab: item initializer
+  // label to the spec prop that fills it and the exact spec type it reads,
+  // where `page` is the mounted Tab view; the id reads page.tabId, the role
+  // reads page.tabRole, and the view and layout callback close the selector.
+  tab: {
+    component: 'OneNativeTab',
+    args: [
+      { label: 'id', prop: 'tabId', type: 'string' },
+      { label: 'kind', prop: 'kind', type: 'string' },
+      { label: 'title', prop: 'title', type: 'string' },
+      { label: 'systemImage', prop: 'systemImage', type: 'string' },
+      { label: 'badge', prop: 'badge', type: 'string' },
+      { label: 'role', prop: 'tabRole', type: 'string' },
+      { label: 'slotHeight', prop: 'slotHeight', type: 'Double' },
+      { label: 'tabModifiers', prop: 'tabModifiers', type: 'string' },
+    ],
+    style: true,
+    sdkEvent: true,
+  },
+} as const
 export const styleModifiers = [
   {
     name: 'font',

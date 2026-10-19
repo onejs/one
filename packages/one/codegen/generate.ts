@@ -11,6 +11,7 @@ import { deriveModifiers, deriveViewSlots, deriveViews } from './deriveSDK'
 import { emitMenuValidator } from './menuValidator'
 import { emitMenuHost } from './emitMenuHost'
 import { emitNavigationHost } from './emitNavigation'
+import { emitTabViewHost } from './emitTabViewHost'
 import {
   readInventory,
   ios,
@@ -890,6 +891,7 @@ ${Object.entries(nativeFields)
 )
 emitMenuHost(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
 emitNavigationHost(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
+emitTabViewHost(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
 const manifest = {
   // the ceiling, not the local toolchain: output must be identical on every SDK at or above it.
   sdk: String(MAXIMUM_IOS),
