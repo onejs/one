@@ -103,7 +103,7 @@ function swiftType(type: SwiftType): string {
 
 // a plain instance getter body, the only shape a key path can observe
 function observedGetter(e: Entry) {
-  return `let o: ${swiftType(e.receiver!)} = try c.receiver(); return c.out(o.${member(e.name)})`
+  return `let o: ${swiftType(e.receiver!)} = try c.receiver(); return c.out(${e.main ? 'await ' : ''}o.${member(e.name)})`
 }
 
 function needsOutputConversion(type: SwiftType): boolean {
@@ -822,9 +822,10 @@ ${needsCheck(version) ? `@available(iOS ${version}, *)\n` : ''}extension ${info.
 ${methods.join('\n')}
 }`
   })
+  // public getters can await main; key-path observation already runs on that actor.
   // decided here, while swift bodies exist; app manifests keep only the kind
   for (const e of entries) {
-    if (e.kind !== 'get' || e.isAsync || e.receiver?.k !== 'named' || !e.swift.includes(observedGetter(e)) || /(?:try|await) o\./.test(e.swift)) continue
+    if (e.kind !== 'get' || e.isAsync || e.receiver?.k !== 'named' || !e.swift.includes(observedGetter(e))) continue
     if (e.usr.startsWith('c:objc(')) e.observation = 'kvo'
     else if (bridge.index.get(e.receiver.usr ?? '')?.conformsTo?.includes(OBSERVABLE)) e.observation = 'tracking'
   }

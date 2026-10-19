@@ -123,7 +123,7 @@ describe('main actor inheritance', () => {
     const { output } = emit()
     expect(isolation(output, 'TestSheet')).toEqual({ init: true, get: true, set: true })
     for (const entry of output.entries.filter((e) => e.owner === 'TestModule.TestSheet')) {
-      const dispatch = output.swift.split('\n').filter((l) => l.startsWith(`    case ${entry.id}: `) && l.includes('c.'))
+      const dispatch = output.swift.split('\n').filter((l) => l.startsWith(`    case ${entry.id}: `) && l.includes('{ @MainActor in '))
       expect(dispatch, entry.key).toHaveLength(1)
       expect(dispatch[0]).toContain('{ @MainActor in ')
     }
