@@ -85,6 +85,35 @@ describe('container surface', () => {
     expect(onChange).toHaveBeenCalledWith('favorites')
   })
 
+  it('keeps omitted slot options null apart from zero and false', () => {
+    const child = createElement(Containers.ViewSlot.Content, { children: null })
+    const values = (name: string, options?: object) =>
+      JSON.parse(
+        render(Containers.ViewSlot, { name, options, children: child }).props.slotValues
+      )
+    expect(values('safeAreaInsetWithVerticalEdge', { edge: 'bottom' })).toEqual([
+      'bottom',
+      null,
+      null,
+    ])
+    expect(values('safeAreaInsetWithVerticalEdge', { edge: 'bottom', spacing: 0 })).toEqual([
+      'bottom',
+      null,
+      '0',
+    ])
+    expect(
+      values('safeAreaInsetWithVerticalEdge', { edge: 'bottom', alignment: 'leading', spacing: 8 })
+    ).toEqual(['bottom', 'leading', '8'])
+    expect(values('swipeActions')).toEqual([null, null])
+    expect(values('swipeActions', { allowsFullSwipe: false })).toEqual([null, 'false'])
+    expect(() => values('safeAreaInsetWithVerticalEdge', {})).toThrow(
+      'safeAreaInsetWithVerticalEdge.edge must be a declared SDK case'
+    )
+    expect(() =>
+      values('safeAreaInsetWithVerticalEdge', { edge: 'bottom', alignment: 'diagonal' })
+    ).toThrow('safeAreaInsetWithVerticalEdge.alignment must be a declared SDK case')
+  })
+
   it('throws for every container without the native build', () => {
     // HStack and VStack are Host with the axis fixed, so they carry no component of their
     // own and the catalog does not list them.

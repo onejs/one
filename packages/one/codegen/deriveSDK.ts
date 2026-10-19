@@ -12,7 +12,7 @@ export type DerivedArgument = {
   label: string
   type: string
   sdkType?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate' | 'structUpdate'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'numericRange' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate' | 'structUpdate'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
   value?: DerivedValue
@@ -260,6 +260,14 @@ export const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number
       if (fields.length && fields.every(Boolean))
         return { kind: 'numericTuple', type, optional, fields: fields as NonNullable<DerivedArgument['fields']> }
     }
+    const range = /^Swift\.(ClosedRange|Range|PartialRangeFrom|PartialRangeThrough|PartialRangeUpTo)<(.+)>$/.exec(baseType)
+    if (range && numericType(range[2])) {
+      const names = range[1] === 'ClosedRange' || range[1] === 'Range'
+        ? ['lower', 'upper']
+        : range[1] === 'PartialRangeFrom' ? ['lower'] : ['upper']
+      return { kind: 'numericRange', type, optional,
+        fields: names.map((name) => ({ name, label: name, type: range[2] })) }
+    }
     if (!/^[A-Za-z_]\w*\.[A-Za-z][\w.]*$/.test(baseType)) return
     const [module, ...owner] = baseType.split('.')
     const ownerName = owner.join('.')
@@ -376,7 +384,7 @@ export const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number
   return Object.assign(valueOf, { factoriesOf: (declarations: readonly Declaration[]) => factoriesOf(declarations, 0) })
 }
 
-export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
+export type DerivedSlotArgument = (DerivedArgument & { defaulted?: true }) | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
 export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; closureInputs?: readonly string[]; contentWrapper?: string; preferenceKey?: string; preferenceEvent?: EventValueSchema; arguments: readonly DerivedSlotArgument[] }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
@@ -416,6 +424,13 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     const generic = /^SwiftUICore\.Binding<([A-Za-z_]\w*)>$/.exec(type)?.[1]
     return Boolean(generic && d.requirements?.includes(`${generic} : Swift.Hashable`))
   }
+  const valueTypeIOS = (type: string) => {
+    const [module, ...owner] = type.replace(/\?$/, '').split('.')
+    const declaration = inventory.find((d) => d.module === module &&
+      ['struct', 'enum', 'class'].includes(d.kind) &&
+      d.owner === owner.slice(0, -1).join('.') && d.name === owner.at(-1) && present(d))
+    return declaration ? ios(declaration) : 0
+  }
   const slots = inventory.filter((d) => {
     const builders = d.parameters.filter((parameter) => isContent(d, parameter))
     return (
@@ -451,16 +466,31 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     const directSuffix = declarations.length > 1 && directValue
       ? `With${content.label === '_' ? content.type.replace(/\?$/, '') : content.label[0].toUpperCase() + content.label.slice(1)}`
       : suffix
+    const slotIOS = Math.max(ios(slot), contentWrapper?.ios ?? 0)
+    // defaulted scalar and enum arguments stay optional: omission keeps the SDK
+    // default while names built from required parameters never change. anything
+    // else (closures, bindings, unbridgeable values, newer-than-slot types) is
+    // rejected before emission instead of inventing a native default.
+    const defaulted = slot.parameters.filter((parameter) => {
+      if (parameter === content || parameter.defaultValue === undefined) return false
+      const value = valueOf(parameter.type)
+      return Boolean(value && ['boolean', 'number', 'enum'].includes(value.kind) &&
+        valueTypeIOS(parameter.type) <= slotIOS)
+    })
+    // presence branches double per non-nilable defaulted argument; beyond three
+    // the slot keeps its required arguments only.
+    const kept = defaulted.filter((parameter) => !valueOf(parameter.type)!.optional).length > 3 ? [] : defaulted
     return { name: `${slot.name}${directSuffix}`, ...(directSuffix ? { sdkName: slot.name } : {}), module: slot.module,
-      label: content.label, ios: Math.max(ios(slot), contentWrapper?.ios ?? 0),
+      label: content.label, ios: slotIOS,
       ...(contentWrapper ? { contentWrapper: contentWrapper.type } : {}),
       ...(directValue ? { directValue: true as const } : {}),
       ...(closureInputs ? { closureInputs } : {}),
       arguments: slot.parameters.filter((parameter) =>
-        parameter !== content && parameter.defaultValue === undefined)
+        parameter !== content && (parameter.defaultValue === undefined || kept.includes(parameter)))
         .map((parameter) => parameter.type === 'SwiftUICore.Binding<Swift.Bool>' || isStringBinding(slot, parameter.type)
           ? { field: parameter.name, label: parameter.label, type: parameter.type, kind: parameter.type === 'SwiftUICore.Binding<Swift.Bool>' ? 'bindingBoolean' as const : 'bindingString' as const, optional: false as const }
-          : { ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }) }
+          : { ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label,
+            ...(parameter.defaultValue !== undefined ? { defaulted: true as const } : {}) }) }
   }))
   const preferenceMethods = inventory.filter((method) =>
     method.kind === 'func' && method.module === 'SwiftUICore' &&
@@ -1964,6 +1994,13 @@ export function deriveModifiers(
       if (value.kind === 'numericStruct' || value.kind === 'numericTuple')
         return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
           arguments: [{ ...value, field: method.parameters[0].name || 'value', label }], ...framework }]
+      if (value.kind === 'numericRange') {
+        const rangeKind = /^Swift\.(ClosedRange|Range|PartialRangeFrom|PartialRangeThrough|PartialRangeUpTo)</.exec(
+          value.type.replace(/\?$/, ''))?.[1] ?? 'Range'
+        return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+          aliasSuffix: rangeKind,
+          arguments: [{ ...value, field: method.parameters[0].name || 'value', label }], ...framework }]
+      }
       const kind = value.kind === 'enum'
         ? value.optional ? 'optionalEnum' : 'string'
         : value.kind === 'url'

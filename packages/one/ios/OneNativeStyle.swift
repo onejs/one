@@ -759,8 +759,11 @@ extension View {
       case "layoutPriority": view = AnyView(view.oneNativeSDKLayoutPriority(value, emit: emit))
       case "layoutValue": view = AnyView(view.oneNativeSDKLayoutValue(value, emit: emit))
       case "lineHeight": view = AnyView(view.oneNativeSDKLineHeight(value, emit: emit))
+      case "lineLimitWithClosedRange": view = AnyView(view.oneNativeSDKLineLimitWithClosedRange(value, emit: emit))
       case "lineLimitWithLimitAndReservesSpace": view = AnyView(view.oneNativeSDKLineLimitWithLimitAndReservesSpace(value, emit: emit))
       case "lineLimitWithOptionalInt": view = AnyView(view.oneNativeSDKLineLimitWithOptionalInt(value, emit: emit))
+      case "lineLimitWithPartialRangeFrom": view = AnyView(view.oneNativeSDKLineLimitWithPartialRangeFrom(value, emit: emit))
+      case "lineLimitWithPartialRangeThrough": view = AnyView(view.oneNativeSDKLineLimitWithPartialRangeThrough(value, emit: emit))
       case "lineSpacing": view = AnyView(view.oneNativeSDKLineSpacing(value, emit: emit))
       case "listItemTintWithOptionalColor": view = AnyView(view.oneNativeSDKListItemTintWithOptionalColor(value, emit: emit))
       case "listItemTintWithOptionalListItemTint": view = AnyView(view.oneNativeSDKListItemTintWithOptionalListItemTint(value, emit: emit))
@@ -5349,6 +5352,25 @@ self
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKLineLimitWithClosedRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid lineLimitWithClosedRange: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.ClosedRange<Swift.Int> = {
+      guard let raw = values[0] else { preconditionFailure("missing lineLimitWithClosedRange.limit") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["lower"], field0.isFinite, Int(exactly: field0) != nil,
+        let field1 = decoded["upper"], field1.isFinite, Int(exactly: field1) != nil,
+        field0 <= field1 else { preconditionFailure("invalid lineLimitWithClosedRange.limit: \(raw)") }
+      return Int(field0)...Int(field1)
+    }()
+    self.lineLimit(argument0)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKLineLimitWithLimitAndReservesSpace(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -5373,6 +5395,40 @@ self
     if value == "null" { self.lineLimit(nil as Swift.Int?) } else { if let number = Double(value), number.isFinite {
       self.lineLimit(Int(number))
     } else { preconditionFailure("invalid lineLimitWithOptionalInt: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLineLimitWithPartialRangeFrom(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid lineLimitWithPartialRangeFrom: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.PartialRangeFrom<Swift.Int> = {
+      guard let raw = values[0] else { preconditionFailure("missing lineLimitWithPartialRangeFrom.limit") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["lower"], field0.isFinite, Int(exactly: field0) != nil else { preconditionFailure("invalid lineLimitWithPartialRangeFrom.limit: \(raw)") }
+      return Int(field0)...
+    }()
+    self.lineLimit(argument0)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLineLimitWithPartialRangeThrough(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid lineLimitWithPartialRangeThrough: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.PartialRangeThrough<Swift.Int> = {
+      guard let raw = values[0] else { preconditionFailure("missing lineLimitWithPartialRangeThrough.limit") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["upper"], field0.isFinite, Int(exactly: field0) != nil else { preconditionFailure("invalid lineLimitWithPartialRangeThrough.limit: \(raw)") }
+      return ...Int(field0)
+    }()
+    self.lineLimit(argument0)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
