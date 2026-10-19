@@ -378,4 +378,25 @@ export function sdkValueText(value: unknown, key: string, context: string): stri
   const parsed: unknown = JSON.parse(text)
   checkSDKValue(parsed, key, context)
   return typeof parsed === 'string' ? parsed : text
+}
+
+// returns the text native decodes for a numeric struct, tuple or range: the record as
+// JSON, validated as the parsed JSON it serializes to, so toJSON, getters and undefined
+// fields cannot send native anything other than what was checked.
+function sdkNumericRecordText(item: unknown, fields: readonly { name: string; integer: boolean }[], context: string, range: boolean): string {
+  const text = JSON.stringify(item)
+  if (typeof text !== 'string') throw new Error(context + (range ? ' must be a numeric range' : ' must be a numeric object'))
+  const parsed: unknown = JSON.parse(text)
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed) ||
+    Object.keys(parsed).length !== fields.length ||
+    fields.some((field) => {
+      const number = (parsed as Record<string, unknown>)[field.name]
+      return typeof number !== 'number' || !Number.isFinite(number) || (field.integer && !Number.isSafeInteger(number))
+    })) throw new Error(context + (range ? ' must be a numeric range' : ' must be a numeric object'))
+  if (range && fields.length === 2) {
+    const lower = (parsed as Record<string, number>).lower
+    const upper = (parsed as Record<string, number>).upper
+    if (lower > upper) throw new Error(context + ' must have lower <= upper')
+  }
+  return text
 }`

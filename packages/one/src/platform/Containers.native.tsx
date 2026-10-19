@@ -1268,6 +1268,8 @@ function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps)
     throw new Error(`Swift.ViewSlot ${name}.onValue must be a callback`)
   const values = viewSlotArguments[name].map((argument) => {
     const value = (options as Record<string, unknown> | undefined)?.[argument.field]
+    // absent optionals encode as null so zero and false stay distinct from omission.
+    if (value === undefined && 'optional' in argument && argument.optional) return null
     if (argument.kind === 'bindingBoolean' || argument.kind === 'bindingString') {
       if (typeof value !== 'object' || value === null ||
         typeof (value as { value?: unknown }).value !== (argument.kind === 'bindingBoolean' ? 'boolean' : 'string') ||
@@ -1278,6 +1280,12 @@ function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps)
     if (argument.kind === 'boolean') {
       if (typeof value !== 'boolean')
         throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a boolean`)
+      return String(value)
+    }
+    if (argument.kind === 'number') {
+      if (typeof value !== 'number' || !Number.isFinite(value) ||
+        ('type' in argument && argument.type.replace(/\?$/, '') === 'Swift.Int' && !Number.isSafeInteger(value)))
+        throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a number`)
       return String(value)
     }
     if (argument.kind === 'string') {

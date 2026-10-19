@@ -180,6 +180,7 @@ declare module 'one' {
         | `/one-native-state`
         | `/one-native-storage`
         | `/one-native-store-review`
+        | `/one-native-generated-options`
         | `/one-native-swift-gestures`
         | `/one-native-swipe-actions`
         | `/one-native-system`

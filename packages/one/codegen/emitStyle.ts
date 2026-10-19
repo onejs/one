@@ -63,10 +63,10 @@ func oneNativeAnimation(named name: String) -> SwiftUI.Animation {
   outputs.set('src/platform/generated/viewSlots.ts', header + `import type { SDKEventValueShape } from './swiftStyleNative'
 export const viewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.ios])))} as const
 export type ViewSlotName = keyof typeof viewSlotAvailability
-export const viewSlotArguments = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.arguments.map((argument) => ({ field: argument.field, kind: argument.kind, ...(argument.cases ? { cases: Object.fromEntries(argument.cases.map((item) => [item.name, item.ios])) } : {}) }))])))} as const
+export const viewSlotArguments = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.arguments.map((argument) => ({ field: argument.field, kind: argument.kind, ...(argument.defaulted ? { optional: true } : {}), ...(argument.kind === 'number' ? { type: argument.type } : {}), ...(argument.cases ? { cases: Object.fromEntries(argument.cases.map((item) => [item.name, item.ios])) } : {}) }))])))} as const
 export const viewSlotEvents: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(slots.filter((slot) => slot.preferenceEvent).map((slot) => [slot.name, slot.preferenceEvent])))}
 export type ViewSlotConfiguration =
-${slots.map((slot) => `  | { name: ${JSON.stringify(slot.name)}; ${slot.arguments.length || slot.preferenceEvent ? `options: { ${[...slot.arguments.map((argument) => `${argument.field}: ${argument.kind === 'bindingBoolean' ? '{ value: boolean; onChange: (value: boolean) => void }' : argument.kind === 'bindingString' ? '{ value: string; onChange: (value: string) => void }' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'string' ? 'string' : argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}`), ...(slot.preferenceEvent ? [`onValue: (value: ${eventValueType(slot.preferenceEvent)}) => void`] : [])].join('; ')} }` : 'options?: never'} }`).join('\n')}
+${slots.map((slot) => `  | { name: ${JSON.stringify(slot.name)}; ${slot.arguments.length || slot.preferenceEvent ? `${slot.arguments.some((argument) => !argument.defaulted) || slot.preferenceEvent ? 'options' : 'options?'}: { ${[...slot.arguments.map((argument) => `${argument.field}${argument.defaulted ? '?' : ''}: ${argument.kind === 'bindingBoolean' ? '{ value: boolean; onChange: (value: boolean) => void }' : argument.kind === 'bindingString' ? '{ value: string; onChange: (value: string) => void }' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'number' ? 'number' : argument.kind === 'string' ? 'string' : argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}`), ...(slot.preferenceEvent ? [`onValue: (value: ${eventValueType(slot.preferenceEvent)}) => void`] : [])].join('; ')} }` : 'options?: never'} }`).join('\n')}
 export const tabViewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.filter((slot) => /^tabView[A-Z]/.test(slot.name) && slot.arguments.length === 0).map((slot) => [slot.name, slot.ios])))} as const
 export type TabViewSlotName = keyof typeof tabViewSlotAvailability
 `)
@@ -81,36 +81,104 @@ ${slots.map((slot) => `  static let ${slot.name} = ${JSON.stringify(slot.name)}`
 extension View {
   func oneNativeViewSlot(_ name: String, values: String = "[]", emit: @escaping (String, String) -> Void = { _, _ in }, content: @escaping () -> AnyView) -> AnyView {
     switch name {
-${slots.map((slot) => `    case OneNativeViewSlotName.${slot.name}:${sdkGuard(slot.ios, `      if #available(iOS ${slot.ios}, *) {
+${slots.map((slot) => {
+  // absent optionals decode to nil. nilable SDK parameters take the nil while
+  // other defaulted labels are omitted from the call, so omission always keeps
+  // the SDK default and never invents one.
+  const invalid = (field: string) => `preconditionFailure("invalid ${slot.name}.${field}")`
+  const numberParse = (base: string, raw: string) =>
+    base === 'Swift.Int' ? `Swift.Int(${raw})`
+    : base === 'Swift.Double' ? `Swift.Double(${raw})`
+    : base === 'Swift.Float' ? `Swift.Double(${raw}).map({ Swift.Float($0) })`
+    : `Swift.Double(${raw}).map({ CoreFoundation.CGFloat($0) })`
+  const enumCases = (argument: (typeof slot.arguments)[number], type: string) =>
+    argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${item.ios > slot.ios ? `${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return ${type}.${item.name} }`, '')}
+            preconditionFailure("unavailable ${slot.name}.${argument.field}")` : `return ${type}.${item.name}`}`).join('\n')
+  const decode = slot.arguments.map((argument, index) => {
+    const raw = `decoded[${index}]`
+    if (argument.kind === 'bindingBoolean')
+      return `        guard ${raw} == "true" || ${raw} == "false" else { ${invalid(argument.field)} }\n` +
+        `        let argument${index} = Binding<Bool>(get: { ${raw} == "true" }, set: { emit(${JSON.stringify(slot.name)}, String($0)) })`
+    if (argument.kind === 'bindingString')
+      return `        guard let raw${index} = ${raw} else { ${invalid(argument.field)} }\n` +
+        `        let argument${index} = Binding<String>(get: { raw${index} }, set: { emit(${JSON.stringify(slot.name)}, $0) })`
+    if (argument.kind === 'boolean' && !argument.defaulted)
+      return `        guard ${raw} == "true" || ${raw} == "false" else { ${invalid(argument.field)} }\n` +
+        `        let argument${index} = ${raw} == "true"`
+    if (argument.kind === 'boolean')
+      return `        let argument${index}: Swift.Bool? = {\n` +
+        `          switch ${raw} {\n` +
+        `          case "true": return true\n` +
+        `          case "false": return false\n` +
+        `          case nil: return nil\n` +
+        `          default: ${invalid(argument.field)}\n` +
+        `          }\n` +
+        `        }()`
+    if (argument.kind === 'string')
+      return `        guard let raw${index} = ${raw} else { ${invalid(argument.field)} }\n` +
+        `        let argument${index} = ${argument.type === 'SwiftUICore.Text' ? `Text(raw${index})` : `raw${index}`}`
+    if (argument.kind === 'number') {
+      const base = argument.type.replace(/\?$/, '')
+      return argument.defaulted
+        ? `        let argument${index}: ${base}? = {\n` +
+          `          guard let raw = ${raw} else { return nil }\n` +
+          `          guard let parsed = ${numberParse(base, 'raw')} else { ${invalid(argument.field)} }\n` +
+          `          return parsed\n` +
+          `        }()`
+        : `        guard let raw${index} = ${raw} else { ${invalid(argument.field)} }\n` +
+          `        guard let argument${index} = ${numberParse(base, `raw${index}`)} else { ${invalid(argument.field)} }`
+    }
+    const base = argument.type.replace(/\?$/, '')
+    return argument.defaulted
+      ? `        let argument${index}: ${base}? = {\n` +
+        `          switch ${raw} {\n` +
+        `${enumCases(argument, base)}\n` +
+        `          case nil: return nil\n` +
+        `          default: ${invalid(argument.field)}\n` +
+        `          }\n` +
+        `        }()`
+      : `        let argument${index}: ${argument.type} = {\n` +
+        `          switch ${raw} {\n` +
+        `${enumCases(argument, base)}\n` +
+        `          default: ${invalid(argument.field)}\n` +
+        `          }\n` +
+        `        }()`
+  }).join('\n')
+  const contentArgument = `${slot.label === '_' ? '' : `${slot.label}: `}${slot.directValue ? 'content()' : slot.closureInputs ? `{ ${slot.closureInputs.map(() => '_').join(', ')} in content() }` : slot.contentWrapper ? `{ ${slot.contentWrapper} { content() } }` : 'content'}`
+  const call = (present: ReadonlySet<number>) => {
+    const passed = slot.arguments.map((argument, index) => ({ argument, index }))
+      .filter(({ argument, index }) => !argument.defaulted || argument.optional || present.has(index))
+      .map(({ argument, index }) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`)
+    return `return AnyView(self.${slot.sdkName ?? slot.name}(${[...passed, contentArgument].join(', ')}))`
+  }
+  const presence = slot.arguments.map((argument, index) => ({ argument, index }))
+    .filter(({ argument }) => argument.defaulted && !argument.optional)
+    .map(({ index }) => index)
+  // every superset precedes its subsets, so each branch binds exactly the given labels.
+  const combinations: number[][] = []
+  for (let mask = (1 << presence.length) - 1; mask >= 1; mask--)
+    combinations.push(presence.filter((_, bit) => mask & (1 << (presence.length - 1 - bit))))
+  const bindings = (combo: readonly number[]) => combo.map((index) => `let argument${index} = argument${index}`).join(', ')
+  const normalCall = !presence.length ? `        ${call(new Set())}`
+    : `        if ${bindings(combinations[0])} {\n          ${call(new Set(combinations[0]))}\n` +
+      combinations.slice(1).map((combo) =>
+        `        } else if ${bindings(combo)} {\n          ${call(new Set(combo))}\n`).join('') +
+      `        } else {\n          ${call(new Set())}\n        }`
+  return `    case OneNativeViewSlotName.${slot.name}:${sdkGuard(slot.ios, `      if #available(iOS ${slot.ios}, *) {
 ${slot.arguments.length ? `        guard let data = values.data(using: .utf8),
-          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          let decoded = try? JSONDecoder().decode([String?].self, from: data),
           decoded.count == ${slot.arguments.length} else { preconditionFailure("invalid ${slot.name} slot values") }
-${slot.arguments.map((argument, index) => argument.kind === 'bindingBoolean'
-  ? `        guard decoded[${index}] == "true" || decoded[${index}] == "false" else { preconditionFailure("invalid ${slot.name}.${argument.field}") }
-        let argument${index} = Binding<Bool>(get: { decoded[${index}] == "true" }, set: { emit(${JSON.stringify(slot.name)}, String($0)) })`
-  : argument.kind === 'bindingString'
-    ? `        let argument${index} = Binding<String>(get: { decoded[${index}] }, set: { emit(${JSON.stringify(slot.name)}, $0) })`
-  : argument.kind === 'boolean'
-    ? `        guard decoded[${index}] == "true" || decoded[${index}] == "false" else { preconditionFailure("invalid ${slot.name}.${argument.field}") }
-        let argument${index} = decoded[${index}] == "true"`
-  : argument.kind === 'string'
-    ? `        let argument${index} = ${argument.type === 'SwiftUICore.Text' ? `Text(decoded[${index}])` : `decoded[${index}]`}`
-  : `        let argument${index}: ${argument.type} = {
-          switch decoded[${index}] {
-${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${item.ios > slot.ios ? `${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return ${argument.type}.${item.name} }`, '')}
-            preconditionFailure("unavailable ${slot.name}.${argument.field}")` : `return ${argument.type}.${item.name}`}`).join('\n')}
-          default: preconditionFailure("invalid ${slot.name}.${argument.field}")
-          }
-        }()`).join('\n')}
-` : ''}        ${slot.preferenceKey ? `return AnyView(self.${slot.sdkName ?? slot.name}(${slot.preferenceKey}.self, alignment: .center) { _ in content() }
+${decode}
+` : ''}${slot.preferenceKey ? `        return AnyView(self.${slot.sdkName ?? slot.name}(${slot.preferenceKey}.self, alignment: .center) { _ in content() }
           .onPreferenceChange(${slot.preferenceKey}.self) { value in
             let payload = ${eventValueSwift(slot.preferenceEvent!, 'value')}
             guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
               let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${slot.name} preference") }
             emit(${JSON.stringify(slot.name)}, encoded)
-          })` : `return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}${slot.directValue ? 'content()' : slot.closureInputs ? `{ ${slot.closureInputs.map(() => '_').join(', ')} in content() }` : slot.contentWrapper ? `{ ${slot.contentWrapper} { content() } }` : 'content'}`].join(', ')}))`}
+          })` : normalCall}
       }`, '')}
-      return AnyView(self)`).join('\n')}
+      return AnyView(self)`
+}).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")
     }
   }
@@ -440,6 +508,26 @@ ${assignments}
         let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
         ${validated} else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
       return ${argument.kind === 'numericStruct' ? `${baseType}(${argument.wrappedType ? `${argument.wrappedType}(${converted})` : converted})` : `(${converted})`}
+    }()`
+          }
+          if (argument.kind === 'numericRange') {
+            const fields = argument.fields!
+            const validated = fields.map((field, fieldIndex) =>
+              `let field${fieldIndex} = decoded[${JSON.stringify(field.name)}], field${fieldIndex}.isFinite${field.type === 'Swift.Int' ? `, Int(exactly: field${fieldIndex}) != nil` : field.type === 'Swift.Float' ? `, Float(field${fieldIndex}).isFinite` : ''}`).join(',\n        ')
+            const converted = fields.map((field, fieldIndex) =>
+              field.type === 'CoreFoundation.CGFloat' ? `CGFloat(field${fieldIndex})` : field.type === 'Swift.Float' ? `Float(field${fieldIndex})` : field.type === 'Swift.Int' ? `Int(field${fieldIndex})` : `field${fieldIndex}`)
+            const rangeKind = /^Swift\.(ClosedRange|Range|PartialRangeFrom|PartialRangeThrough|PartialRangeUpTo)</.exec(baseType)?.[1]
+            const rangeExpression = rangeKind === 'ClosedRange' ? `${converted[0]}...${converted[1]}`
+              : rangeKind === 'Range' ? `${converted[0]}..<${converted[1]}`
+              : rangeKind === 'PartialRangeFrom' ? `${converted[0]}...`
+              : rangeKind === 'PartialRangeThrough' ? `...${converted[0]}`
+              : `..<${converted[0]}`
+            return `    let ${variable}: ${argument.type} = {
+      guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        ${validated}${fields.length === 2 ? ',\n        field0 <= field1' : ''} else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
+      return ${rangeExpression}
     }()`
           }
           return `    let ${variable}: ${argument.type} = {
@@ -1214,27 +1302,41 @@ function sdkGestureText(value: unknown, name: string): string {
 }
 
 // a drag's bind and snap for native: the state's entry id, the axis, the clamp
-// range, and absolute snap targets with the animation that settles on one.
+// range, and absolute snap targets with the animation that settles on one. each
+// field is read once, range and targets are checked as the JSON native receives,
+// and targets must lie in range, since native writes the chosen target as given.
 function sdkGestureBinding(config: Record<string, unknown>, binds: boolean, name: string): Record<string, unknown> | undefined {
   const { bind, snap } = config as { bind?: Record<string, unknown>; snap?: Record<string, unknown> }
   if (bind === undefined && snap === undefined) return undefined
   if (!binds) throw new Error(name + '.bind is not available for ' + config.kind)
-  if (!bind || typeof bind !== 'object' || !isSyncState(bind.state) || (bind.axis !== 'x' && bind.axis !== 'y'))
+  const state = bind?.state
+  const axis = bind?.axis
+  if (!bind || typeof bind !== 'object' || !isSyncState(state) || (axis !== 'x' && axis !== 'y'))
     throw new Error(name + '.bind must have a native state and an x or y axis')
-  sdkNumberState(bind.state, name + '.bind.state')
-  const range = bind.range as unknown[] | undefined
-  if (range !== undefined && (!Array.isArray(range) || range.length !== 2 ||
-    !range.every((item) => typeof item === 'number' && Number.isFinite(item)) || (range[0] as number) > (range[1] as number)))
+  sdkNumberState(state, name + '.bind.state')
+  const rawRange = bind.range
+  const range = rawRange === undefined ? undefined : sdkJSONOf(rawRange)
+  if (rawRange !== undefined && (!Array.isArray(range) || range.length !== 2 ||
+    !range.every((item) => typeof item === 'number' && Number.isFinite(item)) || range[0] > range[1]))
     throw new Error(name + '.bind.range must be [min, max]')
   const encoded: Record<string, unknown> = {
-    bind: { state: getSyncStateId(bind.state), axis: bind.axis, ...(range ? { range } : {}) },
+    bind: { state: getSyncStateId(state), axis, ...(range ? { range } : {}) },
   }
   if (snap === undefined) return encoded
-  const targets = snap?.targets as unknown[] | undefined
-  if (!snap || typeof snap !== 'object' || !Array.isArray(targets) || !targets.length ||
-    !targets.every((item) => typeof item === 'number' && Number.isFinite(item)) || snap.animation === undefined)
+  const targets = snap && typeof snap === 'object' ? sdkJSONOf(snap.targets) : undefined
+  const animation = snap?.animation
+  if (!Array.isArray(targets) || !targets.length ||
+    !targets.every((item) => typeof item === 'number' && Number.isFinite(item)) || animation === undefined)
     throw new Error(name + '.snap must have finite targets and an animation')
-  return { ...encoded, snap: { targets, animation: encodeSDKAnimation(snap.animation as SDKAnimationValue, name + '.snap.animation') } }
+  if (range && targets.some((target) => target < range[0] || target > range[1]))
+    throw new Error(name + '.snap.targets must lie within bind.range')
+  return { ...encoded, snap: { targets, animation: encodeSDKAnimation(animation as SDKAnimationValue, name + '.snap.animation') } }
+}
+
+// a value as the JSON native receives it, so toJSON and getters cannot change it after the check.
+function sdkJSONOf(value: unknown): unknown {
+  const text = JSON.stringify(value)
+  return text === undefined ? undefined : JSON.parse(text)
 }
 
 // the text withAnimation and PhaseAnimator hand native for an SDK Animation.
@@ -1359,14 +1461,10 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
           if ((argument.kind === 'string' || argument.kind === 'url' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
           if ((argument.kind === 'stringArray' || argument.kind === 'stringSet') && (!Array.isArray(item) || item.some((element) => typeof element !== 'string'))) throw new Error(name + '.' + argument.field + ' must be a string array')
           if (argument.unique && new Set(item as string[]).size !== (item as string[]).length) throw new Error(name + '.' + argument.field + ' must contain distinct strings')
-          if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
-            if (!item || typeof item !== 'object' || Array.isArray(item) ||
-              Object.keys(item).length !== argument.fields!.length ||
-              argument.fields!.some((field) => {
-                const number = (item as Record<string, unknown>)[field.name]
-                return typeof number !== 'number' || !Number.isFinite(number) || (field.integer && !Number.isSafeInteger(number))
-              })) throw new Error(name + '.' + argument.field + ' must be a numeric object')
-            return JSON.stringify(item)
+          if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ||
+            argument.kind === 'numericRange') {
+            return sdkNumericRecordText(item, argument.fields!, name + '.' + argument.field,
+              argument.kind === 'numericRange')
           }
           return argument.kind === 'stringArray' || argument.kind === 'stringSet' ? JSON.stringify(item) : String(item)
         })

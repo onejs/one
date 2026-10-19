@@ -209,6 +209,11 @@ const testScreens = [
     testID: 'nav-one-native-host',
   },
   {
+    href: '/one-native-generated-options',
+    label: 'One Native Generated Options',
+    testID: 'nav-one-native-generated-options',
+  },
+  {
     href: '/one-native-swift-gestures',
     label: 'One Native Swift Gestures',
     testID: 'nav-one-native-swift-gestures',

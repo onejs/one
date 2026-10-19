@@ -70,7 +70,28 @@ export declare const viewSlotArguments: {
         readonly field: 'isPresented';
         readonly kind: 'bindingBoolean';
     }];
-    readonly background: readonly [];
+    readonly background: readonly [{
+        readonly field: 'alignment';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly center: 13;
+            readonly leading: 13;
+            readonly trailing: 13;
+            readonly top: 13;
+            readonly bottom: 13;
+            readonly topLeading: 13;
+            readonly topTrailing: 13;
+            readonly bottomLeading: 13;
+            readonly bottomTrailing: 13;
+            readonly centerFirstTextBaseline: 13;
+            readonly centerLastTextBaseline: 13;
+            readonly leadingFirstTextBaseline: 13;
+            readonly leadingLastTextBaseline: 13;
+            readonly trailingFirstTextBaseline: 13;
+            readonly trailingLastTextBaseline: 13;
+        };
+    }];
     readonly backgroundPreferenceValuePreferredColorScheme: readonly [];
     readonly confirmationDialog: readonly [{
         readonly field: 'title';
@@ -78,6 +99,15 @@ export declare const viewSlotArguments: {
     }, {
         readonly field: 'isPresented';
         readonly kind: 'bindingBoolean';
+    }, {
+        readonly field: 'titleVisibility';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly automatic: 15;
+            readonly visible: 15;
+            readonly hidden: 15;
+        };
     }];
     readonly containerBackground: readonly [{
         readonly field: 'container';
@@ -89,6 +119,27 @@ export declare const viewSlotArguments: {
             readonly subscriptionStoreHeader: 17;
             readonly subscriptionStoreFullHeight: 17;
             readonly widget: 17;
+        };
+    }, {
+        readonly field: 'alignment';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly center: 13;
+            readonly leading: 13;
+            readonly trailing: 13;
+            readonly top: 13;
+            readonly bottom: 13;
+            readonly topLeading: 13;
+            readonly topTrailing: 13;
+            readonly bottomLeading: 13;
+            readonly bottomTrailing: 13;
+            readonly centerFirstTextBaseline: 13;
+            readonly centerLastTextBaseline: 13;
+            readonly leadingFirstTextBaseline: 13;
+            readonly leadingLastTextBaseline: 13;
+            readonly trailingFirstTextBaseline: 13;
+            readonly trailingLastTextBaseline: 13;
         };
     }];
     readonly contentToolbar: readonly [{
@@ -117,20 +168,93 @@ export declare const viewSlotArguments: {
     }];
     readonly listRowBackground: readonly [];
     readonly mapControls: readonly [];
-    readonly mask: readonly [];
+    readonly mask: readonly [{
+        readonly field: 'alignment';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly center: 13;
+            readonly leading: 13;
+            readonly trailing: 13;
+            readonly top: 13;
+            readonly bottom: 13;
+            readonly topLeading: 13;
+            readonly topTrailing: 13;
+            readonly bottomLeading: 13;
+            readonly bottomTrailing: 13;
+            readonly centerFirstTextBaseline: 13;
+            readonly centerLastTextBaseline: 13;
+            readonly leadingFirstTextBaseline: 13;
+            readonly leadingLastTextBaseline: 13;
+            readonly trailingFirstTextBaseline: 13;
+            readonly trailingLastTextBaseline: 13;
+        };
+    }];
     readonly navigationBarItemsWithLeading: readonly [];
     readonly navigationBarItemsWithTrailing: readonly [];
     readonly navigationDestination: readonly [{
         readonly field: 'isPresented';
         readonly kind: 'bindingBoolean';
     }];
-    readonly overlay: readonly [];
+    readonly overlay: readonly [{
+        readonly field: 'alignment';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly center: 13;
+            readonly leading: 13;
+            readonly trailing: 13;
+            readonly top: 13;
+            readonly bottom: 13;
+            readonly topLeading: 13;
+            readonly topTrailing: 13;
+            readonly bottomLeading: 13;
+            readonly bottomTrailing: 13;
+            readonly centerFirstTextBaseline: 13;
+            readonly centerLastTextBaseline: 13;
+            readonly leadingFirstTextBaseline: 13;
+            readonly leadingLastTextBaseline: 13;
+            readonly trailingFirstTextBaseline: 13;
+            readonly trailingLastTextBaseline: 13;
+        };
+    }];
     readonly overlayPreferenceValuePreferredColorScheme: readonly [];
     readonly popover: readonly [{
         readonly field: 'isPresented';
         readonly kind: 'bindingBoolean';
+    }, {
+        readonly field: 'arrowEdge';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly top: 13;
+            readonly leading: 13;
+            readonly bottom: 13;
+            readonly trailing: 13;
+        };
     }];
-    readonly presentationBackground: readonly [];
+    readonly presentationBackground: readonly [{
+        readonly field: 'alignment';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly center: 13;
+            readonly leading: 13;
+            readonly trailing: 13;
+            readonly top: 13;
+            readonly bottom: 13;
+            readonly topLeading: 13;
+            readonly topTrailing: 13;
+            readonly bottomLeading: 13;
+            readonly bottomTrailing: 13;
+            readonly centerFirstTextBaseline: 13;
+            readonly centerLastTextBaseline: 13;
+            readonly leadingFirstTextBaseline: 13;
+            readonly leadingLastTextBaseline: 13;
+            readonly trailingFirstTextBaseline: 13;
+            readonly trailingLastTextBaseline: 13;
+        };
+    }];
     readonly safeAreaBarWithHorizontalEdge: readonly [{
         readonly field: 'edge';
         readonly kind: 'enum';
@@ -138,6 +262,22 @@ export declare const viewSlotArguments: {
             readonly leading: 15;
             readonly trailing: 15;
         };
+    }, {
+        readonly field: 'alignment';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly top: 13;
+            readonly center: 13;
+            readonly bottom: 13;
+            readonly firstTextBaseline: 13;
+            readonly lastTextBaseline: 13;
+        };
+    }, {
+        readonly field: 'spacing';
+        readonly kind: 'number';
+        readonly optional: true;
+        readonly type: 'CoreFoundation.CGFloat?';
     }];
     readonly safeAreaBarWithVerticalEdge: readonly [{
         readonly field: 'edge';
@@ -146,6 +286,22 @@ export declare const viewSlotArguments: {
             readonly top: 15;
             readonly bottom: 15;
         };
+    }, {
+        readonly field: 'alignment';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly leading: 13;
+            readonly center: 13;
+            readonly trailing: 13;
+            readonly listRowSeparatorLeading: 16;
+            readonly listRowSeparatorTrailing: 16;
+        };
+    }, {
+        readonly field: 'spacing';
+        readonly kind: 'number';
+        readonly optional: true;
+        readonly type: 'CoreFoundation.CGFloat?';
     }];
     readonly safeAreaInsetWithHorizontalEdge: readonly [{
         readonly field: 'edge';
@@ -154,6 +310,22 @@ export declare const viewSlotArguments: {
             readonly leading: 15;
             readonly trailing: 15;
         };
+    }, {
+        readonly field: 'alignment';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly top: 13;
+            readonly center: 13;
+            readonly bottom: 13;
+            readonly firstTextBaseline: 13;
+            readonly lastTextBaseline: 13;
+        };
+    }, {
+        readonly field: 'spacing';
+        readonly kind: 'number';
+        readonly optional: true;
+        readonly type: 'CoreFoundation.CGFloat?';
     }];
     readonly safeAreaInsetWithVerticalEdge: readonly [{
         readonly field: 'edge';
@@ -162,6 +334,22 @@ export declare const viewSlotArguments: {
             readonly top: 15;
             readonly bottom: 15;
         };
+    }, {
+        readonly field: 'alignment';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly leading: 13;
+            readonly center: 13;
+            readonly trailing: 13;
+            readonly listRowSeparatorLeading: 16;
+            readonly listRowSeparatorTrailing: 16;
+        };
+    }, {
+        readonly field: 'spacing';
+        readonly kind: 'number';
+        readonly optional: true;
+        readonly type: 'CoreFoundation.CGFloat?';
     }];
     readonly sceneAccessory: readonly [];
     readonly searchScopesWithBindingString: readonly [{
@@ -195,7 +383,19 @@ export declare const viewSlotArguments: {
             readonly privacyPolicy: 17;
         };
     }];
-    readonly swipeActions: readonly [];
+    readonly swipeActions: readonly [{
+        readonly field: 'edge';
+        readonly kind: 'enum';
+        readonly optional: true;
+        readonly cases: {
+            readonly leading: 15;
+            readonly trailing: 15;
+        };
+    }, {
+        readonly field: 'allowsFullSwipe';
+        readonly kind: 'boolean';
+        readonly optional: true;
+    }];
     readonly tabItem: readonly [];
     readonly tabViewBottomAccessory: readonly [];
     readonly tabViewBottomAccessoryWithBool: readonly [{
@@ -238,7 +438,9 @@ export type ViewSlotConfiguration = {
     };
 } | {
     name: 'background';
-    options?: never;
+    options?: {
+        alignment?: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline';
+    };
 } | {
     name: 'backgroundPreferenceValuePreferredColorScheme';
     options: {
@@ -252,11 +454,13 @@ export type ViewSlotConfiguration = {
             value: boolean;
             onChange: (value: boolean) => void;
         };
+        titleVisibility?: 'automatic' | 'visible' | 'hidden';
     };
 } | {
     name: 'containerBackground';
     options: {
         container: 'navigation' | 'navigationSplitView' | 'subscriptionStore' | 'subscriptionStoreHeader' | 'subscriptionStoreFullHeight' | 'widget';
+        alignment?: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline';
     };
 } | {
     name: 'contentToolbar';
@@ -299,7 +503,9 @@ export type ViewSlotConfiguration = {
     options?: never;
 } | {
     name: 'mask';
-    options?: never;
+    options?: {
+        alignment?: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline';
+    };
 } | {
     name: 'navigationBarItemsWithLeading';
     options?: never;
@@ -316,7 +522,9 @@ export type ViewSlotConfiguration = {
     };
 } | {
     name: 'overlay';
-    options?: never;
+    options?: {
+        alignment?: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline';
+    };
 } | {
     name: 'overlayPreferenceValuePreferredColorScheme';
     options: {
@@ -329,29 +537,40 @@ export type ViewSlotConfiguration = {
             value: boolean;
             onChange: (value: boolean) => void;
         };
+        arrowEdge?: 'top' | 'leading' | 'bottom' | 'trailing';
     };
 } | {
     name: 'presentationBackground';
-    options?: never;
+    options?: {
+        alignment?: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline';
+    };
 } | {
     name: 'safeAreaBarWithHorizontalEdge';
     options: {
         edge: 'leading' | 'trailing';
+        alignment?: 'top' | 'center' | 'bottom' | 'firstTextBaseline' | 'lastTextBaseline';
+        spacing?: number;
     };
 } | {
     name: 'safeAreaBarWithVerticalEdge';
     options: {
         edge: 'top' | 'bottom';
+        alignment?: 'leading' | 'center' | 'trailing' | 'listRowSeparatorLeading' | 'listRowSeparatorTrailing';
+        spacing?: number;
     };
 } | {
     name: 'safeAreaInsetWithHorizontalEdge';
     options: {
         edge: 'leading' | 'trailing';
+        alignment?: 'top' | 'center' | 'bottom' | 'firstTextBaseline' | 'lastTextBaseline';
+        spacing?: number;
     };
 } | {
     name: 'safeAreaInsetWithVerticalEdge';
     options: {
         edge: 'top' | 'bottom';
+        alignment?: 'leading' | 'center' | 'trailing' | 'listRowSeparatorLeading' | 'listRowSeparatorTrailing';
+        spacing?: number;
     };
 } | {
     name: 'sceneAccessory';
@@ -397,7 +616,10 @@ export type ViewSlotConfiguration = {
     };
 } | {
     name: 'swipeActions';
-    options?: never;
+    options?: {
+        edge?: 'leading' | 'trailing';
+        allowsFullSwipe?: boolean;
+    };
 } | {
     name: 'tabItem';
     options?: never;

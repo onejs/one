@@ -420,8 +420,11 @@ const sdkKinds = {
   layoutPriority: 'number',
   layoutValue: 'registeredValue',
   lineHeight: 'optionalEnum',
+  lineLimitWithClosedRange: 'record',
   lineLimitWithLimitAndReservesSpace: 'record',
   lineLimitWithOptionalInt: 'optionalNumber',
+  lineLimitWithPartialRangeFrom: 'record',
+  lineLimitWithPartialRangeThrough: 'record',
   lineSpacing: 'number',
   listItemTintWithOptionalColor: 'optionalEnum',
   listItemTintWithOptionalListItemTint: 'optionalEnum',
@@ -2045,9 +2048,36 @@ const sdkRecords: Record<
     },
     { field: 'isEnabled', kind: 'boolean', optional: false },
   ],
+  lineLimitWithClosedRange: [
+    {
+      field: 'limit',
+      kind: 'numericRange',
+      optional: false,
+      fields: [
+        { name: 'lower', type: 'Swift.Int', integer: true },
+        { name: 'upper', type: 'Swift.Int', integer: true },
+      ],
+    },
+  ],
   lineLimitWithLimitAndReservesSpace: [
     { field: 'limit', kind: 'number', optional: false },
     { field: 'reservesSpace', kind: 'boolean', optional: false },
+  ],
+  lineLimitWithPartialRangeFrom: [
+    {
+      field: 'limit',
+      kind: 'numericRange',
+      optional: false,
+      fields: [{ name: 'lower', type: 'Swift.Int', integer: true }],
+    },
+  ],
+  lineLimitWithPartialRangeThrough: [
+    {
+      field: 'limit',
+      kind: 'numericRange',
+      optional: false,
+      fields: [{ name: 'upper', type: 'Swift.Int', integer: true }],
+    },
   ],
   listRowInsets: [
     { field: 'edges', kind: 'enum', optional: false },
@@ -3481,6 +3511,46 @@ export function sdkValueText(value: unknown, key: string, context: string): stri
   return typeof parsed === 'string' ? parsed : text
 }
 
+// returns the text native decodes for a numeric struct, tuple or range: the record as
+// JSON, validated as the parsed JSON it serializes to, so toJSON, getters and undefined
+// fields cannot send native anything other than what was checked.
+function sdkNumericRecordText(
+  item: unknown,
+  fields: readonly { name: string; integer: boolean }[],
+  context: string,
+  range: boolean
+): string {
+  const text = JSON.stringify(item)
+  if (typeof text !== 'string')
+    throw new Error(
+      context + (range ? ' must be a numeric range' : ' must be a numeric object')
+    )
+  const parsed: unknown = JSON.parse(text)
+  if (
+    !parsed ||
+    typeof parsed !== 'object' ||
+    Array.isArray(parsed) ||
+    Object.keys(parsed).length !== fields.length ||
+    fields.some((field) => {
+      const number = (parsed as Record<string, unknown>)[field.name]
+      return (
+        typeof number !== 'number' ||
+        !Number.isFinite(number) ||
+        (field.integer && !Number.isSafeInteger(number))
+      )
+    })
+  )
+    throw new Error(
+      context + (range ? ' must be a numeric range' : ' must be a numeric object')
+    )
+  if (range && fields.length === 2) {
+    const lower = (parsed as Record<string, number>).lower
+    const upper = (parsed as Record<string, number>).upper
+    if (lower > upper) throw new Error(context + ' must have lower <= upper')
+  }
+  return text
+}
+
 // a gesture's text for native: its kind alone, or a record of the kind, its initializer
 // options and whether onChanged is set. options are checked as the JSON native reads.
 function sdkGestureText(value: unknown, name: string): string {
@@ -3537,7 +3607,9 @@ function sdkGestureText(value: unknown, name: string): string {
 }
 
 // a drag's bind and snap for native: the state's entry id, the axis, the clamp
-// range, and absolute snap targets with the animation that settles on one.
+// range, and absolute snap targets with the animation that settles on one. each
+// field is read once, range and targets are checked as the JSON native receives,
+// and targets must lie in range, since native writes the chosen target as given.
 function sdkGestureBinding(
   config: Record<string, unknown>,
   binds: boolean,
@@ -3549,51 +3621,57 @@ function sdkGestureBinding(
   }
   if (bind === undefined && snap === undefined) return undefined
   if (!binds) throw new Error(name + '.bind is not available for ' + config.kind)
+  const state = bind?.state
+  const axis = bind?.axis
   if (
     !bind ||
     typeof bind !== 'object' ||
-    !isSyncState(bind.state) ||
-    (bind.axis !== 'x' && bind.axis !== 'y')
+    !isSyncState(state) ||
+    (axis !== 'x' && axis !== 'y')
   )
     throw new Error(name + '.bind must have a native state and an x or y axis')
-  sdkNumberState(bind.state, name + '.bind.state')
-  const range = bind.range as unknown[] | undefined
+  sdkNumberState(state, name + '.bind.state')
+  const rawRange = bind.range
+  const range = rawRange === undefined ? undefined : sdkJSONOf(rawRange)
   if (
-    range !== undefined &&
+    rawRange !== undefined &&
     (!Array.isArray(range) ||
       range.length !== 2 ||
       !range.every((item) => typeof item === 'number' && Number.isFinite(item)) ||
-      (range[0] as number) > (range[1] as number))
+      range[0] > range[1])
   )
     throw new Error(name + '.bind.range must be [min, max]')
   const encoded: Record<string, unknown> = {
-    bind: {
-      state: getSyncStateId(bind.state),
-      axis: bind.axis,
-      ...(range ? { range } : {}),
-    },
+    bind: { state: getSyncStateId(state), axis, ...(range ? { range } : {}) },
   }
   if (snap === undefined) return encoded
-  const targets = snap?.targets as unknown[] | undefined
+  const targets = snap && typeof snap === 'object' ? sdkJSONOf(snap.targets) : undefined
+  const animation = snap?.animation
   if (
-    !snap ||
-    typeof snap !== 'object' ||
     !Array.isArray(targets) ||
     !targets.length ||
     !targets.every((item) => typeof item === 'number' && Number.isFinite(item)) ||
-    snap.animation === undefined
+    animation === undefined
   )
     throw new Error(name + '.snap must have finite targets and an animation')
+  if (range && targets.some((target) => target < range[0] || target > range[1]))
+    throw new Error(name + '.snap.targets must lie within bind.range')
   return {
     ...encoded,
     snap: {
       targets,
       animation: encodeSDKAnimation(
-        snap.animation as SDKAnimationValue,
+        animation as SDKAnimationValue,
         name + '.snap.animation'
       ),
     },
   }
+}
+
+// a value as the JSON native receives it, so toJSON and getters cannot change it after the check.
+function sdkJSONOf(value: unknown): unknown {
+  const text = JSON.stringify(value)
+  return text === undefined ? undefined : JSON.parse(text)
 }
 
 // the text withAnimation and PhaseAnimator hand native for an SDK Animation.
@@ -3822,23 +3900,17 @@ export function swiftStyleNative(
             throw new Error(
               name + '.' + argument.field + ' must contain distinct strings'
             )
-          if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
-            if (
-              !item ||
-              typeof item !== 'object' ||
-              Array.isArray(item) ||
-              Object.keys(item).length !== argument.fields!.length ||
-              argument.fields!.some((field) => {
-                const number = (item as Record<string, unknown>)[field.name]
-                return (
-                  typeof number !== 'number' ||
-                  !Number.isFinite(number) ||
-                  (field.integer && !Number.isSafeInteger(number))
-                )
-              })
+          if (
+            argument.kind === 'numericStruct' ||
+            argument.kind === 'numericTuple' ||
+            argument.kind === 'numericRange'
+          ) {
+            return sdkNumericRecordText(
+              item,
+              argument.fields!,
+              name + '.' + argument.field,
+              argument.kind === 'numericRange'
             )
-              throw new Error(name + '.' + argument.field + ' must be a numeric object')
-            return JSON.stringify(item)
           }
           return argument.kind === 'stringArray' || argument.kind === 'stringSet'
             ? JSON.stringify(item)

@@ -587,6 +587,12 @@ or `options={{ edge: 'bottom' }}`, and `safeAreaBarWithHorizontalEdge` accepts
 `options={{ edge: 'leading' }}` or `options={{ edge: 'trailing' }}`. Put the
 bar's native controls in `ViewSlot.Content`.
 
+Slots also expose supported optional SwiftUI arguments. For example,
+`safeAreaInsetWithVerticalEdge` accepts
+`options={{ edge: 'bottom', alignment: 'trailing', spacing: 0 }}`. Omitting
+`alignment` or `spacing` keeps SwiftUI's defaults; `spacing: 0` explicitly
+removes the gap. The generated options type lists the arguments for each slot.
+
 ## SwipeActions, SwipeActions.Actions
 
 `SwipeActions` wraps a `List` row to add swipe actions.

@@ -102,6 +102,22 @@ function Nickname() {
 }
 ```
 
+For a multiline field that grows from one to five lines, use the range overload:
+
+```tsx
+<One.iOS.TextField
+  label="Message"
+  text={message}
+  onTextChange={(value) => message.set(value)}
+  axis="vertical"
+  swiftStyle={{ lineLimitWithClosedRange: { limit: { lower: 1, upper: 5 } } }}
+/>
+```
+
+Here `message` is a string handle from `useNativeState`. Range bounds are
+integers with `lower <= upper`. For a single maximum, the existing
+`lineLimitWithOptionalInt: 5` modifier remains available.
+
 <PropsTable
   title="Props"
   source="generated/controlTypes.ts#TextFieldProps"

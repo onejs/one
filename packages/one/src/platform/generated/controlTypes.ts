@@ -3344,8 +3344,13 @@ export interface OneNativeStyle {
   layoutPriority?: number | NativeState<number>
   layoutValue?: string
   lineHeight?: SDKLineHeight | SDKAttributedStringLineHeightRecord | null
+  lineLimitWithClosedRange?: Readonly<{
+    limit: Readonly<{ lower: number; upper: number }>
+  }>
   lineLimitWithLimitAndReservesSpace?: Readonly<{ limit: number; reservesSpace: boolean }>
   lineLimitWithOptionalInt?: number | null
+  lineLimitWithPartialRangeFrom?: Readonly<{ limit: Readonly<{ lower: number }> }>
+  lineLimitWithPartialRangeThrough?: Readonly<{ limit: Readonly<{ upper: number }> }>
   lineSpacing?: number | NativeState<number>
   listItemTintWithOptionalColor?: SDKListItemTintWithOptionalColor | SDKColorRecord | null
   listItemTintWithOptionalListItemTint?:

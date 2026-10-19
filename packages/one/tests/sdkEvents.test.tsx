@@ -1233,6 +1233,20 @@ describe('SDK callback and binding transport', () => {
     expect(() => Controls.Text({ text: 'example', swiftStyle: {
       gesture: { kind: 'drag', bind: { state: offset, axis: 'y', range: [600, 0] }, onEnded },
     } })).toThrow('gesture.bind.range must be [min, max]')
+    // range and targets are checked as the JSON native receives.
+    const reversed = Object.assign([0, 600], { toJSON: () => [600, 0] })
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'drag', bind: { state: offset, axis: 'y', range: reversed as never }, onEnded },
+    } })).toThrow('gesture.bind.range must be [min, max]')
+    const nulled = Object.assign([300], { toJSON: () => [null] })
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'drag', bind: { state: offset, axis: 'y' },
+        snap: { targets: nulled, animation: 'easeOut' }, onEnded },
+    } })).toThrow('gesture.snap must have finite targets and an animation')
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'drag', bind: { state: offset, axis: 'y', range: [0, 600] },
+        snap: { targets: [0, 700], animation: 'easeOut' }, onEnded },
+    } })).toThrow('gesture.snap.targets must lie within bind.range')
     expect(() => Controls.Text({ text: 'example', swiftStyle: {
       gesture: { kind: 'drag', snap: { targets: [0], animation: 'easeOut' }, onEnded },
     } })).toThrow('gesture.bind must have a native state')
