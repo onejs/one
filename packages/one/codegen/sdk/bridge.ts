@@ -37,7 +37,7 @@ export type DeclarationInfo = {
   properties?: { name: string; type: SwiftType; writable: boolean }[]
   // importer-provided zero construction, with no competing overlay initializer
   cZeroInit?: string
-  // typealias: the type it names, when it has no generic parameters
+  // typealias: the type it names, over its genericParameters
   alias?: SwiftType
 }
 
@@ -391,12 +391,23 @@ export class Bridge {
     }
   }
 
+  // the type a named alias stands for, with the alias's parameters, or those it inherits from a
+  // generic owner, taken from the arguments the name carries
+  aliasOf(type: SwiftType & { k: 'named' }): SwiftType | undefined {
+    const info = type.usr ? this.index.get(type.usr) : undefined
+    if (!info?.alias) return undefined
+    const params = info.genericParameters ?? []
+    if (!params.length) return info.alias
+    if (type.args.length !== params.length) return undefined
+    return this.substitute(info.alias, { ...NO_GENERICS, resolved: new Map(params.map((p, i) => [p, type.args[i]])) })
+  }
+
   functions(type: SwiftType, depth = 0): SwiftType {
     if (depth > 12) return type
     const map = (t: SwiftType) => this.functions(t, depth + 1)
     switch (type.k) {
       case 'named': {
-        const alias = type.usr ? this.index.get(type.usr)?.alias : undefined
+        const alias = this.aliasOf(type)
         if (alias) {
           const expanded = map(alias)
           if (expanded.k === 'function' || expanded.k === 'optional' && expanded.t.k === 'function') return expanded
@@ -561,7 +572,8 @@ export class Bridge {
       args.push(b.ts)
     }
     const info = usr ? this.index.get(usr) : undefined
-    if (info?.kind === 'typealias' && info.alias && this.aliasDepth < 16) {
+    // a generic alias stays a named handle here; functions() expands the callbacks it names
+    if (info?.kind === 'typealias' && info.alias && !info.genericParameters?.length && this.aliasDepth < 16) {
       this.aliasDepth++
       try {
         return this.type(info.alias, position, NO_GENERICS)
@@ -648,7 +660,7 @@ export class Bridge {
     const last = type.name.split('.').at(-1)!
     if (TYPED_ARRAYS[last]) return TYPED_ARRAYS[last]
     if (C_ALIASES[last]) return TYPED_ARRAYS[C_ALIASES[last]]
-    const alias = type.usr ? this.index.get(type.usr)?.alias : undefined
+    const alias = this.aliasOf(type)
     return alias ? this.typedArray(alias, depth + 1) : undefined
   }
 
@@ -891,9 +903,8 @@ function aliasFragments(symbol: Symbol) {
   return where < 0 ? rest : rest.slice(0, where)
 }
 
-// the type a typealias names, as a swift type; a generic alias has no single target
+// the type a typealias names, as a swift type
 function aliasTarget(symbol: Symbol): SwiftType | undefined {
-  if (symbol.swiftGenerics?.parameters?.length) return undefined
   const fragments = aliasFragments(symbol)
   try {
     return fragments && parseType(fragments)
