@@ -22,7 +22,7 @@ its props, events, child slots, and version limits.
 | Text | [TextField, SecureField, and TextEditor](/native/ios-text-fields) |
 | Selection | [Picker, DatePicker, and ColorPicker](/native/ios-pickers) |
 | Presentation | [Sheet, FullScreenCover, Popover, Alert, and ConfirmationDialog](/native/ios-presentations) |
-| Tabs | [Tabs, Tab, TabSection, TabViewSlot, TabViewBottomAccessory, Pager, and Page](/native/ios-tabs-pager) |
+| TabView | [TabView, Tab, TabSection, TabViewSlot, TabViewBottomAccessory, Pager, and Page](/native/ios-tabs-pager) |
 | Navigation | [NavigationStack, Toolbar, ToolbarItem, ToolbarItemGroup, and ToolbarSpacer](/native/ios-navigation) |
 | Indicators | [ProgressView and Gauge](/native/ios-progress-gauges) |
 | Content | [Text, Label, Image, AsyncImage, VideoPlayer, LivePhotoView, PhotosPicker, WebView, Map, QuickLook, FileImporter, and ContentUnavailableView](/native/ios-media) |
@@ -80,7 +80,7 @@ animation is logically complete, or when it is removed if the fourth argument
 is `'removed'`. A body that throws applies its writes without animation and
 skips the completion. A call inside another body throws.
 
-`One.iOS.Tabs` and `NavigationStack` are explicit native composition APIs.
+`One.iOS.TabView` and `NavigationStack` are explicit native composition APIs.
 Use the router's [Tabs](/docs/components-Tabs) and
 [Stack](/docs/components-Stack) to navigate file routes. Routed stacks also
 have a [header and toolbar API](/docs/components-Stack).

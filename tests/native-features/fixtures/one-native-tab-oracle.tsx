@@ -2,7 +2,7 @@
 // FloatingTabBar against is measured off captures of this screen, so the screen exists to be
 // photographed rather than tapped:
 //
-//  - One.iOS.Tabs fills the window with no padding and no bordered container, so an x measured
+//  - One.iOS.TabView fills the window with no padding and no bordered container, so an x measured
 //    here is a real screen coordinate. the one-native screen wraps its tabs in a 16pt padded
 //    card, which shifts every edge and shrinks the width SwiftUI lays the bar out in.
 //  - the page behind the bar is one flat saturated colour. the capsule is a translucent glass
@@ -71,7 +71,7 @@ function Cell({
   const [scrollOffset, setScrollOffset] = useState(0)
 
   return (
-    <One.iOS.Tabs
+    <One.iOS.TabView
       selection={selection}
       onSelectionChange={setSelection}
       tabViewStyle={cell.sidebarAdaptable ? 'sidebarAdaptable' : 'tabBarOnly'}
@@ -128,7 +128,7 @@ function Cell({
           </One.iOS.Tab>
         )
       )}
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }
 

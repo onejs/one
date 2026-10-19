@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { One } from 'one'
 
-type TabViewStyle = NonNullable<ComponentProps<typeof One.iOS.Tabs>['tabViewStyle']>
+type TabViewStyle = NonNullable<ComponentProps<typeof One.iOS.TabView>['tabViewStyle']>
 
-// exercises every One.iOS.Tabs parity row in one screen: roles, sections with
+// exercises every One.iOS.TabView parity row in one screen: roles, sections with
 // header actions, badges, the bottom accessory, tab bar visibility, styles,
 // customization and minimize behavior.
 const STYLES: TabViewStyle[] = ['automatic', 'sidebarAdaptable', 'tabBarOnly']
@@ -78,7 +78,7 @@ export default function OneNativeTabView() {
   )
 
   return (
-    <One.iOS.Tabs
+    <One.iOS.TabView
       selection={selection}
       onSelectionChange={setSelection}
       tabViewStyle={tabViewStyle}
@@ -134,7 +134,7 @@ export default function OneNativeTabView() {
           </One.iOS.HStack>
         </View>
       </One.iOS.TabViewBottomAccessory>
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }
 

@@ -5,18 +5,18 @@ import { Action, Boundary, Results, assert, useResults, type Report } from './re
 
 import { iosAPIs } from './realapps-api-coverage'
 
-function NativeTabs({ report }: { report: Report }) {
+function NativeTabView({ report }: { report: Report }) {
   const [selection, setSelection] = useState('first')
   const record = (api: string) =>
     report(api, 'passed', { action: 'native press', selection })
   return (
-    <One.iOS.Tabs
+    <One.iOS.TabView
       testID="realapps-api-native-tabs"
       selection={selection}
       onSelectionChange={(next) => {
         setSelection(next)
         report(
-          'One.iOS.Tabs',
+          'One.iOS.TabView',
           'passed',
           { selection: next },
           'native selection callback; runner returns to first'
@@ -64,7 +64,7 @@ function NativeTabs({ report }: { report: Report }) {
           />
         </One.iOS.ToolbarItemGroup>
       </One.iOS.Toolbar>
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }
 
@@ -215,8 +215,8 @@ export default function IOSPrimitives() {
         </ScrollView>
       ) : null}
       {scene === 'tabs' ? (
-        <Boundary api="One.iOS.Tabs" report={report}>
-          <NativeTabs report={report} />
+        <Boundary api="One.iOS.TabView" report={report}>
+          <NativeTabView report={report} />
         </Boundary>
       ) : null}
       {scene === 'split' ? (

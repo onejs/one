@@ -15,7 +15,7 @@ export default function NativeAutogenProof() {
   const [anchorWidth, setAnchorWidth] = useState<number | null>(null)
   const [transformedAnchorWidth, setTransformedAnchorWidth] = useState<number | null>(null)
   return (
-    <One.iOS.Tabs
+    <One.iOS.TabView
       selection={selection}
       onSelectionChange={setSelection}
       swiftStyle={{ tabBarMinimizeBehavior: 'onScrollDown' }}
@@ -136,6 +136,6 @@ export default function NativeAutogenProof() {
           </View>
         }
       />
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }

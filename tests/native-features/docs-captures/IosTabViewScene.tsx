@@ -10,7 +10,7 @@ const albums = [
 
 // a music app in a rounded frame: a swiftui tab view with a badge, a search tab, and a
 // bottom accessory above the bar.
-export function IosTabsScene() {
+export function IosTabViewScene() {
   return (
     <View
       style={{
@@ -22,7 +22,7 @@ export function IosTabsScene() {
         backgroundColor: 'white',
       }}
     >
-      <One.iOS.Tabs selection="home" onSelectionChange={() => {}}>
+      <One.iOS.TabView selection="home" onSelectionChange={() => {}}>
         <One.iOS.Tab value="home" titleKey="Home" systemImage="house.fill">
           <View style={{ flex: 1, backgroundColor: 'white', paddingTop: 36, paddingHorizontal: 20, gap: 14 }}>
             <Text style={{ fontSize: 30, fontWeight: '700' }}>Listen Now</Text>
@@ -53,7 +53,7 @@ export function IosTabsScene() {
             <One.iOS.Image systemName="pause.fill" swiftStyle={{ fontSize: 18 }} />
           </View>
         </One.iOS.TabViewBottomAccessory>
-      </One.iOS.Tabs>
+      </One.iOS.TabView>
     </View>
   )
 }

@@ -261,7 +261,7 @@ if (values.mode === 'home') {
     scrollTap('realapps-api-zoom-open')
     tap('realapps-api-zoom-back')
   }
-  if (required.some((api) => ['One.iOS.Tabs', 'One.iOS.Tab', 'One.iOS.Toolbar', 'One.iOS.ToolbarItem', 'One.iOS.ToolbarItemGroup'].includes(api))) {
+  if (required.some((api) => ['One.iOS.TabView', 'One.iOS.Tab', 'One.iOS.Toolbar', 'One.iOS.ToolbarItem', 'One.iOS.ToolbarItemGroup'].includes(api))) {
     tap('realapps-api-ios-tabs')
     flow += '- tapOn: "Second"\n'
     visible('Second native tab')

@@ -209,7 +209,7 @@ export function App() {
   const [selection, setSelection] = useState('inbox')
   const [lastAction, setLastAction] = useState('none')
   return (
-    <One.iOS.Tabs selection={selection} onSelectionChange={setSelection}>
+    <One.iOS.TabView selection={selection} onSelectionChange={setSelection}>
       <One.iOS.Tab value="inbox" titleKey="Inbox" systemImage="tray" badge="3">
         <View style={{ flex: 1, padding: 24 }}>
           <Text>Last action: {lastAction}</Text>
@@ -227,12 +227,12 @@ export function App() {
       <One.iOS.Tab value="settings" titleKey="Settings" systemImage="gearshape">
         <Text>Ordinary React Native content goes here.</Text>
       </One.iOS.Tab>
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }
 ```
 
-`One.iOS.Tabs` owns a SwiftUI `TabView` hosted by a Fabric component. It has no
+`One.iOS.TabView` owns a SwiftUI `TabView` hosted by a Fabric component. It has no
 React Navigation dependency. Each keyed page hosts ordinary RN views through
 `UIViewRepresentable`, preserving the React tree and its providers. SwiftUI's
 bounded page allocation updates Fabric state directly; Yoga lays out the RN
@@ -245,7 +245,7 @@ selection synchronously in the callback to accept it; asynchronous decisions
 should keep the old selection until ready. A newer pending tap ignores an older
 acknowledgement.
 
-Tabs require unique nonempty `id` values, a selection naming a mounted tab, and
+TabView requires unique nonempty `id` values, a selection naming a mounted tab, and
 direct `One.iOS.Tab` children (arrays and conditional children are supported).
 One direct `One.iOS.Toolbar` may accompany the tabs. It attaches its items to the
 TabView's own bar, so they share the system's vertical bar when the tab bar is
@@ -301,7 +301,7 @@ updates plus an external `revision` reset. Other iOS versions remain unproven.
 Android Menu rejects picker items until that popup supports native picker
 selection; `onPickerChange` is not forwarded to the Android trigger View.
 
-`One.iOS.Tabs` covers SwiftUI's TabView surface. Every prop mirrors the SwiftUI name and
+`One.iOS.TabView` covers SwiftUI's TabView surface. Every prop mirrors the SwiftUI name and
 takes the SDK's own values; unsupported values, and values above the runtime iOS version,
 are rejected before submitting native props.
 
@@ -322,7 +322,7 @@ are rejected before submitting native props.
 | View modifiers on a tab's content, such as `ignoresSafeArea(_:edges:)` | `One.iOS.Tab` `swiftStyle` |
 
 ```tsx
-<One.iOS.Tabs
+<One.iOS.TabView
   selection={selection}
   onSelectionChange={setSelection}
   tabViewStyle="sidebarAdaptable"
@@ -339,7 +339,7 @@ are rejected before submitting native props.
       <One.iOS.Button label="Reload" systemImage="arrow.clockwise" onPress={reload} />
     </One.iOS.ToolbarItem>
   </One.iOS.Toolbar>
-</One.iOS.Tabs>
+</One.iOS.TabView>
 ```
 
 On a foldable (measured on the iOS 27.1 iPhone Duo simulator with
@@ -1112,7 +1112,7 @@ own way out, or React must set `isPresented` back to false.
 
 `One.iOS.NavigationStack` is a real SwiftUI `NavigationStack` whose root is the React Native
 content beside it, and `One.iOS.Toolbar` fills its navigation bar with real SwiftUI toolbar
-content. A `One.iOS.Toolbar` directly under `One.iOS.Tabs` attaches to the TabView instead.
+content. A `One.iOS.Toolbar` directly under `One.iOS.TabView` attaches to the TabView instead.
 Use the container whose bar owns the actions.
 
 ```tsx
@@ -1163,7 +1163,7 @@ A stack takes the box React Native gives it, so give it a height or a flex paren
 React Native children are the stack's root: SwiftUI proposes that box and Yoga lays the
 subtree out inside it, the same contract a `One.iOS.Tab` page follows. `One.iOS.Toolbar`
 elements are read by the stack and never render where they are written, so they are
-direct children beside the content rather than inside it. Tabs accepts one direct
+direct children beside the content rather than inside it. TabView accepts one direct
 toolbar; a toolbar written outside either container is an error rather than a silent
 no-op. More than one stack toolbar merges in declaration order.
 
@@ -1204,7 +1204,7 @@ The stack is the bar and the content, not a navigation path: `path`, `navigation
 and `NavigationLink` are not bound, so pushing and popping screens is still React's.
 Customizable toolbars are not bound either: `ToolbarItem(id:)`, `toolbar(id:)`,
 `defaultCustomization`, and `toolbarCustomizationBehavior` need a toolbar customization
-protocol the way `One.iOS.Tabs` carries `TabViewCustomization`.
+protocol the way `One.iOS.TabView` carries `TabViewCustomization`.
 
 Depend on `one` and rebuild the app after installing pods. `tests/native-features/app/one-native.tsx` exercises
 selection, reordered pages with local state, and nested menus. Control, sheet, and
@@ -1828,12 +1828,12 @@ binding, slot, or layout behavior. The SDK does not supply that React integratio
 
 Fabric children carry RN subtrees. Pure native content uses typed data props;
 a host can support both. Menu nodes flatten to `parentId` records because RN
-codegen cannot express recursive object arrays. Tabs use keyed Fabric children
+codegen cannot express recursive object arrays. TabView uses keyed Fabric children
 because each page contains a live React subtree. Leaf controls use data props.
 Sheets host RN children in a presented slot. A NavigationStack hosts RN children
 in an inline slot and reads Toolbar markers as toolbar content.
 
-Tabs, menu toggles, pickers, form controls, and sheets share optimistic native
+TabView, menu toggles, pickers, form controls, and sheets share optimistic native
 state and numbered acknowledgments. Update React state synchronously in the
 callback to accept an interaction. Keeping the prior value rejects it when the
 event is acknowledged. Increment `revision` to force a new value while earlier

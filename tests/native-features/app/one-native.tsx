@@ -237,7 +237,7 @@ export default function OneNativeScreen() {
         </Pressable>
       </View>
 
-      <One.iOS.Tabs
+      <One.iOS.TabView
         selection={selection}
         swiftStyle={iosVersion >= 26 ? { tabBarMinimizeBehavior: 'never' } : undefined}
         onSelectionChange={(id) => {
@@ -295,7 +295,7 @@ export default function OneNativeScreen() {
             onPress={() => setActionPresses((count) => count + 1)}
           />
         ) : null}
-      </One.iOS.Tabs>
+      </One.iOS.TabView>
     </View>
   )
 }

@@ -44,11 +44,11 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Contacts` | contacts, e2e:one-native-contact-ui | native-modules:unavailable | missing |  |
 | `One.Calendar` | calendar | native-modules:unavailable | missing |  |
 | `One.iOS.ArrangementView` | arrangement | n/a | OneSwiftArrangementLibraryCase | closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved |
-| `One.iOS.Tabs` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
-| `One.iOS.Tab` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
-| `One.iOS.TabSection` | e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
-| `One.iOS.TabViewBottomAccessory` | e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
-| `One.iOS.TabViewSlot` | tab-slot, tab-sidebar | n/a | OneSwiftTabsLibraryCase |  |
+| `One.iOS.TabView` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a | OneSwiftTabViewLibraryCase |  |
+| `One.iOS.Tab` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a | OneSwiftTabViewLibraryCase |  |
+| `One.iOS.TabSection` | e2e:one-native-tabview | n/a | OneSwiftTabViewLibraryCase |  |
+| `One.iOS.TabViewBottomAccessory` | e2e:one-native-tabview | n/a | OneSwiftTabViewLibraryCase |  |
+| `One.iOS.TabViewSlot` | tab-slot, tab-sidebar | n/a | OneSwiftTabViewLibraryCase |  |
 | `One.iOS.Menu` | tabs-menu, menu-primary-action, menu-picker | n/a | OneSwiftMenusLibraryCase | primaryAction short tap, long-press menu, item callback, disabled behavior, plain Menu tap, and Picker selection with native checkmarks in Menu and ContextMenu proven on iOS 27; context previews unbound |
 | `One.iOS.ContextMenu` | cover-context, menu-picker | n/a | OneSwiftMenusLibraryCase |  |
 | `One.iOS.Sheet` | sheets, navigation | n/a | OneSwiftPresentationsLibraryCase |  |

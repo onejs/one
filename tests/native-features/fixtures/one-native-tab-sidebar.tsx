@@ -10,7 +10,7 @@ export default function OneNativeTabSidebar() {
     <View style={styles.screen} testID="one-native-tab-sidebar-screen">
       <Text>{`Selected tab: ${selection}`}</Text>
       <Text>{`Sidebar taps: ${sidebarTaps}`}</Text>
-      <One.iOS.Tabs
+      <One.iOS.TabView
         selection={selection}
         onSelectionChange={setSelection}
         tabViewStyle="sidebarAdaptable"
@@ -38,7 +38,7 @@ export default function OneNativeTabSidebar() {
             <Text>Sidebar bottom bar</Text>
           </Pressable>
         </One.iOS.TabViewSlot>
-      </One.iOS.Tabs>
+      </One.iOS.TabView>
     </View>
   )
 }
