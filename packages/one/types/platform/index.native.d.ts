@@ -41,7 +41,7 @@ export declare const Swift: {
     Label({ label, systemImage, swiftStyle, style, ...props }: import("./types").LabelProps): import("react").JSX.Element;
     ProgressView({ label, value, total, swiftStyle, style, ...props }: import("./types").ProgressViewProps): import("react").JSX.Element;
     Gauge({ label, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, swiftStyle, style, ...props }: import("./types").GaugeProps): import("react").JSX.Element;
-    Image({ systemName, uri, renderingMode, variableValue, colorRole, resizable, swiftStyle, style, ...props }: import("./types").ImageProps): import("react").JSX.Element;
+    Image({ systemName, uri, renderingMode, variableValue, resizable, swiftStyle, style, ...props }: import("./types").ImageProps): import("react").JSX.Element;
     ShareLink({ label, systemImage, item, itemType, subject, message, swiftStyle, style, ...props }: import("./types").ShareLinkProps): import("react").JSX.Element;
     ContentUnavailableView({ onAction, title, systemImage, description, actions, swiftStyle, style, ...props }: import("./types").ContentUnavailableViewProps): import("react").JSX.Element;
     Circle({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: import("./types").CircleProps): import("react").JSX.Element;

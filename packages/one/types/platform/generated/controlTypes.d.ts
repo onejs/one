@@ -1,6 +1,5 @@
 import type { ColorValue, ViewProps } from 'react-native';
 import type * as Styles from './swiftui';
-import type { IconColorRole } from '../ui/iconRoles';
 import type { SFSymbolName } from './sfSymbolNames';
 import type { AreaChartStyle, BarChartStyle, ChartDataPoint, ChartType, LineChartStyle, PieChartStyle, PointChartStyle, RectangleChartStyle, RuleChartStyle } from '../chartTypes';
 import type { NativeState } from '../syncNativeState';
@@ -2556,7 +2555,6 @@ export interface ImageProps extends OneNativeViewProps {
     uri?: string;
     renderingMode?: 'original' | 'template';
     variableValue?: number;
-    colorRole?: IconColorRole | '';
     resizable?: boolean;
 }
 export interface ShareLinkProps extends OneNativeViewProps {

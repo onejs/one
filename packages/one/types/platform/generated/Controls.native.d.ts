@@ -11,7 +11,7 @@ export declare function Text({ text, swiftStyle, style, ...props }: Types.TextPr
 export declare function Label({ label, systemImage, swiftStyle, style, ...props }: Types.LabelProps): import("react").JSX.Element;
 export declare function ProgressView({ label, value, total, swiftStyle, style, ...props }: Types.ProgressViewProps): import("react").JSX.Element;
 export declare function Gauge({ label, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, swiftStyle, style, ...props }: Types.GaugeProps): import("react").JSX.Element;
-export declare function Image({ systemName, uri, renderingMode, variableValue, colorRole, resizable, swiftStyle, style, ...props }: Types.ImageProps): import("react").JSX.Element;
+export declare function Image({ systemName, uri, renderingMode, variableValue, resizable, swiftStyle, style, ...props }: Types.ImageProps): import("react").JSX.Element;
 export declare function ShareLink({ label, systemImage, item, itemType, subject, message, swiftStyle, style, ...props }: Types.ShareLinkProps): import("react").JSX.Element;
 export declare function ContentUnavailableView({ onAction, title, systemImage, description, actions, swiftStyle, style, ...props }: Types.ContentUnavailableViewProps): import("react").JSX.Element;
 export declare function Circle({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: Types.CircleProps): import("react").JSX.Element;
