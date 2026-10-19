@@ -20,12 +20,20 @@ export type SDKSequence<T> = SDKHandle & {
     readonly $element: T;
 };
 type Wrapper = new (handle: OneSDKHandle, identity?: string) => SDKHandle;
+type Method = {
+    id: number;
+    args?: (number | null)[];
+    hints?: (WireHint | null)[];
+};
 type PropertyTable = {
     module: string;
     properties: Record<string, number>;
 };
+type ClassTable = PropertyTable & {
+    methods?: Record<string, Method>;
+};
 export declare function setSDKNative(native: SDKNative | (() => SDKNative)): void;
-export declare function registerSDKClass(swiftName: string, wrapper: Wrapper, properties?: PropertyTable, extension?: boolean): void;
+export declare function registerSDKClass(swiftName: string, wrapper: Wrapper, properties?: ClassTable, extension?: boolean): void;
 export declare function registerSDKProtocol(usr: string, methods: Record<string, string>): void;
 export type WireHint = {
     protocol?: string;
@@ -38,6 +46,11 @@ export type WireHint = {
 };
 export declare function decodeSDKResult<T = unknown>(result: OneSDKValue): T;
 export declare function callSDK<T>(module: string, id: number, receiver: unknown, args: unknown[], hints?: (WireHint | null)[], syncCallbacks?: boolean): T;
+type MethodKey<T> = {
+    [K in keyof T]-?: T[K] extends (...args: any[]) => any ? K : never;
+}[keyof T] & string;
+type MethodFunction<T, K extends keyof T> = Extract<T[K], (...args: any[]) => any>;
+export declare function callSDKMethodAsync<T extends SDKHandle, K extends MethodKey<T>>(object: T, method: K, ...args: Parameters<MethodFunction<T, K>>): Promise<Awaited<ReturnType<MethodFunction<T, K>>>>;
 export declare function callSDKAsync<T>(module: string, id: number, receiver: unknown, args: unknown[], hints?: (WireHint | null)[]): Promise<T>;
 export declare function observeSDKProperty<T>(object: SDKHandle, property: string, value: (value: T) => void, error: (error: Error) => void): () => void;
 export declare function subscribeSDK<T>(object: SDKHandle, value: (value: T) => void, error: (error: Error) => void): () => void;
