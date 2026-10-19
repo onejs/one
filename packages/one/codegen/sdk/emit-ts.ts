@@ -4,6 +4,7 @@ import {
   NO_GENERICS,
   PUBLISHER,
   cErrorOut,
+  effectsOf,
   callbackOut,
   outPointee,
   unmanagedReturn,
@@ -159,6 +160,8 @@ class Facade {
   usedProtocols = new Map<string, DeclarationInfo>()
   sharedTypes = new Map<string, string>()
   deduplicateTypes = false
+  // entry keys the emitted facade calls, so docs publish exactly what ships
+  published = new Set<string>()
   getters: Set<string>
   constructor(
     readonly output: Output,
@@ -577,6 +580,7 @@ class Facade {
     )
   }
   invoke(e: E, self?: string) {
+    this.published.add(e.key)
     const slots = this.slots(e)
     const args = slots.map((s) => s.name ?? 'null')
     const hints = slots.map((s) => s.hint)
@@ -659,7 +663,9 @@ class Facade {
         this.type(parameterType(p.declarationFragments))
       )
       const returns = symbol.functionSignature.returns
-      const result = returns?.length ? this.type(parseType(returns), true) : 'void'
+      const value = returns?.length ? this.type(parseType(returns), true) : 'void'
+      // an async requirement's result waits on the promise the implementation returns
+      const result = value !== 'void' && effectsOf(symbol.declarationFragments?.map((f) => f.spelling).join('') ?? '').isAsync ? `Promise<${value}>` : value
       methods[name] = title
       const signature = signatures.get(name) ?? {
         symbol,
@@ -958,6 +964,12 @@ class Facade {
 
 export function emitFacade(output: Output, bridge: Bridge): string {
   return new Facade(output, bridge).emit()
+}
+
+export function facadePublishedKeys(output: Output, bridge: Bridge): Set<string> {
+  const facade = new Facade(output, bridge)
+  facade.emit()
+  return facade.published
 }
 
 export function facadeCallFormatter(output: Output, bridge: Bridge) {
