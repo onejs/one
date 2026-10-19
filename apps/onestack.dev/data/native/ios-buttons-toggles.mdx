@@ -102,9 +102,7 @@ function SaveButton({ save }: { save: () => void }) {
     { name: 'onPress', type: '() => void', description: 'Runs when tapped.' },
     { name: 'label', type: 'string', default: '""', description: 'The title.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol shown with the title.' },
-    { name: 'subtitle', type: 'string', default: '""', description: 'A second line under the title.' },
     { name: 'buttonRole', type: 'ButtonRole | ""', default: '""', description: 'destructive, cancel, confirm, or close.' },
-    { name: 'disclosureIndicator', type: 'boolean', default: 'false', description: 'Shows a chevron, as in a navigation row.' },
     { name: 'children', type: 'ReactNode', description: 'Custom content in place of label and systemImage.' },
   ]}
 />
@@ -519,8 +517,8 @@ function AppShortcuts() {
 - **Ranges are checked at render.** Slider and Stepper throw unless every
   number is finite, the minimum is below the maximum, the step is above zero,
   and the value sits inside the range.
-- **A button takes a label or children, never both.** Children with a label,
-  system image, or subtitle throw, as does a button with none of label, system
-  image, or children.
+- **A button takes a label or children, never both.** Children with a label
+  or system image throw, as does a button with none of label, system image,
+  or children.
 - **Pay and wallet buttons only report the tap.** The payment sheet and the
   pass itself need native code beyond these views.
