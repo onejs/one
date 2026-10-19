@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   type LayoutChangeEvent,
   Pressable,
@@ -30,6 +30,8 @@ const detentKeys: readonly DetentProfileKey[] = [
 
 interface SheetContentProps {
   onClose: () => void
+  onInterruptClose?: () => void
+  interruption: { run: number; phase: 'idle' | 'closing' | 'reopened' }
   onReportLayout: (width: number, height: number) => void
   detentProfile: DetentProfileKey
   onCycleDetents: () => void
@@ -40,6 +42,8 @@ interface SheetContentProps {
 
 function SheetContent({
   onClose,
+  onInterruptClose,
+  interruption,
   onReportLayout,
   detentProfile,
   onCycleDetents,
@@ -155,6 +159,18 @@ function SheetContent({
           </Pressable>
         </View>
       </One.iOS.Sheet>
+      {onInterruptClose && (
+        <Pressable
+          accessibilityRole="button"
+          onPress={onInterruptClose}
+          style={styles.interruptButton}
+          testID="one-native-sheet-interrupt-close"
+        >
+          <Text style={styles.smallActionText} testID="one-native-sheet-interruption">
+            {`Interrupt close ${interruption.run}: ${interruption.phase}`}
+          </Text>
+        </Pressable>
+      )}
     </View>
   )
 }
@@ -169,6 +185,20 @@ export default function OneNativeSheet() {
   const [selectedDetent, setSelectedDetent] = useState<PresentationDetent>('medium')
   const [tallContent, setTallContent] = useState(false)
   const [revision, setRevision] = useState(0)
+  const [interruption, setInterruption] = useState<SheetContentProps['interruption']>({
+    run: 0,
+    phase: 'idle',
+  })
+
+  useEffect(() => {
+    if (isPresented || interruption.phase !== 'closing') return
+    // commit false first; the native trace determines whether closing was interrupted.
+    const frame = requestAnimationFrame(() => {
+      setIsPresented(true)
+      setInterruption((current) => ({ ...current, phase: 'reopened' }))
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [isPresented, interruption.phase])
 
   const cycleFeatureMode = () => {
     const modes: readonly FeatureMode[] = ['base', 'controlled', 'fit', 'styled']
@@ -343,6 +373,11 @@ export default function OneNativeSheet() {
         presentationSizing={featureMode === 'styled' || featureMode === 'fit' ? 'fitted' : 'automatic'}
       >
         <SheetContent
+          interruption={interruption}
+          onInterruptClose={featureMode === 'styled' ? () => {
+            setInterruption((current) => ({ run: current.run + 1, phase: 'closing' }))
+            setIsPresented(false)
+          } : undefined}
           detentProfile={detentProfile}
           fitted={featureMode === 'fit'}
           tall={tallContent}
@@ -494,6 +529,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F2F2F7',
+  },
+  interruptButton: {
+    position: 'absolute',
+    bottom: 8,
+    left: 12,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: '#5856D6',
   },
   sheetHeading: {
     fontSize: 16,
