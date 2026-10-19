@@ -192,6 +192,7 @@
     "src",
     "types",
     "ios-types",
+    "ios-bindings",
     "dist",
     "devtools",
     "vendor",
@@ -216,7 +217,7 @@
     "schema.json"
   ],
   "scripts": {
-    "build": "tamagui-build && bun codegen/staticSpecs.ts && bun build codegen/sdk/app.ts --target node --format esm --outfile dist/sdk/app.mjs",
+    "build": "tamagui-build && bun codegen/staticSpecs.ts && bun codegen/sdk/build.ts",
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",

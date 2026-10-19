@@ -8,13 +8,17 @@ import {
   readdirSync,
   writeFileSync,
   rmSync,
+  copyFileSync,
 } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { createRequire } from 'node:module'
+import { generatorFingerprint } from './fingerprint'
 
 const packageRoot = resolve(import.meta.dirname, '../..')
 const out = join(packageRoot, 'ios-types')
+const bindings = join(packageRoot, 'ios-bindings')
+let generation: string | undefined
 const args = process.argv.slice(2)
 const at = args.indexOf('--facades')
 if (args.length && (at !== 0 || args.length !== 2))
@@ -24,32 +28,16 @@ const facades = at < 0 ? join(scratch, 'facades') : resolve(args[at + 1])
 try {
   if (at < 0) {
     const { sdkModules, extractGraphs } = await import('./graph')
-    const { prepare, generateModule } = await import('./generate')
-    const { emitFacade } = await import('./emit-ts')
+    const { generateAppSdk } = await import('./app')
     const modules = sdkModules()
     const extracted = await extractGraphs(modules)
     // twitter's deprecated module explicitly rejects swift imports.
     const failures = extracted.failed.filter(({ module }) => module !== 'Twitter')
     if (failures.length) throw new Error(JSON.stringify(failures))
-    const prepared = prepare()
     mkdirSync(facades)
-    for (let offset = 0; offset < modules.length; offset += 12) {
-      for (const module of modules.slice(offset, offset + 12)) {
-        if (module === 'Twitter') continue
-        const result = await generateModule(module, prepared, scratch)
-        if (!result || result.errors.length)
-          throw new Error(
-            `${module}: ${result?.errors.join('\n') ?? 'missing symbol graph'}`
-          )
-        writeFileSync(
-          join(facades, `${module}.ts`),
-          emitFacade(result.output, prepared.bridge)
-        )
-      }
-      console.log(
-        `generated ${Math.min(offset + 12, modules.length)}/${modules.length} frameworks`
-      )
-    }
+    const generated = await generateAppSdk(modules.filter((module) => module !== 'Twitter'))
+    generation = generated.generation
+    for (const [file, from] of generated.facades) copyFileSync(from, join(facades, file))
   }
   const files = readdirSync(facades)
     .filter((file) => file.endsWith('.ts') && !file.endsWith('.d.ts'))
@@ -81,6 +69,8 @@ try {
   })
   if (result.status !== 0)
     throw new Error(`declaration emission failed: ${result.status}`)
+  if (at < 0 && generation !== generatorFingerprint().slice(0, 16))
+    throw new Error('SDK generator changed during generation; published bindings were preserved')
   mkdirSync(out, { recursive: true })
   const expected = new Set(files.map((file) => file.replace(/\.ts$/, '.d.ts')))
   for (const file of expected) {
@@ -92,6 +82,14 @@ try {
   }
   for (const file of readdirSync(out))
     if (file.endsWith('.d.ts') && !expected.has(file)) rmSync(join(out, file))
+  if (at < 0) {
+    mkdirSync(bindings, { recursive: true })
+    for (const file of files) copyFileSync(join(facades, file), join(bindings, file))
+    for (const file of readdirSync(bindings))
+      if (file.endsWith('.ts') && !files.includes(file)) rmSync(join(bindings, file))
+    writeFileSync(join(bindings, 'manifest.json'), JSON.stringify({ generation, frameworks: files.map((file) => file.slice(0, -3)) }, null, 2) + '\n')
+    console.log(`wrote ${files.length} runtime facades to ${bindings}`)
+  }
   console.log(`wrote ${expected.size} frameworks to ${out}`)
 } finally {
   rmSync(scratch, { recursive: true, force: true })

@@ -2,9 +2,8 @@
 // importing `one/ios/<Framework>`; prebuild writes one pod holding the table of
 // each imported framework, plus the conformances of every framework whose
 // enums, option sets and constants those tables pass, so binary size follows
-// the imports. it writes each imported framework's typescript facade beside
-// the app's packages, where both bundlers resolve `one/ios/<Framework>`, so
-// the javascript and the native tables always come from one prebuild. output
+// the imports. One ships the generated typescript facades for both bundlers.
+// their ABI and signature-based ids match tables built from another SDK. output
 // is cached per sdk and generator, so a second prebuild only copies files.
 import { createHash } from 'node:crypto'
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
@@ -13,9 +12,9 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { emitModule, typeUsrs, type Entry, type ModuleOutput } from './emit'
 import { emitFacade } from './emit-ts'
-import { CXX_INTEROP, generateModule, prepare, RUNTIME } from './generate'
+import { CXX_INTEROP, generateModule, prepare } from './generate'
 import { extractGraphs, loadGraph, sdkModules, sdkVersion } from './graph'
-import { IOS_FACADES } from '../../src/utils/iosSdkFacade'
+import { generatorFingerprint } from './fingerprint'
 import { minimumVersion } from '../../schema.json'
 
 export const SDK_POD = 'OneSDKBindings'
@@ -52,17 +51,13 @@ export function importedFrameworks(
   return [...found].sort()
 }
 
-// the sdk version, generator source and runtime key the cache, so a changed
-// sdk or generator never reuses old tables. tables and facades carry the key
-// as their generation.
+// SDK-specific compiler outputs stay separate. the wire generation identifies
+// the generator/runtime; signature-based symbol ids remain stable across SDKs.
 function cacheDir() {
-  const here = dirname(fileURLToPath(import.meta.url))
   const version = sdkVersion()
-  const hash = createHash('sha256').update(version)
-  for (const file of readdirSync(here).filter((f) => /\.(?:ts|mjs)$/.test(f)).sort()) hash.update(readFileSync(join(here, file)))
-  hash.update(readFileSync(RUNTIME))
-  const generation = hash.digest('hex').slice(0, 12)
-  const dir = join(homedir(), '.cache', 'one', 'sdk-bindings', `${version}-${generation}`)
+  const generation = generatorFingerprint().slice(0, 16)
+  const cacheKey = createHash('sha256').update(version).update(generation).digest('hex').slice(0, 16)
+  const dir = join(homedir(), '.cache', 'one', 'sdk-bindings', `${version}-${cacheKey}`)
   mkdirSync(dir, { recursive: true })
   return { dir, generation }
 }
@@ -133,13 +128,13 @@ function openCache() {
     const exclude = new Map(skipped.filter((s) => s.reason.startsWith('compile:')).map((s) => [s.usr, s.reason]))
     writeFileSync(typesFile(module), emitModule(loadGraph(module)!, bridge, symbols, exclude, { conformancesOnly: true, table: tableName(module) }).swift)
   }
-  return { known, table, types, tableFile, typesFile, facadeFile }
+  return { known, table, types, tableFile, typesFile, facadeFile, generation }
 }
 
 // generates (or reuses) the tables and conformances an app needs and returns
 // the swift files to compile, keyed by file name
 export async function generateAppSdk(frameworks: string[], log = console.info) {
-  const { known, table, types, tableFile, typesFile, facadeFile } = sdkCache()
+  const { known, table, types, tableFile, typesFile, facadeFile, generation } = sdkCache()
   const files = new Map<string, string>()
   const facades = new Map<string, string>()
   const referenced = new Set<string>()
@@ -154,23 +149,27 @@ export async function generateAppSdk(frameworks: string[], log = console.info) {
     await types(module, log)
     files.set(`OneSDK_${module}.types.swift`, typesFile(module))
   }
-  return { files, facades }
+  return { files, facades, generation }
 }
 
 // writes ios/OneSwiftPackages/OneSDKBindings, which the podfile picks up with
 // the app's other local swift pods. an app importing no framework gets no pod.
 export async function writeAppSdkPod(root: string, log = console.info) {
   const podDir = join(root, 'ios', 'OneSwiftPackages', SDK_POD)
-  const facadeDir = join(root, IOS_FACADES)
-  rmSync(podDir, { recursive: true, force: true })
-  rmSync(facadeDir, { recursive: true, force: true })
   const frameworks = importedFrameworks(root)
-  if (!frameworks.length) return []
-  const { files, facades } = await generateAppSdk(frameworks, log)
+  if (!frameworks.length) {
+    rmSync(podDir, { recursive: true, force: true })
+    return []
+  }
+  const manifest = JSON.parse(readFileSync(new URL('../../ios-bindings/manifest.json', import.meta.url), 'utf8'))
+  if (manifest.generation !== generatorFingerprint().slice(0, 16)) {
+    throw new Error('[one] installed iOS facades do not match the SDK generator; regenerate One SDK bindings before building')
+  }
+  const { files } = await generateAppSdk(frameworks, log)
+  // keep the previous coherent pod if validation or generation fails.
+  rmSync(podDir, { recursive: true, force: true })
   mkdirSync(join(podDir, 'Sources'), { recursive: true })
   for (const [name, from] of files) copyFileSync(from, join(podDir, 'Sources', name))
-  mkdirSync(facadeDir, { recursive: true })
-  for (const [name, from] of facades) copyFileSync(from, join(facadeDir, name))
   writeFileSync(join(podDir, `${SDK_POD}.podspec`), `Pod::Spec.new do |s|
   s.name = '${SDK_POD}'
   s.version = '0.0.0'

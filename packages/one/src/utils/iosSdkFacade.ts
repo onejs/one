@@ -1,9 +1,10 @@
 import { existsSync } from 'node:fs'
-import { join } from 'node:path'
+import { createRequire } from 'node:module'
+import { dirname, join } from 'node:path'
 
-// prebuild writes the typescript facade of each framework an app imports here
-// (codegen/sdk/app.ts), beside the native tables it compiles into the app
-export const IOS_FACADES = 'node_modules/.one/ios'
+// these generated facades ship with One. prebuild compiles the native tables
+// on the Mac builder; bundling javascript does not need that builder's SDK.
+export const IOS_FACADES = 'ios-bindings'
 
 const IMPORT = /^one\/ios\/([A-Za-z_][A-Za-z0-9_]*)$/
 
@@ -21,10 +22,11 @@ export function resolveIosSdkImport(
       `[one] ${source} is an iOS framework; import it from an .ios.ts file (imported by ${importer ?? 'an entry'})`
     )
   }
-  const file = join(root, IOS_FACADES, `${match[1]}.ts`)
+  const packageRoot = dirname(createRequire(join(root, 'package.json')).resolve('one/package.json'))
+  const file = join(packageRoot, IOS_FACADES, `${match[1]}.ts`)
   if (!existsSync(file)) {
     throw new Error(
-      `[one] ${source} has no generated bindings; run one prebuild (imported by ${importer ?? 'an entry'})`
+      `[one] ${source} is not included in the installed One SDK bindings (imported by ${importer ?? 'an entry'})`
     )
   }
   return file
