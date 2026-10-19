@@ -219,6 +219,7 @@ describe('SDK wire', () => {
     class Store extends SDKHandle {
       work(_name: string, _limit?: number) { return 'sync' }
       blocked(_callback: () => void) { return 'blocked' }
+      toString() { return 'store' }
     }
     class Extension extends SDKHandle {
       blocked(_name: string) { return 'extension' }
