@@ -426,6 +426,33 @@ export const nativeButton = (nodes: Node[], testID: string) => {
   )
   return buttons.length === 1 ? buttons[0] : undefined
 }
+// an icon-only button can expose its label on the symbol instead of the button.
+export const nativeIconButton = (nodes: Node[], systemName: string, label: string) => {
+  const buttons = nodes.filter((node) => {
+    const frame = node.frame
+    if (
+      node.type !== 'Button' || node.enabled !== true || !frame ||
+      frame.width <= 0 || frame.height <= 0
+    ) return false
+    const symbols: Node[] = []
+    const visit = (child: Node) => {
+      if (
+        child.type === 'Image' && child.AXUniqueId === systemName && child.AXLabel === label
+      )
+        symbols.push(child)
+      child.children?.forEach(visit)
+    }
+    node.children?.forEach(visit)
+    const symbol = symbols.length === 1 ? symbols[0].frame : undefined
+    return Boolean(
+      symbol && symbol.width > 0 && symbol.height > 0 &&
+        symbol.x >= frame.x && symbol.y >= frame.y &&
+        symbol.x + symbol.width <= frame.x + frame.width &&
+        symbol.y + symbol.height <= frame.y + frame.height
+    )
+  })
+  return buttons.length === 1 ? buttons[0] : undefined
+}
 const nativeActivitySheet = (nodes: Node[]) => {
   const app = nodes.find((node) => node.type === 'Application')
   const sheets = nodes.filter((node) => node.AXUniqueId === 'ActivityListView')
@@ -3781,15 +3808,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'Pin' })
     await wait('a leading swipe action emits', (n) => status(n, 'Pin taps', 1))
 
-    await wait('an icon-only native Button has a frame', (n) =>
-      n.some(
-        (node) =>
-          node.type === 'Button' &&
-          node.AXLabel === 'Favorite' &&
-          Boolean(node.frame?.width && node.frame?.height)
-      )
+    const iconButtonNodes = await wait('an icon-only native Button has a frame', (n) =>
+      Boolean(nativeIconButton(n, 'star.fill', 'Favorite'))
     )
-    tap({ label: 'Favorite' })
+    const iconButtonFrame = nativeIconButton(iconButtonNodes, 'star.fill', 'Favorite')!.frame!
+    point(
+      iconButtonFrame.x + iconButtonFrame.width / 2,
+      iconButtonFrame.y + iconButtonFrame.height / 2
+    )
     await wait('an icon-only button emits', (n) => status(n, 'Icon taps', 1))
     screenshot('groups-icon-button.png')
 
