@@ -384,7 +384,7 @@ for (const slot of derivedViewSlots) {
             (d.requirements?.includes(`${/^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$/.exec(parameter.type)?.[1]} : SwiftUICore.View`) ?? false))) &&
     d.parameters.filter((parameter, index) => index !== d.parameters.length - 1 &&
       parameter.defaultValue === undefined).map((parameter) => parameter.type).join('|') ===
-      slot.arguments.map((argument) => argument.type).join('|'))
+      slot.arguments.filter((argument) => !argument.defaulted).map((argument) => argument.type).join('|'))
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
   coverGeneratedModifier(declaration)
