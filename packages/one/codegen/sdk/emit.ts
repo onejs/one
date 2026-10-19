@@ -3,7 +3,7 @@
 // option sets and raw-value constants their javascript form. swift infers each
 // argument's type from the call, so the table names types only to pick an
 // overload.
-import { Bridge, OBSERVABLE, inUniverse, judge, outPointee, callbackOut, pickOf, type DeclarationInfo, type Generics } from './bridge'
+import { Bridge, OBSERVABLE, cErrorOut, inUniverse, judge, outPointee, callbackOut, pickOf, type DeclarationInfo, type Generics } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
 import { parameterDefaults, parameterType, parseType, typeText, type SwiftType } from './types'
 import { emitProtocols } from './emit-protocols'
@@ -480,9 +480,10 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       const written = outPointee(type)
       if (written) {
         // spelled as the pointer, or through an alias such as NSErrorPointer
-        const pointee = /^(?:Autoreleasing)?Unsafe\w*Pointer<(.*)>\??$/s.exec(spelled)?.[1] ?? typeText(written)
+        const pointee = /^(?:Autoreleasing)?Unsafe\w*Pointer<(.*)>[?!]?$/s.exec(spelled)?.[1] ?? typeText(written)
         hoisted.push(`var out${i}: ${pointee} = ${written.k === 'optional' ? 'nil' : 'false'}`)
-        outs.push(`${JSON.stringify(name)}: out${i}`)
+        // an unmanaged error transfers its retained value to arc on the way out
+        outs.push(cErrorOut(written) ? `${JSON.stringify(name)}: out${i}?.takeRetainedValue()` : `${JSON.stringify(name)}: out${i}`)
         params.push({ label: argLabel, name, type, optional: true, hasDefault: true, out: true })
         args.push(`${prefix}&out${i}`)
         return
