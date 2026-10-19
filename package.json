@@ -103,7 +103,7 @@
     "@react-navigation/native": "8.0.0-alpha.51",
     "react-native-reanimated": "4.6.0",
     "sharp": "0.35.5",
-    "image-size": "1.2.1",
+    "image-size": "2.0.3",
     "minimatch": "3.1.5",
     "brace-expansion": "5.0.11",
     "node-forge": "1.4.0",
@@ -217,7 +217,6 @@
     "depcheck@1.4.7": "patches/depcheck@1.4.7.patch",
     "minimatch@3.1.5": "patches/minimatch@3.1.5.patch",
     "extract-zip@2.0.1": "patches/extract-zip@2.0.1.patch",
-    "image-size@1.2.1": "patches/image-size@1.2.1.patch",
     "react-native-screens@4.30.0": "patches/react-native-screens@4.30.0.patch",
     "react-native-safe-area-context@5.7.0": "patches/react-native-safe-area-context@5.7.0.patch",
     "@react-navigation/bottom-tabs@8.0.0-alpha.57": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.57.patch"

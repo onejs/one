@@ -2125,7 +2125,7 @@ export async function getNativeAssetData(
   if (NATIVE_IMAGE_EXTS.has(requested.type)) {
     try {
       const { imageSize } = await import('image-size')
-      const dims = imageSize(files[0])
+      const dims = imageSize(readFileSync(files[0]))
       assetData.width = dims.width === undefined ? undefined : dims.width / scales[0]
       assetData.height = dims.height === undefined ? undefined : dims.height / scales[0]
     } catch {}
