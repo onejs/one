@@ -103,6 +103,7 @@ const suites = [
   'menu-primary-action',
   'menu-picker',
   'popover',
+  'uikit-content',
   'navigation',
   'navigation-split-view',
   'accessibility',
@@ -925,6 +926,10 @@ const gpuLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-gpu-screen')) &&
   has(nodes, 'Triangle: ')
+const uikitContentLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  has(nodes, 'Status: ') &&
+  Boolean(id(nodes, 'one-native-uikit-content-replace'))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -1029,6 +1034,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'menu-primary-action': menuPrimaryActionLoaded,
   'menu-picker': menuPickerLoaded,
   popover: popoverLoaded,
+  'uikit-content': uikitContentLoaded,
   navigation: navigationLoaded,
   'navigation-split-view': navigationSplitViewLoaded,
   accessibility: accessibilityLoaded,
@@ -1173,6 +1179,7 @@ const suiteHome: Record<Suite, string> = {
   'menu-primary-action': 'nav-one-native-menu-primary-action',
   'menu-picker': 'nav-one-native-menu-picker',
   popover: 'nav-one-native-popover',
+  'uikit-content': 'nav-one-native-uikit-content',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
@@ -8578,6 +8585,96 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'ContextMenu dismisses without changing React state',
       (nodes) => status(nodes, 'Pinned', 'true') && !menuOpen(nodes)
     )
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'uikit-content') {
+    const prefix = 'one-native-uikit-content'
+    const frameOf = (nodes: Node[], testID: string) => id(nodes, testID)?.frame
+    const ready = (nodes: Node[], generation: number) =>
+      labels(nodes).includes(`Status: ready generation ${generation}`)
+    const pressed = (nodes: Node[], what: string, count: number) =>
+      labels(nodes).includes(`Press: ${what}; count ${count}`)
+    // a cell's react content sits inside the UIKit container that shows it, at a real size
+    const inside = (nodes: Node[], testID: string, host: string) => {
+      const frame = frameOf(nodes, testID)
+      const outer = frameOf(nodes, `${prefix}-${host}-host`)
+      return Boolean(
+        frame &&
+        outer &&
+        frame.height > 0 &&
+        frame.y >= outer.y - 1 &&
+        frame.y + frame.height <= outer.y + outer.height + 1
+      )
+    }
+    const firstRow = `${prefix}-collection-press-1`
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-uikit-content')
+    const first = await wait(
+      'generation 0 shows React rows in the collection, table and stack',
+      (n) =>
+        ready(n, 0) &&
+        inside(n, firstRow, 'collection') &&
+        inside(n, `${prefix}-table-press-101`, 'table') &&
+        Boolean(frameOf(n, `${prefix}-stack-press-201`)?.height)
+    )
+    screenshot('uikit-content-ready.png')
+
+    // the touch lands on a UIKit cell, so React sees it only if the cell's content
+    // takes the surface's touches
+    tap({ id: firstRow })
+    await wait('a React Pressable inside a collection cell takes a press', (n) =>
+      pressed(n, 'collection 1 generation 0', 1)
+    )
+    tap({ id: `${prefix}-table-press-101` })
+    await wait('and one inside a table cell', (n) =>
+      pressed(n, 'table 101 generation 0', 2)
+    )
+
+    // reconfiguring the first row gives it a second line, so its cell has to grow
+    const before = frameOf(first, firstRow)!.height
+    tap({ id: `${prefix}-collection-reconfigure` })
+    await wait(
+      'a reconfigured row renders its update and its cell grows to fit',
+      (n) =>
+        has(n, 'row 1 v2') &&
+        inside(n, firstRow, 'collection') &&
+        frameOf(n, firstRow)!.height > before + 1,
+      false,
+      () => `row 1 was ${before} high`
+    )
+    screenshot('uikit-content-reconfigured.png')
+
+    tap({ id: `${prefix}-collection-mounted` })
+    await wait(
+      'unmounting the content empties the cells',
+      (n) => has(n, '(content unmounted)') && !id(n, firstRow)
+    )
+    tap({ id: `${prefix}-collection-mounted` })
+    await wait('remounted content fills the cells again', (n) =>
+      inside(n, firstRow, 'collection')
+    )
+    tap({ id: firstRow })
+    await wait('and the remounted row takes a press', (n) =>
+      pressed(n, 'collection 1 generation 0', 3)
+    )
+
+    // new UIKit views and sources: the old cells retire and the new ones take the items
+    tap({ id: `${prefix}-replace` })
+    await wait(
+      'replaced views show the rows again',
+      (n) =>
+        ready(n, 1) &&
+        inside(n, firstRow, 'collection') &&
+        inside(n, `${prefix}-table-press-101`, 'table')
+    )
+    tap({ id: firstRow })
+    await wait('and the new collection cell takes a press', (n) =>
+      pressed(n, 'collection 1 generation 1', 4)
+    )
+    screenshot('uikit-content-replaced.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
