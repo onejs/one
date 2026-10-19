@@ -42,15 +42,15 @@ interface NativeProps extends ViewProps {
     acknowledgedEvent: Int32;
     revision: Int32;
     swiftStyle?: OneNativeStyleNative;
-    onNativeTabsSelectionChange?: DirectEventHandler<Readonly<{
+    onNativeTabViewSelectionChange?: DirectEventHandler<Readonly<{
         selection: string;
         eventCount: Int32;
         revision: Int32;
     }>>;
-    onNativeTabsAction?: DirectEventHandler<Readonly<{
+    onNativeTabViewAction?: DirectEventHandler<Readonly<{
         tabId: string;
     }>>;
-    onNativeTabsCustomizationChange?: DirectEventHandler<Readonly<{
+    onNativeTabViewCustomizationChange?: DirectEventHandler<Readonly<{
         customization: string;
     }>>;
     onNativeSDKEvent?: DirectEventHandler<Readonly<{
@@ -60,4 +60,4 @@ interface NativeProps extends ViewProps {
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;
-//# sourceMappingURL=OneNativeTabsNativeComponent.d.ts.map
+//# sourceMappingURL=OneNativeTabViewNativeComponent.d.ts.map

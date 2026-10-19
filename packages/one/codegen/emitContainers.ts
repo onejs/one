@@ -434,8 +434,8 @@ export const containerComponents = [
     interfaceOnly: false,
   },
   {
-    name: 'OneNativeTabs',
-    publicName: 'Tabs',
+    name: 'OneNativeTabView',
+    publicName: 'TabView',
     props: {
       selection: 'string',
       tabViewStyle: 'string',
@@ -448,14 +448,14 @@ export const containerComponents = [
       revision: 'Int32',
     },
     events: {
-      onNativeTabsSelectionChange: { selection: 'string', eventCount: 'Int32', revision: 'Int32' },
+      onNativeTabViewSelectionChange: { selection: 'string', eventCount: 'Int32', revision: 'Int32' },
       // pressing an action tab is not a state change, so it carries no controlled event.
-      onNativeTabsAction: { tabId: 'string' },
-      onNativeTabsCustomizationChange: { customization: 'string' },
+      onNativeTabViewAction: { tabId: 'string' },
+      onNativeTabViewCustomizationChange: { customization: 'string' },
       onNativeSDKEvent: { name: 'string', value: 'string' },
     },
     enumProps: { tabViewStyle: 'TabViewStyle', tabBarVisibility: 'Visibility' },
-    controlled: { value: 'selection', event: 'onNativeTabsSelectionChange' },
+    controlled: { value: 'selection', event: 'onNativeTabViewSelectionChange' },
     layout: { kind: 'container' },
     slots: [
       {

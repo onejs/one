@@ -106,7 +106,7 @@ export function emitControls(
 ) {
   if (!controls.length) return
   // every Fabric host with a swiftStyle struct converts it through this one template, so a
-  // new style field reaches handwritten hosts (Button, Tabs) and generated ones alike.
+  // new style field reaches handwritten hosts (Button, TabView) and generated ones alike.
   outputs.set(
     'ios/Generated/OneNativeStyleDictionary.h',
     header +

@@ -10,7 +10,7 @@ import { withAnimation } from './withAnimation.native';
 import { KeyframeAnimator, PhaseAnimator } from './Animators.native';
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes';
 import { Map as MapWithControls } from './mapControls.native';
-import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
+import { Tab, TabView, TabSection, TabViewBottomAccessory, TabViewSlot } from './TabView.native';
 import { Compose } from './compose';
 import * as UI from './effects';
 import { Widgets, LiveActivities, WidgetUI } from './widgets/index';
@@ -89,7 +89,7 @@ export declare const Swift: {
         Leading: typeof import("./ArrangementView.native").ArrangementPrimary;
         Detail: typeof import("./ArrangementView.native").ArrangementSecondary;
     };
-    Tabs: typeof Tabs;
+    TabView: typeof TabView;
     Tab: typeof Tab;
     TabSection: typeof TabSection;
     TabViewBottomAccessory: typeof TabViewBottomAccessory;

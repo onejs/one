@@ -57,7 +57,7 @@ import { useControlled } from './controlled'
 import { labeledContentProps } from './labeledContent'
 import { canvasColorModes, recordCanvas, type CanvasProps, type CanvasSize } from './canvas'
 import { Pager } from './Pager.native'
-import { Tabs } from './Tabs.native'
+import { TabView } from './TabView.native'
 import { viewportStyle } from './viewportStyle'
 import {
   lazyHStackAlignments,
@@ -175,8 +175,8 @@ function assertNoGreedyContainer(children: ReactNode, owner: string) {
           ? 'Swift.List'
           : child.type === ScrollView
             ? 'Swift.ScrollView'
-            : child.type === Tabs
-              ? 'Swift.Tabs'
+            : child.type === TabView
+              ? 'Swift.TabView'
               : child.type === Pager
                 ? 'Swift.Pager'
                 : child.type === NavigationStack

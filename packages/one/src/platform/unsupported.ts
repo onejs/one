@@ -49,7 +49,7 @@ import type {
   SwipeActionsProps,
   TabProps,
   TabSectionProps,
-  TabsProps,
+  TabViewProps,
   TabViewBottomAccessoryProps,
   TabViewSlotProps,
   ToolbarItemGroupProps,
@@ -62,8 +62,8 @@ import type {
   WithAnimationCompletionCriteria,
 } from './types'
 
-function Tabs(_props: TabsProps): never {
-  throw new Error('Swift.Tabs requires an iOS native build')
+function TabView(_props: TabViewProps): never {
+  throw new Error('Swift.TabView requires an iOS native build')
 }
 function Tab(_props: TabProps): never {
   throw new Error('Swift.Tab requires an iOS native build')
@@ -300,7 +300,7 @@ function KeyframeAnimator<Value extends KeyframeValue>(_props: KeyframeAnimatorP
 }
 export const Swift = {
   ArrangementView,
-  Tabs,
+  TabView,
   Tab,
   TabSection,
   TabViewBottomAccessory,

@@ -58,7 +58,7 @@ import { KeyframeAnimator, PhaseAnimator } from './Animators.native'
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
 import * as Controls from './generated/Controls.native'
 import { Map as MapWithControls } from './mapControls.native'
-import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
+import { Tab, TabView, TabSection, TabViewBottomAccessory, TabViewSlot } from './TabView.native'
 import { Compose } from './compose'
 import * as UI from './effects'
 import { Widgets, LiveActivities, WidgetUI } from './widgets/index'
@@ -114,7 +114,7 @@ export const Swift =
   Platform.OS === 'ios'
     ? {
         ArrangementView,
-        Tabs,
+        TabView,
         Tab,
         TabSection,
         TabViewBottomAccessory,

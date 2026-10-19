@@ -1,5 +1,5 @@
 #include <cmath>
-#import "OneNativeTabsComponentView.h"
+#import "OneNativeTabViewComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
 #import "OneNativeTabShadowNode.h"
@@ -11,47 +11,47 @@
 
 using namespace facebook::react;
 
-@implementation OneNativeTabsComponentView {
-  OneNativeTabsView *_tabsView;
+@implementation OneNativeTabViewComponentView {
+  OneNativeTabViewView *_tabView;
   NSMutableArray<OneNativeTabComponentView *> *_pages;
   NSMutableArray<OneNativeToolbarView *> *_toolbars;
   BOOL _pagesDirty;
 }
 
 + (ComponentDescriptorProvider)componentDescriptorProvider {
-  return concreteComponentDescriptorProvider<OneNativeTabsComponentDescriptor>();
+  return concreteComponentDescriptorProvider<OneNativeTabViewComponentDescriptor>();
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-    _props = std::make_shared<const OneNativeTabsProps>();
+    _props = std::make_shared<const OneNativeTabViewProps>();
     _pages = [NSMutableArray new];
     _toolbars = [NSMutableArray new];
-    _tabsView = [OneNativeTabsView new];
-    self.contentView = _tabsView;
-    __weak OneNativeTabsComponentView *weakSelf = self;
-    _tabsView.onSelection = ^(NSString *selection, NSInteger eventCount, NSInteger revision) {
-      OneNativeTabsComponentView *strongSelf = weakSelf;
+    _tabView = [OneNativeTabViewView new];
+    self.contentView = _tabView;
+    __weak OneNativeTabViewComponentView *weakSelf = self;
+    _tabView.onSelection = ^(NSString *selection, NSInteger eventCount, NSInteger revision) {
+      OneNativeTabViewComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
-      auto emitter = std::static_pointer_cast<const OneNativeTabsEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onNativeTabsSelectionChange({.selection = std::string(selection.UTF8String), .eventCount = (int)eventCount, .revision = (int)revision});
+      auto emitter = std::static_pointer_cast<const OneNativeTabViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeTabViewSelectionChange({.selection = std::string(selection.UTF8String), .eventCount = (int)eventCount, .revision = (int)revision});
     };
-    _tabsView.onAction = ^(NSString *tabId) {
-      OneNativeTabsComponentView *strongSelf = weakSelf;
+    _tabView.onAction = ^(NSString *tabId) {
+      OneNativeTabViewComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
-      auto emitter = std::static_pointer_cast<const OneNativeTabsEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onNativeTabsAction({.tabId = std::string(tabId.UTF8String)});
+      auto emitter = std::static_pointer_cast<const OneNativeTabViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeTabViewAction({.tabId = std::string(tabId.UTF8String)});
     };
-    _tabsView.onCustomization = ^(NSString *customization) {
-      OneNativeTabsComponentView *strongSelf = weakSelf;
+    _tabView.onCustomization = ^(NSString *customization) {
+      OneNativeTabViewComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
-      auto emitter = std::static_pointer_cast<const OneNativeTabsEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onNativeTabsCustomizationChange({.customization = std::string(customization.UTF8String)});
+      auto emitter = std::static_pointer_cast<const OneNativeTabViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeTabViewCustomizationChange({.customization = std::string(customization.UTF8String)});
     };
-    _tabsView.onSDKEvent = ^(NSString *name, NSString *value) {
-      OneNativeTabsComponentView *strongSelf = weakSelf;
+    _tabView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeTabViewComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
-      auto emitter = std::static_pointer_cast<const OneNativeTabsEventEmitter>(strongSelf->_eventEmitter);
+      auto emitter = std::static_pointer_cast<const OneNativeTabViewEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
     };
   }
@@ -62,10 +62,10 @@ using namespace facebook::react;
   if ([child isKindOfClass:OneNativeToolbarComponentView.class]) {
     OneNativeToolbarView *toolbar = ((OneNativeToolbarComponentView *)child).toolbarView;
     [_toolbars addObject:toolbar];
-    [_tabsView mountToolbar:toolbar];
+    [_tabView mountToolbar:toolbar];
     return;
   }
-  NSAssert([child isKindOfClass:OneNativeTabComponentView.class], @"Swift.Tabs requires Swift.Tab or Swift.Toolbar children");
+  NSAssert([child isKindOfClass:OneNativeTabComponentView.class], @"Swift.TabView requires Swift.Tab or Swift.Toolbar children");
   OneNativeTabComponentView *page = (OneNativeTabComponentView *)child;
   page.tabs = self;
   [_pages insertObject:page atIndex:MIN(index, _pages.count)];
@@ -76,7 +76,7 @@ using namespace facebook::react;
   if ([child isKindOfClass:OneNativeToolbarComponentView.class]) {
     OneNativeToolbarView *toolbar = ((OneNativeToolbarComponentView *)child).toolbarView;
     [_toolbars removeObjectIdenticalTo:toolbar];
-    [_tabsView unmountToolbar:toolbar];
+    [_tabView unmountToolbar:toolbar];
     return;
   }
   OneNativeTabComponentView *page = (OneNativeTabComponentView *)child;
@@ -87,7 +87,7 @@ using namespace facebook::react;
 }
 
 - (void)pageContentChanged {
-  [_tabsView pageContentChanged];
+  [_tabView pageContentChanged];
 }
 
 - (void)invalidatePages {
@@ -112,18 +112,18 @@ using namespace facebook::react;
     item.emit = ^(NSString *name, NSString *value) { [weakPage emitSDKEvent:name value:value]; };
     [items addObject:item];
   }
-  [_tabsView setPages:items];
+  [_tabView setPages:items];
 }
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
-  const auto &next = *std::static_pointer_cast<const OneNativeTabsProps>(props);
-  [_tabsView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
-  [_tabsView configureWithTabViewStyle:RCTNSStringFromString(next.tabViewStyle)
+  const auto &next = *std::static_pointer_cast<const OneNativeTabViewProps>(props);
+  [_tabView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
+  [_tabView configureWithTabViewStyle:RCTNSStringFromString(next.tabViewStyle)
     tabBarVisibility:RCTNSStringFromString(next.tabBarVisibility)
     customization:RCTNSStringFromString(next.customization)
     customizable:next.customizable
     bottomAccessoryEnabled:next.bottomAccessoryEnabled];
-  [_tabsView setSelection:RCTNSStringFromString(next.selection) acknowledgedEvent:next.acknowledgedEvent revision:next.revision];
+  [_tabView setSelection:RCTNSStringFromString(next.selection) acknowledgedEvent:next.acknowledgedEvent revision:next.revision];
   [super updateProps:props oldProps:oldProps];
 }
 
@@ -132,7 +132,7 @@ using namespace facebook::react;
   for (OneNativeTabComponentView *page in _pages) page.tabs = nil;
   [_pages removeAllObjects];
   [_toolbars removeAllObjects];
-  [_tabsView reset];
+  [_tabView reset];
   _pagesDirty = NO;
 }
 
@@ -194,12 +194,12 @@ using namespace facebook::react;
 // pages have no tab bar.
 - (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
   [super mountChildComponentView:child index:index];
-  if ([self.tabs isKindOfClass:OneNativeTabsComponentView.class]) [(OneNativeTabsComponentView *)self.tabs pageContentChanged];
+  if ([self.tabs isKindOfClass:OneNativeTabViewComponentView.class]) [(OneNativeTabViewComponentView *)self.tabs pageContentChanged];
 }
 
 - (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
   [super unmountChildComponentView:child index:index];
-  if ([self.tabs isKindOfClass:OneNativeTabsComponentView.class]) [(OneNativeTabsComponentView *)self.tabs pageContentChanged];
+  if ([self.tabs isKindOfClass:OneNativeTabViewComponentView.class]) [(OneNativeTabViewComponentView *)self.tabs pageContentChanged];
 }
 
 - (void)emitSDKEvent:(NSString *)name value:(NSString *)value {

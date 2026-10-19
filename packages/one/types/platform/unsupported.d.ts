@@ -1,6 +1,6 @@
 import { Angle, Gradient, Path, type CanvasProps } from './canvas';
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimation, WithAnimationCompletionCriteria } from './types';
-declare function Tabs(_props: TabsProps): never;
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimation, WithAnimationCompletionCriteria } from './types';
+declare function TabView(_props: TabViewProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
 declare function TabViewBottomAccessory(_props: TabViewBottomAccessoryProps): never;
@@ -127,7 +127,7 @@ export declare const Swift: {
         Leading: typeof import("./ArrangementView").ArrangementPrimary;
         Detail: typeof import("./ArrangementView").ArrangementSecondary;
     };
-    Tabs: typeof Tabs;
+    TabView: typeof TabView;
     Tab: typeof Tab;
     TabSection: typeof TabSection;
     TabViewBottomAccessory: typeof TabViewBottomAccessory;

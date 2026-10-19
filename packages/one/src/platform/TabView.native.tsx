@@ -9,12 +9,12 @@ import type {
   TabContentProps,
   TabProps,
   TabSectionProps,
-  TabsProps,
+  TabViewProps,
   TabViewBottomAccessoryProps,
   TabViewSlotProps,
 } from './types'
 import NativeTab from './specs/OneNativeTabNativeComponent'
-import NativeTabs from './specs/OneNativeTabsNativeComponent'
+import NativeTabView from './specs/OneNativeTabViewNativeComponent'
 import { Toolbar, ToolbarNode } from './NavigationStack.native'
 
 const PAGE_STYLE = {
@@ -26,19 +26,19 @@ const PAGE_STYLE = {
 } as const
 
 export function TabViewBottomAccessory(_props: TabViewBottomAccessoryProps): never {
-  throw new Error('Swift.TabViewBottomAccessory must be a direct child of Swift.Tabs')
+  throw new Error('Swift.TabViewBottomAccessory must be a direct child of Swift.TabView')
 }
 
 export function TabViewSlot(_props: TabViewSlotProps): never {
-  throw new Error('Swift.TabViewSlot must be a direct child of Swift.Tabs')
+  throw new Error('Swift.TabViewSlot must be a direct child of Swift.TabView')
 }
 
 export function TabSection(_props: TabSectionProps): never {
-  throw new Error('Swift.TabSection must be a direct child of Swift.Tabs')
+  throw new Error('Swift.TabSection must be a direct child of Swift.TabView')
 }
 
 export function Tab(_props: TabProps): never {
-  throw new Error('Swift.Tab must be a direct child of Swift.Tabs or Swift.TabSection')
+  throw new Error('Swift.Tab must be a direct child of Swift.TabView or Swift.TabSection')
 }
 
 type Entry = {
@@ -122,7 +122,7 @@ function tabContentModifiers(
   })
 }
 
-export function Tabs({
+export function TabView({
   children,
   selection,
   onSelectionChange,
@@ -135,7 +135,7 @@ export function Tabs({
   swiftStyle,
   style,
   ...props
-}: TabsProps) {
+}: TabViewProps) {
   const iosVersion = Number.parseFloat(String(Platform.Version))
   assertSwiftUIValue('TabViewStyle', tabViewStyle, iosVersion)
   assertSwiftUIValue('Visibility', tabBarVisibility, iosVersion)
@@ -192,7 +192,7 @@ export function Tabs({
       if (onPress) actions.set(value, onPress)
     }
     for (const child of Children.toArray(children)) {
-      if (!isValidElement(child)) throw new Error('Swift.Tabs children must be elements')
+      if (!isValidElement(child)) throw new Error('Swift.TabView children must be elements')
       if (child.type === Tab) {
         tab(child.props as TabProps, undefined)
       } else if (child.type === TabSection) {
@@ -221,10 +221,10 @@ export function Tabs({
           tab(sectionChild.props as TabProps, section.id)
         }
       } else if (child.type === TabViewBottomAccessory) {
-        if (accessory) throw new Error('Swift.Tabs accepts one TabViewBottomAccessory')
+        if (accessory) throw new Error('Swift.TabView accepts one TabViewBottomAccessory')
         accessory = child.props as TabViewBottomAccessoryProps
       } else if (child.type === Toolbar) {
-        if (toolbar) throw new Error('Swift.Tabs accepts one Swift.Toolbar')
+        if (toolbar) throw new Error('Swift.TabView accepts one Swift.Toolbar')
         toolbar = (child.props as { children: ReactNode }).children
       } else if (child.type === TabViewSlot) {
         const slot = child.props as TabViewSlotProps
@@ -236,7 +236,7 @@ export function Tabs({
           throw new Error('Swift.TabViewSlot height must be a positive number')
         if (slot.children === undefined) throw new Error('Swift.TabViewSlot needs children')
         if (entries.some((entry) => entry.kind === 'slot' && entry.id === slot.name))
-          throw new Error(`Swift.Tabs accepts one ${slot.name} slot`)
+          throw new Error(`Swift.TabView accepts one ${slot.name} slot`)
         entries.push({
           id: slot.name,
           kind: 'slot',
@@ -250,7 +250,7 @@ export function Tabs({
         })
       } else {
         throw new Error(
-          'Swift.Tabs accepts Swift.Tab, Swift.TabSection, Swift.TabViewSlot, Swift.TabViewBottomAccessory, and Swift.Toolbar elements as direct children'
+          'Swift.TabView accepts Swift.Tab, Swift.TabSection, Swift.TabViewSlot, Swift.TabViewBottomAccessory, and Swift.Toolbar elements as direct children'
         )
       }
     }
@@ -260,10 +260,10 @@ export function Tabs({
     (entry) => entry.kind === 'section' || (entry.kind !== 'slot' && entry.tabModifiers !== '{}')
   )
   if (iosVersion < 18 && (tabsBeyondIOS17 || tabViewStyle !== 'automatic' || onCustomizationChange))
-    throw new Error('Swift.Tabs sections, tab modifiers, styles, and customization require iOS 18 or later')
+    throw new Error('Swift.TabView sections, tab modifiers, styles, and customization require iOS 18 or later')
   if (accessory) {
     if (entries.some((entry) => entry.kind === 'slot' && entry.id === 'tabViewBottomAccessory'))
-      throw new Error('Swift.Tabs accepts one tabViewBottomAccessory slot')
+      throw new Error('Swift.TabView accepts one tabViewBottomAccessory slot')
     if (iosVersion < 26) throw new Error('Swift.TabViewBottomAccessory requires iOS 26 or later')
     if (accessory.isEnabled !== undefined && iosVersion < 26.1)
       throw new Error('Swift.TabViewBottomAccessory isEnabled requires iOS 26.1 or later')
@@ -272,11 +272,11 @@ export function Tabs({
   }
   const selected = entries.find((entry) => entry.id === selection)
   if (!selected || (selected.kind !== 'page' && selected.kind !== 'action')) {
-    throw new Error(`Swift.Tabs selection "${selection}" must identify a mounted Swift.Tab`)
+    throw new Error(`Swift.TabView selection "${selection}" must identify a mounted Swift.Tab`)
   }
   if (selected.kind === 'action') {
     throw new Error(
-      `Swift.Tabs selection "${selection}" is an action tab, which never becomes the selection`
+      `Swift.TabView selection "${selection}" is an action tab, which never becomes the selection`
     )
   }
   const accessoryEntries: Entry[] = accessory
@@ -297,7 +297,7 @@ export function Tabs({
     : []
 
   return (
-    <NativeTabs
+    <NativeTabView
       {...props}
       style={[{ flex: 1 }, style]}
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -310,16 +310,16 @@ export function Tabs({
       customization={customization}
       customizable={Boolean(onCustomizationChange)}
       bottomAccessoryEnabled={accessory?.isEnabled ?? true}
-      onNativeTabsSelectionChange={({ nativeEvent }) =>
+      onNativeTabViewSelectionChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
       // an action tab's press runs its action; the selected page's press is a reselect.
-      onNativeTabsAction={({ nativeEvent }) => {
+      onNativeTabViewAction={({ nativeEvent }) => {
         const action = actions.get(nativeEvent.tabId)
         if (action) action()
         else onReselect?.(nativeEvent.tabId)
       }}
-      onNativeTabsCustomizationChange={({ nativeEvent }) =>
+      onNativeTabViewCustomizationChange={({ nativeEvent }) =>
         onCustomizationChange?.(nativeEvent.customization)
       }
     >
@@ -354,6 +354,6 @@ export function Tabs({
         )
       })}
       {toolbar ? <ToolbarNode iosVersion={iosVersion}>{toolbar}</ToolbarNode> : null}
-    </NativeTabs>
+    </NativeTabView>
   )
 }

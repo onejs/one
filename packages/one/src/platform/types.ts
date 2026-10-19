@@ -71,7 +71,7 @@ export interface TabProps extends TabContentProps {
   role?: TabRole
   tabPlacement?: TabPlacement
   testID?: string
-  // an action tab carries onPress instead of a page. Swift.Tabs requires exactly one of them.
+  // an action tab carries onPress instead of a page. Swift.TabView requires exactly one of them.
   onPress?: () => void
   // View modifiers on the page's content, as SwiftUI applies them inside a Tab.
   swiftStyle?: OneNativeStyle
@@ -90,7 +90,7 @@ export interface TabSectionProps extends TabContentProps {
   }[]
   children: ReactNode
 }
-export interface TabsProps extends ViewProps {
+export interface TabViewProps extends ViewProps {
   selection: string
   onSelectionChange: (value: string) => void
   // a tap on the selected tab, which changes no selection. UIKit asks the tab bar

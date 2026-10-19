@@ -50,13 +50,13 @@ interface NativeProps extends ViewProps {
   acknowledgedEvent: Int32
   revision: Int32
   swiftStyle?: OneNativeStyleNative
-  onNativeTabsSelectionChange?: DirectEventHandler<
+  onNativeTabViewSelectionChange?: DirectEventHandler<
     Readonly<{ selection: string; eventCount: Int32; revision: Int32 }>
   >
-  onNativeTabsAction?: DirectEventHandler<Readonly<{ tabId: string }>>
-  onNativeTabsCustomizationChange?: DirectEventHandler<
+  onNativeTabViewAction?: DirectEventHandler<Readonly<{ tabId: string }>>
+  onNativeTabViewCustomizationChange?: DirectEventHandler<
     Readonly<{ customization: string }>
   >
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
 }
-export default codegenNativeComponent<NativeProps>('OneNativeTabs')
+export default codegenNativeComponent<NativeProps>('OneNativeTabView')

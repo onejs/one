@@ -145,7 +145,7 @@ public final class OneNativeToolbarView: OneNativeContainerView {
   public override func composeInto(_ parent: OneNativeCompositionParent) {
     guard let host = parent as? OneNativeToolbarHost else {
       preconditionFailure(
-        "Swift.Toolbar must be a direct child of Swift.NavigationStack, a Swift.NavigationSplitView column, or Swift.Tabs")
+        "Swift.Toolbar must be a direct child of Swift.NavigationStack, a Swift.NavigationSplitView column, or Swift.TabView")
     }
     self.host = host
     super.composeInto(parent)

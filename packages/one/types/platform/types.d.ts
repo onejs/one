@@ -60,7 +60,7 @@ export interface TabSectionProps extends TabContentProps {
     }[];
     children: ReactNode;
 }
-export interface TabsProps extends ViewProps {
+export interface TabViewProps extends ViewProps {
     selection: string;
     onSelectionChange: (value: string) => void;
     onReselect?: (value: string) => void;

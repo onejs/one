@@ -554,7 +554,7 @@
         "OneNativeGlassEffectContainer": "OneNativeGlassEffectContainerComponentView",
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeGlass": "OneNativeGlassComponentView",
-        "OneNativeTabs": "OneNativeTabsComponentView",
+        "OneNativeTabView": "OneNativeTabViewComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativeNavigationStack": "OneNativeNavigationStackComponentView",
         "OneNativeNavigationSplitView": "OneNativeNavigationSplitViewComponentView",

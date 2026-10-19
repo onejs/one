@@ -90,7 +90,7 @@ private struct TabGroup: Identifiable {
 // delegate unchanged.
 private final class ActionTabDelegate: NSObject, UITabBarControllerDelegate {
   weak var original: UITabBarControllerDelegate?
-  weak var model: TabsModel?
+  weak var model: TabViewModel?
 
   override func responds(to selector: Selector!) -> Bool {
     super.responds(to: selector) || (original?.responds(to: selector) ?? false)
@@ -131,7 +131,7 @@ private final class ActionTabDelegate: NSObject, UITabBarControllerDelegate {
 }
 
 private struct ActionTabHook: UIViewRepresentable {
-  weak var host: OneNativeTabsView?
+  weak var host: OneNativeTabViewView?
   let page: UIView
 
   func makeUIView(context: Context) -> HookView { HookView() }
@@ -143,7 +143,7 @@ private struct ActionTabHook: UIViewRepresentable {
   }
 
   final class HookView: UIView {
-    weak var host: OneNativeTabsView?
+    weak var host: OneNativeTabViewView?
     weak var page: UIView?
 
     override func didMoveToWindow() {
@@ -183,7 +183,7 @@ private func firstScrollView(in view: UIView) -> UIScrollView? {
   return nil
 }
 
-private final class TabsModel: ObservableObject {
+private final class TabViewModel: ObservableObject {
   @Published var pages: [OneNativeTabItem] = []
   @Published var toolbarEntries: [OneNativeToolbarEntry] = []
   @Published var controlled = OneNativeControlled("")
@@ -266,18 +266,18 @@ private final class TabsModel: ObservableObject {
     guard #available(iOS 18.0, *) else { return }
     if json.isEmpty { customization = TabViewCustomization(); return }
     do { customization = try JSONDecoder().decode(TabViewCustomization.self, from: Data(json.utf8)) }
-    catch { preconditionFailure("Swift.Tabs customization is not a TabViewCustomization: \(error)") }
+    catch { preconditionFailure("Swift.TabView customization is not a TabViewCustomization: \(error)") }
   }
 }
 
 @objcMembers
-public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
+public final class OneNativeTabViewView: UIView, OneNativeToolbarHost {
   public var onSelection: ((String, Int, Int) -> Void)?
   public var onAction: ((String) -> Void)?
   public var onCustomization: ((String) -> Void)?
   public var onSDKEvent: ((String, String) -> Void)?
-  private var model = TabsModel()
-  private var controller: OneNativeHostingController<TabsContent>?
+  private var model = TabViewModel()
+  private var controller: OneNativeHostingController<TabViewContent>?
   private let actionDelegate = ActionTabDelegate()
   private weak var tabBarController: UITabBarController?
   private var toolbars: [OneNativeToolbarView] = []
@@ -412,7 +412,7 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
       model.onAction = { [weak self] id in self?.onAction?(id) }
       model.onCustomization = { [weak self] json in self?.onCustomization?(json) }
       model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
-      controller = OneNativeHostingController(rootView: TabsContent(model: model, host: self), screenInsets: true)
+      controller = OneNativeHostingController(rootView: TabViewContent(model: model, host: self), screenInsets: true)
     }
     controller?.attach(to: self)
     model.active = controller?.isAttached == true
@@ -436,20 +436,20 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
     toolbars.removeAll()
     detachController()
     controller = nil
-    model = TabsModel()
+    model = TabViewModel()
   }
 }
 
-private struct TabsContent: View {
-  @ObservedObject var model: TabsModel
-  weak var host: OneNativeTabsView?
+private struct TabViewContent: View {
+  @ObservedObject var model: TabViewModel
+  weak var host: OneNativeTabViewView?
 
   var body: some View {
     Group {
       if #available(iOS 18.0, *) {
         slotted(AnyView(tabs.oneNativeTabViewStyle(model.tabViewStyle)))
       } else {
-        legacyTabs
+        legacyTabView
       }
     }
     .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
@@ -532,7 +532,7 @@ private struct TabsContent: View {
     .oneNativeTabContent(page.modifiers)
   }
 
-  private var legacyTabs: some View {
+  private var legacyTabView: some View {
     TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
       ForEach(model.groups.flatMap(\.tabs)) { page in
         slot(page)
@@ -692,7 +692,7 @@ private struct AccessoryContent: View {
   @Environment(\.tabViewBottomAccessoryPlacement) private var placement
   let inline: OneNativeTabItem?
   let expanded: OneNativeTabItem?
-  weak var host: OneNativeTabsView?
+  weak var host: OneNativeTabViewView?
 
   var body: some View {
     if let page = placement == .expanded ? (expanded ?? inline) : (inline ?? expanded) {

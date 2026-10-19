@@ -7,8 +7,8 @@ import { Swift as UnsupportedSwift } from '../src/platform/unsupported'
 
 // same render-element setup as components.test.ts. wrappers that read hooks
 // (DisclosureGroup, Pager, Divider) cannot be called outside a render, so the
-// groups conformance suite covers their behavior the way the tabs suite covers
-// Tabs; what is asserted here is their contract surface below.
+// groups conformance suite covers their behavior the way the TabView suite covers
+// TabView; what is asserted here is their contract surface below.
 vi.mock('react-native', () => ({
   Platform: { OS: 'ios', Version: '26.4' },
   View: () => null,
@@ -34,13 +34,13 @@ vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
 
 let Containers: typeof import('../src/platform/Containers.native')
 let PagerModule: typeof import('../src/platform/Pager.native')
-let TabsModule: typeof import('../src/platform/Tabs.native')
+let TabViewModule: typeof import('../src/platform/TabView.native')
 let Button: typeof import('../src/platform/Containers.native').Button
 
 beforeAll(async () => {
   Containers = await import('../src/platform/Containers.native')
   PagerModule = await import('../src/platform/Pager.native')
-  TabsModule = await import('../src/platform/Tabs.native')
+  TabViewModule = await import('../src/platform/TabView.native')
   Button = Containers.Button
 })
 
@@ -309,12 +309,12 @@ describe('greedy containers', () => {
     // to nest here; only the outer stack executes.
     const nested: [ReactNode, string][] = [
       [
-        createElement(TabsModule.Tabs, {
+        createElement(TabViewModule.TabView, {
           children: null,
           selection: 'a',
           onSelectionChange: () => {},
         }),
-        'Swift.Tabs',
+        'Swift.TabView',
       ],
       [
         createElement(PagerModule.Pager, {

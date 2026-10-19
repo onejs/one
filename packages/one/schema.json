@@ -4554,8 +4554,8 @@
       "interfaceOnly": false
     },
     {
-      "name": "OneNativeTabs",
-      "publicName": "Tabs",
+      "name": "OneNativeTabView",
+      "publicName": "TabView",
       "props": {
         "selection": {
           "type": "string"
@@ -4585,7 +4585,7 @@
         }
       },
       "events": {
-        "onNativeTabsSelectionChange": {
+        "onNativeTabViewSelectionChange": {
           "selection": {
             "type": "string"
           },
@@ -4596,12 +4596,12 @@
             "type": "Int32"
           }
         },
-        "onNativeTabsAction": {
+        "onNativeTabViewAction": {
           "tabId": {
             "type": "string"
           }
         },
-        "onNativeTabsCustomizationChange": {
+        "onNativeTabViewCustomizationChange": {
           "customization": {
             "type": "string"
           }
@@ -4617,7 +4617,7 @@
       },
       "controlled": {
         "value": "selection",
-        "event": "onNativeTabsSelectionChange"
+        "event": "onNativeTabViewSelectionChange"
       },
       "actions": [],
       "layout": {

@@ -1,1 +1,1 @@
-#import "OneNativeTabsComponentView.h"
+#import "OneNativeTabViewComponentView.h"

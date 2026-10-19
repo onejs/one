@@ -1,6 +1,6 @@
 #ifdef __cplusplus
 #import <React/RCTViewComponentView.h>
-#import "OneNativeTabsComponentView.h"
+#import "OneNativeTabViewComponentView.h"
 @interface OneNativeSwiftPagerComponentView : RCTViewComponentView <OneNativePageHost>
 @end
 #endif

@@ -3,12 +3,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// a Tabs or a Pager hosting Tab pages; a page reports here when its props move.
+// a TabView or a Pager hosting Tab pages; a page reports here when its props move.
 @protocol OneNativePageHost <NSObject>
 - (void)invalidatePages;
 @end
 
-@interface OneNativeTabsComponentView : RCTViewComponentView <OneNativePageHost>
+@interface OneNativeTabViewComponentView : RCTViewComponentView <OneNativePageHost>
 - (void)invalidatePages;
 - (void)pageContentChanged;
 @end
