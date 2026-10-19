@@ -262,4 +262,32 @@ describe('sheet host generation', () => {
       'names no OneNativeSheetContent'
     )
   })
+
+  it('rejects per-prop type drift and prefix lookalikes before emitting fixed-model glue', () => {
+    const drifted = (prop: string, type: string) => {
+      const next = specs()
+      next.find((entry: { name: string }) => entry.name === 'OneNativeSheet').props[prop] = type
+      return next
+    }
+    // a recognized primitive in the wrong slot would emit a configure param
+    // the fixed model cannot read.
+    expect(() => validateSheetHost(inventory, 17, 27, drifted('isPresented', 'string'))).toThrow(
+      'configure prop isPresented carries string, not the boolean the model reads'
+    )
+    expect(
+      () => validateSheetHost(inventory, 17, 27, drifted('selectedDetentValue', 'Int32'))
+    ).toThrow(
+      'configure prop selectedDetentValue carries Int32, not the Double the model reads'
+    )
+    // prefix lookalikes of recognized primitives are not convertible either.
+    for (const [prop, type] of [
+      ['isPresented', 'stringArray'],
+      ['selectedDetentValue', 'stringArray'],
+      ['revision', 'stringArray'],
+    ] as const) {
+      expect(() => validateSheetHost(inventory, 17, 27, drifted(prop, type))).toThrow(
+        `configure prop ${prop} carries stringArray, not the`
+      )
+    }
+  })
 })

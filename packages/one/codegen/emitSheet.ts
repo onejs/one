@@ -145,26 +145,27 @@ export const sheetDetentMembers = [
 ] as const
 
 // the sheet view configure selector in order: Swift label to the spec prop that
-// fills it. the first label is `_`, so Fabric calls configure:.... the order is
-// the cross-language contract; the model reads the same params.
+// fills it and the exact spec type the fixed model reads. the first label is
+// `_`, so Fabric calls configure:.... the order and types are the
+// cross-language contract; the model reads the same params.
 export const sheetConfigureArgs = [
-  { label: '_', prop: 'isPresented' },
-  { label: 'acknowledgedEvent', prop: 'acknowledgedEvent' },
-  { label: 'revision', prop: 'revision' },
-  { label: 'selectedDetentType', prop: 'selectedDetentType' },
-  { label: 'selectedDetentValue', prop: 'selectedDetentValue' },
-  { label: 'acknowledgedDetentEvent', prop: 'acknowledgedDetentEvent' },
-  { label: 'detentRevision', prop: 'detentRevision' },
-  { label: 'interactiveDismissDisabled', prop: 'interactiveDismissDisabled' },
-  { label: 'presentationDragIndicator', prop: 'presentationDragIndicator' },
-  { label: 'presentationBackground', prop: 'presentationBackground' },
-  { label: 'presentationBackgroundInteraction', prop: 'presentationBackgroundInteraction' },
-  { label: 'presentationBackgroundInteractionDetentType', prop: 'presentationBackgroundInteractionDetentType' },
-  { label: 'presentationBackgroundInteractionDetentValue', prop: 'presentationBackgroundInteractionDetentValue' },
-  { label: 'presentationContentInteraction', prop: 'presentationContentInteraction' },
-  { label: 'presentationSizing', prop: 'presentationSizing' },
-  { label: 'presentation', prop: 'presentation' },
-  { label: 'colorScheme', prop: 'colorScheme' },
+  { label: '_', prop: 'isPresented', type: 'boolean' },
+  { label: 'acknowledgedEvent', prop: 'acknowledgedEvent', type: 'Int32' },
+  { label: 'revision', prop: 'revision', type: 'Int32' },
+  { label: 'selectedDetentType', prop: 'selectedDetentType', type: 'string' },
+  { label: 'selectedDetentValue', prop: 'selectedDetentValue', type: 'Double' },
+  { label: 'acknowledgedDetentEvent', prop: 'acknowledgedDetentEvent', type: 'Int32' },
+  { label: 'detentRevision', prop: 'detentRevision', type: 'Int32' },
+  { label: 'interactiveDismissDisabled', prop: 'interactiveDismissDisabled', type: 'boolean' },
+  { label: 'presentationDragIndicator', prop: 'presentationDragIndicator', type: 'string' },
+  { label: 'presentationBackground', prop: 'presentationBackground', type: 'ColorValue' },
+  { label: 'presentationBackgroundInteraction', prop: 'presentationBackgroundInteraction', type: 'string' },
+  { label: 'presentationBackgroundInteractionDetentType', prop: 'presentationBackgroundInteractionDetentType', type: 'string' },
+  { label: 'presentationBackgroundInteractionDetentValue', prop: 'presentationBackgroundInteractionDetentValue', type: 'Double' },
+  { label: 'presentationContentInteraction', prop: 'presentationContentInteraction', type: 'string' },
+  { label: 'presentationSizing', prop: 'presentationSizing', type: 'string' },
+  { label: 'presentation', prop: 'presentation', type: 'string' },
+  { label: 'colorScheme', prop: 'colorScheme', type: 'string' },
 ] as const
 
 type SheetSpec = {
@@ -174,19 +175,20 @@ type SheetSpec = {
 }
 
 const swiftTypeOf = (prop: string, type: string) => {
-  if (type.startsWith('boolean')) return 'Bool'
-  if (type.startsWith('Int32')) return 'Int'
-  if (type.startsWith('Double')) return 'Double'
-  if (type.startsWith('string')) return 'String'
-  if (type.startsWith('ColorValue')) return 'UIColor?'
+  if (type === 'boolean') return 'Bool'
+  if (type === 'Int32') return 'Int'
+  if (type === 'Double') return 'Double'
+  if (type === 'string') return 'String'
+  if (type === 'ColorValue') return 'UIColor?'
   throw new Error(`OneNativeSheet host: ${prop} carries ${type}, which configure cannot take`)
 }
 
 const objcArgumentOf = (prop: string, type: string) => {
-  if (type.startsWith('string')) return `RCTNSStringFromString(next.${prop})`
-  if (type.startsWith('ColorValue'))
+  if (type === 'string') return `RCTNSStringFromString(next.${prop})`
+  if (type === 'ColorValue')
     return `next.${prop} ? RCTUIColorFromSharedColor(next.${prop}) : nil`
-  return `next.${prop}`
+  if (type === 'boolean' || type === 'Int32' || type === 'Double') return `next.${prop}`
+  throw new Error(`OneNativeSheet host: ${prop} carries ${type}, which configure cannot take`)
 }
 
 // the SDK facts the sheet glue emits against: the presentationDetents selection
@@ -241,9 +243,11 @@ export function validateSheetHost(
   }
   const sheet = components.find((component) => component.name === 'OneNativeSheet')
   if (!sheet) fail('sheetComponents names no OneNativeSheet')
-  for (const { prop } of sheetConfigureArgs)
+  for (const { prop, type } of sheetConfigureArgs) {
     if (!(prop in sheet!.props)) fail(`configure prop ${prop} is not in the spec`)
-  for (const { prop } of sheetConfigureArgs) swiftTypeOf(prop, sheet!.props[prop])
+    if (sheet!.props[prop] !== type)
+      fail(`configure prop ${prop} carries ${sheet!.props[prop]}, not the ${type} the model reads`)
+  }
   if (sheet!.props.detents !== 'ReadonlyArray<NativeSheetDetent>')
     fail(`detents crosses as ${sheet!.props.detents}, not a NativeSheetDetent array`)
   const events: Record<string, Record<string, string>> = {
