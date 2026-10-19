@@ -62,24 +62,21 @@ export function DatePicker({
   onSelectionChange,
   revision = 0,
   label = '',
-  minimumDate = new Date(-62135769600000),
-  maximumDate = new Date(64092211200000),
+  in: range = [new Date(-62135769600000), new Date(64092211200000)],
   displayedComponents = 'dateAndTime',
   swiftStyle,
   style,
   ...props
 }: Types.DatePickerProps) {
   const selectionTime = selection instanceof Date ? selection.getTime() : NaN
-  const minimumTime = minimumDate instanceof Date ? minimumDate.getTime() : NaN
-  const maximumTime = maximumDate instanceof Date ? maximumDate.getTime() : NaN
+  const minimumTime = range[0] instanceof Date ? range[0].getTime() : NaN
+  const maximumTime = range[1] instanceof Date ? range[1].getTime() : NaN
   if (![selectionTime, minimumTime, maximumTime].every(Number.isFinite))
-    throw new Error(
-      'DatePicker selection, minimumDate, and maximumDate must be valid Date values'
-    )
+    throw new Error('DatePicker selection and in bounds must be valid Date values')
   if (minimumTime > maximumTime)
-    throw new Error('DatePicker minimumDate must not be after maximumDate')
+    throw new Error('DatePicker in lower bound must not be after the upper bound')
   if (selectionTime < minimumTime || selectionTime > maximumTime)
-    throw new Error('DatePicker selection must be within minimumDate and maximumDate')
+    throw new Error('DatePicker selection must be within its in bounds')
   if (!['date', 'hourAndMinute', 'dateAndTime'].includes(displayedComponents))
     throw new Error(
       'DatePicker displayedComponents must be date, hourAndMinute, or dateAndTime'
@@ -102,8 +99,8 @@ export function DatePicker({
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       label={label}
-      minimumDate={minimumDate.getTime()}
-      maximumDate={maximumDate.getTime()}
+      minimumDate={range[0].getTime()}
+      maximumDate={range[1].getTime()}
       displayedComponents={displayedComponents}
       onNativeDatePickerValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
@@ -158,8 +155,7 @@ export function MultiDatePicker({
   onSelectionChange,
   revision = 0,
   label = '',
-  minimumDate = new Date(-62135769600000),
-  maximumDate = new Date(64092211200000),
+  in: range = [new Date(-62135769600000), new Date(64092211200000)],
   swiftStyle,
   style,
   ...props
@@ -169,20 +165,16 @@ export function MultiDatePicker({
     selection.some((date) => !(date instanceof Date) || Number.isNaN(date.getTime()))
   )
     throw new Error('MultiDatePicker selection must be an array of valid Dates')
-  const minimumTime = minimumDate instanceof Date ? minimumDate.getTime() : NaN
-  const maximumTime = maximumDate instanceof Date ? maximumDate.getTime() : NaN
+  const minimumTime = range[0] instanceof Date ? range[0].getTime() : NaN
+  const maximumTime = range[1] instanceof Date ? range[1].getTime() : NaN
   if (![minimumTime, maximumTime].every(Number.isFinite))
-    throw new Error(
-      'MultiDatePicker minimumDate and maximumDate must be valid Date values'
-    )
+    throw new Error('MultiDatePicker in bounds must be valid Date values')
   if (minimumTime > maximumTime)
-    throw new Error('MultiDatePicker minimumDate must not be after maximumDate')
+    throw new Error('MultiDatePicker in lower bound must not be after the upper bound')
   if (
     selection.some((date) => date.getTime() < minimumTime || date.getTime() > maximumTime)
   )
-    throw new Error(
-      'MultiDatePicker selection must be within minimumDate and maximumDate'
-    )
+    throw new Error('MultiDatePicker selection must be within its in bounds')
 
   const controlled = useControlled<{
     value: string
@@ -207,8 +199,8 @@ export function MultiDatePicker({
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       label={label}
-      minimumDate={minimumDate.getTime()}
-      maximumDate={maximumDate.getTime()}
+      minimumDate={range[0].getTime()}
+      maximumDate={range[1].getTime()}
       onNativeMultiDatePickerValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
@@ -270,8 +262,7 @@ export function Slider({
   onValueChange,
   revision = 0,
   label = '',
-  minimumValue = 0,
-  maximumValue = 100,
+  in: range = [0, 100],
   step = 1,
   minimumValueLabel = '',
   maximumValueLabel = '',
@@ -285,15 +276,13 @@ export function Slider({
   const syncedValue = useSyncValue<number>(value)
   {
     const value = syncedValue
-    if (![value, minimumValue, maximumValue, step].every(Number.isFinite))
-      throw new Error(
-        'Slider value, minimumValue, maximumValue, and step must be finite numbers'
-      )
-    if (minimumValue >= maximumValue)
-      throw new Error('Slider minimumValue must be less than maximumValue')
+    if (![value, range[0], range[1], step].every(Number.isFinite))
+      throw new Error('Slider value, in bounds, and step must be finite numbers')
+    if (range[0] >= range[1])
+      throw new Error('Slider in lower bound must be less than the upper bound')
     if (step <= 0) throw new Error('Slider step must be greater than 0')
-    if (value < minimumValue || value > maximumValue)
-      throw new Error('Slider value must be within minimumValue and maximumValue')
+    if (value < range[0] || value > range[1])
+      throw new Error('Slider value must be within its in bounds')
   }
 
   const controlled = useControlled<{
@@ -317,8 +306,8 @@ export function Slider({
       revision={revision}
       syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       label={label}
-      minimumValue={minimumValue}
-      maximumValue={maximumValue}
+      minimumValue={range[0]}
+      maximumValue={range[1]}
       step={step}
       minimumValueLabel={minimumValueLabel}
       maximumValueLabel={maximumValueLabel}
@@ -336,8 +325,7 @@ export function Stepper({
   onValueChange,
   revision = 0,
   label = '',
-  minimumValue = 0,
-  maximumValue = 100,
+  in: range = [0, 100],
   step = 1,
   swiftStyle,
   style,
@@ -347,15 +335,13 @@ export function Stepper({
   const syncedValue = useSyncValue<number>(value)
   {
     const value = syncedValue
-    if (![value, minimumValue, maximumValue, step].every(Number.isFinite))
-      throw new Error(
-        'Stepper value, minimumValue, maximumValue, and step must be finite numbers'
-      )
-    if (minimumValue >= maximumValue)
-      throw new Error('Stepper minimumValue must be less than maximumValue')
+    if (![value, range[0], range[1], step].every(Number.isFinite))
+      throw new Error('Stepper value, in bounds, and step must be finite numbers')
+    if (range[0] >= range[1])
+      throw new Error('Stepper in lower bound must be less than the upper bound')
     if (step <= 0) throw new Error('Stepper step must be greater than 0')
-    if (value < minimumValue || value > maximumValue)
-      throw new Error('Stepper value must be within minimumValue and maximumValue')
+    if (value < range[0] || value > range[1])
+      throw new Error('Stepper value must be within its in bounds')
   }
 
   const controlled = useControlled<{
@@ -379,8 +365,8 @@ export function Stepper({
       revision={revision}
       syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       label={label}
-      minimumValue={minimumValue}
-      maximumValue={maximumValue}
+      minimumValue={range[0]}
+      maximumValue={range[1]}
       step={step}
       onNativeStepperValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
@@ -486,8 +472,7 @@ import NativeGauge from '../specs/OneNativeGaugeNativeComponent'
 export function Gauge({
   label = '',
   value = 0,
-  minimumValue = 0,
-  maximumValue = 1,
+  in: range = [0, 1],
   currentValueLabel = '',
   minimumValueLabel = '',
   maximumValueLabel = '',
@@ -495,12 +480,12 @@ export function Gauge({
   style,
   ...props
 }: Types.GaugeProps) {
-  if (![value, minimumValue, maximumValue].every(Number.isFinite))
-    throw new Error('Gauge value, minimumValue, and maximumValue must be finite numbers')
-  if (minimumValue >= maximumValue)
-    throw new Error('Gauge minimumValue must be less than maximumValue')
-  if (value < minimumValue || value > maximumValue)
-    throw new Error('Gauge value must be within minimumValue and maximumValue')
+  if (![value, range[0], range[1]].every(Number.isFinite))
+    throw new Error('Gauge value and in bounds must be finite numbers')
+  if (range[0] >= range[1])
+    throw new Error('Gauge in lower bound must be less than the upper bound')
+  if (value < range[0] || value > range[1])
+    throw new Error('Gauge value must be within its in bounds')
 
   return (
     <NativeGauge
@@ -512,8 +497,8 @@ export function Gauge({
       }
       label={label}
       value={value}
-      minimumValue={minimumValue}
-      maximumValue={maximumValue}
+      minimumValue={range[0]}
+      maximumValue={range[1]}
       currentValueLabel={currentValueLabel}
       minimumValueLabel={minimumValueLabel}
       maximumValueLabel={maximumValueLabel}

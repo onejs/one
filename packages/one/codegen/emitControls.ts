@@ -327,7 +327,9 @@ export type OneNativeViewProps = Pick<
     const fieldEntries = Object.entries(fields)
     // derived fields are native-only; object arrays travel through their own setter.
     const publicFields = fieldEntries.filter(([, field]) => !field.derived)
-    const plainFields = fieldEntries.filter(
+    // public-only fields have no native storage; native lists skip them.
+    const nativeFields = fieldEntries.filter(([, field]) => !field.noNative)
+    const plainFields = nativeFields.filter(
       ([, field]) => field.type !== 'objects' && field.type !== 'strings'
     )
     const objectFields = fieldEntries.filter(([, field]) => field.type === 'objects')
@@ -435,7 +437,7 @@ ${
             focusRevision: 'Int32',
           }
         : {}),
-      ...Object.fromEntries(fieldEntries.map(([key, field]) => [key, nativeType(field)])),
+      ...Object.fromEntries(nativeFields.map(([key, field]) => [key, nativeType(field)])),
     }
     const events: Record<string, Record<string, string>> = {
       ...(hasSDKEvents ? { onNativeSDKEvent: { name: 'string', value: 'string' } } : {}),
@@ -553,11 +555,12 @@ export default codegenNativeComponent<NativeProps>('${nativeName}'${measured ? '
       ...(value ? [value.prop, value.event, 'revision = 0'] : []),
       ...(control.focus ? ['focused', 'onFocusChange', 'focusRevision = 0'] : []),
       ...actions.map((action) => action.prop),
-      ...publicFields.map(([key, field]) =>
-        field.type === 'objects' || field.required
-          ? key
-          : `${key} = ${field.jsDefault ?? literal(field.default)}`
-      ),
+      ...publicFields.map(([key, field]) => {
+        const binding = field.as ? `${key}: ${field.as}` : key
+        return field.type === 'objects' || field.required
+          ? binding
+          : `${binding} = ${field.jsDefault ?? literal(field.default)}`
+      }),
       'swiftStyle',
       'style',
       '...props',
@@ -605,7 +608,7 @@ ${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value
       control.focus
         ? `    focused={focused ?? sdkFocused?.value ?? false} acknowledgedFocusEvent={focused !== undefined || sdkFocused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
         : ''
-    }${fieldEntries.map(([key, field]) => `    ${key}={${field.nativeValue ?? key}}`).join('\n')}
+    }${nativeFields.map(([key, field]) => `    ${key}={${field.nativeValue ?? key}}`).join('\n')}
 ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNativeChange(nativeEvent)}\n` : ''}${
       control.focus
         ? `    onNative${name}FocusChange={({ nativeEvent }) => controlledFocus.onNativeChange(nativeEvent)}\n`
@@ -632,7 +635,7 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
       .join('')}  />
 }
 `
-    const swiftFields = fieldEntries
+    const swiftFields = nativeFields
       .map(
         ([key, field]) =>
           `  @Published var ${key}: ${swiftType(field)} = ${field.type === 'objects' ? '[]' : field.type === 'color' ? 'nil' : literal(field.default)}`

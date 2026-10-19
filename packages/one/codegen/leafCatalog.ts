@@ -129,8 +129,18 @@ export const leafControls: Control[] = [
     fields: {
       ...commonFields,
       value: { type: 'Double', default: 0 },
-      minimumValue: { type: 'Double', default: 0 },
-      maximumValue: { type: 'Double', default: 1 },
+      // SwiftUI's closed range arrives as one tuple; the scalars stay native-only.
+      // type/default only satisfy the field shape; publicType/jsDefault carry the surface.
+      in: {
+        type: 'Double',
+        default: 0,
+        noNative: true,
+        as: 'range',
+        publicType: 'readonly [number, number]',
+        jsDefault: '[0, 1]',
+      },
+      minimumValue: { type: 'Double', default: 0, derived: true, nativeValue: 'range[0]' },
+      maximumValue: { type: 'Double', default: 1, derived: true, nativeValue: 'range[1]' },
       currentValueLabel: { type: 'string', default: '' },
       minimumValueLabel: { type: 'string', default: '' },
       maximumValueLabel: { type: 'string', default: '' },
@@ -178,9 +188,9 @@ export const leafControls: Control[] = [
       } maximumValueLabel: {
         Text(model.maximumValueLabel)
       }`,
-    validate: `  if (![value, minimumValue, maximumValue].every(Number.isFinite)) throw new Error('Gauge value, minimumValue, and maximumValue must be finite numbers')
-  if (minimumValue >= maximumValue) throw new Error('Gauge minimumValue must be less than maximumValue')
-  if (value < minimumValue || value > maximumValue) throw new Error('Gauge value must be within minimumValue and maximumValue')`,
+    validate: `  if (![value, range[0], range[1]].every(Number.isFinite)) throw new Error('Gauge value and in bounds must be finite numbers')
+  if (range[0] >= range[1]) throw new Error('Gauge in lower bound must be less than the upper bound')
+  if (value < range[0] || value > range[1]) throw new Error('Gauge value must be within its in bounds')`,
   },
   {
     name: 'Image',

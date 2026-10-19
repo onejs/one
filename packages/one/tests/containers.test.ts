@@ -130,7 +130,8 @@ describe('form sizing', () => {
 })
 
 // a control field the emitted schema drops is a prop that does nothing at all, so the
-// catalog and the generated schema must agree field for field.
+// catalog and the generated schema must agree field for field, except public-only
+// fields whose derived scalars carry them across the wire instead.
 describe('control fields', () => {
   it('emits every catalog field as a schema prop', () => {
     for (const control of controls) {
@@ -138,9 +139,23 @@ describe('control fields', () => {
         (candidate: { publicName: string }) => candidate.publicName === control.name
       )
       expect(entry, control.name).toBeTruthy()
-      for (const [field, spec] of Object.entries(control.fields))
-        if ((spec as { type: string }).type !== 'objects')
-          expect(entry.props, `${control.name}.${field}`).toHaveProperty(field)
+      for (const [field, spec] of Object.entries(control.fields)) {
+        const flags = spec as { type: string; noNative?: true }
+        if (flags.type === 'objects' || flags.noNative) continue
+        expect(entry.props, `${control.name}.${field}`).toHaveProperty(field)
+      }
+    }
+  })
+
+  it('carries each public-only field through derived native scalars', () => {
+    for (const control of controls) {
+      const fields = Object.entries(control.fields) as [
+        string,
+        { noNative?: true; derived?: boolean },
+      ][]
+      if (!fields.some(([, spec]) => spec.noNative)) continue
+      const scalars = fields.filter(([, spec]) => spec.derived).map(([field]) => field)
+      expect(scalars, `${control.name} derived scalars`).not.toHaveLength(0)
     }
   })
 })

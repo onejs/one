@@ -3562,8 +3562,7 @@ export interface DatePickerProps extends OneNativeViewProps {
   onSelectionChange: (value: Date) => void
   revision?: number
   label?: string
-  minimumDate?: Date
-  maximumDate?: Date
+  in?: readonly [Date, Date]
   displayedComponents?: 'date' | 'hourAndMinute' | 'dateAndTime'
 }
 export interface ColorPickerProps extends OneNativeViewProps {
@@ -3578,8 +3577,7 @@ export interface MultiDatePickerProps extends OneNativeViewProps {
   onSelectionChange: (value: readonly Date[]) => void
   revision?: number
   label?: string
-  minimumDate?: Date
-  maximumDate?: Date
+  in?: readonly [Date, Date]
 }
 export interface ToggleProps extends OneNativeViewProps {
   isOn: boolean | NativeState<boolean>
@@ -3593,8 +3591,7 @@ export interface SliderProps extends OneNativeViewProps {
   onValueChange: (value: number) => void
   revision?: number
   label?: string
-  minimumValue?: number
-  maximumValue?: number
+  in?: readonly [number, number]
   step?: number
   minimumValueLabel?: string
   maximumValueLabel?: string
@@ -3606,8 +3603,7 @@ export interface StepperProps extends OneNativeViewProps {
   onValueChange: (value: number) => void
   revision?: number
   label?: string
-  minimumValue?: number
-  maximumValue?: number
+  in?: readonly [number, number]
   step?: number
 }
 export interface PasteButtonProps extends OneNativeViewProps {
@@ -3628,8 +3624,7 @@ export interface ProgressViewProps extends OneNativeViewProps {
 export interface GaugeProps extends OneNativeViewProps {
   label?: string
   value?: number
-  minimumValue?: number
-  maximumValue?: number
+  in?: readonly [number, number]
   currentValueLabel?: string
   minimumValueLabel?: string
   maximumValueLabel?: string
