@@ -86,7 +86,10 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ControlGroup` | groups, control-group | n/a | OneSwiftListsLibraryCase |  |
 | `One.iOS.DisclosureGroup` | groups, disclosure-group | n/a | OneSwiftDisclosureGroupLibraryCase |  |
 | `One.iOS.Divider` | groups | n/a | OneSwiftLayoutContainersLibraryCase |  |
-| `One.iOS.UIKitView` | missing | n/a | missing | fixture one-native-uikit-view exists; no conformance suite drives it and its simulator run was blocked |
+| `One.iOS.UIKitView` | uikit-content | n/a | missing | calendar view identity and accessibility proven; collection, table and stack integration suite unrun |
+| `One.iOS.UIKitContent` | uikit-content | n/a | missing | collection, table and stack fixture registered; iOS Fabric layout, reuse, touches and accessibility unproven |
+| `One.iOS.collectionCellSource` | uikit-content | n/a | missing | collection fixture registered; iOS cell sizing, updates and reuse unproven |
+| `One.iOS.tableCellSource` | uikit-content | n/a | missing | table fixture registered; iOS row sizing, updates and reuse unproven |
 | `One.iOS.Link` | groups | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Group` | groups | n/a | OneSwiftLayoutContainersLibraryCase |  |
 | `One.iOS.GroupBox` | group-box | n/a | OneSwiftLayoutContainersLibraryCase |  |
