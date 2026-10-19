@@ -29,6 +29,10 @@ const VIRTUAL_ENTRY_RESOLVED_RE = new RegExp(
   `^(?:${escapeRe(resolvedVirtualEntryId)}|${escapeRe(resolvedVirtualEntryIdNative)})$`
 )
 
+// a route path is literal, but `[id]`, `[...rest]` and `{a}` segments are glob
+// syntax, so an unescaped path neither matches nor excludes its own file
+const escapeGlob = (s: string) => s.replace(/[\\*?[\](){}!+@]/g, '\\$&')
+
 type NormalizedSetupFiles = {
   client?: string
   server?: string
@@ -208,8 +212,8 @@ export function createVirtualEntry(options: {
                 `${JSON.stringify(`/${options.root}/${file}`)}: () => Promise.resolve({})`
             )
             .join(',\n    ')
-          const serverSpaBuildGlobs = serverSpaRouteFiles.map(
-            (file) => `/${options.root}/${file}`
+          const serverSpaBuildGlobs = serverSpaRouteFiles.map((file) =>
+            escapeGlob(`/${options.root}/${file}`)
           )
           const serverSpaExportGlob = (name: string) =>
             `  ${name}: import.meta.glob(${JSON.stringify(serverSpaBuildGlobs)}, { exhaustive: true, import: '${name}', query: '?one-spa-build' })`
@@ -221,7 +225,7 @@ export function createVirtualEntry(options: {
           const webRouteGlobs = [
             ...routeGlobs,
             ...ROUTE_WEB_EXCLUSION_GLOB_PATTERNS.map((pattern) => `!${pattern}`),
-            ...serverSpaRouteFiles.map((file) => `!/${options.root}/${file}`),
+            ...serverSpaBuildGlobs.map((glob) => `!${glob}`),
           ]
           // native always needs static import. SSR in dev mode uses static import
           // so Vite crawls the setupFile's dep tree (including react) and pre-bundles
