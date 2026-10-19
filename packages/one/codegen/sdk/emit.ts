@@ -7,6 +7,7 @@ import { Bridge, OBSERVABLE, cErrorOut, inUniverse, judge, outPointee, callbackO
 import type { Fragment, Graph, Symbol } from './graph'
 import { parameterDefaults, parameterType, parseType, typeText, type SwiftType } from './types'
 import { emitProtocols } from './emit-protocols'
+import { assignEntryIds } from './identity'
 
 export type Entry = {
   id: number
@@ -738,7 +739,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
   }
 
   entries.sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
-  entries.forEach((entry, id) => (entry.id = id))
+  assignEntryIds(entries)
   // the table opens the receiver as the owner's protocol, whose extension
   // holds the member bodies with the owner's generic parameters in scope
   const openings = [...opened].map(([ownerUsr, { info, value, bodies }]) => {
@@ -823,6 +824,8 @@ const CHUNK = 200
 const argumentNames = (e: Entry) => e.kind === 'set' ? [e.name] : e.params.filter((p) => !p.out).map((p) => p.name)
 
 function renderSwift(module: string, table: string, imports: string[], entries: Entry[], conformances: string[], protocols: () => string) {
+  // range dispatch requires numeric order even when the SDK prunes symbols.
+  entries = [...entries].sort((a, b) => a.id - b.id)
   const name = `OneSDK_${module}`
   const sync = entries.filter((e) => !e.isAsync && !e.main)
   const async = entries.filter((e) => e.isAsync || e.main)
