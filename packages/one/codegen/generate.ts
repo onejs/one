@@ -578,8 +578,13 @@ export interface MenuProps extends ViewProps {
 }
 // a context menu leaves its trigger interactive and visible to accessibility, so React
 // Native's own label on that subtree stands and the menu takes none of its own.
+// preview is the React Native subtree UIKit shows above the menu on long press,
+// in an explicit box like a popover's; without it the subject is its own preview.
 export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel' | 'primaryAction'> & {
   accessibilityLabel?: string
+  preview?: ReactNode
+  previewWidth?: number
+  previewHeight?: number
 }
 `
 )

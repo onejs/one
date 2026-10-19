@@ -55,6 +55,40 @@ final class OneNativeMenuModel: ObservableObject {
   }
 }
 
+// the session is generic so the harness can drive it on macOS; in production the
+// content is always the preview marker view and the host a plain controller.
+extension UIView: OneNativeMenuPreviewContent {
+  var previewHidden: Bool {
+    get { isHidden }
+    set { isHidden = newValue }
+  }
+  var previewFrame: CGRect {
+    get { frame }
+    set { frame = newValue }
+  }
+  func detachFromPreviewParent() {
+    removeFromSuperview()
+  }
+}
+
+extension UIViewController: OneNativeMenuPreviewHost {
+  var previewPreferredSize: CGSize {
+    get { preferredContentSize }
+    set { preferredContentSize = newValue }
+  }
+  func attachPreview(_ content: any OneNativeMenuPreviewContent) {
+    precondition(content is UIView, "menu preview content is always a view")
+    view.addSubview(content as! UIView)
+  }
+}
+
+private struct OneNativeMenuDismissAnimator: OneNativeMenuPreviewAnimator {
+  let animator: any UIContextMenuInteractionAnimating
+  func addPreviewCompletion(_ completion: @escaping () -> Void) {
+    animator.addCompletion(completion)
+  }
+}
+
 @objcMembers
 public final class OneNativeMenuView: UIView {
   public var onAction: ((String) -> Void)?
@@ -62,6 +96,7 @@ public final class OneNativeMenuView: UIView {
   public var onValueChange: ((String, Bool, Int, Int, Int) -> Void)?
   public var onPickerChange: ((String, String, Int, Int) -> Void)?
   private var model = OneNativeMenuModel()
+  private var preview = OneNativeMenuPreviewSession<UIView, UIViewController>(makeHost: UIViewController.init)
   private var controller: OneNativeHostingController<OneNativeMenuRoot>?
   private var contextMenu: UIContextMenuInteraction?
 
@@ -79,6 +114,14 @@ public final class OneNativeMenuView: UIView {
     view.removeFromSuperview()
   }
 
+  public func mountPreview(_ view: UIView, onLayout: @escaping (CGRect) -> Void) {
+    preview.mount(view, onLayout: onLayout)
+  }
+
+  public func unmountPreview(_ view: UIView) {
+    preview.unmount(view)
+  }
+
   public func configureItems(_ items: [[String: Any]]) {
     let nodes = items.map(OneNativeMenuNode.init)
     model.items = Dictionary(uniqueKeysWithValues: nodes.map { ($0.id, $0) })
@@ -87,7 +130,7 @@ public final class OneNativeMenuView: UIView {
     model.children = Dictionary(grouping: nodes, by: \.parentId)
   }
 
-  public func configure(_ triggerLabel: String, disabled: Bool, hasPrimaryAction: Bool, menuOrder: String, menuActionDismissBehavior: String, presentation: String, acknowledgedEvent: Int, pickerAcknowledgedEvent: Int, revision: Int) {
+  public func configure(_ triggerLabel: String, disabled: Bool, hasPrimaryAction: Bool, menuOrder: String, menuActionDismissBehavior: String, presentation: String, previewWidth: Double, previewHeight: Double, acknowledgedEvent: Int, pickerAcknowledgedEvent: Int, revision: Int) {
     if let next = model.controlled.applying(model.propValues, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if let next = model.pickerControlled.applying(model.propPickerValues, acknowledged: pickerAcknowledgedEvent, revision: revision) { model.pickerControlled = next }
     if model.label != triggerLabel { model.label = triggerLabel }
@@ -96,6 +139,7 @@ public final class OneNativeMenuView: UIView {
     if model.menuOrder != menuOrder { model.menuOrder = menuOrder }
     if model.menuActionDismissBehavior != menuActionDismissBehavior { model.menuActionDismissBehavior = menuActionDismissBehavior }
     if model.presentation != presentation { model.presentation = presentation; setNeedsLayout() }
+    preview.setSize(width: previewWidth, height: previewHeight)
   }
 
   public override func didMoveToWindow() {
@@ -158,6 +202,7 @@ public final class OneNativeMenuView: UIView {
     model.onPrimaryAction = nil
     model.onValueChange = nil
     model.onPickerChange = nil
+    preview.reset()
     model.trigger?.removeFromSuperview()
     controller?.detach()
     controller = nil
@@ -236,12 +281,28 @@ extension OneNativeMenuView: UIContextMenuInteractionDelegate {
   public func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint
   ) -> UIContextMenuConfiguration? {
-    let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
+    // SwiftUI's contextMenu(menuItems:preview:) is this same interaction with a
+    // preview closure; UIKit takes a view controller instead. without a preview
+    // child the provider stays nil and UIKit shows the subject, as before.
+    let provider: (() -> UIViewController?)? =
+      preview.content == nil ? nil : { [weak self] in self?.preview.present() }
+    let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: provider) { [weak self] _ in
       guard let self else { return nil }
       return UIMenu(children: self.menuElements("", dismiss: self.model.menuActionDismissBehavior, disabled: false))
     }
     configuration.preferredMenuElementOrder = Self.menuOrder(model.menuOrder)
     return configuration
+  }
+
+  public func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction, willEndFor configuration: UIContextMenuConfiguration,
+    animator: (any UIContextMenuInteractionAnimating)?
+  ) {
+    // the preview content returns to no parent once the dismiss animation finishes,
+    // the way a presented slot dismantles; the session retains it for the next menu.
+    // removing it earlier would empty the preview mid-animation, and leaving it in
+    // the released controller would orphan its superview.
+    preview.end(animator: animator.map(OneNativeMenuDismissAnimator.init))
   }
 
   // the uikit form of OneNativeGeneratedMenuContent: a divider or a section closes the

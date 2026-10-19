@@ -53,9 +53,18 @@ function MenuPresentation({
   revision: _revision,
   menuOrder: _menuOrder,
   menuActionDismissBehavior: _menuActionDismissBehavior,
+  // the long-press preview is iOS-only; Android shows the popup menu alone.
+  preview: _preview,
+  previewWidth: _previewWidth,
+  previewHeight: _previewHeight,
   presentation,
   ...viewProps
-}: MenuProps & { presentation: 'menu' | 'contextMenu' }) {
+}: MenuProps & {
+  presentation: 'menu' | 'contextMenu'
+  preview?: ContextMenuProps['preview']
+  previewWidth?: number
+  previewHeight?: number
+}) {
   const anchor = useRef<View>(null)
   const contextAnchor = useRef<ComponentRef<typeof NativeContextTrigger>>(null)
   const nativeItems = flattenMenuItems(items)

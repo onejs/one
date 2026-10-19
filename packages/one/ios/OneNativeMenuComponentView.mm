@@ -1,6 +1,7 @@
 #import "OneNativeMenuComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContextMenuPreviewComponentView.h"
 #import "Generated/OneNativeMenuPayload.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
@@ -57,11 +58,20 @@ using namespace facebook::react;
 
 - (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index
 {
+  if ([child isKindOfClass:OneNativeContextMenuPreviewComponentView.class]) {
+    __weak OneNativeContextMenuPreviewComponentView *weakPreview = (OneNativeContextMenuPreviewComponentView *)child;
+    [_menuView mountPreview:child onLayout:^(CGRect frame) { [weakPreview updateNativeFrame:frame]; }];
+    return;
+  }
   [_menuView mountTrigger:child];
 }
 
 - (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index
 {
+  if ([child isKindOfClass:OneNativeContextMenuPreviewComponentView.class]) {
+    [_menuView unmountPreview:child];
+    return;
+  }
   [_menuView unmountTrigger:child];
 }
 
@@ -78,6 +88,7 @@ using namespace facebook::react;
               menuOrder:RCTNSStringFromString(next.menuOrder)
               menuActionDismissBehavior:RCTNSStringFromString(next.menuActionDismissBehavior)
               presentation:RCTNSStringFromString(next.presentation)
+              previewWidth:next.previewWidth previewHeight:next.previewHeight
               acknowledgedEvent:next.acknowledgedEvent
               pickerAcknowledgedEvent:next.pickerAcknowledgedEvent revision:next.revision];
   [super updateProps:props oldProps:oldProps];

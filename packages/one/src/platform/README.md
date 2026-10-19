@@ -408,8 +408,34 @@ toggles, submenus, sections and `menuActionDismissBehavior`, works identically h
 The difference is the trigger. A menu owns the tap, so its trigger is passive and
 SwiftUI supplies its accessibility label. A context menu only claims the long press, so
 its children keep their own touches and their own accessibility, which is why
-`accessibilityLabel` is optional here and is not applied to the subject. `preview:` is
-not bound: a context menu renders its subject as its own preview.
+`accessibilityLabel` is optional here and is not applied to the subject.
+
+`preview` is SwiftUI's `contextMenu(menuItems:preview:)` closure as a React Native
+subtree: UIKit shows it above the menu while the long press is held, instead of the
+subject. It takes an explicit box like a popover's, because the preview controller
+sizes from its content and a React Native subtree has no ideal size. Without a
+preview the subject is its own preview, as before. The preview lays out hidden and
+out of the accessibility tree until the menu presents it; it takes no touches of
+its own, and tapping it commits nothing. A tap `Menu` takes no preview. Android
+ignores the preview and shows the popup menu alone.
+
+```tsx
+<One.iOS.ContextMenu
+  items={actions}
+  onAction={setLastAction}
+  preview={
+    <View testID="preview-card">
+      <Text>Order #4129</Text>
+    </View>
+  }
+  previewWidth={240}
+  previewHeight={120}
+>
+  <Pressable onPress={open}>
+    <Text>Long press for actions</Text>
+  </Pressable>
+</One.iOS.ContextMenu>
+```
 
 ## Pickers and form controls
 

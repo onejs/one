@@ -94,7 +94,7 @@ const partialGaps: Record<string, string> = {
   Motion:
     'iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run',
   'iOS.Menu':
-    'primaryAction short tap, long-press menu, item callback, disabled behavior, plain Menu tap, and Picker selection with native checkmarks in Menu and ContextMenu proven on iOS 27; context previews unbound',
+    'primaryAction short tap, long-press menu, item callback, disabled behavior, plain Menu tap, Picker selection with native checkmarks in Menu and ContextMenu, and custom context preview presentation with explicit box, AX content, replacement, disposal, and no-preview subject behavior proven on iOS 27',
   'iOS.ArrangementView':
     'closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved',
   'iOS.EditButton':

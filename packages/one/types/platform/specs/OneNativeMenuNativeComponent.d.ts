@@ -1,5 +1,5 @@
 import type { ViewProps } from 'react-native';
-import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes';
+import type { DirectEventHandler, Int32, Double } from 'react-native/Libraries/Types/CodegenTypes';
 export type NativeMenuItem = Readonly<{
     parentId: string;
     type: string;
@@ -24,6 +24,8 @@ interface NativeProps extends ViewProps {
     menuOrder: string;
     menuActionDismissBehavior: string;
     presentation: string;
+    previewWidth: Double;
+    previewHeight: Double;
     acknowledgedEvent: Int32;
     revision: Int32;
     pickerAcknowledgedEvent: Int32;
