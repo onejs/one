@@ -91,6 +91,15 @@ export function outPointee(type: SwiftType): SwiftType | undefined {
   if (name === 'AutoreleasingUnsafeMutablePointer' || element.k === 'optional') return element
   return element.k === 'named' && BOOLEAN_NAMES.has(element.name.split('.').at(-1)!) ? element : undefined
 }
+// a c error out-parameter writes an Unmanaged<CFError>? the caller reads back as
+// the error; other Unmanaged pointees stay out
+export function cErrorOut(written: SwiftType): SwiftType | undefined {
+  const unmanaged = written.k === 'optional' && written.t.k === 'named' && written.t.name.split('.').at(-1) === 'Unmanaged'
+    ? written.t.args[0]
+    : undefined
+  if (!unmanaged || unmanaged.k !== 'named' || unmanaged.name.split('.').at(-1) !== 'CFError') return undefined
+  return { k: 'optional', t: unmanaged, implicit: false }
+}
 // the c typealiases of the swift standard library, which no sdk framework declares
 const C_ALIASES: Record<string, string> = {
   CChar: 'Int8', CSignedChar: 'Int8', CUnsignedChar: 'UInt8', CShort: 'Int16', CUnsignedShort: 'UInt16',
@@ -515,9 +524,10 @@ export class Bridge {
     if (name === 'CVaListPointer') return { ok: false, reason: 'variadic argument list' }
     const written = outPointee(type)
     if (written) {
-      const unmanaged = written.k === 'optional' && written.t.k === 'named' && written.t.name.split('.').at(-1) === 'Unmanaged'
+      const error = cErrorOut(written)
+      const unmanaged = !error && written.k === 'optional' && written.t.k === 'named' && written.t.name.split('.').at(-1) === 'Unmanaged'
       if (position !== 'input' || unmanaged) return { ok: false, reason: 'pointer out-parameter' }
-      const value = this.type(written, 'output', generics)
+      const value = this.type(error ?? written, 'output', generics)
       return value.ok ? { ok: true, ts: `NativeOut<${value.ts}>` } : value
     }
     const sized = name.includes('Buffer')
