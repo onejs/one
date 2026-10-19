@@ -1,7 +1,7 @@
 import { execFile, spawn, spawnSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
 import { existsSync } from 'node:fs'
-import { mkdtemp, mkdir, readFile, readdir, rm, symlink, writeFile } from 'node:fs/promises'
+import { mkdtemp, mkdir, readFile, readdir, rm, stat, symlink, writeFile } from 'node:fs/promises'
 import { connect, createServer, type Server, type Socket } from 'node:net'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
@@ -79,10 +79,21 @@ function cleanWorkerScript(root: string, cacheDir: string, moduleUrl: string) {
   `
 }
 
-// mutex range under test; must match clean.ts. the tests fail closed if it
-// drifts: scans find nothing and the squat misses the lock port.
+// mirrors getCacheCleanLockPort in clean.ts; must match it. the tests touch
+// only the one port their disposable root hashes to, never the shared range.
 const CLEAN_LOCK_PORT_BASE = 24_000
 const CLEAN_LOCK_PORT_COUNT = 1_000
+
+async function lockPortForRoot(root: string): Promise<number> {
+  const info = await stat(join(root, 'node_modules'))
+  let hash = 0x811c9dc5
+  const identity = `${info.dev}:${info.ino}`
+  for (let index = 0; index < identity.length; index++) {
+    hash ^= identity.charCodeAt(index)
+    hash = Math.imul(hash, 0x01000193)
+  }
+  return CLEAN_LOCK_PORT_BASE + (hash >>> 0) % CLEAN_LOCK_PORT_COUNT
+}
 
 async function tryConnect(port: number): Promise<Socket | undefined> {
   return new Promise((resolve) => {
@@ -93,22 +104,6 @@ async function tryConnect(port: number): Promise<Socket | undefined> {
       resolve(undefined)
     })
   })
-}
-
-// every accepting port in the mutex range, without knowing which one this
-// root hashes to. the caller owns the returned sockets.
-async function scanLockPorts(): Promise<{ port: number; socket: Socket }[]> {
-  const found: { port: number; socket: Socket }[] = []
-  await Promise.all(
-    Array.from({ length: CLEAN_LOCK_PORT_COUNT }, async (_, offset) => {
-      const port = CLEAN_LOCK_PORT_BASE + offset
-      const socket = await tryConnect(port)
-      if (socket) {
-        found.push({ port, socket })
-      }
-    })
-  )
-  return found
 }
 
 // outermost node_modules above the test, so a bundled worker's bare
@@ -470,12 +465,10 @@ describe('prepareCacheForVersion', () => {
         ],
         { timeout: 60_000 }
       )
-      const baseline = new Set(
-        (await scanLockPorts()).map(({ port, socket }) => {
-          socket.destroy()
-          return port
-        })
-      )
+      const lockPort = await lockPortForRoot(root)
+      const occupied = await tryConnect(lockPort)
+      occupied?.destroy()
+      expect(occupied, 'exact mutex port must start free').toBeUndefined()
       const worker = spawn('node', ['--input-type=module', '-e', workerScript], {
         env: { ...process.env, VXRN_DONT_CLEAN_SELF: '' },
         stdio: ['ignore', 'pipe', 'pipe'],
@@ -496,13 +489,10 @@ describe('prepareCacheForVersion', () => {
           )
           if (remaining.length < count && stateGone) {
             midHoldSeen = true
-            for (const { port, socket } of await scanLockPorts()) {
-              if (baseline.has(port)) {
-                socket.destroy()
-              } else {
-                acceptedMidHold++
-                held.push(socket)
-              }
+            const socket = await tryConnect(lockPort)
+            if (socket) {
+              acceptedMidHold++
+              held.push(socket)
             }
           }
           await sleep(150)
@@ -539,31 +529,19 @@ describe('prepareCacheForVersion', () => {
     const moduleUrl = pathToFileURL(join(dirname(import.meta.filename), 'clean.ts')).href
     await writeStaleCache(root, cacheDir, viteDir)
 
-    // squat the whole mutex range so port acquisition must fail without
-    // knowing which port this root hashes to
+    // squat only this root's exact mutex port so acquisition must fail
     const squatters: Server[] = []
     try {
-      await Promise.all(
-        Array.from({ length: CLEAN_LOCK_PORT_COUNT }, (_, offset) => {
-          const port = CLEAN_LOCK_PORT_BASE + offset
-          return new Promise<void>((resolve, reject) => {
-            const server = createServer()
-            server.once('error', (err: Error) => {
-              if ((err as NodeJS.ErrnoException).code === 'EADDRINUSE') {
-                // a foreign occupant fails the worker the same way
-                resolve()
-              } else {
-                reject(err)
-              }
-            })
-            server.once('listening', () => {
-              squatters.push(server)
-              resolve()
-            })
-            server.listen({ port, host: '127.0.0.1' })
-          })
+      const port = await lockPortForRoot(root)
+      await new Promise<void>((resolve, reject) => {
+        const server = createServer()
+        server.once('error', reject)
+        server.once('listening', () => {
+          squatters.push(server)
+          resolve()
         })
-      )
+        server.listen({ port, host: '127.0.0.1' })
+      })
 
       const failure = await execFileAsync(
         'bun',
@@ -581,7 +559,7 @@ describe('prepareCacheForVersion', () => {
         (err: unknown) => err as NodeJS.ErrnoException & { stderr?: string }
       )
 
-      expect(failure, 'cleaner must fail while the mutex range is squatted').toBeDefined()
+      expect(failure, 'cleaner must fail while the mutex port is squatted').toBeDefined()
       expect(String(failure?.stderr ?? failure)).toMatch(
         'Timed out waiting for VXRN cache cleanup lock'
       )
