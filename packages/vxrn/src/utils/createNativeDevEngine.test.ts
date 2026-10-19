@@ -3112,6 +3112,74 @@ globalThis.externalDefaults = [Component, marker, Scoped, Plain, require('extern
   })
 })
 
+describe('native interop string literals', () => {
+  it('rewrites real __toESM calls while leaving string data alone', () => {
+    const literal = '__toESM(externalModule, 1)'
+    const code = [
+      `const stringData = ${JSON.stringify(literal)}`,
+      'const templateData = `' + literal + '`',
+      `// ${literal}`,
+      `/* ${literal} */`,
+      'const viaRequire = __toESM(require_helper(), 1)',
+      'const viaBinding = __toESM(externalModule, 1)',
+      'const viaLookup = __toESM(__rolldown_runtime__.loadExports("helper"), 1)',
+      'const viaRuntime = __rolldown_runtime__.__toESM(__rolldown_runtime__.loadExports("helper"), 1)',
+      'const renamed = __toESM$2(require_helper(), 1)',
+      'const spaced = __toESM(  require_helper()  ,  1  )',
+      'const interpolated = `${__toESM(externalModule, 1)}`',
+    ].join('\n')
+    const normalized = normalizeNativeCommonJSInterop(code)
+    expect(normalized).toContain(`const stringData = ${JSON.stringify(literal)}`)
+    expect(normalized).toContain('const templateData = `' + literal + '`')
+    expect(normalized).toContain(`// ${literal}`)
+    expect(normalized).toContain(`/* ${literal} */`)
+    expect(normalized).toContain('const viaRequire = __toESM(require_helper())')
+    expect(normalized).toContain('const viaBinding = __toESM(externalModule)')
+    expect(normalized).toContain(
+      'const viaLookup = __toESM(__rolldown_runtime__.loadExports("helper"))'
+    )
+    expect(normalized).toContain(
+      'const viaRuntime = __rolldown_runtime__.__toESM(__rolldown_runtime__.loadExports("helper"))'
+    )
+    expect(normalized).toContain('const renamed = __toESM$2(require_helper())')
+    expect(normalized).toContain('const spaced = __toESM(  require_helper()    )')
+    expect(normalized).toContain('const interpolated = `${__toESM(externalModule)}`')
+  })
+
+  it.each([false, true])(
+    'keeps __toESM string data through buildNativeBundle (minify=%s)',
+    async (minify) => {
+      const literal = '__toESM(externalModule, 1)'
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-interop-literal-'))
+      try {
+        await writeFile(join(root, 'package.json'), JSON.stringify({ type: 'module' }))
+        await writeFile(
+          join(root, 'entry.js'),
+          `globalThis.__interopLiteralProbe = ${JSON.stringify(literal)}\n`
+        )
+        const { code } = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev: true,
+          minify,
+        })
+        expect(code).toContain(literal)
+        const context = {
+          clearTimeout,
+          console,
+          process: { env: {} },
+          setTimeout,
+        }
+        runInNewContext(code, context)
+        expect(Reflect.get(context, '__interopLiteralProbe')).toBe(literal)
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+})
+
 describe('native Flow sources', () => {
   it.each([true, false])(
     'preserves codegen, worklets and maps with dev=%s',
