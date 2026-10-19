@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
-import type { SDKAnimation } from './generated/controlTypes';
+import type { SDKAnimationValue } from './generated/controlTypes';
 export interface PhaseAnimatorProps<Phase> extends Omit<ViewProps, 'children'> {
     phases: Iterable<Phase>;
     trigger?: unknown;
-    animation?: (phase: Phase) => SDKAnimation | null;
+    animation?: (phase: Phase) => SDKAnimationValue | null;
     children: (phase: Phase) => ReactNode;
 }
 export type KeyframeValue = number | Readonly<Record<string, number>>;

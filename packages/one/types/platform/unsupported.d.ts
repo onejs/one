@@ -1,6 +1,6 @@
 import { Angle, Gradient, Path, type CanvasProps } from './canvas';
 import type { UICollectionView, UICollectionViewDiffableDataSource, UITableView, UITableViewDiffableDataSource } from 'one/ios/UIKit';
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, UIKitContentProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimation, WithAnimationCompletionCriteria } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, UIKitContentProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimationValue, WithAnimationCompletionCriteria } from './types';
 declare function TabView(_props: TabViewProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -293,7 +293,7 @@ export declare const Swift: {
     SpringKeyframe: typeof SpringKeyframe;
     CubicKeyframe: typeof CubicKeyframe;
     MoveKeyframe: typeof MoveKeyframe;
-    withAnimation(_animation: SDKAnimation | null, _body: () => void, _completion?: () => void, _completionCriteria?: WithAnimationCompletionCriteria): never;
+    withAnimation(_animation: SDKAnimationValue | null, _body: () => void, _completion?: () => void, _completionCriteria?: WithAnimationCompletionCriteria): never;
     Map: typeof MapWithControlsStub;
     Picker: typeof PickerWithChildrenStub;
 };
