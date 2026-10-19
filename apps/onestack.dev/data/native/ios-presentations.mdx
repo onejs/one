@@ -64,9 +64,8 @@ leaving `isPresented` true declines a swipe-to-dismiss.
 
 Sheets and covers host React Native children in a native content view; the
 sheet chrome itself, detents, drag indicator, background, and sizing, is
-SwiftUI's. `onDismiss` forwards SwiftUI's dismissal, which can arrive while
-content is still on screen; `onDidDismiss` fires once, after the content has
-left its window following an accepted close. Menus take a different shape: an
+SwiftUI's. `onDismiss` forwards SwiftUI's dismissal. Menus take a different
+shape: an
 array of item data rendered as `UIMenu` and `UIAction` elements, with taps,
 toggle flips, and picker choices reported by item id.
 
@@ -105,10 +104,8 @@ function DetailsSheet() {
     { name: 'isPresented', required: true, type: 'boolean', description: 'Whether the sheet shows.' },
     { name: 'onIsPresentedChange', required: true, type: '(value: boolean) => void', description: 'A native open or close request.' },
     { name: 'onDismiss', type: '() => void', description: 'SwiftUI began dismissing the sheet.' },
-    { name: 'onDidDismiss', type: '() => void', description: 'The sheet left the screen after an accepted close.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isPresented to reset it from outside.' },
     { name: 'presentationDetents', type: 'readonly PresentationDetent[]', default: '["large"]', description: 'The heights the sheet rests at. Each must be unique.' },
-    { name: 'fitToContents', type: 'boolean', default: 'false', description: 'Sizes the sheet to its content. Not with selectedDetent.' },
     { name: 'selectedDetent', type: 'PresentationDetent', description: 'The current detent, controlled. Pass with its callback.' },
     { name: 'onSelectedDetentChange', type: '(detent: PresentationDetent) => void', description: 'A drag to another detent.' },
     { name: 'detentRevision', type: 'number', default: '0', description: 'Increase with a new selectedDetent to reset it.' },
@@ -124,15 +121,11 @@ function DetailsSheet() {
 
 A `PresentationDetent` is `'medium'`, `'large'`, `{ fraction }` from 0 to 1,
 or `{ height }` in points. At least one detent is required and each must be
-unique; `fitToContents` cannot be combined with `selectedDetent`, and a
-selected detent must be one of `presentationDetents`.
+unique, and a selected detent must be one of `presentationDetents`.
 `presentationBackgroundInteraction` is `'automatic'`, `'enabled'`,
 `'disabled'`, or `{ enabledUpThrough: detent }`, which lets the screen behind
 take touches until the sheet grows past that detent; the detent must be one of
 `presentationDetents`.
-
-A declined close or an unmounted sheet never reports `onDidDismiss`. Keep the
-sheet and its content mounted until then if you need it.
 
 ## FullScreenCover
 
@@ -167,7 +160,6 @@ function PlayerCover() {
     { name: 'isPresented', required: true, type: 'boolean', description: 'Whether the cover shows.' },
     { name: 'onIsPresentedChange', required: true, type: '(value: boolean) => void', description: 'A native open or close request.' },
     { name: 'onDismiss', type: '() => void', description: 'SwiftUI began dismissing the cover.' },
-    { name: 'onDidDismiss', type: '() => void', description: 'The cover left the screen.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isPresented to reset it from outside.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The cover content.' },
   ]}
@@ -575,11 +567,8 @@ function TripRow({ act }: { act: (id: string) => void }) {
 
 - **Declining a close leaves the flag true.** A swipe-to-dismiss only proposes;
   the presentation stays until `isPresented` goes false.
-- **`onDidDismiss` needs an accepted close.** A declined close or an unmounted
-  sheet never reports it, so keep the sheet mounted until it fires if you need
-  it.
 - **Sheet detents are strict.** At least one is required, each must be unique,
-  `fitToContents` cannot combine with `selectedDetent`, and the selected and
-  interaction detents must be members of `presentationDetents`.
+  and the selected and interaction detents must be members of
+  `presentationDetents`.
 - **Menus need their callbacks.** Items with toggles throw without
   `onValueChange`; items with pickers throw without `onPickerChange`.
