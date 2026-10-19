@@ -8,7 +8,7 @@ export class WebPage extends SDKHandle {
    * @MainActor final var themeColor: Color? { get }
    * @availability iOS 26.0+
    */
-  get themeColor(): Promise<(_SwiftUICore_Color) | null> { return callSDKAsync<(_SwiftUICore_Color) | null>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 2948295266247776, this, []); }
+  get themeColor(): Promise<(_SwiftUICore_Color) | null> { return callSDKAsync<(_SwiftUICore_Color) | null>("_WebKit_SwiftUI_a956b86ef7a76a8e", 2948295266247776, this, []); }
   declare readonly $type: { "s:6WebKit0A4PageC": true };
 }
 
@@ -17,7 +17,7 @@ export class WebPage_NavigationAction extends SDKHandle {
    * @MainActor var modifierFlags: EventModifiers { get }
    * @availability iOS 26.0+
    */
-  get modifierFlags(): Promise<_SwiftUICore_EventModifiers> { return callSDKAsync<_SwiftUICore_EventModifiers>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 4311983886800500, this, []); }
+  get modifierFlags(): Promise<_SwiftUICore_EventModifiers> { return callSDKAsync<_SwiftUICore_EventModifiers>("_WebKit_SwiftUI_a956b86ef7a76a8e", 4311983886800500, this, []); }
   declare readonly $type: { "s:6WebKit0A4PageC16NavigationActionV": true };
 }
 
@@ -30,12 +30,12 @@ export class WebView extends SDKHandle {
    * @MainActor @preconcurrency init(url: URL?)
    * @availability iOS 26.0+
    */
-  static initUrl(url?: (string) | null): Promise<WebView> { return callSDKAsync<WebView>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 2311920293413735, undefined, [url]); }
+  static initUrl(url?: (string) | null): Promise<WebView> { return callSDKAsync<WebView>("_WebKit_SwiftUI_a956b86ef7a76a8e", 2311920293413735, undefined, [url]); }
   /**
    * @MainActor @preconcurrency init(_ page: WebPage)
    * @availability iOS 26.0+
    */
-  static init(page: _WebKit_WebPage): Promise<WebView> { return callSDKAsync<WebView>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 1817915684760005, undefined, [page]); }
+  static init(page: _WebKit_WebPage): Promise<WebView> { return callSDKAsync<WebView>("_WebKit_SwiftUI_a956b86ef7a76a8e", 1817915684760005, undefined, [page]); }
   declare readonly $type: { "s:15_WebKit_SwiftUI0A4ViewV": true };
 }
 
@@ -48,7 +48,7 @@ export class WebView_ActivatedElementInfo extends SDKHandle {
    * let linkURL: URL?
    * @availability iOS 26.0+
    */
-  get linkURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 4188175953484309, this, []); }
+  get linkURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("_WebKit_SwiftUI_a956b86ef7a76a8e", 4188175953484309, this, []); }
   declare readonly $type: { "s:15_WebKit_SwiftUI0A4ViewV20ActivatedElementInfoV": true };
 }
 
@@ -61,17 +61,17 @@ export class WebView_BackForwardNavigationGesturesBehavior extends SDKHandle {
    * static let enabled: WebView.BackForwardNavigationGesturesBehavior
    * @availability iOS 26.0+
    */
-  static get enabled(): Promise<WebView_BackForwardNavigationGesturesBehavior> { return callSDKAsync<WebView_BackForwardNavigationGesturesBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 3453289527798546, undefined, []); }
+  static get enabled(): Promise<WebView_BackForwardNavigationGesturesBehavior> { return callSDKAsync<WebView_BackForwardNavigationGesturesBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 3453289527798546, undefined, []); }
   /**
    * static let disabled: WebView.BackForwardNavigationGesturesBehavior
    * @availability iOS 26.0+
    */
-  static get disabled(): Promise<WebView_BackForwardNavigationGesturesBehavior> { return callSDKAsync<WebView_BackForwardNavigationGesturesBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 2802659619146569, undefined, []); }
+  static get disabled(): Promise<WebView_BackForwardNavigationGesturesBehavior> { return callSDKAsync<WebView_BackForwardNavigationGesturesBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 2802659619146569, undefined, []); }
   /**
    * static let automatic: WebView.BackForwardNavigationGesturesBehavior
    * @availability iOS 26.0+
    */
-  static get automatic(): Promise<WebView_BackForwardNavigationGesturesBehavior> { return callSDKAsync<WebView_BackForwardNavigationGesturesBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 3130639435700911, undefined, []); }
+  static get automatic(): Promise<WebView_BackForwardNavigationGesturesBehavior> { return callSDKAsync<WebView_BackForwardNavigationGesturesBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 3130639435700911, undefined, []); }
   declare readonly $type: { "s:15_WebKit_SwiftUI0A4ViewV37BackForwardNavigationGesturesBehaviorV": true };
 }
 
@@ -90,17 +90,17 @@ export class WebView_ElementFullscreenBehavior extends SDKHandle {
    * static let enabled: WebView.ElementFullscreenBehavior
    * @availability iOS 26.0+
    */
-  static get enabled(): Promise<WebView_ElementFullscreenBehavior> { return callSDKAsync<WebView_ElementFullscreenBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 4091710139730582, undefined, []); }
+  static get enabled(): Promise<WebView_ElementFullscreenBehavior> { return callSDKAsync<WebView_ElementFullscreenBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 4091710139730582, undefined, []); }
   /**
    * static let disabled: WebView.ElementFullscreenBehavior
    * @availability iOS 26.0+
    */
-  static get disabled(): Promise<WebView_ElementFullscreenBehavior> { return callSDKAsync<WebView_ElementFullscreenBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 3920044581227052, undefined, []); }
+  static get disabled(): Promise<WebView_ElementFullscreenBehavior> { return callSDKAsync<WebView_ElementFullscreenBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 3920044581227052, undefined, []); }
   /**
    * static let automatic: WebView.ElementFullscreenBehavior
    * @availability iOS 26.0+
    */
-  static get automatic(): Promise<WebView_ElementFullscreenBehavior> { return callSDKAsync<WebView_ElementFullscreenBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 255380969322734, undefined, []); }
+  static get automatic(): Promise<WebView_ElementFullscreenBehavior> { return callSDKAsync<WebView_ElementFullscreenBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 255380969322734, undefined, []); }
   declare readonly $type: { "s:15_WebKit_SwiftUI0A4ViewV25ElementFullscreenBehaviorV": true };
 }
 
@@ -113,17 +113,17 @@ export class WebView_LinkPreviewBehavior extends SDKHandle {
    * static let enabled: WebView.LinkPreviewBehavior
    * @availability iOS 26.0+
    */
-  static get enabled(): Promise<WebView_LinkPreviewBehavior> { return callSDKAsync<WebView_LinkPreviewBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 1505539386945118, undefined, []); }
+  static get enabled(): Promise<WebView_LinkPreviewBehavior> { return callSDKAsync<WebView_LinkPreviewBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 1505539386945118, undefined, []); }
   /**
    * static let disabled: WebView.LinkPreviewBehavior
    * @availability iOS 26.0+
    */
-  static get disabled(): Promise<WebView_LinkPreviewBehavior> { return callSDKAsync<WebView_LinkPreviewBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 1697347518367457, undefined, []); }
+  static get disabled(): Promise<WebView_LinkPreviewBehavior> { return callSDKAsync<WebView_LinkPreviewBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 1697347518367457, undefined, []); }
   /**
    * static let automatic: WebView.LinkPreviewBehavior
    * @availability iOS 26.0+
    */
-  static get automatic(): Promise<WebView_LinkPreviewBehavior> { return callSDKAsync<WebView_LinkPreviewBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 2879712787393179, undefined, []); }
+  static get automatic(): Promise<WebView_LinkPreviewBehavior> { return callSDKAsync<WebView_LinkPreviewBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 2879712787393179, undefined, []); }
   declare readonly $type: { "s:15_WebKit_SwiftUI0A4ViewV19LinkPreviewBehaviorV": true };
 }
 
@@ -136,25 +136,25 @@ export class WebView_MagnificationGesturesBehavior extends SDKHandle {
    * static let enabled: WebView.MagnificationGesturesBehavior
    * @availability iOS 26.0+
    */
-  static get enabled(): Promise<WebView_MagnificationGesturesBehavior> { return callSDKAsync<WebView_MagnificationGesturesBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 4178966670507062, undefined, []); }
+  static get enabled(): Promise<WebView_MagnificationGesturesBehavior> { return callSDKAsync<WebView_MagnificationGesturesBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 4178966670507062, undefined, []); }
   /**
    * static let disabled: WebView.MagnificationGesturesBehavior
    * @availability iOS 26.0+
    */
-  static get disabled(): Promise<WebView_MagnificationGesturesBehavior> { return callSDKAsync<WebView_MagnificationGesturesBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 3858986845400126, undefined, []); }
+  static get disabled(): Promise<WebView_MagnificationGesturesBehavior> { return callSDKAsync<WebView_MagnificationGesturesBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 3858986845400126, undefined, []); }
   /**
    * static let automatic: WebView.MagnificationGesturesBehavior
    * @availability iOS 26.0+
    */
-  static get automatic(): Promise<WebView_MagnificationGesturesBehavior> { return callSDKAsync<WebView_MagnificationGesturesBehavior>("_WebKit_SwiftUI_d6c5d10d3352e6ec", 3441361748052863, undefined, []); }
+  static get automatic(): Promise<WebView_MagnificationGesturesBehavior> { return callSDKAsync<WebView_MagnificationGesturesBehavior>("_WebKit_SwiftUI_a956b86ef7a76a8e", 3441361748052863, undefined, []); }
   declare readonly $type: { "s:15_WebKit_SwiftUI0A4ViewV29MagnificationGesturesBehaviorV": true };
 }
 
-registerSDKClass("WebKit.WebPage", WebPage, { module: "_WebKit_SwiftUI_d6c5d10d3352e6ec", properties: {} }, true);
-registerSDKClass("WebKit.WebPage.NavigationAction", WebPage_NavigationAction, { module: "_WebKit_SwiftUI_d6c5d10d3352e6ec", properties: {} }, true);
-registerSDKClass("_WebKit_SwiftUI.WebView", WebView, { module: "_WebKit_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_WebKit_SwiftUI.WebView.ActivatedElementInfo", WebView_ActivatedElementInfo, { module: "_WebKit_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_WebKit_SwiftUI.WebView.BackForwardNavigationGesturesBehavior", WebView_BackForwardNavigationGesturesBehavior, { module: "_WebKit_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_WebKit_SwiftUI.WebView.ElementFullscreenBehavior", WebView_ElementFullscreenBehavior, { module: "_WebKit_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_WebKit_SwiftUI.WebView.LinkPreviewBehavior", WebView_LinkPreviewBehavior, { module: "_WebKit_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_WebKit_SwiftUI.WebView.MagnificationGesturesBehavior", WebView_MagnificationGesturesBehavior, { module: "_WebKit_SwiftUI_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WebKit.WebPage", WebPage, { module: "_WebKit_SwiftUI_a956b86ef7a76a8e", properties: {} }, true);
+registerSDKClass("WebKit.WebPage.NavigationAction", WebPage_NavigationAction, { module: "_WebKit_SwiftUI_a956b86ef7a76a8e", properties: {} }, true);
+registerSDKClass("_WebKit_SwiftUI.WebView", WebView, { module: "_WebKit_SwiftUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("_WebKit_SwiftUI.WebView.ActivatedElementInfo", WebView_ActivatedElementInfo, { module: "_WebKit_SwiftUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("_WebKit_SwiftUI.WebView.BackForwardNavigationGesturesBehavior", WebView_BackForwardNavigationGesturesBehavior, { module: "_WebKit_SwiftUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("_WebKit_SwiftUI.WebView.ElementFullscreenBehavior", WebView_ElementFullscreenBehavior, { module: "_WebKit_SwiftUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("_WebKit_SwiftUI.WebView.LinkPreviewBehavior", WebView_LinkPreviewBehavior, { module: "_WebKit_SwiftUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("_WebKit_SwiftUI.WebView.MagnificationGesturesBehavior", WebView_MagnificationGesturesBehavior, { module: "_WebKit_SwiftUI_a956b86ef7a76a8e", properties: {} });

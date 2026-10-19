@@ -47,32 +47,32 @@ export class ARAnchor extends SDKHandle {
    * init(name: String, transform: simd_float4x4)
    * @availability iOS 12.0+
    */
-  static initNameTransform(name: string, transform: SDKHandle): ARAnchor { return callSDK<ARAnchor>("ARKit_d6c5d10d3352e6ec", 3558719820172093, undefined, [name, transform]); }
+  static initNameTransform(name: string, transform: SDKHandle): ARAnchor { return callSDK<ARAnchor>("ARKit_a956b86ef7a76a8e", 3558719820172093, undefined, [name, transform]); }
   /**
    * init(transform: simd_float4x4)
    * @availability iOS 11.0+
    */
-  static initTransform(transform: SDKHandle): ARAnchor { return callSDK<ARAnchor>("ARKit_d6c5d10d3352e6ec", 2593776442327462, undefined, [transform]); }
+  static initTransform(transform: SDKHandle): ARAnchor { return callSDK<ARAnchor>("ARKit_a956b86ef7a76a8e", 2593776442327462, undefined, [transform]); }
   /**
    * var identifier: UUID { get }
    * @availability iOS 11.0+
    */
-  get identifier(): string { return callSDK<string>("ARKit_d6c5d10d3352e6ec", 2669162251356880, this, []); }
+  get identifier(): string { return callSDK<string>("ARKit_a956b86ef7a76a8e", 2669162251356880, this, []); }
   /**
    * var name: String? { get }
    * @availability iOS 12.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("ARKit_d6c5d10d3352e6ec", 417802688183554, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("ARKit_a956b86ef7a76a8e", 417802688183554, this, []); }
   /**
    * var sessionIdentifier: UUID? { get }
    * @availability iOS 13.0+
    */
-  get sessionIdentifier(): (string) | null { return callSDK<(string) | null>("ARKit_d6c5d10d3352e6ec", 3091586240930785, this, []); }
+  get sessionIdentifier(): (string) | null { return callSDK<(string) | null>("ARKit_a956b86ef7a76a8e", 3091586240930785, this, []); }
   /**
    * var transform: simd_float4x4 { get }
    * @availability iOS 11.0+
    */
-  get transform(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 2265118407657390, this, []); }
+  get transform(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 2265118407657390, this, []); }
   declare readonly $type: { "c:objc(cs)ARAnchor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "sessionIdentifier": true; "transform": true };
 }
@@ -99,17 +99,17 @@ export class ARAppClipCodeAnchor extends ARAnchor {
    * var radius: Float { get }
    * @availability iOS 14.3+
    */
-  get radius(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 220524164949763, this, []); }
+  get radius(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 220524164949763, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 14.3+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("ARKit_d6c5d10d3352e6ec", 64471449853492, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("ARKit_a956b86ef7a76a8e", 64471449853492, this, []); }
   /**
    * var urlDecodingState: ARAppClipCodeAnchor.URLDecodingState { get }
    * @availability iOS 14.3+
    */
-  get urlDecodingState(): ARAppClipCodeAnchor_URLDecodingState { return callSDK<ARAppClipCodeAnchor_URLDecodingState>("ARKit_d6c5d10d3352e6ec", 1080426165516340, this, []); }
+  get urlDecodingState(): ARAppClipCodeAnchor_URLDecodingState { return callSDK<ARAppClipCodeAnchor_URLDecodingState>("ARKit_a956b86ef7a76a8e", 1080426165516340, this, []); }
   declare readonly $type: { "c:objc(cs)ARAppClipCodeAnchor": true; "c:objc(cs)ARAnchor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "sessionIdentifier": true; "transform": true; "radius": true; "url": true; "urlDecodingState": true };
 }
@@ -125,7 +125,7 @@ export const ARAppClipCodeAnchor_URLDecodingState = {
    * init?(rawValue: Int)
    * @availability iOS 14.3+
    */
-  init(rawValue: number): (ARAppClipCodeAnchor_URLDecodingState) | null { return callSDK<(ARAppClipCodeAnchor_URLDecodingState) | null>("ARKit_d6c5d10d3352e6ec", 3901318116477169, undefined, [rawValue]); }
+  init(rawValue: number): (ARAppClipCodeAnchor_URLDecodingState) | null { return callSDK<(ARAppClipCodeAnchor_URLDecodingState) | null>("ARKit_a956b86ef7a76a8e", 3901318116477169, undefined, [rawValue]); }
 };
 
 /**
@@ -137,7 +137,7 @@ export class ARBody2D extends SDKHandle {
    * var skeleton: ARSkeleton2D { get }
    * @availability iOS 13.0+
    */
-  get skeleton(): ARSkeleton2D { return callSDK<ARSkeleton2D>("ARKit_d6c5d10d3352e6ec", 1934702309724423, this, []); }
+  get skeleton(): ARSkeleton2D { return callSDK<ARSkeleton2D>("ARKit_a956b86ef7a76a8e", 1934702309724423, this, []); }
   declare readonly $type: { "c:objc(cs)ARBody2D": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "skeleton": true };
 }
@@ -151,12 +151,12 @@ export class ARBodyAnchor extends ARAnchor {
    * var estimatedScaleFactor: CGFloat { get }
    * @availability iOS 13.0+
    */
-  get estimatedScaleFactor(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 1472688156555402, this, []); }
+  get estimatedScaleFactor(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 1472688156555402, this, []); }
   /**
    * var skeleton: ARSkeleton3D { get }
    * @availability iOS 13.0+
    */
-  get skeleton(): ARSkeleton3D { return callSDK<ARSkeleton3D>("ARKit_d6c5d10d3352e6ec", 780201673028304, this, []); }
+  get skeleton(): ARSkeleton3D { return callSDK<ARSkeleton3D>("ARKit_a956b86ef7a76a8e", 780201673028304, this, []); }
   declare readonly $type: { "c:objc(cs)ARBodyAnchor": true; "c:objc(cs)ARAnchor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "sessionIdentifier": true; "transform": true; "estimatedScaleFactor": true; "skeleton": true };
 }
@@ -170,68 +170,68 @@ export class ARConfiguration extends SDKHandle {
    * class func supportsFrameSemantics(_ frameSemantics: ARConfiguration.FrameSemantics) -> Bool
    * @availability iOS 13.0+
    */
-  static supportsFrameSemantics(frameSemantics: ARConfiguration_FrameSemantics): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2038006584950545, undefined, [frameSemantics]); }
+  static supportsFrameSemantics(frameSemantics: ARConfiguration_FrameSemantics): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2038006584950545, undefined, [frameSemantics]); }
   /**
    * class var configurableCaptureDeviceForPrimaryCamera: AVCaptureDevice? { get }
    * @availability iOS 16.0+
    */
-  static get configurableCaptureDeviceForPrimaryCamera(): (_AVFoundation_AVCaptureDevice) | null { return callSDK<(_AVFoundation_AVCaptureDevice) | null>("ARKit_d6c5d10d3352e6ec", 1282705221870700, undefined, []); }
+  static get configurableCaptureDeviceForPrimaryCamera(): (_AVFoundation_AVCaptureDevice) | null { return callSDK<(_AVFoundation_AVCaptureDevice) | null>("ARKit_a956b86ef7a76a8e", 1282705221870700, undefined, []); }
   /**
    * class var isSupported: Bool { get }
    * @availability iOS 11.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 4006537721723943, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 4006537721723943, undefined, []); }
   /**
    * class var recommendedVideoFormatFor4KResolution: ARConfiguration.VideoFormat? { get }
    * @availability iOS 16.0+
    */
-  static get recommendedVideoFormatFor4KResolution(): $SDK2 { return callSDK<$SDK2>("ARKit_d6c5d10d3352e6ec", 831516252480055, undefined, []); }
+  static get recommendedVideoFormatFor4KResolution(): $SDK2 { return callSDK<$SDK2>("ARKit_a956b86ef7a76a8e", 831516252480055, undefined, []); }
   /**
    * class var recommendedVideoFormatForHighResolutionFrameCapturing: ARConfiguration.VideoFormat? { get }
    * @availability iOS 16.0+
    */
-  static get recommendedVideoFormatForHighResolutionFrameCapturing(): $SDK2 { return callSDK<$SDK2>("ARKit_d6c5d10d3352e6ec", 1052370022474009, undefined, []); }
+  static get recommendedVideoFormatForHighResolutionFrameCapturing(): $SDK2 { return callSDK<$SDK2>("ARKit_a956b86ef7a76a8e", 1052370022474009, undefined, []); }
   /**
    * class var supportedVideoFormats: [ARConfiguration.VideoFormat] { get }
    * @availability iOS 11.3+
    */
-  static get supportedVideoFormats(): Array<ARConfiguration_VideoFormat> { return callSDK<Array<ARConfiguration_VideoFormat>>("ARKit_d6c5d10d3352e6ec", 4453617528163834, undefined, []); }
+  static get supportedVideoFormats(): Array<ARConfiguration_VideoFormat> { return callSDK<Array<ARConfiguration_VideoFormat>>("ARKit_a956b86ef7a76a8e", 4453617528163834, undefined, []); }
   /**
    * var frameSemantics: ARConfiguration.FrameSemantics { get set }
    * @availability iOS 13.0+
    */
-  get frameSemantics(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_d6c5d10d3352e6ec", 3485580023965495, this, []); }
-  set frameSemantics(value: ARConfiguration_FrameSemantics) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2618169619791856, this, [value]); }
+  get frameSemantics(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_a956b86ef7a76a8e", 3485580023965495, this, []); }
+  set frameSemantics(value: ARConfiguration_FrameSemantics) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2618169619791856, this, [value]); }
   /**
    * var isLightEstimationEnabled: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isLightEstimationEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2296947652858668, this, []); }
-  set isLightEstimationEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2112694004041599, this, [value]); }
+  get isLightEstimationEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2296947652858668, this, []); }
+  set isLightEstimationEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2112694004041599, this, [value]); }
   /**
    * var providesAudioData: Bool { get set }
    * @availability iOS 11.0+
    */
-  get providesAudioData(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3468451812936503, this, []); }
-  set providesAudioData(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2120953942093155, this, [value]); }
+  get providesAudioData(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3468451812936503, this, []); }
+  set providesAudioData(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2120953942093155, this, [value]); }
   /**
    * var videoFormat: ARConfiguration.VideoFormat { get set }
    * @availability iOS 11.3+
    */
-  get videoFormat(): ARConfiguration_VideoFormat { return callSDK<ARConfiguration_VideoFormat>("ARKit_d6c5d10d3352e6ec", 3674247279945668, this, []); }
-  set videoFormat(value: ARConfiguration_VideoFormat) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3421324461544372, this, [value]); }
+  get videoFormat(): ARConfiguration_VideoFormat { return callSDK<ARConfiguration_VideoFormat>("ARKit_a956b86ef7a76a8e", 3674247279945668, this, []); }
+  set videoFormat(value: ARConfiguration_VideoFormat) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3421324461544372, this, [value]); }
   /**
    * var videoHDRAllowed: Bool { get set }
    * @availability iOS 16.0+
    */
-  get videoHDRAllowed(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 588807603697303, this, []); }
-  set videoHDRAllowed(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 421150592229633, this, [value]); }
+  get videoHDRAllowed(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 588807603697303, this, []); }
+  set videoHDRAllowed(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 421150592229633, this, [value]); }
   /**
    * var worldAlignment: ARConfiguration.WorldAlignment { get set }
    * @availability iOS 11.0+
    */
-  get worldAlignment(): ARConfiguration_WorldAlignment { return callSDK<ARConfiguration_WorldAlignment>("ARKit_d6c5d10d3352e6ec", 3320993210135, this, []); }
-  set worldAlignment(value: ARConfiguration_WorldAlignment) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1860328512739503, this, [value]); }
+  get worldAlignment(): ARConfiguration_WorldAlignment { return callSDK<ARConfiguration_WorldAlignment>("ARKit_a956b86ef7a76a8e", 3320993210135, this, []); }
+  set worldAlignment(value: ARConfiguration_WorldAlignment) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1860328512739503, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameSemantics": true; "isLightEstimationEnabled": true; "providesAudioData": true; "videoFormat": true; "videoHDRAllowed": true; "worldAlignment": true };
 }
@@ -245,72 +245,72 @@ export class ARBodyTrackingConfiguration extends ARConfiguration {
    * class var supportsAppClipCodeTracking: Bool { get }
    * @availability iOS 14.3+
    */
-  static get supportsAppClipCodeTracking(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 998053104785819, undefined, []); }
+  static get supportsAppClipCodeTracking(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 998053104785819, undefined, []); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): ARBodyTrackingConfiguration { return callSDK<ARBodyTrackingConfiguration>("ARKit_d6c5d10d3352e6ec", 4285414465247753, undefined, []); }
+  static init(): ARBodyTrackingConfiguration { return callSDK<ARBodyTrackingConfiguration>("ARKit_a956b86ef7a76a8e", 4285414465247753, undefined, []); }
   /**
    * var appClipCodeTrackingEnabled: Bool { get set }
    * @availability iOS 14.3+
    */
-  get appClipCodeTrackingEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3667061574405122, this, []); }
-  set appClipCodeTrackingEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2110996359053464, this, [value]); }
+  get appClipCodeTrackingEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3667061574405122, this, []); }
+  set appClipCodeTrackingEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2110996359053464, this, [value]); }
   /**
    * var isAutoFocusEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isAutoFocusEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 1033538080143447, this, []); }
-  set isAutoFocusEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4428274064044414, this, [value]); }
+  get isAutoFocusEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 1033538080143447, this, []); }
+  set isAutoFocusEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4428274064044414, this, [value]); }
   /**
    * var automaticImageScaleEstimationEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get automaticImageScaleEstimationEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 4401155927746691, this, []); }
-  set automaticImageScaleEstimationEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1656729200437724, this, [value]); }
+  get automaticImageScaleEstimationEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 4401155927746691, this, []); }
+  set automaticImageScaleEstimationEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1656729200437724, this, [value]); }
   /**
    * var automaticSkeletonScaleEstimationEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get automaticSkeletonScaleEstimationEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3793486588107866, this, []); }
-  set automaticSkeletonScaleEstimationEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2682921145169689, this, [value]); }
+  get automaticSkeletonScaleEstimationEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3793486588107866, this, []); }
+  set automaticSkeletonScaleEstimationEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2682921145169689, this, [value]); }
   /**
    * var detectionImages: Set<ARReferenceImage> { get set }
    * @availability iOS 13.0+
    */
-  get detectionImages(): Array<ARReferenceImage> { return callSDK<Array<ARReferenceImage>>("ARKit_d6c5d10d3352e6ec", 3762944868776795, this, []); }
-  set detectionImages(value: Array<ARReferenceImage>) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2373445440522866, this, [value]); }
+  get detectionImages(): Array<ARReferenceImage> { return callSDK<Array<ARReferenceImage>>("ARKit_a956b86ef7a76a8e", 3762944868776795, this, []); }
+  set detectionImages(value: Array<ARReferenceImage>) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2373445440522866, this, [value]); }
   /**
    * var environmentTexturing: ARWorldTrackingConfiguration.EnvironmentTexturing { get set }
    * @availability iOS 13.0+
    */
-  get environmentTexturing(): ARWorldTrackingConfiguration_EnvironmentTexturing { return callSDK<ARWorldTrackingConfiguration_EnvironmentTexturing>("ARKit_d6c5d10d3352e6ec", 1019243021403340, this, []); }
-  set environmentTexturing(value: ARWorldTrackingConfiguration_EnvironmentTexturing) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 256705264111648, this, [value]); }
+  get environmentTexturing(): ARWorldTrackingConfiguration_EnvironmentTexturing { return callSDK<ARWorldTrackingConfiguration_EnvironmentTexturing>("ARKit_a956b86ef7a76a8e", 1019243021403340, this, []); }
+  set environmentTexturing(value: ARWorldTrackingConfiguration_EnvironmentTexturing) { callSDK<void>("ARKit_a956b86ef7a76a8e", 256705264111648, this, [value]); }
   /**
    * var initialWorldMap: ARWorldMap? { get set }
    * @availability iOS 13.0+
    */
-  get initialWorldMap(): (ARWorldMap) | null { return callSDK<(ARWorldMap) | null>("ARKit_d6c5d10d3352e6ec", 2676158937274993, this, []); }
-  set initialWorldMap(value: (ARWorldMap) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1339808027630151, this, [value]); }
+  get initialWorldMap(): (ARWorldMap) | null { return callSDK<(ARWorldMap) | null>("ARKit_a956b86ef7a76a8e", 2676158937274993, this, []); }
+  set initialWorldMap(value: (ARWorldMap) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1339808027630151, this, [value]); }
   /**
    * var maximumNumberOfTrackedImages: Int { get set }
    * @availability iOS 13.0+
    */
-  get maximumNumberOfTrackedImages(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 3707762461876261, this, []); }
-  set maximumNumberOfTrackedImages(value: number) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2830807840623238, this, [value]); }
+  get maximumNumberOfTrackedImages(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 3707762461876261, this, []); }
+  set maximumNumberOfTrackedImages(value: number) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2830807840623238, this, [value]); }
   /**
    * var planeDetection: ARWorldTrackingConfiguration.PlaneDetection { get set }
    * @availability iOS 13.0+
    */
-  get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_d6c5d10d3352e6ec", 811476333295287, this, []); }
-  set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3933731215273728, this, [value]); }
+  get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_a956b86ef7a76a8e", 811476333295287, this, []); }
+  set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3933731215273728, this, [value]); }
   /**
    * var wantsHDREnvironmentTextures: Bool { get set }
    * @availability iOS 13.0+
    */
-  get wantsHDREnvironmentTextures(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3897154941373502, this, []); }
-  set wantsHDREnvironmentTextures(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4261643412898669, this, [value]); }
+  get wantsHDREnvironmentTextures(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3897154941373502, this, []); }
+  set wantsHDREnvironmentTextures(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4261643412898669, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARBodyTrackingConfiguration": true; "c:objc(cs)ARConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameSemantics": true; "isLightEstimationEnabled": true; "providesAudioData": true; "videoFormat": true; "videoHDRAllowed": true; "worldAlignment": true; "appClipCodeTrackingEnabled": true; "isAutoFocusEnabled": true; "automaticImageScaleEstimationEnabled": true; "automaticSkeletonScaleEstimationEnabled": true; "detectionImages": true; "environmentTexturing": true; "initialWorldMap": true; "maximumNumberOfTrackedImages": true; "planeDetection": true; "wantsHDREnvironmentTextures": true };
 }
@@ -325,85 +325,85 @@ export class ARCamera extends SDKHandle {
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  projectPointOrientationViewportSize(point: SDKHandle, orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5): $SDK4 { return callSDK<$SDK4>("ARKit_d6c5d10d3352e6ec", 2297092010072601, this, [point, orientation, viewportSize]); }
+  projectPointOrientationViewportSize(point: SDKHandle, orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5): $SDK4 { return callSDK<$SDK4>("ARKit_a956b86ef7a76a8e", 2297092010072601, this, [point, orientation, viewportSize]); }
   /**
    * func projectPoint(_ point: simd_float3, viewRotationAngle: CGFloat, viewportSize: CGSize) -> CGPoint
    * @availability iOS 27.0+
    */
-  projectPointViewRotationAngleViewportSize(point: SDKHandle, viewRotationAngle: number, viewportSize: $SDK5): $SDK4 { return callSDK<$SDK4>("ARKit_d6c5d10d3352e6ec", 2861277072815979, this, [point, viewRotationAngle, viewportSize]); }
+  projectPointViewRotationAngleViewportSize(point: SDKHandle, viewRotationAngle: number, viewportSize: $SDK5): $SDK4 { return callSDK<$SDK4>("ARKit_a956b86ef7a76a8e", 2861277072815979, this, [point, viewRotationAngle, viewportSize]); }
   /**
    * func projectionMatrix(for orientation: UIInterfaceOrientation, viewportSize: CGSize, zNear: CGFloat, zFar: CGFloat) -> simd_float4x4
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  projectionMatrixForViewportSizeZNearZFar(orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5, zNear: number, zFar: number): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 1688014441413399, this, [orientation, viewportSize, zNear, zFar]); }
+  projectionMatrixForViewportSizeZNearZFar(orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5, zNear: number, zFar: number): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 1688014441413399, this, [orientation, viewportSize, zNear, zFar]); }
   /**
    * func projectionMatrix(viewRotationAngle: CGFloat, viewportSize: CGSize, zNear: CGFloat, zFar: CGFloat) -> simd_float4x4
    * @availability iOS 27.0+
    */
-  projectionMatrixViewRotationAngleViewportSizeZNearZFar(viewRotationAngle: number, viewportSize: $SDK5, zNear: number, zFar: number): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 408831460748811, this, [viewRotationAngle, viewportSize, zNear, zFar]); }
+  projectionMatrixViewRotationAngleViewportSizeZNearZFar(viewRotationAngle: number, viewportSize: $SDK5, zNear: number, zFar: number): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 408831460748811, this, [viewRotationAngle, viewportSize, zNear, zFar]); }
   /**
    * func viewMatrix(for orientation: UIInterfaceOrientation) -> simd_float4x4
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  viewMatrixFor(orientation: _UIKit_UIInterfaceOrientation): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 2162147522480942, this, [orientation]); }
+  viewMatrixFor(orientation: _UIKit_UIInterfaceOrientation): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 2162147522480942, this, [orientation]); }
   /**
    * func viewMatrix(viewRotationAngle: CGFloat) -> simd_float4x4
    * @availability iOS 27.0+
    */
-  viewMatrixViewRotationAngle(viewRotationAngle: number): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 1016410274146347, this, [viewRotationAngle]); }
+  viewMatrixViewRotationAngle(viewRotationAngle: number): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 1016410274146347, this, [viewRotationAngle]); }
   /**
    * var eulerAngles: simd_float3 { get }
    * @availability iOS 11.0+
    */
-  get eulerAngles(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 1677593259391261, this, []); }
+  get eulerAngles(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 1677593259391261, this, []); }
   /**
    * var exposureDuration: TimeInterval { get }
    * @availability iOS 13.0+
    */
-  get exposureDuration(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 1873714708993679, this, []); }
+  get exposureDuration(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 1873714708993679, this, []); }
   /**
    * var exposureOffset: Float { get }
    * @availability iOS 13.0+
    */
-  get exposureOffset(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 2557512203835813, this, []); }
+  get exposureOffset(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 2557512203835813, this, []); }
   /**
    * var imageResolution: CGSize { get }
    * @availability iOS 11.0+
    */
-  get imageResolution(): $SDK5 { return callSDK<$SDK5>("ARKit_d6c5d10d3352e6ec", 3833938516973981, this, []); }
+  get imageResolution(): $SDK5 { return callSDK<$SDK5>("ARKit_a956b86ef7a76a8e", 3833938516973981, this, []); }
   /**
    * var intrinsics: simd_float3x3 { get }
    * @availability iOS 11.0+
    */
-  get intrinsics(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 3743211372274002, this, []); }
+  get intrinsics(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 3743211372274002, this, []); }
   /**
    * var projectionMatrix: simd_float4x4 { get }
    * @availability iOS 11.0+
    */
-  get projectionMatrix(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 2598601427253195, this, []); }
+  get projectionMatrix(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 2598601427253195, this, []); }
   /**
    * var transform: simd_float4x4 { get }
    * @availability iOS 11.0+
    */
-  get transform(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 1894896345773016, this, []); }
+  get transform(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 1894896345773016, this, []); }
   /**
    * var trackingState: ARCamera.TrackingState { get }
    * @availability iOS 11.0+
    */
-  get trackingState(): ARCamera_TrackingState { return callSDK<ARCamera_TrackingState>("ARKit_d6c5d10d3352e6ec", 2991550600930184, this, []); }
+  get trackingState(): ARCamera_TrackingState { return callSDK<ARCamera_TrackingState>("ARKit_a956b86ef7a76a8e", 2991550600930184, this, []); }
   /**
    * @nonobjc func unprojectPoint(_ point: CGPoint, ontoPlane planeTransform: simd_float4x4, orientation: UIInterfaceOrientation, viewportSize: CGSize) -> simd_float3?
    * @availability iOS 12.0+
    * @deprecated iOS 27.0
    */
-  unprojectPointOntoPlaneOrientationViewportSize(point: $SDK4, planeTransform: SDKHandle, orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 2913437821521679, this, [point, planeTransform, orientation, viewportSize]); }
+  unprojectPointOntoPlaneOrientationViewportSize(point: $SDK4, planeTransform: SDKHandle, orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 2913437821521679, this, [point, planeTransform, orientation, viewportSize]); }
   /**
    * @nonobjc func unprojectPoint(_ point: CGPoint, ontoPlane planeTransform: simd_float4x4, viewRotationAngle: CGFloat, viewportSize: CGSize) -> simd_float3?
    * @availability iOS 27.0+
    */
-  unprojectPointOntoPlaneViewRotationAngleViewportSize(point: $SDK4, planeTransform: SDKHandle, viewRotationAngle: number, viewportSize: $SDK5): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 1374135225028095, this, [point, planeTransform, viewRotationAngle, viewportSize]); }
+  unprojectPointOntoPlaneViewRotationAngleViewportSize(point: $SDK4, planeTransform: SDKHandle, viewRotationAngle: number, viewportSize: $SDK5): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 1374135225028095, this, [point, planeTransform, viewRotationAngle, viewportSize]); }
   declare readonly $type: { "c:objc(cs)ARCamera": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "eulerAngles": true; "exposureDuration": true; "exposureOffset": true; "imageResolution": true; "intrinsics": true; "projectionMatrix": true; "transform": true };
 }
@@ -428,47 +428,47 @@ export type ARCamera_TrackingState_Reason = "initializing" | "excessiveMotion" |
  */
 export class ARCoachingOverlayView extends SDKHandle {
   /** init() */
-  static init(): ARCoachingOverlayView { return callSDK<ARCoachingOverlayView>("ARKit_d6c5d10d3352e6ec", 617252749764907, undefined, []); }
+  static init(): ARCoachingOverlayView { return callSDK<ARCoachingOverlayView>("ARKit_a956b86ef7a76a8e", 617252749764907, undefined, []); }
   /**
    * func setActive(_ active: Bool, animated: Bool)
    * @availability iOS 13.0+
    */
-  setActive(active: boolean, animated: boolean): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 2453918027097059, this, [active, animated]); }
+  setActive(active: boolean, animated: boolean): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 2453918027097059, this, [active, animated]); }
   /**
    * var activatesAutomatically: Bool { get set }
    * @availability iOS 13.0+
    */
-  get activatesAutomatically(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2986901555688033, this, []); }
-  set activatesAutomatically(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 984263043183396, this, [value]); }
+  get activatesAutomatically(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2986901555688033, this, []); }
+  set activatesAutomatically(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 984263043183396, this, [value]); }
   /**
    * @IBOutlet weak var delegate: (any ARCoachingOverlayViewDelegate)? { get set }
    * @availability iOS 13.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 2983094533212755, this, []); }
-  set delegate(value: (Implements<ARCoachingOverlayViewDelegate> | SDKHandle) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2331291226749862, this, [value], [{"protocol":"c:objc(pl)ARCoachingOverlayViewDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 2983094533212755, this, []); }
+  set delegate(value: (Implements<ARCoachingOverlayViewDelegate> | SDKHandle) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2331291226749862, this, [value], [{"protocol":"c:objc(pl)ARCoachingOverlayViewDelegate"}]); }
   /**
    * var goal: ARCoachingOverlayView.Goal { get set }
    * @availability iOS 13.0+
    */
-  get goal(): ARCoachingOverlayView_Goal { return callSDK<ARCoachingOverlayView_Goal>("ARKit_d6c5d10d3352e6ec", 3141044303232488, this, []); }
-  set goal(value: ARCoachingOverlayView_Goal) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2353046836459597, this, [value]); }
+  get goal(): ARCoachingOverlayView_Goal { return callSDK<ARCoachingOverlayView_Goal>("ARKit_a956b86ef7a76a8e", 3141044303232488, this, []); }
+  set goal(value: ARCoachingOverlayView_Goal) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2353046836459597, this, [value]); }
   /**
    * var isActive: Bool { get }
    * @availability iOS 13.0+
    */
-  get isActive(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2794358923698960, this, []); }
+  get isActive(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2794358923698960, this, []); }
   /**
    * var session: ARSession? { get set }
    * @availability iOS 13.0+
    */
-  get session(): (ARSession) | null { return callSDK<(ARSession) | null>("ARKit_d6c5d10d3352e6ec", 1286409372114769, this, []); }
-  set session(value: (ARSession) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3299800763718409, this, [value]); }
+  get session(): (ARSession) | null { return callSDK<(ARSession) | null>("ARKit_a956b86ef7a76a8e", 1286409372114769, this, []); }
+  set session(value: (ARSession) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3299800763718409, this, [value]); }
   /**
    * @IBOutlet weak var sessionProvider: (any ARSessionProviding)? { get set }
    * @availability iOS 13.0+
    */
-  get sessionProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 3714971318194923, this, []); }
-  set sessionProvider(value: (SDKHandle) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 724062200926762, this, [value]); }
+  get sessionProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 3714971318194923, this, []); }
+  set sessionProvider(value: (SDKHandle) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 724062200926762, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARCoachingOverlayView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activatesAutomatically": true; "delegate": true; "goal": true; "isActive": true; "session": true; "sessionProvider": true };
 }
@@ -484,7 +484,7 @@ export const ARCoachingOverlayView_Goal = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ARCoachingOverlayView_Goal) | null { return callSDK<(ARCoachingOverlayView_Goal) | null>("ARKit_d6c5d10d3352e6ec", 393253824034300, undefined, [rawValue]); }
+  init(rawValue: number): (ARCoachingOverlayView_Goal) | null { return callSDK<(ARCoachingOverlayView_Goal) | null>("ARKit_a956b86ef7a76a8e", 393253824034300, undefined, [rawValue]); }
 };
 
 /**
@@ -520,7 +520,7 @@ export const ARConfidenceLevel = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (ARConfidenceLevel) | null { return callSDK<(ARConfidenceLevel) | null>("ARKit_d6c5d10d3352e6ec", 1556506998572600, undefined, [rawValue]); }
+  init(rawValue: number): (ARConfidenceLevel) | null { return callSDK<(ARConfidenceLevel) | null>("ARKit_a956b86ef7a76a8e", 1556506998572600, undefined, [rawValue]); }
 };
 
 /**
@@ -534,32 +534,32 @@ export const ARConfiguration_FrameSemantics = {
    * static var bodyDetection: ARConfiguration.FrameSemantics { get }
    * @availability iOS 13.0+
    */
-  get bodyDetection(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_d6c5d10d3352e6ec", 695456160273637, undefined, []); },
+  get bodyDetection(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_a956b86ef7a76a8e", 695456160273637, undefined, []); },
   /**
    * static var personSegmentation: ARConfiguration.FrameSemantics { get }
    * @availability iOS 13.0+
    */
-  get personSegmentation(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_d6c5d10d3352e6ec", 3315492881678461, undefined, []); },
+  get personSegmentation(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_a956b86ef7a76a8e", 3315492881678461, undefined, []); },
   /**
    * static var personSegmentationWithDepth: ARConfiguration.FrameSemantics { get }
    * @availability iOS 13.0+
    */
-  get personSegmentationWithDepth(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_d6c5d10d3352e6ec", 544851843475189, undefined, []); },
+  get personSegmentationWithDepth(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_a956b86ef7a76a8e", 544851843475189, undefined, []); },
   /**
    * static var sceneDepth: ARConfiguration.FrameSemantics { get }
    * @availability iOS 14.0+
    */
-  get sceneDepth(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_d6c5d10d3352e6ec", 3244566120983460, undefined, []); },
+  get sceneDepth(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_a956b86ef7a76a8e", 3244566120983460, undefined, []); },
   /**
    * static var smoothedSceneDepth: ARConfiguration.FrameSemantics { get }
    * @availability iOS 14.0+
    */
-  get smoothedSceneDepth(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_d6c5d10d3352e6ec", 4206188473955758, undefined, []); },
+  get smoothedSceneDepth(): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_a956b86ef7a76a8e", 4206188473955758, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_d6c5d10d3352e6ec", 178134806717033, undefined, [rawValue]); }
+  init(rawValue: number): ARConfiguration_FrameSemantics { return callSDK<ARConfiguration_FrameSemantics>("ARKit_a956b86ef7a76a8e", 178134806717033, undefined, [rawValue]); }
 };
 
 /**
@@ -573,17 +573,17 @@ export const ARConfiguration_SceneReconstruction = {
    * static var mesh: ARConfiguration.SceneReconstruction { get }
    * @availability iOS 13.4+
    */
-  get mesh(): ARConfiguration_SceneReconstruction { return callSDK<ARConfiguration_SceneReconstruction>("ARKit_d6c5d10d3352e6ec", 276150716827329, undefined, []); },
+  get mesh(): ARConfiguration_SceneReconstruction { return callSDK<ARConfiguration_SceneReconstruction>("ARKit_a956b86ef7a76a8e", 276150716827329, undefined, []); },
   /**
    * static var meshWithClassification: ARConfiguration.SceneReconstruction { get }
    * @availability iOS 13.4+
    */
-  get meshWithClassification(): ARConfiguration_SceneReconstruction { return callSDK<ARConfiguration_SceneReconstruction>("ARKit_d6c5d10d3352e6ec", 1784834692394887, undefined, []); },
+  get meshWithClassification(): ARConfiguration_SceneReconstruction { return callSDK<ARConfiguration_SceneReconstruction>("ARKit_a956b86ef7a76a8e", 1784834692394887, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 13.4+
    */
-  init(rawValue: number): ARConfiguration_SceneReconstruction { return callSDK<ARConfiguration_SceneReconstruction>("ARKit_d6c5d10d3352e6ec", 1960587011213070, undefined, [rawValue]); }
+  init(rawValue: number): ARConfiguration_SceneReconstruction { return callSDK<ARConfiguration_SceneReconstruction>("ARKit_a956b86ef7a76a8e", 1960587011213070, undefined, [rawValue]); }
 };
 
 /**
@@ -595,42 +595,42 @@ export class ARConfiguration_VideoFormat extends SDKHandle {
    * var captureDevicePosition: AVCaptureDevice.Position { get }
    * @availability iOS 13.0+
    */
-  get captureDevicePosition(): _AVFoundation_AVCaptureDevice_Position { return callSDK<_AVFoundation_AVCaptureDevice_Position>("ARKit_d6c5d10d3352e6ec", 3664814057158971, this, []); }
+  get captureDevicePosition(): _AVFoundation_AVCaptureDevice_Position { return callSDK<_AVFoundation_AVCaptureDevice_Position>("ARKit_a956b86ef7a76a8e", 3664814057158971, this, []); }
   /**
    * var captureDeviceType: AVCaptureDevice.DeviceType { get }
    * @availability iOS 14.5+
    */
-  get captureDeviceType(): _AVFoundation_AVCaptureDevice_DeviceType { return callSDK<_AVFoundation_AVCaptureDevice_DeviceType>("ARKit_d6c5d10d3352e6ec", 3038948559002605, this, []); }
+  get captureDeviceType(): _AVFoundation_AVCaptureDevice_DeviceType { return callSDK<_AVFoundation_AVCaptureDevice_DeviceType>("ARKit_a956b86ef7a76a8e", 3038948559002605, this, []); }
   /**
    * var defaultColorSpace: AVCaptureColorSpace { get }
    * @availability iOS 26.0+
    */
-  get defaultColorSpace(): _AVFoundation_AVCaptureColorSpace { return callSDK<_AVFoundation_AVCaptureColorSpace>("ARKit_d6c5d10d3352e6ec", 4472190213319716, this, []); }
+  get defaultColorSpace(): _AVFoundation_AVCaptureColorSpace { return callSDK<_AVFoundation_AVCaptureColorSpace>("ARKit_a956b86ef7a76a8e", 4472190213319716, this, []); }
   /**
    * var defaultPhotoSettings: AVCapturePhotoSettings { get }
    * @availability iOS 26.0+
    */
-  get defaultPhotoSettings(): _AVFoundation_AVCapturePhotoSettings { return callSDK<_AVFoundation_AVCapturePhotoSettings>("ARKit_d6c5d10d3352e6ec", 2999159640583701, this, []); }
+  get defaultPhotoSettings(): _AVFoundation_AVCapturePhotoSettings { return callSDK<_AVFoundation_AVCapturePhotoSettings>("ARKit_a956b86ef7a76a8e", 2999159640583701, this, []); }
   /**
    * var framesPerSecond: Int { get }
    * @availability iOS 11.3+
    */
-  get framesPerSecond(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 3505581565409461, this, []); }
+  get framesPerSecond(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 3505581565409461, this, []); }
   /**
    * var imageResolution: CGSize { get }
    * @availability iOS 11.3+
    */
-  get imageResolution(): $SDK5 { return callSDK<$SDK5>("ARKit_d6c5d10d3352e6ec", 370977671433562, this, []); }
+  get imageResolution(): $SDK5 { return callSDK<$SDK5>("ARKit_a956b86ef7a76a8e", 370977671433562, this, []); }
   /**
    * var isRecommendedForHighResolutionFrameCapturing: Bool { get }
    * @availability iOS 16.0+
    */
-  get isRecommendedForHighResolutionFrameCapturing(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 4499159465731160, this, []); }
+  get isRecommendedForHighResolutionFrameCapturing(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 4499159465731160, this, []); }
   /**
    * var isVideoHDRSupported: Bool { get }
    * @availability iOS 16.0+
    */
-  get isVideoHDRSupported(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2546484175558685, this, []); }
+  get isVideoHDRSupported(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2546484175558685, this, []); }
   declare readonly $type: { "c:objc(cs)ARVideoFormat": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "captureDevicePosition": true; "captureDeviceType": true; "defaultColorSpace": true; "defaultPhotoSettings": true; "framesPerSecond": true; "imageResolution": true; "isRecommendedForHighResolutionFrameCapturing": true; "isVideoHDRSupported": true };
 }
@@ -646,7 +646,7 @@ export const ARConfiguration_WorldAlignment = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (ARConfiguration_WorldAlignment) | null { return callSDK<(ARConfiguration_WorldAlignment) | null>("ARKit_d6c5d10d3352e6ec", 2036576598728984, undefined, [rawValue]); }
+  init(rawValue: number): (ARConfiguration_WorldAlignment) | null { return callSDK<(ARConfiguration_WorldAlignment) | null>("ARKit_a956b86ef7a76a8e", 2036576598728984, undefined, [rawValue]); }
 };
 
 /**
@@ -655,17 +655,17 @@ export const ARConfiguration_WorldAlignment = {
  */
 export class ARDepthData extends SDKHandle {
   /** init() */
-  static init(): ARDepthData { return callSDK<ARDepthData>("ARKit_d6c5d10d3352e6ec", 2194679744259815, undefined, []); }
+  static init(): ARDepthData { return callSDK<ARDepthData>("ARKit_a956b86ef7a76a8e", 2194679744259815, undefined, []); }
   /**
    * unowned(unsafe) var confidenceMap: CVPixelBuffer? { get }
    * @availability iOS 14.0+
    */
-  get confidenceMap(): $SDK7 { return callSDK<$SDK7>("ARKit_d6c5d10d3352e6ec", 4486253883475202, this, []); }
+  get confidenceMap(): $SDK7 { return callSDK<$SDK7>("ARKit_a956b86ef7a76a8e", 4486253883475202, this, []); }
   /**
    * unowned(unsafe) var depthMap: CVPixelBuffer { get }
    * @availability iOS 14.0+
    */
-  get depthMap(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("ARKit_d6c5d10d3352e6ec", 1761326638034483, this, []); }
+  get depthMap(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("ARKit_a956b86ef7a76a8e", 1761326638034483, this, []); }
   declare readonly $type: { "c:objc(cs)ARDepthData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "confidenceMap": true; "depthMap": true };
 }
@@ -679,12 +679,12 @@ export class ARLightEstimate extends SDKHandle {
    * var ambientColorTemperature: CGFloat { get }
    * @availability iOS 11.0+
    */
-  get ambientColorTemperature(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 419033133617722, this, []); }
+  get ambientColorTemperature(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 419033133617722, this, []); }
   /**
    * var ambientIntensity: CGFloat { get }
    * @availability iOS 11.0+
    */
-  get ambientIntensity(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 3960060108610791, this, []); }
+  get ambientIntensity(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 3960060108610791, this, []); }
   declare readonly $type: { "c:objc(cs)ARLightEstimate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ambientColorTemperature": true; "ambientIntensity": true };
 }
@@ -698,17 +698,17 @@ export class ARDirectionalLightEstimate extends ARLightEstimate {
    * var primaryLightDirection: simd_float3 { get }
    * @availability iOS 11.0+
    */
-  get primaryLightDirection(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 4244237596353339, this, []); }
+  get primaryLightDirection(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 4244237596353339, this, []); }
   /**
    * var primaryLightIntensity: CGFloat { get }
    * @availability iOS 11.0+
    */
-  get primaryLightIntensity(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 2915911853713847, this, []); }
+  get primaryLightIntensity(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 2915911853713847, this, []); }
   /**
    * var sphericalHarmonicsCoefficients: Data { get }
    * @availability iOS 11.0+
    */
-  get sphericalHarmonicsCoefficients(): ArrayBuffer { return callSDK<ArrayBuffer>("ARKit_d6c5d10d3352e6ec", 4388037149423080, this, []); }
+  get sphericalHarmonicsCoefficients(): ArrayBuffer { return callSDK<ArrayBuffer>("ARKit_a956b86ef7a76a8e", 4388037149423080, this, []); }
   declare readonly $type: { "c:objc(cs)ARDirectionalLightEstimate": true; "c:objc(cs)ARLightEstimate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ambientColorTemperature": true; "ambientIntensity": true; "primaryLightDirection": true; "primaryLightIntensity": true; "sphericalHarmonicsCoefficients": true };
 }
@@ -722,22 +722,22 @@ export class AREnvironmentProbeAnchor extends ARAnchor {
    * init(name: String, transform: simd_float4x4, extent: simd_float3)
    * @availability iOS 12.0+
    */
-  static initNameTransformExtent(name: string, transform: SDKHandle, extent: SDKHandle): AREnvironmentProbeAnchor { return callSDK<AREnvironmentProbeAnchor>("ARKit_d6c5d10d3352e6ec", 1595991296431795, undefined, [name, transform, extent]); }
+  static initNameTransformExtent(name: string, transform: SDKHandle, extent: SDKHandle): AREnvironmentProbeAnchor { return callSDK<AREnvironmentProbeAnchor>("ARKit_a956b86ef7a76a8e", 1595991296431795, undefined, [name, transform, extent]); }
   /**
    * init(transform: simd_float4x4, extent: simd_float3)
    * @availability iOS 12.0+
    */
-  static initTransformExtent(transform: SDKHandle, extent: SDKHandle): AREnvironmentProbeAnchor { return callSDK<AREnvironmentProbeAnchor>("ARKit_d6c5d10d3352e6ec", 3620828319030118, undefined, [transform, extent]); }
+  static initTransformExtent(transform: SDKHandle, extent: SDKHandle): AREnvironmentProbeAnchor { return callSDK<AREnvironmentProbeAnchor>("ARKit_a956b86ef7a76a8e", 3620828319030118, undefined, [transform, extent]); }
   /**
    * var environmentTexture: (any MTLTexture)? { get }
    * @availability iOS 12.0+
    */
-  get environmentTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 718058071937359, this, []); }
+  get environmentTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 718058071937359, this, []); }
   /**
    * var extent: simd_float3 { get }
    * @availability iOS 12.0+
    */
-  get extent(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 3956656635166157, this, []); }
+  get extent(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 3956656635166157, this, []); }
   declare readonly $type: { "c:objc(cs)AREnvironmentProbeAnchor": true; "c:objc(cs)ARAnchor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "sessionIdentifier": true; "transform": true; "environmentTexture": true; "extent": true };
 }
@@ -751,107 +751,107 @@ export class ARError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 11.0+
    */
-  static get errorDomain(): string { return callSDK<string>("ARKit_d6c5d10d3352e6ec", 3326556361479825, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ARKit_a956b86ef7a76a8e", 3326556361479825, undefined, []); }
   /**
    * static var fileIOFailed: ARError.Code { get }
    * @availability iOS 12.0+
    */
-  static get fileIOFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 2475379901056550, undefined, []); }
+  static get fileIOFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 2475379901056550, undefined, []); }
   /**
    * static var sensorFailed: ARError.Code { get }
    * @availability iOS 11.0+
    */
-  static get sensorFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 3402847432216651, undefined, []); }
+  static get sensorFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 3402847432216651, undefined, []); }
   /**
    * static var requestFailed: ARError.Code { get }
    * @availability iOS 14.0+
    */
-  static get requestFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 1829886318382844, undefined, []); }
+  static get requestFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 1829886318382844, undefined, []); }
   /**
    * static var invalidWorldMap: ARError.Code { get }
    * @availability iOS 12.0+
    */
-  static get invalidWorldMap(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 1695134055696056, undefined, []); }
+  static get invalidWorldMap(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 1695134055696056, undefined, []); }
   /**
    * static var geoTrackingFailed: ARError.Code { get }
    * @availability iOS 14.0+
    */
-  static get geoTrackingFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 433547155323378, undefined, []); }
+  static get geoTrackingFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 433547155323378, undefined, []); }
   /**
    * static var objectMergeFailed: ARError.Code { get }
    * @availability iOS 12.0+
    */
-  static get objectMergeFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 2433327906224346, undefined, []); }
+  static get objectMergeFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 2433327906224346, undefined, []); }
   /**
    * static var sensorUnavailable: ARError.Code { get }
    * @availability iOS 11.0+
    */
-  static get sensorUnavailable(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 1499208738086758, undefined, []); }
+  static get sensorUnavailable(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 1499208738086758, undefined, []); }
   /**
    * static var cameraUnauthorized: ARError.Code { get }
    * @availability iOS 11.0+
    */
-  static get cameraUnauthorized(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 3755267413305068, undefined, []); }
+  static get cameraUnauthorized(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 3755267413305068, undefined, []); }
   /**
    * static var worldTrackingFailed: ARError.Code { get }
    * @availability iOS 11.0+
    */
-  static get worldTrackingFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 2923349702538343, undefined, []); }
+  static get worldTrackingFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 2923349702538343, undefined, []); }
   /**
    * static var insufficientFeatures: ARError.Code { get }
    * @availability iOS 12.0+
    */
-  static get insufficientFeatures(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 271582894258018, undefined, []); }
+  static get insufficientFeatures(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 271582894258018, undefined, []); }
   /**
    * static var invalidConfiguration: ARError.Code { get }
    * @availability iOS 12.0+
    */
-  static get invalidConfiguration(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 1341959870827989, undefined, []); }
+  static get invalidConfiguration(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 1341959870827989, undefined, []); }
   /**
    * static var locationUnauthorized: ARError.Code { get }
    * @availability iOS 14.0+
    */
-  static get locationUnauthorized(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 2698128250967011, undefined, []); }
+  static get locationUnauthorized(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 2698128250967011, undefined, []); }
   /**
    * static var invalidReferenceImage: ARError.Code { get }
    * @availability iOS 11.3+
    */
-  static get invalidReferenceImage(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 1271235782571114, undefined, []); }
+  static get invalidReferenceImage(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 1271235782571114, undefined, []); }
   /**
    * static var invalidReferenceObject: ARError.Code { get }
    * @availability iOS 12.0+
    */
-  static get invalidReferenceObject(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 4077566696677215, undefined, []); }
+  static get invalidReferenceObject(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 4077566696677215, undefined, []); }
   /**
    * static var microphoneUnauthorized: ARError.Code { get }
    * @availability iOS 11.0+
    */
-  static get microphoneUnauthorized(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 2876026945350804, undefined, []); }
+  static get microphoneUnauthorized(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 2876026945350804, undefined, []); }
   /**
    * static var invalidCollaborationData: ARError.Code { get }
    * @availability iOS 13.2+
    */
-  static get invalidCollaborationData(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 2319782051045521, undefined, []); }
+  static get invalidCollaborationData(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 2319782051045521, undefined, []); }
   /**
    * static var unsupportedConfiguration: ARError.Code { get }
    * @availability iOS 11.0+
    */
-  static get unsupportedConfiguration(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 2042438954103071, undefined, []); }
+  static get unsupportedConfiguration(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 2042438954103071, undefined, []); }
   /**
    * static var highResolutionFrameCaptureFailed: ARError.Code { get }
    * @availability iOS 16.0+
    */
-  static get highResolutionFrameCaptureFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 2446754145514596, undefined, []); }
+  static get highResolutionFrameCaptureFailed(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 2446754145514596, undefined, []); }
   /**
    * static var geoTrackingNotAvailableAtLocation: ARError.Code { get }
    * @availability iOS 14.0+
    */
-  static get geoTrackingNotAvailableAtLocation(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 4312303848562692, undefined, []); }
+  static get geoTrackingNotAvailableAtLocation(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 4312303848562692, undefined, []); }
   /**
    * static var highResolutionFrameCaptureInProgress: ARError.Code { get }
    * @availability iOS 16.0+
    */
-  static get highResolutionFrameCaptureInProgress(): ARError_Code { return callSDK<ARError_Code>("ARKit_d6c5d10d3352e6ec", 2796552079319630, undefined, []); }
+  static get highResolutionFrameCaptureInProgress(): ARError_Code { return callSDK<ARError_Code>("ARKit_a956b86ef7a76a8e", 2796552079319630, undefined, []); }
   declare readonly $type: { "s:SC11ARErrorCodeLeV": true };
 }
 
@@ -866,7 +866,7 @@ export const ARError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (ARError_Code) | null { return callSDK<(ARError_Code) | null>("ARKit_d6c5d10d3352e6ec", 1965537427887083, undefined, [rawValue]); }
+  init(rawValue: number): (ARError_Code) | null { return callSDK<(ARError_Code) | null>("ARKit_a956b86ef7a76a8e", 1965537427887083, undefined, [rawValue]); }
 };
 
 /**
@@ -878,27 +878,27 @@ export class ARFaceAnchor extends ARAnchor {
    * var blendShapes: [ARFaceAnchor.BlendShapeLocation : NSNumber] { get }
    * @availability iOS 11.0+
    */
-  get blendShapes(): $SDK8 { return callSDK<$SDK8>("ARKit_d6c5d10d3352e6ec", 3345171527031571, this, []); }
+  get blendShapes(): $SDK8 { return callSDK<$SDK8>("ARKit_a956b86ef7a76a8e", 3345171527031571, this, []); }
   /**
    * var geometry: ARFaceGeometry { get }
    * @availability iOS 11.0+
    */
-  get geometry(): ARFaceGeometry { return callSDK<ARFaceGeometry>("ARKit_d6c5d10d3352e6ec", 142515568049686, this, []); }
+  get geometry(): ARFaceGeometry { return callSDK<ARFaceGeometry>("ARKit_a956b86ef7a76a8e", 142515568049686, this, []); }
   /**
    * var leftEyeTransform: simd_float4x4 { get }
    * @availability iOS 12.0+
    */
-  get leftEyeTransform(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 3302980570571568, this, []); }
+  get leftEyeTransform(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 3302980570571568, this, []); }
   /**
    * var lookAtPoint: simd_float3 { get }
    * @availability iOS 12.0+
    */
-  get lookAtPoint(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 579063626301998, this, []); }
+  get lookAtPoint(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 579063626301998, this, []); }
   /**
    * var rightEyeTransform: simd_float4x4 { get }
    * @availability iOS 12.0+
    */
-  get rightEyeTransform(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 2324906024830838, this, []); }
+  get rightEyeTransform(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 2324906024830838, this, []); }
   declare readonly $type: { "c:objc(cs)ARFaceAnchor": true; "c:objc(cs)ARAnchor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "sessionIdentifier": true; "transform": true; "blendShapes": true; "geometry": true; "leftEyeTransform": true; "lookAtPoint": true; "rightEyeTransform": true };
 }
@@ -914,267 +914,267 @@ export const ARFaceAnchor_BlendShapeLocation = {
    * static let browDownLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get browDownLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 198153240234845, undefined, []); },
+  get browDownLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 198153240234845, undefined, []); },
   /**
    * static let browDownRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get browDownRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2630980283567060, undefined, []); },
+  get browDownRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2630980283567060, undefined, []); },
   /**
    * static let browInnerUp: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get browInnerUp(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2809510165967095, undefined, []); },
+  get browInnerUp(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2809510165967095, undefined, []); },
   /**
    * static let browOuterUpLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get browOuterUpLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2588679961476707, undefined, []); },
+  get browOuterUpLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2588679961476707, undefined, []); },
   /**
    * static let browOuterUpRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get browOuterUpRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 3849808449356310, undefined, []); },
+  get browOuterUpRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 3849808449356310, undefined, []); },
   /**
    * static let cheekPuff: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get cheekPuff(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 480501098146956, undefined, []); },
+  get cheekPuff(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 480501098146956, undefined, []); },
   /**
    * static let cheekSquintLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get cheekSquintLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2645793581378751, undefined, []); },
+  get cheekSquintLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2645793581378751, undefined, []); },
   /**
    * static let cheekSquintRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get cheekSquintRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 405413599470373, undefined, []); },
+  get cheekSquintRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 405413599470373, undefined, []); },
   /**
    * static let eyeBlinkLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeBlinkLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 4217337060143545, undefined, []); },
+  get eyeBlinkLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 4217337060143545, undefined, []); },
   /**
    * static let eyeBlinkRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeBlinkRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2518235814120925, undefined, []); },
+  get eyeBlinkRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2518235814120925, undefined, []); },
   /**
    * static let eyeLookDownLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeLookDownLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2807793577247171, undefined, []); },
+  get eyeLookDownLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2807793577247171, undefined, []); },
   /**
    * static let eyeLookDownRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeLookDownRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 1851168167510702, undefined, []); },
+  get eyeLookDownRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 1851168167510702, undefined, []); },
   /**
    * static let eyeLookInLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeLookInLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 1817302247481247, undefined, []); },
+  get eyeLookInLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 1817302247481247, undefined, []); },
   /**
    * static let eyeLookInRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeLookInRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 857993949554008, undefined, []); },
+  get eyeLookInRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 857993949554008, undefined, []); },
   /**
    * static let eyeLookOutLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeLookOutLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2624613912208471, undefined, []); },
+  get eyeLookOutLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2624613912208471, undefined, []); },
   /**
    * static let eyeLookOutRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeLookOutRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 5300434664396, undefined, []); },
+  get eyeLookOutRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 5300434664396, undefined, []); },
   /**
    * static let eyeLookUpLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeLookUpLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2258997978490377, undefined, []); },
+  get eyeLookUpLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2258997978490377, undefined, []); },
   /**
    * static let eyeLookUpRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeLookUpRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 4399693657457577, undefined, []); },
+  get eyeLookUpRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 4399693657457577, undefined, []); },
   /**
    * static let eyeSquintLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeSquintLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 1435806979834562, undefined, []); },
+  get eyeSquintLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 1435806979834562, undefined, []); },
   /**
    * static let eyeSquintRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeSquintRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 1482336977503309, undefined, []); },
+  get eyeSquintRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 1482336977503309, undefined, []); },
   /**
    * static let eyeWideLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeWideLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2678639101883637, undefined, []); },
+  get eyeWideLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2678639101883637, undefined, []); },
   /**
    * static let eyeWideRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get eyeWideRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 1249586671613198, undefined, []); },
+  get eyeWideRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 1249586671613198, undefined, []); },
   /**
    * static let jawForward: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get jawForward(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2417014103129285, undefined, []); },
+  get jawForward(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2417014103129285, undefined, []); },
   /**
    * static let jawLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get jawLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 4098711599275245, undefined, []); },
+  get jawLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 4098711599275245, undefined, []); },
   /**
    * static let jawOpen: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get jawOpen(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2939053579126810, undefined, []); },
+  get jawOpen(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2939053579126810, undefined, []); },
   /**
    * static let jawRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get jawRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 1074612817220531, undefined, []); },
+  get jawRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 1074612817220531, undefined, []); },
   /**
    * static let mouthClose: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthClose(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2144998016578645, undefined, []); },
+  get mouthClose(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2144998016578645, undefined, []); },
   /**
    * static let mouthDimpleLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthDimpleLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 1116964294929609, undefined, []); },
+  get mouthDimpleLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 1116964294929609, undefined, []); },
   /**
    * static let mouthDimpleRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthDimpleRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 3646868235993071, undefined, []); },
+  get mouthDimpleRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 3646868235993071, undefined, []); },
   /**
    * static let mouthFrownLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthFrownLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2008765831049464, undefined, []); },
+  get mouthFrownLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2008765831049464, undefined, []); },
   /**
    * static let mouthFrownRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthFrownRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 927969578679519, undefined, []); },
+  get mouthFrownRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 927969578679519, undefined, []); },
   /**
    * static let mouthFunnel: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthFunnel(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 4438330000970354, undefined, []); },
+  get mouthFunnel(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 4438330000970354, undefined, []); },
   /**
    * static let mouthLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2858469312091254, undefined, []); },
+  get mouthLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2858469312091254, undefined, []); },
   /**
    * static let mouthLowerDownLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthLowerDownLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 3231619269517600, undefined, []); },
+  get mouthLowerDownLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 3231619269517600, undefined, []); },
   /**
    * static let mouthLowerDownRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthLowerDownRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 4500557937953800, undefined, []); },
+  get mouthLowerDownRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 4500557937953800, undefined, []); },
   /**
    * static let mouthPressLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthPressLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 3232401872181403, undefined, []); },
+  get mouthPressLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 3232401872181403, undefined, []); },
   /**
    * static let mouthPressRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthPressRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 3864837273285275, undefined, []); },
+  get mouthPressRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 3864837273285275, undefined, []); },
   /**
    * static let mouthPucker: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthPucker(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 4499795682398241, undefined, []); },
+  get mouthPucker(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 4499795682398241, undefined, []); },
   /**
    * static let mouthRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 3341064844603084, undefined, []); },
+  get mouthRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 3341064844603084, undefined, []); },
   /**
    * static let mouthRollLower: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthRollLower(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 3023102564841462, undefined, []); },
+  get mouthRollLower(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 3023102564841462, undefined, []); },
   /**
    * static let mouthRollUpper: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthRollUpper(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 1371526474646832, undefined, []); },
+  get mouthRollUpper(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 1371526474646832, undefined, []); },
   /**
    * static let mouthShrugLower: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthShrugLower(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2588005697590016, undefined, []); },
+  get mouthShrugLower(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2588005697590016, undefined, []); },
   /**
    * static let mouthShrugUpper: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthShrugUpper(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 3377501433182502, undefined, []); },
+  get mouthShrugUpper(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 3377501433182502, undefined, []); },
   /**
    * static let mouthSmileLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthSmileLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 3851942166436405, undefined, []); },
+  get mouthSmileLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 3851942166436405, undefined, []); },
   /**
    * static let mouthSmileRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthSmileRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 427977985917815, undefined, []); },
+  get mouthSmileRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 427977985917815, undefined, []); },
   /**
    * static let mouthStretchLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthStretchLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 1509593679187427, undefined, []); },
+  get mouthStretchLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 1509593679187427, undefined, []); },
   /**
    * static let mouthStretchRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthStretchRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2363988265150384, undefined, []); },
+  get mouthStretchRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2363988265150384, undefined, []); },
   /**
    * static let mouthUpperUpLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthUpperUpLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 612406824869242, undefined, []); },
+  get mouthUpperUpLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 612406824869242, undefined, []); },
   /**
    * static let mouthUpperUpRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get mouthUpperUpRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 4367942837141113, undefined, []); },
+  get mouthUpperUpRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 4367942837141113, undefined, []); },
   /**
    * static let noseSneerLeft: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get noseSneerLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 372755281307432, undefined, []); },
+  get noseSneerLeft(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 372755281307432, undefined, []); },
   /**
    * static let noseSneerRight: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 11.0+
    */
-  get noseSneerRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 990132698965475, undefined, []); },
+  get noseSneerRight(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 990132698965475, undefined, []); },
   /**
    * static let tongueOut: ARFaceAnchor.BlendShapeLocation
    * @availability iOS 12.0+
    */
-  get tongueOut(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 3892957752738269, undefined, []); },
+  get tongueOut(): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 3892957752738269, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 11.0+
    */
-  init(rawValue: string): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_d6c5d10d3352e6ec", 2711761283884908, undefined, [rawValue]); }
+  init(rawValue: string): ARFaceAnchor_BlendShapeLocation { return callSDK<ARFaceAnchor_BlendShapeLocation>("ARKit_a956b86ef7a76a8e", 2711761283884908, undefined, [rawValue]); }
 };
 
 /**
@@ -1186,27 +1186,27 @@ export class ARFaceGeometry extends SDKHandle {
    * init?(blendShapes: [ARFaceAnchor.BlendShapeLocation : NSNumber])
    * @availability iOS 11.0+
    */
-  static init(blendShapes: $SDK8): (ARFaceGeometry) | null { return callSDK<(ARFaceGeometry) | null>("ARKit_d6c5d10d3352e6ec", 2590272939171964, undefined, [blendShapes]); }
+  static init(blendShapes: $SDK8): (ARFaceGeometry) | null { return callSDK<(ARFaceGeometry) | null>("ARKit_a956b86ef7a76a8e", 2590272939171964, undefined, [blendShapes]); }
   /**
    * var triangleCount: Int { get }
    * @availability iOS 11.0+
    */
-  get triangleCount(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 3282665649087694, this, []); }
+  get triangleCount(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 3282665649087694, this, []); }
   /**
    * @nonobjc var triangleIndices: [Int16] { get }
    * @availability iOS 11.0+
    */
-  get triangleIndices(): Array<number> { return callSDK<Array<number>>("ARKit_d6c5d10d3352e6ec", 171765611267844, this, []); }
+  get triangleIndices(): Array<number> { return callSDK<Array<number>>("ARKit_a956b86ef7a76a8e", 171765611267844, this, []); }
   /**
    * @nonobjc var textureCoordinates: [vector_float2] { get }
    * @availability iOS 11.0+
    */
-  get textureCoordinates(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_d6c5d10d3352e6ec", 3390233447951072, this, []); }
+  get textureCoordinates(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_a956b86ef7a76a8e", 3390233447951072, this, []); }
   /**
    * @nonobjc var vertices: [simd_float3] { get }
    * @availability iOS 11.0+
    */
-  get vertices(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_d6c5d10d3352e6ec", 21230966527015, this, []); }
+  get vertices(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_a956b86ef7a76a8e", 21230966527015, this, []); }
   declare readonly $type: { "c:objc(cs)ARFaceGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "triangleCount": true };
 }
@@ -1220,35 +1220,35 @@ export class ARFaceTrackingConfiguration extends ARConfiguration {
    * class var supportedNumberOfTrackedFaces: Int { get }
    * @availability iOS 13.0+
    */
-  static get supportedNumberOfTrackedFaces(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 1189640833288758, undefined, []); }
+  static get supportedNumberOfTrackedFaces(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 1189640833288758, undefined, []); }
   /**
    * class var supportsWorldTracking: Bool { get }
    * @availability iOS 13.0+
    */
-  static get supportsWorldTracking(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 126710221703786, undefined, []); }
+  static get supportsWorldTracking(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 126710221703786, undefined, []); }
   /**
    * init()
    * @availability iOS 11.0+
    */
-  static init(): ARFaceTrackingConfiguration { return callSDK<ARFaceTrackingConfiguration>("ARKit_d6c5d10d3352e6ec", 1975745632296001, undefined, []); }
+  static init(): ARFaceTrackingConfiguration { return callSDK<ARFaceTrackingConfiguration>("ARKit_a956b86ef7a76a8e", 1975745632296001, undefined, []); }
   /**
    * var isEnvironmentTexturingEnabled: Bool { get set }
    * @availability iOS 27.0+
    */
-  get isEnvironmentTexturingEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2360734605650079, this, []); }
-  set isEnvironmentTexturingEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2796445904120189, this, [value]); }
+  get isEnvironmentTexturingEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2360734605650079, this, []); }
+  set isEnvironmentTexturingEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2796445904120189, this, [value]); }
   /**
    * var maximumNumberOfTrackedFaces: Int { get set }
    * @availability iOS 13.0+
    */
-  get maximumNumberOfTrackedFaces(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 419699583586585, this, []); }
-  set maximumNumberOfTrackedFaces(value: number) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3446863515252138, this, [value]); }
+  get maximumNumberOfTrackedFaces(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 419699583586585, this, []); }
+  set maximumNumberOfTrackedFaces(value: number) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3446863515252138, this, [value]); }
   /**
    * var isWorldTrackingEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isWorldTrackingEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3832589859501977, this, []); }
-  set isWorldTrackingEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3421919178370510, this, [value]); }
+  get isWorldTrackingEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3832589859501977, this, []); }
+  set isWorldTrackingEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3421919178370510, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARFaceTrackingConfiguration": true; "c:objc(cs)ARConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameSemantics": true; "isLightEstimationEnabled": true; "providesAudioData": true; "videoFormat": true; "videoHDRAllowed": true; "worldAlignment": true; "isEnvironmentTexturingEnabled": true; "maximumNumberOfTrackedFaces": true; "isWorldTrackingEnabled": true };
 }
@@ -1263,118 +1263,118 @@ export class ARFrame extends SDKHandle {
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  displayTransformForViewportSize(orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("ARKit_d6c5d10d3352e6ec", 4184238290111108, this, [orientation, viewportSize]); }
+  displayTransformForViewportSize(orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("ARKit_a956b86ef7a76a8e", 4184238290111108, this, [orientation, viewportSize]); }
   /**
    * func displayTransform(viewRotationAngle: CGFloat, viewportSize: CGSize) -> CGAffineTransform
    * @availability iOS 27.0+
    */
-  displayTransformViewRotationAngleViewportSize(viewRotationAngle: number, viewportSize: $SDK5): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("ARKit_d6c5d10d3352e6ec", 2473779083140147, this, [viewRotationAngle, viewportSize]); }
+  displayTransformViewRotationAngleViewportSize(viewRotationAngle: number, viewportSize: $SDK5): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("ARKit_a956b86ef7a76a8e", 2473779083140147, this, [viewRotationAngle, viewportSize]); }
   /**
    * func hitTest(_ point: CGPoint, types: ARHitTestResult.ResultType) -> [ARHitTestResult]
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult> { return callSDK<Array<ARHitTestResult>>("ARKit_d6c5d10d3352e6ec", 1365567175980156, this, [point, types]); }
+  hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult> { return callSDK<Array<ARHitTestResult>>("ARKit_a956b86ef7a76a8e", 1365567175980156, this, [point, types]); }
   /**
    * func raycastQuery(from point: CGPoint, allowing target: ARRaycastQuery.Target, alignment: ARRaycastQuery.TargetAlignment) -> ARRaycastQuery
    * @availability iOS 13.0+
    */
-  raycastQuery(point: $SDK4, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): ARRaycastQuery { return callSDK<ARRaycastQuery>("ARKit_d6c5d10d3352e6ec", 405485746703854, this, [point, target, alignment]); }
+  raycastQuery(point: $SDK4, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): ARRaycastQuery { return callSDK<ARRaycastQuery>("ARKit_a956b86ef7a76a8e", 405485746703854, this, [point, target, alignment]); }
   /**
    * var anchors: [ARAnchor] { get }
    * @availability iOS 11.0+
    */
-  get anchors(): Array<ARAnchor> { return callSDK<Array<ARAnchor>>("ARKit_d6c5d10d3352e6ec", 3426105173674331, this, []); }
+  get anchors(): Array<ARAnchor> { return callSDK<Array<ARAnchor>>("ARKit_a956b86ef7a76a8e", 3426105173674331, this, []); }
   /**
    * @NSCopying var camera: ARCamera { get }
    * @availability iOS 11.0+
    */
-  get camera(): ARCamera { return callSDK<ARCamera>("ARKit_d6c5d10d3352e6ec", 2767009727662698, this, []); }
+  get camera(): ARCamera { return callSDK<ARCamera>("ARKit_a956b86ef7a76a8e", 2767009727662698, this, []); }
   /**
    * var cameraGrainIntensity: Float { get }
    * @availability iOS 13.0+
    */
-  get cameraGrainIntensity(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 232361914445762, this, []); }
+  get cameraGrainIntensity(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 232361914445762, this, []); }
   /**
    * var cameraGrainTexture: (any MTLTexture)? { get }
    * @availability iOS 13.0+
    */
-  get cameraGrainTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 2724020731144559, this, []); }
+  get cameraGrainTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 2724020731144559, this, []); }
   /**
    * var capturedDepthData: AVDepthData? { get }
    * @availability iOS 11.0+
    */
-  get capturedDepthData(): (_AVFoundation_AVDepthData) | null { return callSDK<(_AVFoundation_AVDepthData) | null>("ARKit_d6c5d10d3352e6ec", 1951010514391219, this, []); }
+  get capturedDepthData(): (_AVFoundation_AVDepthData) | null { return callSDK<(_AVFoundation_AVDepthData) | null>("ARKit_a956b86ef7a76a8e", 1951010514391219, this, []); }
   /**
    * var capturedDepthDataTimestamp: TimeInterval { get }
    * @availability iOS 11.0+
    */
-  get capturedDepthDataTimestamp(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 4154509266393196, this, []); }
+  get capturedDepthDataTimestamp(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 4154509266393196, this, []); }
   /**
    * var capturedImage: CVPixelBuffer { get }
    * @availability iOS 11.0+
    */
-  get capturedImage(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("ARKit_d6c5d10d3352e6ec", 1876179122392636, this, []); }
+  get capturedImage(): _CoreVideo_CVBuffer { return callSDK<_CoreVideo_CVBuffer>("ARKit_a956b86ef7a76a8e", 1876179122392636, this, []); }
   /**
    * var detectedBody: ARBody2D? { get }
    * @availability iOS 13.0+
    */
-  get detectedBody(): (ARBody2D) | null { return callSDK<(ARBody2D) | null>("ARKit_d6c5d10d3352e6ec", 2359520345229450, this, []); }
+  get detectedBody(): (ARBody2D) | null { return callSDK<(ARBody2D) | null>("ARKit_a956b86ef7a76a8e", 2359520345229450, this, []); }
   /**
    * var estimatedDepthData: CVPixelBuffer? { get }
    * @availability iOS 13.0+
    */
-  get estimatedDepthData(): $SDK7 { return callSDK<$SDK7>("ARKit_d6c5d10d3352e6ec", 4165935993080685, this, []); }
+  get estimatedDepthData(): $SDK7 { return callSDK<$SDK7>("ARKit_a956b86ef7a76a8e", 4165935993080685, this, []); }
   /**
    * var exifData: [String : Any] { get }
    * @availability iOS 16.0+
    */
-  get exifData(): Record<string, unknown> { return callSDK<Record<string, unknown>>("ARKit_d6c5d10d3352e6ec", 2997209565592737, this, []); }
+  get exifData(): Record<string, unknown> { return callSDK<Record<string, unknown>>("ARKit_a956b86ef7a76a8e", 2997209565592737, this, []); }
   /**
    * var geoTrackingStatus: ARGeoTrackingStatus? { get }
    * @availability iOS 14.0+
    */
-  get geoTrackingStatus(): (ARGeoTrackingStatus) | null { return callSDK<(ARGeoTrackingStatus) | null>("ARKit_d6c5d10d3352e6ec", 1685886751176991, this, []); }
+  get geoTrackingStatus(): (ARGeoTrackingStatus) | null { return callSDK<(ARGeoTrackingStatus) | null>("ARKit_a956b86ef7a76a8e", 1685886751176991, this, []); }
   /**
    * var lightEstimate: ARLightEstimate? { get }
    * @availability iOS 11.0+
    */
-  get lightEstimate(): (ARLightEstimate) | null { return callSDK<(ARLightEstimate) | null>("ARKit_d6c5d10d3352e6ec", 4188564698645292, this, []); }
+  get lightEstimate(): (ARLightEstimate) | null { return callSDK<(ARLightEstimate) | null>("ARKit_a956b86ef7a76a8e", 4188564698645292, this, []); }
   /**
    * var metadataObjects: [AVMetadataObject] { get }
    * @availability iOS 27.0+
    */
-  get metadataObjects(): Array<_AVFoundation_AVMetadataObject> { return callSDK<Array<_AVFoundation_AVMetadataObject>>("ARKit_d6c5d10d3352e6ec", 3160661618529120, this, []); }
+  get metadataObjects(): Array<_AVFoundation_AVMetadataObject> { return callSDK<Array<_AVFoundation_AVMetadataObject>>("ARKit_a956b86ef7a76a8e", 3160661618529120, this, []); }
   /**
    * var rawFeaturePoints: ARPointCloud? { get }
    * @availability iOS 11.0+
    */
-  get rawFeaturePoints(): (ARPointCloud) | null { return callSDK<(ARPointCloud) | null>("ARKit_d6c5d10d3352e6ec", 3205510694916477, this, []); }
+  get rawFeaturePoints(): (ARPointCloud) | null { return callSDK<(ARPointCloud) | null>("ARKit_a956b86ef7a76a8e", 3205510694916477, this, []); }
   /**
    * var sceneDepth: ARDepthData? { get }
    * @availability iOS 14.0+
    */
-  get sceneDepth(): (ARDepthData) | null { return callSDK<(ARDepthData) | null>("ARKit_d6c5d10d3352e6ec", 1125634105108849, this, []); }
+  get sceneDepth(): (ARDepthData) | null { return callSDK<(ARDepthData) | null>("ARKit_a956b86ef7a76a8e", 1125634105108849, this, []); }
   /**
    * var segmentationBuffer: CVPixelBuffer? { get }
    * @availability iOS 13.0+
    */
-  get segmentationBuffer(): $SDK7 { return callSDK<$SDK7>("ARKit_d6c5d10d3352e6ec", 195420626557341, this, []); }
+  get segmentationBuffer(): $SDK7 { return callSDK<$SDK7>("ARKit_a956b86ef7a76a8e", 195420626557341, this, []); }
   /**
    * var smoothedSceneDepth: ARDepthData? { get }
    * @availability iOS 14.0+
    */
-  get smoothedSceneDepth(): (ARDepthData) | null { return callSDK<(ARDepthData) | null>("ARKit_d6c5d10d3352e6ec", 3448654263026488, this, []); }
+  get smoothedSceneDepth(): (ARDepthData) | null { return callSDK<(ARDepthData) | null>("ARKit_a956b86ef7a76a8e", 3448654263026488, this, []); }
   /**
    * var timestamp: TimeInterval { get }
    * @availability iOS 11.0+
    */
-  get timestamp(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 4126472045244871, this, []); }
+  get timestamp(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 4126472045244871, this, []); }
   /**
    * var worldMappingStatus: ARFrame.WorldMappingStatus { get }
    * @availability iOS 12.0+
    */
-  get worldMappingStatus(): ARFrame_WorldMappingStatus { return callSDK<ARFrame_WorldMappingStatus>("ARKit_d6c5d10d3352e6ec", 2200074804485641, this, []); }
+  get worldMappingStatus(): ARFrame_WorldMappingStatus { return callSDK<ARFrame_WorldMappingStatus>("ARKit_a956b86ef7a76a8e", 2200074804485641, this, []); }
   declare readonly $type: { "c:objc(cs)ARFrame": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchors": true; "camera": true; "cameraGrainIntensity": true; "cameraGrainTexture": true; "capturedDepthData": true; "capturedDepthDataTimestamp": true; "capturedImage": true; "detectedBody": true; "estimatedDepthData": true; "exifData": true; "geoTrackingStatus": true; "lightEstimate": true; "metadataObjects": true; "rawFeaturePoints": true; "sceneDepth": true; "segmentationBuffer": true; "smoothedSceneDepth": true; "timestamp": true; "worldMappingStatus": true };
 }
@@ -1390,7 +1390,7 @@ export const ARFrame_SegmentationClass = {
    * init?(rawValue: UInt8)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ARFrame_SegmentationClass) | null { return callSDK<(ARFrame_SegmentationClass) | null>("ARKit_d6c5d10d3352e6ec", 2504723030690016, undefined, [rawValue]); }
+  init(rawValue: number): (ARFrame_SegmentationClass) | null { return callSDK<(ARFrame_SegmentationClass) | null>("ARKit_a956b86ef7a76a8e", 2504723030690016, undefined, [rawValue]); }
 };
 
 /**
@@ -1404,7 +1404,7 @@ export const ARFrame_WorldMappingStatus = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (ARFrame_WorldMappingStatus) | null { return callSDK<(ARFrame_WorldMappingStatus) | null>("ARKit_d6c5d10d3352e6ec", 4293974797696112, undefined, [rawValue]); }
+  init(rawValue: number): (ARFrame_WorldMappingStatus) | null { return callSDK<(ARFrame_WorldMappingStatus) | null>("ARKit_a956b86ef7a76a8e", 4293974797696112, undefined, [rawValue]); }
 };
 
 /**
@@ -1416,32 +1416,32 @@ export class ARGeoAnchor extends ARAnchor {
    * init(name: String, coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance)
    * @availability iOS 14.0+
    */
-  static initNameCoordinateAltitude(name: string, coordinate: $SDK13, altitude: number): ARGeoAnchor { return callSDK<ARGeoAnchor>("ARKit_d6c5d10d3352e6ec", 1990901577449065, undefined, [name, coordinate, altitude]); }
+  static initNameCoordinateAltitude(name: string, coordinate: $SDK13, altitude: number): ARGeoAnchor { return callSDK<ARGeoAnchor>("ARKit_a956b86ef7a76a8e", 1990901577449065, undefined, [name, coordinate, altitude]); }
   /**
    * var altitudeSource: ARGeoAnchor.AltitudeSource { get }
    * @availability iOS 14.0+
    */
-  get altitudeSource(): ARGeoAnchor_AltitudeSource { return callSDK<ARGeoAnchor_AltitudeSource>("ARKit_d6c5d10d3352e6ec", 3774754158442971, this, []); }
+  get altitudeSource(): ARGeoAnchor_AltitudeSource { return callSDK<ARGeoAnchor_AltitudeSource>("ARKit_a956b86ef7a76a8e", 3774754158442971, this, []); }
   /**
    * var coordinate: CLLocationCoordinate2D { get }
    * @availability iOS 14.0+
    */
-  get coordinate(): $SDK13 { return callSDK<$SDK13>("ARKit_d6c5d10d3352e6ec", 1438791031432298, this, []); }
+  get coordinate(): $SDK13 { return callSDK<$SDK13>("ARKit_a956b86ef7a76a8e", 1438791031432298, this, []); }
   /**
    * @nonobjc convenience init(coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil)
    * @availability iOS 14.0+
    */
-  static initCoordinateAltitude(coordinate: $SDK13, altitude?: (number) | null): ARGeoAnchor { return callSDK<ARGeoAnchor>("ARKit_d6c5d10d3352e6ec", 1112105998994327, undefined, [coordinate, altitude]); }
+  static initCoordinateAltitude(coordinate: $SDK13, altitude?: (number) | null): ARGeoAnchor { return callSDK<ARGeoAnchor>("ARKit_a956b86ef7a76a8e", 1112105998994327, undefined, [coordinate, altitude]); }
   /**
    * @nonobjc convenience init(name: String, coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil)
    * @availability iOS 14.0+
    */
-  static initNameCoordinateAltitude88158(name: string, coordinate: $SDK13, altitude?: (number) | null): ARGeoAnchor { return callSDK<ARGeoAnchor>("ARKit_d6c5d10d3352e6ec", 881601600162221, undefined, [name, coordinate, altitude]); }
+  static initNameCoordinateAltitude88158(name: string, coordinate: $SDK13, altitude?: (number) | null): ARGeoAnchor { return callSDK<ARGeoAnchor>("ARKit_a956b86ef7a76a8e", 881601600162221, undefined, [name, coordinate, altitude]); }
   /**
    * @nonobjc var altitude: CLLocationDistance? { get }
    * @availability iOS 14.0+
    */
-  get altitude(): (number) | null { return callSDK<(number) | null>("ARKit_d6c5d10d3352e6ec", 2584015283004638, this, []); }
+  get altitude(): (number) | null { return callSDK<(number) | null>("ARKit_a956b86ef7a76a8e", 2584015283004638, this, []); }
   declare readonly $type: { "c:objc(cs)ARGeoAnchor": true; "c:objc(cs)ARAnchor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "sessionIdentifier": true; "transform": true; "altitudeSource": true; "coordinate": true };
 }
@@ -1457,7 +1457,7 @@ export const ARGeoAnchor_AltitudeSource = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (ARGeoAnchor_AltitudeSource) | null { return callSDK<(ARGeoAnchor_AltitudeSource) | null>("ARKit_d6c5d10d3352e6ec", 1160097526627141, undefined, [rawValue]); }
+  init(rawValue: number): (ARGeoAnchor_AltitudeSource) | null { return callSDK<(ARGeoAnchor_AltitudeSource) | null>("ARKit_a956b86ef7a76a8e", 1160097526627141, undefined, [rawValue]); }
 };
 
 /**
@@ -1469,32 +1469,32 @@ export class ARGeometryElement extends SDKHandle {
    * var buffer: any MTLBuffer { get }
    * @availability iOS 13.4+
    */
-  get buffer(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 1230059738439957, this, []); }
+  get buffer(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 1230059738439957, this, []); }
   /**
    * var bytesPerIndex: Int { get }
    * @availability iOS 13.4+
    */
-  get bytesPerIndex(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 199934666700547, this, []); }
+  get bytesPerIndex(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 199934666700547, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 13.4+
    */
-  get count(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 1332651389695195, this, []); }
+  get count(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 1332651389695195, this, []); }
   /**
    * var indexCountPerPrimitive: Int { get }
    * @availability iOS 13.4+
    */
-  get indexCountPerPrimitive(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 4270787422231179, this, []); }
+  get indexCountPerPrimitive(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 4270787422231179, this, []); }
   /**
    * var primitiveType: ARGeometryPrimitiveType { get }
    * @availability iOS 13.4+
    */
-  get primitiveType(): ARGeometryPrimitiveType { return callSDK<ARGeometryPrimitiveType>("ARKit_d6c5d10d3352e6ec", 2732179146305381, this, []); }
+  get primitiveType(): ARGeometryPrimitiveType { return callSDK<ARGeometryPrimitiveType>("ARKit_a956b86ef7a76a8e", 2732179146305381, this, []); }
   /**
    * @nonobjc subscript(index: Int) -> [Int32] { get }
    * @availability iOS 14.0+
    */
-  subscript(index: number): Array<number> { return callSDK<Array<number>>("ARKit_d6c5d10d3352e6ec", 3102931121361315, this, [index]); }
+  subscript(index: number): Array<number> { return callSDK<Array<number>>("ARKit_a956b86ef7a76a8e", 3102931121361315, this, [index]); }
   declare readonly $type: { "c:objc(cs)ARGeometryElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "buffer": true; "bytesPerIndex": true; "count": true; "indexCountPerPrimitive": true; "primitiveType": true };
 }
@@ -1510,7 +1510,7 @@ export const ARGeometryPrimitiveType = {
    * init?(rawValue: Int)
    * @availability iOS 13.4+
    */
-  init(rawValue: number): (ARGeometryPrimitiveType) | null { return callSDK<(ARGeometryPrimitiveType) | null>("ARKit_d6c5d10d3352e6ec", 3990477712656734, undefined, [rawValue]); }
+  init(rawValue: number): (ARGeometryPrimitiveType) | null { return callSDK<(ARGeometryPrimitiveType) | null>("ARKit_a956b86ef7a76a8e", 3990477712656734, undefined, [rawValue]); }
 };
 
 /**
@@ -1522,32 +1522,32 @@ export class ARGeometrySource extends SDKHandle {
    * var buffer: any MTLBuffer { get }
    * @availability iOS 13.4+
    */
-  get buffer(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 700526717338709, this, []); }
+  get buffer(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 700526717338709, this, []); }
   /**
    * var componentsPerVector: Int { get }
    * @availability iOS 13.4+
    */
-  get componentsPerVector(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 1119686800491733, this, []); }
+  get componentsPerVector(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 1119686800491733, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 13.4+
    */
-  get count(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 3178710293642949, this, []); }
+  get count(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 3178710293642949, this, []); }
   /**
    * var format: MTLVertexFormat { get }
    * @availability iOS 13.4+
    */
-  get format(): _Metal_MTLVertexFormat { return callSDK<_Metal_MTLVertexFormat>("ARKit_d6c5d10d3352e6ec", 3475033786488316, this, []); }
+  get format(): _Metal_MTLVertexFormat { return callSDK<_Metal_MTLVertexFormat>("ARKit_a956b86ef7a76a8e", 3475033786488316, this, []); }
   /**
    * var offset: Int { get }
    * @availability iOS 13.4+
    */
-  get offset(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 2691142433667738, this, []); }
+  get offset(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 2691142433667738, this, []); }
   /**
    * var stride: Int { get }
    * @availability iOS 13.4+
    */
-  get stride(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 2681776161464645, this, []); }
+  get stride(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 2681776161464645, this, []); }
   declare readonly $type: { "c:objc(cs)ARGeometrySource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "buffer": true; "componentsPerVector": true; "count": true; "format": true; "offset": true; "stride": true };
 }
@@ -1561,76 +1561,76 @@ export class ARGeoTrackingConfiguration extends ARConfiguration {
    * class func checkAvailability(at coordinate: CLLocationCoordinate2D, completionHandler: @escaping (Bool, (any Error)?) -> Void)
    * @availability iOS 14.0+
    */
-  static checkAvailabilityAtCompletionHandler(coordinate: $SDK13, completionHandler: $SDK14): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 2304397921146462, undefined, [coordinate, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static checkAvailabilityAtCompletionHandler(coordinate: $SDK13, completionHandler: $SDK14): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 2304397921146462, undefined, [coordinate, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func checkAvailability(completionHandler: @escaping (Bool, (any Error)?) -> Void)
    * @availability iOS 14.0+
    */
-  static checkAvailabilityCompletionHandler(completionHandler: $SDK14): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 1111073671165722, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static checkAvailabilityCompletionHandler(completionHandler: $SDK14): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 1111073671165722, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class var supportsAppClipCodeTracking: Bool { get }
    * @availability iOS 14.3+
    */
-  static get supportsAppClipCodeTracking(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2869025487852878, undefined, []); }
+  static get supportsAppClipCodeTracking(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2869025487852878, undefined, []); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): ARGeoTrackingConfiguration { return callSDK<ARGeoTrackingConfiguration>("ARKit_d6c5d10d3352e6ec", 1407777703551034, undefined, []); }
+  static init(): ARGeoTrackingConfiguration { return callSDK<ARGeoTrackingConfiguration>("ARKit_a956b86ef7a76a8e", 1407777703551034, undefined, []); }
   /**
    * var appClipCodeTrackingEnabled: Bool { get set }
    * @availability iOS 14.3+
    */
-  get appClipCodeTrackingEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 1025114149881881, this, []); }
-  set appClipCodeTrackingEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2200186643196286, this, [value]); }
+  get appClipCodeTrackingEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 1025114149881881, this, []); }
+  set appClipCodeTrackingEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2200186643196286, this, [value]); }
   /**
    * var automaticImageScaleEstimationEnabled: Bool { get set }
    * @availability iOS 14.0+
    */
-  get automaticImageScaleEstimationEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2128119757312417, this, []); }
-  set automaticImageScaleEstimationEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1640349722798553, this, [value]); }
+  get automaticImageScaleEstimationEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2128119757312417, this, []); }
+  set automaticImageScaleEstimationEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1640349722798553, this, [value]); }
   /**
    * var detectionImages: Set<ARReferenceImage>! { get set }
    * @availability iOS 14.0+
    */
-  get detectionImages(): $SDK15 { return callSDK<$SDK15>("ARKit_d6c5d10d3352e6ec", 3202868604096071, this, []); }
-  set detectionImages(value: $SDK15) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3544090748800155, this, [value]); }
+  get detectionImages(): $SDK15 { return callSDK<$SDK15>("ARKit_a956b86ef7a76a8e", 3202868604096071, this, []); }
+  set detectionImages(value: $SDK15) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3544090748800155, this, [value]); }
   /**
    * var detectionObjects: Set<ARReferenceObject> { get set }
    * @availability iOS 14.0+
    */
-  get detectionObjects(): $SDK16 { return callSDK<$SDK16>("ARKit_d6c5d10d3352e6ec", 507945312513549, this, []); }
-  set detectionObjects(value: $SDK16) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1754983918788211, this, [value]); }
+  get detectionObjects(): $SDK16 { return callSDK<$SDK16>("ARKit_a956b86ef7a76a8e", 507945312513549, this, []); }
+  set detectionObjects(value: $SDK16) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1754983918788211, this, [value]); }
   /**
    * var environmentTexturing: ARWorldTrackingConfiguration.EnvironmentTexturing { get set }
    * @availability iOS 14.0+
    */
-  get environmentTexturing(): ARWorldTrackingConfiguration_EnvironmentTexturing { return callSDK<ARWorldTrackingConfiguration_EnvironmentTexturing>("ARKit_d6c5d10d3352e6ec", 3625064600676164, this, []); }
-  set environmentTexturing(value: ARWorldTrackingConfiguration_EnvironmentTexturing) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1527774491039172, this, [value]); }
+  get environmentTexturing(): ARWorldTrackingConfiguration_EnvironmentTexturing { return callSDK<ARWorldTrackingConfiguration_EnvironmentTexturing>("ARKit_a956b86ef7a76a8e", 3625064600676164, this, []); }
+  set environmentTexturing(value: ARWorldTrackingConfiguration_EnvironmentTexturing) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1527774491039172, this, [value]); }
   /**
    * var maximumNumberOfTrackedImages: Int { get set }
    * @availability iOS 14.0+
    */
-  get maximumNumberOfTrackedImages(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 1428896138818380, this, []); }
-  set maximumNumberOfTrackedImages(value: number) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1207926636714444, this, [value]); }
+  get maximumNumberOfTrackedImages(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 1428896138818380, this, []); }
+  set maximumNumberOfTrackedImages(value: number) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1207926636714444, this, [value]); }
   /**
    * var planeDetection: ARWorldTrackingConfiguration.PlaneDetection { get set }
    * @availability iOS 14.0+
    */
-  get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_d6c5d10d3352e6ec", 1721607431318297, this, []); }
-  set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1504081996822547, this, [value]); }
+  get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_a956b86ef7a76a8e", 1721607431318297, this, []); }
+  set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1504081996822547, this, [value]); }
   /**
    * var trackingObjects: Set<ARReferenceObject> { get set }
    * @availability iOS 27.0+
    */
-  get trackingObjects(): $SDK16 { return callSDK<$SDK16>("ARKit_d6c5d10d3352e6ec", 3219386265163013, this, []); }
-  set trackingObjects(value: $SDK16) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2629264445486467, this, [value]); }
+  get trackingObjects(): $SDK16 { return callSDK<$SDK16>("ARKit_a956b86ef7a76a8e", 3219386265163013, this, []); }
+  set trackingObjects(value: $SDK16) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2629264445486467, this, [value]); }
   /**
    * var wantsHDREnvironmentTextures: Bool { get set }
    * @availability iOS 14.0+
    */
-  get wantsHDREnvironmentTextures(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 4292740504339299, this, []); }
-  set wantsHDREnvironmentTextures(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4340320604941975, this, [value]); }
+  get wantsHDREnvironmentTextures(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 4292740504339299, this, []); }
+  set wantsHDREnvironmentTextures(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4340320604941975, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARGeoTrackingConfiguration": true; "c:objc(cs)ARConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameSemantics": true; "isLightEstimationEnabled": true; "providesAudioData": true; "videoFormat": true; "videoHDRAllowed": true; "worldAlignment": true; "appClipCodeTrackingEnabled": true; "automaticImageScaleEstimationEnabled": true; "detectionImages": true; "detectionObjects": true; "environmentTexturing": true; "maximumNumberOfTrackedImages": true; "planeDetection": true; "trackingObjects": true; "wantsHDREnvironmentTextures": true };
 }
@@ -1644,17 +1644,17 @@ export class ARGeoTrackingStatus extends SDKHandle {
    * var accuracy: ARGeoTrackingStatus.Accuracy { get }
    * @availability iOS 14.0+
    */
-  get accuracy(): ARGeoTrackingStatus_Accuracy { return callSDK<ARGeoTrackingStatus_Accuracy>("ARKit_d6c5d10d3352e6ec", 3763293741726699, this, []); }
+  get accuracy(): ARGeoTrackingStatus_Accuracy { return callSDK<ARGeoTrackingStatus_Accuracy>("ARKit_a956b86ef7a76a8e", 3763293741726699, this, []); }
   /**
    * var state: ARGeoTrackingStatus.State { get }
    * @availability iOS 14.0+
    */
-  get state(): ARGeoTrackingStatus_State { return callSDK<ARGeoTrackingStatus_State>("ARKit_d6c5d10d3352e6ec", 3612355003129619, this, []); }
+  get state(): ARGeoTrackingStatus_State { return callSDK<ARGeoTrackingStatus_State>("ARKit_a956b86ef7a76a8e", 3612355003129619, this, []); }
   /**
    * var stateReason: ARGeoTrackingStatus.StateReason { get }
    * @availability iOS 14.0+
    */
-  get stateReason(): ARGeoTrackingStatus_StateReason { return callSDK<ARGeoTrackingStatus_StateReason>("ARKit_d6c5d10d3352e6ec", 2604558744251988, this, []); }
+  get stateReason(): ARGeoTrackingStatus_StateReason { return callSDK<ARGeoTrackingStatus_StateReason>("ARKit_a956b86ef7a76a8e", 2604558744251988, this, []); }
   declare readonly $type: { "c:objc(cs)ARGeoTrackingStatus": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accuracy": true; "state": true; "stateReason": true };
 }
@@ -1670,7 +1670,7 @@ export const ARGeoTrackingStatus_Accuracy = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (ARGeoTrackingStatus_Accuracy) | null { return callSDK<(ARGeoTrackingStatus_Accuracy) | null>("ARKit_d6c5d10d3352e6ec", 2627629522751831, undefined, [rawValue]); }
+  init(rawValue: number): (ARGeoTrackingStatus_Accuracy) | null { return callSDK<(ARGeoTrackingStatus_Accuracy) | null>("ARKit_a956b86ef7a76a8e", 2627629522751831, undefined, [rawValue]); }
 };
 
 /**
@@ -1684,7 +1684,7 @@ export const ARGeoTrackingStatus_State = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (ARGeoTrackingStatus_State) | null { return callSDK<(ARGeoTrackingStatus_State) | null>("ARKit_d6c5d10d3352e6ec", 589862338422198, undefined, [rawValue]); }
+  init(rawValue: number): (ARGeoTrackingStatus_State) | null { return callSDK<(ARGeoTrackingStatus_State) | null>("ARKit_a956b86ef7a76a8e", 589862338422198, undefined, [rawValue]); }
 };
 
 /**
@@ -1698,7 +1698,7 @@ export const ARGeoTrackingStatus_StateReason = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (ARGeoTrackingStatus_StateReason) | null { return callSDK<(ARGeoTrackingStatus_StateReason) | null>("ARKit_d6c5d10d3352e6ec", 4471570319144366, undefined, [rawValue]); }
+  init(rawValue: number): (ARGeoTrackingStatus_StateReason) | null { return callSDK<(ARGeoTrackingStatus_StateReason) | null>("ARKit_a956b86ef7a76a8e", 4471570319144366, undefined, [rawValue]); }
 };
 
 /**
@@ -1712,31 +1712,31 @@ export class ARHitTestResult extends SDKHandle {
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get anchor(): (ARAnchor) | null { return callSDK<(ARAnchor) | null>("ARKit_d6c5d10d3352e6ec", 670881608858625, this, []); }
+  get anchor(): (ARAnchor) | null { return callSDK<(ARAnchor) | null>("ARKit_a956b86ef7a76a8e", 670881608858625, this, []); }
   /**
    * var distance: CGFloat { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get distance(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 2508723005603927, this, []); }
+  get distance(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 2508723005603927, this, []); }
   /**
    * var localTransform: simd_float4x4 { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get localTransform(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 811135797887184, this, []); }
+  get localTransform(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 811135797887184, this, []); }
   /**
    * var type: ARHitTestResult.ResultType { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get type(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_d6c5d10d3352e6ec", 2430898232084665, this, []); }
+  get type(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_a956b86ef7a76a8e", 2430898232084665, this, []); }
   /**
    * var worldTransform: simd_float4x4 { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get worldTransform(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 1153108898425455, this, []); }
+  get worldTransform(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 1153108898425455, this, []); }
   declare readonly $type: { "c:objc(cs)ARHitTestResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchor": true; "distance": true; "localTransform": true; "type": true; "worldTransform": true };
 }
@@ -1754,43 +1754,43 @@ export const ARHitTestResult_ResultType = {
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get estimatedHorizontalPlane(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_d6c5d10d3352e6ec", 2681239968541676, undefined, []); },
+  get estimatedHorizontalPlane(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_a956b86ef7a76a8e", 2681239968541676, undefined, []); },
   /**
    * static var estimatedVerticalPlane: ARHitTestResult.ResultType { get }
    * @availability iOS 11.3+
    * @deprecated iOS 14.0
    */
-  get estimatedVerticalPlane(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_d6c5d10d3352e6ec", 2339372194713107, undefined, []); },
+  get estimatedVerticalPlane(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_a956b86ef7a76a8e", 2339372194713107, undefined, []); },
   /**
    * static var existingPlane: ARHitTestResult.ResultType { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get existingPlane(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_d6c5d10d3352e6ec", 2881300944036791, undefined, []); },
+  get existingPlane(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_a956b86ef7a76a8e", 2881300944036791, undefined, []); },
   /**
    * static var existingPlaneUsingExtent: ARHitTestResult.ResultType { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get existingPlaneUsingExtent(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_d6c5d10d3352e6ec", 2560392538040369, undefined, []); },
+  get existingPlaneUsingExtent(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_a956b86ef7a76a8e", 2560392538040369, undefined, []); },
   /**
    * static var existingPlaneUsingGeometry: ARHitTestResult.ResultType { get }
    * @availability iOS 11.3+
    * @deprecated iOS 14.0
    */
-  get existingPlaneUsingGeometry(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_d6c5d10d3352e6ec", 3713297213031001, undefined, []); },
+  get existingPlaneUsingGeometry(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_a956b86ef7a76a8e", 3713297213031001, undefined, []); },
   /**
    * static var featurePoint: ARHitTestResult.ResultType { get }
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get featurePoint(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_d6c5d10d3352e6ec", 1443696461215289, undefined, []); },
+  get featurePoint(): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_a956b86ef7a76a8e", 1443696461215289, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  init(rawValue: number): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_d6c5d10d3352e6ec", 863268002548190, undefined, [rawValue]); }
+  init(rawValue: number): ARHitTestResult_ResultType { return callSDK<ARHitTestResult_ResultType>("ARKit_a956b86ef7a76a8e", 863268002548190, undefined, [rawValue]); }
 };
 
 /**
@@ -1802,12 +1802,12 @@ export class ARImageAnchor extends ARAnchor {
    * var estimatedScaleFactor: CGFloat { get }
    * @availability iOS 13.0+
    */
-  get estimatedScaleFactor(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 2225469254623457, this, []); }
+  get estimatedScaleFactor(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 2225469254623457, this, []); }
   /**
    * var referenceImage: ARReferenceImage { get }
    * @availability iOS 11.3+
    */
-  get referenceImage(): ARReferenceImage { return callSDK<ARReferenceImage>("ARKit_d6c5d10d3352e6ec", 3525106231976359, this, []); }
+  get referenceImage(): ARReferenceImage { return callSDK<ARReferenceImage>("ARKit_a956b86ef7a76a8e", 3525106231976359, this, []); }
   declare readonly $type: { "c:objc(cs)ARImageAnchor": true; "c:objc(cs)ARAnchor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "sessionIdentifier": true; "transform": true; "estimatedScaleFactor": true; "referenceImage": true };
 }
@@ -1821,25 +1821,25 @@ export class ARImageTrackingConfiguration extends ARConfiguration {
    * init()
    * @availability iOS 12.0+
    */
-  static init(): ARImageTrackingConfiguration { return callSDK<ARImageTrackingConfiguration>("ARKit_d6c5d10d3352e6ec", 949858334663162, undefined, []); }
+  static init(): ARImageTrackingConfiguration { return callSDK<ARImageTrackingConfiguration>("ARKit_a956b86ef7a76a8e", 949858334663162, undefined, []); }
   /**
    * var isAutoFocusEnabled: Bool { get set }
    * @availability iOS 12.0+
    */
-  get isAutoFocusEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3415783329276852, this, []); }
-  set isAutoFocusEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3254973349162722, this, [value]); }
+  get isAutoFocusEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3415783329276852, this, []); }
+  set isAutoFocusEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3254973349162722, this, [value]); }
   /**
    * var maximumNumberOfTrackedImages: Int { get set }
    * @availability iOS 12.0+
    */
-  get maximumNumberOfTrackedImages(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 2598966209373303, this, []); }
-  set maximumNumberOfTrackedImages(value: number) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 342374838550345, this, [value]); }
+  get maximumNumberOfTrackedImages(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 2598966209373303, this, []); }
+  set maximumNumberOfTrackedImages(value: number) { callSDK<void>("ARKit_a956b86ef7a76a8e", 342374838550345, this, [value]); }
   /**
    * var trackingImages: Set<ARReferenceImage> { get set }
    * @availability iOS 12.0+
    */
-  get trackingImages(): Array<ARReferenceImage> { return callSDK<Array<ARReferenceImage>>("ARKit_d6c5d10d3352e6ec", 4397635009355969, this, []); }
-  set trackingImages(value: Array<ARReferenceImage>) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4496102601991370, this, [value]); }
+  get trackingImages(): Array<ARReferenceImage> { return callSDK<Array<ARReferenceImage>>("ARKit_a956b86ef7a76a8e", 4397635009355969, this, []); }
+  set trackingImages(value: Array<ARReferenceImage>) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4496102601991370, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARImageTrackingConfiguration": true; "c:objc(cs)ARConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameSemantics": true; "isLightEstimationEnabled": true; "providesAudioData": true; "videoFormat": true; "videoHDRAllowed": true; "worldAlignment": true; "isAutoFocusEnabled": true; "maximumNumberOfTrackedImages": true; "trackingImages": true };
 }
@@ -1853,17 +1853,17 @@ export class ARMatteGenerator extends SDKHandle {
    * func generateDilatedDepth(from frame: ARFrame, commandBuffer: any MTLCommandBuffer) -> any MTLTexture
    * @availability iOS 13.0+
    */
-  generateDilatedDepth(frame: ARFrame, commandBuffer: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 2485524840678960, this, [frame, commandBuffer]); }
+  generateDilatedDepth(frame: ARFrame, commandBuffer: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 2485524840678960, this, [frame, commandBuffer]); }
   /**
    * func generateMatte(from frame: ARFrame, commandBuffer: any MTLCommandBuffer) -> any MTLTexture
    * @availability iOS 13.0+
    */
-  generateMatte(frame: ARFrame, commandBuffer: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 2043087385176958, this, [frame, commandBuffer]); }
+  generateMatte(frame: ARFrame, commandBuffer: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 2043087385176958, this, [frame, commandBuffer]); }
   /**
    * init(device: any MTLDevice, matteResolution: ARMatteGenerator.Resolution)
    * @availability iOS 13.0+
    */
-  static init(device: SDKHandle, matteResolution: ARMatteGenerator_Resolution): ARMatteGenerator { return callSDK<ARMatteGenerator>("ARKit_d6c5d10d3352e6ec", 4084737268319259, undefined, [device, matteResolution]); }
+  static init(device: SDKHandle, matteResolution: ARMatteGenerator_Resolution): ARMatteGenerator { return callSDK<ARMatteGenerator>("ARKit_a956b86ef7a76a8e", 4084737268319259, undefined, [device, matteResolution]); }
   declare readonly $type: { "c:objc(cs)ARMatteGenerator": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1878,7 +1878,7 @@ export const ARMatteGenerator_Resolution = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ARMatteGenerator_Resolution) | null { return callSDK<(ARMatteGenerator_Resolution) | null>("ARKit_d6c5d10d3352e6ec", 2861651124755059, undefined, [rawValue]); }
+  init(rawValue: number): (ARMatteGenerator_Resolution) | null { return callSDK<(ARMatteGenerator_Resolution) | null>("ARKit_a956b86ef7a76a8e", 2861651124755059, undefined, [rawValue]); }
 };
 
 /**
@@ -1890,7 +1890,7 @@ export class ARMeshAnchor extends ARAnchor {
    * var geometry: ARMeshGeometry { get }
    * @availability iOS 13.4+
    */
-  get geometry(): ARMeshGeometry { return callSDK<ARMeshGeometry>("ARKit_d6c5d10d3352e6ec", 215816199903523, this, []); }
+  get geometry(): ARMeshGeometry { return callSDK<ARMeshGeometry>("ARKit_a956b86ef7a76a8e", 215816199903523, this, []); }
   declare readonly $type: { "c:objc(cs)ARMeshAnchor": true; "c:objc(cs)ARAnchor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "sessionIdentifier": true; "transform": true; "geometry": true };
 }
@@ -1906,7 +1906,7 @@ export const ARMeshClassification = {
    * init?(rawValue: Int)
    * @availability iOS 13.4+
    */
-  init(rawValue: number): (ARMeshClassification) | null { return callSDK<(ARMeshClassification) | null>("ARKit_d6c5d10d3352e6ec", 4044721462696859, undefined, [rawValue]); }
+  init(rawValue: number): (ARMeshClassification) | null { return callSDK<(ARMeshClassification) | null>("ARKit_a956b86ef7a76a8e", 4044721462696859, undefined, [rawValue]); }
 };
 
 /**
@@ -1918,22 +1918,22 @@ export class ARMeshGeometry extends SDKHandle {
    * var classification: ARGeometrySource? { get }
    * @availability iOS 13.4+
    */
-  get classification(): (ARGeometrySource) | null { return callSDK<(ARGeometrySource) | null>("ARKit_d6c5d10d3352e6ec", 2484451368242715, this, []); }
+  get classification(): (ARGeometrySource) | null { return callSDK<(ARGeometrySource) | null>("ARKit_a956b86ef7a76a8e", 2484451368242715, this, []); }
   /**
    * var faces: ARGeometryElement { get }
    * @availability iOS 13.4+
    */
-  get faces(): ARGeometryElement { return callSDK<ARGeometryElement>("ARKit_d6c5d10d3352e6ec", 4062713662661537, this, []); }
+  get faces(): ARGeometryElement { return callSDK<ARGeometryElement>("ARKit_a956b86ef7a76a8e", 4062713662661537, this, []); }
   /**
    * var normals: ARGeometrySource { get }
    * @availability iOS 13.4+
    */
-  get normals(): ARGeometrySource { return callSDK<ARGeometrySource>("ARKit_d6c5d10d3352e6ec", 1419769339925501, this, []); }
+  get normals(): ARGeometrySource { return callSDK<ARGeometrySource>("ARKit_a956b86ef7a76a8e", 1419769339925501, this, []); }
   /**
    * var vertices: ARGeometrySource { get }
    * @availability iOS 13.4+
    */
-  get vertices(): ARGeometrySource { return callSDK<ARGeometrySource>("ARKit_d6c5d10d3352e6ec", 648982446310419, this, []); }
+  get vertices(): ARGeometrySource { return callSDK<ARGeometrySource>("ARKit_a956b86ef7a76a8e", 648982446310419, this, []); }
   declare readonly $type: { "c:objc(cs)ARMeshGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "classification": true; "faces": true; "normals": true; "vertices": true };
 }
@@ -1947,12 +1947,12 @@ export class ARObjectAnchor extends ARAnchor {
    * var isTracked: Bool { get }
    * @availability iOS 27.0+
    */
-  get isTracked(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 1539791031805828, this, []); }
+  get isTracked(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 1539791031805828, this, []); }
   /**
    * var referenceObject: ARReferenceObject { get }
    * @availability iOS 12.0+
    */
-  get referenceObject(): ARReferenceObject { return callSDK<ARReferenceObject>("ARKit_d6c5d10d3352e6ec", 2195705150013373, this, []); }
+  get referenceObject(): ARReferenceObject { return callSDK<ARReferenceObject>("ARKit_a956b86ef7a76a8e", 2195705150013373, this, []); }
   declare readonly $type: { "c:objc(cs)ARObjectAnchor": true; "c:objc(cs)ARAnchor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "sessionIdentifier": true; "transform": true; "isTracked": true; "referenceObject": true };
 }
@@ -1960,13 +1960,13 @@ export class ARObjectAnchor extends ARAnchor {
 /** class ARObjectScanningConfiguration */
 export class ARObjectScanningConfiguration extends ARConfiguration {
   /** init() */
-  static init(): ARObjectScanningConfiguration { return callSDK<ARObjectScanningConfiguration>("ARKit_d6c5d10d3352e6ec", 1084656188422268, undefined, []); }
+  static init(): ARObjectScanningConfiguration { return callSDK<ARObjectScanningConfiguration>("ARKit_a956b86ef7a76a8e", 1084656188422268, undefined, []); }
   /** var isAutoFocusEnabled: Bool { get set } */
-  get isAutoFocusEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2919224264261812, this, []); }
-  set isAutoFocusEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 583180160148924, this, [value]); }
+  get isAutoFocusEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2919224264261812, this, []); }
+  set isAutoFocusEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 583180160148924, this, [value]); }
   /** var planeDetection: ARWorldTrackingConfiguration.PlaneDetection { get set } */
-  get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_d6c5d10d3352e6ec", 3319220283516253, this, []); }
-  set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3001980415426207, this, [value]); }
+  get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_a956b86ef7a76a8e", 3319220283516253, this, []); }
+  set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3001980415426207, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARObjectScanningConfiguration": true; "c:objc(cs)ARConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameSemantics": true; "isLightEstimationEnabled": true; "providesAudioData": true; "videoFormat": true; "videoHDRAllowed": true; "worldAlignment": true; "isAutoFocusEnabled": true; "planeDetection": true };
 }
@@ -1980,13 +1980,13 @@ export class AROrientationTrackingConfiguration extends ARConfiguration {
    * init()
    * @availability iOS 11.0+
    */
-  static init(): AROrientationTrackingConfiguration { return callSDK<AROrientationTrackingConfiguration>("ARKit_d6c5d10d3352e6ec", 4083111107525584, undefined, []); }
+  static init(): AROrientationTrackingConfiguration { return callSDK<AROrientationTrackingConfiguration>("ARKit_a956b86ef7a76a8e", 4083111107525584, undefined, []); }
   /**
    * var isAutoFocusEnabled: Bool { get set }
    * @availability iOS 11.3+
    */
-  get isAutoFocusEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2593753527131681, this, []); }
-  set isAutoFocusEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3456644337521602, this, [value]); }
+  get isAutoFocusEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2593753527131681, this, []); }
+  set isAutoFocusEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3456644337521602, this, [value]); }
   declare readonly $type: { "c:objc(cs)AROrientationTrackingConfiguration": true; "c:objc(cs)ARConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameSemantics": true; "isLightEstimationEnabled": true; "providesAudioData": true; "videoFormat": true; "videoHDRAllowed": true; "worldAlignment": true; "isAutoFocusEnabled": true };
 }
@@ -2009,38 +2009,38 @@ export class ARPlaneAnchor extends ARAnchor {
    * class var isClassificationSupported: Bool { get }
    * @availability iOS 12.0+
    */
-  static get isClassificationSupported(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 1513592976758700, undefined, []); }
+  static get isClassificationSupported(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 1513592976758700, undefined, []); }
   /**
    * var alignment: ARPlaneAnchor.Alignment { get }
    * @availability iOS 11.0+
    */
-  get alignment(): ARPlaneAnchor_Alignment { return callSDK<ARPlaneAnchor_Alignment>("ARKit_d6c5d10d3352e6ec", 2286744233147065, this, []); }
+  get alignment(): ARPlaneAnchor_Alignment { return callSDK<ARPlaneAnchor_Alignment>("ARKit_a956b86ef7a76a8e", 2286744233147065, this, []); }
   /**
    * var center: simd_float3 { get }
    * @availability iOS 11.0+
    */
-  get center(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 1392339857183524, this, []); }
+  get center(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 1392339857183524, this, []); }
   /**
    * var extent: simd_float3 { get }
    * @availability iOS 11.0+
    * @deprecated iOS 16.0
    */
-  get extent(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 749198971250942, this, []); }
+  get extent(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 749198971250942, this, []); }
   /**
    * var geometry: ARPlaneGeometry { get }
    * @availability iOS 11.3+
    */
-  get geometry(): ARPlaneGeometry { return callSDK<ARPlaneGeometry>("ARKit_d6c5d10d3352e6ec", 3026308439447670, this, []); }
+  get geometry(): ARPlaneGeometry { return callSDK<ARPlaneGeometry>("ARKit_a956b86ef7a76a8e", 3026308439447670, this, []); }
   /**
    * var planeExtent: ARPlaneExtent { get }
    * @availability iOS 16.0+
    */
-  get planeExtent(): ARPlaneExtent { return callSDK<ARPlaneExtent>("ARKit_d6c5d10d3352e6ec", 839552750034608, this, []); }
+  get planeExtent(): ARPlaneExtent { return callSDK<ARPlaneExtent>("ARKit_a956b86ef7a76a8e", 839552750034608, this, []); }
   /**
    * var classification: ARPlaneAnchor.Classification { get }
    * @availability iOS 12.0+
    */
-  get classification(): ARPlaneAnchor_Classification { return callSDK<ARPlaneAnchor_Classification>("ARKit_d6c5d10d3352e6ec", 2530831165212678, this, []); }
+  get classification(): ARPlaneAnchor_Classification { return callSDK<ARPlaneAnchor_Classification>("ARKit_a956b86ef7a76a8e", 2530831165212678, this, []); }
   declare readonly $type: { "c:objc(cs)ARPlaneAnchor": true; "c:objc(cs)ARAnchor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "name": true; "sessionIdentifier": true; "transform": true; "alignment": true; "center": true; "extent": true; "geometry": true; "planeExtent": true };
 }
@@ -2056,7 +2056,7 @@ export const ARPlaneAnchor_Alignment = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (ARPlaneAnchor_Alignment) | null { return callSDK<(ARPlaneAnchor_Alignment) | null>("ARKit_d6c5d10d3352e6ec", 927462015699968, undefined, [rawValue]); }
+  init(rawValue: number): (ARPlaneAnchor_Alignment) | null { return callSDK<(ARPlaneAnchor_Alignment) | null>("ARKit_a956b86ef7a76a8e", 927462015699968, undefined, [rawValue]); }
 };
 
 /**
@@ -2079,22 +2079,22 @@ export type ARPlaneAnchor_Classification_Status = "notAvailable" | "undetermined
  */
 export class ARPlaneExtent extends SDKHandle {
   /** init() */
-  static init(): ARPlaneExtent { return callSDK<ARPlaneExtent>("ARKit_d6c5d10d3352e6ec", 2558279343171048, undefined, []); }
+  static init(): ARPlaneExtent { return callSDK<ARPlaneExtent>("ARKit_a956b86ef7a76a8e", 2558279343171048, undefined, []); }
   /**
    * var height: Float { get }
    * @availability iOS 16.0+
    */
-  get height(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 905497760334391, this, []); }
+  get height(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 905497760334391, this, []); }
   /**
    * var rotationOnYAxis: Float { get }
    * @availability iOS 16.0+
    */
-  get rotationOnYAxis(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 743803578710050, this, []); }
+  get rotationOnYAxis(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 743803578710050, this, []); }
   /**
    * var width: Float { get }
    * @availability iOS 16.0+
    */
-  get width(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 323992155332898, this, []); }
+  get width(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 323992155332898, this, []); }
   declare readonly $type: { "c:objc(cs)ARPlaneExtent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "height": true; "rotationOnYAxis": true; "width": true };
 }
@@ -2108,27 +2108,27 @@ export class ARPlaneGeometry extends SDKHandle {
    * var triangleCount: Int { get }
    * @availability iOS 11.3+
    */
-  get triangleCount(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 3134949464230311, this, []); }
+  get triangleCount(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 3134949464230311, this, []); }
   /**
    * @nonobjc var triangleIndices: [Int16] { get }
    * @availability iOS 11.3+
    */
-  get triangleIndices(): Array<number> { return callSDK<Array<number>>("ARKit_d6c5d10d3352e6ec", 3888795550614475, this, []); }
+  get triangleIndices(): Array<number> { return callSDK<Array<number>>("ARKit_a956b86ef7a76a8e", 3888795550614475, this, []); }
   /**
    * @nonobjc var boundaryVertices: [simd_float3] { get }
    * @availability iOS 11.3+
    */
-  get boundaryVertices(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_d6c5d10d3352e6ec", 1747071468793458, this, []); }
+  get boundaryVertices(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_a956b86ef7a76a8e", 1747071468793458, this, []); }
   /**
    * @nonobjc var textureCoordinates: [vector_float2] { get }
    * @availability iOS 11.3+
    */
-  get textureCoordinates(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_d6c5d10d3352e6ec", 3104474335974659, this, []); }
+  get textureCoordinates(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_a956b86ef7a76a8e", 3104474335974659, this, []); }
   /**
    * @nonobjc var vertices: [simd_float3] { get }
    * @availability iOS 11.3+
    */
-  get vertices(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_d6c5d10d3352e6ec", 800672014846898, this, []); }
+  get vertices(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_a956b86ef7a76a8e", 800672014846898, this, []); }
   declare readonly $type: { "c:objc(cs)ARPlaneGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "triangleCount": true };
 }
@@ -2142,12 +2142,12 @@ export class ARPointCloud extends SDKHandle {
    * @nonobjc var identifiers: [UInt64] { get }
    * @availability iOS 11.0+
    */
-  get identifiers(): Array<number> { return callSDK<Array<number>>("ARKit_d6c5d10d3352e6ec", 825459707584980, this, []); }
+  get identifiers(): Array<number> { return callSDK<Array<number>>("ARKit_a956b86ef7a76a8e", 825459707584980, this, []); }
   /**
    * @nonobjc var points: [simd_float3] { get }
    * @availability iOS 11.0+
    */
-  get points(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_d6c5d10d3352e6ec", 873190209006750, this, []); }
+  get points(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_a956b86ef7a76a8e", 873190209006750, this, []); }
   declare readonly $type: { "c:objc(cs)ARPointCloud": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2160,19 +2160,19 @@ export class ARPositionalTrackingConfiguration extends ARConfiguration {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): ARPositionalTrackingConfiguration { return callSDK<ARPositionalTrackingConfiguration>("ARKit_d6c5d10d3352e6ec", 1769899552969042, undefined, []); }
+  static init(): ARPositionalTrackingConfiguration { return callSDK<ARPositionalTrackingConfiguration>("ARKit_a956b86ef7a76a8e", 1769899552969042, undefined, []); }
   /**
    * var initialWorldMap: ARWorldMap? { get set }
    * @availability iOS 13.0+
    */
-  get initialWorldMap(): (ARWorldMap) | null { return callSDK<(ARWorldMap) | null>("ARKit_d6c5d10d3352e6ec", 1345796784717644, this, []); }
-  set initialWorldMap(value: (ARWorldMap) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4464534286324375, this, [value]); }
+  get initialWorldMap(): (ARWorldMap) | null { return callSDK<(ARWorldMap) | null>("ARKit_a956b86ef7a76a8e", 1345796784717644, this, []); }
+  set initialWorldMap(value: (ARWorldMap) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4464534286324375, this, [value]); }
   /**
    * var planeDetection: ARWorldTrackingConfiguration.PlaneDetection { get set }
    * @availability iOS 13.0+
    */
-  get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_d6c5d10d3352e6ec", 1268950924166524, this, []); }
-  set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2606140326363138, this, [value]); }
+  get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_a956b86ef7a76a8e", 1268950924166524, this, []); }
+  set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2606140326363138, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARPositionalTrackingConfiguration": true; "c:objc(cs)ARConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameSemantics": true; "isLightEstimationEnabled": true; "providesAudioData": true; "videoFormat": true; "videoHDRAllowed": true; "worldAlignment": true; "initialWorldMap": true; "planeDetection": true };
 }
@@ -2186,27 +2186,27 @@ export class ARRaycastQuery extends SDKHandle {
    * init(origin: simd_float3, direction: simd_float3, allowing target: ARRaycastQuery.Target, alignment: ARRaycastQuery.TargetAlignment)
    * @availability iOS 13.0+
    */
-  static init(origin: SDKHandle, direction: SDKHandle, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): ARRaycastQuery { return callSDK<ARRaycastQuery>("ARKit_d6c5d10d3352e6ec", 3092697621990431, undefined, [origin, direction, target, alignment]); }
+  static init(origin: SDKHandle, direction: SDKHandle, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): ARRaycastQuery { return callSDK<ARRaycastQuery>("ARKit_a956b86ef7a76a8e", 3092697621990431, undefined, [origin, direction, target, alignment]); }
   /**
    * var direction: simd_float3 { get }
    * @availability iOS 13.0+
    */
-  get direction(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 3717758960173528, this, []); }
+  get direction(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 3717758960173528, this, []); }
   /**
    * var origin: simd_float3 { get }
    * @availability iOS 13.0+
    */
-  get origin(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 3014953033135370, this, []); }
+  get origin(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 3014953033135370, this, []); }
   /**
    * var target: ARRaycastQuery.Target { get }
    * @availability iOS 13.0+
    */
-  get target(): ARRaycastQuery_Target { return callSDK<ARRaycastQuery_Target>("ARKit_d6c5d10d3352e6ec", 3526684217686026, this, []); }
+  get target(): ARRaycastQuery_Target { return callSDK<ARRaycastQuery_Target>("ARKit_a956b86ef7a76a8e", 3526684217686026, this, []); }
   /**
    * var targetAlignment: ARRaycastQuery.TargetAlignment { get }
    * @availability iOS 13.0+
    */
-  get targetAlignment(): ARRaycastQuery_TargetAlignment { return callSDK<ARRaycastQuery_TargetAlignment>("ARKit_d6c5d10d3352e6ec", 89254839303701, this, []); }
+  get targetAlignment(): ARRaycastQuery_TargetAlignment { return callSDK<ARRaycastQuery_TargetAlignment>("ARKit_a956b86ef7a76a8e", 89254839303701, this, []); }
   declare readonly $type: { "c:objc(cs)ARRaycastQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "direction": true; "origin": true; "target": true; "targetAlignment": true };
 }
@@ -2222,7 +2222,7 @@ export const ARRaycastQuery_Target = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ARRaycastQuery_Target) | null { return callSDK<(ARRaycastQuery_Target) | null>("ARKit_d6c5d10d3352e6ec", 1863725884965640, undefined, [rawValue]); }
+  init(rawValue: number): (ARRaycastQuery_Target) | null { return callSDK<(ARRaycastQuery_Target) | null>("ARKit_a956b86ef7a76a8e", 1863725884965640, undefined, [rawValue]); }
 };
 
 /**
@@ -2236,7 +2236,7 @@ export const ARRaycastQuery_TargetAlignment = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ARRaycastQuery_TargetAlignment) | null { return callSDK<(ARRaycastQuery_TargetAlignment) | null>("ARKit_d6c5d10d3352e6ec", 726011067099919, undefined, [rawValue]); }
+  init(rawValue: number): (ARRaycastQuery_TargetAlignment) | null { return callSDK<(ARRaycastQuery_TargetAlignment) | null>("ARKit_a956b86ef7a76a8e", 726011067099919, undefined, [rawValue]); }
 };
 
 /**
@@ -2248,22 +2248,22 @@ export class ARRaycastResult extends SDKHandle {
    * var anchor: ARAnchor? { get }
    * @availability iOS 13.0+
    */
-  get anchor(): (ARAnchor) | null { return callSDK<(ARAnchor) | null>("ARKit_d6c5d10d3352e6ec", 1519928209817983, this, []); }
+  get anchor(): (ARAnchor) | null { return callSDK<(ARAnchor) | null>("ARKit_a956b86ef7a76a8e", 1519928209817983, this, []); }
   /**
    * var target: ARRaycastQuery.Target { get }
    * @availability iOS 13.0+
    */
-  get target(): ARRaycastQuery_Target { return callSDK<ARRaycastQuery_Target>("ARKit_d6c5d10d3352e6ec", 245814625240076, this, []); }
+  get target(): ARRaycastQuery_Target { return callSDK<ARRaycastQuery_Target>("ARKit_a956b86ef7a76a8e", 245814625240076, this, []); }
   /**
    * var targetAlignment: ARRaycastQuery.TargetAlignment { get }
    * @availability iOS 13.0+
    */
-  get targetAlignment(): ARRaycastQuery_TargetAlignment { return callSDK<ARRaycastQuery_TargetAlignment>("ARKit_d6c5d10d3352e6ec", 1944188763440202, this, []); }
+  get targetAlignment(): ARRaycastQuery_TargetAlignment { return callSDK<ARRaycastQuery_TargetAlignment>("ARKit_a956b86ef7a76a8e", 1944188763440202, this, []); }
   /**
    * var worldTransform: simd_float4x4 { get }
    * @availability iOS 13.0+
    */
-  get worldTransform(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 3341466920773417, this, []); }
+  get worldTransform(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 3341466920773417, this, []); }
   declare readonly $type: { "c:objc(cs)ARRaycastResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchor": true; "target": true; "targetAlignment": true; "worldTransform": true };
 }
@@ -2277,38 +2277,38 @@ export class ARReferenceImage extends SDKHandle {
    * class func referenceImages(inGroupNamed name: String, bundle: Bundle?) -> Set<ARReferenceImage>?
    * @availability iOS 11.3+
    */
-  static referenceImages(name: string, bundle?: (_Foundation_Bundle) | null): $SDK15 { return callSDK<$SDK15>("ARKit_d6c5d10d3352e6ec", 154870427461277, undefined, [name, bundle]); }
+  static referenceImages(name: string, bundle?: (_Foundation_Bundle) | null): $SDK15 { return callSDK<$SDK15>("ARKit_a956b86ef7a76a8e", 154870427461277, undefined, [name, bundle]); }
   /**
    * init(_ image: CGImage, orientation: CGImagePropertyOrientation, physicalWidth: CGFloat)
    * @availability iOS 11.3+
    */
-  static initOrientationPhysicalWidth(image: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, physicalWidth: number): ARReferenceImage { return callSDK<ARReferenceImage>("ARKit_d6c5d10d3352e6ec", 2610838976962882, undefined, [image, orientation, physicalWidth]); }
+  static initOrientationPhysicalWidth(image: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, physicalWidth: number): ARReferenceImage { return callSDK<ARReferenceImage>("ARKit_a956b86ef7a76a8e", 2610838976962882, undefined, [image, orientation, physicalWidth]); }
   /**
    * init(_ pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, physicalWidth: CGFloat)
    * @availability iOS 11.3+
    */
-  static initOrientationPhysicalWidth40754(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, physicalWidth: number): ARReferenceImage { return callSDK<ARReferenceImage>("ARKit_d6c5d10d3352e6ec", 3270817806389368, undefined, [pixelBuffer, orientation, physicalWidth]); }
+  static initOrientationPhysicalWidth40754(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, physicalWidth: number): ARReferenceImage { return callSDK<ARReferenceImage>("ARKit_a956b86ef7a76a8e", 3270817806389368, undefined, [pixelBuffer, orientation, physicalWidth]); }
   /**
    * func validate() async throws
    * @availability iOS 13.0+
    */
-  validate(completionHandler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 3805507025483015, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  validate(completionHandler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 3805507025483015, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var name: String? { get set }
    * @availability iOS 11.3+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("ARKit_d6c5d10d3352e6ec", 986037905324614, this, []); }
-  set name(value: (string) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3872971093515805, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("ARKit_a956b86ef7a76a8e", 986037905324614, this, []); }
+  set name(value: (string) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3872971093515805, this, [value]); }
   /**
    * var physicalSize: CGSize { get }
    * @availability iOS 11.3+
    */
-  get physicalSize(): $SDK5 { return callSDK<$SDK5>("ARKit_d6c5d10d3352e6ec", 2679035991953910, this, []); }
+  get physicalSize(): $SDK5 { return callSDK<$SDK5>("ARKit_a956b86ef7a76a8e", 2679035991953910, this, []); }
   /**
    * var resourceGroupName: String? { get }
    * @availability iOS 13.0+
    */
-  get resourceGroupName(): (string) | null { return callSDK<(string) | null>("ARKit_d6c5d10d3352e6ec", 656819496677956, this, []); }
+  get resourceGroupName(): (string) | null { return callSDK<(string) | null>("ARKit_a956b86ef7a76a8e", 656819496677956, this, []); }
   declare readonly $type: { "c:objc(cs)ARReferenceImage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "physicalSize": true; "resourceGroupName": true };
 }
@@ -2322,74 +2322,74 @@ export class ARReferenceObject extends SDKHandle {
    * class let archiveExtension: String
    * @availability iOS 12.0+
    */
-  static get archiveExtension(): string { return callSDK<string>("ARKit_d6c5d10d3352e6ec", 62829638481537, undefined, []); }
+  static get archiveExtension(): string { return callSDK<string>("ARKit_a956b86ef7a76a8e", 62829638481537, undefined, []); }
   /**
    * class func referenceObjects(inGroupNamed name: String, bundle: Bundle?) -> Set<ARReferenceObject>?
    * @availability iOS 12.0+
    * @deprecated iOS 27.0
    */
-  static referenceObjects(name: string, bundle?: (_Foundation_Bundle) | null): (Array<ARReferenceObject>) | null { return callSDK<(Array<ARReferenceObject>) | null>("ARKit_d6c5d10d3352e6ec", 3756734286752180, undefined, [name, bundle]); }
+  static referenceObjects(name: string, bundle?: (_Foundation_Bundle) | null): (Array<ARReferenceObject>) | null { return callSDK<(Array<ARReferenceObject>) | null>("ARKit_a956b86ef7a76a8e", 3756734286752180, undefined, [name, bundle]); }
   /**
    * func export(to url: URL, previewImage: UIImage?) throws
    * @availability iOS 12.0+
    * @deprecated iOS 27.0
    */
-  export(url: string, previewImage?: (_UIKit_UIImage) | null): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 1026622796222208, this, [url, previewImage]); }
+  export(url: string, previewImage?: (_UIKit_UIImage) | null): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 1026622796222208, this, [url, previewImage]); }
   /**
    * init(archiveURL url: URL) throws
    * @availability iOS 12.0+
    */
-  static init(url: string): ARReferenceObject { return callSDK<ARReferenceObject>("ARKit_d6c5d10d3352e6ec", 318844747893424, undefined, [url]); }
+  static init(url: string): ARReferenceObject { return callSDK<ARReferenceObject>("ARKit_a956b86ef7a76a8e", 318844747893424, undefined, [url]); }
   /**
    * func applyingTransform(_ transform: simd_float4x4) -> ARReferenceObject
    * @availability iOS 12.0+
    * @deprecated iOS 27.0
    */
-  applyingTransform(transform: SDKHandle): ARReferenceObject { return callSDK<ARReferenceObject>("ARKit_d6c5d10d3352e6ec", 2028890122764935, this, [transform]); }
+  applyingTransform(transform: SDKHandle): ARReferenceObject { return callSDK<ARReferenceObject>("ARKit_a956b86ef7a76a8e", 2028890122764935, this, [transform]); }
   /**
    * func merging(_ object: ARReferenceObject) throws -> ARReferenceObject
    * @availability iOS 12.0+
    * @deprecated iOS 27.0
    */
-  merging(object: ARReferenceObject): ARReferenceObject { return callSDK<ARReferenceObject>("ARKit_d6c5d10d3352e6ec", 3802466819873165, this, [object]); }
+  merging(object: ARReferenceObject): ARReferenceObject { return callSDK<ARReferenceObject>("ARKit_a956b86ef7a76a8e", 3802466819873165, this, [object]); }
   /**
    * var center: simd_float3 { get }
    * @availability iOS 12.0+
    */
-  get center(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 409057916893541, this, []); }
+  get center(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 409057916893541, this, []); }
   /**
    * var extent: simd_float3 { get }
    * @availability iOS 12.0+
    */
-  get extent(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 2369321863429619, this, []); }
+  get extent(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 2369321863429619, this, []); }
   /**
    * var name: String? { get set }
    * @availability iOS 12.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("ARKit_d6c5d10d3352e6ec", 1986776711464276, this, []); }
-  set name(value: (string) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 670972870732794, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("ARKit_a956b86ef7a76a8e", 1986776711464276, this, []); }
+  set name(value: (string) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 670972870732794, this, [value]); }
   /**
    * var rawFeaturePoints: ARPointCloud { get }
    * @availability iOS 12.0+
    * @deprecated iOS 27.0
    */
-  get rawFeaturePoints(): ARPointCloud { return callSDK<ARPointCloud>("ARKit_d6c5d10d3352e6ec", 2982568048534798, this, []); }
+  get rawFeaturePoints(): ARPointCloud { return callSDK<ARPointCloud>("ARKit_a956b86ef7a76a8e", 2982568048534798, this, []); }
   /**
    * var resourceGroupName: String? { get }
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  get resourceGroupName(): (string) | null { return callSDK<(string) | null>("ARKit_d6c5d10d3352e6ec", 2112273837527622, this, []); }
+  get resourceGroupName(): (string) | null { return callSDK<(string) | null>("ARKit_a956b86ef7a76a8e", 2112273837527622, this, []); }
   /**
    * var scale: simd_float3 { get }
    * @availability iOS 12.0+
    */
-  get scale(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 277617278638599, this, []); }
+  get scale(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 277617278638599, this, []); }
   /**
    * var usdzFile: URL? { get }
    * @availability iOS 27.0+
    */
-  get usdzFile(): (string) | null { return callSDK<(string) | null>("ARKit_d6c5d10d3352e6ec", 879447885129417, this, []); }
+  get usdzFile(): (string) | null { return callSDK<(string) | null>("ARKit_a956b86ef7a76a8e", 879447885129417, this, []); }
   declare readonly $type: { "c:objc(cs)ARReferenceObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "center": true; "extent": true; "name": true; "rawFeaturePoints": true; "resourceGroupName": true; "scale": true; "usdzFile": true };
 }
@@ -2409,17 +2409,17 @@ export class ARSCNFaceGeometry extends SDKHandle {
    * convenience init?(device: any MTLDevice)
    * @availability iOS 11.0+
    */
-  static initDevice(device: SDKHandle): (ARSCNFaceGeometry) | null { return callSDK<(ARSCNFaceGeometry) | null>("ARKit_d6c5d10d3352e6ec", 3869851864148768, undefined, [device]); }
+  static initDevice(device: SDKHandle): (ARSCNFaceGeometry) | null { return callSDK<(ARSCNFaceGeometry) | null>("ARKit_a956b86ef7a76a8e", 3869851864148768, undefined, [device]); }
   /**
    * convenience init?(device: any MTLDevice, fillMesh: Bool)
    * @availability iOS 11.0+
    */
-  static initDeviceFillMesh(device: SDKHandle, fillMesh: boolean): (ARSCNFaceGeometry) | null { return callSDK<(ARSCNFaceGeometry) | null>("ARKit_d6c5d10d3352e6ec", 876275274543909, undefined, [device, fillMesh]); }
+  static initDeviceFillMesh(device: SDKHandle, fillMesh: boolean): (ARSCNFaceGeometry) | null { return callSDK<(ARSCNFaceGeometry) | null>("ARKit_a956b86ef7a76a8e", 876275274543909, undefined, [device, fillMesh]); }
   /**
    * func update(from faceGeometry: ARFaceGeometry)
    * @availability iOS 11.0+
    */
-  update(faceGeometry: ARFaceGeometry): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 2093992282942931, this, [faceGeometry]); }
+  update(faceGeometry: ARFaceGeometry): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 2093992282942931, this, [faceGeometry]); }
   declare readonly $type: { "c:objc(cs)ARSCNFaceGeometry": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2432,12 +2432,12 @@ export class ARSCNPlaneGeometry extends SDKHandle {
    * convenience init?(device: any MTLDevice)
    * @availability iOS 11.3+
    */
-  static init(device: SDKHandle): (ARSCNPlaneGeometry) | null { return callSDK<(ARSCNPlaneGeometry) | null>("ARKit_d6c5d10d3352e6ec", 969871811248834, undefined, [device]); }
+  static init(device: SDKHandle): (ARSCNPlaneGeometry) | null { return callSDK<(ARSCNPlaneGeometry) | null>("ARKit_a956b86ef7a76a8e", 969871811248834, undefined, [device]); }
   /**
    * func update(from planeGeometry: ARPlaneGeometry)
    * @availability iOS 11.3+
    */
-  update(planeGeometry: ARPlaneGeometry): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 1172848853359082, this, [planeGeometry]); }
+  update(planeGeometry: ARPlaneGeometry): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 1172848853359082, this, [planeGeometry]); }
   declare readonly $type: { "c:objc(cs)ARSCNPlaneGeometry": true; "c:objc(cs)SCNGeometry": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2450,66 +2450,66 @@ export class ARSCNView extends SDKHandle {
    * func anchor(for node: SCNNode) -> ARAnchor?
    * @availability iOS 11.0+
    */
-  anchor(node: _SceneKit_SCNNode): (ARAnchor) | null { return callSDK<(ARAnchor) | null>("ARKit_d6c5d10d3352e6ec", 98654145366825, this, [node]); }
+  anchor(node: _SceneKit_SCNNode): (ARAnchor) | null { return callSDK<(ARAnchor) | null>("ARKit_a956b86ef7a76a8e", 98654145366825, this, [node]); }
   /**
    * func hitTest(_ point: CGPoint, types: ARHitTestResult.ResultType) -> [ARHitTestResult]
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult> { return callSDK<Array<ARHitTestResult>>("ARKit_d6c5d10d3352e6ec", 1929435476551378, this, [point, types]); }
+  hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult> { return callSDK<Array<ARHitTestResult>>("ARKit_a956b86ef7a76a8e", 1929435476551378, this, [point, types]); }
   /** init() */
-  static init(): ARSCNView { return callSDK<ARSCNView>("ARKit_d6c5d10d3352e6ec", 1424435484235476, undefined, []); }
+  static init(): ARSCNView { return callSDK<ARSCNView>("ARKit_a956b86ef7a76a8e", 1424435484235476, undefined, []); }
   /**
    * func node(for anchor: ARAnchor) -> SCNNode?
    * @availability iOS 11.0+
    */
-  node(anchor: ARAnchor): (_SceneKit_SCNNode) | null { return callSDK<(_SceneKit_SCNNode) | null>("ARKit_d6c5d10d3352e6ec", 2915865150375393, this, [anchor]); }
+  node(anchor: ARAnchor): (_SceneKit_SCNNode) | null { return callSDK<(_SceneKit_SCNNode) | null>("ARKit_a956b86ef7a76a8e", 2915865150375393, this, [anchor]); }
   /**
    * func raycastQuery(from point: CGPoint, allowing target: ARRaycastQuery.Target, alignment: ARRaycastQuery.TargetAlignment) -> ARRaycastQuery?
    * @availability iOS 13.0+
    */
-  raycastQuery(point: $SDK4, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): (ARRaycastQuery) | null { return callSDK<(ARRaycastQuery) | null>("ARKit_d6c5d10d3352e6ec", 2145458560614148, this, [point, target, alignment]); }
+  raycastQuery(point: $SDK4, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): (ARRaycastQuery) | null { return callSDK<(ARRaycastQuery) | null>("ARKit_a956b86ef7a76a8e", 2145458560614148, this, [point, target, alignment]); }
   /**
    * var automaticallyUpdatesLighting: Bool { get set }
    * @availability iOS 11.0+
    */
-  get automaticallyUpdatesLighting(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 781552576132390, this, []); }
-  set automaticallyUpdatesLighting(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4245586270036365, this, [value]); }
+  get automaticallyUpdatesLighting(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 781552576132390, this, []); }
+  set automaticallyUpdatesLighting(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4245586270036365, this, [value]); }
   /**
    * weak var delegate: (any ARSCNViewDelegate)? { get set }
    * @availability iOS 11.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 1005687771695216, this, []); }
-  set delegate(value: (Implements<ARSCNViewDelegate> | SDKHandle) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4429510475763729, this, [value], [{"protocol":"c:objc(pl)ARSCNViewDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 1005687771695216, this, []); }
+  set delegate(value: (Implements<ARSCNViewDelegate> | SDKHandle) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4429510475763729, this, [value], [{"protocol":"c:objc(pl)ARSCNViewDelegate"}]); }
   /**
    * var rendersCameraGrain: Bool { get set }
    * @availability iOS 13.0+
    */
-  get rendersCameraGrain(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3254371460576602, this, []); }
-  set rendersCameraGrain(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4023956306835364, this, [value]); }
+  get rendersCameraGrain(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3254371460576602, this, []); }
+  set rendersCameraGrain(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4023956306835364, this, [value]); }
   /**
    * var rendersMotionBlur: Bool { get set }
    * @availability iOS 13.0+
    */
-  get rendersMotionBlur(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 468876228868885, this, []); }
-  set rendersMotionBlur(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3493237510319895, this, [value]); }
+  get rendersMotionBlur(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 468876228868885, this, []); }
+  set rendersMotionBlur(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3493237510319895, this, [value]); }
   /**
    * var scene: SCNScene { get set }
    * @availability iOS 11.0+
    */
-  get scene(): _SceneKit_SCNScene { return callSDK<_SceneKit_SCNScene>("ARKit_d6c5d10d3352e6ec", 2952941517453241, this, []); }
-  set scene(value: _SceneKit_SCNScene) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2183113449488346, this, [value]); }
+  get scene(): _SceneKit_SCNScene { return callSDK<_SceneKit_SCNScene>("ARKit_a956b86ef7a76a8e", 2952941517453241, this, []); }
+  set scene(value: _SceneKit_SCNScene) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2183113449488346, this, [value]); }
   /**
    * var session: ARSession { get set }
    * @availability iOS 11.0+
    */
-  get session(): ARSession { return callSDK<ARSession>("ARKit_d6c5d10d3352e6ec", 2910354600408439, this, []); }
-  set session(value: ARSession) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1523153996158091, this, [value]); }
+  get session(): ARSession { return callSDK<ARSession>("ARKit_a956b86ef7a76a8e", 2910354600408439, this, []); }
+  set session(value: ARSession) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1523153996158091, this, [value]); }
   /**
    * @MainActor @nonobjc @preconcurrency func unprojectPoint(_ point: CGPoint, ontoPlane planeTransform: simd_float4x4) -> simd_float3?
    * @availability iOS 12.0+
    */
-  unprojectPoint(point: $SDK4, planeTransform: SDKHandle): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 10972435548393, this, [point, planeTransform]); }
+  unprojectPoint(point: $SDK4, planeTransform: SDKHandle): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 10972435548393, this, [point, planeTransform]); }
   declare readonly $type: { "c:objc(cs)ARSCNView": true; "c:objc(cs)SCNView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "automaticallyUpdatesLighting": true; "delegate": true; "rendersCameraGrain": true; "rendersMotionBlur": true; "scene": true; "session": true };
 }
@@ -2596,108 +2596,108 @@ export class ARSession extends SDKHandle {
    * func add(anchor: ARAnchor)
    * @availability iOS 11.0+
    */
-  add(anchor: ARAnchor): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 247909123170215, this, [anchor]); }
+  add(anchor: ARAnchor): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 247909123170215, this, [anchor]); }
   /**
    * func captureHighResolutionFrame(using photoSettings: AVCapturePhotoSettings?) async throws -> ARFrame
    * @availability iOS 26.0+
    */
-  captureHighResolutionFrameUsingCompletion(photoSettings: (_AVFoundation_AVCapturePhotoSettings) | null, completion: $SDK24): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 2575004089417828, this, [photoSettings, completion], [null,{"callback":{"out":[]}}]); }
+  captureHighResolutionFrameUsingCompletion(photoSettings: (_AVFoundation_AVCapturePhotoSettings) | null, completion: $SDK24): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 2575004089417828, this, [photoSettings, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func captureHighResolutionFrame() async throws -> ARFrame
    * @availability iOS 16.0+
    */
-  captureHighResolutionFrameCompletion(completion: $SDK24): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 1005652956917825, this, [completion], [{"callback":{"out":[]}}]); }
+  captureHighResolutionFrameCompletion(completion: $SDK24): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 1005652956917825, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func createReferenceObject(transform: simd_float4x4, center: simd_float3, extent: simd_float3) async throws -> ARReferenceObject
    * @availability iOS 12.0+
    * @deprecated iOS 27.0
    */
-  createReferenceObject(transform: SDKHandle, center: SDKHandle, extent: SDKHandle, completionHandler: ((arg0: (ARReferenceObject) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 1299591323630696, this, [transform, center, extent, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  createReferenceObject(transform: SDKHandle, center: SDKHandle, extent: SDKHandle, completionHandler: ((arg0: (ARReferenceObject) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 1299591323630696, this, [transform, center, extent, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func currentWorldMap() async throws -> ARWorldMap
    * @availability iOS 12.0+
    */
-  getCurrentWorldMap(completionHandler: ((arg0: (ARWorldMap) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 2274526299746470, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getCurrentWorldMap(completionHandler: ((arg0: (ARWorldMap) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 2274526299746470, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func geoLocation(forPoint position: simd_float3) async throws -> (CLLocationCoordinate2D, CLLocationDistance)
    * @availability iOS 14.0+
    */
-  getGeoLocation(position: SDKHandle, completionHandler: ((arg0: { latitude: number; longitude: number }, arg1: number, arg2: (NativeError) | null) => void)): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 406406223343260, this, [position, completionHandler], [null,{"callback":{"out":[]}}]); }
+  getGeoLocation(position: SDKHandle, completionHandler: ((arg0: { latitude: number; longitude: number }, arg1: number, arg2: (NativeError) | null) => void)): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 406406223343260, this, [position, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): ARSession { return callSDK<ARSession>("ARKit_d6c5d10d3352e6ec", 2804694673540091, undefined, []); }
+  static init(): ARSession { return callSDK<ARSession>("ARKit_a956b86ef7a76a8e", 2804694673540091, undefined, []); }
   /**
    * func pause()
    * @availability iOS 11.0+
    */
-  pause(): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 3527280659651814, this, []); }
+  pause(): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 3527280659651814, this, []); }
   /**
    * func raycast(_ query: ARRaycastQuery) -> [ARRaycastResult]
    * @availability iOS 13.0+
    */
-  raycast(query: ARRaycastQuery): Array<ARRaycastResult> { return callSDK<Array<ARRaycastResult>>("ARKit_d6c5d10d3352e6ec", 3328847146458190, this, [query]); }
+  raycast(query: ARRaycastQuery): Array<ARRaycastResult> { return callSDK<Array<ARRaycastResult>>("ARKit_a956b86ef7a76a8e", 3328847146458190, this, [query]); }
   /**
    * func remove(anchor: ARAnchor)
    * @availability iOS 11.0+
    */
-  remove(anchor: ARAnchor): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 1703555479150178, this, [anchor]); }
+  remove(anchor: ARAnchor): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 1703555479150178, this, [anchor]); }
   /**
    * func run(_ configuration: ARConfiguration, options: ARSession.RunOptions = [])
    * @availability iOS 11.0+
    */
-  run(configuration: ARConfiguration, options?: ARSession_RunOptions): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 2384614064902462, this, [configuration, options]); }
+  run(configuration: ARConfiguration, options?: ARSession_RunOptions): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 2384614064902462, this, [configuration, options]); }
   /**
    * func setWorldOrigin(relativeTransform: simd_float4x4)
    * @availability iOS 11.3+
    */
-  setWorldOrigin(relativeTransform: SDKHandle): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 1822321236347393, this, [relativeTransform]); }
+  setWorldOrigin(relativeTransform: SDKHandle): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 1822321236347393, this, [relativeTransform]); }
   /**
    * func trackedRaycast(_ query: ARRaycastQuery, updateHandler: @escaping ([ARRaycastResult]) -> Void) -> ARTrackedRaycast?
    * @availability iOS 13.0+
    */
-  trackedRaycast(query: ARRaycastQuery, updateHandler: ((arg0: Array<ARRaycastResult>) => void)): (ARTrackedRaycast) | null { return callSDK<(ARTrackedRaycast) | null>("ARKit_d6c5d10d3352e6ec", 1247573681308174, this, [query, updateHandler], [null,{"callback":{"out":[]}}]); }
+  trackedRaycast(query: ARRaycastQuery, updateHandler: ((arg0: Array<ARRaycastResult>) => void)): (ARTrackedRaycast) | null { return callSDK<(ARTrackedRaycast) | null>("ARKit_a956b86ef7a76a8e", 1247573681308174, this, [query, updateHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func update(with collaborationData: ARSession.CollaborationData)
    * @availability iOS 13.0+
    */
-  update(collaborationData: ARSession_CollaborationData): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 1399879582464254, this, [collaborationData]); }
+  update(collaborationData: ARSession_CollaborationData): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 1399879582464254, this, [collaborationData]); }
   /**
    * @NSCopying var configuration: ARConfiguration? { get }
    * @availability iOS 11.0+
    */
-  get configuration(): (ARConfiguration) | null { return callSDK<(ARConfiguration) | null>("ARKit_d6c5d10d3352e6ec", 2840714959572795, this, []); }
+  get configuration(): (ARConfiguration) | null { return callSDK<(ARConfiguration) | null>("ARKit_a956b86ef7a76a8e", 2840714959572795, this, []); }
   /**
    * @NSCopying var currentFrame: ARFrame? { get }
    * @availability iOS 11.0+
    */
-  get currentFrame(): (ARFrame) | null { return callSDK<(ARFrame) | null>("ARKit_d6c5d10d3352e6ec", 1485799876913573, this, []); }
+  get currentFrame(): (ARFrame) | null { return callSDK<(ARFrame) | null>("ARKit_a956b86ef7a76a8e", 1485799876913573, this, []); }
   /**
    * weak var delegate: (any ARSessionDelegate)? { get set }
    * @availability iOS 11.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 895778869500490, this, []); }
-  set delegate(value: (Implements<ARSessionDelegate> | SDKHandle) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1636291826644476, this, [value], [{"protocol":"c:objc(pl)ARSessionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 895778869500490, this, []); }
+  set delegate(value: (Implements<ARSessionDelegate> | SDKHandle) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1636291826644476, this, [value], [{"protocol":"c:objc(pl)ARSessionDelegate"}]); }
   /**
    * var delegateQueue: dispatch_queue_t? { get set }
    * @availability iOS 11.0+
    */
-  get delegateQueue(): $SDK32 { return callSDK<$SDK32>("ARKit_d6c5d10d3352e6ec", 3461211308323038, this, []); }
-  set delegateQueue(value: $SDK32) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2776782258166296, this, [value]); }
+  get delegateQueue(): $SDK32 { return callSDK<$SDK32>("ARKit_a956b86ef7a76a8e", 3461211308323038, this, []); }
+  set delegateQueue(value: $SDK32) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2776782258166296, this, [value]); }
   /**
    * var identifier: UUID { get }
    * @availability iOS 13.0+
    */
-  get identifier(): string { return callSDK<string>("ARKit_d6c5d10d3352e6ec", 1112219247135581, this, []); }
+  get identifier(): string { return callSDK<string>("ARKit_a956b86ef7a76a8e", 1112219247135581, this, []); }
   /**
    * weak var viewLayer: CALayer? { get set }
    * @availability iOS 27.0+
    */
-  get viewLayer(): (_QuartzCore_CALayer) | null { return callSDK<(_QuartzCore_CALayer) | null>("ARKit_d6c5d10d3352e6ec", 3225609518108935, this, []); }
-  set viewLayer(value: (_QuartzCore_CALayer) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4325739035377324, this, [value]); }
+  get viewLayer(): (_QuartzCore_CALayer) | null { return callSDK<(_QuartzCore_CALayer) | null>("ARKit_a956b86ef7a76a8e", 3225609518108935, this, []); }
+  set viewLayer(value: (_QuartzCore_CALayer) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4325739035377324, this, [value]); }
   /**
    * @nonobjc var viewRotationAngle: CGFloat? { get }
    * @availability iOS 27.0+
    */
-  get viewRotationAngle(): (number) | null { return callSDK<(number) | null>("ARKit_d6c5d10d3352e6ec", 1052114571843747, this, []); }
+  get viewRotationAngle(): (number) | null { return callSDK<(number) | null>("ARKit_a956b86ef7a76a8e", 1052114571843747, this, []); }
   declare readonly $type: { "c:objc(cs)ARSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true; "currentFrame": true; "delegate": true; "delegateQueue": true; "identifier": true; "viewLayer": true };
 }
@@ -2711,7 +2711,7 @@ export class ARSession_CollaborationData extends SDKHandle {
    * var priority: ARSession.CollaborationData.Priority { get }
    * @availability iOS 13.0+
    */
-  get priority(): ARSession_CollaborationData_Priority { return callSDK<ARSession_CollaborationData_Priority>("ARKit_d6c5d10d3352e6ec", 4276043225919816, this, []); }
+  get priority(): ARSession_CollaborationData_Priority { return callSDK<ARSession_CollaborationData_Priority>("ARKit_a956b86ef7a76a8e", 4276043225919816, this, []); }
   declare readonly $type: { "c:objc(cs)ARCollaborationData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "priority": true };
 }
@@ -2727,7 +2727,7 @@ export const ARSession_CollaborationData_Priority = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (ARSession_CollaborationData_Priority) | null { return callSDK<(ARSession_CollaborationData_Priority) | null>("ARKit_d6c5d10d3352e6ec", 1431714734543270, undefined, [rawValue]); }
+  init(rawValue: number): (ARSession_CollaborationData_Priority) | null { return callSDK<(ARSession_CollaborationData_Priority) | null>("ARKit_a956b86ef7a76a8e", 1431714734543270, undefined, [rawValue]); }
 };
 
 /**
@@ -2741,27 +2741,27 @@ export const ARSession_RunOptions = {
    * static var removeExistingAnchors: ARSession.RunOptions { get }
    * @availability iOS 11.0+
    */
-  get removeExistingAnchors(): ARSession_RunOptions { return callSDK<ARSession_RunOptions>("ARKit_d6c5d10d3352e6ec", 657060059758214, undefined, []); },
+  get removeExistingAnchors(): ARSession_RunOptions { return callSDK<ARSession_RunOptions>("ARKit_a956b86ef7a76a8e", 657060059758214, undefined, []); },
   /**
    * static var resetSceneReconstruction: ARSession.RunOptions { get }
    * @availability iOS 11.0+
    */
-  get resetSceneReconstruction(): ARSession_RunOptions { return callSDK<ARSession_RunOptions>("ARKit_d6c5d10d3352e6ec", 3357840418796776, undefined, []); },
+  get resetSceneReconstruction(): ARSession_RunOptions { return callSDK<ARSession_RunOptions>("ARKit_a956b86ef7a76a8e", 3357840418796776, undefined, []); },
   /**
    * static var resetTracking: ARSession.RunOptions { get }
    * @availability iOS 11.0+
    */
-  get resetTracking(): ARSession_RunOptions { return callSDK<ARSession_RunOptions>("ARKit_d6c5d10d3352e6ec", 3960726032357118, undefined, []); },
+  get resetTracking(): ARSession_RunOptions { return callSDK<ARSession_RunOptions>("ARKit_a956b86ef7a76a8e", 3960726032357118, undefined, []); },
   /**
    * static var stopTrackedRaycasts: ARSession.RunOptions { get }
    * @availability iOS 11.0+
    */
-  get stopTrackedRaycasts(): ARSession_RunOptions { return callSDK<ARSession_RunOptions>("ARKit_d6c5d10d3352e6ec", 3163300759342263, undefined, []); },
+  get stopTrackedRaycasts(): ARSession_RunOptions { return callSDK<ARSession_RunOptions>("ARKit_a956b86ef7a76a8e", 3163300759342263, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): ARSession_RunOptions { return callSDK<ARSession_RunOptions>("ARKit_d6c5d10d3352e6ec", 3801116121183818, undefined, [rawValue]); }
+  init(rawValue: number): ARSession_RunOptions { return callSDK<ARSession_RunOptions>("ARKit_a956b86ef7a76a8e", 3801116121183818, undefined, [rawValue]); }
 };
 
 /**
@@ -2887,12 +2887,12 @@ export class ARSkeleton extends SDKHandle {
    * func isJointTracked(_ jointIndex: Int) -> Bool
    * @availability iOS 13.0+
    */
-  isJointTracked(jointIndex: number): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2868617870124389, this, [jointIndex]); }
+  isJointTracked(jointIndex: number): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2868617870124389, this, [jointIndex]); }
   /**
    * var definition: ARSkeletonDefinition { get }
    * @availability iOS 13.0+
    */
-  get definition(): ARSkeletonDefinition { return callSDK<ARSkeletonDefinition>("ARKit_d6c5d10d3352e6ec", 2043518314777065, this, []); }
+  get definition(): ARSkeletonDefinition { return callSDK<ARSkeletonDefinition>("ARKit_a956b86ef7a76a8e", 2043518314777065, this, []); }
   declare readonly $type: { "c:objc(cs)ARSkeleton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "definition": true };
 }
@@ -2908,52 +2908,52 @@ export const ARSkeleton_JointName = {
    * static let head: ARSkeleton.JointName
    * @availability iOS 13.0+
    */
-  get head(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_d6c5d10d3352e6ec", 280678394340885, undefined, []); },
+  get head(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_a956b86ef7a76a8e", 280678394340885, undefined, []); },
   /**
    * static let leftFoot: ARSkeleton.JointName
    * @availability iOS 13.0+
    */
-  get leftFoot(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_d6c5d10d3352e6ec", 42301318081081, undefined, []); },
+  get leftFoot(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_a956b86ef7a76a8e", 42301318081081, undefined, []); },
   /**
    * static let leftHand: ARSkeleton.JointName
    * @availability iOS 13.0+
    */
-  get leftHand(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_d6c5d10d3352e6ec", 2352683375357095, undefined, []); },
+  get leftHand(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_a956b86ef7a76a8e", 2352683375357095, undefined, []); },
   /**
    * static let leftShoulder: ARSkeleton.JointName
    * @availability iOS 13.0+
    */
-  get leftShoulder(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_d6c5d10d3352e6ec", 2353267808680853, undefined, []); },
+  get leftShoulder(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_a956b86ef7a76a8e", 2353267808680853, undefined, []); },
   /**
    * static let rightFoot: ARSkeleton.JointName
    * @availability iOS 13.0+
    */
-  get rightFoot(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_d6c5d10d3352e6ec", 4027784307143011, undefined, []); },
+  get rightFoot(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_a956b86ef7a76a8e", 4027784307143011, undefined, []); },
   /**
    * static let rightHand: ARSkeleton.JointName
    * @availability iOS 13.0+
    */
-  get rightHand(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_d6c5d10d3352e6ec", 1351393054329661, undefined, []); },
+  get rightHand(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_a956b86ef7a76a8e", 1351393054329661, undefined, []); },
   /**
    * static let rightShoulder: ARSkeleton.JointName
    * @availability iOS 13.0+
    */
-  get rightShoulder(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_d6c5d10d3352e6ec", 4379513145626007, undefined, []); },
+  get rightShoulder(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_a956b86ef7a76a8e", 4379513145626007, undefined, []); },
   /**
    * static let root: ARSkeleton.JointName
    * @availability iOS 13.0+
    */
-  get root(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_d6c5d10d3352e6ec", 3099463875949997, undefined, []); },
+  get root(): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_a956b86ef7a76a8e", 3099463875949997, undefined, []); },
   /**
    * init?(_ recognizedPointKey: VNRecognizedPointKey)
    * @availability iOS 14.0+
    */
-  init(recognizedPointKey: _Vision_VNRecognizedPointKey): (ARSkeleton_JointName) | null { return callSDK<(ARSkeleton_JointName) | null>("ARKit_d6c5d10d3352e6ec", 1967722439719194, undefined, [recognizedPointKey]); },
+  init(recognizedPointKey: _Vision_VNRecognizedPointKey): (ARSkeleton_JointName) | null { return callSDK<(ARSkeleton_JointName) | null>("ARKit_a956b86ef7a76a8e", 1967722439719194, undefined, [recognizedPointKey]); },
   /**
    * init(rawValue: String)
    * @availability iOS 13.0+
    */
-  initRawValue(rawValue: string): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_d6c5d10d3352e6ec", 176955389937224, undefined, [rawValue]); }
+  initRawValue(rawValue: string): ARSkeleton_JointName { return callSDK<ARSkeleton_JointName>("ARKit_a956b86ef7a76a8e", 176955389937224, undefined, [rawValue]); }
 };
 
 /**
@@ -2965,12 +2965,12 @@ export class ARSkeleton2D extends ARSkeleton {
    * @nonobjc var jointLandmarks: [simd_float2] { get }
    * @availability iOS 13.0+
    */
-  get jointLandmarks(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_d6c5d10d3352e6ec", 3845036728032443, this, []); }
+  get jointLandmarks(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_a956b86ef7a76a8e", 3845036728032443, this, []); }
   /**
    * @nonobjc func landmark(for jointName: ARSkeleton.JointName) -> simd_float2?
    * @availability iOS 13.0+
    */
-  landmark(jointName: ARSkeleton_JointName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 4292216406828969, this, [jointName]); }
+  landmark(jointName: ARSkeleton_JointName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 4292216406828969, this, [jointName]); }
   declare readonly $type: { "c:objc(cs)ARSkeleton2D": true; "c:objc(cs)ARSkeleton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "definition": true };
 }
@@ -2984,22 +2984,22 @@ export class ARSkeleton3D extends ARSkeleton {
    * @nonobjc func localTransform(for jointName: ARSkeleton.JointName) -> simd_float4x4?
    * @availability iOS 13.0+
    */
-  localTransform(jointName: ARSkeleton_JointName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 2968626567265625, this, [jointName]); }
+  localTransform(jointName: ARSkeleton_JointName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 2968626567265625, this, [jointName]); }
   /**
    * @nonobjc func modelTransform(for jointName: ARSkeleton.JointName) -> simd_float4x4?
    * @availability iOS 13.0+
    */
-  modelTransform(jointName: ARSkeleton_JointName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 2001592493396934, this, [jointName]); }
+  modelTransform(jointName: ARSkeleton_JointName): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 2001592493396934, this, [jointName]); }
   /**
    * @nonobjc var jointLocalTransforms: [simd_float4x4] { get }
    * @availability iOS 13.0+
    */
-  get jointLocalTransforms(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_d6c5d10d3352e6ec", 893414138523914, this, []); }
+  get jointLocalTransforms(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_a956b86ef7a76a8e", 893414138523914, this, []); }
   /**
    * @nonobjc var jointModelTransforms: [simd_float4x4] { get }
    * @availability iOS 13.0+
    */
-  get jointModelTransforms(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_d6c5d10d3352e6ec", 408192180878660, this, []); }
+  get jointModelTransforms(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ARKit_a956b86ef7a76a8e", 408192180878660, this, []); }
   declare readonly $type: { "c:objc(cs)ARSkeleton3D": true; "c:objc(cs)ARSkeleton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "definition": true };
 }
@@ -3013,37 +3013,37 @@ export class ARSkeletonDefinition extends SDKHandle {
    * class var defaultBody2D: ARSkeletonDefinition { get }
    * @availability iOS 13.0+
    */
-  static get defaultBody2D(): ARSkeletonDefinition { return callSDK<ARSkeletonDefinition>("ARKit_d6c5d10d3352e6ec", 3976718475879800, undefined, []); }
+  static get defaultBody2D(): ARSkeletonDefinition { return callSDK<ARSkeletonDefinition>("ARKit_a956b86ef7a76a8e", 3976718475879800, undefined, []); }
   /**
    * class var defaultBody3D: ARSkeletonDefinition { get }
    * @availability iOS 13.0+
    */
-  static get defaultBody3D(): ARSkeletonDefinition { return callSDK<ARSkeletonDefinition>("ARKit_d6c5d10d3352e6ec", 1672039317942514, undefined, []); }
+  static get defaultBody3D(): ARSkeletonDefinition { return callSDK<ARSkeletonDefinition>("ARKit_a956b86ef7a76a8e", 1672039317942514, undefined, []); }
   /**
    * var jointCount: Int { get }
    * @availability iOS 13.0+
    */
-  get jointCount(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 2135062790944914, this, []); }
+  get jointCount(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 2135062790944914, this, []); }
   /**
    * var jointNames: [String] { get }
    * @availability iOS 13.0+
    */
-  get jointNames(): Array<string> { return callSDK<Array<string>>("ARKit_d6c5d10d3352e6ec", 4234815840526183, this, []); }
+  get jointNames(): Array<string> { return callSDK<Array<string>>("ARKit_a956b86ef7a76a8e", 4234815840526183, this, []); }
   /**
    * var neutralBodySkeleton3D: ARSkeleton3D? { get }
    * @availability iOS 13.0+
    */
-  get neutralBodySkeleton3D(): (ARSkeleton3D) | null { return callSDK<(ARSkeleton3D) | null>("ARKit_d6c5d10d3352e6ec", 2391542612735459, this, []); }
+  get neutralBodySkeleton3D(): (ARSkeleton3D) | null { return callSDK<(ARSkeleton3D) | null>("ARKit_a956b86ef7a76a8e", 2391542612735459, this, []); }
   /**
    * @nonobjc var parentIndices: [Int] { get }
    * @availability iOS 13.0+
    */
-  get parentIndices(): Array<number> { return callSDK<Array<number>>("ARKit_d6c5d10d3352e6ec", 1584528484747733, this, []); }
+  get parentIndices(): Array<number> { return callSDK<Array<number>>("ARKit_a956b86ef7a76a8e", 1584528484747733, this, []); }
   /**
    * @nonobjc func index(for jointName: ARSkeleton.JointName) -> Int
    * @availability iOS 13.0+
    */
-  index(jointName: ARSkeleton_JointName): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 4273636298443201, this, [jointName]); }
+  index(jointName: ARSkeleton_JointName): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 4273636298443201, this, [jointName]); }
   declare readonly $type: { "c:objc(cs)ARSkeletonDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "jointCount": true; "jointNames": true; "neutralBodySkeleton3D": true };
 }
@@ -3057,32 +3057,32 @@ export class ARSKView extends SDKHandle {
    * func anchor(for node: SKNode) -> ARAnchor?
    * @availability iOS 11.0+
    */
-  anchor(node: _SpriteKit_SKNode): (ARAnchor) | null { return callSDK<(ARAnchor) | null>("ARKit_d6c5d10d3352e6ec", 1320090468808442, this, [node]); }
+  anchor(node: _SpriteKit_SKNode): (ARAnchor) | null { return callSDK<(ARAnchor) | null>("ARKit_a956b86ef7a76a8e", 1320090468808442, this, [node]); }
   /**
    * func hitTest(_ point: CGPoint, types: ARHitTestResult.ResultType) -> [ARHitTestResult]
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult> { return callSDK<Array<ARHitTestResult>>("ARKit_d6c5d10d3352e6ec", 405967054006958, this, [point, types]); }
+  hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult> { return callSDK<Array<ARHitTestResult>>("ARKit_a956b86ef7a76a8e", 405967054006958, this, [point, types]); }
   /** init() */
-  static init(): ARSKView { return callSDK<ARSKView>("ARKit_d6c5d10d3352e6ec", 1159905820508789, undefined, []); }
+  static init(): ARSKView { return callSDK<ARSKView>("ARKit_a956b86ef7a76a8e", 1159905820508789, undefined, []); }
   /**
    * func node(for anchor: ARAnchor) -> SKNode?
    * @availability iOS 11.0+
    */
-  node(anchor: ARAnchor): (_SpriteKit_SKNode) | null { return callSDK<(_SpriteKit_SKNode) | null>("ARKit_d6c5d10d3352e6ec", 3403080692004433, this, [anchor]); }
+  node(anchor: ARAnchor): (_SpriteKit_SKNode) | null { return callSDK<(_SpriteKit_SKNode) | null>("ARKit_a956b86ef7a76a8e", 3403080692004433, this, [anchor]); }
   /**
    * weak var delegate: (any ARSKViewDelegate)? { get set }
    * @availability iOS 11.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_d6c5d10d3352e6ec", 1125724417064852, this, []); }
-  set delegate(value: (Implements<ARSKViewDelegate> | SDKHandle) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2283127930300971, this, [value], [{"protocol":"c:objc(pl)ARSKViewDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ARKit_a956b86ef7a76a8e", 1125724417064852, this, []); }
+  set delegate(value: (Implements<ARSKViewDelegate> | SDKHandle) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2283127930300971, this, [value], [{"protocol":"c:objc(pl)ARSKViewDelegate"}]); }
   /**
    * var session: ARSession { get set }
    * @availability iOS 11.0+
    */
-  get session(): ARSession { return callSDK<ARSession>("ARKit_d6c5d10d3352e6ec", 168635241754062, this, []); }
-  set session(value: ARSession) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4076825809951660, this, [value]); }
+  get session(): ARSession { return callSDK<ARSession>("ARKit_a956b86ef7a76a8e", 168635241754062, this, []); }
+  set session(value: ARSession) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4076825809951660, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARSKView": true; "c:objc(cs)SKView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "session": true };
 }
@@ -3171,7 +3171,7 @@ export class ARTrackedRaycast extends SDKHandle {
    * func stopTracking()
    * @availability iOS 13.0+
    */
-  stopTracking(): void { return callSDK<void>("ARKit_d6c5d10d3352e6ec", 591233841086207, this, []); }
+  stopTracking(): void { return callSDK<void>("ARKit_a956b86ef7a76a8e", 591233841086207, this, []); }
   declare readonly $type: { "c:objc(cs)ARTrackedRaycast": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3184,23 +3184,23 @@ export class ARWorldMap extends SDKHandle {
    * var anchors: [ARAnchor] { get set }
    * @availability iOS 12.0+
    */
-  get anchors(): Array<ARAnchor> { return callSDK<Array<ARAnchor>>("ARKit_d6c5d10d3352e6ec", 3848549081015926, this, []); }
-  set anchors(value: Array<ARAnchor>) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1195383027262408, this, [value]); }
+  get anchors(): Array<ARAnchor> { return callSDK<Array<ARAnchor>>("ARKit_a956b86ef7a76a8e", 3848549081015926, this, []); }
+  set anchors(value: Array<ARAnchor>) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1195383027262408, this, [value]); }
   /**
    * var center: simd_float3 { get }
    * @availability iOS 12.0+
    */
-  get center(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 4003700121556489, this, []); }
+  get center(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 4003700121556489, this, []); }
   /**
    * var extent: simd_float3 { get }
    * @availability iOS 12.0+
    */
-  get extent(): SDKHandle { return callSDK<SDKHandle>("ARKit_d6c5d10d3352e6ec", 749673762109533, this, []); }
+  get extent(): SDKHandle { return callSDK<SDKHandle>("ARKit_a956b86ef7a76a8e", 749673762109533, this, []); }
   /**
    * var rawFeaturePoints: ARPointCloud { get }
    * @availability iOS 12.0+
    */
-  get rawFeaturePoints(): ARPointCloud { return callSDK<ARPointCloud>("ARKit_d6c5d10d3352e6ec", 3486995368803070, this, []); }
+  get rawFeaturePoints(): ARPointCloud { return callSDK<ARPointCloud>("ARKit_a956b86ef7a76a8e", 3486995368803070, this, []); }
   declare readonly $type: { "c:objc(cs)ARWorldMap": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchors": true; "center": true; "extent": true; "rawFeaturePoints": true };
 }
@@ -3214,106 +3214,106 @@ export class ARWorldTrackingConfiguration extends ARConfiguration {
    * class func supportsSceneReconstruction(_ sceneReconstruction: ARConfiguration.SceneReconstruction) -> Bool
    * @availability iOS 13.4+
    */
-  static supportsSceneReconstruction(sceneReconstruction: ARConfiguration_SceneReconstruction): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 1713224213349462, undefined, [sceneReconstruction]); }
+  static supportsSceneReconstruction(sceneReconstruction: ARConfiguration_SceneReconstruction): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 1713224213349462, undefined, [sceneReconstruction]); }
   /**
    * class var supportsAppClipCodeTracking: Bool { get }
    * @availability iOS 14.3+
    */
-  static get supportsAppClipCodeTracking(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3128856475373326, undefined, []); }
+  static get supportsAppClipCodeTracking(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3128856475373326, undefined, []); }
   /**
    * class var supportsUserFaceTracking: Bool { get }
    * @availability iOS 13.0+
    */
-  static get supportsUserFaceTracking(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3113289573664571, undefined, []); }
+  static get supportsUserFaceTracking(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3113289573664571, undefined, []); }
   /**
    * init()
    * @availability iOS 11.0+
    */
-  static init(): ARWorldTrackingConfiguration { return callSDK<ARWorldTrackingConfiguration>("ARKit_d6c5d10d3352e6ec", 2207859505547869, undefined, []); }
+  static init(): ARWorldTrackingConfiguration { return callSDK<ARWorldTrackingConfiguration>("ARKit_a956b86ef7a76a8e", 2207859505547869, undefined, []); }
   /**
    * var appClipCodeTrackingEnabled: Bool { get set }
    * @availability iOS 14.3+
    */
-  get appClipCodeTrackingEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 186423687585747, this, []); }
-  set appClipCodeTrackingEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4181580151678252, this, [value]); }
+  get appClipCodeTrackingEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 186423687585747, this, []); }
+  set appClipCodeTrackingEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4181580151678252, this, [value]); }
   /**
    * var isAutoFocusEnabled: Bool { get set }
    * @availability iOS 11.3+
    */
-  get isAutoFocusEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3918106108005845, this, []); }
-  set isAutoFocusEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 214322163013220, this, [value]); }
+  get isAutoFocusEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3918106108005845, this, []); }
+  set isAutoFocusEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 214322163013220, this, [value]); }
   /**
    * var automaticImageScaleEstimationEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get automaticImageScaleEstimationEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 380711848819499, this, []); }
-  set automaticImageScaleEstimationEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4359467318762832, this, [value]); }
+  get automaticImageScaleEstimationEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 380711848819499, this, []); }
+  set automaticImageScaleEstimationEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4359467318762832, this, [value]); }
   /**
    * var isCollaborationEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isCollaborationEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3928564724942434, this, []); }
-  set isCollaborationEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4423278635110455, this, [value]); }
+  get isCollaborationEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3928564724942434, this, []); }
+  set isCollaborationEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4423278635110455, this, [value]); }
   /**
    * var detectionImages: Set<ARReferenceImage>! { get set }
    * @availability iOS 11.3+
    */
-  get detectionImages(): $SDK15 { return callSDK<$SDK15>("ARKit_d6c5d10d3352e6ec", 66137997925985, this, []); }
-  set detectionImages(value: $SDK15) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 173238551424606, this, [value]); }
+  get detectionImages(): $SDK15 { return callSDK<$SDK15>("ARKit_a956b86ef7a76a8e", 66137997925985, this, []); }
+  set detectionImages(value: $SDK15) { callSDK<void>("ARKit_a956b86ef7a76a8e", 173238551424606, this, [value]); }
   /**
    * var detectionObjects: Set<ARReferenceObject> { get set }
    * @availability iOS 12.0+
    */
-  get detectionObjects(): $SDK16 { return callSDK<$SDK16>("ARKit_d6c5d10d3352e6ec", 4354436117907098, this, []); }
-  set detectionObjects(value: $SDK16) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1545277255757679, this, [value]); }
+  get detectionObjects(): $SDK16 { return callSDK<$SDK16>("ARKit_a956b86ef7a76a8e", 4354436117907098, this, []); }
+  set detectionObjects(value: $SDK16) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1545277255757679, this, [value]); }
   /**
    * var environmentTexturing: ARWorldTrackingConfiguration.EnvironmentTexturing { get set }
    * @availability iOS 12.0+
    */
-  get environmentTexturing(): ARWorldTrackingConfiguration_EnvironmentTexturing { return callSDK<ARWorldTrackingConfiguration_EnvironmentTexturing>("ARKit_d6c5d10d3352e6ec", 3031577990533694, this, []); }
-  set environmentTexturing(value: ARWorldTrackingConfiguration_EnvironmentTexturing) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 4236437689239900, this, [value]); }
+  get environmentTexturing(): ARWorldTrackingConfiguration_EnvironmentTexturing { return callSDK<ARWorldTrackingConfiguration_EnvironmentTexturing>("ARKit_a956b86ef7a76a8e", 3031577990533694, this, []); }
+  set environmentTexturing(value: ARWorldTrackingConfiguration_EnvironmentTexturing) { callSDK<void>("ARKit_a956b86ef7a76a8e", 4236437689239900, this, [value]); }
   /**
    * var initialWorldMap: ARWorldMap? { get set }
    * @availability iOS 12.0+
    */
-  get initialWorldMap(): (ARWorldMap) | null { return callSDK<(ARWorldMap) | null>("ARKit_d6c5d10d3352e6ec", 2497863788120937, this, []); }
-  set initialWorldMap(value: (ARWorldMap) | null) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2255454528524326, this, [value]); }
+  get initialWorldMap(): (ARWorldMap) | null { return callSDK<(ARWorldMap) | null>("ARKit_a956b86ef7a76a8e", 2497863788120937, this, []); }
+  set initialWorldMap(value: (ARWorldMap) | null) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2255454528524326, this, [value]); }
   /**
    * var maximumNumberOfTrackedImages: Int { get set }
    * @availability iOS 12.0+
    */
-  get maximumNumberOfTrackedImages(): number { return callSDK<number>("ARKit_d6c5d10d3352e6ec", 3471500412442785, this, []); }
-  set maximumNumberOfTrackedImages(value: number) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2726046302202078, this, [value]); }
+  get maximumNumberOfTrackedImages(): number { return callSDK<number>("ARKit_a956b86ef7a76a8e", 3471500412442785, this, []); }
+  set maximumNumberOfTrackedImages(value: number) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2726046302202078, this, [value]); }
   /**
    * var planeDetection: ARWorldTrackingConfiguration.PlaneDetection { get set }
    * @availability iOS 11.0+
    */
-  get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_d6c5d10d3352e6ec", 3714181788345951, this, []); }
-  set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 2805294388105827, this, [value]); }
+  get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_a956b86ef7a76a8e", 3714181788345951, this, []); }
+  set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection) { callSDK<void>("ARKit_a956b86ef7a76a8e", 2805294388105827, this, [value]); }
   /**
    * var sceneReconstruction: ARConfiguration.SceneReconstruction { get set }
    * @availability iOS 13.4+
    */
-  get sceneReconstruction(): ARConfiguration_SceneReconstruction { return callSDK<ARConfiguration_SceneReconstruction>("ARKit_d6c5d10d3352e6ec", 2111832562179801, this, []); }
-  set sceneReconstruction(value: ARConfiguration_SceneReconstruction) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 857802117807768, this, [value]); }
+  get sceneReconstruction(): ARConfiguration_SceneReconstruction { return callSDK<ARConfiguration_SceneReconstruction>("ARKit_a956b86ef7a76a8e", 2111832562179801, this, []); }
+  set sceneReconstruction(value: ARConfiguration_SceneReconstruction) { callSDK<void>("ARKit_a956b86ef7a76a8e", 857802117807768, this, [value]); }
   /**
    * var trackingObjects: Set<ARReferenceObject> { get set }
    * @availability iOS 27.0+
    */
-  get trackingObjects(): $SDK16 { return callSDK<$SDK16>("ARKit_d6c5d10d3352e6ec", 3540599040013661, this, []); }
-  set trackingObjects(value: $SDK16) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 736347942350508, this, [value]); }
+  get trackingObjects(): $SDK16 { return callSDK<$SDK16>("ARKit_a956b86ef7a76a8e", 3540599040013661, this, []); }
+  set trackingObjects(value: $SDK16) { callSDK<void>("ARKit_a956b86ef7a76a8e", 736347942350508, this, [value]); }
   /**
    * var userFaceTrackingEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get userFaceTrackingEnabled(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 3834744746911541, this, []); }
-  set userFaceTrackingEnabled(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 3170472702982427, this, [value]); }
+  get userFaceTrackingEnabled(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 3834744746911541, this, []); }
+  set userFaceTrackingEnabled(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 3170472702982427, this, [value]); }
   /**
    * var wantsHDREnvironmentTextures: Bool { get set }
    * @availability iOS 13.0+
    */
-  get wantsHDREnvironmentTextures(): boolean { return callSDK<boolean>("ARKit_d6c5d10d3352e6ec", 2866420058202337, this, []); }
-  set wantsHDREnvironmentTextures(value: boolean) { callSDK<void>("ARKit_d6c5d10d3352e6ec", 1869173197211264, this, [value]); }
+  get wantsHDREnvironmentTextures(): boolean { return callSDK<boolean>("ARKit_a956b86ef7a76a8e", 2866420058202337, this, []); }
+  set wantsHDREnvironmentTextures(value: boolean) { callSDK<void>("ARKit_a956b86ef7a76a8e", 1869173197211264, this, [value]); }
   declare readonly $type: { "c:objc(cs)ARWorldTrackingConfiguration": true; "c:objc(cs)ARConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "frameSemantics": true; "isLightEstimationEnabled": true; "providesAudioData": true; "videoFormat": true; "videoHDRAllowed": true; "worldAlignment": true; "appClipCodeTrackingEnabled": true; "isAutoFocusEnabled": true; "automaticImageScaleEstimationEnabled": true; "isCollaborationEnabled": true; "detectionImages": true; "detectionObjects": true; "environmentTexturing": true; "initialWorldMap": true; "maximumNumberOfTrackedImages": true; "planeDetection": true; "sceneReconstruction": true; "trackingObjects": true; "userFaceTrackingEnabled": true; "wantsHDREnvironmentTextures": true };
 }
@@ -3329,7 +3329,7 @@ export const ARWorldTrackingConfiguration_EnvironmentTexturing = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (ARWorldTrackingConfiguration_EnvironmentTexturing) | null { return callSDK<(ARWorldTrackingConfiguration_EnvironmentTexturing) | null>("ARKit_d6c5d10d3352e6ec", 2239994773942750, undefined, [rawValue]); }
+  init(rawValue: number): (ARWorldTrackingConfiguration_EnvironmentTexturing) | null { return callSDK<(ARWorldTrackingConfiguration_EnvironmentTexturing) | null>("ARKit_a956b86ef7a76a8e", 2239994773942750, undefined, [rawValue]); }
 };
 
 /**
@@ -3343,87 +3343,87 @@ export const ARWorldTrackingConfiguration_PlaneDetection = {
    * static var horizontal: ARWorldTrackingConfiguration.PlaneDetection { get }
    * @availability iOS 11.0+
    */
-  get horizontal(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_d6c5d10d3352e6ec", 1266807390671453, undefined, []); },
+  get horizontal(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_a956b86ef7a76a8e", 1266807390671453, undefined, []); },
   /**
    * static var vertical: ARWorldTrackingConfiguration.PlaneDetection { get }
    * @availability iOS 11.3+
    */
-  get vertical(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_d6c5d10d3352e6ec", 4366169689910762, undefined, []); },
+  get vertical(): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_a956b86ef7a76a8e", 4366169689910762, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_d6c5d10d3352e6ec", 89581409586172, undefined, [rawValue]); }
+  init(rawValue: number): ARWorldTrackingConfiguration_PlaneDetection { return callSDK<ARWorldTrackingConfiguration_PlaneDetection>("ARKit_a956b86ef7a76a8e", 89581409586172, undefined, [rawValue]); }
 };
 
 /**
  * let ARErrorDomain: String
  * @availability iOS 11.0+
  */
-export const ARErrorDomain: string = callSDK<string>("ARKit_d6c5d10d3352e6ec", 473937747671915, undefined, []);
+export const ARErrorDomain: string = callSDK<string>("ARKit_a956b86ef7a76a8e", 473937747671915, undefined, []);
 
-registerSDKClass("ARAnchor", ARAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {"identifier":2669162251356880,"name":417802688183554,"sessionIdentifier":3091586240930785,"transform":2265118407657390} });
+registerSDKClass("ARAnchor", ARAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {"identifier":2669162251356880,"name":417802688183554,"sessionIdentifier":3091586240930785,"transform":2265118407657390} });
 registerSDKProtocol("c:objc(pl)ARAnchorCopying", {"copyWith":"copy(with:)","initAnchor":"init(anchor:)"});
-registerSDKClass("ARAppClipCodeAnchor", ARAppClipCodeAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {"radius":220524164949763,"url":64471449853492,"urlDecodingState":1080426165516340} });
-registerSDKClass("ARBody2D", ARBody2D, { module: "ARKit_d6c5d10d3352e6ec", properties: {"skeleton":1934702309724423} });
-registerSDKClass("ARBodyAnchor", ARBodyAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {"estimatedScaleFactor":1472688156555402,"skeleton":780201673028304} });
-registerSDKClass("ARConfiguration", ARConfiguration, { module: "ARKit_d6c5d10d3352e6ec", properties: {"frameSemantics":3485580023965495,"isLightEstimationEnabled":2296947652858668,"providesAudioData":3468451812936503,"videoFormat":3674247279945668,"videoHDRAllowed":588807603697303,"worldAlignment":3320993210135} });
-registerSDKClass("ARBodyTrackingConfiguration", ARBodyTrackingConfiguration, { module: "ARKit_d6c5d10d3352e6ec", properties: {"appClipCodeTrackingEnabled":3667061574405122,"isAutoFocusEnabled":1033538080143447,"automaticImageScaleEstimationEnabled":4401155927746691,"automaticSkeletonScaleEstimationEnabled":3793486588107866,"detectionImages":3762944868776795,"environmentTexturing":1019243021403340,"initialWorldMap":2676158937274993,"maximumNumberOfTrackedImages":3707762461876261,"planeDetection":811476333295287,"wantsHDREnvironmentTextures":3897154941373502} });
-registerSDKClass("ARCamera", ARCamera, { module: "ARKit_d6c5d10d3352e6ec", properties: {"eulerAngles":1677593259391261,"exposureDuration":1873714708993679,"exposureOffset":2557512203835813,"imageResolution":3833938516973981,"intrinsics":3743211372274002,"projectionMatrix":2598601427253195,"transform":1894896345773016} });
-registerSDKClass("ARKit.ARCamera.TrackingState", ARCamera_TrackingState, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARCoachingOverlayView", ARCoachingOverlayView, { module: "ARKit_d6c5d10d3352e6ec", properties: {"activatesAutomatically":2986901555688033,"delegate":2983094533212755,"goal":3141044303232488,"isActive":2794358923698960,"session":1286409372114769,"sessionProvider":3714971318194923} });
+registerSDKClass("ARAppClipCodeAnchor", ARAppClipCodeAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {"radius":220524164949763,"url":64471449853492,"urlDecodingState":1080426165516340} });
+registerSDKClass("ARBody2D", ARBody2D, { module: "ARKit_a956b86ef7a76a8e", properties: {"skeleton":1934702309724423} });
+registerSDKClass("ARBodyAnchor", ARBodyAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {"estimatedScaleFactor":1472688156555402,"skeleton":780201673028304} });
+registerSDKClass("ARConfiguration", ARConfiguration, { module: "ARKit_a956b86ef7a76a8e", properties: {"frameSemantics":3485580023965495,"isLightEstimationEnabled":2296947652858668,"providesAudioData":3468451812936503,"videoFormat":3674247279945668,"videoHDRAllowed":588807603697303,"worldAlignment":3320993210135} });
+registerSDKClass("ARBodyTrackingConfiguration", ARBodyTrackingConfiguration, { module: "ARKit_a956b86ef7a76a8e", properties: {"appClipCodeTrackingEnabled":3667061574405122,"isAutoFocusEnabled":1033538080143447,"automaticImageScaleEstimationEnabled":4401155927746691,"automaticSkeletonScaleEstimationEnabled":3793486588107866,"detectionImages":3762944868776795,"environmentTexturing":1019243021403340,"initialWorldMap":2676158937274993,"maximumNumberOfTrackedImages":3707762461876261,"planeDetection":811476333295287,"wantsHDREnvironmentTextures":3897154941373502} });
+registerSDKClass("ARCamera", ARCamera, { module: "ARKit_a956b86ef7a76a8e", properties: {"eulerAngles":1677593259391261,"exposureDuration":1873714708993679,"exposureOffset":2557512203835813,"imageResolution":3833938516973981,"intrinsics":3743211372274002,"projectionMatrix":2598601427253195,"transform":1894896345773016}, methods: {"projectPointOrientationViewportSize":{"id":2297092010072601},"projectPointViewRotationAngleViewportSize":{"id":2861277072815979},"projectionMatrixForViewportSizeZNearZFar":{"id":1688014441413399},"projectionMatrixViewRotationAngleViewportSizeZNearZFar":{"id":408831460748811},"viewMatrixFor":{"id":2162147522480942},"viewMatrixViewRotationAngle":{"id":1016410274146347},"unprojectPointOntoPlaneOrientationViewportSize":{"id":2913437821521679},"unprojectPointOntoPlaneViewRotationAngleViewportSize":{"id":1374135225028095}} });
+registerSDKClass("ARKit.ARCamera.TrackingState", ARCamera_TrackingState, { module: "ARKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ARCoachingOverlayView", ARCoachingOverlayView, { module: "ARKit_a956b86ef7a76a8e", properties: {"activatesAutomatically":2986901555688033,"delegate":2983094533212755,"goal":3141044303232488,"isActive":2794358923698960,"session":1286409372114769,"sessionProvider":3714971318194923}, methods: {"setActive":{"id":2453918027097059}} });
 registerSDKProtocol("c:objc(pl)ARCoachingOverlayViewDelegate", {"coachingOverlayViewDidRequestSessionReset":"coachingOverlayViewDidRequestSessionReset(_:)","coachingOverlayViewWillActivate":"coachingOverlayViewWillActivate(_:)","coachingOverlayViewDidDeactivate":"coachingOverlayViewDidDeactivate(_:)"});
-registerSDKClass("ARVideoFormat", ARConfiguration_VideoFormat, { module: "ARKit_d6c5d10d3352e6ec", properties: {"captureDevicePosition":3664814057158971,"captureDeviceType":3038948559002605,"defaultColorSpace":4472190213319716,"defaultPhotoSettings":2999159640583701,"framesPerSecond":3505581565409461,"imageResolution":370977671433562,"isRecommendedForHighResolutionFrameCapturing":4499159465731160,"isVideoHDRSupported":2546484175558685} });
-registerSDKClass("ARDepthData", ARDepthData, { module: "ARKit_d6c5d10d3352e6ec", properties: {"confidenceMap":4486253883475202,"depthMap":1761326638034483} });
-registerSDKClass("ARLightEstimate", ARLightEstimate, { module: "ARKit_d6c5d10d3352e6ec", properties: {"ambientColorTemperature":419033133617722,"ambientIntensity":3960060108610791} });
-registerSDKClass("ARDirectionalLightEstimate", ARDirectionalLightEstimate, { module: "ARKit_d6c5d10d3352e6ec", properties: {"primaryLightDirection":4244237596353339,"primaryLightIntensity":2915911853713847,"sphericalHarmonicsCoefficients":4388037149423080} });
-registerSDKClass("AREnvironmentProbeAnchor", AREnvironmentProbeAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {"environmentTexture":718058071937359,"extent":3956656635166157} });
-registerSDKClass("ARKit.ARError", ARError, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARFaceAnchor", ARFaceAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {"blendShapes":3345171527031571,"geometry":142515568049686,"leftEyeTransform":3302980570571568,"lookAtPoint":579063626301998,"rightEyeTransform":2324906024830838} });
-registerSDKClass("ARFaceGeometry", ARFaceGeometry, { module: "ARKit_d6c5d10d3352e6ec", properties: {"triangleCount":3282665649087694} });
-registerSDKClass("ARFaceTrackingConfiguration", ARFaceTrackingConfiguration, { module: "ARKit_d6c5d10d3352e6ec", properties: {"isEnvironmentTexturingEnabled":2360734605650079,"maximumNumberOfTrackedFaces":419699583586585,"isWorldTrackingEnabled":3832589859501977} });
-registerSDKClass("ARFrame", ARFrame, { module: "ARKit_d6c5d10d3352e6ec", properties: {"anchors":3426105173674331,"camera":2767009727662698,"cameraGrainIntensity":232361914445762,"cameraGrainTexture":2724020731144559,"capturedDepthData":1951010514391219,"capturedDepthDataTimestamp":4154509266393196,"capturedImage":1876179122392636,"detectedBody":2359520345229450,"estimatedDepthData":4165935993080685,"exifData":2997209565592737,"geoTrackingStatus":1685886751176991,"lightEstimate":4188564698645292,"metadataObjects":3160661618529120,"rawFeaturePoints":3205510694916477,"sceneDepth":1125634105108849,"segmentationBuffer":195420626557341,"smoothedSceneDepth":3448654263026488,"timestamp":4126472045244871,"worldMappingStatus":2200074804485641} });
-registerSDKClass("ARGeoAnchor", ARGeoAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {"altitudeSource":3774754158442971,"coordinate":1438791031432298} });
-registerSDKClass("ARGeometryElement", ARGeometryElement, { module: "ARKit_d6c5d10d3352e6ec", properties: {"buffer":1230059738439957,"bytesPerIndex":199934666700547,"count":1332651389695195,"indexCountPerPrimitive":4270787422231179,"primitiveType":2732179146305381} });
-registerSDKClass("ARGeometrySource", ARGeometrySource, { module: "ARKit_d6c5d10d3352e6ec", properties: {"buffer":700526717338709,"componentsPerVector":1119686800491733,"count":3178710293642949,"format":3475033786488316,"offset":2691142433667738,"stride":2681776161464645} });
-registerSDKClass("ARGeoTrackingConfiguration", ARGeoTrackingConfiguration, { module: "ARKit_d6c5d10d3352e6ec", properties: {"appClipCodeTrackingEnabled":1025114149881881,"automaticImageScaleEstimationEnabled":2128119757312417,"detectionImages":3202868604096071,"detectionObjects":507945312513549,"environmentTexturing":3625064600676164,"maximumNumberOfTrackedImages":1428896138818380,"planeDetection":1721607431318297,"trackingObjects":3219386265163013,"wantsHDREnvironmentTextures":4292740504339299} });
-registerSDKClass("ARGeoTrackingStatus", ARGeoTrackingStatus, { module: "ARKit_d6c5d10d3352e6ec", properties: {"accuracy":3763293741726699,"state":3612355003129619,"stateReason":2604558744251988} });
-registerSDKClass("ARHitTestResult", ARHitTestResult, { module: "ARKit_d6c5d10d3352e6ec", properties: {"anchor":670881608858625,"distance":2508723005603927,"localTransform":811135797887184,"type":2430898232084665,"worldTransform":1153108898425455} });
-registerSDKClass("ARImageAnchor", ARImageAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {"estimatedScaleFactor":2225469254623457,"referenceImage":3525106231976359} });
-registerSDKClass("ARImageTrackingConfiguration", ARImageTrackingConfiguration, { module: "ARKit_d6c5d10d3352e6ec", properties: {"isAutoFocusEnabled":3415783329276852,"maximumNumberOfTrackedImages":2598966209373303,"trackingImages":4397635009355969} });
-registerSDKClass("ARMatteGenerator", ARMatteGenerator, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARMeshAnchor", ARMeshAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {"geometry":215816199903523} });
-registerSDKClass("ARMeshGeometry", ARMeshGeometry, { module: "ARKit_d6c5d10d3352e6ec", properties: {"classification":2484451368242715,"faces":4062713662661537,"normals":1419769339925501,"vertices":648982446310419} });
-registerSDKClass("ARObjectAnchor", ARObjectAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {"isTracked":1539791031805828,"referenceObject":2195705150013373} });
-registerSDKClass("ARObjectScanningConfiguration", ARObjectScanningConfiguration, { module: "ARKit_d6c5d10d3352e6ec", properties: {"isAutoFocusEnabled":2919224264261812,"planeDetection":3319220283516253} });
-registerSDKClass("AROrientationTrackingConfiguration", AROrientationTrackingConfiguration, { module: "ARKit_d6c5d10d3352e6ec", properties: {"isAutoFocusEnabled":2593753527131681} });
-registerSDKClass("ARParticipantAnchor", ARParticipantAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARPlaneAnchor", ARPlaneAnchor, { module: "ARKit_d6c5d10d3352e6ec", properties: {"alignment":2286744233147065,"center":1392339857183524,"extent":749198971250942,"geometry":3026308439447670,"planeExtent":839552750034608} });
-registerSDKClass("ARKit.ARPlaneAnchor.Classification", ARPlaneAnchor_Classification, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARPlaneExtent", ARPlaneExtent, { module: "ARKit_d6c5d10d3352e6ec", properties: {"height":905497760334391,"rotationOnYAxis":743803578710050,"width":323992155332898} });
-registerSDKClass("ARPlaneGeometry", ARPlaneGeometry, { module: "ARKit_d6c5d10d3352e6ec", properties: {"triangleCount":3134949464230311} });
-registerSDKClass("ARPointCloud", ARPointCloud, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARPositionalTrackingConfiguration", ARPositionalTrackingConfiguration, { module: "ARKit_d6c5d10d3352e6ec", properties: {"initialWorldMap":1345796784717644,"planeDetection":1268950924166524} });
-registerSDKClass("ARRaycastQuery", ARRaycastQuery, { module: "ARKit_d6c5d10d3352e6ec", properties: {"direction":3717758960173528,"origin":3014953033135370,"target":3526684217686026,"targetAlignment":89254839303701} });
-registerSDKClass("ARRaycastResult", ARRaycastResult, { module: "ARKit_d6c5d10d3352e6ec", properties: {"anchor":1519928209817983,"target":245814625240076,"targetAlignment":1944188763440202,"worldTransform":3341466920773417} });
-registerSDKClass("ARReferenceImage", ARReferenceImage, { module: "ARKit_d6c5d10d3352e6ec", properties: {"name":986037905324614,"physicalSize":2679035991953910,"resourceGroupName":656819496677956} });
-registerSDKClass("ARReferenceObject", ARReferenceObject, { module: "ARKit_d6c5d10d3352e6ec", properties: {"center":409057916893541,"extent":2369321863429619,"name":1986776711464276,"rawFeaturePoints":2982568048534798,"resourceGroupName":2112273837527622,"scale":277617278638599,"usdzFile":879447885129417} });
-registerSDKClass("ARSCNFaceGeometry", ARSCNFaceGeometry, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARSCNPlaneGeometry", ARSCNPlaneGeometry, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARSCNView", ARSCNView, { module: "ARKit_d6c5d10d3352e6ec", properties: {"automaticallyUpdatesLighting":781552576132390,"delegate":1005687771695216,"rendersCameraGrain":3254371460576602,"rendersMotionBlur":468876228868885,"scene":2952941517453241,"session":2910354600408439} });
+registerSDKClass("ARVideoFormat", ARConfiguration_VideoFormat, { module: "ARKit_a956b86ef7a76a8e", properties: {"captureDevicePosition":3664814057158971,"captureDeviceType":3038948559002605,"defaultColorSpace":4472190213319716,"defaultPhotoSettings":2999159640583701,"framesPerSecond":3505581565409461,"imageResolution":370977671433562,"isRecommendedForHighResolutionFrameCapturing":4499159465731160,"isVideoHDRSupported":2546484175558685} });
+registerSDKClass("ARDepthData", ARDepthData, { module: "ARKit_a956b86ef7a76a8e", properties: {"confidenceMap":4486253883475202,"depthMap":1761326638034483} });
+registerSDKClass("ARLightEstimate", ARLightEstimate, { module: "ARKit_a956b86ef7a76a8e", properties: {"ambientColorTemperature":419033133617722,"ambientIntensity":3960060108610791} });
+registerSDKClass("ARDirectionalLightEstimate", ARDirectionalLightEstimate, { module: "ARKit_a956b86ef7a76a8e", properties: {"primaryLightDirection":4244237596353339,"primaryLightIntensity":2915911853713847,"sphericalHarmonicsCoefficients":4388037149423080} });
+registerSDKClass("AREnvironmentProbeAnchor", AREnvironmentProbeAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {"environmentTexture":718058071937359,"extent":3956656635166157} });
+registerSDKClass("ARKit.ARError", ARError, { module: "ARKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ARFaceAnchor", ARFaceAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {"blendShapes":3345171527031571,"geometry":142515568049686,"leftEyeTransform":3302980570571568,"lookAtPoint":579063626301998,"rightEyeTransform":2324906024830838} });
+registerSDKClass("ARFaceGeometry", ARFaceGeometry, { module: "ARKit_a956b86ef7a76a8e", properties: {"triangleCount":3282665649087694} });
+registerSDKClass("ARFaceTrackingConfiguration", ARFaceTrackingConfiguration, { module: "ARKit_a956b86ef7a76a8e", properties: {"isEnvironmentTexturingEnabled":2360734605650079,"maximumNumberOfTrackedFaces":419699583586585,"isWorldTrackingEnabled":3832589859501977} });
+registerSDKClass("ARFrame", ARFrame, { module: "ARKit_a956b86ef7a76a8e", properties: {"anchors":3426105173674331,"camera":2767009727662698,"cameraGrainIntensity":232361914445762,"cameraGrainTexture":2724020731144559,"capturedDepthData":1951010514391219,"capturedDepthDataTimestamp":4154509266393196,"capturedImage":1876179122392636,"detectedBody":2359520345229450,"estimatedDepthData":4165935993080685,"exifData":2997209565592737,"geoTrackingStatus":1685886751176991,"lightEstimate":4188564698645292,"metadataObjects":3160661618529120,"rawFeaturePoints":3205510694916477,"sceneDepth":1125634105108849,"segmentationBuffer":195420626557341,"smoothedSceneDepth":3448654263026488,"timestamp":4126472045244871,"worldMappingStatus":2200074804485641}, methods: {"displayTransformForViewportSize":{"id":4184238290111108},"displayTransformViewRotationAngleViewportSize":{"id":2473779083140147},"hitTest":{"id":1365567175980156},"raycastQuery":{"id":405485746703854}} });
+registerSDKClass("ARGeoAnchor", ARGeoAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {"altitudeSource":3774754158442971,"coordinate":1438791031432298} });
+registerSDKClass("ARGeometryElement", ARGeometryElement, { module: "ARKit_a956b86ef7a76a8e", properties: {"buffer":1230059738439957,"bytesPerIndex":199934666700547,"count":1332651389695195,"indexCountPerPrimitive":4270787422231179,"primitiveType":2732179146305381}, methods: {"subscript":{"id":3102931121361315}} });
+registerSDKClass("ARGeometrySource", ARGeometrySource, { module: "ARKit_a956b86ef7a76a8e", properties: {"buffer":700526717338709,"componentsPerVector":1119686800491733,"count":3178710293642949,"format":3475033786488316,"offset":2691142433667738,"stride":2681776161464645} });
+registerSDKClass("ARGeoTrackingConfiguration", ARGeoTrackingConfiguration, { module: "ARKit_a956b86ef7a76a8e", properties: {"appClipCodeTrackingEnabled":1025114149881881,"automaticImageScaleEstimationEnabled":2128119757312417,"detectionImages":3202868604096071,"detectionObjects":507945312513549,"environmentTexturing":3625064600676164,"maximumNumberOfTrackedImages":1428896138818380,"planeDetection":1721607431318297,"trackingObjects":3219386265163013,"wantsHDREnvironmentTextures":4292740504339299} });
+registerSDKClass("ARGeoTrackingStatus", ARGeoTrackingStatus, { module: "ARKit_a956b86ef7a76a8e", properties: {"accuracy":3763293741726699,"state":3612355003129619,"stateReason":2604558744251988} });
+registerSDKClass("ARHitTestResult", ARHitTestResult, { module: "ARKit_a956b86ef7a76a8e", properties: {"anchor":670881608858625,"distance":2508723005603927,"localTransform":811135797887184,"type":2430898232084665,"worldTransform":1153108898425455} });
+registerSDKClass("ARImageAnchor", ARImageAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {"estimatedScaleFactor":2225469254623457,"referenceImage":3525106231976359} });
+registerSDKClass("ARImageTrackingConfiguration", ARImageTrackingConfiguration, { module: "ARKit_a956b86ef7a76a8e", properties: {"isAutoFocusEnabled":3415783329276852,"maximumNumberOfTrackedImages":2598966209373303,"trackingImages":4397635009355969} });
+registerSDKClass("ARMatteGenerator", ARMatteGenerator, { module: "ARKit_a956b86ef7a76a8e", properties: {}, methods: {"generateDilatedDepth":{"id":2485524840678960},"generateMatte":{"id":2043087385176958}} });
+registerSDKClass("ARMeshAnchor", ARMeshAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {"geometry":215816199903523} });
+registerSDKClass("ARMeshGeometry", ARMeshGeometry, { module: "ARKit_a956b86ef7a76a8e", properties: {"classification":2484451368242715,"faces":4062713662661537,"normals":1419769339925501,"vertices":648982446310419} });
+registerSDKClass("ARObjectAnchor", ARObjectAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {"isTracked":1539791031805828,"referenceObject":2195705150013373} });
+registerSDKClass("ARObjectScanningConfiguration", ARObjectScanningConfiguration, { module: "ARKit_a956b86ef7a76a8e", properties: {"isAutoFocusEnabled":2919224264261812,"planeDetection":3319220283516253} });
+registerSDKClass("AROrientationTrackingConfiguration", AROrientationTrackingConfiguration, { module: "ARKit_a956b86ef7a76a8e", properties: {"isAutoFocusEnabled":2593753527131681} });
+registerSDKClass("ARParticipantAnchor", ARParticipantAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ARPlaneAnchor", ARPlaneAnchor, { module: "ARKit_a956b86ef7a76a8e", properties: {"alignment":2286744233147065,"center":1392339857183524,"extent":749198971250942,"geometry":3026308439447670,"planeExtent":839552750034608} });
+registerSDKClass("ARKit.ARPlaneAnchor.Classification", ARPlaneAnchor_Classification, { module: "ARKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ARPlaneExtent", ARPlaneExtent, { module: "ARKit_a956b86ef7a76a8e", properties: {"height":905497760334391,"rotationOnYAxis":743803578710050,"width":323992155332898} });
+registerSDKClass("ARPlaneGeometry", ARPlaneGeometry, { module: "ARKit_a956b86ef7a76a8e", properties: {"triangleCount":3134949464230311} });
+registerSDKClass("ARPointCloud", ARPointCloud, { module: "ARKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ARPositionalTrackingConfiguration", ARPositionalTrackingConfiguration, { module: "ARKit_a956b86ef7a76a8e", properties: {"initialWorldMap":1345796784717644,"planeDetection":1268950924166524} });
+registerSDKClass("ARRaycastQuery", ARRaycastQuery, { module: "ARKit_a956b86ef7a76a8e", properties: {"direction":3717758960173528,"origin":3014953033135370,"target":3526684217686026,"targetAlignment":89254839303701} });
+registerSDKClass("ARRaycastResult", ARRaycastResult, { module: "ARKit_a956b86ef7a76a8e", properties: {"anchor":1519928209817983,"target":245814625240076,"targetAlignment":1944188763440202,"worldTransform":3341466920773417} });
+registerSDKClass("ARReferenceImage", ARReferenceImage, { module: "ARKit_a956b86ef7a76a8e", properties: {"name":986037905324614,"physicalSize":2679035991953910,"resourceGroupName":656819496677956}, methods: {"validate":{"id":3805507025483015,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("ARReferenceObject", ARReferenceObject, { module: "ARKit_a956b86ef7a76a8e", properties: {"center":409057916893541,"extent":2369321863429619,"name":1986776711464276,"rawFeaturePoints":2982568048534798,"resourceGroupName":2112273837527622,"scale":277617278638599,"usdzFile":879447885129417}, methods: {"export":{"id":1026622796222208},"applyingTransform":{"id":2028890122764935},"merging":{"id":3802466819873165}} });
+registerSDKClass("ARSCNFaceGeometry", ARSCNFaceGeometry, { module: "ARKit_a956b86ef7a76a8e", properties: {}, methods: {"update":{"id":2093992282942931}} });
+registerSDKClass("ARSCNPlaneGeometry", ARSCNPlaneGeometry, { module: "ARKit_a956b86ef7a76a8e", properties: {}, methods: {"update":{"id":1172848853359082}} });
+registerSDKClass("ARSCNView", ARSCNView, { module: "ARKit_a956b86ef7a76a8e", properties: {"automaticallyUpdatesLighting":781552576132390,"delegate":1005687771695216,"rendersCameraGrain":3254371460576602,"rendersMotionBlur":468876228868885,"scene":2952941517453241,"session":2910354600408439}, methods: {"anchor":{"id":98654145366825},"hitTest":{"id":1929435476551378},"node":{"id":2915865150375393},"raycastQuery":{"id":2145458560614148},"unprojectPoint":{"id":10972435548393}} });
 registerSDKProtocol("c:objc(pl)ARSCNViewDelegate", {"sessionDidFailWithError":"session(_:didFailWithError:)","sessionCameraDidChangeTrackingState":"session(_:cameraDidChangeTrackingState:)","sessionWasInterrupted":"sessionWasInterrupted(_:)","sessionInterruptionEnded":"sessionInterruptionEnded(_:)","sessionDidOutputAudioSampleBuffer":"session(_:didOutputAudioSampleBuffer:)","sessionDidOutputCollaborationData":"session(_:didOutputCollaborationData:)","sessionDidChange":"session(_:didChange:)","sessionDidChangeViewRotationAngle":"session(_:didChangeViewRotationAngle:)","rendererUpdateAtTime":"renderer(_:updateAtTime:)","rendererDidApplyAnimationsAtTime":"renderer(_:didApplyAnimationsAtTime:)","rendererDidSimulatePhysicsAtTime":"renderer(_:didSimulatePhysicsAtTime:)","rendererDidApplyConstraintsAtTime":"renderer(_:didApplyConstraintsAtTime:)","rendererWillRenderSceneAtTime":"renderer(_:willRenderScene:atTime:)","rendererDidRenderSceneAtTime":"renderer(_:didRenderScene:atTime:)","rendererDidAddFor":"renderer(_:didAdd:for:)","rendererWillUpdateFor":"renderer(_:willUpdate:for:)","rendererDidUpdateFor":"renderer(_:didUpdate:for:)","rendererDidRemoveFor":"renderer(_:didRemove:for:)"});
-registerSDKClass("ARSession", ARSession, { module: "ARKit_d6c5d10d3352e6ec", properties: {"configuration":2840714959572795,"currentFrame":1485799876913573,"delegate":895778869500490,"delegateQueue":3461211308323038,"identifier":1112219247135581,"viewLayer":3225609518108935} });
-registerSDKClass("ARCollaborationData", ARSession_CollaborationData, { module: "ARKit_d6c5d10d3352e6ec", properties: {"priority":4276043225919816} });
+registerSDKClass("ARSession", ARSession, { module: "ARKit_a956b86ef7a76a8e", properties: {"configuration":2840714959572795,"currentFrame":1485799876913573,"delegate":895778869500490,"delegateQueue":3461211308323038,"identifier":1112219247135581,"viewLayer":3225609518108935}, methods: {"add":{"id":247909123170215},"captureHighResolutionFrameUsingCompletion":{"id":2575004089417828,"hints":[null,{"callback":{"out":[]}}]},"captureHighResolutionFrameCompletion":{"id":1005652956917825,"hints":[{"callback":{"out":[]}}]},"createReferenceObject":{"id":1299591323630696,"hints":[null,null,null,{"callback":{"out":[]}}]},"getCurrentWorldMap":{"id":2274526299746470,"hints":[{"callback":{"out":[]}}]},"getGeoLocation":{"id":406406223343260,"hints":[null,{"callback":{"out":[]}}]},"pause":{"id":3527280659651814},"raycast":{"id":3328847146458190},"remove":{"id":1703555479150178},"run":{"id":2384614064902462},"setWorldOrigin":{"id":1822321236347393},"trackedRaycast":{"id":1247573681308174,"hints":[null,{"callback":{"out":[]}}]},"update":{"id":1399879582464254}} });
+registerSDKClass("ARCollaborationData", ARSession_CollaborationData, { module: "ARKit_a956b86ef7a76a8e", properties: {"priority":4276043225919816} });
 registerSDKProtocol("c:objc(pl)ARSessionDelegate", {"sessionDidFailWithError":"session(_:didFailWithError:)","sessionCameraDidChangeTrackingState":"session(_:cameraDidChangeTrackingState:)","sessionWasInterrupted":"sessionWasInterrupted(_:)","sessionInterruptionEnded":"sessionInterruptionEnded(_:)","sessionDidOutputAudioSampleBuffer":"session(_:didOutputAudioSampleBuffer:)","sessionDidOutputCollaborationData":"session(_:didOutputCollaborationData:)","sessionDidChange":"session(_:didChange:)","sessionDidChangeViewRotationAngle":"session(_:didChangeViewRotationAngle:)","sessionDidUpdate":"session(_:didUpdate:)","sessionDidAdd":"session(_:didAdd:)","sessionDidRemove":"session(_:didRemove:)"});
 registerSDKProtocol("c:objc(pl)ARSessionObserver", {"sessionDidFailWithError":"session(_:didFailWithError:)","sessionCameraDidChangeTrackingState":"session(_:cameraDidChangeTrackingState:)","sessionWasInterrupted":"sessionWasInterrupted(_:)","sessionInterruptionEnded":"sessionInterruptionEnded(_:)","sessionDidOutputAudioSampleBuffer":"session(_:didOutputAudioSampleBuffer:)","sessionDidOutputCollaborationData":"session(_:didOutputCollaborationData:)","sessionDidChange":"session(_:didChange:)","sessionDidChangeViewRotationAngle":"session(_:didChangeViewRotationAngle:)"});
 registerSDKProtocol("c:objc(pl)ARSessionProviding", {});
-registerSDKClass("ARSkeleton", ARSkeleton, { module: "ARKit_d6c5d10d3352e6ec", properties: {"definition":2043518314777065} });
-registerSDKClass("ARSkeleton2D", ARSkeleton2D, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARSkeleton3D", ARSkeleton3D, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARSkeletonDefinition", ARSkeletonDefinition, { module: "ARKit_d6c5d10d3352e6ec", properties: {"jointCount":2135062790944914,"jointNames":4234815840526183,"neutralBodySkeleton3D":2391542612735459} });
-registerSDKClass("ARSKView", ARSKView, { module: "ARKit_d6c5d10d3352e6ec", properties: {"delegate":1125724417064852,"session":168635241754062} });
+registerSDKClass("ARSkeleton", ARSkeleton, { module: "ARKit_a956b86ef7a76a8e", properties: {"definition":2043518314777065}, methods: {"isJointTracked":{"id":2868617870124389}} });
+registerSDKClass("ARSkeleton2D", ARSkeleton2D, { module: "ARKit_a956b86ef7a76a8e", properties: {}, methods: {"landmark":{"id":4292216406828969}} });
+registerSDKClass("ARSkeleton3D", ARSkeleton3D, { module: "ARKit_a956b86ef7a76a8e", properties: {}, methods: {"localTransform":{"id":2968626567265625},"modelTransform":{"id":2001592493396934}} });
+registerSDKClass("ARSkeletonDefinition", ARSkeletonDefinition, { module: "ARKit_a956b86ef7a76a8e", properties: {"jointCount":2135062790944914,"jointNames":4234815840526183,"neutralBodySkeleton3D":2391542612735459}, methods: {"index":{"id":4273636298443201}} });
+registerSDKClass("ARSKView", ARSKView, { module: "ARKit_a956b86ef7a76a8e", properties: {"delegate":1125724417064852,"session":168635241754062}, methods: {"anchor":{"id":1320090468808442},"hitTest":{"id":405967054006958},"node":{"id":3403080692004433}} });
 registerSDKProtocol("c:objc(pl)ARSKViewDelegate", {"sessionDidFailWithError":"session(_:didFailWithError:)","sessionCameraDidChangeTrackingState":"session(_:cameraDidChangeTrackingState:)","sessionWasInterrupted":"sessionWasInterrupted(_:)","sessionInterruptionEnded":"sessionInterruptionEnded(_:)","sessionDidOutputAudioSampleBuffer":"session(_:didOutputAudioSampleBuffer:)","sessionDidOutputCollaborationData":"session(_:didOutputCollaborationData:)","sessionDidChange":"session(_:didChange:)","sessionDidChangeViewRotationAngle":"session(_:didChangeViewRotationAngle:)","viewDidAddFor":"view(_:didAdd:for:)","viewWillUpdateFor":"view(_:willUpdate:for:)","viewDidUpdateFor":"view(_:didUpdate:for:)","viewDidRemoveFor":"view(_:didRemove:for:)"});
 registerSDKProtocol("c:objc(pl)ARTrackable", {});
-registerSDKClass("ARTrackedRaycast", ARTrackedRaycast, { module: "ARKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ARWorldMap", ARWorldMap, { module: "ARKit_d6c5d10d3352e6ec", properties: {"anchors":3848549081015926,"center":4003700121556489,"extent":749673762109533,"rawFeaturePoints":3486995368803070} });
-registerSDKClass("ARWorldTrackingConfiguration", ARWorldTrackingConfiguration, { module: "ARKit_d6c5d10d3352e6ec", properties: {"appClipCodeTrackingEnabled":186423687585747,"isAutoFocusEnabled":3918106108005845,"automaticImageScaleEstimationEnabled":380711848819499,"isCollaborationEnabled":3928564724942434,"detectionImages":66137997925985,"detectionObjects":4354436117907098,"environmentTexturing":3031577990533694,"initialWorldMap":2497863788120937,"maximumNumberOfTrackedImages":3471500412442785,"planeDetection":3714181788345951,"sceneReconstruction":2111832562179801,"trackingObjects":3540599040013661,"userFaceTrackingEnabled":3834744746911541,"wantsHDREnvironmentTextures":2866420058202337} });
+registerSDKClass("ARTrackedRaycast", ARTrackedRaycast, { module: "ARKit_a956b86ef7a76a8e", properties: {}, methods: {"stopTracking":{"id":591233841086207}} });
+registerSDKClass("ARWorldMap", ARWorldMap, { module: "ARKit_a956b86ef7a76a8e", properties: {"anchors":3848549081015926,"center":4003700121556489,"extent":749673762109533,"rawFeaturePoints":3486995368803070} });
+registerSDKClass("ARWorldTrackingConfiguration", ARWorldTrackingConfiguration, { module: "ARKit_a956b86ef7a76a8e", properties: {"appClipCodeTrackingEnabled":186423687585747,"isAutoFocusEnabled":3918106108005845,"automaticImageScaleEstimationEnabled":380711848819499,"isCollaborationEnabled":3928564724942434,"detectionImages":66137997925985,"detectionObjects":4354436117907098,"environmentTexturing":3031577990533694,"initialWorldMap":2497863788120937,"maximumNumberOfTrackedImages":3471500412442785,"planeDetection":3714181788345951,"sceneReconstruction":2111832562179801,"trackingObjects":3540599040013661,"userFaceTrackingEnabled":3834744746911541,"wantsHDREnvironmentTextures":2866420058202337} });

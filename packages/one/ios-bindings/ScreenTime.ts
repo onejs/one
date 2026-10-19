@@ -16,7 +16,7 @@ export class STScreenTimeConfiguration extends SDKHandle {
    * var enforcesChildRestrictions: Bool { get }
    * @availability iOS 14.0+
    */
-  get enforcesChildRestrictions(): boolean { return callSDK<boolean>("ScreenTime_d6c5d10d3352e6ec", 312773437343206, this, []); }
+  get enforcesChildRestrictions(): boolean { return callSDK<boolean>("ScreenTime_a956b86ef7a76a8e", 312773437343206, this, []); }
   declare readonly $type: { "c:objc(cs)STScreenTimeConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "enforcesChildRestrictions": true };
 }
@@ -30,22 +30,22 @@ export class STScreenTimeConfigurationObserver extends SDKHandle {
    * init(updateQueue: dispatch_queue_t)
    * @availability iOS 14.0+
    */
-  static init(updateQueue: _Dispatch_DispatchQueue): STScreenTimeConfigurationObserver { return callSDK<STScreenTimeConfigurationObserver>("ScreenTime_d6c5d10d3352e6ec", 495900492374711, undefined, [updateQueue]); }
+  static init(updateQueue: _Dispatch_DispatchQueue): STScreenTimeConfigurationObserver { return callSDK<STScreenTimeConfigurationObserver>("ScreenTime_a956b86ef7a76a8e", 495900492374711, undefined, [updateQueue]); }
   /**
    * func startObserving()
    * @availability iOS 14.0+
    */
-  startObserving(): void { return callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 541972387780747, this, []); }
+  startObserving(): void { return callSDK<void>("ScreenTime_a956b86ef7a76a8e", 541972387780747, this, []); }
   /**
    * func stopObserving()
    * @availability iOS 14.0+
    */
-  stopObserving(): void { return callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 3716793798630065, this, []); }
+  stopObserving(): void { return callSDK<void>("ScreenTime_a956b86ef7a76a8e", 3716793798630065, this, []); }
   /**
    * var configuration: STScreenTimeConfiguration? { get }
    * @availability iOS 14.0+
    */
-  get configuration(): (STScreenTimeConfiguration) | null { return callSDK<(STScreenTimeConfiguration) | null>("ScreenTime_d6c5d10d3352e6ec", 1961753061622241, this, []); }
+  get configuration(): (STScreenTimeConfiguration) | null { return callSDK<(STScreenTimeConfiguration) | null>("ScreenTime_a956b86ef7a76a8e", 1961753061622241, this, []); }
   declare readonly $type: { "c:objc(cs)STScreenTimeConfigurationObserver": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true };
 }
@@ -59,42 +59,42 @@ export class STWebHistory extends SDKHandle {
    * func deleteAllHistory()
    * @availability iOS 14.0+
    */
-  deleteAllHistory(): void { return callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 738237398319595, this, []); }
+  deleteAllHistory(): void { return callSDK<void>("ScreenTime_a956b86ef7a76a8e", 738237398319595, this, []); }
   /**
    * func deleteHistory(during interval: DateInterval)
    * @availability iOS 14.0+
    */
-  deleteHistoryDuring(interval: _Foundation_DateInterval): void { return callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 4465392179209951, this, [interval]); }
+  deleteHistoryDuring(interval: _Foundation_DateInterval): void { return callSDK<void>("ScreenTime_a956b86ef7a76a8e", 4465392179209951, this, [interval]); }
   /**
    * func deleteHistory(for url: URL)
    * @availability iOS 14.0+
    */
-  deleteHistoryFor(url: string): void { return callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 2716744605837588, this, [url]); }
+  deleteHistoryFor(url: string): void { return callSDK<void>("ScreenTime_a956b86ef7a76a8e", 2716744605837588, this, [url]); }
   /**
    * func fetchAllHistory() async throws -> Set<URL>
    * @availability iOS 18.4+
    */
-  fetchAllHistory(completionHandler: $SDK1): void { return callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 4359667902067359, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  fetchAllHistory(completionHandler: $SDK1): void { return callSDK<void>("ScreenTime_a956b86ef7a76a8e", 4359667902067359, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func fetchHistory(during interval: DateInterval) async throws -> Set<URL>
    * @availability iOS 18.4+
    */
-  fetchHistory(interval: _Foundation_DateInterval, completionHandler: $SDK1): void { return callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 3048521853973120, this, [interval, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchHistory(interval: _Foundation_DateInterval, completionHandler: $SDK1): void { return callSDK<void>("ScreenTime_a956b86ef7a76a8e", 3048521853973120, this, [interval, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(bundleIdentifier: String) throws
    * @availability iOS 14.0+
    */
-  static initBundleIdentifier(bundleIdentifier: string): STWebHistory { return callSDK<STWebHistory>("ScreenTime_d6c5d10d3352e6ec", 1055866506872485, undefined, [bundleIdentifier]); }
+  static initBundleIdentifier(bundleIdentifier: string): STWebHistory { return callSDK<STWebHistory>("ScreenTime_a956b86ef7a76a8e", 1055866506872485, undefined, [bundleIdentifier]); }
   /**
    * init(bundleIdentifier: String, profileIdentifier: STWebHistory.ProfileIdentifier?) throws
    * @availability iOS 18.4+
    */
-  static initBundleIdentifierProfileIdentifier(bundleIdentifier: string, profileIdentifier?: $SDK2): STWebHistory { return callSDK<STWebHistory>("ScreenTime_d6c5d10d3352e6ec", 1501741068871539, undefined, [bundleIdentifier, profileIdentifier]); }
+  static initBundleIdentifierProfileIdentifier(bundleIdentifier: string, profileIdentifier?: $SDK2): STWebHistory { return callSDK<STWebHistory>("ScreenTime_a956b86ef7a76a8e", 1501741068871539, undefined, [bundleIdentifier, profileIdentifier]); }
   /**
    * init(profileIdentifier: STWebHistory.ProfileIdentifier?)
    * @availability iOS 18.4+
    */
-  static initProfileIdentifier(profileIdentifier?: $SDK2): STWebHistory { return callSDK<STWebHistory>("ScreenTime_d6c5d10d3352e6ec", 4221339323796373, undefined, [profileIdentifier]); }
+  static initProfileIdentifier(profileIdentifier?: $SDK2): STWebHistory { return callSDK<STWebHistory>("ScreenTime_a956b86ef7a76a8e", 4221339323796373, undefined, [profileIdentifier]); }
   declare readonly $type: { "c:objc(cs)STWebHistory": true; "c:objc(cs)NSObject": true };
 }
 
@@ -109,12 +109,12 @@ export const STWebHistory_ProfileIdentifier = {
    * init(rawValue: String)
    * @availability iOS 18.4+
    */
-  initRawValue(rawValue: string): STWebHistory_ProfileIdentifier { return callSDK<STWebHistory_ProfileIdentifier>("ScreenTime_d6c5d10d3352e6ec", 1355114422940754, undefined, [rawValue]); },
+  initRawValue(rawValue: string): STWebHistory_ProfileIdentifier { return callSDK<STWebHistory_ProfileIdentifier>("ScreenTime_a956b86ef7a76a8e", 1355114422940754, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 18.4+
    */
-  init(rawValue: string): STWebHistory_ProfileIdentifier { return callSDK<STWebHistory_ProfileIdentifier>("ScreenTime_d6c5d10d3352e6ec", 161727704952038, undefined, [rawValue]); }
+  init(rawValue: string): STWebHistory_ProfileIdentifier { return callSDK<STWebHistory_ProfileIdentifier>("ScreenTime_a956b86ef7a76a8e", 161727704952038, undefined, [rawValue]); }
 };
 
 /**
@@ -123,52 +123,52 @@ export const STWebHistory_ProfileIdentifier = {
  */
 export class STWebpageController extends SDKHandle {
   /** init() */
-  static init(): STWebpageController { return callSDK<STWebpageController>("ScreenTime_d6c5d10d3352e6ec", 2470549338643969, undefined, []); }
+  static init(): STWebpageController { return callSDK<STWebpageController>("ScreenTime_a956b86ef7a76a8e", 2470549338643969, undefined, []); }
   /**
    * func setBundleIdentifier(_ bundleIdentifier: String) throws
    * @availability iOS 14.0+
    */
-  setBundleIdentifier(bundleIdentifier: string): void { return callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 1756864933307902, this, [bundleIdentifier]); }
+  setBundleIdentifier(bundleIdentifier: string): void { return callSDK<void>("ScreenTime_a956b86ef7a76a8e", 1756864933307902, this, [bundleIdentifier]); }
   /**
    * var url: URL? { get set }
    * @availability iOS 14.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("ScreenTime_d6c5d10d3352e6ec", 3499935760148925, this, []); }
-  set url(value: (string) | null) { callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 4420382173757915, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("ScreenTime_a956b86ef7a76a8e", 3499935760148925, this, []); }
+  set url(value: (string) | null) { callSDK<void>("ScreenTime_a956b86ef7a76a8e", 4420382173757915, this, [value]); }
   /**
    * var urlIsBlocked: Bool { get }
    * @availability iOS 14.0+
    */
-  get urlIsBlocked(): boolean { return callSDK<boolean>("ScreenTime_d6c5d10d3352e6ec", 462718204709178, this, []); }
+  get urlIsBlocked(): boolean { return callSDK<boolean>("ScreenTime_a956b86ef7a76a8e", 462718204709178, this, []); }
   /**
    * var urlIsPictureInPicture: Bool { get set }
    * @availability iOS 14.0+
    */
-  get urlIsPictureInPicture(): boolean { return callSDK<boolean>("ScreenTime_d6c5d10d3352e6ec", 1773479404185456, this, []); }
-  set urlIsPictureInPicture(value: boolean) { callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 1460049862134179, this, [value]); }
+  get urlIsPictureInPicture(): boolean { return callSDK<boolean>("ScreenTime_a956b86ef7a76a8e", 1773479404185456, this, []); }
+  set urlIsPictureInPicture(value: boolean) { callSDK<void>("ScreenTime_a956b86ef7a76a8e", 1460049862134179, this, [value]); }
   /**
    * var urlIsPlayingVideo: Bool { get set }
    * @availability iOS 14.0+
    */
-  get urlIsPlayingVideo(): boolean { return callSDK<boolean>("ScreenTime_d6c5d10d3352e6ec", 560499292631440, this, []); }
-  set urlIsPlayingVideo(value: boolean) { callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 1038281678990324, this, [value]); }
+  get urlIsPlayingVideo(): boolean { return callSDK<boolean>("ScreenTime_a956b86ef7a76a8e", 560499292631440, this, []); }
+  set urlIsPlayingVideo(value: boolean) { callSDK<void>("ScreenTime_a956b86ef7a76a8e", 1038281678990324, this, [value]); }
   /**
    * var profileIdentifier: STWebHistory.ProfileIdentifier? { get set }
    * @availability iOS 18.4+
    */
-  get profileIdentifier(): $SDK2 { return callSDK<$SDK2>("ScreenTime_d6c5d10d3352e6ec", 766155652220143, this, []); }
-  set profileIdentifier(value: $SDK2) { callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 3648904742561178, this, [value]); }
+  get profileIdentifier(): $SDK2 { return callSDK<$SDK2>("ScreenTime_a956b86ef7a76a8e", 766155652220143, this, []); }
+  set profileIdentifier(value: $SDK2) { callSDK<void>("ScreenTime_a956b86ef7a76a8e", 3648904742561178, this, [value]); }
   /**
    * var suppressUsageRecording: Bool { get set }
    * @availability iOS 14.0+
    */
-  get suppressUsageRecording(): boolean { return callSDK<boolean>("ScreenTime_d6c5d10d3352e6ec", 2611345248516436, this, []); }
-  set suppressUsageRecording(value: boolean) { callSDK<void>("ScreenTime_d6c5d10d3352e6ec", 2183692802976997, this, [value]); }
+  get suppressUsageRecording(): boolean { return callSDK<boolean>("ScreenTime_a956b86ef7a76a8e", 2611345248516436, this, []); }
+  set suppressUsageRecording(value: boolean) { callSDK<void>("ScreenTime_a956b86ef7a76a8e", 2183692802976997, this, [value]); }
   declare readonly $type: { "c:objc(cs)STWebpageController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "urlIsBlocked": true; "urlIsPictureInPicture": true; "urlIsPlayingVideo": true; "profileIdentifier": true; "suppressUsageRecording": true };
 }
 
-registerSDKClass("STScreenTimeConfiguration", STScreenTimeConfiguration, { module: "ScreenTime_d6c5d10d3352e6ec", properties: {"enforcesChildRestrictions":312773437343206} });
-registerSDKClass("STScreenTimeConfigurationObserver", STScreenTimeConfigurationObserver, { module: "ScreenTime_d6c5d10d3352e6ec", properties: {"configuration":1961753061622241} });
-registerSDKClass("STWebHistory", STWebHistory, { module: "ScreenTime_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("STWebpageController", STWebpageController, { module: "ScreenTime_d6c5d10d3352e6ec", properties: {"url":3499935760148925,"urlIsBlocked":462718204709178,"urlIsPictureInPicture":1773479404185456,"urlIsPlayingVideo":560499292631440,"profileIdentifier":766155652220143,"suppressUsageRecording":2611345248516436} });
+registerSDKClass("STScreenTimeConfiguration", STScreenTimeConfiguration, { module: "ScreenTime_a956b86ef7a76a8e", properties: {"enforcesChildRestrictions":312773437343206} });
+registerSDKClass("STScreenTimeConfigurationObserver", STScreenTimeConfigurationObserver, { module: "ScreenTime_a956b86ef7a76a8e", properties: {"configuration":1961753061622241}, methods: {"startObserving":{"id":541972387780747},"stopObserving":{"id":3716793798630065}} });
+registerSDKClass("STWebHistory", STWebHistory, { module: "ScreenTime_a956b86ef7a76a8e", properties: {}, methods: {"deleteAllHistory":{"id":738237398319595},"deleteHistoryDuring":{"id":4465392179209951},"deleteHistoryFor":{"id":2716744605837588},"fetchAllHistory":{"id":4359667902067359,"hints":[{"callback":{"out":[]}}]},"fetchHistory":{"id":3048521853973120,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("STWebpageController", STWebpageController, { module: "ScreenTime_a956b86ef7a76a8e", properties: {"url":3499935760148925,"urlIsBlocked":462718204709178,"urlIsPictureInPicture":1773479404185456,"urlIsPlayingVideo":560499292631440,"profileIdentifier":766155652220143,"suppressUsageRecording":2611345248516436}, methods: {"setBundleIdentifier":{"id":1756864933307902}} });

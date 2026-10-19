@@ -12,17 +12,17 @@ export class AskCenter extends SDKHandle {
    * @MainActor final func askSignificantChangePermission(for question: PermissionQuestion<SignificantAppUpdateTopic>, permissionFlow: PermissionFlow, in viewController: UIViewController) async throws -> PermissionResult
    * @availability iOS 27.0+
    */
-  askSignificantChangePermission(question: $SDK0, permissionFlow: _PermissionKit_PermissionFlow, viewController: _UIKit_UIViewController): Promise<_PermissionKit_PermissionResult> { return callSDKAsync<_PermissionKit_PermissionResult>("_PermissionKit_UIKit_d6c5d10d3352e6ec", 469424553354818, this, [question, permissionFlow, viewController]); }
+  askSignificantChangePermission(question: $SDK0, permissionFlow: _PermissionKit_PermissionFlow, viewController: _UIKit_UIViewController): Promise<_PermissionKit_PermissionResult> { return callSDKAsync<_PermissionKit_PermissionResult>("_PermissionKit_UIKit_a956b86ef7a76a8e", 469424553354818, this, [question, permissionFlow, viewController]); }
   /**
    * final func ask(_ question: PermissionQuestion<CommunicationTopic>, in viewController: UIViewController) async throws
    * @availability iOS 26.2+
    */
-  askIn(question: $SDK1, viewController: _UIKit_UIViewController): Promise<void> { return callSDKAsync<void>("_PermissionKit_UIKit_d6c5d10d3352e6ec", 271483151624729, this, [question, viewController]); }
+  askIn(question: $SDK1, viewController: _UIKit_UIViewController): Promise<void> { return callSDKAsync<void>("_PermissionKit_UIKit_a956b86ef7a76a8e", 271483151624729, this, [question, viewController]); }
   /**
    * final func ask(_ question: PermissionQuestion<SignificantAppUpdateTopic>, in viewController: UIViewController) async throws
    * @availability iOS 26.2+
    */
-  askIn61031(question: $SDK0, viewController: _UIKit_UIViewController): Promise<void> { return callSDKAsync<void>("_PermissionKit_UIKit_d6c5d10d3352e6ec", 81222358944378, this, [question, viewController]); }
+  askIn61031(question: $SDK0, viewController: _UIKit_UIViewController): Promise<void> { return callSDKAsync<void>("_PermissionKit_UIKit_a956b86ef7a76a8e", 81222358944378, this, [question, viewController]); }
   declare readonly $type: { "s:13PermissionKit9AskCenterC": true };
 }
 
@@ -31,9 +31,9 @@ export class CommunicationLimits extends SDKHandle {
    * final func ask(_ question: PermissionQuestion<CommunicationTopic>, in viewController: UIViewController) async throws
    * @availability iOS 26.0+
    */
-  ask(question: $SDK1, viewController: _UIKit_UIViewController): Promise<void> { return callSDKAsync<void>("_PermissionKit_UIKit_d6c5d10d3352e6ec", 1062066248776512, this, [question, viewController]); }
+  ask(question: $SDK1, viewController: _UIKit_UIViewController): Promise<void> { return callSDKAsync<void>("_PermissionKit_UIKit_a956b86ef7a76a8e", 1062066248776512, this, [question, viewController]); }
   declare readonly $type: { "s:13PermissionKit19CommunicationLimitsC": true };
 }
 
-registerSDKClass("PermissionKit.AskCenter", AskCenter, { module: "_PermissionKit_UIKit_d6c5d10d3352e6ec", properties: {} }, true);
-registerSDKClass("PermissionKit.CommunicationLimits", CommunicationLimits, { module: "_PermissionKit_UIKit_d6c5d10d3352e6ec", properties: {} }, true);
+registerSDKClass("PermissionKit.AskCenter", AskCenter, { module: "_PermissionKit_UIKit_a956b86ef7a76a8e", properties: {}, methods: {"askSignificantChangePermission":{"id":469424553354818},"askIn":{"id":271483151624729},"askIn61031":{"id":81222358944378}} }, true);
+registerSDKClass("PermissionKit.CommunicationLimits", CommunicationLimits, { module: "_PermissionKit_UIKit_a956b86ef7a76a8e", properties: {}, methods: {"ask":{"id":1062066248776512}} }, true);

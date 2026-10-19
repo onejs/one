@@ -17,37 +17,37 @@ export class MatterAddDeviceExtensionRequestHandler extends SDKHandle {
    * override dynamic init()
    * @availability iOS 16.1+
    */
-  static init(): MatterAddDeviceExtensionRequestHandler { return callSDK<MatterAddDeviceExtensionRequestHandler>("MatterSupport_d6c5d10d3352e6ec", 1237060881173864, undefined, []); }
+  static init(): MatterAddDeviceExtensionRequestHandler { return callSDK<MatterAddDeviceExtensionRequestHandler>("MatterSupport_a956b86ef7a76a8e", 1237060881173864, undefined, []); }
   /**
    * func commissionDevice(in home: MatterAddDeviceRequest.Home?, onboardingPayload: String, commissioningID: UUID) async throws
    * @availability iOS 16.1+
    */
-  commissionDevice(home: $SDK0, onboardingPayload: string, commissioningID: string): Promise<void> { return callSDKAsync<void>("MatterSupport_d6c5d10d3352e6ec", 332841872685024, this, [home, onboardingPayload, commissioningID]); }
+  commissionDevice(home: $SDK0, onboardingPayload: string, commissioningID: string): Promise<void> { return callSDKAsync<void>("MatterSupport_a956b86ef7a76a8e", 332841872685024, this, [home, onboardingPayload, commissioningID]); }
   /**
    * func validateDeviceCredential(_ deviceCredential: MatterAddDeviceExtensionRequestHandler.DeviceCredential) async throws
    * @availability iOS 16.1+
    */
-  validateDeviceCredential(deviceCredential: MatterAddDeviceExtensionRequestHandler_DeviceCredential): Promise<void> { return callSDKAsync<void>("MatterSupport_d6c5d10d3352e6ec", 776863128453780, this, [deviceCredential]); }
+  validateDeviceCredential(deviceCredential: MatterAddDeviceExtensionRequestHandler_DeviceCredential): Promise<void> { return callSDKAsync<void>("MatterSupport_a956b86ef7a76a8e", 776863128453780, this, [deviceCredential]); }
   /**
    * func configureDevice(named name: String, in room: MatterAddDeviceRequest.Room?) async
    * @availability iOS 16.1+
    */
-  configureDevice(name: string, room?: (MatterAddDeviceRequest_Room) | null): Promise<void> { return callSDKAsync<void>("MatterSupport_d6c5d10d3352e6ec", 408540430339073, this, [name, room]); }
+  configureDevice(name: string, room?: (MatterAddDeviceRequest_Room) | null): Promise<void> { return callSDKAsync<void>("MatterSupport_a956b86ef7a76a8e", 408540430339073, this, [name, room]); }
   /**
    * func selectWiFiNetwork(from wifiScanResults: [MatterAddDeviceExtensionRequestHandler.WiFiScanResult]) async throws -> MatterAddDeviceExtensionRequestHandler.WiFiNetworkAssociation
    * @availability iOS 16.1+
    */
-  selectWiFiNetwork(wifiScanResults: Array<MatterAddDeviceExtensionRequestHandler_WiFiScanResult>): Promise<MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation> { return callSDKAsync<MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation>("MatterSupport_d6c5d10d3352e6ec", 1199753200382069, this, [wifiScanResults]); }
+  selectWiFiNetwork(wifiScanResults: Array<MatterAddDeviceExtensionRequestHandler_WiFiScanResult>): Promise<MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation> { return callSDKAsync<MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation>("MatterSupport_a956b86ef7a76a8e", 1199753200382069, this, [wifiScanResults]); }
   /**
    * func selectThreadNetwork(from threadScanResults: [MatterAddDeviceExtensionRequestHandler.ThreadScanResult]) async throws -> MatterAddDeviceExtensionRequestHandler.ThreadNetworkAssociation
    * @availability iOS 16.1+
    */
-  selectThreadNetwork(threadScanResults: Array<MatterAddDeviceExtensionRequestHandler_ThreadScanResult>): Promise<MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation> { return callSDKAsync<MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation>("MatterSupport_d6c5d10d3352e6ec", 4442280058452751, this, [threadScanResults]); }
+  selectThreadNetwork(threadScanResults: Array<MatterAddDeviceExtensionRequestHandler_ThreadScanResult>): Promise<MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation> { return callSDKAsync<MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation>("MatterSupport_a956b86ef7a76a8e", 4442280058452751, this, [threadScanResults]); }
   /**
    * func rooms(in home: MatterAddDeviceRequest.Home?) async -> [MatterAddDeviceRequest.Room]
    * @availability iOS 16.1+
    */
-  rooms(home?: $SDK0): Promise<Array<MatterAddDeviceRequest_Room>> { return callSDKAsync<Array<MatterAddDeviceRequest_Room>>("MatterSupport_d6c5d10d3352e6ec", 2905668573880472, this, [home]); }
+  rooms(home?: $SDK0): Promise<Array<MatterAddDeviceRequest_Room>> { return callSDKAsync<Array<MatterAddDeviceRequest_Room>>("MatterSupport_a956b86ef7a76a8e", 2905668573880472, this, [home]); }
   declare readonly $type: { "c:@M@MatterSupport@objc(cs)MatterAddDeviceExtensionRequestHandler": true; "c:objc(cs)NSObject": true };
 }
 
@@ -60,25 +60,25 @@ export class MatterAddDeviceExtensionRequestHandler_DeviceCredential extends SDK
    * var certificationDeclaration: Data
    * @availability iOS 16.1+
    */
-  get certificationDeclaration(): ArrayBuffer { return callSDK<ArrayBuffer>("MatterSupport_d6c5d10d3352e6ec", 1765644913995197, this, []); }
-  set certificationDeclaration(value: ArrayBuffer) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 52616419233508, this, [value]); }
+  get certificationDeclaration(): ArrayBuffer { return callSDK<ArrayBuffer>("MatterSupport_a956b86ef7a76a8e", 1765644913995197, this, []); }
+  set certificationDeclaration(value: ArrayBuffer) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 52616419233508, this, [value]); }
   /**
    * init(certificationDeclaration: Data, deviceAttestationCertificate: Data, productAttestationIntermediateCertificate: Data)
    * @availability iOS 16.1+
    */
-  static init(certificationDeclaration: ArrayBuffer, deviceAttestationCertificate: ArrayBuffer, productAttestationIntermediateCertificate: ArrayBuffer): MatterAddDeviceExtensionRequestHandler_DeviceCredential { return callSDK<MatterAddDeviceExtensionRequestHandler_DeviceCredential>("MatterSupport_d6c5d10d3352e6ec", 2661885249015294, undefined, [certificationDeclaration, deviceAttestationCertificate, productAttestationIntermediateCertificate]); }
+  static init(certificationDeclaration: ArrayBuffer, deviceAttestationCertificate: ArrayBuffer, productAttestationIntermediateCertificate: ArrayBuffer): MatterAddDeviceExtensionRequestHandler_DeviceCredential { return callSDK<MatterAddDeviceExtensionRequestHandler_DeviceCredential>("MatterSupport_a956b86ef7a76a8e", 2661885249015294, undefined, [certificationDeclaration, deviceAttestationCertificate, productAttestationIntermediateCertificate]); }
   /**
    * var deviceAttestationCertificate: Data
    * @availability iOS 16.1+
    */
-  get deviceAttestationCertificate(): ArrayBuffer { return callSDK<ArrayBuffer>("MatterSupport_d6c5d10d3352e6ec", 3112488760550655, this, []); }
-  set deviceAttestationCertificate(value: ArrayBuffer) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 1136438881806600, this, [value]); }
+  get deviceAttestationCertificate(): ArrayBuffer { return callSDK<ArrayBuffer>("MatterSupport_a956b86ef7a76a8e", 3112488760550655, this, []); }
+  set deviceAttestationCertificate(value: ArrayBuffer) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 1136438881806600, this, [value]); }
   /**
    * var productAttestationIntermediateCertificate: Data
    * @availability iOS 16.1+
    */
-  get productAttestationIntermediateCertificate(): ArrayBuffer { return callSDK<ArrayBuffer>("MatterSupport_d6c5d10d3352e6ec", 1987362292866854, this, []); }
-  set productAttestationIntermediateCertificate(value: ArrayBuffer) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 2954286246948437, this, [value]); }
+  get productAttestationIntermediateCertificate(): ArrayBuffer { return callSDK<ArrayBuffer>("MatterSupport_a956b86ef7a76a8e", 1987362292866854, this, []); }
+  set productAttestationIntermediateCertificate(value: ArrayBuffer) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 2954286246948437, this, [value]); }
   declare readonly $type: { "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC0D10CredentialV": true };
 }
 
@@ -91,12 +91,12 @@ export class MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation ext
    * static var defaultSystemNetwork: MatterAddDeviceExtensionRequestHandler.ThreadNetworkAssociation { get }
    * @availability iOS 16.1+
    */
-  static get defaultSystemNetwork(): MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation { return callSDK<MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation>("MatterSupport_d6c5d10d3352e6ec", 1606027023516472, undefined, []); }
+  static get defaultSystemNetwork(): MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation { return callSDK<MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation>("MatterSupport_a956b86ef7a76a8e", 1606027023516472, undefined, []); }
   /**
    * static func network(extendedPANID: UInt64) -> MatterAddDeviceExtensionRequestHandler.ThreadNetworkAssociation
    * @availability iOS 16.1+
    */
-  static network(extendedPANID: number): MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation { return callSDK<MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation>("MatterSupport_d6c5d10d3352e6ec", 2401860526553866, undefined, [extendedPANID]); }
+  static network(extendedPANID: number): MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation { return callSDK<MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation>("MatterSupport_a956b86ef7a76a8e", 2401860526553866, undefined, [extendedPANID]); }
   declare readonly $type: { "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC24ThreadNetworkAssociationV": true };
 }
 
@@ -109,55 +109,55 @@ export class MatterAddDeviceExtensionRequestHandler_ThreadScanResult extends SDK
    * init(networkName: String, panID: UInt16, extendedPANID: UInt64, channel: UInt16, extendedAddress: Data, rssi: Int8, version: UInt8, linkQualityIndicator: UInt8)
    * @availability iOS 16.1+
    */
-  static init(networkName: string, panID: number, extendedPANID: number, channel: number, extendedAddress: ArrayBuffer, rssi: number, version: number, linkQualityIndicator: number): MatterAddDeviceExtensionRequestHandler_ThreadScanResult { return callSDK<MatterAddDeviceExtensionRequestHandler_ThreadScanResult>("MatterSupport_d6c5d10d3352e6ec", 437327267129642, undefined, [networkName, panID, extendedPANID, channel, extendedAddress, rssi, version, linkQualityIndicator]); }
+  static init(networkName: string, panID: number, extendedPANID: number, channel: number, extendedAddress: ArrayBuffer, rssi: number, version: number, linkQualityIndicator: number): MatterAddDeviceExtensionRequestHandler_ThreadScanResult { return callSDK<MatterAddDeviceExtensionRequestHandler_ThreadScanResult>("MatterSupport_a956b86ef7a76a8e", 437327267129642, undefined, [networkName, panID, extendedPANID, channel, extendedAddress, rssi, version, linkQualityIndicator]); }
   /**
    * var networkName: String
    * @availability iOS 16.1+
    */
-  get networkName(): string { return callSDK<string>("MatterSupport_d6c5d10d3352e6ec", 2044220958828930, this, []); }
-  set networkName(value: string) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 2869903103071568, this, [value]); }
+  get networkName(): string { return callSDK<string>("MatterSupport_a956b86ef7a76a8e", 2044220958828930, this, []); }
+  set networkName(value: string) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 2869903103071568, this, [value]); }
   /**
    * var extendedPANID: UInt64
    * @availability iOS 16.1+
    */
-  get extendedPANID(): number { return callSDK<number>("MatterSupport_d6c5d10d3352e6ec", 1056065409600907, this, []); }
-  set extendedPANID(value: number) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 2789567777173148, this, [value]); }
+  get extendedPANID(): number { return callSDK<number>("MatterSupport_a956b86ef7a76a8e", 1056065409600907, this, []); }
+  set extendedPANID(value: number) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 2789567777173148, this, [value]); }
   /**
    * var extendedAddress: Data
    * @availability iOS 16.1+
    */
-  get extendedAddress(): ArrayBuffer { return callSDK<ArrayBuffer>("MatterSupport_d6c5d10d3352e6ec", 1659911288937726, this, []); }
-  set extendedAddress(value: ArrayBuffer) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 2643009081834648, this, [value]); }
+  get extendedAddress(): ArrayBuffer { return callSDK<ArrayBuffer>("MatterSupport_a956b86ef7a76a8e", 1659911288937726, this, []); }
+  set extendedAddress(value: ArrayBuffer) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 2643009081834648, this, [value]); }
   /**
    * var linkQualityIndicator: UInt8
    * @availability iOS 16.1+
    */
-  get linkQualityIndicator(): number { return callSDK<number>("MatterSupport_d6c5d10d3352e6ec", 4346168504104396, this, []); }
-  set linkQualityIndicator(value: number) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 1592034471115955, this, [value]); }
+  get linkQualityIndicator(): number { return callSDK<number>("MatterSupport_a956b86ef7a76a8e", 4346168504104396, this, []); }
+  set linkQualityIndicator(value: number) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 1592034471115955, this, [value]); }
   /**
    * var rssi: Int8
    * @availability iOS 16.1+
    */
-  get rssi(): number { return callSDK<number>("MatterSupport_d6c5d10d3352e6ec", 1441685448667228, this, []); }
-  set rssi(value: number) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 4220834845564829, this, [value]); }
+  get rssi(): number { return callSDK<number>("MatterSupport_a956b86ef7a76a8e", 1441685448667228, this, []); }
+  set rssi(value: number) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 4220834845564829, this, [value]); }
   /**
    * var panID: UInt16
    * @availability iOS 16.1+
    */
-  get panID(): number { return callSDK<number>("MatterSupport_d6c5d10d3352e6ec", 3016315099071751, this, []); }
-  set panID(value: number) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 3030713944076135, this, [value]); }
+  get panID(): number { return callSDK<number>("MatterSupport_a956b86ef7a76a8e", 3016315099071751, this, []); }
+  set panID(value: number) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 3030713944076135, this, [value]); }
   /**
    * var channel: UInt16
    * @availability iOS 16.1+
    */
-  get channel(): number { return callSDK<number>("MatterSupport_d6c5d10d3352e6ec", 4317946039810024, this, []); }
-  set channel(value: number) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 3915247902842271, this, [value]); }
+  get channel(): number { return callSDK<number>("MatterSupport_a956b86ef7a76a8e", 4317946039810024, this, []); }
+  set channel(value: number) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 3915247902842271, this, [value]); }
   /**
    * var version: UInt8
    * @availability iOS 16.1+
    */
-  get version(): number { return callSDK<number>("MatterSupport_d6c5d10d3352e6ec", 1031377303926907, this, []); }
-  set version(value: number) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 250576801449931, this, [value]); }
+  get version(): number { return callSDK<number>("MatterSupport_a956b86ef7a76a8e", 1031377303926907, this, []); }
+  set version(value: number) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 250576801449931, this, [value]); }
   declare readonly $type: { "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC16ThreadScanResultV": true };
 }
 
@@ -170,12 +170,12 @@ export class MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation exten
    * static var defaultSystemNetwork: MatterAddDeviceExtensionRequestHandler.WiFiNetworkAssociation { get }
    * @availability iOS 16.1+
    */
-  static get defaultSystemNetwork(): MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation { return callSDK<MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation>("MatterSupport_d6c5d10d3352e6ec", 3595844052477676, undefined, []); }
+  static get defaultSystemNetwork(): MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation { return callSDK<MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation>("MatterSupport_a956b86ef7a76a8e", 3595844052477676, undefined, []); }
   /**
    * static func network(ssid: Data, credentials: Data) -> MatterAddDeviceExtensionRequestHandler.WiFiNetworkAssociation
    * @availability iOS 16.1+
    */
-  static network(ssid: ArrayBuffer, credentials: ArrayBuffer): MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation { return callSDK<MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation>("MatterSupport_d6c5d10d3352e6ec", 248074688796244, undefined, [ssid, credentials]); }
+  static network(ssid: ArrayBuffer, credentials: ArrayBuffer): MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation { return callSDK<MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation>("MatterSupport_a956b86ef7a76a8e", 248074688796244, undefined, [ssid, credentials]); }
   declare readonly $type: { "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC22WiFiNetworkAssociationV": true };
 }
 
@@ -188,31 +188,31 @@ export class MatterAddDeviceExtensionRequestHandler_WiFiScanResult extends SDKHa
    * var band: MTRNetworkCommissioningWiFiBand
    * @availability iOS 16.1+
    */
-  get band(): _Matter_MTRNetworkCommissioningWiFiBand { return callSDK<_Matter_MTRNetworkCommissioningWiFiBand>("MatterSupport_d6c5d10d3352e6ec", 800700929164897, this, []); }
-  set band(value: _Matter_MTRNetworkCommissioningWiFiBand) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 195589308406367, this, [value]); }
+  get band(): _Matter_MTRNetworkCommissioningWiFiBand { return callSDK<_Matter_MTRNetworkCommissioningWiFiBand>("MatterSupport_a956b86ef7a76a8e", 800700929164897, this, []); }
+  set band(value: _Matter_MTRNetworkCommissioningWiFiBand) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 195589308406367, this, [value]); }
   /**
    * var rssi: Int8
    * @availability iOS 16.1+
    */
-  get rssi(): number { return callSDK<number>("MatterSupport_d6c5d10d3352e6ec", 4349168441951593, this, []); }
-  set rssi(value: number) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 152310151674053, this, [value]); }
+  get rssi(): number { return callSDK<number>("MatterSupport_a956b86ef7a76a8e", 4349168441951593, this, []); }
+  set rssi(value: number) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 152310151674053, this, [value]); }
   /**
    * var ssid: Data
    * @availability iOS 16.1+
    */
-  get ssid(): ArrayBuffer { return callSDK<ArrayBuffer>("MatterSupport_d6c5d10d3352e6ec", 4006979754150644, this, []); }
-  set ssid(value: ArrayBuffer) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 2143955928976150, this, [value]); }
+  get ssid(): ArrayBuffer { return callSDK<ArrayBuffer>("MatterSupport_a956b86ef7a76a8e", 4006979754150644, this, []); }
+  set ssid(value: ArrayBuffer) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 2143955928976150, this, [value]); }
   /**
    * init(ssid: Data, rssi: Int8, security: MTRNetworkCommissioningWiFiSecurity, band: MTRNetworkCommissioningWiFiBand)
    * @availability iOS 16.1+
    */
-  static init(ssid: ArrayBuffer, rssi: number, security: _Matter_MTRNetworkCommissioningWiFiSecurity, band: _Matter_MTRNetworkCommissioningWiFiBand): MatterAddDeviceExtensionRequestHandler_WiFiScanResult { return callSDK<MatterAddDeviceExtensionRequestHandler_WiFiScanResult>("MatterSupport_d6c5d10d3352e6ec", 109576813713426, undefined, [ssid, rssi, security, band]); }
+  static init(ssid: ArrayBuffer, rssi: number, security: _Matter_MTRNetworkCommissioningWiFiSecurity, band: _Matter_MTRNetworkCommissioningWiFiBand): MatterAddDeviceExtensionRequestHandler_WiFiScanResult { return callSDK<MatterAddDeviceExtensionRequestHandler_WiFiScanResult>("MatterSupport_a956b86ef7a76a8e", 109576813713426, undefined, [ssid, rssi, security, band]); }
   /**
    * var security: MTRNetworkCommissioningWiFiSecurity
    * @availability iOS 16.1+
    */
-  get security(): _Matter_MTRNetworkCommissioningWiFiSecurity { return callSDK<_Matter_MTRNetworkCommissioningWiFiSecurity>("MatterSupport_d6c5d10d3352e6ec", 1141260493846390, this, []); }
-  set security(value: _Matter_MTRNetworkCommissioningWiFiSecurity) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 1910222410164218, this, [value]); }
+  get security(): _Matter_MTRNetworkCommissioningWiFiSecurity { return callSDK<_Matter_MTRNetworkCommissioningWiFiSecurity>("MatterSupport_a956b86ef7a76a8e", 1141260493846390, this, []); }
+  set security(value: _Matter_MTRNetworkCommissioningWiFiSecurity) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 1910222410164218, this, [value]); }
   declare readonly $type: { "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC14WiFiScanResultV": true };
 }
 
@@ -225,46 +225,46 @@ export class MatterAddDeviceRequest extends SDKHandle {
    * var showDeviceCriteria: MatterAddDeviceRequest.DeviceCriteria
    * @availability iOS 16.1+
    */
-  get showDeviceCriteria(): MatterAddDeviceRequest_DeviceCriteria { return callSDK<MatterAddDeviceRequest_DeviceCriteria>("MatterSupport_d6c5d10d3352e6ec", 3030886413360259, this, []); }
-  set showDeviceCriteria(value: MatterAddDeviceRequest_DeviceCriteria) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 3420131718282615, this, [value]); }
+  get showDeviceCriteria(): MatterAddDeviceRequest_DeviceCriteria { return callSDK<MatterAddDeviceRequest_DeviceCriteria>("MatterSupport_a956b86ef7a76a8e", 3030886413360259, this, []); }
+  set showDeviceCriteria(value: MatterAddDeviceRequest_DeviceCriteria) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 3420131718282615, this, [value]); }
   /**
    * static var isSupported: Bool { get }
    * @availability iOS 17.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("MatterSupport_d6c5d10d3352e6ec", 1969706681199453, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("MatterSupport_a956b86ef7a76a8e", 1969706681199453, undefined, []); }
   /**
    * var setupPayload: MTRSetupPayload?
    * @availability iOS 16.1+
    */
-  get setupPayload(): $SDK5 { return callSDK<$SDK5>("MatterSupport_d6c5d10d3352e6ec", 763051623389151, this, []); }
-  set setupPayload(value: $SDK5) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 2536369087007890, this, [value]); }
+  get setupPayload(): $SDK5 { return callSDK<$SDK5>("MatterSupport_a956b86ef7a76a8e", 763051623389151, this, []); }
+  set setupPayload(value: $SDK5) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 2536369087007890, this, [value]); }
   /**
    * var shouldScanNetworks: Bool
    * @availability iOS 16.4+
    */
-  get shouldScanNetworks(): boolean { return callSDK<boolean>("MatterSupport_d6c5d10d3352e6ec", 1342600648755695, this, []); }
-  set shouldScanNetworks(value: boolean) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 3954629688272408, this, [value]); }
+  get shouldScanNetworks(): boolean { return callSDK<boolean>("MatterSupport_a956b86ef7a76a8e", 1342600648755695, this, []); }
+  set shouldScanNetworks(value: boolean) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 3954629688272408, this, [value]); }
   /**
    * func perform() async throws
    * @availability iOS 16.1+
    */
-  perform(): Promise<void> { return callSDKAsync<void>("MatterSupport_d6c5d10d3352e6ec", 3915853569887731, this, []); }
+  perform(): Promise<void> { return callSDKAsync<void>("MatterSupport_a956b86ef7a76a8e", 3915853569887731, this, []); }
   /**
    * init(topology: MatterAddDeviceRequest.Topology, setupPayload: MTRSetupPayload? = nil, showing deviceCriteria: MatterAddDeviceRequest.DeviceCriteria = .allDevices, shouldScanNetworks: Bool = true)
    * @availability iOS 16.4+
    */
-  static initTopologySetupPayloadShowingShouldScanNetworks(topology: MatterAddDeviceRequest_Topology, setupPayload?: $SDK5, deviceCriteria?: MatterAddDeviceRequest_DeviceCriteria, shouldScanNetworks?: boolean): MatterAddDeviceRequest { return callSDK<MatterAddDeviceRequest>("MatterSupport_d6c5d10d3352e6ec", 1063686874034357, undefined, [topology, setupPayload, deviceCriteria, shouldScanNetworks]); }
+  static initTopologySetupPayloadShowingShouldScanNetworks(topology: MatterAddDeviceRequest_Topology, setupPayload?: $SDK5, deviceCriteria?: MatterAddDeviceRequest_DeviceCriteria, shouldScanNetworks?: boolean): MatterAddDeviceRequest { return callSDK<MatterAddDeviceRequest>("MatterSupport_a956b86ef7a76a8e", 1063686874034357, undefined, [topology, setupPayload, deviceCriteria, shouldScanNetworks]); }
   /**
    * init(topology: MatterAddDeviceRequest.Topology, setupPayload: MTRSetupPayload? = nil, showing deviceCriteria: MatterAddDeviceRequest.DeviceCriteria = .allDevices)
    * @availability iOS 16.1+
    */
-  static initTopologySetupPayloadShowing(topology: MatterAddDeviceRequest_Topology, setupPayload?: $SDK5, deviceCriteria?: MatterAddDeviceRequest_DeviceCriteria): MatterAddDeviceRequest { return callSDK<MatterAddDeviceRequest>("MatterSupport_d6c5d10d3352e6ec", 1415415364343424, undefined, [topology, setupPayload, deviceCriteria]); }
+  static initTopologySetupPayloadShowing(topology: MatterAddDeviceRequest_Topology, setupPayload?: $SDK5, deviceCriteria?: MatterAddDeviceRequest_DeviceCriteria): MatterAddDeviceRequest { return callSDK<MatterAddDeviceRequest>("MatterSupport_a956b86ef7a76a8e", 1415415364343424, undefined, [topology, setupPayload, deviceCriteria]); }
   /**
    * var topology: MatterAddDeviceRequest.Topology
    * @availability iOS 16.1+
    */
-  get topology(): MatterAddDeviceRequest_Topology { return callSDK<MatterAddDeviceRequest_Topology>("MatterSupport_d6c5d10d3352e6ec", 153164352803408, this, []); }
-  set topology(value: MatterAddDeviceRequest_Topology) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 1663318069748151, this, [value]); }
+  get topology(): MatterAddDeviceRequest_Topology { return callSDK<MatterAddDeviceRequest_Topology>("MatterSupport_a956b86ef7a76a8e", 153164352803408, this, []); }
+  set topology(value: MatterAddDeviceRequest_Topology) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 1663318069748151, this, [value]); }
   declare readonly $type: { "s:13MatterSupport0A16AddDeviceRequestV": true };
 }
 
@@ -285,13 +285,13 @@ export class MatterAddDeviceRequest_Home extends SDKHandle {
    * init(displayName: String)
    * @availability iOS 16.1+
    */
-  static init(displayName: string): MatterAddDeviceRequest_Home { return callSDK<MatterAddDeviceRequest_Home>("MatterSupport_d6c5d10d3352e6ec", 2756369451091300, undefined, [displayName]); }
+  static init(displayName: string): MatterAddDeviceRequest_Home { return callSDK<MatterAddDeviceRequest_Home>("MatterSupport_a956b86ef7a76a8e", 2756369451091300, undefined, [displayName]); }
   /**
    * var displayName: String
    * @availability iOS 16.1+
    */
-  get displayName(): string { return callSDK<string>("MatterSupport_d6c5d10d3352e6ec", 1408512613249284, this, []); }
-  set displayName(value: string) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 3044574483542545, this, [value]); }
+  get displayName(): string { return callSDK<string>("MatterSupport_a956b86ef7a76a8e", 1408512613249284, this, []); }
+  set displayName(value: string) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 3044574483542545, this, [value]); }
   declare readonly $type: { "s:13MatterSupport0A16AddDeviceRequestV4HomeV": true };
 }
 
@@ -304,13 +304,13 @@ export class MatterAddDeviceRequest_Room extends SDKHandle {
    * init(displayName: String)
    * @availability iOS 16.1+
    */
-  static init(displayName: string): MatterAddDeviceRequest_Room { return callSDK<MatterAddDeviceRequest_Room>("MatterSupport_d6c5d10d3352e6ec", 4359317542864863, undefined, [displayName]); }
+  static init(displayName: string): MatterAddDeviceRequest_Room { return callSDK<MatterAddDeviceRequest_Room>("MatterSupport_a956b86ef7a76a8e", 4359317542864863, undefined, [displayName]); }
   /**
    * var displayName: String
    * @availability iOS 16.1+
    */
-  get displayName(): string { return callSDK<string>("MatterSupport_d6c5d10d3352e6ec", 1010000839479484, this, []); }
-  set displayName(value: string) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 1287004294032938, this, [value]); }
+  get displayName(): string { return callSDK<string>("MatterSupport_a956b86ef7a76a8e", 1010000839479484, this, []); }
+  set displayName(value: string) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 1287004294032938, this, [value]); }
   declare readonly $type: { "s:13MatterSupport0A16AddDeviceRequestV4RoomV": true };
 }
 
@@ -323,30 +323,30 @@ export class MatterAddDeviceRequest_Topology extends SDKHandle {
    * init(ecosystemName: String, homes: [MatterAddDeviceRequest.Home])
    * @availability iOS 16.1+
    */
-  static init(ecosystemName: string, homes: $SDK6): MatterAddDeviceRequest_Topology { return callSDK<MatterAddDeviceRequest_Topology>("MatterSupport_d6c5d10d3352e6ec", 3134261402805798, undefined, [ecosystemName, homes]); }
+  static init(ecosystemName: string, homes: $SDK6): MatterAddDeviceRequest_Topology { return callSDK<MatterAddDeviceRequest_Topology>("MatterSupport_a956b86ef7a76a8e", 3134261402805798, undefined, [ecosystemName, homes]); }
   /**
    * var ecosystemName: String
    * @availability iOS 16.1+
    */
-  get ecosystemName(): string { return callSDK<string>("MatterSupport_d6c5d10d3352e6ec", 3852701174151174, this, []); }
-  set ecosystemName(value: string) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 4369350792865076, this, [value]); }
+  get ecosystemName(): string { return callSDK<string>("MatterSupport_a956b86ef7a76a8e", 3852701174151174, this, []); }
+  set ecosystemName(value: string) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 4369350792865076, this, [value]); }
   /**
    * var homes: [MatterAddDeviceRequest.Home]
    * @availability iOS 16.1+
    */
-  get homes(): $SDK6 { return callSDK<$SDK6>("MatterSupport_d6c5d10d3352e6ec", 4359710833673759, this, []); }
-  set homes(value: $SDK6) { callSDK<void>("MatterSupport_d6c5d10d3352e6ec", 3306908073439810, this, [value]); }
+  get homes(): $SDK6 { return callSDK<$SDK6>("MatterSupport_a956b86ef7a76a8e", 4359710833673759, this, []); }
+  set homes(value: $SDK6) { callSDK<void>("MatterSupport_a956b86ef7a76a8e", 3306908073439810, this, [value]); }
   declare readonly $type: { "s:13MatterSupport0A16AddDeviceRequestV8TopologyV": true };
 }
 
-registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler", MatterAddDeviceExtensionRequestHandler, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler.DeviceCredential", MatterAddDeviceExtensionRequestHandler_DeviceCredential, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler.ThreadNetworkAssociation", MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler.ThreadScanResult", MatterAddDeviceExtensionRequestHandler_ThreadScanResult, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler.WiFiNetworkAssociation", MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler.WiFiScanResult", MatterAddDeviceExtensionRequestHandler_WiFiScanResult, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MatterSupport.MatterAddDeviceRequest", MatterAddDeviceRequest, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MatterSupport.MatterAddDeviceRequest.DeviceCriteria", MatterAddDeviceRequest_DeviceCriteria, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MatterSupport.MatterAddDeviceRequest.Home", MatterAddDeviceRequest_Home, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MatterSupport.MatterAddDeviceRequest.Room", MatterAddDeviceRequest_Room, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MatterSupport.MatterAddDeviceRequest.Topology", MatterAddDeviceRequest_Topology, { module: "MatterSupport_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler", MatterAddDeviceExtensionRequestHandler, { module: "MatterSupport_a956b86ef7a76a8e", properties: {}, methods: {"commissionDevice":{"id":332841872685024},"validateDeviceCredential":{"id":776863128453780},"configureDevice":{"id":408540430339073},"selectWiFiNetwork":{"id":1199753200382069},"selectThreadNetwork":{"id":4442280058452751},"rooms":{"id":2905668573880472}} });
+registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler.DeviceCredential", MatterAddDeviceExtensionRequestHandler_DeviceCredential, { module: "MatterSupport_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler.ThreadNetworkAssociation", MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation, { module: "MatterSupport_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler.ThreadScanResult", MatterAddDeviceExtensionRequestHandler_ThreadScanResult, { module: "MatterSupport_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler.WiFiNetworkAssociation", MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation, { module: "MatterSupport_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MatterSupport.MatterAddDeviceExtensionRequestHandler.WiFiScanResult", MatterAddDeviceExtensionRequestHandler_WiFiScanResult, { module: "MatterSupport_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MatterSupport.MatterAddDeviceRequest", MatterAddDeviceRequest, { module: "MatterSupport_a956b86ef7a76a8e", properties: {}, methods: {"perform":{"id":3915853569887731}} });
+registerSDKClass("MatterSupport.MatterAddDeviceRequest.DeviceCriteria", MatterAddDeviceRequest_DeviceCriteria, { module: "MatterSupport_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MatterSupport.MatterAddDeviceRequest.Home", MatterAddDeviceRequest_Home, { module: "MatterSupport_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MatterSupport.MatterAddDeviceRequest.Room", MatterAddDeviceRequest_Room, { module: "MatterSupport_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MatterSupport.MatterAddDeviceRequest.Topology", MatterAddDeviceRequest_Topology, { module: "MatterSupport_a956b86ef7a76a8e", properties: {} });

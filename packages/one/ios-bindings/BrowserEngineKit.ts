@@ -34,44 +34,44 @@ export class BEAccessibility extends SDKHandle {
    * static var selectionChangedNotification: UIAccessibility.Notification
    * @availability iOS 18.0+
    */
-  static get selectionChangedNotification(): _UIKit_UIAccessibility_Notification { return callSDK<_UIKit_UIAccessibility_Notification>("BrowserEngineKit_d6c5d10d3352e6ec", 1503577398607481, undefined, []); }
-  static set selectionChangedNotification(value: _UIKit_UIAccessibility_Notification) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3417420681470351, undefined, [value]); }
+  static get selectionChangedNotification(): _UIKit_UIAccessibility_Notification { return callSDK<_UIKit_UIAccessibility_Notification>("BrowserEngineKit_a956b86ef7a76a8e", 1503577398607481, undefined, []); }
+  static set selectionChangedNotification(value: _UIKit_UIAccessibility_Notification) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3417420681470351, undefined, [value]); }
   /**
    * static var menuItem: UIAccessibilityTraits
    * @availability iOS 18.0+
    */
-  static get menuItem(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("BrowserEngineKit_d6c5d10d3352e6ec", 2546586341253723, undefined, []); }
-  static set menuItem(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 58929174631268, undefined, [value]); }
+  static get menuItem(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("BrowserEngineKit_a956b86ef7a76a8e", 2546586341253723, undefined, []); }
+  static set menuItem(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 58929174631268, undefined, [value]); }
   /**
    * static var popUpButton: UIAccessibilityTraits
    * @availability iOS 18.0+
    */
-  static get popUpButton(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("BrowserEngineKit_d6c5d10d3352e6ec", 4222898842534433, undefined, []); }
-  static set popUpButton(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2533144329868503, undefined, [value]); }
+  static get popUpButton(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("BrowserEngineKit_a956b86ef7a76a8e", 4222898842534433, undefined, []); }
+  static set popUpButton(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 2533144329868503, undefined, [value]); }
   /**
    * static var radioButton: UIAccessibilityTraits
    * @availability iOS 18.0+
    */
-  static get radioButton(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("BrowserEngineKit_d6c5d10d3352e6ec", 2878790737151027, undefined, []); }
-  static set radioButton(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1524511029725773, undefined, [value]); }
+  static get radioButton(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("BrowserEngineKit_a956b86ef7a76a8e", 2878790737151027, undefined, []); }
+  static set radioButton(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1524511029725773, undefined, [value]); }
   /**
    * static var readOnly: UIAccessibilityTraits
    * @availability iOS 18.0+
    */
-  static get readOnly(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("BrowserEngineKit_d6c5d10d3352e6ec", 397033168457483, undefined, []); }
-  static set readOnly(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2265834025722291, undefined, [value]); }
+  static get readOnly(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("BrowserEngineKit_a956b86ef7a76a8e", 397033168457483, undefined, []); }
+  static set readOnly(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 2265834025722291, undefined, [value]); }
   /**
    * static var visited: UIAccessibilityTraits
    * @availability iOS 18.0+
    */
-  static get visited(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("BrowserEngineKit_d6c5d10d3352e6ec", 300150384884115, undefined, []); }
-  static set visited(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3320676563076254, undefined, [value]); }
+  static get visited(): _UIKit_UIAccessibilityTraits { return callSDK<_UIKit_UIAccessibilityTraits>("BrowserEngineKit_a956b86ef7a76a8e", 300150384884115, undefined, []); }
+  static set visited(value: _UIKit_UIAccessibilityTraits) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3320676563076254, undefined, [value]); }
   /**
    * static var valueChangedNotification: UIAccessibility.Notification
    * @availability iOS 18.0+
    */
-  static get valueChangedNotification(): _UIKit_UIAccessibility_Notification { return callSDK<_UIKit_UIAccessibility_Notification>("BrowserEngineKit_d6c5d10d3352e6ec", 861879855693075, undefined, []); }
-  static set valueChangedNotification(value: _UIKit_UIAccessibility_Notification) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 918011241590392, undefined, [value]); }
+  static get valueChangedNotification(): _UIKit_UIAccessibility_Notification { return callSDK<_UIKit_UIAccessibility_Notification>("BrowserEngineKit_a956b86ef7a76a8e", 861879855693075, undefined, []); }
+  static set valueChangedNotification(value: _UIKit_UIAccessibility_Notification) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 918011241590392, undefined, [value]); }
   declare readonly $type: { "c:@S@BEAccessibility": true };
 }
 
@@ -86,67 +86,67 @@ export const BEAccessibilityContainerType = {
    * static var alert: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get alert(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 2743973817743703, undefined, []); },
+  get alert(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 2743973817743703, undefined, []); },
   /**
    * static var article: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get article(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 852143181330431, undefined, []); },
+  get article(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 852143181330431, undefined, []); },
   /**
    * static var descriptionList: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get descriptionList(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 1455723992557627, undefined, []); },
+  get descriptionList(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 1455723992557627, undefined, []); },
   /**
    * static var dialog: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get dialog(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 79348170380087, undefined, []); },
+  get dialog(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 79348170380087, undefined, []); },
   /**
    * static var fieldset: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get fieldset(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 1743608606986618, undefined, []); },
+  get fieldset(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 1743608606986618, undefined, []); },
   /**
    * static var frame: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get frame(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 3009821682669606, undefined, []); },
+  get frame(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 3009821682669606, undefined, []); },
   /**
    * static var landmark: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get landmark(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 1662657221487878, undefined, []); },
+  get landmark(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 1662657221487878, undefined, []); },
   /**
    * static var list: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get list(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 1402693121051005, undefined, []); },
+  get list(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 1402693121051005, undefined, []); },
   /**
    * static var scrollArea: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get scrollArea(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 4365947898399201, undefined, []); },
+  get scrollArea(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 4365947898399201, undefined, []); },
   /**
    * static var semanticGroup: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get semanticGroup(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 2425170157321277, undefined, []); },
+  get semanticGroup(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 2425170157321277, undefined, []); },
   /**
    * static var table: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get table(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 2438711397448038, undefined, []); },
+  get table(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 2438711397448038, undefined, []); },
   /**
    * static var tree: BEAccessibilityContainerType { get }
    * @availability iOS 18.0+
    */
-  get tree(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 636951641558579, undefined, []); },
+  get tree(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 636951641558579, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 1924643161884358, undefined, [rawValue]); }
+  init(rawValue: number): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 1924643161884358, undefined, [rawValue]); }
 };
 
 /**
@@ -160,7 +160,7 @@ export const BEAccessibilityOrientation = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (BEAccessibilityOrientation) | null { return callSDK<(BEAccessibilityOrientation) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 3891734136018101, undefined, [rawValue]); }
+  init(rawValue: number): (BEAccessibilityOrientation) | null { return callSDK<(BEAccessibilityOrientation) | null>("BrowserEngineKit_a956b86ef7a76a8e", 3891734136018101, undefined, [rawValue]); }
 };
 
 /**
@@ -174,7 +174,7 @@ export const BEAccessibilityPressedState = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (BEAccessibilityPressedState) | null { return callSDK<(BEAccessibilityPressedState) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 3317394877414510, undefined, [rawValue]); }
+  init(rawValue: number): (BEAccessibilityPressedState) | null { return callSDK<(BEAccessibilityPressedState) | null>("BrowserEngineKit_a956b86ef7a76a8e", 3317394877414510, undefined, [rawValue]); }
 };
 
 /**
@@ -186,7 +186,7 @@ export class BEAccessibilityRemoteElement extends SDKHandle {
    * init(identifier: String, hostPid: pid_t)
    * @availability iOS 26.0+
    */
-  static init(identifier: string, hostPid: SDKHandle): BEAccessibilityRemoteElement { return callSDK<BEAccessibilityRemoteElement>("BrowserEngineKit_d6c5d10d3352e6ec", 3701035746980046, undefined, [identifier, hostPid]); }
+  static init(identifier: string, hostPid: SDKHandle): BEAccessibilityRemoteElement { return callSDK<BEAccessibilityRemoteElement>("BrowserEngineKit_a956b86ef7a76a8e", 3701035746980046, undefined, [identifier, hostPid]); }
   declare readonly $type: { "c:objc(cs)BEAccessibilityRemoteElement": true; "c:objc(cs)NSObject": true };
 }
 
@@ -199,13 +199,13 @@ export class BEAccessibilityRemoteHostElement extends SDKHandle {
    * init(identifier: String, remotePid: pid_t)
    * @availability iOS 26.0+
    */
-  static init(identifier: string, remotePid: SDKHandle): BEAccessibilityRemoteHostElement { return callSDK<BEAccessibilityRemoteHostElement>("BrowserEngineKit_d6c5d10d3352e6ec", 3621437180002178, undefined, [identifier, remotePid]); }
+  static init(identifier: string, remotePid: SDKHandle): BEAccessibilityRemoteHostElement { return callSDK<BEAccessibilityRemoteHostElement>("BrowserEngineKit_a956b86ef7a76a8e", 3621437180002178, undefined, [identifier, remotePid]); }
   /**
    * weak var accessibilityContainer: AnyObject? { get set }
    * @availability iOS 26.0+
    */
-  get accessibilityContainer(): (unknown) | null { return callSDK<(unknown) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 3211623009471120, this, []); }
-  set accessibilityContainer(value: (unknown) | null) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1137321464896203, this, [value]); }
+  get accessibilityContainer(): (unknown) | null { return callSDK<(unknown) | null>("BrowserEngineKit_a956b86ef7a76a8e", 3211623009471120, this, []); }
+  set accessibilityContainer(value: (unknown) | null) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1137321464896203, this, [value]); }
   declare readonly $type: { "c:objc(cs)BEAccessibilityRemoteHostElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessibilityContainer": true };
 }
@@ -216,7 +216,7 @@ export class BEAccessibilityRemoteHostElement extends SDKHandle {
  */
 export class BEAccessibilityTextMarker extends SDKHandle {
   /** init() */
-  static init(): BEAccessibilityTextMarker { return callSDK<BEAccessibilityTextMarker>("BrowserEngineKit_d6c5d10d3352e6ec", 2501952135574375, undefined, []); }
+  static init(): BEAccessibilityTextMarker { return callSDK<BEAccessibilityTextMarker>("BrowserEngineKit_a956b86ef7a76a8e", 2501952135574375, undefined, []); }
   declare readonly $type: { "c:objc(cs)BEAccessibilityTextMarker": true; "c:objc(cs)NSObject": true };
 }
 
@@ -226,19 +226,19 @@ export class BEAccessibilityTextMarker extends SDKHandle {
  */
 export class BEAccessibilityTextMarker_Range extends SDKHandle {
   /** init() */
-  static init(): BEAccessibilityTextMarker_Range { return callSDK<BEAccessibilityTextMarker_Range>("BrowserEngineKit_d6c5d10d3352e6ec", 3534146617599749, undefined, []); }
+  static init(): BEAccessibilityTextMarker_Range { return callSDK<BEAccessibilityTextMarker_Range>("BrowserEngineKit_a956b86ef7a76a8e", 3534146617599749, undefined, []); }
   /**
    * var endMarker: BEAccessibilityTextMarker { get set }
    * @availability iOS 18.2+
    */
-  get endMarker(): BEAccessibilityTextMarker { return callSDK<BEAccessibilityTextMarker>("BrowserEngineKit_d6c5d10d3352e6ec", 893336392789518, this, []); }
-  set endMarker(value: BEAccessibilityTextMarker) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 7067113268458, this, [value]); }
+  get endMarker(): BEAccessibilityTextMarker { return callSDK<BEAccessibilityTextMarker>("BrowserEngineKit_a956b86ef7a76a8e", 893336392789518, this, []); }
+  set endMarker(value: BEAccessibilityTextMarker) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 7067113268458, this, [value]); }
   /**
    * var startMarker: BEAccessibilityTextMarker { get set }
    * @availability iOS 18.2+
    */
-  get startMarker(): BEAccessibilityTextMarker { return callSDK<BEAccessibilityTextMarker>("BrowserEngineKit_d6c5d10d3352e6ec", 3663253708644328, this, []); }
-  set startMarker(value: BEAccessibilityTextMarker) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2149124633084981, this, [value]); }
+  get startMarker(): BEAccessibilityTextMarker { return callSDK<BEAccessibilityTextMarker>("BrowserEngineKit_a956b86ef7a76a8e", 3663253708644328, this, []); }
+  set startMarker(value: BEAccessibilityTextMarker) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 2149124633084981, this, [value]); }
   declare readonly $type: { "c:objc(cs)BEAccessibilityTextMarkerRange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endMarker": true; "startMarker": true };
 }
@@ -319,12 +319,12 @@ export class BETextSuggestion extends SDKHandle {
    * init(inputText: String)
    * @availability iOS 17.4+
    */
-  static init(inputText: string): BETextSuggestion { return callSDK<BETextSuggestion>("BrowserEngineKit_d6c5d10d3352e6ec", 195631736468838, undefined, [inputText]); }
+  static init(inputText: string): BETextSuggestion { return callSDK<BETextSuggestion>("BrowserEngineKit_a956b86ef7a76a8e", 195631736468838, undefined, [inputText]); }
   /**
    * var inputText: String { get }
    * @availability iOS 17.4+
    */
-  get inputText(): string { return callSDK<string>("BrowserEngineKit_d6c5d10d3352e6ec", 1697909902058659, this, []); }
+  get inputText(): string { return callSDK<string>("BrowserEngineKit_a956b86ef7a76a8e", 1697909902058659, this, []); }
   declare readonly $type: { "c:objc(cs)BETextSuggestion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "inputText": true };
 }
@@ -338,7 +338,7 @@ export class BEAutoFillTextSuggestion extends BETextSuggestion {
    * var contents: [UITextContentType : String] { get }
    * @availability iOS 17.4+
    */
-  get contents(): NativeMap<_UIKit_UITextContentType, string> { return callSDK<NativeMap<_UIKit_UITextContentType, string>>("BrowserEngineKit_d6c5d10d3352e6ec", 1590406269691811, this, []); }
+  get contents(): NativeMap<_UIKit_UITextContentType, string> { return callSDK<NativeMap<_UIKit_UITextContentType, string>>("BrowserEngineKit_a956b86ef7a76a8e", 1590406269691811, this, []); }
   declare readonly $type: { "c:objc(cs)BEAutoFillTextSuggestion": true; "c:objc(cs)BETextSuggestion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "inputText": true; "contents": true };
 }
@@ -352,12 +352,12 @@ export class BEContextMenuConfiguration extends SDKHandle {
    * func fulfill(using configuration: UIContextMenuConfiguration?) -> Bool
    * @availability iOS 17.4+
    */
-  fulfill(configuration?: (_UIKit_UIContextMenuConfiguration) | null): Promise<boolean> { return callSDKAsync<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 3453160817831076, this, [configuration]); }
+  fulfill(configuration?: (_UIKit_UIContextMenuConfiguration) | null): Promise<boolean> { return callSDKAsync<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 3453160817831076, this, [configuration]); }
   /**
    * init()
    * @availability iOS 17.4+
    */
-  static init(): Promise<BEContextMenuConfiguration> { return callSDKAsync<BEContextMenuConfiguration>("BrowserEngineKit_d6c5d10d3352e6ec", 356552826681188, undefined, []); }
+  static init(): Promise<BEContextMenuConfiguration> { return callSDKAsync<BEContextMenuConfiguration>("BrowserEngineKit_a956b86ef7a76a8e", 356552826681188, undefined, []); }
   declare readonly $type: { "c:objc(cs)BEContextMenuConfiguration": true; "c:objc(cs)UIContextMenuConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -370,24 +370,24 @@ export class BEDirectionalTextRange extends SDKHandle {
    * var length: Int
    * @availability iOS 17.4+
    */
-  get length(): number { return callSDK<number>("BrowserEngineKit_d6c5d10d3352e6ec", 812830176139141, this, []); }
-  set length(value: number) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3125658219412150, this, [value]); }
+  get length(): number { return callSDK<number>("BrowserEngineKit_a956b86ef7a76a8e", 812830176139141, this, []); }
+  set length(value: number) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3125658219412150, this, [value]); }
   /**
    * var offset: Int
    * @availability iOS 17.4+
    */
-  get offset(): number { return callSDK<number>("BrowserEngineKit_d6c5d10d3352e6ec", 4290717470883092, this, []); }
-  set offset(value: number) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 655157480669955, this, [value]); }
+  get offset(): number { return callSDK<number>("BrowserEngineKit_a956b86ef7a76a8e", 4290717470883092, this, []); }
+  set offset(value: number) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 655157480669955, this, [value]); }
   /**
    * init(offset: Int, length: Int)
    * @availability iOS 17.4+
    */
-  static initOffsetLength(offset: number, length: number): BEDirectionalTextRange { return callSDK<BEDirectionalTextRange>("BrowserEngineKit_d6c5d10d3352e6ec", 1762713859357087, undefined, [offset, length]); }
+  static initOffsetLength(offset: number, length: number): BEDirectionalTextRange { return callSDK<BEDirectionalTextRange>("BrowserEngineKit_a956b86ef7a76a8e", 1762713859357087, undefined, [offset, length]); }
   /**
    * init()
    * @availability iOS 17.4+
    */
-  static init(): BEDirectionalTextRange { return callSDK<BEDirectionalTextRange>("BrowserEngineKit_d6c5d10d3352e6ec", 760496140500999, undefined, []); }
+  static init(): BEDirectionalTextRange { return callSDK<BEDirectionalTextRange>("BrowserEngineKit_a956b86ef7a76a8e", 760496140500999, undefined, []); }
   declare readonly $type: { "c:@SA@BEDirectionalTextRange": true };
 }
 
@@ -400,42 +400,42 @@ export class BEDownloadMonitor extends SDKHandle {
    * @objc(createAccessToken) static func createAccessToken() -> Data?
    * @availability iOS 18.2+
    */
-  static createAccessToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 845473225396027, undefined, []); }
+  static createAccessToken(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("BrowserEngineKit_a956b86ef7a76a8e", 845473225396027, undefined, []); }
   /**
    * @objc(beginMonitoring:) func beginMonitoring() async throws -> BEDownloadMonitor.Location?
    * @availability iOS 18.2+
    */
-  beginMonitoring(): Promise<(BEDownloadMonitor_Location) | null> { return callSDKAsync<(BEDownloadMonitor_Location) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 3394812638240829, this, []); }
+  beginMonitoring(): Promise<(BEDownloadMonitor_Location) | null> { return callSDKAsync<(BEDownloadMonitor_Location) | null>("BrowserEngineKit_a956b86ef7a76a8e", 3394812638240829, this, []); }
   /**
    * @objc(initWithSourceURL:destinationURL:observedProgress:liveActivityAccessToken:) init(sourceURL: URL, destinationURL: URL, observedProgress: Progress, liveActivityAccessToken: Data)
    * @availability iOS 18.2+
    */
-  static init(sourceURL: string, destinationURL: string, observedProgress: _Foundation_Progress, liveActivityAccessToken: ArrayBuffer): BEDownloadMonitor { return callSDK<BEDownloadMonitor>("BrowserEngineKit_d6c5d10d3352e6ec", 3353742562694699, undefined, [sourceURL, destinationURL, observedProgress, liveActivityAccessToken]); }
+  static init(sourceURL: string, destinationURL: string, observedProgress: _Foundation_Progress, liveActivityAccessToken: ArrayBuffer): BEDownloadMonitor { return callSDK<BEDownloadMonitor>("BrowserEngineKit_a956b86ef7a76a8e", 3353742562694699, undefined, [sourceURL, destinationURL, observedProgress, liveActivityAccessToken]); }
   /**
    * @objc(resumeMonitoring:completionHandler:) func resumeMonitoring(placeholderURL: URL) async throws
    * @availability iOS 18.2+
    */
-  resumeMonitoring(placeholderURL: string): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1087577345462630, this, [placeholderURL]); }
+  resumeMonitoring(placeholderURL: string): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 1087577345462630, this, [placeholderURL]); }
   /**
    * @objc(useDownloadsFolderWithPlaceholderType:finalFileCreatedHandler:) func useDownloadsFolder(placeholderType: UTType? = nil, finalFileCreatedHandler: @escaping @Sendable (BEDownloadMonitor.Location?) -> Void)
    * @availability iOS 18.2+
    */
-  useDownloadsFolder(placeholderType: (_UniformTypeIdentifiers_UTType) | null, finalFileCreatedHandler: ((arg0: (BEDownloadMonitor_Location) | null) => void)): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 4081458701479317, this, [placeholderType, finalFileCreatedHandler], [null,{"callback":{"out":[]}}]); }
+  useDownloadsFolder(placeholderType: (_UniformTypeIdentifiers_UTType) | null, finalFileCreatedHandler: ((arg0: (BEDownloadMonitor_Location) | null) => void)): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 4081458701479317, this, [placeholderType, finalFileCreatedHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * @objc final let destinationURL: URL
    * @availability iOS 18.2+
    */
-  get destinationURL(): string { return callSDK<string>("BrowserEngineKit_d6c5d10d3352e6ec", 63475773450268, this, []); }
+  get destinationURL(): string { return callSDK<string>("BrowserEngineKit_a956b86ef7a76a8e", 63475773450268, this, []); }
   /**
    * @objc(identifier) final let id: UUID
    * @availability iOS 18.2+
    */
-  get id(): string { return callSDK<string>("BrowserEngineKit_d6c5d10d3352e6ec", 3051773861260742, this, []); }
+  get id(): string { return callSDK<string>("BrowserEngineKit_a956b86ef7a76a8e", 3051773861260742, this, []); }
   /**
    * @objc final let sourceURL: URL
    * @availability iOS 18.2+
    */
-  get sourceURL(): string { return callSDK<string>("BrowserEngineKit_d6c5d10d3352e6ec", 2218808203109724, this, []); }
+  get sourceURL(): string { return callSDK<string>("BrowserEngineKit_a956b86ef7a76a8e", 2218808203109724, this, []); }
   declare readonly $type: { "c:@M@BrowserEngineKit@objc(cs)BEDownloadMonitor": true; "c:objc(cs)NSObject": true };
 }
 
@@ -454,12 +454,12 @@ export class BEDownloadMonitor_Location extends SDKHandle {
    * @objc final let bookmarkData: Data
    * @availability iOS 18.2+
    */
-  get bookmarkData(): ArrayBuffer { return callSDK<ArrayBuffer>("BrowserEngineKit_d6c5d10d3352e6ec", 616242665077859, this, []); }
+  get bookmarkData(): ArrayBuffer { return callSDK<ArrayBuffer>("BrowserEngineKit_a956b86ef7a76a8e", 616242665077859, this, []); }
   /**
    * @objc final let url: URL
    * @availability iOS 18.2+
    */
-  get url(): string { return callSDK<string>("BrowserEngineKit_d6c5d10d3352e6ec", 2431941246100973, this, []); }
+  get url(): string { return callSDK<string>("BrowserEngineKit_a956b86ef7a76a8e", 2431941246100973, this, []); }
   declare readonly $type: { "s:16BrowserEngineKit17BEDownloadMonitorC8LocationC": true; "c:objc(cs)NSObject": true };
 }
 
@@ -472,12 +472,12 @@ export class BEDragInteraction extends SDKHandle {
    * init(delegate: any BEDragInteractionDelegate)
    * @availability iOS 17.4+
    */
-  static init(delegate: SDKHandle): Promise<BEDragInteraction> { return callSDKAsync<BEDragInteraction>("BrowserEngineKit_d6c5d10d3352e6ec", 2572863649209859, undefined, [delegate]); }
+  static init(delegate: SDKHandle): Promise<BEDragInteraction> { return callSDKAsync<BEDragInteraction>("BrowserEngineKit_a956b86ef7a76a8e", 2572863649209859, undefined, [delegate]); }
   /**
    * weak var delegate: (any BEDragInteractionDelegate)? { get }
    * @availability iOS 17.4+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 919363169630963, this, []); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("BrowserEngineKit_a956b86ef7a76a8e", 919363169630963, this, []); }
   declare readonly $type: { "c:objc(cs)BEDragInteraction": true; "c:objc(cs)UIDragInteraction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -533,7 +533,7 @@ export const BEGestureType = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (BEGestureType) | null { return callSDK<(BEGestureType) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 358866102510618, undefined, [rawValue]); }
+  init(rawValue: number): (BEGestureType) | null { return callSDK<(BEGestureType) | null>("BrowserEngineKit_a956b86ef7a76a8e", 358866102510618, undefined, [rawValue]); }
 };
 
 /**
@@ -545,22 +545,22 @@ export class BEKeyEntry extends SDKHandle {
    * var key: UIKey { get }
    * @availability iOS 17.4+
    */
-  get key(): _UIKit_UIKey { return callSDK<_UIKit_UIKey>("BrowserEngineKit_d6c5d10d3352e6ec", 1953061840289915, this, []); }
+  get key(): _UIKit_UIKey { return callSDK<_UIKit_UIKey>("BrowserEngineKit_a956b86ef7a76a8e", 1953061840289915, this, []); }
   /**
    * var isKeyRepeating: Bool { get }
    * @availability iOS 17.4+
    */
-  get isKeyRepeating(): boolean { return callSDK<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 41243807571505, this, []); }
+  get isKeyRepeating(): boolean { return callSDK<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 41243807571505, this, []); }
   /**
    * var state: BEKeyEntry.KeyPressState { get }
    * @availability iOS 17.4+
    */
-  get state(): BEKeyEntry_KeyPressState { return callSDK<BEKeyEntry_KeyPressState>("BrowserEngineKit_d6c5d10d3352e6ec", 2192785551171267, this, []); }
+  get state(): BEKeyEntry_KeyPressState { return callSDK<BEKeyEntry_KeyPressState>("BrowserEngineKit_a956b86ef7a76a8e", 2192785551171267, this, []); }
   /**
    * var timestamp: TimeInterval { get }
    * @availability iOS 17.4+
    */
-  get timestamp(): number { return callSDK<number>("BrowserEngineKit_d6c5d10d3352e6ec", 2186919121945209, this, []); }
+  get timestamp(): number { return callSDK<number>("BrowserEngineKit_a956b86ef7a76a8e", 2186919121945209, this, []); }
   declare readonly $type: { "c:objc(cs)BEKeyEntry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "key": true; "isKeyRepeating": true; "state": true; "timestamp": true };
 }
@@ -576,7 +576,7 @@ export const BEKeyEntry_KeyPressState = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (BEKeyEntry_KeyPressState) | null { return callSDK<(BEKeyEntry_KeyPressState) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 1446863156193583, undefined, [rawValue]); }
+  init(rawValue: number): (BEKeyEntry_KeyPressState) | null { return callSDK<(BEKeyEntry_KeyPressState) | null>("BrowserEngineKit_a956b86ef7a76a8e", 1446863156193583, undefined, [rawValue]); }
 };
 
 /**
@@ -588,30 +588,30 @@ export class BEKeyEntryContext extends SDKHandle {
    * init(keyEntry: BEKeyEntry)
    * @availability iOS 17.4+
    */
-  static init(keyEntry: BEKeyEntry): BEKeyEntryContext { return callSDK<BEKeyEntryContext>("BrowserEngineKit_d6c5d10d3352e6ec", 2620581136930291, undefined, [keyEntry]); }
+  static init(keyEntry: BEKeyEntry): BEKeyEntryContext { return callSDK<BEKeyEntryContext>("BrowserEngineKit_a956b86ef7a76a8e", 2620581136930291, undefined, [keyEntry]); }
   /**
    * var isDocumentEditable: Bool { get set }
    * @availability iOS 17.4+
    */
-  get isDocumentEditable(): boolean { return callSDK<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 3593981238204599, this, []); }
-  set isDocumentEditable(value: boolean) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3616672745657586, this, [value]); }
+  get isDocumentEditable(): boolean { return callSDK<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 3593981238204599, this, []); }
+  set isDocumentEditable(value: boolean) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3616672745657586, this, [value]); }
   /**
    * var keyEntry: BEKeyEntry { get }
    * @availability iOS 17.4+
    */
-  get keyEntry(): BEKeyEntry { return callSDK<BEKeyEntry>("BrowserEngineKit_d6c5d10d3352e6ec", 1058325316053668, this, []); }
+  get keyEntry(): BEKeyEntry { return callSDK<BEKeyEntry>("BrowserEngineKit_a956b86ef7a76a8e", 1058325316053668, this, []); }
   /**
    * var shouldEvaluateForInputSystemHandling: Bool { get set }
    * @availability iOS 17.4+
    */
-  get shouldEvaluateForInputSystemHandling(): boolean { return callSDK<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 1959338859954074, this, []); }
-  set shouldEvaluateForInputSystemHandling(value: boolean) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2785189207678933, this, [value]); }
+  get shouldEvaluateForInputSystemHandling(): boolean { return callSDK<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 1959338859954074, this, []); }
+  set shouldEvaluateForInputSystemHandling(value: boolean) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 2785189207678933, this, [value]); }
   /**
    * var shouldInsertCharacter: Bool { get set }
    * @availability iOS 17.4+
    */
-  get shouldInsertCharacter(): boolean { return callSDK<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 3008710218665657, this, []); }
-  set shouldInsertCharacter(value: boolean) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 221735993076344, this, [value]); }
+  get shouldInsertCharacter(): boolean { return callSDK<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 3008710218665657, this, []); }
+  set shouldInsertCharacter(value: boolean) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 221735993076344, this, [value]); }
   declare readonly $type: { "c:objc(cs)BEKeyEntryContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isDocumentEditable": true; "keyEntry": true; "shouldEvaluateForInputSystemHandling": true; "shouldInsertCharacter": true };
 }
@@ -627,7 +627,7 @@ export const BEKeyModifierFlags = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (BEKeyModifierFlags) | null { return callSDK<(BEKeyModifierFlags) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 3457610280386087, undefined, [rawValue]); }
+  init(rawValue: number): (BEKeyModifierFlags) | null { return callSDK<(BEKeyModifierFlags) | null>("BrowserEngineKit_a956b86ef7a76a8e", 3457610280386087, undefined, [rawValue]); }
 };
 
 /**
@@ -734,13 +734,13 @@ export interface BEResponderEditActions {
  */
 export class BEScrollView extends SDKHandle {
   /** init() */
-  static init(): Promise<BEScrollView> { return callSDKAsync<BEScrollView>("BrowserEngineKit_d6c5d10d3352e6ec", 3705862669050936, undefined, []); }
+  static init(): Promise<BEScrollView> { return callSDKAsync<BEScrollView>("BrowserEngineKit_a956b86ef7a76a8e", 3705862669050936, undefined, []); }
   /**
    * weak var delegate: (any BEScrollViewDelegate)? { get set }
    * @availability iOS 17.4+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 3738457225434494, this, []); }
-  setDelegate(value?: (Implements<BEScrollViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 457787273953551, this, [value], [{"protocol":"c:objc(pl)BEScrollViewDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("BrowserEngineKit_a956b86ef7a76a8e", 3738457225434494, this, []); }
+  setDelegate(value?: (Implements<BEScrollViewDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 457787273953551, this, [value], [{"protocol":"c:objc(pl)BEScrollViewDelegate"}]); }
   declare readonly $type: { "c:objc(cs)BEScrollView": true; "c:objc(cs)UIScrollView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -772,22 +772,22 @@ export class BEScrollViewScrollUpdate extends SDKHandle {
    * func location(in view: UIView?) -> CGPoint
    * @availability iOS 17.4+
    */
-  location(view?: (_UIKit_UIView) | null): Promise<$SDK3> { return callSDKAsync<$SDK3>("BrowserEngineKit_d6c5d10d3352e6ec", 198561379025898, this, [view]); }
+  location(view?: (_UIKit_UIView) | null): Promise<$SDK3> { return callSDKAsync<$SDK3>("BrowserEngineKit_a956b86ef7a76a8e", 198561379025898, this, [view]); }
   /**
    * func translation(in view: UIView?) -> CGPoint
    * @availability iOS 17.4+
    */
-  translation(view?: (_UIKit_UIView) | null): Promise<$SDK3> { return callSDKAsync<$SDK3>("BrowserEngineKit_d6c5d10d3352e6ec", 1516502952492033, this, [view]); }
+  translation(view?: (_UIKit_UIView) | null): Promise<$SDK3> { return callSDKAsync<$SDK3>("BrowserEngineKit_a956b86ef7a76a8e", 1516502952492033, this, [view]); }
   /**
    * var phase: BEScrollViewScrollUpdate.Phase { get }
    * @availability iOS 17.4+
    */
-  get phase(): Promise<BEScrollViewScrollUpdate_Phase> { return callSDKAsync<BEScrollViewScrollUpdate_Phase>("BrowserEngineKit_d6c5d10d3352e6ec", 589317820463321, this, []); }
+  get phase(): Promise<BEScrollViewScrollUpdate_Phase> { return callSDKAsync<BEScrollViewScrollUpdate_Phase>("BrowserEngineKit_a956b86ef7a76a8e", 589317820463321, this, []); }
   /**
    * var timestamp: TimeInterval { get }
    * @availability iOS 17.4+
    */
-  get timestamp(): Promise<number> { return callSDKAsync<number>("BrowserEngineKit_d6c5d10d3352e6ec", 990840992396194, this, []); }
+  get timestamp(): Promise<number> { return callSDKAsync<number>("BrowserEngineKit_a956b86ef7a76a8e", 990840992396194, this, []); }
   declare readonly $type: { "c:objc(cs)BEScrollViewScrollUpdate": true; "c:objc(cs)NSObject": true };
 }
 
@@ -802,7 +802,7 @@ export const BEScrollViewScrollUpdate_Phase = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): Promise<(BEScrollViewScrollUpdate_Phase) | null> { return callSDKAsync<(BEScrollViewScrollUpdate_Phase) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 1582873097203058, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(BEScrollViewScrollUpdate_Phase) | null> { return callSDKAsync<(BEScrollViewScrollUpdate_Phase) | null>("BrowserEngineKit_a956b86ef7a76a8e", 1582873097203058, undefined, [rawValue]); }
 };
 
 /**
@@ -816,22 +816,22 @@ export const BESelectionFlags = {
    * static var phraseBoundaryChanged: BESelectionFlags { get }
    * @availability iOS 17.4+
    */
-  get phraseBoundaryChanged(): BESelectionFlags { return callSDK<BESelectionFlags>("BrowserEngineKit_d6c5d10d3352e6ec", 1401558283430288, undefined, []); },
+  get phraseBoundaryChanged(): BESelectionFlags { return callSDK<BESelectionFlags>("BrowserEngineKit_a956b86ef7a76a8e", 1401558283430288, undefined, []); },
   /**
    * static var selectionFlipped: BESelectionFlags { get }
    * @availability iOS 17.4+
    */
-  get selectionFlipped(): BESelectionFlags { return callSDK<BESelectionFlags>("BrowserEngineKit_d6c5d10d3352e6ec", 2938023940329828, undefined, []); },
+  get selectionFlipped(): BESelectionFlags { return callSDK<BESelectionFlags>("BrowserEngineKit_a956b86ef7a76a8e", 2938023940329828, undefined, []); },
   /**
    * static var wordIsNearTap: BESelectionFlags { get }
    * @availability iOS 17.4+
    */
-  get wordIsNearTap(): BESelectionFlags { return callSDK<BESelectionFlags>("BrowserEngineKit_d6c5d10d3352e6ec", 644948872039324, undefined, []); },
+  get wordIsNearTap(): BESelectionFlags { return callSDK<BESelectionFlags>("BrowserEngineKit_a956b86ef7a76a8e", 644948872039324, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): BESelectionFlags { return callSDK<BESelectionFlags>("BrowserEngineKit_d6c5d10d3352e6ec", 4386568389038640, undefined, [rawValue]); }
+  init(rawValue: number): BESelectionFlags { return callSDK<BESelectionFlags>("BrowserEngineKit_a956b86ef7a76a8e", 4386568389038640, undefined, [rawValue]); }
 };
 
 /**
@@ -845,7 +845,7 @@ export const BESelectionTouchPhase = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (BESelectionTouchPhase) | null { return callSDK<(BESelectionTouchPhase) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 567662644504505, undefined, [rawValue]); }
+  init(rawValue: number): (BESelectionTouchPhase) | null { return callSDK<(BESelectionTouchPhase) | null>("BrowserEngineKit_a956b86ef7a76a8e", 567662644504505, undefined, [rawValue]); }
 };
 
 /**
@@ -857,12 +857,12 @@ export class BETextAlternatives extends SDKHandle {
    * var alternativeStrings: [String] { get }
    * @availability iOS 17.4+
    */
-  get alternativeStrings(): Array<string> { return callSDK<Array<string>>("BrowserEngineKit_d6c5d10d3352e6ec", 2711249728059704, this, []); }
+  get alternativeStrings(): Array<string> { return callSDK<Array<string>>("BrowserEngineKit_a956b86ef7a76a8e", 2711249728059704, this, []); }
   /**
    * var primaryString: String { get }
    * @availability iOS 17.4+
    */
-  get primaryString(): string { return callSDK<string>("BrowserEngineKit_d6c5d10d3352e6ec", 3007441430164233, this, []); }
+  get primaryString(): string { return callSDK<string>("BrowserEngineKit_a956b86ef7a76a8e", 3007441430164233, this, []); }
   declare readonly $type: { "c:objc(cs)BETextAlternatives": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alternativeStrings": true; "primaryString": true };
 }
@@ -876,23 +876,23 @@ export class BETextDocumentContext extends SDKHandle {
    * func addTextRect(_ rect: CGRect, forCharacterRange range: NSRange)
    * @availability iOS 17.4+
    */
-  addTextRect(rect: $SDK0, range: SDKHandle): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1143575774628778, this, [rect, range]); }
+  addTextRect(rect: $SDK0, range: SDKHandle): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1143575774628778, this, [rect, range]); }
   /**
    * init(attributedSelectedText selectedText: NSAttributedString?, contextBefore: NSAttributedString?, contextAfter: NSAttributedString?, markedText: NSAttributedString?, selectedRangeInMarkedText: NSRange)
    * @availability iOS 17.4+
    */
-  static initAttributedSelectedTextContextBeforeContextAfterMarkedTextSelectedRangeInMarkedText(selectedText: $SDK12, contextBefore: $SDK12, contextAfter: $SDK12, markedText: $SDK12, selectedRangeInMarkedText: SDKHandle): BETextDocumentContext { return callSDK<BETextDocumentContext>("BrowserEngineKit_d6c5d10d3352e6ec", 3222610706609671, undefined, [selectedText, contextBefore, contextAfter, markedText, selectedRangeInMarkedText]); }
+  static initAttributedSelectedTextContextBeforeContextAfterMarkedTextSelectedRangeInMarkedText(selectedText: $SDK12, contextBefore: $SDK12, contextAfter: $SDK12, markedText: $SDK12, selectedRangeInMarkedText: SDKHandle): BETextDocumentContext { return callSDK<BETextDocumentContext>("BrowserEngineKit_a956b86ef7a76a8e", 3222610706609671, undefined, [selectedText, contextBefore, contextAfter, markedText, selectedRangeInMarkedText]); }
   /**
    * init(selectedText: String?, contextBefore: String?, contextAfter: String?, markedText: String?, selectedRangeInMarkedText: NSRange)
    * @availability iOS 17.4+
    */
-  static initSelectedTextContextBeforeContextAfterMarkedTextSelectedRangeInMarkedText(selectedText: (string) | null, contextBefore: (string) | null, contextAfter: (string) | null, markedText: (string) | null, selectedRangeInMarkedText: SDKHandle): BETextDocumentContext { return callSDK<BETextDocumentContext>("BrowserEngineKit_d6c5d10d3352e6ec", 4282131829164771, undefined, [selectedText, contextBefore, contextAfter, markedText, selectedRangeInMarkedText]); }
+  static initSelectedTextContextBeforeContextAfterMarkedTextSelectedRangeInMarkedText(selectedText: (string) | null, contextBefore: (string) | null, contextAfter: (string) | null, markedText: (string) | null, selectedRangeInMarkedText: SDKHandle): BETextDocumentContext { return callSDK<BETextDocumentContext>("BrowserEngineKit_a956b86ef7a76a8e", 4282131829164771, undefined, [selectedText, contextBefore, contextAfter, markedText, selectedRangeInMarkedText]); }
   /**
    * var autocorrectedRanges: [NSValue] { get set }
    * @availability iOS 17.4+
    */
-  get autocorrectedRanges(): Array<_Foundation_NSValue> { return callSDK<Array<_Foundation_NSValue>>("BrowserEngineKit_d6c5d10d3352e6ec", 1786105762531923, this, []); }
-  set autocorrectedRanges(value: Array<_Foundation_NSValue>) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 498231569431094, this, [value]); }
+  get autocorrectedRanges(): Array<_Foundation_NSValue> { return callSDK<Array<_Foundation_NSValue>>("BrowserEngineKit_a956b86ef7a76a8e", 1786105762531923, this, []); }
+  set autocorrectedRanges(value: Array<_Foundation_NSValue>) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 498231569431094, this, [value]); }
   declare readonly $type: { "c:objc(cs)BETextDocumentContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "autocorrectedRanges": true };
 }
@@ -906,20 +906,20 @@ export class BETextDocumentRequest extends SDKHandle {
    * var granularityCount: Int { get set }
    * @availability iOS 17.4+
    */
-  get granularityCount(): number { return callSDK<number>("BrowserEngineKit_d6c5d10d3352e6ec", 1808213386293873, this, []); }
-  set granularityCount(value: number) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2796277156247221, this, [value]); }
+  get granularityCount(): number { return callSDK<number>("BrowserEngineKit_a956b86ef7a76a8e", 1808213386293873, this, []); }
+  set granularityCount(value: number) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 2796277156247221, this, [value]); }
   /**
    * var options: BETextDocumentRequest.Options { get set }
    * @availability iOS 17.4+
    */
-  get options(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_d6c5d10d3352e6ec", 4290273392676988, this, []); }
-  set options(value: BETextDocumentRequest_Options) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1288740731418423, this, [value]); }
+  get options(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_a956b86ef7a76a8e", 4290273392676988, this, []); }
+  set options(value: BETextDocumentRequest_Options) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1288740731418423, this, [value]); }
   /**
    * var surroundingGranularity: UITextGranularity { get set }
    * @availability iOS 17.4+
    */
-  get surroundingGranularity(): _UIKit_UITextGranularity { return callSDK<_UIKit_UITextGranularity>("BrowserEngineKit_d6c5d10d3352e6ec", 1435543824751280, this, []); }
-  set surroundingGranularity(value: _UIKit_UITextGranularity) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 4166009550836814, this, [value]); }
+  get surroundingGranularity(): _UIKit_UITextGranularity { return callSDK<_UIKit_UITextGranularity>("BrowserEngineKit_a956b86ef7a76a8e", 1435543824751280, this, []); }
+  set surroundingGranularity(value: _UIKit_UITextGranularity) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 4166009550836814, this, [value]); }
   declare readonly $type: { "c:objc(cs)BETextDocumentRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "granularityCount": true; "options": true; "surroundingGranularity": true };
 }
@@ -935,32 +935,32 @@ export const BETextDocumentRequest_Options = {
    * static var attributedText: BETextDocumentRequest.Options { get }
    * @availability iOS 17.4+
    */
-  get attributedText(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_d6c5d10d3352e6ec", 3079687299056535, undefined, []); },
+  get attributedText(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_a956b86ef7a76a8e", 3079687299056535, undefined, []); },
   /**
    * static var autocorrectedRanges: BETextDocumentRequest.Options { get }
    * @availability iOS 17.4+
    */
-  get autocorrectedRanges(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_d6c5d10d3352e6ec", 1801427830801092, undefined, []); },
+  get autocorrectedRanges(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_a956b86ef7a76a8e", 1801427830801092, undefined, []); },
   /**
    * static var markedTextRects: BETextDocumentRequest.Options { get }
    * @availability iOS 17.4+
    */
-  get markedTextRects(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_d6c5d10d3352e6ec", 678624345900125, undefined, []); },
+  get markedTextRects(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_a956b86ef7a76a8e", 678624345900125, undefined, []); },
   /**
    * static var text: BETextDocumentRequest.Options { get }
    * @availability iOS 17.4+
    */
-  get text(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_d6c5d10d3352e6ec", 3212251017381611, undefined, []); },
+  get text(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_a956b86ef7a76a8e", 3212251017381611, undefined, []); },
   /**
    * static var textRects: BETextDocumentRequest.Options { get }
    * @availability iOS 17.4+
    */
-  get textRects(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_d6c5d10d3352e6ec", 573371788613549, undefined, []); },
+  get textRects(): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_a956b86ef7a76a8e", 573371788613549, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_d6c5d10d3352e6ec", 1902945636193627, undefined, [rawValue]); }
+  init(rawValue: number): BETextDocumentRequest_Options { return callSDK<BETextDocumentRequest_Options>("BrowserEngineKit_a956b86ef7a76a8e", 1902945636193627, undefined, [rawValue]); }
 };
 
 /**
@@ -1353,86 +1353,86 @@ export class BETextInteraction extends SDKHandle {
    * func addShortcut(forText text: String, from presentationRect: CGRect)
    * @availability iOS 17.4+
    */
-  addShortcut(text: string, presentationRect: $SDK0): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3451263772681974, this, [text, presentationRect]); }
+  addShortcut(text: string, presentationRect: $SDK0): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 3451263772681974, this, [text, presentationRect]); }
   /**
    * func dismissEditMenuForSelection()
    * @availability iOS 17.4+
    */
-  dismissEditMenuForSelection(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2297608718589884, this, []); }
+  dismissEditMenuForSelection(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 2297608718589884, this, []); }
   /**
    * func editabilityChanged()
    * @availability iOS 17.4+
    */
-  editabilityChanged(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2962816387413380, this, []); }
+  editabilityChanged(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 2962816387413380, this, []); }
   /** init() */
-  static init(): Promise<BETextInteraction> { return callSDKAsync<BETextInteraction>("BrowserEngineKit_d6c5d10d3352e6ec", 798182446406511, undefined, []); }
+  static init(): Promise<BETextInteraction> { return callSDKAsync<BETextInteraction>("BrowserEngineKit_a956b86ef7a76a8e", 798182446406511, undefined, []); }
   /**
    * func presentEditMenuForSelection()
    * @availability iOS 17.4+
    */
-  presentEditMenuForSelection(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1104730145953011, this, []); }
+  presentEditMenuForSelection(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 1104730145953011, this, []); }
   /**
    * func refreshKeyboardUI()
    * @availability iOS 17.4+
    */
-  refreshKeyboardUI(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2142607451865593, this, []); }
+  refreshKeyboardUI(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 2142607451865593, this, []); }
   /**
    * func selectionBoundaryAdjusted(to point: CGPoint, touchPhase touch: BESelectionTouchPhase, flags: BESelectionFlags)
    * @availability iOS 17.4+
    */
-  selectionBoundaryAdjusted(point: $SDK3, touch: BESelectionTouchPhase, flags: BESelectionFlags): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2315954710651654, this, [point, touch, flags]); }
+  selectionBoundaryAdjusted(point: $SDK3, touch: BESelectionTouchPhase, flags: BESelectionFlags): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 2315954710651654, this, [point, touch, flags]); }
   /**
    * func selectionChangedWithGesture(at point: CGPoint, gesture gestureType: BEGestureType, state gestureState: UIGestureRecognizer.State, flags: BESelectionFlags)
    * @availability iOS 17.4+
    */
-  selectionChangedWithGesture(point: $SDK3, gestureType: BEGestureType, gestureState: _UIKit_UIGestureRecognizer_State, flags: BESelectionFlags): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1020089109444999, this, [point, gestureType, gestureState, flags]); }
+  selectionChangedWithGesture(point: $SDK3, gestureType: BEGestureType, gestureState: _UIKit_UIGestureRecognizer_State, flags: BESelectionFlags): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 1020089109444999, this, [point, gestureType, gestureState, flags]); }
   /**
    * func share(text: String, from presentationRect: CGRect)
    * @availability iOS 17.4+
    */
-  share(text: string, presentationRect: $SDK0): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 658344573296202, this, [text, presentationRect]); }
+  share(text: string, presentationRect: $SDK0): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 658344573296202, this, [text, presentationRect]); }
   /**
    * func showDictionary(forTextInContext textWithContext: String, definingTextInRange range: NSRange, from presentationRect: CGRect)
    * @availability iOS 17.4+
    */
-  showDictionary(textWithContext: string, range: SDKHandle, presentationRect: $SDK0): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3750690287865832, this, [textWithContext, range, presentationRect]); }
+  showDictionary(textWithContext: string, range: SDKHandle, presentationRect: $SDK0): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 3750690287865832, this, [textWithContext, range, presentationRect]); }
   /**
    * func showReplacements(forText text: String)
    * @availability iOS 17.4+
    */
-  showReplacements(text: string): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1548658952036302, this, [text]); }
+  showReplacements(text: string): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 1548658952036302, this, [text]); }
   /**
    * func translate(text: String, from presentationRect: CGRect)
    * @availability iOS 17.4+
    */
-  translate(text: string, presentationRect: $SDK0): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2058754320497772, this, [text, presentationRect]); }
+  translate(text: string, presentationRect: $SDK0): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 2058754320497772, this, [text, presentationRect]); }
   /**
    * func transliterateChinese(forText text: String)
    * @availability iOS 17.4+
    */
-  transliterateChinese(text: string): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2102214102710854, this, [text]); }
+  transliterateChinese(text: string): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 2102214102710854, this, [text]); }
   /**
    * var contextMenuInteraction: UIContextMenuInteraction { get }
    * @availability iOS 17.4+
    */
-  get contextMenuInteraction(): Promise<_UIKit_UIContextMenuInteraction> { return callSDKAsync<_UIKit_UIContextMenuInteraction>("BrowserEngineKit_d6c5d10d3352e6ec", 1287161324570508, this, []); }
+  get contextMenuInteraction(): Promise<_UIKit_UIContextMenuInteraction> { return callSDKAsync<_UIKit_UIContextMenuInteraction>("BrowserEngineKit_a956b86ef7a76a8e", 1287161324570508, this, []); }
   /**
    * weak var contextMenuInteractionDelegate: (any UIContextMenuInteractionDelegate)? { get set }
    * @availability iOS 17.4+
    */
-  get contextMenuInteractionDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 268644953151044, this, []); }
-  setContextMenuInteractionDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2448056215213719, this, [value]); }
+  get contextMenuInteractionDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("BrowserEngineKit_a956b86ef7a76a8e", 268644953151044, this, []); }
+  setContextMenuInteractionDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 2448056215213719, this, [value]); }
   /**
    * weak var delegate: (any BETextInteractionDelegate)? { get set }
    * @availability iOS 17.4+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 512085928886775, this, []); }
-  setDelegate(value?: (Implements<BETextInteractionDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2598503946556388, this, [value], [{"protocol":"c:objc(pl)BETextInteractionDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("BrowserEngineKit_a956b86ef7a76a8e", 512085928886775, this, []); }
+  setDelegate(value?: (Implements<BETextInteractionDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 2598503946556388, this, [value], [{"protocol":"c:objc(pl)BETextInteractionDelegate"}]); }
   /**
    * var textSelectionDisplayInteraction: UITextSelectionDisplayInteraction { get }
    * @availability iOS 17.4+
    */
-  get textSelectionDisplayInteraction(): Promise<_UIKit_UITextSelectionDisplayInteraction> { return callSDKAsync<_UIKit_UITextSelectionDisplayInteraction>("BrowserEngineKit_d6c5d10d3352e6ec", 1981612727114203, this, []); }
+  get textSelectionDisplayInteraction(): Promise<_UIKit_UITextSelectionDisplayInteraction> { return callSDKAsync<_UIKit_UITextSelectionDisplayInteraction>("BrowserEngineKit_a956b86ef7a76a8e", 1981612727114203, this, []); }
   declare readonly $type: { "c:objc(cs)BETextInteraction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1464,12 +1464,12 @@ export const BETextReplacementOptions = {
    * static var addUnderline: BETextReplacementOptions { get }
    * @availability iOS 17.4+
    */
-  get addUnderline(): BETextReplacementOptions { return callSDK<BETextReplacementOptions>("BrowserEngineKit_d6c5d10d3352e6ec", 2636949831376664, undefined, []); },
+  get addUnderline(): BETextReplacementOptions { return callSDK<BETextReplacementOptions>("BrowserEngineKit_a956b86ef7a76a8e", 2636949831376664, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): BETextReplacementOptions { return callSDK<BETextReplacementOptions>("BrowserEngineKit_d6c5d10d3352e6ec", 1034899156525433, undefined, [rawValue]); }
+  init(rawValue: number): BETextReplacementOptions { return callSDK<BETextReplacementOptions>("BrowserEngineKit_a956b86ef7a76a8e", 1034899156525433, undefined, [rawValue]); }
 };
 
 /**
@@ -1508,17 +1508,17 @@ export class BEWebAppManifest extends SDKHandle {
    * init?(jsonData: Data, manifestURL: URL)
    * @availability iOS 17.5+
    */
-  static init(jsonData: ArrayBuffer, manifestURL: string): (BEWebAppManifest) | null { return callSDK<(BEWebAppManifest) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 2532783341912344, undefined, [jsonData, manifestURL]); }
+  static init(jsonData: ArrayBuffer, manifestURL: string): (BEWebAppManifest) | null { return callSDK<(BEWebAppManifest) | null>("BrowserEngineKit_a956b86ef7a76a8e", 2532783341912344, undefined, [jsonData, manifestURL]); }
   /**
    * var jsonData: Data { get }
    * @availability iOS 17.5+
    */
-  get jsonData(): ArrayBuffer { return callSDK<ArrayBuffer>("BrowserEngineKit_d6c5d10d3352e6ec", 280709188034521, this, []); }
+  get jsonData(): ArrayBuffer { return callSDK<ArrayBuffer>("BrowserEngineKit_a956b86ef7a76a8e", 280709188034521, this, []); }
   /**
    * var manifestURL: URL { get }
    * @availability iOS 17.5+
    */
-  get manifestURL(): string { return callSDK<string>("BrowserEngineKit_d6c5d10d3352e6ec", 2296491815492473, this, []); }
+  get manifestURL(): string { return callSDK<string>("BrowserEngineKit_a956b86ef7a76a8e", 2296491815492473, this, []); }
   declare readonly $type: { "c:objc(cs)BEWebAppManifest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "jsonData": true; "manifestURL": true };
 }
@@ -1532,29 +1532,29 @@ export class BEWebContentFilter extends SDKHandle {
    * class var shouldEvaluateURLs: Bool { get }
    * @availability iOS 26.2+
    */
-  static get shouldEvaluateURLs(): boolean { return callSDK<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 2696556070001504, undefined, []); }
+  static get shouldEvaluateURLs(): boolean { return callSDK<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 2696556070001504, undefined, []); }
   /**
    * func allow(_ url: URL) async throws -> Bool
    * @availability iOS 26.2+
    */
-  allow(url: string, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3800920538970825, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
+  allow(url: string, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3800920538970825, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func evaluateURL(_ url: URL) async -> (Bool, Data?)
    * @availability iOS 26.2+
    */
-  evaluateURLCompletionHandler(url: string, completionHandler: $SDK22): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3709428772753197, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
+  evaluateURLCompletionHandler(url: string, completionHandler: $SDK22): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3709428772753197, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func evaluateURL(_ url: URL, mainFrameURL: URL, isMainFrame: Bool) async -> (Bool, Data?)
    * @availability iOS 27.0+
    */
-  evaluateURLMainFrameURLIsMainFrameCompletionHandler(url: string, mainFrameURL: string, isMainFrame: boolean, completionHandler: $SDK22): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1595025852277946, this, [url, mainFrameURL, isMainFrame, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  evaluateURLMainFrameURLIsMainFrameCompletionHandler(url: string, mainFrameURL: string, isMainFrame: boolean, completionHandler: $SDK22): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1595025852277946, this, [url, mainFrameURL, isMainFrame, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): BEWebContentFilter { return callSDK<BEWebContentFilter>("BrowserEngineKit_d6c5d10d3352e6ec", 757864407989817, undefined, []); }
+  static init(): BEWebContentFilter { return callSDK<BEWebContentFilter>("BrowserEngineKit_a956b86ef7a76a8e", 757864407989817, undefined, []); }
   /**
    * func requestPermission(for url: URL, referrerURL: URL?, presenting presentingView: UIView?) async throws -> BEWebContentFilter.PermissionDecision
    * @availability iOS 27.0+
    */
-  requestPermission(url: string, referrerURL: (string) | null, presentingView: (_UIKit_UIView) | null, completionHandler: ((arg0: BEWebContentFilter_PermissionDecision, arg1: (NativeError) | null) => void)): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1017557291349473, this, [url, referrerURL, presentingView, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  requestPermission(url: string, referrerURL: (string) | null, presentingView: (_UIKit_UIView) | null, completionHandler: ((arg0: BEWebContentFilter_PermissionDecision, arg1: (NativeError) | null) => void)): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1017557291349473, this, [url, referrerURL, presentingView, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)BEWebContentFilter": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1569,7 +1569,7 @@ export const BEWebContentFilter_PermissionDecision = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (BEWebContentFilter_PermissionDecision) | null { return callSDK<(BEWebContentFilter_PermissionDecision) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 2789522310599882, undefined, [rawValue]); }
+  init(rawValue: number): (BEWebContentFilter_PermissionDecision) | null { return callSDK<(BEWebContentFilter_PermissionDecision) | null>("BrowserEngineKit_a956b86ef7a76a8e", 2789522310599882, undefined, [rawValue]); }
 };
 
 /**
@@ -1581,23 +1581,23 @@ export class LayerHierarchy extends SDKHandle {
    * init() throws
    * @availability iOS 17.4+
    */
-  static init(): Promise<LayerHierarchy> { return callSDKAsync<LayerHierarchy>("BrowserEngineKit_d6c5d10d3352e6ec", 4253296122988776, undefined, []); }
+  static init(): Promise<LayerHierarchy> { return callSDKAsync<LayerHierarchy>("BrowserEngineKit_a956b86ef7a76a8e", 4253296122988776, undefined, []); }
   /**
    * func invalidate()
    * @availability iOS 17.4+
    */
-  invalidate(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 4171030718980013, this, []); }
+  invalidate(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 4171030718980013, this, []); }
   /**
    * var handle: LayerHierarchyHandle { get }
    * @availability iOS 17.4+
    */
-  get handle(): Promise<LayerHierarchyHandle> { return callSDKAsync<LayerHierarchyHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 1942895293211813, this, []); }
+  get handle(): Promise<LayerHierarchyHandle> { return callSDKAsync<LayerHierarchyHandle>("BrowserEngineKit_a956b86ef7a76a8e", 1942895293211813, this, []); }
   /**
    * var layer: CALayer? { get set }
    * @availability iOS 17.4+
    */
-  get layer(): Promise<(_QuartzCore_CALayer) | null> { return callSDKAsync<(_QuartzCore_CALayer) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 4254571072381488, this, []); }
-  setLayer(value?: (_QuartzCore_CALayer) | null): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 4218407992287502, this, [value]); }
+  get layer(): Promise<(_QuartzCore_CALayer) | null> { return callSDKAsync<(_QuartzCore_CALayer) | null>("BrowserEngineKit_a956b86ef7a76a8e", 4254571072381488, this, []); }
+  setLayer(value?: (_QuartzCore_CALayer) | null): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 4218407992287502, this, [value]); }
   declare readonly $type: { "c:objc(cs)BELayerHierarchy": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1610,22 +1610,22 @@ export class LayerHierarchyHandle extends SDKHandle {
    * init(port: mach_port_t, data: Data) throws
    * @availability iOS 26.0+
    */
-  static initPortData(port: SDKHandle, data: ArrayBuffer): LayerHierarchyHandle { return callSDK<LayerHierarchyHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 1683046766081997, undefined, [port, data]); }
+  static initPortData(port: SDKHandle, data: ArrayBuffer): LayerHierarchyHandle { return callSDK<LayerHierarchyHandle>("BrowserEngineKit_a956b86ef7a76a8e", 1683046766081997, undefined, [port, data]); }
   /**
    * init(xpcRepresentation: xpc_object_t?) throws
    * @availability iOS 17.4+
    */
-  static initXpcRepresentation(xpcRepresentation?: (SDKHandle) | null): LayerHierarchyHandle { return callSDK<LayerHierarchyHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 1132436713818578, undefined, [xpcRepresentation]); }
+  static initXpcRepresentation(xpcRepresentation?: (SDKHandle) | null): LayerHierarchyHandle { return callSDK<LayerHierarchyHandle>("BrowserEngineKit_a956b86ef7a76a8e", 1132436713818578, undefined, [xpcRepresentation]); }
   /**
    * func createXPCRepresentation() -> xpc_object_t
    * @availability iOS 17.4+
    */
-  createXPCRepresentation(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 2173973619026302, this, []); }
+  createXPCRepresentation(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_a956b86ef7a76a8e", 2173973619026302, this, []); }
   /**
    * func encode(_ block: (mach_port_t, Data) -> Void)
    * @availability iOS 26.0+
    */
-  encode(block: $SDK25): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1613754760641641, this, [block], [{"callback":{"out":[]}}]); }
+  encode(block: $SDK25): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1613754760641641, this, [block], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)BELayerHierarchyHandle": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1638,42 +1638,42 @@ export class LayerHierarchyHostingTransactionCoordinator extends SDKHandle {
    * init() throws
    * @availability iOS 17.4+
    */
-  static init(): LayerHierarchyHostingTransactionCoordinator { return callSDK<LayerHierarchyHostingTransactionCoordinator>("BrowserEngineKit_d6c5d10d3352e6ec", 4397660577242070, undefined, []); }
+  static init(): LayerHierarchyHostingTransactionCoordinator { return callSDK<LayerHierarchyHostingTransactionCoordinator>("BrowserEngineKit_a956b86ef7a76a8e", 4397660577242070, undefined, []); }
   /**
    * init(port: mach_port_t, data: Data) throws
    * @availability iOS 26.0+
    */
-  static initPortData(port: SDKHandle, data: ArrayBuffer): LayerHierarchyHostingTransactionCoordinator { return callSDK<LayerHierarchyHostingTransactionCoordinator>("BrowserEngineKit_d6c5d10d3352e6ec", 843697066789042, undefined, [port, data]); }
+  static initPortData(port: SDKHandle, data: ArrayBuffer): LayerHierarchyHostingTransactionCoordinator { return callSDK<LayerHierarchyHostingTransactionCoordinator>("BrowserEngineKit_a956b86ef7a76a8e", 843697066789042, undefined, [port, data]); }
   /**
    * init(xpcRepresentation: xpc_object_t?) throws
    * @availability iOS 17.4+
    */
-  static initXpcRepresentation(xpcRepresentation?: (SDKHandle) | null): LayerHierarchyHostingTransactionCoordinator { return callSDK<LayerHierarchyHostingTransactionCoordinator>("BrowserEngineKit_d6c5d10d3352e6ec", 3074244744444111, undefined, [xpcRepresentation]); }
+  static initXpcRepresentation(xpcRepresentation?: (SDKHandle) | null): LayerHierarchyHostingTransactionCoordinator { return callSDK<LayerHierarchyHostingTransactionCoordinator>("BrowserEngineKit_a956b86ef7a76a8e", 3074244744444111, undefined, [xpcRepresentation]); }
   /**
    * @MainActor func add(_ layerHierarchy: LayerHierarchy)
    * @availability iOS 17.4+
    */
-  add(layerHierarchy: LayerHierarchy): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 820452870397652, this, [layerHierarchy]); }
+  add(layerHierarchy: LayerHierarchy): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 820452870397652, this, [layerHierarchy]); }
   /**
    * @MainActor func add(_ hostingView: LayerHierarchyHostingView)
    * @availability iOS 17.4+
    */
-  add23805(hostingView: LayerHierarchyHostingView): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 755025506913948, this, [hostingView]); }
+  add23805(hostingView: LayerHierarchyHostingView): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 755025506913948, this, [hostingView]); }
   /**
    * @MainActor func commit()
    * @availability iOS 17.4+
    */
-  commit(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3057458851271157, this, []); }
+  commit(): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 3057458851271157, this, []); }
   /**
    * func createXPCRepresentation() -> xpc_object_t
    * @availability iOS 17.4+
    */
-  createXPCRepresentation(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 4447457310946787, this, []); }
+  createXPCRepresentation(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_a956b86ef7a76a8e", 4447457310946787, this, []); }
   /**
    * func encode(_ block: (mach_port_t, Data) -> Void)
    * @availability iOS 26.0+
    */
-  encode(block: $SDK25): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1741661560735673, this, [block], [{"callback":{"out":[]}}]); }
+  encode(block: $SDK25): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1741661560735673, this, [block], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)BELayerHierarchyHostingTransactionCoordinator": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1683,13 +1683,13 @@ export class LayerHierarchyHostingTransactionCoordinator extends SDKHandle {
  */
 export class LayerHierarchyHostingView extends SDKHandle {
   /** init() */
-  static init(): Promise<LayerHierarchyHostingView> { return callSDKAsync<LayerHierarchyHostingView>("BrowserEngineKit_d6c5d10d3352e6ec", 2451911198172793, undefined, []); }
+  static init(): Promise<LayerHierarchyHostingView> { return callSDKAsync<LayerHierarchyHostingView>("BrowserEngineKit_a956b86ef7a76a8e", 2451911198172793, undefined, []); }
   /**
    * var handle: LayerHierarchyHandle? { get set }
    * @availability iOS 17.4+
    */
-  get handle(): Promise<(LayerHierarchyHandle) | null> { return callSDKAsync<(LayerHierarchyHandle) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 1000609108289871, this, []); }
-  setHandle(value?: (LayerHierarchyHandle) | null): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2065889982628575, this, [value]); }
+  get handle(): Promise<(LayerHierarchyHandle) | null> { return callSDKAsync<(LayerHierarchyHandle) | null>("BrowserEngineKit_a956b86ef7a76a8e", 1000609108289871, this, []); }
+  setHandle(value?: (LayerHierarchyHandle) | null): Promise<void> { return callSDKAsync<void>("BrowserEngineKit_a956b86ef7a76a8e", 2065889982628575, this, [value]); }
   declare readonly $type: { "c:objc(cs)BELayerHierarchyHostingView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1702,34 +1702,34 @@ export class MediaEnvironment extends SDKHandle {
    * init(xpcRepresentation: xpc_object_t) throws
    * @availability iOS 17.4+
    */
-  static initXpcRepresentation(xpcRepresentation: SDKHandle): MediaEnvironment { return callSDK<MediaEnvironment>("BrowserEngineKit_d6c5d10d3352e6ec", 2268501308226568, undefined, [xpcRepresentation]); }
+  static initXpcRepresentation(xpcRepresentation: SDKHandle): MediaEnvironment { return callSDK<MediaEnvironment>("BrowserEngineKit_a956b86ef7a76a8e", 2268501308226568, undefined, [xpcRepresentation]); }
   /**
    * func makeCaptureSession() throws -> AVCaptureSession
    * @availability iOS 17.4+
    */
-  makeCaptureSession(): _AVFoundation_AVCaptureSession { return callSDK<_AVFoundation_AVCaptureSession>("BrowserEngineKit_d6c5d10d3352e6ec", 1388332079168291, this, []); }
+  makeCaptureSession(): _AVFoundation_AVCaptureSession { return callSDK<_AVFoundation_AVCaptureSession>("BrowserEngineKit_a956b86ef7a76a8e", 1388332079168291, this, []); }
   /**
    * func createXPCRepresentation() -> xpc_object_t
    * @availability iOS 17.4+
    */
-  createXPCRepresentation(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 788549439844922, this, []); }
+  createXPCRepresentation(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_a956b86ef7a76a8e", 788549439844922, this, []); }
   /**
    * func suspend() throws
    * @availability iOS 17.4+
    * @deprecated iOS 27.0
    */
-  suspend(): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2249639241270473, this, []); }
+  suspend(): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 2249639241270473, this, []); }
   /**
    * init(webPage url: URL)
    * @availability iOS 17.4+
    */
-  static initWebPage(url: string): MediaEnvironment { return callSDK<MediaEnvironment>("BrowserEngineKit_d6c5d10d3352e6ec", 3155683713180162, undefined, [url]); }
+  static initWebPage(url: string): MediaEnvironment { return callSDK<MediaEnvironment>("BrowserEngineKit_a956b86ef7a76a8e", 3155683713180162, undefined, [url]); }
   /**
    * func activate() throws
    * @availability iOS 17.4+
    * @deprecated iOS 27.0
    */
-  activate(): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3256701452310458, this, []); }
+  activate(): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3256701452310458, this, []); }
   declare readonly $type: { "s:16BrowserEngineKit16MediaEnvironmentV": true };
 }
 
@@ -1760,7 +1760,7 @@ export class NetworkingExtensionConfiguration extends SDKHandle {
    * nonisolated func accept(connection: NSXPCConnection) -> Bool
    * @availability iOS 17.4+
    */
-  accept(connection: _Foundation_NSXPCConnection): Promise<boolean> { return callSDKAsync<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 2694303066077438, this, [connection]); }
+  accept(connection: _Foundation_NSXPCConnection): Promise<boolean> { return callSDKAsync<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 2694303066077438, this, [connection]); }
   declare readonly $type: { "s:16BrowserEngineKit32NetworkingExtensionConfigurationV": true };
 }
 
@@ -1773,27 +1773,27 @@ export class NetworkingProcess extends SDKHandle {
    * func invalidate()
    * @availability iOS 17.4+
    */
-  invalidate(): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 567820393486058, this, []); }
+  invalidate(): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 567820393486058, this, []); }
   /**
    * func grantCapability(_ capability: ProcessCapability, invalidationHandler: @escaping () -> Void) throws -> ProcessCapability.Grant
    * @availability iOS 17.6+
    */
-  grantCapabilityInvalidationHandler(capability: ProcessCapability, invalidationHandler: (() => void)): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_d6c5d10d3352e6ec", 1736088450793189, this, [capability, invalidationHandler], [null,{"callback":{"out":[]}}]); }
+  grantCapabilityInvalidationHandler(capability: ProcessCapability, invalidationHandler: (() => void)): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_a956b86ef7a76a8e", 1736088450793189, this, [capability, invalidationHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func grantCapability(_ capability: ProcessCapability) throws -> ProcessCapability.Grant
    * @availability iOS 17.4+
    */
-  grantCapability(capability: ProcessCapability): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_d6c5d10d3352e6ec", 4461220697352848, this, [capability]); }
+  grantCapability(capability: ProcessCapability): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_a956b86ef7a76a8e", 4461220697352848, this, [capability]); }
   /**
    * init(bundleIdentifier: String? = nil, onInterruption: @escaping () -> Void) async throws
    * @availability iOS 17.4+
    */
-  static init(bundleIdentifier: (string) | null, onInterruption: (() => void)): Promise<NetworkingProcess> { return callSDKAsync<NetworkingProcess>("BrowserEngineKit_d6c5d10d3352e6ec", 2055465571256507, undefined, [bundleIdentifier, onInterruption], [null,{"callback":{"out":[]}}]); }
+  static init(bundleIdentifier: (string) | null, onInterruption: (() => void)): Promise<NetworkingProcess> { return callSDKAsync<NetworkingProcess>("BrowserEngineKit_a956b86ef7a76a8e", 2055465571256507, undefined, [bundleIdentifier, onInterruption], [null,{"callback":{"out":[]}}]); }
   /**
    * func makeLibXPCConnection() throws -> xpc_connection_t
    * @availability iOS 17.4+
    */
-  makeLibXPCConnection(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 2826236787384496, this, []); }
+  makeLibXPCConnection(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_a956b86ef7a76a8e", 2826236787384496, this, []); }
   declare readonly $type: { "s:16BrowserEngineKit17NetworkingProcessV": true };
 }
 
@@ -1802,117 +1802,117 @@ export class NSObject extends SDKHandle {
    * func accessibilityLineEndPositionFromCurrentSelection() -> Int
    * @availability iOS 18.2+
    */
-  accessibilityLineEndPositionFromCurrentSelection(): number { return callSDK<number>("BrowserEngineKit_d6c5d10d3352e6ec", 4398304398836943, this, []); }
+  accessibilityLineEndPositionFromCurrentSelection(): number { return callSDK<number>("BrowserEngineKit_a956b86ef7a76a8e", 4398304398836943, this, []); }
   /**
    * func accessibilityLineRange(forPosition position: Int) -> NSRange
    * @availability iOS 18.2+
    */
-  accessibilityLineRange(position: number): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 386850074983641, this, [position]); }
+  accessibilityLineRange(position: number): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_a956b86ef7a76a8e", 386850074983641, this, [position]); }
   /**
    * func accessibilityLineStartPositionFromCurrentSelection() -> Int
    * @availability iOS 18.2+
    */
-  accessibilityLineStartPositionFromCurrentSelection(): number { return callSDK<number>("BrowserEngineKit_d6c5d10d3352e6ec", 2452340699002555, this, []); }
+  accessibilityLineStartPositionFromCurrentSelection(): number { return callSDK<number>("BrowserEngineKit_a956b86ef7a76a8e", 2452340699002555, this, []); }
   /**
    * func browserAccessibilityAttributedValue(in range: NSRange) -> NSAttributedString
    * @availability iOS 18.0+
    */
-  browserAccessibilityAttributedValue(range: SDKHandle): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("BrowserEngineKit_d6c5d10d3352e6ec", 1996125203684190, this, [range]); }
+  browserAccessibilityAttributedValue(range: SDKHandle): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("BrowserEngineKit_a956b86ef7a76a8e", 1996125203684190, this, [range]); }
   /**
    * func browserAccessibilityDeleteTextAtCursor(numberOfCharacters: Int)
    * @availability iOS 18.0+
    */
-  browserAccessibilityDeleteTextAtCursor(numberOfCharacters: number): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2574909895728459, this, [numberOfCharacters]); }
+  browserAccessibilityDeleteTextAtCursor(numberOfCharacters: number): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 2574909895728459, this, [numberOfCharacters]); }
   /**
    * func browserAccessibilityImageData(_ attributes: [AnyHashable : Any]) -> CVPixelBuffer?
    * @availability iOS 27.0+
    */
-  browserAccessibilityImageData(attributes: NativeMap<unknown, unknown>): (_CoreVideo_CVBuffer) | null { return callSDK<(_CoreVideo_CVBuffer) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 1018182400163878, this, [attributes]); }
+  browserAccessibilityImageData(attributes: NativeMap<unknown, unknown>): (_CoreVideo_CVBuffer) | null { return callSDK<(_CoreVideo_CVBuffer) | null>("BrowserEngineKit_a956b86ef7a76a8e", 1018182400163878, this, [attributes]); }
   /**
    * func browserAccessibilityInsertTextAtCursor(text: String)
    * @availability iOS 18.0+
    */
-  browserAccessibilityInsertTextAtCursor(text: string): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1845228137930167, this, [text]); }
+  browserAccessibilityInsertTextAtCursor(text: string): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1845228137930167, this, [text]); }
   /**
    * func browserAccessibilitySelectedTextRange() -> NSRange
    * @availability iOS 18.0+
    */
-  browserAccessibilitySelectedTextRange(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 2070776447035312, this, []); }
+  browserAccessibilitySelectedTextRange(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_a956b86ef7a76a8e", 2070776447035312, this, []); }
   /**
    * func browserAccessibilitySetSelectedTextRange(_ range: NSRange)
    * @availability iOS 18.0+
    */
-  browserAccessibilitySetSelectedTextRange(range: SDKHandle): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 601886416457150, this, [range]); }
+  browserAccessibilitySetSelectedTextRange(range: SDKHandle): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 601886416457150, this, [range]); }
   /**
    * func browserAccessibilityValue(in range: NSRange) -> String
    * @availability iOS 18.0+
    */
-  browserAccessibilityValue(range: SDKHandle): string { return callSDK<string>("BrowserEngineKit_d6c5d10d3352e6ec", 4387972328312776, this, [range]); }
+  browserAccessibilityValue(range: SDKHandle): string { return callSDK<string>("BrowserEngineKit_a956b86ef7a76a8e", 4387972328312776, this, [range]); }
   /**
    * var browserAccessibilityContainerType: BEAccessibilityContainerType { get set }
    * @availability iOS 18.0+
    */
-  get browserAccessibilityContainerType(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_d6c5d10d3352e6ec", 997404969023923, this, []); }
-  set browserAccessibilityContainerType(value: BEAccessibilityContainerType) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3648552055914970, this, [value]); }
+  get browserAccessibilityContainerType(): BEAccessibilityContainerType { return callSDK<BEAccessibilityContainerType>("BrowserEngineKit_a956b86ef7a76a8e", 997404969023923, this, []); }
+  set browserAccessibilityContainerType(value: BEAccessibilityContainerType) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3648552055914970, this, [value]); }
   /**
    * var browserAccessibilityCurrentStatus: String? { get set }
    * @availability iOS 18.0+
    */
-  get browserAccessibilityCurrentStatus(): (string) | null { return callSDK<(string) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 2287016978654900, this, []); }
-  set browserAccessibilityCurrentStatus(value: (string) | null) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1952930421032839, this, [value]); }
+  get browserAccessibilityCurrentStatus(): (string) | null { return callSDK<(string) | null>("BrowserEngineKit_a956b86ef7a76a8e", 2287016978654900, this, []); }
+  set browserAccessibilityCurrentStatus(value: (string) | null) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1952930421032839, this, [value]); }
   /**
    * var browserAccessibilityDetailsElements: [NSObject] { get set }
    * @availability iOS 27.0+
    */
-  get browserAccessibilityDetailsElements(): Array<_ObjectiveC_NSObject> { return callSDK<Array<_ObjectiveC_NSObject>>("BrowserEngineKit_d6c5d10d3352e6ec", 2794851938057352, this, []); }
-  set browserAccessibilityDetailsElements(value: Array<_ObjectiveC_NSObject>) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 768663061536423, this, [value]); }
+  get browserAccessibilityDetailsElements(): Array<_ObjectiveC_NSObject> { return callSDK<Array<_ObjectiveC_NSObject>>("BrowserEngineKit_a956b86ef7a76a8e", 2794851938057352, this, []); }
+  set browserAccessibilityDetailsElements(value: Array<_ObjectiveC_NSObject>) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 768663061536423, this, [value]); }
   /**
    * var browserAccessibilityHasDOMFocus: Bool { get set }
    * @availability iOS 18.0+
    */
-  get browserAccessibilityHasDOMFocus(): boolean { return callSDK<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 1967419608265335, this, []); }
-  set browserAccessibilityHasDOMFocus(value: boolean) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3493002490105811, this, [value]); }
+  get browserAccessibilityHasDOMFocus(): boolean { return callSDK<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 1967419608265335, this, []); }
+  set browserAccessibilityHasDOMFocus(value: boolean) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3493002490105811, this, [value]); }
   /**
    * var browserAccessibilityIsRequired: Bool { get set }
    * @availability iOS 18.0+
    */
-  get browserAccessibilityIsRequired(): boolean { return callSDK<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 2258305392695326, this, []); }
-  set browserAccessibilityIsRequired(value: boolean) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2653482060863856, this, [value]); }
+  get browserAccessibilityIsRequired(): boolean { return callSDK<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 2258305392695326, this, []); }
+  set browserAccessibilityIsRequired(value: boolean) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 2653482060863856, this, [value]); }
   /**
    * var browserAccessibilityKeyboardShortcuts: String? { get set }
    * @availability iOS 27.0+
    */
-  get browserAccessibilityKeyboardShortcuts(): (string) | null { return callSDK<(string) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 2882816534699687, this, []); }
-  set browserAccessibilityKeyboardShortcuts(value: (string) | null) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2338888948219447, this, [value]); }
+  get browserAccessibilityKeyboardShortcuts(): (string) | null { return callSDK<(string) | null>("BrowserEngineKit_a956b86ef7a76a8e", 2882816534699687, this, []); }
+  set browserAccessibilityKeyboardShortcuts(value: (string) | null) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 2338888948219447, this, [value]); }
   /**
    * var browserAccessibilityOrientation: BEAccessibilityOrientation { get set }
    * @availability iOS 27.0+
    */
-  get browserAccessibilityOrientation(): BEAccessibilityOrientation { return callSDK<BEAccessibilityOrientation>("BrowserEngineKit_d6c5d10d3352e6ec", 1264400461601692, this, []); }
-  set browserAccessibilityOrientation(value: BEAccessibilityOrientation) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3737038533549330, this, [value]); }
+  get browserAccessibilityOrientation(): BEAccessibilityOrientation { return callSDK<BEAccessibilityOrientation>("BrowserEngineKit_a956b86ef7a76a8e", 1264400461601692, this, []); }
+  set browserAccessibilityOrientation(value: BEAccessibilityOrientation) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3737038533549330, this, [value]); }
   /**
    * var browserAccessibilityPressedState: BEAccessibilityPressedState { get set }
    * @availability iOS 18.0+
    */
-  get browserAccessibilityPressedState(): BEAccessibilityPressedState { return callSDK<BEAccessibilityPressedState>("BrowserEngineKit_d6c5d10d3352e6ec", 2024191453530701, this, []); }
-  set browserAccessibilityPressedState(value: BEAccessibilityPressedState) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3210679688458997, this, [value]); }
+  get browserAccessibilityPressedState(): BEAccessibilityPressedState { return callSDK<BEAccessibilityPressedState>("BrowserEngineKit_a956b86ef7a76a8e", 2024191453530701, this, []); }
+  set browserAccessibilityPressedState(value: BEAccessibilityPressedState) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3210679688458997, this, [value]); }
   /**
    * var browserAccessibilityRoleDescription: String? { get set }
    * @availability iOS 18.0+
    */
-  get browserAccessibilityRoleDescription(): (string) | null { return callSDK<(string) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 1404732477038924, this, []); }
-  set browserAccessibilityRoleDescription(value: (string) | null) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 4444088085319125, this, [value]); }
+  get browserAccessibilityRoleDescription(): (string) | null { return callSDK<(string) | null>("BrowserEngineKit_a956b86ef7a76a8e", 1404732477038924, this, []); }
+  set browserAccessibilityRoleDescription(value: (string) | null) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 4444088085319125, this, [value]); }
   /**
    * var browserAccessibilitySortDirection: String? { get set }
    * @availability iOS 18.0+
    */
-  get browserAccessibilitySortDirection(): (string) | null { return callSDK<(string) | null>("BrowserEngineKit_d6c5d10d3352e6ec", 3075507725553479, this, []); }
-  set browserAccessibilitySortDirection(value: (string) | null) { callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3131253150032909, this, [value]); }
+  get browserAccessibilitySortDirection(): (string) | null { return callSDK<(string) | null>("BrowserEngineKit_a956b86ef7a76a8e", 3075507725553479, this, []); }
+  set browserAccessibilitySortDirection(value: (string) | null) { callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3131253150032909, this, [value]); }
   /**
    * var browserAccessibilityImageDataSize: CGSize { get }
    * @availability iOS 27.0+
    */
-  get browserAccessibilityImageDataSize(): $SDK18 { return callSDK<$SDK18>("BrowserEngineKit_d6c5d10d3352e6ec", 4050861971616216, this, []); }
+  get browserAccessibilityImageDataSize(): $SDK18 { return callSDK<$SDK18>("BrowserEngineKit_a956b86ef7a76a8e", 4050861971616216, this, []); }
   declare readonly $type: { "c:objc(cs)NSObject": true };
   declare readonly $observable: { "browserAccessibilityContainerType": true; "browserAccessibilityCurrentStatus": true; "browserAccessibilityDetailsElements": true; "browserAccessibilityHasDOMFocus": true; "browserAccessibilityIsRequired": true; "browserAccessibilityKeyboardShortcuts": true; "browserAccessibilityOrientation": true; "browserAccessibilityPressedState": true; "browserAccessibilityRoleDescription": true; "browserAccessibilitySortDirection": true };
 }
@@ -1926,17 +1926,17 @@ export class ProcessCapability extends SDKHandle {
    * func request() throws -> ProcessCapability.Grant
    * @availability iOS 17.4+
    */
-  request(): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_d6c5d10d3352e6ec", 3903179474237463, this, []); }
+  request(): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_a956b86ef7a76a8e", 3903179474237463, this, []); }
   /**
    * func suspend() throws
    * @availability iOS 27.0+
    */
-  suspend(): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1317016616128362, this, []); }
+  suspend(): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1317016616128362, this, []); }
   /**
    * func activate() throws
    * @availability iOS 27.0+
    */
-  activate(): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3245428924639737, this, []); }
+  activate(): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3245428924639737, this, []); }
   declare readonly $type: { "s:16BrowserEngineKit17ProcessCapabilityO": true };
 }
 
@@ -1949,12 +1949,12 @@ export class ProcessCapability_Grant extends SDKHandle {
    * func invalidate()
    * @availability iOS 17.4+
    */
-  invalidate(): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 3066170778762342, this, []); }
+  invalidate(): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 3066170778762342, this, []); }
   /**
    * var isValid: Bool { get }
    * @availability iOS 17.4+
    */
-  get isValid(): boolean { return callSDK<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 1121813411869722, this, []); }
+  get isValid(): boolean { return callSDK<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 1121813411869722, this, []); }
   declare readonly $type: { "s:16BrowserEngineKit17ProcessCapabilityO5GrantV": true };
 }
 
@@ -1985,7 +1985,7 @@ export class RenderingExtensionConfiguration extends SDKHandle {
    * nonisolated func accept(connection: NSXPCConnection) -> Bool
    * @availability iOS 17.4+
    */
-  accept(connection: _Foundation_NSXPCConnection): Promise<boolean> { return callSDKAsync<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 1725277203977569, this, [connection]); }
+  accept(connection: _Foundation_NSXPCConnection): Promise<boolean> { return callSDKAsync<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 1725277203977569, this, [connection]); }
   declare readonly $type: { "s:16BrowserEngineKit31RenderingExtensionConfigurationV": true };
 }
 
@@ -2004,32 +2004,32 @@ export class RenderingProcess extends SDKHandle {
    * func invalidate()
    * @availability iOS 17.4+
    */
-  invalidate(): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 2441706530607367, this, []); }
+  invalidate(): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 2441706530607367, this, []); }
   /**
    * func grantCapability(_ capability: ProcessCapability, invalidationHandler: @escaping () -> Void) throws -> ProcessCapability.Grant
    * @availability iOS 17.6+
    */
-  grantCapabilityInvalidationHandler(capability: ProcessCapability, invalidationHandler: (() => void)): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_d6c5d10d3352e6ec", 1652424576188098, this, [capability, invalidationHandler], [null,{"callback":{"out":[]}}]); }
+  grantCapabilityInvalidationHandler(capability: ProcessCapability, invalidationHandler: (() => void)): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_a956b86ef7a76a8e", 1652424576188098, this, [capability, invalidationHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func grantCapability(_ capability: ProcessCapability) throws -> ProcessCapability.Grant
    * @availability iOS 17.4+
    */
-  grantCapability(capability: ProcessCapability): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_d6c5d10d3352e6ec", 2357105832898641, this, [capability]); }
+  grantCapability(capability: ProcessCapability): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_a956b86ef7a76a8e", 2357105832898641, this, [capability]); }
   /**
    * init(bundleIdentifier: String? = nil, onInterruption: @escaping () -> Void) async throws
    * @availability iOS 17.4+
    */
-  static init(bundleIdentifier: (string) | null, onInterruption: (() => void)): Promise<RenderingProcess> { return callSDKAsync<RenderingProcess>("BrowserEngineKit_d6c5d10d3352e6ec", 3347161331102009, undefined, [bundleIdentifier, onInterruption], [null,{"callback":{"out":[]}}]); }
+  static init(bundleIdentifier: (string) | null, onInterruption: (() => void)): Promise<RenderingProcess> { return callSDKAsync<RenderingProcess>("BrowserEngineKit_a956b86ef7a76a8e", 3347161331102009, undefined, [bundleIdentifier, onInterruption], [null,{"callback":{"out":[]}}]); }
   /**
    * func makeLibXPCConnection() throws -> xpc_connection_t
    * @availability iOS 17.4+
    */
-  makeLibXPCConnection(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 2488988652030936, this, []); }
+  makeLibXPCConnection(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_a956b86ef7a76a8e", 2488988652030936, this, []); }
   /**
    * func createVisibilityPropagationInteraction() -> any UIInteraction
    * @availability iOS 17.4+
    */
-  createVisibilityPropagationInteraction(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 2871719519766694, this, []); }
+  createVisibilityPropagationInteraction(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_a956b86ef7a76a8e", 2871719519766694, this, []); }
   declare readonly $type: { "s:16BrowserEngineKit16RenderingProcessV": true };
 }
 
@@ -2056,7 +2056,7 @@ export const RestrictedSandboxRevision = {
    * static var allCases: [RestrictedSandboxRevision] { get }
    * @availability iOS 17.4+
    */
-  get allCases(): $SDK30 { return callSDK<$SDK30>("BrowserEngineKit_d6c5d10d3352e6ec", 155688548797046, undefined, []); }
+  get allCases(): $SDK30 { return callSDK<$SDK30>("BrowserEngineKit_a956b86ef7a76a8e", 155688548797046, undefined, []); }
 };
 
 /**
@@ -2092,7 +2092,7 @@ export class WebContentExtensionConfiguration extends SDKHandle {
    * nonisolated func accept(connection: NSXPCConnection) -> Bool
    * @availability iOS 17.4+
    */
-  accept(connection: _Foundation_NSXPCConnection): Promise<boolean> { return callSDKAsync<boolean>("BrowserEngineKit_d6c5d10d3352e6ec", 2751459285803634, this, [connection]); }
+  accept(connection: _Foundation_NSXPCConnection): Promise<boolean> { return callSDKAsync<boolean>("BrowserEngineKit_a956b86ef7a76a8e", 2751459285803634, this, [connection]); }
   declare readonly $type: { "s:16BrowserEngineKit32WebContentExtensionConfigurationV": true };
 }
 
@@ -2105,84 +2105,84 @@ export class WebContentProcess extends SDKHandle {
    * func invalidate()
    * @availability iOS 17.4+
    */
-  invalidate(): void { return callSDK<void>("BrowserEngineKit_d6c5d10d3352e6ec", 1685363245659581, this, []); }
+  invalidate(): void { return callSDK<void>("BrowserEngineKit_a956b86ef7a76a8e", 1685363245659581, this, []); }
   /**
    * func grantCapability(_ capability: ProcessCapability, invalidationHandler: @escaping () -> Void) throws -> ProcessCapability.Grant
    * @availability iOS 17.6+
    */
-  grantCapabilityInvalidationHandler(capability: ProcessCapability, invalidationHandler: (() => void)): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_d6c5d10d3352e6ec", 1425585592633484, this, [capability, invalidationHandler], [null,{"callback":{"out":[]}}]); }
+  grantCapabilityInvalidationHandler(capability: ProcessCapability, invalidationHandler: (() => void)): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_a956b86ef7a76a8e", 1425585592633484, this, [capability, invalidationHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func grantCapability(_ capability: ProcessCapability) throws -> ProcessCapability.Grant
    * @availability iOS 17.4+
    */
-  grantCapability(capability: ProcessCapability): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_d6c5d10d3352e6ec", 2159784852448710, this, [capability]); }
+  grantCapability(capability: ProcessCapability): ProcessCapability_Grant { return callSDK<ProcessCapability_Grant>("BrowserEngineKit_a956b86ef7a76a8e", 2159784852448710, this, [capability]); }
   /**
    * init(bundleIdentifier: String? = nil, onInterruption: @escaping () -> Void) async throws
    * @availability iOS 17.4+
    */
-  static init(bundleIdentifier: (string) | null, onInterruption: (() => void)): Promise<WebContentProcess> { return callSDKAsync<WebContentProcess>("BrowserEngineKit_d6c5d10d3352e6ec", 1562604446042013, undefined, [bundleIdentifier, onInterruption], [null,{"callback":{"out":[]}}]); }
+  static init(bundleIdentifier: (string) | null, onInterruption: (() => void)): Promise<WebContentProcess> { return callSDKAsync<WebContentProcess>("BrowserEngineKit_a956b86ef7a76a8e", 1562604446042013, undefined, [bundleIdentifier, onInterruption], [null,{"callback":{"out":[]}}]); }
   /**
    * func makeLibXPCConnection() throws -> xpc_connection_t
    * @availability iOS 17.4+
    */
-  makeLibXPCConnection(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 2006049012791828, this, []); }
+  makeLibXPCConnection(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_a956b86ef7a76a8e", 2006049012791828, this, []); }
   /**
    * func createVisibilityPropagationInteraction() -> any UIInteraction
    * @availability iOS 17.4+
    */
-  createVisibilityPropagationInteraction(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_d6c5d10d3352e6ec", 1130606670506964, this, []); }
+  createVisibilityPropagationInteraction(): SDKHandle { return callSDK<SDKHandle>("BrowserEngineKit_a956b86ef7a76a8e", 1130606670506964, this, []); }
   declare readonly $type: { "s:16BrowserEngineKit17WebContentProcessV": true };
 }
 
-registerSDKClass("BrowserEngineKit.BEAccessibility", BEAccessibility, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BEAccessibilityRemoteElement", BEAccessibilityRemoteElement, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BEAccessibilityRemoteHostElement", BEAccessibilityRemoteHostElement, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"accessibilityContainer":3211623009471120} });
-registerSDKClass("BEAccessibilityTextMarker", BEAccessibilityTextMarker, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BEAccessibilityTextMarkerRange", BEAccessibilityTextMarker_Range, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"endMarker":893336392789518,"startMarker":3663253708644328} });
+registerSDKClass("BrowserEngineKit.BEAccessibility", BEAccessibility, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("BEAccessibilityRemoteElement", BEAccessibilityRemoteElement, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("BEAccessibilityRemoteHostElement", BEAccessibilityRemoteHostElement, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"accessibilityContainer":3211623009471120} });
+registerSDKClass("BEAccessibilityTextMarker", BEAccessibilityTextMarker, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("BEAccessibilityTextMarkerRange", BEAccessibilityTextMarker_Range, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"endMarker":893336392789518,"startMarker":3663253708644328} });
 registerSDKProtocol("c:objc(pl)BEAccessibilityTextMarkerSupport", {"accessibilityBoundsFor":"accessibilityBounds(for:)","accessibilityContentFor":"accessibilityContent(for:)","accessibilityTextMarkerRangeForCurrentSelection":"accessibilityTextMarkerRangeForCurrentSelection()","accessibilityTextMarkerRange":"accessibilityTextMarkerRange()","accessibilityNextTextMarker":"accessibilityNextTextMarker(_:)","accessibilityPreviousTextMarker":"accessibilityPreviousTextMarker(_:)","accessibilityLineEndMarkerFor":"accessibilityLineEndMarker(for:)","accessibilityLineStartMarkerFor":"accessibilityLineStartMarker(for:)","accessibilityMarkerFor":"accessibilityMarker(for:)","accessibilityTextMarkerForPosition":"accessibilityTextMarker(forPosition:)","accessibilityTextMarkerRangeFor":"accessibilityTextMarkerRange(for:)","accessibilityRangeFor":"accessibilityRange(for:)"});
-registerSDKClass("BETextSuggestion", BETextSuggestion, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"inputText":1697909902058659} });
-registerSDKClass("BEAutoFillTextSuggestion", BEAutoFillTextSuggestion, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"contents":1590406269691811} });
-registerSDKClass("BEContextMenuConfiguration", BEContextMenuConfiguration, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BrowserEngineKit.BEDirectionalTextRange", BEDirectionalTextRange, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BrowserEngineKit.BEDownloadMonitor", BEDownloadMonitor, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BrowserEngineKit.BEDownloadMonitor.Location", BEDownloadMonitor_Location, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BEDragInteraction", BEDragInteraction, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("BETextSuggestion", BETextSuggestion, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"inputText":1697909902058659} });
+registerSDKClass("BEAutoFillTextSuggestion", BEAutoFillTextSuggestion, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"contents":1590406269691811} });
+registerSDKClass("BEContextMenuConfiguration", BEContextMenuConfiguration, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"fulfill":{"id":3453160817831076}} });
+registerSDKClass("BrowserEngineKit.BEDirectionalTextRange", BEDirectionalTextRange, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("BrowserEngineKit.BEDownloadMonitor", BEDownloadMonitor, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"beginMonitoring":{"id":3394812638240829},"resumeMonitoring":{"id":1087577345462630},"useDownloadsFolder":{"id":4081458701479317,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("BrowserEngineKit.BEDownloadMonitor.Location", BEDownloadMonitor_Location, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("BEDragInteraction", BEDragInteraction, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)BEDragInteractionDelegate", {"dragInteractionItemsForBeginning":"dragInteraction(_:itemsForBeginning:)","dragInteractionWillAnimateLiftWithSession":"dragInteraction(_:willAnimateLiftWith:session:)","dragInteractionSessionWillBegin":"dragInteraction(_:sessionWillBegin:)","dragInteractionSessionDidMove":"dragInteraction(_:sessionDidMove:)","dragInteractionSessionWillEndWith":"dragInteraction(_:session:willEndWith:)","dragInteractionSessionDidEndWith":"dragInteraction(_:session:didEndWith:)","dragInteractionSessionDidTransferItems":"dragInteraction(_:sessionDidTransferItems:)","dragInteractionSessionWillAddFor":"dragInteraction(_:session:willAdd:for:)","dragInteractionItemWillAnimateCancelWith":"dragInteraction(_:item:willAnimateCancelWith:)"});
 registerSDKProtocol("c:objc(pl)BEExtendedTextInputTraits", {});
 registerSDKProtocol("c:objc(pl)BEExtensionProcess", {"invalidate":"invalidate()","makeLibXPCConnectionError":"makeLibXPCConnectionError()"});
-registerSDKClass("BEKeyEntry", BEKeyEntry, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"key":1953061840289915,"isKeyRepeating":41243807571505,"state":2192785551171267,"timestamp":2186919121945209} });
-registerSDKClass("BEKeyEntryContext", BEKeyEntryContext, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"isDocumentEditable":3593981238204599,"keyEntry":1058325316053668,"shouldEvaluateForInputSystemHandling":1959338859954074,"shouldInsertCharacter":3008710218665657} });
-registerSDKClass("BrowserEngineKit.BEMediaEnvironment", BEMediaEnvironment, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BrowserEngineKit.BEProcessCapability", BEProcessCapability, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("BEKeyEntry", BEKeyEntry, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"key":1953061840289915,"isKeyRepeating":41243807571505,"state":2192785551171267,"timestamp":2186919121945209} });
+registerSDKClass("BEKeyEntryContext", BEKeyEntryContext, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"isDocumentEditable":3593981238204599,"keyEntry":1058325316053668,"shouldEvaluateForInputSystemHandling":1959338859954074,"shouldInsertCharacter":3008710218665657} });
+registerSDKClass("BrowserEngineKit.BEMediaEnvironment", BEMediaEnvironment, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("BrowserEngineKit.BEProcessCapability", BEProcessCapability, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)BEResponderEditActions", {"cut":"cut(_:)","copy":"copy(_:)","paste":"paste(_:)","pasteAndMatchStyle":"pasteAndMatchStyle(_:)","pasteAndGo":"pasteAndGo(_:)","pasteAndSearch":"pasteAndSearch(_:)","newFromPasteboard":"newFromPasteboard(_:)","select":"select(_:)","selectAll":"selectAll(_:)","delete":"delete(_:)","makeTextWritingDirectionLeftToRight":"makeTextWritingDirectionLeftToRight(_:)","makeTextWritingDirectionRightToLeft":"makeTextWritingDirectionRightToLeft(_:)","toggleBoldface":"toggleBoldface(_:)","toggleItalics":"toggleItalics(_:)","toggleUnderline":"toggleUnderline(_:)","increaseSize":"increaseSize(_:)","decreaseSize":"decreaseSize(_:)","alignLeft":"alignLeft(_:)","alignCenter":"alignCenter(_:)","alignJustified":"alignJustified(_:)","alignRight":"alignRight(_:)","find":"find(_:)","findAndReplace":"findAndReplace(_:)","findNext":"findNext(_:)","findPrevious":"findPrevious(_:)","useSelectionForFind":"useSelectionForFind(_:)","printContent":"printContent(_:)","rename":"rename(_:)","duplicate":"duplicate(_:)","move":"move(_:)","export":"export(_:)","toggleSidebar":"toggleSidebar(_:)","toggleInspector":"toggleInspector(_:)","performClose":"performClose(_:)","showWritingTools":"showWritingTools(_:)","share":"share(_:)","addShortcut":"addShortcut(_:)","lookup":"lookup(_:)","findSelected":"findSelected(_:)","promptForReplace":"promptForReplace(_:)","replace":"replace(_:)","translate":"translate(_:)","transliterateChinese":"transliterateChinese(_:)"});
-registerSDKClass("BEScrollView", BEScrollView, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("BEScrollView", BEScrollView, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)BEScrollViewDelegate", {"scrollViewDidScroll":"scrollViewDidScroll(_:)","scrollViewDidZoom":"scrollViewDidZoom(_:)","scrollViewWillBeginDragging":"scrollViewWillBeginDragging(_:)","scrollViewWillEndDraggingWithVelocityTargetContentOffset":"scrollViewWillEndDragging(_:withVelocity:targetContentOffset:)","scrollViewDidEndDraggingWillDecelerate":"scrollViewDidEndDragging(_:willDecelerate:)","scrollViewWillBeginDecelerating":"scrollViewWillBeginDecelerating(_:)","scrollViewDidEndDecelerating":"scrollViewDidEndDecelerating(_:)","scrollViewDidEndScrollingAnimation":"scrollViewDidEndScrollingAnimation(_:)","scrollViewWillBeginZoomingWith":"scrollViewWillBeginZooming(_:with:)","scrollViewDidEndZoomingWithAtScale":"scrollViewDidEndZooming(_:with:atScale:)","scrollViewDidScrollToTop":"scrollViewDidScrollToTop(_:)","scrollViewDidChangeAdjustedContentInset":"scrollViewDidChangeAdjustedContentInset(_:)"});
-registerSDKClass("BEScrollViewScrollUpdate", BEScrollViewScrollUpdate, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BETextAlternatives", BETextAlternatives, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"alternativeStrings":2711249728059704,"primaryString":3007441430164233} });
-registerSDKClass("BETextDocumentContext", BETextDocumentContext, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"autocorrectedRanges":1786105762531923} });
-registerSDKClass("BETextDocumentRequest", BETextDocumentRequest, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"granularityCount":1808213386293873,"options":4290273392676988,"surroundingGranularity":1435543824751280} });
+registerSDKClass("BEScrollViewScrollUpdate", BEScrollViewScrollUpdate, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"location":{"id":198561379025898},"translation":{"id":1516502952492033}} });
+registerSDKClass("BETextAlternatives", BETextAlternatives, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"alternativeStrings":2711249728059704,"primaryString":3007441430164233} });
+registerSDKClass("BETextDocumentContext", BETextDocumentContext, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"autocorrectedRanges":1786105762531923}, methods: {"addTextRect":{"id":1143575774628778}} });
+registerSDKClass("BETextDocumentRequest", BETextDocumentRequest, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"granularityCount":1808213386293873,"options":4290273392676988,"surroundingGranularity":1435543824751280} });
 registerSDKProtocol("c:objc(pl)BETextInput", {"cut":"cut(_:)","copy":"copy(_:)","paste":"paste(_:)","pasteAndMatchStyle":"pasteAndMatchStyle(_:)","pasteAndGo":"pasteAndGo(_:)","pasteAndSearch":"pasteAndSearch(_:)","newFromPasteboard":"newFromPasteboard(_:)","select":"select(_:)","selectAll":"selectAll(_:)","delete":"delete(_:)","makeTextWritingDirectionLeftToRight":"makeTextWritingDirectionLeftToRight(_:)","makeTextWritingDirectionRightToLeft":"makeTextWritingDirectionRightToLeft(_:)","toggleBoldface":"toggleBoldface(_:)","toggleItalics":"toggleItalics(_:)","toggleUnderline":"toggleUnderline(_:)","increaseSize":"increaseSize(_:)","decreaseSize":"decreaseSize(_:)","alignLeft":"alignLeft(_:)","alignCenter":"alignCenter(_:)","alignJustified":"alignJustified(_:)","alignRight":"alignRight(_:)","find":"find(_:)","findAndReplace":"findAndReplace(_:)","findNext":"findNext(_:)","findPrevious":"findPrevious(_:)","useSelectionForFind":"useSelectionForFind(_:)","printContent":"printContent(_:)","rename":"rename(_:)","duplicate":"duplicate(_:)","move":"move(_:)","export":"export(_:)","toggleSidebar":"toggleSidebar(_:)","toggleInspector":"toggleInspector(_:)","performClose":"performClose(_:)","showWritingTools":"showWritingTools(_:)","share":"share(_:)","addShortcut":"addShortcut(_:)","lookup":"lookup(_:)","findSelected":"findSelected(_:)","promptForReplace":"promptForReplace(_:)","replace":"replace(_:)","translate":"translate(_:)","transliterateChinese":"transliterateChinese(_:)","moveIn":"move(in:)","extendIn":"extend(in:)","moveInBy":"move(in:by:)","extendInBy":"extend(in:by:)","insertText":"insertText(_:)","deleteBackward":"deleteBackward()","canPerformActionWithSender":"canPerformAction(_:withSender:)","handleKeyEntry":"handleKeyEntry(_:)","shiftKeyStateChangedFromStateToState":"shiftKeyStateChanged(fromState:toState:)","textIn":"text(in:)","offsetFromTo":"offset(from:to:)","setBaseWritingDirectionFor":"setBaseWritingDirection(_:for:)","deleteInTo":"delete(in:to:)","transposeCharactersAroundSelection":"transposeCharactersAroundSelection()","replaceTextWithTextOptions":"replaceText(_:withText:options:)","requestTextContextForAutocorrection":"requestTextContextForAutocorrection()","requestTextRectsFor":"requestTextRects(for:)","requestPreferredArrowDirectionForEditMenu":"requestPreferredArrowDirectionForEditMenu()","systemWillPresentEditMenuWithAnimator":"systemWillPresentEditMenu(withAnimator:)","systemWillDismissEditMenuWithAnimator":"systemWillDismissEditMenu(withAnimator:)","textStylingAtIn":"textStyling(at:in:)","replaceSelectedTextWithText":"replaceSelectedText(_:withText:)","updateCurrentSelectionToFromIn":"updateCurrentSelection(to:from:in:)","setSelectionFromToGestureState":"setSelection(from:to:gesture:state:)","adjustSelectionBoundaryToTouchPhaseBaseIsStartFlags":"adjustSelectionBoundary(to:touchPhase:baseIsStart:flags:)","textInteractionGestureShouldBeginAt":"textInteractionGesture(_:shouldBeginAt:)","caretRectFor":"caretRect(for:)","selectionRectsFor":"selectionRects(for:)","selectWordForReplacement":"selectWordForReplacement()","updateSelectionExtentBoundary":"updateSelection(extent:boundary:)","selectTextInAt":"selectText(in:at:)","selectPositionAt":"selectPosition(at:)","selectPositionAtFor":"selectPosition(at:for:)","adjustSelectionBy":"adjustSelection(by:)","moveByOffset":"move(byOffset:)","moveSelectionAtBoundaryIn":"moveSelection(atBoundary:in:)","selectTextForEditMenuWithLocationInView":"selectTextForEditMenuWithLocation(inView:)","setMarkedTextSelectedRange":"setMarkedText(_:selectedRange:)","setAttributedMarkedTextSelectedRange":"setAttributedMarkedText(_:selectedRange:)","unmarkText":"unmarkText()","isPointNearMarkedText":"isPointNearMarkedText(_:)","requestDocumentContext":"requestDocumentContext(_:)","willInsertFinalDictationResult":"willInsertFinalDictationResult()","replaceDictatedTextWithText":"replaceDictatedText(_:withText:)","didInsertFinalDictationResult":"didInsertFinalDictationResult()","alternativesForSelectedText":"alternativesForSelectedText()","add":"add(_:)","insert":"insert(_:)","removeTextAlternatives":"removeTextAlternatives()","insertTextPlaceholderSize":"insertTextPlaceholder(size:)","removeWillInsertText":"remove(_:willInsertText:)","autoscrollTo":"autoscroll(to:)","cancelAutoscroll":"cancelAutoscroll()","keyboardWillDismiss":"keyboardWillDismiss()"});
 registerSDKProtocol("c:objc(pl)BETextInputDelegate", {"shouldDeferEventHandlingToSystemForContext":"shouldDeferEventHandlingToSystem(for:context:)","textInputSetCandidateSuggestions":"textInput(_:setCandidateSuggestions:)","selectionWillChangeFor":"selectionWillChange(for:)","selectionDidChangeFor":"selectionDidChange(for:)","textInputDeferReplaceTextActionToSystem":"textInput(_:deferReplaceTextActionToSystem:)","invalidateTextEntryContextFor":"invalidateTextEntryContext(for:)"});
-registerSDKClass("BETextInteraction", BETextInteraction, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("BETextInteraction", BETextInteraction, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"addShortcut":{"id":3451263772681974},"dismissEditMenuForSelection":{"id":2297608718589884},"editabilityChanged":{"id":2962816387413380},"presentEditMenuForSelection":{"id":1104730145953011},"refreshKeyboardUI":{"id":2142607451865593},"selectionBoundaryAdjusted":{"id":2315954710651654},"selectionChangedWithGesture":{"id":1020089109444999},"share":{"id":658344573296202},"showDictionary":{"id":3750690287865832},"showReplacements":{"id":1548658952036302},"translate":{"id":2058754320497772},"transliterateChinese":{"id":2102214102710854}} });
 registerSDKProtocol("c:objc(pl)BETextInteractionDelegate", {"systemWillChangeSelectionFor":"systemWillChangeSelection(for:)","systemDidChangeSelectionFor":"systemDidChangeSelection(for:)"});
 registerSDKProtocol("c:objc(pl)BETextSelectionDirectionNavigation", {"moveIn":"move(in:)","extendIn":"extend(in:)","moveInBy":"move(in:by:)","extendInBy":"extend(in:by:)"});
-registerSDKClass("BEWebAppManifest", BEWebAppManifest, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"jsonData":280709188034521,"manifestURL":2296491815492473} });
-registerSDKClass("BEWebContentFilter", BEWebContentFilter, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BELayerHierarchy", LayerHierarchy, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BELayerHierarchyHandle", LayerHierarchyHandle, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BELayerHierarchyHostingTransactionCoordinator", LayerHierarchyHostingTransactionCoordinator, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BELayerHierarchyHostingView", LayerHierarchyHostingView, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BrowserEngineKit.MediaEnvironment", MediaEnvironment, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("BEWebAppManifest", BEWebAppManifest, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"jsonData":280709188034521,"manifestURL":2296491815492473} });
+registerSDKClass("BEWebContentFilter", BEWebContentFilter, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"allow":{"id":3800920538970825,"hints":[null,{"callback":{"out":[]}}]},"evaluateURLCompletionHandler":{"id":3709428772753197,"hints":[null,{"callback":{"out":[]}}]},"evaluateURLMainFrameURLIsMainFrameCompletionHandler":{"id":1595025852277946,"hints":[null,null,null,{"callback":{"out":[]}}]},"requestPermission":{"id":1017557291349473,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("BELayerHierarchy", LayerHierarchy, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"invalidate":{"id":4171030718980013}} });
+registerSDKClass("BELayerHierarchyHandle", LayerHierarchyHandle, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"createXPCRepresentation":{"id":2173973619026302},"encode":{"id":1613754760641641,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("BELayerHierarchyHostingTransactionCoordinator", LayerHierarchyHostingTransactionCoordinator, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"add":{"id":820452870397652},"add23805":{"id":755025506913948},"commit":{"id":3057458851271157},"createXPCRepresentation":{"id":4447457310946787},"encode":{"id":1741661560735673,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("BELayerHierarchyHostingView", LayerHierarchyHostingView, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("BrowserEngineKit.MediaEnvironment", MediaEnvironment, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"makeCaptureSession":{"id":1388332079168291},"createXPCRepresentation":{"id":788549439844922},"suspend":{"id":2249639241270473},"activate":{"id":3256701452310458}} });
 registerSDKProtocol("s:16BrowserEngineKit19NetworkingExtensionP", {"init":"init()","applyRestrictedSandboxRevision":"applyRestrictedSandbox(revision:)","handleXpcConnection":"handle(xpcConnection:)"});
-registerSDKClass("BrowserEngineKit.NetworkingExtensionConfiguration", NetworkingExtensionConfiguration, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BrowserEngineKit.NetworkingProcess", NetworkingProcess, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("NSObject", NSObject, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {"browserAccessibilityContainerType":997404969023923,"browserAccessibilityCurrentStatus":2287016978654900,"browserAccessibilityDetailsElements":2794851938057352,"browserAccessibilityHasDOMFocus":1967419608265335,"browserAccessibilityIsRequired":2258305392695326,"browserAccessibilityKeyboardShortcuts":2882816534699687,"browserAccessibilityOrientation":1264400461601692,"browserAccessibilityPressedState":2024191453530701,"browserAccessibilityRoleDescription":1404732477038924,"browserAccessibilitySortDirection":3075507725553479} }, true);
-registerSDKClass("BrowserEngineKit.ProcessCapability", ProcessCapability, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BrowserEngineKit.ProcessCapability.Grant", ProcessCapability_Grant, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("BrowserEngineKit.NetworkingExtensionConfiguration", NetworkingExtensionConfiguration, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"accept":{"id":2694303066077438}} });
+registerSDKClass("BrowserEngineKit.NetworkingProcess", NetworkingProcess, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"invalidate":{"id":567820393486058},"grantCapabilityInvalidationHandler":{"id":1736088450793189,"hints":[null,{"callback":{"out":[]}}]},"grantCapability":{"id":4461220697352848},"makeLibXPCConnection":{"id":2826236787384496}} });
+registerSDKClass("NSObject", NSObject, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {"browserAccessibilityContainerType":997404969023923,"browserAccessibilityCurrentStatus":2287016978654900,"browserAccessibilityDetailsElements":2794851938057352,"browserAccessibilityHasDOMFocus":1967419608265335,"browserAccessibilityIsRequired":2258305392695326,"browserAccessibilityKeyboardShortcuts":2882816534699687,"browserAccessibilityOrientation":1264400461601692,"browserAccessibilityPressedState":2024191453530701,"browserAccessibilityRoleDescription":1404732477038924,"browserAccessibilitySortDirection":3075507725553479}, methods: {"accessibilityLineEndPositionFromCurrentSelection":{"id":4398304398836943},"accessibilityLineRange":{"id":386850074983641},"accessibilityLineStartPositionFromCurrentSelection":{"id":2452340699002555},"browserAccessibilityAttributedValue":{"id":1996125203684190},"browserAccessibilityDeleteTextAtCursor":{"id":2574909895728459},"browserAccessibilityImageData":{"id":1018182400163878},"browserAccessibilityInsertTextAtCursor":{"id":1845228137930167},"browserAccessibilitySelectedTextRange":{"id":2070776447035312},"browserAccessibilitySetSelectedTextRange":{"id":601886416457150},"browserAccessibilityValue":{"id":4387972328312776}} }, true);
+registerSDKClass("BrowserEngineKit.ProcessCapability", ProcessCapability, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"request":{"id":3903179474237463},"suspend":{"id":1317016616128362},"activate":{"id":3245428924639737}} });
+registerSDKClass("BrowserEngineKit.ProcessCapability.Grant", ProcessCapability_Grant, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"invalidate":{"id":3066170778762342}} });
 registerSDKProtocol("s:16BrowserEngineKit18RenderingExtensionP", {"init":"init()","applyRestrictedSandboxRevision":"applyRestrictedSandbox(revision:)","handleXpcConnection":"handle(xpcConnection:)"});
-registerSDKClass("BrowserEngineKit.RenderingExtensionConfiguration", RenderingExtensionConfiguration, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BrowserEngineKit.RenderingProcess", RenderingProcess, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("BrowserEngineKit.RenderingExtensionConfiguration", RenderingExtensionConfiguration, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"accept":{"id":1725277203977569}} });
+registerSDKClass("BrowserEngineKit.RenderingProcess", RenderingProcess, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"invalidate":{"id":2441706530607367},"grantCapabilityInvalidationHandler":{"id":1652424576188098,"hints":[null,{"callback":{"out":[]}}]},"grantCapability":{"id":2357105832898641},"makeLibXPCConnection":{"id":2488988652030936},"createVisibilityPropagationInteraction":{"id":2871719519766694}} });
 registerSDKProtocol("s:16BrowserEngineKit26RestrictedSandboxAppliableP", {"applyRestrictedSandboxRevision":"applyRestrictedSandbox(revision:)"});
 registerSDKProtocol("s:16BrowserEngineKit19WebContentExtensionP", {"init":"init()","applyRestrictedSandboxRevision":"applyRestrictedSandbox(revision:)","handleXpcConnection":"handle(xpcConnection:)"});
-registerSDKClass("BrowserEngineKit.WebContentExtensionConfiguration", WebContentExtensionConfiguration, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("BrowserEngineKit.WebContentProcess", WebContentProcess, { module: "BrowserEngineKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("BrowserEngineKit.WebContentExtensionConfiguration", WebContentExtensionConfiguration, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"accept":{"id":2751459285803634}} });
+registerSDKClass("BrowserEngineKit.WebContentProcess", WebContentProcess, { module: "BrowserEngineKit_a956b86ef7a76a8e", properties: {}, methods: {"invalidate":{"id":1685363245659581},"grantCapabilityInvalidationHandler":{"id":1425585592633484,"hints":[null,{"callback":{"out":[]}}]},"grantCapability":{"id":2159784852448710},"makeLibXPCConnection":{"id":2006049012791828},"createVisibilityPropagationInteraction":{"id":1130606670506964}} });

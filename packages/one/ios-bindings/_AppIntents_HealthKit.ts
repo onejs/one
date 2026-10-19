@@ -8,17 +8,17 @@ export class AudioContext extends SDKHandle {
    * static func workout(activityType: HKWorkoutActivityType) -> AudioContext
    * @availability iOS 27.0+
    */
-  static workoutActivityType(activityType: _HealthKit_HKWorkoutActivityType): _AppIntents_AudioContext { return callSDK<_AppIntents_AudioContext>("_AppIntents_HealthKit_d6c5d10d3352e6ec", 2437353328848356, undefined, [activityType]); }
+  static workoutActivityType(activityType: _HealthKit_HKWorkoutActivityType): _AppIntents_AudioContext { return callSDK<_AppIntents_AudioContext>("_AppIntents_HealthKit_a956b86ef7a76a8e", 2437353328848356, undefined, [activityType]); }
   /**
    * static func workout(intensityLevel: AudioContext.WorkoutIntensityLevel) -> AudioContext
    * @availability iOS 27.0+
    */
-  static workoutIntensityLevel(intensityLevel: AudioContext_WorkoutIntensityLevel): _AppIntents_AudioContext { return callSDK<_AppIntents_AudioContext>("_AppIntents_HealthKit_d6c5d10d3352e6ec", 3023349370357061, undefined, [intensityLevel]); }
+  static workoutIntensityLevel(intensityLevel: AudioContext_WorkoutIntensityLevel): _AppIntents_AudioContext { return callSDK<_AppIntents_AudioContext>("_AppIntents_HealthKit_a956b86ef7a76a8e", 3023349370357061, undefined, [intensityLevel]); }
   /**
    * static var workout: AudioContext { get }
    * @availability iOS 27.0+
    */
-  static get workout(): _AppIntents_AudioContext { return callSDK<_AppIntents_AudioContext>("_AppIntents_HealthKit_d6c5d10d3352e6ec", 1811077668037549, undefined, []); }
+  static get workout(): _AppIntents_AudioContext { return callSDK<_AppIntents_AudioContext>("_AppIntents_HealthKit_a956b86ef7a76a8e", 1811077668037549, undefined, []); }
   declare readonly $type: { "s:10AppIntents12AudioContextV": true };
 }
 
@@ -33,32 +33,32 @@ export const AudioContext_WorkoutIntensityLevel = {
    * static let low: AudioContext.WorkoutIntensityLevel
    * @availability iOS 27.0+
    */
-  get low(): AudioContext_WorkoutIntensityLevel { return callSDK<AudioContext_WorkoutIntensityLevel>("_AppIntents_HealthKit_d6c5d10d3352e6ec", 4368065362170646, undefined, []); },
+  get low(): AudioContext_WorkoutIntensityLevel { return callSDK<AudioContext_WorkoutIntensityLevel>("_AppIntents_HealthKit_a956b86ef7a76a8e", 4368065362170646, undefined, []); },
   /**
    * static let high: AudioContext.WorkoutIntensityLevel
    * @availability iOS 27.0+
    */
-  get high(): AudioContext_WorkoutIntensityLevel { return callSDK<AudioContext_WorkoutIntensityLevel>("_AppIntents_HealthKit_d6c5d10d3352e6ec", 2710671044412473, undefined, []); },
+  get high(): AudioContext_WorkoutIntensityLevel { return callSDK<AudioContext_WorkoutIntensityLevel>("_AppIntents_HealthKit_a956b86ef7a76a8e", 2710671044412473, undefined, []); },
   /**
    * static let medium: AudioContext.WorkoutIntensityLevel
    * @availability iOS 27.0+
    */
-  get medium(): AudioContext_WorkoutIntensityLevel { return callSDK<AudioContext_WorkoutIntensityLevel>("_AppIntents_HealthKit_d6c5d10d3352e6ec", 2484055234499823, undefined, []); },
+  get medium(): AudioContext_WorkoutIntensityLevel { return callSDK<AudioContext_WorkoutIntensityLevel>("_AppIntents_HealthKit_a956b86ef7a76a8e", 2484055234499823, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: number): AudioContext_WorkoutIntensityLevel { return callSDK<AudioContext_WorkoutIntensityLevel>("_AppIntents_HealthKit_d6c5d10d3352e6ec", 1886563360039722, undefined, [rawValue]); },
+  initRawValue(rawValue: number): AudioContext_WorkoutIntensityLevel { return callSDK<AudioContext_WorkoutIntensityLevel>("_AppIntents_HealthKit_a956b86ef7a76a8e", 1886563360039722, undefined, [rawValue]); },
   /**
    * let rawValue: UInt
    * @availability iOS 27.0+
    */
-  getRawValue($self: AudioContext_WorkoutIntensityLevel): number { return callSDK<number>("_AppIntents_HealthKit_d6c5d10d3352e6ec", 2653323164211430, $self, []); },
+  getRawValue($self: AudioContext_WorkoutIntensityLevel): number { return callSDK<number>("_AppIntents_HealthKit_a956b86ef7a76a8e", 2653323164211430, $self, []); },
   /**
    * init(_ workoutActivityType: HKWorkoutActivityType)
    * @availability iOS 27.0+
    */
-  init(workoutActivityType: _HealthKit_HKWorkoutActivityType): AudioContext_WorkoutIntensityLevel { return callSDK<AudioContext_WorkoutIntensityLevel>("_AppIntents_HealthKit_d6c5d10d3352e6ec", 602770834670507, undefined, [workoutActivityType]); }
+  init(workoutActivityType: _HealthKit_HKWorkoutActivityType): AudioContext_WorkoutIntensityLevel { return callSDK<AudioContext_WorkoutIntensityLevel>("_AppIntents_HealthKit_a956b86ef7a76a8e", 602770834670507, undefined, [workoutActivityType]); }
 };
 
-registerSDKClass("AppIntents.AudioContext", AudioContext, { module: "_AppIntents_HealthKit_d6c5d10d3352e6ec", properties: {} }, true);
+registerSDKClass("AppIntents.AudioContext", AudioContext, { module: "_AppIntents_HealthKit_a956b86ef7a76a8e", properties: {} }, true);

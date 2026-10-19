@@ -37,6 +37,8 @@ export declare class MTL4BufferRange extends SDKHandle {
     /** var length: UInt64 */
     get length(): number;
     set length(value: number);
+    /** init(bufferAddress: MTLGPUAddress, length: UInt64) */
+    static initBufferAddressLength(bufferAddress: number, length: number): MTL4BufferRange;
     /** init() */
     static init(): MTL4BufferRange;
     readonly $type: {
@@ -6647,6 +6649,8 @@ export declare class MTLPackedFloatQuaternion extends SDKHandle {
     /** var z: Float */
     get z(): number;
     set z(value: number);
+    /** init(x: Float, y: Float, z: Float, w: Float) */
+    static initXYZW(x: number, y: number, z: number, w: number): MTLPackedFloatQuaternion;
     /** init() */
     static init(): MTLPackedFloatQuaternion;
     readonly $type: {

@@ -31,7 +31,7 @@ export class AppExtensionSceneConfiguration extends SDKHandle {
    * nonisolated func accept(connection: NSXPCConnection) -> Bool
    * @availability iOS 16.0+
    */
-  accept(connection: _Foundation_NSXPCConnection): Promise<boolean> { return callSDKAsync<boolean>("ExtensionKit_d6c5d10d3352e6ec", 1385824458920686, this, [connection]); }
+  accept(connection: _Foundation_NSXPCConnection): Promise<boolean> { return callSDKAsync<boolean>("ExtensionKit_a956b86ef7a76a8e", 1385824458920686, this, [connection]); }
   declare readonly $type: { "s:12ExtensionKit03AppA18SceneConfigurationV": true };
 }
 
@@ -47,7 +47,7 @@ export type Array_Body<Element = unknown> = never;
  */
 export class EXAppExtensionBrowserViewController extends SDKHandle {
   /** init() */
-  static init(): EXAppExtensionBrowserViewController { return callSDK<EXAppExtensionBrowserViewController>("ExtensionKit_d6c5d10d3352e6ec", 4205951840674690, undefined, []); }
+  static init(): EXAppExtensionBrowserViewController { return callSDK<EXAppExtensionBrowserViewController>("ExtensionKit_a956b86ef7a76a8e", 4205951840674690, undefined, []); }
   declare readonly $type: { "c:objc(cs)EXAppExtensionBrowserViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -57,30 +57,30 @@ export class EXAppExtensionBrowserViewController extends SDKHandle {
  */
 export class EXHostViewController extends SDKHandle {
   /** init() */
-  static init(): EXHostViewController { return callSDK<EXHostViewController>("ExtensionKit_d6c5d10d3352e6ec", 3879725973264170, undefined, []); }
+  static init(): EXHostViewController { return callSDK<EXHostViewController>("ExtensionKit_a956b86ef7a76a8e", 3879725973264170, undefined, []); }
   /**
    * func makeXPCConnection() throws -> NSXPCConnection
    * @availability iOS 26.0+
    */
-  makeXPCConnection(): _Foundation_NSXPCConnection { return callSDK<_Foundation_NSXPCConnection>("ExtensionKit_d6c5d10d3352e6ec", 3811016755489957, this, []); }
+  makeXPCConnection(): _Foundation_NSXPCConnection { return callSDK<_Foundation_NSXPCConnection>("ExtensionKit_a956b86ef7a76a8e", 3811016755489957, this, []); }
   /**
    * weak var delegate: (any EXHostViewControllerDelegate)? { get set }
    * @availability iOS 26.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ExtensionKit_d6c5d10d3352e6ec", 4006676374285258, this, []); }
-  set delegate(value: (Implements<EXHostViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("ExtensionKit_d6c5d10d3352e6ec", 3714991624391865, this, [value], [{"protocol":"c:objc(pl)EXHostViewControllerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ExtensionKit_a956b86ef7a76a8e", 4006676374285258, this, []); }
+  set delegate(value: (Implements<EXHostViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("ExtensionKit_a956b86ef7a76a8e", 3714991624391865, this, [value], [{"protocol":"c:objc(pl)EXHostViewControllerDelegate"}]); }
   /**
    * var placeholderView: UIView { get set }
    * @availability iOS 26.0+
    */
-  get placeholderView(): _UIKit_UIView { return callSDK<_UIKit_UIView>("ExtensionKit_d6c5d10d3352e6ec", 3366048628599586, this, []); }
-  set placeholderView(value: _UIKit_UIView) { callSDK<void>("ExtensionKit_d6c5d10d3352e6ec", 451347954824111, this, [value]); }
+  get placeholderView(): _UIKit_UIView { return callSDK<_UIKit_UIView>("ExtensionKit_a956b86ef7a76a8e", 3366048628599586, this, []); }
+  set placeholderView(value: _UIKit_UIView) { callSDK<void>("ExtensionKit_a956b86ef7a76a8e", 451347954824111, this, [value]); }
   /**
    * @MainActor @preconcurrency var configuration: EXHostViewController.Configuration? { get set }
    * @availability iOS 26.0+
    */
-  get configuration(): Promise<$SDK1> { return callSDKAsync<$SDK1>("ExtensionKit_d6c5d10d3352e6ec", 1216445598648720, this, []); }
-  setConfiguration(value?: $SDK1): Promise<void> { return callSDKAsync<void>("ExtensionKit_d6c5d10d3352e6ec", 1114366095202638, this, [value]); }
+  get configuration(): Promise<$SDK1> { return callSDKAsync<$SDK1>("ExtensionKit_a956b86ef7a76a8e", 1216445598648720, this, []); }
+  setConfiguration(value?: $SDK1): Promise<void> { return callSDKAsync<void>("ExtensionKit_a956b86ef7a76a8e", 1114366095202638, this, [value]); }
   declare readonly $type: { "c:objc(cs)EXHostViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "placeholderView": true };
 }
@@ -94,19 +94,19 @@ export class EXHostViewController_Configuration extends SDKHandle {
    * var appExtension: AppExtensionIdentity
    * @availability iOS 26.0+
    */
-  get appExtension(): _ExtensionFoundation_AppExtensionIdentity { return callSDK<_ExtensionFoundation_AppExtensionIdentity>("ExtensionKit_d6c5d10d3352e6ec", 2446932361107587, this, []); }
-  set appExtension(value: _ExtensionFoundation_AppExtensionIdentity) { callSDK<void>("ExtensionKit_d6c5d10d3352e6ec", 152992683557430, this, [value]); }
+  get appExtension(): _ExtensionFoundation_AppExtensionIdentity { return callSDK<_ExtensionFoundation_AppExtensionIdentity>("ExtensionKit_a956b86ef7a76a8e", 2446932361107587, this, []); }
+  set appExtension(value: _ExtensionFoundation_AppExtensionIdentity) { callSDK<void>("ExtensionKit_a956b86ef7a76a8e", 152992683557430, this, [value]); }
   /**
    * init(appExtension: AppExtensionIdentity, sceneID: String)
    * @availability iOS 26.0+
    */
-  static init(appExtension: _ExtensionFoundation_AppExtensionIdentity, sceneID: string): EXHostViewController_Configuration { return callSDK<EXHostViewController_Configuration>("ExtensionKit_d6c5d10d3352e6ec", 461106740701783, undefined, [appExtension, sceneID]); }
+  static init(appExtension: _ExtensionFoundation_AppExtensionIdentity, sceneID: string): EXHostViewController_Configuration { return callSDK<EXHostViewController_Configuration>("ExtensionKit_a956b86ef7a76a8e", 461106740701783, undefined, [appExtension, sceneID]); }
   /**
    * var sceneID: String
    * @availability iOS 26.0+
    */
-  get sceneID(): string { return callSDK<string>("ExtensionKit_d6c5d10d3352e6ec", 1029277099680257, this, []); }
-  set sceneID(value: string) { callSDK<void>("ExtensionKit_d6c5d10d3352e6ec", 920180824084459, this, [value]); }
+  get sceneID(): string { return callSDK<string>("ExtensionKit_a956b86ef7a76a8e", 1029277099680257, this, []); }
+  set sceneID(value: string) { callSDK<void>("ExtensionKit_a956b86ef7a76a8e", 920180824084459, this, [value]); }
   declare readonly $type: { "s:So20EXHostViewControllerC12ExtensionKitE13ConfigurationV": true };
 }
 
@@ -136,12 +136,12 @@ export class PrimitiveAppExtensionScene extends SDKHandle {
    * @MainActor @preconcurrency var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): Promise<string> { return callSDKAsync<string>("ExtensionKit_d6c5d10d3352e6ec", 2465583571904718, this, []); }
+  get debugDescription(): Promise<string> { return callSDKAsync<string>("ExtensionKit_a956b86ef7a76a8e", 2465583571904718, this, []); }
   /**
    * @MainActor @preconcurrency var body: Never { get }
    * @availability iOS 16.0+
    */
-  get body(): Promise<never> { return callSDKAsync<never>("ExtensionKit_d6c5d10d3352e6ec", 4016872626374448, this, []); }
+  get body(): Promise<never> { return callSDKAsync<never>("ExtensionKit_a956b86ef7a76a8e", 4016872626374448, this, []); }
   declare readonly $type: { "s:12ExtensionKit012PrimitiveAppA5SceneV": true };
 }
 
@@ -152,10 +152,10 @@ export class PrimitiveAppExtensionScene extends SDKHandle {
 export type PrimitiveAppExtensionScene_Body = never;
 
 registerSDKProtocol("s:12ExtensionKit03AppA5SceneP", {});
-registerSDKClass("ExtensionKit.AppExtensionSceneBuilder", AppExtensionSceneBuilder, { module: "ExtensionKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ExtensionKit.AppExtensionSceneConfiguration", AppExtensionSceneConfiguration, { module: "ExtensionKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("EXAppExtensionBrowserViewController", EXAppExtensionBrowserViewController, { module: "ExtensionKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("EXHostViewController", EXHostViewController, { module: "ExtensionKit_d6c5d10d3352e6ec", properties: {"delegate":4006676374285258,"placeholderView":3366048628599586} });
-registerSDKClass("ExtensionKit.EXHostViewController.Configuration", EXHostViewController_Configuration, { module: "ExtensionKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("ExtensionKit.AppExtensionSceneBuilder", AppExtensionSceneBuilder, { module: "ExtensionKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ExtensionKit.AppExtensionSceneConfiguration", AppExtensionSceneConfiguration, { module: "ExtensionKit_a956b86ef7a76a8e", properties: {}, methods: {"accept":{"id":1385824458920686}} });
+registerSDKClass("EXAppExtensionBrowserViewController", EXAppExtensionBrowserViewController, { module: "ExtensionKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("EXHostViewController", EXHostViewController, { module: "ExtensionKit_a956b86ef7a76a8e", properties: {"delegate":4006676374285258,"placeholderView":3366048628599586}, methods: {"makeXPCConnection":{"id":3811016755489957}} });
+registerSDKClass("ExtensionKit.EXHostViewController.Configuration", EXHostViewController_Configuration, { module: "ExtensionKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)EXHostViewControllerDelegate", {"hostViewControllerDidActivate":"hostViewControllerDidActivate(_:)","hostViewControllerWillDeactivateError":"hostViewControllerWillDeactivate(_:error:)"});
-registerSDKClass("ExtensionKit.PrimitiveAppExtensionScene", PrimitiveAppExtensionScene, { module: "ExtensionKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("ExtensionKit.PrimitiveAppExtensionScene", PrimitiveAppExtensionScene, { module: "ExtensionKit_a956b86ef7a76a8e", properties: {} });

@@ -18,92 +18,92 @@ export class FaceGroupAnalyzer extends SDKHandle {
   
    * @availability iOS 27.0+
    */
-  fetchFacesIn(assetIDs: $SDK0): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 68707613559203, this, [assetIDs]); }
+  fetchFacesIn(assetIDs: $SDK0): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 68707613559203, this, [assetIDs]); }
   /**
    * final func fetchFaces(for entityIDs: [FaceGroupAnalyzer.Entity.ID]) throws -> some AsyncSequence<(entityID: FaceGroupAnalyzer.Entity.ID, faces: Array<FaceGroupAnalyzer.Face>), any Error>
   
    * @availability iOS 27.0+
    */
-  fetchFacesFor(entityIDs: $SDK1): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 3265724616874856, this, [entityIDs]); }
+  fetchFacesFor(entityIDs: $SDK1): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 3265724616874856, this, [entityIDs]); }
   /**
    * final func fetchFaces(_ faceIDs: [FaceGroupAnalyzer.Face.ID]) throws -> some AsyncSequence<FaceGroupAnalyzer.Face, any Error>
   
    * @availability iOS 27.0+
    */
-  fetchFaces(faceIDs: Array<FaceGroupAnalyzer_Face_ID>): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 138570449439563, this, [faceIDs]); }
+  fetchFaces(faceIDs: Array<FaceGroupAnalyzer_Face_ID>): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 138570449439563, this, [faceIDs]); }
   /**
    * final var allAssetIDs: some AsyncSequence<MediaIntelligenceImageAsset.ID, any Error> { get }
    * @availability iOS 27.0+
    */
-  get allAssetIDs(): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 181976383856809, this, []); }
+  get allAssetIDs(): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 181976383856809, this, []); }
   /**
    * final var allEntities: some AsyncSequence<FaceGroupAnalyzer.Entity, any Error> { get }
    * @availability iOS 27.0+
    */
-  get allEntities(): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 4445925959936120, this, []); }
+  get allEntities(): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 4445925959936120, this, []); }
   /**
    * final nonisolated(nonsending) func deleteAssets(_ assetIDs: [MediaIntelligenceImageAsset.ID]) async throws
    * @availability iOS 27.0+
    */
-  deleteAssets(assetIDs: $SDK0): Promise<void> { return callSDKAsync<void>("MediaIntelligence_d6c5d10d3352e6ec", 3463823770107561, this, [assetIDs]); }
+  deleteAssets(assetIDs: $SDK0): Promise<void> { return callSDKAsync<void>("MediaIntelligence_a956b86ef7a76a8e", 3463823770107561, this, [assetIDs]); }
   /**
    * final func fetchAssetIDs(for entityIDs: [FaceGroupAnalyzer.Entity.ID]) throws -> some AsyncSequence<(entityID: FaceGroupAnalyzer.Entity.ID, assetIDs: Array<MediaIntelligenceImageAsset.ID>), any Error>
   
    * @availability iOS 27.0+
    */
-  fetchAssetIDs(entityIDs: $SDK1): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 1533940796581450, this, [entityIDs]); }
+  fetchAssetIDs(entityIDs: $SDK1): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 1533940796581450, this, [entityIDs]); }
   /**
    * final nonisolated(nonsending) func identifyFaces(in assets: [MediaIntelligenceImageAsset]) async throws -> some AsyncSequence<(assetID: MediaIntelligenceImageAsset.ID, faces: Array<FaceGroupAnalyzer.Face>), any Error>
   
    * @availability iOS 27.0+
    */
-  identifyFaces(assets: $SDK3): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 2864015333484568, this, [assets]); }
+  identifyFaces(assets: $SDK3): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 2864015333484568, this, [assets]); }
   /**
    * final nonisolated(nonsending) func deleteAllAssets() async throws
    * @availability iOS 27.0+
    */
-  deleteAllAssets(): Promise<void> { return callSDKAsync<void>("MediaIntelligence_d6c5d10d3352e6ec", 1138277739517904, this, []); }
+  deleteAllAssets(): Promise<void> { return callSDKAsync<void>("MediaIntelligence_a956b86ef7a76a8e", 1138277739517904, this, []); }
   /**
    * final let workingDirectory: URL
    * @availability iOS 27.0+
    */
-  get workingDirectory(): string { return callSDK<string>("MediaIntelligence_d6c5d10d3352e6ec", 1829980424477301, this, []); }
+  get workingDirectory(): string { return callSDK<string>("MediaIntelligence_a956b86ef7a76a8e", 1829980424477301, this, []); }
   /**
    * init(workingDirectory: URL) throws
    * @availability iOS 27.0+
    */
-  static init(workingDirectory: string): FaceGroupAnalyzer { return callSDK<FaceGroupAnalyzer>("MediaIntelligence_d6c5d10d3352e6ec", 3130353268574229, undefined, [workingDirectory]); }
+  static init(workingDirectory: string): FaceGroupAnalyzer { return callSDK<FaceGroupAnalyzer>("MediaIntelligence_a956b86ef7a76a8e", 3130353268574229, undefined, [workingDirectory]); }
   /**
    * final var allFacesByEntityID: some AsyncSequence<(entityID: FaceGroupAnalyzer.Entity.ID, faces: Array<FaceGroupAnalyzer.Face>), any Error> { get }
    * @availability iOS 27.0+
    */
-  get allFacesByEntityID(): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 3605049267477663, this, []); }
+  get allFacesByEntityID(): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 3605049267477663, this, []); }
   /**
    * final nonisolated(nonsending) func insertOrUpdateAssets(_ assets: [MediaIntelligenceImageAsset]) async throws -> some AsyncSequence<(assetID: MediaIntelligenceImageAsset.ID, faces: Array<FaceGroupAnalyzer.Face>), any Error>
   
    * @availability iOS 27.0+
    */
-  insertOrUpdateAssets(assets: $SDK3): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 1205301312864587, this, [assets]); }
+  insertOrUpdateAssets(assets: $SDK3): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 1205301312864587, this, [assets]); }
   /**
    * final var allAssetIDsByEntityID: some AsyncSequence<(entityID: FaceGroupAnalyzer.Entity.ID, assetIDs: Array<MediaIntelligenceImageAsset.ID>), any Error> { get }
    * @availability iOS 27.0+
    */
-  get allAssetIDsByEntityID(): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 3304742616473137, this, []); }
+  get allAssetIDsByEntityID(): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 3304742616473137, this, []); }
   /**
    * nonisolated(nonsending) static func purge(workingDirectory: URL) async throws
    * @availability iOS 27.0+
    */
-  static purge(workingDirectory: string): Promise<void> { return callSDKAsync<void>("MediaIntelligence_d6c5d10d3352e6ec", 4096418176942344, undefined, [workingDirectory]); }
+  static purge(workingDirectory: string): Promise<void> { return callSDKAsync<void>("MediaIntelligence_a956b86ef7a76a8e", 4096418176942344, undefined, [workingDirectory]); }
   /**
    * nonisolated(nonsending) final var state: FaceGroupAnalyzer.State { get async }
    * @availability iOS 27.0+
    */
-  get state(): Promise<FaceGroupAnalyzer_State> { return callSDKAsync<FaceGroupAnalyzer_State>("MediaIntelligence_d6c5d10d3352e6ec", 1653514604279142, this, []); }
+  get state(): Promise<FaceGroupAnalyzer_State> { return callSDKAsync<FaceGroupAnalyzer_State>("MediaIntelligence_a956b86ef7a76a8e", 1653514604279142, this, []); }
   /**
    * final var allFaces: some AsyncSequence<FaceGroupAnalyzer.Face, any Error> { get }
    * @availability iOS 27.0+
    */
-  get allFaces(): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_d6c5d10d3352e6ec", 4136317302934360, this, []); }
+  get allFaces(): SDKHandle { return callSDK<SDKHandle>("MediaIntelligence_a956b86ef7a76a8e", 4136317302934360, this, []); }
   declare readonly $type: { "s:17MediaIntelligence17FaceGroupAnalyzerC": true };
 }
 
@@ -116,7 +116,7 @@ export class FaceGroupAnalyzer_Entity extends SDKHandle {
    * let id: FaceGroupAnalyzer.Entity.ID
    * @availability iOS 27.0+
    */
-  get id(): FaceGroupAnalyzer_Entity_ID { return callSDK<FaceGroupAnalyzer_Entity_ID>("MediaIntelligence_d6c5d10d3352e6ec", 2808822206588201, this, []); }
+  get id(): FaceGroupAnalyzer_Entity_ID { return callSDK<FaceGroupAnalyzer_Entity_ID>("MediaIntelligence_a956b86ef7a76a8e", 2808822206588201, this, []); }
   declare readonly $type: { "s:17MediaIntelligence17FaceGroupAnalyzerC6EntityV": true };
 }
 
@@ -131,17 +131,17 @@ export const FaceGroupAnalyzer_Entity_ID = {
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: string): FaceGroupAnalyzer_Entity_ID { return callSDK<FaceGroupAnalyzer_Entity_ID>("MediaIntelligence_d6c5d10d3352e6ec", 2678944678794372, undefined, [rawValue]); },
+  initRawValue(rawValue: string): FaceGroupAnalyzer_Entity_ID { return callSDK<FaceGroupAnalyzer_Entity_ID>("MediaIntelligence_a956b86ef7a76a8e", 2678944678794372, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: FaceGroupAnalyzer_Entity_ID): string { return callSDK<string>("MediaIntelligence_d6c5d10d3352e6ec", 2229398277665723, $self, []); },
+  getRawValue($self: FaceGroupAnalyzer_Entity_ID): string { return callSDK<string>("MediaIntelligence_a956b86ef7a76a8e", 2229398277665723, $self, []); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): FaceGroupAnalyzer_Entity_ID { return callSDK<FaceGroupAnalyzer_Entity_ID>("MediaIntelligence_d6c5d10d3352e6ec", 4046951571298664, undefined, [rawValue]); }
+  init(rawValue: string): FaceGroupAnalyzer_Entity_ID { return callSDK<FaceGroupAnalyzer_Entity_ID>("MediaIntelligence_a956b86ef7a76a8e", 4046951571298664, undefined, [rawValue]); }
 };
 
 /**
@@ -159,22 +159,22 @@ export class FaceGroupAnalyzer_Face extends SDKHandle {
    * let id: FaceGroupAnalyzer.Face.ID
    * @availability iOS 27.0+
    */
-  get id(): FaceGroupAnalyzer_Face_ID { return callSDK<FaceGroupAnalyzer_Face_ID>("MediaIntelligence_d6c5d10d3352e6ec", 1339055539085603, this, []); }
+  get id(): FaceGroupAnalyzer_Face_ID { return callSDK<FaceGroupAnalyzer_Face_ID>("MediaIntelligence_a956b86ef7a76a8e", 1339055539085603, this, []); }
   /**
    * let bounds: CGRect
    * @availability iOS 27.0+
    */
-  get bounds(): { x: number; y: number; width: number; height: number } { return callSDK<{ x: number; y: number; width: number; height: number }>("MediaIntelligence_d6c5d10d3352e6ec", 458519241211315, this, []); }
+  get bounds(): { x: number; y: number; width: number; height: number } { return callSDK<{ x: number; y: number; width: number; height: number }>("MediaIntelligence_a956b86ef7a76a8e", 458519241211315, this, []); }
   /**
    * let assetID: MediaIntelligenceImageAsset.ID
    * @availability iOS 27.0+
    */
-  get assetID(): MediaIntelligenceImageAsset_ID { return callSDK<MediaIntelligenceImageAsset_ID>("MediaIntelligence_d6c5d10d3352e6ec", 1546248803470231, this, []); }
+  get assetID(): MediaIntelligenceImageAsset_ID { return callSDK<MediaIntelligenceImageAsset_ID>("MediaIntelligence_a956b86ef7a76a8e", 1546248803470231, this, []); }
   /**
    * let entityID: FaceGroupAnalyzer.Entity.ID?
    * @availability iOS 27.0+
    */
-  get entityID(): (FaceGroupAnalyzer_Entity_ID) | null { return callSDK<(FaceGroupAnalyzer_Entity_ID) | null>("MediaIntelligence_d6c5d10d3352e6ec", 3689695098006305, this, []); }
+  get entityID(): (FaceGroupAnalyzer_Entity_ID) | null { return callSDK<(FaceGroupAnalyzer_Entity_ID) | null>("MediaIntelligence_a956b86ef7a76a8e", 3689695098006305, this, []); }
   declare readonly $type: { "s:17MediaIntelligence17FaceGroupAnalyzerC0C0V": true };
 }
 
@@ -189,17 +189,17 @@ export const FaceGroupAnalyzer_Face_ID = {
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: string): FaceGroupAnalyzer_Face_ID { return callSDK<FaceGroupAnalyzer_Face_ID>("MediaIntelligence_d6c5d10d3352e6ec", 70330519020002, undefined, [rawValue]); },
+  initRawValue(rawValue: string): FaceGroupAnalyzer_Face_ID { return callSDK<FaceGroupAnalyzer_Face_ID>("MediaIntelligence_a956b86ef7a76a8e", 70330519020002, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: FaceGroupAnalyzer_Face_ID): string { return callSDK<string>("MediaIntelligence_d6c5d10d3352e6ec", 1946216558442669, $self, []); },
+  getRawValue($self: FaceGroupAnalyzer_Face_ID): string { return callSDK<string>("MediaIntelligence_a956b86ef7a76a8e", 1946216558442669, $self, []); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): FaceGroupAnalyzer_Face_ID { return callSDK<FaceGroupAnalyzer_Face_ID>("MediaIntelligence_d6c5d10d3352e6ec", 2951742094931027, undefined, [rawValue]); }
+  init(rawValue: string): FaceGroupAnalyzer_Face_ID { return callSDK<FaceGroupAnalyzer_Face_ID>("MediaIntelligence_a956b86ef7a76a8e", 2951742094931027, undefined, [rawValue]); }
 };
 
 /**
@@ -219,12 +219,12 @@ export const FaceGroupAnalyzer_State = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (FaceGroupAnalyzer_State) | null { return callSDK<(FaceGroupAnalyzer_State) | null>("MediaIntelligence_d6c5d10d3352e6ec", 2440962323939241, undefined, [rawValue]); },
+  init(rawValue: number): (FaceGroupAnalyzer_State) | null { return callSDK<(FaceGroupAnalyzer_State) | null>("MediaIntelligence_a956b86ef7a76a8e", 2440962323939241, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: FaceGroupAnalyzer_State): number { return callSDK<number>("MediaIntelligence_d6c5d10d3352e6ec", 4026068924795115, $self, []); }
+  getRawValue($self: FaceGroupAnalyzer_State): number { return callSDK<number>("MediaIntelligence_a956b86ef7a76a8e", 4026068924795115, $self, []); }
 };
 
 /**
@@ -242,7 +242,7 @@ export class HighlightAnalysisRequest extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): HighlightAnalysisRequest { return callSDK<HighlightAnalysisRequest>("MediaIntelligence_d6c5d10d3352e6ec", 3640510004324457, undefined, []); }
+  static init(): HighlightAnalysisRequest { return callSDK<HighlightAnalysisRequest>("MediaIntelligence_a956b86ef7a76a8e", 3640510004324457, undefined, []); }
   declare readonly $type: { "s:17MediaIntelligence24HighlightAnalysisRequestC": true };
 }
 
@@ -255,7 +255,7 @@ export class HighlightAnalysisRequest_Result extends SDKHandle {
    * let highlights: [CMTimeRange]
    * @availability iOS 27.0+
    */
-  get highlights(): Array<_CoreMedia_CMTimeRange> { return callSDK<Array<_CoreMedia_CMTimeRange>>("MediaIntelligence_d6c5d10d3352e6ec", 3029346476932678, this, []); }
+  get highlights(): Array<_CoreMedia_CMTimeRange> { return callSDK<Array<_CoreMedia_CMTimeRange>>("MediaIntelligence_a956b86ef7a76a8e", 3029346476932678, this, []); }
   declare readonly $type: { "s:17MediaIntelligence24HighlightAnalysisRequestC6ResultV": true };
 }
 
@@ -268,7 +268,7 @@ export class KeyFrameAnalysisRequest extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): KeyFrameAnalysisRequest { return callSDK<KeyFrameAnalysisRequest>("MediaIntelligence_d6c5d10d3352e6ec", 3956910988289310, undefined, []); }
+  static init(): KeyFrameAnalysisRequest { return callSDK<KeyFrameAnalysisRequest>("MediaIntelligence_a956b86ef7a76a8e", 3956910988289310, undefined, []); }
   declare readonly $type: { "s:17MediaIntelligence23KeyFrameAnalysisRequestC": true };
 }
 
@@ -281,7 +281,7 @@ export class KeyFrameAnalysisRequest_Result extends SDKHandle {
    * let timestamp: CMTime
    * @availability iOS 27.0+
    */
-  get timestamp(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("MediaIntelligence_d6c5d10d3352e6ec", 3205007258046764, this, []); }
+  get timestamp(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("MediaIntelligence_a956b86ef7a76a8e", 3205007258046764, this, []); }
   declare readonly $type: { "s:17MediaIntelligence23KeyFrameAnalysisRequestC6ResultV": true };
 }
 
@@ -296,7 +296,7 @@ export const MediaIntelligenceError = {
    * var errorDescription: String? { get }
    * @availability iOS 27.0+
    */
-  getErrorDescription($self: MediaIntelligenceError): (string) | null { return callSDK<(string) | null>("MediaIntelligence_d6c5d10d3352e6ec", 1821219494353472, $self, []); }
+  getErrorDescription($self: MediaIntelligenceError): (string) | null { return callSDK<(string) | null>("MediaIntelligence_a956b86ef7a76a8e", 1821219494353472, $self, []); }
 };
 
 /**
@@ -308,17 +308,17 @@ export class MediaIntelligenceImageAsset extends SDKHandle {
    * init(id: MediaIntelligenceImageAsset.ID, kind: MediaIntelligenceImageAsset.Kind)
    * @availability iOS 27.0+
    */
-  static init(id: MediaIntelligenceImageAsset_ID, kind: MediaIntelligenceImageAsset_Kind): MediaIntelligenceImageAsset { return callSDK<MediaIntelligenceImageAsset>("MediaIntelligence_d6c5d10d3352e6ec", 791399743315441, undefined, [id, kind]); }
+  static init(id: MediaIntelligenceImageAsset_ID, kind: MediaIntelligenceImageAsset_Kind): MediaIntelligenceImageAsset { return callSDK<MediaIntelligenceImageAsset>("MediaIntelligence_a956b86ef7a76a8e", 791399743315441, undefined, [id, kind]); }
   /**
    * let id: MediaIntelligenceImageAsset.ID
    * @availability iOS 27.0+
    */
-  get id(): MediaIntelligenceImageAsset_ID { return callSDK<MediaIntelligenceImageAsset_ID>("MediaIntelligence_d6c5d10d3352e6ec", 1769326426943788, this, []); }
+  get id(): MediaIntelligenceImageAsset_ID { return callSDK<MediaIntelligenceImageAsset_ID>("MediaIntelligence_a956b86ef7a76a8e", 1769326426943788, this, []); }
   /**
    * let kind: MediaIntelligenceImageAsset.Kind
    * @availability iOS 27.0+
    */
-  get kind(): MediaIntelligenceImageAsset_Kind { return callSDK<MediaIntelligenceImageAsset_Kind>("MediaIntelligence_d6c5d10d3352e6ec", 4158559251383122, this, []); }
+  get kind(): MediaIntelligenceImageAsset_Kind { return callSDK<MediaIntelligenceImageAsset_Kind>("MediaIntelligence_a956b86ef7a76a8e", 4158559251383122, this, []); }
   declare readonly $type: { "s:17MediaIntelligence0aB10ImageAssetV": true };
 }
 
@@ -333,17 +333,17 @@ export const MediaIntelligenceImageAsset_ID = {
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: string): MediaIntelligenceImageAsset_ID { return callSDK<MediaIntelligenceImageAsset_ID>("MediaIntelligence_d6c5d10d3352e6ec", 2042608853130291, undefined, [rawValue]); },
+  initRawValue(rawValue: string): MediaIntelligenceImageAsset_ID { return callSDK<MediaIntelligenceImageAsset_ID>("MediaIntelligence_a956b86ef7a76a8e", 2042608853130291, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: MediaIntelligenceImageAsset_ID): string { return callSDK<string>("MediaIntelligence_d6c5d10d3352e6ec", 1690025726777359, $self, []); },
+  getRawValue($self: MediaIntelligenceImageAsset_ID): string { return callSDK<string>("MediaIntelligence_a956b86ef7a76a8e", 1690025726777359, $self, []); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): MediaIntelligenceImageAsset_ID { return callSDK<MediaIntelligenceImageAsset_ID>("MediaIntelligence_d6c5d10d3352e6ec", 3171675317331056, undefined, [rawValue]); }
+  init(rawValue: string): MediaIntelligenceImageAsset_ID { return callSDK<MediaIntelligenceImageAsset_ID>("MediaIntelligence_a956b86ef7a76a8e", 3171675317331056, undefined, [rawValue]); }
 };
 
 /**
@@ -369,17 +369,17 @@ export class MediaIntelligenceVideoAsset extends SDKHandle {
    * init(id: MediaIntelligenceVideoAsset.ID, kind: MediaIntelligenceVideoAsset.Kind)
    * @availability iOS 27.0+
    */
-  static init(id: MediaIntelligenceVideoAsset_ID, kind: MediaIntelligenceVideoAsset_Kind): MediaIntelligenceVideoAsset { return callSDK<MediaIntelligenceVideoAsset>("MediaIntelligence_d6c5d10d3352e6ec", 4401483584421677, undefined, [id, kind]); }
+  static init(id: MediaIntelligenceVideoAsset_ID, kind: MediaIntelligenceVideoAsset_Kind): MediaIntelligenceVideoAsset { return callSDK<MediaIntelligenceVideoAsset>("MediaIntelligence_a956b86ef7a76a8e", 4401483584421677, undefined, [id, kind]); }
   /**
    * let id: MediaIntelligenceVideoAsset.ID
    * @availability iOS 27.0+
    */
-  get id(): MediaIntelligenceVideoAsset_ID { return callSDK<MediaIntelligenceVideoAsset_ID>("MediaIntelligence_d6c5d10d3352e6ec", 4071903159080234, this, []); }
+  get id(): MediaIntelligenceVideoAsset_ID { return callSDK<MediaIntelligenceVideoAsset_ID>("MediaIntelligence_a956b86ef7a76a8e", 4071903159080234, this, []); }
   /**
    * let kind: MediaIntelligenceVideoAsset.Kind
    * @availability iOS 27.0+
    */
-  get kind(): MediaIntelligenceVideoAsset_Kind { return callSDK<MediaIntelligenceVideoAsset_Kind>("MediaIntelligence_d6c5d10d3352e6ec", 1165088724126175, this, []); }
+  get kind(): MediaIntelligenceVideoAsset_Kind { return callSDK<MediaIntelligenceVideoAsset_Kind>("MediaIntelligence_a956b86ef7a76a8e", 1165088724126175, this, []); }
   declare readonly $type: { "s:17MediaIntelligence0aB10VideoAssetV": true };
 }
 
@@ -394,17 +394,17 @@ export const MediaIntelligenceVideoAsset_ID = {
    * init(rawValue: String)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: string): MediaIntelligenceVideoAsset_ID { return callSDK<MediaIntelligenceVideoAsset_ID>("MediaIntelligence_d6c5d10d3352e6ec", 2830079551761155, undefined, [rawValue]); },
+  initRawValue(rawValue: string): MediaIntelligenceVideoAsset_ID { return callSDK<MediaIntelligenceVideoAsset_ID>("MediaIntelligence_a956b86ef7a76a8e", 2830079551761155, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 27.0+
    */
-  getRawValue($self: MediaIntelligenceVideoAsset_ID): string { return callSDK<string>("MediaIntelligence_d6c5d10d3352e6ec", 3162238233885549, $self, []); },
+  getRawValue($self: MediaIntelligenceVideoAsset_ID): string { return callSDK<string>("MediaIntelligence_a956b86ef7a76a8e", 3162238233885549, $self, []); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): MediaIntelligenceVideoAsset_ID { return callSDK<MediaIntelligenceVideoAsset_ID>("MediaIntelligence_d6c5d10d3352e6ec", 914513922772862, undefined, [rawValue]); }
+  init(rawValue: string): MediaIntelligenceVideoAsset_ID { return callSDK<MediaIntelligenceVideoAsset_ID>("MediaIntelligence_a956b86ef7a76a8e", 914513922772862, undefined, [rawValue]); }
 };
 
 /**
@@ -430,7 +430,7 @@ export class VideoAnalyzer extends SDKHandle {
    * static let shared: VideoAnalyzer
    * @availability iOS 27.0+
    */
-  static get shared(): VideoAnalyzer { return callSDK<VideoAnalyzer>("MediaIntelligence_d6c5d10d3352e6ec", 19716802206979, undefined, []); }
+  static get shared(): VideoAnalyzer { return callSDK<VideoAnalyzer>("MediaIntelligence_a956b86ef7a76a8e", 19716802206979, undefined, []); }
   declare readonly $type: { "s:17MediaIntelligence13VideoAnalyzerC": true };
 }
 
@@ -450,17 +450,17 @@ export interface VideoAnalyzer_Result {
 
 }
 
-registerSDKClass("MediaIntelligence.FaceGroupAnalyzer", FaceGroupAnalyzer, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.FaceGroupAnalyzer.Entity", FaceGroupAnalyzer_Entity, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.FaceGroupAnalyzer.Face", FaceGroupAnalyzer_Face, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.HighlightAnalysisRequest", HighlightAnalysisRequest, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.HighlightAnalysisRequest.Result", HighlightAnalysisRequest_Result, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.KeyFrameAnalysisRequest", KeyFrameAnalysisRequest, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.KeyFrameAnalysisRequest.Result", KeyFrameAnalysisRequest_Result, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.MediaIntelligenceImageAsset", MediaIntelligenceImageAsset, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.MediaIntelligenceImageAsset.Kind", MediaIntelligenceImageAsset_Kind, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.MediaIntelligenceVideoAsset", MediaIntelligenceVideoAsset, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.MediaIntelligenceVideoAsset.Kind", MediaIntelligenceVideoAsset_Kind, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MediaIntelligence.VideoAnalyzer", VideoAnalyzer, { module: "MediaIntelligence_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("MediaIntelligence.FaceGroupAnalyzer", FaceGroupAnalyzer, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {}, methods: {"fetchFacesIn":{"id":68707613559203},"fetchFacesFor":{"id":3265724616874856},"fetchFaces":{"id":138570449439563},"deleteAssets":{"id":3463823770107561},"fetchAssetIDs":{"id":1533940796581450},"identifyFaces":{"id":2864015333484568},"deleteAllAssets":{"id":1138277739517904},"insertOrUpdateAssets":{"id":1205301312864587}} });
+registerSDKClass("MediaIntelligence.FaceGroupAnalyzer.Entity", FaceGroupAnalyzer_Entity, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MediaIntelligence.FaceGroupAnalyzer.Face", FaceGroupAnalyzer_Face, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MediaIntelligence.HighlightAnalysisRequest", HighlightAnalysisRequest, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MediaIntelligence.HighlightAnalysisRequest.Result", HighlightAnalysisRequest_Result, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MediaIntelligence.KeyFrameAnalysisRequest", KeyFrameAnalysisRequest, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MediaIntelligence.KeyFrameAnalysisRequest.Result", KeyFrameAnalysisRequest_Result, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MediaIntelligence.MediaIntelligenceImageAsset", MediaIntelligenceImageAsset, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MediaIntelligence.MediaIntelligenceImageAsset.Kind", MediaIntelligenceImageAsset_Kind, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MediaIntelligence.MediaIntelligenceVideoAsset", MediaIntelligenceVideoAsset, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MediaIntelligence.MediaIntelligenceVideoAsset.Kind", MediaIntelligenceVideoAsset_Kind, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MediaIntelligence.VideoAnalyzer", VideoAnalyzer, { module: "MediaIntelligence_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:17MediaIntelligence13VideoAnalyzerC7RequestP", {});
 registerSDKProtocol("s:17MediaIntelligence13VideoAnalyzerC6ResultP", {});

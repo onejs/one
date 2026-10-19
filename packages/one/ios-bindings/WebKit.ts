@@ -91,22 +91,22 @@ export class NSAttributedString extends SDKHandle {
    * class func fromHTML(_ data: Data, options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:]) async throws -> (NSAttributedString, [NSAttributedString.DocumentAttributeKey : Any])
    * @availability iOS 13.0+
    */
-  static loadFromHTMLDataOptionsCompletionHandler(data: ArrayBuffer, options: $SDK0, completionHandler: $SDK1): void { return callSDK<void>("WebKit_d6c5d10d3352e6ec", 2878039735756253, undefined, [data, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static loadFromHTMLDataOptionsCompletionHandler(data: ArrayBuffer, options: $SDK0, completionHandler: $SDK1): void { return callSDK<void>("WebKit_a956b86ef7a76a8e", 2878039735756253, undefined, [data, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func fromHTML(fileURL: URL, options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:]) async throws -> (NSAttributedString, [NSAttributedString.DocumentAttributeKey : Any])
    * @availability iOS 13.0+
    */
-  static loadFromHTMLFileURLOptionsCompletionHandler(fileURL: string, options: $SDK0, completionHandler: $SDK1): void { return callSDK<void>("WebKit_d6c5d10d3352e6ec", 3390209854228856, undefined, [fileURL, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static loadFromHTMLFileURLOptionsCompletionHandler(fileURL: string, options: $SDK0, completionHandler: $SDK1): void { return callSDK<void>("WebKit_a956b86ef7a76a8e", 3390209854228856, undefined, [fileURL, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func fromHTML(request: URLRequest, options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:]) async throws -> (NSAttributedString, [NSAttributedString.DocumentAttributeKey : Any])
    * @availability iOS 13.0+
    */
-  static loadFromHTMLRequestOptionsCompletionHandler(request: _Foundation_URLRequest, options: $SDK0, completionHandler: $SDK1): void { return callSDK<void>("WebKit_d6c5d10d3352e6ec", 2875647246037668, undefined, [request, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static loadFromHTMLRequestOptionsCompletionHandler(request: _Foundation_URLRequest, options: $SDK0, completionHandler: $SDK1): void { return callSDK<void>("WebKit_a956b86ef7a76a8e", 2875647246037668, undefined, [request, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func fromHTML(_ string: String, options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:]) async throws -> (NSAttributedString, [NSAttributedString.DocumentAttributeKey : Any])
    * @availability iOS 13.0+
    */
-  static loadFromHTMLStringOptionsCompletionHandler(string: string, options: $SDK0, completionHandler: $SDK1): void { return callSDK<void>("WebKit_d6c5d10d3352e6ec", 738541001952642, undefined, [string, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static loadFromHTMLStringOptionsCompletionHandler(string: string, options: $SDK0, completionHandler: $SDK1): void { return callSDK<void>("WebKit_a956b86ef7a76a8e", 738541001952642, undefined, [string, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)NSAttributedString": true; "c:objc(cs)NSObject": true };
 }
 
@@ -123,7 +123,7 @@ export const NSAttributedString_DocumentReadingOptionKey = {
    * static let readAccessURL: NSAttributedString.DocumentReadingOptionKey
    * @availability iOS 13.0+
    */
-  get readAccessURL(): _UIKit_NSAttributedString_DocumentReadingOptionKey { return callSDK<_UIKit_NSAttributedString_DocumentReadingOptionKey>("WebKit_d6c5d10d3352e6ec", 351839137717332, undefined, []); }
+  get readAccessURL(): _UIKit_NSAttributedString_DocumentReadingOptionKey { return callSDK<_UIKit_NSAttributedString_DocumentReadingOptionKey>("WebKit_a956b86ef7a76a8e", 351839137717332, undefined, []); }
 };
 
 /**
@@ -137,12 +137,12 @@ export const URLScheme = {
    * let rawValue: String
    * @availability iOS 26.0+
    */
-  getRawValue($self: URLScheme): string { return callSDK<string>("WebKit_d6c5d10d3352e6ec", 205431081508833, $self, []); },
+  getRawValue($self: URLScheme): string { return callSDK<string>("WebKit_a956b86ef7a76a8e", 205431081508833, $self, []); },
   /**
    * @MainActor init?(_ rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): Promise<(URLScheme) | null> { return callSDKAsync<(URLScheme) | null>("WebKit_d6c5d10d3352e6ec", 3784067897183736, undefined, [rawValue]); }
+  init(rawValue: string): Promise<(URLScheme) | null> { return callSDKAsync<(URLScheme) | null>("WebKit_a956b86ef7a76a8e", 3784067897183736, undefined, [rawValue]); }
 };
 
 /**
@@ -174,183 +174,183 @@ export class WebPage extends SDKHandle {
    * @MainActor final var navigations: some AsyncSequence<WebPage.NavigationEvent, any Error> { get }
    * @availability iOS 26.0+
    */
-  get navigations(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_d6c5d10d3352e6ec", 323063500373158, this, []); }
+  get navigations(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_a956b86ef7a76a8e", 323063500373158, this, []); }
   /**
    * @MainActor final var serverTrust: SecTrust? { get }
    * @availability iOS 26.0+
    */
-  get serverTrust(): Promise<$SDK3> { return callSDKAsync<$SDK3>("WebKit_d6c5d10d3352e6ec", 4425241104126782, this, []); }
+  get serverTrust(): Promise<$SDK3> { return callSDKAsync<$SDK3>("WebKit_a956b86ef7a76a8e", 4425241104126782, this, []); }
   /**
    * @MainActor final func stopLoading()
    * @availability iOS 26.0+
    */
-  stopLoading(): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 158242471583909, this, []); }
+  stopLoading(): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 158242471583909, this, []); }
   /**
    * @MainActor convenience init(configuration: WebPage.Configuration = Configuration())
    * @availability iOS 26.0+
    */
-  static init(configuration?: WebPage_Configuration): Promise<WebPage> { return callSDKAsync<WebPage>("WebKit_d6c5d10d3352e6ec", 1714245718138898, undefined, [configuration]); }
+  static init(configuration?: WebPage_Configuration): Promise<WebPage> { return callSDKAsync<WebPage>("WebKit_a956b86ef7a76a8e", 1714245718138898, undefined, [configuration]); }
   /**
    * @MainActor final var isInspectable: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isInspectable(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4097165749058218, this, []); }
-  setIsInspectable(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1973663508766224, this, [value]); }
+  get isInspectable(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4097165749058218, this, []); }
+  setIsInspectable(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1973663508766224, this, [value]); }
   /**
    * @discardableResult @MainActor final func callJavaScript(_ functionBody: String, arguments: [String : Any] = [:], in frame: WebPage.FrameInfo? = nil, contentWorld: WKContentWorld? = nil) async throws -> sending Any?
    * @availability iOS 26.0+
    */
-  callJavaScript(functionBody: string, arguments_?: Record<string, unknown>, frame?: (WebPage_FrameInfo) | null, contentWorld?: (WKContentWorld) | null): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("WebKit_d6c5d10d3352e6ec", 3555416370091415, this, [functionBody, arguments_, frame, contentWorld]); }
+  callJavaScript(functionBody: string, arguments_?: Record<string, unknown>, frame?: (WebPage_FrameInfo) | null, contentWorld?: (WKContentWorld) | null): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("WebKit_a956b86ef7a76a8e", 3555416370091415, this, [functionBody, arguments_, frame, contentWorld]); }
   /**
    * @MainActor final var backForwardList: WebPage.BackForwardList { get }
    * @availability iOS 26.0+
    */
-  get backForwardList(): Promise<WebPage_BackForwardList> { return callSDKAsync<WebPage_BackForwardList>("WebKit_d6c5d10d3352e6ec", 509934625248551, this, []); }
+  get backForwardList(): Promise<WebPage_BackForwardList> { return callSDKAsync<WebPage_BackForwardList>("WebKit_a956b86ef7a76a8e", 509934625248551, this, []); }
   /**
    * @MainActor final var customUserAgent: String? { get set }
    * @availability iOS 26.0+
    */
-  get customUserAgent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 302439920336121, this, []); }
-  setCustomUserAgent(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 940967778942774, this, [value]); }
+  get customUserAgent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 302439920336121, this, []); }
+  setCustomUserAgent(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 940967778942774, this, [value]); }
   /**
    * @MainActor final var fullscreenState: WebPage.FullscreenState { get }
    * @availability iOS 26.0+
    */
-  get fullscreenState(): Promise<WebPage_FullscreenState> { return callSDKAsync<WebPage_FullscreenState>("WebKit_d6c5d10d3352e6ec", 3619708777814534, this, []); }
+  get fullscreenState(): Promise<WebPage_FullscreenState> { return callSDKAsync<WebPage_FullscreenState>("WebKit_a956b86ef7a76a8e", 3619708777814534, this, []); }
   /**
    * @MainActor final var estimatedProgress: Double { get }
    * @availability iOS 26.0+
    */
-  get estimatedProgress(): Promise<number> { return callSDKAsync<number>("WebKit_d6c5d10d3352e6ec", 2306631429477244, this, []); }
+  get estimatedProgress(): Promise<number> { return callSDKAsync<number>("WebKit_a956b86ef7a76a8e", 2306631429477244, this, []); }
   /**
    * @MainActor final var cameraCaptureState: WKMediaCaptureState { get }
    * @availability iOS 26.0+
    */
-  get cameraCaptureState(): Promise<WKMediaCaptureState> { return callSDKAsync<WKMediaCaptureState>("WebKit_d6c5d10d3352e6ec", 2213703059383706, this, []); }
+  get cameraCaptureState(): Promise<WKMediaCaptureState> { return callSDKAsync<WKMediaCaptureState>("WebKit_a956b86ef7a76a8e", 2213703059383706, this, []); }
   /**
    * @MainActor final func mediaPlaybackState() async -> WKMediaPlaybackState
    * @availability iOS 26.0+
    */
-  mediaPlaybackState(): Promise<WKMediaPlaybackState> { return callSDKAsync<WKMediaPlaybackState>("WebKit_d6c5d10d3352e6ec", 4194125561384390, this, []); }
+  mediaPlaybackState(): Promise<WKMediaPlaybackState> { return callSDKAsync<WKMediaPlaybackState>("WebKit_a956b86ef7a76a8e", 4194125561384390, this, []); }
   /**
    * @MainActor final var hasOnlySecureContent: Bool { get }
    * @availability iOS 26.0+
    */
-  get hasOnlySecureContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1920577692518824, this, []); }
+  get hasOnlySecureContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1920577692518824, this, []); }
   /**
    * @MainActor final var isWritingToolsActive: Bool { get }
    * @availability iOS 26.0+
    */
-  get isWritingToolsActive(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2012887177993855, this, []); }
+  get isWritingToolsActive(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2012887177993855, this, []); }
   /**
    * @MainActor final var isBlockedByScreenTime: Bool { get }
    * @availability iOS 26.0+
    */
-  get isBlockedByScreenTime(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 442610545885656, this, []); }
+  get isBlockedByScreenTime(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 442610545885656, this, []); }
   /**
    * @MainActor final func pauseAllMediaPlayback() async
    * @availability iOS 26.0+
    */
-  pauseAllMediaPlayback(): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1835991650023239, this, []); }
+  pauseAllMediaPlayback(): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1835991650023239, this, []); }
   /**
    * @MainActor final func setCameraCaptureState(_ state: WKMediaCaptureState) async
    * @availability iOS 26.0+
    */
-  setCameraCaptureState(state: WKMediaCaptureState): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4377290386834821, this, [state]); }
+  setCameraCaptureState(state: WKMediaCaptureState): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4377290386834821, this, [state]); }
   /**
    * @MainActor final var microphoneCaptureState: WKMediaCaptureState { get }
    * @availability iOS 26.0+
    */
-  get microphoneCaptureState(): Promise<WKMediaCaptureState> { return callSDKAsync<WKMediaCaptureState>("WebKit_d6c5d10d3352e6ec", 2543154614430702, this, []); }
+  get microphoneCaptureState(): Promise<WKMediaCaptureState> { return callSDKAsync<WKMediaCaptureState>("WebKit_a956b86ef7a76a8e", 2543154614430702, this, []); }
   /**
    * @MainActor final func setMicrophoneCaptureState(_ state: WKMediaCaptureState) async
    * @availability iOS 26.0+
    */
-  setMicrophoneCaptureState(state: WKMediaCaptureState): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3136729621021780, this, [state]); }
+  setMicrophoneCaptureState(state: WKMediaCaptureState): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3136729621021780, this, [state]); }
   /**
    * @MainActor final func closeAllMediaPresentations() async
    * @availability iOS 26.0+
    */
-  closeAllMediaPresentations(): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3420816018375574, this, []); }
+  closeAllMediaPresentations(): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3420816018375574, this, []); }
   /**
    * @MainActor final func setAllMediaPlaybackSuspended(_ suspended: Bool) async
    * @availability iOS 26.0+
    */
-  setAllMediaPlaybackSuspended(suspended: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2850880028297976, this, [suspended]); }
+  setAllMediaPlaybackSuspended(suspended: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2850880028297976, this, [suspended]); }
   /**
    * @MainActor final var url: URL? { get }
    * @availability iOS 26.0+
    */
-  get url(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 3871167835323049, this, []); }
+  get url(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 3871167835323049, this, []); }
   /**
    * @discardableResult @MainActor final func load(simulatedRequest request: URLRequest, responseHTML htmlString: String) -> some AsyncSequence<WebPage.NavigationEvent, any Error>
   
    * @availability iOS 26.0+
    */
-  loadSimulatedRequestResponseHTML(request: _Foundation_URLRequest, htmlString: string): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_d6c5d10d3352e6ec", 2552416106778244, this, [request, htmlString]); }
+  loadSimulatedRequestResponseHTML(request: _Foundation_URLRequest, htmlString: string): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_a956b86ef7a76a8e", 2552416106778244, this, [request, htmlString]); }
   /**
    * @discardableResult @MainActor final func load(simulatedRequest request: URLRequest, response: URLResponse, responseData: Data) -> some AsyncSequence<WebPage.NavigationEvent, any Error>
   
    * @availability iOS 26.0+
    */
-  loadSimulatedRequestResponseResponseData(request: _Foundation_URLRequest, response: _Foundation_URLResponse, responseData: ArrayBuffer): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_d6c5d10d3352e6ec", 2915483483691197, this, [request, response, responseData]); }
+  loadSimulatedRequestResponseResponseData(request: _Foundation_URLRequest, response: _Foundation_URLResponse, responseData: ArrayBuffer): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_a956b86ef7a76a8e", 2915483483691197, this, [request, response, responseData]); }
   /**
    * @discardableResult @MainActor final func load(html: String, baseURL: URL = Foundation.URL(string: "about:blank")!) -> some AsyncSequence<WebPage.NavigationEvent, any Error>
   
    * @availability iOS 26.0+
    */
-  loadHtmlBaseURL(html: string, baseURL?: string): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_d6c5d10d3352e6ec", 863557508671776, this, [html, baseURL]); }
+  loadHtmlBaseURL(html: string, baseURL?: string): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_a956b86ef7a76a8e", 863557508671776, this, [html, baseURL]); }
   /**
    * @discardableResult @MainActor final func load(_ data: Data, mimeType: String, characterEncoding: String.Encoding, baseURL: URL) -> some AsyncSequence<WebPage.NavigationEvent, any Error>
   
    * @availability iOS 26.0+
    */
-  loadMimeTypeCharacterEncodingBaseURL(data: ArrayBuffer, mimeType: string, characterEncoding: _Foundation_String_Encoding, baseURL: string): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_d6c5d10d3352e6ec", 234554248429886, this, [data, mimeType, characterEncoding, baseURL]); }
+  loadMimeTypeCharacterEncodingBaseURL(data: ArrayBuffer, mimeType: string, characterEncoding: _Foundation_String_Encoding, baseURL: string): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_a956b86ef7a76a8e", 234554248429886, this, [data, mimeType, characterEncoding, baseURL]); }
   /**
    * @discardableResult @MainActor final func load(_ request: URLRequest) -> some AsyncSequence<WebPage.NavigationEvent, any Error>
   
    * @availability iOS 26.0+
    */
-  load(request: _Foundation_URLRequest): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_d6c5d10d3352e6ec", 687243776834740, this, [request]); }
+  load(request: _Foundation_URLRequest): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_a956b86ef7a76a8e", 687243776834740, this, [request]); }
   /**
    * @discardableResult @MainActor final func load(_ url: URL?) -> some AsyncSequence<WebPage.NavigationEvent, any Error>
   
    * @availability iOS 26.0+
    */
-  load82259(url?: (string) | null): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_d6c5d10d3352e6ec", 3706488464918476, this, [url]); }
+  load82259(url?: (string) | null): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_a956b86ef7a76a8e", 3706488464918476, this, [url]); }
   /**
    * @discardableResult @MainActor final func load(_ item: WebPage.BackForwardList.Item) -> some AsyncSequence<WebPage.NavigationEvent, any Error>
   
    * @availability iOS 26.0+
    */
-  load63470(item: WebPage_BackForwardList_Item): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_d6c5d10d3352e6ec", 881867120940396, this, [item]); }
+  load63470(item: WebPage_BackForwardList_Item): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_a956b86ef7a76a8e", 881867120940396, this, [item]); }
   /**
    * @MainActor final var title: String { get }
    * @availability iOS 26.0+
    */
-  get title(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 3540512675179325, this, []); }
+  get title(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 3540512675179325, this, []); }
   /**
    * @discardableResult @MainActor final func reload(fromOrigin: Bool = false) -> some AsyncSequence<WebPage.NavigationEvent, any Error>
   
    * @availability iOS 26.0+
    */
-  reload(fromOrigin?: boolean): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_d6c5d10d3352e6ec", 1942839268648274, this, [fromOrigin]); }
+  reload(fromOrigin?: boolean): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("WebKit_a956b86ef7a76a8e", 1942839268648274, this, [fromOrigin]); }
   /**
    * nonisolated final func exported(as representation: WebPage.ExportedContentConfiguration) async throws -> Data
    * @availability iOS 26.0+
    */
-  exported(representation: WebPage_ExportedContentConfiguration): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("WebKit_d6c5d10d3352e6ec", 3144365389501437, this, [representation]); }
+  exported(representation: WebPage_ExportedContentConfiguration): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("WebKit_a956b86ef7a76a8e", 3144365389501437, this, [representation]); }
   /**
    * @MainActor final var isLoading: Bool { get }
    * @availability iOS 26.0+
    */
-  get isLoading(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2414396586246001, this, []); }
+  get isLoading(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2414396586246001, this, []); }
   /**
    * @MainActor final var mediaType: WebPage.CSSMediaType? { get set }
    * @availability iOS 26.0+
    */
-  get mediaType(): Promise<$SDK5> { return callSDKAsync<$SDK5>("WebKit_d6c5d10d3352e6ec", 2982511841448914, this, []); }
-  setMediaType(value?: $SDK5): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3356725434005005, this, [value]); }
+  get mediaType(): Promise<$SDK5> { return callSDKAsync<$SDK5>("WebKit_a956b86ef7a76a8e", 2982511841448914, this, []); }
+  setMediaType(value?: $SDK5): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3356725434005005, this, [value]); }
   declare readonly $type: { "s:6WebKit0A4PageC": true };
 }
 
@@ -363,22 +363,22 @@ export class WebPage_BackForwardList extends SDKHandle {
    * @MainActor var backList: [WebPage.BackForwardList.Item] { get }
    * @availability iOS 26.0+
    */
-  get backList(): Promise<$SDK6> { return callSDKAsync<$SDK6>("WebKit_d6c5d10d3352e6ec", 159047636401998, this, []); }
+  get backList(): Promise<$SDK6> { return callSDKAsync<$SDK6>("WebKit_a956b86ef7a76a8e", 159047636401998, this, []); }
   /**
    * @MainActor var forwardList: [WebPage.BackForwardList.Item] { get }
    * @availability iOS 26.0+
    */
-  get forwardList(): Promise<$SDK6> { return callSDKAsync<$SDK6>("WebKit_d6c5d10d3352e6ec", 3713134615357490, this, []); }
+  get forwardList(): Promise<$SDK6> { return callSDKAsync<$SDK6>("WebKit_a956b86ef7a76a8e", 3713134615357490, this, []); }
   /**
    * @MainActor var currentItem: WebPage.BackForwardList.Item? { get }
    * @availability iOS 26.0+
    */
-  get currentItem(): Promise<$SDK7> { return callSDKAsync<$SDK7>("WebKit_d6c5d10d3352e6ec", 2573062873505725, this, []); }
+  get currentItem(): Promise<$SDK7> { return callSDKAsync<$SDK7>("WebKit_a956b86ef7a76a8e", 2573062873505725, this, []); }
   /**
    * @MainActor subscript(index: Int) -> WebPage.BackForwardList.Item? { get }
    * @availability iOS 26.0+
    */
-  subscript(index: number): Promise<$SDK7> { return callSDKAsync<$SDK7>("WebKit_d6c5d10d3352e6ec", 3069223144041525, this, [index]); }
+  subscript(index: number): Promise<$SDK7> { return callSDKAsync<$SDK7>("WebKit_a956b86ef7a76a8e", 3069223144041525, this, [index]); }
   declare readonly $type: { "s:6WebKit0A4PageC15BackForwardListV": true };
 }
 
@@ -391,22 +391,22 @@ export class WebPage_BackForwardList_Item extends SDKHandle {
    * let initialURL: URL
    * @availability iOS 26.0+
    */
-  get initialURL(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 189286788209321, this, []); }
+  get initialURL(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 189286788209321, this, []); }
   /**
    * let id: WebPage.BackForwardList.Item.ID
    * @availability iOS 26.0+
    */
-  get id(): Promise<WebPage_BackForwardList_Item_ID> { return callSDKAsync<WebPage_BackForwardList_Item_ID>("WebKit_d6c5d10d3352e6ec", 3651664315963935, this, []); }
+  get id(): Promise<WebPage_BackForwardList_Item_ID> { return callSDKAsync<WebPage_BackForwardList_Item_ID>("WebKit_a956b86ef7a76a8e", 3651664315963935, this, []); }
   /**
    * let url: URL
    * @availability iOS 26.0+
    */
-  get url(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2874446433936805, this, []); }
+  get url(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2874446433936805, this, []); }
   /**
    * let title: String?
    * @availability iOS 26.0+
    */
-  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 3740083214719190, this, []); }
+  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 3740083214719190, this, []); }
   declare readonly $type: { "s:6WebKit0A4PageC15BackForwardListV4ItemV": true };
 }
 
@@ -427,115 +427,115 @@ export class WebPage_Configuration extends SDKHandle {
    * @MainActor var websiteDataStore: WKWebsiteDataStore
    * @availability iOS 26.0+
    */
-  get websiteDataStore(): Promise<WKWebsiteDataStore> { return callSDKAsync<WKWebsiteDataStore>("WebKit_d6c5d10d3352e6ec", 2709559805171525, this, []); }
-  setWebsiteDataStore(value: WKWebsiteDataStore): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2927690292302531, this, [value]); }
+  get websiteDataStore(): Promise<WKWebsiteDataStore> { return callSDKAsync<WKWebsiteDataStore>("WebKit_a956b86ef7a76a8e", 2709559805171525, this, []); }
+  setWebsiteDataStore(value: WKWebsiteDataStore): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2927690292302531, this, [value]); }
   /**
    * @MainActor var dataDetectorTypes: WKDataDetectorTypes
    * @availability iOS 26.0+
    */
-  get dataDetectorTypes(): Promise<WKDataDetectorTypes> { return callSDKAsync<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 3059127481507648, this, []); }
-  setDataDetectorTypes(value: WKDataDetectorTypes): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2094425484291584, this, [value]); }
+  get dataDetectorTypes(): Promise<WKDataDetectorTypes> { return callSDKAsync<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 3059127481507648, this, []); }
+  setDataDetectorTypes(value: WKDataDetectorTypes): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2094425484291584, this, [value]); }
   /**
    * @MainActor var loadsSubresources: Bool
    * @availability iOS 26.0+
    */
-  get loadsSubresources(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3966027447540046, this, []); }
-  setLoadsSubresources(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1243765834342906, this, [value]); }
+  get loadsSubresources(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3966027447540046, this, []); }
+  setLoadsSubresources(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1243765834342906, this, [value]); }
   /**
    * @MainActor var urlSchemeHandlers: [URLScheme : any URLSchemeHandler]
    * @availability iOS 26.0+
    */
-  get urlSchemeHandlers(): Promise<$SDK8> { return callSDKAsync<$SDK8>("WebKit_d6c5d10d3352e6ec", 1695249778198642, this, []); }
-  setUrlSchemeHandlers(value: $SDK8): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 337124594394657, this, [value]); }
+  get urlSchemeHandlers(): Promise<$SDK8> { return callSDKAsync<$SDK8>("WebKit_a956b86ef7a76a8e", 1695249778198642, this, []); }
+  setUrlSchemeHandlers(value: $SDK8): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 337124594394657, this, [value]); }
   /**
    * @MainActor var mediaPlaybackBehavior: WebPage.Configuration.MediaPlaybackBehavior
    * @availability iOS 26.0+
    */
-  get mediaPlaybackBehavior(): Promise<WebPage_Configuration_MediaPlaybackBehavior> { return callSDKAsync<WebPage_Configuration_MediaPlaybackBehavior>("WebKit_d6c5d10d3352e6ec", 2619893003995818, this, []); }
-  setMediaPlaybackBehavior(value: WebPage_Configuration_MediaPlaybackBehavior): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2112370883122489, this, [value]); }
+  get mediaPlaybackBehavior(): Promise<WebPage_Configuration_MediaPlaybackBehavior> { return callSDKAsync<WebPage_Configuration_MediaPlaybackBehavior>("WebKit_a956b86ef7a76a8e", 2619893003995818, this, []); }
+  setMediaPlaybackBehavior(value: WebPage_Configuration_MediaPlaybackBehavior): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2112370883122489, this, [value]); }
   /**
    * @MainActor var userContentController: WKUserContentController
    * @availability iOS 26.0+
    */
-  get userContentController(): Promise<WKUserContentController> { return callSDKAsync<WKUserContentController>("WebKit_d6c5d10d3352e6ec", 48116269834268, this, []); }
-  setUserContentController(value: WKUserContentController): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2997310511307664, this, [value]); }
+  get userContentController(): Promise<WKUserContentController> { return callSDKAsync<WKUserContentController>("WebKit_a956b86ef7a76a8e", 48116269834268, this, []); }
+  setUserContentController(value: WKUserContentController): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2997310511307664, this, [value]); }
   /**
    * @MainActor var webExtensionController: WKWebExtensionController?
    * @availability iOS 26.0+
    */
-  get webExtensionController(): Promise<$SDK9> { return callSDKAsync<$SDK9>("WebKit_d6c5d10d3352e6ec", 2396607171308531, this, []); }
-  setWebExtensionController(value?: $SDK9): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1523807035520485, this, [value]); }
+  get webExtensionController(): Promise<$SDK9> { return callSDKAsync<$SDK9>("WebKit_a956b86ef7a76a8e", 2396607171308531, this, []); }
+  setWebExtensionController(value?: $SDK9): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1523807035520485, this, [value]); }
   /**
    * @MainActor var allowsInlinePredictions: Bool
    * @availability iOS 26.0+
    */
-  get allowsInlinePredictions(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2772460455461402, this, []); }
-  setAllowsInlinePredictions(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2445676302951016, this, [value]); }
+  get allowsInlinePredictions(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2772460455461402, this, []); }
+  setAllowsInlinePredictions(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2445676302951016, this, [value]); }
   /**
    * @MainActor var upgradeKnownHostsToHTTPS: Bool
    * @availability iOS 26.0+
    */
-  get upgradeKnownHostsToHTTPS(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3940297131908168, this, []); }
-  setUpgradeKnownHostsToHTTPS(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3574741237209911, this, [value]); }
+  get upgradeKnownHostsToHTTPS(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3940297131908168, this, []); }
+  setUpgradeKnownHostsToHTTPS(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3574741237209911, this, [value]); }
   /**
    * @MainActor var deviceSensorAuthorization: WebPage.DeviceSensorAuthorization
    * @availability iOS 26.0+
    */
-  get deviceSensorAuthorization(): Promise<WebPage_DeviceSensorAuthorization> { return callSDKAsync<WebPage_DeviceSensorAuthorization>("WebKit_d6c5d10d3352e6ec", 6553656342164, this, []); }
-  setDeviceSensorAuthorization(value: WebPage_DeviceSensorAuthorization): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4250639590382217, this, [value]); }
+  get deviceSensorAuthorization(): Promise<WebPage_DeviceSensorAuthorization> { return callSDKAsync<WebPage_DeviceSensorAuthorization>("WebKit_a956b86ef7a76a8e", 6553656342164, this, []); }
+  setDeviceSensorAuthorization(value: WebPage_DeviceSensorAuthorization): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4250639590382217, this, [value]); }
   /**
    * @MainActor var ignoresViewportScaleLimits: Bool
    * @availability iOS 26.0+
    */
-  get ignoresViewportScaleLimits(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3534916517830468, this, []); }
-  setIgnoresViewportScaleLimits(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2393665571973993, this, [value]); }
+  get ignoresViewportScaleLimits(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3534916517830468, this, []); }
+  setIgnoresViewportScaleLimits(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2393665571973993, this, [value]); }
   /**
    * @MainActor var supportsAdaptiveImageGlyph: Bool
    * @availability iOS 26.0+
    */
-  get supportsAdaptiveImageGlyph(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 183702471778016, this, []); }
-  setSupportsAdaptiveImageGlyph(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4019758792635149, this, [value]); }
+  get supportsAdaptiveImageGlyph(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 183702471778016, this, []); }
+  setSupportsAdaptiveImageGlyph(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4019758792635149, this, [value]); }
   /**
    * @MainActor var applicationNameForUserAgent: String?
    * @availability iOS 26.0+
    */
-  get applicationNameForUserAgent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 667000981726406, this, []); }
-  setApplicationNameForUserAgent(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 576576482024325, this, [value]); }
+  get applicationNameForUserAgent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 667000981726406, this, []); }
+  setApplicationNameForUserAgent(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 576576482024325, this, [value]); }
   /**
    * @MainActor var defaultNavigationPreferences: WebPage.NavigationPreferences
    * @availability iOS 26.0+
    */
-  get defaultNavigationPreferences(): Promise<WebPage_NavigationPreferences> { return callSDKAsync<WebPage_NavigationPreferences>("WebKit_d6c5d10d3352e6ec", 1646943421779410, this, []); }
-  setDefaultNavigationPreferences(value: WebPage_NavigationPreferences): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 437457731826714, this, [value]); }
+  get defaultNavigationPreferences(): Promise<WebPage_NavigationPreferences> { return callSDKAsync<WebPage_NavigationPreferences>("WebKit_a956b86ef7a76a8e", 1646943421779410, this, []); }
+  setDefaultNavigationPreferences(value: WebPage_NavigationPreferences): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 437457731826714, this, [value]); }
   /**
    * @MainActor var allowsAirPlayForMediaPlayback: Bool
    * @availability iOS 26.0+
    */
-  get allowsAirPlayForMediaPlayback(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3445589234472738, this, []); }
-  setAllowsAirPlayForMediaPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1727460444279701, this, [value]); }
+  get allowsAirPlayForMediaPlayback(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3445589234472738, this, []); }
+  setAllowsAirPlayForMediaPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1727460444279701, this, [value]); }
   /**
    * @MainActor var suppressesIncrementalRendering: Bool
    * @availability iOS 26.0+
    */
-  get suppressesIncrementalRendering(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3568822133588285, this, []); }
-  setSuppressesIncrementalRendering(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3715666604371031, this, [value]); }
+  get suppressesIncrementalRendering(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3568822133588285, this, []); }
+  setSuppressesIncrementalRendering(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3715666604371031, this, [value]); }
   /**
    * @MainActor var showsSystemScreenTimeBlockingView: Bool { get set }
    * @availability iOS 26.0+
    */
-  get showsSystemScreenTimeBlockingView(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4273880088202423, this, []); }
-  setShowsSystemScreenTimeBlockingView(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 617798237337135, this, [value]); }
+  get showsSystemScreenTimeBlockingView(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4273880088202423, this, []); }
+  setShowsSystemScreenTimeBlockingView(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 617798237337135, this, [value]); }
   /**
    * @MainActor var limitsNavigationsToAppBoundDomains: Bool
    * @availability iOS 26.0+
    */
-  get limitsNavigationsToAppBoundDomains(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1741836416041940, this, []); }
-  setLimitsNavigationsToAppBoundDomains(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4096711951636710, this, [value]); }
+  get limitsNavigationsToAppBoundDomains(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1741836416041940, this, []); }
+  setLimitsNavigationsToAppBoundDomains(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4096711951636710, this, [value]); }
   /**
    * @MainActor init()
    * @availability iOS 26.0+
    */
-  static init(): Promise<WebPage_Configuration> { return callSDKAsync<WebPage_Configuration>("WebKit_d6c5d10d3352e6ec", 385179698346243, undefined, []); }
+  static init(): Promise<WebPage_Configuration> { return callSDKAsync<WebPage_Configuration>("WebKit_a956b86ef7a76a8e", 385179698346243, undefined, []); }
   declare readonly $type: { "s:6WebKit0A4PageC13ConfigurationV": true };
 }
 
@@ -556,27 +556,27 @@ export const WebPage_CSSMediaType = {
    * static let all: WebPage.CSSMediaType
    * @availability iOS 26.0+
    */
-  get all(): Promise<WebPage_CSSMediaType> { return callSDKAsync<WebPage_CSSMediaType>("WebKit_d6c5d10d3352e6ec", 1449427417733684, undefined, []); },
+  get all(): Promise<WebPage_CSSMediaType> { return callSDKAsync<WebPage_CSSMediaType>("WebKit_a956b86ef7a76a8e", 1449427417733684, undefined, []); },
   /**
    * static let print: WebPage.CSSMediaType
    * @availability iOS 26.0+
    */
-  get print(): Promise<WebPage_CSSMediaType> { return callSDKAsync<WebPage_CSSMediaType>("WebKit_d6c5d10d3352e6ec", 443061705040952, undefined, []); },
+  get print(): Promise<WebPage_CSSMediaType> { return callSDKAsync<WebPage_CSSMediaType>("WebKit_a956b86ef7a76a8e", 443061705040952, undefined, []); },
   /**
    * static let screen: WebPage.CSSMediaType
    * @availability iOS 26.0+
    */
-  get screen(): Promise<WebPage_CSSMediaType> { return callSDKAsync<WebPage_CSSMediaType>("WebKit_d6c5d10d3352e6ec", 3537136936107125, undefined, []); },
+  get screen(): Promise<WebPage_CSSMediaType> { return callSDKAsync<WebPage_CSSMediaType>("WebKit_a956b86ef7a76a8e", 3537136936107125, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): Promise<WebPage_CSSMediaType> { return callSDKAsync<WebPage_CSSMediaType>("WebKit_d6c5d10d3352e6ec", 2975018312650295, undefined, [rawValue]); },
+  init(rawValue: string): Promise<WebPage_CSSMediaType> { return callSDKAsync<WebPage_CSSMediaType>("WebKit_a956b86ef7a76a8e", 2975018312650295, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 26.0+
    */
-  getRawValue($self: WebPage_CSSMediaType): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2502848618442669, $self, []); }
+  getRawValue($self: WebPage_CSSMediaType): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2502848618442669, $self, []); }
 };
 
 /**
@@ -594,7 +594,7 @@ export class WebPage_DeviceSensorAuthorization extends SDKHandle {
    * init(decision: WKPermissionDecision)
    * @availability iOS 26.0+
    */
-  static init(decision: WKPermissionDecision): Promise<WebPage_DeviceSensorAuthorization> { return callSDKAsync<WebPage_DeviceSensorAuthorization>("WebKit_d6c5d10d3352e6ec", 3824925979924739, undefined, [decision]); }
+  static init(decision: WKPermissionDecision): Promise<WebPage_DeviceSensorAuthorization> { return callSDKAsync<WebPage_DeviceSensorAuthorization>("WebKit_a956b86ef7a76a8e", 3824925979924739, undefined, [decision]); }
   declare readonly $type: { "s:6WebKit0A4PageC25DeviceSensorAuthorizationV": true };
 }
 
@@ -642,12 +642,12 @@ export class WebPage_ExportedContentConfiguration extends SDKHandle {
    * static func pdf(region: WebPage.ExportedContentConfiguration.Region = .contents, allowTransparentBackground: Bool = false) -> WebPage.ExportedContentConfiguration
    * @availability iOS 26.0+
    */
-  static pdf(region?: WebPage_ExportedContentConfiguration_Region, allowTransparentBackground?: boolean): Promise<WebPage_ExportedContentConfiguration> { return callSDKAsync<WebPage_ExportedContentConfiguration>("WebKit_d6c5d10d3352e6ec", 881959302417882, undefined, [region, allowTransparentBackground]); }
+  static pdf(region?: WebPage_ExportedContentConfiguration_Region, allowTransparentBackground?: boolean): Promise<WebPage_ExportedContentConfiguration> { return callSDKAsync<WebPage_ExportedContentConfiguration>("WebKit_a956b86ef7a76a8e", 881959302417882, undefined, [region, allowTransparentBackground]); }
   /**
    * static func image(region: WebPage.ExportedContentConfiguration.Region = .contents, allowTransparentBackground: Bool = false, snapshotWidth: CGFloat? = nil, afterScreenUpdates: Bool = true) -> WebPage.ExportedContentConfiguration
    * @availability iOS 26.0+
    */
-  static image(region?: WebPage_ExportedContentConfiguration_Region, allowTransparentBackground?: boolean, snapshotWidth?: (number) | null, afterScreenUpdates?: boolean): Promise<WebPage_ExportedContentConfiguration> { return callSDKAsync<WebPage_ExportedContentConfiguration>("WebKit_d6c5d10d3352e6ec", 3648320260701143, undefined, [region, allowTransparentBackground, snapshotWidth, afterScreenUpdates]); }
+  static image(region?: WebPage_ExportedContentConfiguration_Region, allowTransparentBackground?: boolean, snapshotWidth?: (number) | null, afterScreenUpdates?: boolean): Promise<WebPage_ExportedContentConfiguration> { return callSDKAsync<WebPage_ExportedContentConfiguration>("WebKit_a956b86ef7a76a8e", 3648320260701143, undefined, [region, allowTransparentBackground, snapshotWidth, afterScreenUpdates]); }
   declare readonly $type: { "s:6WebKit0A4PageC28ExportedContentConfigurationV": true };
 }
 
@@ -660,12 +660,12 @@ export class WebPage_ExportedContentConfiguration_Region extends SDKHandle {
    * static func rect(_ rect: CGRect) -> WebPage.ExportedContentConfiguration.Region
    * @availability iOS 26.0+
    */
-  static rect(rect: $SDK10): Promise<WebPage_ExportedContentConfiguration_Region> { return callSDKAsync<WebPage_ExportedContentConfiguration_Region>("WebKit_d6c5d10d3352e6ec", 159282513100066, undefined, [rect]); }
+  static rect(rect: $SDK10): Promise<WebPage_ExportedContentConfiguration_Region> { return callSDKAsync<WebPage_ExportedContentConfiguration_Region>("WebKit_a956b86ef7a76a8e", 159282513100066, undefined, [rect]); }
   /**
    * static var contents: WebPage.ExportedContentConfiguration.Region { get }
    * @availability iOS 26.0+
    */
-  static get contents(): Promise<WebPage_ExportedContentConfiguration_Region> { return callSDKAsync<WebPage_ExportedContentConfiguration_Region>("WebKit_d6c5d10d3352e6ec", 654665770895367, undefined, []); }
+  static get contents(): Promise<WebPage_ExportedContentConfiguration_Region> { return callSDKAsync<WebPage_ExportedContentConfiguration_Region>("WebKit_a956b86ef7a76a8e", 654665770895367, undefined, []); }
   declare readonly $type: { "s:6WebKit0A4PageC28ExportedContentConfigurationV6RegionV": true };
 }
 
@@ -686,27 +686,27 @@ export class WebPage_FormInfo extends SDKHandle {
    * @MainActor var formValues: [String : String] { get }
    * @availability iOS 27.0+
    */
-  get formValues(): Promise<Record<string, string>> { return callSDKAsync<Record<string, string>>("WebKit_d6c5d10d3352e6ec", 8454739916610, this, []); }
+  get formValues(): Promise<Record<string, string>> { return callSDKAsync<Record<string, string>>("WebKit_a956b86ef7a76a8e", 8454739916610, this, []); }
   /**
    * @MainActor var httpMethod: String { get }
    * @availability iOS 27.0+
    */
-  get httpMethod(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2509196732276181, this, []); }
+  get httpMethod(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2509196732276181, this, []); }
   /**
    * @MainActor var sourceFrame: WebPage.FrameInfo { get }
    * @availability iOS 27.0+
    */
-  get sourceFrame(): Promise<WebPage_FrameInfo> { return callSDKAsync<WebPage_FrameInfo>("WebKit_d6c5d10d3352e6ec", 2874627834057935, this, []); }
+  get sourceFrame(): Promise<WebPage_FrameInfo> { return callSDKAsync<WebPage_FrameInfo>("WebKit_a956b86ef7a76a8e", 2874627834057935, this, []); }
   /**
    * @MainActor var targetFrame: WebPage.FrameInfo { get }
    * @availability iOS 27.0+
    */
-  get targetFrame(): Promise<WebPage_FrameInfo> { return callSDKAsync<WebPage_FrameInfo>("WebKit_d6c5d10d3352e6ec", 1913177896525224, this, []); }
+  get targetFrame(): Promise<WebPage_FrameInfo> { return callSDKAsync<WebPage_FrameInfo>("WebKit_a956b86ef7a76a8e", 1913177896525224, this, []); }
   /**
    * @MainActor var submissionURL: URL { get }
    * @availability iOS 27.0+
    */
-  get submissionURL(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 1885618921166684, this, []); }
+  get submissionURL(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 1885618921166684, this, []); }
   declare readonly $type: { "s:6WebKit0A4PageC8FormInfoV": true };
 }
 
@@ -719,17 +719,17 @@ export class WebPage_FrameInfo extends SDKHandle {
    * @MainActor var isMainFrame: Bool { get }
    * @availability iOS 26.0+
    */
-  get isMainFrame(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2779257254368098, this, []); }
+  get isMainFrame(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2779257254368098, this, []); }
   /**
    * @MainActor var securityOrigin: WKSecurityOrigin { get }
    * @availability iOS 26.0+
    */
-  get securityOrigin(): Promise<WKSecurityOrigin> { return callSDKAsync<WKSecurityOrigin>("WebKit_d6c5d10d3352e6ec", 3268741395839702, this, []); }
+  get securityOrigin(): Promise<WKSecurityOrigin> { return callSDKAsync<WKSecurityOrigin>("WebKit_a956b86ef7a76a8e", 3268741395839702, this, []); }
   /**
    * @MainActor var request: URLRequest { get }
    * @availability iOS 26.0+
    */
-  get request(): Promise<_Foundation_URLRequest> { return callSDKAsync<_Foundation_URLRequest>("WebKit_d6c5d10d3352e6ec", 764658477080834, this, []); }
+  get request(): Promise<_Foundation_URLRequest> { return callSDKAsync<_Foundation_URLRequest>("WebKit_a956b86ef7a76a8e", 764658477080834, this, []); }
   declare readonly $type: { "s:6WebKit0A4PageC9FrameInfoV": true };
 }
 
@@ -762,37 +762,37 @@ export class WebPage_NavigationAction extends SDKHandle {
    * @MainActor var buttonNumber: UIEvent.ButtonMask { get }
    * @availability iOS 26.0+
    */
-  get buttonNumber(): Promise<_UIKit_UIEvent_ButtonMask> { return callSDKAsync<_UIKit_UIEvent_ButtonMask>("WebKit_d6c5d10d3352e6ec", 2446072659617187, this, []); }
+  get buttonNumber(): Promise<_UIKit_UIEvent_ButtonMask> { return callSDKAsync<_UIKit_UIEvent_ButtonMask>("WebKit_a956b86ef7a76a8e", 2446072659617187, this, []); }
   /**
    * @MainActor var navigationType: WKNavigationType { get }
    * @availability iOS 26.0+
    */
-  get navigationType(): Promise<WKNavigationType> { return callSDKAsync<WKNavigationType>("WebKit_d6c5d10d3352e6ec", 1752170019133920, this, []); }
+  get navigationType(): Promise<WKNavigationType> { return callSDKAsync<WKNavigationType>("WebKit_a956b86ef7a76a8e", 1752170019133920, this, []); }
   /**
    * @MainActor var shouldPerformDownload: Bool { get }
    * @availability iOS 26.0+
    */
-  get shouldPerformDownload(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 246236219193055, this, []); }
+  get shouldPerformDownload(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 246236219193055, this, []); }
   /**
    * @MainActor var isContentRuleListRedirect: Bool { get }
    * @availability iOS 26.0+
    */
-  get isContentRuleListRedirect(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1166587935063547, this, []); }
+  get isContentRuleListRedirect(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1166587935063547, this, []); }
   /**
    * @MainActor var source: WebPage.FrameInfo { get }
    * @availability iOS 26.0+
    */
-  get source(): Promise<WebPage_FrameInfo> { return callSDKAsync<WebPage_FrameInfo>("WebKit_d6c5d10d3352e6ec", 3996581842533562, this, []); }
+  get source(): Promise<WebPage_FrameInfo> { return callSDKAsync<WebPage_FrameInfo>("WebKit_a956b86ef7a76a8e", 3996581842533562, this, []); }
   /**
    * @MainActor var target: WebPage.FrameInfo? { get }
    * @availability iOS 26.0+
    */
-  get target(): Promise<(WebPage_FrameInfo) | null> { return callSDKAsync<(WebPage_FrameInfo) | null>("WebKit_d6c5d10d3352e6ec", 2106486031150052, this, []); }
+  get target(): Promise<(WebPage_FrameInfo) | null> { return callSDKAsync<(WebPage_FrameInfo) | null>("WebKit_a956b86ef7a76a8e", 2106486031150052, this, []); }
   /**
    * @MainActor var request: URLRequest { get }
    * @availability iOS 26.0+
    */
-  get request(): Promise<_Foundation_URLRequest> { return callSDKAsync<_Foundation_URLRequest>("WebKit_d6c5d10d3352e6ec", 4295934894237800, this, []); }
+  get request(): Promise<_Foundation_URLRequest> { return callSDKAsync<_Foundation_URLRequest>("WebKit_a956b86ef7a76a8e", 4295934894237800, this, []); }
   declare readonly $type: { "s:6WebKit0A4PageC16NavigationActionV": true };
 }
 
@@ -846,61 +846,61 @@ export class WebPage_NavigationPreferences extends SDKHandle {
    * var allowsJSHandleCreationInPageWorld: Bool
    * @availability iOS 27.0+
    */
-  get allowsJSHandleCreationInPageWorld(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2825113823396479, this, []); }
-  setAllowsJSHandleCreationInPageWorld(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1891207833091677, this, [value]); }
+  get allowsJSHandleCreationInPageWorld(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2825113823396479, this, []); }
+  setAllowsJSHandleCreationInPageWorld(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1891207833091677, this, [value]); }
   /**
    * var alternateRequest: URLRequest?
    * @availability iOS 27.0+
    */
-  get alternateRequest(): Promise<$SDK12> { return callSDKAsync<$SDK12>("WebKit_d6c5d10d3352e6ec", 1399823045524955, this, []); }
-  setAlternateRequest(value?: $SDK12): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3758140456099658, this, [value]); }
+  get alternateRequest(): Promise<$SDK12> { return callSDKAsync<$SDK12>("WebKit_a956b86ef7a76a8e", 1399823045524955, this, []); }
+  setAlternateRequest(value?: $SDK12): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3758140456099658, this, [value]); }
   /**
    * var overrideReferrer: String?
    * @availability iOS 27.0+
    */
-  get overrideReferrer(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 3903970737725957, this, []); }
-  setOverrideReferrer(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3468379393889396, this, [value]); }
+  get overrideReferrer(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 3903970737725957, this, []); }
+  setOverrideReferrer(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3468379393889396, this, [value]); }
   /**
    * var preferredContentMode: WebPage.NavigationPreferences.ContentMode
    * @availability iOS 26.0+
    */
-  get preferredContentMode(): Promise<WebPage_NavigationPreferences_ContentMode> { return callSDKAsync<WebPage_NavigationPreferences_ContentMode>("WebKit_d6c5d10d3352e6ec", 1805418393082857, this, []); }
-  setPreferredContentMode(value: WebPage_NavigationPreferences_ContentMode): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3734317721716804, this, [value]); }
+  get preferredContentMode(): Promise<WebPage_NavigationPreferences_ContentMode> { return callSDKAsync<WebPage_NavigationPreferences_ContentMode>("WebKit_a956b86ef7a76a8e", 1805418393082857, this, []); }
+  setPreferredContentMode(value: WebPage_NavigationPreferences_ContentMode): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3734317721716804, this, [value]); }
   /**
    * var isLockdownModeEnabled: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isLockdownModeEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1464564186359012, this, []); }
-  setIsLockdownModeEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2749497207751339, this, [value]); }
+  get isLockdownModeEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1464564186359012, this, []); }
+  setIsLockdownModeEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2749497207751339, this, [value]); }
   /**
    * var allowsContentJavaScript: Bool
    * @availability iOS 26.0+
    */
-  get allowsContentJavaScript(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 657790127953703, this, []); }
-  setAllowsContentJavaScript(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3786232432591317, this, [value]); }
+  get allowsContentJavaScript(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 657790127953703, this, []); }
+  setAllowsContentJavaScript(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3786232432591317, this, [value]); }
   /**
    * var securityRestrictionMode: WebPage.NavigationPreferences.SecurityRestrictionMode { get set }
    * @availability iOS 26.4+
    */
-  get securityRestrictionMode(): Promise<WebPage_NavigationPreferences_SecurityRestrictionMode> { return callSDKAsync<WebPage_NavigationPreferences_SecurityRestrictionMode>("WebKit_d6c5d10d3352e6ec", 3165457041411535, this, []); }
-  setSecurityRestrictionMode(value: WebPage_NavigationPreferences_SecurityRestrictionMode): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 968986450455427, this, [value]); }
+  get securityRestrictionMode(): Promise<WebPage_NavigationPreferences_SecurityRestrictionMode> { return callSDKAsync<WebPage_NavigationPreferences_SecurityRestrictionMode>("WebKit_a956b86ef7a76a8e", 3165457041411535, this, []); }
+  setSecurityRestrictionMode(value: WebPage_NavigationPreferences_SecurityRestrictionMode): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 968986450455427, this, [value]); }
   /**
    * var isGlobalPrivacyControlEnabled: Bool
    * @availability iOS 27.0+
    */
-  get isGlobalPrivacyControlEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2650943824802327, this, []); }
-  setIsGlobalPrivacyControlEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3115084744283029, this, [value]); }
+  get isGlobalPrivacyControlEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2650943824802327, this, []); }
+  setIsGlobalPrivacyControlEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3115084744283029, this, [value]); }
   /**
    * var preferredHTTPSNavigationPolicy: WebPage.NavigationPreferences.UpgradeToHTTPSPolicy
    * @availability iOS 26.0+
    */
-  get preferredHTTPSNavigationPolicy(): Promise<WebPage_NavigationPreferences_UpgradeToHTTPSPolicy> { return callSDKAsync<WebPage_NavigationPreferences_UpgradeToHTTPSPolicy>("WebKit_d6c5d10d3352e6ec", 2122837506574075, this, []); }
-  setPreferredHTTPSNavigationPolicy(value: WebPage_NavigationPreferences_UpgradeToHTTPSPolicy): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3710931650170129, this, [value]); }
+  get preferredHTTPSNavigationPolicy(): Promise<WebPage_NavigationPreferences_UpgradeToHTTPSPolicy> { return callSDKAsync<WebPage_NavigationPreferences_UpgradeToHTTPSPolicy>("WebKit_a956b86ef7a76a8e", 2122837506574075, this, []); }
+  setPreferredHTTPSNavigationPolicy(value: WebPage_NavigationPreferences_UpgradeToHTTPSPolicy): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3710931650170129, this, [value]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): Promise<WebPage_NavigationPreferences> { return callSDKAsync<WebPage_NavigationPreferences>("WebKit_d6c5d10d3352e6ec", 2810057687461209, undefined, []); }
+  static init(): Promise<WebPage_NavigationPreferences> { return callSDKAsync<WebPage_NavigationPreferences>("WebKit_a956b86ef7a76a8e", 2810057687461209, undefined, []); }
   declare readonly $type: { "s:6WebKit0A4PageC21NavigationPreferencesV": true };
 }
 
@@ -931,12 +931,12 @@ export class WebPage_NavigationResponse extends SDKHandle {
    * @MainActor var canShowMimeType: Bool { get }
    * @availability iOS 26.0+
    */
-  get canShowMimeType(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1087927297040101, this, []); }
+  get canShowMimeType(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1087927297040101, this, []); }
   /**
    * @MainActor var response: URLResponse { get }
    * @availability iOS 26.0+
    */
-  get response(): Promise<_Foundation_URLResponse> { return callSDKAsync<_Foundation_URLResponse>("WebKit_d6c5d10d3352e6ec", 3938121252498323, this, []); }
+  get response(): Promise<_Foundation_URLResponse> { return callSDKAsync<_Foundation_URLResponse>("WebKit_a956b86ef7a76a8e", 3938121252498323, this, []); }
   declare readonly $type: { "s:6WebKit0A4PageC18NavigationResponseV": true };
 }
 
@@ -957,22 +957,22 @@ export const WKAudiovisualMediaTypes = {
    * static var all: WKAudiovisualMediaTypes { get }
    * @availability iOS 10.0+
    */
-  get all(): WKAudiovisualMediaTypes { return callSDK<WKAudiovisualMediaTypes>("WebKit_d6c5d10d3352e6ec", 1042021007190070, undefined, []); },
+  get all(): WKAudiovisualMediaTypes { return callSDK<WKAudiovisualMediaTypes>("WebKit_a956b86ef7a76a8e", 1042021007190070, undefined, []); },
   /**
    * static var audio: WKAudiovisualMediaTypes { get }
    * @availability iOS 10.0+
    */
-  get audio(): WKAudiovisualMediaTypes { return callSDK<WKAudiovisualMediaTypes>("WebKit_d6c5d10d3352e6ec", 3144556836360832, undefined, []); },
+  get audio(): WKAudiovisualMediaTypes { return callSDK<WKAudiovisualMediaTypes>("WebKit_a956b86ef7a76a8e", 3144556836360832, undefined, []); },
   /**
    * static var video: WKAudiovisualMediaTypes { get }
    * @availability iOS 10.0+
    */
-  get video(): WKAudiovisualMediaTypes { return callSDK<WKAudiovisualMediaTypes>("WebKit_d6c5d10d3352e6ec", 59696498332835, undefined, []); },
+  get video(): WKAudiovisualMediaTypes { return callSDK<WKAudiovisualMediaTypes>("WebKit_a956b86ef7a76a8e", 59696498332835, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): WKAudiovisualMediaTypes { return callSDK<WKAudiovisualMediaTypes>("WebKit_d6c5d10d3352e6ec", 2783439182553094, undefined, [rawValue]); }
+  init(rawValue: number): WKAudiovisualMediaTypes { return callSDK<WKAudiovisualMediaTypes>("WebKit_a956b86ef7a76a8e", 2783439182553094, undefined, [rawValue]); }
 };
 
 /**
@@ -981,37 +981,37 @@ export const WKAudiovisualMediaTypes = {
  */
 export class WKBackForwardList extends SDKHandle {
   /** init() */
-  static init(): Promise<WKBackForwardList> { return callSDKAsync<WKBackForwardList>("WebKit_d6c5d10d3352e6ec", 1923229523812668, undefined, []); }
+  static init(): Promise<WKBackForwardList> { return callSDKAsync<WKBackForwardList>("WebKit_a956b86ef7a76a8e", 1923229523812668, undefined, []); }
   /**
    * func item(at index: Int) -> WKBackForwardListItem?
    * @availability iOS 8.0+
    */
-  item(index: number): Promise<$SDK13> { return callSDKAsync<$SDK13>("WebKit_d6c5d10d3352e6ec", 3145472887368570, this, [index]); }
+  item(index: number): Promise<$SDK13> { return callSDKAsync<$SDK13>("WebKit_a956b86ef7a76a8e", 3145472887368570, this, [index]); }
   /**
    * var backItem: WKBackForwardListItem? { get }
    * @availability iOS 8.0+
    */
-  get backItem(): Promise<$SDK13> { return callSDKAsync<$SDK13>("WebKit_d6c5d10d3352e6ec", 4223189333534330, this, []); }
+  get backItem(): Promise<$SDK13> { return callSDKAsync<$SDK13>("WebKit_a956b86ef7a76a8e", 4223189333534330, this, []); }
   /**
    * var backList: [WKBackForwardListItem] { get }
    * @availability iOS 8.0+
    */
-  get backList(): Promise<Array<WKBackForwardListItem>> { return callSDKAsync<Array<WKBackForwardListItem>>("WebKit_d6c5d10d3352e6ec", 4190635127077856, this, []); }
+  get backList(): Promise<Array<WKBackForwardListItem>> { return callSDKAsync<Array<WKBackForwardListItem>>("WebKit_a956b86ef7a76a8e", 4190635127077856, this, []); }
   /**
    * var currentItem: WKBackForwardListItem? { get }
    * @availability iOS 8.0+
    */
-  get currentItem(): Promise<$SDK13> { return callSDKAsync<$SDK13>("WebKit_d6c5d10d3352e6ec", 1415411637120862, this, []); }
+  get currentItem(): Promise<$SDK13> { return callSDKAsync<$SDK13>("WebKit_a956b86ef7a76a8e", 1415411637120862, this, []); }
   /**
    * var forwardItem: WKBackForwardListItem? { get }
    * @availability iOS 8.0+
    */
-  get forwardItem(): Promise<$SDK13> { return callSDKAsync<$SDK13>("WebKit_d6c5d10d3352e6ec", 1937283083907547, this, []); }
+  get forwardItem(): Promise<$SDK13> { return callSDKAsync<$SDK13>("WebKit_a956b86ef7a76a8e", 1937283083907547, this, []); }
   /**
    * var forwardList: [WKBackForwardListItem] { get }
    * @availability iOS 8.0+
    */
-  get forwardList(): Promise<Array<WKBackForwardListItem>> { return callSDKAsync<Array<WKBackForwardListItem>>("WebKit_d6c5d10d3352e6ec", 2468883030143664, this, []); }
+  get forwardList(): Promise<Array<WKBackForwardListItem>> { return callSDKAsync<Array<WKBackForwardListItem>>("WebKit_a956b86ef7a76a8e", 2468883030143664, this, []); }
   declare readonly $type: { "c:objc(cs)WKBackForwardList": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1024,17 +1024,17 @@ export class WKBackForwardListItem extends SDKHandle {
    * var url: URL { get }
    * @availability iOS 8.0+
    */
-  get url(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 4285874694346843, this, []); }
+  get url(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 4285874694346843, this, []); }
   /**
    * var initialURL: URL { get }
    * @availability iOS 8.0+
    */
-  get initialURL(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2120670328509499, this, []); }
+  get initialURL(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2120670328509499, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 8.0+
    */
-  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 25183890370158, this, []); }
+  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 25183890370158, this, []); }
   declare readonly $type: { "c:objc(cs)WKBackForwardListItem": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1044,12 +1044,12 @@ export class WKBackForwardListItem extends SDKHandle {
  */
 export class WKContentRuleList extends SDKHandle {
   /** init() */
-  static init(): Promise<WKContentRuleList> { return callSDKAsync<WKContentRuleList>("WebKit_d6c5d10d3352e6ec", 1640873061883639, undefined, []); }
+  static init(): Promise<WKContentRuleList> { return callSDKAsync<WKContentRuleList>("WebKit_a956b86ef7a76a8e", 1640873061883639, undefined, []); }
   /**
    * var identifier: String! { get }
    * @availability iOS 11.0+
    */
-  get identifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 1116610004715826, this, []); }
+  get identifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 1116610004715826, this, []); }
   declare readonly $type: { "c:objc(cs)WKContentRuleList": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1062,32 +1062,32 @@ export class WKContentRuleListStore extends SDKHandle {
    * class func `default`() -> Self!
    * @availability iOS 11.0+
    */
-  static default(): Promise<(WKContentRuleListStore) | null> { return callSDKAsync<(WKContentRuleListStore) | null>("WebKit_d6c5d10d3352e6ec", 2301222759279474, undefined, []); }
+  static default(): Promise<(WKContentRuleListStore) | null> { return callSDKAsync<(WKContentRuleListStore) | null>("WebKit_a956b86ef7a76a8e", 2301222759279474, undefined, []); }
   /**
    * convenience init!(url: URL!)
    * @availability iOS 11.0+
    */
-  static init(url?: (string) | null): Promise<WKContentRuleListStore> { return callSDKAsync<WKContentRuleListStore>("WebKit_d6c5d10d3352e6ec", 1314781860919248, undefined, [url]); }
+  static init(url?: (string) | null): Promise<WKContentRuleListStore> { return callSDKAsync<WKContentRuleListStore>("WebKit_a956b86ef7a76a8e", 1314781860919248, undefined, [url]); }
   /**
    * func compileContentRuleList(forIdentifier identifier: String!, encodedContentRuleList: String!) async throws -> WKContentRuleList?
    * @availability iOS 11.0+
    */
-  compileContentRuleList(identifier?: (string) | null, encodedContentRuleList?: (string) | null, completionHandler?: $SDK16): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1165210821557740, this, [identifier, encodedContentRuleList, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  compileContentRuleList(identifier?: (string) | null, encodedContentRuleList?: (string) | null, completionHandler?: $SDK16): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1165210821557740, this, [identifier, encodedContentRuleList, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func availableIdentifiers() async -> [String]?
    * @availability iOS 11.0+
    */
-  getAvailableContentRuleListIdentifiers(completionHandler?: (((arg0: (Array<string>) | null) => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1911427832422611, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getAvailableContentRuleListIdentifiers(completionHandler?: (((arg0: (Array<string>) | null) => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1911427832422611, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func contentRuleList(forIdentifier identifier: String!) async throws -> WKContentRuleList?
    * @availability iOS 11.0+
    */
-  lookUpContentRuleList(identifier?: (string) | null, completionHandler?: $SDK16): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4098102964879983, this, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  lookUpContentRuleList(identifier?: (string) | null, completionHandler?: $SDK16): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4098102964879983, this, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func removeContentRuleList(forIdentifier identifier: String!) async throws
    * @availability iOS 11.0+
    */
-  removeContentRuleList(identifier?: (string) | null, completionHandler?: $SDK18): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4068068373950418, this, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  removeContentRuleList(identifier?: (string) | null, completionHandler?: $SDK18): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4068068373950418, this, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)WKContentRuleListStore": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1100,27 +1100,27 @@ export class WKContentWorld extends SDKHandle {
    * init(configuration: WKContentWorld.Configuration)
    * @availability iOS 27.0+
    */
-  static init(configuration: WKContentWorld_Configuration): Promise<WKContentWorld> { return callSDKAsync<WKContentWorld>("WebKit_d6c5d10d3352e6ec", 2725462477840817, undefined, [configuration]); }
+  static init(configuration: WKContentWorld_Configuration): Promise<WKContentWorld> { return callSDKAsync<WKContentWorld>("WebKit_a956b86ef7a76a8e", 2725462477840817, undefined, [configuration]); }
   /**
    * class func world(name: String) -> WKContentWorld
    * @availability iOS 14.0+
    */
-  static world(name: string): Promise<WKContentWorld> { return callSDKAsync<WKContentWorld>("WebKit_d6c5d10d3352e6ec", 3732086659703140, undefined, [name]); }
+  static world(name: string): Promise<WKContentWorld> { return callSDKAsync<WKContentWorld>("WebKit_a956b86ef7a76a8e", 3732086659703140, undefined, [name]); }
   /**
    * class var defaultClient: WKContentWorld { get }
    * @availability iOS 14.0+
    */
-  static get defaultClient(): Promise<WKContentWorld> { return callSDKAsync<WKContentWorld>("WebKit_d6c5d10d3352e6ec", 1697614360053535, undefined, []); }
+  static get defaultClient(): Promise<WKContentWorld> { return callSDKAsync<WKContentWorld>("WebKit_a956b86ef7a76a8e", 1697614360053535, undefined, []); }
   /**
    * class var page: WKContentWorld { get }
    * @availability iOS 14.0+
    */
-  static get page(): Promise<WKContentWorld> { return callSDKAsync<WKContentWorld>("WebKit_d6c5d10d3352e6ec", 138065106851985, undefined, []); }
+  static get page(): Promise<WKContentWorld> { return callSDKAsync<WKContentWorld>("WebKit_a956b86ef7a76a8e", 138065106851985, undefined, []); }
   /**
    * var name: String? { get }
    * @availability iOS 14.0+
    */
-  get name(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 1043291246078196, this, []); }
+  get name(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 1043291246078196, this, []); }
   declare readonly $type: { "c:objc(cs)WKContentWorld": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1130,49 +1130,49 @@ export class WKContentWorld extends SDKHandle {
  */
 export class WKContentWorld_Configuration extends SDKHandle {
   /** init() */
-  static init(): Promise<WKContentWorld_Configuration> { return callSDKAsync<WKContentWorld_Configuration>("WebKit_d6c5d10d3352e6ec", 1641271455188600, undefined, []); }
+  static init(): Promise<WKContentWorld_Configuration> { return callSDKAsync<WKContentWorld_Configuration>("WebKit_a956b86ef7a76a8e", 1641271455188600, undefined, []); }
   /**
    * var allowAccessingClosedShadowRoots: Bool { get set }
    * @availability iOS 27.0+
    */
-  get allowAccessingClosedShadowRoots(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3200057134766107, this, []); }
-  setAllowAccessingClosedShadowRoots(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 517600289571980, this, [value]); }
+  get allowAccessingClosedShadowRoots(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3200057134766107, this, []); }
+  setAllowAccessingClosedShadowRoots(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 517600289571980, this, [value]); }
   /**
    * var autofillScriptingEnabled: Bool { get set }
    * @availability iOS 27.0+
    */
-  get autofillScriptingEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2712375703644918, this, []); }
-  setAutofillScriptingEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3637181980057662, this, [value]); }
+  get autofillScriptingEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2712375703644918, this, []); }
+  setAutofillScriptingEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3637181980057662, this, [value]); }
   /**
    * var elementUserInfoEnabled: Bool { get set }
    * @availability iOS 27.0+
    */
-  get elementUserInfoEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3963414105487611, this, []); }
-  setElementUserInfoEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 643601073336465, this, [value]); }
+  get elementUserInfoEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3963414105487611, this, []); }
+  setElementUserInfoEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 643601073336465, this, [value]); }
   /**
    * var isInspectable: Bool { get set }
    * @availability iOS 27.0+
    */
-  get isInspectable(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2675485997001303, this, []); }
-  setIsInspectable(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1610957350024124, this, [value]); }
+  get isInspectable(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2675485997001303, this, []); }
+  setIsInspectable(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1610957350024124, this, [value]); }
   /**
    * var jsHandleCreationEnabled: Bool { get set }
    * @availability iOS 27.0+
    */
-  get jsHandleCreationEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 292048976303568, this, []); }
-  setJsHandleCreationEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3361106001149344, this, [value]); }
+  get jsHandleCreationEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 292048976303568, this, []); }
+  setJsHandleCreationEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3361106001149344, this, [value]); }
   /**
    * var legacyBuiltinOverridesEnabled: Bool { get set }
    * @availability iOS 27.0+
    */
-  get legacyBuiltinOverridesEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1852171581722174, this, []); }
-  setLegacyBuiltinOverridesEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3691606230460614, this, [value]); }
+  get legacyBuiltinOverridesEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1852171581722174, this, []); }
+  setLegacyBuiltinOverridesEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3691606230460614, this, [value]); }
   /**
    * var nodeSnapshotCreationEnabled: Bool { get set }
    * @availability iOS 27.0+
    */
-  get nodeSnapshotCreationEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3588147142837190, this, []); }
-  setNodeSnapshotCreationEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 551915007556568, this, [value]); }
+  get nodeSnapshotCreationEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3588147142837190, this, []); }
+  setNodeSnapshotCreationEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 551915007556568, this, [value]); }
   declare readonly $type: { "c:objc(cs)WKContentWorldConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1185,7 +1185,7 @@ export class WKContextMenuElementInfo extends SDKHandle {
    * var linkURL: URL? { get }
    * @availability iOS 13.0+
    */
-  get linkURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 3540222639898156, this, []); }
+  get linkURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 3540222639898156, this, []); }
   declare readonly $type: { "c:objc(cs)WKContextMenuElementInfo": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1200,53 +1200,53 @@ export const WKDataDetectorTypes = {
    * static var address: WKDataDetectorTypes { get }
    * @availability iOS 10.0+
    */
-  get address(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 2574885050981976, undefined, []); },
+  get address(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 2574885050981976, undefined, []); },
   /**
    * static var all: WKDataDetectorTypes { get }
    * @availability iOS 10.0+
    */
-  get all(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 2305637380829683, undefined, []); },
+  get all(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 2305637380829683, undefined, []); },
   /**
    * static var calendarEvent: WKDataDetectorTypes { get }
    * @availability iOS 10.0+
    */
-  get calendarEvent(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 1089218739781530, undefined, []); },
+  get calendarEvent(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 1089218739781530, undefined, []); },
   /**
    * static var flightNumber: WKDataDetectorTypes { get }
    * @availability iOS 10.0+
    */
-  get flightNumber(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 85962245616398, undefined, []); },
+  get flightNumber(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 85962245616398, undefined, []); },
   /**
    * static var link: WKDataDetectorTypes { get }
    * @availability iOS 10.0+
    */
-  get link(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 2334747994488383, undefined, []); },
+  get link(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 2334747994488383, undefined, []); },
   /**
    * static var lookupSuggestion: WKDataDetectorTypes { get }
    * @availability iOS 10.0+
    */
-  get lookupSuggestion(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 1574038678024140, undefined, []); },
+  get lookupSuggestion(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 1574038678024140, undefined, []); },
   /**
    * static var phoneNumber: WKDataDetectorTypes { get }
    * @availability iOS 10.0+
    */
-  get phoneNumber(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 2405434231131763, undefined, []); },
+  get phoneNumber(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 2405434231131763, undefined, []); },
   /**
    * static var spotlightSuggestion: WKDataDetectorTypes { get }
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  get spotlightSuggestion(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 3448676776159877, undefined, []); },
+  get spotlightSuggestion(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 3448676776159877, undefined, []); },
   /**
    * static var trackingNumber: WKDataDetectorTypes { get }
    * @availability iOS 10.0+
    */
-  get trackingNumber(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 2650195820016471, undefined, []); },
+  get trackingNumber(): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 2650195820016471, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 3699109980865996, undefined, [rawValue]); }
+  init(rawValue: number): WKDataDetectorTypes { return callSDK<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 3699109980865996, undefined, [rawValue]); }
 };
 
 /**
@@ -1260,7 +1260,7 @@ export const WKDialogResult = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (WKDialogResult) | null { return callSDK<(WKDialogResult) | null>("WebKit_d6c5d10d3352e6ec", 2930940159730973, undefined, [rawValue]); }
+  init(rawValue: number): (WKDialogResult) | null { return callSDK<(WKDialogResult) | null>("WebKit_a956b86ef7a76a8e", 2930940159730973, undefined, [rawValue]); }
 };
 
 /**
@@ -1280,35 +1280,35 @@ export class WKDownload extends SDKHandle {
    * func cancel() async -> Data?
    * @availability iOS 14.5+
    */
-  cancel(completionHandler?: (((arg0: (ArrayBuffer) | null) => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3099068102659427, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  cancel(completionHandler?: (((arg0: (ArrayBuffer) | null) => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3099068102659427, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): Promise<WKDownload> { return callSDKAsync<WKDownload>("WebKit_d6c5d10d3352e6ec", 116184846646029, undefined, []); }
+  static init(): Promise<WKDownload> { return callSDKAsync<WKDownload>("WebKit_a956b86ef7a76a8e", 116184846646029, undefined, []); }
   /**
    * weak var delegate: (any WKDownloadDelegate)? { get set }
    * @availability iOS 14.5+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_d6c5d10d3352e6ec", 3343045100875896, this, []); }
-  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2086653340999541, this, [value]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_a956b86ef7a76a8e", 3343045100875896, this, []); }
+  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2086653340999541, this, [value]); }
   /**
    * var originalRequest: URLRequest? { get }
    * @availability iOS 14.5+
    */
-  get originalRequest(): Promise<$SDK12> { return callSDKAsync<$SDK12>("WebKit_d6c5d10d3352e6ec", 2378994821357752, this, []); }
+  get originalRequest(): Promise<$SDK12> { return callSDKAsync<$SDK12>("WebKit_a956b86ef7a76a8e", 2378994821357752, this, []); }
   /**
    * var originatingFrame: WKFrameInfo { get }
    * @availability iOS 18.2+
    */
-  get originatingFrame(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_d6c5d10d3352e6ec", 3399166025002499, this, []); }
+  get originatingFrame(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_a956b86ef7a76a8e", 3399166025002499, this, []); }
   /**
    * var isUserInitiated: Bool { get }
    * @availability iOS 18.2+
    */
-  get isUserInitiated(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4322096076310881, this, []); }
+  get isUserInitiated(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4322096076310881, this, []); }
   /**
    * weak var webView: WKWebView? { get }
    * @availability iOS 14.5+
    */
-  get webView(): Promise<(WKWebView) | null> { return callSDKAsync<(WKWebView) | null>("WebKit_d6c5d10d3352e6ec", 1648701992060131, this, []); }
+  get webView(): Promise<(WKWebView) | null> { return callSDKAsync<(WKWebView) | null>("WebKit_a956b86ef7a76a8e", 1648701992060131, this, []); }
   declare readonly $type: { "c:objc(cs)WKDownload": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1323,7 +1323,7 @@ export const WKDownload_PlaceholderPolicy = {
    * init?(rawValue: Int)
    * @availability iOS 18.2+
    */
-  init(rawValue: number): Promise<(WKDownload_PlaceholderPolicy) | null> { return callSDKAsync<(WKDownload_PlaceholderPolicy) | null>("WebKit_d6c5d10d3352e6ec", 710983999883563, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKDownload_PlaceholderPolicy) | null> { return callSDKAsync<(WKDownload_PlaceholderPolicy) | null>("WebKit_a956b86ef7a76a8e", 710983999883563, undefined, [rawValue]); }
 };
 
 /**
@@ -1337,7 +1337,7 @@ export const WKDownload_RedirectPolicy = {
    * init?(rawValue: Int)
    * @availability iOS 14.5+
    */
-  init(rawValue: number): Promise<(WKDownload_RedirectPolicy) | null> { return callSDKAsync<(WKDownload_RedirectPolicy) | null>("WebKit_d6c5d10d3352e6ec", 3486437226314092, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKDownload_RedirectPolicy) | null> { return callSDKAsync<(WKDownload_RedirectPolicy) | null>("WebKit_a956b86ef7a76a8e", 3486437226314092, undefined, [rawValue]); }
 };
 
 /** @MainActor protocol WKDownloadDelegate : NSObjectProtocol */
@@ -1373,92 +1373,92 @@ export class WKError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 8.0+
    */
-  static get errorDomain(): string { return callSDK<string>("WebKit_d6c5d10d3352e6ec", 1706398916870046, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("WebKit_a956b86ef7a76a8e", 1706398916870046, undefined, []); }
   /**
    * static var credentialNotFound: WKError.Code { get }
    * @availability iOS 16.0+
    */
-  static get credentialNotFound(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 3060822334543839, undefined, []); }
+  static get credentialNotFound(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 3060822334543839, undefined, []); }
   /**
    * static var webViewInvalidated: WKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get webViewInvalidated(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 2556386473074405, undefined, []); }
+  static get webViewInvalidated(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 2556386473074405, undefined, []); }
   /**
    * static var duplicateCredential: WKError.Code { get }
    * @availability iOS 16.0+
    */
-  static get duplicateCredential(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 1408638447630720, undefined, []); }
+  static get duplicateCredential(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 1408638447630720, undefined, []); }
   /**
    * static var malformedCredential: WKError.Code { get }
    * @availability iOS 16.0+
    */
-  static get malformedCredential(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 2584586608874487, undefined, []); }
+  static get malformedCredential(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 2584586608874487, undefined, []); }
   /**
    * static var javaScriptAppBoundDomain: WKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get javaScriptAppBoundDomain(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 3917004305180855, undefined, []); }
+  static get javaScriptAppBoundDomain(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 3917004305180855, undefined, []); }
   /**
    * static var navigationAppBoundDomain: WKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get navigationAppBoundDomain(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 3251523169954103, undefined, []); }
+  static get navigationAppBoundDomain(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 3251523169954103, undefined, []); }
   /**
    * static var javaScriptExceptionOccurred: WKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get javaScriptExceptionOccurred(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 1256258871300069, undefined, []); }
+  static get javaScriptExceptionOccurred(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 1256258871300069, undefined, []); }
   /**
    * static var webContentProcessTerminated: WKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get webContentProcessTerminated(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 448333690238646, undefined, []); }
+  static get webContentProcessTerminated(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 448333690238646, undefined, []); }
   /**
    * static var javaScriptInvalidFrameTarget: WKError.Code { get }
    * @availability iOS 14.0+
    */
-  static get javaScriptInvalidFrameTarget(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 3110550554262067, undefined, []); }
+  static get javaScriptInvalidFrameTarget(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 3110550554262067, undefined, []); }
   /**
    * static var contentRuleListStoreLookUpFailed: WKError.Code { get }
    * @availability iOS 11.0+
    */
-  static get contentRuleListStoreLookUpFailed(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 411097462839827, undefined, []); }
+  static get contentRuleListStoreLookUpFailed(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 411097462839827, undefined, []); }
   /**
    * static var contentRuleListStoreRemoveFailed: WKError.Code { get }
    * @availability iOS 11.0+
    */
-  static get contentRuleListStoreRemoveFailed(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 1152124404322515, undefined, []); }
+  static get contentRuleListStoreRemoveFailed(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 1152124404322515, undefined, []); }
   /**
    * static var contentRuleListStoreCompileFailed: WKError.Code { get }
    * @availability iOS 11.0+
    */
-  static get contentRuleListStoreCompileFailed(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 1471227668840478, undefined, []); }
+  static get contentRuleListStoreCompileFailed(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 1471227668840478, undefined, []); }
   /**
    * static var javaScriptResultTypeIsUnsupported: WKError.Code { get }
    * @availability iOS 9.0+
    */
-  static get javaScriptResultTypeIsUnsupported(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 2863308765390254, undefined, []); }
+  static get javaScriptResultTypeIsUnsupported(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 2863308765390254, undefined, []); }
   /**
    * static var attributedStringContentFailedToLoad: WKError.Code { get }
    * @availability iOS 13.0+
    */
-  static get attributedStringContentFailedToLoad(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 1596139196801898, undefined, []); }
+  static get attributedStringContentFailedToLoad(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 1596139196801898, undefined, []); }
   /**
    * static var attributedStringContentLoadTimedOut: WKError.Code { get }
    * @availability iOS 13.0+
    */
-  static get attributedStringContentLoadTimedOut(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 2545788333807271, undefined, []); }
+  static get attributedStringContentLoadTimedOut(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 2545788333807271, undefined, []); }
   /**
    * static var contentRuleListStoreVersionMismatch: WKError.Code { get }
    * @availability iOS 11.0+
    */
-  static get contentRuleListStoreVersionMismatch(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 2863619685996779, undefined, []); }
+  static get contentRuleListStoreVersionMismatch(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 2863619685996779, undefined, []); }
   /**
    * static var unknown: WKError.Code { get }
    * @availability iOS 8.0+
    */
-  static get unknown(): WKError_Code { return callSDK<WKError_Code>("WebKit_d6c5d10d3352e6ec", 643638007226248, undefined, []); }
+  static get unknown(): WKError_Code { return callSDK<WKError_Code>("WebKit_a956b86ef7a76a8e", 643638007226248, undefined, []); }
   declare readonly $type: { "s:SC11WKErrorCodeLeV": true };
 }
 
@@ -1473,7 +1473,7 @@ export const WKError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (WKError_Code) | null { return callSDK<(WKError_Code) | null>("WebKit_d6c5d10d3352e6ec", 3190557610210494, undefined, [rawValue]); }
+  init(rawValue: number): (WKError_Code) | null { return callSDK<(WKError_Code) | null>("WebKit_a956b86ef7a76a8e", 3190557610210494, undefined, [rawValue]); }
 };
 
 /**
@@ -1482,25 +1482,25 @@ export const WKError_Code = {
  */
 export class WKFindConfiguration extends SDKHandle {
   /** init() */
-  static init(): Promise<WKFindConfiguration> { return callSDKAsync<WKFindConfiguration>("WebKit_d6c5d10d3352e6ec", 1155610869733992, undefined, []); }
+  static init(): Promise<WKFindConfiguration> { return callSDKAsync<WKFindConfiguration>("WebKit_a956b86ef7a76a8e", 1155610869733992, undefined, []); }
   /**
    * var backwards: Bool { get set }
    * @availability iOS 13.4+
    */
-  get backwards(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4142456710307951, this, []); }
-  setBackwards(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 17411411191674, this, [value]); }
+  get backwards(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4142456710307951, this, []); }
+  setBackwards(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 17411411191674, this, [value]); }
   /**
    * var caseSensitive: Bool { get set }
    * @availability iOS 13.4+
    */
-  get caseSensitive(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 213168528444598, this, []); }
-  setCaseSensitive(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2625007927326317, this, [value]); }
+  get caseSensitive(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 213168528444598, this, []); }
+  setCaseSensitive(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2625007927326317, this, [value]); }
   /**
    * var wraps: Bool { get set }
    * @availability iOS 13.4+
    */
-  get wraps(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1687703163877614, this, []); }
-  setWraps(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 222966245709161, this, [value]); }
+  get wraps(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1687703163877614, this, []); }
+  setWraps(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 222966245709161, this, [value]); }
   declare readonly $type: { "c:objc(cs)WKFindConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1513,7 +1513,7 @@ export class WKFindResult extends SDKHandle {
    * var matchFound: Bool { get }
    * @availability iOS 13.4+
    */
-  get matchFound(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1966248329164354, this, []); }
+  get matchFound(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1966248329164354, this, []); }
   declare readonly $type: { "c:objc(cs)WKFindResult": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1523,32 +1523,32 @@ export class WKFindResult extends SDKHandle {
  */
 export class WKFormInfo extends SDKHandle {
   /** init() */
-  static init(): Promise<WKFormInfo> { return callSDKAsync<WKFormInfo>("WebKit_d6c5d10d3352e6ec", 1817559391482480, undefined, []); }
+  static init(): Promise<WKFormInfo> { return callSDKAsync<WKFormInfo>("WebKit_a956b86ef7a76a8e", 1817559391482480, undefined, []); }
   /**
    * var formValues: [String : String] { get }
    * @availability iOS 27.0+
    */
-  get formValues(): Promise<Record<string, string>> { return callSDKAsync<Record<string, string>>("WebKit_d6c5d10d3352e6ec", 3513176360117443, this, []); }
+  get formValues(): Promise<Record<string, string>> { return callSDKAsync<Record<string, string>>("WebKit_a956b86ef7a76a8e", 3513176360117443, this, []); }
   /**
    * var httpMethod: String { get }
    * @availability iOS 27.0+
    */
-  get httpMethod(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 780397169236414, this, []); }
+  get httpMethod(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 780397169236414, this, []); }
   /**
    * var sourceFrame: WKFrameInfo { get }
    * @availability iOS 27.0+
    */
-  get sourceFrame(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_d6c5d10d3352e6ec", 2203673850259399, this, []); }
+  get sourceFrame(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_a956b86ef7a76a8e", 2203673850259399, this, []); }
   /**
    * var submissionURL: URL { get }
    * @availability iOS 27.0+
    */
-  get submissionURL(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 3415554602150701, this, []); }
+  get submissionURL(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 3415554602150701, this, []); }
   /**
    * var targetFrame: WKFrameInfo { get }
    * @availability iOS 27.0+
    */
-  get targetFrame(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_d6c5d10d3352e6ec", 4352303365712469, this, []); }
+  get targetFrame(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_a956b86ef7a76a8e", 4352303365712469, this, []); }
   declare readonly $type: { "c:objc(cs)WKFormInfo": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1558,27 +1558,27 @@ export class WKFormInfo extends SDKHandle {
  */
 export class WKFrameInfo extends SDKHandle {
   /** init() */
-  static init(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_d6c5d10d3352e6ec", 3694090529449964, undefined, []); }
+  static init(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_a956b86ef7a76a8e", 3694090529449964, undefined, []); }
   /**
    * var isMainFrame: Bool { get }
    * @availability iOS 8.0+
    */
-  get isMainFrame(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4120443557868052, this, []); }
+  get isMainFrame(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4120443557868052, this, []); }
   /**
    * var request: URLRequest { get }
    * @availability iOS 8.0+
    */
-  get request(): Promise<_Foundation_URLRequest> { return callSDKAsync<_Foundation_URLRequest>("WebKit_d6c5d10d3352e6ec", 4376111271580942, this, []); }
+  get request(): Promise<_Foundation_URLRequest> { return callSDKAsync<_Foundation_URLRequest>("WebKit_a956b86ef7a76a8e", 4376111271580942, this, []); }
   /**
    * var securityOrigin: WKSecurityOrigin { get }
    * @availability iOS 9.0+
    */
-  get securityOrigin(): Promise<WKSecurityOrigin> { return callSDKAsync<WKSecurityOrigin>("WebKit_d6c5d10d3352e6ec", 816915404096127, this, []); }
+  get securityOrigin(): Promise<WKSecurityOrigin> { return callSDKAsync<WKSecurityOrigin>("WebKit_a956b86ef7a76a8e", 816915404096127, this, []); }
   /**
    * weak var webView: WKWebView? { get }
    * @availability iOS 11.0+
    */
-  get webView(): Promise<(WKWebView) | null> { return callSDKAsync<(WKWebView) | null>("WebKit_d6c5d10d3352e6ec", 1516934648996768, this, []); }
+  get webView(): Promise<(WKWebView) | null> { return callSDKAsync<(WKWebView) | null>("WebKit_a956b86ef7a76a8e", 1516934648996768, this, []); }
   declare readonly $type: { "c:objc(cs)WKFrameInfo": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1591,47 +1591,47 @@ export class WKHTTPCookieStore extends SDKHandle {
    * func add(_ observer: any WKHTTPCookieStoreObserver)
    * @availability iOS 11.0+
    */
-  add(observer: $SDK20): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3796513336999039, this, [observer], [{"protocol":"c:objc(pl)WKHTTPCookieStoreObserver"}]); }
+  add(observer: $SDK20): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3796513336999039, this, [observer], [{"protocol":"c:objc(pl)WKHTTPCookieStoreObserver"}]); }
   /**
    * func deleteCookie(_ cookie: HTTPCookie) async
    * @availability iOS 11.0+
    */
-  delete(cookie: _Foundation_HTTPCookie, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1227849923482829, this, [cookie, completionHandler], [null,{"callback":{"out":[]}}]); }
+  delete(cookie: _Foundation_HTTPCookie, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1227849923482829, this, [cookie, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func allCookies() async -> [HTTPCookie]
    * @availability iOS 11.0+
    */
-  getAllCookies(completionHandler: $SDK21): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3155597003545429, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getAllCookies(completionHandler: $SDK21): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3155597003545429, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var cookiePolicy: WKHTTPCookieStore.CookiePolicy { get async }
    * @availability iOS 17.0+
    */
-  getCookiePolicy(completionHandler: ((arg0: WKHTTPCookieStore_CookiePolicy) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4361243050769149, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getCookiePolicy(completionHandler: ((arg0: WKHTTPCookieStore_CookiePolicy) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4361243050769149, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func cookies(for url: URL) async -> [HTTPCookie]
    * @availability iOS 27.0+
    */
-  getCookies(url: string, completionHandler: $SDK21): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 157670245060862, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
+  getCookies(url: string, completionHandler: $SDK21): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 157670245060862, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func remove(_ observer: any WKHTTPCookieStoreObserver)
    * @availability iOS 11.0+
    */
-  remove(observer: $SDK20): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2141776624790294, this, [observer], [{"protocol":"c:objc(pl)WKHTTPCookieStoreObserver"}]); }
+  remove(observer: $SDK20): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2141776624790294, this, [observer], [{"protocol":"c:objc(pl)WKHTTPCookieStoreObserver"}]); }
   /**
    * func setCookie(_ cookie: HTTPCookie) async
    * @availability iOS 11.0+
    */
-  setCookie(cookie: _Foundation_HTTPCookie, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3567743047355294, this, [cookie, completionHandler], [null,{"callback":{"out":[]}}]); }
+  setCookie(cookie: _Foundation_HTTPCookie, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3567743047355294, this, [cookie, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func setCookiePolicy(_ policy: WKHTTPCookieStore.CookiePolicy) async
    * @availability iOS 17.0+
    */
-  setCookiePolicy(policy: WKHTTPCookieStore_CookiePolicy, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2673334079500048, this, [policy, completionHandler], [null,{"callback":{"out":[]}}]); }
+  setCookiePolicy(policy: WKHTTPCookieStore_CookiePolicy, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2673334079500048, this, [policy, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func setCookies(_ cookies: [HTTPCookie]) async
    * @availability iOS 26.0+
    */
-  setCookies(cookies: Array<_Foundation_HTTPCookie>, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2789096858775845, this, [cookies, completionHandler], [null,{"callback":{"out":[]}}]); }
+  setCookies(cookies: Array<_Foundation_HTTPCookie>, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2789096858775845, this, [cookies, completionHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)WKHTTPCookieStore": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1646,7 +1646,7 @@ export const WKHTTPCookieStore_CookiePolicy = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): Promise<(WKHTTPCookieStore_CookiePolicy) | null> { return callSDKAsync<(WKHTTPCookieStore_CookiePolicy) | null>("WebKit_d6c5d10d3352e6ec", 1518034695164251, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKHTTPCookieStore_CookiePolicy) | null> { return callSDKAsync<(WKHTTPCookieStore_CookiePolicy) | null>("WebKit_a956b86ef7a76a8e", 1518034695164251, undefined, [rawValue]); }
 };
 
 /**
@@ -1670,17 +1670,17 @@ export class WKJSHandle extends SDKHandle {
    * var windowProxyFrame: WKFrameInfo? { get async }
    * @availability iOS 27.0+
    */
-  getWindowProxyFrame(completionHandler: ((arg0: (WKFrameInfo) | null) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3965741536067236, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  getWindowProxyFrame(completionHandler: ((arg0: (WKFrameInfo) | null) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3965741536067236, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * weak var contentWorld: WKContentWorld? { get }
    * @availability iOS 27.0+
    */
-  get contentWorld(): Promise<(WKContentWorld) | null> { return callSDKAsync<(WKContentWorld) | null>("WebKit_d6c5d10d3352e6ec", 4031134511477536, this, []); }
+  get contentWorld(): Promise<(WKContentWorld) | null> { return callSDKAsync<(WKContentWorld) | null>("WebKit_a956b86ef7a76a8e", 4031134511477536, this, []); }
   /**
    * @NSCopying var sourceFrame: WKFrameInfo { get }
    * @availability iOS 27.0+
    */
-  get sourceFrame(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_d6c5d10d3352e6ec", 2552393878528287, this, []); }
+  get sourceFrame(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_a956b86ef7a76a8e", 2552393878528287, this, []); }
   declare readonly $type: { "c:objc(cs)WKJSHandle": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1695,7 +1695,7 @@ export const WKMediaCaptureState = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (WKMediaCaptureState) | null { return callSDK<(WKMediaCaptureState) | null>("WebKit_d6c5d10d3352e6ec", 2176068754510580, undefined, [rawValue]); }
+  init(rawValue: number): (WKMediaCaptureState) | null { return callSDK<(WKMediaCaptureState) | null>("WebKit_a956b86ef7a76a8e", 2176068754510580, undefined, [rawValue]); }
 };
 
 /**
@@ -1709,7 +1709,7 @@ export const WKMediaCaptureType = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (WKMediaCaptureType) | null { return callSDK<(WKMediaCaptureType) | null>("WebKit_d6c5d10d3352e6ec", 3875050036322137, undefined, [rawValue]); }
+  init(rawValue: number): (WKMediaCaptureType) | null { return callSDK<(WKMediaCaptureType) | null>("WebKit_a956b86ef7a76a8e", 3875050036322137, undefined, [rawValue]); }
 };
 
 /**
@@ -1723,7 +1723,7 @@ export const WKMediaPlaybackState = {
    * init?(rawValue: Int)
    * @availability iOS 14.5+
    */
-  init(rawValue: number): (WKMediaPlaybackState) | null { return callSDK<(WKMediaPlaybackState) | null>("WebKit_d6c5d10d3352e6ec", 1775447735002168, undefined, [rawValue]); }
+  init(rawValue: number): (WKMediaPlaybackState) | null { return callSDK<(WKMediaPlaybackState) | null>("WebKit_a956b86ef7a76a8e", 1775447735002168, undefined, [rawValue]); }
 };
 
 /**
@@ -1732,12 +1732,12 @@ export const WKMediaPlaybackState = {
  */
 export class WKNavigation extends SDKHandle {
   /** init() */
-  static init(): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_d6c5d10d3352e6ec", 3732709102525802, undefined, []); }
+  static init(): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_a956b86ef7a76a8e", 3732709102525802, undefined, []); }
   /**
    * var effectiveContentMode: WKWebpagePreferences.ContentMode { get }
    * @availability iOS 13.0+
    */
-  get effectiveContentMode(): Promise<WKWebpagePreferences_ContentMode> { return callSDKAsync<WKWebpagePreferences_ContentMode>("WebKit_d6c5d10d3352e6ec", 3760681461913151, this, []); }
+  get effectiveContentMode(): Promise<WKWebpagePreferences_ContentMode> { return callSDKAsync<WKWebpagePreferences_ContentMode>("WebKit_a956b86ef7a76a8e", 3760681461913151, this, []); }
   declare readonly $type: { "c:objc(cs)WKNavigation": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1747,52 +1747,52 @@ export class WKNavigation extends SDKHandle {
  */
 export class WKNavigationAction extends SDKHandle {
   /** init() */
-  static init(): Promise<WKNavigationAction> { return callSDKAsync<WKNavigationAction>("WebKit_d6c5d10d3352e6ec", 3413619128900534, undefined, []); }
+  static init(): Promise<WKNavigationAction> { return callSDKAsync<WKNavigationAction>("WebKit_a956b86ef7a76a8e", 3413619128900534, undefined, []); }
   /**
    * var buttonNumber: UIEvent.ButtonMask { get }
    * @availability iOS 18.4+
    */
-  get buttonNumber(): Promise<_UIKit_UIEvent_ButtonMask> { return callSDKAsync<_UIKit_UIEvent_ButtonMask>("WebKit_d6c5d10d3352e6ec", 4159530200174023, this, []); }
+  get buttonNumber(): Promise<_UIKit_UIEvent_ButtonMask> { return callSDKAsync<_UIKit_UIEvent_ButtonMask>("WebKit_a956b86ef7a76a8e", 4159530200174023, this, []); }
   /**
    * var isContentRuleListRedirect: Bool { get }
    * @availability iOS 26.0+
    */
-  get isContentRuleListRedirect(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 926751848061447, this, []); }
+  get isContentRuleListRedirect(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 926751848061447, this, []); }
   /**
    * var mainFrameNavigation: WKNavigation? { get }
    * @availability iOS 27.0+
    */
-  get mainFrameNavigation(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 3381362638042384, this, []); }
+  get mainFrameNavigation(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 3381362638042384, this, []); }
   /**
    * var modifierFlags: UIKeyModifierFlags { get }
    * @availability iOS 18.4+
    */
-  get modifierFlags(): Promise<_UIKit_UIKeyModifierFlags> { return callSDKAsync<_UIKit_UIKeyModifierFlags>("WebKit_d6c5d10d3352e6ec", 42720655979404, this, []); }
+  get modifierFlags(): Promise<_UIKit_UIKeyModifierFlags> { return callSDKAsync<_UIKit_UIKeyModifierFlags>("WebKit_a956b86ef7a76a8e", 42720655979404, this, []); }
   /**
    * var navigationType: WKNavigationType { get }
    * @availability iOS 8.0+
    */
-  get navigationType(): Promise<WKNavigationType> { return callSDKAsync<WKNavigationType>("WebKit_d6c5d10d3352e6ec", 4479321931465800, this, []); }
+  get navigationType(): Promise<WKNavigationType> { return callSDKAsync<WKNavigationType>("WebKit_a956b86ef7a76a8e", 4479321931465800, this, []); }
   /**
    * var request: URLRequest { get }
    * @availability iOS 8.0+
    */
-  get request(): Promise<_Foundation_URLRequest> { return callSDKAsync<_Foundation_URLRequest>("WebKit_d6c5d10d3352e6ec", 938762835426064, this, []); }
+  get request(): Promise<_Foundation_URLRequest> { return callSDKAsync<_Foundation_URLRequest>("WebKit_a956b86ef7a76a8e", 938762835426064, this, []); }
   /**
    * var shouldPerformDownload: Bool { get }
    * @availability iOS 14.5+
    */
-  get shouldPerformDownload(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1142291529802358, this, []); }
+  get shouldPerformDownload(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1142291529802358, this, []); }
   /**
    * @NSCopying var sourceFrame: WKFrameInfo { get }
    * @availability iOS 8.0+
    */
-  get sourceFrame(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_d6c5d10d3352e6ec", 3224876371235795, this, []); }
+  get sourceFrame(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_a956b86ef7a76a8e", 3224876371235795, this, []); }
   /**
    * @NSCopying var targetFrame: WKFrameInfo? { get }
    * @availability iOS 8.0+
    */
-  get targetFrame(): Promise<(WKFrameInfo) | null> { return callSDKAsync<(WKFrameInfo) | null>("WebKit_d6c5d10d3352e6ec", 3261824567350566, this, []); }
+  get targetFrame(): Promise<(WKFrameInfo) | null> { return callSDKAsync<(WKFrameInfo) | null>("WebKit_a956b86ef7a76a8e", 3261824567350566, this, []); }
   declare readonly $type: { "c:objc(cs)WKNavigationAction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1807,7 +1807,7 @@ export const WKNavigationActionPolicy = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (WKNavigationActionPolicy) | null { return callSDK<(WKNavigationActionPolicy) | null>("WebKit_d6c5d10d3352e6ec", 269194817643889, undefined, [rawValue]); }
+  init(rawValue: number): (WKNavigationActionPolicy) | null { return callSDK<(WKNavigationActionPolicy) | null>("WebKit_a956b86ef7a76a8e", 269194817643889, undefined, [rawValue]); }
 };
 
 /** @MainActor protocol WKNavigationDelegate : NSObjectProtocol */
@@ -1895,27 +1895,27 @@ export interface WKNavigationDelegate {
  */
 export class WKNavigationResponse extends SDKHandle {
   /** init() */
-  static init(): Promise<WKNavigationResponse> { return callSDKAsync<WKNavigationResponse>("WebKit_d6c5d10d3352e6ec", 1200074805058372, undefined, []); }
+  static init(): Promise<WKNavigationResponse> { return callSDKAsync<WKNavigationResponse>("WebKit_a956b86ef7a76a8e", 1200074805058372, undefined, []); }
   /**
    * var canShowMIMEType: Bool { get }
    * @availability iOS 8.0+
    */
-  get canShowMIMEType(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2290460590598990, this, []); }
+  get canShowMIMEType(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2290460590598990, this, []); }
   /**
    * var isForMainFrame: Bool { get }
    * @availability iOS 8.0+
    */
-  get isForMainFrame(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 673849983540893, this, []); }
+  get isForMainFrame(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 673849983540893, this, []); }
   /**
    * var mainFrameNavigation: WKNavigation? { get }
    * @availability iOS 27.0+
    */
-  get mainFrameNavigation(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 2080336445860219, this, []); }
+  get mainFrameNavigation(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 2080336445860219, this, []); }
   /**
    * @NSCopying var response: URLResponse { get }
    * @availability iOS 8.0+
    */
-  get response(): Promise<_Foundation_URLResponse> { return callSDKAsync<_Foundation_URLResponse>("WebKit_d6c5d10d3352e6ec", 1983862892433978, this, []); }
+  get response(): Promise<_Foundation_URLResponse> { return callSDKAsync<_Foundation_URLResponse>("WebKit_a956b86ef7a76a8e", 1983862892433978, this, []); }
   declare readonly $type: { "c:objc(cs)WKNavigationResponse": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1930,7 +1930,7 @@ export const WKNavigationResponsePolicy = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (WKNavigationResponsePolicy) | null { return callSDK<(WKNavigationResponsePolicy) | null>("WebKit_d6c5d10d3352e6ec", 3491940896511302, undefined, [rawValue]); }
+  init(rawValue: number): (WKNavigationResponsePolicy) | null { return callSDK<(WKNavigationResponsePolicy) | null>("WebKit_a956b86ef7a76a8e", 3491940896511302, undefined, [rawValue]); }
 };
 
 /**
@@ -1944,7 +1944,7 @@ export const WKNavigationType = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (WKNavigationType) | null { return callSDK<(WKNavigationType) | null>("WebKit_d6c5d10d3352e6ec", 2609475196040970, undefined, [rawValue]); }
+  init(rawValue: number): (WKNavigationType) | null { return callSDK<(WKNavigationType) | null>("WebKit_a956b86ef7a76a8e", 2609475196040970, undefined, [rawValue]); }
 };
 
 /**
@@ -1953,17 +1953,17 @@ export const WKNavigationType = {
  */
 export class WKOpenPanelParameters extends SDKHandle {
   /** init() */
-  static init(): Promise<WKOpenPanelParameters> { return callSDKAsync<WKOpenPanelParameters>("WebKit_d6c5d10d3352e6ec", 2795889926289728, undefined, []); }
+  static init(): Promise<WKOpenPanelParameters> { return callSDKAsync<WKOpenPanelParameters>("WebKit_a956b86ef7a76a8e", 2795889926289728, undefined, []); }
   /**
    * var allowsDirectories: Bool { get }
    * @availability iOS 18.4+
    */
-  get allowsDirectories(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 158661586698789, this, []); }
+  get allowsDirectories(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 158661586698789, this, []); }
   /**
    * var allowsMultipleSelection: Bool { get }
    * @availability iOS 18.4+
    */
-  get allowsMultipleSelection(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3562267429349303, this, []); }
+  get allowsMultipleSelection(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3562267429349303, this, []); }
   declare readonly $type: { "c:objc(cs)WKOpenPanelParameters": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1973,19 +1973,19 @@ export class WKOpenPanelParameters extends SDKHandle {
  */
 export class WKPDFConfiguration extends SDKHandle {
   /** init() */
-  static init(): Promise<WKPDFConfiguration> { return callSDKAsync<WKPDFConfiguration>("WebKit_d6c5d10d3352e6ec", 2253510244597785, undefined, []); }
+  static init(): Promise<WKPDFConfiguration> { return callSDKAsync<WKPDFConfiguration>("WebKit_a956b86ef7a76a8e", 2253510244597785, undefined, []); }
   /**
    * var allowTransparentBackground: Bool { get set }
    * @availability iOS 17.0+
    */
-  get allowTransparentBackground(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 150586109686941, this, []); }
-  setAllowTransparentBackground(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2991100639518157, this, [value]); }
+  get allowTransparentBackground(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 150586109686941, this, []); }
+  setAllowTransparentBackground(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2991100639518157, this, [value]); }
   /**
    * @MainActor @preconcurrency var rect: CGRect? { get set }
    * @availability iOS 14.0+
    */
-  get rect(): Promise<$SDK26> { return callSDKAsync<$SDK26>("WebKit_d6c5d10d3352e6ec", 2413970268971314, this, []); }
-  setRect(value?: $SDK26): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4195021901026941, this, [value]); }
+  get rect(): Promise<$SDK26> { return callSDKAsync<$SDK26>("WebKit_a956b86ef7a76a8e", 2413970268971314, this, []); }
+  setRect(value?: $SDK26): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4195021901026941, this, [value]); }
   declare readonly $type: { "c:objc(cs)WKPDFConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2000,7 +2000,7 @@ export const WKPermissionDecision = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (WKPermissionDecision) | null { return callSDK<(WKPermissionDecision) | null>("WebKit_d6c5d10d3352e6ec", 1863721866550359, undefined, [rawValue]); }
+  init(rawValue: number): (WKPermissionDecision) | null { return callSDK<(WKPermissionDecision) | null>("WebKit_a956b86ef7a76a8e", 1863721866550359, undefined, [rawValue]); }
 };
 
 /**
@@ -2009,62 +2009,62 @@ export const WKPermissionDecision = {
  */
 export class WKPreferences extends SDKHandle {
   /** init() */
-  static init(): Promise<WKPreferences> { return callSDKAsync<WKPreferences>("WebKit_d6c5d10d3352e6ec", 1156977026483030, undefined, []); }
+  static init(): Promise<WKPreferences> { return callSDKAsync<WKPreferences>("WebKit_a956b86ef7a76a8e", 1156977026483030, undefined, []); }
   /**
    * var isElementFullscreenEnabled: Bool { get set }
    * @availability iOS 15.4+
    */
-  get isElementFullscreenEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1763107365201100, this, []); }
-  setIsElementFullscreenEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3734147816007870, this, [value]); }
+  get isElementFullscreenEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1763107365201100, this, []); }
+  setIsElementFullscreenEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3734147816007870, this, [value]); }
   /**
    * var isFraudulentWebsiteWarningEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isFraudulentWebsiteWarningEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3877241202054306, this, []); }
-  setIsFraudulentWebsiteWarningEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 793766660838062, this, [value]); }
+  get isFraudulentWebsiteWarningEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3877241202054306, this, []); }
+  setIsFraudulentWebsiteWarningEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 793766660838062, this, [value]); }
   /**
    * var inactiveSchedulingPolicy: WKPreferences.InactiveSchedulingPolicy { get set }
    * @availability iOS 17.0+
    */
-  get inactiveSchedulingPolicy(): Promise<WKPreferences_InactiveSchedulingPolicy> { return callSDKAsync<WKPreferences_InactiveSchedulingPolicy>("WebKit_d6c5d10d3352e6ec", 2788133716527633, this, []); }
-  setInactiveSchedulingPolicy(value: WKPreferences_InactiveSchedulingPolicy): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2877158582065542, this, [value]); }
+  get inactiveSchedulingPolicy(): Promise<WKPreferences_InactiveSchedulingPolicy> { return callSDKAsync<WKPreferences_InactiveSchedulingPolicy>("WebKit_a956b86ef7a76a8e", 2788133716527633, this, []); }
+  setInactiveSchedulingPolicy(value: WKPreferences_InactiveSchedulingPolicy): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2877158582065542, this, [value]); }
   /**
    * var javaScriptCanOpenWindowsAutomatically: Bool { get set }
    * @availability iOS 8.0+
    */
-  get javaScriptCanOpenWindowsAutomatically(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 80059929580052, this, []); }
-  setJavaScriptCanOpenWindowsAutomatically(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 714899959674176, this, [value]); }
+  get javaScriptCanOpenWindowsAutomatically(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 80059929580052, this, []); }
+  setJavaScriptCanOpenWindowsAutomatically(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 714899959674176, this, [value]); }
   /**
    * var javaScriptEnabled: Bool { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 14.0
    */
-  get javaScriptEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2168615793349176, this, []); }
-  setJavaScriptEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3535600870372637, this, [value]); }
+  get javaScriptEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2168615793349176, this, []); }
+  setJavaScriptEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3535600870372637, this, [value]); }
   /**
    * var minimumFontSize: CGFloat { get set }
    * @availability iOS 8.0+
    */
-  get minimumFontSize(): Promise<number> { return callSDKAsync<number>("WebKit_d6c5d10d3352e6ec", 3562110169575957, this, []); }
-  setMinimumFontSize(value: number): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 24954371507378, this, [value]); }
+  get minimumFontSize(): Promise<number> { return callSDKAsync<number>("WebKit_a956b86ef7a76a8e", 3562110169575957, this, []); }
+  setMinimumFontSize(value: number): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 24954371507378, this, [value]); }
   /**
    * var shouldPrintBackgrounds: Bool { get set }
    * @availability iOS 16.4+
    */
-  get shouldPrintBackgrounds(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2990924833466924, this, []); }
-  setShouldPrintBackgrounds(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2273821652565038, this, [value]); }
+  get shouldPrintBackgrounds(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2990924833466924, this, []); }
+  setShouldPrintBackgrounds(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2273821652565038, this, [value]); }
   /**
    * var isSiteSpecificQuirksModeEnabled: Bool { get set }
    * @availability iOS 15.4+
    */
-  get isSiteSpecificQuirksModeEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1478632216625428, this, []); }
-  setIsSiteSpecificQuirksModeEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1933416870380596, this, [value]); }
+  get isSiteSpecificQuirksModeEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1478632216625428, this, []); }
+  setIsSiteSpecificQuirksModeEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1933416870380596, this, [value]); }
   /**
    * var isTextInteractionEnabled: Bool { get set }
    * @availability iOS 14.5+
    */
-  get isTextInteractionEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4312963939380019, this, []); }
-  setIsTextInteractionEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1394025816320939, this, [value]); }
+  get isTextInteractionEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4312963939380019, this, []); }
+  setIsTextInteractionEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1394025816320939, this, [value]); }
   declare readonly $type: { "c:objc(cs)WKPreferences": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2079,7 +2079,7 @@ export const WKPreferences_InactiveSchedulingPolicy = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): Promise<(WKPreferences_InactiveSchedulingPolicy) | null> { return callSDKAsync<(WKPreferences_InactiveSchedulingPolicy) | null>("WebKit_d6c5d10d3352e6ec", 4162868488789787, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKPreferences_InactiveSchedulingPolicy) | null> { return callSDKAsync<(WKPreferences_InactiveSchedulingPolicy) | null>("WebKit_a956b86ef7a76a8e", 4162868488789787, undefined, [rawValue]); }
 };
 
 /**
@@ -2098,13 +2098,13 @@ export interface WKPreviewActionItem {
  */
 export class WKPreviewElementInfo extends SDKHandle {
   /** init() */
-  static init(): WKPreviewElementInfo { return callSDK<WKPreviewElementInfo>("WebKit_d6c5d10d3352e6ec", 1580285392443432, undefined, []); }
+  static init(): WKPreviewElementInfo { return callSDK<WKPreviewElementInfo>("WebKit_a956b86ef7a76a8e", 1580285392443432, undefined, []); }
   /**
    * var linkURL: URL? { get }
    * @availability iOS 10.0+
    * @deprecated iOS 13.0
    */
-  get linkURL(): (string) | null { return callSDK<(string) | null>("WebKit_d6c5d10d3352e6ec", 4440157990962679, this, []); }
+  get linkURL(): (string) | null { return callSDK<(string) | null>("WebKit_a956b86ef7a76a8e", 4440157990962679, this, []); }
   declare readonly $type: { "c:objc(cs)WKPreviewElementInfo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "linkURL": true };
 }
@@ -2116,7 +2116,7 @@ export class WKPreviewElementInfo extends SDKHandle {
  */
 export class WKProcessPool extends SDKHandle {
   /** init() */
-  static init(): Promise<WKProcessPool> { return callSDKAsync<WKProcessPool>("WebKit_d6c5d10d3352e6ec", 1531376132012316, undefined, []); }
+  static init(): Promise<WKProcessPool> { return callSDKAsync<WKProcessPool>("WebKit_a956b86ef7a76a8e", 1531376132012316, undefined, []); }
   declare readonly $type: { "c:objc(cs)WKProcessPool": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2126,32 +2126,32 @@ export class WKProcessPool extends SDKHandle {
  */
 export class WKScriptMessage extends SDKHandle {
   /** init() */
-  static init(): Promise<WKScriptMessage> { return callSDKAsync<WKScriptMessage>("WebKit_d6c5d10d3352e6ec", 2079156475549871, undefined, []); }
+  static init(): Promise<WKScriptMessage> { return callSDKAsync<WKScriptMessage>("WebKit_a956b86ef7a76a8e", 2079156475549871, undefined, []); }
   /**
    * var body: Any { get }
    * @availability iOS 8.0+
    */
-  get body(): Promise<unknown> { return callSDKAsync<unknown>("WebKit_d6c5d10d3352e6ec", 1698835457143144, this, []); }
+  get body(): Promise<unknown> { return callSDKAsync<unknown>("WebKit_a956b86ef7a76a8e", 1698835457143144, this, []); }
   /**
    * @NSCopying var frameInfo: WKFrameInfo { get }
    * @availability iOS 8.0+
    */
-  get frameInfo(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_d6c5d10d3352e6ec", 620569953513336, this, []); }
+  get frameInfo(): Promise<WKFrameInfo> { return callSDKAsync<WKFrameInfo>("WebKit_a956b86ef7a76a8e", 620569953513336, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 1780288415303150, this, []); }
+  get name(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 1780288415303150, this, []); }
   /**
    * weak var webView: WKWebView? { get }
    * @availability iOS 8.0+
    */
-  get webView(): Promise<(WKWebView) | null> { return callSDKAsync<(WKWebView) | null>("WebKit_d6c5d10d3352e6ec", 4357240085986478, this, []); }
+  get webView(): Promise<(WKWebView) | null> { return callSDKAsync<(WKWebView) | null>("WebKit_a956b86ef7a76a8e", 4357240085986478, this, []); }
   /**
    * var world: WKContentWorld { get }
    * @availability iOS 14.0+
    */
-  get world(): Promise<WKContentWorld> { return callSDKAsync<WKContentWorld>("WebKit_d6c5d10d3352e6ec", 3756522960949023, this, []); }
+  get world(): Promise<WKContentWorld> { return callSDKAsync<WKContentWorld>("WebKit_a956b86ef7a76a8e", 3756522960949023, this, []); }
   declare readonly $type: { "c:objc(cs)WKScriptMessage": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2182,17 +2182,17 @@ export class WKSecurityOrigin extends SDKHandle {
    * var host: String { get }
    * @availability iOS 9.0+
    */
-  get host(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 116339542377871, this, []); }
+  get host(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 116339542377871, this, []); }
   /**
    * var port: Int { get }
    * @availability iOS 9.0+
    */
-  get port(): Promise<number> { return callSDKAsync<number>("WebKit_d6c5d10d3352e6ec", 1592715158845715, this, []); }
+  get port(): Promise<number> { return callSDKAsync<number>("WebKit_a956b86ef7a76a8e", 1592715158845715, this, []); }
   /**
    * var `protocol`: String { get }
    * @availability iOS 9.0+
    */
-  get protocol(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 367042501451931, this, []); }
+  get protocol(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 367042501451931, this, []); }
   declare readonly $type: { "c:objc(cs)WKSecurityOrigin": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2207,7 +2207,7 @@ export const WKSecurityRestrictionMode = {
    * init?(rawValue: Int)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): (WKSecurityRestrictionMode) | null { return callSDK<(WKSecurityRestrictionMode) | null>("WebKit_d6c5d10d3352e6ec", 3350548481917898, undefined, [rawValue]); }
+  init(rawValue: number): (WKSecurityRestrictionMode) | null { return callSDK<(WKSecurityRestrictionMode) | null>("WebKit_a956b86ef7a76a8e", 3350548481917898, undefined, [rawValue]); }
 };
 
 /**
@@ -2223,7 +2223,7 @@ export const WKSelectionGranularity = {
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  init(rawValue: number): (WKSelectionGranularity) | null { return callSDK<(WKSelectionGranularity) | null>("WebKit_d6c5d10d3352e6ec", 3069700323221566, undefined, [rawValue]); }
+  init(rawValue: number): (WKSelectionGranularity) | null { return callSDK<(WKSelectionGranularity) | null>("WebKit_a956b86ef7a76a8e", 3069700323221566, undefined, [rawValue]); }
 };
 
 /**
@@ -2232,25 +2232,25 @@ export const WKSelectionGranularity = {
  */
 export class WKSnapshotConfiguration extends SDKHandle {
   /** init() */
-  static init(): Promise<WKSnapshotConfiguration> { return callSDKAsync<WKSnapshotConfiguration>("WebKit_d6c5d10d3352e6ec", 2156025547404525, undefined, []); }
+  static init(): Promise<WKSnapshotConfiguration> { return callSDKAsync<WKSnapshotConfiguration>("WebKit_a956b86ef7a76a8e", 2156025547404525, undefined, []); }
   /**
    * var afterScreenUpdates: Bool { get set }
    * @availability iOS 13.0+
    */
-  get afterScreenUpdates(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2242346367738986, this, []); }
-  setAfterScreenUpdates(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1478315530758561, this, [value]); }
+  get afterScreenUpdates(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2242346367738986, this, []); }
+  setAfterScreenUpdates(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1478315530758561, this, [value]); }
   /**
    * var rect: CGRect { get set }
    * @availability iOS 11.0+
    */
-  get rect(): Promise<$SDK10> { return callSDKAsync<$SDK10>("WebKit_d6c5d10d3352e6ec", 273638810365928, this, []); }
-  setRect(value: $SDK10): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4142375630928452, this, [value]); }
+  get rect(): Promise<$SDK10> { return callSDKAsync<$SDK10>("WebKit_a956b86ef7a76a8e", 273638810365928, this, []); }
+  setRect(value: $SDK10): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4142375630928452, this, [value]); }
   /**
    * @NSCopying var snapshotWidth: NSNumber? { get set }
    * @availability iOS 11.0+
    */
-  get snapshotWidth(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_d6c5d10d3352e6ec", 2170476457780012, this, []); }
-  setSnapshotWidth(value?: $SDK28): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 595943029608501, this, [value]); }
+  get snapshotWidth(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_a956b86ef7a76a8e", 2170476457780012, this, []); }
+  setSnapshotWidth(value?: $SDK28): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 595943029608501, this, [value]); }
   declare readonly $type: { "c:objc(cs)WKSnapshotConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2342,74 +2342,74 @@ export class WKUserContentController extends SDKHandle {
    * func add(_ contentRuleList: WKContentRuleList)
    * @availability iOS 11.0+
    */
-  add(contentRuleList: WKContentRuleList): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1926566092963061, this, [contentRuleList]); }
+  add(contentRuleList: WKContentRuleList): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1926566092963061, this, [contentRuleList]); }
   /**
    * func add(_ scriptMessageHandler: any WKScriptMessageHandler, contentWorld world: WKContentWorld, name: String)
    * @availability iOS 14.0+
    */
-  addContentWorldName(scriptMessageHandler: $SDK29, world: WKContentWorld, name: string): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 69044079997786, this, [scriptMessageHandler, world, name], [{"protocol":"c:objc(pl)WKScriptMessageHandler"},null,null]); }
+  addContentWorldName(scriptMessageHandler: $SDK29, world: WKContentWorld, name: string): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 69044079997786, this, [scriptMessageHandler, world, name], [{"protocol":"c:objc(pl)WKScriptMessageHandler"},null,null]); }
   /**
    * func add(_ scriptMessageHandler: any WKScriptMessageHandler, name: String)
    * @availability iOS 8.0+
    */
-  addName(scriptMessageHandler: $SDK29, name: string): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3426986190906519, this, [scriptMessageHandler, name], [{"protocol":"c:objc(pl)WKScriptMessageHandler"},null]); }
+  addName(scriptMessageHandler: $SDK29, name: string): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3426986190906519, this, [scriptMessageHandler, name], [{"protocol":"c:objc(pl)WKScriptMessageHandler"},null]); }
   /**
    * func addScriptMessageHandler(_ scriptMessageHandlerWithReply: any WKScriptMessageHandlerWithReply, contentWorld: WKContentWorld, name: String)
    * @availability iOS 14.0+
    */
-  addScriptMessageHandler(scriptMessageHandlerWithReply: SDKHandle, contentWorld: WKContentWorld, name: string): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2506929684133154, this, [scriptMessageHandlerWithReply, contentWorld, name]); }
+  addScriptMessageHandler(scriptMessageHandlerWithReply: SDKHandle, contentWorld: WKContentWorld, name: string): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2506929684133154, this, [scriptMessageHandlerWithReply, contentWorld, name]); }
   /**
    * func addUserScript(_ userScript: WKUserScript)
    * @availability iOS 8.0+
    */
-  addUserScript(userScript: WKUserScript): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1886048696563329, this, [userScript]); }
+  addUserScript(userScript: WKUserScript): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1886048696563329, this, [userScript]); }
   /** init() */
-  static init(): Promise<WKUserContentController> { return callSDKAsync<WKUserContentController>("WebKit_d6c5d10d3352e6ec", 3641775254263359, undefined, []); }
+  static init(): Promise<WKUserContentController> { return callSDKAsync<WKUserContentController>("WebKit_a956b86ef7a76a8e", 3641775254263359, undefined, []); }
   /**
    * func removeAllContentRuleLists()
    * @availability iOS 11.0+
    */
-  removeAllContentRuleLists(): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1617402798331625, this, []); }
+  removeAllContentRuleLists(): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1617402798331625, this, []); }
   /**
    * func removeAllScriptMessageHandlers()
    * @availability iOS 14.0+
    */
-  removeAllScriptMessageHandlers(): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1378243164166254, this, []); }
+  removeAllScriptMessageHandlers(): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1378243164166254, this, []); }
   /**
    * func removeAllScriptMessageHandlers(from contentWorld: WKContentWorld)
    * @availability iOS 14.0+
    */
-  removeAllScriptMessageHandlersFrom(contentWorld: WKContentWorld): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1958969964538099, this, [contentWorld]); }
+  removeAllScriptMessageHandlersFrom(contentWorld: WKContentWorld): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1958969964538099, this, [contentWorld]); }
   /**
    * func removeAllUserScripts()
    * @availability iOS 8.0+
    */
-  removeAllUserScripts(): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3365963382056622, this, []); }
+  removeAllUserScripts(): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3365963382056622, this, []); }
   /**
    * func remove(_ contentRuleList: WKContentRuleList)
    * @availability iOS 11.0+
    */
-  remove(contentRuleList: WKContentRuleList): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 227802790316622, this, [contentRuleList]); }
+  remove(contentRuleList: WKContentRuleList): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 227802790316622, this, [contentRuleList]); }
   /**
    * func removeScriptMessageHandler(forName name: String)
    * @availability iOS 8.0+
    */
-  removeScriptMessageHandlerForName(name: string): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2659802487830527, this, [name]); }
+  removeScriptMessageHandlerForName(name: string): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2659802487830527, this, [name]); }
   /**
    * func removeScriptMessageHandler(forName name: String, contentWorld: WKContentWorld)
    * @availability iOS 14.0+
    */
-  removeScriptMessageHandlerForNameContentWorld(name: string, contentWorld: WKContentWorld): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4221998205983243, this, [name, contentWorld]); }
+  removeScriptMessageHandlerForNameContentWorld(name: string, contentWorld: WKContentWorld): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4221998205983243, this, [name, contentWorld]); }
   /**
    * var userScripts: [WKUserScript] { get }
    * @availability iOS 8.0+
    */
-  get userScripts(): Promise<Array<WKUserScript>> { return callSDKAsync<Array<WKUserScript>>("WebKit_d6c5d10d3352e6ec", 608641535356237, this, []); }
+  get userScripts(): Promise<Array<WKUserScript>> { return callSDKAsync<Array<WKUserScript>>("WebKit_a956b86ef7a76a8e", 608641535356237, this, []); }
   /**
    * @MainActor @preconcurrency func removeBuffer(named name: String, from contentWorld: WKContentWorld)
    * @availability iOS 27.0+
    */
-  removeBuffer(name: string, contentWorld: WKContentWorld): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3693764826698175, this, [name, contentWorld]); }
+  removeBuffer(name: string, contentWorld: WKContentWorld): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3693764826698175, this, [name, contentWorld]); }
   declare readonly $type: { "c:objc(cs)WKUserContentController": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2422,27 +2422,27 @@ export class WKUserScript extends SDKHandle {
    * init(source: String, injectionTime: WKUserScriptInjectionTime, forMainFrameOnly: Bool)
    * @availability iOS 8.0+
    */
-  static initSourceInjectionTimeForMainFrameOnly(source: string, injectionTime: WKUserScriptInjectionTime, forMainFrameOnly: boolean): Promise<WKUserScript> { return callSDKAsync<WKUserScript>("WebKit_d6c5d10d3352e6ec", 1849105039822320, undefined, [source, injectionTime, forMainFrameOnly]); }
+  static initSourceInjectionTimeForMainFrameOnly(source: string, injectionTime: WKUserScriptInjectionTime, forMainFrameOnly: boolean): Promise<WKUserScript> { return callSDKAsync<WKUserScript>("WebKit_a956b86ef7a76a8e", 1849105039822320, undefined, [source, injectionTime, forMainFrameOnly]); }
   /**
    * init(source: String, injectionTime: WKUserScriptInjectionTime, forMainFrameOnly: Bool, in contentWorld: WKContentWorld)
    * @availability iOS 14.0+
    */
-  static initSourceInjectionTimeForMainFrameOnlyIn(source: string, injectionTime: WKUserScriptInjectionTime, forMainFrameOnly: boolean, contentWorld: WKContentWorld): Promise<WKUserScript> { return callSDKAsync<WKUserScript>("WebKit_d6c5d10d3352e6ec", 3292029318826849, undefined, [source, injectionTime, forMainFrameOnly, contentWorld]); }
+  static initSourceInjectionTimeForMainFrameOnlyIn(source: string, injectionTime: WKUserScriptInjectionTime, forMainFrameOnly: boolean, contentWorld: WKContentWorld): Promise<WKUserScript> { return callSDKAsync<WKUserScript>("WebKit_a956b86ef7a76a8e", 3292029318826849, undefined, [source, injectionTime, forMainFrameOnly, contentWorld]); }
   /**
    * var isForMainFrameOnly: Bool { get }
    * @availability iOS 8.0+
    */
-  get isForMainFrameOnly(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1138006393374471, this, []); }
+  get isForMainFrameOnly(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1138006393374471, this, []); }
   /**
    * var injectionTime: WKUserScriptInjectionTime { get }
    * @availability iOS 8.0+
    */
-  get injectionTime(): Promise<WKUserScriptInjectionTime> { return callSDKAsync<WKUserScriptInjectionTime>("WebKit_d6c5d10d3352e6ec", 2272453234651365, this, []); }
+  get injectionTime(): Promise<WKUserScriptInjectionTime> { return callSDKAsync<WKUserScriptInjectionTime>("WebKit_a956b86ef7a76a8e", 2272453234651365, this, []); }
   /**
    * var source: String { get }
    * @availability iOS 8.0+
    */
-  get source(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 519691768886388, this, []); }
+  get source(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 519691768886388, this, []); }
   declare readonly $type: { "c:objc(cs)WKUserScript": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2457,7 +2457,7 @@ export const WKUserScriptInjectionTime = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (WKUserScriptInjectionTime) | null { return callSDK<(WKUserScriptInjectionTime) | null>("WebKit_d6c5d10d3352e6ec", 191552721007643, undefined, [rawValue]); }
+  init(rawValue: number): (WKUserScriptInjectionTime) | null { return callSDK<(WKUserScriptInjectionTime) | null>("WebKit_a956b86ef7a76a8e", 191552721007643, undefined, [rawValue]); }
 };
 
 /**
@@ -2469,142 +2469,142 @@ export class WKWebExtension extends SDKHandle {
    * nonisolated class let errorDomain: String
    * @availability iOS 18.4+
    */
-  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 1730821431647616, undefined, []); }
+  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 1730821431647616, undefined, []); }
   /**
    * func actionIcon(for size: CGSize) -> UIImage?
    * @availability iOS 18.4+
    */
-  actionIcon(size: $SDK30): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("WebKit_d6c5d10d3352e6ec", 2148497237033100, this, [size]); }
+  actionIcon(size: $SDK30): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("WebKit_a956b86ef7a76a8e", 2148497237033100, this, [size]); }
   /**
    * func icon(for size: CGSize) -> UIImage?
    * @availability iOS 18.4+
    */
-  icon(size: $SDK30): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("WebKit_d6c5d10d3352e6ec", 1061525803747936, this, [size]); }
+  icon(size: $SDK30): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("WebKit_a956b86ef7a76a8e", 1061525803747936, this, [size]); }
   /**
    * func supportsManifestVersion(_ manifestVersion: Double) -> Bool
    * @availability iOS 18.4+
    */
-  supportsManifestVersion(manifestVersion: number): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2979916001252085, this, [manifestVersion]); }
+  supportsManifestVersion(manifestVersion: number): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2979916001252085, this, [manifestVersion]); }
   /**
    * var allRequestedMatchPatterns: Set<WKWebExtension.MatchPattern> { get }
    * @availability iOS 18.4+
    */
-  get allRequestedMatchPatterns(): Promise<$SDK31> { return callSDKAsync<$SDK31>("WebKit_d6c5d10d3352e6ec", 2807027650702324, this, []); }
+  get allRequestedMatchPatterns(): Promise<$SDK31> { return callSDKAsync<$SDK31>("WebKit_a956b86ef7a76a8e", 2807027650702324, this, []); }
   /**
    * var defaultLocale: Locale? { get }
    * @availability iOS 18.4+
    */
-  get defaultLocale(): Promise<(_Foundation_Locale) | null> { return callSDKAsync<(_Foundation_Locale) | null>("WebKit_d6c5d10d3352e6ec", 3656059779528569, this, []); }
+  get defaultLocale(): Promise<(_Foundation_Locale) | null> { return callSDKAsync<(_Foundation_Locale) | null>("WebKit_a956b86ef7a76a8e", 3656059779528569, this, []); }
   /**
    * var displayActionLabel: String? { get }
    * @availability iOS 18.4+
    */
-  get displayActionLabel(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 2752894030090436, this, []); }
+  get displayActionLabel(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 2752894030090436, this, []); }
   /**
    * var displayDescription: String? { get }
    * @availability iOS 18.4+
    */
-  get displayDescription(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 2089042585786188, this, []); }
+  get displayDescription(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 2089042585786188, this, []); }
   /**
    * var displayName: String? { get }
    * @availability iOS 18.4+
    */
-  get displayName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 657231427071586, this, []); }
+  get displayName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 657231427071586, this, []); }
   /**
    * var displayShortName: String? { get }
    * @availability iOS 18.4+
    */
-  get displayShortName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 4349693739032292, this, []); }
+  get displayShortName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 4349693739032292, this, []); }
   /**
    * var displayVersion: String? { get }
    * @availability iOS 18.4+
    */
-  get displayVersion(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 2887008575803959, this, []); }
+  get displayVersion(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 2887008575803959, this, []); }
   /**
    * var errors: [any Error] { get }
    * @availability iOS 18.4+
    */
-  get errors(): Promise<Array<NativeError>> { return callSDKAsync<Array<NativeError>>("WebKit_d6c5d10d3352e6ec", 3397644713205828, this, []); }
+  get errors(): Promise<Array<NativeError>> { return callSDKAsync<Array<NativeError>>("WebKit_a956b86ef7a76a8e", 3397644713205828, this, []); }
   /**
    * var hasBackgroundContent: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasBackgroundContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4431678045439078, this, []); }
+  get hasBackgroundContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4431678045439078, this, []); }
   /**
    * var hasCommands: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasCommands(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 721356157143183, this, []); }
+  get hasCommands(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 721356157143183, this, []); }
   /**
    * var hasContentModificationRules: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasContentModificationRules(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1902491497200008, this, []); }
+  get hasContentModificationRules(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1902491497200008, this, []); }
   /**
    * var hasInjectedContent: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasInjectedContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4502389467311757, this, []); }
+  get hasInjectedContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4502389467311757, this, []); }
   /**
    * var hasOptionsPage: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasOptionsPage(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1368434751899017, this, []); }
+  get hasOptionsPage(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1368434751899017, this, []); }
   /**
    * var hasOverrideNewTabPage: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasOverrideNewTabPage(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3258606913757797, this, []); }
+  get hasOverrideNewTabPage(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3258606913757797, this, []); }
   /**
    * var hasPersistentBackgroundContent: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasPersistentBackgroundContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2456191388853812, this, []); }
+  get hasPersistentBackgroundContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2456191388853812, this, []); }
   /**
    * var manifest: [String : Any] { get }
    * @availability iOS 18.4+
    */
-  get manifest(): Promise<Record<string, unknown>> { return callSDKAsync<Record<string, unknown>>("WebKit_d6c5d10d3352e6ec", 1260338613692980, this, []); }
+  get manifest(): Promise<Record<string, unknown>> { return callSDKAsync<Record<string, unknown>>("WebKit_a956b86ef7a76a8e", 1260338613692980, this, []); }
   /**
    * var manifestVersion: Double { get }
    * @availability iOS 18.4+
    */
-  get manifestVersion(): Promise<number> { return callSDKAsync<number>("WebKit_d6c5d10d3352e6ec", 3107903637410583, this, []); }
+  get manifestVersion(): Promise<number> { return callSDKAsync<number>("WebKit_a956b86ef7a76a8e", 3107903637410583, this, []); }
   /**
    * var optionalPermissionMatchPatterns: Set<WKWebExtension.MatchPattern> { get }
    * @availability iOS 18.4+
    */
-  get optionalPermissionMatchPatterns(): Promise<$SDK31> { return callSDKAsync<$SDK31>("WebKit_d6c5d10d3352e6ec", 3854593786387623, this, []); }
+  get optionalPermissionMatchPatterns(): Promise<$SDK31> { return callSDKAsync<$SDK31>("WebKit_a956b86ef7a76a8e", 3854593786387623, this, []); }
   /**
    * var optionalPermissions: Set<WKWebExtension.Permission> { get }
    * @availability iOS 18.4+
    */
-  get optionalPermissions(): Promise<$SDK33> { return callSDKAsync<$SDK33>("WebKit_d6c5d10d3352e6ec", 707775186144144, this, []); }
+  get optionalPermissions(): Promise<$SDK33> { return callSDKAsync<$SDK33>("WebKit_a956b86ef7a76a8e", 707775186144144, this, []); }
   /**
    * var requestedPermissionMatchPatterns: Set<WKWebExtension.MatchPattern> { get }
    * @availability iOS 18.4+
    */
-  get requestedPermissionMatchPatterns(): Promise<$SDK31> { return callSDKAsync<$SDK31>("WebKit_d6c5d10d3352e6ec", 2205069082866502, this, []); }
+  get requestedPermissionMatchPatterns(): Promise<$SDK31> { return callSDKAsync<$SDK31>("WebKit_a956b86ef7a76a8e", 2205069082866502, this, []); }
   /**
    * var requestedPermissions: Set<WKWebExtension.Permission> { get }
    * @availability iOS 18.4+
    */
-  get requestedPermissions(): Promise<$SDK33> { return callSDKAsync<$SDK33>("WebKit_d6c5d10d3352e6ec", 1015189600253628, this, []); }
+  get requestedPermissions(): Promise<$SDK33> { return callSDKAsync<$SDK33>("WebKit_a956b86ef7a76a8e", 1015189600253628, this, []); }
   /**
    * var version: String? { get }
    * @availability iOS 18.4+
    */
-  get version(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 2945824756501682, this, []); }
+  get version(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 2945824756501682, this, []); }
   /**
    * @MainActor @preconcurrency convenience init(appExtensionBundle: Bundle) async throws
    * @availability iOS 18.4+
    */
-  static initAppExtensionBundle(appExtensionBundle: _Foundation_Bundle): Promise<WKWebExtension> { return callSDKAsync<WKWebExtension>("WebKit_d6c5d10d3352e6ec", 2273946547280431, undefined, [appExtensionBundle]); }
+  static initAppExtensionBundle(appExtensionBundle: _Foundation_Bundle): Promise<WKWebExtension> { return callSDKAsync<WKWebExtension>("WebKit_a956b86ef7a76a8e", 2273946547280431, undefined, [appExtensionBundle]); }
   /**
    * @MainActor @preconcurrency convenience init(resourceBaseURL: URL) async throws
    * @availability iOS 18.4+
    */
-  static initResourceBaseURL(resourceBaseURL: string): Promise<WKWebExtension> { return callSDKAsync<WKWebExtension>("WebKit_d6c5d10d3352e6ec", 559116229719260, undefined, [resourceBaseURL]); }
+  static initResourceBaseURL(resourceBaseURL: string): Promise<WKWebExtension> { return callSDKAsync<WKWebExtension>("WebKit_a956b86ef7a76a8e", 559116229719260, undefined, [resourceBaseURL]); }
   declare readonly $type: { "c:objc(cs)WKWebExtension": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2617,69 +2617,69 @@ export class WKWebExtension_Action extends SDKHandle {
    * func closePopup()
    * @availability iOS 18.4+
    */
-  closePopup(): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3103861599865391, this, []); }
+  closePopup(): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3103861599865391, this, []); }
   /**
    * func icon(for size: CGSize) -> UIImage?
    * @availability iOS 18.4+
    */
-  icon(size: $SDK30): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("WebKit_d6c5d10d3352e6ec", 230811467377972, this, [size]); }
+  icon(size: $SDK30): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("WebKit_a956b86ef7a76a8e", 230811467377972, this, [size]); }
   /**
    * weak var associatedTab: (any WKWebExtensionTab)? { get }
    * @availability iOS 18.4+
    */
-  get associatedTab(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_d6c5d10d3352e6ec", 3661615388490062, this, []); }
+  get associatedTab(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_a956b86ef7a76a8e", 3661615388490062, this, []); }
   /**
    * var badgeText: String { get }
    * @availability iOS 18.4+
    */
-  get badgeText(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 3230998985265617, this, []); }
+  get badgeText(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 3230998985265617, this, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 18.4+
    */
-  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3896860905238333, this, []); }
+  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3896860905238333, this, []); }
   /**
    * var hasUnreadBadgeText: Bool { get set }
    * @availability iOS 18.4+
    */
-  get hasUnreadBadgeText(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2630288115967324, this, []); }
-  setHasUnreadBadgeText(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1532717619594227, this, [value]); }
+  get hasUnreadBadgeText(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2630288115967324, this, []); }
+  setHasUnreadBadgeText(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1532717619594227, this, [value]); }
   /**
    * var inspectionName: String? { get set }
    * @availability iOS 18.4+
    */
-  get inspectionName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 2610662816031764, this, []); }
-  setInspectionName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 77447734723203, this, [value]); }
+  get inspectionName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 2610662816031764, this, []); }
+  setInspectionName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 77447734723203, this, [value]); }
   /**
    * var label: String { get }
    * @availability iOS 18.4+
    */
-  get label(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 1546052704404885, this, []); }
+  get label(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 1546052704404885, this, []); }
   /**
    * var menuItems: [UIMenuElement] { get }
    * @availability iOS 18.4+
    */
-  get menuItems(): Promise<Array<_UIKit_UIMenuElement>> { return callSDKAsync<Array<_UIKit_UIMenuElement>>("WebKit_d6c5d10d3352e6ec", 2333405579022630, this, []); }
+  get menuItems(): Promise<Array<_UIKit_UIMenuElement>> { return callSDKAsync<Array<_UIKit_UIMenuElement>>("WebKit_a956b86ef7a76a8e", 2333405579022630, this, []); }
   /**
    * var popupViewController: UIViewController? { get }
    * @availability iOS 18.4+
    */
-  get popupViewController(): Promise<(_UIKit_UIViewController) | null> { return callSDKAsync<(_UIKit_UIViewController) | null>("WebKit_d6c5d10d3352e6ec", 787570031948326, this, []); }
+  get popupViewController(): Promise<(_UIKit_UIViewController) | null> { return callSDKAsync<(_UIKit_UIViewController) | null>("WebKit_a956b86ef7a76a8e", 787570031948326, this, []); }
   /**
    * var popupWebView: WKWebView? { get }
    * @availability iOS 18.4+
    */
-  get popupWebView(): Promise<(WKWebView) | null> { return callSDKAsync<(WKWebView) | null>("WebKit_d6c5d10d3352e6ec", 3503669023121053, this, []); }
+  get popupWebView(): Promise<(WKWebView) | null> { return callSDKAsync<(WKWebView) | null>("WebKit_a956b86ef7a76a8e", 3503669023121053, this, []); }
   /**
    * var presentsPopup: Bool { get }
    * @availability iOS 18.4+
    */
-  get presentsPopup(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2873376352565496, this, []); }
+  get presentsPopup(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2873376352565496, this, []); }
   /**
    * weak var webExtensionContext: WKWebExtensionContext? { get }
    * @availability iOS 18.4+
    */
-  get webExtensionContext(): Promise<$SDK36> { return callSDKAsync<$SDK36>("WebKit_d6c5d10d3352e6ec", 3457267553521280, this, []); }
+  get webExtensionContext(): Promise<$SDK36> { return callSDKAsync<$SDK36>("WebKit_a956b86ef7a76a8e", 3457267553521280, this, []); }
   declare readonly $type: { "c:objc(cs)WKWebExtensionAction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2692,39 +2692,39 @@ export class WKWebExtension_Command extends SDKHandle {
    * var activationKey: String? { get set }
    * @availability iOS 18.4+
    */
-  get activationKey(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 4126972785385667, this, []); }
-  setActivationKey(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1856231514846377, this, [value]); }
+  get activationKey(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 4126972785385667, this, []); }
+  setActivationKey(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1856231514846377, this, [value]); }
   /**
    * var id: String { get }
    * @availability iOS 18.4+
    */
-  get id(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 3607958258085993, this, []); }
+  get id(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 3607958258085993, this, []); }
   /**
    * @NSCopying var keyCommand: UIKeyCommand? { get }
    * @availability iOS 18.4+
    */
-  get keyCommand(): Promise<(_UIKit_UIKeyCommand) | null> { return callSDKAsync<(_UIKit_UIKeyCommand) | null>("WebKit_d6c5d10d3352e6ec", 2673338940076129, this, []); }
+  get keyCommand(): Promise<(_UIKit_UIKeyCommand) | null> { return callSDKAsync<(_UIKit_UIKeyCommand) | null>("WebKit_a956b86ef7a76a8e", 2673338940076129, this, []); }
   /**
    * @NSCopying var menuItem: UIMenuElement { get }
    * @availability iOS 18.4+
    */
-  get menuItem(): Promise<_UIKit_UIMenuElement> { return callSDKAsync<_UIKit_UIMenuElement>("WebKit_d6c5d10d3352e6ec", 2147128120850610, this, []); }
+  get menuItem(): Promise<_UIKit_UIMenuElement> { return callSDKAsync<_UIKit_UIMenuElement>("WebKit_a956b86ef7a76a8e", 2147128120850610, this, []); }
   /**
    * var modifierFlags: UIKeyModifierFlags { get set }
    * @availability iOS 18.4+
    */
-  get modifierFlags(): Promise<_UIKit_UIKeyModifierFlags> { return callSDKAsync<_UIKit_UIKeyModifierFlags>("WebKit_d6c5d10d3352e6ec", 3334720833807516, this, []); }
-  setModifierFlags(value: _UIKit_UIKeyModifierFlags): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 995200907603008, this, [value]); }
+  get modifierFlags(): Promise<_UIKit_UIKeyModifierFlags> { return callSDKAsync<_UIKit_UIKeyModifierFlags>("WebKit_a956b86ef7a76a8e", 3334720833807516, this, []); }
+  setModifierFlags(value: _UIKit_UIKeyModifierFlags): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 995200907603008, this, [value]); }
   /**
    * var title: String { get }
    * @availability iOS 18.4+
    */
-  get title(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 1440891210298476, this, []); }
+  get title(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 1440891210298476, this, []); }
   /**
    * weak var webExtensionContext: WKWebExtensionContext? { get }
    * @availability iOS 18.4+
    */
-  get webExtensionContext(): Promise<$SDK36> { return callSDKAsync<$SDK36>("WebKit_d6c5d10d3352e6ec", 3646125976850621, this, []); }
+  get webExtensionContext(): Promise<$SDK36> { return callSDKAsync<$SDK36>("WebKit_a956b86ef7a76a8e", 3646125976850621, this, []); }
   declare readonly $type: { "c:objc(cs)WKWebExtensionCommand": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2737,37 +2737,37 @@ export class WKWebExtension_DataRecord extends SDKHandle {
    * nonisolated class let errorDomain: String
    * @availability iOS 18.4+
    */
-  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2182285720907496, undefined, []); }
+  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2182285720907496, undefined, []); }
   /**
    * func sizeInBytes(ofTypes dataTypes: Set<WKWebExtension.DataType>) -> Int
    * @availability iOS 18.4+
    */
-  sizeInBytes(dataTypes: $SDK38): Promise<number> { return callSDKAsync<number>("WebKit_d6c5d10d3352e6ec", 3371496808787713, this, [dataTypes]); }
+  sizeInBytes(dataTypes: $SDK38): Promise<number> { return callSDKAsync<number>("WebKit_a956b86ef7a76a8e", 3371496808787713, this, [dataTypes]); }
   /**
    * var containedDataTypes: Set<WKWebExtension.DataType> { get }
    * @availability iOS 18.4+
    */
-  get containedDataTypes(): Promise<$SDK38> { return callSDKAsync<$SDK38>("WebKit_d6c5d10d3352e6ec", 3020607852395415, this, []); }
+  get containedDataTypes(): Promise<$SDK38> { return callSDKAsync<$SDK38>("WebKit_a956b86ef7a76a8e", 3020607852395415, this, []); }
   /**
    * var displayName: String { get }
    * @availability iOS 18.4+
    */
-  get displayName(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2796538733991369, this, []); }
+  get displayName(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2796538733991369, this, []); }
   /**
    * var errors: [any Error] { get }
    * @availability iOS 18.4+
    */
-  get errors(): Promise<Array<NativeError>> { return callSDKAsync<Array<NativeError>>("WebKit_d6c5d10d3352e6ec", 2247350914653445, this, []); }
+  get errors(): Promise<Array<NativeError>> { return callSDKAsync<Array<NativeError>>("WebKit_a956b86ef7a76a8e", 2247350914653445, this, []); }
   /**
    * var totalSizeInBytes: Int { get }
    * @availability iOS 18.4+
    */
-  get totalSizeInBytes(): Promise<number> { return callSDKAsync<number>("WebKit_d6c5d10d3352e6ec", 1725358326233628, this, []); }
+  get totalSizeInBytes(): Promise<number> { return callSDKAsync<number>("WebKit_a956b86ef7a76a8e", 1725358326233628, this, []); }
   /**
    * var uniqueIdentifier: String { get }
    * @availability iOS 18.4+
    */
-  get uniqueIdentifier(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2273488965017924, this, []); }
+  get uniqueIdentifier(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2273488965017924, this, []); }
   declare readonly $type: { "c:objc(cs)WKWebExtensionDataRecord": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2780,27 +2780,27 @@ export class WKWebExtension_DataRecord_Error extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 18.4+
    */
-  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 3698109501563584, undefined, []); }
+  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 3698109501563584, undefined, []); }
   /**
    * static var localStorageFailed: WKWebExtension.DataRecord.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get localStorageFailed(): Promise<WKWebExtension_DataRecord_Error_Code> { return callSDKAsync<WKWebExtension_DataRecord_Error_Code>("WebKit_d6c5d10d3352e6ec", 4041247374816969, undefined, []); }
+  static get localStorageFailed(): Promise<WKWebExtension_DataRecord_Error_Code> { return callSDKAsync<WKWebExtension_DataRecord_Error_Code>("WebKit_a956b86ef7a76a8e", 4041247374816969, undefined, []); }
   /**
    * static var sessionStorageFailed: WKWebExtension.DataRecord.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get sessionStorageFailed(): Promise<WKWebExtension_DataRecord_Error_Code> { return callSDKAsync<WKWebExtension_DataRecord_Error_Code>("WebKit_d6c5d10d3352e6ec", 3048692429883009, undefined, []); }
+  static get sessionStorageFailed(): Promise<WKWebExtension_DataRecord_Error_Code> { return callSDKAsync<WKWebExtension_DataRecord_Error_Code>("WebKit_a956b86ef7a76a8e", 3048692429883009, undefined, []); }
   /**
    * static var synchronizedStorageFailed: WKWebExtension.DataRecord.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get synchronizedStorageFailed(): Promise<WKWebExtension_DataRecord_Error_Code> { return callSDKAsync<WKWebExtension_DataRecord_Error_Code>("WebKit_d6c5d10d3352e6ec", 970281676444646, undefined, []); }
+  static get synchronizedStorageFailed(): Promise<WKWebExtension_DataRecord_Error_Code> { return callSDKAsync<WKWebExtension_DataRecord_Error_Code>("WebKit_a956b86ef7a76a8e", 970281676444646, undefined, []); }
   /**
    * static var unknown: WKWebExtension.DataRecord.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get unknown(): Promise<WKWebExtension_DataRecord_Error_Code> { return callSDKAsync<WKWebExtension_DataRecord_Error_Code>("WebKit_d6c5d10d3352e6ec", 4115123014614952, undefined, []); }
+  static get unknown(): Promise<WKWebExtension_DataRecord_Error_Code> { return callSDKAsync<WKWebExtension_DataRecord_Error_Code>("WebKit_a956b86ef7a76a8e", 4115123014614952, undefined, []); }
   declare readonly $type: { "s:SC29WKWebExtensionDataRecordErrorLeV": true };
 }
 
@@ -2815,7 +2815,7 @@ export const WKWebExtension_DataRecord_Error_Code = {
    * init?(rawValue: Int)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): Promise<(WKWebExtension_DataRecord_Error_Code) | null> { return callSDKAsync<(WKWebExtension_DataRecord_Error_Code) | null>("WebKit_d6c5d10d3352e6ec", 2676983730238319, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebExtension_DataRecord_Error_Code) | null> { return callSDKAsync<(WKWebExtension_DataRecord_Error_Code) | null>("WebKit_a956b86ef7a76a8e", 2676983730238319, undefined, [rawValue]); }
 };
 
 /**
@@ -2829,22 +2829,22 @@ export const WKWebExtension_DataType = {
    * nonisolated static let local: WKWebExtension.DataType
    * @availability iOS 18.4+
    */
-  get local(): Promise<WKWebExtension_DataType> { return callSDKAsync<WKWebExtension_DataType>("WebKit_d6c5d10d3352e6ec", 1104983317574838, undefined, []); },
+  get local(): Promise<WKWebExtension_DataType> { return callSDKAsync<WKWebExtension_DataType>("WebKit_a956b86ef7a76a8e", 1104983317574838, undefined, []); },
   /**
    * nonisolated static let session: WKWebExtension.DataType
    * @availability iOS 18.4+
    */
-  get session(): Promise<WKWebExtension_DataType> { return callSDKAsync<WKWebExtension_DataType>("WebKit_d6c5d10d3352e6ec", 1796914903443485, undefined, []); },
+  get session(): Promise<WKWebExtension_DataType> { return callSDKAsync<WKWebExtension_DataType>("WebKit_a956b86ef7a76a8e", 1796914903443485, undefined, []); },
   /**
    * nonisolated static let synchronized: WKWebExtension.DataType
    * @availability iOS 18.4+
    */
-  get synchronized(): Promise<WKWebExtension_DataType> { return callSDKAsync<WKWebExtension_DataType>("WebKit_d6c5d10d3352e6ec", 341789950937244, undefined, []); },
+  get synchronized(): Promise<WKWebExtension_DataType> { return callSDKAsync<WKWebExtension_DataType>("WebKit_a956b86ef7a76a8e", 341789950937244, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 18.4+
    */
-  init(rawValue: string): Promise<WKWebExtension_DataType> { return callSDKAsync<WKWebExtension_DataType>("WebKit_d6c5d10d3352e6ec", 1055955731618870, undefined, [rawValue]); }
+  init(rawValue: string): Promise<WKWebExtension_DataType> { return callSDKAsync<WKWebExtension_DataType>("WebKit_a956b86ef7a76a8e", 1055955731618870, undefined, [rawValue]); }
 };
 
 /**
@@ -2856,52 +2856,52 @@ export class WKWebExtension_Error extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 18.4+
    */
-  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 547321058144014, undefined, []); }
+  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 547321058144014, undefined, []); }
   /**
    * static var invalidArchive: WKWebExtension.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get invalidArchive(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_d6c5d10d3352e6ec", 3059908044113653, undefined, []); }
+  static get invalidArchive(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_a956b86ef7a76a8e", 3059908044113653, undefined, []); }
   /**
    * static var invalidManifest: WKWebExtension.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get invalidManifest(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_d6c5d10d3352e6ec", 2238875856166443, undefined, []); }
+  static get invalidManifest(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_a956b86ef7a76a8e", 2238875856166443, undefined, []); }
   /**
    * static var resourceNotFound: WKWebExtension.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get resourceNotFound(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_d6c5d10d3352e6ec", 837362074663686, undefined, []); }
+  static get resourceNotFound(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_a956b86ef7a76a8e", 837362074663686, undefined, []); }
   /**
    * static var invalidManifestEntry: WKWebExtension.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get invalidManifestEntry(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_d6c5d10d3352e6ec", 573943955570883, undefined, []); }
+  static get invalidManifestEntry(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_a956b86ef7a76a8e", 573943955570883, undefined, []); }
   /**
    * static var unsupportedManifestVersion: WKWebExtension.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get unsupportedManifestVersion(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_d6c5d10d3352e6ec", 2201836804125260, undefined, []); }
+  static get unsupportedManifestVersion(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_a956b86ef7a76a8e", 2201836804125260, undefined, []); }
   /**
    * static var invalidBackgroundPersistence: WKWebExtension.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get invalidBackgroundPersistence(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_d6c5d10d3352e6ec", 3478786081720926, undefined, []); }
+  static get invalidBackgroundPersistence(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_a956b86ef7a76a8e", 3478786081720926, undefined, []); }
   /**
    * static var invalidResourceCodeSignature: WKWebExtension.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get invalidResourceCodeSignature(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_d6c5d10d3352e6ec", 1121191144374306, undefined, []); }
+  static get invalidResourceCodeSignature(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_a956b86ef7a76a8e", 1121191144374306, undefined, []); }
   /**
    * static var invalidDeclarativeNetRequestEntry: WKWebExtension.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get invalidDeclarativeNetRequestEntry(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_d6c5d10d3352e6ec", 942289030498683, undefined, []); }
+  static get invalidDeclarativeNetRequestEntry(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_a956b86ef7a76a8e", 942289030498683, undefined, []); }
   /**
    * static var unknown: WKWebExtension.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get unknown(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_d6c5d10d3352e6ec", 2746581093332104, undefined, []); }
+  static get unknown(): Promise<WKWebExtension_Error_Code> { return callSDKAsync<WKWebExtension_Error_Code>("WebKit_a956b86ef7a76a8e", 2746581093332104, undefined, []); }
   declare readonly $type: { "s:SC19WKWebExtensionErrorLeV": true };
 }
 
@@ -2916,7 +2916,7 @@ export const WKWebExtension_Error_Code = {
    * init?(rawValue: Int)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): Promise<(WKWebExtension_Error_Code) | null> { return callSDKAsync<(WKWebExtension_Error_Code) | null>("WebKit_d6c5d10d3352e6ec", 3989918033825767, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebExtension_Error_Code) | null> { return callSDKAsync<(WKWebExtension_Error_Code) | null>("WebKit_a956b86ef7a76a8e", 3989918033825767, undefined, [rawValue]); }
 };
 
 /**
@@ -2928,82 +2928,82 @@ export class WKWebExtension_MatchPattern extends SDKHandle {
    * nonisolated class let errorDomain: String
    * @availability iOS 18.4+
    */
-  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2060236842663026, undefined, []); }
+  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2060236842663026, undefined, []); }
   /**
    * class func allHostsAndSchemes() -> Self
    * @availability iOS 18.4+
    */
-  static allHostsAndSchemes(): Promise<WKWebExtension_MatchPattern> { return callSDKAsync<WKWebExtension_MatchPattern>("WebKit_d6c5d10d3352e6ec", 4132985856556001, undefined, []); }
+  static allHostsAndSchemes(): Promise<WKWebExtension_MatchPattern> { return callSDKAsync<WKWebExtension_MatchPattern>("WebKit_a956b86ef7a76a8e", 4132985856556001, undefined, []); }
   /**
    * class func allURLs() -> Self
    * @availability iOS 18.4+
    */
-  static allURLs(): Promise<WKWebExtension_MatchPattern> { return callSDKAsync<WKWebExtension_MatchPattern>("WebKit_d6c5d10d3352e6ec", 2796257281782587, undefined, []); }
+  static allURLs(): Promise<WKWebExtension_MatchPattern> { return callSDKAsync<WKWebExtension_MatchPattern>("WebKit_a956b86ef7a76a8e", 2796257281782587, undefined, []); }
   /**
    * class func registerCustomURLScheme(_ urlScheme: String)
    * @availability iOS 18.4+
    */
-  static registerCustomURLScheme(urlScheme: string): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2329293926757692, undefined, [urlScheme]); }
+  static registerCustomURLScheme(urlScheme: string): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2329293926757692, undefined, [urlScheme]); }
   /**
    * init(scheme: String, host: String, path: String) throws
    * @availability iOS 18.4+
    */
-  static initSchemeHostPath(scheme: string, host: string, path: string): Promise<WKWebExtension_MatchPattern> { return callSDKAsync<WKWebExtension_MatchPattern>("WebKit_d6c5d10d3352e6ec", 4410935121707218, undefined, [scheme, host, path]); }
+  static initSchemeHostPath(scheme: string, host: string, path: string): Promise<WKWebExtension_MatchPattern> { return callSDKAsync<WKWebExtension_MatchPattern>("WebKit_a956b86ef7a76a8e", 4410935121707218, undefined, [scheme, host, path]); }
   /**
    * init(string: String) throws
    * @availability iOS 18.4+
    */
-  static initString(string: string): Promise<WKWebExtension_MatchPattern> { return callSDKAsync<WKWebExtension_MatchPattern>("WebKit_d6c5d10d3352e6ec", 2094216867944322, undefined, [string]); }
+  static initString(string: string): Promise<WKWebExtension_MatchPattern> { return callSDKAsync<WKWebExtension_MatchPattern>("WebKit_a956b86ef7a76a8e", 2094216867944322, undefined, [string]); }
   /**
    * func matches(_ pattern: WKWebExtension.MatchPattern?) -> Bool
    * @availability iOS 18.4+
    */
-  matches(pattern?: $SDK39): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3793170332515243, this, [pattern]); }
+  matches(pattern?: $SDK39): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3793170332515243, this, [pattern]); }
   /**
    * func matches(_ pattern: WKWebExtension.MatchPattern?, options: WKWebExtension.MatchPattern.Options = []) -> Bool
    * @availability iOS 18.4+
    */
-  matchesOptions(pattern?: $SDK39, options?: WKWebExtension_MatchPattern_Options): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 389724729459744, this, [pattern, options]); }
+  matchesOptions(pattern?: $SDK39, options?: WKWebExtension_MatchPattern_Options): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 389724729459744, this, [pattern, options]); }
   /**
    * func matches(_ url: URL?) -> Bool
    * @availability iOS 18.4+
    */
-  matches89242(url?: (string) | null): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 510660189185773, this, [url]); }
+  matches89242(url?: (string) | null): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 510660189185773, this, [url]); }
   /**
    * func matches(_ url: URL?, options: WKWebExtension.MatchPattern.Options = []) -> Bool
    * @availability iOS 18.4+
    */
-  matchesOptions31050(url?: (string) | null, options?: WKWebExtension_MatchPattern_Options): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2557541072181069, this, [url, options]); }
+  matchesOptions31050(url?: (string) | null, options?: WKWebExtension_MatchPattern_Options): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2557541072181069, this, [url, options]); }
   /**
    * var host: String? { get }
    * @availability iOS 18.4+
    */
-  get host(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 1100226794427271, this, []); }
+  get host(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 1100226794427271, this, []); }
   /**
    * var matchesAllHosts: Bool { get }
    * @availability iOS 18.4+
    */
-  get matchesAllHosts(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2206219933385626, this, []); }
+  get matchesAllHosts(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2206219933385626, this, []); }
   /**
    * var matchesAllURLs: Bool { get }
    * @availability iOS 18.4+
    */
-  get matchesAllURLs(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1055210668970570, this, []); }
+  get matchesAllURLs(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1055210668970570, this, []); }
   /**
    * var path: String? { get }
    * @availability iOS 18.4+
    */
-  get path(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 1980098357099905, this, []); }
+  get path(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 1980098357099905, this, []); }
   /**
    * var scheme: String? { get }
    * @availability iOS 18.4+
    */
-  get scheme(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 266084678148603, this, []); }
+  get scheme(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 266084678148603, this, []); }
   /**
    * var string: String { get }
    * @availability iOS 18.4+
    */
-  get string(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 1472073935536858, this, []); }
+  get string(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 1472073935536858, this, []); }
   declare readonly $type: { "c:objc(cs)WKWebExtensionMatchPattern": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3016,27 +3016,27 @@ export class WKWebExtension_MatchPattern_Error extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 18.4+
    */
-  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2851262896095776, undefined, []); }
+  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2851262896095776, undefined, []); }
   /**
    * static var invalidHost: WKWebExtension.MatchPattern.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get invalidHost(): Promise<WKWebExtension_MatchPattern_Error_Code> { return callSDKAsync<WKWebExtension_MatchPattern_Error_Code>("WebKit_d6c5d10d3352e6ec", 436138226059090, undefined, []); }
+  static get invalidHost(): Promise<WKWebExtension_MatchPattern_Error_Code> { return callSDKAsync<WKWebExtension_MatchPattern_Error_Code>("WebKit_a956b86ef7a76a8e", 436138226059090, undefined, []); }
   /**
    * static var invalidPath: WKWebExtension.MatchPattern.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get invalidPath(): Promise<WKWebExtension_MatchPattern_Error_Code> { return callSDKAsync<WKWebExtension_MatchPattern_Error_Code>("WebKit_d6c5d10d3352e6ec", 1438137192176106, undefined, []); }
+  static get invalidPath(): Promise<WKWebExtension_MatchPattern_Error_Code> { return callSDKAsync<WKWebExtension_MatchPattern_Error_Code>("WebKit_a956b86ef7a76a8e", 1438137192176106, undefined, []); }
   /**
    * static var invalidScheme: WKWebExtension.MatchPattern.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get invalidScheme(): Promise<WKWebExtension_MatchPattern_Error_Code> { return callSDKAsync<WKWebExtension_MatchPattern_Error_Code>("WebKit_d6c5d10d3352e6ec", 2236328086565069, undefined, []); }
+  static get invalidScheme(): Promise<WKWebExtension_MatchPattern_Error_Code> { return callSDKAsync<WKWebExtension_MatchPattern_Error_Code>("WebKit_a956b86ef7a76a8e", 2236328086565069, undefined, []); }
   /**
    * static var unknown: WKWebExtension.MatchPattern.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get unknown(): Promise<WKWebExtension_MatchPattern_Error_Code> { return callSDKAsync<WKWebExtension_MatchPattern_Error_Code>("WebKit_d6c5d10d3352e6ec", 2815777201652018, undefined, []); }
+  static get unknown(): Promise<WKWebExtension_MatchPattern_Error_Code> { return callSDKAsync<WKWebExtension_MatchPattern_Error_Code>("WebKit_a956b86ef7a76a8e", 2815777201652018, undefined, []); }
   declare readonly $type: { "s:SC31WKWebExtensionMatchPatternErrorLeV": true };
 }
 
@@ -3051,7 +3051,7 @@ export const WKWebExtension_MatchPattern_Error_Code = {
    * init?(rawValue: Int)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): Promise<(WKWebExtension_MatchPattern_Error_Code) | null> { return callSDKAsync<(WKWebExtension_MatchPattern_Error_Code) | null>("WebKit_d6c5d10d3352e6ec", 3193978491979689, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebExtension_MatchPattern_Error_Code) | null> { return callSDKAsync<(WKWebExtension_MatchPattern_Error_Code) | null>("WebKit_a956b86ef7a76a8e", 3193978491979689, undefined, [rawValue]); }
 };
 
 /**
@@ -3065,22 +3065,22 @@ export const WKWebExtension_MatchPattern_Options = {
    * static var ignorePaths: WKWebExtension.MatchPattern.Options { get }
    * @availability iOS 18.4+
    */
-  get ignorePaths(): Promise<WKWebExtension_MatchPattern_Options> { return callSDKAsync<WKWebExtension_MatchPattern_Options>("WebKit_d6c5d10d3352e6ec", 141807321041341, undefined, []); },
+  get ignorePaths(): Promise<WKWebExtension_MatchPattern_Options> { return callSDKAsync<WKWebExtension_MatchPattern_Options>("WebKit_a956b86ef7a76a8e", 141807321041341, undefined, []); },
   /**
    * static var ignoreSchemes: WKWebExtension.MatchPattern.Options { get }
    * @availability iOS 18.4+
    */
-  get ignoreSchemes(): Promise<WKWebExtension_MatchPattern_Options> { return callSDKAsync<WKWebExtension_MatchPattern_Options>("WebKit_d6c5d10d3352e6ec", 3362666271785856, undefined, []); },
+  get ignoreSchemes(): Promise<WKWebExtension_MatchPattern_Options> { return callSDKAsync<WKWebExtension_MatchPattern_Options>("WebKit_a956b86ef7a76a8e", 3362666271785856, undefined, []); },
   /**
    * static var matchBidirectionally: WKWebExtension.MatchPattern.Options { get }
    * @availability iOS 18.4+
    */
-  get matchBidirectionally(): Promise<WKWebExtension_MatchPattern_Options> { return callSDKAsync<WKWebExtension_MatchPattern_Options>("WebKit_d6c5d10d3352e6ec", 2260984369799564, undefined, []); },
+  get matchBidirectionally(): Promise<WKWebExtension_MatchPattern_Options> { return callSDKAsync<WKWebExtension_MatchPattern_Options>("WebKit_a956b86ef7a76a8e", 2260984369799564, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): Promise<WKWebExtension_MatchPattern_Options> { return callSDKAsync<WKWebExtension_MatchPattern_Options>("WebKit_d6c5d10d3352e6ec", 4413399203272739, undefined, [rawValue]); }
+  init(rawValue: number): Promise<WKWebExtension_MatchPattern_Options> { return callSDKAsync<WKWebExtension_MatchPattern_Options>("WebKit_a956b86ef7a76a8e", 4413399203272739, undefined, [rawValue]); }
 };
 
 /**
@@ -3092,44 +3092,44 @@ export class WKWebExtension_MessagePort extends SDKHandle {
    * nonisolated class let errorDomain: String
    * @availability iOS 18.4+
    */
-  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2604162328288673, undefined, []); }
+  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2604162328288673, undefined, []); }
   /**
    * func disconnect()
    * @availability iOS 18.4+
    */
-  disconnect(): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 838473706322227, this, []); }
+  disconnect(): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 838473706322227, this, []); }
   /**
    * func disconnect(throwing error: (any Error)?)
    * @availability iOS 18.4+
    */
-  disconnectThrowing(error?: (NativeError) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 785494462292398, this, [error]); }
+  disconnectThrowing(error?: (NativeError) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 785494462292398, this, [error]); }
   /**
    * func sendMessage(_ message: Any?) async throws
    * @availability iOS 18.4+
    */
-  sendMessage(message?: (unknown) | null, completionHandler?: $SDK18): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 335400009045083, this, [message, completionHandler], [null,{"callback":{"out":[]}}]); }
+  sendMessage(message?: (unknown) | null, completionHandler?: $SDK18): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 335400009045083, this, [message, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var applicationIdentifier: String? { get }
    * @availability iOS 18.4+
    */
-  get applicationIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 3911760399739316, this, []); }
+  get applicationIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 3911760399739316, this, []); }
   /**
    * var disconnectHandler: (((any Error)?) -> Void)? { get set }
    * @availability iOS 18.4+
    */
-  get disconnectHandler(): Promise<(((arg0: (NativeError) | null) => Promise<void>)) | null> { return callSDKAsync<(((arg0: (NativeError) | null) => Promise<void>)) | null>("WebKit_d6c5d10d3352e6ec", 1416698107527217, this, []); }
-  setDisconnectHandler(value?: $SDK18): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3572641482760763, this, [value], [{"callback":{"out":[]}}]); }
+  get disconnectHandler(): Promise<(((arg0: (NativeError) | null) => Promise<void>)) | null> { return callSDKAsync<(((arg0: (NativeError) | null) => Promise<void>)) | null>("WebKit_a956b86ef7a76a8e", 1416698107527217, this, []); }
+  setDisconnectHandler(value?: $SDK18): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3572641482760763, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var isDisconnected: Bool { get }
    * @availability iOS 18.4+
    */
-  get isDisconnected(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1968188264274551, this, []); }
+  get isDisconnected(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1968188264274551, this, []); }
   /**
    * var messageHandler: ((Any?, (any Error)?) -> Void)? { get set }
    * @availability iOS 18.4+
    */
-  get messageHandler(): Promise<(((arg0: (unknown) | null, arg1: (NativeError) | null) => Promise<void>)) | null> { return callSDKAsync<(((arg0: (unknown) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("WebKit_d6c5d10d3352e6ec", 391787805180054, this, []); }
-  setMessageHandler(value?: $SDK42): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3356458229264467, this, [value], [{"callback":{"out":[]}}]); }
+  get messageHandler(): Promise<(((arg0: (unknown) | null, arg1: (NativeError) | null) => Promise<void>)) | null> { return callSDKAsync<(((arg0: (unknown) | null, arg1: (NativeError) | null) => Promise<void>)) | null>("WebKit_a956b86ef7a76a8e", 391787805180054, this, []); }
+  setMessageHandler(value?: $SDK42): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3356458229264467, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)WKWebExtensionMessagePort": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3142,22 +3142,22 @@ export class WKWebExtension_MessagePort_Error extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 18.4+
    */
-  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 419720612414815, undefined, []); }
+  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 419720612414815, undefined, []); }
   /**
    * static var notConnected: WKWebExtension.MessagePort.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get notConnected(): Promise<WKWebExtension_MessagePort_Error_Code> { return callSDKAsync<WKWebExtension_MessagePort_Error_Code>("WebKit_d6c5d10d3352e6ec", 3868806409950518, undefined, []); }
+  static get notConnected(): Promise<WKWebExtension_MessagePort_Error_Code> { return callSDKAsync<WKWebExtension_MessagePort_Error_Code>("WebKit_a956b86ef7a76a8e", 3868806409950518, undefined, []); }
   /**
    * static var messageInvalid: WKWebExtension.MessagePort.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get messageInvalid(): Promise<WKWebExtension_MessagePort_Error_Code> { return callSDKAsync<WKWebExtension_MessagePort_Error_Code>("WebKit_d6c5d10d3352e6ec", 3033402062424730, undefined, []); }
+  static get messageInvalid(): Promise<WKWebExtension_MessagePort_Error_Code> { return callSDKAsync<WKWebExtension_MessagePort_Error_Code>("WebKit_a956b86ef7a76a8e", 3033402062424730, undefined, []); }
   /**
    * static var unknown: WKWebExtension.MessagePort.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get unknown(): Promise<WKWebExtension_MessagePort_Error_Code> { return callSDKAsync<WKWebExtension_MessagePort_Error_Code>("WebKit_d6c5d10d3352e6ec", 3829467270398644, undefined, []); }
+  static get unknown(): Promise<WKWebExtension_MessagePort_Error_Code> { return callSDKAsync<WKWebExtension_MessagePort_Error_Code>("WebKit_a956b86ef7a76a8e", 3829467270398644, undefined, []); }
   declare readonly $type: { "s:SC30WKWebExtensionMessagePortErrorLeV": true };
 }
 
@@ -3172,7 +3172,7 @@ export const WKWebExtension_MessagePort_Error_Code = {
    * init?(rawValue: Int)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): Promise<(WKWebExtension_MessagePort_Error_Code) | null> { return callSDKAsync<(WKWebExtension_MessagePort_Error_Code) | null>("WebKit_d6c5d10d3352e6ec", 1059771004083939, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebExtension_MessagePort_Error_Code) | null> { return callSDKAsync<(WKWebExtension_MessagePort_Error_Code) | null>("WebKit_a956b86ef7a76a8e", 1059771004083939, undefined, [rawValue]); }
 };
 
 /**
@@ -3186,92 +3186,92 @@ export const WKWebExtension_Permission = {
    * nonisolated static let activeTab: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get activeTab(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 3167318966614588, undefined, []); },
+  get activeTab(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 3167318966614588, undefined, []); },
   /**
    * nonisolated static let alarms: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get alarms(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 949036032972626, undefined, []); },
+  get alarms(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 949036032972626, undefined, []); },
   /**
    * nonisolated static let clipboardWrite: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get clipboardWrite(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 151189986814182, undefined, []); },
+  get clipboardWrite(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 151189986814182, undefined, []); },
   /**
    * nonisolated static let contextMenus: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get contextMenus(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 4105229295809707, undefined, []); },
+  get contextMenus(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 4105229295809707, undefined, []); },
   /**
    * nonisolated static let cookies: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get cookies(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 4329634791987323, undefined, []); },
+  get cookies(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 4329634791987323, undefined, []); },
   /**
    * nonisolated static let declarativeNetRequest: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get declarativeNetRequest(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 52901483722598, undefined, []); },
+  get declarativeNetRequest(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 52901483722598, undefined, []); },
   /**
    * nonisolated static let declarativeNetRequestFeedback: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get declarativeNetRequestFeedback(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 1652018072347447, undefined, []); },
+  get declarativeNetRequestFeedback(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 1652018072347447, undefined, []); },
   /**
    * nonisolated static let declarativeNetRequestWithHostAccess: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get declarativeNetRequestWithHostAccess(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 545228917750432, undefined, []); },
+  get declarativeNetRequestWithHostAccess(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 545228917750432, undefined, []); },
   /**
    * nonisolated static let menus: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get menus(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 3008751183269317, undefined, []); },
+  get menus(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 3008751183269317, undefined, []); },
   /**
    * nonisolated static let nativeMessaging: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get nativeMessaging(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 3873129547900240, undefined, []); },
+  get nativeMessaging(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 3873129547900240, undefined, []); },
   /**
    * nonisolated static let scripting: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get scripting(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 3266028499641426, undefined, []); },
+  get scripting(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 3266028499641426, undefined, []); },
   /**
    * nonisolated static let storage: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get storage(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 3881392041076655, undefined, []); },
+  get storage(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 3881392041076655, undefined, []); },
   /**
    * nonisolated static let tabs: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get tabs(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 1399475615109293, undefined, []); },
+  get tabs(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 1399475615109293, undefined, []); },
   /**
    * nonisolated static let unlimitedStorage: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get unlimitedStorage(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 1900752483906584, undefined, []); },
+  get unlimitedStorage(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 1900752483906584, undefined, []); },
   /**
    * nonisolated static let webNavigation: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get webNavigation(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 4254617044472463, undefined, []); },
+  get webNavigation(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 4254617044472463, undefined, []); },
   /**
    * nonisolated static let webRequest: WKWebExtension.Permission
    * @availability iOS 18.4+
    */
-  get webRequest(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 1934580458752876, undefined, []); },
+  get webRequest(): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 1934580458752876, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 18.4+
    */
-  initRawValue(rawValue: string): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 1437276410834125, undefined, [rawValue]); },
+  initRawValue(rawValue: string): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 1437276410834125, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 18.4+
    */
-  init(rawValue: string): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_d6c5d10d3352e6ec", 2952748616556197, undefined, [rawValue]); }
+  init(rawValue: string): Promise<WKWebExtension_Permission> { return callSDKAsync<WKWebExtension_Permission>("WebKit_a956b86ef7a76a8e", 2952748616556197, undefined, [rawValue]); }
 };
 
 /**
@@ -3285,52 +3285,52 @@ export const WKWebExtension_TabChangedProperties = {
    * static var loading: WKWebExtension.TabChangedProperties { get }
    * @availability iOS 18.4+
    */
-  get loading(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_d6c5d10d3352e6ec", 3667409807833284, undefined, []); },
+  get loading(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_a956b86ef7a76a8e", 3667409807833284, undefined, []); },
   /**
    * static var muted: WKWebExtension.TabChangedProperties { get }
    * @availability iOS 18.4+
    */
-  get muted(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_d6c5d10d3352e6ec", 3228129371441536, undefined, []); },
+  get muted(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_a956b86ef7a76a8e", 3228129371441536, undefined, []); },
   /**
    * static var pinned: WKWebExtension.TabChangedProperties { get }
    * @availability iOS 18.4+
    */
-  get pinned(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_d6c5d10d3352e6ec", 316667479826647, undefined, []); },
+  get pinned(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_a956b86ef7a76a8e", 316667479826647, undefined, []); },
   /**
    * static var playingAudio: WKWebExtension.TabChangedProperties { get }
    * @availability iOS 18.4+
    */
-  get playingAudio(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_d6c5d10d3352e6ec", 986123930227991, undefined, []); },
+  get playingAudio(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_a956b86ef7a76a8e", 986123930227991, undefined, []); },
   /**
    * static var readerMode: WKWebExtension.TabChangedProperties { get }
    * @availability iOS 18.4+
    */
-  get readerMode(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_d6c5d10d3352e6ec", 2153626106519714, undefined, []); },
+  get readerMode(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_a956b86ef7a76a8e", 2153626106519714, undefined, []); },
   /**
    * static var size: WKWebExtension.TabChangedProperties { get }
    * @availability iOS 18.4+
    */
-  get size(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_d6c5d10d3352e6ec", 1033115732825639, undefined, []); },
+  get size(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_a956b86ef7a76a8e", 1033115732825639, undefined, []); },
   /**
    * static var title: WKWebExtension.TabChangedProperties { get }
    * @availability iOS 18.4+
    */
-  get title(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_d6c5d10d3352e6ec", 157699865566735, undefined, []); },
+  get title(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_a956b86ef7a76a8e", 157699865566735, undefined, []); },
   /**
    * static var URL: WKWebExtension.TabChangedProperties { get }
    * @availability iOS 18.4+
    */
-  get URL(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_d6c5d10d3352e6ec", 2125157715111581, undefined, []); },
+  get URL(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_a956b86ef7a76a8e", 2125157715111581, undefined, []); },
   /**
    * static var zoomFactor: WKWebExtension.TabChangedProperties { get }
    * @availability iOS 18.4+
    */
-  get zoomFactor(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_d6c5d10d3352e6ec", 1315777532363850, undefined, []); },
+  get zoomFactor(): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_a956b86ef7a76a8e", 1315777532363850, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_d6c5d10d3352e6ec", 3667977466806206, undefined, [rawValue]); }
+  init(rawValue: number): Promise<WKWebExtension_TabChangedProperties> { return callSDKAsync<WKWebExtension_TabChangedProperties>("WebKit_a956b86ef7a76a8e", 3667977466806206, undefined, [rawValue]); }
 };
 
 /**
@@ -3342,47 +3342,47 @@ export class WKWebExtension_TabConfiguration extends SDKHandle {
    * var index: Int { get }
    * @availability iOS 18.4+
    */
-  get index(): Promise<number> { return callSDKAsync<number>("WebKit_d6c5d10d3352e6ec", 2826123833561350, this, []); }
+  get index(): Promise<number> { return callSDKAsync<number>("WebKit_a956b86ef7a76a8e", 2826123833561350, this, []); }
   /**
    * var parentTab: (any WKWebExtensionTab)? { get }
    * @availability iOS 18.4+
    */
-  get parentTab(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_d6c5d10d3352e6ec", 1538885701838532, this, []); }
+  get parentTab(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_a956b86ef7a76a8e", 1538885701838532, this, []); }
   /**
    * var shouldAddToSelection: Bool { get }
    * @availability iOS 18.4+
    */
-  get shouldAddToSelection(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4280208281116723, this, []); }
+  get shouldAddToSelection(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4280208281116723, this, []); }
   /**
    * var shouldBeActive: Bool { get }
    * @availability iOS 18.4+
    */
-  get shouldBeActive(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4450063809299334, this, []); }
+  get shouldBeActive(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4450063809299334, this, []); }
   /**
    * var shouldBeMuted: Bool { get }
    * @availability iOS 18.4+
    */
-  get shouldBeMuted(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3189797195806187, this, []); }
+  get shouldBeMuted(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3189797195806187, this, []); }
   /**
    * var shouldBePinned: Bool { get }
    * @availability iOS 18.4+
    */
-  get shouldBePinned(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1508174040275928, this, []); }
+  get shouldBePinned(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1508174040275928, this, []); }
   /**
    * var shouldReaderModeBeActive: Bool { get }
    * @availability iOS 18.4+
    */
-  get shouldReaderModeBeActive(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 250599243427997, this, []); }
+  get shouldReaderModeBeActive(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 250599243427997, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 18.4+
    */
-  get url(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 400618382359802, this, []); }
+  get url(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 400618382359802, this, []); }
   /**
    * var window: (any WKWebExtensionWindow)? { get }
    * @availability iOS 18.4+
    */
-  get window(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_d6c5d10d3352e6ec", 2516403442388306, this, []); }
+  get window(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_a956b86ef7a76a8e", 2516403442388306, this, []); }
   declare readonly $type: { "c:objc(cs)WKWebExtensionTabConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3395,37 +3395,37 @@ export class WKWebExtension_WindowConfiguration extends SDKHandle {
    * var frame: CGRect { get }
    * @availability iOS 18.4+
    */
-  get frame(): Promise<$SDK10> { return callSDKAsync<$SDK10>("WebKit_d6c5d10d3352e6ec", 374857219470782, this, []); }
+  get frame(): Promise<$SDK10> { return callSDKAsync<$SDK10>("WebKit_a956b86ef7a76a8e", 374857219470782, this, []); }
   /**
    * var shouldBeFocused: Bool { get }
    * @availability iOS 18.4+
    */
-  get shouldBeFocused(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2160962940033684, this, []); }
+  get shouldBeFocused(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2160962940033684, this, []); }
   /**
    * var shouldBePrivate: Bool { get }
    * @availability iOS 18.4+
    */
-  get shouldBePrivate(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3164422033797254, this, []); }
+  get shouldBePrivate(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3164422033797254, this, []); }
   /**
    * var tabURLs: [URL] { get }
    * @availability iOS 18.4+
    */
-  get tabURLs(): Promise<Array<string>> { return callSDKAsync<Array<string>>("WebKit_d6c5d10d3352e6ec", 3895605165314526, this, []); }
+  get tabURLs(): Promise<Array<string>> { return callSDKAsync<Array<string>>("WebKit_a956b86ef7a76a8e", 3895605165314526, this, []); }
   /**
    * var tabs: [any WKWebExtensionTab] { get }
    * @availability iOS 18.4+
    */
-  get tabs(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("WebKit_d6c5d10d3352e6ec", 530744613010520, this, []); }
+  get tabs(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("WebKit_a956b86ef7a76a8e", 530744613010520, this, []); }
   /**
    * var windowState: WKWebExtension.WindowState { get }
    * @availability iOS 18.4+
    */
-  get windowState(): Promise<WKWebExtension_WindowState> { return callSDKAsync<WKWebExtension_WindowState>("WebKit_d6c5d10d3352e6ec", 417630066176171, this, []); }
+  get windowState(): Promise<WKWebExtension_WindowState> { return callSDKAsync<WKWebExtension_WindowState>("WebKit_a956b86ef7a76a8e", 417630066176171, this, []); }
   /**
    * var windowType: WKWebExtension.WindowType { get }
    * @availability iOS 18.4+
    */
-  get windowType(): Promise<WKWebExtension_WindowType> { return callSDKAsync<WKWebExtension_WindowType>("WebKit_d6c5d10d3352e6ec", 2564795136417386, this, []); }
+  get windowType(): Promise<WKWebExtension_WindowType> { return callSDKAsync<WKWebExtension_WindowType>("WebKit_a956b86ef7a76a8e", 2564795136417386, this, []); }
   declare readonly $type: { "c:objc(cs)WKWebExtensionWindowConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3440,7 +3440,7 @@ export const WKWebExtension_WindowState = {
    * init?(rawValue: Int)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): Promise<(WKWebExtension_WindowState) | null> { return callSDKAsync<(WKWebExtension_WindowState) | null>("WebKit_d6c5d10d3352e6ec", 4246969014275933, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebExtension_WindowState) | null> { return callSDKAsync<(WKWebExtension_WindowState) | null>("WebKit_a956b86ef7a76a8e", 4246969014275933, undefined, [rawValue]); }
 };
 
 /**
@@ -3454,7 +3454,7 @@ export const WKWebExtension_WindowType = {
    * init?(rawValue: Int)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): Promise<(WKWebExtension_WindowType) | null> { return callSDKAsync<(WKWebExtension_WindowType) | null>("WebKit_d6c5d10d3352e6ec", 3977851189114996, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebExtension_WindowType) | null> { return callSDKAsync<(WKWebExtension_WindowType) | null>("WebKit_a956b86ef7a76a8e", 3977851189114996, undefined, [rawValue]); }
 };
 
 /**
@@ -3466,393 +3466,393 @@ export class WKWebExtensionContext extends SDKHandle {
    * nonisolated class let deniedPermissionMatchPatternsWereRemovedNotification: NSNotification.Name
    * @availability iOS 18.4+
    */
-  static get deniedPermissionMatchPatternsWereRemovedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_d6c5d10d3352e6ec", 3959299634864683, undefined, []); }
+  static get deniedPermissionMatchPatternsWereRemovedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_a956b86ef7a76a8e", 3959299634864683, undefined, []); }
   /**
    * nonisolated class let deniedPermissionsWereRemovedNotification: NSNotification.Name
    * @availability iOS 18.4+
    */
-  static get deniedPermissionsWereRemovedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_d6c5d10d3352e6ec", 391284998306593, undefined, []); }
+  static get deniedPermissionsWereRemovedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_a956b86ef7a76a8e", 391284998306593, undefined, []); }
   /**
    * nonisolated class let errorDomain: String
    * @availability iOS 18.4+
    */
-  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 581681496557941, undefined, []); }
+  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 581681496557941, undefined, []); }
   /**
    * nonisolated class let errorsDidUpdateNotification: NSNotification.Name
    * @availability iOS 18.4+
    */
-  static get errorsDidUpdateNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_d6c5d10d3352e6ec", 351163869333511, undefined, []); }
+  static get errorsDidUpdateNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_a956b86ef7a76a8e", 351163869333511, undefined, []); }
   /**
    * nonisolated class let grantedPermissionMatchPatternsWereRemovedNotification: NSNotification.Name
    * @availability iOS 18.4+
    */
-  static get grantedPermissionMatchPatternsWereRemovedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_d6c5d10d3352e6ec", 3495710741500972, undefined, []); }
+  static get grantedPermissionMatchPatternsWereRemovedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_a956b86ef7a76a8e", 3495710741500972, undefined, []); }
   /**
    * nonisolated class let grantedPermissionsWereRemovedNotification: NSNotification.Name
    * @availability iOS 18.4+
    */
-  static get grantedPermissionsWereRemovedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_d6c5d10d3352e6ec", 204015138736993, undefined, []); }
+  static get grantedPermissionsWereRemovedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_a956b86ef7a76a8e", 204015138736993, undefined, []); }
   /**
    * nonisolated class let permissionMatchPatternsWereDeniedNotification: NSNotification.Name
    * @availability iOS 18.4+
    */
-  static get permissionMatchPatternsWereDeniedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_d6c5d10d3352e6ec", 110164888228075, undefined, []); }
+  static get permissionMatchPatternsWereDeniedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_a956b86ef7a76a8e", 110164888228075, undefined, []); }
   /**
    * nonisolated class let permissionMatchPatternsWereGrantedNotification: NSNotification.Name
    * @availability iOS 18.4+
    */
-  static get permissionMatchPatternsWereGrantedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_d6c5d10d3352e6ec", 1323725543005596, undefined, []); }
+  static get permissionMatchPatternsWereGrantedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_a956b86ef7a76a8e", 1323725543005596, undefined, []); }
   /**
    * nonisolated class let permissionsWereDeniedNotification: NSNotification.Name
    * @availability iOS 18.4+
    */
-  static get permissionsWereDeniedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_d6c5d10d3352e6ec", 3610379119664874, undefined, []); }
+  static get permissionsWereDeniedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_a956b86ef7a76a8e", 3610379119664874, undefined, []); }
   /**
    * nonisolated class let permissionsWereGrantedNotification: NSNotification.Name
    * @availability iOS 18.4+
    */
-  static get permissionsWereGrantedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_d6c5d10d3352e6ec", 3215644677775013, undefined, []); }
+  static get permissionsWereGrantedNotification(): Promise<_Foundation_NSNotification_Name> { return callSDKAsync<_Foundation_NSNotification_Name>("WebKit_a956b86ef7a76a8e", 3215644677775013, undefined, []); }
   /**
    * func action(for tab: (any WKWebExtensionTab)?) -> WKWebExtension.Action?
    * @availability iOS 18.4+
    */
-  action(tab?: $SDK44): Promise<(WKWebExtension_Action) | null> { return callSDKAsync<(WKWebExtension_Action) | null>("WebKit_d6c5d10d3352e6ec", 3735350872382570, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  action(tab?: $SDK44): Promise<(WKWebExtension_Action) | null> { return callSDKAsync<(WKWebExtension_Action) | null>("WebKit_a956b86ef7a76a8e", 3735350872382570, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func clearUserGesture(in tab: any WKWebExtensionTab)
    * @availability iOS 18.4+
    */
-  clearUserGesture(tab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3876818676692633, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  clearUserGesture(tab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3876818676692633, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func didChangeTabProperties(_ properties: WKWebExtension.TabChangedProperties, for changedTab: any WKWebExtensionTab)
    * @availability iOS 18.4+
    */
-  didChangeTabProperties(properties: WKWebExtension_TabChangedProperties, changedTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4284857747590897, this, [properties, changedTab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  didChangeTabProperties(properties: WKWebExtension_TabChangedProperties, changedTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4284857747590897, this, [properties, changedTab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func didCloseWindow(_ closedWindow: any WKWebExtensionWindow)
    * @availability iOS 18.4+
    */
-  didCloseWindow(closedWindow: $SDK46): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1620497873626242, this, [closedWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
+  didCloseWindow(closedWindow: $SDK46): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1620497873626242, this, [closedWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
   /**
    * func didDeselectTabs(_ deselectedTabs: [any WKWebExtensionTab])
    * @availability iOS 18.4+
    */
-  didDeselectTabs(deselectedTabs: $SDK47): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2043444927319582, this, [deselectedTabs], [{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]); }
+  didDeselectTabs(deselectedTabs: $SDK47): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2043444927319582, this, [deselectedTabs], [{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]); }
   /**
    * func didFocusWindow(_ focusedWindow: (any WKWebExtensionWindow)?)
    * @availability iOS 18.4+
    */
-  didFocusWindow(focusedWindow?: $SDK48): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2376096800159992, this, [focusedWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
+  didFocusWindow(focusedWindow?: $SDK48): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2376096800159992, this, [focusedWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
   /**
    * func didOpenTab(_ newTab: any WKWebExtensionTab)
    * @availability iOS 18.4+
    */
-  didOpenTab(newTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3881288518950735, this, [newTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  didOpenTab(newTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3881288518950735, this, [newTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func didOpenWindow(_ newWindow: any WKWebExtensionWindow)
    * @availability iOS 18.4+
    */
-  didOpenWindow(newWindow: $SDK46): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3921726856480847, this, [newWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
+  didOpenWindow(newWindow: $SDK46): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3921726856480847, this, [newWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
   /**
    * func didReplaceTab(_ oldTab: any WKWebExtensionTab, with newTab: any WKWebExtensionTab)
    * @availability iOS 18.4+
    */
-  didReplaceTab(oldTab: $SDK45, newTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4003383184527158, this, [oldTab, newTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  didReplaceTab(oldTab: $SDK45, newTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4003383184527158, this, [oldTab, newTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func didSelectTabs(_ selectedTabs: [any WKWebExtensionTab])
    * @availability iOS 18.4+
    */
-  didSelectTabs(selectedTabs: $SDK47): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 494828935348046, this, [selectedTabs], [{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]); }
+  didSelectTabs(selectedTabs: $SDK47): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 494828935348046, this, [selectedTabs], [{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]); }
   /**
    * func hasAccess(to url: URL) -> Bool
    * @availability iOS 18.4+
    */
-  hasAccessTo(url: string): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1038329206432397, this, [url]); }
+  hasAccessTo(url: string): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1038329206432397, this, [url]); }
   /**
    * func hasAccess(to url: URL, in tab: (any WKWebExtensionTab)?) -> Bool
    * @availability iOS 18.4+
    */
-  hasAccessToIn(url: string, tab?: $SDK44): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2359122499011619, this, [url, tab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  hasAccessToIn(url: string, tab?: $SDK44): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2359122499011619, this, [url, tab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func hasActiveUserGesture(in tab: any WKWebExtensionTab) -> Bool
    * @availability iOS 18.4+
    */
-  hasActiveUserGesture(tab: $SDK45): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 536740634533908, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  hasActiveUserGesture(tab: $SDK45): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 536740634533908, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func hasInjectedContent(for url: URL) -> Bool
    * @availability iOS 18.4+
    */
-  hasInjectedContentFor(url: string): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1229545766277009, this, [url]); }
+  hasInjectedContentFor(url: string): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1229545766277009, this, [url]); }
   /**
    * func hasPermission(_ permission: WKWebExtension.Permission) -> Bool
    * @availability iOS 18.4+
    */
-  hasPermission(permission: WKWebExtension_Permission): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3268615301353091, this, [permission]); }
+  hasPermission(permission: WKWebExtension_Permission): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3268615301353091, this, [permission]); }
   /**
    * func hasPermission(_ permission: WKWebExtension.Permission, in tab: (any WKWebExtensionTab)?) -> Bool
    * @availability iOS 18.4+
    */
-  hasPermissionIn(permission: WKWebExtension_Permission, tab?: $SDK44): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2596974953986089, this, [permission, tab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  hasPermissionIn(permission: WKWebExtension_Permission, tab?: $SDK44): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2596974953986089, this, [permission, tab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * init(for extension: WKWebExtension)
    * @availability iOS 18.4+
    */
-  static init(extension: WKWebExtension): Promise<WKWebExtensionContext> { return callSDKAsync<WKWebExtensionContext>("WebKit_d6c5d10d3352e6ec", 965703557862652, undefined, [extension]); }
+  static init(extension: WKWebExtension): Promise<WKWebExtensionContext> { return callSDKAsync<WKWebExtensionContext>("WebKit_a956b86ef7a76a8e", 965703557862652, undefined, [extension]); }
   /**
    * func loadBackgroundContent() async throws
    * @availability iOS 18.4+
    */
-  loadBackgroundContent(completionHandler: $SDK49): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4117315270548233, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  loadBackgroundContent(completionHandler: $SDK49): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4117315270548233, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func menuItems(for tab: any WKWebExtensionTab) -> [UIMenuElement]
    * @availability iOS 18.4+
    */
-  menuItems(tab: $SDK45): Promise<Array<_UIKit_UIMenuElement>> { return callSDKAsync<Array<_UIKit_UIMenuElement>>("WebKit_d6c5d10d3352e6ec", 1599505242289179, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  menuItems(tab: $SDK45): Promise<Array<_UIKit_UIMenuElement>> { return callSDKAsync<Array<_UIKit_UIMenuElement>>("WebKit_a956b86ef7a76a8e", 1599505242289179, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func performAction(for tab: (any WKWebExtensionTab)?)
    * @availability iOS 18.4+
    */
-  performAction(tab?: $SDK44): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1866721919371448, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  performAction(tab?: $SDK44): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1866721919371448, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func performCommand(_ command: WKWebExtension.Command)
    * @availability iOS 18.4+
    */
-  performCommand(command: WKWebExtension_Command): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2363787633238508, this, [command]); }
+  performCommand(command: WKWebExtension_Command): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2363787633238508, this, [command]); }
   /**
    * func performCommand(for keyCommand: UIKeyCommand) -> Bool
    * @availability iOS 18.4+
    */
-  performCommandFor(keyCommand: _UIKit_UIKeyCommand): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4135161867267624, this, [keyCommand]); }
+  performCommandFor(keyCommand: _UIKit_UIKeyCommand): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4135161867267624, this, [keyCommand]); }
   /**
    * func permissionStatus(for pattern: WKWebExtension.MatchPattern) -> WKWebExtensionContext.PermissionStatus
    * @availability iOS 18.4+
    */
-  permissionStatusFor(pattern: WKWebExtension_MatchPattern): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_d6c5d10d3352e6ec", 3060338800834938, this, [pattern]); }
+  permissionStatusFor(pattern: WKWebExtension_MatchPattern): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_a956b86ef7a76a8e", 3060338800834938, this, [pattern]); }
   /**
    * func permissionStatus(for pattern: WKWebExtension.MatchPattern, in tab: (any WKWebExtensionTab)?) -> WKWebExtensionContext.PermissionStatus
    * @availability iOS 18.4+
    */
-  permissionStatusForIn(pattern: WKWebExtension_MatchPattern, tab?: $SDK44): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_d6c5d10d3352e6ec", 1366925758380620, this, [pattern, tab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  permissionStatusForIn(pattern: WKWebExtension_MatchPattern, tab?: $SDK44): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_a956b86ef7a76a8e", 1366925758380620, this, [pattern, tab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func permissionStatus(for permission: WKWebExtension.Permission) -> WKWebExtensionContext.PermissionStatus
    * @availability iOS 18.4+
    */
-  permissionStatusFor51407(permission: WKWebExtension_Permission): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_d6c5d10d3352e6ec", 965866391631345, this, [permission]); }
+  permissionStatusFor51407(permission: WKWebExtension_Permission): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_a956b86ef7a76a8e", 965866391631345, this, [permission]); }
   /**
    * func permissionStatus(for permission: WKWebExtension.Permission, in tab: (any WKWebExtensionTab)?) -> WKWebExtensionContext.PermissionStatus
    * @availability iOS 18.4+
    */
-  permissionStatusForIn75963(permission: WKWebExtension_Permission, tab?: $SDK44): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_d6c5d10d3352e6ec", 775745374740737, this, [permission, tab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  permissionStatusForIn75963(permission: WKWebExtension_Permission, tab?: $SDK44): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_a956b86ef7a76a8e", 775745374740737, this, [permission, tab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func permissionStatus(for url: URL) -> WKWebExtensionContext.PermissionStatus
    * @availability iOS 18.4+
    */
-  permissionStatusFor21065(url: string): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_d6c5d10d3352e6ec", 3977001426984340, this, [url]); }
+  permissionStatusFor21065(url: string): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_a956b86ef7a76a8e", 3977001426984340, this, [url]); }
   /**
    * func permissionStatus(for url: URL, in tab: (any WKWebExtensionTab)?) -> WKWebExtensionContext.PermissionStatus
    * @availability iOS 18.4+
    */
-  permissionStatusForIn76857(url: string, tab?: $SDK44): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_d6c5d10d3352e6ec", 1013577136772095, this, [url, tab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  permissionStatusForIn76857(url: string, tab?: $SDK44): Promise<WKWebExtensionContext_PermissionStatus> { return callSDKAsync<WKWebExtensionContext_PermissionStatus>("WebKit_a956b86ef7a76a8e", 1013577136772095, this, [url, tab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for pattern: WKWebExtension.MatchPattern)
    * @availability iOS 18.4+
    */
-  setPermissionStatusFor(status: WKWebExtensionContext_PermissionStatus, pattern: WKWebExtension_MatchPattern): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3326288076599837, this, [status, pattern]); }
+  setPermissionStatusFor(status: WKWebExtensionContext_PermissionStatus, pattern: WKWebExtension_MatchPattern): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3326288076599837, this, [status, pattern]); }
   /**
    * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for pattern: WKWebExtension.MatchPattern, expirationDate: Date?)
    * @availability iOS 18.4+
    */
-  setPermissionStatusForExpirationDate(status: WKWebExtensionContext_PermissionStatus, pattern: WKWebExtension_MatchPattern, expirationDate?: $SDK50): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3524242338052136, this, [status, pattern, expirationDate]); }
+  setPermissionStatusForExpirationDate(status: WKWebExtensionContext_PermissionStatus, pattern: WKWebExtension_MatchPattern, expirationDate?: $SDK50): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3524242338052136, this, [status, pattern, expirationDate]); }
   /**
    * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for permission: WKWebExtension.Permission)
    * @availability iOS 18.4+
    */
-  setPermissionStatusFor3023(status: WKWebExtensionContext_PermissionStatus, permission: WKWebExtension_Permission): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3847254207237241, this, [status, permission]); }
+  setPermissionStatusFor3023(status: WKWebExtensionContext_PermissionStatus, permission: WKWebExtension_Permission): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3847254207237241, this, [status, permission]); }
   /**
    * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for permission: WKWebExtension.Permission, expirationDate: Date?)
    * @availability iOS 18.4+
    */
-  setPermissionStatusForExpirationDate9336(status: WKWebExtensionContext_PermissionStatus, permission: WKWebExtension_Permission, expirationDate?: $SDK50): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1413010243214401, this, [status, permission, expirationDate]); }
+  setPermissionStatusForExpirationDate9336(status: WKWebExtensionContext_PermissionStatus, permission: WKWebExtension_Permission, expirationDate?: $SDK50): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1413010243214401, this, [status, permission, expirationDate]); }
   /**
    * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for url: URL)
    * @availability iOS 18.4+
    */
-  setPermissionStatusFor98953(status: WKWebExtensionContext_PermissionStatus, url: string): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3905659796095307, this, [status, url]); }
+  setPermissionStatusFor98953(status: WKWebExtensionContext_PermissionStatus, url: string): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3905659796095307, this, [status, url]); }
   /**
    * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for url: URL, expirationDate: Date?)
    * @availability iOS 18.4+
    */
-  setPermissionStatusForExpirationDate22950(status: WKWebExtensionContext_PermissionStatus, url: string, expirationDate?: $SDK50): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 841488428364860, this, [status, url, expirationDate]); }
+  setPermissionStatusForExpirationDate22950(status: WKWebExtensionContext_PermissionStatus, url: string, expirationDate?: $SDK50): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 841488428364860, this, [status, url, expirationDate]); }
   /**
    * func userGesturePerformed(in tab: any WKWebExtensionTab)
    * @availability iOS 18.4+
    */
-  userGesturePerformed(tab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1575618276232370, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  userGesturePerformed(tab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1575618276232370, this, [tab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * var baseURL: URL { get set }
    * @availability iOS 18.4+
    */
-  get baseURL(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 3089130129286059, this, []); }
-  setBaseURL(value: string): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1958559449818773, this, [value]); }
+  get baseURL(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 3089130129286059, this, []); }
+  setBaseURL(value: string): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1958559449818773, this, [value]); }
   /**
    * var commands: [WKWebExtension.Command] { get }
    * @availability iOS 18.4+
    */
-  get commands(): Promise<Array<WKWebExtension_Command>> { return callSDKAsync<Array<WKWebExtension_Command>>("WebKit_d6c5d10d3352e6ec", 1629920229341086, this, []); }
+  get commands(): Promise<Array<WKWebExtension_Command>> { return callSDKAsync<Array<WKWebExtension_Command>>("WebKit_a956b86ef7a76a8e", 1629920229341086, this, []); }
   /**
    * var currentPermissionMatchPatterns: Set<WKWebExtension.MatchPattern> { get }
    * @availability iOS 18.4+
    */
-  get currentPermissionMatchPatterns(): Promise<$SDK31> { return callSDKAsync<$SDK31>("WebKit_d6c5d10d3352e6ec", 3927563292327300, this, []); }
+  get currentPermissionMatchPatterns(): Promise<$SDK31> { return callSDKAsync<$SDK31>("WebKit_a956b86ef7a76a8e", 3927563292327300, this, []); }
   /**
    * var currentPermissions: Set<WKWebExtension.Permission> { get }
    * @availability iOS 18.4+
    */
-  get currentPermissions(): Promise<$SDK33> { return callSDKAsync<$SDK33>("WebKit_d6c5d10d3352e6ec", 4083998834078353, this, []); }
+  get currentPermissions(): Promise<$SDK33> { return callSDKAsync<$SDK33>("WebKit_a956b86ef7a76a8e", 4083998834078353, this, []); }
   /**
    * var deniedPermissionMatchPatterns: [WKWebExtension.MatchPattern : Date] { get set }
    * @availability iOS 18.4+
    */
-  get deniedPermissionMatchPatterns(): Promise<$SDK52> { return callSDKAsync<$SDK52>("WebKit_d6c5d10d3352e6ec", 1937770086491456, this, []); }
-  setDeniedPermissionMatchPatterns(value: $SDK52): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 213070733559115, this, [value]); }
+  get deniedPermissionMatchPatterns(): Promise<$SDK52> { return callSDKAsync<$SDK52>("WebKit_a956b86ef7a76a8e", 1937770086491456, this, []); }
+  setDeniedPermissionMatchPatterns(value: $SDK52): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 213070733559115, this, [value]); }
   /**
    * var deniedPermissions: [WKWebExtension.Permission : Date] { get set }
    * @availability iOS 18.4+
    */
-  get deniedPermissions(): Promise<$SDK53> { return callSDKAsync<$SDK53>("WebKit_d6c5d10d3352e6ec", 2140867154973030, this, []); }
-  setDeniedPermissions(value: $SDK53): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 172809735610723, this, [value]); }
+  get deniedPermissions(): Promise<$SDK53> { return callSDKAsync<$SDK53>("WebKit_a956b86ef7a76a8e", 2140867154973030, this, []); }
+  setDeniedPermissions(value: $SDK53): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 172809735610723, this, [value]); }
   /**
    * var errors: [any Error] { get }
    * @availability iOS 18.4+
    */
-  get errors(): Promise<Array<NativeError>> { return callSDKAsync<Array<NativeError>>("WebKit_d6c5d10d3352e6ec", 2968166102273811, this, []); }
+  get errors(): Promise<Array<NativeError>> { return callSDKAsync<Array<NativeError>>("WebKit_a956b86ef7a76a8e", 2968166102273811, this, []); }
   /**
    * weak var focusedWindow: (any WKWebExtensionWindow)? { get }
    * @availability iOS 18.4+
    */
-  get focusedWindow(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_d6c5d10d3352e6ec", 4180702700313439, this, []); }
+  get focusedWindow(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_a956b86ef7a76a8e", 4180702700313439, this, []); }
   /**
    * var grantedPermissionMatchPatterns: [WKWebExtension.MatchPattern : Date] { get set }
    * @availability iOS 18.4+
    */
-  get grantedPermissionMatchPatterns(): Promise<$SDK52> { return callSDKAsync<$SDK52>("WebKit_d6c5d10d3352e6ec", 3280847735587994, this, []); }
-  setGrantedPermissionMatchPatterns(value: $SDK52): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3357921850594804, this, [value]); }
+  get grantedPermissionMatchPatterns(): Promise<$SDK52> { return callSDKAsync<$SDK52>("WebKit_a956b86ef7a76a8e", 3280847735587994, this, []); }
+  setGrantedPermissionMatchPatterns(value: $SDK52): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3357921850594804, this, [value]); }
   /**
    * var grantedPermissions: [WKWebExtension.Permission : Date] { get set }
    * @availability iOS 18.4+
    */
-  get grantedPermissions(): Promise<$SDK53> { return callSDKAsync<$SDK53>("WebKit_d6c5d10d3352e6ec", 2331776310907802, this, []); }
-  setGrantedPermissions(value: $SDK53): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3488288707966759, this, [value]); }
+  get grantedPermissions(): Promise<$SDK53> { return callSDKAsync<$SDK53>("WebKit_a956b86ef7a76a8e", 2331776310907802, this, []); }
+  setGrantedPermissions(value: $SDK53): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3488288707966759, this, [value]); }
   /**
    * var hasAccessToAllHosts: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasAccessToAllHosts(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1631775376722247, this, []); }
+  get hasAccessToAllHosts(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1631775376722247, this, []); }
   /**
    * var hasAccessToAllURLs: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasAccessToAllURLs(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3652200966268166, this, []); }
+  get hasAccessToAllURLs(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3652200966268166, this, []); }
   /**
    * var hasAccessToPrivateData: Bool { get set }
    * @availability iOS 18.4+
    */
-  get hasAccessToPrivateData(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1503180414121049, this, []); }
-  setHasAccessToPrivateData(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1626453112395240, this, [value]); }
+  get hasAccessToPrivateData(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1503180414121049, this, []); }
+  setHasAccessToPrivateData(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1626453112395240, this, [value]); }
   /**
    * var hasContentModificationRules: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasContentModificationRules(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3366158070278118, this, []); }
+  get hasContentModificationRules(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3366158070278118, this, []); }
   /**
    * var hasInjectedContent: Bool { get }
    * @availability iOS 18.4+
    */
-  get hasInjectedContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1853306380923398, this, []); }
+  get hasInjectedContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1853306380923398, this, []); }
   /**
    * var hasRequestedOptionalAccessToAllHosts: Bool { get set }
    * @availability iOS 18.4+
    */
-  get hasRequestedOptionalAccessToAllHosts(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3461548995563661, this, []); }
-  setHasRequestedOptionalAccessToAllHosts(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 708585900665661, this, [value]); }
+  get hasRequestedOptionalAccessToAllHosts(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3461548995563661, this, []); }
+  setHasRequestedOptionalAccessToAllHosts(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 708585900665661, this, [value]); }
   /**
    * var isInspectable: Bool { get set }
    * @availability iOS 18.4+
    */
-  get isInspectable(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2347232832359571, this, []); }
-  setIsInspectable(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3708740117807885, this, [value]); }
+  get isInspectable(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2347232832359571, this, []); }
+  setIsInspectable(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3708740117807885, this, [value]); }
   /**
    * var inspectionName: String? { get set }
    * @availability iOS 18.4+
    */
-  get inspectionName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 2501897357262789, this, []); }
-  setInspectionName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 978619952587199, this, [value]); }
+  get inspectionName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 2501897357262789, this, []); }
+  setInspectionName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 978619952587199, this, [value]); }
   /**
    * var isLoaded: Bool { get }
    * @availability iOS 18.4+
    */
-  get isLoaded(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1211484031642438, this, []); }
+  get isLoaded(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1211484031642438, this, []); }
   /**
    * var openTabs: Set<AnyHashable> { get }
    * @availability iOS 18.4+
    */
-  get openTabs(): Promise<Array<unknown>> { return callSDKAsync<Array<unknown>>("WebKit_d6c5d10d3352e6ec", 1739485671673396, this, []); }
+  get openTabs(): Promise<Array<unknown>> { return callSDKAsync<Array<unknown>>("WebKit_a956b86ef7a76a8e", 1739485671673396, this, []); }
   /**
    * var openWindows: [any WKWebExtensionWindow] { get }
    * @availability iOS 18.4+
    */
-  get openWindows(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("WebKit_d6c5d10d3352e6ec", 1150701574392064, this, []); }
+  get openWindows(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("WebKit_a956b86ef7a76a8e", 1150701574392064, this, []); }
   /**
    * var optionsPageURL: URL? { get }
    * @availability iOS 18.4+
    */
-  get optionsPageURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 2443916462570432, this, []); }
+  get optionsPageURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 2443916462570432, this, []); }
   /**
    * var overrideNewTabPageURL: URL? { get }
    * @availability iOS 18.4+
    */
-  get overrideNewTabPageURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 324003752543446, this, []); }
+  get overrideNewTabPageURL(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 324003752543446, this, []); }
   /**
    * var uniqueIdentifier: String { get set }
    * @availability iOS 18.4+
    */
-  get uniqueIdentifier(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 3021989726387183, this, []); }
-  setUniqueIdentifier(value: string): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2023622712093841, this, [value]); }
+  get uniqueIdentifier(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 3021989726387183, this, []); }
+  setUniqueIdentifier(value: string): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2023622712093841, this, [value]); }
   /**
    * var unsupportedAPIs: Set<String>! { get set }
    * @availability iOS 18.4+
    */
-  get unsupportedAPIs(): Promise<(Array<string>) | null> { return callSDKAsync<(Array<string>) | null>("WebKit_d6c5d10d3352e6ec", 240196332712997, this, []); }
-  setUnsupportedAPIs(value?: (Array<string>) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2290821681008793, this, [value]); }
+  get unsupportedAPIs(): Promise<(Array<string>) | null> { return callSDKAsync<(Array<string>) | null>("WebKit_a956b86ef7a76a8e", 240196332712997, this, []); }
+  setUnsupportedAPIs(value?: (Array<string>) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2290821681008793, this, [value]); }
   /**
    * var webExtension: WKWebExtension { get }
    * @availability iOS 18.4+
    */
-  get webExtension(): Promise<WKWebExtension> { return callSDKAsync<WKWebExtension>("WebKit_d6c5d10d3352e6ec", 3750879634348970, this, []); }
+  get webExtension(): Promise<WKWebExtension> { return callSDKAsync<WKWebExtension>("WebKit_a956b86ef7a76a8e", 3750879634348970, this, []); }
   /**
    * weak var webExtensionController: WKWebExtensionController? { get }
    * @availability iOS 18.4+
    */
-  get webExtensionController(): Promise<$SDK9> { return callSDKAsync<$SDK9>("WebKit_d6c5d10d3352e6ec", 2954347327627273, this, []); }
+  get webExtensionController(): Promise<$SDK9> { return callSDKAsync<$SDK9>("WebKit_a956b86ef7a76a8e", 2954347327627273, this, []); }
   /**
    * @NSCopying var webViewConfiguration: WKWebViewConfiguration? { get }
    * @availability iOS 18.4+
    */
-  get webViewConfiguration(): Promise<$SDK54> { return callSDKAsync<$SDK54>("WebKit_d6c5d10d3352e6ec", 2559872907391573, this, []); }
+  get webViewConfiguration(): Promise<$SDK54> { return callSDKAsync<$SDK54>("WebKit_a956b86ef7a76a8e", 2559872907391573, this, []); }
   /**
    * @MainActor @preconcurrency func didMoveTab(_ movedTab: any WKWebExtensionTab, from index: Int, in oldWindow: (any WKWebExtensionWindow)? = nil)
    * @availability iOS 18.4+
    */
-  didMoveTab(movedTab: $SDK45, index: number, oldWindow?: $SDK48): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1084521899188595, this, [movedTab, index, oldWindow], [{"protocol":"c:objc(pl)WKWebExtensionTab"},null,{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
+  didMoveTab(movedTab: $SDK45, index: number, oldWindow?: $SDK48): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1084521899188595, this, [movedTab, index, oldWindow], [{"protocol":"c:objc(pl)WKWebExtensionTab"},null,{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
   /**
    * @MainActor @preconcurrency func didCloseTab(_ closedTab: any WKWebExtensionTab, windowIsClosing: Bool = false)
    * @availability iOS 18.4+
    */
-  didCloseTab(closedTab: $SDK45, windowIsClosing?: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2474434362552883, this, [closedTab, windowIsClosing], [{"protocol":"c:objc(pl)WKWebExtensionTab"},null]); }
+  didCloseTab(closedTab: $SDK45, windowIsClosing?: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2474434362552883, this, [closedTab, windowIsClosing], [{"protocol":"c:objc(pl)WKWebExtensionTab"},null]); }
   /**
    * @MainActor @preconcurrency func didActivateTab(_ activatedTab: any WKWebExtensionTab, previousActiveTab previousTab: (any WKWebExtensionTab)? = nil)
    * @availability iOS 18.4+
    */
-  didActivateTab(activatedTab: $SDK45, previousTab?: $SDK44): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3263938655938850, this, [activatedTab, previousTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  didActivateTab(activatedTab: $SDK45, previousTab?: $SDK44): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3263938655938850, this, [activatedTab, previousTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   declare readonly $type: { "c:objc(cs)WKWebExtensionContext": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3865,37 +3865,37 @@ export class WKWebExtensionContext_Error extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 18.4+
    */
-  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 3058182994391155, undefined, []); }
+  static get errorDomain(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 3058182994391155, undefined, []); }
   /**
    * static var alreadyLoaded: WKWebExtensionContext.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get alreadyLoaded(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_d6c5d10d3352e6ec", 157175786652436, undefined, []); }
+  static get alreadyLoaded(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_a956b86ef7a76a8e", 157175786652436, undefined, []); }
   /**
    * static var baseURLAlreadyInUse: WKWebExtensionContext.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get baseURLAlreadyInUse(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_d6c5d10d3352e6ec", 824850681271219, undefined, []); }
+  static get baseURLAlreadyInUse(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_a956b86ef7a76a8e", 824850681271219, undefined, []); }
   /**
    * static var noBackgroundContent: WKWebExtensionContext.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get noBackgroundContent(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_d6c5d10d3352e6ec", 2431349833159378, undefined, []); }
+  static get noBackgroundContent(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_a956b86ef7a76a8e", 2431349833159378, undefined, []); }
   /**
    * static var backgroundContentFailedToLoad: WKWebExtensionContext.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get backgroundContentFailedToLoad(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_d6c5d10d3352e6ec", 3090483185814958, undefined, []); }
+  static get backgroundContentFailedToLoad(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_a956b86ef7a76a8e", 3090483185814958, undefined, []); }
   /**
    * static var unknown: WKWebExtensionContext.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get unknown(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_d6c5d10d3352e6ec", 3936828819813193, undefined, []); }
+  static get unknown(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_a956b86ef7a76a8e", 3936828819813193, undefined, []); }
   /**
    * static var notLoaded: WKWebExtensionContext.Error.Code { get }
    * @availability iOS 18.4+
    */
-  static get notLoaded(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_d6c5d10d3352e6ec", 4101162711980324, undefined, []); }
+  static get notLoaded(): Promise<WKWebExtensionContext_Error_Code> { return callSDKAsync<WKWebExtensionContext_Error_Code>("WebKit_a956b86ef7a76a8e", 4101162711980324, undefined, []); }
   declare readonly $type: { "s:SC26WKWebExtensionContextErrorLeV": true };
 }
 
@@ -3910,7 +3910,7 @@ export const WKWebExtensionContext_Error_Code = {
    * init?(rawValue: Int)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): Promise<(WKWebExtensionContext_Error_Code) | null> { return callSDKAsync<(WKWebExtensionContext_Error_Code) | null>("WebKit_d6c5d10d3352e6ec", 3584614669283239, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebExtensionContext_Error_Code) | null> { return callSDKAsync<(WKWebExtensionContext_Error_Code) | null>("WebKit_a956b86ef7a76a8e", 3584614669283239, undefined, [rawValue]); }
 };
 
 /**
@@ -3924,22 +3924,22 @@ export const WKWebExtensionContext_NotificationUserInfoKey = {
    * nonisolated static let matchPatterns: WKWebExtensionContext.NotificationUserInfoKey
    * @availability iOS 18.4+
    */
-  get matchPatterns(): Promise<WKWebExtensionContext_NotificationUserInfoKey> { return callSDKAsync<WKWebExtensionContext_NotificationUserInfoKey>("WebKit_d6c5d10d3352e6ec", 3880598654162724, undefined, []); },
+  get matchPatterns(): Promise<WKWebExtensionContext_NotificationUserInfoKey> { return callSDKAsync<WKWebExtensionContext_NotificationUserInfoKey>("WebKit_a956b86ef7a76a8e", 3880598654162724, undefined, []); },
   /**
    * nonisolated static let permissions: WKWebExtensionContext.NotificationUserInfoKey
    * @availability iOS 18.4+
    */
-  get permissions(): Promise<WKWebExtensionContext_NotificationUserInfoKey> { return callSDKAsync<WKWebExtensionContext_NotificationUserInfoKey>("WebKit_d6c5d10d3352e6ec", 2740809866554477, undefined, []); },
+  get permissions(): Promise<WKWebExtensionContext_NotificationUserInfoKey> { return callSDKAsync<WKWebExtensionContext_NotificationUserInfoKey>("WebKit_a956b86ef7a76a8e", 2740809866554477, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 18.4+
    */
-  initRawValue(rawValue: string): Promise<WKWebExtensionContext_NotificationUserInfoKey> { return callSDKAsync<WKWebExtensionContext_NotificationUserInfoKey>("WebKit_d6c5d10d3352e6ec", 4069423976419574, undefined, [rawValue]); },
+  initRawValue(rawValue: string): Promise<WKWebExtensionContext_NotificationUserInfoKey> { return callSDKAsync<WKWebExtensionContext_NotificationUserInfoKey>("WebKit_a956b86ef7a76a8e", 4069423976419574, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 18.4+
    */
-  init(rawValue: string): Promise<WKWebExtensionContext_NotificationUserInfoKey> { return callSDKAsync<WKWebExtensionContext_NotificationUserInfoKey>("WebKit_d6c5d10d3352e6ec", 1252649138655448, undefined, [rawValue]); }
+  init(rawValue: string): Promise<WKWebExtensionContext_NotificationUserInfoKey> { return callSDKAsync<WKWebExtensionContext_NotificationUserInfoKey>("WebKit_a956b86ef7a76a8e", 1252649138655448, undefined, [rawValue]); }
 };
 
 /**
@@ -3953,7 +3953,7 @@ export const WKWebExtensionContext_PermissionStatus = {
    * init?(rawValue: Int)
    * @availability iOS 18.4+
    */
-  init(rawValue: number): Promise<(WKWebExtensionContext_PermissionStatus) | null> { return callSDKAsync<(WKWebExtensionContext_PermissionStatus) | null>("WebKit_d6c5d10d3352e6ec", 314077644216349, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebExtensionContext_PermissionStatus) | null> { return callSDKAsync<(WKWebExtensionContext_PermissionStatus) | null>("WebKit_a956b86ef7a76a8e", 314077644216349, undefined, [rawValue]); }
 };
 
 /**
@@ -3965,128 +3965,128 @@ export class WKWebExtensionController extends SDKHandle {
    * class var allExtensionDataTypes: Set<WKWebExtension.DataType> { get }
    * @availability iOS 18.4+
    */
-  static get allExtensionDataTypes(): Promise<$SDK38> { return callSDKAsync<$SDK38>("WebKit_d6c5d10d3352e6ec", 3196173718898349, undefined, []); }
+  static get allExtensionDataTypes(): Promise<$SDK38> { return callSDKAsync<$SDK38>("WebKit_a956b86ef7a76a8e", 3196173718898349, undefined, []); }
   /**
    * func didChangeTabProperties(_ properties: WKWebExtension.TabChangedProperties, for changedTab: any WKWebExtensionTab)
    * @availability iOS 18.4+
    */
-  didChangeTabProperties(properties: WKWebExtension_TabChangedProperties, changedTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 8361463739077, this, [properties, changedTab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  didChangeTabProperties(properties: WKWebExtension_TabChangedProperties, changedTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 8361463739077, this, [properties, changedTab], [null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func didCloseWindow(_ closedWindow: any WKWebExtensionWindow)
    * @availability iOS 18.4+
    */
-  didCloseWindow(closedWindow: $SDK46): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 21543386850298, this, [closedWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
+  didCloseWindow(closedWindow: $SDK46): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 21543386850298, this, [closedWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
   /**
    * func didDeselectTabs(_ deselectedTabs: [any WKWebExtensionTab])
    * @availability iOS 18.4+
    */
-  didDeselectTabs(deselectedTabs: $SDK47): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 893503566921475, this, [deselectedTabs], [{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]); }
+  didDeselectTabs(deselectedTabs: $SDK47): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 893503566921475, this, [deselectedTabs], [{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]); }
   /**
    * func didFocusWindow(_ focusedWindow: (any WKWebExtensionWindow)?)
    * @availability iOS 18.4+
    */
-  didFocusWindow(focusedWindow?: $SDK48): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2022186904669224, this, [focusedWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
+  didFocusWindow(focusedWindow?: $SDK48): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2022186904669224, this, [focusedWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
   /**
    * func didOpenTab(_ newTab: any WKWebExtensionTab)
    * @availability iOS 18.4+
    */
-  didOpenTab(newTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2626594838825802, this, [newTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  didOpenTab(newTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2626594838825802, this, [newTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func didOpenWindow(_ newWindow: any WKWebExtensionWindow)
    * @availability iOS 18.4+
    */
-  didOpenWindow(newWindow: $SDK46): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 77320605620327, this, [newWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
+  didOpenWindow(newWindow: $SDK46): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 77320605620327, this, [newWindow], [{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
   /**
    * func didReplaceTab(_ oldTab: any WKWebExtensionTab, with newTab: any WKWebExtensionTab)
    * @availability iOS 18.4+
    */
-  didReplaceTab(oldTab: $SDK45, newTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1750474340259716, this, [oldTab, newTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  didReplaceTab(oldTab: $SDK45, newTab: $SDK45): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1750474340259716, this, [oldTab, newTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   /**
    * func didSelectTabs(_ selectedTabs: [any WKWebExtensionTab])
    * @availability iOS 18.4+
    */
-  didSelectTabs(selectedTabs: $SDK47): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1667065581870179, this, [selectedTabs], [{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]); }
+  didSelectTabs(selectedTabs: $SDK47): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1667065581870179, this, [selectedTabs], [{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]); }
   /**
    * func extensionContext(for extension: WKWebExtension) -> WKWebExtensionContext?
    * @availability iOS 18.4+
    */
-  extensionContextFor(extension: WKWebExtension): Promise<$SDK36> { return callSDKAsync<$SDK36>("WebKit_d6c5d10d3352e6ec", 395007151828204, this, [extension]); }
+  extensionContextFor(extension: WKWebExtension): Promise<$SDK36> { return callSDKAsync<$SDK36>("WebKit_a956b86ef7a76a8e", 395007151828204, this, [extension]); }
   /**
    * func extensionContext(for URL: URL) -> WKWebExtensionContext?
    * @availability iOS 18.4+
    */
-  extensionContextFor45587(URL: string): Promise<$SDK36> { return callSDKAsync<$SDK36>("WebKit_d6c5d10d3352e6ec", 333543809066405, this, [URL]); }
+  extensionContextFor45587(URL: string): Promise<$SDK36> { return callSDKAsync<$SDK36>("WebKit_a956b86ef7a76a8e", 333543809066405, this, [URL]); }
   /**
    * func dataRecord(ofTypes dataTypes: Set<WKWebExtension.DataType>, for extensionContext: WKWebExtensionContext) async -> WKWebExtension.DataRecord?
    * @availability iOS 18.4+
    */
-  fetchDataRecord(dataTypes: $SDK38, extensionContext: WKWebExtensionContext, completionHandler: ((arg0: (WKWebExtension_DataRecord) | null) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1483059756838385, this, [dataTypes, extensionContext, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  fetchDataRecord(dataTypes: $SDK38, extensionContext: WKWebExtensionContext, completionHandler: ((arg0: (WKWebExtension_DataRecord) | null) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1483059756838385, this, [dataTypes, extensionContext, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func dataRecords(ofTypes dataTypes: Set<WKWebExtension.DataType>) async -> [WKWebExtension.DataRecord]
    * @availability iOS 18.4+
    */
-  fetchDataRecords(dataTypes: $SDK38, completionHandler: ((arg0: Array<WKWebExtension_DataRecord>) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2352149225888838, this, [dataTypes, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchDataRecords(dataTypes: $SDK38, completionHandler: ((arg0: Array<WKWebExtension_DataRecord>) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2352149225888838, this, [dataTypes, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * init()
    * @availability iOS 18.4+
    */
-  static init(): Promise<WKWebExtensionController> { return callSDKAsync<WKWebExtensionController>("WebKit_d6c5d10d3352e6ec", 1705671198712623, undefined, []); }
+  static init(): Promise<WKWebExtensionController> { return callSDKAsync<WKWebExtensionController>("WebKit_a956b86ef7a76a8e", 1705671198712623, undefined, []); }
   /**
    * init(configuration: WKWebExtensionController.Configuration)
    * @availability iOS 18.4+
    */
-  static initConfiguration(configuration: WKWebExtensionController_Configuration): Promise<WKWebExtensionController> { return callSDKAsync<WKWebExtensionController>("WebKit_d6c5d10d3352e6ec", 4015366824212435, undefined, [configuration]); }
+  static initConfiguration(configuration: WKWebExtensionController_Configuration): Promise<WKWebExtensionController> { return callSDKAsync<WKWebExtensionController>("WebKit_a956b86ef7a76a8e", 4015366824212435, undefined, [configuration]); }
   /**
    * func load(_ extensionContext: WKWebExtensionContext) throws
    * @availability iOS 18.4+
    */
-  load(extensionContext: WKWebExtensionContext): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 408965651401144, this, [extensionContext]); }
+  load(extensionContext: WKWebExtensionContext): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 408965651401144, this, [extensionContext]); }
   /**
    * func removeData(ofTypes dataTypes: Set<WKWebExtension.DataType>, from dataRecords: [WKWebExtension.DataRecord]) async
    * @availability iOS 18.4+
    */
-  removeData(dataTypes: $SDK38, dataRecords: Array<WKWebExtension_DataRecord>, completionHandler: (() => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 181028621284004, this, [dataTypes, dataRecords, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  removeData(dataTypes: $SDK38, dataRecords: Array<WKWebExtension_DataRecord>, completionHandler: (() => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 181028621284004, this, [dataTypes, dataRecords, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func unload(_ extensionContext: WKWebExtensionContext) throws
    * @availability iOS 18.4+
    */
-  unload(extensionContext: WKWebExtensionContext): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2700512095916576, this, [extensionContext]); }
+  unload(extensionContext: WKWebExtensionContext): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2700512095916576, this, [extensionContext]); }
   /**
    * @NSCopying var configuration: WKWebExtensionController.Configuration { get }
    * @availability iOS 18.4+
    */
-  get configuration(): Promise<WKWebExtensionController_Configuration> { return callSDKAsync<WKWebExtensionController_Configuration>("WebKit_d6c5d10d3352e6ec", 2616783724470186, this, []); }
+  get configuration(): Promise<WKWebExtensionController_Configuration> { return callSDKAsync<WKWebExtensionController_Configuration>("WebKit_a956b86ef7a76a8e", 2616783724470186, this, []); }
   /**
    * weak var delegate: (any WKWebExtensionControllerDelegate)? { get set }
    * @availability iOS 18.4+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_d6c5d10d3352e6ec", 3419160067209647, this, []); }
-  setDelegate(value?: (Implements<WKWebExtensionControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2340746312774662, this, [value], [{"protocol":"c:objc(pl)WKWebExtensionControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_a956b86ef7a76a8e", 3419160067209647, this, []); }
+  setDelegate(value?: (Implements<WKWebExtensionControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2340746312774662, this, [value], [{"protocol":"c:objc(pl)WKWebExtensionControllerDelegate"}]); }
   /**
    * var extensionContexts: Set<WKWebExtensionContext> { get }
    * @availability iOS 18.4+
    */
-  get extensionContexts(): Promise<Array<WKWebExtensionContext>> { return callSDKAsync<Array<WKWebExtensionContext>>("WebKit_d6c5d10d3352e6ec", 4032403672191588, this, []); }
+  get extensionContexts(): Promise<Array<WKWebExtensionContext>> { return callSDKAsync<Array<WKWebExtensionContext>>("WebKit_a956b86ef7a76a8e", 4032403672191588, this, []); }
   /**
    * var extensions: Set<WKWebExtension> { get }
    * @availability iOS 18.4+
    */
-  get extensions(): Promise<Array<WKWebExtension>> { return callSDKAsync<Array<WKWebExtension>>("WebKit_d6c5d10d3352e6ec", 2220485148424101, this, []); }
+  get extensions(): Promise<Array<WKWebExtension>> { return callSDKAsync<Array<WKWebExtension>>("WebKit_a956b86ef7a76a8e", 2220485148424101, this, []); }
   /**
    * @MainActor @preconcurrency func didMoveTab(_ movedTab: any WKWebExtensionTab, from index: Int, in oldWindow: (any WKWebExtensionWindow)? = nil)
    * @availability iOS 18.4+
    */
-  didMoveTab(movedTab: $SDK45, index: number, oldWindow?: $SDK48): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3883332665193101, this, [movedTab, index, oldWindow], [{"protocol":"c:objc(pl)WKWebExtensionTab"},null,{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
+  didMoveTab(movedTab: $SDK45, index: number, oldWindow?: $SDK48): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3883332665193101, this, [movedTab, index, oldWindow], [{"protocol":"c:objc(pl)WKWebExtensionTab"},null,{"protocol":"c:objc(pl)WKWebExtensionWindow"}]); }
   /**
    * @MainActor @preconcurrency func didCloseTab(_ closedTab: any WKWebExtensionTab, windowIsClosing: Bool = false)
    * @availability iOS 18.4+
    */
-  didCloseTab(closedTab: $SDK45, windowIsClosing?: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2877374761322606, this, [closedTab, windowIsClosing], [{"protocol":"c:objc(pl)WKWebExtensionTab"},null]); }
+  didCloseTab(closedTab: $SDK45, windowIsClosing?: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2877374761322606, this, [closedTab, windowIsClosing], [{"protocol":"c:objc(pl)WKWebExtensionTab"},null]); }
   /**
    * @MainActor @preconcurrency func didActivateTab(_ activatedTab: any WKWebExtensionTab, previousActiveTab previousTab: (any WKWebExtensionTab)? = nil)
    * @availability iOS 18.4+
    */
-  didActivateTab(activatedTab: $SDK45, previousTab?: $SDK44): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2816443314832778, this, [activatedTab, previousTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
+  didActivateTab(activatedTab: $SDK45, previousTab?: $SDK44): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2816443314832778, this, [activatedTab, previousTab], [{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]); }
   declare readonly $type: { "c:objc(cs)WKWebExtensionController": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4099,39 +4099,39 @@ export class WKWebExtensionController_Configuration extends SDKHandle {
    * convenience init(identifier: UUID)
    * @availability iOS 18.4+
    */
-  static init(identifier: string): Promise<WKWebExtensionController_Configuration> { return callSDKAsync<WKWebExtensionController_Configuration>("WebKit_d6c5d10d3352e6ec", 3750772439293245, undefined, [identifier]); }
+  static init(identifier: string): Promise<WKWebExtensionController_Configuration> { return callSDKAsync<WKWebExtensionController_Configuration>("WebKit_a956b86ef7a76a8e", 3750772439293245, undefined, [identifier]); }
   /**
    * class func `default`() -> Self
    * @availability iOS 18.4+
    */
-  static default(): Promise<WKWebExtensionController_Configuration> { return callSDKAsync<WKWebExtensionController_Configuration>("WebKit_d6c5d10d3352e6ec", 1437140388199153, undefined, []); }
+  static default(): Promise<WKWebExtensionController_Configuration> { return callSDKAsync<WKWebExtensionController_Configuration>("WebKit_a956b86ef7a76a8e", 1437140388199153, undefined, []); }
   /**
    * class func nonPersistent() -> Self
    * @availability iOS 18.4+
    */
-  static nonPersistent(): Promise<WKWebExtensionController_Configuration> { return callSDKAsync<WKWebExtensionController_Configuration>("WebKit_d6c5d10d3352e6ec", 4113823230242184, undefined, []); }
+  static nonPersistent(): Promise<WKWebExtensionController_Configuration> { return callSDKAsync<WKWebExtensionController_Configuration>("WebKit_a956b86ef7a76a8e", 4113823230242184, undefined, []); }
   /**
    * var defaultWebsiteDataStore: WKWebsiteDataStore! { get set }
    * @availability iOS 18.4+
    */
-  get defaultWebsiteDataStore(): Promise<(WKWebsiteDataStore) | null> { return callSDKAsync<(WKWebsiteDataStore) | null>("WebKit_d6c5d10d3352e6ec", 3054357955599191, this, []); }
-  setDefaultWebsiteDataStore(value?: (WKWebsiteDataStore) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2585106707503901, this, [value]); }
+  get defaultWebsiteDataStore(): Promise<(WKWebsiteDataStore) | null> { return callSDKAsync<(WKWebsiteDataStore) | null>("WebKit_a956b86ef7a76a8e", 3054357955599191, this, []); }
+  setDefaultWebsiteDataStore(value?: (WKWebsiteDataStore) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2585106707503901, this, [value]); }
   /**
    * var identifier: UUID? { get }
    * @availability iOS 18.4+
    */
-  get identifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 1669353809606708, this, []); }
+  get identifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 1669353809606708, this, []); }
   /**
    * var isPersistent: Bool { get }
    * @availability iOS 18.4+
    */
-  get isPersistent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 297689219153450, this, []); }
+  get isPersistent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 297689219153450, this, []); }
   /**
    * @NSCopying var webViewConfiguration: WKWebViewConfiguration! { get set }
    * @availability iOS 18.4+
    */
-  get webViewConfiguration(): Promise<$SDK54> { return callSDKAsync<$SDK54>("WebKit_d6c5d10d3352e6ec", 363223823018874, this, []); }
-  setWebViewConfiguration(value?: $SDK54): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2404023397585248, this, [value]); }
+  get webViewConfiguration(): Promise<$SDK54> { return callSDKAsync<$SDK54>("WebKit_a956b86ef7a76a8e", 363223823018874, this, []); }
+  setWebViewConfiguration(value?: $SDK54): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2404023397585248, this, [value]); }
   declare readonly $type: { "c:objc(cs)WKWebExtensionControllerConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4169,61 +4169,61 @@ export interface WKWebExtensionWindow {
  */
 export class WKWebpagePreferences extends SDKHandle {
   /** init() */
-  static init(): Promise<WKWebpagePreferences> { return callSDKAsync<WKWebpagePreferences>("WebKit_d6c5d10d3352e6ec", 1997554056862502, undefined, []); }
+  static init(): Promise<WKWebpagePreferences> { return callSDKAsync<WKWebpagePreferences>("WebKit_a956b86ef7a76a8e", 1997554056862502, undefined, []); }
   /**
    * var allowsContentJavaScript: Bool { get set }
    * @availability iOS 14.0+
    */
-  get allowsContentJavaScript(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1788983537820930, this, []); }
-  setAllowsContentJavaScript(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 466577636648387, this, [value]); }
+  get allowsContentJavaScript(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1788983537820930, this, []); }
+  setAllowsContentJavaScript(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 466577636648387, this, [value]); }
   /**
    * var allowsJSHandleCreationInPageWorld: Bool { get set }
    * @availability iOS 27.0+
    */
-  get allowsJSHandleCreationInPageWorld(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2174272540934310, this, []); }
-  setAllowsJSHandleCreationInPageWorld(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1938472370280456, this, [value]); }
+  get allowsJSHandleCreationInPageWorld(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2174272540934310, this, []); }
+  setAllowsJSHandleCreationInPageWorld(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1938472370280456, this, [value]); }
   /**
    * var alternateRequest: URLRequest? { get set }
    * @availability iOS 27.0+
    */
-  get alternateRequest(): Promise<$SDK12> { return callSDKAsync<$SDK12>("WebKit_d6c5d10d3352e6ec", 1877276274212498, this, []); }
-  setAlternateRequest(value?: $SDK12): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4208588055022759, this, [value]); }
+  get alternateRequest(): Promise<$SDK12> { return callSDKAsync<$SDK12>("WebKit_a956b86ef7a76a8e", 1877276274212498, this, []); }
+  setAlternateRequest(value?: $SDK12): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4208588055022759, this, [value]); }
   /**
    * var globalPrivacyControlEnabled: Bool { get set }
    * @availability iOS 27.0+
    */
-  get globalPrivacyControlEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4482041603977929, this, []); }
-  setGlobalPrivacyControlEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 884731049119694, this, [value]); }
+  get globalPrivacyControlEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4482041603977929, this, []); }
+  setGlobalPrivacyControlEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 884731049119694, this, [value]); }
   /**
    * var isLockdownModeEnabled: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isLockdownModeEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2487650419551539, this, []); }
-  setIsLockdownModeEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 923166935753754, this, [value]); }
+  get isLockdownModeEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2487650419551539, this, []); }
+  setIsLockdownModeEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 923166935753754, this, [value]); }
   /**
    * var overrideReferrer: String? { get set }
    * @availability iOS 27.0+
    */
-  get overrideReferrer(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 1923897946538302, this, []); }
-  setOverrideReferrer(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4325202658333058, this, [value]); }
+  get overrideReferrer(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 1923897946538302, this, []); }
+  setOverrideReferrer(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4325202658333058, this, [value]); }
   /**
    * var preferredContentMode: WKWebpagePreferences.ContentMode { get set }
    * @availability iOS 13.0+
    */
-  get preferredContentMode(): Promise<WKWebpagePreferences_ContentMode> { return callSDKAsync<WKWebpagePreferences_ContentMode>("WebKit_d6c5d10d3352e6ec", 2814342711093907, this, []); }
-  setPreferredContentMode(value: WKWebpagePreferences_ContentMode): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1512367424716656, this, [value]); }
+  get preferredContentMode(): Promise<WKWebpagePreferences_ContentMode> { return callSDKAsync<WKWebpagePreferences_ContentMode>("WebKit_a956b86ef7a76a8e", 2814342711093907, this, []); }
+  setPreferredContentMode(value: WKWebpagePreferences_ContentMode): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1512367424716656, this, [value]); }
   /**
    * var preferredHTTPSNavigationPolicy: WKWebpagePreferences.UpgradeToHTTPSPolicy { get set }
    * @availability iOS 18.2+
    */
-  get preferredHTTPSNavigationPolicy(): Promise<WKWebpagePreferences_UpgradeToHTTPSPolicy> { return callSDKAsync<WKWebpagePreferences_UpgradeToHTTPSPolicy>("WebKit_d6c5d10d3352e6ec", 1996270277170087, this, []); }
-  setPreferredHTTPSNavigationPolicy(value: WKWebpagePreferences_UpgradeToHTTPSPolicy): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4288078699404310, this, [value]); }
+  get preferredHTTPSNavigationPolicy(): Promise<WKWebpagePreferences_UpgradeToHTTPSPolicy> { return callSDKAsync<WKWebpagePreferences_UpgradeToHTTPSPolicy>("WebKit_a956b86ef7a76a8e", 1996270277170087, this, []); }
+  setPreferredHTTPSNavigationPolicy(value: WKWebpagePreferences_UpgradeToHTTPSPolicy): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4288078699404310, this, [value]); }
   /**
    * var securityRestrictionMode: WKSecurityRestrictionMode { get set }
    * @availability iOS 26.4+
    */
-  get securityRestrictionMode(): Promise<WKSecurityRestrictionMode> { return callSDKAsync<WKSecurityRestrictionMode>("WebKit_d6c5d10d3352e6ec", 757935966165174, this, []); }
-  setSecurityRestrictionMode(value: WKSecurityRestrictionMode): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2081388820540982, this, [value]); }
+  get securityRestrictionMode(): Promise<WKSecurityRestrictionMode> { return callSDKAsync<WKSecurityRestrictionMode>("WebKit_a956b86ef7a76a8e", 757935966165174, this, []); }
+  setSecurityRestrictionMode(value: WKSecurityRestrictionMode): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2081388820540982, this, [value]); }
   declare readonly $type: { "c:objc(cs)WKWebpagePreferences": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4238,7 +4238,7 @@ export const WKWebpagePreferences_ContentMode = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): Promise<(WKWebpagePreferences_ContentMode) | null> { return callSDKAsync<(WKWebpagePreferences_ContentMode) | null>("WebKit_d6c5d10d3352e6ec", 4136606703101080, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebpagePreferences_ContentMode) | null> { return callSDKAsync<(WKWebpagePreferences_ContentMode) | null>("WebKit_a956b86ef7a76a8e", 4136606703101080, undefined, [rawValue]); }
 };
 
 /**
@@ -4252,7 +4252,7 @@ export const WKWebpagePreferences_UpgradeToHTTPSPolicy = {
    * init?(rawValue: Int)
    * @availability iOS 18.2+
    */
-  init(rawValue: number): Promise<(WKWebpagePreferences_UpgradeToHTTPSPolicy) | null> { return callSDKAsync<(WKWebpagePreferences_UpgradeToHTTPSPolicy) | null>("WebKit_d6c5d10d3352e6ec", 1547493577537575, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebpagePreferences_UpgradeToHTTPSPolicy) | null> { return callSDKAsync<(WKWebpagePreferences_UpgradeToHTTPSPolicy) | null>("WebKit_a956b86ef7a76a8e", 1547493577537575, undefined, [rawValue]); }
 };
 
 /**
@@ -4261,17 +4261,17 @@ export const WKWebpagePreferences_UpgradeToHTTPSPolicy = {
  */
 export class WKWebsiteDataRecord extends SDKHandle {
   /** init() */
-  static init(): Promise<WKWebsiteDataRecord> { return callSDKAsync<WKWebsiteDataRecord>("WebKit_d6c5d10d3352e6ec", 2379868689138670, undefined, []); }
+  static init(): Promise<WKWebsiteDataRecord> { return callSDKAsync<WKWebsiteDataRecord>("WebKit_a956b86ef7a76a8e", 2379868689138670, undefined, []); }
   /**
    * var dataTypes: Set<String> { get }
    * @availability iOS 9.0+
    */
-  get dataTypes(): Promise<Array<string>> { return callSDKAsync<Array<string>>("WebKit_d6c5d10d3352e6ec", 1182098737029947, this, []); }
+  get dataTypes(): Promise<Array<string>> { return callSDKAsync<Array<string>>("WebKit_a956b86ef7a76a8e", 1182098737029947, this, []); }
   /**
    * var displayName: String { get }
    * @availability iOS 9.0+
    */
-  get displayName(): Promise<string> { return callSDKAsync<string>("WebKit_d6c5d10d3352e6ec", 2542139658507408, this, []); }
+  get displayName(): Promise<string> { return callSDKAsync<string>("WebKit_a956b86ef7a76a8e", 2542139658507408, this, []); }
   declare readonly $type: { "c:objc(cs)WKWebsiteDataRecord": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4284,78 +4284,78 @@ export class WKWebsiteDataStore extends SDKHandle {
    * class func allWebsiteDataTypes() -> Set<String>
    * @availability iOS 9.0+
    */
-  static allWebsiteDataTypes(): Promise<Array<string>> { return callSDKAsync<Array<string>>("WebKit_d6c5d10d3352e6ec", 499935715206183, undefined, []); }
+  static allWebsiteDataTypes(): Promise<Array<string>> { return callSDKAsync<Array<string>>("WebKit_a956b86ef7a76a8e", 499935715206183, undefined, []); }
   /**
    * init(forIdentifier identifier: UUID)
    * @availability iOS 17.0+
    */
-  static init(identifier: string): Promise<WKWebsiteDataStore> { return callSDKAsync<WKWebsiteDataStore>("WebKit_d6c5d10d3352e6ec", 3817112347860621, undefined, [identifier]); }
+  static init(identifier: string): Promise<WKWebsiteDataStore> { return callSDKAsync<WKWebsiteDataStore>("WebKit_a956b86ef7a76a8e", 3817112347860621, undefined, [identifier]); }
   /**
    * class func `default`() -> WKWebsiteDataStore
    * @availability iOS 9.0+
    */
-  static default(): Promise<WKWebsiteDataStore> { return callSDKAsync<WKWebsiteDataStore>("WebKit_d6c5d10d3352e6ec", 870535910886266, undefined, []); }
+  static default(): Promise<WKWebsiteDataStore> { return callSDKAsync<WKWebsiteDataStore>("WebKit_a956b86ef7a76a8e", 870535910886266, undefined, []); }
   /**
    * class var allDataStoreIdentifiers: [UUID] { get async }
    * @availability iOS 17.0+
    */
-  static fetchAllDataStoreIdentifiers(completionHandler: ((arg0: Array<string>) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1920688060961716, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static fetchAllDataStoreIdentifiers(completionHandler: ((arg0: Array<string>) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1920688060961716, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func nonPersistent() -> WKWebsiteDataStore
    * @availability iOS 9.0+
    */
-  static nonPersistent(): Promise<WKWebsiteDataStore> { return callSDKAsync<WKWebsiteDataStore>("WebKit_d6c5d10d3352e6ec", 1857561826885541, undefined, []); }
+  static nonPersistent(): Promise<WKWebsiteDataStore> { return callSDKAsync<WKWebsiteDataStore>("WebKit_a956b86ef7a76a8e", 1857561826885541, undefined, []); }
   /**
    * class func remove(forIdentifier identifier: UUID) async throws
    * @availability iOS 17.0+
    */
-  static remove(identifier: string, completionHandler: $SDK49): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2796589699744712, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static remove(identifier: string, completionHandler: $SDK49): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2796589699744712, undefined, [identifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func fetchData(of dataTypes: Set<String>) async throws -> Data
    * @availability iOS 26.0+
    */
-  fetchData(dataTypes: Array<string>, completionHandler: $SDK62): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4359062283044339, this, [dataTypes, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchData(dataTypes: Array<string>, completionHandler: $SDK62): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4359062283044339, this, [dataTypes, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func dataRecords(ofTypes dataTypes: Set<String>) async -> [WKWebsiteDataRecord]
    * @availability iOS 9.0+
    */
-  fetchDataRecords(dataTypes: Array<string>, completionHandler: ((arg0: Array<WKWebsiteDataRecord>) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2574912884183313, this, [dataTypes, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchDataRecords(dataTypes: Array<string>, completionHandler: ((arg0: Array<WKWebsiteDataRecord>) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2574912884183313, this, [dataTypes, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func removeData(ofTypes dataTypes: Set<String>, for dataRecords: [WKWebsiteDataRecord]) async
    * @availability iOS 9.0+
    */
-  removeDataOfTypesForCompletionHandler(dataTypes: Array<string>, dataRecords: Array<WKWebsiteDataRecord>, completionHandler: (() => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2238601124909781, this, [dataTypes, dataRecords, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  removeDataOfTypesForCompletionHandler(dataTypes: Array<string>, dataRecords: Array<WKWebsiteDataRecord>, completionHandler: (() => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2238601124909781, this, [dataTypes, dataRecords, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func removeData(ofTypes dataTypes: Set<String>, modifiedSince date: Date) async
    * @availability iOS 9.0+
    */
-  removeDataOfTypesModifiedSinceCompletionHandler(dataTypes: Array<string>, date: globalThis.Date, completionHandler: (() => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1705469433577271, this, [dataTypes, date, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  removeDataOfTypesModifiedSinceCompletionHandler(dataTypes: Array<string>, date: globalThis.Date, completionHandler: (() => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1705469433577271, this, [dataTypes, date, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func restoreData(_ data: Data) async throws
    * @availability iOS 26.0+
    */
-  restoreData(data: ArrayBuffer, completionHandler: $SDK49): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4106929988576365, this, [data, completionHandler], [null,{"callback":{"out":[]}}]); }
+  restoreData(data: ArrayBuffer, completionHandler: $SDK49): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4106929988576365, this, [data, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var httpCookieStore: WKHTTPCookieStore { get }
    * @availability iOS 11.0+
    */
-  get httpCookieStore(): Promise<WKHTTPCookieStore> { return callSDKAsync<WKHTTPCookieStore>("WebKit_d6c5d10d3352e6ec", 3651066198392386, this, []); }
+  get httpCookieStore(): Promise<WKHTTPCookieStore> { return callSDKAsync<WKHTTPCookieStore>("WebKit_a956b86ef7a76a8e", 3651066198392386, this, []); }
   /**
    * var identifier: UUID? { get }
    * @availability iOS 17.0+
    */
-  get identifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 4430048413980319, this, []); }
+  get identifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 4430048413980319, this, []); }
   /**
    * var isPersistent: Bool { get }
    * @availability iOS 9.0+
    */
-  get isPersistent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3295837046378592, this, []); }
+  get isPersistent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3295837046378592, this, []); }
   /**
    * @MainActor @preconcurrency var proxyConfigurations: [ProxyConfiguration] { get set }
    * @availability iOS 17.0+
    */
-  get proxyConfigurations(): Promise<$SDK65> { return callSDKAsync<$SDK65>("WebKit_d6c5d10d3352e6ec", 1060019104930825, this, []); }
-  setProxyConfigurations(value: $SDK65): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4196022593643207, this, [value]); }
+  get proxyConfigurations(): Promise<$SDK65> { return callSDKAsync<$SDK65>("WebKit_a956b86ef7a76a8e", 1060019104930825, this, []); }
+  setProxyConfigurations(value: $SDK65): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4196022593643207, this, [value]); }
   declare readonly $type: { "c:objc(cs)WKWebsiteDataStore": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4368,393 +4368,393 @@ export class WKWebView extends SDKHandle {
    * class func handlesURLScheme(_ urlScheme: String) -> Bool
    * @availability iOS 11.0+
    */
-  static handlesURLScheme(urlScheme: string): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4246672658619852, undefined, [urlScheme]); }
+  static handlesURLScheme(urlScheme: string): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4246672658619852, undefined, [urlScheme]); }
   /**
    * func closeAllMediaPresentations()
    * @availability iOS 14.5+
    * @deprecated iOS 15.0
    */
-  closeAllMediaPresentations(): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1579826239649202, this, []); }
+  closeAllMediaPresentations(): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1579826239649202, this, []); }
   /**
    * func closeAllMediaPresentations() async
    * @availability iOS 15.0+
    */
-  closeAllMediaPresentationsCompletionHandler(completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3167137003143129, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  closeAllMediaPresentationsCompletionHandler(completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3167137003143129, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func evaluateJavaScript(_ javaScriptString: String) async throws -> Any?
    * @availability iOS 8.0+
    */
-  evaluateJavaScriptCompletionHandler(javaScriptString: string, completionHandler?: $SDK42): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2851964571509769, this, [javaScriptString, completionHandler], [null,{"callback":{"out":[]}}]); }
+  evaluateJavaScriptCompletionHandler(javaScriptString: string, completionHandler?: $SDK42): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2851964571509769, this, [javaScriptString, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func fetchData(of dataTypes: WKWebViewDataType) async throws -> Data
    * @availability iOS 26.0+
    */
-  fetchData(dataTypes: WKWebViewDataType, completionHandler: $SDK62): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2827265953315439, this, [dataTypes, completionHandler], [null,{"callback":{"out":[]}}]); }
+  fetchData(dataTypes: WKWebViewDataType, completionHandler: $SDK62): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2827265953315439, this, [dataTypes, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func goBack() -> WKNavigation?
    * @availability iOS 8.0+
    */
-  goBack(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 3562655383919128, this, []); }
+  goBack(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 3562655383919128, this, []); }
   /**
    * func goForward() -> WKNavigation?
    * @availability iOS 8.0+
    */
-  goForward(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 221959881434719, this, []); }
+  goForward(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 221959881434719, this, []); }
   /**
    * func go(to item: WKBackForwardListItem) -> WKNavigation?
    * @availability iOS 8.0+
    */
-  go(item: WKBackForwardListItem): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 2822169889773350, this, [item]); }
+  go(item: WKBackForwardListItem): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 2822169889773350, this, [item]); }
   /**
    * init?(coder: NSCoder)
    * @availability iOS 8.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): Promise<(WKWebView) | null> { return callSDKAsync<(WKWebView) | null>("WebKit_d6c5d10d3352e6ec", 3281703778083166, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): Promise<(WKWebView) | null> { return callSDKAsync<(WKWebView) | null>("WebKit_a956b86ef7a76a8e", 3281703778083166, undefined, [coder]); }
   /**
    * init(frame: CGRect, configuration: WKWebViewConfiguration)
    * @availability iOS 8.0+
    */
-  static initFrameConfiguration(frame: $SDK10, configuration: WKWebViewConfiguration): Promise<WKWebView> { return callSDKAsync<WKWebView>("WebKit_d6c5d10d3352e6ec", 1627553683557622, undefined, [frame, configuration]); }
+  static initFrameConfiguration(frame: $SDK10, configuration: WKWebViewConfiguration): Promise<WKWebView> { return callSDKAsync<WKWebView>("WebKit_a956b86ef7a76a8e", 1627553683557622, undefined, [frame, configuration]); }
   /**
    * func load(_ data: Data, mimeType MIMEType: String, characterEncodingName: String, baseURL: URL) -> WKNavigation?
    * @availability iOS 9.0+
    */
-  loadMimeTypeCharacterEncodingNameBaseURL(data: ArrayBuffer, MIMEType: string, characterEncodingName: string, baseURL: string): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 988163188978913, this, [data, MIMEType, characterEncodingName, baseURL]); }
+  loadMimeTypeCharacterEncodingNameBaseURL(data: ArrayBuffer, MIMEType: string, characterEncodingName: string, baseURL: string): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 988163188978913, this, [data, MIMEType, characterEncodingName, baseURL]); }
   /**
    * func loadFileRequest(_ request: URLRequest, allowingReadAccessTo readAccessURL: URL) -> WKNavigation
    * @availability iOS 15.0+
    */
-  loadFileRequest(request: _Foundation_URLRequest, readAccessURL: string): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_d6c5d10d3352e6ec", 3662715612035121, this, [request, readAccessURL]); }
+  loadFileRequest(request: _Foundation_URLRequest, readAccessURL: string): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_a956b86ef7a76a8e", 3662715612035121, this, [request, readAccessURL]); }
   /**
    * func loadFileURL(_ URL: URL, allowingReadAccessTo readAccessURL: URL) -> WKNavigation?
    * @availability iOS 9.0+
    */
-  loadFileURL(URL: string, readAccessURL: string): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 344720215929188, this, [URL, readAccessURL]); }
+  loadFileURL(URL: string, readAccessURL: string): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 344720215929188, this, [URL, readAccessURL]); }
   /**
    * func loadHTMLString(_ string: String, baseURL: URL?) -> WKNavigation?
    * @availability iOS 8.0+
    */
-  loadHTMLString(string: string, baseURL?: (string) | null): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 812284175616597, this, [string, baseURL]); }
+  loadHTMLString(string: string, baseURL?: (string) | null): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 812284175616597, this, [string, baseURL]); }
   /**
    * func load(_ request: URLRequest) -> WKNavigation?
    * @availability iOS 8.0+
    */
-  load(request: _Foundation_URLRequest): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 1788014749035517, this, [request]); }
+  load(request: _Foundation_URLRequest): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 1788014749035517, this, [request]); }
   /**
    * func loadSimulatedRequest(_ request: URLRequest, response: URLResponse, responseData data: Data) -> WKNavigation
    * @availability iOS 15.0+
    */
-  loadSimulatedRequestResponseResponseData(request: _Foundation_URLRequest, response: _Foundation_URLResponse, data: ArrayBuffer): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_d6c5d10d3352e6ec", 3860835430859485, this, [request, response, data]); }
+  loadSimulatedRequestResponseResponseData(request: _Foundation_URLRequest, response: _Foundation_URLResponse, data: ArrayBuffer): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_a956b86ef7a76a8e", 3860835430859485, this, [request, response, data]); }
   /**
    * func loadSimulatedRequest(_ request: URLRequest, responseHTML string: String) -> WKNavigation
    * @availability iOS 15.0+
    */
-  loadSimulatedRequestResponseHTML(request: _Foundation_URLRequest, string: string): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_d6c5d10d3352e6ec", 2082756260811148, this, [request, string]); }
+  loadSimulatedRequestResponseHTML(request: _Foundation_URLRequest, string: string): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_a956b86ef7a76a8e", 2082756260811148, this, [request, string]); }
   /**
    * func loadSimulatedRequest(_ request: URLRequest, with response: URLResponse, responseData data: Data) -> WKNavigation
    * @availability iOS 15.0+
    * @deprecated iOS 15.0
    */
-  loadSimulatedRequestWithResponseData(request: _Foundation_URLRequest, response: _Foundation_URLResponse, data: ArrayBuffer): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_d6c5d10d3352e6ec", 3902964960992615, this, [request, response, data]); }
+  loadSimulatedRequestWithResponseData(request: _Foundation_URLRequest, response: _Foundation_URLResponse, data: ArrayBuffer): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_a956b86ef7a76a8e", 3902964960992615, this, [request, response, data]); }
   /**
    * func loadSimulatedRequest(_ request: URLRequest, withResponseHTML string: String) -> WKNavigation
    * @availability iOS 15.0+
    * @deprecated iOS 15.0
    */
-  loadSimulatedRequestWithResponseHTML(request: _Foundation_URLRequest, string: string): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_d6c5d10d3352e6ec", 3692984723093866, this, [request, string]); }
+  loadSimulatedRequestWithResponseHTML(request: _Foundation_URLRequest, string: string): Promise<WKNavigation> { return callSDKAsync<WKNavigation>("WebKit_a956b86ef7a76a8e", 3692984723093866, this, [request, string]); }
   /**
    * func load(_ url: URL) -> WKNavigation?
    * @availability iOS 27.0+
    */
-  load38340(url: string): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 3325508733509594, this, [url]); }
+  load38340(url: string): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 3325508733509594, this, [url]); }
   /**
    * func pauseAllMediaPlayback() async
    * @availability iOS 15.0+
    */
-  pauseAllMediaPlayback(completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3434976100471330, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  pauseAllMediaPlayback(completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3434976100471330, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func reload() -> WKNavigation?
    * @availability iOS 8.0+
    */
-  reload(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 3385870515436853, this, []); }
+  reload(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 3385870515436853, this, []); }
   /**
    * func reloadFromOrigin() -> WKNavigation?
    * @availability iOS 8.0+
    */
-  reloadFromOrigin(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_d6c5d10d3352e6ec", 551138059204019, this, []); }
+  reloadFromOrigin(): Promise<(WKNavigation) | null> { return callSDKAsync<(WKNavigation) | null>("WebKit_a956b86ef7a76a8e", 551138059204019, this, []); }
   /**
    * func requestMediaPlaybackState() async -> WKMediaPlaybackState
    * @availability iOS 15.0+
    */
-  requestMediaPlaybackState(completionHandler: ((arg0: WKMediaPlaybackState) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1883761914125506, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  requestMediaPlaybackState(completionHandler: ((arg0: WKMediaPlaybackState) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1883761914125506, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func restoreData(_ data: Data) async throws
    * @availability iOS 26.0+
    */
-  restoreData(data: ArrayBuffer, completionHandler: $SDK49): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1696177403397813, this, [data, completionHandler], [null,{"callback":{"out":[]}}]); }
+  restoreData(data: ArrayBuffer, completionHandler: $SDK49): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1696177403397813, this, [data, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func resumeDownload(fromResumeData resumeData: Data) async -> WKDownload
    * @availability iOS 14.5+
    */
-  resumeDownload(resumeData: ArrayBuffer, completionHandler: ((arg0: WKDownload) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1076956072910677, this, [resumeData, completionHandler], [null,{"callback":{"out":[]}}]); }
+  resumeDownload(resumeData: ArrayBuffer, completionHandler: ((arg0: WKDownload) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1076956072910677, this, [resumeData, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func setAllMediaPlaybackSuspended(_ suspended: Bool) async
    * @availability iOS 15.0+
    */
-  setAllMediaPlaybackSuspended(suspended: boolean, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2290569033092564, this, [suspended, completionHandler], [null,{"callback":{"out":[]}}]); }
+  setAllMediaPlaybackSuspended(suspended: boolean, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2290569033092564, this, [suspended, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func setCameraCaptureState(_ state: WKMediaCaptureState) async
    * @availability iOS 15.0+
    */
-  setCameraCaptureState(state: WKMediaCaptureState, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 940126802239601, this, [state, completionHandler], [null,{"callback":{"out":[]}}]); }
+  setCameraCaptureState(state: WKMediaCaptureState, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 940126802239601, this, [state, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func setMicrophoneCaptureState(_ state: WKMediaCaptureState) async
    * @availability iOS 15.0+
    */
-  setMicrophoneCaptureState(state: WKMediaCaptureState, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 866109971654742, this, [state, completionHandler], [null,{"callback":{"out":[]}}]); }
+  setMicrophoneCaptureState(state: WKMediaCaptureState, completionHandler?: ((() => void)) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 866109971654742, this, [state, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func setMinimumViewportInset(_ minimumViewportInset: UIEdgeInsets, maximumViewportInset: UIEdgeInsets)
    * @availability iOS 15.5+
    */
-  setMinimumViewportInset(minimumViewportInset: $SDK68, maximumViewportInset: $SDK68): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 407939968816687, this, [minimumViewportInset, maximumViewportInset]); }
+  setMinimumViewportInset(minimumViewportInset: $SDK68, maximumViewportInset: $SDK68): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 407939968816687, this, [minimumViewportInset, maximumViewportInset]); }
   /**
    * func startDownload(using request: URLRequest) async -> WKDownload
    * @availability iOS 14.5+
    */
-  startDownload(request: _Foundation_URLRequest, completionHandler: ((arg0: WKDownload) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3108278119388465, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
+  startDownload(request: _Foundation_URLRequest, completionHandler: ((arg0: WKDownload) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3108278119388465, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func stopLoading()
    * @availability iOS 8.0+
    */
-  stopLoading(): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3144018553053345, this, []); }
+  stopLoading(): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3144018553053345, this, []); }
   /**
    * func takeSnapshot(configuration snapshotConfiguration: WKSnapshotConfiguration?) async throws -> UIImage
    * @availability iOS 11.0+
    */
-  takeSnapshot(snapshotConfiguration: (WKSnapshotConfiguration) | null, completionHandler: ((arg0: (_UIKit_UIImage) | null, arg1: (NativeError) | null) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 219436154394287, this, [snapshotConfiguration, completionHandler], [null,{"callback":{"out":[]}}]); }
+  takeSnapshot(snapshotConfiguration: (WKSnapshotConfiguration) | null, completionHandler: ((arg0: (_UIKit_UIImage) | null, arg1: (NativeError) | null) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 219436154394287, this, [snapshotConfiguration, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * weak var uiDelegate: (any WKUIDelegate)? { get set }
    * @availability iOS 8.0+
    */
-  get uiDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_d6c5d10d3352e6ec", 2476797670671228, this, []); }
-  setUiDelegate(value?: (Implements<WKUIDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1935874512502659, this, [value], [{"protocol":"c:objc(pl)WKUIDelegate"}]); }
+  get uiDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_a956b86ef7a76a8e", 2476797670671228, this, []); }
+  setUiDelegate(value?: (Implements<WKUIDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1935874512502659, this, [value], [{"protocol":"c:objc(pl)WKUIDelegate"}]); }
   /**
    * var url: URL? { get }
    * @availability iOS 8.0+
    */
-  get url(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 1257208970243973, this, []); }
+  get url(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 1257208970243973, this, []); }
   /**
    * var allowsBackForwardNavigationGestures: Bool { get set }
    * @availability iOS 8.0+
    */
-  get allowsBackForwardNavigationGestures(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2797321580191085, this, []); }
-  setAllowsBackForwardNavigationGestures(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2562833483034497, this, [value]); }
+  get allowsBackForwardNavigationGestures(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2797321580191085, this, []); }
+  setAllowsBackForwardNavigationGestures(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2562833483034497, this, [value]); }
   /**
    * var allowsLinkPreview: Bool { get set }
    * @availability iOS 9.0+
    */
-  get allowsLinkPreview(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1466086588981815, this, []); }
-  setAllowsLinkPreview(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2292358981512869, this, [value]); }
+  get allowsLinkPreview(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1466086588981815, this, []); }
+  setAllowsLinkPreview(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2292358981512869, this, [value]); }
   /**
    * var backForwardList: WKBackForwardList { get }
    * @availability iOS 8.0+
    */
-  get backForwardList(): Promise<WKBackForwardList> { return callSDKAsync<WKBackForwardList>("WebKit_d6c5d10d3352e6ec", 1924459535877810, this, []); }
+  get backForwardList(): Promise<WKBackForwardList> { return callSDKAsync<WKBackForwardList>("WebKit_a956b86ef7a76a8e", 1924459535877810, this, []); }
   /**
    * var cameraCaptureState: WKMediaCaptureState { get }
    * @availability iOS 15.0+
    */
-  get cameraCaptureState(): Promise<WKMediaCaptureState> { return callSDKAsync<WKMediaCaptureState>("WebKit_d6c5d10d3352e6ec", 1440158594119897, this, []); }
+  get cameraCaptureState(): Promise<WKMediaCaptureState> { return callSDKAsync<WKMediaCaptureState>("WebKit_a956b86ef7a76a8e", 1440158594119897, this, []); }
   /**
    * var canGoBack: Bool { get }
    * @availability iOS 8.0+
    */
-  get canGoBack(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 726780680157739, this, []); }
+  get canGoBack(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 726780680157739, this, []); }
   /**
    * var canGoForward: Bool { get }
    * @availability iOS 8.0+
    */
-  get canGoForward(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1896326056396501, this, []); }
+  get canGoForward(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1896326056396501, this, []); }
   /**
    * var certificateChain: [Any] { get }
    * @availability iOS 9.0+
    * @deprecated iOS 10.0
    */
-  get certificateChain(): Promise<Array<unknown>> { return callSDKAsync<Array<unknown>>("WebKit_d6c5d10d3352e6ec", 519322820329942, this, []); }
+  get certificateChain(): Promise<Array<unknown>> { return callSDKAsync<Array<unknown>>("WebKit_a956b86ef7a76a8e", 519322820329942, this, []); }
   /**
    * @NSCopying var configuration: WKWebViewConfiguration { get }
    * @availability iOS 8.0+
    */
-  get configuration(): Promise<WKWebViewConfiguration> { return callSDKAsync<WKWebViewConfiguration>("WebKit_d6c5d10d3352e6ec", 476398303450472, this, []); }
+  get configuration(): Promise<WKWebViewConfiguration> { return callSDKAsync<WKWebViewConfiguration>("WebKit_a956b86ef7a76a8e", 476398303450472, this, []); }
   /**
    * var customUserAgent: String? { get set }
    * @availability iOS 9.0+
    */
-  get customUserAgent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 2845445398881687, this, []); }
-  setCustomUserAgent(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1916499537690968, this, [value]); }
+  get customUserAgent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 2845445398881687, this, []); }
+  setCustomUserAgent(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1916499537690968, this, [value]); }
   /**
    * var estimatedProgress: Double { get }
    * @availability iOS 8.0+
    */
-  get estimatedProgress(): Promise<number> { return callSDKAsync<number>("WebKit_d6c5d10d3352e6ec", 222499067233297, this, []); }
+  get estimatedProgress(): Promise<number> { return callSDKAsync<number>("WebKit_a956b86ef7a76a8e", 222499067233297, this, []); }
   /**
    * var findInteraction: UIFindInteraction? { get }
    * @availability iOS 16.0+
    */
-  get findInteraction(): Promise<(_UIKit_UIFindInteraction) | null> { return callSDKAsync<(_UIKit_UIFindInteraction) | null>("WebKit_d6c5d10d3352e6ec", 597122588717465, this, []); }
+  get findInteraction(): Promise<(_UIKit_UIFindInteraction) | null> { return callSDKAsync<(_UIKit_UIFindInteraction) | null>("WebKit_a956b86ef7a76a8e", 597122588717465, this, []); }
   /**
    * var isFindInteractionEnabled: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isFindInteractionEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 217519596392530, this, []); }
-  setIsFindInteractionEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 782038940397547, this, [value]); }
+  get isFindInteractionEnabled(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 217519596392530, this, []); }
+  setIsFindInteractionEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 782038940397547, this, [value]); }
   /**
    * var fullscreenState: WKWebView.FullscreenState { get }
    * @availability iOS 16.0+
    */
-  get fullscreenState(): Promise<WKWebView_FullscreenState> { return callSDKAsync<WKWebView_FullscreenState>("WebKit_d6c5d10d3352e6ec", 2718255802789448, this, []); }
+  get fullscreenState(): Promise<WKWebView_FullscreenState> { return callSDKAsync<WKWebView_FullscreenState>("WebKit_a956b86ef7a76a8e", 2718255802789448, this, []); }
   /**
    * var hasOnlySecureContent: Bool { get }
    * @availability iOS 8.0+
    */
-  get hasOnlySecureContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3293252056296683, this, []); }
+  get hasOnlySecureContent(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3293252056296683, this, []); }
   /**
    * var isInspectable: Bool { get set }
    * @availability iOS 16.4+
    */
-  get isInspectable(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3521239640180208, this, []); }
-  setIsInspectable(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 455203450878998, this, [value]); }
+  get isInspectable(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3521239640180208, this, []); }
+  setIsInspectable(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 455203450878998, this, [value]); }
   /**
    * var interactionState: Any? { get set }
    * @availability iOS 15.0+
    */
-  get interactionState(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("WebKit_d6c5d10d3352e6ec", 1971417578890960, this, []); }
-  setInteractionState(value?: (unknown) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2201186033773659, this, [value]); }
+  get interactionState(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("WebKit_a956b86ef7a76a8e", 1971417578890960, this, []); }
+  setInteractionState(value?: (unknown) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2201186033773659, this, [value]); }
   /**
    * var isBlockedByScreenTime: Bool { get }
    * @availability iOS 26.0+
    */
-  get isBlockedByScreenTime(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 987450470375865, this, []); }
+  get isBlockedByScreenTime(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 987450470375865, this, []); }
   /**
    * var isLoading: Bool { get }
    * @availability iOS 8.0+
    */
-  get isLoading(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 606455189431141, this, []); }
+  get isLoading(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 606455189431141, this, []); }
   /**
    * var maximumViewportInset: UIEdgeInsets { get }
    * @availability iOS 15.5+
    */
-  get maximumViewportInset(): Promise<$SDK68> { return callSDKAsync<$SDK68>("WebKit_d6c5d10d3352e6ec", 1482228554117154, this, []); }
+  get maximumViewportInset(): Promise<$SDK68> { return callSDKAsync<$SDK68>("WebKit_a956b86ef7a76a8e", 1482228554117154, this, []); }
   /**
    * var mediaType: String? { get set }
    * @availability iOS 14.0+
    */
-  get mediaType(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 4335288666219333, this, []); }
-  setMediaType(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 43334058438471, this, [value]); }
+  get mediaType(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 4335288666219333, this, []); }
+  setMediaType(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 43334058438471, this, [value]); }
   /**
    * var microphoneCaptureState: WKMediaCaptureState { get }
    * @availability iOS 15.0+
    */
-  get microphoneCaptureState(): Promise<WKMediaCaptureState> { return callSDKAsync<WKMediaCaptureState>("WebKit_d6c5d10d3352e6ec", 1747613576439909, this, []); }
+  get microphoneCaptureState(): Promise<WKMediaCaptureState> { return callSDKAsync<WKMediaCaptureState>("WebKit_a956b86ef7a76a8e", 1747613576439909, this, []); }
   /**
    * var minimumViewportInset: UIEdgeInsets { get }
    * @availability iOS 15.5+
    */
-  get minimumViewportInset(): Promise<$SDK68> { return callSDKAsync<$SDK68>("WebKit_d6c5d10d3352e6ec", 749632042129883, this, []); }
+  get minimumViewportInset(): Promise<$SDK68> { return callSDKAsync<$SDK68>("WebKit_a956b86ef7a76a8e", 749632042129883, this, []); }
   /**
    * weak var navigationDelegate: (any WKNavigationDelegate)? { get set }
    * @availability iOS 8.0+
    */
-  get navigationDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_d6c5d10d3352e6ec", 314358367497325, this, []); }
-  setNavigationDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1689319536511499, this, [value]); }
+  get navigationDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_a956b86ef7a76a8e", 314358367497325, this, []); }
+  setNavigationDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1689319536511499, this, [value]); }
   /**
    * var obscuredContentInsets: UIEdgeInsets { get set }
    * @availability iOS 26.0+
    */
-  get obscuredContentInsets(): Promise<$SDK68> { return callSDKAsync<$SDK68>("WebKit_d6c5d10d3352e6ec", 3369883816085291, this, []); }
-  setObscuredContentInsets(value: $SDK68): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2213432235014336, this, [value]); }
+  get obscuredContentInsets(): Promise<$SDK68> { return callSDKAsync<$SDK68>("WebKit_a956b86ef7a76a8e", 3369883816085291, this, []); }
+  setObscuredContentInsets(value: $SDK68): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2213432235014336, this, [value]); }
   /**
    * var pageZoom: CGFloat { get set }
    * @availability iOS 14.0+
    */
-  get pageZoom(): Promise<number> { return callSDKAsync<number>("WebKit_d6c5d10d3352e6ec", 2416911506020525, this, []); }
-  setPageZoom(value: number): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1248701983429282, this, [value]); }
+  get pageZoom(): Promise<number> { return callSDKAsync<number>("WebKit_a956b86ef7a76a8e", 2416911506020525, this, []); }
+  setPageZoom(value: number): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1248701983429282, this, [value]); }
   /**
    * var scrollView: UIScrollView { get }
    * @availability iOS 8.0+
    */
-  get scrollView(): Promise<_UIKit_UIScrollView> { return callSDKAsync<_UIKit_UIScrollView>("WebKit_d6c5d10d3352e6ec", 3145158452940327, this, []); }
+  get scrollView(): Promise<_UIKit_UIScrollView> { return callSDKAsync<_UIKit_UIScrollView>("WebKit_a956b86ef7a76a8e", 3145158452940327, this, []); }
   /**
    * var serverTrust: SecTrust? { get }
    * @availability iOS 10.0+
    */
-  get serverTrust(): Promise<$SDK3> { return callSDKAsync<$SDK3>("WebKit_d6c5d10d3352e6ec", 3718483007846482, this, []); }
+  get serverTrust(): Promise<$SDK3> { return callSDKAsync<$SDK3>("WebKit_a956b86ef7a76a8e", 3718483007846482, this, []); }
   /**
    * var themeColor: UIColor? { get }
    * @availability iOS 15.0+
    */
-  get themeColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("WebKit_d6c5d10d3352e6ec", 1654905020674883, this, []); }
+  get themeColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("WebKit_a956b86ef7a76a8e", 1654905020674883, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 8.0+
    */
-  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 3209593723015842, this, []); }
+  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 3209593723015842, this, []); }
   /**
    * @NSCopying var underPageBackgroundColor: UIColor! { get set }
    * @availability iOS 15.0+
    */
-  get underPageBackgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("WebKit_d6c5d10d3352e6ec", 936585256936596, this, []); }
-  setUnderPageBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2851789645323208, this, [value]); }
+  get underPageBackgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("WebKit_a956b86ef7a76a8e", 936585256936596, this, []); }
+  setUnderPageBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2851789645323208, this, [value]); }
   /**
    * var isWritingToolsActive: Bool { get }
    * @availability iOS 18.0+
    */
-  get isWritingToolsActive(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3809141506553798, this, []); }
+  get isWritingToolsActive(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3809141506553798, this, []); }
   /**
    * @MainActor @preconcurrency func createWebArchiveData(completionHandler: @escaping @MainActor @Sendable (Result<Data, any Error>) -> Void)
    * @availability iOS 14.0+
    */
-  createWebArchiveData(completionHandler: ((arg0: SDKHandle) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3141140951395611, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  createWebArchiveData(completionHandler: ((arg0: SDKHandle) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3141140951395611, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * @MainActor @preconcurrency func evaluateJavaScript(_ javaScript: String, in frame: WKFrameInfo? = nil, contentWorld: WKContentWorld) async throws -> Any?
    * @availability iOS 15.0+
    */
-  evaluateJavaScriptInContentWorld(javaScript: string, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("WebKit_d6c5d10d3352e6ec", 2986503011767044, this, [javaScript, frame, contentWorld]); }
+  evaluateJavaScriptInContentWorld(javaScript: string, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("WebKit_a956b86ef7a76a8e", 2986503011767044, this, [javaScript, frame, contentWorld]); }
   /**
    * @MainActor @preconcurrency func evaluateJavaScript(_ javaScript: String, in frame: WKFrameInfo? = nil, in contentWorld: WKContentWorld, completionHandler: (@MainActor @Sendable (Result<Any, any Error>) -> Void)? = nil)
    * @availability iOS 14.0+
    */
-  evaluateJavaScriptInInCompletionHandler(javaScript: string, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld, completionHandler?: $SDK74): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 251354480115258, this, [javaScript, frame, contentWorld, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  evaluateJavaScriptInInCompletionHandler(javaScript: string, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld, completionHandler?: $SDK74): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 251354480115258, this, [javaScript, frame, contentWorld, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @MainActor @preconcurrency func callAsyncJavaScript(_ functionBody: String, arguments: [String : Any] = [:], in frame: WKFrameInfo? = nil, contentWorld: WKContentWorld) async throws -> Any?
    * @availability iOS 15.0+
    */
-  callAsyncJavaScriptArgumentsInContentWorld(functionBody: string, arguments_: Record<string, unknown>, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("WebKit_d6c5d10d3352e6ec", 165894333658560, this, [functionBody, arguments_, frame, contentWorld]); }
+  callAsyncJavaScriptArgumentsInContentWorld(functionBody: string, arguments_: Record<string, unknown>, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("WebKit_a956b86ef7a76a8e", 165894333658560, this, [functionBody, arguments_, frame, contentWorld]); }
   /**
    * @MainActor @preconcurrency func callAsyncJavaScript(_ functionBody: String, arguments: [String : Any] = [:], in frame: WKFrameInfo? = nil, in contentWorld: WKContentWorld, completionHandler: (@MainActor @Sendable (Result<Any, any Error>) -> Void)? = nil)
    * @availability iOS 14.0+
    */
-  callAsyncJavaScriptArgumentsInInCompletionHandler(functionBody: string, arguments_: Record<string, unknown>, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld, completionHandler?: $SDK74): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1019509134743516, this, [functionBody, arguments_, frame, contentWorld, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  callAsyncJavaScriptArgumentsInInCompletionHandler(functionBody: string, arguments_: Record<string, unknown>, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld, completionHandler?: $SDK74): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1019509134743516, this, [functionBody, arguments_, frame, contentWorld, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @MainActor @preconcurrency func pdf(configuration: WKPDFConfiguration = .init()) async throws -> Data
    * @availability iOS 15.0+
    */
-  pdf(configuration?: WKPDFConfiguration): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("WebKit_d6c5d10d3352e6ec", 1937637330341425, this, [configuration]); }
+  pdf(configuration?: WKPDFConfiguration): Promise<ArrayBuffer> { return callSDKAsync<ArrayBuffer>("WebKit_a956b86ef7a76a8e", 1937637330341425, this, [configuration]); }
   /**
    * @MainActor @preconcurrency func find(_ string: String, configuration: WKFindConfiguration = .init(), completionHandler: @escaping @MainActor @Sendable (WKFindResult) -> Void)
    * @availability iOS 14.0+
    */
-  findConfigurationCompletionHandler(string: string, configuration: WKFindConfiguration, completionHandler: ((arg0: WKFindResult) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1031966126824364, this, [string, configuration, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  findConfigurationCompletionHandler(string: string, configuration: WKFindConfiguration, completionHandler: ((arg0: WKFindResult) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1031966126824364, this, [string, configuration, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @MainActor @preconcurrency func find(_ string: String, configuration: WKFindConfiguration = .init()) async throws -> WKFindResult
    * @availability iOS 15.0+
    */
-  findConfiguration(string: string, configuration?: WKFindConfiguration): Promise<WKFindResult> { return callSDKAsync<WKFindResult>("WebKit_d6c5d10d3352e6ec", 1726495546323458, this, [string, configuration]); }
+  findConfiguration(string: string, configuration?: WKFindConfiguration): Promise<WKFindResult> { return callSDKAsync<WKFindResult>("WebKit_a956b86ef7a76a8e", 1726495546323458, this, [string, configuration]); }
   /**
    * @MainActor @preconcurrency func createPDF(configuration: WKPDFConfiguration = .init(), completionHandler: @escaping @MainActor @Sendable (Result<Data, any Error>) -> Void)
    * @availability iOS 14.0+
    */
-  createPDF(configuration: WKPDFConfiguration, completionHandler: ((arg0: SDKHandle) => void)): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 598246958240523, this, [configuration, completionHandler], [null,{"callback":{"out":[]}}]); }
+  createPDF(configuration: WKPDFConfiguration, completionHandler: ((arg0: SDKHandle) => void)): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 598246958240523, this, [configuration, completionHandler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)WKWebView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4769,7 +4769,7 @@ export const WKWebView_FullscreenState = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): Promise<(WKWebView_FullscreenState) | null> { return callSDKAsync<(WKWebView_FullscreenState) | null>("WebKit_d6c5d10d3352e6ec", 1836016541925965, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(WKWebView_FullscreenState) | null> { return callSDKAsync<(WKWebView_FullscreenState) | null>("WebKit_a956b86ef7a76a8e", 1836016541925965, undefined, [rawValue]); }
 };
 
 /**
@@ -4778,166 +4778,166 @@ export const WKWebView_FullscreenState = {
  */
 export class WKWebViewConfiguration extends SDKHandle {
   /** init() */
-  static init(): Promise<WKWebViewConfiguration> { return callSDKAsync<WKWebViewConfiguration>("WebKit_d6c5d10d3352e6ec", 3886838161120518, undefined, []); }
+  static init(): Promise<WKWebViewConfiguration> { return callSDKAsync<WKWebViewConfiguration>("WebKit_a956b86ef7a76a8e", 3886838161120518, undefined, []); }
   /**
    * func setURLSchemeHandler(_ urlSchemeHandler: (any WKURLSchemeHandler)?, forURLScheme urlScheme: String)
    * @availability iOS 11.0+
    */
-  setURLSchemeHandler(urlSchemeHandler: (Implements<WKURLSchemeHandler> | SDKHandle) | null, urlScheme: string): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 320742677040363, this, [urlSchemeHandler, urlScheme], [{"protocol":"c:objc(pl)WKURLSchemeHandler"},null]); }
+  setURLSchemeHandler(urlSchemeHandler: (Implements<WKURLSchemeHandler> | SDKHandle) | null, urlScheme: string): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 320742677040363, this, [urlSchemeHandler, urlScheme], [{"protocol":"c:objc(pl)WKURLSchemeHandler"},null]); }
   /**
    * func urlSchemeHandler(forURLScheme urlScheme: String) -> (any WKURLSchemeHandler)?
    * @availability iOS 11.0+
    */
-  urlSchemeHandler(urlScheme: string): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_d6c5d10d3352e6ec", 4181195832006941, this, [urlScheme]); }
+  urlSchemeHandler(urlScheme: string): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("WebKit_a956b86ef7a76a8e", 4181195832006941, this, [urlScheme]); }
   /**
    * var allowsAirPlayForMediaPlayback: Bool { get set }
    * @availability iOS 9.0+
    */
-  get allowsAirPlayForMediaPlayback(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 531869768079447, this, []); }
-  setAllowsAirPlayForMediaPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2399843283555107, this, [value]); }
+  get allowsAirPlayForMediaPlayback(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 531869768079447, this, []); }
+  setAllowsAirPlayForMediaPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2399843283555107, this, [value]); }
   /**
    * var allowsInlineMediaPlayback: Bool { get set }
    * @availability iOS 8.0+
    */
-  get allowsInlineMediaPlayback(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4295731477363268, this, []); }
-  setAllowsInlineMediaPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4126333928177569, this, [value]); }
+  get allowsInlineMediaPlayback(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4295731477363268, this, []); }
+  setAllowsInlineMediaPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4126333928177569, this, [value]); }
   /**
    * var allowsInlinePredictions: Bool { get set }
    * @availability iOS 17.0+
    */
-  get allowsInlinePredictions(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 274834639982434, this, []); }
-  setAllowsInlinePredictions(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2002719659626091, this, [value]); }
+  get allowsInlinePredictions(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 274834639982434, this, []); }
+  setAllowsInlinePredictions(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2002719659626091, this, [value]); }
   /**
    * var allowsPictureInPictureMediaPlayback: Bool { get set }
    * @availability iOS 9.0+
    */
-  get allowsPictureInPictureMediaPlayback(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1275305619474842, this, []); }
-  setAllowsPictureInPictureMediaPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1931746609246232, this, [value]); }
+  get allowsPictureInPictureMediaPlayback(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1275305619474842, this, []); }
+  setAllowsPictureInPictureMediaPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1931746609246232, this, [value]); }
   /**
    * var applicationNameForUserAgent: String? { get set }
    * @availability iOS 9.0+
    */
-  get applicationNameForUserAgent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_d6c5d10d3352e6ec", 2321846666552051, this, []); }
-  setApplicationNameForUserAgent(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 768090945862008, this, [value]); }
+  get applicationNameForUserAgent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("WebKit_a956b86ef7a76a8e", 2321846666552051, this, []); }
+  setApplicationNameForUserAgent(value?: (string) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 768090945862008, this, [value]); }
   /**
    * var dataDetectorTypes: WKDataDetectorTypes { get set }
    * @availability iOS 10.0+
    */
-  get dataDetectorTypes(): Promise<WKDataDetectorTypes> { return callSDKAsync<WKDataDetectorTypes>("WebKit_d6c5d10d3352e6ec", 4214618330085615, this, []); }
-  setDataDetectorTypes(value: WKDataDetectorTypes): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3418607051806381, this, [value]); }
+  get dataDetectorTypes(): Promise<WKDataDetectorTypes> { return callSDKAsync<WKDataDetectorTypes>("WebKit_a956b86ef7a76a8e", 4214618330085615, this, []); }
+  setDataDetectorTypes(value: WKDataDetectorTypes): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3418607051806381, this, [value]); }
   /**
    * @NSCopying var defaultWebpagePreferences: WKWebpagePreferences! { get set }
    * @availability iOS 13.0+
    */
-  get defaultWebpagePreferences(): Promise<(WKWebpagePreferences) | null> { return callSDKAsync<(WKWebpagePreferences) | null>("WebKit_d6c5d10d3352e6ec", 2446194934680183, this, []); }
-  setDefaultWebpagePreferences(value?: (WKWebpagePreferences) | null): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2532603937604777, this, [value]); }
+  get defaultWebpagePreferences(): Promise<(WKWebpagePreferences) | null> { return callSDKAsync<(WKWebpagePreferences) | null>("WebKit_a956b86ef7a76a8e", 2446194934680183, this, []); }
+  setDefaultWebpagePreferences(value?: (WKWebpagePreferences) | null): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2532603937604777, this, [value]); }
   /**
    * var ignoresViewportScaleLimits: Bool { get set }
    * @availability iOS 10.0+
    */
-  get ignoresViewportScaleLimits(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1894104863729515, this, []); }
-  setIgnoresViewportScaleLimits(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2465160607359759, this, [value]); }
+  get ignoresViewportScaleLimits(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1894104863729515, this, []); }
+  setIgnoresViewportScaleLimits(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2465160607359759, this, [value]); }
   /**
    * var limitsNavigationsToAppBoundDomains: Bool { get set }
    * @availability iOS 14.0+
    */
-  get limitsNavigationsToAppBoundDomains(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1183231498325563, this, []); }
-  setLimitsNavigationsToAppBoundDomains(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 337105558472049, this, [value]); }
+  get limitsNavigationsToAppBoundDomains(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1183231498325563, this, []); }
+  setLimitsNavigationsToAppBoundDomains(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 337105558472049, this, [value]); }
   /**
    * var mediaPlaybackAllowsAirPlay: Bool { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get mediaPlaybackAllowsAirPlay(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2390489795495852, this, []); }
-  setMediaPlaybackAllowsAirPlay(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 362546075117029, this, [value]); }
+  get mediaPlaybackAllowsAirPlay(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2390489795495852, this, []); }
+  setMediaPlaybackAllowsAirPlay(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 362546075117029, this, [value]); }
   /**
    * var mediaPlaybackRequiresUserAction: Bool { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get mediaPlaybackRequiresUserAction(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 4126047711695463, this, []); }
-  setMediaPlaybackRequiresUserAction(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1160990150587751, this, [value]); }
+  get mediaPlaybackRequiresUserAction(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 4126047711695463, this, []); }
+  setMediaPlaybackRequiresUserAction(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1160990150587751, this, [value]); }
   /**
    * var mediaTypesRequiringUserActionForPlayback: WKAudiovisualMediaTypes { get set }
    * @availability iOS 10.0+
    */
-  get mediaTypesRequiringUserActionForPlayback(): Promise<WKAudiovisualMediaTypes> { return callSDKAsync<WKAudiovisualMediaTypes>("WebKit_d6c5d10d3352e6ec", 3558542798590850, this, []); }
-  setMediaTypesRequiringUserActionForPlayback(value: WKAudiovisualMediaTypes): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2729261625902240, this, [value]); }
+  get mediaTypesRequiringUserActionForPlayback(): Promise<WKAudiovisualMediaTypes> { return callSDKAsync<WKAudiovisualMediaTypes>("WebKit_a956b86ef7a76a8e", 3558542798590850, this, []); }
+  setMediaTypesRequiringUserActionForPlayback(value: WKAudiovisualMediaTypes): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2729261625902240, this, [value]); }
   /**
    * var preferences: WKPreferences { get set }
    * @availability iOS 8.0+
    */
-  get preferences(): Promise<WKPreferences> { return callSDKAsync<WKPreferences>("WebKit_d6c5d10d3352e6ec", 165672740944657, this, []); }
-  setPreferences(value: WKPreferences): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 125881175186512, this, [value]); }
+  get preferences(): Promise<WKPreferences> { return callSDKAsync<WKPreferences>("WebKit_a956b86ef7a76a8e", 165672740944657, this, []); }
+  setPreferences(value: WKPreferences): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 125881175186512, this, [value]); }
   /**
    * var processPool: WKProcessPool { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get processPool(): Promise<WKProcessPool> { return callSDKAsync<WKProcessPool>("WebKit_d6c5d10d3352e6ec", 299743859597784, this, []); }
-  setProcessPool(value: WKProcessPool): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 386311926489403, this, [value]); }
+  get processPool(): Promise<WKProcessPool> { return callSDKAsync<WKProcessPool>("WebKit_a956b86ef7a76a8e", 299743859597784, this, []); }
+  setProcessPool(value: WKProcessPool): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 386311926489403, this, [value]); }
   /**
    * var requiresUserActionForMediaPlayback: Bool { get set }
    * @availability iOS 9.0+
    * @deprecated iOS 10.0
    */
-  get requiresUserActionForMediaPlayback(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 1515367818732511, this, []); }
-  setRequiresUserActionForMediaPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 249718345410676, this, [value]); }
+  get requiresUserActionForMediaPlayback(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 1515367818732511, this, []); }
+  setRequiresUserActionForMediaPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 249718345410676, this, [value]); }
   /**
    * var selectionGranularity: WKSelectionGranularity { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get selectionGranularity(): Promise<WKSelectionGranularity> { return callSDKAsync<WKSelectionGranularity>("WebKit_d6c5d10d3352e6ec", 2439829279451434, this, []); }
-  setSelectionGranularity(value: WKSelectionGranularity): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 2806632007451648, this, [value]); }
+  get selectionGranularity(): Promise<WKSelectionGranularity> { return callSDKAsync<WKSelectionGranularity>("WebKit_a956b86ef7a76a8e", 2439829279451434, this, []); }
+  setSelectionGranularity(value: WKSelectionGranularity): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 2806632007451648, this, [value]); }
   /**
    * var showsSystemScreenTimeBlockingView: Bool { get set }
    * @availability iOS 26.0+
    */
-  get showsSystemScreenTimeBlockingView(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 3965828947509724, this, []); }
-  setShowsSystemScreenTimeBlockingView(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4445732005714065, this, [value]); }
+  get showsSystemScreenTimeBlockingView(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 3965828947509724, this, []); }
+  setShowsSystemScreenTimeBlockingView(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4445732005714065, this, [value]); }
   /**
    * var supportsAdaptiveImageGlyph: Bool { get set }
    * @availability iOS 18.0+
    */
-  get supportsAdaptiveImageGlyph(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 435025016558986, this, []); }
-  setSupportsAdaptiveImageGlyph(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 55415941099286, this, [value]); }
+  get supportsAdaptiveImageGlyph(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 435025016558986, this, []); }
+  setSupportsAdaptiveImageGlyph(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 55415941099286, this, [value]); }
   /**
    * var suppressesIncrementalRendering: Bool { get set }
    * @availability iOS 8.0+
    */
-  get suppressesIncrementalRendering(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2027015238551389, this, []); }
-  setSuppressesIncrementalRendering(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1221425326429324, this, [value]); }
+  get suppressesIncrementalRendering(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2027015238551389, this, []); }
+  setSuppressesIncrementalRendering(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1221425326429324, this, [value]); }
   /**
    * var upgradeKnownHostsToHTTPS: Bool { get set }
    * @availability iOS 14.5+
    */
-  get upgradeKnownHostsToHTTPS(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_d6c5d10d3352e6ec", 2608863766040014, this, []); }
-  setUpgradeKnownHostsToHTTPS(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 1263693010291510, this, [value]); }
+  get upgradeKnownHostsToHTTPS(): Promise<boolean> { return callSDKAsync<boolean>("WebKit_a956b86ef7a76a8e", 2608863766040014, this, []); }
+  setUpgradeKnownHostsToHTTPS(value: boolean): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 1263693010291510, this, [value]); }
   /**
    * var userContentController: WKUserContentController { get set }
    * @availability iOS 8.0+
    */
-  get userContentController(): Promise<WKUserContentController> { return callSDKAsync<WKUserContentController>("WebKit_d6c5d10d3352e6ec", 1913248394680879, this, []); }
-  setUserContentController(value: WKUserContentController): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3119599751781033, this, [value]); }
+  get userContentController(): Promise<WKUserContentController> { return callSDKAsync<WKUserContentController>("WebKit_a956b86ef7a76a8e", 1913248394680879, this, []); }
+  setUserContentController(value: WKUserContentController): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3119599751781033, this, [value]); }
   /**
    * var webExtensionController: WKWebExtensionController? { get set }
    * @availability iOS 18.4+
    */
-  get webExtensionController(): Promise<$SDK9> { return callSDKAsync<$SDK9>("WebKit_d6c5d10d3352e6ec", 2373505931512812, this, []); }
-  setWebExtensionController(value?: $SDK9): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 3485146166399937, this, [value]); }
+  get webExtensionController(): Promise<$SDK9> { return callSDKAsync<$SDK9>("WebKit_a956b86ef7a76a8e", 2373505931512812, this, []); }
+  setWebExtensionController(value?: $SDK9): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 3485146166399937, this, [value]); }
   /**
    * var websiteDataStore: WKWebsiteDataStore { get set }
    * @availability iOS 9.0+
    */
-  get websiteDataStore(): Promise<WKWebsiteDataStore> { return callSDKAsync<WKWebsiteDataStore>("WebKit_d6c5d10d3352e6ec", 4348949451664430, this, []); }
-  setWebsiteDataStore(value: WKWebsiteDataStore): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 4370439639194744, this, [value]); }
+  get websiteDataStore(): Promise<WKWebsiteDataStore> { return callSDKAsync<WKWebsiteDataStore>("WebKit_a956b86ef7a76a8e", 4348949451664430, this, []); }
+  setWebsiteDataStore(value: WKWebsiteDataStore): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 4370439639194744, this, [value]); }
   /**
    * var writingToolsBehavior: UIWritingToolsBehavior { get set }
    * @availability iOS 18.0+
    */
-  get writingToolsBehavior(): Promise<_UIKit_UIWritingToolsBehavior> { return callSDKAsync<_UIKit_UIWritingToolsBehavior>("WebKit_d6c5d10d3352e6ec", 1908869370955009, this, []); }
-  setWritingToolsBehavior(value: _UIKit_UIWritingToolsBehavior): Promise<void> { return callSDKAsync<void>("WebKit_d6c5d10d3352e6ec", 233415196797043, this, [value]); }
+  get writingToolsBehavior(): Promise<_UIKit_UIWritingToolsBehavior> { return callSDKAsync<_UIKit_UIWritingToolsBehavior>("WebKit_a956b86ef7a76a8e", 1908869370955009, this, []); }
+  setWritingToolsBehavior(value: _UIKit_UIWritingToolsBehavior): Promise<void> { return callSDKAsync<void>("WebKit_a956b86ef7a76a8e", 233415196797043, this, [value]); }
   declare readonly $type: { "c:objc(cs)WKWebViewConfiguration": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4952,12 +4952,12 @@ export const WKWebViewDataType = {
    * static var sessionStorage: WKWebViewDataType { get }
    * @availability iOS 26.0+
    */
-  get sessionStorage(): WKWebViewDataType { return callSDK<WKWebViewDataType>("WebKit_d6c5d10d3352e6ec", 2018830684427467, undefined, []); },
+  get sessionStorage(): WKWebViewDataType { return callSDK<WKWebViewDataType>("WebKit_a956b86ef7a76a8e", 2018830684427467, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): WKWebViewDataType { return callSDK<WKWebViewDataType>("WebKit_d6c5d10d3352e6ec", 4401190276251508, undefined, [rawValue]); }
+  init(rawValue: number): WKWebViewDataType { return callSDK<WKWebViewDataType>("WebKit_a956b86ef7a76a8e", 4401190276251508, undefined, [rawValue]); }
 };
 
 /**
@@ -4966,47 +4966,47 @@ export const WKWebViewDataType = {
  */
 export class WKWindowFeatures extends SDKHandle {
   /** init() */
-  static init(): Promise<WKWindowFeatures> { return callSDKAsync<WKWindowFeatures>("WebKit_d6c5d10d3352e6ec", 3742686124942195, undefined, []); }
+  static init(): Promise<WKWindowFeatures> { return callSDKAsync<WKWindowFeatures>("WebKit_a956b86ef7a76a8e", 3742686124942195, undefined, []); }
   /**
    * var allowsResizing: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get allowsResizing(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_d6c5d10d3352e6ec", 1108535419475289, this, []); }
+  get allowsResizing(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_a956b86ef7a76a8e", 1108535419475289, this, []); }
   /**
    * var height: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get height(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_d6c5d10d3352e6ec", 27823807676758, this, []); }
+  get height(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_a956b86ef7a76a8e", 27823807676758, this, []); }
   /**
    * var menuBarVisibility: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get menuBarVisibility(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_d6c5d10d3352e6ec", 3162078208755918, this, []); }
+  get menuBarVisibility(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_a956b86ef7a76a8e", 3162078208755918, this, []); }
   /**
    * var statusBarVisibility: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get statusBarVisibility(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_d6c5d10d3352e6ec", 472621170814317, this, []); }
+  get statusBarVisibility(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_a956b86ef7a76a8e", 472621170814317, this, []); }
   /**
    * var toolbarsVisibility: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get toolbarsVisibility(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_d6c5d10d3352e6ec", 3351931605515858, this, []); }
+  get toolbarsVisibility(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_a956b86ef7a76a8e", 3351931605515858, this, []); }
   /**
    * var width: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get width(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_d6c5d10d3352e6ec", 4184462749739296, this, []); }
+  get width(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_a956b86ef7a76a8e", 4184462749739296, this, []); }
   /**
    * var x: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get x(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_d6c5d10d3352e6ec", 3110497050497092, this, []); }
+  get x(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_a956b86ef7a76a8e", 3110497050497092, this, []); }
   /**
    * var y: NSNumber? { get }
    * @availability iOS 8.0+
    */
-  get y(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_d6c5d10d3352e6ec", 1776650140816230, this, []); }
+  get y(): Promise<$SDK28> { return callSDKAsync<$SDK28>("WebKit_a956b86ef7a76a8e", 1776650140816230, this, []); }
   declare readonly $type: { "c:objc(cs)WKWindowFeatures": true; "c:objc(cs)NSObject": true };
 }
 
@@ -5014,209 +5014,209 @@ export class WKWindowFeatures extends SDKHandle {
  * let WKErrorDomain: String
  * @availability iOS 8.0+
  */
-export const WKErrorDomain: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 121778189049690, undefined, []);
+export const WKErrorDomain: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 121778189049690, undefined, []);
 
 /**
  * let WKPreviewActionItemIdentifierAddToReadingList: String
  * @availability iOS 10.0+
  * @deprecated iOS 13.0
  */
-export const WKPreviewActionItemIdentifierAddToReadingList: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 739595371357482, undefined, []);
+export const WKPreviewActionItemIdentifierAddToReadingList: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 739595371357482, undefined, []);
 
 /**
  * let WKPreviewActionItemIdentifierCopy: String
  * @availability iOS 10.0+
  * @deprecated iOS 13.0
  */
-export const WKPreviewActionItemIdentifierCopy: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 1374485498498417, undefined, []);
+export const WKPreviewActionItemIdentifierCopy: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 1374485498498417, undefined, []);
 
 /**
  * let WKPreviewActionItemIdentifierOpen: String
  * @availability iOS 10.0+
  * @deprecated iOS 13.0
  */
-export const WKPreviewActionItemIdentifierOpen: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 2038613620014764, undefined, []);
+export const WKPreviewActionItemIdentifierOpen: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 2038613620014764, undefined, []);
 
 /**
  * let WKPreviewActionItemIdentifierShare: String
  * @availability iOS 10.0+
  * @deprecated iOS 13.0
  */
-export const WKPreviewActionItemIdentifierShare: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 156465963843978, undefined, []);
+export const WKPreviewActionItemIdentifierShare: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 156465963843978, undefined, []);
 
 /**
  * let WKWebsiteDataTypeCookies: String
  * @availability iOS 9.0+
  */
-export const WKWebsiteDataTypeCookies: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 2892146716622221, undefined, []);
+export const WKWebsiteDataTypeCookies: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 2892146716622221, undefined, []);
 
 /**
  * let WKWebsiteDataTypeDiskCache: String
  * @availability iOS 9.0+
  */
-export const WKWebsiteDataTypeDiskCache: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 2930860650353648, undefined, []);
+export const WKWebsiteDataTypeDiskCache: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 2930860650353648, undefined, []);
 
 /**
  * let WKWebsiteDataTypeFetchCache: String
  * @availability iOS 11.3+
  */
-export const WKWebsiteDataTypeFetchCache: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 2309093544564513, undefined, []);
+export const WKWebsiteDataTypeFetchCache: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 2309093544564513, undefined, []);
 
 /**
  * let WKWebsiteDataTypeFileSystem: String
  * @availability iOS 16.0+
  */
-export const WKWebsiteDataTypeFileSystem: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 2803531420207878, undefined, []);
+export const WKWebsiteDataTypeFileSystem: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 2803531420207878, undefined, []);
 
 /**
  * let WKWebsiteDataTypeHashSalt: String
  * @availability iOS 17.0+
  */
-export const WKWebsiteDataTypeHashSalt: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 4466870702330074, undefined, []);
+export const WKWebsiteDataTypeHashSalt: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 4466870702330074, undefined, []);
 
 /**
  * let WKWebsiteDataTypeIndexedDBDatabases: String
  * @availability iOS 9.0+
  */
-export const WKWebsiteDataTypeIndexedDBDatabases: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 257427856050819, undefined, []);
+export const WKWebsiteDataTypeIndexedDBDatabases: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 257427856050819, undefined, []);
 
 /**
  * let WKWebsiteDataTypeLocalStorage: String
  * @availability iOS 9.0+
  */
-export const WKWebsiteDataTypeLocalStorage: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 12301068126117, undefined, []);
+export const WKWebsiteDataTypeLocalStorage: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 12301068126117, undefined, []);
 
 /**
  * let WKWebsiteDataTypeMediaKeys: String
  * @availability iOS 17.0+
  */
-export const WKWebsiteDataTypeMediaKeys: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 4129271011811523, undefined, []);
+export const WKWebsiteDataTypeMediaKeys: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 4129271011811523, undefined, []);
 
 /**
  * let WKWebsiteDataTypeMemoryCache: String
  * @availability iOS 9.0+
  */
-export const WKWebsiteDataTypeMemoryCache: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 1410684824758108, undefined, []);
+export const WKWebsiteDataTypeMemoryCache: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 1410684824758108, undefined, []);
 
 /**
  * let WKWebsiteDataTypeOfflineWebApplicationCache: String
  * @availability iOS 9.0+
  * @deprecated iOS 26.2
  */
-export const WKWebsiteDataTypeOfflineWebApplicationCache: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 1817115751708207, undefined, []);
+export const WKWebsiteDataTypeOfflineWebApplicationCache: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 1817115751708207, undefined, []);
 
 /**
  * let WKWebsiteDataTypeScreenTime: String
  * @availability iOS 26.0+
  */
-export const WKWebsiteDataTypeScreenTime: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 3943091528567759, undefined, []);
+export const WKWebsiteDataTypeScreenTime: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 3943091528567759, undefined, []);
 
 /**
  * let WKWebsiteDataTypeSearchFieldRecentSearches: String
  * @availability iOS 17.0+
  */
-export const WKWebsiteDataTypeSearchFieldRecentSearches: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 1977773635438452, undefined, []);
+export const WKWebsiteDataTypeSearchFieldRecentSearches: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 1977773635438452, undefined, []);
 
 /**
  * let WKWebsiteDataTypeServiceWorkerRegistrations: String
  * @availability iOS 11.3+
  */
-export const WKWebsiteDataTypeServiceWorkerRegistrations: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 1907285474305045, undefined, []);
+export const WKWebsiteDataTypeServiceWorkerRegistrations: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 1907285474305045, undefined, []);
 
 /**
  * let WKWebsiteDataTypeSessionStorage: String
  * @availability iOS 9.0+
  */
-export const WKWebsiteDataTypeSessionStorage: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 2468654029471845, undefined, []);
+export const WKWebsiteDataTypeSessionStorage: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 2468654029471845, undefined, []);
 
 /**
  * let WKWebsiteDataTypeWebSQLDatabases: String
  * @availability iOS 9.0+
  */
-export const WKWebsiteDataTypeWebSQLDatabases: string = callSDK<string>("WebKit_d6c5d10d3352e6ec", 1249966679185731, undefined, []);
+export const WKWebsiteDataTypeWebSQLDatabases: string = callSDK<string>("WebKit_a956b86ef7a76a8e", 1249966679185731, undefined, []);
 
-registerSDKClass("NSAttributedString", NSAttributedString, { module: "WebKit_d6c5d10d3352e6ec", properties: {} }, true);
+registerSDKClass("NSAttributedString", NSAttributedString, { module: "WebKit_a956b86ef7a76a8e", properties: {} }, true);
 registerSDKProtocol("s:6WebKit16URLSchemeHandlerP", {"replyFor":"reply(for:)"});
-registerSDKClass("WebKit.URLSchemeTaskResult", URLSchemeTaskResult, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage", WebPage, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.BackForwardList", WebPage_BackForwardList, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.BackForwardList.Item", WebPage_BackForwardList_Item, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.BackForwardList.Item.ID", WebPage_BackForwardList_Item_ID, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.Configuration", WebPage_Configuration, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.DeviceSensorAuthorization", WebPage_DeviceSensorAuthorization, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.DeviceSensorAuthorization.Permission", WebPage_DeviceSensorAuthorization_Permission, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WebKit.URLSchemeTaskResult", URLSchemeTaskResult, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage", WebPage, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"stopLoading":{"id":158242471583909},"callJavaScript":{"id":3555416370091415},"mediaPlaybackState":{"id":4194125561384390},"pauseAllMediaPlayback":{"id":1835991650023239},"setCameraCaptureState":{"id":4377290386834821},"setMicrophoneCaptureState":{"id":3136729621021780},"closeAllMediaPresentations":{"id":3420816018375574},"setAllMediaPlaybackSuspended":{"id":2850880028297976},"loadSimulatedRequestResponseHTML":{"id":2552416106778244},"loadSimulatedRequestResponseResponseData":{"id":2915483483691197},"loadHtmlBaseURL":{"id":863557508671776},"loadMimeTypeCharacterEncodingBaseURL":{"id":234554248429886},"load":{"id":687243776834740},"load82259":{"id":3706488464918476},"load63470":{"id":881867120940396},"reload":{"id":1942839268648274},"exported":{"id":3144365389501437}} });
+registerSDKClass("WebKit.WebPage.BackForwardList", WebPage_BackForwardList, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"subscript":{"id":3069223144041525}} });
+registerSDKClass("WebKit.WebPage.BackForwardList.Item", WebPage_BackForwardList_Item, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.BackForwardList.Item.ID", WebPage_BackForwardList_Item_ID, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.Configuration", WebPage_Configuration, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.DeviceSensorAuthorization", WebPage_DeviceSensorAuthorization, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.DeviceSensorAuthorization.Permission", WebPage_DeviceSensorAuthorization_Permission, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:6WebKit0A4PageC16DialogPresentingP", {"handleJavaScriptAlertMessageInitiatedBy":"handleJavaScriptAlert(message:initiatedBy:)","handleJavaScriptConfirmMessageInitiatedBy":"handleJavaScriptConfirm(message:initiatedBy:)","handleJavaScriptPromptMessageDefaultTextInitiatedBy":"handleJavaScriptPrompt(message:defaultText:initiatedBy:)","handleFileInputPromptParametersInitiatedBy":"handleFileInputPrompt(parameters:initiatedBy:)"});
-registerSDKClass("WebKit.WebPage.ExportedContentConfiguration", WebPage_ExportedContentConfiguration, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.ExportedContentConfiguration.Region", WebPage_ExportedContentConfiguration_Region, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.FileInputPromptResult", WebPage_FileInputPromptResult, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.FormInfo", WebPage_FormInfo, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.FrameInfo", WebPage_FrameInfo, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.JavaScriptPromptResult", WebPage_JavaScriptPromptResult, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.NavigationAction", WebPage_NavigationAction, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WebKit.WebPage.ExportedContentConfiguration", WebPage_ExportedContentConfiguration, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.ExportedContentConfiguration.Region", WebPage_ExportedContentConfiguration_Region, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.FileInputPromptResult", WebPage_FileInputPromptResult, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.FormInfo", WebPage_FormInfo, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.FrameInfo", WebPage_FrameInfo, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.JavaScriptPromptResult", WebPage_JavaScriptPromptResult, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.NavigationAction", WebPage_NavigationAction, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:6WebKit0A4PageC18NavigationDecidingP", {"decidePolicyForPreferences":"decidePolicy(for:preferences:)","decidePolicyFor":"decidePolicy(for:)","decideAuthenticationChallengeDispositionFor":"decideAuthenticationChallengeDisposition(for:)","willSubmitFormInfo":"willSubmit(formInfo:)"});
-registerSDKClass("WebKit.WebPage.NavigationError", WebPage_NavigationError, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.NavigationPreferences", WebPage_NavigationPreferences, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WebPage.NavigationResponse", WebPage_NavigationResponse, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKBackForwardList", WKBackForwardList, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKBackForwardListItem", WKBackForwardListItem, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKContentRuleList", WKContentRuleList, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKContentRuleListStore", WKContentRuleListStore, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKContentWorld", WKContentWorld, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKContentWorldConfiguration", WKContentWorld_Configuration, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKContextMenuElementInfo", WKContextMenuElementInfo, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKDOMNodeSnapshot", WKDOMNodeSnapshot, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKDownload", WKDownload, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WebKit.WebPage.NavigationError", WebPage_NavigationError, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.NavigationPreferences", WebPage_NavigationPreferences, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WebPage.NavigationResponse", WebPage_NavigationResponse, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKBackForwardList", WKBackForwardList, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"item":{"id":3145472887368570}} });
+registerSDKClass("WKBackForwardListItem", WKBackForwardListItem, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKContentRuleList", WKContentRuleList, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKContentRuleListStore", WKContentRuleListStore, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"compileContentRuleList":{"id":1165210821557740,"hints":[null,null,{"callback":{"out":[]}}]},"getAvailableContentRuleListIdentifiers":{"id":1911427832422611,"hints":[{"callback":{"out":[]}}]},"lookUpContentRuleList":{"id":4098102964879983,"hints":[null,{"callback":{"out":[]}}]},"removeContentRuleList":{"id":4068068373950418,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("WKContentWorld", WKContentWorld, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKContentWorldConfiguration", WKContentWorld_Configuration, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKContextMenuElementInfo", WKContextMenuElementInfo, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKDOMNodeSnapshot", WKDOMNodeSnapshot, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKDownload", WKDownload, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"cancel":{"id":3099068102659427,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)WKDownloadDelegate", {"downloadDecideDestinationUsingSuggestedFilename":"download(_:decideDestinationUsing:suggestedFilename:)","downloadDidFinish":"downloadDidFinish(_:)","downloadDidFailWithErrorResumeData":"download(_:didFailWithError:resumeData:)","downloadDidReceiveFinalURL":"download(_:didReceiveFinalURL:)"});
-registerSDKClass("WebKit.WKError", WKError, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKFindConfiguration", WKFindConfiguration, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKFindResult", WKFindResult, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKFormInfo", WKFormInfo, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKFrameInfo", WKFrameInfo, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKHTTPCookieStore", WKHTTPCookieStore, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WebKit.WKError", WKError, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKFindConfiguration", WKFindConfiguration, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKFindResult", WKFindResult, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKFormInfo", WKFormInfo, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKFrameInfo", WKFrameInfo, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKHTTPCookieStore", WKHTTPCookieStore, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"add":{"id":3796513336999039,"hints":[{"protocol":"c:objc(pl)WKHTTPCookieStoreObserver"}]},"delete":{"id":1227849923482829,"hints":[null,{"callback":{"out":[]}}]},"getAllCookies":{"id":3155597003545429,"hints":[{"callback":{"out":[]}}]},"getCookiePolicy":{"id":4361243050769149,"hints":[{"callback":{"out":[]}}]},"getCookies":{"id":157670245060862,"hints":[null,{"callback":{"out":[]}}]},"remove":{"id":2141776624790294,"hints":[{"protocol":"c:objc(pl)WKHTTPCookieStoreObserver"}]},"setCookie":{"id":3567743047355294,"hints":[null,{"callback":{"out":[]}}]},"setCookiePolicy":{"id":2673334079500048,"hints":[null,{"callback":{"out":[]}}]},"setCookies":{"id":2789096858775845,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)WKHTTPCookieStoreObserver", {"cookiesDidChangeIn":"cookiesDidChange(in:)"});
-registerSDKClass("WKJSHandle", WKJSHandle, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKNavigation", WKNavigation, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKNavigationAction", WKNavigationAction, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WKJSHandle", WKJSHandle, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"getWindowProxyFrame":{"id":3965741536067236,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("WKNavigation", WKNavigation, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKNavigationAction", WKNavigationAction, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)WKNavigationDelegate", {"webViewDecidePolicyFor":"webView(_:decidePolicyFor:)","webViewDecidePolicyForPreferences":"webView(_:decidePolicyFor:preferences:)","webViewDidStartProvisionalNavigation":"webView(_:didStartProvisionalNavigation:)","webViewDidReceiveServerRedirectForProvisionalNavigation":"webView(_:didReceiveServerRedirectForProvisionalNavigation:)","webViewDidFailProvisionalNavigationWithError":"webView(_:didFailProvisionalNavigation:withError:)","webViewDidCommit":"webView(_:didCommit:)","webViewDidFinish":"webView(_:didFinish:)","webViewDidFailWithError":"webView(_:didFail:withError:)","webViewRespondTo":"webView(_:respondTo:)","webViewWebContentProcessDidTerminate":"webViewWebContentProcessDidTerminate(_:)","webViewShouldAllowDeprecatedTLSFor":"webView(_:shouldAllowDeprecatedTLSFor:)","webViewNavigationActionDidBecome":"webView(_:navigationAction:didBecome:)","webViewNavigationResponseDidBecome":"webView(_:navigationResponse:didBecome:)","webViewShouldGoToWillUseInstantBack":"webView(_:shouldGoTo:willUseInstantBack:)","webViewWillSubmitForm":"webView(_:willSubmitForm:)"});
-registerSDKClass("WKNavigationResponse", WKNavigationResponse, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKOpenPanelParameters", WKOpenPanelParameters, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKPDFConfiguration", WKPDFConfiguration, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKPreferences", WKPreferences, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WKNavigationResponse", WKNavigationResponse, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKOpenPanelParameters", WKOpenPanelParameters, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKPDFConfiguration", WKPDFConfiguration, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKPreferences", WKPreferences, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)WKPreviewActionItem", {});
-registerSDKClass("WKPreviewElementInfo", WKPreviewElementInfo, { module: "WebKit_d6c5d10d3352e6ec", properties: {"linkURL":4440157990962679} });
-registerSDKClass("WKProcessPool", WKProcessPool, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKScriptMessage", WKScriptMessage, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WKPreviewElementInfo", WKPreviewElementInfo, { module: "WebKit_a956b86ef7a76a8e", properties: {"linkURL":4440157990962679} });
+registerSDKClass("WKProcessPool", WKProcessPool, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKScriptMessage", WKScriptMessage, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)WKScriptMessageHandler", {"userContentControllerDidReceive":"userContentController(_:didReceive:)"});
 registerSDKProtocol("c:objc(pl)WKScriptMessageHandlerWithReply", {"userContentControllerDidReceive":"userContentController(_:didReceive:)"});
-registerSDKClass("WKSecurityOrigin", WKSecurityOrigin, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKSnapshotConfiguration", WKSnapshotConfiguration, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WKSecurityOrigin", WKSecurityOrigin, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKSnapshotConfiguration", WKSnapshotConfiguration, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)WKUIDelegate", {"webViewDidClose":"webViewDidClose(_:)","webViewCommitPreviewingViewController":"webView(_:commitPreviewingViewController:)","webViewContextMenuWillPresentForElement":"webView(_:contextMenuWillPresentForElement:)","webViewContextMenuForElementWillCommitWithAnimator":"webView(_:contextMenuForElement:willCommitWithAnimator:)","webViewContextMenuDidEndForElement":"webView(_:contextMenuDidEndForElement:)","webViewWillPresentEditMenuWithAnimator":"webView(_:willPresentEditMenuWithAnimator:)","webViewWillDismissEditMenuWithAnimator":"webView(_:willDismissEditMenuWithAnimator:)"});
 registerSDKProtocol("c:objc(pl)WKURLSchemeHandler", {"webViewStart":"webView(_:start:)","webViewStop":"webView(_:stop:)"});
 registerSDKProtocol("c:objc(pl)WKURLSchemeTask", {"didReceive":"didReceive(_:)","didFinish":"didFinish()","didFailWithError":"didFailWithError(_:)"});
-registerSDKClass("WKUserContentController", WKUserContentController, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKUserScript", WKUserScript, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtension", WKWebExtension, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtensionAction", WKWebExtension_Action, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtensionCommand", WKWebExtension_Command, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtensionDataRecord", WKWebExtension_DataRecord, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WKWebExtension.DataRecord.Error", WKWebExtension_DataRecord_Error, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WKWebExtension.Error", WKWebExtension_Error, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtensionMatchPattern", WKWebExtension_MatchPattern, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WKWebExtension.MatchPattern.Error", WKWebExtension_MatchPattern_Error, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtensionMessagePort", WKWebExtension_MessagePort, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WKWebExtension.MessagePort.Error", WKWebExtension_MessagePort_Error, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtensionTabConfiguration", WKWebExtension_TabConfiguration, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtensionWindowConfiguration", WKWebExtension_WindowConfiguration, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtensionContext", WKWebExtensionContext, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WebKit.WKWebExtensionContext.Error", WKWebExtensionContext_Error, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtensionController", WKWebExtensionController, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebExtensionControllerConfiguration", WKWebExtensionController_Configuration, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WKUserContentController", WKUserContentController, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"add":{"id":1926566092963061},"addContentWorldName":{"id":69044079997786,"hints":[{"protocol":"c:objc(pl)WKScriptMessageHandler"},null,null]},"addName":{"id":3426986190906519,"hints":[{"protocol":"c:objc(pl)WKScriptMessageHandler"},null]},"addScriptMessageHandler":{"id":2506929684133154},"addUserScript":{"id":1886048696563329},"removeAllContentRuleLists":{"id":1617402798331625},"removeAllScriptMessageHandlers":{"id":1378243164166254},"removeAllScriptMessageHandlersFrom":{"id":1958969964538099},"removeAllUserScripts":{"id":3365963382056622},"remove":{"id":227802790316622},"removeScriptMessageHandlerForName":{"id":2659802487830527},"removeScriptMessageHandlerForNameContentWorld":{"id":4221998205983243},"removeBuffer":{"id":3693764826698175}} });
+registerSDKClass("WKUserScript", WKUserScript, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKWebExtension", WKWebExtension, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"actionIcon":{"id":2148497237033100},"icon":{"id":1061525803747936},"supportsManifestVersion":{"id":2979916001252085}} });
+registerSDKClass("WKWebExtensionAction", WKWebExtension_Action, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"closePopup":{"id":3103861599865391},"icon":{"id":230811467377972}} });
+registerSDKClass("WKWebExtensionCommand", WKWebExtension_Command, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKWebExtensionDataRecord", WKWebExtension_DataRecord, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"sizeInBytes":{"id":3371496808787713}} });
+registerSDKClass("WebKit.WKWebExtension.DataRecord.Error", WKWebExtension_DataRecord_Error, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WebKit.WKWebExtension.Error", WKWebExtension_Error, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKWebExtensionMatchPattern", WKWebExtension_MatchPattern, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"matches":{"id":3793170332515243},"matchesOptions":{"id":389724729459744},"matches89242":{"id":510660189185773},"matchesOptions31050":{"id":2557541072181069}} });
+registerSDKClass("WebKit.WKWebExtension.MatchPattern.Error", WKWebExtension_MatchPattern_Error, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKWebExtensionMessagePort", WKWebExtension_MessagePort, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"disconnect":{"id":838473706322227},"disconnectThrowing":{"id":785494462292398},"sendMessage":{"id":335400009045083,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("WebKit.WKWebExtension.MessagePort.Error", WKWebExtension_MessagePort_Error, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKWebExtensionTabConfiguration", WKWebExtension_TabConfiguration, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKWebExtensionWindowConfiguration", WKWebExtension_WindowConfiguration, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKWebExtensionContext", WKWebExtensionContext, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"action":{"id":3735350872382570,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"clearUserGesture":{"id":3876818676692633,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"didChangeTabProperties":{"id":4284857747590897,"hints":[null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"didCloseWindow":{"id":1620497873626242,"hints":[{"protocol":"c:objc(pl)WKWebExtensionWindow"}]},"didDeselectTabs":{"id":2043444927319582,"hints":[{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]},"didFocusWindow":{"id":2376096800159992,"hints":[{"protocol":"c:objc(pl)WKWebExtensionWindow"}]},"didOpenTab":{"id":3881288518950735,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"didOpenWindow":{"id":3921726856480847,"hints":[{"protocol":"c:objc(pl)WKWebExtensionWindow"}]},"didReplaceTab":{"id":4003383184527158,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"didSelectTabs":{"id":494828935348046,"hints":[{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]},"hasAccessTo":{"id":1038329206432397},"hasAccessToIn":{"id":2359122499011619,"hints":[null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"hasActiveUserGesture":{"id":536740634533908,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"hasInjectedContentFor":{"id":1229545766277009},"hasPermission":{"id":3268615301353091},"hasPermissionIn":{"id":2596974953986089,"hints":[null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"loadBackgroundContent":{"id":4117315270548233,"hints":[{"callback":{"out":[]}}]},"menuItems":{"id":1599505242289179,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"performAction":{"id":1866721919371448,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"performCommand":{"id":2363787633238508},"performCommandFor":{"id":4135161867267624},"permissionStatusFor":{"id":3060338800834938},"permissionStatusForIn":{"id":1366925758380620,"hints":[null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"permissionStatusFor51407":{"id":965866391631345},"permissionStatusForIn75963":{"id":775745374740737,"hints":[null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"permissionStatusFor21065":{"id":3977001426984340},"permissionStatusForIn76857":{"id":1013577136772095,"hints":[null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"setPermissionStatusFor":{"id":3326288076599837},"setPermissionStatusForExpirationDate":{"id":3524242338052136},"setPermissionStatusFor3023":{"id":3847254207237241},"setPermissionStatusForExpirationDate9336":{"id":1413010243214401},"setPermissionStatusFor98953":{"id":3905659796095307},"setPermissionStatusForExpirationDate22950":{"id":841488428364860},"userGesturePerformed":{"id":1575618276232370,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"didMoveTab":{"id":1084521899188595,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"},null,{"protocol":"c:objc(pl)WKWebExtensionWindow"}]},"didCloseTab":{"id":2474434362552883,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"},null]},"didActivateTab":{"id":3263938655938850,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]}} });
+registerSDKClass("WebKit.WKWebExtensionContext.Error", WKWebExtensionContext_Error, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKWebExtensionController", WKWebExtensionController, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"didChangeTabProperties":{"id":8361463739077,"hints":[null,{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"didCloseWindow":{"id":21543386850298,"hints":[{"protocol":"c:objc(pl)WKWebExtensionWindow"}]},"didDeselectTabs":{"id":893503566921475,"hints":[{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]},"didFocusWindow":{"id":2022186904669224,"hints":[{"protocol":"c:objc(pl)WKWebExtensionWindow"}]},"didOpenTab":{"id":2626594838825802,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"didOpenWindow":{"id":77320605620327,"hints":[{"protocol":"c:objc(pl)WKWebExtensionWindow"}]},"didReplaceTab":{"id":1750474340259716,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]},"didSelectTabs":{"id":1667065581870179,"hints":[{"array":{"protocol":"c:objc(pl)WKWebExtensionTab"}}]},"extensionContextFor":{"id":395007151828204},"extensionContextFor45587":{"id":333543809066405},"fetchDataRecord":{"id":1483059756838385,"hints":[null,null,{"callback":{"out":[]}}]},"fetchDataRecords":{"id":2352149225888838,"hints":[null,{"callback":{"out":[]}}]},"load":{"id":408965651401144},"removeData":{"id":181028621284004,"hints":[null,null,{"callback":{"out":[]}}]},"unload":{"id":2700512095916576},"didMoveTab":{"id":3883332665193101,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"},null,{"protocol":"c:objc(pl)WKWebExtensionWindow"}]},"didCloseTab":{"id":2877374761322606,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"},null]},"didActivateTab":{"id":2816443314832778,"hints":[{"protocol":"c:objc(pl)WKWebExtensionTab"},{"protocol":"c:objc(pl)WKWebExtensionTab"}]}} });
+registerSDKClass("WKWebExtensionControllerConfiguration", WKWebExtensionController_Configuration, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)WKWebExtensionControllerDelegate", {"webExtensionControllerDidUpdateForExtensionContext":"webExtensionController(_:didUpdate:forExtensionContext:)"});
 registerSDKProtocol("c:objc(pl)WKWebExtensionTab", {});
 registerSDKProtocol("c:objc(pl)WKWebExtensionWindow", {});
-registerSDKClass("WKWebpagePreferences", WKWebpagePreferences, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebsiteDataRecord", WKWebsiteDataRecord, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebsiteDataStore", WKWebsiteDataStore, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebView", WKWebView, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWebViewConfiguration", WKWebViewConfiguration, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("WKWindowFeatures", WKWindowFeatures, { module: "WebKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("WKWebpagePreferences", WKWebpagePreferences, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKWebsiteDataRecord", WKWebsiteDataRecord, { module: "WebKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WKWebsiteDataStore", WKWebsiteDataStore, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"fetchData":{"id":4359062283044339,"hints":[null,{"callback":{"out":[]}}]},"fetchDataRecords":{"id":2574912884183313,"hints":[null,{"callback":{"out":[]}}]},"removeDataOfTypesForCompletionHandler":{"id":2238601124909781,"hints":[null,null,{"callback":{"out":[]}}]},"removeDataOfTypesModifiedSinceCompletionHandler":{"id":1705469433577271,"hints":[null,null,{"callback":{"out":[]}}]},"restoreData":{"id":4106929988576365,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("WKWebView", WKWebView, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"closeAllMediaPresentations":{"id":1579826239649202},"closeAllMediaPresentationsCompletionHandler":{"id":3167137003143129,"hints":[{"callback":{"out":[]}}]},"evaluateJavaScriptCompletionHandler":{"id":2851964571509769,"hints":[null,{"callback":{"out":[]}}]},"fetchData":{"id":2827265953315439,"hints":[null,{"callback":{"out":[]}}]},"goBack":{"id":3562655383919128},"goForward":{"id":221959881434719},"go":{"id":2822169889773350},"loadMimeTypeCharacterEncodingNameBaseURL":{"id":988163188978913},"loadFileRequest":{"id":3662715612035121},"loadFileURL":{"id":344720215929188},"loadHTMLString":{"id":812284175616597},"load":{"id":1788014749035517},"loadSimulatedRequestResponseResponseData":{"id":3860835430859485},"loadSimulatedRequestResponseHTML":{"id":2082756260811148},"loadSimulatedRequestWithResponseData":{"id":3902964960992615},"loadSimulatedRequestWithResponseHTML":{"id":3692984723093866},"load38340":{"id":3325508733509594},"pauseAllMediaPlayback":{"id":3434976100471330,"hints":[{"callback":{"out":[]}}]},"reload":{"id":3385870515436853},"reloadFromOrigin":{"id":551138059204019},"requestMediaPlaybackState":{"id":1883761914125506,"hints":[{"callback":{"out":[]}}]},"restoreData":{"id":1696177403397813,"hints":[null,{"callback":{"out":[]}}]},"resumeDownload":{"id":1076956072910677,"hints":[null,{"callback":{"out":[]}}]},"setAllMediaPlaybackSuspended":{"id":2290569033092564,"hints":[null,{"callback":{"out":[]}}]},"setCameraCaptureState":{"id":940126802239601,"hints":[null,{"callback":{"out":[]}}]},"setMicrophoneCaptureState":{"id":866109971654742,"hints":[null,{"callback":{"out":[]}}]},"setMinimumViewportInset":{"id":407939968816687},"startDownload":{"id":3108278119388465,"hints":[null,{"callback":{"out":[]}}]},"stopLoading":{"id":3144018553053345},"takeSnapshot":{"id":219436154394287,"hints":[null,{"callback":{"out":[]}}]},"createWebArchiveData":{"id":3141140951395611,"hints":[{"callback":{"out":[]}}]},"evaluateJavaScriptInContentWorld":{"id":2986503011767044},"evaluateJavaScriptInInCompletionHandler":{"id":251354480115258,"hints":[null,null,null,{"callback":{"out":[]}}]},"callAsyncJavaScriptArgumentsInContentWorld":{"id":165894333658560},"callAsyncJavaScriptArgumentsInInCompletionHandler":{"id":1019509134743516,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"pdf":{"id":1937637330341425},"findConfigurationCompletionHandler":{"id":1031966126824364,"hints":[null,null,{"callback":{"out":[]}}]},"findConfiguration":{"id":1726495546323458},"createPDF":{"id":598246958240523,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("WKWebViewConfiguration", WKWebViewConfiguration, { module: "WebKit_a956b86ef7a76a8e", properties: {}, methods: {"setURLSchemeHandler":{"id":320742677040363,"hints":[{"protocol":"c:objc(pl)WKURLSchemeHandler"},null]},"urlSchemeHandler":{"id":4181195832006941}} });
+registerSDKClass("WKWindowFeatures", WKWindowFeatures, { module: "WebKit_a956b86ef7a76a8e", properties: {} });

@@ -223,22 +223,22 @@ export const ActivityAuthorizationError = {
    * static var errorDomain: String { get }
    * @availability iOS 16.1+
    */
-  get errorDomain(): string { return callSDK<string>("ActivityKit_d6c5d10d3352e6ec", 59588639871506, undefined, []); },
+  get errorDomain(): string { return callSDK<string>("ActivityKit_a956b86ef7a76a8e", 59588639871506, undefined, []); },
   /**
    * var failureReason: String? { get }
    * @availability iOS 16.1+
    */
-  getFailureReason($self: ActivityAuthorizationError): (string) | null { return callSDK<(string) | null>("ActivityKit_d6c5d10d3352e6ec", 3883847160375490, $self, []); },
+  getFailureReason($self: ActivityAuthorizationError): (string) | null { return callSDK<(string) | null>("ActivityKit_a956b86ef7a76a8e", 3883847160375490, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 16.1+
    */
-  getRecoverySuggestion($self: ActivityAuthorizationError): (string) | null { return callSDK<(string) | null>("ActivityKit_d6c5d10d3352e6ec", 4039590732508565, $self, []); },
+  getRecoverySuggestion($self: ActivityAuthorizationError): (string) | null { return callSDK<(string) | null>("ActivityKit_a956b86ef7a76a8e", 4039590732508565, $self, []); },
   /**
    * var errorCode: Int { get }
    * @availability iOS 16.1+
    */
-  getErrorCode($self: ActivityAuthorizationError): number { return callSDK<number>("ActivityKit_d6c5d10d3352e6ec", 404008898746483, $self, []); }
+  getErrorCode($self: ActivityAuthorizationError): number { return callSDK<number>("ActivityKit_a956b86ef7a76a8e", 404008898746483, $self, []); }
 };
 
 /**
@@ -250,27 +250,27 @@ export class ActivityAuthorizationInfo extends SDKHandle {
    * final var areActivitiesEnabled: Bool { get }
    * @availability iOS 16.1+
    */
-  get areActivitiesEnabled(): boolean { return callSDK<boolean>("ActivityKit_d6c5d10d3352e6ec", 3046136680643269, this, []); }
+  get areActivitiesEnabled(): boolean { return callSDK<boolean>("ActivityKit_a956b86ef7a76a8e", 3046136680643269, this, []); }
   /**
    * final var frequentPushesEnabled: Bool { get }
    * @availability iOS 16.2+
    */
-  get frequentPushesEnabled(): boolean { return callSDK<boolean>("ActivityKit_d6c5d10d3352e6ec", 2281541818804782, this, []); }
+  get frequentPushesEnabled(): boolean { return callSDK<boolean>("ActivityKit_a956b86ef7a76a8e", 2281541818804782, this, []); }
   /**
    * final let activityEnablementUpdates: ActivityAuthorizationInfo.ActivityEnablementUpdates
    * @availability iOS 16.1+
    */
-  get activityEnablementUpdates(): ActivityAuthorizationInfo_ActivityEnablementUpdates { return callSDK<ActivityAuthorizationInfo_ActivityEnablementUpdates>("ActivityKit_d6c5d10d3352e6ec", 4202680397682676, this, []); }
+  get activityEnablementUpdates(): ActivityAuthorizationInfo_ActivityEnablementUpdates { return callSDK<ActivityAuthorizationInfo_ActivityEnablementUpdates>("ActivityKit_a956b86ef7a76a8e", 4202680397682676, this, []); }
   /**
    * final let frequentPushEnablementUpdates: ActivityAuthorizationInfo.FrequentPushEnablementUpdates
    * @availability iOS 16.2+
    */
-  get frequentPushEnablementUpdates(): ActivityAuthorizationInfo_FrequentPushEnablementUpdates { return callSDK<ActivityAuthorizationInfo_FrequentPushEnablementUpdates>("ActivityKit_d6c5d10d3352e6ec", 742837627732277, this, []); }
+  get frequentPushEnablementUpdates(): ActivityAuthorizationInfo_FrequentPushEnablementUpdates { return callSDK<ActivityAuthorizationInfo_FrequentPushEnablementUpdates>("ActivityKit_a956b86ef7a76a8e", 742837627732277, this, []); }
   /**
    * init()
    * @availability iOS 16.1+
    */
-  static init(): ActivityAuthorizationInfo { return callSDK<ActivityAuthorizationInfo>("ActivityKit_d6c5d10d3352e6ec", 2177418292377011, undefined, []); }
+  static init(): ActivityAuthorizationInfo { return callSDK<ActivityAuthorizationInfo>("ActivityKit_a956b86ef7a76a8e", 2177418292377011, undefined, []); }
   declare readonly $type: { "s:11ActivityKit0A17AuthorizationInfoC": true };
 }
 
@@ -283,7 +283,7 @@ export class ActivityAuthorizationInfo_ActivityEnablementUpdates extends SDKHand
    * func makeAsyncIterator() -> ActivityAuthorizationInfo.ActivityEnablementUpdates.Iterator
    * @availability iOS 16.1+
    */
-  makeAsyncIterator(): ActivityAuthorizationInfo_ActivityEnablementUpdates_Iterator { return callSDK<ActivityAuthorizationInfo_ActivityEnablementUpdates_Iterator>("ActivityKit_d6c5d10d3352e6ec", 1669083721739686, this, []); }
+  makeAsyncIterator(): ActivityAuthorizationInfo_ActivityEnablementUpdates_Iterator { return callSDK<ActivityAuthorizationInfo_ActivityEnablementUpdates_Iterator>("ActivityKit_a956b86ef7a76a8e", 1669083721739686, this, []); }
   declare readonly $type: { "s:11ActivityKit0A17AuthorizationInfoC0A17EnablementUpdatesV": true };
   declare readonly $element: boolean;
 }
@@ -309,7 +309,7 @@ export class ActivityAuthorizationInfo_ActivityEnablementUpdates_Iterator extend
    * mutating func next() async -> Bool?
    * @availability iOS 16.1+
    */
-  next(): Promise<(boolean) | null> { return callSDKAsync<(boolean) | null>("ActivityKit_d6c5d10d3352e6ec", 1719292614635968, this, []); }
+  next(): Promise<(boolean) | null> { return callSDKAsync<(boolean) | null>("ActivityKit_a956b86ef7a76a8e", 1719292614635968, this, []); }
   declare readonly $type: { "s:11ActivityKit0A17AuthorizationInfoC0A17EnablementUpdatesV8IteratorV": true };
 }
 
@@ -328,7 +328,7 @@ export class ActivityAuthorizationInfo_FrequentPushEnablementUpdates extends SDK
    * func makeAsyncIterator() -> ActivityAuthorizationInfo.FrequentPushEnablementUpdates.Iterator
    * @availability iOS 16.2+
    */
-  makeAsyncIterator(): ActivityAuthorizationInfo_FrequentPushEnablementUpdates_Iterator { return callSDK<ActivityAuthorizationInfo_FrequentPushEnablementUpdates_Iterator>("ActivityKit_d6c5d10d3352e6ec", 4387249553901231, this, []); }
+  makeAsyncIterator(): ActivityAuthorizationInfo_FrequentPushEnablementUpdates_Iterator { return callSDK<ActivityAuthorizationInfo_FrequentPushEnablementUpdates_Iterator>("ActivityKit_a956b86ef7a76a8e", 4387249553901231, this, []); }
   declare readonly $type: { "s:11ActivityKit0A17AuthorizationInfoC29FrequentPushEnablementUpdatesV": true };
   declare readonly $element: boolean;
 }
@@ -354,7 +354,7 @@ export class ActivityAuthorizationInfo_FrequentPushEnablementUpdates_Iterator ex
    * mutating func next() async -> Bool?
    * @availability iOS 16.2+
    */
-  next(): Promise<(boolean) | null> { return callSDKAsync<(boolean) | null>("ActivityKit_d6c5d10d3352e6ec", 4202489261747254, this, []); }
+  next(): Promise<(boolean) | null> { return callSDKAsync<(boolean) | null>("ActivityKit_a956b86ef7a76a8e", 4202489261747254, this, []); }
   declare readonly $type: { "s:11ActivityKit0A17AuthorizationInfoC29FrequentPushEnablementUpdatesV8IteratorV": true };
 }
 
@@ -373,27 +373,27 @@ export class ActivityContent<State = unknown> extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.2+
    */
-  get description(): string { return callSDK<string>("ActivityKit_d6c5d10d3352e6ec", 4176870301842570, this, []); }
+  get description(): string { return callSDK<string>("ActivityKit_a956b86ef7a76a8e", 4176870301842570, this, []); }
   /**
    * let relevanceScore: Double
    * @availability iOS 16.2+
    */
-  get relevanceScore(): number { return callSDK<number>("ActivityKit_d6c5d10d3352e6ec", 1701462559985349, this, []); }
+  get relevanceScore(): number { return callSDK<number>("ActivityKit_a956b86ef7a76a8e", 1701462559985349, this, []); }
   /**
    * init(state: State, staleDate: Date?, relevanceScore: Double = 0.0)
    * @availability iOS 16.2+
    */
-  static init(state: number, staleDate?: (globalThis.Date) | null, relevanceScore?: number): ActivityContent<number> { return callSDK<ActivityContent<number>>("ActivityKit_d6c5d10d3352e6ec", 3955203225704697, undefined, [state, staleDate, relevanceScore]); }
+  static init(state: number, staleDate?: (globalThis.Date) | null, relevanceScore?: number): ActivityContent<number> { return callSDK<ActivityContent<number>>("ActivityKit_a956b86ef7a76a8e", 3955203225704697, undefined, [state, staleDate, relevanceScore]); }
   /**
    * let state: State
    * @availability iOS 16.2+
    */
-  get state(): number { return callSDK<number>("ActivityKit_d6c5d10d3352e6ec", 604183061354175, this, []); }
+  get state(): number { return callSDK<number>("ActivityKit_a956b86ef7a76a8e", 604183061354175, this, []); }
   /**
    * let staleDate: Date?
    * @availability iOS 16.2+
    */
-  get staleDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("ActivityKit_d6c5d10d3352e6ec", 3881090043858729, this, []); }
+  get staleDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("ActivityKit_a956b86ef7a76a8e", 3881090043858729, this, []); }
   declare readonly $type: { "s:11ActivityKit0A7ContentV": true };
 }
 
@@ -418,17 +418,17 @@ export class ActivityUIDismissalPolicy extends SDKHandle {
    * static func after(_ date: Date) -> ActivityUIDismissalPolicy
    * @availability iOS 16.1+
    */
-  static after(date: globalThis.Date): ActivityUIDismissalPolicy { return callSDK<ActivityUIDismissalPolicy>("ActivityKit_d6c5d10d3352e6ec", 3642702698793366, undefined, [date]); }
+  static after(date: globalThis.Date): ActivityUIDismissalPolicy { return callSDK<ActivityUIDismissalPolicy>("ActivityKit_a956b86ef7a76a8e", 3642702698793366, undefined, [date]); }
   /**
    * static let `default`: ActivityUIDismissalPolicy
    * @availability iOS 16.1+
    */
-  static get default(): ActivityUIDismissalPolicy { return callSDK<ActivityUIDismissalPolicy>("ActivityKit_d6c5d10d3352e6ec", 4456024728507239, undefined, []); }
+  static get default(): ActivityUIDismissalPolicy { return callSDK<ActivityUIDismissalPolicy>("ActivityKit_a956b86ef7a76a8e", 4456024728507239, undefined, []); }
   /**
    * static let immediate: ActivityUIDismissalPolicy
    * @availability iOS 16.1+
    */
-  static get immediate(): ActivityUIDismissalPolicy { return callSDK<ActivityUIDismissalPolicy>("ActivityKit_d6c5d10d3352e6ec", 4176548365112925, undefined, []); }
+  static get immediate(): ActivityUIDismissalPolicy { return callSDK<ActivityUIDismissalPolicy>("ActivityKit_a956b86ef7a76a8e", 4176548365112925, undefined, []); }
   declare readonly $type: { "s:11ActivityKit0A17UIDismissalPolicyV": true };
 }
 
@@ -441,25 +441,25 @@ export class AlertConfiguration extends SDKHandle {
    * var body: LocalizedStringResource
    * @availability iOS 16.1+
    */
-  get body(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("ActivityKit_d6c5d10d3352e6ec", 127451854345587, this, []); }
-  set body(value: _Foundation_LocalizedStringResource) { callSDK<void>("ActivityKit_d6c5d10d3352e6ec", 4470519041246709, this, [value]); }
+  get body(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("ActivityKit_a956b86ef7a76a8e", 127451854345587, this, []); }
+  set body(value: _Foundation_LocalizedStringResource) { callSDK<void>("ActivityKit_a956b86ef7a76a8e", 4470519041246709, this, [value]); }
   /**
    * var sound: AlertConfiguration.AlertSound
    * @availability iOS 16.1+
    */
-  get sound(): AlertConfiguration_AlertSound { return callSDK<AlertConfiguration_AlertSound>("ActivityKit_d6c5d10d3352e6ec", 2469899876160320, this, []); }
-  set sound(value: AlertConfiguration_AlertSound) { callSDK<void>("ActivityKit_d6c5d10d3352e6ec", 2024550531465257, this, [value]); }
+  get sound(): AlertConfiguration_AlertSound { return callSDK<AlertConfiguration_AlertSound>("ActivityKit_a956b86ef7a76a8e", 2469899876160320, this, []); }
+  set sound(value: AlertConfiguration_AlertSound) { callSDK<void>("ActivityKit_a956b86ef7a76a8e", 2024550531465257, this, [value]); }
   /**
    * var title: LocalizedStringResource
    * @availability iOS 16.1+
    */
-  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("ActivityKit_d6c5d10d3352e6ec", 632064339004377, this, []); }
-  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("ActivityKit_d6c5d10d3352e6ec", 3262413501277413, this, [value]); }
+  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("ActivityKit_a956b86ef7a76a8e", 632064339004377, this, []); }
+  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("ActivityKit_a956b86ef7a76a8e", 3262413501277413, this, [value]); }
   /**
    * init(title: LocalizedStringResource, body: LocalizedStringResource, sound: AlertConfiguration.AlertSound)
    * @availability iOS 16.1+
    */
-  static init(title: _Foundation_LocalizedStringResource, body: _Foundation_LocalizedStringResource, sound: AlertConfiguration_AlertSound): AlertConfiguration { return callSDK<AlertConfiguration>("ActivityKit_d6c5d10d3352e6ec", 830243969536606, undefined, [title, body, sound]); }
+  static init(title: _Foundation_LocalizedStringResource, body: _Foundation_LocalizedStringResource, sound: AlertConfiguration_AlertSound): AlertConfiguration { return callSDK<AlertConfiguration>("ActivityKit_a956b86ef7a76a8e", 830243969536606, undefined, [title, body, sound]); }
   declare readonly $type: { "s:11ActivityKit18AlertConfigurationV": true };
 }
 
@@ -472,12 +472,12 @@ export class AlertConfiguration_AlertSound extends SDKHandle {
    * static func named(_ name: String) -> AlertConfiguration.AlertSound
    * @availability iOS 16.1+
    */
-  static named(name: string): AlertConfiguration_AlertSound { return callSDK<AlertConfiguration_AlertSound>("ActivityKit_d6c5d10d3352e6ec", 1703491891822494, undefined, [name]); }
+  static named(name: string): AlertConfiguration_AlertSound { return callSDK<AlertConfiguration_AlertSound>("ActivityKit_a956b86ef7a76a8e", 1703491891822494, undefined, [name]); }
   /**
    * static var `default`: AlertConfiguration.AlertSound { get }
    * @availability iOS 16.1+
    */
-  static get default(): AlertConfiguration_AlertSound { return callSDK<AlertConfiguration_AlertSound>("ActivityKit_d6c5d10d3352e6ec", 1396787525114268, undefined, []); }
+  static get default(): AlertConfiguration_AlertSound { return callSDK<AlertConfiguration_AlertSound>("ActivityKit_a956b86ef7a76a8e", 1396787525114268, undefined, []); }
   declare readonly $type: { "s:11ActivityKit18AlertConfigurationV0C5SoundV": true };
 }
 
@@ -490,34 +490,34 @@ export class PushType extends SDKHandle {
    * static var token: PushType { get }
    * @availability iOS 16.1+
    */
-  static get token(): PushType { return callSDK<PushType>("ActivityKit_d6c5d10d3352e6ec", 2295737818073464, undefined, []); }
+  static get token(): PushType { return callSDK<PushType>("ActivityKit_a956b86ef7a76a8e", 2295737818073464, undefined, []); }
   /**
    * static func channel(_ name: String) -> PushType
    * @availability iOS 18.0+
    */
-  static channel(name: string): PushType { return callSDK<PushType>("ActivityKit_d6c5d10d3352e6ec", 2238711204029617, undefined, [name]); }
+  static channel(name: string): PushType { return callSDK<PushType>("ActivityKit_a956b86ef7a76a8e", 2238711204029617, undefined, [name]); }
   declare readonly $type: { "s:11ActivityKit8PushTypeV": true };
 }
 
-registerSDKClass("ActivityKit.Activity", Activity, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.Activity.ActivityStateUpdates", Activity_ActivityStateUpdates, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.Activity.ActivityStateUpdates.Iterator", Activity_ActivityStateUpdates_Iterator, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.Activity.ActivityUpdates", Activity_ActivityUpdates, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.Activity.ActivityUpdates.Iterator", Activity_ActivityUpdates_Iterator, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.Activity.ContentStateUpdates", Activity_ContentStateUpdates, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.Activity.ContentStateUpdates.Iterator", Activity_ContentStateUpdates_Iterator, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.Activity.ContentUpdates", Activity_ContentUpdates, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.Activity.ContentUpdates.Iterator", Activity_ContentUpdates_Iterator, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.Activity.PushTokenUpdates", Activity_PushTokenUpdates, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.Activity.PushTokenUpdates.Iterator", Activity_PushTokenUpdates_Iterator, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("ActivityKit.Activity", Activity, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.Activity.ActivityStateUpdates", Activity_ActivityStateUpdates, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.Activity.ActivityStateUpdates.Iterator", Activity_ActivityStateUpdates_Iterator, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.Activity.ActivityUpdates", Activity_ActivityUpdates, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.Activity.ActivityUpdates.Iterator", Activity_ActivityUpdates_Iterator, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.Activity.ContentStateUpdates", Activity_ContentStateUpdates, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.Activity.ContentStateUpdates.Iterator", Activity_ContentStateUpdates_Iterator, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.Activity.ContentUpdates", Activity_ContentUpdates, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.Activity.ContentUpdates.Iterator", Activity_ContentUpdates_Iterator, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.Activity.PushTokenUpdates", Activity_PushTokenUpdates, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.Activity.PushTokenUpdates.Iterator", Activity_PushTokenUpdates_Iterator, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:11ActivityKit0A10AttributesP", {});
-registerSDKClass("ActivityKit.ActivityAuthorizationInfo", ActivityAuthorizationInfo, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.ActivityAuthorizationInfo.ActivityEnablementUpdates", ActivityAuthorizationInfo_ActivityEnablementUpdates, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.ActivityAuthorizationInfo.ActivityEnablementUpdates.Iterator", ActivityAuthorizationInfo_ActivityEnablementUpdates_Iterator, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.ActivityAuthorizationInfo.FrequentPushEnablementUpdates", ActivityAuthorizationInfo_FrequentPushEnablementUpdates, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.ActivityAuthorizationInfo.FrequentPushEnablementUpdates.Iterator", ActivityAuthorizationInfo_FrequentPushEnablementUpdates_Iterator, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.ActivityContent", ActivityContent, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.ActivityUIDismissalPolicy", ActivityUIDismissalPolicy, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.AlertConfiguration", AlertConfiguration, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.AlertConfiguration.AlertSound", AlertConfiguration_AlertSound, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ActivityKit.PushType", PushType, { module: "ActivityKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("ActivityKit.ActivityAuthorizationInfo", ActivityAuthorizationInfo, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.ActivityAuthorizationInfo.ActivityEnablementUpdates", ActivityAuthorizationInfo_ActivityEnablementUpdates, { module: "ActivityKit_a956b86ef7a76a8e", properties: {}, methods: {"makeAsyncIterator":{"id":1669083721739686}} });
+registerSDKClass("ActivityKit.ActivityAuthorizationInfo.ActivityEnablementUpdates.Iterator", ActivityAuthorizationInfo_ActivityEnablementUpdates_Iterator, { module: "ActivityKit_a956b86ef7a76a8e", properties: {}, methods: {"next":{"id":1719292614635968}} });
+registerSDKClass("ActivityKit.ActivityAuthorizationInfo.FrequentPushEnablementUpdates", ActivityAuthorizationInfo_FrequentPushEnablementUpdates, { module: "ActivityKit_a956b86ef7a76a8e", properties: {}, methods: {"makeAsyncIterator":{"id":4387249553901231}} });
+registerSDKClass("ActivityKit.ActivityAuthorizationInfo.FrequentPushEnablementUpdates.Iterator", ActivityAuthorizationInfo_FrequentPushEnablementUpdates_Iterator, { module: "ActivityKit_a956b86ef7a76a8e", properties: {}, methods: {"next":{"id":4202489261747254}} });
+registerSDKClass("ActivityKit.ActivityContent", ActivityContent, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.ActivityUIDismissalPolicy", ActivityUIDismissalPolicy, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.AlertConfiguration", AlertConfiguration, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.AlertConfiguration.AlertSound", AlertConfiguration_AlertSound, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ActivityKit.PushType", PushType, { module: "ActivityKit_a956b86ef7a76a8e", properties: {} });

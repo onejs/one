@@ -18,87 +18,87 @@ export class SLComposeServiceViewController extends SDKHandle {
    * func cancel()
    * @availability iOS 8.0+
    */
-  cancel(): void { return callSDK<void>("Social_d6c5d10d3352e6ec", 982841516055262, this, []); }
+  cancel(): void { return callSDK<void>("Social_a956b86ef7a76a8e", 982841516055262, this, []); }
   /**
    * func configurationItems() -> [Any]!
    * @availability iOS 8.0+
    */
-  configurationItems(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("Social_d6c5d10d3352e6ec", 3408580611231553, this, []); }
+  configurationItems(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("Social_a956b86ef7a76a8e", 3408580611231553, this, []); }
   /**
    * func didSelectCancel()
    * @availability iOS 8.0+
    */
-  didSelectCancel(): void { return callSDK<void>("Social_d6c5d10d3352e6ec", 4134994606729583, this, []); }
+  didSelectCancel(): void { return callSDK<void>("Social_a956b86ef7a76a8e", 4134994606729583, this, []); }
   /**
    * func didSelectPost()
    * @availability iOS 8.0+
    */
-  didSelectPost(): void { return callSDK<void>("Social_d6c5d10d3352e6ec", 3136400841700776, this, []); }
+  didSelectPost(): void { return callSDK<void>("Social_a956b86ef7a76a8e", 3136400841700776, this, []); }
   /** init() */
-  static init(): SLComposeServiceViewController { return callSDK<SLComposeServiceViewController>("Social_d6c5d10d3352e6ec", 1940946187423908, undefined, []); }
+  static init(): SLComposeServiceViewController { return callSDK<SLComposeServiceViewController>("Social_a956b86ef7a76a8e", 1940946187423908, undefined, []); }
   /**
    * func isContentValid() -> Bool
    * @availability iOS 8.0+
    */
-  isContentValid(): boolean { return callSDK<boolean>("Social_d6c5d10d3352e6ec", 2048141412305123, this, []); }
+  isContentValid(): boolean { return callSDK<boolean>("Social_a956b86ef7a76a8e", 2048141412305123, this, []); }
   /**
    * func loadPreviewView() -> UIView!
    * @availability iOS 8.0+
    */
-  loadPreviewView(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("Social_d6c5d10d3352e6ec", 1035292726517629, this, []); }
+  loadPreviewView(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("Social_a956b86ef7a76a8e", 1035292726517629, this, []); }
   /**
    * func popConfigurationViewController()
    * @availability iOS 8.0+
    */
-  popConfigurationViewController(): void { return callSDK<void>("Social_d6c5d10d3352e6ec", 3231336879607233, this, []); }
+  popConfigurationViewController(): void { return callSDK<void>("Social_a956b86ef7a76a8e", 3231336879607233, this, []); }
   /**
    * func presentationAnimationDidFinish()
    * @availability iOS 8.0+
    */
-  presentationAnimationDidFinish(): void { return callSDK<void>("Social_d6c5d10d3352e6ec", 4487515325288261, this, []); }
+  presentationAnimationDidFinish(): void { return callSDK<void>("Social_a956b86ef7a76a8e", 4487515325288261, this, []); }
   /**
    * func pushConfigurationViewController(_ viewController: UIViewController!)
    * @availability iOS 8.0+
    */
-  pushConfigurationViewController(viewController?: $SDK0): void { return callSDK<void>("Social_d6c5d10d3352e6ec", 3037693820899376, this, [viewController]); }
+  pushConfigurationViewController(viewController?: $SDK0): void { return callSDK<void>("Social_a956b86ef7a76a8e", 3037693820899376, this, [viewController]); }
   /**
    * func reloadConfigurationItems()
    * @availability iOS 8.0+
    */
-  reloadConfigurationItems(): void { return callSDK<void>("Social_d6c5d10d3352e6ec", 4481348616935280, this, []); }
+  reloadConfigurationItems(): void { return callSDK<void>("Social_a956b86ef7a76a8e", 4481348616935280, this, []); }
   /**
    * func validateContent()
    * @availability iOS 8.0+
    */
-  validateContent(): void { return callSDK<void>("Social_d6c5d10d3352e6ec", 1017966251965499, this, []); }
+  validateContent(): void { return callSDK<void>("Social_a956b86ef7a76a8e", 1017966251965499, this, []); }
   /**
    * var autoCompletionViewController: UIViewController! { get set }
    * @availability iOS 8.0+
    */
-  get autoCompletionViewController(): $SDK0 { return callSDK<$SDK0>("Social_d6c5d10d3352e6ec", 1951404235010543, this, []); }
-  set autoCompletionViewController(value: $SDK0) { callSDK<void>("Social_d6c5d10d3352e6ec", 4285717996885907, this, [value]); }
+  get autoCompletionViewController(): $SDK0 { return callSDK<$SDK0>("Social_a956b86ef7a76a8e", 1951404235010543, this, []); }
+  set autoCompletionViewController(value: $SDK0) { callSDK<void>("Social_a956b86ef7a76a8e", 4285717996885907, this, [value]); }
   /**
    * var charactersRemaining: NSNumber! { get set }
    * @availability iOS 8.0+
    */
-  get charactersRemaining(): $SDK1 { return callSDK<$SDK1>("Social_d6c5d10d3352e6ec", 1711811326823041, this, []); }
-  set charactersRemaining(value: $SDK1) { callSDK<void>("Social_d6c5d10d3352e6ec", 290375887972229, this, [value]); }
+  get charactersRemaining(): $SDK1 { return callSDK<$SDK1>("Social_a956b86ef7a76a8e", 1711811326823041, this, []); }
+  set charactersRemaining(value: $SDK1) { callSDK<void>("Social_a956b86ef7a76a8e", 290375887972229, this, [value]); }
   /**
    * var contentText: String! { get }
    * @availability iOS 8.0+
    */
-  get contentText(): (string) | null { return callSDK<(string) | null>("Social_d6c5d10d3352e6ec", 809568551173775, this, []); }
+  get contentText(): (string) | null { return callSDK<(string) | null>("Social_a956b86ef7a76a8e", 809568551173775, this, []); }
   /**
    * var placeholder: String! { get set }
    * @availability iOS 8.0+
    */
-  get placeholder(): (string) | null { return callSDK<(string) | null>("Social_d6c5d10d3352e6ec", 224082785860582, this, []); }
-  set placeholder(value: (string) | null) { callSDK<void>("Social_d6c5d10d3352e6ec", 678636252281946, this, [value]); }
+  get placeholder(): (string) | null { return callSDK<(string) | null>("Social_a956b86ef7a76a8e", 224082785860582, this, []); }
+  set placeholder(value: (string) | null) { callSDK<void>("Social_a956b86ef7a76a8e", 678636252281946, this, [value]); }
   /**
    * var textView: UITextView! { get }
    * @availability iOS 8.0+
    */
-  get textView(): (_UIKit_UITextView) | null { return callSDK<(_UIKit_UITextView) | null>("Social_d6c5d10d3352e6ec", 1328822171427961, this, []); }
+  get textView(): (_UIKit_UITextView) | null { return callSDK<(_UIKit_UITextView) | null>("Social_a956b86ef7a76a8e", 1328822171427961, this, []); }
   declare readonly $type: { "c:objc(cs)SLComposeServiceViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "autoCompletionViewController": true; "charactersRemaining": true; "contentText": true; "placeholder": true; "textView": true };
 }
@@ -112,31 +112,31 @@ export class SLComposeSheetConfigurationItem extends SDKHandle {
    * init!()
    * @availability iOS 8.0+
    */
-  static init(): SLComposeSheetConfigurationItem { return callSDK<SLComposeSheetConfigurationItem>("Social_d6c5d10d3352e6ec", 69250662920673, undefined, []); }
+  static init(): SLComposeSheetConfigurationItem { return callSDK<SLComposeSheetConfigurationItem>("Social_a956b86ef7a76a8e", 69250662920673, undefined, []); }
   /**
    * var tapHandler: SLComposeSheetConfigurationItemTapHandler! { get set }
    * @availability iOS 8.0+
    */
-  get tapHandler(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("Social_d6c5d10d3352e6ec", 672010636092081, this, []); }
-  set tapHandler(value: ((() => void)) | null) { callSDK<void>("Social_d6c5d10d3352e6ec", 272588225591415, this, [value], [{"callback":{"out":[]}}]); }
+  get tapHandler(): ((() => Promise<void>)) | null { return callSDK<((() => Promise<void>)) | null>("Social_a956b86ef7a76a8e", 672010636092081, this, []); }
+  set tapHandler(value: ((() => void)) | null) { callSDK<void>("Social_a956b86ef7a76a8e", 272588225591415, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var title: String! { get set }
    * @availability iOS 8.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("Social_d6c5d10d3352e6ec", 3931879358237293, this, []); }
-  set title(value: (string) | null) { callSDK<void>("Social_d6c5d10d3352e6ec", 2922166096422764, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("Social_a956b86ef7a76a8e", 3931879358237293, this, []); }
+  set title(value: (string) | null) { callSDK<void>("Social_a956b86ef7a76a8e", 2922166096422764, this, [value]); }
   /**
    * var value: String! { get set }
    * @availability iOS 8.0+
    */
-  get value(): (string) | null { return callSDK<(string) | null>("Social_d6c5d10d3352e6ec", 2424052815362750, this, []); }
-  set value(value: (string) | null) { callSDK<void>("Social_d6c5d10d3352e6ec", 160716152528851, this, [value]); }
+  get value(): (string) | null { return callSDK<(string) | null>("Social_a956b86ef7a76a8e", 2424052815362750, this, []); }
+  set value(value: (string) | null) { callSDK<void>("Social_a956b86ef7a76a8e", 160716152528851, this, [value]); }
   /**
    * var valuePending: Bool { get set }
    * @availability iOS 8.0+
    */
-  get valuePending(): boolean { return callSDK<boolean>("Social_d6c5d10d3352e6ec", 3144159164234967, this, []); }
-  set valuePending(value: boolean) { callSDK<void>("Social_d6c5d10d3352e6ec", 1488661612959383, this, [value]); }
+  get valuePending(): boolean { return callSDK<boolean>("Social_a956b86ef7a76a8e", 3144159164234967, this, []); }
+  set valuePending(value: boolean) { callSDK<void>("Social_a956b86ef7a76a8e", 1488661612959383, this, [value]); }
   declare readonly $type: { "c:objc(cs)SLComposeSheetConfigurationItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "title": true; "value": true; "valuePending": true };
 }
@@ -153,48 +153,48 @@ export class SLComposeViewController extends SDKHandle {
    * init!(forServiceType serviceType: String!)
    * @availability iOS 6.0+
    */
-  static init(serviceType?: (string) | null): SLComposeViewController { return callSDK<SLComposeViewController>("Social_d6c5d10d3352e6ec", 4149475485918285, undefined, [serviceType]); }
+  static init(serviceType?: (string) | null): SLComposeViewController { return callSDK<SLComposeViewController>("Social_a956b86ef7a76a8e", 4149475485918285, undefined, [serviceType]); }
   /**
    * class func isAvailable(forServiceType serviceType: String!) -> Bool
    * @availability iOS 6.0+
    */
-  static isAvailable(serviceType?: (string) | null): boolean { return callSDK<boolean>("Social_d6c5d10d3352e6ec", 665493679266096, undefined, [serviceType]); }
+  static isAvailable(serviceType?: (string) | null): boolean { return callSDK<boolean>("Social_a956b86ef7a76a8e", 665493679266096, undefined, [serviceType]); }
   /**
    * func add(_ image: UIImage!) -> Bool
    * @availability iOS 6.0+
    */
-  add(image?: (_UIKit_UIImage) | null): boolean { return callSDK<boolean>("Social_d6c5d10d3352e6ec", 3502274766763435, this, [image]); }
+  add(image?: (_UIKit_UIImage) | null): boolean { return callSDK<boolean>("Social_a956b86ef7a76a8e", 3502274766763435, this, [image]); }
   /**
    * func add(_ url: URL!) -> Bool
    * @availability iOS 6.0+
    */
-  add77170(url?: (string) | null): boolean { return callSDK<boolean>("Social_d6c5d10d3352e6ec", 4201032783236537, this, [url]); }
+  add77170(url?: (string) | null): boolean { return callSDK<boolean>("Social_a956b86ef7a76a8e", 4201032783236537, this, [url]); }
   /**
    * func removeAllImages() -> Bool
    * @availability iOS 6.0+
    */
-  removeAllImages(): boolean { return callSDK<boolean>("Social_d6c5d10d3352e6ec", 2678505631093822, this, []); }
+  removeAllImages(): boolean { return callSDK<boolean>("Social_a956b86ef7a76a8e", 2678505631093822, this, []); }
   /**
    * func removeAllURLs() -> Bool
    * @availability iOS 6.0+
    */
-  removeAllURLs(): boolean { return callSDK<boolean>("Social_d6c5d10d3352e6ec", 2152018588606222, this, []); }
+  removeAllURLs(): boolean { return callSDK<boolean>("Social_a956b86ef7a76a8e", 2152018588606222, this, []); }
   /**
    * func setInitialText(_ text: String!) -> Bool
    * @availability iOS 6.0+
    */
-  setInitialText(text?: (string) | null): boolean { return callSDK<boolean>("Social_d6c5d10d3352e6ec", 1120832254570981, this, [text]); }
+  setInitialText(text?: (string) | null): boolean { return callSDK<boolean>("Social_a956b86ef7a76a8e", 1120832254570981, this, [text]); }
   /**
    * var completionHandler: SLComposeViewControllerCompletionHandler! { get set }
    * @availability iOS 6.0+
    */
-  get completionHandler(): (((arg0: SLComposeViewControllerResult) => Promise<void>)) | null { return callSDK<(((arg0: SLComposeViewControllerResult) => Promise<void>)) | null>("Social_d6c5d10d3352e6ec", 2257844631273568, this, []); }
-  set completionHandler(value: (((arg0: SLComposeViewControllerResult) => void)) | null) { callSDK<void>("Social_d6c5d10d3352e6ec", 1873256168195305, this, [value], [{"callback":{"out":[]}}]); }
+  get completionHandler(): (((arg0: SLComposeViewControllerResult) => Promise<void>)) | null { return callSDK<(((arg0: SLComposeViewControllerResult) => Promise<void>)) | null>("Social_a956b86ef7a76a8e", 2257844631273568, this, []); }
+  set completionHandler(value: (((arg0: SLComposeViewControllerResult) => void)) | null) { callSDK<void>("Social_a956b86ef7a76a8e", 1873256168195305, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var serviceType: String! { get }
    * @availability iOS 6.0+
    */
-  get serviceType(): (string) | null { return callSDK<(string) | null>("Social_d6c5d10d3352e6ec", 38872946940403, this, []); }
+  get serviceType(): (string) | null { return callSDK<(string) | null>("Social_a956b86ef7a76a8e", 38872946940403, this, []); }
   declare readonly $type: { "c:objc(cs)SLComposeViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "serviceType": true };
 }
@@ -207,7 +207,7 @@ export type SLComposeViewControllerResult = "cancelled" | "done";
 
 export const SLComposeViewControllerResult = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SLComposeViewControllerResult) | null { return callSDK<(SLComposeViewControllerResult) | null>("Social_d6c5d10d3352e6ec", 4413354292289255, undefined, [rawValue]); }
+  init(rawValue: number): (SLComposeViewControllerResult) | null { return callSDK<(SLComposeViewControllerResult) | null>("Social_a956b86ef7a76a8e", 4413354292289255, undefined, [rawValue]); }
 };
 
 /**
@@ -219,37 +219,37 @@ export class SLRequest extends SDKHandle {
    * init!(forServiceType serviceType: String!, requestMethod: SLRequestMethod, url: URL!, parameters: [AnyHashable : Any]!)
    * @availability iOS 6.0+
    */
-  static init(serviceType: (string) | null, requestMethod: SLRequestMethod, url?: (string) | null, parameters?: $SDK7): SLRequest { return callSDK<SLRequest>("Social_d6c5d10d3352e6ec", 4151515349644635, undefined, [serviceType, requestMethod, url, parameters]); }
+  static init(serviceType: (string) | null, requestMethod: SLRequestMethod, url?: (string) | null, parameters?: $SDK7): SLRequest { return callSDK<SLRequest>("Social_a956b86ef7a76a8e", 4151515349644635, undefined, [serviceType, requestMethod, url, parameters]); }
   /**
    * func addMultipartData(_ data: Data!, withName name: String!, type: String!, filename: String!)
    * @availability iOS 6.0+
    */
-  addMultipartData(data?: (ArrayBuffer) | null, name?: (string) | null, type?: (string) | null, filename?: (string) | null): void { return callSDK<void>("Social_d6c5d10d3352e6ec", 651423911057051, this, [data, name, type, filename]); }
+  addMultipartData(data?: (ArrayBuffer) | null, name?: (string) | null, type?: (string) | null, filename?: (string) | null): void { return callSDK<void>("Social_a956b86ef7a76a8e", 651423911057051, this, [data, name, type, filename]); }
   /**
    * func perform(handler: SLRequestHandler!)
    * @availability iOS 6.0+
    */
-  perform(handler?: (((arg0: (ArrayBuffer) | null, arg1: (_Foundation_HTTPURLResponse) | null, arg2: (NativeError) | null) => void)) | null): void { return callSDK<void>("Social_d6c5d10d3352e6ec", 536950333665948, this, [handler], [{"callback":{"out":[]}}]); }
+  perform(handler?: (((arg0: (ArrayBuffer) | null, arg1: (_Foundation_HTTPURLResponse) | null, arg2: (NativeError) | null) => void)) | null): void { return callSDK<void>("Social_a956b86ef7a76a8e", 536950333665948, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func preparedURLRequest() -> URLRequest!
    * @availability iOS 6.0+
    */
-  preparedURLRequest(): (_Foundation_URLRequest) | null { return callSDK<(_Foundation_URLRequest) | null>("Social_d6c5d10d3352e6ec", 3567155017165936, this, []); }
+  preparedURLRequest(): (_Foundation_URLRequest) | null { return callSDK<(_Foundation_URLRequest) | null>("Social_a956b86ef7a76a8e", 3567155017165936, this, []); }
   /**
    * var url: URL! { get }
    * @availability iOS 6.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("Social_d6c5d10d3352e6ec", 279751005519730, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("Social_a956b86ef7a76a8e", 279751005519730, this, []); }
   /**
    * var parameters: [AnyHashable : Any]! { get }
    * @availability iOS 6.0+
    */
-  get parameters(): $SDK7 { return callSDK<$SDK7>("Social_d6c5d10d3352e6ec", 4326574874339709, this, []); }
+  get parameters(): $SDK7 { return callSDK<$SDK7>("Social_a956b86ef7a76a8e", 4326574874339709, this, []); }
   /**
    * var requestMethod: SLRequestMethod { get }
    * @availability iOS 6.0+
    */
-  get requestMethod(): SLRequestMethod { return callSDK<SLRequestMethod>("Social_d6c5d10d3352e6ec", 3673468340729151, this, []); }
+  get requestMethod(): SLRequestMethod { return callSDK<SLRequestMethod>("Social_a956b86ef7a76a8e", 3673468340729151, this, []); }
   declare readonly $type: { "c:objc(cs)SLRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "parameters": true; "requestMethod": true };
 }
@@ -262,7 +262,7 @@ export type SLRequestMethod = "GET" | "POST" | "DELETE" | "PUT";
 
 export const SLRequestMethod = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SLRequestMethod) | null { return callSDK<(SLRequestMethod) | null>("Social_d6c5d10d3352e6ec", 2285607518386919, undefined, [rawValue]); }
+  init(rawValue: number): (SLRequestMethod) | null { return callSDK<(SLRequestMethod) | null>("Social_a956b86ef7a76a8e", 2285607518386919, undefined, [rawValue]); }
 };
 
 /**
@@ -270,37 +270,37 @@ export const SLRequestMethod = {
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const SLServiceTypeFacebook: string = callSDK<string>("Social_d6c5d10d3352e6ec", 4401679971587959, undefined, []);
+export const SLServiceTypeFacebook: string = callSDK<string>("Social_a956b86ef7a76a8e", 4401679971587959, undefined, []);
 
 /**
  * let SLServiceTypeLinkedIn: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const SLServiceTypeLinkedIn: string = callSDK<string>("Social_d6c5d10d3352e6ec", 752696997223621, undefined, []);
+export const SLServiceTypeLinkedIn: string = callSDK<string>("Social_a956b86ef7a76a8e", 752696997223621, undefined, []);
 
 /**
  * let SLServiceTypeSinaWeibo: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const SLServiceTypeSinaWeibo: string = callSDK<string>("Social_d6c5d10d3352e6ec", 4049529855736932, undefined, []);
+export const SLServiceTypeSinaWeibo: string = callSDK<string>("Social_a956b86ef7a76a8e", 4049529855736932, undefined, []);
 
 /**
  * let SLServiceTypeTencentWeibo: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const SLServiceTypeTencentWeibo: string = callSDK<string>("Social_d6c5d10d3352e6ec", 827079038462526, undefined, []);
+export const SLServiceTypeTencentWeibo: string = callSDK<string>("Social_a956b86ef7a76a8e", 827079038462526, undefined, []);
 
 /**
  * let SLServiceTypeTwitter: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const SLServiceTypeTwitter: string = callSDK<string>("Social_d6c5d10d3352e6ec", 2544145774619031, undefined, []);
+export const SLServiceTypeTwitter: string = callSDK<string>("Social_a956b86ef7a76a8e", 2544145774619031, undefined, []);
 
-registerSDKClass("SLComposeServiceViewController", SLComposeServiceViewController, { module: "Social_d6c5d10d3352e6ec", properties: {"autoCompletionViewController":1951404235010543,"charactersRemaining":1711811326823041,"contentText":809568551173775,"placeholder":224082785860582,"textView":1328822171427961} });
-registerSDKClass("SLComposeSheetConfigurationItem", SLComposeSheetConfigurationItem, { module: "Social_d6c5d10d3352e6ec", properties: {"title":3931879358237293,"value":2424052815362750,"valuePending":3144159164234967} });
-registerSDKClass("SLComposeViewController", SLComposeViewController, { module: "Social_d6c5d10d3352e6ec", properties: {"serviceType":38872946940403} });
-registerSDKClass("SLRequest", SLRequest, { module: "Social_d6c5d10d3352e6ec", properties: {"url":279751005519730,"parameters":4326574874339709,"requestMethod":3673468340729151} });
+registerSDKClass("SLComposeServiceViewController", SLComposeServiceViewController, { module: "Social_a956b86ef7a76a8e", properties: {"autoCompletionViewController":1951404235010543,"charactersRemaining":1711811326823041,"contentText":809568551173775,"placeholder":224082785860582,"textView":1328822171427961}, methods: {"cancel":{"id":982841516055262},"configurationItems":{"id":3408580611231553},"didSelectCancel":{"id":4134994606729583},"didSelectPost":{"id":3136400841700776},"isContentValid":{"id":2048141412305123},"loadPreviewView":{"id":1035292726517629},"popConfigurationViewController":{"id":3231336879607233},"presentationAnimationDidFinish":{"id":4487515325288261},"pushConfigurationViewController":{"id":3037693820899376},"reloadConfigurationItems":{"id":4481348616935280},"validateContent":{"id":1017966251965499}} });
+registerSDKClass("SLComposeSheetConfigurationItem", SLComposeSheetConfigurationItem, { module: "Social_a956b86ef7a76a8e", properties: {"title":3931879358237293,"value":2424052815362750,"valuePending":3144159164234967} });
+registerSDKClass("SLComposeViewController", SLComposeViewController, { module: "Social_a956b86ef7a76a8e", properties: {"serviceType":38872946940403}, methods: {"add":{"id":3502274766763435},"add77170":{"id":4201032783236537},"removeAllImages":{"id":2678505631093822},"removeAllURLs":{"id":2152018588606222},"setInitialText":{"id":1120832254570981}} });
+registerSDKClass("SLRequest", SLRequest, { module: "Social_a956b86ef7a76a8e", properties: {"url":279751005519730,"parameters":4326574874339709,"requestMethod":3673468340729151}, methods: {"addMultipartData":{"id":651423911057051},"perform":{"id":536950333665948,"hints":[{"callback":{"out":[]}}]},"preparedURLRequest":{"id":3567155017165936}} });

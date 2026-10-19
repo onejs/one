@@ -44,18 +44,18 @@ type $SDK66 = (AVSpeechSynthesisVoice) | null;
 /** struct AVAudio3DAngularOrientation */
 export class AVAudio3DAngularOrientation extends SDKHandle {
   /** var pitch: Float */
-  get pitch(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4284653782628522, this, []); }
-  set pitch(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2643978701034287, this, [value]); }
+  get pitch(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4284653782628522, this, []); }
+  set pitch(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2643978701034287, this, [value]); }
   /** var roll: Float */
-  get roll(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4178787567184906, this, []); }
-  set roll(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3824964008604735, this, [value]); }
+  get roll(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4178787567184906, this, []); }
+  set roll(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3824964008604735, this, [value]); }
   /** var yaw: Float */
-  get yaw(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1187742352942246, this, []); }
-  set yaw(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3923042248180266, this, [value]); }
+  get yaw(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1187742352942246, this, []); }
+  set yaw(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3923042248180266, this, [value]); }
   /** init(yaw: Float, pitch: Float, roll: Float) */
-  static initYawPitchRoll(yaw: number, pitch: number, roll: number): AVAudio3DAngularOrientation { return callSDK<AVAudio3DAngularOrientation>("AVFAudio_d6c5d10d3352e6ec", 1275642604408910, undefined, [yaw, pitch, roll]); }
+  static initYawPitchRoll(yaw: number, pitch: number, roll: number): AVAudio3DAngularOrientation { return callSDK<AVAudio3DAngularOrientation>("AVFAudio_a956b86ef7a76a8e", 1275642604408910, undefined, [yaw, pitch, roll]); }
   /** init() */
-  static init(): AVAudio3DAngularOrientation { return callSDK<AVAudio3DAngularOrientation>("AVFAudio_d6c5d10d3352e6ec", 688671323619759, undefined, []); }
+  static init(): AVAudio3DAngularOrientation { return callSDK<AVAudio3DAngularOrientation>("AVFAudio_a956b86ef7a76a8e", 688671323619759, undefined, []); }
   declare readonly $type: { "c:@S@AVAudio3DAngularOrientation": true };
 }
 
@@ -75,7 +75,7 @@ export const AVAudio3DMixingPointSourceInHeadMode = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (AVAudio3DMixingPointSourceInHeadMode) | null { return callSDK<(AVAudio3DMixingPointSourceInHeadMode) | null>("AVFAudio_d6c5d10d3352e6ec", 3911697383515094, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudio3DMixingPointSourceInHeadMode) | null { return callSDK<(AVAudio3DMixingPointSourceInHeadMode) | null>("AVFAudio_a956b86ef7a76a8e", 3911697383515094, undefined, [rawValue]); }
 };
 
 /**
@@ -89,7 +89,7 @@ export const AVAudio3DMixingRenderingAlgorithm = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (AVAudio3DMixingRenderingAlgorithm) | null { return callSDK<(AVAudio3DMixingRenderingAlgorithm) | null>("AVFAudio_d6c5d10d3352e6ec", 3027147337246991, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudio3DMixingRenderingAlgorithm) | null { return callSDK<(AVAudio3DMixingRenderingAlgorithm) | null>("AVFAudio_a956b86ef7a76a8e", 3027147337246991, undefined, [rawValue]); }
 };
 
 /**
@@ -103,24 +103,24 @@ export const AVAudio3DMixingSourceMode = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (AVAudio3DMixingSourceMode) | null { return callSDK<(AVAudio3DMixingSourceMode) | null>("AVFAudio_d6c5d10d3352e6ec", 4044874864893765, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudio3DMixingSourceMode) | null { return callSDK<(AVAudio3DMixingSourceMode) | null>("AVFAudio_a956b86ef7a76a8e", 4044874864893765, undefined, [rawValue]); }
 };
 
 /** struct AVAudio3DPoint */
 export class AVAudio3DPoint extends SDKHandle {
   /** var x: Float */
-  get x(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3158361534573328, this, []); }
-  set x(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2322065077733834, this, [value]); }
+  get x(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3158361534573328, this, []); }
+  set x(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2322065077733834, this, [value]); }
   /** var y: Float */
-  get y(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1090915544400271, this, []); }
-  set y(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2695786667264027, this, [value]); }
+  get y(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1090915544400271, this, []); }
+  set y(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2695786667264027, this, [value]); }
   /** var z: Float */
-  get z(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1828699208995767, this, []); }
-  set z(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 528973843411672, this, [value]); }
+  get z(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1828699208995767, this, []); }
+  set z(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 528973843411672, this, [value]); }
   /** init(x: Float, y: Float, z: Float) */
-  static initXYZ(x: number, y: number, z: number): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_d6c5d10d3352e6ec", 1911939815483103, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_a956b86ef7a76a8e", 1911939815483103, undefined, [x, y, z]); }
   /** init() */
-  static init(): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_d6c5d10d3352e6ec", 3980848465845885, undefined, []); }
+  static init(): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_a956b86ef7a76a8e", 3980848465845885, undefined, []); }
   declare readonly $type: { "c:@S@AVAudio3DPoint": true };
 }
 
@@ -130,15 +130,15 @@ export type AVAudio3DVector = AVAudio3DPoint;
 /** struct AVAudio3DVectorOrientation */
 export class AVAudio3DVectorOrientation extends SDKHandle {
   /** var forward: AVAudio3DVector */
-  get forward(): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_d6c5d10d3352e6ec", 2044191671609569, this, []); }
-  set forward(value: AVAudio3DPoint) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1938600714637940, this, [value]); }
+  get forward(): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_a956b86ef7a76a8e", 2044191671609569, this, []); }
+  set forward(value: AVAudio3DPoint) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1938600714637940, this, [value]); }
   /** var up: AVAudio3DVector */
-  get up(): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_d6c5d10d3352e6ec", 2975512638042242, this, []); }
-  set up(value: AVAudio3DPoint) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3999152251617480, this, [value]); }
+  get up(): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_a956b86ef7a76a8e", 2975512638042242, this, []); }
+  set up(value: AVAudio3DPoint) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3999152251617480, this, [value]); }
   /** init(forward: AVAudio3DVector, up: AVAudio3DVector) */
-  static initForwardUp(forward: AVAudio3DPoint, up: AVAudio3DPoint): AVAudio3DVectorOrientation { return callSDK<AVAudio3DVectorOrientation>("AVFAudio_d6c5d10d3352e6ec", 858162196588094, undefined, [forward, up]); }
+  static initForwardUp(forward: AVAudio3DPoint, up: AVAudio3DPoint): AVAudio3DVectorOrientation { return callSDK<AVAudio3DVectorOrientation>("AVFAudio_a956b86ef7a76a8e", 858162196588094, undefined, [forward, up]); }
   /** init() */
-  static init(): AVAudio3DVectorOrientation { return callSDK<AVAudio3DVectorOrientation>("AVFAudio_d6c5d10d3352e6ec", 128593797129231, undefined, []); }
+  static init(): AVAudio3DVectorOrientation { return callSDK<AVAudio3DVectorOrientation>("AVFAudio_a956b86ef7a76a8e", 128593797129231, undefined, []); }
   declare readonly $type: { "c:@S@AVAudio3DVectorOrientation": true };
 }
 
@@ -151,42 +151,42 @@ export class AVAudioApplication extends SDKHandle {
    * class let inputMuteStateChangeNotification: NSNotification.Name
    * @availability iOS 17.0+
    */
-  static get inputMuteStateChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 1101142016585898, undefined, []); }
+  static get inputMuteStateChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 1101142016585898, undefined, []); }
   /**
    * class let muteStateKey: String
    * @availability iOS 17.0+
    */
-  static get muteStateKey(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4455387461210571, undefined, []); }
+  static get muteStateKey(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4455387461210571, undefined, []); }
   /**
    * class func requestMicrophoneInjectionPermission() async -> AVAudioApplication.MicrophoneInjectionPermission
    * @availability iOS 18.2+
    */
-  static requestMicrophoneInjectionPermission(response: ((arg0: AVAudioApplication_MicrophoneInjectionPermission) => void)): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2776277783325476, undefined, [response], [{"callback":{"out":[]}}]); }
+  static requestMicrophoneInjectionPermission(response: ((arg0: AVAudioApplication_MicrophoneInjectionPermission) => void)): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2776277783325476, undefined, [response], [{"callback":{"out":[]}}]); }
   /**
    * class func requestRecordPermission() async -> Bool
    * @availability iOS 17.0+
    */
-  static requestRecordPermission(response: ((arg0: boolean) => void)): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2361374451262665, undefined, [response], [{"callback":{"out":[]}}]); }
+  static requestRecordPermission(response: ((arg0: boolean) => void)): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2361374451262665, undefined, [response], [{"callback":{"out":[]}}]); }
   /**
    * class var shared: AVAudioApplication { get }
    * @availability iOS 17.0+
    */
-  static get shared(): AVAudioApplication { return callSDK<AVAudioApplication>("AVFAudio_d6c5d10d3352e6ec", 1056792655972517, undefined, []); }
+  static get shared(): AVAudioApplication { return callSDK<AVAudioApplication>("AVFAudio_a956b86ef7a76a8e", 1056792655972517, undefined, []); }
   /**
    * func setInputMuted(_ muted: Bool) throws
    * @availability iOS 17.0+
    */
-  setInputMuted(muted: boolean): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1375731184115589, this, [muted]); }
+  setInputMuted(muted: boolean): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1375731184115589, this, [muted]); }
   /**
    * var isInputMuted: Bool { get }
    * @availability iOS 17.0+
    */
-  get isInputMuted(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 4097970193781331, this, []); }
+  get isInputMuted(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 4097970193781331, this, []); }
   /**
    * var microphoneInjectionPermission: AVAudioApplication.MicrophoneInjectionPermission { get }
    * @availability iOS 18.2+
    */
-  get microphoneInjectionPermission(): AVAudioApplication_MicrophoneInjectionPermission { return callSDK<AVAudioApplication_MicrophoneInjectionPermission>("AVFAudio_d6c5d10d3352e6ec", 366080159695647, this, []); }
+  get microphoneInjectionPermission(): AVAudioApplication_MicrophoneInjectionPermission { return callSDK<AVAudioApplication_MicrophoneInjectionPermission>("AVFAudio_a956b86ef7a76a8e", 366080159695647, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioApplication": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isInputMuted": true; "microphoneInjectionPermission": true };
 }
@@ -196,7 +196,7 @@ export type AVAudioApplication_MicrophoneInjectionPermission = "serviceDisabled"
 
 export const AVAudioApplication_MicrophoneInjectionPermission = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (AVAudioApplication_MicrophoneInjectionPermission) | null { return callSDK<(AVAudioApplication_MicrophoneInjectionPermission) | null>("AVFAudio_d6c5d10d3352e6ec", 2645277330726106, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioApplication_MicrophoneInjectionPermission) | null { return callSDK<(AVAudioApplication_MicrophoneInjectionPermission) | null>("AVFAudio_a956b86ef7a76a8e", 2645277330726106, undefined, [rawValue]); }
 };
 
 /** enum recordPermission */
@@ -204,7 +204,7 @@ export type AVAudioApplication_recordPermission = "undetermined" | "denied" | "g
 
 export const AVAudioApplication_recordPermission = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (AVAudioApplication_recordPermission) | null { return callSDK<(AVAudioApplication_recordPermission) | null>("AVFAudio_d6c5d10d3352e6ec", 4396429036066844, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioApplication_recordPermission) | null { return callSDK<(AVAudioApplication_recordPermission) | null>("AVFAudio_a956b86ef7a76a8e", 4396429036066844, undefined, [rawValue]); }
 };
 
 /**
@@ -213,22 +213,22 @@ export const AVAudioApplication_recordPermission = {
  */
 export class AVAudioBuffer extends SDKHandle {
   /** init() */
-  static init(): AVAudioBuffer { return callSDK<AVAudioBuffer>("AVFAudio_d6c5d10d3352e6ec", 426153660679983, undefined, []); }
+  static init(): AVAudioBuffer { return callSDK<AVAudioBuffer>("AVFAudio_a956b86ef7a76a8e", 426153660679983, undefined, []); }
   /**
    * var audioBufferList: UnsafePointer<AudioBufferList> { get }
    * @availability iOS 8.0+
    */
-  get audioBufferList(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_d6c5d10d3352e6ec", 4397786693027884, this, []); }
+  get audioBufferList(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_a956b86ef7a76a8e", 4397786693027884, this, []); }
   /**
    * var format: AVAudioFormat { get }
    * @availability iOS 8.0+
    */
-  get format(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 1112864110857812, this, []); }
+  get format(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 1112864110857812, this, []); }
   /**
    * var mutableAudioBufferList: UnsafeMutablePointer<AudioBufferList> { get }
    * @availability iOS 8.0+
    */
-  get mutableAudioBufferList(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_d6c5d10d3352e6ec", 355514325701801, this, []); }
+  get mutableAudioBufferList(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_a956b86ef7a76a8e", 355514325701801, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioBuffer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "audioBufferList": true; "format": true; "mutableAudioBufferList": true };
 }
@@ -245,32 +245,32 @@ export class AVAudioChannelLayout extends SDKHandle {
    * init(layout: UnsafePointer<AudioChannelLayout>)
    * @availability iOS 8.0+
    */
-  static initLayout(layout: SDKHandle): AVAudioChannelLayout { return callSDK<AVAudioChannelLayout>("AVFAudio_d6c5d10d3352e6ec", 1982948814234543, undefined, [layout]); }
+  static initLayout(layout: SDKHandle): AVAudioChannelLayout { return callSDK<AVAudioChannelLayout>("AVFAudio_a956b86ef7a76a8e", 1982948814234543, undefined, [layout]); }
   /**
    * convenience init?(layoutTag: AudioChannelLayoutTag)
    * @availability iOS 8.0+
    */
-  static initLayoutTag(layoutTag: number): (AVAudioChannelLayout) | null { return callSDK<(AVAudioChannelLayout) | null>("AVFAudio_d6c5d10d3352e6ec", 1660026189795816, undefined, [layoutTag]); }
+  static initLayoutTag(layoutTag: number): (AVAudioChannelLayout) | null { return callSDK<(AVAudioChannelLayout) | null>("AVFAudio_a956b86ef7a76a8e", 1660026189795816, undefined, [layoutTag]); }
   /**
    * func isEqual(_ object: Any) -> Bool
    * @availability iOS 8.0+
    */
-  isEqual(object: unknown): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 762897835308334, this, [object]); }
+  isEqual(object: unknown): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 762897835308334, this, [object]); }
   /**
    * var channelCount: AVAudioChannelCount { get }
    * @availability iOS 8.0+
    */
-  get channelCount(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2403155886448541, this, []); }
+  get channelCount(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2403155886448541, this, []); }
   /**
    * var layout: UnsafePointer<AudioChannelLayout> { get }
    * @availability iOS 8.0+
    */
-  get layout(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_d6c5d10d3352e6ec", 3805780967312364, this, []); }
+  get layout(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_a956b86ef7a76a8e", 3805780967312364, this, []); }
   /**
    * var layoutTag: AudioChannelLayoutTag { get }
    * @availability iOS 8.0+
    */
-  get layoutTag(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2083126054501157, this, []); }
+  get layoutTag(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2083126054501157, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioChannelLayout": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelCount": true; "layout": true; "layoutTag": true };
 }
@@ -286,7 +286,7 @@ export const AVAudioCommonFormat = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (AVAudioCommonFormat) | null { return callSDK<(AVAudioCommonFormat) | null>("AVFAudio_d6c5d10d3352e6ec", 373575151235478, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioCommonFormat) | null { return callSDK<(AVAudioCommonFormat) | null>("AVFAudio_a956b86ef7a76a8e", 373575151235478, undefined, [rawValue]); }
 };
 
 /**
@@ -298,54 +298,54 @@ export class AVAudioCompressedBuffer extends AVAudioBuffer {
    * init(format: AVAudioFormat, packetCapacity: AVAudioPacketCount)
    * @availability iOS 9.0+
    */
-  static initFormatPacketCapacity(format: AVAudioFormat, packetCapacity: number): AVAudioCompressedBuffer { return callSDK<AVAudioCompressedBuffer>("AVFAudio_d6c5d10d3352e6ec", 3545431818726414, undefined, [format, packetCapacity]); }
+  static initFormatPacketCapacity(format: AVAudioFormat, packetCapacity: number): AVAudioCompressedBuffer { return callSDK<AVAudioCompressedBuffer>("AVFAudio_a956b86ef7a76a8e", 3545431818726414, undefined, [format, packetCapacity]); }
   /**
    * init(format: AVAudioFormat, packetCapacity: AVAudioPacketCount, maximumPacketSize: Int)
    * @availability iOS 9.0+
    */
-  static initFormatPacketCapacityMaximumPacketSize(format: AVAudioFormat, packetCapacity: number, maximumPacketSize: number): AVAudioCompressedBuffer { return callSDK<AVAudioCompressedBuffer>("AVFAudio_d6c5d10d3352e6ec", 1116420540557897, undefined, [format, packetCapacity, maximumPacketSize]); }
+  static initFormatPacketCapacityMaximumPacketSize(format: AVAudioFormat, packetCapacity: number, maximumPacketSize: number): AVAudioCompressedBuffer { return callSDK<AVAudioCompressedBuffer>("AVFAudio_a956b86ef7a76a8e", 1116420540557897, undefined, [format, packetCapacity, maximumPacketSize]); }
   /**
    * var byteCapacity: UInt32 { get }
    * @availability iOS 11.0+
    */
-  get byteCapacity(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2491287784762065, this, []); }
+  get byteCapacity(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2491287784762065, this, []); }
   /**
    * var byteLength: UInt32 { get set }
    * @availability iOS 11.0+
    */
-  get byteLength(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3412811432375499, this, []); }
-  set byteLength(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 765616774123881, this, [value]); }
+  get byteLength(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3412811432375499, this, []); }
+  set byteLength(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 765616774123881, this, [value]); }
   /**
    * var data: UnsafeMutableRawPointer { get }
    * @availability iOS 9.0+
    */
-  get data(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_d6c5d10d3352e6ec", 2791643149692474, this, []); }
+  get data(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_a956b86ef7a76a8e", 2791643149692474, this, []); }
   /**
    * var maximumPacketSize: Int { get }
    * @availability iOS 9.0+
    */
-  get maximumPacketSize(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3256742173416930, this, []); }
+  get maximumPacketSize(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3256742173416930, this, []); }
   /**
    * var packetCapacity: AVAudioPacketCount { get }
    * @availability iOS 9.0+
    */
-  get packetCapacity(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4188573108147200, this, []); }
+  get packetCapacity(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4188573108147200, this, []); }
   /**
    * var packetCount: AVAudioPacketCount { get set }
    * @availability iOS 9.0+
    */
-  get packetCount(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1708123394659612, this, []); }
-  set packetCount(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 7838843148090, this, [value]); }
+  get packetCount(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1708123394659612, this, []); }
+  set packetCount(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 7838843148090, this, [value]); }
   /**
    * var packetDescriptions: UnsafeMutablePointer<AudioStreamPacketDescription>? { get }
    * @availability iOS 9.0+
    */
-  get packetDescriptions(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_d6c5d10d3352e6ec", 536191608966016, this, []); }
+  get packetDescriptions(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_a956b86ef7a76a8e", 536191608966016, this, []); }
   /**
    * var packetDependencies: [AudioStreamPacketDependencyDescription]? { get }
    * @availability iOS 26.0+
    */
-  get packetDependencies(): (Array<_CoreAudioTypes_AudioStreamPacketDependencyDescription>) | null { return callSDK<(Array<_CoreAudioTypes_AudioStreamPacketDependencyDescription>) | null>("AVFAudio_d6c5d10d3352e6ec", 1078160461106740, this, []); }
+  get packetDependencies(): (Array<_CoreAudioTypes_AudioStreamPacketDependencyDescription>) | null { return callSDK<(Array<_CoreAudioTypes_AudioStreamPacketDependencyDescription>) | null>("AVFAudio_a956b86ef7a76a8e", 1078160461106740, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioCompressedBuffer": true; "c:objc(cs)AVAudioBuffer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "audioBufferList": true; "format": true; "mutableAudioBufferList": true; "byteCapacity": true; "byteLength": true; "data": true; "maximumPacketSize": true; "packetCapacity": true; "packetCount": true; "packetDescriptions": true };
 }
@@ -359,17 +359,17 @@ export class AVAudioConnectionPoint extends SDKHandle {
    * init(node: AVAudioNode, bus: AVAudioNodeBus)
    * @availability iOS 9.0+
    */
-  static init(node: AVAudioNode, bus: number): AVAudioConnectionPoint { return callSDK<AVAudioConnectionPoint>("AVFAudio_d6c5d10d3352e6ec", 1638250714128757, undefined, [node, bus]); }
+  static init(node: AVAudioNode, bus: number): AVAudioConnectionPoint { return callSDK<AVAudioConnectionPoint>("AVFAudio_a956b86ef7a76a8e", 1638250714128757, undefined, [node, bus]); }
   /**
    * var bus: AVAudioNodeBus { get }
    * @availability iOS 9.0+
    */
-  get bus(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 699584784672994, this, []); }
+  get bus(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 699584784672994, this, []); }
   /**
    * weak var node: AVAudioNode? { get }
    * @availability iOS 9.0+
    */
-  get node(): (AVAudioNode) | null { return callSDK<(AVAudioNode) | null>("AVFAudio_d6c5d10d3352e6ec", 2170757015991673, this, []); }
+  get node(): (AVAudioNode) | null { return callSDK<(AVAudioNode) | null>("AVFAudio_a956b86ef7a76a8e", 2170757015991673, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioConnectionPoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bus": true; "node": true };
 }
@@ -385,7 +385,7 @@ export const AVAudioContentSource = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (AVAudioContentSource) | null { return callSDK<(AVAudioContentSource) | null>("AVFAudio_d6c5d10d3352e6ec", 2462046064541694, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioContentSource) | null { return callSDK<(AVAudioContentSource) | null>("AVFAudio_a956b86ef7a76a8e", 2462046064541694, undefined, [rawValue]); }
 };
 
 /**
@@ -397,111 +397,111 @@ export class AVAudioConverter extends SDKHandle {
    * func convert(to outputBuffer: AVAudioPCMBuffer, from inputBuffer: AVAudioPCMBuffer) throws
    * @availability iOS 9.0+
    */
-  convert(outputBuffer: AVAudioPCMBuffer, inputBuffer: AVAudioPCMBuffer): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3365507852393555, this, [outputBuffer, inputBuffer]); }
+  convert(outputBuffer: AVAudioPCMBuffer, inputBuffer: AVAudioPCMBuffer): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3365507852393555, this, [outputBuffer, inputBuffer]); }
   /**
    * init?(from fromFormat: AVAudioFormat, to toFormat: AVAudioFormat)
    * @availability iOS 9.0+
    */
-  static init(fromFormat: AVAudioFormat, toFormat: AVAudioFormat): (AVAudioConverter) | null { return callSDK<(AVAudioConverter) | null>("AVFAudio_d6c5d10d3352e6ec", 1691874882942415, undefined, [fromFormat, toFormat]); }
+  static init(fromFormat: AVAudioFormat, toFormat: AVAudioFormat): (AVAudioConverter) | null { return callSDK<(AVAudioConverter) | null>("AVFAudio_a956b86ef7a76a8e", 1691874882942415, undefined, [fromFormat, toFormat]); }
   /**
    * func reset()
    * @availability iOS 9.0+
    */
-  reset(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3155493154262522, this, []); }
+  reset(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3155493154262522, this, []); }
   /** var applicableEncodeBitRates: [NSNumber]? { get } */
-  get applicableEncodeBitRates(): $SDK3 { return callSDK<$SDK3>("AVFAudio_d6c5d10d3352e6ec", 3227349931323816, this, []); }
+  get applicableEncodeBitRates(): $SDK3 { return callSDK<$SDK3>("AVFAudio_a956b86ef7a76a8e", 3227349931323816, this, []); }
   /** var applicableEncodeSampleRates: [NSNumber]? { get } */
-  get applicableEncodeSampleRates(): $SDK3 { return callSDK<$SDK3>("AVFAudio_d6c5d10d3352e6ec", 635909494236363, this, []); }
+  get applicableEncodeSampleRates(): $SDK3 { return callSDK<$SDK3>("AVFAudio_a956b86ef7a76a8e", 635909494236363, this, []); }
   /**
    * var audioSyncPacketFrequency: Int { get set }
    * @availability iOS 26.0+
    */
-  get audioSyncPacketFrequency(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3276648529582275, this, []); }
-  set audioSyncPacketFrequency(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3582265167914008, this, [value]); }
+  get audioSyncPacketFrequency(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3276648529582275, this, []); }
+  set audioSyncPacketFrequency(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3582265167914008, this, [value]); }
   /** var availableEncodeBitRates: [NSNumber]? { get } */
-  get availableEncodeBitRates(): $SDK3 { return callSDK<$SDK3>("AVFAudio_d6c5d10d3352e6ec", 531520022254446, this, []); }
+  get availableEncodeBitRates(): $SDK3 { return callSDK<$SDK3>("AVFAudio_a956b86ef7a76a8e", 531520022254446, this, []); }
   /** var availableEncodeChannelLayoutTags: [NSNumber]? { get } */
-  get availableEncodeChannelLayoutTags(): $SDK3 { return callSDK<$SDK3>("AVFAudio_d6c5d10d3352e6ec", 4344004442140283, this, []); }
+  get availableEncodeChannelLayoutTags(): $SDK3 { return callSDK<$SDK3>("AVFAudio_a956b86ef7a76a8e", 4344004442140283, this, []); }
   /** var availableEncodeSampleRates: [NSNumber]? { get } */
-  get availableEncodeSampleRates(): $SDK3 { return callSDK<$SDK3>("AVFAudio_d6c5d10d3352e6ec", 1679650728297708, this, []); }
+  get availableEncodeSampleRates(): $SDK3 { return callSDK<$SDK3>("AVFAudio_a956b86ef7a76a8e", 1679650728297708, this, []); }
   /** var bitRate: Int { get set } */
-  get bitRate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 82530914647576, this, []); }
-  set bitRate(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2626429753285902, this, [value]); }
+  get bitRate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 82530914647576, this, []); }
+  set bitRate(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2626429753285902, this, [value]); }
   /** var bitRateStrategy: String? { get set } */
-  get bitRateStrategy(): (string) | null { return callSDK<(string) | null>("AVFAudio_d6c5d10d3352e6ec", 4351725308338552, this, []); }
-  set bitRateStrategy(value: (string) | null) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2643109485973985, this, [value]); }
+  get bitRateStrategy(): (string) | null { return callSDK<(string) | null>("AVFAudio_a956b86ef7a76a8e", 4351725308338552, this, []); }
+  set bitRateStrategy(value: (string) | null) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2643109485973985, this, [value]); }
   /**
    * var channelMap: [NSNumber] { get set }
    * @availability iOS 9.0+
    */
-  get channelMap(): $SDK4 { return callSDK<$SDK4>("AVFAudio_d6c5d10d3352e6ec", 172423498495751, this, []); }
-  set channelMap(value: $SDK4) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4026889664283628, this, [value]); }
+  get channelMap(): $SDK4 { return callSDK<$SDK4>("AVFAudio_a956b86ef7a76a8e", 172423498495751, this, []); }
+  set channelMap(value: $SDK4) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4026889664283628, this, [value]); }
   /**
    * var contentSource: AVAudioContentSource { get set }
    * @availability iOS 26.0+
    */
-  get contentSource(): AVAudioContentSource { return callSDK<AVAudioContentSource>("AVFAudio_d6c5d10d3352e6ec", 1096039943800879, this, []); }
-  set contentSource(value: AVAudioContentSource) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2792786574408084, this, [value]); }
+  get contentSource(): AVAudioContentSource { return callSDK<AVAudioContentSource>("AVFAudio_a956b86ef7a76a8e", 1096039943800879, this, []); }
+  set contentSource(value: AVAudioContentSource) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2792786574408084, this, [value]); }
   /**
    * var dither: Bool { get set }
    * @availability iOS 9.0+
    */
-  get dither(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 249605113435919, this, []); }
-  set dither(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4466487678466962, this, [value]); }
+  get dither(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 249605113435919, this, []); }
+  set dither(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4466487678466962, this, [value]); }
   /**
    * var downmix: Bool { get set }
    * @availability iOS 9.0+
    */
-  get downmix(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3089426752684379, this, []); }
-  set downmix(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2793458859415916, this, [value]); }
+  get downmix(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3089426752684379, this, []); }
+  set downmix(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2793458859415916, this, [value]); }
   /**
    * var dynamicRangeControlConfiguration: AVAudioDynamicRangeControlConfiguration { get set }
    * @availability iOS 26.0+
    */
-  get dynamicRangeControlConfiguration(): AVAudioDynamicRangeControlConfiguration { return callSDK<AVAudioDynamicRangeControlConfiguration>("AVFAudio_d6c5d10d3352e6ec", 344126401077792, this, []); }
-  set dynamicRangeControlConfiguration(value: AVAudioDynamicRangeControlConfiguration) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3589573284854776, this, [value]); }
+  get dynamicRangeControlConfiguration(): AVAudioDynamicRangeControlConfiguration { return callSDK<AVAudioDynamicRangeControlConfiguration>("AVFAudio_a956b86ef7a76a8e", 344126401077792, this, []); }
+  set dynamicRangeControlConfiguration(value: AVAudioDynamicRangeControlConfiguration) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3589573284854776, this, [value]); }
   /**
    * var inputFormat: AVAudioFormat { get }
    * @availability iOS 9.0+
    */
-  get inputFormat(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 385317000538797, this, []); }
+  get inputFormat(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 385317000538797, this, []); }
   /**
    * var magicCookie: Data? { get set }
    * @availability iOS 9.0+
    */
-  get magicCookie(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AVFAudio_d6c5d10d3352e6ec", 1899463372800957, this, []); }
-  set magicCookie(value: (ArrayBuffer) | null) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2852326529007135, this, [value]); }
+  get magicCookie(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AVFAudio_a956b86ef7a76a8e", 1899463372800957, this, []); }
+  set magicCookie(value: (ArrayBuffer) | null) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2852326529007135, this, [value]); }
   /** var maximumOutputPacketSize: Int { get } */
-  get maximumOutputPacketSize(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1635064914980297, this, []); }
+  get maximumOutputPacketSize(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1635064914980297, this, []); }
   /**
    * var outputFormat: AVAudioFormat { get }
    * @availability iOS 9.0+
    */
-  get outputFormat(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 2509189627240905, this, []); }
+  get outputFormat(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 2509189627240905, this, []); }
   /**
    * var primeInfo: AVAudioConverterPrimeInfo { get set }
    * @availability iOS 9.0+
    */
-  get primeInfo(): AVAudioConverterPrimeInfo { return callSDK<AVAudioConverterPrimeInfo>("AVFAudio_d6c5d10d3352e6ec", 869624018415757, this, []); }
-  set primeInfo(value: AVAudioConverterPrimeInfo) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 481013746600054, this, [value]); }
+  get primeInfo(): AVAudioConverterPrimeInfo { return callSDK<AVAudioConverterPrimeInfo>("AVFAudio_a956b86ef7a76a8e", 869624018415757, this, []); }
+  set primeInfo(value: AVAudioConverterPrimeInfo) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 481013746600054, this, [value]); }
   /**
    * var primeMethod: AVAudioConverterPrimeMethod { get set }
    * @availability iOS 9.0+
    */
-  get primeMethod(): AVAudioConverterPrimeMethod { return callSDK<AVAudioConverterPrimeMethod>("AVFAudio_d6c5d10d3352e6ec", 2589923203111244, this, []); }
-  set primeMethod(value: AVAudioConverterPrimeMethod) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 815797603927141, this, [value]); }
+  get primeMethod(): AVAudioConverterPrimeMethod { return callSDK<AVAudioConverterPrimeMethod>("AVFAudio_a956b86ef7a76a8e", 2589923203111244, this, []); }
+  set primeMethod(value: AVAudioConverterPrimeMethod) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 815797603927141, this, [value]); }
   /**
    * var sampleRateConverterAlgorithm: String? { get set }
    * @availability iOS 9.0+
    */
-  get sampleRateConverterAlgorithm(): (string) | null { return callSDK<(string) | null>("AVFAudio_d6c5d10d3352e6ec", 3101968226311202, this, []); }
-  set sampleRateConverterAlgorithm(value: (string) | null) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1717993897850388, this, [value]); }
+  get sampleRateConverterAlgorithm(): (string) | null { return callSDK<(string) | null>("AVFAudio_a956b86ef7a76a8e", 3101968226311202, this, []); }
+  set sampleRateConverterAlgorithm(value: (string) | null) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1717993897850388, this, [value]); }
   /**
    * var sampleRateConverterQuality: Int { get set }
    * @availability iOS 9.0+
    */
-  get sampleRateConverterQuality(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3747061429531479, this, []); }
-  set sampleRateConverterQuality(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1397991558990421, this, [value]); }
+  get sampleRateConverterQuality(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3747061429531479, this, []); }
+  set sampleRateConverterQuality(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1397991558990421, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioConverter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicableEncodeBitRates": true; "applicableEncodeSampleRates": true; "audioSyncPacketFrequency": true; "availableEncodeBitRates": true; "availableEncodeChannelLayoutTags": true; "availableEncodeSampleRates": true; "bitRate": true; "bitRateStrategy": true; "channelMap": true; "contentSource": true; "dither": true; "downmix": true; "dynamicRangeControlConfiguration": true; "inputFormat": true; "magicCookie": true; "maximumOutputPacketSize": true; "outputFormat": true; "primeInfo": true; "primeMethod": true; "sampleRateConverterAlgorithm": true; "sampleRateConverterQuality": true };
 }
@@ -520,7 +520,7 @@ export const AVAudioConverterInputStatus = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (AVAudioConverterInputStatus) | null { return callSDK<(AVAudioConverterInputStatus) | null>("AVFAudio_d6c5d10d3352e6ec", 671537405933133, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioConverterInputStatus) | null { return callSDK<(AVAudioConverterInputStatus) | null>("AVFAudio_a956b86ef7a76a8e", 671537405933133, undefined, [rawValue]); }
 };
 
 /**
@@ -534,21 +534,21 @@ export const AVAudioConverterOutputStatus = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (AVAudioConverterOutputStatus) | null { return callSDK<(AVAudioConverterOutputStatus) | null>("AVFAudio_d6c5d10d3352e6ec", 3569232166238620, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioConverterOutputStatus) | null { return callSDK<(AVAudioConverterOutputStatus) | null>("AVFAudio_a956b86ef7a76a8e", 3569232166238620, undefined, [rawValue]); }
 };
 
 /** struct AVAudioConverterPrimeInfo */
 export class AVAudioConverterPrimeInfo extends SDKHandle {
   /** var leadingFrames: AVAudioFrameCount */
-  get leadingFrames(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2100819597193794, this, []); }
-  set leadingFrames(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 846865220460883, this, [value]); }
+  get leadingFrames(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2100819597193794, this, []); }
+  set leadingFrames(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 846865220460883, this, [value]); }
   /** var trailingFrames: AVAudioFrameCount */
-  get trailingFrames(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2881543904250198, this, []); }
-  set trailingFrames(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3348182780469131, this, [value]); }
+  get trailingFrames(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2881543904250198, this, []); }
+  set trailingFrames(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3348182780469131, this, [value]); }
   /** init(leadingFrames: AVAudioFrameCount, trailingFrames: AVAudioFrameCount) */
-  static initLeadingFramesTrailingFrames(leadingFrames: number, trailingFrames: number): AVAudioConverterPrimeInfo { return callSDK<AVAudioConverterPrimeInfo>("AVFAudio_d6c5d10d3352e6ec", 2199385048046967, undefined, [leadingFrames, trailingFrames]); }
+  static initLeadingFramesTrailingFrames(leadingFrames: number, trailingFrames: number): AVAudioConverterPrimeInfo { return callSDK<AVAudioConverterPrimeInfo>("AVFAudio_a956b86ef7a76a8e", 2199385048046967, undefined, [leadingFrames, trailingFrames]); }
   /** init() */
-  static init(): AVAudioConverterPrimeInfo { return callSDK<AVAudioConverterPrimeInfo>("AVFAudio_d6c5d10d3352e6ec", 2522789422826438, undefined, []); }
+  static init(): AVAudioConverterPrimeInfo { return callSDK<AVAudioConverterPrimeInfo>("AVFAudio_a956b86ef7a76a8e", 2522789422826438, undefined, []); }
   declare readonly $type: { "c:@S@AVAudioConverterPrimeInfo": true };
 }
 
@@ -557,7 +557,7 @@ export type AVAudioConverterPrimeMethod = "pre" | "normal" | "none";
 
 export const AVAudioConverterPrimeMethod = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (AVAudioConverterPrimeMethod) | null { return callSDK<(AVAudioConverterPrimeMethod) | null>("AVFAudio_d6c5d10d3352e6ec", 595738072703861, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioConverterPrimeMethod) | null { return callSDK<(AVAudioConverterPrimeMethod) | null>("AVFAudio_a956b86ef7a76a8e", 595738072703861, undefined, [rawValue]); }
 };
 
 /** enum AVAudioDynamicRangeControlConfiguration */
@@ -565,7 +565,7 @@ export type AVAudioDynamicRangeControlConfiguration = "none" | "music" | "speech
 
 export const AVAudioDynamicRangeControlConfiguration = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (AVAudioDynamicRangeControlConfiguration) | null { return callSDK<(AVAudioDynamicRangeControlConfiguration) | null>("AVFAudio_d6c5d10d3352e6ec", 3175674574315276, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioDynamicRangeControlConfiguration) | null { return callSDK<(AVAudioDynamicRangeControlConfiguration) | null>("AVFAudio_a956b86ef7a76a8e", 3175674574315276, undefined, [rawValue]); }
 };
 
 /**
@@ -577,229 +577,229 @@ export class AVAudioEngine extends SDKHandle {
    * func attach(_ node: AVAudioNode)
    * @availability iOS 8.0+
    */
-  attach(node: AVAudioNode): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1125385911430930, this, [node]); }
+  attach(node: AVAudioNode): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1125385911430930, this, [node]); }
   /**
    * func connect(_ node1: AVAudioNode, to node2: AVAudioNode, format: AVAudioFormat?)
    * @availability iOS 8.0+
    * @deprecated iOS 27.0
    */
-  connectToFormat(node1: AVAudioNode, node2: AVAudioNode, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 492763145630015, this, [node1, node2, format]); }
+  connectToFormat(node1: AVAudioNode, node2: AVAudioNode, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 492763145630015, this, [node1, node2, format]); }
   /**
    * func connectNode(_ node1: AVAudioNode, to node2: AVAudioNode, format: AVAudioFormat?) throws
    * @availability iOS 27.0+
    */
-  connectNodeToFormat(node1: AVAudioNode, node2: AVAudioNode, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1302030941098846, this, [node1, node2, format]); }
+  connectNodeToFormat(node1: AVAudioNode, node2: AVAudioNode, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1302030941098846, this, [node1, node2, format]); }
   /**
    * func connect(_ node1: AVAudioNode, to node2: AVAudioNode, fromBus bus1: AVAudioNodeBus, toBus bus2: AVAudioNodeBus, format: AVAudioFormat?)
    * @availability iOS 8.0+
    * @deprecated iOS 27.0
    */
-  connectToFromBusToBusFormat(node1: AVAudioNode, node2: AVAudioNode, bus1: number, bus2: number, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2433603423542935, this, [node1, node2, bus1, bus2, format]); }
+  connectToFromBusToBusFormat(node1: AVAudioNode, node2: AVAudioNode, bus1: number, bus2: number, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2433603423542935, this, [node1, node2, bus1, bus2, format]); }
   /**
    * func connectNode(_ node1: AVAudioNode, to node2: AVAudioNode, fromBus bus1: AVAudioNodeBus, toBus bus2: AVAudioNodeBus, format: AVAudioFormat?) throws
    * @availability iOS 27.0+
    */
-  connectNodeToFromBusToBusFormat(node1: AVAudioNode, node2: AVAudioNode, bus1: number, bus2: number, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2237968917400091, this, [node1, node2, bus1, bus2, format]); }
+  connectNodeToFromBusToBusFormat(node1: AVAudioNode, node2: AVAudioNode, bus1: number, bus2: number, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2237968917400091, this, [node1, node2, bus1, bus2, format]); }
   /**
    * func connect(_ sourceNode: AVAudioNode, to destNodes: [AVAudioConnectionPoint], fromBus sourceBus: AVAudioNodeBus, format: AVAudioFormat?)
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  connectToFromBusFormat(sourceNode: AVAudioNode, destNodes: $SDK6, sourceBus: number, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3370876747477275, this, [sourceNode, destNodes, sourceBus, format]); }
+  connectToFromBusFormat(sourceNode: AVAudioNode, destNodes: $SDK6, sourceBus: number, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3370876747477275, this, [sourceNode, destNodes, sourceBus, format]); }
   /**
    * func connectNode(_ sourceNode: AVAudioNode, to destNodes: [AVAudioConnectionPoint], fromBus sourceBus: AVAudioNodeBus, format: AVAudioFormat?) throws
    * @availability iOS 27.0+
    */
-  connectNodeToFromBusFormat(sourceNode: AVAudioNode, destNodes: $SDK6, sourceBus: number, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3697856584776743, this, [sourceNode, destNodes, sourceBus, format]); }
+  connectNodeToFromBusFormat(sourceNode: AVAudioNode, destNodes: $SDK6, sourceBus: number, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3697856584776743, this, [sourceNode, destNodes, sourceBus, format]); }
   /**
    * func connectMIDI(_ sourceNode: AVAudioNode, to destinationNode: AVAudioNode, format: AVAudioFormat?, eventListProvider tapBlock: AVMIDIEventListBlock? = nil)
    * @availability iOS 27.0+
    */
-  connectMIDIToFormat(sourceNode: AVAudioNode, destinationNode: AVAudioNode, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2784719807956436, this, [sourceNode, destinationNode, format]); }
+  connectMIDIToFormat(sourceNode: AVAudioNode, destinationNode: AVAudioNode, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2784719807956436, this, [sourceNode, destinationNode, format]); }
   /**
    * func connectMIDI(_ sourceNode: AVAudioNode, to destinationNodes: [AVAudioNode], format: AVAudioFormat?, block tapBlock: AUMIDIOutputEventBlock? = nil)
    * @availability iOS 13.0+
    * @deprecated iOS 16.0
    */
-  connectMIDIToFormat86448(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 215517907438599, this, [sourceNode, destinationNodes, format]); }
+  connectMIDIToFormat86448(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 215517907438599, this, [sourceNode, destinationNodes, format]); }
   /**
    * func connectMIDI(_ sourceNode: AVAudioNode, to destinationNodes: [AVAudioNode], format: AVAudioFormat?, eventListBlock tapBlock: AUMIDIEventListBlock? = nil)
    * @availability iOS 16.0+
    * @deprecated iOS 27.0
    */
-  connectMIDIToFormat39598(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 129985785332372, this, [sourceNode, destinationNodes, format]); }
+  connectMIDIToFormat39598(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 129985785332372, this, [sourceNode, destinationNodes, format]); }
   /**
    * func detach(_ node: AVAudioNode)
    * @availability iOS 8.0+
    */
-  detach(node: AVAudioNode): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3952614858477613, this, [node]); }
+  detach(node: AVAudioNode): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3952614858477613, this, [node]); }
   /**
    * func disableManualRenderingMode()
    * @availability iOS 11.0+
    */
-  disableManualRenderingMode(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 77939254620223, this, []); }
+  disableManualRenderingMode(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 77939254620223, this, []); }
   /**
    * func disconnectMIDI(_ sourceNode: AVAudioNode, from destinationNode: AVAudioNode)
    * @availability iOS 12.0+
    */
-  disconnectMIDIFrom(sourceNode: AVAudioNode, destinationNode: AVAudioNode): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2478291300224004, this, [sourceNode, destinationNode]); }
+  disconnectMIDIFrom(sourceNode: AVAudioNode, destinationNode: AVAudioNode): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2478291300224004, this, [sourceNode, destinationNode]); }
   /**
    * func disconnectMIDI(_ sourceNode: AVAudioNode, from destinationNodes: [AVAudioNode])
    * @availability iOS 12.0+
    */
-  disconnectMIDIFrom21581(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3057673820131562, this, [sourceNode, destinationNodes]); }
+  disconnectMIDIFrom21581(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3057673820131562, this, [sourceNode, destinationNodes]); }
   /**
    * func disconnectMIDIInput(_ node: AVAudioNode)
    * @availability iOS 12.0+
    */
-  disconnectMIDIInput(node: AVAudioNode): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 561083116193471, this, [node]); }
+  disconnectMIDIInput(node: AVAudioNode): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 561083116193471, this, [node]); }
   /**
    * func disconnectMIDIOutput(_ node: AVAudioNode)
    * @availability iOS 12.0+
    */
-  disconnectMIDIOutput(node: AVAudioNode): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1566930892132712, this, [node]); }
+  disconnectMIDIOutput(node: AVAudioNode): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1566930892132712, this, [node]); }
   /**
    * func disconnectNodeInput(_ node: AVAudioNode)
    * @availability iOS 8.0+
    */
-  disconnectNodeInput(node: AVAudioNode): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 346718669100908, this, [node]); }
+  disconnectNodeInput(node: AVAudioNode): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 346718669100908, this, [node]); }
   /**
    * func disconnectNodeInput(_ node: AVAudioNode, bus: AVAudioNodeBus)
    * @availability iOS 8.0+
    */
-  disconnectNodeInputBus(node: AVAudioNode, bus: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 953552654004513, this, [node, bus]); }
+  disconnectNodeInputBus(node: AVAudioNode, bus: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 953552654004513, this, [node, bus]); }
   /**
    * func disconnectNodeOutput(_ node: AVAudioNode)
    * @availability iOS 8.0+
    */
-  disconnectNodeOutput(node: AVAudioNode): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 177612036793385, this, [node]); }
+  disconnectNodeOutput(node: AVAudioNode): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 177612036793385, this, [node]); }
   /**
    * func disconnectNodeOutput(_ node: AVAudioNode, bus: AVAudioNodeBus)
    * @availability iOS 8.0+
    */
-  disconnectNodeOutputBus(node: AVAudioNode, bus: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3281680014902762, this, [node, bus]); }
+  disconnectNodeOutputBus(node: AVAudioNode, bus: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3281680014902762, this, [node, bus]); }
   /**
    * func enableManualRenderingMode(_ mode: AVAudioEngineManualRenderingMode, format pcmFormat: AVAudioFormat, maximumFrameCount: AVAudioFrameCount) throws
    * @availability iOS 11.0+
    */
-  enableManualRenderingMode(mode: AVAudioEngineManualRenderingMode, pcmFormat: AVAudioFormat, maximumFrameCount: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2111912299676038, this, [mode, pcmFormat, maximumFrameCount]); }
+  enableManualRenderingMode(mode: AVAudioEngineManualRenderingMode, pcmFormat: AVAudioFormat, maximumFrameCount: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2111912299676038, this, [mode, pcmFormat, maximumFrameCount]); }
   /**
    * init()
    * @availability iOS 8.0+
    */
-  static init(): AVAudioEngine { return callSDK<AVAudioEngine>("AVFAudio_d6c5d10d3352e6ec", 3016111586828973, undefined, []); }
+  static init(): AVAudioEngine { return callSDK<AVAudioEngine>("AVFAudio_a956b86ef7a76a8e", 3016111586828973, undefined, []); }
   /**
    * func inputConnectionPoint(for node: AVAudioNode, inputBus bus: AVAudioNodeBus) -> AVAudioConnectionPoint?
    * @availability iOS 9.0+
    */
-  inputConnectionPoint(node: AVAudioNode, bus: number): (AVAudioConnectionPoint) | null { return callSDK<(AVAudioConnectionPoint) | null>("AVFAudio_d6c5d10d3352e6ec", 2376939482309577, this, [node, bus]); }
+  inputConnectionPoint(node: AVAudioNode, bus: number): (AVAudioConnectionPoint) | null { return callSDK<(AVAudioConnectionPoint) | null>("AVFAudio_a956b86ef7a76a8e", 2376939482309577, this, [node, bus]); }
   /**
    * func outputConnectionPoints(for node: AVAudioNode, outputBus bus: AVAudioNodeBus) -> [AVAudioConnectionPoint]
    * @availability iOS 9.0+
    */
-  outputConnectionPoints(node: AVAudioNode, bus: number): $SDK6 { return callSDK<$SDK6>("AVFAudio_d6c5d10d3352e6ec", 2478439642694799, this, [node, bus]); }
+  outputConnectionPoints(node: AVAudioNode, bus: number): $SDK6 { return callSDK<$SDK6>("AVFAudio_a956b86ef7a76a8e", 2478439642694799, this, [node, bus]); }
   /**
    * func pause()
    * @availability iOS 8.0+
    */
-  pause(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1408952261126036, this, []); }
+  pause(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1408952261126036, this, []); }
   /**
    * func prepare()
    * @availability iOS 8.0+
    */
-  prepare(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1923807182820762, this, []); }
+  prepare(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1923807182820762, this, []); }
   /**
    * func renderOffline(_ numberOfFrames: AVAudioFrameCount, to buffer: AVAudioPCMBuffer) throws -> AVAudioEngineManualRenderingStatus
    * @availability iOS 11.0+
    */
-  renderOffline(numberOfFrames: number, buffer: AVAudioPCMBuffer): AVAudioEngineManualRenderingStatus { return callSDK<AVAudioEngineManualRenderingStatus>("AVFAudio_d6c5d10d3352e6ec", 3481033371084215, this, [numberOfFrames, buffer]); }
+  renderOffline(numberOfFrames: number, buffer: AVAudioPCMBuffer): AVAudioEngineManualRenderingStatus { return callSDK<AVAudioEngineManualRenderingStatus>("AVFAudio_a956b86ef7a76a8e", 3481033371084215, this, [numberOfFrames, buffer]); }
   /**
    * func reset()
    * @availability iOS 8.0+
    */
-  reset(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1757049432438461, this, []); }
+  reset(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1757049432438461, this, []); }
   /**
    * func start() throws
    * @availability iOS 8.0+
    */
-  start(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3202980137040089, this, []); }
+  start(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3202980137040089, this, []); }
   /**
    * func stop()
    * @availability iOS 8.0+
    */
-  stop(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 365549122451983, this, []); }
+  stop(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 365549122451983, this, []); }
   /**
    * var attachedNodes: Set<AVAudioNode> { get }
    * @availability iOS 13.0+
    */
-  get attachedNodes(): Array<AVAudioNode> { return callSDK<Array<AVAudioNode>>("AVFAudio_d6c5d10d3352e6ec", 2301007105349686, this, []); }
+  get attachedNodes(): Array<AVAudioNode> { return callSDK<Array<AVAudioNode>>("AVFAudio_a956b86ef7a76a8e", 2301007105349686, this, []); }
   /**
    * var isAutoShutdownEnabled: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isAutoShutdownEnabled(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2467383130976560, this, []); }
-  set isAutoShutdownEnabled(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3007313681189116, this, [value]); }
+  get isAutoShutdownEnabled(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2467383130976560, this, []); }
+  set isAutoShutdownEnabled(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3007313681189116, this, [value]); }
   /**
    * var inputNode: AVAudioInputNode { get }
    * @availability iOS 8.0+
    */
-  get inputNode(): AVAudioInputNode { return callSDK<AVAudioInputNode>("AVFAudio_d6c5d10d3352e6ec", 1784685520212101, this, []); }
+  get inputNode(): AVAudioInputNode { return callSDK<AVAudioInputNode>("AVFAudio_a956b86ef7a76a8e", 1784685520212101, this, []); }
   /**
    * var isInManualRenderingMode: Bool { get }
    * @availability iOS 11.0+
    */
-  get isInManualRenderingMode(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1613415974575405, this, []); }
+  get isInManualRenderingMode(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1613415974575405, this, []); }
   /**
    * var mainMixerNode: AVAudioMixerNode { get }
    * @availability iOS 8.0+
    */
-  get mainMixerNode(): AVAudioMixerNode { return callSDK<AVAudioMixerNode>("AVFAudio_d6c5d10d3352e6ec", 2541648154325367, this, []); }
+  get mainMixerNode(): AVAudioMixerNode { return callSDK<AVAudioMixerNode>("AVFAudio_a956b86ef7a76a8e", 2541648154325367, this, []); }
   /**
    * var manualRenderingBlock: AVAudioEngineManualRenderingBlock { get }
    * @availability iOS 11.0+
    */
-  get manualRenderingBlock(): $SDK8 { return callSDK<$SDK8>("AVFAudio_d6c5d10d3352e6ec", 3452252196297278, this, []); }
+  get manualRenderingBlock(): $SDK8 { return callSDK<$SDK8>("AVFAudio_a956b86ef7a76a8e", 3452252196297278, this, []); }
   /**
    * var manualRenderingFormat: AVAudioFormat { get }
    * @availability iOS 11.0+
    */
-  get manualRenderingFormat(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 1669512795433895, this, []); }
+  get manualRenderingFormat(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 1669512795433895, this, []); }
   /**
    * var manualRenderingMaximumFrameCount: AVAudioFrameCount { get }
    * @availability iOS 11.0+
    */
-  get manualRenderingMaximumFrameCount(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2071145173211159, this, []); }
+  get manualRenderingMaximumFrameCount(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2071145173211159, this, []); }
   /**
    * var manualRenderingMode: AVAudioEngineManualRenderingMode { get }
    * @availability iOS 11.0+
    */
-  get manualRenderingMode(): AVAudioEngineManualRenderingMode { return callSDK<AVAudioEngineManualRenderingMode>("AVFAudio_d6c5d10d3352e6ec", 3980437954641511, this, []); }
+  get manualRenderingMode(): AVAudioEngineManualRenderingMode { return callSDK<AVAudioEngineManualRenderingMode>("AVFAudio_a956b86ef7a76a8e", 3980437954641511, this, []); }
   /**
    * var manualRenderingSampleTime: AVAudioFramePosition { get }
    * @availability iOS 11.0+
    */
-  get manualRenderingSampleTime(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3995238594287443, this, []); }
+  get manualRenderingSampleTime(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3995238594287443, this, []); }
   /**
    * var outputNode: AVAudioOutputNode { get }
    * @availability iOS 8.0+
    */
-  get outputNode(): AVAudioOutputNode { return callSDK<AVAudioOutputNode>("AVFAudio_d6c5d10d3352e6ec", 633046387072446, this, []); }
+  get outputNode(): AVAudioOutputNode { return callSDK<AVAudioOutputNode>("AVFAudio_a956b86ef7a76a8e", 633046387072446, this, []); }
   /**
    * var isRunning: Bool { get }
    * @availability iOS 8.0+
    */
-  get isRunning(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 4433501046643715, this, []); }
+  get isRunning(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 4433501046643715, this, []); }
   /**
    * @export(implementation) var musicSequence: MusicSequence? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 27.0
    */
-  get musicSequence(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_d6c5d10d3352e6ec", 3959075785134069, this, []); }
+  get musicSequence(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_a956b86ef7a76a8e", 3959075785134069, this, []); }
   /**
    * func withMusicSequence<R, E>(_ body: (borrowing MusicSequence?) throws(E) -> R) throws(E) -> R where E : Error
    * @availability iOS 27.0+
    */
-  withMusicSequence(body: $SDK9): unknown { return callSDK<unknown>("AVFAudio_d6c5d10d3352e6ec", 1248292733146166, this, [body], [{"callback":{"out":[]}}], true); }
+  withMusicSequence(body: $SDK9): unknown { return callSDK<unknown>("AVFAudio_a956b86ef7a76a8e", 1248292733146166, this, [body], [{"callback":{"out":[]}}], true); }
   declare readonly $type: { "c:objc(cs)AVAudioEngine": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attachedNodes": true; "isAutoShutdownEnabled": true; "inputNode": true; "isInManualRenderingMode": true; "mainMixerNode": true; "manualRenderingFormat": true; "manualRenderingMaximumFrameCount": true; "manualRenderingMode": true; "manualRenderingSampleTime": true; "outputNode": true; "isRunning": true };
 }
@@ -821,7 +821,7 @@ export const AVAudioEngineManualRenderingError = {
    * init?(rawValue: OSStatus)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (AVAudioEngineManualRenderingError) | null { return callSDK<(AVAudioEngineManualRenderingError) | null>("AVFAudio_d6c5d10d3352e6ec", 1215252606090008, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioEngineManualRenderingError) | null { return callSDK<(AVAudioEngineManualRenderingError) | null>("AVFAudio_a956b86ef7a76a8e", 1215252606090008, undefined, [rawValue]); }
 };
 
 /**
@@ -835,7 +835,7 @@ export const AVAudioEngineManualRenderingMode = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (AVAudioEngineManualRenderingMode) | null { return callSDK<(AVAudioEngineManualRenderingMode) | null>("AVFAudio_d6c5d10d3352e6ec", 3007888494770774, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioEngineManualRenderingMode) | null { return callSDK<(AVAudioEngineManualRenderingMode) | null>("AVFAudio_a956b86ef7a76a8e", 3007888494770774, undefined, [rawValue]); }
 };
 
 /**
@@ -849,7 +849,7 @@ export const AVAudioEngineManualRenderingStatus = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (AVAudioEngineManualRenderingStatus) | null { return callSDK<(AVAudioEngineManualRenderingStatus) | null>("AVFAudio_d6c5d10d3352e6ec", 294994552070718, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioEngineManualRenderingStatus) | null { return callSDK<(AVAudioEngineManualRenderingStatus) | null>("AVFAudio_a956b86ef7a76a8e", 294994552070718, undefined, [rawValue]); }
 };
 
 /**
@@ -863,7 +863,7 @@ export const AVAudioEnvironmentDistanceAttenuationModel = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (AVAudioEnvironmentDistanceAttenuationModel) | null { return callSDK<(AVAudioEnvironmentDistanceAttenuationModel) | null>("AVFAudio_d6c5d10d3352e6ec", 744327048485700, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioEnvironmentDistanceAttenuationModel) | null { return callSDK<(AVAudioEnvironmentDistanceAttenuationModel) | null>("AVFAudio_a956b86ef7a76a8e", 744327048485700, undefined, [rawValue]); }
 };
 
 /**
@@ -875,26 +875,26 @@ export class AVAudioEnvironmentDistanceAttenuationParameters extends SDKHandle {
    * var distanceAttenuationModel: AVAudioEnvironmentDistanceAttenuationModel { get set }
    * @availability iOS 8.0+
    */
-  get distanceAttenuationModel(): AVAudioEnvironmentDistanceAttenuationModel { return callSDK<AVAudioEnvironmentDistanceAttenuationModel>("AVFAudio_d6c5d10d3352e6ec", 2074311609461733, this, []); }
-  set distanceAttenuationModel(value: AVAudioEnvironmentDistanceAttenuationModel) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 766723161700415, this, [value]); }
+  get distanceAttenuationModel(): AVAudioEnvironmentDistanceAttenuationModel { return callSDK<AVAudioEnvironmentDistanceAttenuationModel>("AVFAudio_a956b86ef7a76a8e", 2074311609461733, this, []); }
+  set distanceAttenuationModel(value: AVAudioEnvironmentDistanceAttenuationModel) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 766723161700415, this, [value]); }
   /**
    * var maximumDistance: Float { get set }
    * @availability iOS 8.0+
    */
-  get maximumDistance(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1112313976564662, this, []); }
-  set maximumDistance(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2907585219460501, this, [value]); }
+  get maximumDistance(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1112313976564662, this, []); }
+  set maximumDistance(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2907585219460501, this, [value]); }
   /**
    * var referenceDistance: Float { get set }
    * @availability iOS 8.0+
    */
-  get referenceDistance(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 861497178121904, this, []); }
-  set referenceDistance(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1003097747549649, this, [value]); }
+  get referenceDistance(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 861497178121904, this, []); }
+  set referenceDistance(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1003097747549649, this, [value]); }
   /**
    * var rolloffFactor: Float { get set }
    * @availability iOS 8.0+
    */
-  get rolloffFactor(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2893621255760936, this, []); }
-  set rolloffFactor(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3447988118476992, this, [value]); }
+  get rolloffFactor(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2893621255760936, this, []); }
+  set rolloffFactor(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3447988118476992, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioEnvironmentDistanceAttenuationParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "distanceAttenuationModel": true; "maximumDistance": true; "referenceDistance": true; "rolloffFactor": true };
 }
@@ -905,89 +905,89 @@ export class AVAudioEnvironmentDistanceAttenuationParameters extends SDKHandle {
  */
 export class AVAudioNode extends SDKHandle {
   /** init() */
-  static init(): AVAudioNode { return callSDK<AVAudioNode>("AVFAudio_d6c5d10d3352e6ec", 487982308920702, undefined, []); }
+  static init(): AVAudioNode { return callSDK<AVAudioNode>("AVFAudio_a956b86ef7a76a8e", 487982308920702, undefined, []); }
   /**
    * func inputFormat(forBus bus: AVAudioNodeBus) -> AVAudioFormat
    * @availability iOS 8.0+
    */
-  inputFormat(bus: number): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 2619750889079191, this, [bus]); }
+  inputFormat(bus: number): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 2619750889079191, this, [bus]); }
   /**
    * func installTap(onBus bus: AVAudioNodeBus, bufferSize: AVAudioFrameCount, format: AVAudioFormat?, block tapBlock: @escaping AVAudioNodeTapBlock)
    * @availability iOS 8.0+
    * @deprecated iOS 27.0
    */
-  installTap(bus: number, bufferSize: number, format: (AVAudioFormat) | null, tapBlock: ((arg0: AVAudioPCMBuffer, arg1: AVAudioTime) => void)): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4151464993634211, this, [bus, bufferSize, format, tapBlock], [null,null,null,{"callback":{"out":[]}}]); }
+  installTap(bus: number, bufferSize: number, format: (AVAudioFormat) | null, tapBlock: ((arg0: AVAudioPCMBuffer, arg1: AVAudioTime) => void)): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4151464993634211, this, [bus, bufferSize, format, tapBlock], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func name(forInputBus bus: AVAudioNodeBus) -> String?
    * @availability iOS 8.0+
    */
-  nameForInputBus(bus: number): (string) | null { return callSDK<(string) | null>("AVFAudio_d6c5d10d3352e6ec", 4436465344356250, this, [bus]); }
+  nameForInputBus(bus: number): (string) | null { return callSDK<(string) | null>("AVFAudio_a956b86ef7a76a8e", 4436465344356250, this, [bus]); }
   /**
    * func name(forOutputBus bus: AVAudioNodeBus) -> String?
    * @availability iOS 8.0+
    */
-  nameForOutputBus(bus: number): (string) | null { return callSDK<(string) | null>("AVFAudio_d6c5d10d3352e6ec", 2178380262215974, this, [bus]); }
+  nameForOutputBus(bus: number): (string) | null { return callSDK<(string) | null>("AVFAudio_a956b86ef7a76a8e", 2178380262215974, this, [bus]); }
   /**
    * func outputFormat(forBus bus: AVAudioNodeBus) -> AVAudioFormat
    * @availability iOS 8.0+
    */
-  outputFormat(bus: number): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 139018950874735, this, [bus]); }
+  outputFormat(bus: number): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 139018950874735, this, [bus]); }
   /**
    * func removeTap(onBus bus: AVAudioNodeBus)
    * @availability iOS 8.0+
    */
-  removeTap(bus: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4258034711895961, this, [bus]); }
+  removeTap(bus: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4258034711895961, this, [bus]); }
   /**
    * func reset()
    * @availability iOS 8.0+
    */
-  reset(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3802361215901691, this, []); }
+  reset(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3802361215901691, this, []); }
   /**
    * var engine: AVAudioEngine? { get }
    * @availability iOS 8.0+
    */
-  get engine(): (AVAudioEngine) | null { return callSDK<(AVAudioEngine) | null>("AVFAudio_d6c5d10d3352e6ec", 3381808875770947, this, []); }
+  get engine(): (AVAudioEngine) | null { return callSDK<(AVAudioEngine) | null>("AVFAudio_a956b86ef7a76a8e", 3381808875770947, this, []); }
   /**
    * var lastRenderTime: AVAudioTime? { get }
    * @availability iOS 8.0+
    */
-  get lastRenderTime(): (AVAudioTime) | null { return callSDK<(AVAudioTime) | null>("AVFAudio_d6c5d10d3352e6ec", 140055046845425, this, []); }
+  get lastRenderTime(): (AVAudioTime) | null { return callSDK<(AVAudioTime) | null>("AVFAudio_a956b86ef7a76a8e", 140055046845425, this, []); }
   /**
    * var latency: TimeInterval { get }
    * @availability iOS 11.0+
    */
-  get latency(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 841840150975461, this, []); }
+  get latency(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 841840150975461, this, []); }
   /**
    * var numberOfInputs: Int { get }
    * @availability iOS 8.0+
    */
-  get numberOfInputs(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1608255834377298, this, []); }
+  get numberOfInputs(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1608255834377298, this, []); }
   /**
    * var numberOfOutputs: Int { get }
    * @availability iOS 8.0+
    */
-  get numberOfOutputs(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1882009515984405, this, []); }
+  get numberOfOutputs(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1882009515984405, this, []); }
   /**
    * var outputPresentationLatency: TimeInterval { get }
    * @availability iOS 11.0+
    */
-  get outputPresentationLatency(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2161467070625352, this, []); }
+  get outputPresentationLatency(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2161467070625352, this, []); }
   /**
    * @export(implementation) var auAudioUnit: AUAudioUnit { get }
    * @availability iOS 11.0+
    * @deprecated iOS 27.0
    */
-  get auAudioUnit(): _AudioToolbox_AUAudioUnit { return callSDK<_AudioToolbox_AUAudioUnit>("AVFAudio_d6c5d10d3352e6ec", 3720746053497101, this, []); }
+  get auAudioUnit(): _AudioToolbox_AUAudioUnit { return callSDK<_AudioToolbox_AUAudioUnit>("AVFAudio_a956b86ef7a76a8e", 3720746053497101, this, []); }
   /**
    * func installAudioTap(onBus bus: AVAudioNodeBus, bufferSize: AVAudioFrameCount, format: AVAudioFormat?, tapProvider: @escaping @Sendable (AVReadOnlyAudioPCMBuffer, AVAudioTime) -> Void) throws
    * @availability iOS 27.0+
    */
-  installAudioTap(bus: number, bufferSize: number, format: (AVAudioFormat) | null, tapProvider: ((arg0: AVReadOnlyAudioPCMBuffer, arg1: AVAudioTime) => void)): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4100699933800121, this, [bus, bufferSize, format, tapProvider], [null,null,null,{"callback":{"out":[]}}]); }
+  installAudioTap(bus: number, bufferSize: number, format: (AVAudioFormat) | null, tapProvider: ((arg0: AVReadOnlyAudioPCMBuffer, arg1: AVAudioTime) => void)): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4100699933800121, this, [bus, bufferSize, format, tapProvider], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func withAUAudioUnit<R, E>(_ body: (borrowing AUAudioUnit) throws(E) -> R) throws(E) -> R where E : Error
    * @availability iOS 27.0+
    */
-  withAUAudioUnit(body: ((arg0: _AudioToolbox_AUAudioUnit) => unknown)): unknown { return callSDK<unknown>("AVFAudio_d6c5d10d3352e6ec", 3576461917494876, this, [body], [{"callback":{"out":[]}}], true); }
+  withAUAudioUnit(body: ((arg0: _AudioToolbox_AUAudioUnit) => unknown)): unknown { return callSDK<unknown>("AVFAudio_a956b86ef7a76a8e", 3576461917494876, this, [body], [{"callback":{"out":[]}}], true); }
   declare readonly $type: { "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true };
 }
@@ -1001,63 +1001,63 @@ export class AVAudioEnvironmentNode extends (AVAudioNode as unknown as Omit<type
    * init()
    * @availability iOS 8.0+
    */
-  static init(): AVAudioEnvironmentNode { return callSDK<AVAudioEnvironmentNode>("AVFAudio_d6c5d10d3352e6ec", 1107464485106457, undefined, []); }
+  static init(): AVAudioEnvironmentNode { return callSDK<AVAudioEnvironmentNode>("AVFAudio_a956b86ef7a76a8e", 1107464485106457, undefined, []); }
   /**
    * var applicableRenderingAlgorithms: [NSNumber] { get }
    * @availability iOS 8.0+
    */
-  get applicableRenderingAlgorithms(): $SDK4 { return callSDK<$SDK4>("AVFAudio_d6c5d10d3352e6ec", 3214426212378372, this, []); }
+  get applicableRenderingAlgorithms(): $SDK4 { return callSDK<$SDK4>("AVFAudio_a956b86ef7a76a8e", 3214426212378372, this, []); }
   /**
    * var distanceAttenuationParameters: AVAudioEnvironmentDistanceAttenuationParameters { get }
    * @availability iOS 8.0+
    */
-  get distanceAttenuationParameters(): AVAudioEnvironmentDistanceAttenuationParameters { return callSDK<AVAudioEnvironmentDistanceAttenuationParameters>("AVFAudio_d6c5d10d3352e6ec", 370231643488597, this, []); }
+  get distanceAttenuationParameters(): AVAudioEnvironmentDistanceAttenuationParameters { return callSDK<AVAudioEnvironmentDistanceAttenuationParameters>("AVFAudio_a956b86ef7a76a8e", 370231643488597, this, []); }
   /**
    * var listenerAngularOrientation: AVAudio3DAngularOrientation { get set }
    * @availability iOS 8.0+
    */
-  get listenerAngularOrientation(): AVAudio3DAngularOrientation { return callSDK<AVAudio3DAngularOrientation>("AVFAudio_d6c5d10d3352e6ec", 2065100785127998, this, []); }
-  set listenerAngularOrientation(value: AVAudio3DAngularOrientation) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2624030773540241, this, [value]); }
+  get listenerAngularOrientation(): AVAudio3DAngularOrientation { return callSDK<AVAudio3DAngularOrientation>("AVFAudio_a956b86ef7a76a8e", 2065100785127998, this, []); }
+  set listenerAngularOrientation(value: AVAudio3DAngularOrientation) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2624030773540241, this, [value]); }
   /**
    * var isListenerHeadTrackingEnabled: Bool { get set }
    * @availability iOS 18.0+
    */
-  get isListenerHeadTrackingEnabled(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1544218339997591, this, []); }
-  set isListenerHeadTrackingEnabled(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3280064969751750, this, [value]); }
+  get isListenerHeadTrackingEnabled(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1544218339997591, this, []); }
+  set isListenerHeadTrackingEnabled(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3280064969751750, this, [value]); }
   /**
    * var listenerPosition: AVAudio3DPoint { get set }
    * @availability iOS 8.0+
    */
-  get listenerPosition(): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_d6c5d10d3352e6ec", 4371713980322130, this, []); }
-  set listenerPosition(value: AVAudio3DPoint) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3334001235033974, this, [value]); }
+  get listenerPosition(): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_a956b86ef7a76a8e", 4371713980322130, this, []); }
+  set listenerPosition(value: AVAudio3DPoint) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3334001235033974, this, [value]); }
   /**
    * var listenerVectorOrientation: AVAudio3DVectorOrientation { get set }
    * @availability iOS 8.0+
    */
-  get listenerVectorOrientation(): AVAudio3DVectorOrientation { return callSDK<AVAudio3DVectorOrientation>("AVFAudio_d6c5d10d3352e6ec", 1652129314399127, this, []); }
-  set listenerVectorOrientation(value: AVAudio3DVectorOrientation) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3824979229915714, this, [value]); }
+  get listenerVectorOrientation(): AVAudio3DVectorOrientation { return callSDK<AVAudio3DVectorOrientation>("AVFAudio_a956b86ef7a76a8e", 1652129314399127, this, []); }
+  set listenerVectorOrientation(value: AVAudio3DVectorOrientation) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3824979229915714, this, [value]); }
   /**
    * var nextAvailableInputBus: AVAudioNodeBus { get }
    * @availability iOS 8.0+
    */
-  get nextAvailableInputBus(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2706060539400066, this, []); }
+  get nextAvailableInputBus(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2706060539400066, this, []); }
   /**
    * var outputType: AVAudioEnvironmentOutputType { get set }
    * @availability iOS 13.0+
    */
-  get outputType(): AVAudioEnvironmentOutputType { return callSDK<AVAudioEnvironmentOutputType>("AVFAudio_d6c5d10d3352e6ec", 98932913533892, this, []); }
-  set outputType(value: AVAudioEnvironmentOutputType) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3638045534344019, this, [value]); }
+  get outputType(): AVAudioEnvironmentOutputType { return callSDK<AVAudioEnvironmentOutputType>("AVFAudio_a956b86ef7a76a8e", 98932913533892, this, []); }
+  set outputType(value: AVAudioEnvironmentOutputType) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3638045534344019, this, [value]); }
   /**
    * var outputVolume: Float { get set }
    * @availability iOS 8.0+
    */
-  get outputVolume(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2911286329102211, this, []); }
-  set outputVolume(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2086386411181748, this, [value]); }
+  get outputVolume(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2911286329102211, this, []); }
+  set outputVolume(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2086386411181748, this, [value]); }
   /**
    * var reverbParameters: AVAudioEnvironmentReverbParameters { get }
    * @availability iOS 8.0+
    */
-  get reverbParameters(): AVAudioEnvironmentReverbParameters { return callSDK<AVAudioEnvironmentReverbParameters>("AVFAudio_d6c5d10d3352e6ec", 1533497283136873, this, []); }
+  get reverbParameters(): AVAudioEnvironmentReverbParameters { return callSDK<AVAudioEnvironmentReverbParameters>("AVFAudio_a956b86ef7a76a8e", 1533497283136873, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioEnvironmentNode": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "applicableRenderingAlgorithms": true; "distanceAttenuationParameters": true; "listenerAngularOrientation": true; "isListenerHeadTrackingEnabled": true; "listenerPosition": true; "listenerVectorOrientation": true; "nextAvailableInputBus": true; "outputType": true; "outputVolume": true; "reverbParameters": true };
 }
@@ -1073,7 +1073,7 @@ export const AVAudioEnvironmentOutputType = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (AVAudioEnvironmentOutputType) | null { return callSDK<(AVAudioEnvironmentOutputType) | null>("AVFAudio_d6c5d10d3352e6ec", 2243880293113352, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioEnvironmentOutputType) | null { return callSDK<(AVAudioEnvironmentOutputType) | null>("AVFAudio_a956b86ef7a76a8e", 2243880293113352, undefined, [rawValue]); }
 };
 
 /**
@@ -1085,24 +1085,24 @@ export class AVAudioEnvironmentReverbParameters extends SDKHandle {
    * func loadFactoryReverbPreset(_ preset: AVAudioUnitReverbPreset)
    * @availability iOS 8.0+
    */
-  loadFactoryReverbPreset(preset: AVAudioUnitReverbPreset): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1298721229048185, this, [preset]); }
+  loadFactoryReverbPreset(preset: AVAudioUnitReverbPreset): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1298721229048185, this, [preset]); }
   /**
    * var enable: Bool { get set }
    * @availability iOS 8.0+
    */
-  get enable(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 4032668698596829, this, []); }
-  set enable(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 823069594829591, this, [value]); }
+  get enable(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 4032668698596829, this, []); }
+  set enable(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 823069594829591, this, [value]); }
   /**
    * var filterParameters: AVAudioUnitEQFilterParameters { get }
    * @availability iOS 8.0+
    */
-  get filterParameters(): AVAudioUnitEQFilterParameters { return callSDK<AVAudioUnitEQFilterParameters>("AVFAudio_d6c5d10d3352e6ec", 2857507494602244, this, []); }
+  get filterParameters(): AVAudioUnitEQFilterParameters { return callSDK<AVAudioUnitEQFilterParameters>("AVFAudio_a956b86ef7a76a8e", 2857507494602244, this, []); }
   /**
    * var level: Float { get set }
    * @availability iOS 8.0+
    */
-  get level(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 239250155925455, this, []); }
-  set level(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3157327030447479, this, [value]); }
+  get level(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 239250155925455, this, []); }
+  set level(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3157327030447479, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioEnvironmentReverbParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "enable": true; "filterParameters": true; "level": true };
 }
@@ -1116,89 +1116,89 @@ export class AVAudioFile extends SDKHandle {
    * func close()
    * @availability iOS 18.0+
    */
-  close(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2714844558012618, this, []); }
+  close(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2714844558012618, this, []); }
   /**
    * init()
    * @availability iOS 8.0+
    * @deprecated iOS 26.0
    */
-  static init(): AVAudioFile { return callSDK<AVAudioFile>("AVFAudio_d6c5d10d3352e6ec", 4484993296450522, undefined, []); }
+  static init(): AVAudioFile { return callSDK<AVAudioFile>("AVFAudio_a956b86ef7a76a8e", 4484993296450522, undefined, []); }
   /**
    * init(forReading fileURL: URL, commonFormat format: AVAudioCommonFormat, interleaved: Bool) throws
    * @availability iOS 8.0+
    */
-  static initForReadingCommonFormatInterleaved(fileURL: string, format: AVAudioCommonFormat, interleaved: boolean): AVAudioFile { return callSDK<AVAudioFile>("AVFAudio_d6c5d10d3352e6ec", 801522127401414, undefined, [fileURL, format, interleaved]); }
+  static initForReadingCommonFormatInterleaved(fileURL: string, format: AVAudioCommonFormat, interleaved: boolean): AVAudioFile { return callSDK<AVAudioFile>("AVFAudio_a956b86ef7a76a8e", 801522127401414, undefined, [fileURL, format, interleaved]); }
   /**
    * init(forReading fileURL: URL) throws
    * @availability iOS 8.0+
    */
-  static initForReading(fileURL: string): AVAudioFile { return callSDK<AVAudioFile>("AVFAudio_d6c5d10d3352e6ec", 1036875533833834, undefined, [fileURL]); }
+  static initForReading(fileURL: string): AVAudioFile { return callSDK<AVAudioFile>("AVFAudio_a956b86ef7a76a8e", 1036875533833834, undefined, [fileURL]); }
   /**
    * init(forWriting fileURL: URL, settings: [String : Any], commonFormat format: AVAudioCommonFormat, interleaved: Bool) throws
    * @availability iOS 8.0+
    */
-  static initForWritingSettingsCommonFormatInterleaved(fileURL: string, settings: Record<string, unknown>, format: AVAudioCommonFormat, interleaved: boolean): AVAudioFile { return callSDK<AVAudioFile>("AVFAudio_d6c5d10d3352e6ec", 3953558891687564, undefined, [fileURL, settings, format, interleaved]); }
+  static initForWritingSettingsCommonFormatInterleaved(fileURL: string, settings: Record<string, unknown>, format: AVAudioCommonFormat, interleaved: boolean): AVAudioFile { return callSDK<AVAudioFile>("AVFAudio_a956b86ef7a76a8e", 3953558891687564, undefined, [fileURL, settings, format, interleaved]); }
   /**
    * init(forWriting fileURL: URL, settings: [String : Any]) throws
    * @availability iOS 8.0+
    */
-  static initForWritingSettings(fileURL: string, settings: Record<string, unknown>): AVAudioFile { return callSDK<AVAudioFile>("AVFAudio_d6c5d10d3352e6ec", 3757826997442863, undefined, [fileURL, settings]); }
+  static initForWritingSettings(fileURL: string, settings: Record<string, unknown>): AVAudioFile { return callSDK<AVAudioFile>("AVFAudio_a956b86ef7a76a8e", 3757826997442863, undefined, [fileURL, settings]); }
   /**
    * func read(into buffer: AVAudioPCMBuffer) throws
    * @availability iOS 8.0+
    */
-  readInto(buffer: AVAudioPCMBuffer): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2350188520566926, this, [buffer]); }
+  readInto(buffer: AVAudioPCMBuffer): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2350188520566926, this, [buffer]); }
   /**
    * func read(into buffer: AVAudioPCMBuffer, frameCount frames: AVAudioFrameCount) throws
    * @availability iOS 8.0+
    */
-  readIntoFrameCount(buffer: AVAudioPCMBuffer, frames: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3520922914596282, this, [buffer, frames]); }
+  readIntoFrameCount(buffer: AVAudioPCMBuffer, frames: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3520922914596282, this, [buffer, frames]); }
   /**
    * func write(from buffer: AVAudioPCMBuffer) throws
    * @availability iOS 8.0+
    */
-  writeFrom(buffer: AVAudioPCMBuffer): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3878515065105840, this, [buffer]); }
+  writeFrom(buffer: AVAudioPCMBuffer): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3878515065105840, this, [buffer]); }
   /**
    * var fileFormat: AVAudioFormat { get }
    * @availability iOS 8.0+
    */
-  get fileFormat(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 2437901226240058, this, []); }
+  get fileFormat(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 2437901226240058, this, []); }
   /**
    * var framePosition: AVAudioFramePosition { get set }
    * @availability iOS 8.0+
    */
-  get framePosition(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1422085262654695, this, []); }
-  set framePosition(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2184946560508179, this, [value]); }
+  get framePosition(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1422085262654695, this, []); }
+  set framePosition(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2184946560508179, this, [value]); }
   /**
    * var isOpen: Bool { get }
    * @availability iOS 18.0+
    */
-  get isOpen(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3097688457954796, this, []); }
+  get isOpen(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3097688457954796, this, []); }
   /**
    * var length: AVAudioFramePosition { get }
    * @availability iOS 8.0+
    */
-  get length(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1325938931288758, this, []); }
+  get length(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1325938931288758, this, []); }
   /**
    * var processingFormat: AVAudioFormat { get }
    * @availability iOS 8.0+
    */
-  get processingFormat(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 2211013726421114, this, []); }
+  get processingFormat(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 2211013726421114, this, []); }
   /**
    * var url: URL { get }
    * @availability iOS 8.0+
    */
-  get url(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 966227861998004, this, []); }
+  get url(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 966227861998004, this, []); }
   /**
    * func read(frameCount: AVAudioFrameCount) throws -> AVReadOnlyAudioPCMBuffer
    * @availability iOS 27.0+
    */
-  readFrameCount(frameCount: number): AVReadOnlyAudioPCMBuffer { return callSDK<AVReadOnlyAudioPCMBuffer>("AVFAudio_d6c5d10d3352e6ec", 1619986810587704, this, [frameCount]); }
+  readFrameCount(frameCount: number): AVReadOnlyAudioPCMBuffer { return callSDK<AVReadOnlyAudioPCMBuffer>("AVFAudio_a956b86ef7a76a8e", 1619986810587704, this, [frameCount]); }
   /**
    * func write(from buffer: AVReadOnlyAudioPCMBuffer) throws
    * @availability iOS 27.0+
    */
-  writeFrom78254(buffer: AVReadOnlyAudioPCMBuffer): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4093292126558025, this, [buffer]); }
+  writeFrom78254(buffer: AVReadOnlyAudioPCMBuffer): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4093292126558025, this, [buffer]); }
   declare readonly $type: { "c:objc(cs)AVAudioFile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fileFormat": true; "framePosition": true; "isOpen": true; "length": true; "processingFormat": true; "url": true };
 }
@@ -1212,104 +1212,104 @@ export class AVAudioFormat extends SDKHandle {
    * init(standardFormatWithSampleRate sampleRate: Double, channelLayout layout: AVAudioChannelLayout)
    * @availability iOS 8.0+
    */
-  static initStandardFormatWithSampleRateChannelLayout(sampleRate: number, layout: AVAudioChannelLayout): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 3660838992283914, undefined, [sampleRate, layout]); }
+  static initStandardFormatWithSampleRateChannelLayout(sampleRate: number, layout: AVAudioChannelLayout): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 3660838992283914, undefined, [sampleRate, layout]); }
   /**
    * init?(standardFormatWithSampleRate sampleRate: Double, channels: AVAudioChannelCount)
    * @availability iOS 8.0+
    */
-  static initStandardFormatWithSampleRateChannels(sampleRate: number, channels: number): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_d6c5d10d3352e6ec", 1870037526716071, undefined, [sampleRate, channels]); }
+  static initStandardFormatWithSampleRateChannels(sampleRate: number, channels: number): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_a956b86ef7a76a8e", 1870037526716071, undefined, [sampleRate, channels]); }
   /**
    * init(cmAudioFormatDescription formatDescription: CMAudioFormatDescription)
    * @availability iOS 9.0+
    * @deprecated iOS 27.0
    */
-  static initCmAudioFormatDescription(formatDescription: _CoreMedia_CMFormatDescription): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 873888551189129, undefined, [formatDescription]); }
+  static initCmAudioFormatDescription(formatDescription: _CoreMedia_CMFormatDescription): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 873888551189129, undefined, [formatDescription]); }
   /**
    * init?(commonFormat format: AVAudioCommonFormat, sampleRate: Double, channels: AVAudioChannelCount, interleaved: Bool)
    * @availability iOS 8.0+
    */
-  static initCommonFormatSampleRateChannelsInterleaved(format: AVAudioCommonFormat, sampleRate: number, channels: number, interleaved: boolean): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_d6c5d10d3352e6ec", 3072713670149108, undefined, [format, sampleRate, channels, interleaved]); }
+  static initCommonFormatSampleRateChannelsInterleaved(format: AVAudioCommonFormat, sampleRate: number, channels: number, interleaved: boolean): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_a956b86ef7a76a8e", 3072713670149108, undefined, [format, sampleRate, channels, interleaved]); }
   /**
    * init(commonFormat format: AVAudioCommonFormat, sampleRate: Double, interleaved: Bool, channelLayout layout: AVAudioChannelLayout)
    * @availability iOS 8.0+
    */
-  static initCommonFormatSampleRateInterleavedChannelLayout(format: AVAudioCommonFormat, sampleRate: number, interleaved: boolean, layout: AVAudioChannelLayout): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 3971985531212885, undefined, [format, sampleRate, interleaved, layout]); }
+  static initCommonFormatSampleRateInterleavedChannelLayout(format: AVAudioCommonFormat, sampleRate: number, interleaved: boolean, layout: AVAudioChannelLayout): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 3971985531212885, undefined, [format, sampleRate, interleaved, layout]); }
   /**
    * init?(formatDescription: CMAudioFormatDescription)
    * @availability iOS 27.0+
    */
-  static initFormatDescription(formatDescription: _CoreMedia_CMFormatDescription): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_d6c5d10d3352e6ec", 1828462531339654, undefined, [formatDescription]); }
+  static initFormatDescription(formatDescription: _CoreMedia_CMFormatDescription): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_a956b86ef7a76a8e", 1828462531339654, undefined, [formatDescription]); }
   /**
    * init?(settings: [String : Any])
    * @availability iOS 8.0+
    */
-  static initSettings(settings: Record<string, unknown>): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_d6c5d10d3352e6ec", 1679636739237441, undefined, [settings]); }
+  static initSettings(settings: Record<string, unknown>): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_a956b86ef7a76a8e", 1679636739237441, undefined, [settings]); }
   /**
    * init?(streamDescription asbd: UnsafePointer<AudioStreamBasicDescription>)
    * @availability iOS 8.0+
    */
-  static initStreamDescription(asbd: SDKHandle): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_d6c5d10d3352e6ec", 2051822733915742, undefined, [asbd]); }
+  static initStreamDescription(asbd: SDKHandle): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_a956b86ef7a76a8e", 2051822733915742, undefined, [asbd]); }
   /**
    * init?(streamDescription asbd: UnsafePointer<AudioStreamBasicDescription>, channelLayout layout: AVAudioChannelLayout?)
    * @availability iOS 8.0+
    */
-  static initStreamDescriptionChannelLayout(asbd: SDKHandle, layout?: (AVAudioChannelLayout) | null): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_d6c5d10d3352e6ec", 1599793833289975, undefined, [asbd, layout]); }
+  static initStreamDescriptionChannelLayout(asbd: SDKHandle, layout?: (AVAudioChannelLayout) | null): (AVAudioFormat) | null { return callSDK<(AVAudioFormat) | null>("AVFAudio_a956b86ef7a76a8e", 1599793833289975, undefined, [asbd, layout]); }
   /**
    * func isEqual(_ object: Any) -> Bool
    * @availability iOS 8.0+
    */
-  isEqual(object: unknown): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 701083379747670, this, [object]); }
+  isEqual(object: unknown): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 701083379747670, this, [object]); }
   /**
    * var channelCount: AVAudioChannelCount { get }
    * @availability iOS 8.0+
    */
-  get channelCount(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 812261291872852, this, []); }
+  get channelCount(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 812261291872852, this, []); }
   /**
    * var channelLayout: AVAudioChannelLayout? { get }
    * @availability iOS 8.0+
    */
-  get channelLayout(): (AVAudioChannelLayout) | null { return callSDK<(AVAudioChannelLayout) | null>("AVFAudio_d6c5d10d3352e6ec", 1524175594569934, this, []); }
+  get channelLayout(): (AVAudioChannelLayout) | null { return callSDK<(AVAudioChannelLayout) | null>("AVFAudio_a956b86ef7a76a8e", 1524175594569934, this, []); }
   /**
    * var commonFormat: AVAudioCommonFormat { get }
    * @availability iOS 8.0+
    */
-  get commonFormat(): AVAudioCommonFormat { return callSDK<AVAudioCommonFormat>("AVFAudio_d6c5d10d3352e6ec", 2557812172369778, this, []); }
+  get commonFormat(): AVAudioCommonFormat { return callSDK<AVAudioCommonFormat>("AVFAudio_a956b86ef7a76a8e", 2557812172369778, this, []); }
   /**
    * var formatDescription: CMAudioFormatDescription { get }
    * @availability iOS 9.0+
    */
-  get formatDescription(): _CoreMedia_CMFormatDescription { return callSDK<_CoreMedia_CMFormatDescription>("AVFAudio_d6c5d10d3352e6ec", 2041931308454367, this, []); }
+  get formatDescription(): _CoreMedia_CMFormatDescription { return callSDK<_CoreMedia_CMFormatDescription>("AVFAudio_a956b86ef7a76a8e", 2041931308454367, this, []); }
   /**
    * var isInterleaved: Bool { get }
    * @availability iOS 8.0+
    */
-  get isInterleaved(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 634654114656600, this, []); }
+  get isInterleaved(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 634654114656600, this, []); }
   /**
    * var magicCookie: Data? { get set }
    * @availability iOS 10.0+
    */
-  get magicCookie(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AVFAudio_d6c5d10d3352e6ec", 857340189108850, this, []); }
-  set magicCookie(value: (ArrayBuffer) | null) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4161290805473467, this, [value]); }
+  get magicCookie(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AVFAudio_a956b86ef7a76a8e", 857340189108850, this, []); }
+  set magicCookie(value: (ArrayBuffer) | null) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4161290805473467, this, [value]); }
   /**
    * var sampleRate: Double { get }
    * @availability iOS 8.0+
    */
-  get sampleRate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4048219567167169, this, []); }
+  get sampleRate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4048219567167169, this, []); }
   /**
    * var settings: [String : Any] { get }
    * @availability iOS 8.0+
    */
-  get settings(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_d6c5d10d3352e6ec", 3594140336300671, this, []); }
+  get settings(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_a956b86ef7a76a8e", 3594140336300671, this, []); }
   /**
    * var isStandard: Bool { get }
    * @availability iOS 8.0+
    */
-  get isStandard(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 65372775465029, this, []); }
+  get isStandard(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 65372775465029, this, []); }
   /**
    * var streamDescription: UnsafePointer<AudioStreamBasicDescription> { get }
    * @availability iOS 8.0+
    */
-  get streamDescription(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_d6c5d10d3352e6ec", 1659646661010746, this, []); }
+  get streamDescription(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_a956b86ef7a76a8e", 1659646661010746, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioFormat": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelCount": true; "channelLayout": true; "commonFormat": true; "formatDescription": true; "isInterleaved": true; "magicCookie": true; "sampleRate": true; "settings": true; "isStandard": true; "streamDescription": true };
 }
@@ -1326,33 +1326,33 @@ export type AVAudioFramePosition = number;
  */
 export class AVAudioIONode extends (AVAudioNode as unknown as Omit<typeof AVAudioNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioNode)) {
   /** init() */
-  static init(): AVAudioIONode { return callSDK<AVAudioIONode>("AVFAudio_d6c5d10d3352e6ec", 754945502540888, undefined, []); }
+  static init(): AVAudioIONode { return callSDK<AVAudioIONode>("AVFAudio_a956b86ef7a76a8e", 754945502540888, undefined, []); }
   /**
    * func setVoiceProcessingEnabled(_ enabled: Bool) throws
    * @availability iOS 13.0+
    */
-  setVoiceProcessingEnabled(enabled: boolean): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4218180970792095, this, [enabled]); }
+  setVoiceProcessingEnabled(enabled: boolean): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4218180970792095, this, [enabled]); }
   /**
    * var presentationLatency: TimeInterval { get }
    * @availability iOS 8.0+
    */
-  get presentationLatency(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 955189027634026, this, []); }
+  get presentationLatency(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 955189027634026, this, []); }
   /**
    * var isVoiceProcessingEnabled: Bool { get }
    * @availability iOS 13.0+
    */
-  get isVoiceProcessingEnabled(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 205988628445728, this, []); }
+  get isVoiceProcessingEnabled(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 205988628445728, this, []); }
   /**
    * func withAudioUnit<R, E>(_ body: (borrowing AudioUnit?) throws(E) -> R) throws(E) -> R where E : Error
    * @availability iOS 27.0+
    */
-  withAudioUnit(body: $SDK9): unknown { return callSDK<unknown>("AVFAudio_d6c5d10d3352e6ec", 3129378985882728, this, [body], [{"callback":{"out":[]}}], true); }
+  withAudioUnit(body: $SDK9): unknown { return callSDK<unknown>("AVFAudio_a956b86ef7a76a8e", 3129378985882728, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * @export(implementation) var audioUnit: AudioUnit? { get }
    * @availability iOS 8.0+
    * @deprecated iOS 27.0
    */
-  get audioUnit(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_d6c5d10d3352e6ec", 3463730412427175, this, []); }
+  get audioUnit(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_a956b86ef7a76a8e", 3463730412427175, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioIONode": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "presentationLatency": true; "isVoiceProcessingEnabled": true };
 }
@@ -1366,31 +1366,31 @@ export class AVAudioInputNode extends AVAudioIONode {
    * func setMutedSpeechActivityEventListener(_ listenerBlock: (@Sendable (AVAudioVoiceProcessingSpeechActivityEvent) -> Void)?) -> Bool
    * @availability iOS 17.0+
    */
-  setMutedSpeechActivityEventListener(listenerBlock?: (((arg0: AVAudioVoiceProcessingSpeechActivityEvent) => void)) | null): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2349981175721, this, [listenerBlock], [{"callback":{"out":[]}}]); }
+  setMutedSpeechActivityEventListener(listenerBlock?: (((arg0: AVAudioVoiceProcessingSpeechActivityEvent) => void)) | null): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2349981175721, this, [listenerBlock], [{"callback":{"out":[]}}]); }
   /**
    * var isVoiceProcessingAGCEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isVoiceProcessingAGCEnabled(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1015908231461595, this, []); }
-  set isVoiceProcessingAGCEnabled(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1930506119518762, this, [value]); }
+  get isVoiceProcessingAGCEnabled(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1015908231461595, this, []); }
+  set isVoiceProcessingAGCEnabled(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1930506119518762, this, [value]); }
   /**
    * var isVoiceProcessingBypassed: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isVoiceProcessingBypassed(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 850490965975163, this, []); }
-  set isVoiceProcessingBypassed(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2057518750922494, this, [value]); }
+  get isVoiceProcessingBypassed(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 850490965975163, this, []); }
+  set isVoiceProcessingBypassed(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2057518750922494, this, [value]); }
   /**
    * var isVoiceProcessingInputMuted: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isVoiceProcessingInputMuted(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1942380077509459, this, []); }
-  set isVoiceProcessingInputMuted(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 712812740888518, this, [value]); }
+  get isVoiceProcessingInputMuted(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1942380077509459, this, []); }
+  set isVoiceProcessingInputMuted(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 712812740888518, this, [value]); }
   /**
    * var voiceProcessingOtherAudioDuckingConfiguration: AVAudioVoiceProcessingOtherAudioDuckingConfiguration { get set }
    * @availability iOS 17.0+
    */
-  get voiceProcessingOtherAudioDuckingConfiguration(): AVAudioVoiceProcessingOtherAudioDuckingConfiguration { return callSDK<AVAudioVoiceProcessingOtherAudioDuckingConfiguration>("AVFAudio_d6c5d10d3352e6ec", 907002981458112, this, []); }
-  set voiceProcessingOtherAudioDuckingConfiguration(value: AVAudioVoiceProcessingOtherAudioDuckingConfiguration) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2864827432921409, this, [value]); }
+  get voiceProcessingOtherAudioDuckingConfiguration(): AVAudioVoiceProcessingOtherAudioDuckingConfiguration { return callSDK<AVAudioVoiceProcessingOtherAudioDuckingConfiguration>("AVFAudio_a956b86ef7a76a8e", 907002981458112, this, []); }
+  set voiceProcessingOtherAudioDuckingConfiguration(value: AVAudioVoiceProcessingOtherAudioDuckingConfiguration) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2864827432921409, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioInputNode": true; "c:objc(cs)AVAudioIONode": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "presentationLatency": true; "isVoiceProcessingEnabled": true; "isVoiceProcessingAGCEnabled": true; "isVoiceProcessingBypassed": true; "isVoiceProcessingInputMuted": true; "voiceProcessingOtherAudioDuckingConfiguration": true };
 }
@@ -1410,18 +1410,18 @@ export class AVAudioMixerNode extends (AVAudioNode as unknown as Omit<typeof AVA
    * init()
    * @availability iOS 8.0+
    */
-  static init(): AVAudioMixerNode { return callSDK<AVAudioMixerNode>("AVFAudio_d6c5d10d3352e6ec", 3674181158317986, undefined, []); }
+  static init(): AVAudioMixerNode { return callSDK<AVAudioMixerNode>("AVFAudio_a956b86ef7a76a8e", 3674181158317986, undefined, []); }
   /**
    * var nextAvailableInputBus: AVAudioNodeBus { get }
    * @availability iOS 8.0+
    */
-  get nextAvailableInputBus(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4273568384801859, this, []); }
+  get nextAvailableInputBus(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4273568384801859, this, []); }
   /**
    * var outputVolume: Float { get set }
    * @availability iOS 8.0+
    */
-  get outputVolume(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2137816683407507, this, []); }
-  set outputVolume(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 220816644588202, this, [value]); }
+  get outputVolume(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2137816683407507, this, []); }
+  set outputVolume(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 220816644588202, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioMixerNode": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "nextAvailableInputBus": true; "outputVolume": true };
 }
@@ -1447,7 +1447,7 @@ export class AVAudioMixingDestination extends SDKHandle {
    * var connectionPoint: AVAudioConnectionPoint { get }
    * @availability iOS 9.0+
    */
-  get connectionPoint(): AVAudioConnectionPoint { return callSDK<AVAudioConnectionPoint>("AVFAudio_d6c5d10d3352e6ec", 2871507157332561, this, []); }
+  get connectionPoint(): AVAudioConnectionPoint { return callSDK<AVAudioConnectionPoint>("AVFAudio_a956b86ef7a76a8e", 2871507157332561, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioMixingDestination": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "connectionPoint": true };
 }
@@ -1482,43 +1482,43 @@ export class AVAudioPCMBuffer extends AVAudioBuffer {
    * init?(pcmFormat format: AVAudioFormat, bufferListNoCopy bufferList: UnsafePointer<AudioBufferList>, deallocator: ((UnsafePointer<AudioBufferList>) -> Void)? = nil)
    * @availability iOS 15.0+
    */
-  static initPcmFormatBufferListNoCopyDeallocator(format: AVAudioFormat, bufferList: SDKHandle, deallocator?: (((arg0: SDKHandle) => void)) | null): (AVAudioPCMBuffer) | null { return callSDK<(AVAudioPCMBuffer) | null>("AVFAudio_d6c5d10d3352e6ec", 1915186828968767, undefined, [format, bufferList, deallocator], [null,null,{"callback":{"out":[]}}]); }
+  static initPcmFormatBufferListNoCopyDeallocator(format: AVAudioFormat, bufferList: SDKHandle, deallocator?: (((arg0: SDKHandle) => void)) | null): (AVAudioPCMBuffer) | null { return callSDK<(AVAudioPCMBuffer) | null>("AVFAudio_a956b86ef7a76a8e", 1915186828968767, undefined, [format, bufferList, deallocator], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init?(pcmFormat format: AVAudioFormat, frameCapacity: AVAudioFrameCount)
    * @availability iOS 8.0+
    */
-  static initPcmFormatFrameCapacity(format: AVAudioFormat, frameCapacity: number): (AVAudioPCMBuffer) | null { return callSDK<(AVAudioPCMBuffer) | null>("AVFAudio_d6c5d10d3352e6ec", 1263046790824174, undefined, [format, frameCapacity]); }
+  static initPcmFormatFrameCapacity(format: AVAudioFormat, frameCapacity: number): (AVAudioPCMBuffer) | null { return callSDK<(AVAudioPCMBuffer) | null>("AVFAudio_a956b86ef7a76a8e", 1263046790824174, undefined, [format, frameCapacity]); }
   /**
    * var frameCapacity: AVAudioFrameCount { get }
    * @availability iOS 8.0+
    */
-  get frameCapacity(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3445327752780141, this, []); }
+  get frameCapacity(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3445327752780141, this, []); }
   /**
    * var frameLength: AVAudioFrameCount { get set }
    * @availability iOS 8.0+
    */
-  get frameLength(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3830218881306245, this, []); }
-  set frameLength(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 86421384168044, this, [value]); }
+  get frameLength(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3830218881306245, this, []); }
+  set frameLength(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 86421384168044, this, [value]); }
   /**
    * var stride: Int { get }
    * @availability iOS 8.0+
    */
-  get stride(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1204750672864290, this, []); }
+  get stride(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1204750672864290, this, []); }
   /**
    * func withUnsafeAudioBufferList<R>(_ body: (UnsafePointer<AudioBufferList>) throws -> R) rethrows -> R
    * @availability iOS 27.0+
    */
-  withUnsafeAudioBufferList(body: $SDK19): unknown { return callSDK<unknown>("AVFAudio_d6c5d10d3352e6ec", 2018499556779040, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeAudioBufferList(body: $SDK19): unknown { return callSDK<unknown>("AVFAudio_a956b86ef7a76a8e", 2018499556779040, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * convenience init(copying source: AVAudioPCMBuffer)
    * @availability iOS 27.0+
    */
-  static initCopying(source: AVAudioPCMBuffer): AVAudioPCMBuffer { return callSDK<AVAudioPCMBuffer>("AVFAudio_d6c5d10d3352e6ec", 3795331672130351, undefined, [source]); }
+  static initCopying(source: AVAudioPCMBuffer): AVAudioPCMBuffer { return callSDK<AVAudioPCMBuffer>("AVFAudio_a956b86ef7a76a8e", 3795331672130351, undefined, [source]); }
   /**
    * convenience init(copying readOnlyBuffer: AVReadOnlyAudioPCMBuffer)
    * @availability iOS 27.0+
    */
-  static initCopying63595(readOnlyBuffer: AVReadOnlyAudioPCMBuffer): AVAudioPCMBuffer { return callSDK<AVAudioPCMBuffer>("AVFAudio_d6c5d10d3352e6ec", 1211986454827813, undefined, [readOnlyBuffer]); }
+  static initCopying63595(readOnlyBuffer: AVReadOnlyAudioPCMBuffer): AVAudioPCMBuffer { return callSDK<AVAudioPCMBuffer>("AVFAudio_a956b86ef7a76a8e", 1211986454827813, undefined, [readOnlyBuffer]); }
   declare readonly $type: { "c:objc(cs)AVAudioPCMBuffer": true; "c:objc(cs)AVAudioBuffer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "audioBufferList": true; "format": true; "mutableAudioBufferList": true; "frameCapacity": true; "frameLength": true; "stride": true };
 }
@@ -1548,161 +1548,161 @@ export class AVAudioPlayer extends SDKHandle {
    * func averagePower(forChannel channelNumber: Int) -> Float
    * @availability iOS 2.2+
    */
-  averagePower(channelNumber: number): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 634421000997417, this, [channelNumber]); }
+  averagePower(channelNumber: number): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 634421000997417, this, [channelNumber]); }
   /**
    * init(contentsOf url: URL) throws
    * @availability iOS 2.2+
    */
-  static initContentsOf(url: string): AVAudioPlayer { return callSDK<AVAudioPlayer>("AVFAudio_d6c5d10d3352e6ec", 3667240227276148, undefined, [url]); }
+  static initContentsOf(url: string): AVAudioPlayer { return callSDK<AVAudioPlayer>("AVFAudio_a956b86ef7a76a8e", 3667240227276148, undefined, [url]); }
   /**
    * init(contentsOf url: URL, fileTypeHint utiString: String?) throws
    * @availability iOS 7.0+
    */
-  static initContentsOfFileTypeHint(url: string, utiString?: (string) | null): AVAudioPlayer { return callSDK<AVAudioPlayer>("AVFAudio_d6c5d10d3352e6ec", 666604649984689, undefined, [url, utiString]); }
+  static initContentsOfFileTypeHint(url: string, utiString?: (string) | null): AVAudioPlayer { return callSDK<AVAudioPlayer>("AVFAudio_a956b86ef7a76a8e", 666604649984689, undefined, [url, utiString]); }
   /**
    * init(data: Data) throws
    * @availability iOS 2.2+
    */
-  static initData(data: ArrayBuffer): AVAudioPlayer { return callSDK<AVAudioPlayer>("AVFAudio_d6c5d10d3352e6ec", 2211107835321981, undefined, [data]); }
+  static initData(data: ArrayBuffer): AVAudioPlayer { return callSDK<AVAudioPlayer>("AVFAudio_a956b86ef7a76a8e", 2211107835321981, undefined, [data]); }
   /**
    * init(data: Data, fileTypeHint utiString: String?) throws
    * @availability iOS 7.0+
    */
-  static initDataFileTypeHint(data: ArrayBuffer, utiString?: (string) | null): AVAudioPlayer { return callSDK<AVAudioPlayer>("AVFAudio_d6c5d10d3352e6ec", 3693095141129576, undefined, [data, utiString]); }
+  static initDataFileTypeHint(data: ArrayBuffer, utiString?: (string) | null): AVAudioPlayer { return callSDK<AVAudioPlayer>("AVFAudio_a956b86ef7a76a8e", 3693095141129576, undefined, [data, utiString]); }
   /**
    * func pause()
    * @availability iOS 2.2+
    */
-  pause(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4002084687364621, this, []); }
+  pause(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4002084687364621, this, []); }
   /**
    * func peakPower(forChannel channelNumber: Int) -> Float
    * @availability iOS 2.2+
    */
-  peakPower(channelNumber: number): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 305507442793355, this, [channelNumber]); }
+  peakPower(channelNumber: number): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 305507442793355, this, [channelNumber]); }
   /**
    * func play() -> Bool
    * @availability iOS 2.2+
    */
-  play(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1700307447125751, this, []); }
+  play(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1700307447125751, this, []); }
   /**
    * func play(atTime time: TimeInterval) -> Bool
    * @availability iOS 4.0+
    */
-  playAtTime(time: number): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1399827681419573, this, [time]); }
+  playAtTime(time: number): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1399827681419573, this, [time]); }
   /**
    * func prepareToPlay() -> Bool
    * @availability iOS 2.2+
    */
-  prepareToPlay(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 974246155323516, this, []); }
+  prepareToPlay(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 974246155323516, this, []); }
   /**
    * func setVolume(_ volume: Float, fadeDuration duration: TimeInterval)
    * @availability iOS 10.0+
    */
-  setVolume(volume: number, duration: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 396707572564432, this, [volume, duration]); }
+  setVolume(volume: number, duration: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 396707572564432, this, [volume, duration]); }
   /**
    * func stop()
    * @availability iOS 2.2+
    */
-  stop(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 100411395248416, this, []); }
+  stop(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 100411395248416, this, []); }
   /**
    * func updateMeters()
    * @availability iOS 2.2+
    */
-  updateMeters(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1510489748920914, this, []); }
+  updateMeters(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1510489748920914, this, []); }
   /**
    * var channelAssignments: [AVAudioSessionChannelDescription]? { get set }
    * @availability iOS 7.0+
    */
-  get channelAssignments(): $SDK20 { return callSDK<$SDK20>("AVFAudio_d6c5d10d3352e6ec", 3451209745614405, this, []); }
-  set channelAssignments(value: $SDK20) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1992716153219236, this, [value]); }
+  get channelAssignments(): $SDK20 { return callSDK<$SDK20>("AVFAudio_a956b86ef7a76a8e", 3451209745614405, this, []); }
+  set channelAssignments(value: $SDK20) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1992716153219236, this, [value]); }
   /**
    * var currentTime: TimeInterval { get set }
    * @availability iOS 2.2+
    */
-  get currentTime(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1627644140235525, this, []); }
-  set currentTime(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 396549448417489, this, [value]); }
+  get currentTime(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1627644140235525, this, []); }
+  set currentTime(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 396549448417489, this, [value]); }
   /**
    * var data: Data? { get }
    * @availability iOS 2.2+
    */
-  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AVFAudio_d6c5d10d3352e6ec", 1968380114419044, this, []); }
+  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("AVFAudio_a956b86ef7a76a8e", 1968380114419044, this, []); }
   /**
    * weak var delegate: (any AVAudioPlayerDelegate)? { get set }
    * @availability iOS 2.2+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_d6c5d10d3352e6ec", 1926841436340681, this, []); }
-  set delegate(value: (Implements<AVAudioPlayerDelegate> | SDKHandle) | null) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1297861990279495, this, [value], [{"protocol":"c:objc(pl)AVAudioPlayerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_a956b86ef7a76a8e", 1926841436340681, this, []); }
+  set delegate(value: (Implements<AVAudioPlayerDelegate> | SDKHandle) | null) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1297861990279495, this, [value], [{"protocol":"c:objc(pl)AVAudioPlayerDelegate"}]); }
   /**
    * var deviceCurrentTime: TimeInterval { get }
    * @availability iOS 4.0+
    */
-  get deviceCurrentTime(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4235427416805031, this, []); }
+  get deviceCurrentTime(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4235427416805031, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 2.2+
    */
-  get duration(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1568700012039172, this, []); }
+  get duration(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1568700012039172, this, []); }
   /**
    * var enableRate: Bool { get set }
    * @availability iOS 5.0+
    */
-  get enableRate(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1361674699755709, this, []); }
-  set enableRate(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 25119020485657, this, [value]); }
+  get enableRate(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1361674699755709, this, []); }
+  set enableRate(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 25119020485657, this, [value]); }
   /**
    * var format: AVAudioFormat { get }
    * @availability iOS 10.0+
    */
-  get format(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 717534092298901, this, []); }
+  get format(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 717534092298901, this, []); }
   /**
    * var isMeteringEnabled: Bool { get set }
    * @availability iOS 2.2+
    */
-  get isMeteringEnabled(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 133509018806071, this, []); }
-  set isMeteringEnabled(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2463697578178272, this, [value]); }
+  get isMeteringEnabled(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 133509018806071, this, []); }
+  set isMeteringEnabled(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2463697578178272, this, [value]); }
   /**
    * var numberOfChannels: Int { get }
    * @availability iOS 2.2+
    */
-  get numberOfChannels(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3021048602614542, this, []); }
+  get numberOfChannels(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3021048602614542, this, []); }
   /**
    * var numberOfLoops: Int { get set }
    * @availability iOS 2.2+
    */
-  get numberOfLoops(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 126454554013991, this, []); }
-  set numberOfLoops(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 339214456805762, this, [value]); }
+  get numberOfLoops(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 126454554013991, this, []); }
+  set numberOfLoops(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 339214456805762, this, [value]); }
   /**
    * var pan: Float { get set }
    * @availability iOS 4.0+
    */
-  get pan(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3145354921971737, this, []); }
-  set pan(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1581838718130483, this, [value]); }
+  get pan(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3145354921971737, this, []); }
+  set pan(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1581838718130483, this, [value]); }
   /**
    * var isPlaying: Bool { get }
    * @availability iOS 2.2+
    */
-  get isPlaying(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3126507584590416, this, []); }
+  get isPlaying(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3126507584590416, this, []); }
   /**
    * var rate: Float { get set }
    * @availability iOS 5.0+
    */
-  get rate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4048537283698301, this, []); }
-  set rate(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3974669996640937, this, [value]); }
+  get rate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4048537283698301, this, []); }
+  set rate(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3974669996640937, this, [value]); }
   /**
    * var settings: [String : Any] { get }
    * @availability iOS 4.0+
    */
-  get settings(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_d6c5d10d3352e6ec", 367674881822971, this, []); }
+  get settings(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_a956b86ef7a76a8e", 367674881822971, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 2.2+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("AVFAudio_d6c5d10d3352e6ec", 3443273451105938, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("AVFAudio_a956b86ef7a76a8e", 3443273451105938, this, []); }
   /**
    * var volume: Float { get set }
    * @availability iOS 2.2+
    */
-  get volume(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2242766143567632, this, []); }
-  set volume(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 916333898897734, this, [value]); }
+  get volume(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2242766143567632, this, []); }
+  set volume(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 916333898897734, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioPlayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelAssignments": true; "currentTime": true; "data": true; "delegate": true; "deviceCurrentTime": true; "duration": true; "enableRate": true; "format": true; "isMeteringEnabled": true; "numberOfChannels": true; "numberOfLoops": true; "pan": true; "isPlaying": true; "rate": true; "settings": true; "url": true; "volume": true };
 }
@@ -1742,109 +1742,109 @@ export class AVAudioPlayerNode extends (AVAudioNode as unknown as Omit<typeof AV
    * init()
    * @availability iOS 8.0+
    */
-  static init(): AVAudioPlayerNode { return callSDK<AVAudioPlayerNode>("AVFAudio_d6c5d10d3352e6ec", 2084696803477393, undefined, []); }
+  static init(): AVAudioPlayerNode { return callSDK<AVAudioPlayerNode>("AVFAudio_a956b86ef7a76a8e", 2084696803477393, undefined, []); }
   /**
    * func nodeTime(forPlayerTime playerTime: AVAudioTime) -> AVAudioTime?
    * @availability iOS 8.0+
    */
-  nodeTime(playerTime: AVAudioTime): (AVAudioTime) | null { return callSDK<(AVAudioTime) | null>("AVFAudio_d6c5d10d3352e6ec", 2674798024260355, this, [playerTime]); }
+  nodeTime(playerTime: AVAudioTime): (AVAudioTime) | null { return callSDK<(AVAudioTime) | null>("AVFAudio_a956b86ef7a76a8e", 2674798024260355, this, [playerTime]); }
   /**
    * func pause()
    * @availability iOS 8.0+
    */
-  pause(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1071456465705240, this, []); }
+  pause(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1071456465705240, this, []); }
   /**
    * func play()
    * @availability iOS 8.0+
    * @deprecated iOS 27.0
    */
-  play(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3163597514983867, this, []); }
+  play(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3163597514983867, this, []); }
   /**
    * func playAudio() throws
    * @availability iOS 27.0+
    */
-  playAudio(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1759402476731776, this, []); }
+  playAudio(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1759402476731776, this, []); }
   /**
    * func play(at when: AVAudioTime?)
    * @availability iOS 8.0+
    * @deprecated iOS 27.0
    */
-  playAt(when?: (AVAudioTime) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4244025082095427, this, [when]); }
+  playAt(when?: (AVAudioTime) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4244025082095427, this, [when]); }
   /**
    * func playAudio(at when: AVAudioTime?) throws
    * @availability iOS 27.0+
    */
-  playAudioAt(when?: (AVAudioTime) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2752331420422424, this, [when]); }
+  playAudioAt(when?: (AVAudioTime) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2752331420422424, this, [when]); }
   /**
    * func playerTime(forNodeTime nodeTime: AVAudioTime) -> AVAudioTime?
    * @availability iOS 8.0+
    */
-  playerTime(nodeTime: AVAudioTime): (AVAudioTime) | null { return callSDK<(AVAudioTime) | null>("AVFAudio_d6c5d10d3352e6ec", 1949894720255568, this, [nodeTime]); }
+  playerTime(nodeTime: AVAudioTime): (AVAudioTime) | null { return callSDK<(AVAudioTime) | null>("AVFAudio_a956b86ef7a76a8e", 1949894720255568, this, [nodeTime]); }
   /**
    * func prepare(withFrameCount frameCount: AVAudioFrameCount)
    * @availability iOS 8.0+
    */
-  prepare(frameCount: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4386775100475223, this, [frameCount]); }
+  prepare(frameCount: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4386775100475223, this, [frameCount]); }
   /**
    * func scheduleBuffer(_ buffer: AVAudioPCMBuffer, at when: AVAudioTime?, options: AVAudioPlayerNodeBufferOptions = [], completionCallbackType callbackType: AVAudioPlayerNodeCompletionCallbackType) async -> AVAudioPlayerNodeCompletionCallbackType
    * @availability iOS 11.0+
    */
-  scheduleBufferAtOptionsCompletionCallbackTypeCompletionHandler(buffer: AVAudioPCMBuffer, when: (AVAudioTime) | null, options: AVAudioPlayerNodeBufferOptions, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: $SDK22): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3472731936150437, this, [buffer, when, options, callbackType, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  scheduleBufferAtOptionsCompletionCallbackTypeCompletionHandler(buffer: AVAudioPCMBuffer, when: (AVAudioTime) | null, options: AVAudioPlayerNodeBufferOptions, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: $SDK22): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3472731936150437, this, [buffer, when, options, callbackType, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func scheduleBuffer(_ buffer: AVAudioPCMBuffer, at when: AVAudioTime?, options: AVAudioPlayerNodeBufferOptions = []) async
    * @availability iOS 8.0+
    */
-  scheduleBufferAtOptionsCompletionHandler(buffer: AVAudioPCMBuffer, when?: (AVAudioTime) | null, options?: AVAudioPlayerNodeBufferOptions, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2369866472239546, this, [buffer, when, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  scheduleBufferAtOptionsCompletionHandler(buffer: AVAudioPCMBuffer, when?: (AVAudioTime) | null, options?: AVAudioPlayerNodeBufferOptions, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2369866472239546, this, [buffer, when, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func scheduleBuffer(_ buffer: AVAudioPCMBuffer, completionCallbackType callbackType: AVAudioPlayerNodeCompletionCallbackType) async -> AVAudioPlayerNodeCompletionCallbackType
    * @availability iOS 11.0+
    */
-  scheduleBufferCompletionCallbackTypeCompletionHandler(buffer: AVAudioPCMBuffer, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: $SDK22): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 773636934697986, this, [buffer, callbackType, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  scheduleBufferCompletionCallbackTypeCompletionHandler(buffer: AVAudioPCMBuffer, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: $SDK22): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 773636934697986, this, [buffer, callbackType, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func scheduleBuffer(_ buffer: AVAudioPCMBuffer) async
    * @availability iOS 8.0+
    */
-  scheduleBufferCompletionHandler(buffer: AVAudioPCMBuffer, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4187996112796007, this, [buffer, completionHandler], [null,{"callback":{"out":[]}}]); }
+  scheduleBufferCompletionHandler(buffer: AVAudioPCMBuffer, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4187996112796007, this, [buffer, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func scheduleFile(_ file: AVAudioFile, at when: AVAudioTime?, completionCallbackType callbackType: AVAudioPlayerNodeCompletionCallbackType) async -> AVAudioPlayerNodeCompletionCallbackType
    * @availability iOS 11.0+
    */
-  scheduleFileAtCompletionCallbackTypeCompletionHandler(file: AVAudioFile, when: (AVAudioTime) | null, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: $SDK22): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3529202587188195, this, [file, when, callbackType, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  scheduleFileAtCompletionCallbackTypeCompletionHandler(file: AVAudioFile, when: (AVAudioTime) | null, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: $SDK22): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3529202587188195, this, [file, when, callbackType, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func scheduleFile(_ file: AVAudioFile, at when: AVAudioTime?) async
    * @availability iOS 8.0+
    */
-  scheduleFileAtCompletionHandler(file: AVAudioFile, when?: (AVAudioTime) | null, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1343026061103586, this, [file, when, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  scheduleFileAtCompletionHandler(file: AVAudioFile, when?: (AVAudioTime) | null, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1343026061103586, this, [file, when, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func scheduleSegment(_ file: AVAudioFile, startingFrame startFrame: AVAudioFramePosition, frameCount numberFrames: AVAudioFrameCount, at when: AVAudioTime?, completionCallbackType callbackType: AVAudioPlayerNodeCompletionCallbackType) async -> AVAudioPlayerNodeCompletionCallbackType
    * @availability iOS 11.0+
    */
-  scheduleSegmentStartingFrameFrameCountAtCompletionCallbackTypeCompletionHandler(file: AVAudioFile, startFrame: number, numberFrames: number, when: (AVAudioTime) | null, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: $SDK22): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2884434812089098, this, [file, startFrame, numberFrames, when, callbackType, completionHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
+  scheduleSegmentStartingFrameFrameCountAtCompletionCallbackTypeCompletionHandler(file: AVAudioFile, startFrame: number, numberFrames: number, when: (AVAudioTime) | null, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: $SDK22): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2884434812089098, this, [file, startFrame, numberFrames, when, callbackType, completionHandler], [null,null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func scheduleSegment(_ file: AVAudioFile, startingFrame startFrame: AVAudioFramePosition, frameCount numberFrames: AVAudioFrameCount, at when: AVAudioTime?) async
    * @availability iOS 8.0+
    */
-  scheduleSegmentStartingFrameFrameCountAtCompletionHandler(file: AVAudioFile, startFrame: number, numberFrames: number, when?: (AVAudioTime) | null, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2422644858643845, this, [file, startFrame, numberFrames, when, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  scheduleSegmentStartingFrameFrameCountAtCompletionHandler(file: AVAudioFile, startFrame: number, numberFrames: number, when?: (AVAudioTime) | null, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2422644858643845, this, [file, startFrame, numberFrames, when, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func stop()
    * @availability iOS 8.0+
    */
-  stop(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3980554473562706, this, []); }
+  stop(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3980554473562706, this, []); }
   /**
    * var isPlaying: Bool { get }
    * @availability iOS 8.0+
    */
-  get isPlaying(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3374356548212670, this, []); }
+  get isPlaying(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3374356548212670, this, []); }
   /**
    * func scheduleBuffer(_ buffer: AVReadOnlyAudioPCMBuffer, atTime when: AVAudioTime? = nil, options: AVAudioPlayerNodeBufferOptions = [], completionCallbackType callbackType: AVAudioPlayerNodeCompletionCallbackType = .dataConsumed, completionHandler: (@Sendable () -> Void)? = nil)
    * @availability iOS 27.0+
    */
-  scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler(buffer: AVReadOnlyAudioPCMBuffer, when?: (AVAudioTime) | null, options?: AVAudioPlayerNodeBufferOptions, callbackType?: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 263433303504500, this, [buffer, when, options, callbackType, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler(buffer: AVReadOnlyAudioPCMBuffer, when?: (AVAudioTime) | null, options?: AVAudioPlayerNodeBufferOptions, callbackType?: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 263433303504500, this, [buffer, when, options, callbackType, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func scheduleBuffer(_ buffer: AVAudioPCMBuffer, atTime when: AVAudioTime? = nil, options: AVAudioPlayerNodeBufferOptions = [], completionCallbackType callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler: (@Sendable () -> Void)?)
    * @availability iOS 27.0+
    */
-  scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler5497(buffer: AVAudioPCMBuffer, when: (AVAudioTime) | null, options: AVAudioPlayerNodeBufferOptions, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3081213925958102, this, [buffer, when, options, callbackType, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
+  scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler5497(buffer: AVAudioPCMBuffer, when: (AVAudioTime) | null, options: AVAudioPlayerNodeBufferOptions, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3081213925958102, this, [buffer, when, options, callbackType, completionHandler], [null,null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)AVAudioPlayerNode": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "isPlaying": true };
 }
@@ -1854,13 +1854,13 @@ export type AVAudioPlayerNodeBufferOptions = Array<"loops" | "interrupts" | "int
 
 export const AVAudioPlayerNodeBufferOptions = {
   /** static var interrupts: AVAudioPlayerNodeBufferOptions { get } */
-  get interrupts(): AVAudioPlayerNodeBufferOptions { return callSDK<AVAudioPlayerNodeBufferOptions>("AVFAudio_d6c5d10d3352e6ec", 809879910963465, undefined, []); },
+  get interrupts(): AVAudioPlayerNodeBufferOptions { return callSDK<AVAudioPlayerNodeBufferOptions>("AVFAudio_a956b86ef7a76a8e", 809879910963465, undefined, []); },
   /** static var interruptsAtLoop: AVAudioPlayerNodeBufferOptions { get } */
-  get interruptsAtLoop(): AVAudioPlayerNodeBufferOptions { return callSDK<AVAudioPlayerNodeBufferOptions>("AVFAudio_d6c5d10d3352e6ec", 3822104703315159, undefined, []); },
+  get interruptsAtLoop(): AVAudioPlayerNodeBufferOptions { return callSDK<AVAudioPlayerNodeBufferOptions>("AVFAudio_a956b86ef7a76a8e", 3822104703315159, undefined, []); },
   /** static var loops: AVAudioPlayerNodeBufferOptions { get } */
-  get loops(): AVAudioPlayerNodeBufferOptions { return callSDK<AVAudioPlayerNodeBufferOptions>("AVFAudio_d6c5d10d3352e6ec", 280051946426807, undefined, []); },
+  get loops(): AVAudioPlayerNodeBufferOptions { return callSDK<AVAudioPlayerNodeBufferOptions>("AVFAudio_a956b86ef7a76a8e", 280051946426807, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): AVAudioPlayerNodeBufferOptions { return callSDK<AVAudioPlayerNodeBufferOptions>("AVFAudio_d6c5d10d3352e6ec", 4082577738874480, undefined, [rawValue]); }
+  init(rawValue: number): AVAudioPlayerNodeBufferOptions { return callSDK<AVAudioPlayerNodeBufferOptions>("AVFAudio_a956b86ef7a76a8e", 4082577738874480, undefined, [rawValue]); }
 };
 
 /** enum AVAudioPlayerNodeCompletionCallbackType */
@@ -1868,7 +1868,7 @@ export type AVAudioPlayerNodeCompletionCallbackType = "dataConsumed" | "dataRend
 
 export const AVAudioPlayerNodeCompletionCallbackType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (AVAudioPlayerNodeCompletionCallbackType) | null { return callSDK<(AVAudioPlayerNodeCompletionCallbackType) | null>("AVFAudio_d6c5d10d3352e6ec", 454174689417223, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioPlayerNodeCompletionCallbackType) | null { return callSDK<(AVAudioPlayerNodeCompletionCallbackType) | null>("AVFAudio_a956b86ef7a76a8e", 454174689417223, undefined, [rawValue]); }
 };
 
 /**
@@ -1882,7 +1882,7 @@ export type AVAudioQuality = "min" | "low" | "medium" | "high" | "max";
 
 export const AVAudioQuality = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (AVAudioQuality) | null { return callSDK<(AVAudioQuality) | null>("AVFAudio_d6c5d10d3352e6ec", 135082626912330, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioQuality) | null { return callSDK<(AVAudioQuality) | null>("AVFAudio_a956b86ef7a76a8e", 135082626912330, undefined, [rawValue]); }
 };
 
 /**
@@ -1894,115 +1894,115 @@ export class AVAudioRecorder extends SDKHandle {
    * func averagePower(forChannel channelNumber: Int) -> Float
    * @availability iOS 3.0+
    */
-  averagePower(channelNumber: number): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1446745315032909, this, [channelNumber]); }
+  averagePower(channelNumber: number): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1446745315032909, this, [channelNumber]); }
   /**
    * func deleteRecording() -> Bool
    * @availability iOS 3.0+
    */
-  deleteRecording(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2035200032040456, this, []); }
+  deleteRecording(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2035200032040456, this, []); }
   /**
    * init(url: URL, format: AVAudioFormat) throws
    * @availability iOS 10.0+
    */
-  static initUrlFormat(url: string, format: AVAudioFormat): AVAudioRecorder { return callSDK<AVAudioRecorder>("AVFAudio_d6c5d10d3352e6ec", 3865961979453506, undefined, [url, format]); }
+  static initUrlFormat(url: string, format: AVAudioFormat): AVAudioRecorder { return callSDK<AVAudioRecorder>("AVFAudio_a956b86ef7a76a8e", 3865961979453506, undefined, [url, format]); }
   /**
    * init(url: URL, settings: [String : Any]) throws
    * @availability iOS 3.0+
    */
-  static initUrlSettings(url: string, settings: Record<string, unknown>): AVAudioRecorder { return callSDK<AVAudioRecorder>("AVFAudio_d6c5d10d3352e6ec", 3942143774321891, undefined, [url, settings]); }
+  static initUrlSettings(url: string, settings: Record<string, unknown>): AVAudioRecorder { return callSDK<AVAudioRecorder>("AVFAudio_a956b86ef7a76a8e", 3942143774321891, undefined, [url, settings]); }
   /**
    * func pause()
    * @availability iOS 3.0+
    */
-  pause(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2615869938555516, this, []); }
+  pause(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2615869938555516, this, []); }
   /**
    * func peakPower(forChannel channelNumber: Int) -> Float
    * @availability iOS 3.0+
    */
-  peakPower(channelNumber: number): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 195541070626493, this, [channelNumber]); }
+  peakPower(channelNumber: number): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 195541070626493, this, [channelNumber]); }
   /**
    * func prepareToRecord() -> Bool
    * @availability iOS 3.0+
    */
-  prepareToRecord(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1464905919735639, this, []); }
+  prepareToRecord(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1464905919735639, this, []); }
   /**
    * func record() -> Bool
    * @availability iOS 3.0+
    */
-  record(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2562138119809783, this, []); }
+  record(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2562138119809783, this, []); }
   /**
    * func record(atTime time: TimeInterval) -> Bool
    * @availability iOS 6.0+
    */
-  recordAtTime(time: number): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2370179348109259, this, [time]); }
+  recordAtTime(time: number): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2370179348109259, this, [time]); }
   /**
    * func record(atTime time: TimeInterval, forDuration duration: TimeInterval) -> Bool
    * @availability iOS 6.0+
    */
-  recordAtTimeForDuration(time: number, duration: number): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2724599797350497, this, [time, duration]); }
+  recordAtTimeForDuration(time: number, duration: number): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2724599797350497, this, [time, duration]); }
   /**
    * func record(forDuration duration: TimeInterval) -> Bool
    * @availability iOS 3.0+
    */
-  recordForDuration(duration: number): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3103629115902583, this, [duration]); }
+  recordForDuration(duration: number): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3103629115902583, this, [duration]); }
   /**
    * func stop()
    * @availability iOS 3.0+
    */
-  stop(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2470417876809414, this, []); }
+  stop(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2470417876809414, this, []); }
   /**
    * func updateMeters()
    * @availability iOS 3.0+
    */
-  updateMeters(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2226618268032584, this, []); }
+  updateMeters(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2226618268032584, this, []); }
   /**
    * var channelAssignments: [AVAudioSessionChannelDescription]? { get set }
    * @availability iOS 7.0+
    */
-  get channelAssignments(): $SDK20 { return callSDK<$SDK20>("AVFAudio_d6c5d10d3352e6ec", 1996386029963449, this, []); }
-  set channelAssignments(value: $SDK20) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4089869121865087, this, [value]); }
+  get channelAssignments(): $SDK20 { return callSDK<$SDK20>("AVFAudio_a956b86ef7a76a8e", 1996386029963449, this, []); }
+  set channelAssignments(value: $SDK20) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4089869121865087, this, [value]); }
   /**
    * var currentTime: TimeInterval { get }
    * @availability iOS 3.0+
    */
-  get currentTime(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 313973350092976, this, []); }
+  get currentTime(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 313973350092976, this, []); }
   /**
    * weak var delegate: (any AVAudioRecorderDelegate)? { get set }
    * @availability iOS 3.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_d6c5d10d3352e6ec", 1702763576724686, this, []); }
-  set delegate(value: (SDKHandle) | null) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4258177802708984, this, [value]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_a956b86ef7a76a8e", 1702763576724686, this, []); }
+  set delegate(value: (SDKHandle) | null) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4258177802708984, this, [value]); }
   /**
    * var deviceCurrentTime: TimeInterval { get }
    * @availability iOS 6.0+
    */
-  get deviceCurrentTime(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1837217297084282, this, []); }
+  get deviceCurrentTime(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1837217297084282, this, []); }
   /**
    * var format: AVAudioFormat { get }
    * @availability iOS 10.0+
    */
-  get format(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 1190088360623912, this, []); }
+  get format(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 1190088360623912, this, []); }
   /**
    * var isMeteringEnabled: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isMeteringEnabled(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 4485704281307422, this, []); }
-  set isMeteringEnabled(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4452214240263457, this, [value]); }
+  get isMeteringEnabled(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 4485704281307422, this, []); }
+  set isMeteringEnabled(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4452214240263457, this, [value]); }
   /**
    * var isRecording: Bool { get }
    * @availability iOS 3.0+
    */
-  get isRecording(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1249022277167018, this, []); }
+  get isRecording(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1249022277167018, this, []); }
   /**
    * var settings: [String : Any] { get }
    * @availability iOS 3.0+
    */
-  get settings(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_d6c5d10d3352e6ec", 1085787251690568, this, []); }
+  get settings(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_a956b86ef7a76a8e", 1085787251690568, this, []); }
   /**
    * var url: URL { get }
    * @availability iOS 3.0+
    */
-  get url(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3392611637884257, this, []); }
+  get url(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3392611637884257, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioRecorder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelAssignments": true; "currentTime": true; "delegate": true; "deviceCurrentTime": true; "format": true; "isMeteringEnabled": true; "isRecording": true; "settings": true; "url": true };
 }
@@ -2045,125 +2045,125 @@ export class AVAudioSequencer extends SDKHandle {
    * func beats(forHostTime inHostTime: UInt64, error outError: NSErrorPointer) -> AVMusicTimeStamp
    * @availability iOS 9.0+
    */
-  beatsForHostTimeError(inHostTime: number): { $ret: number; $out: { "outError": $SDK24 } } { return callSDK<{ $ret: number; $out: { "outError": $SDK24 } }>("AVFAudio_d6c5d10d3352e6ec", 540296674644264, this, [inHostTime, null]); }
+  beatsForHostTimeError(inHostTime: number): { $ret: number; $out: { "outError": $SDK24 } } { return callSDK<{ $ret: number; $out: { "outError": $SDK24 } }>("AVFAudio_a956b86ef7a76a8e", 540296674644264, this, [inHostTime, null]); }
   /**
    * func beats(forSeconds seconds: TimeInterval) -> AVMusicTimeStamp
    * @availability iOS 9.0+
    */
-  beatsForSeconds(seconds: number): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4368978622736761, this, [seconds]); }
+  beatsForSeconds(seconds: number): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4368978622736761, this, [seconds]); }
   /**
    * func createAndAppendTrack() -> AVMusicTrack
    * @availability iOS 16.0+
    */
-  createAndAppendTrack(): AVMusicTrack { return callSDK<AVMusicTrack>("AVFAudio_d6c5d10d3352e6ec", 738400509006557, this, []); }
+  createAndAppendTrack(): AVMusicTrack { return callSDK<AVMusicTrack>("AVFAudio_a956b86ef7a76a8e", 738400509006557, this, []); }
   /**
    * func data(withSMPTEResolution SMPTEResolution: Int, error outError: NSErrorPointer) -> Data
    * @availability iOS 9.0+
    */
-  data(SMPTEResolution: number): { $ret: ArrayBuffer; $out: { "outError": $SDK24 } } { return callSDK<{ $ret: ArrayBuffer; $out: { "outError": $SDK24 } }>("AVFAudio_d6c5d10d3352e6ec", 1503084677663146, this, [SMPTEResolution, null]); }
+  data(SMPTEResolution: number): { $ret: ArrayBuffer; $out: { "outError": $SDK24 } } { return callSDK<{ $ret: ArrayBuffer; $out: { "outError": $SDK24 } }>("AVFAudio_a956b86ef7a76a8e", 1503084677663146, this, [SMPTEResolution, null]); }
   /**
    * func hostTime(forBeats inBeats: AVMusicTimeStamp, error outError: NSErrorPointer) -> UInt64
    * @availability iOS 9.0+
    */
-  hostTime(inBeats: number): { $ret: number; $out: { "outError": $SDK24 } } { return callSDK<{ $ret: number; $out: { "outError": $SDK24 } }>("AVFAudio_d6c5d10d3352e6ec", 775049895064749, this, [inBeats, null]); }
+  hostTime(inBeats: number): { $ret: number; $out: { "outError": $SDK24 } } { return callSDK<{ $ret: number; $out: { "outError": $SDK24 } }>("AVFAudio_a956b86ef7a76a8e", 775049895064749, this, [inBeats, null]); }
   /**
    * init()
    * @availability iOS 9.0+
    */
-  static init(): AVAudioSequencer { return callSDK<AVAudioSequencer>("AVFAudio_d6c5d10d3352e6ec", 3164096918556035, undefined, []); }
+  static init(): AVAudioSequencer { return callSDK<AVAudioSequencer>("AVFAudio_a956b86ef7a76a8e", 3164096918556035, undefined, []); }
   /**
    * init(audioEngine engine: AVAudioEngine)
    * @availability iOS 9.0+
    */
-  static initAudioEngine(engine: AVAudioEngine): AVAudioSequencer { return callSDK<AVAudioSequencer>("AVFAudio_d6c5d10d3352e6ec", 3478297151951606, undefined, [engine]); }
+  static initAudioEngine(engine: AVAudioEngine): AVAudioSequencer { return callSDK<AVAudioSequencer>("AVFAudio_a956b86ef7a76a8e", 3478297151951606, undefined, [engine]); }
   /**
    * func load(from data: Data, options: AVMusicSequenceLoadOptions = []) throws
    * @availability iOS 9.0+
    */
-  loadFromOptions(data: ArrayBuffer, options?: AVMusicSequenceLoadOptions): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 275877438959899, this, [data, options]); }
+  loadFromOptions(data: ArrayBuffer, options?: AVMusicSequenceLoadOptions): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 275877438959899, this, [data, options]); }
   /**
    * func load(from fileURL: URL, options: AVMusicSequenceLoadOptions = []) throws
    * @availability iOS 9.0+
    */
-  loadFromOptions86023(fileURL: string, options?: AVMusicSequenceLoadOptions): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3143266688678270, this, [fileURL, options]); }
+  loadFromOptions86023(fileURL: string, options?: AVMusicSequenceLoadOptions): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3143266688678270, this, [fileURL, options]); }
   /**
    * func prepareToPlay()
    * @availability iOS 9.0+
    */
-  prepareToPlay(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3026313745236988, this, []); }
+  prepareToPlay(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3026313745236988, this, []); }
   /**
    * func removeTrack(_ track: AVMusicTrack) -> Bool
    * @availability iOS 16.0+
    */
-  removeTrack(track: AVMusicTrack): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2944162982921659, this, [track]); }
+  removeTrack(track: AVMusicTrack): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2944162982921659, this, [track]); }
   /**
    * func reverseEvents()
    * @availability iOS 16.0+
    */
-  reverseEvents(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3653491592155110, this, []); }
+  reverseEvents(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3653491592155110, this, []); }
   /**
    * func seconds(forBeats beats: AVMusicTimeStamp) -> TimeInterval
    * @availability iOS 9.0+
    */
-  seconds(beats: number): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1599963447768722, this, [beats]); }
+  seconds(beats: number): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1599963447768722, this, [beats]); }
   /**
    * func setUserCallback(_ userCallback: AVAudioSequencerUserCallback?)
    * @availability iOS 16.0+
    */
-  setUserCallback(userCallback?: (((arg0: AVMusicTrack, arg1: ArrayBuffer, arg2: number) => void)) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1346605159480626, this, [userCallback], [{"callback":{"out":[]}}]); }
+  setUserCallback(userCallback?: (((arg0: AVMusicTrack, arg1: ArrayBuffer, arg2: number) => void)) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1346605159480626, this, [userCallback], [{"callback":{"out":[]}}]); }
   /**
    * func start() throws
    * @availability iOS 9.0+
    */
-  start(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3408173028719618, this, []); }
+  start(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3408173028719618, this, []); }
   /**
    * func stop()
    * @availability iOS 9.0+
    */
-  stop(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3724342593212737, this, []); }
+  stop(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3724342593212737, this, []); }
   /**
    * func write(to fileURL: URL, smpteResolution resolution: Int, replaceExisting replace: Bool) throws
    * @availability iOS 9.0+
    */
-  write(fileURL: string, resolution: number, replace: boolean): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1925662068081034, this, [fileURL, resolution, replace]); }
+  write(fileURL: string, resolution: number, replace: boolean): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1925662068081034, this, [fileURL, resolution, replace]); }
   /**
    * var currentPositionInBeats: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get currentPositionInBeats(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1372969893713966, this, []); }
-  set currentPositionInBeats(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3517378800709208, this, [value]); }
+  get currentPositionInBeats(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1372969893713966, this, []); }
+  set currentPositionInBeats(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3517378800709208, this, [value]); }
   /**
    * var currentPositionInSeconds: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get currentPositionInSeconds(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3329151218515996, this, []); }
-  set currentPositionInSeconds(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3675886240517089, this, [value]); }
+  get currentPositionInSeconds(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3329151218515996, this, []); }
+  set currentPositionInSeconds(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3675886240517089, this, [value]); }
   /**
    * var isPlaying: Bool { get }
    * @availability iOS 9.0+
    */
-  get isPlaying(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 429495684657191, this, []); }
+  get isPlaying(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 429495684657191, this, []); }
   /**
    * var rate: Float { get set }
    * @availability iOS 9.0+
    */
-  get rate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4327433057603382, this, []); }
-  set rate(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 478548820221866, this, [value]); }
+  get rate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4327433057603382, this, []); }
+  set rate(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 478548820221866, this, [value]); }
   /**
    * var tempoTrack: AVMusicTrack { get }
    * @availability iOS 9.0+
    */
-  get tempoTrack(): AVMusicTrack { return callSDK<AVMusicTrack>("AVFAudio_d6c5d10d3352e6ec", 3351340665175956, this, []); }
+  get tempoTrack(): AVMusicTrack { return callSDK<AVMusicTrack>("AVFAudio_a956b86ef7a76a8e", 3351340665175956, this, []); }
   /**
    * var tracks: [AVMusicTrack] { get }
    * @availability iOS 9.0+
    */
-  get tracks(): Array<AVMusicTrack> { return callSDK<Array<AVMusicTrack>>("AVFAudio_d6c5d10d3352e6ec", 2656533450773085, this, []); }
+  get tracks(): Array<AVMusicTrack> { return callSDK<Array<AVMusicTrack>>("AVFAudio_a956b86ef7a76a8e", 2656533450773085, this, []); }
   /**
    * var userInfo: [String : Any] { get }
    * @availability iOS 9.0+
    */
-  get userInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_d6c5d10d3352e6ec", 1101712951178237, this, []); }
+  get userInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_a956b86ef7a76a8e", 1101712951178237, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSequencer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentPositionInBeats": true; "currentPositionInSeconds": true; "isPlaying": true; "rate": true; "tempoTrack": true; "tracks": true; "userInfo": true };
 }
@@ -2179,117 +2179,117 @@ export const AVAudioSequencer_InfoDictionaryKey = {
    * static let album: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get album(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 3527350774984563, undefined, []); },
+  get album(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 3527350774984563, undefined, []); },
   /**
    * static let approximateDurationInSeconds: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get approximateDurationInSeconds(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 1730066245853490, undefined, []); },
+  get approximateDurationInSeconds(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 1730066245853490, undefined, []); },
   /**
    * static let artist: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get artist(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 515430959824197, undefined, []); },
+  get artist(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 515430959824197, undefined, []); },
   /**
    * static let channelLayout: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get channelLayout(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 2165745558050052, undefined, []); },
+  get channelLayout(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 2165745558050052, undefined, []); },
   /**
    * static let comments: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get comments(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 3575171973735266, undefined, []); },
+  get comments(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 3575171973735266, undefined, []); },
   /**
    * static let composer: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get composer(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 4079752956141708, undefined, []); },
+  get composer(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 4079752956141708, undefined, []); },
   /**
    * static let copyright: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get copyright(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 122130441428460, undefined, []); },
+  get copyright(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 122130441428460, undefined, []); },
   /**
    * static let encodingApplication: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get encodingApplication(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 2179978860126453, undefined, []); },
+  get encodingApplication(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 2179978860126453, undefined, []); },
   /**
    * static let genre: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get genre(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 268290633353290, undefined, []); },
+  get genre(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 268290633353290, undefined, []); },
   /**
    * static let ISRC: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get ISRC(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 686643123252209, undefined, []); },
+  get ISRC(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 686643123252209, undefined, []); },
   /**
    * static let keySignature: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get keySignature(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 1274598295435837, undefined, []); },
+  get keySignature(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 1274598295435837, undefined, []); },
   /**
    * static let lyricist: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get lyricist(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 1082653884890139, undefined, []); },
+  get lyricist(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 1082653884890139, undefined, []); },
   /**
    * static let nominalBitRate: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get nominalBitRate(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 2439013711106017, undefined, []); },
+  get nominalBitRate(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 2439013711106017, undefined, []); },
   /**
    * static let recordedDate: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get recordedDate(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 4390251511322500, undefined, []); },
+  get recordedDate(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 4390251511322500, undefined, []); },
   /**
    * static let sourceBitDepth: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get sourceBitDepth(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 3311645856686156, undefined, []); },
+  get sourceBitDepth(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 3311645856686156, undefined, []); },
   /**
    * static let sourceEncoder: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get sourceEncoder(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 1937737305490263, undefined, []); },
+  get sourceEncoder(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 1937737305490263, undefined, []); },
   /**
    * static let subTitle: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get subTitle(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 1777735624016207, undefined, []); },
+  get subTitle(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 1777735624016207, undefined, []); },
   /**
    * static let tempo: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get tempo(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 53915396259322, undefined, []); },
+  get tempo(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 53915396259322, undefined, []); },
   /**
    * static let timeSignature: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get timeSignature(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 4206256561970045, undefined, []); },
+  get timeSignature(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 4206256561970045, undefined, []); },
   /**
    * static let title: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get title(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 4424415084269122, undefined, []); },
+  get title(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 4424415084269122, undefined, []); },
   /**
    * static let trackNumber: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get trackNumber(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 1393990894517584, undefined, []); },
+  get trackNumber(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 1393990894517584, undefined, []); },
   /**
    * static let year: AVAudioSequencer.InfoDictionaryKey
    * @availability iOS 16.0+
    */
-  get year(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 3233729602805751, undefined, []); },
+  get year(): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 3233729602805751, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_d6c5d10d3352e6ec", 4162386205645424, undefined, [rawValue]); }
+  init(rawValue: string): AVAudioSequencer_InfoDictionaryKey { return callSDK<AVAudioSequencer_InfoDictionaryKey>("AVFAudio_a956b86ef7a76a8e", 4162386205645424, undefined, [rawValue]); }
 };
 
 /**
@@ -2307,471 +2307,471 @@ export class AVAudioSession extends SDKHandle {
    * class let availableInputsChangeNotification: NSNotification.Name
    * @availability iOS 26.0+
    */
-  static get availableInputsChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 374135197460555, undefined, []); }
+  static get availableInputsChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 374135197460555, undefined, []); }
   /**
    * class let deactivationContextKey: String
    * @availability iOS 27.0+
    */
-  static get deactivationContextKey(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 62326737770257, undefined, []); }
+  static get deactivationContextKey(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 62326737770257, undefined, []); }
   /**
    * class let didBecomeActiveNotification: NSNotification.Name
    * @availability iOS 27.0+
    */
-  static get didBecomeActiveNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 864728336467775, undefined, []); }
+  static get didBecomeActiveNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 864728336467775, undefined, []); }
   /**
    * class let didBecomeInactiveNotification: NSNotification.Name
    * @availability iOS 27.0+
    */
-  static get didBecomeInactiveNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 385578378633745, undefined, []); }
+  static get didBecomeInactiveNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 385578378633745, undefined, []); }
   /**
    * class let interruptionNotification: NSNotification.Name
    * @availability iOS 6.0+
    */
-  static get interruptionNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 2998532927180619, undefined, []); }
+  static get interruptionNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 2998532927180619, undefined, []); }
   /**
    * class let mediaServicesWereLostNotification: NSNotification.Name
    * @availability iOS 7.0+
    */
-  static get mediaServicesWereLostNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 3774153416625027, undefined, []); }
+  static get mediaServicesWereLostNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 3774153416625027, undefined, []); }
   /**
    * class let mediaServicesWereResetNotification: NSNotification.Name
    * @availability iOS 6.0+
    */
-  static get mediaServicesWereResetNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 2791175068088708, undefined, []); }
+  static get mediaServicesWereResetNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 2791175068088708, undefined, []); }
   /**
    * class let microphoneInjectionCapabilitiesChangeNotification: NSNotification.Name
    * @availability iOS 18.2+
    */
-  static get microphoneInjectionCapabilitiesChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 1531354726026453, undefined, []); }
+  static get microphoneInjectionCapabilitiesChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 1531354726026453, undefined, []); }
   /**
    * class let muteStateKey: String
    * @availability iOS 26.0+
    */
-  static get muteStateKey(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3975295620190167, undefined, []); }
+  static get muteStateKey(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3975295620190167, undefined, []); }
   /**
    * class let outputMuteStateChangeNotification: NSNotification.Name
    * @availability iOS 26.0+
    */
-  static get outputMuteStateChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 723396720713318, undefined, []); }
+  static get outputMuteStateChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 723396720713318, undefined, []); }
   /**
    * class let renderingCapabilitiesChangeNotification: NSNotification.Name
    * @availability iOS 17.2+
    */
-  static get renderingCapabilitiesChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 1571200999354726, undefined, []); }
+  static get renderingCapabilitiesChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 1571200999354726, undefined, []); }
   /**
    * class let renderingModeChangeNotification: NSNotification.Name
    * @availability iOS 17.2+
    */
-  static get renderingModeChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 1842649467176599, undefined, []); }
+  static get renderingModeChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 1842649467176599, undefined, []); }
   /**
    * class let resumptionContextKey: String
    * @availability iOS 27.0+
    */
-  static get resumptionContextKey(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1661976575936163, undefined, []); }
+  static get resumptionContextKey(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1661976575936163, undefined, []); }
   /**
    * class let resumptionRecommendationNotification: NSNotification.Name
    * @availability iOS 27.0+
    */
-  static get resumptionRecommendationNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 1794516281702399, undefined, []); }
+  static get resumptionRecommendationNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 1794516281702399, undefined, []); }
   /**
    * class let routeChangeNotification: NSNotification.Name
    * @availability iOS 6.0+
    */
-  static get routeChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 1151532790639700, undefined, []); }
+  static get routeChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 1151532790639700, undefined, []); }
   /**
    * class let silenceSecondaryAudioHintNotification: NSNotification.Name
    * @availability iOS 8.0+
    */
-  static get silenceSecondaryAudioHintNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 4102314421621484, undefined, []); }
+  static get silenceSecondaryAudioHintNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 4102314421621484, undefined, []); }
   /**
    * class let spatialPlaybackCapabilitiesChangedNotification: NSNotification.Name
    * @availability iOS 15.0+
    */
-  static get spatialPlaybackCapabilitiesChangedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 2317132405837721, undefined, []); }
+  static get spatialPlaybackCapabilitiesChangedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 2317132405837721, undefined, []); }
   /**
    * class let userIntentToUnmuteOutputNotification: NSNotification.Name
    * @availability iOS 26.0+
    */
-  static get userIntentToUnmuteOutputNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 4502886048662553, undefined, []); }
+  static get userIntentToUnmuteOutputNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 4502886048662553, undefined, []); }
   /**
    * class func sharedInstance() -> AVAudioSession
    * @availability iOS 3.0+
    */
-  static sharedInstance(): AVAudioSession { return callSDK<AVAudioSession>("AVFAudio_d6c5d10d3352e6ec", 2841138410987055, undefined, []); }
+  static sharedInstance(): AVAudioSession { return callSDK<AVAudioSession>("AVFAudio_a956b86ef7a76a8e", 2841138410987055, undefined, []); }
   /**
    * func activate(options: AVAudioSessionActivationOptions = []) async throws -> Bool
    * @availability iOS 27.0+
    */
-  activate(options: AVAudioSessionActivationOptions, handler: $SDK27): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1610828966919965, this, [options, handler], [null,{"callback":{"out":[]}}]); }
+  activate(options: AVAudioSessionActivationOptions, handler: $SDK27): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1610828966919965, this, [options, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * func deactivate(options: AVAudioSessionDeactivationOptions = []) async throws -> Bool
    * @availability iOS 27.0+
    */
-  deactivate(options: AVAudioSessionDeactivationOptions, handler: $SDK27): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4498739753276141, this, [options, handler], [null,{"callback":{"out":[]}}]); }
+  deactivate(options: AVAudioSessionDeactivationOptions, handler: $SDK27): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4498739753276141, this, [options, handler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): AVAudioSession { return callSDK<AVAudioSession>("AVFAudio_d6c5d10d3352e6ec", 1947774681235099, undefined, []); }
+  static init(): AVAudioSession { return callSDK<AVAudioSession>("AVFAudio_a956b86ef7a76a8e", 1947774681235099, undefined, []); }
   /**
    * func overrideOutputAudioPort(_ portOverride: AVAudioSession.PortOverride) throws
    * @availability iOS 6.0+
    */
-  overrideOutputAudioPort(portOverride: AVAudioSession_PortOverride): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2828238695793912, this, [portOverride]); }
+  overrideOutputAudioPort(portOverride: AVAudioSession_PortOverride): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2828238695793912, this, [portOverride]); }
   /**
    * func requestRecordPermission(_ response: @escaping (Bool) -> Void)
    * @availability iOS 7.0+
    * @deprecated iOS 17.0
    */
-  requestRecordPermission(response: ((arg0: boolean) => void)): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2117798834015468, this, [response], [{"callback":{"out":[]}}]); }
+  requestRecordPermission(response: ((arg0: boolean) => void)): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2117798834015468, this, [response], [{"callback":{"out":[]}}]); }
   /**
    * func setActive(_ active: Bool, options: AVAudioSession.SetActiveOptions = []) throws
    * @availability iOS 6.0+
    */
-  setActive(active: boolean, options?: AVAudioSession_SetActiveOptions): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1074703510498324, this, [active, options]); }
+  setActive(active: boolean, options?: AVAudioSession_SetActiveOptions): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1074703510498324, this, [active, options]); }
   /**
    * func setAggregatedIOPreference(_ inIOType: AVAudioSession.IOType) throws
    * @availability iOS 10.0+
    */
-  setAggregatedIOPreference(inIOType: AVAudioSession_IOType): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2343168815813263, this, [inIOType]); }
+  setAggregatedIOPreference(inIOType: AVAudioSession_IOType): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2343168815813263, this, [inIOType]); }
   /**
    * func setAllowHapticsAndSystemSoundsDuringRecording(_ inValue: Bool) throws
    * @availability iOS 13.0+
    */
-  setAllowHapticsAndSystemSoundsDuringRecording(inValue: boolean): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3051307845158200, this, [inValue]); }
+  setAllowHapticsAndSystemSoundsDuringRecording(inValue: boolean): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3051307845158200, this, [inValue]); }
   /**
    * func setCategory(_ category: AVAudioSession.Category) throws
    * @availability iOS 3.0+
    */
-  setCategory(category: AVAudioSession_Category): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 444429860681387, this, [category]); }
+  setCategory(category: AVAudioSession_Category): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 444429860681387, this, [category]); }
   /**
    * func setCategory(_ category: AVAudioSession.Category, mode: AVAudioSession.Mode, options: AVAudioSession.CategoryOptions = []) throws
    * @availability iOS 10.0+
    */
-  setCategoryModeOptions(category: AVAudioSession_Category, mode: AVAudioSession_Mode, options?: AVAudioSession_CategoryOptions): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 229244894858442, this, [category, mode, options]); }
+  setCategoryModeOptions(category: AVAudioSession_Category, mode: AVAudioSession_Mode, options?: AVAudioSession_CategoryOptions): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 229244894858442, this, [category, mode, options]); }
   /**
    * func setCategory(_ category: AVAudioSession.Category, mode: AVAudioSession.Mode, policy: AVAudioSession.RouteSharingPolicy, options: AVAudioSession.CategoryOptions = []) throws
    * @availability iOS 11.0+
    */
-  setCategoryModePolicyOptions(category: AVAudioSession_Category, mode: AVAudioSession_Mode, policy: AVAudioSession_RouteSharingPolicy, options?: AVAudioSession_CategoryOptions): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1520184465392372, this, [category, mode, policy, options]); }
+  setCategoryModePolicyOptions(category: AVAudioSession_Category, mode: AVAudioSession_Mode, policy: AVAudioSession_RouteSharingPolicy, options?: AVAudioSession_CategoryOptions): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1520184465392372, this, [category, mode, policy, options]); }
   /**
    * func setCategory(_ category: AVAudioSession.Category, options: AVAudioSession.CategoryOptions = []) throws
    * @availability iOS 6.0+
    */
-  setCategoryOptions(category: AVAudioSession_Category, options?: AVAudioSession_CategoryOptions): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2338660176948767, this, [category, options]); }
+  setCategoryOptions(category: AVAudioSession_Category, options?: AVAudioSession_CategoryOptions): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2338660176948767, this, [category, options]); }
   /**
    * func setInputDataSource(_ dataSource: AVAudioSessionDataSourceDescription?) throws
    * @availability iOS 6.0+
    */
-  setInputDataSource(dataSource?: $SDK28): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1016635123646363, this, [dataSource]); }
+  setInputDataSource(dataSource?: $SDK28): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1016635123646363, this, [dataSource]); }
   /**
    * func setInputGain(_ gain: Float) throws
    * @availability iOS 6.0+
    */
-  setInputGain(gain: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3252254912387356, this, [gain]); }
+  setInputGain(gain: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3252254912387356, this, [gain]); }
   /**
    * func setMode(_ mode: AVAudioSession.Mode) throws
    * @availability iOS 5.0+
    */
-  setMode(mode: AVAudioSession_Mode): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2775137574302632, this, [mode]); }
+  setMode(mode: AVAudioSession_Mode): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2775137574302632, this, [mode]); }
   /**
    * func setOutputDataSource(_ dataSource: AVAudioSessionDataSourceDescription?) throws
    * @availability iOS 6.0+
    */
-  setOutputDataSource(dataSource?: $SDK28): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 871873695113985, this, [dataSource]); }
+  setOutputDataSource(dataSource?: $SDK28): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 871873695113985, this, [dataSource]); }
   /**
    * func setOutputMuted(_ muted: Bool) throws
    * @availability iOS 26.0+
    */
-  setOutputMuted(muted: boolean): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 618337013585746, this, [muted]); }
+  setOutputMuted(muted: boolean): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 618337013585746, this, [muted]); }
   /**
    * func setPreferredIOBufferDuration(_ duration: TimeInterval) throws
    * @availability iOS 3.0+
    */
-  setPreferredIOBufferDuration(duration: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1382963616781995, this, [duration]); }
+  setPreferredIOBufferDuration(duration: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1382963616781995, this, [duration]); }
   /**
    * func setPreferredInput(_ inPort: AVAudioSessionPortDescription?) throws
    * @availability iOS 7.0+
    */
-  setPreferredInput(inPort?: $SDK29): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2223950005359915, this, [inPort]); }
+  setPreferredInput(inPort?: $SDK29): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2223950005359915, this, [inPort]); }
   /**
    * func setPreferredInputNumberOfChannels(_ count: Int) throws
    * @availability iOS 7.0+
    */
-  setPreferredInputNumberOfChannels(count: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2826277276088961, this, [count]); }
+  setPreferredInputNumberOfChannels(count: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2826277276088961, this, [count]); }
   /**
    * func setPreferredInputOrientation(_ orientation: AVAudioSession.StereoOrientation) throws
    * @availability iOS 14.0+
    */
-  setPreferredInputOrientation(orientation: AVAudioSession_StereoOrientation): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1281905810957088, this, [orientation]); }
+  setPreferredInputOrientation(orientation: AVAudioSession_StereoOrientation): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1281905810957088, this, [orientation]); }
   /**
    * func setPreferredMicrophoneInjectionMode(_ inValue: AVAudioSession.MicrophoneInjectionMode) throws
    * @availability iOS 18.2+
    */
-  setPreferredMicrophoneInjectionMode(inValue: AVAudioSession_MicrophoneInjectionMode): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3312929076841409, this, [inValue]); }
+  setPreferredMicrophoneInjectionMode(inValue: AVAudioSession_MicrophoneInjectionMode): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3312929076841409, this, [inValue]); }
   /**
    * func setPreferredOutputNumberOfChannels(_ count: Int) throws
    * @availability iOS 7.0+
    */
-  setPreferredOutputNumberOfChannels(count: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2246025631934857, this, [count]); }
+  setPreferredOutputNumberOfChannels(count: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2246025631934857, this, [count]); }
   /**
    * func setPreferredSampleRate(_ sampleRate: Double) throws
    * @availability iOS 6.0+
    */
-  setPreferredSampleRate(sampleRate: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1585988410421475, this, [sampleRate]); }
+  setPreferredSampleRate(sampleRate: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1585988410421475, this, [sampleRate]); }
   /**
    * func setPrefersEchoCancelledInput(_ value: Bool) throws
    * @availability iOS 18.2+
    */
-  setPrefersEchoCancelledInput(value: boolean): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3453466400038239, this, [value]); }
+  setPrefersEchoCancelledInput(value: boolean): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3453466400038239, this, [value]); }
   /**
    * func setPrefersInterruptionOnRouteDisconnect(_ inValue: Bool) throws
    * @availability iOS 17.0+
    */
-  setPrefersInterruptionOnRouteDisconnect(inValue: boolean): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1507331919380864, this, [inValue]); }
+  setPrefersInterruptionOnRouteDisconnect(inValue: boolean): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1507331919380864, this, [inValue]); }
   /**
    * func setPrefersNoInterruptionsFromSystemAlerts(_ inValue: Bool) throws
    * @availability iOS 14.5+
    */
-  setPrefersNoInterruptionsFromSystemAlerts(inValue: boolean): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2230652536770544, this, [inValue]); }
+  setPrefersNoInterruptionsFromSystemAlerts(inValue: boolean): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2230652536770544, this, [inValue]); }
   /**
    * func setSupportsMultichannelContent(_ inValue: Bool) throws
    * @availability iOS 15.0+
    */
-  setSupportsMultichannelContent(inValue: boolean): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3271935498822292, this, [inValue]); }
+  setSupportsMultichannelContent(inValue: boolean): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3271935498822292, this, [inValue]); }
   /**
    * var ioBufferDuration: TimeInterval { get }
    * @availability iOS 6.0+
    */
-  get ioBufferDuration(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4335239089089173, this, []); }
+  get ioBufferDuration(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4335239089089173, this, []); }
   /**
    * var allowHapticsAndSystemSoundsDuringRecording: Bool { get }
    * @availability iOS 13.0+
    */
-  get allowHapticsAndSystemSoundsDuringRecording(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 748297039668618, this, []); }
+  get allowHapticsAndSystemSoundsDuringRecording(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 748297039668618, this, []); }
   /**
    * var availableCategories: [AVAudioSession.Category] { get }
    * @availability iOS 9.0+
    */
-  get availableCategories(): Array<AVAudioSession_Category> { return callSDK<Array<AVAudioSession_Category>>("AVFAudio_d6c5d10d3352e6ec", 3363427470749839, this, []); }
+  get availableCategories(): Array<AVAudioSession_Category> { return callSDK<Array<AVAudioSession_Category>>("AVFAudio_a956b86ef7a76a8e", 3363427470749839, this, []); }
   /**
    * var availableInputs: [AVAudioSessionPortDescription]? { get }
    * @availability iOS 7.0+
    */
-  get availableInputs(): (Array<AVAudioSessionPortDescription>) | null { return callSDK<(Array<AVAudioSessionPortDescription>) | null>("AVFAudio_d6c5d10d3352e6ec", 1906395128052263, this, []); }
+  get availableInputs(): (Array<AVAudioSessionPortDescription>) | null { return callSDK<(Array<AVAudioSessionPortDescription>) | null>("AVFAudio_a956b86ef7a76a8e", 1906395128052263, this, []); }
   /**
    * var availableModes: [AVAudioSession.Mode] { get }
    * @availability iOS 9.0+
    */
-  get availableModes(): Array<AVAudioSession_Mode> { return callSDK<Array<AVAudioSession_Mode>>("AVFAudio_d6c5d10d3352e6ec", 4485075732460008, this, []); }
+  get availableModes(): Array<AVAudioSession_Mode> { return callSDK<Array<AVAudioSession_Mode>>("AVFAudio_a956b86ef7a76a8e", 4485075732460008, this, []); }
   /**
    * var category: AVAudioSession.Category { get }
    * @availability iOS 3.0+
    */
-  get category(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_d6c5d10d3352e6ec", 3177732938757697, this, []); }
+  get category(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_a956b86ef7a76a8e", 3177732938757697, this, []); }
   /**
    * var categoryOptions: AVAudioSession.CategoryOptions { get }
    * @availability iOS 6.0+
    */
-  get categoryOptions(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 2216555567636449, this, []); }
+  get categoryOptions(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 2216555567636449, this, []); }
   /**
    * var currentRoute: AVAudioSessionRouteDescription { get }
    * @availability iOS 6.0+
    */
-  get currentRoute(): AVAudioSessionRouteDescription { return callSDK<AVAudioSessionRouteDescription>("AVFAudio_d6c5d10d3352e6ec", 4001915059247720, this, []); }
+  get currentRoute(): AVAudioSessionRouteDescription { return callSDK<AVAudioSessionRouteDescription>("AVFAudio_a956b86ef7a76a8e", 4001915059247720, this, []); }
   /**
    * var isInputAvailable: Bool { get }
    * @availability iOS 6.0+
    */
-  get isInputAvailable(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1302878750862131, this, []); }
+  get isInputAvailable(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1302878750862131, this, []); }
   /**
    * var inputDataSource: AVAudioSessionDataSourceDescription? { get }
    * @availability iOS 6.0+
    */
-  get inputDataSource(): $SDK28 { return callSDK<$SDK28>("AVFAudio_d6c5d10d3352e6ec", 3665580990964020, this, []); }
+  get inputDataSource(): $SDK28 { return callSDK<$SDK28>("AVFAudio_a956b86ef7a76a8e", 3665580990964020, this, []); }
   /**
    * var inputDataSources: [AVAudioSessionDataSourceDescription]? { get }
    * @availability iOS 6.0+
    */
-  get inputDataSources(): $SDK33 { return callSDK<$SDK33>("AVFAudio_d6c5d10d3352e6ec", 3281917295760791, this, []); }
+  get inputDataSources(): $SDK33 { return callSDK<$SDK33>("AVFAudio_a956b86ef7a76a8e", 3281917295760791, this, []); }
   /**
    * var inputGain: Float { get }
    * @availability iOS 6.0+
    */
-  get inputGain(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3500348357472877, this, []); }
+  get inputGain(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3500348357472877, this, []); }
   /**
    * var isInputGainSettable: Bool { get }
    * @availability iOS 6.0+
    */
-  get isInputGainSettable(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1725758241182583, this, []); }
+  get isInputGainSettable(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1725758241182583, this, []); }
   /**
    * var inputLatency: TimeInterval { get }
    * @availability iOS 6.0+
    */
-  get inputLatency(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3175603886872556, this, []); }
+  get inputLatency(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3175603886872556, this, []); }
   /**
    * var inputNumberOfChannels: Int { get }
    * @availability iOS 6.0+
    */
-  get inputNumberOfChannels(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2666851084794928, this, []); }
+  get inputNumberOfChannels(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2666851084794928, this, []); }
   /**
    * var inputOrientation: AVAudioSession.StereoOrientation { get }
    * @availability iOS 14.0+
    */
-  get inputOrientation(): AVAudioSession_StereoOrientation { return callSDK<AVAudioSession_StereoOrientation>("AVFAudio_d6c5d10d3352e6ec", 2991602482073575, this, []); }
+  get inputOrientation(): AVAudioSession_StereoOrientation { return callSDK<AVAudioSession_StereoOrientation>("AVFAudio_a956b86ef7a76a8e", 2991602482073575, this, []); }
   /**
    * var isEchoCancelledInputAvailable: Bool { get }
    * @availability iOS 18.2+
    */
-  get isEchoCancelledInputAvailable(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3599667455737691, this, []); }
+  get isEchoCancelledInputAvailable(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3599667455737691, this, []); }
   /**
    * var isEchoCancelledInputEnabled: Bool { get }
    * @availability iOS 18.2+
    */
-  get isEchoCancelledInputEnabled(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 848207801219563, this, []); }
+  get isEchoCancelledInputEnabled(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 848207801219563, this, []); }
   /**
    * var isMicrophoneInjectionAvailable: Bool { get }
    * @availability iOS 18.2+
    */
-  get isMicrophoneInjectionAvailable(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 4353386758010623, this, []); }
+  get isMicrophoneInjectionAvailable(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 4353386758010623, this, []); }
   /**
    * var maximumInputNumberOfChannels: Int { get }
    * @availability iOS 7.0+
    */
-  get maximumInputNumberOfChannels(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3640542610049052, this, []); }
+  get maximumInputNumberOfChannels(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3640542610049052, this, []); }
   /**
    * var maximumOutputNumberOfChannels: Int { get }
    * @availability iOS 7.0+
    */
-  get maximumOutputNumberOfChannels(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1132758649736859, this, []); }
+  get maximumOutputNumberOfChannels(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1132758649736859, this, []); }
   /**
    * var mode: AVAudioSession.Mode { get }
    * @availability iOS 5.0+
    */
-  get mode(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 3474967779655177, this, []); }
+  get mode(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 3474967779655177, this, []); }
   /**
    * var isOtherAudioPlaying: Bool { get }
    * @availability iOS 6.0+
    */
-  get isOtherAudioPlaying(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1002572673947465, this, []); }
+  get isOtherAudioPlaying(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1002572673947465, this, []); }
   /**
    * var outputDataSource: AVAudioSessionDataSourceDescription? { get }
    * @availability iOS 6.0+
    */
-  get outputDataSource(): $SDK28 { return callSDK<$SDK28>("AVFAudio_d6c5d10d3352e6ec", 423707193235933, this, []); }
+  get outputDataSource(): $SDK28 { return callSDK<$SDK28>("AVFAudio_a956b86ef7a76a8e", 423707193235933, this, []); }
   /**
    * var outputDataSources: [AVAudioSessionDataSourceDescription]? { get }
    * @availability iOS 6.0+
    */
-  get outputDataSources(): $SDK33 { return callSDK<$SDK33>("AVFAudio_d6c5d10d3352e6ec", 843758592792422, this, []); }
+  get outputDataSources(): $SDK33 { return callSDK<$SDK33>("AVFAudio_a956b86ef7a76a8e", 843758592792422, this, []); }
   /**
    * var outputLatency: TimeInterval { get }
    * @availability iOS 6.0+
    */
-  get outputLatency(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1062204490824143, this, []); }
+  get outputLatency(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1062204490824143, this, []); }
   /**
    * var isOutputMuted: Bool { get }
    * @availability iOS 26.0+
    */
-  get isOutputMuted(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2339638326599114, this, []); }
+  get isOutputMuted(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2339638326599114, this, []); }
   /**
    * var outputNumberOfChannels: Int { get }
    * @availability iOS 6.0+
    */
-  get outputNumberOfChannels(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3588829522992342, this, []); }
+  get outputNumberOfChannels(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3588829522992342, this, []); }
   /**
    * var outputVolume: Float { get }
    * @availability iOS 6.0+
    */
-  get outputVolume(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1210696887729295, this, []); }
+  get outputVolume(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1210696887729295, this, []); }
   /**
    * var preferredIOBufferDuration: TimeInterval { get }
    * @availability iOS 3.0+
    */
-  get preferredIOBufferDuration(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2305407852481517, this, []); }
+  get preferredIOBufferDuration(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2305407852481517, this, []); }
   /**
    * var preferredInput: AVAudioSessionPortDescription? { get }
    * @availability iOS 7.0+
    */
-  get preferredInput(): $SDK29 { return callSDK<$SDK29>("AVFAudio_d6c5d10d3352e6ec", 3505537611375894, this, []); }
+  get preferredInput(): $SDK29 { return callSDK<$SDK29>("AVFAudio_a956b86ef7a76a8e", 3505537611375894, this, []); }
   /**
    * var preferredInputNumberOfChannels: Int { get }
    * @availability iOS 7.0+
    */
-  get preferredInputNumberOfChannels(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2156358831096522, this, []); }
+  get preferredInputNumberOfChannels(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2156358831096522, this, []); }
   /**
    * var preferredInputOrientation: AVAudioSession.StereoOrientation { get }
    * @availability iOS 14.0+
    */
-  get preferredInputOrientation(): AVAudioSession_StereoOrientation { return callSDK<AVAudioSession_StereoOrientation>("AVFAudio_d6c5d10d3352e6ec", 608280681463456, this, []); }
+  get preferredInputOrientation(): AVAudioSession_StereoOrientation { return callSDK<AVAudioSession_StereoOrientation>("AVFAudio_a956b86ef7a76a8e", 608280681463456, this, []); }
   /**
    * var preferredMicrophoneInjectionMode: AVAudioSession.MicrophoneInjectionMode { get }
    * @availability iOS 18.2+
    */
-  get preferredMicrophoneInjectionMode(): AVAudioSession_MicrophoneInjectionMode { return callSDK<AVAudioSession_MicrophoneInjectionMode>("AVFAudio_d6c5d10d3352e6ec", 2123594967765499, this, []); }
+  get preferredMicrophoneInjectionMode(): AVAudioSession_MicrophoneInjectionMode { return callSDK<AVAudioSession_MicrophoneInjectionMode>("AVFAudio_a956b86ef7a76a8e", 2123594967765499, this, []); }
   /**
    * var preferredOutputNumberOfChannels: Int { get }
    * @availability iOS 7.0+
    */
-  get preferredOutputNumberOfChannels(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 194708349822942, this, []); }
+  get preferredOutputNumberOfChannels(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 194708349822942, this, []); }
   /**
    * var preferredSampleRate: Double { get }
    * @availability iOS 6.0+
    */
-  get preferredSampleRate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2532988783785662, this, []); }
+  get preferredSampleRate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2532988783785662, this, []); }
   /**
    * var prefersEchoCancelledInput: Bool { get }
    * @availability iOS 18.2+
    */
-  get prefersEchoCancelledInput(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 293399097964138, this, []); }
+  get prefersEchoCancelledInput(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 293399097964138, this, []); }
   /**
    * var prefersInterruptionOnRouteDisconnect: Bool { get }
    * @availability iOS 17.0+
    */
-  get prefersInterruptionOnRouteDisconnect(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1685486969885262, this, []); }
+  get prefersInterruptionOnRouteDisconnect(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1685486969885262, this, []); }
   /**
    * var prefersNoInterruptionsFromSystemAlerts: Bool { get }
    * @availability iOS 14.5+
    */
-  get prefersNoInterruptionsFromSystemAlerts(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 103167318894435, this, []); }
+  get prefersNoInterruptionsFromSystemAlerts(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 103167318894435, this, []); }
   /**
    * var promptStyle: AVAudioSession.PromptStyle { get }
    * @availability iOS 13.0+
    */
-  get promptStyle(): AVAudioSession_PromptStyle { return callSDK<AVAudioSession_PromptStyle>("AVFAudio_d6c5d10d3352e6ec", 3205947979959090, this, []); }
+  get promptStyle(): AVAudioSession_PromptStyle { return callSDK<AVAudioSession_PromptStyle>("AVFAudio_a956b86ef7a76a8e", 3205947979959090, this, []); }
   /**
    * var recordPermission: AVAudioSession.RecordPermission { get }
    * @availability iOS 8.0+
    * @deprecated iOS 17.0
    */
-  get recordPermission(): AVAudioSession_RecordPermission { return callSDK<AVAudioSession_RecordPermission>("AVFAudio_d6c5d10d3352e6ec", 580926612856058, this, []); }
+  get recordPermission(): AVAudioSession_RecordPermission { return callSDK<AVAudioSession_RecordPermission>("AVFAudio_a956b86ef7a76a8e", 580926612856058, this, []); }
   /**
    * var renderingMode: AVAudioSession.RenderingMode { get }
    * @availability iOS 17.2+
    */
-  get renderingMode(): AVAudioSession_RenderingMode { return callSDK<AVAudioSession_RenderingMode>("AVFAudio_d6c5d10d3352e6ec", 3656336079346591, this, []); }
+  get renderingMode(): AVAudioSession_RenderingMode { return callSDK<AVAudioSession_RenderingMode>("AVFAudio_a956b86ef7a76a8e", 3656336079346591, this, []); }
   /**
    * var routeSharingPolicy: AVAudioSession.RouteSharingPolicy { get }
    * @availability iOS 11.0+
    */
-  get routeSharingPolicy(): AVAudioSession_RouteSharingPolicy { return callSDK<AVAudioSession_RouteSharingPolicy>("AVFAudio_d6c5d10d3352e6ec", 3674183578653513, this, []); }
+  get routeSharingPolicy(): AVAudioSession_RouteSharingPolicy { return callSDK<AVAudioSession_RouteSharingPolicy>("AVFAudio_a956b86ef7a76a8e", 3674183578653513, this, []); }
   /**
    * var sampleRate: Double { get }
    * @availability iOS 6.0+
    */
-  get sampleRate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4135755619091862, this, []); }
+  get sampleRate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4135755619091862, this, []); }
   /**
    * var secondaryAudioShouldBeSilencedHint: Bool { get }
    * @availability iOS 8.0+
    */
-  get secondaryAudioShouldBeSilencedHint(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1969406603087445, this, []); }
+  get secondaryAudioShouldBeSilencedHint(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1969406603087445, this, []); }
   /**
    * var supportedOutputChannelLayouts: [AVAudioChannelLayout] { get }
    * @availability iOS 17.2+
    */
-  get supportedOutputChannelLayouts(): Array<AVAudioChannelLayout> { return callSDK<Array<AVAudioChannelLayout>>("AVFAudio_d6c5d10d3352e6ec", 925016062172245, this, []); }
+  get supportedOutputChannelLayouts(): Array<AVAudioChannelLayout> { return callSDK<Array<AVAudioChannelLayout>>("AVFAudio_a956b86ef7a76a8e", 925016062172245, this, []); }
   /**
    * var supportsMultichannelContent: Bool { get }
    * @availability iOS 15.0+
    */
-  get supportsMultichannelContent(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2759547092473977, this, []); }
+  get supportsMultichannelContent(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2759547092473977, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ioBufferDuration": true; "allowHapticsAndSystemSoundsDuringRecording": true; "availableCategories": true; "availableInputs": true; "availableModes": true; "category": true; "categoryOptions": true; "currentRoute": true; "isInputAvailable": true; "inputDataSource": true; "inputDataSources": true; "inputGain": true; "isInputGainSettable": true; "inputLatency": true; "inputNumberOfChannels": true; "inputOrientation": true; "isEchoCancelledInputAvailable": true; "isEchoCancelledInputEnabled": true; "isMicrophoneInjectionAvailable": true; "maximumInputNumberOfChannels": true; "maximumOutputNumberOfChannels": true; "mode": true; "isOtherAudioPlaying": true; "outputDataSource": true; "outputDataSources": true; "outputLatency": true; "isOutputMuted": true; "outputNumberOfChannels": true; "outputVolume": true; "preferredIOBufferDuration": true; "preferredInput": true; "preferredInputNumberOfChannels": true; "preferredInputOrientation": true; "preferredMicrophoneInjectionMode": true; "preferredOutputNumberOfChannels": true; "preferredSampleRate": true; "prefersEchoCancelledInput": true; "prefersInterruptionOnRouteDisconnect": true; "prefersNoInterruptionsFromSystemAlerts": true; "promptStyle": true; "recordPermission": true; "renderingMode": true; "routeSharingPolicy": true; "sampleRate": true; "secondaryAudioShouldBeSilencedHint": true; "supportedOutputChannelLayouts": true; "supportsMultichannelContent": true };
 }
@@ -2784,40 +2784,40 @@ export const AVAudioSession_Category = {
    * static let ambient: AVAudioSession.Category
    * @availability iOS 3.0+
    */
-  get ambient(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_d6c5d10d3352e6ec", 2689526337325064, undefined, []); },
+  get ambient(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_a956b86ef7a76a8e", 2689526337325064, undefined, []); },
   /**
    * static let audioProcessing: AVAudioSession.Category
    * @availability iOS 3.0+
    * @deprecated iOS 10.0
    */
-  get audioProcessing(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_d6c5d10d3352e6ec", 2546636847064970, undefined, []); },
+  get audioProcessing(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_a956b86ef7a76a8e", 2546636847064970, undefined, []); },
   /**
    * static let multiRoute: AVAudioSession.Category
    * @availability iOS 6.0+
    */
-  get multiRoute(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_d6c5d10d3352e6ec", 4157110909736112, undefined, []); },
+  get multiRoute(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_a956b86ef7a76a8e", 4157110909736112, undefined, []); },
   /**
    * static let playAndRecord: AVAudioSession.Category
    * @availability iOS 3.0+
    */
-  get playAndRecord(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_d6c5d10d3352e6ec", 1919265589655000, undefined, []); },
+  get playAndRecord(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_a956b86ef7a76a8e", 1919265589655000, undefined, []); },
   /**
    * static let playback: AVAudioSession.Category
    * @availability iOS 3.0+
    */
-  get playback(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_d6c5d10d3352e6ec", 417589958585297, undefined, []); },
+  get playback(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_a956b86ef7a76a8e", 417589958585297, undefined, []); },
   /**
    * static let record: AVAudioSession.Category
    * @availability iOS 3.0+
    */
-  get record(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_d6c5d10d3352e6ec", 4193962410207483, undefined, []); },
+  get record(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_a956b86ef7a76a8e", 4193962410207483, undefined, []); },
   /**
    * static let soloAmbient: AVAudioSession.Category
    * @availability iOS 3.0+
    */
-  get soloAmbient(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_d6c5d10d3352e6ec", 2742862256750597, undefined, []); },
+  get soloAmbient(): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_a956b86ef7a76a8e", 2742862256750597, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_d6c5d10d3352e6ec", 2600724012863586, undefined, [rawValue]); }
+  init(rawValue: string): AVAudioSession_Category { return callSDK<AVAudioSession_Category>("AVFAudio_a956b86ef7a76a8e", 2600724012863586, undefined, [rawValue]); }
 };
 
 /** struct CategoryOptions */
@@ -2828,51 +2828,51 @@ export const AVAudioSession_CategoryOptions = {
    * static var allowAirPlay: AVAudioSession.CategoryOptions { get }
    * @availability iOS 10.0+
    */
-  get allowAirPlay(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 4493548930534905, undefined, []); },
+  get allowAirPlay(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 4493548930534905, undefined, []); },
   /**
    * static var allowBluetooth: AVAudioSession.CategoryOptions { get }
    * @availability iOS 1.0+
    * @deprecated iOS 8.0
    */
-  get allowBluetooth(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 3449092141216845, undefined, []); },
+  get allowBluetooth(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 3449092141216845, undefined, []); },
   /**
    * static var allowBluetoothA2DP: AVAudioSession.CategoryOptions { get }
    * @availability iOS 10.0+
    */
-  get allowBluetoothA2DP(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 4199271547371702, undefined, []); },
+  get allowBluetoothA2DP(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 4199271547371702, undefined, []); },
   /**
    * static var allowBluetoothHFP: AVAudioSession.CategoryOptions { get }
    * @availability iOS 1.0+
    */
-  get allowBluetoothHFP(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 129586208048626, undefined, []); },
+  get allowBluetoothHFP(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 129586208048626, undefined, []); },
   /**
    * static var bluetoothHighQualityRecording: AVAudioSession.CategoryOptions { get }
    * @availability iOS 26.0+
    */
-  get bluetoothHighQualityRecording(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 3151777642981403, undefined, []); },
+  get bluetoothHighQualityRecording(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 3151777642981403, undefined, []); },
   /** static var defaultToSpeaker: AVAudioSession.CategoryOptions { get } */
-  get defaultToSpeaker(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 672851297310846, undefined, []); },
+  get defaultToSpeaker(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 672851297310846, undefined, []); },
   /** static var duckOthers: AVAudioSession.CategoryOptions { get } */
-  get duckOthers(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 2545782896220755, undefined, []); },
+  get duckOthers(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 2545782896220755, undefined, []); },
   /**
    * static var farFieldInput: AVAudioSession.CategoryOptions { get }
    * @availability iOS 26.2+
    */
-  get farFieldInput(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 659781726320472, undefined, []); },
+  get farFieldInput(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 659781726320472, undefined, []); },
   /**
    * static var interruptSpokenAudioAndMixWithOthers: AVAudioSession.CategoryOptions { get }
    * @availability iOS 9.0+
    */
-  get interruptSpokenAudioAndMixWithOthers(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 2079619524403145, undefined, []); },
+  get interruptSpokenAudioAndMixWithOthers(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 2079619524403145, undefined, []); },
   /** static var mixWithOthers: AVAudioSession.CategoryOptions { get } */
-  get mixWithOthers(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 682745005625620, undefined, []); },
+  get mixWithOthers(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 682745005625620, undefined, []); },
   /**
    * static var overrideMutedMicrophoneInterruption: AVAudioSession.CategoryOptions { get }
    * @availability iOS 14.5+
    */
-  get overrideMutedMicrophoneInterruption(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 2751981495312492, undefined, []); },
+  get overrideMutedMicrophoneInterruption(): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 2751981495312492, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_d6c5d10d3352e6ec", 2196139339080212, undefined, [rawValue]); }
+  init(rawValue: number): AVAudioSession_CategoryOptions { return callSDK<AVAudioSession_CategoryOptions>("AVFAudio_a956b86ef7a76a8e", 2196139339080212, undefined, [rawValue]); }
 };
 
 /**
@@ -2884,12 +2884,12 @@ export class AVAudioSession_DeactivationContext extends SDKHandle {
    * var interruptionContext: AVAudioSession.InterruptionContext? { get }
    * @availability iOS 27.0+
    */
-  get interruptionContext(): (AVAudioSession_InterruptionContext) | null { return callSDK<(AVAudioSession_InterruptionContext) | null>("AVFAudio_d6c5d10d3352e6ec", 1807652597298462, this, []); }
+  get interruptionContext(): (AVAudioSession_InterruptionContext) | null { return callSDK<(AVAudioSession_InterruptionContext) | null>("AVFAudio_a956b86ef7a76a8e", 1807652597298462, this, []); }
   /**
    * var source: AVAudioSession.DeactivationSource { get }
    * @availability iOS 27.0+
    */
-  get source(): AVAudioSession_DeactivationSource { return callSDK<AVAudioSession_DeactivationSource>("AVFAudio_d6c5d10d3352e6ec", 3106740946749683, this, []); }
+  get source(): AVAudioSession_DeactivationSource { return callSDK<AVAudioSession_DeactivationSource>("AVFAudio_a956b86ef7a76a8e", 3106740946749683, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSessionDeactivationContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interruptionContext": true; "source": true };
 }
@@ -2913,7 +2913,7 @@ export const AVAudioSession_DeactivationSource = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (AVAudioSession_DeactivationSource) | null { return callSDK<(AVAudioSession_DeactivationSource) | null>("AVFAudio_d6c5d10d3352e6ec", 2862675815290159, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_DeactivationSource) | null { return callSDK<(AVAudioSession_DeactivationSource) | null>("AVFAudio_a956b86ef7a76a8e", 2862675815290159, undefined, [rawValue]); }
 };
 
 /**
@@ -2925,17 +2925,17 @@ export class AVAudioSession_DidBecomeActiveMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> AVAudioSession.DidBecomeActiveMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(AVAudioSession_DidBecomeActiveMessage) | null> { return callSDKAsync<(AVAudioSession_DidBecomeActiveMessage) | null>("AVFAudio_d6c5d10d3352e6ec", 897262338893797, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(AVAudioSession_DidBecomeActiveMessage) | null> { return callSDKAsync<(AVAudioSession_DidBecomeActiveMessage) | null>("AVFAudio_a956b86ef7a76a8e", 897262338893797, undefined, [notification]); }
   /**
    * @MainActor static func makeNotification(_ message: AVAudioSession.DidBecomeActiveMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: AVAudioSession_DidBecomeActiveMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("AVFAudio_d6c5d10d3352e6ec", 4285428320943824, undefined, [message]); }
+  static makeNotification(message: AVAudioSession_DidBecomeActiveMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("AVFAudio_a956b86ef7a76a8e", 4285428320943824, undefined, [message]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 3674952945566492, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 3674952945566492, undefined, []); }
   declare readonly $type: { "s:So14AVAudioSessionC8AVFAudioE22DidBecomeActiveMessageV": true };
 }
 
@@ -2954,22 +2954,22 @@ export class AVAudioSession_DidBecomeInactiveMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> AVAudioSession.DidBecomeInactiveMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(AVAudioSession_DidBecomeInactiveMessage) | null> { return callSDKAsync<(AVAudioSession_DidBecomeInactiveMessage) | null>("AVFAudio_d6c5d10d3352e6ec", 681354869485287, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(AVAudioSession_DidBecomeInactiveMessage) | null> { return callSDKAsync<(AVAudioSession_DidBecomeInactiveMessage) | null>("AVFAudio_a956b86ef7a76a8e", 681354869485287, undefined, [notification]); }
   /**
    * @MainActor static func makeNotification(_ message: AVAudioSession.DidBecomeInactiveMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: AVAudioSession_DidBecomeInactiveMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("AVFAudio_d6c5d10d3352e6ec", 1264167976201542, undefined, [message]); }
+  static makeNotification(message: AVAudioSession_DidBecomeInactiveMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("AVFAudio_a956b86ef7a76a8e", 1264167976201542, undefined, [message]); }
   /**
    * let deactivationResult: AVAudioSession.DeactivationResult
    * @availability iOS 27.0+
    */
-  get deactivationResult(): AVAudioSession_DeactivationResult { return callSDK<AVAudioSession_DeactivationResult>("AVFAudio_d6c5d10d3352e6ec", 3631134925009377, this, []); }
+  get deactivationResult(): AVAudioSession_DeactivationResult { return callSDK<AVAudioSession_DeactivationResult>("AVFAudio_a956b86ef7a76a8e", 3631134925009377, this, []); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 912155059779247, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 912155059779247, undefined, []); }
   declare readonly $type: { "s:So14AVAudioSessionC8AVFAudioE24DidBecomeInactiveMessageV": true };
 }
 
@@ -2988,7 +2988,7 @@ export class AVAudioSession_InterruptionContext extends SDKHandle {
    * var reason: AVAudioSession.InterruptionReason { get }
    * @availability iOS 27.0+
    */
-  get reason(): AVAudioSession_InterruptionReason { return callSDK<AVAudioSession_InterruptionReason>("AVFAudio_d6c5d10d3352e6ec", 628354731832826, this, []); }
+  get reason(): AVAudioSession_InterruptionReason { return callSDK<AVAudioSession_InterruptionReason>("AVFAudio_a956b86ef7a76a8e", 628354731832826, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSessionInterruptionContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "reason": true };
 }
@@ -3006,13 +3006,13 @@ export const AVAudioSession_InterruptionOptions = {
    * @availability iOS 6.0+
    * @deprecated iOS 27.0
    */
-  get shouldResume(): AVAudioSession_InterruptionOptions { return callSDK<AVAudioSession_InterruptionOptions>("AVFAudio_d6c5d10d3352e6ec", 1276513927117050, undefined, []); },
+  get shouldResume(): AVAudioSession_InterruptionOptions { return callSDK<AVAudioSession_InterruptionOptions>("AVFAudio_a956b86ef7a76a8e", 1276513927117050, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 6.0+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): AVAudioSession_InterruptionOptions { return callSDK<AVAudioSession_InterruptionOptions>("AVFAudio_d6c5d10d3352e6ec", 4351802668911848, undefined, [rawValue]); }
+  init(rawValue: number): AVAudioSession_InterruptionOptions { return callSDK<AVAudioSession_InterruptionOptions>("AVFAudio_a956b86ef7a76a8e", 4351802668911848, undefined, [rawValue]); }
 };
 
 /** enum InterruptionReason */
@@ -3020,7 +3020,7 @@ export type AVAudioSession_InterruptionReason = "default" | "appWasSuspended" | 
 
 export const AVAudioSession_InterruptionReason = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (AVAudioSession_InterruptionReason) | null { return callSDK<(AVAudioSession_InterruptionReason) | null>("AVFAudio_d6c5d10d3352e6ec", 765989239052981, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_InterruptionReason) | null { return callSDK<(AVAudioSession_InterruptionReason) | null>("AVFAudio_a956b86ef7a76a8e", 765989239052981, undefined, [rawValue]); }
 };
 
 /**
@@ -3036,7 +3036,7 @@ export const AVAudioSession_InterruptionType = {
    * @availability iOS 6.0+
    * @deprecated iOS 27.0
    */
-  init(rawValue: number): (AVAudioSession_InterruptionType) | null { return callSDK<(AVAudioSession_InterruptionType) | null>("AVFAudio_d6c5d10d3352e6ec", 1979212163731636, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_InterruptionType) | null { return callSDK<(AVAudioSession_InterruptionType) | null>("AVFAudio_a956b86ef7a76a8e", 1979212163731636, undefined, [rawValue]); }
 };
 
 /** enum IOType */
@@ -3044,7 +3044,7 @@ export type AVAudioSession_IOType = "notSpecified" | "aggregated";
 
 export const AVAudioSession_IOType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (AVAudioSession_IOType) | null { return callSDK<(AVAudioSession_IOType) | null>("AVFAudio_d6c5d10d3352e6ec", 2142095816845804, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_IOType) | null { return callSDK<(AVAudioSession_IOType) | null>("AVFAudio_a956b86ef7a76a8e", 2142095816845804, undefined, [rawValue]); }
 };
 
 /** struct Location */
@@ -3055,68 +3055,68 @@ export const AVAudioSession_Location = {
    * static let lower: AVAudioSession.Location
    * @availability iOS 7.0+
    */
-  get lower(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 1504134873793015, undefined, []); },
+  get lower(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 1504134873793015, undefined, []); },
   /**
    * static let upper: AVAudioSession.Location
    * @availability iOS 7.0+
    */
-  get upper(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 3338067694200908, undefined, []); },
+  get upper(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 3338067694200908, undefined, []); },
   /**
    * static var orientationTop: AVAudioSession.Location { get }
    * @availability iOS 7.0+
    * @deprecated
    */
-  get orientationTop(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 4403940862207805, undefined, []); },
+  get orientationTop(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 4403940862207805, undefined, []); },
   /**
    * static var orientationBack: AVAudioSession.Location { get }
    * @availability iOS 7.0+
    * @deprecated
    */
-  get orientationBack(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 3055935201741283, undefined, []); },
+  get orientationBack(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 3055935201741283, undefined, []); },
   /**
    * static var orientationLeft: AVAudioSession.Location { get }
    * @availability iOS 8.0+
    * @deprecated
    */
-  get orientationLeft(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 1066816951669324, undefined, []); },
+  get orientationLeft(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 1066816951669324, undefined, []); },
   /**
    * static var orientationFront: AVAudioSession.Location { get }
    * @availability iOS 7.0+
    * @deprecated
    */
-  get orientationFront(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 356769216629709, undefined, []); },
+  get orientationFront(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 356769216629709, undefined, []); },
   /**
    * static var orientationRight: AVAudioSession.Location { get }
    * @availability iOS 8.0+
    * @deprecated
    */
-  get orientationRight(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 2635068665639699, undefined, []); },
+  get orientationRight(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 2635068665639699, undefined, []); },
   /**
    * static var orientationBottom: AVAudioSession.Location { get }
    * @availability iOS 7.0+
    * @deprecated
    */
-  get orientationBottom(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 324573175443336, undefined, []); },
+  get orientationBottom(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 324573175443336, undefined, []); },
   /**
    * static var polarPatternCardioid: AVAudioSession.Location { get }
    * @availability iOS 7.0+
    * @deprecated
    */
-  get polarPatternCardioid(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 1170525528444449, undefined, []); },
+  get polarPatternCardioid(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 1170525528444449, undefined, []); },
   /**
    * static var polarPatternSubcardioid: AVAudioSession.Location { get }
    * @availability iOS 7.0+
    * @deprecated
    */
-  get polarPatternSubcardioid(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 540388342930063, undefined, []); },
+  get polarPatternSubcardioid(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 540388342930063, undefined, []); },
   /**
    * static var polarPatternOmnidirectional: AVAudioSession.Location { get }
    * @availability iOS 7.0+
    * @deprecated
    */
-  get polarPatternOmnidirectional(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 3223004229948598, undefined, []); },
+  get polarPatternOmnidirectional(): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 3223004229948598, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_d6c5d10d3352e6ec", 220462559564624, undefined, [rawValue]); }
+  init(rawValue: string): AVAudioSession_Location { return callSDK<AVAudioSession_Location>("AVFAudio_a956b86ef7a76a8e", 220462559564624, undefined, [rawValue]); }
 };
 
 /** enum MicrophoneInjectionMode */
@@ -3124,7 +3124,7 @@ export type AVAudioSession_MicrophoneInjectionMode = "none" | "spokenAudio";
 
 export const AVAudioSession_MicrophoneInjectionMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (AVAudioSession_MicrophoneInjectionMode) | null { return callSDK<(AVAudioSession_MicrophoneInjectionMode) | null>("AVFAudio_d6c5d10d3352e6ec", 48321785560026, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_MicrophoneInjectionMode) | null { return callSDK<(AVAudioSession_MicrophoneInjectionMode) | null>("AVFAudio_a956b86ef7a76a8e", 48321785560026, undefined, [rawValue]); }
 };
 
 /** struct Mode */
@@ -3135,59 +3135,59 @@ export const AVAudioSession_Mode = {
    * static let `default`: AVAudioSession.Mode
    * @availability iOS 5.0+
    */
-  get default(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 2597113913345665, undefined, []); },
+  get default(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 2597113913345665, undefined, []); },
   /**
    * static let dualRoute: AVAudioSession.Mode
    * @availability iOS 26.2+
    */
-  get dualRoute(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 1162779702464619, undefined, []); },
+  get dualRoute(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 1162779702464619, undefined, []); },
   /**
    * static let gameChat: AVAudioSession.Mode
    * @availability iOS 5.0+
    */
-  get gameChat(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 3537182525734562, undefined, []); },
+  get gameChat(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 3537182525734562, undefined, []); },
   /**
    * static let measurement: AVAudioSession.Mode
    * @availability iOS 5.0+
    */
-  get measurement(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 2107278728406145, undefined, []); },
+  get measurement(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 2107278728406145, undefined, []); },
   /**
    * static let moviePlayback: AVAudioSession.Mode
    * @availability iOS 6.0+
    */
-  get moviePlayback(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 2122013071663900, undefined, []); },
+  get moviePlayback(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 2122013071663900, undefined, []); },
   /**
    * static let shortFormVideo: AVAudioSession.Mode
    * @availability iOS 26.0+
    */
-  get shortFormVideo(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 3562597467296422, undefined, []); },
+  get shortFormVideo(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 3562597467296422, undefined, []); },
   /**
    * static let spokenAudio: AVAudioSession.Mode
    * @availability iOS 9.0+
    */
-  get spokenAudio(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 1418735790663804, undefined, []); },
+  get spokenAudio(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 1418735790663804, undefined, []); },
   /**
    * static let videoChat: AVAudioSession.Mode
    * @availability iOS 7.0+
    */
-  get videoChat(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 4027883070691036, undefined, []); },
+  get videoChat(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 4027883070691036, undefined, []); },
   /**
    * static let videoRecording: AVAudioSession.Mode
    * @availability iOS 5.0+
    */
-  get videoRecording(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 193406765068904, undefined, []); },
+  get videoRecording(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 193406765068904, undefined, []); },
   /**
    * static let voiceChat: AVAudioSession.Mode
    * @availability iOS 5.0+
    */
-  get voiceChat(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 1365853784228710, undefined, []); },
+  get voiceChat(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 1365853784228710, undefined, []); },
   /**
    * static let voicePrompt: AVAudioSession.Mode
    * @availability iOS 12.0+
    */
-  get voicePrompt(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 2422470108414133, undefined, []); },
+  get voicePrompt(): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 2422470108414133, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_d6c5d10d3352e6ec", 693877105211314, undefined, [rawValue]); }
+  init(rawValue: string): AVAudioSession_Mode { return callSDK<AVAudioSession_Mode>("AVFAudio_a956b86ef7a76a8e", 693877105211314, undefined, [rawValue]); }
 };
 
 /** struct Orientation */
@@ -3198,34 +3198,34 @@ export const AVAudioSession_Orientation = {
    * static let back: AVAudioSession.Orientation
    * @availability iOS 7.0+
    */
-  get back(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_d6c5d10d3352e6ec", 1406817404337931, undefined, []); },
+  get back(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_a956b86ef7a76a8e", 1406817404337931, undefined, []); },
   /**
    * static let bottom: AVAudioSession.Orientation
    * @availability iOS 7.0+
    */
-  get bottom(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_d6c5d10d3352e6ec", 2589605184967064, undefined, []); },
+  get bottom(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_a956b86ef7a76a8e", 2589605184967064, undefined, []); },
   /**
    * static let front: AVAudioSession.Orientation
    * @availability iOS 7.0+
    */
-  get front(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_d6c5d10d3352e6ec", 4082257626558120, undefined, []); },
+  get front(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_a956b86ef7a76a8e", 4082257626558120, undefined, []); },
   /**
    * static let left: AVAudioSession.Orientation
    * @availability iOS 8.0+
    */
-  get left(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_d6c5d10d3352e6ec", 4407470645282244, undefined, []); },
+  get left(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_a956b86ef7a76a8e", 4407470645282244, undefined, []); },
   /**
    * static let right: AVAudioSession.Orientation
    * @availability iOS 8.0+
    */
-  get right(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_d6c5d10d3352e6ec", 4154856050839741, undefined, []); },
+  get right(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_a956b86ef7a76a8e", 4154856050839741, undefined, []); },
   /**
    * static let top: AVAudioSession.Orientation
    * @availability iOS 7.0+
    */
-  get top(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_d6c5d10d3352e6ec", 4112787208279083, undefined, []); },
+  get top(): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_a956b86ef7a76a8e", 4112787208279083, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_d6c5d10d3352e6ec", 2477254425204060, undefined, [rawValue]); }
+  init(rawValue: string): AVAudioSession_Orientation { return callSDK<AVAudioSession_Orientation>("AVFAudio_a956b86ef7a76a8e", 2477254425204060, undefined, [rawValue]); }
 };
 
 /** struct PolarPattern */
@@ -3236,24 +3236,24 @@ export const AVAudioSession_PolarPattern = {
    * static let cardioid: AVAudioSession.PolarPattern
    * @availability iOS 7.0+
    */
-  get cardioid(): AVAudioSession_PolarPattern { return callSDK<AVAudioSession_PolarPattern>("AVFAudio_d6c5d10d3352e6ec", 1824553644103667, undefined, []); },
+  get cardioid(): AVAudioSession_PolarPattern { return callSDK<AVAudioSession_PolarPattern>("AVFAudio_a956b86ef7a76a8e", 1824553644103667, undefined, []); },
   /**
    * static let omnidirectional: AVAudioSession.PolarPattern
    * @availability iOS 7.0+
    */
-  get omnidirectional(): AVAudioSession_PolarPattern { return callSDK<AVAudioSession_PolarPattern>("AVFAudio_d6c5d10d3352e6ec", 2269390237271617, undefined, []); },
+  get omnidirectional(): AVAudioSession_PolarPattern { return callSDK<AVAudioSession_PolarPattern>("AVFAudio_a956b86ef7a76a8e", 2269390237271617, undefined, []); },
   /**
    * static let stereo: AVAudioSession.PolarPattern
    * @availability iOS 14.0+
    */
-  get stereo(): AVAudioSession_PolarPattern { return callSDK<AVAudioSession_PolarPattern>("AVFAudio_d6c5d10d3352e6ec", 2125834843213556, undefined, []); },
+  get stereo(): AVAudioSession_PolarPattern { return callSDK<AVAudioSession_PolarPattern>("AVFAudio_a956b86ef7a76a8e", 2125834843213556, undefined, []); },
   /**
    * static let subcardioid: AVAudioSession.PolarPattern
    * @availability iOS 7.0+
    */
-  get subcardioid(): AVAudioSession_PolarPattern { return callSDK<AVAudioSession_PolarPattern>("AVFAudio_d6c5d10d3352e6ec", 3883591124398499, undefined, []); },
+  get subcardioid(): AVAudioSession_PolarPattern { return callSDK<AVAudioSession_PolarPattern>("AVFAudio_a956b86ef7a76a8e", 3883591124398499, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): AVAudioSession_PolarPattern { return callSDK<AVAudioSession_PolarPattern>("AVFAudio_d6c5d10d3352e6ec", 1891239215516975, undefined, [rawValue]); }
+  init(rawValue: string): AVAudioSession_PolarPattern { return callSDK<AVAudioSession_PolarPattern>("AVFAudio_a956b86ef7a76a8e", 1891239215516975, undefined, [rawValue]); }
 };
 
 /** struct Port */
@@ -3264,114 +3264,114 @@ export const AVAudioSession_Port = {
    * static let AVB: AVAudioSession.Port
    * @availability iOS 14.0+
    */
-  get AVB(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 1539010725499528, undefined, []); },
+  get AVB(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 1539010725499528, undefined, []); },
   /**
    * static let airPlay: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get airPlay(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 3451947283885959, undefined, []); },
+  get airPlay(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 3451947283885959, undefined, []); },
   /**
    * static let bluetoothA2DP: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get bluetoothA2DP(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 2074538431145944, undefined, []); },
+  get bluetoothA2DP(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 2074538431145944, undefined, []); },
   /**
    * static let bluetoothHFP: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get bluetoothHFP(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 2765245117107026, undefined, []); },
+  get bluetoothHFP(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 2765245117107026, undefined, []); },
   /**
    * static let bluetoothLE: AVAudioSession.Port
    * @availability iOS 7.0+
    */
-  get bluetoothLE(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 1713863469734823, undefined, []); },
+  get bluetoothLE(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 1713863469734823, undefined, []); },
   /**
    * static let builtInMic: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get builtInMic(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 1929207084320250, undefined, []); },
+  get builtInMic(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 1929207084320250, undefined, []); },
   /**
    * static let builtInReceiver: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get builtInReceiver(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 18766064818456, undefined, []); },
+  get builtInReceiver(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 18766064818456, undefined, []); },
   /**
    * static let builtInSpeaker: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get builtInSpeaker(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 2960661617901134, undefined, []); },
+  get builtInSpeaker(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 2960661617901134, undefined, []); },
   /**
    * static let carAudio: AVAudioSession.Port
    * @availability iOS 7.0+
    */
-  get carAudio(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 2104222082672426, undefined, []); },
+  get carAudio(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 2104222082672426, undefined, []); },
   /**
    * static let continuityMicrophone: AVAudioSession.Port
    * @availability iOS 17.0+
    */
-  get continuityMicrophone(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 3085048510767133, undefined, []); },
+  get continuityMicrophone(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 3085048510767133, undefined, []); },
   /**
    * static let displayPort: AVAudioSession.Port
    * @availability iOS 14.0+
    */
-  get displayPort(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 1933354625442426, undefined, []); },
+  get displayPort(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 1933354625442426, undefined, []); },
   /**
    * static let fireWire: AVAudioSession.Port
    * @availability iOS 14.0+
    */
-  get fireWire(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 949283340451856, undefined, []); },
+  get fireWire(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 949283340451856, undefined, []); },
   /**
    * static let HDMI: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get HDMI(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 3879879039959688, undefined, []); },
+  get HDMI(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 3879879039959688, undefined, []); },
   /**
    * static let headphones: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get headphones(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 83306874049205, undefined, []); },
+  get headphones(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 83306874049205, undefined, []); },
   /**
    * static let headsetMic: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get headsetMic(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 2996041518347369, undefined, []); },
+  get headsetMic(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 2996041518347369, undefined, []); },
   /**
    * static let lineIn: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get lineIn(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 1140832239689891, undefined, []); },
+  get lineIn(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 1140832239689891, undefined, []); },
   /**
    * static let lineOut: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get lineOut(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 4132821145553953, undefined, []); },
+  get lineOut(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 4132821145553953, undefined, []); },
   /**
    * static let mediaDeviceExtension: AVAudioSession.Port
    * @availability iOS 27.0+
    */
-  get mediaDeviceExtension(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 3858927564436084, undefined, []); },
+  get mediaDeviceExtension(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 3858927564436084, undefined, []); },
   /**
    * static let PCI: AVAudioSession.Port
    * @availability iOS 14.0+
    */
-  get PCI(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 1251799877312050, undefined, []); },
+  get PCI(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 1251799877312050, undefined, []); },
   /**
    * static let thunderbolt: AVAudioSession.Port
    * @availability iOS 14.0+
    */
-  get thunderbolt(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 2072976329196075, undefined, []); },
+  get thunderbolt(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 2072976329196075, undefined, []); },
   /**
    * static let usbAudio: AVAudioSession.Port
    * @availability iOS 6.0+
    */
-  get usbAudio(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 2567057014232059, undefined, []); },
+  get usbAudio(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 2567057014232059, undefined, []); },
   /**
    * static let virtual: AVAudioSession.Port
    * @availability iOS 14.0+
    */
-  get virtual(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 1812176783460241, undefined, []); },
+  get virtual(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 1812176783460241, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 337822840751366, undefined, [rawValue]); }
+  init(rawValue: string): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 337822840751366, undefined, [rawValue]); }
 };
 
 /** enum PortOverride */
@@ -3379,7 +3379,7 @@ export type AVAudioSession_PortOverride = "none" | "speaker";
 
 export const AVAudioSession_PortOverride = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (AVAudioSession_PortOverride) | null { return callSDK<(AVAudioSession_PortOverride) | null>("AVFAudio_d6c5d10d3352e6ec", 350077227073357, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_PortOverride) | null { return callSDK<(AVAudioSession_PortOverride) | null>("AVFAudio_a956b86ef7a76a8e", 350077227073357, undefined, [rawValue]); }
 };
 
 /** enum PromptStyle */
@@ -3387,7 +3387,7 @@ export type AVAudioSession_PromptStyle = "none" | "short" | "normal";
 
 export const AVAudioSession_PromptStyle = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (AVAudioSession_PromptStyle) | null { return callSDK<(AVAudioSession_PromptStyle) | null>("AVFAudio_d6c5d10d3352e6ec", 3861067559516683, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_PromptStyle) | null { return callSDK<(AVAudioSession_PromptStyle) | null>("AVFAudio_a956b86ef7a76a8e", 3861067559516683, undefined, [rawValue]); }
 };
 
 /** enum RecordPermission */
@@ -3395,7 +3395,7 @@ export type AVAudioSession_RecordPermission = "undetermined" | "denied" | "grant
 
 export const AVAudioSession_RecordPermission = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (AVAudioSession_RecordPermission) | null { return callSDK<(AVAudioSession_RecordPermission) | null>("AVFAudio_d6c5d10d3352e6ec", 2550126411650208, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_RecordPermission) | null { return callSDK<(AVAudioSession_RecordPermission) | null>("AVFAudio_a956b86ef7a76a8e", 2550126411650208, undefined, [rawValue]); }
 };
 
 /** enum RenderingMode */
@@ -3403,7 +3403,7 @@ export type AVAudioSession_RenderingMode = "notApplicable" | "monoStereo" | "sur
 
 export const AVAudioSession_RenderingMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (AVAudioSession_RenderingMode) | null { return callSDK<(AVAudioSession_RenderingMode) | null>("AVFAudio_d6c5d10d3352e6ec", 4298962048603235, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_RenderingMode) | null { return callSDK<(AVAudioSession_RenderingMode) | null>("AVFAudio_a956b86ef7a76a8e", 4298962048603235, undefined, [rawValue]); }
 };
 
 /**
@@ -3415,7 +3415,7 @@ export class AVAudioSession_ResumptionContext extends SDKHandle {
    * var recommendation: AVAudioSession.ResumptionRecommendation { get }
    * @availability iOS 27.0+
    */
-  get recommendation(): AVAudioSession_ResumptionRecommendation { return callSDK<AVAudioSession_ResumptionRecommendation>("AVFAudio_d6c5d10d3352e6ec", 4477432137304694, this, []); }
+  get recommendation(): AVAudioSession_ResumptionRecommendation { return callSDK<AVAudioSession_ResumptionRecommendation>("AVFAudio_a956b86ef7a76a8e", 4477432137304694, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSessionResumptionContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "recommendation": true };
 }
@@ -3431,7 +3431,7 @@ export const AVAudioSession_ResumptionRecommendation = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (AVAudioSession_ResumptionRecommendation) | null { return callSDK<(AVAudioSession_ResumptionRecommendation) | null>("AVFAudio_d6c5d10d3352e6ec", 2003897968508746, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_ResumptionRecommendation) | null { return callSDK<(AVAudioSession_ResumptionRecommendation) | null>("AVFAudio_a956b86ef7a76a8e", 2003897968508746, undefined, [rawValue]); }
 };
 
 /**
@@ -3443,22 +3443,22 @@ export class AVAudioSession_ResumptionRecommendationMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> AVAudioSession.ResumptionRecommendationMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(AVAudioSession_ResumptionRecommendationMessage) | null> { return callSDKAsync<(AVAudioSession_ResumptionRecommendationMessage) | null>("AVFAudio_d6c5d10d3352e6ec", 4322165652563699, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(AVAudioSession_ResumptionRecommendationMessage) | null> { return callSDKAsync<(AVAudioSession_ResumptionRecommendationMessage) | null>("AVFAudio_a956b86ef7a76a8e", 4322165652563699, undefined, [notification]); }
   /**
    * let recommendation: AVAudioSession.ResumptionRecommendation
    * @availability iOS 27.0+
    */
-  get recommendation(): AVAudioSession_ResumptionRecommendation { return callSDK<AVAudioSession_ResumptionRecommendation>("AVFAudio_d6c5d10d3352e6ec", 1682994752559782, this, []); }
+  get recommendation(): AVAudioSession_ResumptionRecommendation { return callSDK<AVAudioSession_ResumptionRecommendation>("AVFAudio_a956b86ef7a76a8e", 1682994752559782, this, []); }
   /**
    * @MainActor static func makeNotification(_ message: AVAudioSession.ResumptionRecommendationMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: AVAudioSession_ResumptionRecommendationMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("AVFAudio_d6c5d10d3352e6ec", 3761194721727180, undefined, [message]); }
+  static makeNotification(message: AVAudioSession_ResumptionRecommendationMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("AVFAudio_a956b86ef7a76a8e", 3761194721727180, undefined, [message]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 4123940390101842, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 4123940390101842, undefined, []); }
   declare readonly $type: { "s:So14AVAudioSessionC8AVFAudioE31ResumptionRecommendationMessageV": true };
 }
 
@@ -3473,7 +3473,7 @@ export type AVAudioSession_RouteChangeReason = "unknown" | "newDeviceAvailable" 
 
 export const AVAudioSession_RouteChangeReason = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (AVAudioSession_RouteChangeReason) | null { return callSDK<(AVAudioSession_RouteChangeReason) | null>("AVFAudio_d6c5d10d3352e6ec", 43183231756567, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_RouteChangeReason) | null { return callSDK<(AVAudioSession_RouteChangeReason) | null>("AVFAudio_a956b86ef7a76a8e", 43183231756567, undefined, [rawValue]); }
 };
 
 /** enum RouteSharingPolicy */
@@ -3485,9 +3485,9 @@ export const AVAudioSession_RouteSharingPolicy = {
    * @availability iOS 11.0+
    * @deprecated iOS 13.0
    */
-  get longForm(): AVAudioSession_RouteSharingPolicy { return callSDK<AVAudioSession_RouteSharingPolicy>("AVFAudio_d6c5d10d3352e6ec", 2630120198906100, undefined, []); },
+  get longForm(): AVAudioSession_RouteSharingPolicy { return callSDK<AVAudioSession_RouteSharingPolicy>("AVFAudio_a956b86ef7a76a8e", 2630120198906100, undefined, []); },
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (AVAudioSession_RouteSharingPolicy) | null { return callSDK<(AVAudioSession_RouteSharingPolicy) | null>("AVFAudio_d6c5d10d3352e6ec", 208286253365554, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_RouteSharingPolicy) | null { return callSDK<(AVAudioSession_RouteSharingPolicy) | null>("AVFAudio_a956b86ef7a76a8e", 208286253365554, undefined, [rawValue]); }
 };
 
 /** struct SetActiveOptions */
@@ -3495,9 +3495,9 @@ export type AVAudioSession_SetActiveOptions = Array<"notifyOthersOnDeactivation"
 
 export const AVAudioSession_SetActiveOptions = {
   /** static var notifyOthersOnDeactivation: AVAudioSession.SetActiveOptions { get } */
-  get notifyOthersOnDeactivation(): AVAudioSession_SetActiveOptions { return callSDK<AVAudioSession_SetActiveOptions>("AVFAudio_d6c5d10d3352e6ec", 1279287173493381, undefined, []); },
+  get notifyOthersOnDeactivation(): AVAudioSession_SetActiveOptions { return callSDK<AVAudioSession_SetActiveOptions>("AVFAudio_a956b86ef7a76a8e", 1279287173493381, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): AVAudioSession_SetActiveOptions { return callSDK<AVAudioSession_SetActiveOptions>("AVFAudio_d6c5d10d3352e6ec", 3005843018864771, undefined, [rawValue]); }
+  init(rawValue: number): AVAudioSession_SetActiveOptions { return callSDK<AVAudioSession_SetActiveOptions>("AVFAudio_a956b86ef7a76a8e", 3005843018864771, undefined, [rawValue]); }
 };
 
 /** enum SilenceSecondaryAudioHintType */
@@ -3505,7 +3505,7 @@ export type AVAudioSession_SilenceSecondaryAudioHintType = "begin" | "end";
 
 export const AVAudioSession_SilenceSecondaryAudioHintType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (AVAudioSession_SilenceSecondaryAudioHintType) | null { return callSDK<(AVAudioSession_SilenceSecondaryAudioHintType) | null>("AVFAudio_d6c5d10d3352e6ec", 2605586371792228, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_SilenceSecondaryAudioHintType) | null { return callSDK<(AVAudioSession_SilenceSecondaryAudioHintType) | null>("AVFAudio_a956b86ef7a76a8e", 2605586371792228, undefined, [rawValue]); }
 };
 
 /** enum StereoOrientation */
@@ -3513,7 +3513,7 @@ export type AVAudioSession_StereoOrientation = "none" | "portrait" | "portraitUp
 
 export const AVAudioSession_StereoOrientation = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (AVAudioSession_StereoOrientation) | null { return callSDK<(AVAudioSession_StereoOrientation) | null>("AVFAudio_d6c5d10d3352e6ec", 2072680594553980, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_StereoOrientation) | null { return callSDK<(AVAudioSession_StereoOrientation) | null>("AVFAudio_a956b86ef7a76a8e", 2072680594553980, undefined, [rawValue]); }
 };
 
 /** struct AVAudioSessionActivationOptions */
@@ -3521,7 +3521,7 @@ export type AVAudioSessionActivationOptions = Array<number>;
 
 export const AVAudioSessionActivationOptions = {
   /** init(rawValue: UInt) */
-  init(rawValue: number): AVAudioSessionActivationOptions { return callSDK<AVAudioSessionActivationOptions>("AVFAudio_d6c5d10d3352e6ec", 2456308937286967, undefined, [rawValue]); }
+  init(rawValue: number): AVAudioSessionActivationOptions { return callSDK<AVAudioSessionActivationOptions>("AVFAudio_a956b86ef7a76a8e", 2456308937286967, undefined, [rawValue]); }
 };
 
 /**
@@ -3530,17 +3530,17 @@ export const AVAudioSessionActivationOptions = {
  */
 export class AVAudioSessionCapability extends SDKHandle {
   /** init() */
-  static init(): AVAudioSessionCapability { return callSDK<AVAudioSessionCapability>("AVFAudio_d6c5d10d3352e6ec", 2124154634899624, undefined, []); }
+  static init(): AVAudioSessionCapability { return callSDK<AVAudioSessionCapability>("AVFAudio_a956b86ef7a76a8e", 2124154634899624, undefined, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 587904736620583, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 587904736620583, this, []); }
   /**
    * var isSupported: Bool { get }
    * @availability iOS 26.0+
    */
-  get isSupported(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 851662701841948, this, []); }
+  get isSupported(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 851662701841948, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSessionCapability": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isSupported": true };
 }
@@ -3551,27 +3551,27 @@ export class AVAudioSessionCapability extends SDKHandle {
  */
 export class AVAudioSessionChannelDescription extends SDKHandle {
   /** init() */
-  static init(): AVAudioSessionChannelDescription { return callSDK<AVAudioSessionChannelDescription>("AVFAudio_d6c5d10d3352e6ec", 1227565810517156, undefined, []); }
+  static init(): AVAudioSessionChannelDescription { return callSDK<AVAudioSessionChannelDescription>("AVFAudio_a956b86ef7a76a8e", 1227565810517156, undefined, []); }
   /**
    * var channelLabel: AudioChannelLabel { get }
    * @availability iOS 6.0+
    */
-  get channelLabel(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1262261453553589, this, []); }
+  get channelLabel(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1262261453553589, this, []); }
   /**
    * var channelName: String { get }
    * @availability iOS 6.0+
    */
-  get channelName(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4017017024089994, this, []); }
+  get channelName(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4017017024089994, this, []); }
   /**
    * var channelNumber: Int { get }
    * @availability iOS 6.0+
    */
-  get channelNumber(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1866667639839248, this, []); }
+  get channelNumber(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1866667639839248, this, []); }
   /**
    * var owningPortUID: String { get }
    * @availability iOS 6.0+
    */
-  get owningPortUID(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 37811859391919, this, []); }
+  get owningPortUID(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 37811859391919, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSessionChannelDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelLabel": true; "channelName": true; "channelNumber": true; "owningPortUID": true };
 }
@@ -3582,47 +3582,47 @@ export class AVAudioSessionChannelDescription extends SDKHandle {
  */
 export class AVAudioSessionDataSourceDescription extends SDKHandle {
   /** init() */
-  static init(): AVAudioSessionDataSourceDescription { return callSDK<AVAudioSessionDataSourceDescription>("AVFAudio_d6c5d10d3352e6ec", 3727596676083511, undefined, []); }
+  static init(): AVAudioSessionDataSourceDescription { return callSDK<AVAudioSessionDataSourceDescription>("AVFAudio_a956b86ef7a76a8e", 3727596676083511, undefined, []); }
   /**
    * func setPreferredPolarPattern(_ pattern: AVAudioSession.PolarPattern?) throws
    * @availability iOS 7.0+
    */
-  setPreferredPolarPattern(pattern?: $SDK39): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2632459632345240, this, [pattern]); }
+  setPreferredPolarPattern(pattern?: $SDK39): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2632459632345240, this, [pattern]); }
   /**
    * var dataSourceID: NSNumber { get }
    * @availability iOS 6.0+
    */
-  get dataSourceID(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("AVFAudio_d6c5d10d3352e6ec", 2320806843565482, this, []); }
+  get dataSourceID(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("AVFAudio_a956b86ef7a76a8e", 2320806843565482, this, []); }
   /**
    * var dataSourceName: String { get }
    * @availability iOS 6.0+
    */
-  get dataSourceName(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2871217644765161, this, []); }
+  get dataSourceName(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2871217644765161, this, []); }
   /**
    * var location: AVAudioSession.Location? { get }
    * @availability iOS 7.0+
    */
-  get location(): (AVAudioSession_Location) | null { return callSDK<(AVAudioSession_Location) | null>("AVFAudio_d6c5d10d3352e6ec", 934572202746634, this, []); }
+  get location(): (AVAudioSession_Location) | null { return callSDK<(AVAudioSession_Location) | null>("AVFAudio_a956b86ef7a76a8e", 934572202746634, this, []); }
   /**
    * var orientation: AVAudioSession.Orientation? { get }
    * @availability iOS 7.0+
    */
-  get orientation(): (AVAudioSession_Orientation) | null { return callSDK<(AVAudioSession_Orientation) | null>("AVFAudio_d6c5d10d3352e6ec", 2986888824424907, this, []); }
+  get orientation(): (AVAudioSession_Orientation) | null { return callSDK<(AVAudioSession_Orientation) | null>("AVFAudio_a956b86ef7a76a8e", 2986888824424907, this, []); }
   /**
    * var preferredPolarPattern: AVAudioSession.PolarPattern? { get }
    * @availability iOS 7.0+
    */
-  get preferredPolarPattern(): $SDK39 { return callSDK<$SDK39>("AVFAudio_d6c5d10d3352e6ec", 2963107687222988, this, []); }
+  get preferredPolarPattern(): $SDK39 { return callSDK<$SDK39>("AVFAudio_a956b86ef7a76a8e", 2963107687222988, this, []); }
   /**
    * var selectedPolarPattern: AVAudioSession.PolarPattern? { get }
    * @availability iOS 7.0+
    */
-  get selectedPolarPattern(): $SDK39 { return callSDK<$SDK39>("AVFAudio_d6c5d10d3352e6ec", 1667907943611487, this, []); }
+  get selectedPolarPattern(): $SDK39 { return callSDK<$SDK39>("AVFAudio_a956b86ef7a76a8e", 1667907943611487, this, []); }
   /**
    * var supportedPolarPatterns: [AVAudioSession.PolarPattern]? { get }
    * @availability iOS 7.0+
    */
-  get supportedPolarPatterns(): (Array<AVAudioSession_PolarPattern>) | null { return callSDK<(Array<AVAudioSession_PolarPattern>) | null>("AVFAudio_d6c5d10d3352e6ec", 838812404713068, this, []); }
+  get supportedPolarPatterns(): (Array<AVAudioSession_PolarPattern>) | null { return callSDK<(Array<AVAudioSession_PolarPattern>) | null>("AVFAudio_a956b86ef7a76a8e", 838812404713068, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSessionDataSourceDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataSourceID": true; "dataSourceName": true; "location": true; "orientation": true; "preferredPolarPattern": true; "selectedPolarPattern": true; "supportedPolarPatterns": true };
 }
@@ -3635,9 +3635,9 @@ export const AVAudioSessionDeactivationOptions = {
    * static var notifyOthersOnDeactivation: AVAudioSessionDeactivationOptions { get }
    * @availability iOS 27.0+
    */
-  get notifyOthersOnDeactivation(): AVAudioSessionDeactivationOptions { return callSDK<AVAudioSessionDeactivationOptions>("AVFAudio_d6c5d10d3352e6ec", 2589599379488620, undefined, []); },
+  get notifyOthersOnDeactivation(): AVAudioSessionDeactivationOptions { return callSDK<AVAudioSessionDeactivationOptions>("AVFAudio_a956b86ef7a76a8e", 2589599379488620, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): AVAudioSessionDeactivationOptions { return callSDK<AVAudioSessionDeactivationOptions>("AVFAudio_d6c5d10d3352e6ec", 4271794638897352, undefined, [rawValue]); }
+  init(rawValue: number): AVAudioSessionDeactivationOptions { return callSDK<AVAudioSessionDeactivationOptions>("AVFAudio_a956b86ef7a76a8e", 4271794638897352, undefined, [rawValue]); }
 };
 
 /**
@@ -3646,62 +3646,62 @@ export const AVAudioSessionDeactivationOptions = {
  */
 export class AVAudioSessionPortDescription extends SDKHandle {
   /** init() */
-  static init(): AVAudioSessionPortDescription { return callSDK<AVAudioSessionPortDescription>("AVFAudio_d6c5d10d3352e6ec", 2148379286191947, undefined, []); }
+  static init(): AVAudioSessionPortDescription { return callSDK<AVAudioSessionPortDescription>("AVFAudio_a956b86ef7a76a8e", 2148379286191947, undefined, []); }
   /**
    * func setPreferredDataSource(_ dataSource: AVAudioSessionDataSourceDescription?) throws
    * @availability iOS 7.0+
    */
-  setPreferredDataSource(dataSource?: $SDK28): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 894991364404086, this, [dataSource]); }
+  setPreferredDataSource(dataSource?: $SDK28): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 894991364404086, this, [dataSource]); }
   /**
    * var uid: String { get }
    * @availability iOS 6.0+
    */
-  get uid(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2854405122029162, this, []); }
+  get uid(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2854405122029162, this, []); }
   /**
    * var bluetoothMicrophoneExtension: AVAudioSessionPortExtensionBluetoothMicrophone? { get }
    * @availability iOS 26.0+
    */
-  get bluetoothMicrophoneExtension(): (AVAudioSessionPortExtensionBluetoothMicrophone) | null { return callSDK<(AVAudioSessionPortExtensionBluetoothMicrophone) | null>("AVFAudio_d6c5d10d3352e6ec", 3061305546409668, this, []); }
+  get bluetoothMicrophoneExtension(): (AVAudioSessionPortExtensionBluetoothMicrophone) | null { return callSDK<(AVAudioSessionPortExtensionBluetoothMicrophone) | null>("AVFAudio_a956b86ef7a76a8e", 3061305546409668, this, []); }
   /**
    * var channels: [AVAudioSessionChannelDescription]? { get }
    * @availability iOS 6.0+
    */
-  get channels(): $SDK20 { return callSDK<$SDK20>("AVFAudio_d6c5d10d3352e6ec", 1939783753975243, this, []); }
+  get channels(): $SDK20 { return callSDK<$SDK20>("AVFAudio_a956b86ef7a76a8e", 1939783753975243, this, []); }
   /**
    * var dataSources: [AVAudioSessionDataSourceDescription]? { get }
    * @availability iOS 7.0+
    */
-  get dataSources(): $SDK33 { return callSDK<$SDK33>("AVFAudio_d6c5d10d3352e6ec", 4416658486965813, this, []); }
+  get dataSources(): $SDK33 { return callSDK<$SDK33>("AVFAudio_a956b86ef7a76a8e", 4416658486965813, this, []); }
   /**
    * var hasHardwareVoiceCallProcessing: Bool { get }
    * @availability iOS 10.0+
    */
-  get hasHardwareVoiceCallProcessing(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 4490312567743636, this, []); }
+  get hasHardwareVoiceCallProcessing(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 4490312567743636, this, []); }
   /**
    * var portName: String { get }
    * @availability iOS 6.0+
    */
-  get portName(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 952711613367181, this, []); }
+  get portName(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 952711613367181, this, []); }
   /**
    * var portType: AVAudioSession.Port { get }
    * @availability iOS 6.0+
    */
-  get portType(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_d6c5d10d3352e6ec", 3104823990831183, this, []); }
+  get portType(): AVAudioSession_Port { return callSDK<AVAudioSession_Port>("AVFAudio_a956b86ef7a76a8e", 3104823990831183, this, []); }
   /**
    * var preferredDataSource: AVAudioSessionDataSourceDescription? { get }
    * @availability iOS 7.0+
    */
-  get preferredDataSource(): $SDK28 { return callSDK<$SDK28>("AVFAudio_d6c5d10d3352e6ec", 3591585805479428, this, []); }
+  get preferredDataSource(): $SDK28 { return callSDK<$SDK28>("AVFAudio_a956b86ef7a76a8e", 3591585805479428, this, []); }
   /**
    * var selectedDataSource: AVAudioSessionDataSourceDescription? { get }
    * @availability iOS 7.0+
    */
-  get selectedDataSource(): $SDK28 { return callSDK<$SDK28>("AVFAudio_d6c5d10d3352e6ec", 2335525618247703, this, []); }
+  get selectedDataSource(): $SDK28 { return callSDK<$SDK28>("AVFAudio_a956b86ef7a76a8e", 2335525618247703, this, []); }
   /**
    * var isSpatialAudioEnabled: Bool { get }
    * @availability iOS 15.0+
    */
-  get isSpatialAudioEnabled(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1798096638036944, this, []); }
+  get isSpatialAudioEnabled(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1798096638036944, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSessionPortDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uid": true; "bluetoothMicrophoneExtension": true; "channels": true; "dataSources": true; "hasHardwareVoiceCallProcessing": true; "portName": true; "portType": true; "preferredDataSource": true; "selectedDataSource": true; "isSpatialAudioEnabled": true };
 }
@@ -3712,17 +3712,17 @@ export class AVAudioSessionPortDescription extends SDKHandle {
  */
 export class AVAudioSessionPortExtensionBluetoothMicrophone extends SDKHandle {
   /** init() */
-  static init(): AVAudioSessionPortExtensionBluetoothMicrophone { return callSDK<AVAudioSessionPortExtensionBluetoothMicrophone>("AVFAudio_d6c5d10d3352e6ec", 2526507851437729, undefined, []); }
+  static init(): AVAudioSessionPortExtensionBluetoothMicrophone { return callSDK<AVAudioSessionPortExtensionBluetoothMicrophone>("AVFAudio_a956b86ef7a76a8e", 2526507851437729, undefined, []); }
   /**
    * var farFieldCapture: AVAudioSessionCapability { get }
    * @availability iOS 26.0+
    */
-  get farFieldCapture(): AVAudioSessionCapability { return callSDK<AVAudioSessionCapability>("AVFAudio_d6c5d10d3352e6ec", 3639051916243667, this, []); }
+  get farFieldCapture(): AVAudioSessionCapability { return callSDK<AVAudioSessionCapability>("AVFAudio_a956b86ef7a76a8e", 3639051916243667, this, []); }
   /**
    * var highQualityRecording: AVAudioSessionCapability { get }
    * @availability iOS 26.0+
    */
-  get highQualityRecording(): AVAudioSessionCapability { return callSDK<AVAudioSessionCapability>("AVFAudio_d6c5d10d3352e6ec", 2597193635742487, this, []); }
+  get highQualityRecording(): AVAudioSessionCapability { return callSDK<AVAudioSessionCapability>("AVFAudio_a956b86ef7a76a8e", 2597193635742487, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSessionPortExtensionBluetoothMicrophone": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "farFieldCapture": true; "highQualityRecording": true };
 }
@@ -3733,17 +3733,17 @@ export class AVAudioSessionPortExtensionBluetoothMicrophone extends SDKHandle {
  */
 export class AVAudioSessionRouteDescription extends SDKHandle {
   /** init() */
-  static init(): AVAudioSessionRouteDescription { return callSDK<AVAudioSessionRouteDescription>("AVFAudio_d6c5d10d3352e6ec", 2576685447967066, undefined, []); }
+  static init(): AVAudioSessionRouteDescription { return callSDK<AVAudioSessionRouteDescription>("AVFAudio_a956b86ef7a76a8e", 2576685447967066, undefined, []); }
   /**
    * var inputs: [AVAudioSessionPortDescription] { get }
    * @availability iOS 6.0+
    */
-  get inputs(): $SDK44 { return callSDK<$SDK44>("AVFAudio_d6c5d10d3352e6ec", 2753821336479873, this, []); }
+  get inputs(): $SDK44 { return callSDK<$SDK44>("AVFAudio_a956b86ef7a76a8e", 2753821336479873, this, []); }
   /**
    * var outputs: [AVAudioSessionPortDescription] { get }
    * @availability iOS 6.0+
    */
-  get outputs(): $SDK44 { return callSDK<$SDK44>("AVFAudio_d6c5d10d3352e6ec", 1582302294650691, this, []); }
+  get outputs(): $SDK44 { return callSDK<$SDK44>("AVFAudio_a956b86ef7a76a8e", 1582302294650691, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioSessionRouteDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "inputs": true; "outputs": true };
 }
@@ -3795,67 +3795,67 @@ export class AVAudioTime extends SDKHandle {
    * class func hostTime(forSeconds seconds: TimeInterval) -> UInt64
    * @availability iOS 8.0+
    */
-  static hostTimeForSeconds(seconds: number): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 242274326662797, undefined, [seconds]); }
+  static hostTimeForSeconds(seconds: number): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 242274326662797, undefined, [seconds]); }
   /**
    * class func seconds(forHostTime hostTime: UInt64) -> TimeInterval
    * @availability iOS 8.0+
    */
-  static seconds(hostTime: number): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 356035979592667, undefined, [hostTime]); }
+  static seconds(hostTime: number): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 356035979592667, undefined, [hostTime]); }
   /**
    * func extrapolateTime(fromAnchor anchorTime: AVAudioTime) -> AVAudioTime?
    * @availability iOS 8.0+
    */
-  extrapolateTime(anchorTime: AVAudioTime): (AVAudioTime) | null { return callSDK<(AVAudioTime) | null>("AVFAudio_d6c5d10d3352e6ec", 2140230264947408, this, [anchorTime]); }
+  extrapolateTime(anchorTime: AVAudioTime): (AVAudioTime) | null { return callSDK<(AVAudioTime) | null>("AVFAudio_a956b86ef7a76a8e", 2140230264947408, this, [anchorTime]); }
   /**
    * init(audioTimeStamp ts: UnsafePointer<AudioTimeStamp>, sampleRate: Double)
    * @availability iOS 8.0+
    */
-  static initAudioTimeStampSampleRate(ts: SDKHandle, sampleRate: number): AVAudioTime { return callSDK<AVAudioTime>("AVFAudio_d6c5d10d3352e6ec", 1803390039038663, undefined, [ts, sampleRate]); }
+  static initAudioTimeStampSampleRate(ts: SDKHandle, sampleRate: number): AVAudioTime { return callSDK<AVAudioTime>("AVFAudio_a956b86ef7a76a8e", 1803390039038663, undefined, [ts, sampleRate]); }
   /**
    * init(hostTime: UInt64)
    * @availability iOS 8.0+
    */
-  static initHostTime(hostTime: number): AVAudioTime { return callSDK<AVAudioTime>("AVFAudio_d6c5d10d3352e6ec", 475773778267568, undefined, [hostTime]); }
+  static initHostTime(hostTime: number): AVAudioTime { return callSDK<AVAudioTime>("AVFAudio_a956b86ef7a76a8e", 475773778267568, undefined, [hostTime]); }
   /**
    * init(hostTime: UInt64, sampleTime: AVAudioFramePosition, atRate sampleRate: Double)
    * @availability iOS 8.0+
    */
-  static initHostTimeSampleTimeAtRate(hostTime: number, sampleTime: number, sampleRate: number): AVAudioTime { return callSDK<AVAudioTime>("AVFAudio_d6c5d10d3352e6ec", 1214983996981540, undefined, [hostTime, sampleTime, sampleRate]); }
+  static initHostTimeSampleTimeAtRate(hostTime: number, sampleTime: number, sampleRate: number): AVAudioTime { return callSDK<AVAudioTime>("AVFAudio_a956b86ef7a76a8e", 1214983996981540, undefined, [hostTime, sampleTime, sampleRate]); }
   /**
    * init(sampleTime: AVAudioFramePosition, atRate sampleRate: Double)
    * @availability iOS 8.0+
    */
-  static initSampleTimeAtRate(sampleTime: number, sampleRate: number): AVAudioTime { return callSDK<AVAudioTime>("AVFAudio_d6c5d10d3352e6ec", 1559772184236746, undefined, [sampleTime, sampleRate]); }
+  static initSampleTimeAtRate(sampleTime: number, sampleRate: number): AVAudioTime { return callSDK<AVAudioTime>("AVFAudio_a956b86ef7a76a8e", 1559772184236746, undefined, [sampleTime, sampleRate]); }
   /**
    * var audioTimeStamp: AudioTimeStamp { get }
    * @availability iOS 8.0+
    */
-  get audioTimeStamp(): _CoreAudioTypes_AudioTimeStamp { return callSDK<_CoreAudioTypes_AudioTimeStamp>("AVFAudio_d6c5d10d3352e6ec", 1656264994673336, this, []); }
+  get audioTimeStamp(): _CoreAudioTypes_AudioTimeStamp { return callSDK<_CoreAudioTypes_AudioTimeStamp>("AVFAudio_a956b86ef7a76a8e", 1656264994673336, this, []); }
   /**
    * var hostTime: UInt64 { get }
    * @availability iOS 8.0+
    */
-  get hostTime(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1245271250322541, this, []); }
+  get hostTime(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1245271250322541, this, []); }
   /**
    * var isHostTimeValid: Bool { get }
    * @availability iOS 8.0+
    */
-  get isHostTimeValid(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3369619026508597, this, []); }
+  get isHostTimeValid(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3369619026508597, this, []); }
   /**
    * var sampleRate: Double { get }
    * @availability iOS 8.0+
    */
-  get sampleRate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2797618058928602, this, []); }
+  get sampleRate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2797618058928602, this, []); }
   /**
    * var sampleTime: AVAudioFramePosition { get }
    * @availability iOS 8.0+
    */
-  get sampleTime(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 780491415621031, this, []); }
+  get sampleTime(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 780491415621031, this, []); }
   /**
    * var isSampleTimeValid: Bool { get }
    * @availability iOS 8.0+
    */
-  get isSampleTimeValid(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3041232423366507, this, []); }
+  get isSampleTimeValid(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3041232423366507, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioTime": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "audioTimeStamp": true; "hostTime": true; "isHostTimeValid": true; "sampleRate": true; "sampleTime": true; "isSampleTimeValid": true };
 }
@@ -3869,45 +3869,45 @@ export class AVAudioUnit extends (AVAudioNode as unknown as Omit<typeof AVAudioN
    * class func instantiate(with audioComponentDescription: AudioComponentDescription, options: AudioComponentInstantiationOptions = []) async throws -> AVAudioUnit
    * @availability iOS 9.0+
    */
-  static instantiate(audioComponentDescription: _AudioToolbox_AudioComponentDescription, options: _AudioToolbox_AudioComponentInstantiationOptions, completionHandler: ((arg0: (AVAudioUnit) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2540340276301687, undefined, [audioComponentDescription, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static instantiate(audioComponentDescription: _AudioToolbox_AudioComponentDescription, options: _AudioToolbox_AudioComponentInstantiationOptions, completionHandler: ((arg0: (AVAudioUnit) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2540340276301687, undefined, [audioComponentDescription, options, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): AVAudioUnit { return callSDK<AVAudioUnit>("AVFAudio_d6c5d10d3352e6ec", 932023996843171, undefined, []); }
+  static init(): AVAudioUnit { return callSDK<AVAudioUnit>("AVFAudio_a956b86ef7a76a8e", 932023996843171, undefined, []); }
   /**
    * func loadPreset(at url: URL) throws
    * @availability iOS 8.0+
    */
-  loadPreset(url: string): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3249239384632012, this, [url]); }
+  loadPreset(url: string): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3249239384632012, this, [url]); }
   /**
    * var audioComponentDescription: AudioComponentDescription { get }
    * @availability iOS 8.0+
    */
-  get audioComponentDescription(): _AudioToolbox_AudioComponentDescription { return callSDK<_AudioToolbox_AudioComponentDescription>("AVFAudio_d6c5d10d3352e6ec", 2682460829087167, this, []); }
+  get audioComponentDescription(): _AudioToolbox_AudioComponentDescription { return callSDK<_AudioToolbox_AudioComponentDescription>("AVFAudio_a956b86ef7a76a8e", 2682460829087167, this, []); }
   /**
    * var manufacturerName: String { get }
    * @availability iOS 8.0+
    */
-  get manufacturerName(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2151519391378363, this, []); }
+  get manufacturerName(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2151519391378363, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2467450896074019, this, []); }
+  get name(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2467450896074019, this, []); }
   /**
    * var version: Int { get }
    * @availability iOS 8.0+
    */
-  get version(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1755133464694920, this, []); }
+  get version(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1755133464694920, this, []); }
   /**
    * @export(implementation) var audioUnit: AudioUnit { get }
    * @availability iOS 8.0+
    * @deprecated iOS 27.0
    */
-  get audioUnit(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_d6c5d10d3352e6ec", 1113919295505810, this, []); }
+  get audioUnit(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_a956b86ef7a76a8e", 1113919295505810, this, []); }
   /**
    * func withAudioUnit<R, E>(_ body: (borrowing AudioUnit) throws(E) -> R) throws(E) -> R where E : Error
    * @availability iOS 27.0+
    */
-  withAudioUnit(body: $SDK19): unknown { return callSDK<unknown>("AVFAudio_d6c5d10d3352e6ec", 997637452034783, this, [body], [{"callback":{"out":[]}}], true); }
+  withAudioUnit(body: $SDK19): unknown { return callSDK<unknown>("AVFAudio_a956b86ef7a76a8e", 997637452034783, this, [body], [{"callback":{"out":[]}}], true); }
   declare readonly $type: { "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true };
 }
@@ -3918,77 +3918,77 @@ export class AVAudioUnit extends (AVAudioNode as unknown as Omit<typeof AVAudioN
  */
 export class AVAudioUnitComponent extends SDKHandle {
   /** init() */
-  static init(): AVAudioUnitComponent { return callSDK<AVAudioUnitComponent>("AVFAudio_d6c5d10d3352e6ec", 1120312380804916, undefined, []); }
+  static init(): AVAudioUnitComponent { return callSDK<AVAudioUnitComponent>("AVFAudio_a956b86ef7a76a8e", 1120312380804916, undefined, []); }
   /**
    * var allTagNames: [String] { get }
    * @availability iOS 9.0+
    */
-  get allTagNames(): Array<string> { return callSDK<Array<string>>("AVFAudio_d6c5d10d3352e6ec", 330309536078891, this, []); }
+  get allTagNames(): Array<string> { return callSDK<Array<string>>("AVFAudio_a956b86ef7a76a8e", 330309536078891, this, []); }
   /**
    * var audioComponent: AudioComponent { get }
    * @availability iOS 9.0+
    */
-  get audioComponent(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_d6c5d10d3352e6ec", 2609027050440430, this, []); }
+  get audioComponent(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_a956b86ef7a76a8e", 2609027050440430, this, []); }
   /**
    * var audioComponentDescription: AudioComponentDescription { get }
    * @availability iOS 9.0+
    */
-  get audioComponentDescription(): _AudioToolbox_AudioComponentDescription { return callSDK<_AudioToolbox_AudioComponentDescription>("AVFAudio_d6c5d10d3352e6ec", 3455802067339795, this, []); }
+  get audioComponentDescription(): _AudioToolbox_AudioComponentDescription { return callSDK<_AudioToolbox_AudioComponentDescription>("AVFAudio_a956b86ef7a76a8e", 3455802067339795, this, []); }
   /**
    * var configurationDictionary: [String : Any] { get }
    * @availability iOS 16.0+
    */
-  get configurationDictionary(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_d6c5d10d3352e6ec", 407903831259864, this, []); }
+  get configurationDictionary(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_a956b86ef7a76a8e", 407903831259864, this, []); }
   /**
    * var hasMIDIInput: Bool { get }
    * @availability iOS 9.0+
    */
-  get hasMIDIInput(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 790878106650633, this, []); }
+  get hasMIDIInput(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 790878106650633, this, []); }
   /**
    * var hasMIDIOutput: Bool { get }
    * @availability iOS 9.0+
    */
-  get hasMIDIOutput(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 939381903101377, this, []); }
+  get hasMIDIOutput(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 939381903101377, this, []); }
   /**
    * var localizedTypeName: String { get }
    * @availability iOS 9.0+
    */
-  get localizedTypeName(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1221689383559140, this, []); }
+  get localizedTypeName(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1221689383559140, this, []); }
   /**
    * var manufacturerName: String { get }
    * @availability iOS 9.0+
    */
-  get manufacturerName(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1005295949343628, this, []); }
+  get manufacturerName(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1005295949343628, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1098304372390090, this, []); }
+  get name(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1098304372390090, this, []); }
   /**
    * var passesAUVal: Bool { get }
    * @availability iOS 16.0+
    */
-  get passesAUVal(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2688163923917525, this, []); }
+  get passesAUVal(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2688163923917525, this, []); }
   /**
    * var isSandboxSafe: Bool { get }
    * @availability iOS 9.0+
    */
-  get isSandboxSafe(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3815562523842991, this, []); }
+  get isSandboxSafe(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3815562523842991, this, []); }
   /**
    * var typeName: String { get }
    * @availability iOS 9.0+
    */
-  get typeName(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1321256184947887, this, []); }
+  get typeName(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1321256184947887, this, []); }
   /**
    * var version: Int { get }
    * @availability iOS 9.0+
    */
-  get version(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1095219670319353, this, []); }
+  get version(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1095219670319353, this, []); }
   /**
    * var versionString: String { get }
    * @availability iOS 9.0+
    */
-  get versionString(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3153127210467673, this, []); }
+  get versionString(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3153127210467673, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitComponent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allTagNames": true; "audioComponent": true; "audioComponentDescription": true; "configurationDictionary": true; "hasMIDIInput": true; "hasMIDIOutput": true; "localizedTypeName": true; "manufacturerName": true; "name": true; "passesAUVal": true; "isSandboxSafe": true; "typeName": true; "version": true; "versionString": true };
 }
@@ -4002,34 +4002,34 @@ export class AVAudioUnitComponentManager extends SDKHandle {
    * class let registrationsChangedNotification: NSNotification.Name
    * @availability iOS 13.0+
    */
-  static get registrationsChangedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 355589544097960, undefined, []); }
+  static get registrationsChangedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 355589544097960, undefined, []); }
   /**
    * class func shared() -> Self
    * @availability iOS 9.0+
    */
-  static shared(): AVAudioUnitComponentManager { return callSDK<AVAudioUnitComponentManager>("AVFAudio_d6c5d10d3352e6ec", 584847545553969, undefined, []); }
+  static shared(): AVAudioUnitComponentManager { return callSDK<AVAudioUnitComponentManager>("AVFAudio_a956b86ef7a76a8e", 584847545553969, undefined, []); }
   /**
    * func components(matching desc: AudioComponentDescription) -> [AVAudioUnitComponent]
    * @availability iOS 9.0+
    */
-  componentsMatching(desc: _AudioToolbox_AudioComponentDescription): Array<AVAudioUnitComponent> { return callSDK<Array<AVAudioUnitComponent>>("AVFAudio_d6c5d10d3352e6ec", 2303456525092810, this, [desc]); }
+  componentsMatching(desc: _AudioToolbox_AudioComponentDescription): Array<AVAudioUnitComponent> { return callSDK<Array<AVAudioUnitComponent>>("AVFAudio_a956b86ef7a76a8e", 2303456525092810, this, [desc]); }
   /**
    * func components(matching predicate: NSPredicate) -> [AVAudioUnitComponent]
    * @availability iOS 9.0+
    */
-  componentsMatching12733(predicate: _Foundation_NSPredicate): Array<AVAudioUnitComponent> { return callSDK<Array<AVAudioUnitComponent>>("AVFAudio_d6c5d10d3352e6ec", 1584609954242248, this, [predicate]); }
+  componentsMatching12733(predicate: _Foundation_NSPredicate): Array<AVAudioUnitComponent> { return callSDK<Array<AVAudioUnitComponent>>("AVFAudio_a956b86ef7a76a8e", 1584609954242248, this, [predicate]); }
   /** init() */
-  static init(): AVAudioUnitComponentManager { return callSDK<AVAudioUnitComponentManager>("AVFAudio_d6c5d10d3352e6ec", 921520288326742, undefined, []); }
+  static init(): AVAudioUnitComponentManager { return callSDK<AVAudioUnitComponentManager>("AVFAudio_a956b86ef7a76a8e", 921520288326742, undefined, []); }
   /**
    * var standardLocalizedTagNames: [String] { get }
    * @availability iOS 9.0+
    */
-  get standardLocalizedTagNames(): Array<string> { return callSDK<Array<string>>("AVFAudio_d6c5d10d3352e6ec", 2455067755926506, this, []); }
+  get standardLocalizedTagNames(): Array<string> { return callSDK<Array<string>>("AVFAudio_a956b86ef7a76a8e", 2455067755926506, this, []); }
   /**
    * var tagNames: [String] { get }
    * @availability iOS 9.0+
    */
-  get tagNames(): Array<string> { return callSDK<Array<string>>("AVFAudio_d6c5d10d3352e6ec", 3306588850809253, this, []); }
+  get tagNames(): Array<string> { return callSDK<Array<string>>("AVFAudio_a956b86ef7a76a8e", 3306588850809253, this, []); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitComponentManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "standardLocalizedTagNames": true; "tagNames": true };
 }
@@ -4043,17 +4043,17 @@ export class AVAudioUnitComponentManager_RegistrationsChangedMessage extends SDK
    * static func makeMessage(_ notification: Notification) -> AVAudioUnitComponentManager.RegistrationsChangedMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): (AVAudioUnitComponentManager_RegistrationsChangedMessage) | null { return callSDK<(AVAudioUnitComponentManager_RegistrationsChangedMessage) | null>("AVFAudio_d6c5d10d3352e6ec", 834403039046149, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): (AVAudioUnitComponentManager_RegistrationsChangedMessage) | null { return callSDK<(AVAudioUnitComponentManager_RegistrationsChangedMessage) | null>("AVFAudio_a956b86ef7a76a8e", 834403039046149, undefined, [notification]); }
   /**
    * static func makeNotification(_ message: AVAudioUnitComponentManager.RegistrationsChangedMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: AVAudioUnitComponentManager_RegistrationsChangedMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("AVFAudio_d6c5d10d3352e6ec", 3851638251167098, undefined, [message]); }
+  static makeNotification(message: AVAudioUnitComponentManager_RegistrationsChangedMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("AVFAudio_a956b86ef7a76a8e", 3851638251167098, undefined, [message]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 1571801534462637, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 1571801534462637, undefined, []); }
   declare readonly $type: { "s:So27AVAudioUnitComponentManagerC8AVFAudioE27RegistrationsChangedMessageV": true };
 }
 
@@ -4072,13 +4072,13 @@ export class AVAudioUnitEffect extends (AVAudioUnit as unknown as Omit<typeof AV
    * init(audioComponentDescription: AudioComponentDescription)
    * @availability iOS 8.0+
    */
-  static init(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitEffect { return callSDK<AVAudioUnitEffect>("AVFAudio_d6c5d10d3352e6ec", 214600116508251, undefined, [audioComponentDescription]); }
+  static init(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitEffect { return callSDK<AVAudioUnitEffect>("AVFAudio_a956b86ef7a76a8e", 214600116508251, undefined, [audioComponentDescription]); }
   /**
    * var bypass: Bool { get set }
    * @availability iOS 8.0+
    */
-  get bypass(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2956485858744840, this, []); }
-  set bypass(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 65374687716778, this, [value]); }
+  get bypass(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2956485858744840, this, []); }
+  set bypass(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 65374687716778, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitEffect": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true; "bypass": true };
 }
@@ -4089,31 +4089,31 @@ export class AVAudioUnitEffect extends (AVAudioUnit as unknown as Omit<typeof AV
  */
 export class AVAudioUnitDelay extends (AVAudioUnitEffect as unknown as Omit<typeof AVAudioUnitEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitEffect)) {
   /** init() */
-  static init(): AVAudioUnitDelay { return callSDK<AVAudioUnitDelay>("AVFAudio_d6c5d10d3352e6ec", 1777131862883205, undefined, []); }
+  static init(): AVAudioUnitDelay { return callSDK<AVAudioUnitDelay>("AVFAudio_a956b86ef7a76a8e", 1777131862883205, undefined, []); }
   /**
    * var delayTime: TimeInterval { get set }
    * @availability iOS 8.0+
    */
-  get delayTime(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2184509178003806, this, []); }
-  set delayTime(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3843488649059291, this, [value]); }
+  get delayTime(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2184509178003806, this, []); }
+  set delayTime(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3843488649059291, this, [value]); }
   /**
    * var feedback: Float { get set }
    * @availability iOS 8.0+
    */
-  get feedback(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4406636489063913, this, []); }
-  set feedback(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 831565182151011, this, [value]); }
+  get feedback(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4406636489063913, this, []); }
+  set feedback(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 831565182151011, this, [value]); }
   /**
    * var lowPassCutoff: Float { get set }
    * @availability iOS 8.0+
    */
-  get lowPassCutoff(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2758230250197185, this, []); }
-  set lowPassCutoff(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 487022807745777, this, [value]); }
+  get lowPassCutoff(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2758230250197185, this, []); }
+  set lowPassCutoff(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 487022807745777, this, [value]); }
   /**
    * var wetDryMix: Float { get set }
    * @availability iOS 8.0+
    */
-  get wetDryMix(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2006156835920182, this, []); }
-  set wetDryMix(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2669583524492974, this, [value]); }
+  get wetDryMix(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2006156835920182, this, []); }
+  set wetDryMix(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2669583524492974, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitDelay": true; "c:objc(cs)AVAudioUnitEffect": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true; "bypass": true; "delayTime": true; "feedback": true; "lowPassCutoff": true; "wetDryMix": true };
 }
@@ -4124,24 +4124,24 @@ export class AVAudioUnitDelay extends (AVAudioUnitEffect as unknown as Omit<type
  */
 export class AVAudioUnitDistortion extends (AVAudioUnitEffect as unknown as Omit<typeof AVAudioUnitEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitEffect)) {
   /** init() */
-  static init(): AVAudioUnitDistortion { return callSDK<AVAudioUnitDistortion>("AVFAudio_d6c5d10d3352e6ec", 3456950454407852, undefined, []); }
+  static init(): AVAudioUnitDistortion { return callSDK<AVAudioUnitDistortion>("AVFAudio_a956b86ef7a76a8e", 3456950454407852, undefined, []); }
   /**
    * func loadFactoryPreset(_ preset: AVAudioUnitDistortionPreset)
    * @availability iOS 8.0+
    */
-  loadFactoryPreset(preset: AVAudioUnitDistortionPreset): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2196832449054309, this, [preset]); }
+  loadFactoryPreset(preset: AVAudioUnitDistortionPreset): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2196832449054309, this, [preset]); }
   /**
    * var preGain: Float { get set }
    * @availability iOS 8.0+
    */
-  get preGain(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2255727642737572, this, []); }
-  set preGain(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2815696238532560, this, [value]); }
+  get preGain(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2255727642737572, this, []); }
+  set preGain(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2815696238532560, this, [value]); }
   /**
    * var wetDryMix: Float { get set }
    * @availability iOS 8.0+
    */
-  get wetDryMix(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1797998801221722, this, []); }
-  set wetDryMix(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3913171282327331, this, [value]); }
+  get wetDryMix(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1797998801221722, this, []); }
+  set wetDryMix(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3913171282327331, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitDistortion": true; "c:objc(cs)AVAudioUnitEffect": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true; "bypass": true; "preGain": true; "wetDryMix": true };
 }
@@ -4157,7 +4157,7 @@ export const AVAudioUnitDistortionPreset = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (AVAudioUnitDistortionPreset) | null { return callSDK<(AVAudioUnitDistortionPreset) | null>("AVFAudio_d6c5d10d3352e6ec", 396968969122873, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioUnitDistortionPreset) | null { return callSDK<(AVAudioUnitDistortionPreset) | null>("AVFAudio_a956b86ef7a76a8e", 396968969122873, undefined, [rawValue]); }
 };
 
 /**
@@ -4169,18 +4169,18 @@ export class AVAudioUnitEQ extends (AVAudioUnitEffect as unknown as Omit<typeof 
    * init(numberOfBands: Int)
    * @availability iOS 8.0+
    */
-  static init(numberOfBands: number): AVAudioUnitEQ { return callSDK<AVAudioUnitEQ>("AVFAudio_d6c5d10d3352e6ec", 944976196751574, undefined, [numberOfBands]); }
+  static init(numberOfBands: number): AVAudioUnitEQ { return callSDK<AVAudioUnitEQ>("AVFAudio_a956b86ef7a76a8e", 944976196751574, undefined, [numberOfBands]); }
   /**
    * var bands: [AVAudioUnitEQFilterParameters] { get }
    * @availability iOS 8.0+
    */
-  get bands(): Array<AVAudioUnitEQFilterParameters> { return callSDK<Array<AVAudioUnitEQFilterParameters>>("AVFAudio_d6c5d10d3352e6ec", 1806529939307033, this, []); }
+  get bands(): Array<AVAudioUnitEQFilterParameters> { return callSDK<Array<AVAudioUnitEQFilterParameters>>("AVFAudio_a956b86ef7a76a8e", 1806529939307033, this, []); }
   /**
    * var globalGain: Float { get set }
    * @availability iOS 8.0+
    */
-  get globalGain(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 724376348235390, this, []); }
-  set globalGain(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4225919019321447, this, [value]); }
+  get globalGain(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 724376348235390, this, []); }
+  set globalGain(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4225919019321447, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitEQ": true; "c:objc(cs)AVAudioUnitEffect": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true; "bypass": true; "bands": true; "globalGain": true };
 }
@@ -4194,32 +4194,32 @@ export class AVAudioUnitEQFilterParameters extends SDKHandle {
    * var bandwidth: Float { get set }
    * @availability iOS 8.0+
    */
-  get bandwidth(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 913288044738159, this, []); }
-  set bandwidth(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1930394804353325, this, [value]); }
+  get bandwidth(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 913288044738159, this, []); }
+  set bandwidth(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1930394804353325, this, [value]); }
   /**
    * var bypass: Bool { get set }
    * @availability iOS 8.0+
    */
-  get bypass(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1322156242596286, this, []); }
-  set bypass(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 69767922579350, this, [value]); }
+  get bypass(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1322156242596286, this, []); }
+  set bypass(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 69767922579350, this, [value]); }
   /**
    * var filterType: AVAudioUnitEQFilterType { get set }
    * @availability iOS 8.0+
    */
-  get filterType(): AVAudioUnitEQFilterType { return callSDK<AVAudioUnitEQFilterType>("AVFAudio_d6c5d10d3352e6ec", 154995050147892, this, []); }
-  set filterType(value: AVAudioUnitEQFilterType) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2427841132620243, this, [value]); }
+  get filterType(): AVAudioUnitEQFilterType { return callSDK<AVAudioUnitEQFilterType>("AVFAudio_a956b86ef7a76a8e", 154995050147892, this, []); }
+  set filterType(value: AVAudioUnitEQFilterType) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2427841132620243, this, [value]); }
   /**
    * var frequency: Float { get set }
    * @availability iOS 8.0+
    */
-  get frequency(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 513425381064691, this, []); }
-  set frequency(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4487924168335649, this, [value]); }
+  get frequency(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 513425381064691, this, []); }
+  set frequency(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4487924168335649, this, [value]); }
   /**
    * var gain: Float { get set }
    * @availability iOS 8.0+
    */
-  get gain(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2968369236646196, this, []); }
-  set gain(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 989316534918440, this, [value]); }
+  get gain(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2968369236646196, this, []); }
+  set gain(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 989316534918440, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitEQFilterParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bandwidth": true; "bypass": true; "filterType": true; "frequency": true; "gain": true };
 }
@@ -4235,7 +4235,7 @@ export const AVAudioUnitEQFilterType = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (AVAudioUnitEQFilterType) | null { return callSDK<(AVAudioUnitEQFilterType) | null>("AVFAudio_d6c5d10d3352e6ec", 286018874727816, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioUnitEQFilterType) | null { return callSDK<(AVAudioUnitEQFilterType) | null>("AVFAudio_a956b86ef7a76a8e", 286018874727816, undefined, [rawValue]); }
 };
 
 /**
@@ -4247,13 +4247,13 @@ export class AVAudioUnitGenerator extends (AVAudioUnit as unknown as Omit<typeof
    * init(audioComponentDescription: AudioComponentDescription)
    * @availability iOS 8.0+
    */
-  static init(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitGenerator { return callSDK<AVAudioUnitGenerator>("AVFAudio_d6c5d10d3352e6ec", 2194386952847592, undefined, [audioComponentDescription]); }
+  static init(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitGenerator { return callSDK<AVAudioUnitGenerator>("AVFAudio_a956b86ef7a76a8e", 2194386952847592, undefined, [audioComponentDescription]); }
   /**
    * var bypass: Bool { get set }
    * @availability iOS 8.0+
    */
-  get bypass(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2008029203248648, this, []); }
-  set bypass(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3911045578977749, this, [value]); }
+  get bypass(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2008029203248648, this, []); }
+  set bypass(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3911045578977749, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitGenerator": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true; "bypass": true };
 }
@@ -4267,67 +4267,67 @@ export class AVAudioUnitMIDIInstrument extends (AVAudioUnit as unknown as Omit<t
    * init(audioComponentDescription description: AudioComponentDescription)
    * @availability iOS 8.0+
    */
-  static init(description: _AudioToolbox_AudioComponentDescription): AVAudioUnitMIDIInstrument { return callSDK<AVAudioUnitMIDIInstrument>("AVFAudio_d6c5d10d3352e6ec", 606734377416751, undefined, [description]); }
+  static init(description: _AudioToolbox_AudioComponentDescription): AVAudioUnitMIDIInstrument { return callSDK<AVAudioUnitMIDIInstrument>("AVFAudio_a956b86ef7a76a8e", 606734377416751, undefined, [description]); }
   /**
    * func sendController(_ controller: UInt8, withValue value: UInt8, onChannel channel: UInt8)
    * @availability iOS 8.0+
    */
-  sendController(controller: number, value: number, channel: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3055391811158413, this, [controller, value, channel]); }
+  sendController(controller: number, value: number, channel: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3055391811158413, this, [controller, value, channel]); }
   /**
    * func sendMIDIEvent(_ midiStatus: UInt8, data1: UInt8)
    * @availability iOS 8.0+
    */
-  sendMIDIEventData1(midiStatus: number, data1: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3457215625097848, this, [midiStatus, data1]); }
+  sendMIDIEventData1(midiStatus: number, data1: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3457215625097848, this, [midiStatus, data1]); }
   /**
    * func sendMIDIEvent(_ midiStatus: UInt8, data1: UInt8, data2: UInt8)
    * @availability iOS 8.0+
    */
-  sendMIDIEventData1Data2(midiStatus: number, data1: number, data2: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 444165511411936, this, [midiStatus, data1, data2]); }
+  sendMIDIEventData1Data2(midiStatus: number, data1: number, data2: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 444165511411936, this, [midiStatus, data1, data2]); }
   /**
    * func send(_ eventList: UnsafePointer<MIDIEventList>)
    * @availability iOS 16.0+
    */
-  send(eventList: SDKHandle): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3547312593185391, this, [eventList]); }
+  send(eventList: SDKHandle): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3547312593185391, this, [eventList]); }
   /**
    * func sendMIDISysExEvent(_ midiData: Data)
    * @availability iOS 8.0+
    */
-  sendMIDISysExEvent(midiData: ArrayBuffer): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3582952135339227, this, [midiData]); }
+  sendMIDISysExEvent(midiData: ArrayBuffer): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3582952135339227, this, [midiData]); }
   /**
    * func sendPitchBend(_ pitchbend: UInt16, onChannel channel: UInt8)
    * @availability iOS 8.0+
    */
-  sendPitchBend(pitchbend: number, channel: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1438050654857305, this, [pitchbend, channel]); }
+  sendPitchBend(pitchbend: number, channel: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1438050654857305, this, [pitchbend, channel]); }
   /**
    * func sendPressure(_ pressure: UInt8, onChannel channel: UInt8)
    * @availability iOS 8.0+
    */
-  sendPressureOnChannel(pressure: number, channel: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 414816583917847, this, [pressure, channel]); }
+  sendPressureOnChannel(pressure: number, channel: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 414816583917847, this, [pressure, channel]); }
   /**
    * func sendPressure(forKey key: UInt8, withValue value: UInt8, onChannel channel: UInt8)
    * @availability iOS 8.0+
    */
-  sendPressureForKeyWithValueOnChannel(key: number, value: number, channel: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 738290998107475, this, [key, value, channel]); }
+  sendPressureForKeyWithValueOnChannel(key: number, value: number, channel: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 738290998107475, this, [key, value, channel]); }
   /**
    * func sendProgramChange(_ program: UInt8, bankMSB: UInt8, bankLSB: UInt8, onChannel channel: UInt8)
    * @availability iOS 8.0+
    */
-  sendProgramChangeBankMSBBankLSBOnChannel(program: number, bankMSB: number, bankLSB: number, channel: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2993403911454803, this, [program, bankMSB, bankLSB, channel]); }
+  sendProgramChangeBankMSBBankLSBOnChannel(program: number, bankMSB: number, bankLSB: number, channel: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2993403911454803, this, [program, bankMSB, bankLSB, channel]); }
   /**
    * func sendProgramChange(_ program: UInt8, onChannel channel: UInt8)
    * @availability iOS 8.0+
    */
-  sendProgramChangeOnChannel(program: number, channel: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 463216960566208, this, [program, channel]); }
+  sendProgramChangeOnChannel(program: number, channel: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 463216960566208, this, [program, channel]); }
   /**
    * func startNote(_ note: UInt8, withVelocity velocity: UInt8, onChannel channel: UInt8)
    * @availability iOS 8.0+
    */
-  startNote(note: number, velocity: number, channel: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 103816189056571, this, [note, velocity, channel]); }
+  startNote(note: number, velocity: number, channel: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 103816189056571, this, [note, velocity, channel]); }
   /**
    * func stopNote(_ note: UInt8, onChannel channel: UInt8)
    * @availability iOS 8.0+
    */
-  stopNote(note: number, channel: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 25201574382155, this, [note, channel]); }
+  stopNote(note: number, channel: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 25201574382155, this, [note, channel]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitMIDIInstrument": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true };
 }
@@ -4338,18 +4338,18 @@ export class AVAudioUnitMIDIInstrument extends (AVAudioUnit as unknown as Omit<t
  */
 export class AVAudioUnitReverb extends (AVAudioUnitEffect as unknown as Omit<typeof AVAudioUnitEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitEffect)) {
   /** init() */
-  static init(): AVAudioUnitReverb { return callSDK<AVAudioUnitReverb>("AVFAudio_d6c5d10d3352e6ec", 1173315454649116, undefined, []); }
+  static init(): AVAudioUnitReverb { return callSDK<AVAudioUnitReverb>("AVFAudio_a956b86ef7a76a8e", 1173315454649116, undefined, []); }
   /**
    * func loadFactoryPreset(_ preset: AVAudioUnitReverbPreset)
    * @availability iOS 8.0+
    */
-  loadFactoryPreset(preset: AVAudioUnitReverbPreset): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4383911520911757, this, [preset]); }
+  loadFactoryPreset(preset: AVAudioUnitReverbPreset): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4383911520911757, this, [preset]); }
   /**
    * var wetDryMix: Float { get set }
    * @availability iOS 8.0+
    */
-  get wetDryMix(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 928053478481595, this, []); }
-  set wetDryMix(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 313977071844012, this, [value]); }
+  get wetDryMix(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 928053478481595, this, []); }
+  set wetDryMix(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 313977071844012, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitReverb": true; "c:objc(cs)AVAudioUnitEffect": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true; "bypass": true; "wetDryMix": true };
 }
@@ -4365,7 +4365,7 @@ export const AVAudioUnitReverbPreset = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (AVAudioUnitReverbPreset) | null { return callSDK<(AVAudioUnitReverbPreset) | null>("AVFAudio_d6c5d10d3352e6ec", 732235313471867, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioUnitReverbPreset) | null { return callSDK<(AVAudioUnitReverbPreset) | null>("AVFAudio_a956b86ef7a76a8e", 732235313471867, undefined, [rawValue]); }
 };
 
 /**
@@ -4374,47 +4374,47 @@ export const AVAudioUnitReverbPreset = {
  */
 export class AVAudioUnitSampler extends (AVAudioUnitMIDIInstrument as unknown as Omit<typeof AVAudioUnitMIDIInstrument, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitMIDIInstrument)) {
   /** init() */
-  static init(): AVAudioUnitSampler { return callSDK<AVAudioUnitSampler>("AVFAudio_d6c5d10d3352e6ec", 1746759062859942, undefined, []); }
+  static init(): AVAudioUnitSampler { return callSDK<AVAudioUnitSampler>("AVFAudio_a956b86ef7a76a8e", 1746759062859942, undefined, []); }
   /**
    * func loadAudioFiles(at audioFiles: [URL]) throws
    * @availability iOS 8.0+
    */
-  loadAudioFiles(audioFiles: Array<string>): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4038739235069086, this, [audioFiles]); }
+  loadAudioFiles(audioFiles: Array<string>): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4038739235069086, this, [audioFiles]); }
   /**
    * func loadInstrument(at instrumentURL: URL) throws
    * @availability iOS 8.0+
    */
-  loadInstrument(instrumentURL: string): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3775734913457343, this, [instrumentURL]); }
+  loadInstrument(instrumentURL: string): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3775734913457343, this, [instrumentURL]); }
   /**
    * func loadSoundBankInstrument(at bankURL: URL, program: UInt8, bankMSB: UInt8, bankLSB: UInt8) throws
    * @availability iOS 8.0+
    */
-  loadSoundBankInstrument(bankURL: string, program: number, bankMSB: number, bankLSB: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3812386494528686, this, [bankURL, program, bankMSB, bankLSB]); }
+  loadSoundBankInstrument(bankURL: string, program: number, bankMSB: number, bankLSB: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3812386494528686, this, [bankURL, program, bankMSB, bankLSB]); }
   /**
    * var globalTuning: Float { get set }
    * @availability iOS 8.0+
    */
-  get globalTuning(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3734270175609183, this, []); }
-  set globalTuning(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2094848027866982, this, [value]); }
+  get globalTuning(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3734270175609183, this, []); }
+  set globalTuning(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2094848027866982, this, [value]); }
   /**
    * var masterGain: Float { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 15.0
    */
-  get masterGain(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1343028607805854, this, []); }
-  set masterGain(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1289528485892636, this, [value]); }
+  get masterGain(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1343028607805854, this, []); }
+  set masterGain(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1289528485892636, this, [value]); }
   /**
    * var overallGain: Float { get set }
    * @availability iOS 15.0+
    */
-  get overallGain(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3072678495719327, this, []); }
-  set overallGain(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1848586991633173, this, [value]); }
+  get overallGain(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3072678495719327, this, []); }
+  set overallGain(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1848586991633173, this, [value]); }
   /**
    * var stereoPan: Float { get set }
    * @availability iOS 8.0+
    */
-  get stereoPan(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 950443522396112, this, []); }
-  set stereoPan(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3137953778522657, this, [value]); }
+  get stereoPan(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 950443522396112, this, []); }
+  set stereoPan(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3137953778522657, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitSampler": true; "c:objc(cs)AVAudioUnitMIDIInstrument": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true; "globalTuning": true; "masterGain": true; "overallGain": true; "stereoPan": true };
 }
@@ -4428,13 +4428,13 @@ export class AVAudioUnitTimeEffect extends (AVAudioUnit as unknown as Omit<typeo
    * init(audioComponentDescription: AudioComponentDescription)
    * @availability iOS 8.0+
    */
-  static init(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitTimeEffect { return callSDK<AVAudioUnitTimeEffect>("AVFAudio_d6c5d10d3352e6ec", 4083964609461088, undefined, [audioComponentDescription]); }
+  static init(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitTimeEffect { return callSDK<AVAudioUnitTimeEffect>("AVFAudio_a956b86ef7a76a8e", 4083964609461088, undefined, [audioComponentDescription]); }
   /**
    * var bypass: Bool { get set }
    * @availability iOS 8.0+
    */
-  get bypass(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3693058494877508, this, []); }
-  set bypass(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 770432027612988, this, [value]); }
+  get bypass(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3693058494877508, this, []); }
+  set bypass(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 770432027612988, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitTimeEffect": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true; "bypass": true };
 }
@@ -4445,25 +4445,25 @@ export class AVAudioUnitTimeEffect extends (AVAudioUnit as unknown as Omit<typeo
  */
 export class AVAudioUnitTimePitch extends (AVAudioUnitTimeEffect as unknown as Omit<typeof AVAudioUnitTimeEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitTimeEffect)) {
   /** init() */
-  static init(): AVAudioUnitTimePitch { return callSDK<AVAudioUnitTimePitch>("AVFAudio_d6c5d10d3352e6ec", 386018115262011, undefined, []); }
+  static init(): AVAudioUnitTimePitch { return callSDK<AVAudioUnitTimePitch>("AVFAudio_a956b86ef7a76a8e", 386018115262011, undefined, []); }
   /**
    * var overlap: Float { get set }
    * @availability iOS 8.0+
    */
-  get overlap(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3688030537584319, this, []); }
-  set overlap(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 990720590369133, this, [value]); }
+  get overlap(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3688030537584319, this, []); }
+  set overlap(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 990720590369133, this, [value]); }
   /**
    * var pitch: Float { get set }
    * @availability iOS 8.0+
    */
-  get pitch(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4053885896951101, this, []); }
-  set pitch(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2939604743371566, this, [value]); }
+  get pitch(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4053885896951101, this, []); }
+  set pitch(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2939604743371566, this, [value]); }
   /**
    * var rate: Float { get set }
    * @availability iOS 8.0+
    */
-  get rate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4441581272381925, this, []); }
-  set rate(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1005468848397136, this, [value]); }
+  get rate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4441581272381925, this, []); }
+  set rate(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1005468848397136, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitTimePitch": true; "c:objc(cs)AVAudioUnitTimeEffect": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true; "bypass": true; "overlap": true; "pitch": true; "rate": true };
 }
@@ -4474,13 +4474,13 @@ export class AVAudioUnitTimePitch extends (AVAudioUnitTimeEffect as unknown as O
  */
 export class AVAudioUnitVarispeed extends (AVAudioUnitTimeEffect as unknown as Omit<typeof AVAudioUnitTimeEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitTimeEffect)) {
   /** init() */
-  static init(): AVAudioUnitVarispeed { return callSDK<AVAudioUnitVarispeed>("AVFAudio_d6c5d10d3352e6ec", 69763786289371, undefined, []); }
+  static init(): AVAudioUnitVarispeed { return callSDK<AVAudioUnitVarispeed>("AVFAudio_a956b86ef7a76a8e", 69763786289371, undefined, []); }
   /**
    * var rate: Float { get set }
    * @availability iOS 8.0+
    */
-  get rate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 511445452348144, this, []); }
-  set rate(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4105844028734376, this, [value]); }
+  get rate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 511445452348144, this, []); }
+  set rate(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4105844028734376, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAudioUnitVarispeed": true; "c:objc(cs)AVAudioUnitTimeEffect": true; "c:objc(cs)AVAudioUnit": true; "c:objc(cs)AVAudioNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "engine": true; "lastRenderTime": true; "latency": true; "numberOfInputs": true; "numberOfOutputs": true; "outputPresentationLatency": true; "audioComponentDescription": true; "manufacturerName": true; "name": true; "version": true; "bypass": true; "rate": true };
 }
@@ -4494,24 +4494,24 @@ export class AVAudioVoiceProcessingOtherAudioDuckingConfiguration extends SDKHan
    * var duckingLevel: AVAudioVoiceProcessingOtherAudioDuckingConfiguration.Level
    * @availability iOS 17.0+
    */
-  get duckingLevel(): AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level { return callSDK<AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level>("AVFAudio_d6c5d10d3352e6ec", 3776708968118393, this, []); }
-  set duckingLevel(value: AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1680989192134997, this, [value]); }
+  get duckingLevel(): AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level { return callSDK<AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level>("AVFAudio_a956b86ef7a76a8e", 3776708968118393, this, []); }
+  set duckingLevel(value: AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1680989192134997, this, [value]); }
   /**
    * var enableAdvancedDucking: ObjCBool
    * @availability iOS 17.0+
    */
-  get enableAdvancedDucking(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3845858308685583, this, []); }
-  set enableAdvancedDucking(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4096831019711312, this, [value]); }
+  get enableAdvancedDucking(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3845858308685583, this, []); }
+  set enableAdvancedDucking(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4096831019711312, this, [value]); }
   /**
    * init(enableAdvancedDucking: ObjCBool, duckingLevel: AVAudioVoiceProcessingOtherAudioDuckingConfiguration.Level)
    * @availability iOS 17.0+
    */
-  static initEnableAdvancedDuckingDuckingLevel(enableAdvancedDucking: boolean, duckingLevel: AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level): AVAudioVoiceProcessingOtherAudioDuckingConfiguration { return callSDK<AVAudioVoiceProcessingOtherAudioDuckingConfiguration>("AVFAudio_d6c5d10d3352e6ec", 826529109074924, undefined, [enableAdvancedDucking, duckingLevel]); }
+  static initEnableAdvancedDuckingDuckingLevel(enableAdvancedDucking: boolean, duckingLevel: AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level): AVAudioVoiceProcessingOtherAudioDuckingConfiguration { return callSDK<AVAudioVoiceProcessingOtherAudioDuckingConfiguration>("AVFAudio_a956b86ef7a76a8e", 826529109074924, undefined, [enableAdvancedDucking, duckingLevel]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): AVAudioVoiceProcessingOtherAudioDuckingConfiguration { return callSDK<AVAudioVoiceProcessingOtherAudioDuckingConfiguration>("AVFAudio_d6c5d10d3352e6ec", 4179837356229214, undefined, []); }
+  static init(): AVAudioVoiceProcessingOtherAudioDuckingConfiguration { return callSDK<AVAudioVoiceProcessingOtherAudioDuckingConfiguration>("AVFAudio_a956b86ef7a76a8e", 4179837356229214, undefined, []); }
   declare readonly $type: { "c:@S@AVAudioVoiceProcessingOtherAudioDuckingConfiguration": true };
 }
 
@@ -4526,7 +4526,7 @@ export const AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level) | null { return callSDK<(AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level) | null>("AVFAudio_d6c5d10d3352e6ec", 3209477675537714, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level) | null { return callSDK<(AVAudioVoiceProcessingOtherAudioDuckingConfiguration_Level) | null>("AVFAudio_a956b86ef7a76a8e", 3209477675537714, undefined, [rawValue]); }
 };
 
 /**
@@ -4540,7 +4540,7 @@ export const AVAudioVoiceProcessingSpeechActivityEvent = {
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (AVAudioVoiceProcessingSpeechActivityEvent) | null { return callSDK<(AVAudioVoiceProcessingSpeechActivityEvent) | null>("AVFAudio_d6c5d10d3352e6ec", 2699403883907993, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioVoiceProcessingSpeechActivityEvent) | null { return callSDK<(AVAudioVoiceProcessingSpeechActivityEvent) | null>("AVFAudio_a956b86ef7a76a8e", 2699403883907993, undefined, [rawValue]); }
 };
 
 /**
@@ -4549,7 +4549,7 @@ export const AVAudioVoiceProcessingSpeechActivityEvent = {
  */
 export class AVMusicEvent extends SDKHandle {
   /** init() */
-  static init(): AVMusicEvent { return callSDK<AVMusicEvent>("AVFAudio_d6c5d10d3352e6ec", 3838818217492718, undefined, []); }
+  static init(): AVMusicEvent { return callSDK<AVMusicEvent>("AVFAudio_a956b86ef7a76a8e", 3838818217492718, undefined, []); }
   declare readonly $type: { "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4562,24 +4562,24 @@ export class AVAUPresetEvent extends (AVMusicEvent as unknown as Omit<typeof AVM
    * init(scope: UInt32, element: UInt32, dictionary presetDictionary: [AnyHashable : Any])
    * @availability iOS 16.0+
    */
-  static init(scope: number, element: number, presetDictionary: NativeMap<unknown, unknown>): AVAUPresetEvent { return callSDK<AVAUPresetEvent>("AVFAudio_d6c5d10d3352e6ec", 1878116592192877, undefined, [scope, element, presetDictionary]); }
+  static init(scope: number, element: number, presetDictionary: NativeMap<unknown, unknown>): AVAUPresetEvent { return callSDK<AVAUPresetEvent>("AVFAudio_a956b86ef7a76a8e", 1878116592192877, undefined, [scope, element, presetDictionary]); }
   /**
    * var element: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get element(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3013209047957466, this, []); }
-  set element(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1215951392811842, this, [value]); }
+  get element(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3013209047957466, this, []); }
+  set element(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1215951392811842, this, [value]); }
   /**
    * var presetDictionary: [AnyHashable : Any] { get }
    * @availability iOS 16.0+
    */
-  get presetDictionary(): NativeMap<unknown, unknown> { return callSDK<NativeMap<unknown, unknown>>("AVFAudio_d6c5d10d3352e6ec", 4435831812349442, this, []); }
+  get presetDictionary(): NativeMap<unknown, unknown> { return callSDK<NativeMap<unknown, unknown>>("AVFAudio_a956b86ef7a76a8e", 4435831812349442, this, []); }
   /**
    * var scope: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get scope(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 862815230484011, this, []); }
-  set scope(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3303197528317350, this, [value]); }
+  get scope(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 862815230484011, this, []); }
+  set scope(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3303197528317350, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVAUPresetEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "element": true; "presetDictionary": true; "scope": true };
 }
@@ -4596,47 +4596,47 @@ export class AVExtendedNoteOnEvent extends AVMusicEvent {
    * class let defaultInstrument: UInt32
    * @availability iOS 16.0+
    */
-  static get defaultInstrument(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3504239105269845, undefined, []); }
+  static get defaultInstrument(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3504239105269845, undefined, []); }
   /**
    * init(midiNote: Float, velocity: Float, groupID: UInt32, duration: AVMusicTimeStamp)
    * @availability iOS 16.0+
    */
-  static initMidiNoteVelocityGroupIDDuration(midiNote: number, velocity: number, groupID: number, duration: number): AVExtendedNoteOnEvent { return callSDK<AVExtendedNoteOnEvent>("AVFAudio_d6c5d10d3352e6ec", 2453903083673876, undefined, [midiNote, velocity, groupID, duration]); }
+  static initMidiNoteVelocityGroupIDDuration(midiNote: number, velocity: number, groupID: number, duration: number): AVExtendedNoteOnEvent { return callSDK<AVExtendedNoteOnEvent>("AVFAudio_a956b86ef7a76a8e", 2453903083673876, undefined, [midiNote, velocity, groupID, duration]); }
   /**
    * init(midiNote: Float, velocity: Float, instrumentID: UInt32, groupID: UInt32, duration: AVMusicTimeStamp)
    * @availability iOS 16.0+
    */
-  static initMidiNoteVelocityInstrumentIDGroupIDDuration(midiNote: number, velocity: number, instrumentID: number, groupID: number, duration: number): AVExtendedNoteOnEvent { return callSDK<AVExtendedNoteOnEvent>("AVFAudio_d6c5d10d3352e6ec", 2101619111464671, undefined, [midiNote, velocity, instrumentID, groupID, duration]); }
+  static initMidiNoteVelocityInstrumentIDGroupIDDuration(midiNote: number, velocity: number, instrumentID: number, groupID: number, duration: number): AVExtendedNoteOnEvent { return callSDK<AVExtendedNoteOnEvent>("AVFAudio_a956b86ef7a76a8e", 2101619111464671, undefined, [midiNote, velocity, instrumentID, groupID, duration]); }
   /**
    * var duration: AVMusicTimeStamp { get set }
    * @availability iOS 16.0+
    */
-  get duration(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2798481526469076, this, []); }
-  set duration(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1877139127671424, this, [value]); }
+  get duration(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2798481526469076, this, []); }
+  set duration(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1877139127671424, this, [value]); }
   /**
    * var groupID: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get groupID(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2783761256638546, this, []); }
-  set groupID(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1645752771016190, this, [value]); }
+  get groupID(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2783761256638546, this, []); }
+  set groupID(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1645752771016190, this, [value]); }
   /**
    * var instrumentID: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get instrumentID(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1420967263943048, this, []); }
-  set instrumentID(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 831329581348390, this, [value]); }
+  get instrumentID(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1420967263943048, this, []); }
+  set instrumentID(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 831329581348390, this, [value]); }
   /**
    * var midiNote: Float { get set }
    * @availability iOS 16.0+
    */
-  get midiNote(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3898187421596534, this, []); }
-  set midiNote(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 410928509801276, this, [value]); }
+  get midiNote(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3898187421596534, this, []); }
+  set midiNote(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 410928509801276, this, [value]); }
   /**
    * var velocity: Float { get set }
    * @availability iOS 16.0+
    */
-  get velocity(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2350798004625745, this, []); }
-  set velocity(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 771467892586056, this, [value]); }
+  get velocity(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2350798004625745, this, []); }
+  set velocity(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 771467892586056, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVExtendedNoteOnEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "groupID": true; "instrumentID": true; "midiNote": true; "velocity": true };
 }
@@ -4650,13 +4650,13 @@ export class AVExtendedTempoEvent extends (AVMusicEvent as unknown as Omit<typeo
    * init(tempo: Double)
    * @availability iOS 16.0+
    */
-  static init(tempo: number): AVExtendedTempoEvent { return callSDK<AVExtendedTempoEvent>("AVFAudio_d6c5d10d3352e6ec", 2359015451215719, undefined, [tempo]); }
+  static init(tempo: number): AVExtendedTempoEvent { return callSDK<AVExtendedTempoEvent>("AVFAudio_a956b86ef7a76a8e", 2359015451215719, undefined, [tempo]); }
   /**
    * var tempo: Double { get set }
    * @availability iOS 16.0+
    */
-  get tempo(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3678718264486935, this, []); }
-  set tempo(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4294844322559019, this, [value]); }
+  get tempo(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3678718264486935, this, []); }
+  set tempo(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4294844322559019, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVExtendedTempoEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "tempo": true };
 }
@@ -4667,13 +4667,13 @@ export class AVExtendedTempoEvent extends (AVMusicEvent as unknown as Omit<typeo
  */
 export class AVMIDIChannelEvent extends (AVMusicEvent as unknown as Omit<typeof AVMusicEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMusicEvent)) {
   /** init() */
-  static init(): AVMIDIChannelEvent { return callSDK<AVMIDIChannelEvent>("AVFAudio_d6c5d10d3352e6ec", 4106264375486672, undefined, []); }
+  static init(): AVMIDIChannelEvent { return callSDK<AVMIDIChannelEvent>("AVFAudio_a956b86ef7a76a8e", 4106264375486672, undefined, []); }
   /**
    * var channel: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get channel(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 35600915486213, this, []); }
-  set channel(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3294228321685072, this, [value]); }
+  get channel(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 35600915486213, this, []); }
+  set channel(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3294228321685072, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVMIDIChannelEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channel": true };
 }
@@ -4687,13 +4687,13 @@ export class AVMIDIChannelPressureEvent extends (AVMIDIChannelEvent as unknown a
    * init(channel: UInt32, pressure: UInt32)
    * @availability iOS 16.0+
    */
-  static init(channel: number, pressure: number): AVMIDIChannelPressureEvent { return callSDK<AVMIDIChannelPressureEvent>("AVFAudio_d6c5d10d3352e6ec", 633556698292798, undefined, [channel, pressure]); }
+  static init(channel: number, pressure: number): AVMIDIChannelPressureEvent { return callSDK<AVMIDIChannelPressureEvent>("AVFAudio_a956b86ef7a76a8e", 633556698292798, undefined, [channel, pressure]); }
   /**
    * var pressure: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get pressure(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3265856227291431, this, []); }
-  set pressure(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2042747301879942, this, [value]); }
+  get pressure(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3265856227291431, this, []); }
+  set pressure(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2042747301879942, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVMIDIChannelPressureEvent": true; "c:objc(cs)AVMIDIChannelEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channel": true; "pressure": true };
 }
@@ -4707,17 +4707,17 @@ export class AVMIDIControlChangeEvent extends (AVMIDIChannelEvent as unknown as 
    * init(channel: UInt32, messageType: AVMIDIControlChangeEvent.MessageType, value: UInt32)
    * @availability iOS 16.0+
    */
-  static init(channel: number, messageType: AVMIDIControlChangeEvent_MessageType, value: number): AVMIDIControlChangeEvent { return callSDK<AVMIDIControlChangeEvent>("AVFAudio_d6c5d10d3352e6ec", 2070545498261591, undefined, [channel, messageType, value]); }
+  static init(channel: number, messageType: AVMIDIControlChangeEvent_MessageType, value: number): AVMIDIControlChangeEvent { return callSDK<AVMIDIControlChangeEvent>("AVFAudio_a956b86ef7a76a8e", 2070545498261591, undefined, [channel, messageType, value]); }
   /**
    * var messageType: AVMIDIControlChangeEvent.MessageType { get }
    * @availability iOS 16.0+
    */
-  get messageType(): AVMIDIControlChangeEvent_MessageType { return callSDK<AVMIDIControlChangeEvent_MessageType>("AVFAudio_d6c5d10d3352e6ec", 291189902416640, this, []); }
+  get messageType(): AVMIDIControlChangeEvent_MessageType { return callSDK<AVMIDIControlChangeEvent_MessageType>("AVFAudio_a956b86ef7a76a8e", 291189902416640, this, []); }
   /**
    * var value: UInt32 { get }
    * @availability iOS 16.0+
    */
-  get value(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3848064347410385, this, []); }
+  get value(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3848064347410385, this, []); }
   declare readonly $type: { "c:objc(cs)AVMIDIControlChangeEvent": true; "c:objc(cs)AVMIDIChannelEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channel": true; "messageType": true; "value": true };
 }
@@ -4733,7 +4733,7 @@ export const AVMIDIControlChangeEvent_MessageType = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (AVMIDIControlChangeEvent_MessageType) | null { return callSDK<(AVMIDIControlChangeEvent_MessageType) | null>("AVFAudio_d6c5d10d3352e6ec", 3356062447943854, undefined, [rawValue]); }
+  init(rawValue: number): (AVMIDIControlChangeEvent_MessageType) | null { return callSDK<(AVMIDIControlChangeEvent_MessageType) | null>("AVFAudio_a956b86ef7a76a8e", 3356062447943854, undefined, [rawValue]); }
 };
 
 /**
@@ -4751,12 +4751,12 @@ export class AVMIDIMetaEvent extends (AVMusicEvent as unknown as Omit<typeof AVM
    * init(type: AVMIDIMetaEvent.EventType, data: Data)
    * @availability iOS 16.0+
    */
-  static init(type: AVMIDIMetaEvent_EventType, data: ArrayBuffer): AVMIDIMetaEvent { return callSDK<AVMIDIMetaEvent>("AVFAudio_d6c5d10d3352e6ec", 496744627034460, undefined, [type, data]); }
+  static init(type: AVMIDIMetaEvent_EventType, data: ArrayBuffer): AVMIDIMetaEvent { return callSDK<AVMIDIMetaEvent>("AVFAudio_a956b86ef7a76a8e", 496744627034460, undefined, [type, data]); }
   /**
    * var type: AVMIDIMetaEvent.EventType { get }
    * @availability iOS 16.0+
    */
-  get type(): AVMIDIMetaEvent_EventType { return callSDK<AVMIDIMetaEvent_EventType>("AVFAudio_d6c5d10d3352e6ec", 3560834651560032, this, []); }
+  get type(): AVMIDIMetaEvent_EventType { return callSDK<AVMIDIMetaEvent_EventType>("AVFAudio_a956b86ef7a76a8e", 3560834651560032, this, []); }
   declare readonly $type: { "c:objc(cs)AVMIDIMetaEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "type": true };
 }
@@ -4772,7 +4772,7 @@ export const AVMIDIMetaEvent_EventType = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (AVMIDIMetaEvent_EventType) | null { return callSDK<(AVMIDIMetaEvent_EventType) | null>("AVFAudio_d6c5d10d3352e6ec", 55335064289881, undefined, [rawValue]); }
+  init(rawValue: number): (AVMIDIMetaEvent_EventType) | null { return callSDK<(AVMIDIMetaEvent_EventType) | null>("AVFAudio_a956b86ef7a76a8e", 55335064289881, undefined, [rawValue]); }
 };
 
 /**
@@ -4784,31 +4784,31 @@ export class AVMIDINoteEvent extends (AVMusicEvent as unknown as Omit<typeof AVM
    * init(channel: UInt32, key keyNum: UInt32, velocity: UInt32, duration: AVMusicTimeStamp)
    * @availability iOS 16.0+
    */
-  static init(channel: number, keyNum: number, velocity: number, duration: number): AVMIDINoteEvent { return callSDK<AVMIDINoteEvent>("AVFAudio_d6c5d10d3352e6ec", 1873347993934829, undefined, [channel, keyNum, velocity, duration]); }
+  static init(channel: number, keyNum: number, velocity: number, duration: number): AVMIDINoteEvent { return callSDK<AVMIDINoteEvent>("AVFAudio_a956b86ef7a76a8e", 1873347993934829, undefined, [channel, keyNum, velocity, duration]); }
   /**
    * var channel: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get channel(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 254601156219397, this, []); }
-  set channel(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2140948910575038, this, [value]); }
+  get channel(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 254601156219397, this, []); }
+  set channel(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2140948910575038, this, [value]); }
   /**
    * var duration: AVMusicTimeStamp { get set }
    * @availability iOS 16.0+
    */
-  get duration(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1309510053771598, this, []); }
-  set duration(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4401794285049956, this, [value]); }
+  get duration(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1309510053771598, this, []); }
+  set duration(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4401794285049956, this, [value]); }
   /**
    * var key: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get key(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2765538482673484, this, []); }
-  set key(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1609983787006419, this, [value]); }
+  get key(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2765538482673484, this, []); }
+  set key(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1609983787006419, this, [value]); }
   /**
    * var velocity: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get velocity(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3025741740809221, this, []); }
-  set velocity(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1207795492203985, this, [value]); }
+  get velocity(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3025741740809221, this, []); }
+  set velocity(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1207795492203985, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVMIDINoteEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channel": true; "duration": true; "key": true; "velocity": true };
 }
@@ -4822,13 +4822,13 @@ export class AVMIDIPitchBendEvent extends (AVMIDIChannelEvent as unknown as Omit
    * init(channel: UInt32, value: UInt32)
    * @availability iOS 16.0+
    */
-  static init(channel: number, value: number): AVMIDIPitchBendEvent { return callSDK<AVMIDIPitchBendEvent>("AVFAudio_d6c5d10d3352e6ec", 1919282284587993, undefined, [channel, value]); }
+  static init(channel: number, value: number): AVMIDIPitchBendEvent { return callSDK<AVMIDIPitchBendEvent>("AVFAudio_a956b86ef7a76a8e", 1919282284587993, undefined, [channel, value]); }
   /**
    * var value: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get value(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1219491131561360, this, []); }
-  set value(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2318983923650848, this, [value]); }
+  get value(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1219491131561360, this, []); }
+  set value(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2318983923650848, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVMIDIPitchBendEvent": true; "c:objc(cs)AVMIDIChannelEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channel": true; "value": true };
 }
@@ -4842,49 +4842,49 @@ export class AVMIDIPlayer extends SDKHandle {
    * init(contentsOf inURL: URL, soundBankURL bankURL: URL?) throws
    * @availability iOS 8.0+
    */
-  static initContentsOfSoundBankURL(inURL: string, bankURL?: (string) | null): AVMIDIPlayer { return callSDK<AVMIDIPlayer>("AVFAudio_d6c5d10d3352e6ec", 3239333426523587, undefined, [inURL, bankURL]); }
+  static initContentsOfSoundBankURL(inURL: string, bankURL?: (string) | null): AVMIDIPlayer { return callSDK<AVMIDIPlayer>("AVFAudio_a956b86ef7a76a8e", 3239333426523587, undefined, [inURL, bankURL]); }
   /**
    * init(data: Data, soundBankURL bankURL: URL?) throws
    * @availability iOS 8.0+
    */
-  static initDataSoundBankURL(data: ArrayBuffer, bankURL?: (string) | null): AVMIDIPlayer { return callSDK<AVMIDIPlayer>("AVFAudio_d6c5d10d3352e6ec", 3372534779503025, undefined, [data, bankURL]); }
+  static initDataSoundBankURL(data: ArrayBuffer, bankURL?: (string) | null): AVMIDIPlayer { return callSDK<AVMIDIPlayer>("AVFAudio_a956b86ef7a76a8e", 3372534779503025, undefined, [data, bankURL]); }
   /**
    * func play() async
    * @availability iOS 8.0+
    */
-  play(completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 832633183854900, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  play(completionHandler?: ((() => void)) | null): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 832633183854900, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func prepareToPlay()
    * @availability iOS 8.0+
    */
-  prepareToPlay(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 757931867066111, this, []); }
+  prepareToPlay(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 757931867066111, this, []); }
   /**
    * func stop()
    * @availability iOS 8.0+
    */
-  stop(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1742103494210185, this, []); }
+  stop(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1742103494210185, this, []); }
   /**
    * var currentPosition: TimeInterval { get set }
    * @availability iOS 8.0+
    */
-  get currentPosition(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1415955009397631, this, []); }
-  set currentPosition(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1500211542908315, this, [value]); }
+  get currentPosition(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1415955009397631, this, []); }
+  set currentPosition(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1500211542908315, this, [value]); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 8.0+
    */
-  get duration(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2265637781094881, this, []); }
+  get duration(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2265637781094881, this, []); }
   /**
    * var isPlaying: Bool { get }
    * @availability iOS 8.0+
    */
-  get isPlaying(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3688544303579566, this, []); }
+  get isPlaying(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3688544303579566, this, []); }
   /**
    * var rate: Float { get set }
    * @availability iOS 8.0+
    */
-  get rate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3604210519679226, this, []); }
-  set rate(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2454955411888659, this, [value]); }
+  get rate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3604210519679226, this, []); }
+  set rate(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2454955411888659, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVMIDIPlayer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentPosition": true; "duration": true; "isPlaying": true; "rate": true };
 }
@@ -4901,19 +4901,19 @@ export class AVMIDIPolyPressureEvent extends (AVMIDIChannelEvent as unknown as O
    * init(channel: UInt32, key: UInt32, pressure: UInt32)
    * @availability iOS 16.0+
    */
-  static init(channel: number, key: number, pressure: number): AVMIDIPolyPressureEvent { return callSDK<AVMIDIPolyPressureEvent>("AVFAudio_d6c5d10d3352e6ec", 2171541102245222, undefined, [channel, key, pressure]); }
+  static init(channel: number, key: number, pressure: number): AVMIDIPolyPressureEvent { return callSDK<AVMIDIPolyPressureEvent>("AVFAudio_a956b86ef7a76a8e", 2171541102245222, undefined, [channel, key, pressure]); }
   /**
    * var key: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get key(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2222438911100107, this, []); }
-  set key(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 899819715615499, this, [value]); }
+  get key(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2222438911100107, this, []); }
+  set key(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 899819715615499, this, [value]); }
   /**
    * var pressure: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get pressure(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1137482740965251, this, []); }
-  set pressure(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1803705272374520, this, [value]); }
+  get pressure(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1137482740965251, this, []); }
+  set pressure(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1803705272374520, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVMIDIPolyPressureEvent": true; "c:objc(cs)AVMIDIChannelEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channel": true; "key": true; "pressure": true };
 }
@@ -4927,13 +4927,13 @@ export class AVMIDIProgramChangeEvent extends (AVMIDIChannelEvent as unknown as 
    * init(channel: UInt32, programNumber: UInt32)
    * @availability iOS 16.0+
    */
-  static init(channel: number, programNumber: number): AVMIDIProgramChangeEvent { return callSDK<AVMIDIProgramChangeEvent>("AVFAudio_d6c5d10d3352e6ec", 1621164889550067, undefined, [channel, programNumber]); }
+  static init(channel: number, programNumber: number): AVMIDIProgramChangeEvent { return callSDK<AVMIDIProgramChangeEvent>("AVFAudio_a956b86ef7a76a8e", 1621164889550067, undefined, [channel, programNumber]); }
   /**
    * var programNumber: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get programNumber(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1244881660017060, this, []); }
-  set programNumber(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2754883144530251, this, [value]); }
+  get programNumber(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1244881660017060, this, []); }
+  set programNumber(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2754883144530251, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVMIDIProgramChangeEvent": true; "c:objc(cs)AVMIDIChannelEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channel": true; "programNumber": true };
 }
@@ -4947,12 +4947,12 @@ export class AVMIDISysexEvent extends (AVMusicEvent as unknown as Omit<typeof AV
    * init(data: Data)
    * @availability iOS 16.0+
    */
-  static init(data: ArrayBuffer): AVMIDISysexEvent { return callSDK<AVMIDISysexEvent>("AVFAudio_d6c5d10d3352e6ec", 4482472014184385, undefined, [data]); }
+  static init(data: ArrayBuffer): AVMIDISysexEvent { return callSDK<AVMIDISysexEvent>("AVFAudio_a956b86ef7a76a8e", 4482472014184385, undefined, [data]); }
   /**
    * var sizeInBytes: UInt32 { get }
    * @availability iOS 16.0+
    */
-  get sizeInBytes(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3379176069395904, this, []); }
+  get sizeInBytes(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3379176069395904, this, []); }
   declare readonly $type: { "c:objc(cs)AVMIDISysexEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "sizeInBytes": true };
 }
@@ -4965,9 +4965,9 @@ export type AVMusicSequenceLoadOptions = Array<"smf_ChannelsToTracks">;
 
 export const AVMusicSequenceLoadOptions = {
   /** static var smf_ChannelsToTracks: AVMusicSequenceLoadOptions { get } */
-  get smf_ChannelsToTracks(): AVMusicSequenceLoadOptions { return callSDK<AVMusicSequenceLoadOptions>("AVFAudio_d6c5d10d3352e6ec", 3779360264799040, undefined, []); },
+  get smf_ChannelsToTracks(): AVMusicSequenceLoadOptions { return callSDK<AVMusicSequenceLoadOptions>("AVFAudio_a956b86ef7a76a8e", 3779360264799040, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): AVMusicSequenceLoadOptions { return callSDK<AVMusicSequenceLoadOptions>("AVFAudio_d6c5d10d3352e6ec", 637531690258497, undefined, [rawValue]); }
+  init(rawValue: number): AVMusicSequenceLoadOptions { return callSDK<AVMusicSequenceLoadOptions>("AVFAudio_a956b86ef7a76a8e", 637531690258497, undefined, [rawValue]); }
 };
 
 /** typealias AVMusicTimeStamp = Double */
@@ -4982,110 +4982,110 @@ export class AVMusicTrack extends SDKHandle {
    * func addEvent(_ event: AVMusicEvent, at beat: AVMusicTimeStamp)
    * @availability iOS 16.0+
    */
-  addEvent(event: AVMusicEvent, beat: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2839774099238345, this, [event, beat]); }
+  addEvent(event: AVMusicEvent, beat: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2839774099238345, this, [event, beat]); }
   /**
    * func clearEvents(in range: AVBeatRange)
    * @availability iOS 16.0+
    */
-  clearEvents(range: SDKHandle): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1790046165918924, this, [range]); }
+  clearEvents(range: SDKHandle): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1790046165918924, this, [range]); }
   /**
    * func copyAndMergeEvents(in range: AVBeatRange, from sourceTrack: AVMusicTrack, mergeAt mergeStartBeat: AVMusicTimeStamp)
    * @availability iOS 16.0+
    */
-  copyAndMergeEvents(range: SDKHandle, sourceTrack: AVMusicTrack, mergeStartBeat: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2249211506192953, this, [range, sourceTrack, mergeStartBeat]); }
+  copyAndMergeEvents(range: SDKHandle, sourceTrack: AVMusicTrack, mergeStartBeat: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2249211506192953, this, [range, sourceTrack, mergeStartBeat]); }
   /**
    * func copyEvents(in range: AVBeatRange, from sourceTrack: AVMusicTrack, insertAt insertStartBeat: AVMusicTimeStamp)
    * @availability iOS 16.0+
    */
-  copyEvents(range: SDKHandle, sourceTrack: AVMusicTrack, insertStartBeat: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1461974344285120, this, [range, sourceTrack, insertStartBeat]); }
+  copyEvents(range: SDKHandle, sourceTrack: AVMusicTrack, insertStartBeat: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1461974344285120, this, [range, sourceTrack, insertStartBeat]); }
   /**
    * func cutEvents(in range: AVBeatRange)
    * @availability iOS 16.0+
    */
-  cutEvents(range: SDKHandle): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1279139093414421, this, [range]); }
+  cutEvents(range: SDKHandle): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1279139093414421, this, [range]); }
   /**
    * func enumerateEvents(in range: AVBeatRange, using block: (AVMusicEvent, UnsafeMutablePointer<AVMusicTimeStamp>, UnsafeMutablePointer<ObjCBool>) -> Void)
    * @availability iOS 16.0+
    */
-  enumerateEvents(range: SDKHandle, block: ((arg0: AVMusicEvent, arg1: SDKHandle, arg2: NativeOut<boolean>) => void)): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3148905763845427, this, [range, block], [null,{"callback":{"out":[2]}}], true); }
+  enumerateEvents(range: SDKHandle, block: ((arg0: AVMusicEvent, arg1: SDKHandle, arg2: NativeOut<boolean>) => void)): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3148905763845427, this, [range, block], [null,{"callback":{"out":[2]}}], true); }
   /** init() */
-  static init(): AVMusicTrack { return callSDK<AVMusicTrack>("AVFAudio_d6c5d10d3352e6ec", 1871561893322631, undefined, []); }
+  static init(): AVMusicTrack { return callSDK<AVMusicTrack>("AVFAudio_a956b86ef7a76a8e", 1871561893322631, undefined, []); }
   /**
    * func moveEvents(in range: AVBeatRange, by beatAmount: AVMusicTimeStamp)
    * @availability iOS 16.0+
    */
-  moveEvents(range: SDKHandle, beatAmount: number): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3776740015258079, this, [range, beatAmount]); }
+  moveEvents(range: SDKHandle, beatAmount: number): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3776740015258079, this, [range, beatAmount]); }
   /**
    * var destinationAudioUnit: AVAudioUnit? { get set }
    * @availability iOS 9.0+
    */
-  get destinationAudioUnit(): (AVAudioUnit) | null { return callSDK<(AVAudioUnit) | null>("AVFAudio_d6c5d10d3352e6ec", 215848392458952, this, []); }
-  set destinationAudioUnit(value: (AVAudioUnit) | null) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1072146032981659, this, [value]); }
+  get destinationAudioUnit(): (AVAudioUnit) | null { return callSDK<(AVAudioUnit) | null>("AVFAudio_a956b86ef7a76a8e", 215848392458952, this, []); }
+  set destinationAudioUnit(value: (AVAudioUnit) | null) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1072146032981659, this, [value]); }
   /**
    * var destinationMIDIEndpoint: MIDIEndpointRef { get set }
    * @availability iOS 9.0+
    */
-  get destinationMIDIEndpoint(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 878742928499597, this, []); }
-  set destinationMIDIEndpoint(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3567052801846750, this, [value]); }
+  get destinationMIDIEndpoint(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 878742928499597, this, []); }
+  set destinationMIDIEndpoint(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3567052801846750, this, [value]); }
   /**
    * var lengthInBeats: AVMusicTimeStamp { get set }
    * @availability iOS 9.0+
    */
-  get lengthInBeats(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1960437512750701, this, []); }
-  set lengthInBeats(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3298813033886137, this, [value]); }
+  get lengthInBeats(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1960437512750701, this, []); }
+  set lengthInBeats(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3298813033886137, this, [value]); }
   /**
    * var lengthInSeconds: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get lengthInSeconds(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2365387448338817, this, []); }
-  set lengthInSeconds(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3336602350554641, this, [value]); }
+  get lengthInSeconds(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2365387448338817, this, []); }
+  set lengthInSeconds(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3336602350554641, this, [value]); }
   /**
    * var loopRange: AVBeatRange { get set }
    * @availability iOS 9.0+
    */
-  get loopRange(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_d6c5d10d3352e6ec", 4433716564544478, this, []); }
-  set loopRange(value: SDKHandle) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 402154143065501, this, [value]); }
+  get loopRange(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_a956b86ef7a76a8e", 4433716564544478, this, []); }
+  set loopRange(value: SDKHandle) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 402154143065501, this, [value]); }
   /**
    * var isLoopingEnabled: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isLoopingEnabled(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 574047938674340, this, []); }
-  set isLoopingEnabled(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2427899320716604, this, [value]); }
+  get isLoopingEnabled(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 574047938674340, this, []); }
+  set isLoopingEnabled(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2427899320716604, this, [value]); }
   /**
    * var isMuted: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isMuted(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 4170814672447, this, []); }
-  set isMuted(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3594168963767058, this, [value]); }
+  get isMuted(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 4170814672447, this, []); }
+  set isMuted(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3594168963767058, this, [value]); }
   /**
    * var numberOfLoops: Int { get set }
    * @availability iOS 9.0+
    */
-  get numberOfLoops(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3945799659280552, this, []); }
-  set numberOfLoops(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4442110681390867, this, [value]); }
+  get numberOfLoops(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3945799659280552, this, []); }
+  set numberOfLoops(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4442110681390867, this, [value]); }
   /**
    * var offsetTime: AVMusicTimeStamp { get set }
    * @availability iOS 9.0+
    */
-  get offsetTime(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 291208852656646, this, []); }
-  set offsetTime(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 272182466243062, this, [value]); }
+  get offsetTime(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 291208852656646, this, []); }
+  set offsetTime(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 272182466243062, this, [value]); }
   /**
    * var isSoloed: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isSoloed(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2842578866285415, this, []); }
-  set isSoloed(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3702464267543137, this, [value]); }
+  get isSoloed(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2842578866285415, this, []); }
+  set isSoloed(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3702464267543137, this, [value]); }
   /**
    * var timeResolution: Int { get }
    * @availability iOS 9.0+
    */
-  get timeResolution(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 895869141453683, this, []); }
+  get timeResolution(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 895869141453683, this, []); }
   /**
    * var usesAutomatedParameters: Bool { get set }
    * @availability iOS 16.0+
    */
-  get usesAutomatedParameters(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 4399042179309823, this, []); }
-  set usesAutomatedParameters(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3652028514412347, this, [value]); }
+  get usesAutomatedParameters(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 4399042179309823, this, []); }
+  set usesAutomatedParameters(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3652028514412347, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVMusicTrack": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "destinationAudioUnit": true; "destinationMIDIEndpoint": true; "lengthInBeats": true; "lengthInSeconds": true; "loopRange": true; "isLoopingEnabled": true; "isMuted": true; "numberOfLoops": true; "offsetTime": true; "isSoloed": true; "timeResolution": true; "usesAutomatedParameters": true };
 }
@@ -5101,7 +5101,7 @@ export const AVMusicTrackLoopCount = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (AVMusicTrackLoopCount) | null { return callSDK<(AVMusicTrackLoopCount) | null>("AVFAudio_d6c5d10d3352e6ec", 1621095633995732, undefined, [rawValue]); }
+  init(rawValue: number): (AVMusicTrackLoopCount) | null { return callSDK<(AVMusicTrackLoopCount) | null>("AVFAudio_a956b86ef7a76a8e", 1621095633995732, undefined, [rawValue]); }
 };
 
 /**
@@ -5113,12 +5113,12 @@ export class AVMusicUserEvent extends (AVMusicEvent as unknown as Omit<typeof AV
    * init(data: Data)
    * @availability iOS 16.0+
    */
-  static init(data: ArrayBuffer): AVMusicUserEvent { return callSDK<AVMusicUserEvent>("AVFAudio_d6c5d10d3352e6ec", 571943275826094, undefined, [data]); }
+  static init(data: ArrayBuffer): AVMusicUserEvent { return callSDK<AVMusicUserEvent>("AVFAudio_a956b86ef7a76a8e", 571943275826094, undefined, [data]); }
   /**
    * var sizeInBytes: UInt32 { get }
    * @availability iOS 16.0+
    */
-  get sizeInBytes(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 436995159420565, this, []); }
+  get sizeInBytes(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 436995159420565, this, []); }
   declare readonly $type: { "c:objc(cs)AVMusicUserEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "sizeInBytes": true };
 }
@@ -5132,31 +5132,31 @@ export class AVParameterEvent extends (AVMusicEvent as unknown as Omit<typeof AV
    * init(parameterID: UInt32, scope: UInt32, element: UInt32, value: Float)
    * @availability iOS 16.0+
    */
-  static init(parameterID: number, scope: number, element: number, value: number): AVParameterEvent { return callSDK<AVParameterEvent>("AVFAudio_d6c5d10d3352e6ec", 4117520122771828, undefined, [parameterID, scope, element, value]); }
+  static init(parameterID: number, scope: number, element: number, value: number): AVParameterEvent { return callSDK<AVParameterEvent>("AVFAudio_a956b86ef7a76a8e", 4117520122771828, undefined, [parameterID, scope, element, value]); }
   /**
    * var element: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get element(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 518475742459696, this, []); }
-  set element(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 357182073427880, this, [value]); }
+  get element(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 518475742459696, this, []); }
+  set element(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 357182073427880, this, [value]); }
   /**
    * var parameterID: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get parameterID(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1878327372772644, this, []); }
-  set parameterID(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4377033529130747, this, [value]); }
+  get parameterID(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1878327372772644, this, []); }
+  set parameterID(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4377033529130747, this, [value]); }
   /**
    * var scope: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get scope(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3649676848661241, this, []); }
-  set scope(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 473800580808315, this, [value]); }
+  get scope(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3649676848661241, this, []); }
+  set scope(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 473800580808315, this, [value]); }
   /**
    * var value: Float { get set }
    * @availability iOS 16.0+
    */
-  get value(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2194441304808063, this, []); }
-  set value(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2750552805885673, this, [value]); }
+  get value(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2194441304808063, this, []); }
+  set value(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2750552805885673, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVParameterEvent": true; "c:objc(cs)AVMusicEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "element": true; "parameterID": true; "scope": true; "value": true };
 }
@@ -5170,42 +5170,42 @@ export class AVReadOnlyAudioPCMBuffer extends SDKHandle {
    * func withUnsafeAudioBufferList<R>(_ body: (UnsafePointer<AudioBufferList>) throws -> R) rethrows -> R
    * @availability iOS 27.0+
    */
-  withUnsafeAudioBufferList(body: $SDK19): unknown { return callSDK<unknown>("AVFAudio_d6c5d10d3352e6ec", 3639846602354639, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeAudioBufferList(body: $SDK19): unknown { return callSDK<unknown>("AVFAudio_a956b86ef7a76a8e", 3639846602354639, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * var frameLength: Int { get }
    * @availability iOS 27.0+
    */
-  get frameLength(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1126563827108848, this, []); }
+  get frameLength(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1126563827108848, this, []); }
   /**
    * var frameCapacity: Int { get }
    * @availability iOS 27.0+
    */
-  get frameCapacity(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1785703704549479, this, []); }
+  get frameCapacity(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1785703704549479, this, []); }
   /**
    * init(unsafeRetaining buffer: sending AVAudioPCMBuffer)
    * @availability iOS 27.0+
    */
-  static initUnsafeRetaining(buffer: AVAudioPCMBuffer): AVReadOnlyAudioPCMBuffer { return callSDK<AVReadOnlyAudioPCMBuffer>("AVFAudio_d6c5d10d3352e6ec", 2756994798742287, undefined, [buffer]); }
+  static initUnsafeRetaining(buffer: AVAudioPCMBuffer): AVReadOnlyAudioPCMBuffer { return callSDK<AVReadOnlyAudioPCMBuffer>("AVFAudio_a956b86ef7a76a8e", 2756994798742287, undefined, [buffer]); }
   /**
    * init(format: AVAudioFormat, frameCapacity: Int, initializingWith: (UnsafeMutablePointer<AudioBufferList>) throws -> Void) throws
    * @availability iOS 27.0+
    */
-  static initFormatFrameCapacityInitializingWith(format: AVAudioFormat, frameCapacity: number, initializingWith: ((arg0: SDKHandle) => void)): AVReadOnlyAudioPCMBuffer { return callSDK<AVReadOnlyAudioPCMBuffer>("AVFAudio_d6c5d10d3352e6ec", 1911373221574776, undefined, [format, frameCapacity, initializingWith], [null,null,{"callback":{"out":[]}}], true); }
+  static initFormatFrameCapacityInitializingWith(format: AVAudioFormat, frameCapacity: number, initializingWith: ((arg0: SDKHandle) => void)): AVReadOnlyAudioPCMBuffer { return callSDK<AVReadOnlyAudioPCMBuffer>("AVFAudio_a956b86ef7a76a8e", 1911373221574776, undefined, [format, frameCapacity, initializingWith], [null,null,{"callback":{"out":[]}}], true); }
   /**
    * var format: AVAudioFormat { get }
    * @availability iOS 27.0+
    */
-  get format(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_d6c5d10d3352e6ec", 960208264634683, this, []); }
+  get format(): AVAudioFormat { return callSDK<AVAudioFormat>("AVFAudio_a956b86ef7a76a8e", 960208264634683, this, []); }
   /**
    * var stride: Int { get }
    * @availability iOS 27.0+
    */
-  get stride(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3175936897090965, this, []); }
+  get stride(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3175936897090965, this, []); }
   /**
    * init(copying buffer: AVAudioPCMBuffer)
    * @availability iOS 27.0+
    */
-  static initCopying(buffer: AVAudioPCMBuffer): AVReadOnlyAudioPCMBuffer { return callSDK<AVReadOnlyAudioPCMBuffer>("AVFAudio_d6c5d10d3352e6ec", 1873112427792420, undefined, [buffer]); }
+  static initCopying(buffer: AVAudioPCMBuffer): AVReadOnlyAudioPCMBuffer { return callSDK<AVReadOnlyAudioPCMBuffer>("AVFAudio_a956b86ef7a76a8e", 1873112427792420, undefined, [buffer]); }
   declare readonly $type: { "s:8AVFAudio24AVReadOnlyAudioPCMBufferV": true };
 }
 
@@ -5228,7 +5228,7 @@ export const AVSpeechBoundary = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (AVSpeechBoundary) | null { return callSDK<(AVSpeechBoundary) | null>("AVFAudio_d6c5d10d3352e6ec", 3177353804819710, undefined, [rawValue]); }
+  init(rawValue: number): (AVSpeechBoundary) | null { return callSDK<(AVSpeechBoundary) | null>("AVFAudio_a956b86ef7a76a8e", 3177353804819710, undefined, [rawValue]); }
 };
 
 /**
@@ -5240,62 +5240,62 @@ export class AVSpeechSynthesisMarker extends SDKHandle {
    * init(bookmarkName mark: String, atByteSampleOffset byteSampleOffset: Int)
    * @availability iOS 17.0+
    */
-  static initBookmarkNameAtByteSampleOffset(mark: string, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_d6c5d10d3352e6ec", 3235126042897789, undefined, [mark, byteSampleOffset]); }
+  static initBookmarkNameAtByteSampleOffset(mark: string, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_a956b86ef7a76a8e", 3235126042897789, undefined, [mark, byteSampleOffset]); }
   /**
    * init(markerType type: AVSpeechSynthesisMarker.Mark, forTextRange range: NSRange, atByteSampleOffset byteSampleOffset: Int)
    * @availability iOS 16.0+
    */
-  static initMarkerTypeForTextRangeAtByteSampleOffset(type: AVSpeechSynthesisMarker_Mark, range: SDKHandle, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_d6c5d10d3352e6ec", 3048086498331401, undefined, [type, range, byteSampleOffset]); }
+  static initMarkerTypeForTextRangeAtByteSampleOffset(type: AVSpeechSynthesisMarker_Mark, range: SDKHandle, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_a956b86ef7a76a8e", 3048086498331401, undefined, [type, range, byteSampleOffset]); }
   /**
    * init(paragraphRange range: NSRange, atByteSampleOffset byteSampleOffset: Int)
    * @availability iOS 17.0+
    */
-  static initParagraphRangeAtByteSampleOffset(range: SDKHandle, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_d6c5d10d3352e6ec", 3940344905074106, undefined, [range, byteSampleOffset]); }
+  static initParagraphRangeAtByteSampleOffset(range: SDKHandle, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_a956b86ef7a76a8e", 3940344905074106, undefined, [range, byteSampleOffset]); }
   /**
    * init(phonemeString phoneme: String, atByteSampleOffset byteSampleOffset: Int)
    * @availability iOS 17.0+
    */
-  static initPhonemeStringAtByteSampleOffset(phoneme: string, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_d6c5d10d3352e6ec", 3002208012335684, undefined, [phoneme, byteSampleOffset]); }
+  static initPhonemeStringAtByteSampleOffset(phoneme: string, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_a956b86ef7a76a8e", 3002208012335684, undefined, [phoneme, byteSampleOffset]); }
   /**
    * init(sentenceRange range: NSRange, atByteSampleOffset byteSampleOffset: Int)
    * @availability iOS 17.0+
    */
-  static initSentenceRangeAtByteSampleOffset(range: SDKHandle, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_d6c5d10d3352e6ec", 3682877545627350, undefined, [range, byteSampleOffset]); }
+  static initSentenceRangeAtByteSampleOffset(range: SDKHandle, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_a956b86ef7a76a8e", 3682877545627350, undefined, [range, byteSampleOffset]); }
   /**
    * init(wordRange range: NSRange, atByteSampleOffset byteSampleOffset: Int)
    * @availability iOS 17.0+
    */
-  static initWordRangeAtByteSampleOffset(range: SDKHandle, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_d6c5d10d3352e6ec", 42499810819357, undefined, [range, byteSampleOffset]); }
+  static initWordRangeAtByteSampleOffset(range: SDKHandle, byteSampleOffset: number): AVSpeechSynthesisMarker { return callSDK<AVSpeechSynthesisMarker>("AVFAudio_a956b86ef7a76a8e", 42499810819357, undefined, [range, byteSampleOffset]); }
   /**
    * var bookmarkName: String { get set }
    * @availability iOS 17.0+
    */
-  get bookmarkName(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 172106121274569, this, []); }
-  set bookmarkName(value: string) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4309220448337474, this, [value]); }
+  get bookmarkName(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 172106121274569, this, []); }
+  set bookmarkName(value: string) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4309220448337474, this, [value]); }
   /**
    * var byteSampleOffset: Int { get set }
    * @availability iOS 16.0+
    */
-  get byteSampleOffset(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 250099761566872, this, []); }
-  set byteSampleOffset(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1609915270551474, this, [value]); }
+  get byteSampleOffset(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 250099761566872, this, []); }
+  set byteSampleOffset(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1609915270551474, this, [value]); }
   /**
    * var mark: AVSpeechSynthesisMarker.Mark { get set }
    * @availability iOS 16.0+
    */
-  get mark(): AVSpeechSynthesisMarker_Mark { return callSDK<AVSpeechSynthesisMarker_Mark>("AVFAudio_d6c5d10d3352e6ec", 1623205756138175, this, []); }
-  set mark(value: AVSpeechSynthesisMarker_Mark) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 381940348306608, this, [value]); }
+  get mark(): AVSpeechSynthesisMarker_Mark { return callSDK<AVSpeechSynthesisMarker_Mark>("AVFAudio_a956b86ef7a76a8e", 1623205756138175, this, []); }
+  set mark(value: AVSpeechSynthesisMarker_Mark) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 381940348306608, this, [value]); }
   /**
    * var phoneme: String { get set }
    * @availability iOS 17.0+
    */
-  get phoneme(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1173093937004136, this, []); }
-  set phoneme(value: string) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 100128823424132, this, [value]); }
+  get phoneme(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1173093937004136, this, []); }
+  set phoneme(value: string) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 100128823424132, this, [value]); }
   /**
    * var textRange: NSRange { get set }
    * @availability iOS 16.0+
    */
-  get textRange(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_d6c5d10d3352e6ec", 1177274336784432, this, []); }
-  set textRange(value: SDKHandle) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1304888327343053, this, [value]); }
+  get textRange(): SDKHandle { return callSDK<SDKHandle>("AVFAudio_a956b86ef7a76a8e", 1177274336784432, this, []); }
+  set textRange(value: SDKHandle) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1304888327343053, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVSpeechSynthesisMarker": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bookmarkName": true; "byteSampleOffset": true; "mark": true; "phoneme": true; "textRange": true };
 }
@@ -5311,7 +5311,7 @@ export const AVSpeechSynthesisMarker_Mark = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (AVSpeechSynthesisMarker_Mark) | null { return callSDK<(AVSpeechSynthesisMarker_Mark) | null>("AVFAudio_d6c5d10d3352e6ec", 738148713814105, undefined, [rawValue]); }
+  init(rawValue: number): (AVSpeechSynthesisMarker_Mark) | null { return callSDK<(AVSpeechSynthesisMarker_Mark) | null>("AVFAudio_a956b86ef7a76a8e", 738148713814105, undefined, [rawValue]); }
 };
 
 /**
@@ -5323,24 +5323,24 @@ export class AVSpeechSynthesisProviderAudioUnit extends SDKHandle {
    * func cancelSpeechRequest()
    * @availability iOS 16.0+
    */
-  cancelSpeechRequest(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4212593262342774, this, []); }
+  cancelSpeechRequest(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4212593262342774, this, []); }
   /**
    * func synthesizeSpeechRequest(_ speechRequest: AVSpeechSynthesisProviderRequest)
    * @availability iOS 16.0+
    */
-  synthesizeSpeechRequest(speechRequest: AVSpeechSynthesisProviderRequest): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4231975734032562, this, [speechRequest]); }
+  synthesizeSpeechRequest(speechRequest: AVSpeechSynthesisProviderRequest): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4231975734032562, this, [speechRequest]); }
   /**
    * var speechSynthesisOutputMetadataBlock: AVSpeechSynthesisProviderOutputBlock? { get set }
    * @availability iOS 16.0+
    */
-  get speechSynthesisOutputMetadataBlock(): (((arg0: Array<AVSpeechSynthesisMarker>, arg1: AVSpeechSynthesisProviderRequest) => Promise<void>)) | null { return callSDK<(((arg0: Array<AVSpeechSynthesisMarker>, arg1: AVSpeechSynthesisProviderRequest) => Promise<void>)) | null>("AVFAudio_d6c5d10d3352e6ec", 1472559278464989, this, []); }
-  set speechSynthesisOutputMetadataBlock(value: (((arg0: Array<AVSpeechSynthesisMarker>, arg1: AVSpeechSynthesisProviderRequest) => void)) | null) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1812306675885454, this, [value], [{"callback":{"out":[]}}]); }
+  get speechSynthesisOutputMetadataBlock(): (((arg0: Array<AVSpeechSynthesisMarker>, arg1: AVSpeechSynthesisProviderRequest) => Promise<void>)) | null { return callSDK<(((arg0: Array<AVSpeechSynthesisMarker>, arg1: AVSpeechSynthesisProviderRequest) => Promise<void>)) | null>("AVFAudio_a956b86ef7a76a8e", 1472559278464989, this, []); }
+  set speechSynthesisOutputMetadataBlock(value: (((arg0: Array<AVSpeechSynthesisMarker>, arg1: AVSpeechSynthesisProviderRequest) => void)) | null) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1812306675885454, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var speechVoices: [AVSpeechSynthesisProviderVoice] { get set }
    * @availability iOS 16.0+
    */
-  get speechVoices(): $SDK58 { return callSDK<$SDK58>("AVFAudio_d6c5d10d3352e6ec", 3818789478751391, this, []); }
-  set speechVoices(value: $SDK58) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1188084551276348, this, [value]); }
+  get speechVoices(): $SDK58 { return callSDK<$SDK58>("AVFAudio_a956b86ef7a76a8e", 3818789478751391, this, []); }
+  set speechVoices(value: $SDK58) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1188084551276348, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVSpeechSynthesisProviderAudioUnit": true; "c:objc(cs)AUAudioUnit": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "speechVoices": true };
 }
@@ -5360,17 +5360,17 @@ export class AVSpeechSynthesisProviderRequest extends SDKHandle {
    * init(ssmlRepresentation text: String, voice: AVSpeechSynthesisProviderVoice)
    * @availability iOS 16.0+
    */
-  static init(text: string, voice: AVSpeechSynthesisProviderVoice): AVSpeechSynthesisProviderRequest { return callSDK<AVSpeechSynthesisProviderRequest>("AVFAudio_d6c5d10d3352e6ec", 2422374562863760, undefined, [text, voice]); }
+  static init(text: string, voice: AVSpeechSynthesisProviderVoice): AVSpeechSynthesisProviderRequest { return callSDK<AVSpeechSynthesisProviderRequest>("AVFAudio_a956b86ef7a76a8e", 2422374562863760, undefined, [text, voice]); }
   /**
    * var ssmlRepresentation: String { get }
    * @availability iOS 16.0+
    */
-  get ssmlRepresentation(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3455222274662942, this, []); }
+  get ssmlRepresentation(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3455222274662942, this, []); }
   /**
    * var voice: AVSpeechSynthesisProviderVoice { get }
    * @availability iOS 16.0+
    */
-  get voice(): AVSpeechSynthesisProviderVoice { return callSDK<AVSpeechSynthesisProviderVoice>("AVFAudio_d6c5d10d3352e6ec", 3680206187363745, this, []); }
+  get voice(): AVSpeechSynthesisProviderVoice { return callSDK<AVSpeechSynthesisProviderVoice>("AVFAudio_a956b86ef7a76a8e", 3680206187363745, this, []); }
   declare readonly $type: { "c:objc(cs)AVSpeechSynthesisProviderRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ssmlRepresentation": true; "voice": true };
 }
@@ -5384,56 +5384,56 @@ export class AVSpeechSynthesisProviderVoice extends SDKHandle {
    * class func updateSpeechVoices()
    * @availability iOS 16.0+
    */
-  static updateSpeechVoices(): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3218578235961161, undefined, []); }
+  static updateSpeechVoices(): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3218578235961161, undefined, []); }
   /**
    * init(name: String, identifier: String, primaryLanguages: [String], supportedLanguages: [String])
    * @availability iOS 16.0+
    */
-  static init(name: string, identifier: string, primaryLanguages: Array<string>, supportedLanguages: Array<string>): AVSpeechSynthesisProviderVoice { return callSDK<AVSpeechSynthesisProviderVoice>("AVFAudio_d6c5d10d3352e6ec", 3693922116452877, undefined, [name, identifier, primaryLanguages, supportedLanguages]); }
+  static init(name: string, identifier: string, primaryLanguages: Array<string>, supportedLanguages: Array<string>): AVSpeechSynthesisProviderVoice { return callSDK<AVSpeechSynthesisProviderVoice>("AVFAudio_a956b86ef7a76a8e", 3693922116452877, undefined, [name, identifier, primaryLanguages, supportedLanguages]); }
   /**
    * var age: Int { get set }
    * @availability iOS 16.0+
    */
-  get age(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 2072391967526854, this, []); }
-  set age(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1512092106208362, this, [value]); }
+  get age(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 2072391967526854, this, []); }
+  set age(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1512092106208362, this, [value]); }
   /**
    * var gender: AVSpeechSynthesisVoiceGender { get set }
    * @availability iOS 16.0+
    */
-  get gender(): AVSpeechSynthesisVoiceGender { return callSDK<AVSpeechSynthesisVoiceGender>("AVFAudio_d6c5d10d3352e6ec", 3717488364699944, this, []); }
-  set gender(value: AVSpeechSynthesisVoiceGender) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 622379112841694, this, [value]); }
+  get gender(): AVSpeechSynthesisVoiceGender { return callSDK<AVSpeechSynthesisVoiceGender>("AVFAudio_a956b86ef7a76a8e", 3717488364699944, this, []); }
+  set gender(value: AVSpeechSynthesisVoiceGender) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 622379112841694, this, [value]); }
   /**
    * var identifier: String { get }
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4155309124234376, this, []); }
+  get identifier(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4155309124234376, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 16.0+
    */
-  get name(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2779093418286256, this, []); }
+  get name(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2779093418286256, this, []); }
   /**
    * var primaryLanguages: [String] { get }
    * @availability iOS 16.0+
    */
-  get primaryLanguages(): Array<string> { return callSDK<Array<string>>("AVFAudio_d6c5d10d3352e6ec", 1564410378607311, this, []); }
+  get primaryLanguages(): Array<string> { return callSDK<Array<string>>("AVFAudio_a956b86ef7a76a8e", 1564410378607311, this, []); }
   /**
    * var supportedLanguages: [String] { get }
    * @availability iOS 16.0+
    */
-  get supportedLanguages(): Array<string> { return callSDK<Array<string>>("AVFAudio_d6c5d10d3352e6ec", 3644843840705537, this, []); }
+  get supportedLanguages(): Array<string> { return callSDK<Array<string>>("AVFAudio_a956b86ef7a76a8e", 3644843840705537, this, []); }
   /**
    * var version: String { get set }
    * @availability iOS 16.0+
    */
-  get version(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1389297557856677, this, []); }
-  set version(value: string) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4151864853109035, this, [value]); }
+  get version(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1389297557856677, this, []); }
+  set version(value: string) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4151864853109035, this, [value]); }
   /**
    * var voiceSize: Int64 { get set }
    * @availability iOS 16.0+
    */
-  get voiceSize(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3480106030090491, this, []); }
-  set voiceSize(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 859325009783784, this, [value]); }
+  get voiceSize(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3480106030090491, this, []); }
+  set voiceSize(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 859325009783784, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVSpeechSynthesisProviderVoice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "age": true; "gender": true; "identifier": true; "name": true; "primaryLanguages": true; "supportedLanguages": true; "version": true; "voiceSize": true };
 }
@@ -5447,57 +5447,57 @@ export class AVSpeechSynthesisVoice extends SDKHandle {
    * class func currentLanguageCode() -> String
    * @availability iOS 7.0+
    */
-  static currentLanguageCode(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1503837282265725, undefined, []); }
+  static currentLanguageCode(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1503837282265725, undefined, []); }
   /**
    * class func speechVoices() -> [AVSpeechSynthesisVoice]
    * @availability iOS 7.0+
    */
-  static speechVoices(): Array<AVSpeechSynthesisVoice> { return callSDK<Array<AVSpeechSynthesisVoice>>("AVFAudio_d6c5d10d3352e6ec", 1386295661945070, undefined, []); }
+  static speechVoices(): Array<AVSpeechSynthesisVoice> { return callSDK<Array<AVSpeechSynthesisVoice>>("AVFAudio_a956b86ef7a76a8e", 1386295661945070, undefined, []); }
   /**
    * init?(identifier: String)
    * @availability iOS 9.0+
    */
-  static initIdentifier(identifier: string): (AVSpeechSynthesisVoice) | null { return callSDK<(AVSpeechSynthesisVoice) | null>("AVFAudio_d6c5d10d3352e6ec", 1871271498612953, undefined, [identifier]); }
+  static initIdentifier(identifier: string): (AVSpeechSynthesisVoice) | null { return callSDK<(AVSpeechSynthesisVoice) | null>("AVFAudio_a956b86ef7a76a8e", 1871271498612953, undefined, [identifier]); }
   /**
    * init?(language languageCode: String?)
    * @availability iOS 7.0+
    */
-  static initLanguage(languageCode?: (string) | null): (AVSpeechSynthesisVoice) | null { return callSDK<(AVSpeechSynthesisVoice) | null>("AVFAudio_d6c5d10d3352e6ec", 411518241570815, undefined, [languageCode]); }
+  static initLanguage(languageCode?: (string) | null): (AVSpeechSynthesisVoice) | null { return callSDK<(AVSpeechSynthesisVoice) | null>("AVFAudio_a956b86ef7a76a8e", 411518241570815, undefined, [languageCode]); }
   /**
    * var audioFileSettings: [String : Any] { get }
    * @availability iOS 13.0+
    */
-  get audioFileSettings(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_d6c5d10d3352e6ec", 3609393463169060, this, []); }
+  get audioFileSettings(): Record<string, unknown> { return callSDK<Record<string, unknown>>("AVFAudio_a956b86ef7a76a8e", 3609393463169060, this, []); }
   /**
    * var gender: AVSpeechSynthesisVoiceGender { get }
    * @availability iOS 13.0+
    */
-  get gender(): AVSpeechSynthesisVoiceGender { return callSDK<AVSpeechSynthesisVoiceGender>("AVFAudio_d6c5d10d3352e6ec", 439939556717435, this, []); }
+  get gender(): AVSpeechSynthesisVoiceGender { return callSDK<AVSpeechSynthesisVoiceGender>("AVFAudio_a956b86ef7a76a8e", 439939556717435, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 9.0+
    */
-  get identifier(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1824392670840364, this, []); }
+  get identifier(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1824392670840364, this, []); }
   /**
    * var language: String { get }
    * @availability iOS 7.0+
    */
-  get language(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3604659112110294, this, []); }
+  get language(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3604659112110294, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4288553740974, this, []); }
+  get name(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4288553740974, this, []); }
   /**
    * var quality: AVSpeechSynthesisVoiceQuality { get }
    * @availability iOS 9.0+
    */
-  get quality(): AVSpeechSynthesisVoiceQuality { return callSDK<AVSpeechSynthesisVoiceQuality>("AVFAudio_d6c5d10d3352e6ec", 2224181702427344, this, []); }
+  get quality(): AVSpeechSynthesisVoiceQuality { return callSDK<AVSpeechSynthesisVoiceQuality>("AVFAudio_a956b86ef7a76a8e", 2224181702427344, this, []); }
   /**
    * var voiceTraits: AVSpeechSynthesisVoice.Traits { get }
    * @availability iOS 17.0+
    */
-  get voiceTraits(): AVSpeechSynthesisVoice_Traits { return callSDK<AVSpeechSynthesisVoice_Traits>("AVFAudio_d6c5d10d3352e6ec", 951535031157610, this, []); }
+  get voiceTraits(): AVSpeechSynthesisVoice_Traits { return callSDK<AVSpeechSynthesisVoice_Traits>("AVFAudio_a956b86ef7a76a8e", 951535031157610, this, []); }
   declare readonly $type: { "c:objc(cs)AVSpeechSynthesisVoice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "audioFileSettings": true; "gender": true; "identifier": true; "language": true; "name": true; "quality": true; "voiceTraits": true };
 }
@@ -5513,17 +5513,17 @@ export const AVSpeechSynthesisVoice_Traits = {
    * static var isNoveltyVoice: AVSpeechSynthesisVoice.Traits { get }
    * @availability iOS 17.0+
    */
-  get isNoveltyVoice(): AVSpeechSynthesisVoice_Traits { return callSDK<AVSpeechSynthesisVoice_Traits>("AVFAudio_d6c5d10d3352e6ec", 2962656145938797, undefined, []); },
+  get isNoveltyVoice(): AVSpeechSynthesisVoice_Traits { return callSDK<AVSpeechSynthesisVoice_Traits>("AVFAudio_a956b86ef7a76a8e", 2962656145938797, undefined, []); },
   /**
    * static var isPersonalVoice: AVSpeechSynthesisVoice.Traits { get }
    * @availability iOS 17.0+
    */
-  get isPersonalVoice(): AVSpeechSynthesisVoice_Traits { return callSDK<AVSpeechSynthesisVoice_Traits>("AVFAudio_d6c5d10d3352e6ec", 801019964954402, undefined, []); },
+  get isPersonalVoice(): AVSpeechSynthesisVoice_Traits { return callSDK<AVSpeechSynthesisVoice_Traits>("AVFAudio_a956b86ef7a76a8e", 801019964954402, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): AVSpeechSynthesisVoice_Traits { return callSDK<AVSpeechSynthesisVoice_Traits>("AVFAudio_d6c5d10d3352e6ec", 48011649070495, undefined, [rawValue]); }
+  init(rawValue: number): AVSpeechSynthesisVoice_Traits { return callSDK<AVSpeechSynthesisVoice_Traits>("AVFAudio_a956b86ef7a76a8e", 48011649070495, undefined, [rawValue]); }
 };
 
 /**
@@ -5537,7 +5537,7 @@ export const AVSpeechSynthesisVoiceGender = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (AVSpeechSynthesisVoiceGender) | null { return callSDK<(AVSpeechSynthesisVoiceGender) | null>("AVFAudio_d6c5d10d3352e6ec", 638371796614769, undefined, [rawValue]); }
+  init(rawValue: number): (AVSpeechSynthesisVoiceGender) | null { return callSDK<(AVSpeechSynthesisVoiceGender) | null>("AVFAudio_a956b86ef7a76a8e", 638371796614769, undefined, [rawValue]); }
 };
 
 /**
@@ -5551,7 +5551,7 @@ export const AVSpeechSynthesisVoiceQuality = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (AVSpeechSynthesisVoiceQuality) | null { return callSDK<(AVSpeechSynthesisVoiceQuality) | null>("AVFAudio_d6c5d10d3352e6ec", 1341922919074949, undefined, [rawValue]); }
+  init(rawValue: number): (AVSpeechSynthesisVoiceQuality) | null { return callSDK<(AVSpeechSynthesisVoiceQuality) | null>("AVFAudio_a956b86ef7a76a8e", 1341922919074949, undefined, [rawValue]); }
 };
 
 /**
@@ -5563,83 +5563,83 @@ export class AVSpeechSynthesizer extends SDKHandle {
    * class let availableVoicesDidChangeNotification: NSNotification.Name
    * @availability iOS 17.0+
    */
-  static get availableVoicesDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 2903682235663628, undefined, []); }
+  static get availableVoicesDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 2903682235663628, undefined, []); }
   /**
    * class func requestPersonalVoiceAuthorization() async -> AVSpeechSynthesizer.PersonalVoiceAuthorizationStatus
    * @availability iOS 17.0+
    */
-  static requestPersonalVoiceAuthorization(handler: ((arg0: AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus) => void)): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1707326989117482, undefined, [handler], [{"callback":{"out":[]}}]); }
+  static requestPersonalVoiceAuthorization(handler: ((arg0: AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus) => void)): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1707326989117482, undefined, [handler], [{"callback":{"out":[]}}]); }
   /**
    * class var personalVoiceAuthorizationStatus: AVSpeechSynthesizer.PersonalVoiceAuthorizationStatus { get }
    * @availability iOS 17.0+
    */
-  static get personalVoiceAuthorizationStatus(): AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus { return callSDK<AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus>("AVFAudio_d6c5d10d3352e6ec", 2223860382014716, undefined, []); }
+  static get personalVoiceAuthorizationStatus(): AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus { return callSDK<AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus>("AVFAudio_a956b86ef7a76a8e", 2223860382014716, undefined, []); }
   /**
    * func continueSpeaking() -> Bool
    * @availability iOS 7.0+
    */
-  continueSpeaking(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 69657266097742, this, []); }
+  continueSpeaking(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 69657266097742, this, []); }
   /** init() */
-  static init(): AVSpeechSynthesizer { return callSDK<AVSpeechSynthesizer>("AVFAudio_d6c5d10d3352e6ec", 1987326743720220, undefined, []); }
+  static init(): AVSpeechSynthesizer { return callSDK<AVSpeechSynthesizer>("AVFAudio_a956b86ef7a76a8e", 1987326743720220, undefined, []); }
   /**
    * func pauseSpeaking(at boundary: AVSpeechBoundary) -> Bool
    * @availability iOS 7.0+
    */
-  pauseSpeaking(boundary: AVSpeechBoundary): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2636381716045787, this, [boundary]); }
+  pauseSpeaking(boundary: AVSpeechBoundary): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2636381716045787, this, [boundary]); }
   /**
    * func speak(_ utterance: AVSpeechUtterance)
    * @availability iOS 7.0+
    */
-  speak(utterance: AVSpeechUtterance): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3965964058267585, this, [utterance]); }
+  speak(utterance: AVSpeechUtterance): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3965964058267585, this, [utterance]); }
   /**
    * func stopSpeaking(at boundary: AVSpeechBoundary) -> Bool
    * @availability iOS 7.0+
    */
-  stopSpeaking(boundary: AVSpeechBoundary): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 1639419929036895, this, [boundary]); }
+  stopSpeaking(boundary: AVSpeechBoundary): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 1639419929036895, this, [boundary]); }
   /**
    * func write(_ utterance: AVSpeechUtterance, toBufferCallback bufferCallback: @escaping AVSpeechSynthesizer.BufferCallback)
    * @availability iOS 13.0+
    */
-  writeToBufferCallback(utterance: AVSpeechUtterance, bufferCallback: $SDK62): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2504333208804437, this, [utterance, bufferCallback], [null,{"callback":{"out":[]}}]); }
+  writeToBufferCallback(utterance: AVSpeechUtterance, bufferCallback: $SDK62): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2504333208804437, this, [utterance, bufferCallback], [null,{"callback":{"out":[]}}]); }
   /**
    * func write(_ utterance: AVSpeechUtterance, toBufferCallback bufferCallback: @escaping AVSpeechSynthesizer.BufferCallback, toMarkerCallback markerCallback: @escaping AVSpeechSynthesizer.MarkerCallback)
    * @availability iOS 16.0+
    */
-  writeToBufferCallbackToMarkerCallback(utterance: AVSpeechUtterance, bufferCallback: $SDK62, markerCallback: ((arg0: Array<AVSpeechSynthesisMarker>) => void)): void { return callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 1505277521744960, this, [utterance, bufferCallback, markerCallback], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  writeToBufferCallbackToMarkerCallback(utterance: AVSpeechUtterance, bufferCallback: $SDK62, markerCallback: ((arg0: Array<AVSpeechSynthesisMarker>) => void)): void { return callSDK<void>("AVFAudio_a956b86ef7a76a8e", 1505277521744960, this, [utterance, bufferCallback, markerCallback], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * weak var delegate: (any AVSpeechSynthesizerDelegate)? { get set }
    * @availability iOS 7.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_d6c5d10d3352e6ec", 1575954240804398, this, []); }
-  set delegate(value: (SDKHandle) | null) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4074814503765840, this, [value]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVFAudio_a956b86ef7a76a8e", 1575954240804398, this, []); }
+  set delegate(value: (SDKHandle) | null) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4074814503765840, this, [value]); }
   /**
    * var mixToTelephonyUplink: Bool { get set }
    * @availability iOS 13.0+
    */
-  get mixToTelephonyUplink(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 226825090184770, this, []); }
-  set mixToTelephonyUplink(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2862359288150211, this, [value]); }
+  get mixToTelephonyUplink(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 226825090184770, this, []); }
+  set mixToTelephonyUplink(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2862359288150211, this, [value]); }
   /**
    * var outputChannels: [AVAudioSessionChannelDescription]? { get set }
    * @availability iOS 10.0+
    */
-  get outputChannels(): $SDK20 { return callSDK<$SDK20>("AVFAudio_d6c5d10d3352e6ec", 2054187938077407, this, []); }
-  set outputChannels(value: $SDK20) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 296512257148175, this, [value]); }
+  get outputChannels(): $SDK20 { return callSDK<$SDK20>("AVFAudio_a956b86ef7a76a8e", 2054187938077407, this, []); }
+  set outputChannels(value: $SDK20) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 296512257148175, this, [value]); }
   /**
    * var isPaused: Bool { get }
    * @availability iOS 7.0+
    */
-  get isPaused(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3442361122965782, this, []); }
+  get isPaused(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3442361122965782, this, []); }
   /**
    * var isSpeaking: Bool { get }
    * @availability iOS 7.0+
    */
-  get isSpeaking(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 3344266157885991, this, []); }
+  get isSpeaking(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 3344266157885991, this, []); }
   /**
    * var usesApplicationAudioSession: Bool { get set }
    * @availability iOS 13.0+
    */
-  get usesApplicationAudioSession(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 4453909668795165, this, []); }
-  set usesApplicationAudioSession(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3523636766495815, this, [value]); }
+  get usesApplicationAudioSession(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 4453909668795165, this, []); }
+  set usesApplicationAudioSession(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3523636766495815, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVSpeechSynthesizer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "mixToTelephonyUplink": true; "outputChannels": true; "isPaused": true; "isSpeaking": true; "usesApplicationAudioSession": true };
 }
@@ -5664,7 +5664,7 @@ export const AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus = {
    * init?(rawValue: UInt)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus) | null { return callSDK<(AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus) | null>("AVFAudio_d6c5d10d3352e6ec", 1807441025043260, undefined, [rawValue]); }
+  init(rawValue: number): (AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus) | null { return callSDK<(AVSpeechSynthesizer_PersonalVoiceAuthorizationStatus) | null>("AVFAudio_a956b86ef7a76a8e", 1807441025043260, undefined, [rawValue]); }
 };
 
 /** protocol AVSpeechSynthesizerDelegate : NSObjectProtocol, Sendable */
@@ -5715,69 +5715,69 @@ export class AVSpeechUtterance extends SDKHandle {
    * init(attributedString string: NSAttributedString)
    * @availability iOS 10.0+
    */
-  static initAttributedString(string: _Foundation_NSAttributedString): AVSpeechUtterance { return callSDK<AVSpeechUtterance>("AVFAudio_d6c5d10d3352e6ec", 1210963648746384, undefined, [string]); }
+  static initAttributedString(string: _Foundation_NSAttributedString): AVSpeechUtterance { return callSDK<AVSpeechUtterance>("AVFAudio_a956b86ef7a76a8e", 1210963648746384, undefined, [string]); }
   /**
    * init?(ssmlRepresentation string: String)
    * @availability iOS 16.0+
    */
-  static initSsmlRepresentation(string: string): (AVSpeechUtterance) | null { return callSDK<(AVSpeechUtterance) | null>("AVFAudio_d6c5d10d3352e6ec", 1698213360736154, undefined, [string]); }
+  static initSsmlRepresentation(string: string): (AVSpeechUtterance) | null { return callSDK<(AVSpeechUtterance) | null>("AVFAudio_a956b86ef7a76a8e", 1698213360736154, undefined, [string]); }
   /**
    * init(string: String)
    * @availability iOS 7.0+
    */
-  static initString(string: string): AVSpeechUtterance { return callSDK<AVSpeechUtterance>("AVFAudio_d6c5d10d3352e6ec", 3855420076635699, undefined, [string]); }
+  static initString(string: string): AVSpeechUtterance { return callSDK<AVSpeechUtterance>("AVFAudio_a956b86ef7a76a8e", 3855420076635699, undefined, [string]); }
   /**
    * var attributedSpeechString: NSAttributedString { get }
    * @availability iOS 10.0+
    */
-  get attributedSpeechString(): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("AVFAudio_d6c5d10d3352e6ec", 809337156988338, this, []); }
+  get attributedSpeechString(): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("AVFAudio_a956b86ef7a76a8e", 809337156988338, this, []); }
   /**
    * var pitchMultiplier: Float { get set }
    * @availability iOS 7.0+
    */
-  get pitchMultiplier(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1678665222669007, this, []); }
-  set pitchMultiplier(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 906831059380614, this, [value]); }
+  get pitchMultiplier(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1678665222669007, this, []); }
+  set pitchMultiplier(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 906831059380614, this, [value]); }
   /**
    * var postUtteranceDelay: TimeInterval { get set }
    * @availability iOS 7.0+
    */
-  get postUtteranceDelay(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 984470149435518, this, []); }
-  set postUtteranceDelay(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 4039334366235319, this, [value]); }
+  get postUtteranceDelay(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 984470149435518, this, []); }
+  set postUtteranceDelay(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 4039334366235319, this, [value]); }
   /**
    * var preUtteranceDelay: TimeInterval { get set }
    * @availability iOS 7.0+
    */
-  get preUtteranceDelay(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3428036000275773, this, []); }
-  set preUtteranceDelay(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 3616432102422813, this, [value]); }
+  get preUtteranceDelay(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3428036000275773, this, []); }
+  set preUtteranceDelay(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 3616432102422813, this, [value]); }
   /**
    * var prefersAssistiveTechnologySettings: Bool { get set }
    * @availability iOS 14.0+
    */
-  get prefersAssistiveTechnologySettings(): boolean { return callSDK<boolean>("AVFAudio_d6c5d10d3352e6ec", 2338375206475174, this, []); }
-  set prefersAssistiveTechnologySettings(value: boolean) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2154348787112237, this, [value]); }
+  get prefersAssistiveTechnologySettings(): boolean { return callSDK<boolean>("AVFAudio_a956b86ef7a76a8e", 2338375206475174, this, []); }
+  set prefersAssistiveTechnologySettings(value: boolean) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2154348787112237, this, [value]); }
   /**
    * var rate: Float { get set }
    * @availability iOS 7.0+
    */
-  get rate(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 905649998547126, this, []); }
-  set rate(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2067801866411543, this, [value]); }
+  get rate(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 905649998547126, this, []); }
+  set rate(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2067801866411543, this, [value]); }
   /**
    * var speechString: String { get }
    * @availability iOS 7.0+
    */
-  get speechString(): string { return callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1338413031890655, this, []); }
+  get speechString(): string { return callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1338413031890655, this, []); }
   /**
    * var voice: AVSpeechSynthesisVoice? { get set }
    * @availability iOS 7.0+
    */
-  get voice(): $SDK66 { return callSDK<$SDK66>("AVFAudio_d6c5d10d3352e6ec", 2467295337240603, this, []); }
-  set voice(value: $SDK66) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 756718422060687, this, [value]); }
+  get voice(): $SDK66 { return callSDK<$SDK66>("AVFAudio_a956b86ef7a76a8e", 2467295337240603, this, []); }
+  set voice(value: $SDK66) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 756718422060687, this, [value]); }
   /**
    * var volume: Float { get set }
    * @availability iOS 7.0+
    */
-  get volume(): number { return callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1515035676491279, this, []); }
-  set volume(value: number) { callSDK<void>("AVFAudio_d6c5d10d3352e6ec", 2883350156261083, this, [value]); }
+  get volume(): number { return callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1515035676491279, this, []); }
+  set volume(value: number) { callSDK<void>("AVFAudio_a956b86ef7a76a8e", 2883350156261083, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVSpeechUtterance": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributedSpeechString": true; "pitchMultiplier": true; "postUtteranceDelay": true; "preUtteranceDelay": true; "prefersAssistiveTechnologySettings": true; "rate": true; "speechString": true; "voice": true; "volume": true };
 }
@@ -5789,464 +5789,464 @@ export const NSNotification_Name = {
    * static let AVAudioEngineConfigurationChange: NSNotification.Name
    * @availability iOS 8.0+
    */
-  get AVAudioEngineConfigurationChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 2257431619885813, undefined, []); },
+  get AVAudioEngineConfigurationChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 2257431619885813, undefined, []); },
   /**
    * static let AVAudioUnitComponentTagsDidChange: NSNotification.Name
    * @availability iOS 9.0+
    */
-  get AVAudioUnitComponentTagsDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_d6c5d10d3352e6ec", 970799341322795, undefined, []); }
+  get AVAudioUnitComponentTagsDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("AVFAudio_a956b86ef7a76a8e", 970799341322795, undefined, []); }
 };
 
 /** func AVAudioMake3DAngularOrientation(_ yaw: Float, _ pitch: Float, _ roll: Float) -> AVAudio3DAngularOrientation */
-export function AVAudioMake3DAngularOrientation(yaw: number, pitch: number, roll: number): AVAudio3DAngularOrientation { return callSDK<AVAudio3DAngularOrientation>("AVFAudio_d6c5d10d3352e6ec", 2422216451806363, undefined, [yaw, pitch, roll]); }
+export function AVAudioMake3DAngularOrientation(yaw: number, pitch: number, roll: number): AVAudio3DAngularOrientation { return callSDK<AVAudio3DAngularOrientation>("AVFAudio_a956b86ef7a76a8e", 2422216451806363, undefined, [yaw, pitch, roll]); }
 
 /** func AVAudioMake3DPoint(_ x: Float, _ y: Float, _ z: Float) -> AVAudio3DPoint */
-export function AVAudioMake3DPoint(x: number, y: number, z: number): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_d6c5d10d3352e6ec", 972506528958475, undefined, [x, y, z]); }
+export function AVAudioMake3DPoint(x: number, y: number, z: number): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_a956b86ef7a76a8e", 972506528958475, undefined, [x, y, z]); }
 
 /** func AVAudioMake3DVector(_ x: Float, _ y: Float, _ z: Float) -> AVAudio3DVector */
-export function AVAudioMake3DVector(x: number, y: number, z: number): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_d6c5d10d3352e6ec", 324536178544000, undefined, [x, y, z]); }
+export function AVAudioMake3DVector(x: number, y: number, z: number): AVAudio3DPoint { return callSDK<AVAudio3DPoint>("AVFAudio_a956b86ef7a76a8e", 324536178544000, undefined, [x, y, z]); }
 
 /** func AVAudioMake3DVectorOrientation(_ forward: AVAudio3DVector, _ up: AVAudio3DVector) -> AVAudio3DVectorOrientation */
-export function AVAudioMake3DVectorOrientation(forward: AVAudio3DPoint, up: AVAudio3DPoint): AVAudio3DVectorOrientation { return callSDK<AVAudio3DVectorOrientation>("AVFAudio_d6c5d10d3352e6ec", 4154933045927777, undefined, [forward, up]); }
+export function AVAudioMake3DVectorOrientation(forward: AVAudio3DPoint, up: AVAudio3DPoint): AVAudio3DVectorOrientation { return callSDK<AVAudio3DVectorOrientation>("AVFAudio_a956b86ef7a76a8e", 4154933045927777, undefined, [forward, up]); }
 
 /** func AVMakeBeatRange(_ startBeat: AVMusicTimeStamp, _ lengthInBeats: AVMusicTimeStamp) -> AVBeatRange */
-export function AVMakeBeatRange(startBeat: number, lengthInBeats: number): SDKHandle { return callSDK<SDKHandle>("AVFAudio_d6c5d10d3352e6ec", 389946942451043, undefined, [startBeat, lengthInBeats]); }
+export function AVMakeBeatRange(startBeat: number, lengthInBeats: number): SDKHandle { return callSDK<SDKHandle>("AVFAudio_a956b86ef7a76a8e", 389946942451043, undefined, [startBeat, lengthInBeats]); }
 
 /**
  * let AVAudioBitRateStrategy_Constant: String
  * @availability iOS 7.0+
  */
-export const AVAudioBitRateStrategy_Constant: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3806185695721240, undefined, []);
+export const AVAudioBitRateStrategy_Constant: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3806185695721240, undefined, []);
 
 /**
  * let AVAudioBitRateStrategy_LongTermAverage: String
  * @availability iOS 7.0+
  */
-export const AVAudioBitRateStrategy_LongTermAverage: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1957258314481986, undefined, []);
+export const AVAudioBitRateStrategy_LongTermAverage: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1957258314481986, undefined, []);
 
 /**
  * let AVAudioBitRateStrategy_Variable: String
  * @availability iOS 7.0+
  */
-export const AVAudioBitRateStrategy_Variable: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1898626779200391, undefined, []);
+export const AVAudioBitRateStrategy_Variable: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1898626779200391, undefined, []);
 
 /**
  * let AVAudioBitRateStrategy_VariableConstrained: String
  * @availability iOS 7.0+
  */
-export const AVAudioBitRateStrategy_VariableConstrained: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2006431930530201, undefined, []);
+export const AVAudioBitRateStrategy_VariableConstrained: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2006431930530201, undefined, []);
 
 /**
  * let AVAudioFileTypeKey: String
  * @availability iOS 11.0+
  */
-export const AVAudioFileTypeKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 567156171856276, undefined, []);
+export const AVAudioFileTypeKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 567156171856276, undefined, []);
 
 /**
  * let AVAudioSessionInterruptionOptionKey: String
  * @availability iOS 6.0+
  */
-export const AVAudioSessionInterruptionOptionKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3062791511960025, undefined, []);
+export const AVAudioSessionInterruptionOptionKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3062791511960025, undefined, []);
 
 /**
  * let AVAudioSessionInterruptionReasonKey: String
  * @availability iOS 14.5+
  */
-export const AVAudioSessionInterruptionReasonKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3342501737639700, undefined, []);
+export const AVAudioSessionInterruptionReasonKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3342501737639700, undefined, []);
 
 /**
  * let AVAudioSessionInterruptionTypeKey: String
  * @availability iOS 6.0+
  */
-export const AVAudioSessionInterruptionTypeKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3294877586242827, undefined, []);
+export const AVAudioSessionInterruptionTypeKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3294877586242827, undefined, []);
 
 /**
  * let AVAudioSessionInterruptionWasSuspendedKey: String
  * @availability iOS 10.3+
  * @deprecated iOS 14.5
  */
-export const AVAudioSessionInterruptionWasSuspendedKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4174553103367619, undefined, []);
+export const AVAudioSessionInterruptionWasSuspendedKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4174553103367619, undefined, []);
 
 /**
  * let AVAudioSessionMicrophoneInjectionIsAvailableKey: String
  * @availability iOS 18.2+
  */
-export const AVAudioSessionMicrophoneInjectionIsAvailableKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2821103819279982, undefined, []);
+export const AVAudioSessionMicrophoneInjectionIsAvailableKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2821103819279982, undefined, []);
 
 /**
  * let AVAudioSessionRenderingModeNewRenderingModeKey: String
  * @availability iOS 17.2+
  */
-export const AVAudioSessionRenderingModeNewRenderingModeKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3713432765189982, undefined, []);
+export const AVAudioSessionRenderingModeNewRenderingModeKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3713432765189982, undefined, []);
 
 /**
  * let AVAudioSessionRouteChangePreviousRouteKey: String
  * @availability iOS 6.0+
  */
-export const AVAudioSessionRouteChangePreviousRouteKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2015373770861850, undefined, []);
+export const AVAudioSessionRouteChangePreviousRouteKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2015373770861850, undefined, []);
 
 /**
  * let AVAudioSessionRouteChangeReasonKey: String
  * @availability iOS 6.0+
  */
-export const AVAudioSessionRouteChangeReasonKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4457369760038355, undefined, []);
+export const AVAudioSessionRouteChangeReasonKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4457369760038355, undefined, []);
 
 /**
  * let AVAudioSessionSilenceSecondaryAudioHintTypeKey: String
  * @availability iOS 8.0+
  */
-export const AVAudioSessionSilenceSecondaryAudioHintTypeKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4257588265143023, undefined, []);
+export const AVAudioSessionSilenceSecondaryAudioHintTypeKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4257588265143023, undefined, []);
 
 /**
  * let AVAudioSessionSpatialAudioEnabledKey: String
  * @availability iOS 15.0+
  */
-export const AVAudioSessionSpatialAudioEnabledKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4260708486665422, undefined, []);
+export const AVAudioSessionSpatialAudioEnabledKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4260708486665422, undefined, []);
 
 /**
  * let AVAudioUnitManufacturerNameApple: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitManufacturerNameApple: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3925093103258147, undefined, []);
+export const AVAudioUnitManufacturerNameApple: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3925093103258147, undefined, []);
 
 /**
  * let AVAudioUnitTypeEffect: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitTypeEffect: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2887660923775984, undefined, []);
+export const AVAudioUnitTypeEffect: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2887660923775984, undefined, []);
 
 /**
  * let AVAudioUnitTypeFormatConverter: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitTypeFormatConverter: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 243125629671820, undefined, []);
+export const AVAudioUnitTypeFormatConverter: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 243125629671820, undefined, []);
 
 /**
  * let AVAudioUnitTypeGenerator: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitTypeGenerator: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4472166121596017, undefined, []);
+export const AVAudioUnitTypeGenerator: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4472166121596017, undefined, []);
 
 /**
  * let AVAudioUnitTypeMIDIProcessor: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitTypeMIDIProcessor: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2248542685217476, undefined, []);
+export const AVAudioUnitTypeMIDIProcessor: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2248542685217476, undefined, []);
 
 /**
  * let AVAudioUnitTypeMixer: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitTypeMixer: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3316894944966935, undefined, []);
+export const AVAudioUnitTypeMixer: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3316894944966935, undefined, []);
 
 /**
  * let AVAudioUnitTypeMusicDevice: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitTypeMusicDevice: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3174833138236543, undefined, []);
+export const AVAudioUnitTypeMusicDevice: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3174833138236543, undefined, []);
 
 /**
  * let AVAudioUnitTypeMusicEffect: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitTypeMusicEffect: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2508686731818907, undefined, []);
+export const AVAudioUnitTypeMusicEffect: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2508686731818907, undefined, []);
 
 /**
  * let AVAudioUnitTypeOfflineEffect: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitTypeOfflineEffect: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1877347839579513, undefined, []);
+export const AVAudioUnitTypeOfflineEffect: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1877347839579513, undefined, []);
 
 /**
  * let AVAudioUnitTypeOutput: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitTypeOutput: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 388423857603823, undefined, []);
+export const AVAudioUnitTypeOutput: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 388423857603823, undefined, []);
 
 /**
  * let AVAudioUnitTypePanner: String
  * @availability iOS 9.0+
  */
-export const AVAudioUnitTypePanner: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2990549212186836, undefined, []);
+export const AVAudioUnitTypePanner: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2990549212186836, undefined, []);
 
 /**
  * let AVChannelLayoutKey: String
  * @availability iOS 4.0+
  */
-export const AVChannelLayoutKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 141861092159437, undefined, []);
+export const AVChannelLayoutKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 141861092159437, undefined, []);
 
 /**
  * let AVEncoderASPFrequencyKey: String
  * @availability iOS 26.0+
  */
-export const AVEncoderASPFrequencyKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2728873785151052, undefined, []);
+export const AVEncoderASPFrequencyKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2728873785151052, undefined, []);
 
 /**
  * let AVEncoderAudioQualityForVBRKey: String
  * @availability iOS 7.0+
  */
-export const AVEncoderAudioQualityForVBRKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3593056309139729, undefined, []);
+export const AVEncoderAudioQualityForVBRKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3593056309139729, undefined, []);
 
 /**
  * let AVEncoderAudioQualityKey: String
  * @availability iOS 3.0+
  */
-export const AVEncoderAudioQualityKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3034916073724436, undefined, []);
+export const AVEncoderAudioQualityKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3034916073724436, undefined, []);
 
 /**
  * let AVEncoderBitDepthHintKey: String
  * @availability iOS 3.0+
  */
-export const AVEncoderBitDepthHintKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3746357500822182, undefined, []);
+export const AVEncoderBitDepthHintKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3746357500822182, undefined, []);
 
 /**
  * let AVEncoderBitRateKey: String
  * @availability iOS 3.0+
  */
-export const AVEncoderBitRateKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3793337770847898, undefined, []);
+export const AVEncoderBitRateKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3793337770847898, undefined, []);
 
 /**
  * let AVEncoderBitRatePerChannelKey: String
  * @availability iOS 4.0+
  */
-export const AVEncoderBitRatePerChannelKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3746788958376357, undefined, []);
+export const AVEncoderBitRatePerChannelKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3746788958376357, undefined, []);
 
 /**
  * let AVEncoderBitRateStrategyKey: String
  * @availability iOS 7.0+
  */
-export const AVEncoderBitRateStrategyKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2698492138766236, undefined, []);
+export const AVEncoderBitRateStrategyKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2698492138766236, undefined, []);
 
 /**
  * let AVEncoderContentSourceKey: String
  * @availability iOS 26.0+
  */
-export const AVEncoderContentSourceKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1368117894344036, undefined, []);
+export const AVEncoderContentSourceKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1368117894344036, undefined, []);
 
 /**
  * let AVEncoderDynamicRangeControlConfigurationKey: String
  * @availability iOS 26.0+
  */
-export const AVEncoderDynamicRangeControlConfigurationKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4434721961104812, undefined, []);
+export const AVEncoderDynamicRangeControlConfigurationKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4434721961104812, undefined, []);
 
 /**
  * let AVFormatIDKey: String
  * @availability iOS 3.0+
  */
-export const AVFormatIDKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1932239368150626, undefined, []);
+export const AVFormatIDKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1932239368150626, undefined, []);
 
 /**
  * let AVLinearPCMBitDepthKey: String
  * @availability iOS 3.0+
  */
-export const AVLinearPCMBitDepthKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2152695339755238, undefined, []);
+export const AVLinearPCMBitDepthKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2152695339755238, undefined, []);
 
 /**
  * let AVLinearPCMIsBigEndianKey: String
  * @availability iOS 3.0+
  */
-export const AVLinearPCMIsBigEndianKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 706489154770707, undefined, []);
+export const AVLinearPCMIsBigEndianKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 706489154770707, undefined, []);
 
 /**
  * let AVLinearPCMIsFloatKey: String
  * @availability iOS 3.0+
  */
-export const AVLinearPCMIsFloatKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2413234646400692, undefined, []);
+export const AVLinearPCMIsFloatKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2413234646400692, undefined, []);
 
 /**
  * let AVLinearPCMIsNonInterleaved: String
  * @availability iOS 4.0+
  */
-export const AVLinearPCMIsNonInterleaved: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 797989211810652, undefined, []);
+export const AVLinearPCMIsNonInterleaved: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 797989211810652, undefined, []);
 
 /**
  * let AVNumberOfChannelsKey: String
  * @availability iOS 3.0+
  */
-export const AVNumberOfChannelsKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1770808264025658, undefined, []);
+export const AVNumberOfChannelsKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1770808264025658, undefined, []);
 
 /**
  * let AVSampleRateConverterAlgorithmKey: String
  * @availability iOS 7.0+
  */
-export const AVSampleRateConverterAlgorithmKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1400571663397988, undefined, []);
+export const AVSampleRateConverterAlgorithmKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1400571663397988, undefined, []);
 
 /**
  * let AVSampleRateConverterAlgorithm_Mastering: String
  * @availability iOS 7.0+
  */
-export const AVSampleRateConverterAlgorithm_Mastering: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3996982823972737, undefined, []);
+export const AVSampleRateConverterAlgorithm_Mastering: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3996982823972737, undefined, []);
 
 /**
  * let AVSampleRateConverterAlgorithm_MinimumPhase: String
  * @availability iOS 10.0+
  */
-export const AVSampleRateConverterAlgorithm_MinimumPhase: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 2597603156027949, undefined, []);
+export const AVSampleRateConverterAlgorithm_MinimumPhase: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 2597603156027949, undefined, []);
 
 /**
  * let AVSampleRateConverterAlgorithm_Normal: String
  * @availability iOS 7.0+
  */
-export const AVSampleRateConverterAlgorithm_Normal: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3232940444873591, undefined, []);
+export const AVSampleRateConverterAlgorithm_Normal: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3232940444873591, undefined, []);
 
 /**
  * let AVSampleRateConverterAudioQualityKey: String
  * @availability iOS 7.0+
  */
-export const AVSampleRateConverterAudioQualityKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 4408318461535847, undefined, []);
+export const AVSampleRateConverterAudioQualityKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 4408318461535847, undefined, []);
 
 /**
  * let AVSampleRateKey: String
  * @availability iOS 3.0+
  */
-export const AVSampleRateKey: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 536838453053741, undefined, []);
+export const AVSampleRateKey: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 536838453053741, undefined, []);
 
 /**
  * let AVSpeechSynthesisIPANotationAttribute: String
  * @availability iOS 10.0+
  */
-export const AVSpeechSynthesisIPANotationAttribute: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 3819611623402517, undefined, []);
+export const AVSpeechSynthesisIPANotationAttribute: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 3819611623402517, undefined, []);
 
 /**
  * let AVSpeechSynthesisVoiceIdentifierAlex: String
  * @availability iOS 9.0+
  */
-export const AVSpeechSynthesisVoiceIdentifierAlex: string = callSDK<string>("AVFAudio_d6c5d10d3352e6ec", 1883008446448218, undefined, []);
+export const AVSpeechSynthesisVoiceIdentifierAlex: string = callSDK<string>("AVFAudio_a956b86ef7a76a8e", 1883008446448218, undefined, []);
 
 /**
  * let AVSpeechUtteranceDefaultSpeechRate: Float
  * @availability iOS 7.0+
  */
-export const AVSpeechUtteranceDefaultSpeechRate: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 446530224564370, undefined, []);
+export const AVSpeechUtteranceDefaultSpeechRate: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 446530224564370, undefined, []);
 
 /**
  * let AVSpeechUtteranceMaximumSpeechRate: Float
  * @availability iOS 7.0+
  */
-export const AVSpeechUtteranceMaximumSpeechRate: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 320998122457431, undefined, []);
+export const AVSpeechUtteranceMaximumSpeechRate: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 320998122457431, undefined, []);
 
 /**
  * let AVSpeechUtteranceMinimumSpeechRate: Float
  * @availability iOS 7.0+
  */
-export const AVSpeechUtteranceMinimumSpeechRate: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 800624772658047, undefined, []);
+export const AVSpeechUtteranceMinimumSpeechRate: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 800624772658047, undefined, []);
 
 /** var AVAUDIOENGINE_HAVE_AUAUDIOUNIT: Int32 { get } */
-export const AVAUDIOENGINE_HAVE_AUAUDIOUNIT: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 141795143430655, undefined, []);
+export const AVAUDIOENGINE_HAVE_AUAUDIOUNIT: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 141795143430655, undefined, []);
 
 /** var AVAUDIOENGINE_HAVE_MUSICPLAYER: Int32 { get } */
-export const AVAUDIOENGINE_HAVE_MUSICPLAYER: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4122831819618305, undefined, []);
+export const AVAUDIOENGINE_HAVE_MUSICPLAYER: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4122831819618305, undefined, []);
 
 /** var AVAUDIOFORMAT_HAVE_CMFORMATDESCRIPTION: Int32 { get } */
-export const AVAUDIOFORMAT_HAVE_CMFORMATDESCRIPTION: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1514981026783787, undefined, []);
+export const AVAUDIOFORMAT_HAVE_CMFORMATDESCRIPTION: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1514981026783787, undefined, []);
 
 /** var AVAUDIOIONODE_HAVE_AUDIOUNIT: Int32 { get } */
-export const AVAUDIOIONODE_HAVE_AUDIOUNIT: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 1827882775174987, undefined, []);
+export const AVAUDIOIONODE_HAVE_AUDIOUNIT: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 1827882775174987, undefined, []);
 
 /** var AVAUDIONODE_HAVE_AUAUDIOUNIT: Int32 { get } */
-export const AVAUDIONODE_HAVE_AUAUDIOUNIT: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 140415156517220, undefined, []);
+export const AVAUDIONODE_HAVE_AUAUDIOUNIT: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 140415156517220, undefined, []);
 
 /** var AVAUDIOUNITCOMPONENT_HAVE_AUDIOCOMPONENT: Int32 { get } */
-export const AVAUDIOUNITCOMPONENT_HAVE_AUDIOCOMPONENT: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3984267830754897, undefined, []);
+export const AVAUDIOUNITCOMPONENT_HAVE_AUDIOCOMPONENT: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3984267830754897, undefined, []);
 
 /** var AVAUDIOUNIT_HAVE_AUDIOUNIT: Int32 { get } */
-export const AVAUDIOUNIT_HAVE_AUDIOUNIT: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 4247744753619596, undefined, []);
+export const AVAUDIOUNIT_HAVE_AUDIOUNIT: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 4247744753619596, undefined, []);
 
 /** var AVMusicTimeStampEndOfTrack: Double { get } */
-export const AVMusicTimeStampEndOfTrack: number = callSDK<number>("AVFAudio_d6c5d10d3352e6ec", 3735947948756685, undefined, []);
+export const AVMusicTimeStampEndOfTrack: number = callSDK<number>("AVFAudio_a956b86ef7a76a8e", 3735947948756685, undefined, []);
 
-registerSDKClass("AVFAudio.AVAudio3DAngularOrientation", AVAudio3DAngularOrientation, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("AVFAudio.AVAudio3DAngularOrientation", AVAudio3DAngularOrientation, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)AVAudio3DMixing", {});
-registerSDKClass("AVFAudio.AVAudio3DPoint", AVAudio3DPoint, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVFAudio.AVAudio3DVectorOrientation", AVAudio3DVectorOrientation, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVAudioApplication", AVAudioApplication, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"isInputMuted":4097970193781331,"microphoneInjectionPermission":366080159695647} });
-registerSDKClass("AVAudioBuffer", AVAudioBuffer, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"audioBufferList":4397786693027884,"format":1112864110857812,"mutableAudioBufferList":355514325701801} });
-registerSDKClass("AVAudioChannelLayout", AVAudioChannelLayout, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"channelCount":2403155886448541,"layout":3805780967312364,"layoutTag":2083126054501157} });
-registerSDKClass("AVAudioCompressedBuffer", AVAudioCompressedBuffer, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"byteCapacity":2491287784762065,"byteLength":3412811432375499,"data":2791643149692474,"maximumPacketSize":3256742173416930,"packetCapacity":4188573108147200,"packetCount":1708123394659612,"packetDescriptions":536191608966016} });
-registerSDKClass("AVAudioConnectionPoint", AVAudioConnectionPoint, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"bus":699584784672994,"node":2170757015991673} });
-registerSDKClass("AVAudioConverter", AVAudioConverter, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"applicableEncodeBitRates":3227349931323816,"applicableEncodeSampleRates":635909494236363,"audioSyncPacketFrequency":3276648529582275,"availableEncodeBitRates":531520022254446,"availableEncodeChannelLayoutTags":4344004442140283,"availableEncodeSampleRates":1679650728297708,"bitRate":82530914647576,"bitRateStrategy":4351725308338552,"channelMap":172423498495751,"contentSource":1096039943800879,"dither":249605113435919,"downmix":3089426752684379,"dynamicRangeControlConfiguration":344126401077792,"inputFormat":385317000538797,"magicCookie":1899463372800957,"maximumOutputPacketSize":1635064914980297,"outputFormat":2509189627240905,"primeInfo":869624018415757,"primeMethod":2589923203111244,"sampleRateConverterAlgorithm":3101968226311202,"sampleRateConverterQuality":3747061429531479} });
-registerSDKClass("AVFAudio.AVAudioConverterPrimeInfo", AVAudioConverterPrimeInfo, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVAudioEngine", AVAudioEngine, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"attachedNodes":2301007105349686,"isAutoShutdownEnabled":2467383130976560,"inputNode":1784685520212101,"isInManualRenderingMode":1613415974575405,"mainMixerNode":2541648154325367,"manualRenderingFormat":1669512795433895,"manualRenderingMaximumFrameCount":2071145173211159,"manualRenderingMode":3980437954641511,"manualRenderingSampleTime":3995238594287443,"outputNode":633046387072446,"isRunning":4433501046643715} });
-registerSDKClass("AVAudioEnvironmentDistanceAttenuationParameters", AVAudioEnvironmentDistanceAttenuationParameters, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"distanceAttenuationModel":2074311609461733,"maximumDistance":1112313976564662,"referenceDistance":861497178121904,"rolloffFactor":2893621255760936} });
-registerSDKClass("AVAudioNode", AVAudioNode, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"engine":3381808875770947,"lastRenderTime":140055046845425,"latency":841840150975461,"numberOfInputs":1608255834377298,"numberOfOutputs":1882009515984405,"outputPresentationLatency":2161467070625352} });
-registerSDKClass("AVAudioEnvironmentNode", AVAudioEnvironmentNode, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"applicableRenderingAlgorithms":3214426212378372,"distanceAttenuationParameters":370231643488597,"listenerAngularOrientation":2065100785127998,"isListenerHeadTrackingEnabled":1544218339997591,"listenerPosition":4371713980322130,"listenerVectorOrientation":1652129314399127,"nextAvailableInputBus":2706060539400066,"outputType":98932913533892,"outputVolume":2911286329102211,"reverbParameters":1533497283136873} });
-registerSDKClass("AVAudioEnvironmentReverbParameters", AVAudioEnvironmentReverbParameters, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"enable":4032668698596829,"filterParameters":2857507494602244,"level":239250155925455} });
-registerSDKClass("AVAudioFile", AVAudioFile, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"fileFormat":2437901226240058,"framePosition":1422085262654695,"isOpen":3097688457954796,"length":1325938931288758,"processingFormat":2211013726421114,"url":966227861998004} });
-registerSDKClass("AVAudioFormat", AVAudioFormat, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"channelCount":812261291872852,"channelLayout":1524175594569934,"commonFormat":2557812172369778,"formatDescription":2041931308454367,"isInterleaved":634654114656600,"magicCookie":857340189108850,"sampleRate":4048219567167169,"settings":3594140336300671,"isStandard":65372775465029,"streamDescription":1659646661010746} });
-registerSDKClass("AVAudioIONode", AVAudioIONode, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"presentationLatency":955189027634026,"isVoiceProcessingEnabled":205988628445728} });
-registerSDKClass("AVAudioInputNode", AVAudioInputNode, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"isVoiceProcessingAGCEnabled":1015908231461595,"isVoiceProcessingBypassed":850490965975163,"isVoiceProcessingInputMuted":1942380077509459,"voiceProcessingOtherAudioDuckingConfiguration":907002981458112} });
-registerSDKClass("AVAudioMixerNode", AVAudioMixerNode, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"nextAvailableInputBus":4273568384801859,"outputVolume":2137816683407507} });
+registerSDKClass("AVFAudio.AVAudio3DPoint", AVAudio3DPoint, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVFAudio.AVAudio3DVectorOrientation", AVAudio3DVectorOrientation, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVAudioApplication", AVAudioApplication, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"isInputMuted":4097970193781331,"microphoneInjectionPermission":366080159695647}, methods: {"setInputMuted":{"id":1375731184115589}} });
+registerSDKClass("AVAudioBuffer", AVAudioBuffer, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"audioBufferList":4397786693027884,"format":1112864110857812,"mutableAudioBufferList":355514325701801} });
+registerSDKClass("AVAudioChannelLayout", AVAudioChannelLayout, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"channelCount":2403155886448541,"layout":3805780967312364,"layoutTag":2083126054501157}, methods: {"isEqual":{"id":762897835308334}} });
+registerSDKClass("AVAudioCompressedBuffer", AVAudioCompressedBuffer, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"byteCapacity":2491287784762065,"byteLength":3412811432375499,"data":2791643149692474,"maximumPacketSize":3256742173416930,"packetCapacity":4188573108147200,"packetCount":1708123394659612,"packetDescriptions":536191608966016} });
+registerSDKClass("AVAudioConnectionPoint", AVAudioConnectionPoint, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"bus":699584784672994,"node":2170757015991673} });
+registerSDKClass("AVAudioConverter", AVAudioConverter, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"applicableEncodeBitRates":3227349931323816,"applicableEncodeSampleRates":635909494236363,"audioSyncPacketFrequency":3276648529582275,"availableEncodeBitRates":531520022254446,"availableEncodeChannelLayoutTags":4344004442140283,"availableEncodeSampleRates":1679650728297708,"bitRate":82530914647576,"bitRateStrategy":4351725308338552,"channelMap":172423498495751,"contentSource":1096039943800879,"dither":249605113435919,"downmix":3089426752684379,"dynamicRangeControlConfiguration":344126401077792,"inputFormat":385317000538797,"magicCookie":1899463372800957,"maximumOutputPacketSize":1635064914980297,"outputFormat":2509189627240905,"primeInfo":869624018415757,"primeMethod":2589923203111244,"sampleRateConverterAlgorithm":3101968226311202,"sampleRateConverterQuality":3747061429531479}, methods: {"convert":{"id":3365507852393555},"reset":{"id":3155493154262522}} });
+registerSDKClass("AVFAudio.AVAudioConverterPrimeInfo", AVAudioConverterPrimeInfo, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVAudioEngine", AVAudioEngine, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"attachedNodes":2301007105349686,"isAutoShutdownEnabled":2467383130976560,"inputNode":1784685520212101,"isInManualRenderingMode":1613415974575405,"mainMixerNode":2541648154325367,"manualRenderingFormat":1669512795433895,"manualRenderingMaximumFrameCount":2071145173211159,"manualRenderingMode":3980437954641511,"manualRenderingSampleTime":3995238594287443,"outputNode":633046387072446,"isRunning":4433501046643715}, methods: {"attach":{"id":1125385911430930},"connectToFormat":{"id":492763145630015},"connectNodeToFormat":{"id":1302030941098846},"connectToFromBusToBusFormat":{"id":2433603423542935},"connectNodeToFromBusToBusFormat":{"id":2237968917400091},"connectToFromBusFormat":{"id":3370876747477275},"connectNodeToFromBusFormat":{"id":3697856584776743},"connectMIDIToFormat":{"id":2784719807956436},"connectMIDIToFormat86448":{"id":215517907438599},"connectMIDIToFormat39598":{"id":129985785332372},"detach":{"id":3952614858477613},"disableManualRenderingMode":{"id":77939254620223},"disconnectMIDIFrom":{"id":2478291300224004},"disconnectMIDIFrom21581":{"id":3057673820131562},"disconnectMIDIInput":{"id":561083116193471},"disconnectMIDIOutput":{"id":1566930892132712},"disconnectNodeInput":{"id":346718669100908},"disconnectNodeInputBus":{"id":953552654004513},"disconnectNodeOutput":{"id":177612036793385},"disconnectNodeOutputBus":{"id":3281680014902762},"enableManualRenderingMode":{"id":2111912299676038},"inputConnectionPoint":{"id":2376939482309577},"outputConnectionPoints":{"id":2478439642694799},"pause":{"id":1408952261126036},"prepare":{"id":1923807182820762},"renderOffline":{"id":3481033371084215},"reset":{"id":1757049432438461},"start":{"id":3202980137040089},"stop":{"id":365549122451983}} });
+registerSDKClass("AVAudioEnvironmentDistanceAttenuationParameters", AVAudioEnvironmentDistanceAttenuationParameters, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"distanceAttenuationModel":2074311609461733,"maximumDistance":1112313976564662,"referenceDistance":861497178121904,"rolloffFactor":2893621255760936} });
+registerSDKClass("AVAudioNode", AVAudioNode, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"engine":3381808875770947,"lastRenderTime":140055046845425,"latency":841840150975461,"numberOfInputs":1608255834377298,"numberOfOutputs":1882009515984405,"outputPresentationLatency":2161467070625352}, methods: {"inputFormat":{"id":2619750889079191},"installTap":{"id":4151464993634211,"hints":[null,null,null,{"callback":{"out":[]}}]},"nameForInputBus":{"id":4436465344356250},"nameForOutputBus":{"id":2178380262215974},"outputFormat":{"id":139018950874735},"removeTap":{"id":4258034711895961},"reset":{"id":3802361215901691},"installAudioTap":{"id":4100699933800121,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("AVAudioEnvironmentNode", AVAudioEnvironmentNode, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"applicableRenderingAlgorithms":3214426212378372,"distanceAttenuationParameters":370231643488597,"listenerAngularOrientation":2065100785127998,"isListenerHeadTrackingEnabled":1544218339997591,"listenerPosition":4371713980322130,"listenerVectorOrientation":1652129314399127,"nextAvailableInputBus":2706060539400066,"outputType":98932913533892,"outputVolume":2911286329102211,"reverbParameters":1533497283136873} });
+registerSDKClass("AVAudioEnvironmentReverbParameters", AVAudioEnvironmentReverbParameters, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"enable":4032668698596829,"filterParameters":2857507494602244,"level":239250155925455}, methods: {"loadFactoryReverbPreset":{"id":1298721229048185}} });
+registerSDKClass("AVAudioFile", AVAudioFile, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"fileFormat":2437901226240058,"framePosition":1422085262654695,"isOpen":3097688457954796,"length":1325938931288758,"processingFormat":2211013726421114,"url":966227861998004}, methods: {"close":{"id":2714844558012618},"readInto":{"id":2350188520566926},"readIntoFrameCount":{"id":3520922914596282},"writeFrom":{"id":3878515065105840},"readFrameCount":{"id":1619986810587704},"writeFrom78254":{"id":4093292126558025}} });
+registerSDKClass("AVAudioFormat", AVAudioFormat, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"channelCount":812261291872852,"channelLayout":1524175594569934,"commonFormat":2557812172369778,"formatDescription":2041931308454367,"isInterleaved":634654114656600,"magicCookie":857340189108850,"sampleRate":4048219567167169,"settings":3594140336300671,"isStandard":65372775465029,"streamDescription":1659646661010746}, methods: {"isEqual":{"id":701083379747670}} });
+registerSDKClass("AVAudioIONode", AVAudioIONode, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"presentationLatency":955189027634026,"isVoiceProcessingEnabled":205988628445728}, methods: {"setVoiceProcessingEnabled":{"id":4218180970792095}} });
+registerSDKClass("AVAudioInputNode", AVAudioInputNode, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"isVoiceProcessingAGCEnabled":1015908231461595,"isVoiceProcessingBypassed":850490965975163,"isVoiceProcessingInputMuted":1942380077509459,"voiceProcessingOtherAudioDuckingConfiguration":907002981458112}, methods: {"setMutedSpeechActivityEventListener":{"id":2349981175721,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("AVAudioMixerNode", AVAudioMixerNode, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"nextAvailableInputBus":4273568384801859,"outputVolume":2137816683407507} });
 registerSDKProtocol("c:objc(pl)AVAudioMixing", {"destinationForMixerBus":"destination(forMixer:bus:)"});
-registerSDKClass("AVAudioMixingDestination", AVAudioMixingDestination, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"connectionPoint":2871507157332561} });
-registerSDKClass("AVAudioOutputNode", AVAudioOutputNode, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVAudioPCMBuffer", AVAudioPCMBuffer, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"frameCapacity":3445327752780141,"frameLength":3830218881306245,"stride":1204750672864290} });
-registerSDKClass("AVFAudio.AVAudioPCMBuffer.ChannelData", AVAudioPCMBuffer_ChannelData, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVFAudio.AVAudioPCMBuffer.MutableChannelData", AVAudioPCMBuffer_MutableChannelData, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVAudioPlayer", AVAudioPlayer, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"channelAssignments":3451209745614405,"currentTime":1627644140235525,"data":1968380114419044,"delegate":1926841436340681,"deviceCurrentTime":4235427416805031,"duration":1568700012039172,"enableRate":1361674699755709,"format":717534092298901,"isMeteringEnabled":133509018806071,"numberOfChannels":3021048602614542,"numberOfLoops":126454554013991,"pan":3145354921971737,"isPlaying":3126507584590416,"rate":4048537283698301,"settings":367674881822971,"url":3443273451105938,"volume":2242766143567632} });
+registerSDKClass("AVAudioMixingDestination", AVAudioMixingDestination, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"connectionPoint":2871507157332561} });
+registerSDKClass("AVAudioOutputNode", AVAudioOutputNode, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVAudioPCMBuffer", AVAudioPCMBuffer, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"frameCapacity":3445327752780141,"frameLength":3830218881306245,"stride":1204750672864290} });
+registerSDKClass("AVFAudio.AVAudioPCMBuffer.ChannelData", AVAudioPCMBuffer_ChannelData, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVFAudio.AVAudioPCMBuffer.MutableChannelData", AVAudioPCMBuffer_MutableChannelData, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVAudioPlayer", AVAudioPlayer, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"channelAssignments":3451209745614405,"currentTime":1627644140235525,"data":1968380114419044,"delegate":1926841436340681,"deviceCurrentTime":4235427416805031,"duration":1568700012039172,"enableRate":1361674699755709,"format":717534092298901,"isMeteringEnabled":133509018806071,"numberOfChannels":3021048602614542,"numberOfLoops":126454554013991,"pan":3145354921971737,"isPlaying":3126507584590416,"rate":4048537283698301,"settings":367674881822971,"url":3443273451105938,"volume":2242766143567632}, methods: {"averagePower":{"id":634421000997417},"pause":{"id":4002084687364621},"peakPower":{"id":305507442793355},"play":{"id":1700307447125751},"playAtTime":{"id":1399827681419573},"prepareToPlay":{"id":974246155323516},"setVolume":{"id":396707572564432},"stop":{"id":100411395248416},"updateMeters":{"id":1510489748920914}} });
 registerSDKProtocol("c:objc(pl)AVAudioPlayerDelegate", {"audioPlayerDidFinishPlayingSuccessfully":"audioPlayerDidFinishPlaying(_:successfully:)","audioPlayerDecodeErrorDidOccurError":"audioPlayerDecodeErrorDidOccur(_:error:)","audioPlayerBeginInterruption":"audioPlayerBeginInterruption(_:)","audioPlayerEndInterruptionWithOptions":"audioPlayerEndInterruption(_:withOptions:)"});
-registerSDKClass("AVAudioPlayerNode", AVAudioPlayerNode, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"isPlaying":3374356548212670} });
-registerSDKClass("AVAudioRecorder", AVAudioRecorder, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"channelAssignments":1996386029963449,"currentTime":313973350092976,"delegate":1702763576724686,"deviceCurrentTime":1837217297084282,"format":1190088360623912,"isMeteringEnabled":4485704281307422,"isRecording":1249022277167018,"settings":1085787251690568,"url":3392611637884257} });
+registerSDKClass("AVAudioPlayerNode", AVAudioPlayerNode, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"isPlaying":3374356548212670}, methods: {"nodeTime":{"id":2674798024260355},"pause":{"id":1071456465705240},"play":{"id":3163597514983867},"playAudio":{"id":1759402476731776},"playAt":{"id":4244025082095427},"playAudioAt":{"id":2752331420422424},"playerTime":{"id":1949894720255568},"prepare":{"id":4386775100475223},"scheduleBufferAtOptionsCompletionCallbackTypeCompletionHandler":{"id":3472731936150437,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"scheduleBufferAtOptionsCompletionHandler":{"id":2369866472239546,"hints":[null,null,null,{"callback":{"out":[]}}]},"scheduleBufferCompletionCallbackTypeCompletionHandler":{"id":773636934697986,"hints":[null,null,{"callback":{"out":[]}}]},"scheduleBufferCompletionHandler":{"id":4187996112796007,"hints":[null,{"callback":{"out":[]}}]},"scheduleFileAtCompletionCallbackTypeCompletionHandler":{"id":3529202587188195,"hints":[null,null,null,{"callback":{"out":[]}}]},"scheduleFileAtCompletionHandler":{"id":1343026061103586,"hints":[null,null,{"callback":{"out":[]}}]},"scheduleSegmentStartingFrameFrameCountAtCompletionCallbackTypeCompletionHandler":{"id":2884434812089098,"hints":[null,null,null,null,null,{"callback":{"out":[]}}]},"scheduleSegmentStartingFrameFrameCountAtCompletionHandler":{"id":2422644858643845,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"stop":{"id":3980554473562706},"scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler":{"id":263433303504500,"hints":[null,null,null,null,{"callback":{"out":[]}}]},"scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler5497":{"id":3081213925958102,"hints":[null,null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("AVAudioRecorder", AVAudioRecorder, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"channelAssignments":1996386029963449,"currentTime":313973350092976,"delegate":1702763576724686,"deviceCurrentTime":1837217297084282,"format":1190088360623912,"isMeteringEnabled":4485704281307422,"isRecording":1249022277167018,"settings":1085787251690568,"url":3392611637884257}, methods: {"averagePower":{"id":1446745315032909},"deleteRecording":{"id":2035200032040456},"pause":{"id":2615869938555516},"peakPower":{"id":195541070626493},"prepareToRecord":{"id":1464905919735639},"record":{"id":2562138119809783},"recordAtTime":{"id":2370179348109259},"recordAtTimeForDuration":{"id":2724599797350497},"recordForDuration":{"id":3103629115902583},"stop":{"id":2470417876809414},"updateMeters":{"id":2226618268032584}} });
 registerSDKProtocol("c:objc(pl)AVAudioRecorderDelegate", {"audioRecorderDidFinishRecordingSuccessfully":"audioRecorderDidFinishRecording(_:successfully:)","audioRecorderEncodeErrorDidOccurError":"audioRecorderEncodeErrorDidOccur(_:error:)","audioRecorderBeginInterruption":"audioRecorderBeginInterruption(_:)","audioRecorderEndInterruptionWithOptions":"audioRecorderEndInterruption(_:withOptions:)"});
-registerSDKClass("AVAudioSequencer", AVAudioSequencer, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"currentPositionInBeats":1372969893713966,"currentPositionInSeconds":3329151218515996,"isPlaying":429495684657191,"rate":4327433057603382,"tempoTrack":3351340665175956,"tracks":2656533450773085,"userInfo":1101712951178237} });
-registerSDKClass("AVAudioSession", AVAudioSession, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"ioBufferDuration":4335239089089173,"allowHapticsAndSystemSoundsDuringRecording":748297039668618,"availableCategories":3363427470749839,"availableInputs":1906395128052263,"availableModes":4485075732460008,"category":3177732938757697,"categoryOptions":2216555567636449,"currentRoute":4001915059247720,"isInputAvailable":1302878750862131,"inputDataSource":3665580990964020,"inputDataSources":3281917295760791,"inputGain":3500348357472877,"isInputGainSettable":1725758241182583,"inputLatency":3175603886872556,"inputNumberOfChannels":2666851084794928,"inputOrientation":2991602482073575,"isEchoCancelledInputAvailable":3599667455737691,"isEchoCancelledInputEnabled":848207801219563,"isMicrophoneInjectionAvailable":4353386758010623,"maximumInputNumberOfChannels":3640542610049052,"maximumOutputNumberOfChannels":1132758649736859,"mode":3474967779655177,"isOtherAudioPlaying":1002572673947465,"outputDataSource":423707193235933,"outputDataSources":843758592792422,"outputLatency":1062204490824143,"isOutputMuted":2339638326599114,"outputNumberOfChannels":3588829522992342,"outputVolume":1210696887729295,"preferredIOBufferDuration":2305407852481517,"preferredInput":3505537611375894,"preferredInputNumberOfChannels":2156358831096522,"preferredInputOrientation":608280681463456,"preferredMicrophoneInjectionMode":2123594967765499,"preferredOutputNumberOfChannels":194708349822942,"preferredSampleRate":2532988783785662,"prefersEchoCancelledInput":293399097964138,"prefersInterruptionOnRouteDisconnect":1685486969885262,"prefersNoInterruptionsFromSystemAlerts":103167318894435,"promptStyle":3205947979959090,"recordPermission":580926612856058,"renderingMode":3656336079346591,"routeSharingPolicy":3674183578653513,"sampleRate":4135755619091862,"secondaryAudioShouldBeSilencedHint":1969406603087445,"supportedOutputChannelLayouts":925016062172245,"supportsMultichannelContent":2759547092473977} });
-registerSDKClass("AVAudioSessionDeactivationContext", AVAudioSession_DeactivationContext, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"interruptionContext":1807652597298462,"source":3106740946749683} });
-registerSDKClass("AVFAudio.AVAudioSession.DeactivationResult", AVAudioSession_DeactivationResult, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVFAudio.AVAudioSession.DidBecomeActiveMessage", AVAudioSession_DidBecomeActiveMessage, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVFAudio.AVAudioSession.DidBecomeInactiveMessage", AVAudioSession_DidBecomeInactiveMessage, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVAudioSessionInterruptionContext", AVAudioSession_InterruptionContext, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"reason":628354731832826} });
-registerSDKClass("AVAudioSessionResumptionContext", AVAudioSession_ResumptionContext, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"recommendation":4477432137304694} });
-registerSDKClass("AVFAudio.AVAudioSession.ResumptionRecommendationMessage", AVAudioSession_ResumptionRecommendationMessage, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVAudioSessionCapability", AVAudioSessionCapability, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"isEnabled":587904736620583,"isSupported":851662701841948} });
-registerSDKClass("AVAudioSessionChannelDescription", AVAudioSessionChannelDescription, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"channelLabel":1262261453553589,"channelName":4017017024089994,"channelNumber":1866667639839248,"owningPortUID":37811859391919} });
-registerSDKClass("AVAudioSessionDataSourceDescription", AVAudioSessionDataSourceDescription, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"dataSourceID":2320806843565482,"dataSourceName":2871217644765161,"location":934572202746634,"orientation":2986888824424907,"preferredPolarPattern":2963107687222988,"selectedPolarPattern":1667907943611487,"supportedPolarPatterns":838812404713068} });
-registerSDKClass("AVAudioSessionPortDescription", AVAudioSessionPortDescription, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"uid":2854405122029162,"bluetoothMicrophoneExtension":3061305546409668,"channels":1939783753975243,"dataSources":4416658486965813,"hasHardwareVoiceCallProcessing":4490312567743636,"portName":952711613367181,"portType":3104823990831183,"preferredDataSource":3591585805479428,"selectedDataSource":2335525618247703,"isSpatialAudioEnabled":1798096638036944} });
-registerSDKClass("AVAudioSessionPortExtensionBluetoothMicrophone", AVAudioSessionPortExtensionBluetoothMicrophone, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"farFieldCapture":3639051916243667,"highQualityRecording":2597193635742487} });
-registerSDKClass("AVAudioSessionRouteDescription", AVAudioSessionRouteDescription, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"inputs":2753821336479873,"outputs":1582302294650691} });
-registerSDKClass("AVAudioSinkNode", AVAudioSinkNode, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVAudioSourceNode", AVAudioSourceNode, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("AVAudioSequencer", AVAudioSequencer, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"currentPositionInBeats":1372969893713966,"currentPositionInSeconds":3329151218515996,"isPlaying":429495684657191,"rate":4327433057603382,"tempoTrack":3351340665175956,"tracks":2656533450773085,"userInfo":1101712951178237}, methods: {"beatsForHostTimeError":{"id":540296674644264,"args":[0,null]},"beatsForSeconds":{"id":4368978622736761},"createAndAppendTrack":{"id":738400509006557},"data":{"id":1503084677663146,"args":[0,null]},"hostTime":{"id":775049895064749,"args":[0,null]},"loadFromOptions":{"id":275877438959899},"loadFromOptions86023":{"id":3143266688678270},"prepareToPlay":{"id":3026313745236988},"removeTrack":{"id":2944162982921659},"reverseEvents":{"id":3653491592155110},"seconds":{"id":1599963447768722},"setUserCallback":{"id":1346605159480626,"hints":[{"callback":{"out":[]}}]},"start":{"id":3408173028719618},"stop":{"id":3724342593212737},"write":{"id":1925662068081034}} });
+registerSDKClass("AVAudioSession", AVAudioSession, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"ioBufferDuration":4335239089089173,"allowHapticsAndSystemSoundsDuringRecording":748297039668618,"availableCategories":3363427470749839,"availableInputs":1906395128052263,"availableModes":4485075732460008,"category":3177732938757697,"categoryOptions":2216555567636449,"currentRoute":4001915059247720,"isInputAvailable":1302878750862131,"inputDataSource":3665580990964020,"inputDataSources":3281917295760791,"inputGain":3500348357472877,"isInputGainSettable":1725758241182583,"inputLatency":3175603886872556,"inputNumberOfChannels":2666851084794928,"inputOrientation":2991602482073575,"isEchoCancelledInputAvailable":3599667455737691,"isEchoCancelledInputEnabled":848207801219563,"isMicrophoneInjectionAvailable":4353386758010623,"maximumInputNumberOfChannels":3640542610049052,"maximumOutputNumberOfChannels":1132758649736859,"mode":3474967779655177,"isOtherAudioPlaying":1002572673947465,"outputDataSource":423707193235933,"outputDataSources":843758592792422,"outputLatency":1062204490824143,"isOutputMuted":2339638326599114,"outputNumberOfChannels":3588829522992342,"outputVolume":1210696887729295,"preferredIOBufferDuration":2305407852481517,"preferredInput":3505537611375894,"preferredInputNumberOfChannels":2156358831096522,"preferredInputOrientation":608280681463456,"preferredMicrophoneInjectionMode":2123594967765499,"preferredOutputNumberOfChannels":194708349822942,"preferredSampleRate":2532988783785662,"prefersEchoCancelledInput":293399097964138,"prefersInterruptionOnRouteDisconnect":1685486969885262,"prefersNoInterruptionsFromSystemAlerts":103167318894435,"promptStyle":3205947979959090,"recordPermission":580926612856058,"renderingMode":3656336079346591,"routeSharingPolicy":3674183578653513,"sampleRate":4135755619091862,"secondaryAudioShouldBeSilencedHint":1969406603087445,"supportedOutputChannelLayouts":925016062172245,"supportsMultichannelContent":2759547092473977}, methods: {"activate":{"id":1610828966919965,"hints":[null,{"callback":{"out":[]}}]},"deactivate":{"id":4498739753276141,"hints":[null,{"callback":{"out":[]}}]},"overrideOutputAudioPort":{"id":2828238695793912},"requestRecordPermission":{"id":2117798834015468,"hints":[{"callback":{"out":[]}}]},"setActive":{"id":1074703510498324},"setAggregatedIOPreference":{"id":2343168815813263},"setAllowHapticsAndSystemSoundsDuringRecording":{"id":3051307845158200},"setCategory":{"id":444429860681387},"setCategoryModeOptions":{"id":229244894858442},"setCategoryModePolicyOptions":{"id":1520184465392372},"setCategoryOptions":{"id":2338660176948767},"setInputDataSource":{"id":1016635123646363},"setInputGain":{"id":3252254912387356},"setMode":{"id":2775137574302632},"setOutputDataSource":{"id":871873695113985},"setOutputMuted":{"id":618337013585746},"setPreferredIOBufferDuration":{"id":1382963616781995},"setPreferredInput":{"id":2223950005359915},"setPreferredInputNumberOfChannels":{"id":2826277276088961},"setPreferredInputOrientation":{"id":1281905810957088},"setPreferredMicrophoneInjectionMode":{"id":3312929076841409},"setPreferredOutputNumberOfChannels":{"id":2246025631934857},"setPreferredSampleRate":{"id":1585988410421475},"setPrefersEchoCancelledInput":{"id":3453466400038239},"setPrefersInterruptionOnRouteDisconnect":{"id":1507331919380864},"setPrefersNoInterruptionsFromSystemAlerts":{"id":2230652536770544},"setSupportsMultichannelContent":{"id":3271935498822292}} });
+registerSDKClass("AVAudioSessionDeactivationContext", AVAudioSession_DeactivationContext, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"interruptionContext":1807652597298462,"source":3106740946749683} });
+registerSDKClass("AVFAudio.AVAudioSession.DeactivationResult", AVAudioSession_DeactivationResult, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVFAudio.AVAudioSession.DidBecomeActiveMessage", AVAudioSession_DidBecomeActiveMessage, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVFAudio.AVAudioSession.DidBecomeInactiveMessage", AVAudioSession_DidBecomeInactiveMessage, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVAudioSessionInterruptionContext", AVAudioSession_InterruptionContext, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"reason":628354731832826} });
+registerSDKClass("AVAudioSessionResumptionContext", AVAudioSession_ResumptionContext, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"recommendation":4477432137304694} });
+registerSDKClass("AVFAudio.AVAudioSession.ResumptionRecommendationMessage", AVAudioSession_ResumptionRecommendationMessage, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVAudioSessionCapability", AVAudioSessionCapability, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"isEnabled":587904736620583,"isSupported":851662701841948} });
+registerSDKClass("AVAudioSessionChannelDescription", AVAudioSessionChannelDescription, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"channelLabel":1262261453553589,"channelName":4017017024089994,"channelNumber":1866667639839248,"owningPortUID":37811859391919} });
+registerSDKClass("AVAudioSessionDataSourceDescription", AVAudioSessionDataSourceDescription, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"dataSourceID":2320806843565482,"dataSourceName":2871217644765161,"location":934572202746634,"orientation":2986888824424907,"preferredPolarPattern":2963107687222988,"selectedPolarPattern":1667907943611487,"supportedPolarPatterns":838812404713068}, methods: {"setPreferredPolarPattern":{"id":2632459632345240}} });
+registerSDKClass("AVAudioSessionPortDescription", AVAudioSessionPortDescription, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"uid":2854405122029162,"bluetoothMicrophoneExtension":3061305546409668,"channels":1939783753975243,"dataSources":4416658486965813,"hasHardwareVoiceCallProcessing":4490312567743636,"portName":952711613367181,"portType":3104823990831183,"preferredDataSource":3591585805479428,"selectedDataSource":2335525618247703,"isSpatialAudioEnabled":1798096638036944}, methods: {"setPreferredDataSource":{"id":894991364404086}} });
+registerSDKClass("AVAudioSessionPortExtensionBluetoothMicrophone", AVAudioSessionPortExtensionBluetoothMicrophone, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"farFieldCapture":3639051916243667,"highQualityRecording":2597193635742487} });
+registerSDKClass("AVAudioSessionRouteDescription", AVAudioSessionRouteDescription, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"inputs":2753821336479873,"outputs":1582302294650691} });
+registerSDKClass("AVAudioSinkNode", AVAudioSinkNode, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVAudioSourceNode", AVAudioSourceNode, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)AVAudioStereoMixing", {});
-registerSDKClass("AVAudioTime", AVAudioTime, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"audioTimeStamp":1656264994673336,"hostTime":1245271250322541,"isHostTimeValid":3369619026508597,"sampleRate":2797618058928602,"sampleTime":780491415621031,"isSampleTimeValid":3041232423366507} });
-registerSDKClass("AVAudioUnit", AVAudioUnit, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"audioComponentDescription":2682460829087167,"manufacturerName":2151519391378363,"name":2467450896074019,"version":1755133464694920} });
-registerSDKClass("AVAudioUnitComponent", AVAudioUnitComponent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"allTagNames":330309536078891,"audioComponent":2609027050440430,"audioComponentDescription":3455802067339795,"configurationDictionary":407903831259864,"hasMIDIInput":790878106650633,"hasMIDIOutput":939381903101377,"localizedTypeName":1221689383559140,"manufacturerName":1005295949343628,"name":1098304372390090,"passesAUVal":2688163923917525,"isSandboxSafe":3815562523842991,"typeName":1321256184947887,"version":1095219670319353,"versionString":3153127210467673} });
-registerSDKClass("AVAudioUnitComponentManager", AVAudioUnitComponentManager, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"standardLocalizedTagNames":2455067755926506,"tagNames":3306588850809253} });
-registerSDKClass("AVFAudio.AVAudioUnitComponentManager.RegistrationsChangedMessage", AVAudioUnitComponentManager_RegistrationsChangedMessage, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVAudioUnitEffect", AVAudioUnitEffect, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"bypass":2956485858744840} });
-registerSDKClass("AVAudioUnitDelay", AVAudioUnitDelay, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"delayTime":2184509178003806,"feedback":4406636489063913,"lowPassCutoff":2758230250197185,"wetDryMix":2006156835920182} });
-registerSDKClass("AVAudioUnitDistortion", AVAudioUnitDistortion, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"preGain":2255727642737572,"wetDryMix":1797998801221722} });
-registerSDKClass("AVAudioUnitEQ", AVAudioUnitEQ, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"bands":1806529939307033,"globalGain":724376348235390} });
-registerSDKClass("AVAudioUnitEQFilterParameters", AVAudioUnitEQFilterParameters, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"bandwidth":913288044738159,"bypass":1322156242596286,"filterType":154995050147892,"frequency":513425381064691,"gain":2968369236646196} });
-registerSDKClass("AVAudioUnitGenerator", AVAudioUnitGenerator, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"bypass":2008029203248648} });
-registerSDKClass("AVAudioUnitMIDIInstrument", AVAudioUnitMIDIInstrument, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVAudioUnitReverb", AVAudioUnitReverb, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"wetDryMix":928053478481595} });
-registerSDKClass("AVAudioUnitSampler", AVAudioUnitSampler, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"globalTuning":3734270175609183,"masterGain":1343028607805854,"overallGain":3072678495719327,"stereoPan":950443522396112} });
-registerSDKClass("AVAudioUnitTimeEffect", AVAudioUnitTimeEffect, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"bypass":3693058494877508} });
-registerSDKClass("AVAudioUnitTimePitch", AVAudioUnitTimePitch, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"overlap":3688030537584319,"pitch":4053885896951101,"rate":4441581272381925} });
-registerSDKClass("AVAudioUnitVarispeed", AVAudioUnitVarispeed, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"rate":511445452348144} });
-registerSDKClass("AVFAudio.AVAudioVoiceProcessingOtherAudioDuckingConfiguration", AVAudioVoiceProcessingOtherAudioDuckingConfiguration, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVMusicEvent", AVMusicEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVAUPresetEvent", AVAUPresetEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"element":3013209047957466,"presetDictionary":4435831812349442,"scope":862815230484011} });
-registerSDKClass("AVExtendedNoteOnEvent", AVExtendedNoteOnEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"duration":2798481526469076,"groupID":2783761256638546,"instrumentID":1420967263943048,"midiNote":3898187421596534,"velocity":2350798004625745} });
-registerSDKClass("AVExtendedTempoEvent", AVExtendedTempoEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"tempo":3678718264486935} });
-registerSDKClass("AVMIDIChannelEvent", AVMIDIChannelEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"channel":35600915486213} });
-registerSDKClass("AVMIDIChannelPressureEvent", AVMIDIChannelPressureEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"pressure":3265856227291431} });
-registerSDKClass("AVMIDIControlChangeEvent", AVMIDIControlChangeEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"messageType":291189902416640,"value":3848064347410385} });
-registerSDKClass("AVMIDIMetaEvent", AVMIDIMetaEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"type":3560834651560032} });
-registerSDKClass("AVMIDINoteEvent", AVMIDINoteEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"channel":254601156219397,"duration":1309510053771598,"key":2765538482673484,"velocity":3025741740809221} });
-registerSDKClass("AVMIDIPitchBendEvent", AVMIDIPitchBendEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"value":1219491131561360} });
-registerSDKClass("AVMIDIPlayer", AVMIDIPlayer, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"currentPosition":1415955009397631,"duration":2265637781094881,"isPlaying":3688544303579566,"rate":3604210519679226} });
-registerSDKClass("AVMIDIPolyPressureEvent", AVMIDIPolyPressureEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"key":2222438911100107,"pressure":1137482740965251} });
-registerSDKClass("AVMIDIProgramChangeEvent", AVMIDIProgramChangeEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"programNumber":1244881660017060} });
-registerSDKClass("AVMIDISysexEvent", AVMIDISysexEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"sizeInBytes":3379176069395904} });
-registerSDKClass("AVMusicTrack", AVMusicTrack, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"destinationAudioUnit":215848392458952,"destinationMIDIEndpoint":878742928499597,"lengthInBeats":1960437512750701,"lengthInSeconds":2365387448338817,"loopRange":4433716564544478,"isLoopingEnabled":574047938674340,"isMuted":4170814672447,"numberOfLoops":3945799659280552,"offsetTime":291208852656646,"isSoloed":2842578866285415,"timeResolution":895869141453683,"usesAutomatedParameters":4399042179309823} });
-registerSDKClass("AVMusicUserEvent", AVMusicUserEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"sizeInBytes":436995159420565} });
-registerSDKClass("AVParameterEvent", AVParameterEvent, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"element":518475742459696,"parameterID":1878327372772644,"scope":3649676848661241,"value":2194441304808063} });
-registerSDKClass("AVFAudio.AVReadOnlyAudioPCMBuffer", AVReadOnlyAudioPCMBuffer, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVFAudio.AVReadOnlyAudioPCMBuffer.ChannelData", AVReadOnlyAudioPCMBuffer_ChannelData, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AVSpeechSynthesisMarker", AVSpeechSynthesisMarker, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"bookmarkName":172106121274569,"byteSampleOffset":250099761566872,"mark":1623205756138175,"phoneme":1173093937004136,"textRange":1177274336784432} });
-registerSDKClass("AVSpeechSynthesisProviderAudioUnit", AVSpeechSynthesisProviderAudioUnit, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"speechVoices":3818789478751391} });
-registerSDKClass("AVSpeechSynthesisProviderRequest", AVSpeechSynthesisProviderRequest, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"ssmlRepresentation":3455222274662942,"voice":3680206187363745} });
-registerSDKClass("AVSpeechSynthesisProviderVoice", AVSpeechSynthesisProviderVoice, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"age":2072391967526854,"gender":3717488364699944,"identifier":4155309124234376,"name":2779093418286256,"primaryLanguages":1564410378607311,"supportedLanguages":3644843840705537,"version":1389297557856677,"voiceSize":3480106030090491} });
-registerSDKClass("AVSpeechSynthesisVoice", AVSpeechSynthesisVoice, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"audioFileSettings":3609393463169060,"gender":439939556717435,"identifier":1824392670840364,"language":3604659112110294,"name":4288553740974,"quality":2224181702427344,"voiceTraits":951535031157610} });
-registerSDKClass("AVSpeechSynthesizer", AVSpeechSynthesizer, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"delegate":1575954240804398,"mixToTelephonyUplink":226825090184770,"outputChannels":2054187938077407,"isPaused":3442361122965782,"isSpeaking":3344266157885991,"usesApplicationAudioSession":4453909668795165} });
+registerSDKClass("AVAudioTime", AVAudioTime, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"audioTimeStamp":1656264994673336,"hostTime":1245271250322541,"isHostTimeValid":3369619026508597,"sampleRate":2797618058928602,"sampleTime":780491415621031,"isSampleTimeValid":3041232423366507}, methods: {"extrapolateTime":{"id":2140230264947408}} });
+registerSDKClass("AVAudioUnit", AVAudioUnit, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"audioComponentDescription":2682460829087167,"manufacturerName":2151519391378363,"name":2467450896074019,"version":1755133464694920}, methods: {"loadPreset":{"id":3249239384632012}} });
+registerSDKClass("AVAudioUnitComponent", AVAudioUnitComponent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"allTagNames":330309536078891,"audioComponent":2609027050440430,"audioComponentDescription":3455802067339795,"configurationDictionary":407903831259864,"hasMIDIInput":790878106650633,"hasMIDIOutput":939381903101377,"localizedTypeName":1221689383559140,"manufacturerName":1005295949343628,"name":1098304372390090,"passesAUVal":2688163923917525,"isSandboxSafe":3815562523842991,"typeName":1321256184947887,"version":1095219670319353,"versionString":3153127210467673} });
+registerSDKClass("AVAudioUnitComponentManager", AVAudioUnitComponentManager, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"standardLocalizedTagNames":2455067755926506,"tagNames":3306588850809253}, methods: {"componentsMatching":{"id":2303456525092810},"componentsMatching12733":{"id":1584609954242248}} });
+registerSDKClass("AVFAudio.AVAudioUnitComponentManager.RegistrationsChangedMessage", AVAudioUnitComponentManager_RegistrationsChangedMessage, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVAudioUnitEffect", AVAudioUnitEffect, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"bypass":2956485858744840} });
+registerSDKClass("AVAudioUnitDelay", AVAudioUnitDelay, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"delayTime":2184509178003806,"feedback":4406636489063913,"lowPassCutoff":2758230250197185,"wetDryMix":2006156835920182} });
+registerSDKClass("AVAudioUnitDistortion", AVAudioUnitDistortion, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"preGain":2255727642737572,"wetDryMix":1797998801221722}, methods: {"loadFactoryPreset":{"id":2196832449054309}} });
+registerSDKClass("AVAudioUnitEQ", AVAudioUnitEQ, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"bands":1806529939307033,"globalGain":724376348235390} });
+registerSDKClass("AVAudioUnitEQFilterParameters", AVAudioUnitEQFilterParameters, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"bandwidth":913288044738159,"bypass":1322156242596286,"filterType":154995050147892,"frequency":513425381064691,"gain":2968369236646196} });
+registerSDKClass("AVAudioUnitGenerator", AVAudioUnitGenerator, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"bypass":2008029203248648} });
+registerSDKClass("AVAudioUnitMIDIInstrument", AVAudioUnitMIDIInstrument, { module: "AVFAudio_a956b86ef7a76a8e", properties: {}, methods: {"sendController":{"id":3055391811158413},"sendMIDIEventData1":{"id":3457215625097848},"sendMIDIEventData1Data2":{"id":444165511411936},"send":{"id":3547312593185391},"sendMIDISysExEvent":{"id":3582952135339227},"sendPitchBend":{"id":1438050654857305},"sendPressureOnChannel":{"id":414816583917847},"sendPressureForKeyWithValueOnChannel":{"id":738290998107475},"sendProgramChangeBankMSBBankLSBOnChannel":{"id":2993403911454803},"sendProgramChangeOnChannel":{"id":463216960566208},"startNote":{"id":103816189056571},"stopNote":{"id":25201574382155}} });
+registerSDKClass("AVAudioUnitReverb", AVAudioUnitReverb, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"wetDryMix":928053478481595}, methods: {"loadFactoryPreset":{"id":4383911520911757}} });
+registerSDKClass("AVAudioUnitSampler", AVAudioUnitSampler, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"globalTuning":3734270175609183,"masterGain":1343028607805854,"overallGain":3072678495719327,"stereoPan":950443522396112}, methods: {"loadAudioFiles":{"id":4038739235069086},"loadInstrument":{"id":3775734913457343},"loadSoundBankInstrument":{"id":3812386494528686}} });
+registerSDKClass("AVAudioUnitTimeEffect", AVAudioUnitTimeEffect, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"bypass":3693058494877508} });
+registerSDKClass("AVAudioUnitTimePitch", AVAudioUnitTimePitch, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"overlap":3688030537584319,"pitch":4053885896951101,"rate":4441581272381925} });
+registerSDKClass("AVAudioUnitVarispeed", AVAudioUnitVarispeed, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"rate":511445452348144} });
+registerSDKClass("AVFAudio.AVAudioVoiceProcessingOtherAudioDuckingConfiguration", AVAudioVoiceProcessingOtherAudioDuckingConfiguration, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVMusicEvent", AVMusicEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVAUPresetEvent", AVAUPresetEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"element":3013209047957466,"presetDictionary":4435831812349442,"scope":862815230484011} });
+registerSDKClass("AVExtendedNoteOnEvent", AVExtendedNoteOnEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"duration":2798481526469076,"groupID":2783761256638546,"instrumentID":1420967263943048,"midiNote":3898187421596534,"velocity":2350798004625745} });
+registerSDKClass("AVExtendedTempoEvent", AVExtendedTempoEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"tempo":3678718264486935} });
+registerSDKClass("AVMIDIChannelEvent", AVMIDIChannelEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"channel":35600915486213} });
+registerSDKClass("AVMIDIChannelPressureEvent", AVMIDIChannelPressureEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"pressure":3265856227291431} });
+registerSDKClass("AVMIDIControlChangeEvent", AVMIDIControlChangeEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"messageType":291189902416640,"value":3848064347410385} });
+registerSDKClass("AVMIDIMetaEvent", AVMIDIMetaEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"type":3560834651560032} });
+registerSDKClass("AVMIDINoteEvent", AVMIDINoteEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"channel":254601156219397,"duration":1309510053771598,"key":2765538482673484,"velocity":3025741740809221} });
+registerSDKClass("AVMIDIPitchBendEvent", AVMIDIPitchBendEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"value":1219491131561360} });
+registerSDKClass("AVMIDIPlayer", AVMIDIPlayer, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"currentPosition":1415955009397631,"duration":2265637781094881,"isPlaying":3688544303579566,"rate":3604210519679226}, methods: {"play":{"id":832633183854900,"hints":[{"callback":{"out":[]}}]},"prepareToPlay":{"id":757931867066111},"stop":{"id":1742103494210185}} });
+registerSDKClass("AVMIDIPolyPressureEvent", AVMIDIPolyPressureEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"key":2222438911100107,"pressure":1137482740965251} });
+registerSDKClass("AVMIDIProgramChangeEvent", AVMIDIProgramChangeEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"programNumber":1244881660017060} });
+registerSDKClass("AVMIDISysexEvent", AVMIDISysexEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"sizeInBytes":3379176069395904} });
+registerSDKClass("AVMusicTrack", AVMusicTrack, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"destinationAudioUnit":215848392458952,"destinationMIDIEndpoint":878742928499597,"lengthInBeats":1960437512750701,"lengthInSeconds":2365387448338817,"loopRange":4433716564544478,"isLoopingEnabled":574047938674340,"isMuted":4170814672447,"numberOfLoops":3945799659280552,"offsetTime":291208852656646,"isSoloed":2842578866285415,"timeResolution":895869141453683,"usesAutomatedParameters":4399042179309823}, methods: {"addEvent":{"id":2839774099238345},"clearEvents":{"id":1790046165918924},"copyAndMergeEvents":{"id":2249211506192953},"copyEvents":{"id":1461974344285120},"cutEvents":{"id":1279139093414421},"moveEvents":{"id":3776740015258079}} });
+registerSDKClass("AVMusicUserEvent", AVMusicUserEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"sizeInBytes":436995159420565} });
+registerSDKClass("AVParameterEvent", AVParameterEvent, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"element":518475742459696,"parameterID":1878327372772644,"scope":3649676848661241,"value":2194441304808063} });
+registerSDKClass("AVFAudio.AVReadOnlyAudioPCMBuffer", AVReadOnlyAudioPCMBuffer, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVFAudio.AVReadOnlyAudioPCMBuffer.ChannelData", AVReadOnlyAudioPCMBuffer_ChannelData, { module: "AVFAudio_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AVSpeechSynthesisMarker", AVSpeechSynthesisMarker, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"bookmarkName":172106121274569,"byteSampleOffset":250099761566872,"mark":1623205756138175,"phoneme":1173093937004136,"textRange":1177274336784432} });
+registerSDKClass("AVSpeechSynthesisProviderAudioUnit", AVSpeechSynthesisProviderAudioUnit, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"speechVoices":3818789478751391}, methods: {"cancelSpeechRequest":{"id":4212593262342774},"synthesizeSpeechRequest":{"id":4231975734032562}} });
+registerSDKClass("AVSpeechSynthesisProviderRequest", AVSpeechSynthesisProviderRequest, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"ssmlRepresentation":3455222274662942,"voice":3680206187363745} });
+registerSDKClass("AVSpeechSynthesisProviderVoice", AVSpeechSynthesisProviderVoice, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"age":2072391967526854,"gender":3717488364699944,"identifier":4155309124234376,"name":2779093418286256,"primaryLanguages":1564410378607311,"supportedLanguages":3644843840705537,"version":1389297557856677,"voiceSize":3480106030090491} });
+registerSDKClass("AVSpeechSynthesisVoice", AVSpeechSynthesisVoice, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"audioFileSettings":3609393463169060,"gender":439939556717435,"identifier":1824392670840364,"language":3604659112110294,"name":4288553740974,"quality":2224181702427344,"voiceTraits":951535031157610} });
+registerSDKClass("AVSpeechSynthesizer", AVSpeechSynthesizer, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"delegate":1575954240804398,"mixToTelephonyUplink":226825090184770,"outputChannels":2054187938077407,"isPaused":3442361122965782,"isSpeaking":3344266157885991,"usesApplicationAudioSession":4453909668795165}, methods: {"continueSpeaking":{"id":69657266097742},"pauseSpeaking":{"id":2636381716045787},"speak":{"id":3965964058267585},"stopSpeaking":{"id":1639419929036895},"writeToBufferCallback":{"id":2504333208804437,"hints":[null,{"callback":{"out":[]}}]},"writeToBufferCallbackToMarkerCallback":{"id":1505277521744960,"hints":[null,{"callback":{"out":[]}},{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)AVSpeechSynthesizerDelegate", {"speechSynthesizerDidStart":"speechSynthesizer(_:didStart:)","speechSynthesizerDidFinish":"speechSynthesizer(_:didFinish:)","speechSynthesizerDidPause":"speechSynthesizer(_:didPause:)","speechSynthesizerDidContinue":"speechSynthesizer(_:didContinue:)","speechSynthesizerDidCancel":"speechSynthesizer(_:didCancel:)","speechSynthesizerWillSpeakRangeOfSpeechStringUtterance":"speechSynthesizer(_:willSpeakRangeOfSpeechString:utterance:)","speechSynthesizerWillSpeakUtterance":"speechSynthesizer(_:willSpeak:utterance:)"});
-registerSDKClass("AVSpeechUtterance", AVSpeechUtterance, { module: "AVFAudio_d6c5d10d3352e6ec", properties: {"attributedSpeechString":809337156988338,"pitchMultiplier":1678665222669007,"postUtteranceDelay":984470149435518,"preUtteranceDelay":3428036000275773,"prefersAssistiveTechnologySettings":2338375206475174,"rate":905649998547126,"speechString":1338413031890655,"voice":2467295337240603,"volume":1515035676491279} });
+registerSDKClass("AVSpeechUtterance", AVSpeechUtterance, { module: "AVFAudio_a956b86ef7a76a8e", properties: {"attributedSpeechString":809337156988338,"pitchMultiplier":1678665222669007,"postUtteranceDelay":984470149435518,"preUtteranceDelay":3428036000275773,"prefersAssistiveTechnologySettings":2338375206475174,"rate":905649998547126,"speechString":1338413031890655,"voice":2467295337240603,"volume":1515035676491279} });

@@ -8,31 +8,31 @@ import { SDKHandle, callSDK, callSDKAsync, registerSDKClass, registerSDKProtocol
  */
 export class CLLocationButton extends SDKHandle {
   /** init() */
-  static init(): CLLocationButton { return callSDK<CLLocationButton>("CoreLocationUI_d6c5d10d3352e6ec", 1607076200275124, undefined, []); }
+  static init(): CLLocationButton { return callSDK<CLLocationButton>("CoreLocationUI_a956b86ef7a76a8e", 1607076200275124, undefined, []); }
   /**
    * var cornerRadius: CGFloat { get set }
    * @availability iOS 15.0+
    */
-  get cornerRadius(): number { return callSDK<number>("CoreLocationUI_d6c5d10d3352e6ec", 1600430436804369, this, []); }
-  set cornerRadius(value: number) { callSDK<void>("CoreLocationUI_d6c5d10d3352e6ec", 830996577947087, this, [value]); }
+  get cornerRadius(): number { return callSDK<number>("CoreLocationUI_a956b86ef7a76a8e", 1600430436804369, this, []); }
+  set cornerRadius(value: number) { callSDK<void>("CoreLocationUI_a956b86ef7a76a8e", 830996577947087, this, [value]); }
   /**
    * var fontSize: CGFloat { get set }
    * @availability iOS 15.0+
    */
-  get fontSize(): number { return callSDK<number>("CoreLocationUI_d6c5d10d3352e6ec", 3740791347766088, this, []); }
-  set fontSize(value: number) { callSDK<void>("CoreLocationUI_d6c5d10d3352e6ec", 1507800051634207, this, [value]); }
+  get fontSize(): number { return callSDK<number>("CoreLocationUI_a956b86ef7a76a8e", 3740791347766088, this, []); }
+  set fontSize(value: number) { callSDK<void>("CoreLocationUI_a956b86ef7a76a8e", 1507800051634207, this, [value]); }
   /**
    * var icon: CLLocationButtonIcon { get set }
    * @availability iOS 15.0+
    */
-  get icon(): CLLocationButtonIcon { return callSDK<CLLocationButtonIcon>("CoreLocationUI_d6c5d10d3352e6ec", 127825836415641, this, []); }
-  set icon(value: CLLocationButtonIcon) { callSDK<void>("CoreLocationUI_d6c5d10d3352e6ec", 3071367830692417, this, [value]); }
+  get icon(): CLLocationButtonIcon { return callSDK<CLLocationButtonIcon>("CoreLocationUI_a956b86ef7a76a8e", 127825836415641, this, []); }
+  set icon(value: CLLocationButtonIcon) { callSDK<void>("CoreLocationUI_a956b86ef7a76a8e", 3071367830692417, this, [value]); }
   /**
    * var label: CLLocationButtonLabel { get set }
    * @availability iOS 15.0+
    */
-  get label(): CLLocationButtonLabel { return callSDK<CLLocationButtonLabel>("CoreLocationUI_d6c5d10d3352e6ec", 3633978110483000, this, []); }
-  set label(value: CLLocationButtonLabel) { callSDK<void>("CoreLocationUI_d6c5d10d3352e6ec", 2194719960951071, this, [value]); }
+  get label(): CLLocationButtonLabel { return callSDK<CLLocationButtonLabel>("CoreLocationUI_a956b86ef7a76a8e", 3633978110483000, this, []); }
+  set label(value: CLLocationButtonLabel) { callSDK<void>("CoreLocationUI_a956b86ef7a76a8e", 2194719960951071, this, [value]); }
   declare readonly $type: { "c:objc(cs)CLLocationButton": true; "c:objc(cs)UIControl": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cornerRadius": true; "fontSize": true; "icon": true; "label": true };
 }
@@ -48,7 +48,7 @@ export const CLLocationButtonIcon = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (CLLocationButtonIcon) | null { return callSDK<(CLLocationButtonIcon) | null>("CoreLocationUI_d6c5d10d3352e6ec", 1785429016422978, undefined, [rawValue]); }
+  init(rawValue: number): (CLLocationButtonIcon) | null { return callSDK<(CLLocationButtonIcon) | null>("CoreLocationUI_a956b86ef7a76a8e", 1785429016422978, undefined, [rawValue]); }
 };
 
 /**
@@ -62,7 +62,7 @@ export const CLLocationButtonLabel = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (CLLocationButtonLabel) | null { return callSDK<(CLLocationButtonLabel) | null>("CoreLocationUI_d6c5d10d3352e6ec", 4232927402220203, undefined, [rawValue]); }
+  init(rawValue: number): (CLLocationButtonLabel) | null { return callSDK<(CLLocationButtonLabel) | null>("CoreLocationUI_a956b86ef7a76a8e", 4232927402220203, undefined, [rawValue]); }
 };
 
-registerSDKClass("CLLocationButton", CLLocationButton, { module: "CoreLocationUI_d6c5d10d3352e6ec", properties: {"cornerRadius":1600430436804369,"fontSize":3740791347766088,"icon":127825836415641,"label":3633978110483000} });
+registerSDKClass("CLLocationButton", CLLocationButton, { module: "CoreLocationUI_a956b86ef7a76a8e", properties: {"cornerRadius":1600430436804369,"fontSize":3740791347766088,"icon":127825836415641,"label":3633978110483000} });

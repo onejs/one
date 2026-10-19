@@ -11,19 +11,19 @@ export class FPUIActionExtensionContext extends SDKHandle {
    * func cancelRequest(withError error: any Error)
    * @availability iOS 11.0+
    */
-  cancelRequest(error: NativeError): void { return callSDK<void>("FileProviderUI_d6c5d10d3352e6ec", 1081407494882539, this, [error]); }
+  cancelRequest(error: NativeError): void { return callSDK<void>("FileProviderUI_a956b86ef7a76a8e", 1081407494882539, this, [error]); }
   /**
    * func completeRequest()
    * @availability iOS 11.0+
    */
-  completeRequest(): void { return callSDK<void>("FileProviderUI_d6c5d10d3352e6ec", 180285830624552, this, []); }
+  completeRequest(): void { return callSDK<void>("FileProviderUI_a956b86ef7a76a8e", 180285830624552, this, []); }
   /** init() */
-  static init(): FPUIActionExtensionContext { return callSDK<FPUIActionExtensionContext>("FileProviderUI_d6c5d10d3352e6ec", 2508762987943918, undefined, []); }
+  static init(): FPUIActionExtensionContext { return callSDK<FPUIActionExtensionContext>("FileProviderUI_a956b86ef7a76a8e", 2508762987943918, undefined, []); }
   /**
    * var domainIdentifier: NSFileProviderDomainIdentifier? { get }
    * @availability iOS 11.0+
    */
-  get domainIdentifier(): (_FileProvider_NSFileProviderDomainIdentifier) | null { return callSDK<(_FileProvider_NSFileProviderDomainIdentifier) | null>("FileProviderUI_d6c5d10d3352e6ec", 3336960066696110, this, []); }
+  get domainIdentifier(): (_FileProvider_NSFileProviderDomainIdentifier) | null { return callSDK<(_FileProvider_NSFileProviderDomainIdentifier) | null>("FileProviderUI_a956b86ef7a76a8e", 3336960066696110, this, []); }
   declare readonly $type: { "c:objc(cs)FPUIActionExtensionContext": true; "c:objc(cs)NSExtensionContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "domainIdentifier": true };
 }
@@ -34,22 +34,22 @@ export class FPUIActionExtensionContext extends SDKHandle {
  */
 export class FPUIActionExtensionViewController extends SDKHandle {
   /** init() */
-  static init(): FPUIActionExtensionViewController { return callSDK<FPUIActionExtensionViewController>("FileProviderUI_d6c5d10d3352e6ec", 406994825944, undefined, []); }
+  static init(): FPUIActionExtensionViewController { return callSDK<FPUIActionExtensionViewController>("FileProviderUI_a956b86ef7a76a8e", 406994825944, undefined, []); }
   /**
    * func prepare(forAction actionIdentifier: String, itemIdentifiers: [NSFileProviderItemIdentifier])
    * @availability iOS 11.0+
    */
-  prepareForActionItemIdentifiers(actionIdentifier: string, itemIdentifiers: Array<_FileProvider_NSFileProviderItemIdentifier>): void { return callSDK<void>("FileProviderUI_d6c5d10d3352e6ec", 343885891097927, this, [actionIdentifier, itemIdentifiers]); }
+  prepareForActionItemIdentifiers(actionIdentifier: string, itemIdentifiers: Array<_FileProvider_NSFileProviderItemIdentifier>): void { return callSDK<void>("FileProviderUI_a956b86ef7a76a8e", 343885891097927, this, [actionIdentifier, itemIdentifiers]); }
   /**
    * func prepare(forError error: any Error)
    * @availability iOS 11.0+
    */
-  prepareForError(error: NativeError): void { return callSDK<void>("FileProviderUI_d6c5d10d3352e6ec", 4047283093798606, this, [error]); }
+  prepareForError(error: NativeError): void { return callSDK<void>("FileProviderUI_a956b86ef7a76a8e", 4047283093798606, this, [error]); }
   /**
    * var extensionContext: FPUIActionExtensionContext { get }
    * @availability iOS 11.0+
    */
-  get extensionContext(): FPUIActionExtensionContext { return callSDK<FPUIActionExtensionContext>("FileProviderUI_d6c5d10d3352e6ec", 1637724676464696, this, []); }
+  get extensionContext(): FPUIActionExtensionContext { return callSDK<FPUIActionExtensionContext>("FileProviderUI_a956b86ef7a76a8e", 1637724676464696, this, []); }
   declare readonly $type: { "c:objc(cs)FPUIActionExtensionViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "extensionContext": true };
 }
@@ -59,9 +59,9 @@ export type FPUIActionIdentifier = (string & {});
 
 export const FPUIActionIdentifier = {
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): FPUIActionIdentifier { return callSDK<FPUIActionIdentifier>("FileProviderUI_d6c5d10d3352e6ec", 1870453587440032, undefined, [rawValue]); },
+  initRawValue(rawValue: string): FPUIActionIdentifier { return callSDK<FPUIActionIdentifier>("FileProviderUI_a956b86ef7a76a8e", 1870453587440032, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): FPUIActionIdentifier { return callSDK<FPUIActionIdentifier>("FileProviderUI_d6c5d10d3352e6ec", 518152284810385, undefined, [rawValue]); }
+  init(rawValue: string): FPUIActionIdentifier { return callSDK<FPUIActionIdentifier>("FileProviderUI_a956b86ef7a76a8e", 518152284810385, undefined, [rawValue]); }
 };
 
 /**
@@ -75,14 +75,14 @@ export const FPUIExtensionErrorCode = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (FPUIExtensionErrorCode) | null { return callSDK<(FPUIExtensionErrorCode) | null>("FileProviderUI_d6c5d10d3352e6ec", 4023700736415464, undefined, [rawValue]); }
+  init(rawValue: number): (FPUIExtensionErrorCode) | null { return callSDK<(FPUIExtensionErrorCode) | null>("FileProviderUI_a956b86ef7a76a8e", 4023700736415464, undefined, [rawValue]); }
 };
 
 /**
  * let FPUIErrorDomain: String
  * @availability iOS 11.0+
  */
-export const FPUIErrorDomain: string = callSDK<string>("FileProviderUI_d6c5d10d3352e6ec", 3129815409125317, undefined, []);
+export const FPUIErrorDomain: string = callSDK<string>("FileProviderUI_a956b86ef7a76a8e", 3129815409125317, undefined, []);
 
-registerSDKClass("FPUIActionExtensionContext", FPUIActionExtensionContext, { module: "FileProviderUI_d6c5d10d3352e6ec", properties: {"domainIdentifier":3336960066696110} });
-registerSDKClass("FPUIActionExtensionViewController", FPUIActionExtensionViewController, { module: "FileProviderUI_d6c5d10d3352e6ec", properties: {"extensionContext":1637724676464696} });
+registerSDKClass("FPUIActionExtensionContext", FPUIActionExtensionContext, { module: "FileProviderUI_a956b86ef7a76a8e", properties: {"domainIdentifier":3336960066696110}, methods: {"cancelRequest":{"id":1081407494882539},"completeRequest":{"id":180285830624552}} });
+registerSDKClass("FPUIActionExtensionViewController", FPUIActionExtensionViewController, { module: "FileProviderUI_a956b86ef7a76a8e", properties: {"extensionContext":1637724676464696}, methods: {"prepareForActionItemIdentifiers":{"id":343885891097927},"prepareForError":{"id":4047283093798606}} });

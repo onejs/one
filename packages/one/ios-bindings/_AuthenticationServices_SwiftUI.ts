@@ -24,32 +24,32 @@ export class AuthorizationController extends SDKHandle {
    * @MainActor func performRequest(_ request: ASAuthorizationRequest, options: ASAuthorizationController.RequestOptions) async throws -> ASAuthorizationResult
    * @availability iOS 16.4+
    */
-  performRequestOptions(request: _AuthenticationServices_ASAuthorizationRequest, options: _AuthenticationServices_ASAuthorizationController_RequestOptions): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 1556647462142311, this, [request, options]); }
+  performRequestOptions(request: _AuthenticationServices_ASAuthorizationRequest, options: _AuthenticationServices_ASAuthorizationController_RequestOptions): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 1556647462142311, this, [request, options]); }
   /**
    * @MainActor func performRequest(_ request: ASAuthorizationRequest) async throws -> ASAuthorizationResult
    * @availability iOS 16.4+
    */
-  performRequest(request: _AuthenticationServices_ASAuthorizationRequest): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 2369158621606763, this, [request]); }
+  performRequest(request: _AuthenticationServices_ASAuthorizationRequest): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 2369158621606763, this, [request]); }
   /**
    * @MainActor func performRequests(_ requests: [ASAuthorizationRequest], options: ASAuthorizationController.RequestOptions) async throws -> ASAuthorizationResult
    * @availability iOS 16.4+
    */
-  performRequestsOptions(requests: $SDK0, options: _AuthenticationServices_ASAuthorizationController_RequestOptions): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 1797762747847872, this, [requests, options]); }
+  performRequestsOptions(requests: $SDK0, options: _AuthenticationServices_ASAuthorizationController_RequestOptions): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 1797762747847872, this, [requests, options]); }
   /**
    * @MainActor func performRequests(_ requests: [ASAuthorizationRequest]) async throws -> ASAuthorizationResult
    * @availability iOS 16.4+
    */
-  performRequests(requests: $SDK0): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 3362798023241596, this, [requests]); }
+  performRequests(requests: $SDK0): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 3362798023241596, this, [requests]); }
   /**
    * @MainActor func performAutoFillAssistedRequest(_ request: ASAuthorizationRequest) async throws -> ASAuthorizationResult
    * @availability iOS 16.4+
    */
-  performAutoFillAssistedRequest(request: _AuthenticationServices_ASAuthorizationRequest): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 2541305829647228, this, [request]); }
+  performAutoFillAssistedRequest(request: _AuthenticationServices_ASAuthorizationRequest): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 2541305829647228, this, [request]); }
   /**
    * @MainActor func performAutoFillAssistedRequests(_ requests: [ASAuthorizationRequest]) async throws -> ASAuthorizationResult
    * @availability iOS 16.4+
    */
-  performAutoFillAssistedRequests(requests: $SDK0): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 4178225177393482, this, [requests]); }
+  performAutoFillAssistedRequests(requests: $SDK0): Promise<ASAuthorizationResult> { return callSDKAsync<ASAuthorizationResult>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 4178225177393482, this, [requests]); }
   declare readonly $type: { "s:31_AuthenticationServices_SwiftUI23AuthorizationControllerV": true };
 }
 
@@ -62,27 +62,27 @@ export class CredentialDataManager extends SDKHandle {
    * @MainActor func reportPublicKeyCredentialUpdate(relyingPartyIdentifier: String, userHandle: Data, newName: String) async throws
    * @availability iOS 26.2+
    */
-  reportPublicKeyCredentialUpdate(relyingPartyIdentifier: string, userHandle: ArrayBuffer, newName: string): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 1094457496222907, this, [relyingPartyIdentifier, userHandle, newName]); }
+  reportPublicKeyCredentialUpdate(relyingPartyIdentifier: string, userHandle: ArrayBuffer, newName: string): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 1094457496222907, this, [relyingPartyIdentifier, userHandle, newName]); }
   /**
    * @MainActor func reportUnusedPasswordCredential(domain: String, userName: String) async throws
    * @availability iOS 26.2+
    */
-  reportUnusedPasswordCredential(domain: string, userName: string): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 1681205931134764, this, [domain, userName]); }
+  reportUnusedPasswordCredential(domain: string, userName: string): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 1681205931134764, this, [domain, userName]); }
   /**
    * @MainActor func reportUnknownPublicKeyCredential(relyingPartyIdentifier: String, credentialID: Data) async throws
    * @availability iOS 26.2+
    */
-  reportUnknownPublicKeyCredential(relyingPartyIdentifier: string, credentialID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 1857055875324238, this, [relyingPartyIdentifier, credentialID]); }
+  reportUnknownPublicKeyCredential(relyingPartyIdentifier: string, credentialID: ArrayBuffer): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 1857055875324238, this, [relyingPartyIdentifier, credentialID]); }
   /**
    * @MainActor func reportAllAcceptedPublicKeyCredentials(relyingPartyIdentifier: String, userHandle: Data, acceptedCredentialIDs: [Data]) async throws
    * @availability iOS 26.2+
    */
-  reportAllAcceptedPublicKeyCredentials(relyingPartyIdentifier: string, userHandle: ArrayBuffer, acceptedCredentialIDs: Array<ArrayBuffer>): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 1120167928460277, this, [relyingPartyIdentifier, userHandle, acceptedCredentialIDs]); }
+  reportAllAcceptedPublicKeyCredentials(relyingPartyIdentifier: string, userHandle: ArrayBuffer, acceptedCredentialIDs: Array<ArrayBuffer>): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 1120167928460277, this, [relyingPartyIdentifier, userHandle, acceptedCredentialIDs]); }
   /**
    * @MainActor func save(password: ASPasswordCredential, for scope: ASAutoFillURLScope, title: String? = nil) async throws
    * @availability iOS 26.2+
    */
-  save(password: _AuthenticationServices_ASPasswordCredential, scope: _AuthenticationServices_ASAutoFillURLScope, title?: (string) | null): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 992829977066775, this, [password, scope, title]); }
+  save(password: _AuthenticationServices_ASPasswordCredential, scope: _AuthenticationServices_ASAutoFillURLScope, title?: (string) | null): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 992829977066775, this, [password, scope, title]); }
   declare readonly $type: { "s:31_AuthenticationServices_SwiftUI21CredentialDataManagerV": true };
 }
 
@@ -96,12 +96,12 @@ export class DeliveredVerificationCodesManager extends SDKHandle {
   
    * @availability iOS 27.0+
    */
-  oneTimeCodes(preferredDuration: number): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 404240208664014, this, [preferredDuration]); }
+  oneTimeCodes(preferredDuration: number): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 404240208664014, this, [preferredDuration]); }
   /**
    * @MainActor func consumeOneTimeCode(_ oneTimeCode: ASVerificationCode) async throws
    * @availability iOS 27.0+
    */
-  consumeOneTimeCode(oneTimeCode: _AuthenticationServices_ASVerificationCode): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 3921290653359309, this, [oneTimeCode]); }
+  consumeOneTimeCode(oneTimeCode: _AuthenticationServices_ASVerificationCode): Promise<void> { return callSDKAsync<void>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 3921290653359309, this, [oneTimeCode]); }
   declare readonly $type: { "s:31_AuthenticationServices_SwiftUI33DeliveredVerificationCodesManagerV": true };
 }
 
@@ -120,7 +120,7 @@ export class SignInWithAppleButton extends SDKHandle {
    * nonisolated init(_ label: SignInWithAppleButton.Label = .signIn, onRequest: @escaping (ASAuthorizationAppleIDRequest) -> Void, onCompletion: @escaping (Result<ASAuthorization, any Error>) -> Void)
    * @availability iOS 14.0+
    */
-  static init(label: SignInWithAppleButton_Label, onRequest: ((arg0: _AuthenticationServices_ASAuthorizationAppleIDRequest) => void), onCompletion: ((arg0: SDKHandle) => void)): Promise<SignInWithAppleButton> { return callSDKAsync<SignInWithAppleButton>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 86507718305529, undefined, [label, onRequest, onCompletion], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static init(label: SignInWithAppleButton_Label, onRequest: ((arg0: _AuthenticationServices_ASAuthorizationAppleIDRequest) => void), onCompletion: ((arg0: SDKHandle) => void)): Promise<SignInWithAppleButton> { return callSDKAsync<SignInWithAppleButton>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 86507718305529, undefined, [label, onRequest, onCompletion], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:31_AuthenticationServices_SwiftUI21SignInWithAppleButtonV": true };
 }
 
@@ -139,17 +139,17 @@ export class SignInWithAppleButton_Label extends SDKHandle {
    * static let signIn: SignInWithAppleButton.Label
    * @availability iOS 14.0+
    */
-  static get signIn(): Promise<SignInWithAppleButton_Label> { return callSDKAsync<SignInWithAppleButton_Label>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 837273170361164, undefined, []); }
+  static get signIn(): Promise<SignInWithAppleButton_Label> { return callSDKAsync<SignInWithAppleButton_Label>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 837273170361164, undefined, []); }
   /**
    * static let signUp: SignInWithAppleButton.Label
    * @availability iOS 14.0+
    */
-  static get signUp(): Promise<SignInWithAppleButton_Label> { return callSDKAsync<SignInWithAppleButton_Label>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 3100235460906444, undefined, []); }
+  static get signUp(): Promise<SignInWithAppleButton_Label> { return callSDKAsync<SignInWithAppleButton_Label>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 3100235460906444, undefined, []); }
   /**
    * static let `continue`: SignInWithAppleButton.Label
    * @availability iOS 14.0+
    */
-  static get continue(): Promise<SignInWithAppleButton_Label> { return callSDKAsync<SignInWithAppleButton_Label>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 2232261396449210, undefined, []); }
+  static get continue(): Promise<SignInWithAppleButton_Label> { return callSDKAsync<SignInWithAppleButton_Label>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 2232261396449210, undefined, []); }
   declare readonly $type: { "s:31_AuthenticationServices_SwiftUI21SignInWithAppleButtonV5LabelV": true };
 }
 
@@ -162,17 +162,17 @@ export class SignInWithAppleButton_Style extends SDKHandle {
    * static let whiteOutline: SignInWithAppleButton.Style
    * @availability iOS 14.0+
    */
-  static get whiteOutline(): Promise<SignInWithAppleButton_Style> { return callSDKAsync<SignInWithAppleButton_Style>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 3846698139676870, undefined, []); }
+  static get whiteOutline(): Promise<SignInWithAppleButton_Style> { return callSDKAsync<SignInWithAppleButton_Style>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 3846698139676870, undefined, []); }
   /**
    * static let black: SignInWithAppleButton.Style
    * @availability iOS 14.0+
    */
-  static get black(): Promise<SignInWithAppleButton_Style> { return callSDKAsync<SignInWithAppleButton_Style>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 2660833991397284, undefined, []); }
+  static get black(): Promise<SignInWithAppleButton_Style> { return callSDKAsync<SignInWithAppleButton_Style>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 2660833991397284, undefined, []); }
   /**
    * static let white: SignInWithAppleButton.Style
    * @availability iOS 14.0+
    */
-  static get white(): Promise<SignInWithAppleButton_Style> { return callSDKAsync<SignInWithAppleButton_Style>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 4354933790275191, undefined, []); }
+  static get white(): Promise<SignInWithAppleButton_Style> { return callSDKAsync<SignInWithAppleButton_Style>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 4354933790275191, undefined, []); }
   declare readonly $type: { "s:31_AuthenticationServices_SwiftUI21SignInWithAppleButtonV5StyleV": true };
 }
 
@@ -186,12 +186,12 @@ export class WebAuthenticationSession extends SDKHandle {
    * @availability iOS 16.4+
    * @deprecated iOS 100000.0
    */
-  authenticateUsingCallbackURLSchemePreferredBrowserSession(url: string, callbackURLScheme: string, preferredBrowserSession?: $SDK3): Promise<string> { return callSDKAsync<string>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 2480491397523308, this, [url, callbackURLScheme, preferredBrowserSession]); }
+  authenticateUsingCallbackURLSchemePreferredBrowserSession(url: string, callbackURLScheme: string, preferredBrowserSession?: $SDK3): Promise<string> { return callSDKAsync<string>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 2480491397523308, this, [url, callbackURLScheme, preferredBrowserSession]); }
   /**
    * @MainActor func authenticate(using url: URL, callback: ASWebAuthenticationSession.Callback, preferredBrowserSession: WebAuthenticationSession.BrowserSession? = nil, additionalHeaderFields: [String : String]) async throws -> URL
    * @availability iOS 17.4+
    */
-  authenticateUsingCallbackPreferredBrowserSessionAdditionalHeaderFields(url: string, callback: _AuthenticationServices_ASWebAuthenticationSession_Callback, preferredBrowserSession: $SDK3, additionalHeaderFields: Record<string, string>): Promise<string> { return callSDKAsync<string>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 512296416654122, this, [url, callback, preferredBrowserSession, additionalHeaderFields]); }
+  authenticateUsingCallbackPreferredBrowserSessionAdditionalHeaderFields(url: string, callback: _AuthenticationServices_ASWebAuthenticationSession_Callback, preferredBrowserSession: $SDK3, additionalHeaderFields: Record<string, string>): Promise<string> { return callSDKAsync<string>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 512296416654122, this, [url, callback, preferredBrowserSession, additionalHeaderFields]); }
   declare readonly $type: { "s:31_AuthenticationServices_SwiftUI03WebA7SessionV": true };
 }
 
@@ -204,21 +204,21 @@ export class WebAuthenticationSession_BrowserSession extends SDKHandle {
    * static var shared: WebAuthenticationSession.BrowserSession { get }
    * @availability iOS 16.4+
    */
-  static get shared(): Promise<WebAuthenticationSession_BrowserSession> { return callSDKAsync<WebAuthenticationSession_BrowserSession>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 3274953902054654, undefined, []); }
+  static get shared(): Promise<WebAuthenticationSession_BrowserSession> { return callSDKAsync<WebAuthenticationSession_BrowserSession>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 3274953902054654, undefined, []); }
   /**
    * static var ephemeral: WebAuthenticationSession.BrowserSession { get }
    * @availability iOS 16.4+
    */
-  static get ephemeral(): Promise<WebAuthenticationSession_BrowserSession> { return callSDKAsync<WebAuthenticationSession_BrowserSession>("_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", 1399586330288470, undefined, []); }
+  static get ephemeral(): Promise<WebAuthenticationSession_BrowserSession> { return callSDKAsync<WebAuthenticationSession_BrowserSession>("_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", 1399586330288470, undefined, []); }
   declare readonly $type: { "s:31_AuthenticationServices_SwiftUI03WebA7SessionV07BrowserF0V": true };
 }
 
-registerSDKClass("_AuthenticationServices_SwiftUI.ASAuthorizationResult", ASAuthorizationResult, { module: "_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_AuthenticationServices_SwiftUI.AuthorizationController", AuthorizationController, { module: "_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_AuthenticationServices_SwiftUI.CredentialDataManager", CredentialDataManager, { module: "_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_AuthenticationServices_SwiftUI.DeliveredVerificationCodesManager", DeliveredVerificationCodesManager, { module: "_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_AuthenticationServices_SwiftUI.SignInWithAppleButton", SignInWithAppleButton, { module: "_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_AuthenticationServices_SwiftUI.SignInWithAppleButton.Label", SignInWithAppleButton_Label, { module: "_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_AuthenticationServices_SwiftUI.SignInWithAppleButton.Style", SignInWithAppleButton_Style, { module: "_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_AuthenticationServices_SwiftUI.WebAuthenticationSession", WebAuthenticationSession, { module: "_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("_AuthenticationServices_SwiftUI.WebAuthenticationSession.BrowserSession", WebAuthenticationSession_BrowserSession, { module: "_AuthenticationServices_SwiftUI_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("_AuthenticationServices_SwiftUI.ASAuthorizationResult", ASAuthorizationResult, { module: "_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("_AuthenticationServices_SwiftUI.AuthorizationController", AuthorizationController, { module: "_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", properties: {}, methods: {"performRequestOptions":{"id":1556647462142311},"performRequest":{"id":2369158621606763},"performRequestsOptions":{"id":1797762747847872},"performRequests":{"id":3362798023241596},"performAutoFillAssistedRequest":{"id":2541305829647228},"performAutoFillAssistedRequests":{"id":4178225177393482}} });
+registerSDKClass("_AuthenticationServices_SwiftUI.CredentialDataManager", CredentialDataManager, { module: "_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", properties: {}, methods: {"reportPublicKeyCredentialUpdate":{"id":1094457496222907},"reportUnusedPasswordCredential":{"id":1681205931134764},"reportUnknownPublicKeyCredential":{"id":1857055875324238},"reportAllAcceptedPublicKeyCredentials":{"id":1120167928460277},"save":{"id":992829977066775}} });
+registerSDKClass("_AuthenticationServices_SwiftUI.DeliveredVerificationCodesManager", DeliveredVerificationCodesManager, { module: "_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", properties: {}, methods: {"oneTimeCodes":{"id":404240208664014},"consumeOneTimeCode":{"id":3921290653359309}} });
+registerSDKClass("_AuthenticationServices_SwiftUI.SignInWithAppleButton", SignInWithAppleButton, { module: "_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("_AuthenticationServices_SwiftUI.SignInWithAppleButton.Label", SignInWithAppleButton_Label, { module: "_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("_AuthenticationServices_SwiftUI.SignInWithAppleButton.Style", SignInWithAppleButton_Style, { module: "_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("_AuthenticationServices_SwiftUI.WebAuthenticationSession", WebAuthenticationSession, { module: "_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", properties: {}, methods: {"authenticateUsingCallbackURLSchemePreferredBrowserSession":{"id":2480491397523308},"authenticateUsingCallbackPreferredBrowserSessionAdditionalHeaderFields":{"id":512296416654122}} });
+registerSDKClass("_AuthenticationServices_SwiftUI.WebAuthenticationSession.BrowserSession", WebAuthenticationSession_BrowserSession, { module: "_AuthenticationServices_SwiftUI_a956b86ef7a76a8e", properties: {} });

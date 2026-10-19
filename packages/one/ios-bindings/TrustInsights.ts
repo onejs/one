@@ -13,7 +13,7 @@ export const InsightError = {
    * var errorDescription: String? { get }
    * @availability iOS 27.0+
    */
-  getErrorDescription($self: InsightError): (string) | null { return callSDK<(string) | null>("TrustInsights_d6c5d10d3352e6ec", 3597768642295513, $self, []); }
+  getErrorDescription($self: InsightError): (string) | null { return callSDK<(string) | null>("TrustInsights_a956b86ef7a76a8e", 3597768642295513, $self, []); }
 };
 
 /**
@@ -25,42 +25,42 @@ export class InsightEvaluation<InsightResult = unknown> extends SDKHandle {
    * final let signedPayload: Data
    * @availability iOS 27.0+
    */
-  get signedPayload(): ArrayBuffer { return callSDK<ArrayBuffer>("TrustInsights_d6c5d10d3352e6ec", 3108447347057541, this, []); }
+  get signedPayload(): ArrayBuffer { return callSDK<ArrayBuffer>("TrustInsights_a956b86ef7a76a8e", 3108447347057541, this, []); }
   /**
    * final let additionalInfo: [String : String]
    * @availability iOS 27.0+
    */
-  get additionalInfo(): Record<string, string> { return callSDK<Record<string, string>>("TrustInsights_d6c5d10d3352e6ec", 665030653157125, this, []); }
+  get additionalInfo(): Record<string, string> { return callSDK<Record<string, string>>("TrustInsights_a956b86ef7a76a8e", 665030653157125, this, []); }
   /**
    * final let serverTimestamp: Date
    * @availability iOS 27.0+
    */
-  get serverTimestamp(): globalThis.Date { return callSDK<globalThis.Date>("TrustInsights_d6c5d10d3352e6ec", 2025463027367088, this, []); }
+  get serverTimestamp(): globalThis.Date { return callSDK<globalThis.Date>("TrustInsights_a956b86ef7a76a8e", 2025463027367088, this, []); }
   /**
    * final func reportConsumption(_ status: InsightEvaluationConsumptionStatus, insightsUsed: [any TrustInsight] = [])
    * @availability iOS 27.0+
    */
-  reportConsumption(status: InsightEvaluationConsumptionStatus): void { return callSDK<void>("TrustInsights_d6c5d10d3352e6ec", 3137499008168745, this, [status]); }
+  reportConsumption(status: InsightEvaluationConsumptionStatus): void { return callSDK<void>("TrustInsights_a956b86ef7a76a8e", 3137499008168745, this, [status]); }
   /**
    * final func reportConsumption(_ status: InsightEvaluationConsumptionStatus, insightIDsUsed: [String])
    * @availability iOS 27.0+
    */
-  reportConsumptionInsightIDsUsed(status: InsightEvaluationConsumptionStatus, insightIDsUsed: Array<string>): void { return callSDK<void>("TrustInsights_d6c5d10d3352e6ec", 3390218977054660, this, [status, insightIDsUsed]); }
+  reportConsumptionInsightIDsUsed(status: InsightEvaluationConsumptionStatus, insightIDsUsed: Array<string>): void { return callSDK<void>("TrustInsights_a956b86ef7a76a8e", 3390218977054660, this, [status, insightIDsUsed]); }
   /**
    * final let generationTimestamp: Date
    * @availability iOS 27.0+
    */
-  get generationTimestamp(): globalThis.Date { return callSDK<globalThis.Date>("TrustInsights_d6c5d10d3352e6ec", 2648488298938693, this, []); }
+  get generationTimestamp(): globalThis.Date { return callSDK<globalThis.Date>("TrustInsights_a956b86ef7a76a8e", 2648488298938693, this, []); }
   /**
    * final var eventID: String { get }
    * @availability iOS 27.0+
    */
-  get eventID(): string { return callSDK<string>("TrustInsights_d6c5d10d3352e6ec", 1153483490172523, this, []); }
+  get eventID(): string { return callSDK<string>("TrustInsights_a956b86ef7a76a8e", 1153483490172523, this, []); }
   /**
    * final var requestID: String? { get }
    * @availability iOS 27.0+
    */
-  get requestID(): (string) | null { return callSDK<(string) | null>("TrustInsights_d6c5d10d3352e6ec", 694377549063922, this, []); }
+  get requestID(): (string) | null { return callSDK<(string) | null>("TrustInsights_a956b86ef7a76a8e", 694377549063922, this, []); }
   declare readonly $type: { "s:13TrustInsights17InsightEvaluationC": true };
 }
 
@@ -75,12 +75,12 @@ export const InsightEvaluationConsumptionStatus = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (InsightEvaluationConsumptionStatus) | null { return callSDK<(InsightEvaluationConsumptionStatus) | null>("TrustInsights_d6c5d10d3352e6ec", 4438044795855526, undefined, [rawValue]); },
+  init(rawValue: string): (InsightEvaluationConsumptionStatus) | null { return callSDK<(InsightEvaluationConsumptionStatus) | null>("TrustInsights_a956b86ef7a76a8e", 4438044795855526, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: InsightEvaluationConsumptionStatus): string { return callSDK<string>("TrustInsights_d6c5d10d3352e6ec", 2755921140543891, $self, []); }
+  getRawValue($self: InsightEvaluationConsumptionStatus): string { return callSDK<string>("TrustInsights_a956b86ef7a76a8e", 2755921140543891, $self, []); }
 };
 
 /**
@@ -98,7 +98,7 @@ export class InsightEvaluator extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): InsightEvaluator { return callSDK<InsightEvaluator>("TrustInsights_d6c5d10d3352e6ec", 1137431032177933, undefined, []); }
+  static init(): InsightEvaluator { return callSDK<InsightEvaluator>("TrustInsights_a956b86ef7a76a8e", 1137431032177933, undefined, []); }
   declare readonly $type: { "s:13TrustInsights16InsightEvaluatorC": true };
 }
 
@@ -117,12 +117,12 @@ export class InsightEvaluator_EvaluationError extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  get debugDescription(): string { return callSDK<string>("TrustInsights_d6c5d10d3352e6ec", 677509505993464, this, []); }
+  get debugDescription(): string { return callSDK<string>("TrustInsights_a956b86ef7a76a8e", 677509505993464, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 27.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("TrustInsights_d6c5d10d3352e6ec", 1985125571235696, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("TrustInsights_a956b86ef7a76a8e", 1985125571235696, this, []); }
   declare readonly $type: { "s:13TrustInsights16InsightEvaluatorC15EvaluationErrorO": true };
 }
 
@@ -135,14 +135,14 @@ export class InsightEvaluator_InsightContext<InsightRequest = unknown> extends S
    * var operationCategory: InsightEvaluator.OperationCategory
    * @availability iOS 27.0+
    */
-  get operationCategory(): InsightEvaluator_OperationCategory { return callSDK<InsightEvaluator_OperationCategory>("TrustInsights_d6c5d10d3352e6ec", 3529687887190974, this, []); }
-  set operationCategory(value: InsightEvaluator_OperationCategory) { callSDK<void>("TrustInsights_d6c5d10d3352e6ec", 3620091347427192, this, [value]); }
+  get operationCategory(): InsightEvaluator_OperationCategory { return callSDK<InsightEvaluator_OperationCategory>("TrustInsights_a956b86ef7a76a8e", 3529687887190974, this, []); }
+  set operationCategory(value: InsightEvaluator_OperationCategory) { callSDK<void>("TrustInsights_a956b86ef7a76a8e", 3620091347427192, this, [value]); }
   /**
    * var requestID: String?
    * @availability iOS 27.0+
    */
-  get requestID(): (string) | null { return callSDK<(string) | null>("TrustInsights_d6c5d10d3352e6ec", 1886441220220990, this, []); }
-  set requestID(value: (string) | null) { callSDK<void>("TrustInsights_d6c5d10d3352e6ec", 3919713311373435, this, [value]); }
+  get requestID(): (string) | null { return callSDK<(string) | null>("TrustInsights_a956b86ef7a76a8e", 1886441220220990, this, []); }
+  set requestID(value: (string) | null) { callSDK<void>("TrustInsights_a956b86ef7a76a8e", 3919713311373435, this, [value]); }
   declare readonly $type: { "s:13TrustInsights16InsightEvaluatorC0C7ContextV": true };
 }
 
@@ -155,23 +155,23 @@ export class InsightEvaluator_InsightRequest<InsightType = unknown> extends SDKH
    * let modelVersion: InsightEvaluator.ModelVersion
    * @availability iOS 27.0+
    */
-  get modelVersion(): InsightEvaluator_ModelVersion { return callSDK<InsightEvaluator_ModelVersion>("TrustInsights_d6c5d10d3352e6ec", 4127455834896345, this, []); }
+  get modelVersion(): InsightEvaluator_ModelVersion { return callSDK<InsightEvaluator_ModelVersion>("TrustInsights_a956b86ef7a76a8e", 4127455834896345, this, []); }
   /**
    * var schemaVersion: InsightType.SchemaVersion
    * @availability iOS 27.0+
    */
-  get schemaVersion(): IsLikelyBeingCoachedInsight_SchemaVersion { return callSDK<IsLikelyBeingCoachedInsight_SchemaVersion>("TrustInsights_d6c5d10d3352e6ec", 3494925674809609, this, []); }
-  set schemaVersion(value: IsLikelyBeingCoachedInsight_SchemaVersion) { callSDK<void>("TrustInsights_d6c5d10d3352e6ec", 3044217583380542, this, [value]); }
+  get schemaVersion(): IsLikelyBeingCoachedInsight_SchemaVersion { return callSDK<IsLikelyBeingCoachedInsight_SchemaVersion>("TrustInsights_a956b86ef7a76a8e", 3494925674809609, this, []); }
+  set schemaVersion(value: IsLikelyBeingCoachedInsight_SchemaVersion) { callSDK<void>("TrustInsights_a956b86ef7a76a8e", 3044217583380542, this, [value]); }
   /**
    * var schemaVersionNumber: Int { get }
    * @availability iOS 27.0+
    */
-  get schemaVersionNumber(): number { return callSDK<number>("TrustInsights_d6c5d10d3352e6ec", 3010868076623069, this, []); }
+  get schemaVersionNumber(): number { return callSDK<number>("TrustInsights_a956b86ef7a76a8e", 3010868076623069, this, []); }
   /**
    * var insightTypeIdentifier: String { get }
    * @availability iOS 27.0+
    */
-  get insightTypeIdentifier(): string { return callSDK<string>("TrustInsights_d6c5d10d3352e6ec", 995121275528969, this, []); }
+  get insightTypeIdentifier(): string { return callSDK<string>("TrustInsights_a956b86ef7a76a8e", 995121275528969, this, []); }
   declare readonly $type: { "s:13TrustInsights16InsightEvaluatorC0C7RequestV": true };
 }
 
@@ -206,30 +206,30 @@ export class IsLikelyBeingCoachedInsight extends SDKHandle {
    * var modelVersion: String?
    * @availability iOS 27.0+
    */
-  get modelVersion(): (string) | null { return callSDK<(string) | null>("TrustInsights_d6c5d10d3352e6ec", 3592678147580525, this, []); }
-  set modelVersion(value: (string) | null) { callSDK<void>("TrustInsights_d6c5d10d3352e6ec", 2597144045833024, this, [value]); }
+  get modelVersion(): (string) | null { return callSDK<(string) | null>("TrustInsights_a956b86ef7a76a8e", 3592678147580525, this, []); }
+  set modelVersion(value: (string) | null) { callSDK<void>("TrustInsights_a956b86ef7a76a8e", 2597144045833024, this, [value]); }
   /**
    * static let typeIdentifier: String
    * @availability iOS 27.0+
    */
-  static get typeIdentifier(): string { return callSDK<string>("TrustInsights_d6c5d10d3352e6ec", 2556901495713762, undefined, []); }
+  static get typeIdentifier(): string { return callSDK<string>("TrustInsights_a956b86ef7a76a8e", 2556901495713762, undefined, []); }
   /**
    * var newestModelVersion: String?
    * @availability iOS 27.0+
    */
-  get newestModelVersion(): (string) | null { return callSDK<(string) | null>("TrustInsights_d6c5d10d3352e6ec", 1613448937616334, this, []); }
-  set newestModelVersion(value: (string) | null) { callSDK<void>("TrustInsights_d6c5d10d3352e6ec", 817714775667660, this, [value]); }
+  get newestModelVersion(): (string) | null { return callSDK<(string) | null>("TrustInsights_a956b86ef7a76a8e", 1613448937616334, this, []); }
+  set newestModelVersion(value: (string) | null) { callSDK<void>("TrustInsights_a956b86ef7a76a8e", 817714775667660, this, [value]); }
   /**
    * let outcome: Result<IsLikelyBeingCoachedInsight.Value, InsightError>
    * @availability iOS 27.0+
    */
-  get outcome(): SDKHandle { return callSDK<SDKHandle>("TrustInsights_d6c5d10d3352e6ec", 267992353134634, this, []); }
+  get outcome(): SDKHandle { return callSDK<SDKHandle>("TrustInsights_a956b86ef7a76a8e", 267992353134634, this, []); }
   /**
    * var insightID: String
    * @availability iOS 27.0+
    */
-  get insightID(): string { return callSDK<string>("TrustInsights_d6c5d10d3352e6ec", 1115205075055447, this, []); }
-  set insightID(value: string) { callSDK<void>("TrustInsights_d6c5d10d3352e6ec", 1551410861659968, this, [value]); }
+  get insightID(): string { return callSDK<string>("TrustInsights_a956b86ef7a76a8e", 1115205075055447, this, []); }
+  set insightID(value: string) { callSDK<void>("TrustInsights_a956b86ef7a76a8e", 1551410861659968, this, [value]); }
   declare readonly $type: { "s:13TrustInsights27IsLikelyBeingCoachedInsightV": true };
 }
 
@@ -250,12 +250,12 @@ export const IsLikelyBeingCoachedInsight_Value = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (IsLikelyBeingCoachedInsight_Value) | null { return callSDK<(IsLikelyBeingCoachedInsight_Value) | null>("TrustInsights_d6c5d10d3352e6ec", 465777876268225, undefined, [rawValue]); },
+  init(rawValue: string): (IsLikelyBeingCoachedInsight_Value) | null { return callSDK<(IsLikelyBeingCoachedInsight_Value) | null>("TrustInsights_a956b86ef7a76a8e", 465777876268225, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: IsLikelyBeingCoachedInsight_Value): string { return callSDK<string>("TrustInsights_d6c5d10d3352e6ec", 1143628947804872, $self, []); }
+  getRawValue($self: IsLikelyBeingCoachedInsight_Value): string { return callSDK<string>("TrustInsights_a956b86ef7a76a8e", 1143628947804872, $self, []); }
 };
 
 /**
@@ -272,12 +272,12 @@ export interface TrustInsight {
 
 }
 
-registerSDKClass("TrustInsights.InsightEvaluation", InsightEvaluation, { module: "TrustInsights_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TrustInsights.InsightEvaluator", InsightEvaluator, { module: "TrustInsights_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TrustInsights.InsightEvaluator.EvaluationError", InsightEvaluator_EvaluationError, { module: "TrustInsights_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TrustInsights.InsightEvaluator.InsightContext", InsightEvaluator_InsightContext, { module: "TrustInsights_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TrustInsights.InsightEvaluator.InsightRequest", InsightEvaluator_InsightRequest, { module: "TrustInsights_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("TrustInsights.InsightEvaluation", InsightEvaluation, { module: "TrustInsights_a956b86ef7a76a8e", properties: {}, methods: {"reportConsumption":{"id":3137499008168745},"reportConsumptionInsightIDsUsed":{"id":3390218977054660}} });
+registerSDKClass("TrustInsights.InsightEvaluator", InsightEvaluator, { module: "TrustInsights_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TrustInsights.InsightEvaluator.EvaluationError", InsightEvaluator_EvaluationError, { module: "TrustInsights_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TrustInsights.InsightEvaluator.InsightContext", InsightEvaluator_InsightContext, { module: "TrustInsights_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TrustInsights.InsightEvaluator.InsightRequest", InsightEvaluator_InsightRequest, { module: "TrustInsights_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:13TrustInsights16InsightEvaluatorC0C15RequestProtocolP", {});
-registerSDKClass("TrustInsights.InsightEvaluator.ModelVersion", InsightEvaluator_ModelVersion, { module: "TrustInsights_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TrustInsights.IsLikelyBeingCoachedInsight", IsLikelyBeingCoachedInsight, { module: "TrustInsights_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("TrustInsights.InsightEvaluator.ModelVersion", InsightEvaluator_ModelVersion, { module: "TrustInsights_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TrustInsights.IsLikelyBeingCoachedInsight", IsLikelyBeingCoachedInsight, { module: "TrustInsights_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:13TrustInsights0A7InsightP", {});

@@ -37,7 +37,7 @@ export class CellularServiceID extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3511459498291013, this, []); }
+  get description(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3511459498291013, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit17CellularServiceIDV": true };
 }
 
@@ -50,12 +50,12 @@ export class CellularServiceState extends SDKHandle {
    * let id: CellularServiceID
    * @availability iOS 26.0+
    */
-  get id(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3990308881056266, this, []); }
+  get id(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3990308881056266, this, []); }
   /**
    * let label: String
    * @availability iOS 26.0+
    */
-  get label(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3751495437139268, this, []); }
+  get label(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3751495437139268, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit20CellularServiceStateV": true };
 }
 
@@ -74,42 +74,42 @@ export class MMSContent extends SDKHandle {
    * var recipients: [MMSHandle]
    * @availability iOS 26.0+
    */
-  get recipients(): Array<MMSHandle> { return callSDK<Array<MMSHandle>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 726289850591638, this, []); }
-  set recipients(value: Array<MMSHandle>) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3243324187027014, this, [value]); }
+  get recipients(): Array<MMSHandle> { return callSDK<Array<MMSHandle>>("TelephonyMessagingKit_a956b86ef7a76a8e", 726289850591638, this, []); }
+  set recipients(value: Array<MMSHandle>) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3243324187027014, this, [value]); }
   /**
    * var from: MMSHandle?
    * @availability iOS 26.0+
    */
-  get from(): (MMSHandle) | null { return callSDK<(MMSHandle) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4401917762971667, this, []); }
-  set from(value: (MMSHandle) | null) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 571791017194878, this, [value]); }
+  get from(): (MMSHandle) | null { return callSDK<(MMSHandle) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 4401917762971667, this, []); }
+  set from(value: (MMSHandle) | null) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 571791017194878, this, [value]); }
   /**
    * init(parts: [MMSPartContent], recipients: [MMSHandle], subject: String? = nil)
    * @availability iOS 26.0+
    */
-  static initPartsRecipientsSubject(parts: Array<MMSPartContent>, recipients: Array<MMSHandle>, subject?: (string) | null): MMSContent { return callSDK<MMSContent>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2144706201197000, undefined, [parts, recipients, subject]); }
+  static initPartsRecipientsSubject(parts: Array<MMSPartContent>, recipients: Array<MMSHandle>, subject?: (string) | null): MMSContent { return callSDK<MMSContent>("TelephonyMessagingKit_a956b86ef7a76a8e", 2144706201197000, undefined, [parts, recipients, subject]); }
   /**
    * var parts: [MMSPartContent]
    * @availability iOS 26.0+
    */
-  get parts(): Array<MMSPartContent> { return callSDK<Array<MMSPartContent>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3705930141102003, this, []); }
-  set parts(value: Array<MMSPartContent>) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 387049105967613, this, [value]); }
+  get parts(): Array<MMSPartContent> { return callSDK<Array<MMSPartContent>>("TelephonyMessagingKit_a956b86ef7a76a8e", 3705930141102003, this, []); }
+  set parts(value: Array<MMSPartContent>) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 387049105967613, this, [value]); }
   /**
    * var headers: [String : String]
    * @availability iOS 26.0+
    */
-  get headers(): Record<string, string> { return callSDK<Record<string, string>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 611764595862531, this, []); }
-  set headers(value: Record<string, string>) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 260155382083721, this, [value]); }
+  get headers(): Record<string, string> { return callSDK<Record<string, string>>("TelephonyMessagingKit_a956b86ef7a76a8e", 611764595862531, this, []); }
+  set headers(value: Record<string, string>) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 260155382083721, this, [value]); }
   /**
    * var subject: String?
    * @availability iOS 26.0+
    */
-  get subject(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2425705159524076, this, []); }
-  set subject(value: (string) | null) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1749278943241353, this, [value]); }
+  get subject(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2425705159524076, this, []); }
+  set subject(value: (string) | null) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1749278943241353, this, [value]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): MMSContent { return callSDK<MMSContent>("TelephonyMessagingKit_d6c5d10d3352e6ec", 276652063030464, undefined, []); }
+  static init(): MMSContent { return callSDK<MMSContent>("TelephonyMessagingKit_a956b86ef7a76a8e", 276652063030464, undefined, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10MMSContentV": true };
 }
 
@@ -122,13 +122,13 @@ export class MMSHandle extends SDKHandle {
    * init(phoneNumber: String)
    * @availability iOS 26.0+
    */
-  static init(phoneNumber: string): MMSHandle { return callSDK<MMSHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4167162992242953, undefined, [phoneNumber]); }
+  static init(phoneNumber: string): MMSHandle { return callSDK<MMSHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 4167162992242953, undefined, [phoneNumber]); }
   /**
    * var phoneNumber: String
    * @availability iOS 26.0+
    */
-  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2603288802639453, this, []); }
-  set phoneNumber(value: string) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4199062214673966, this, [value]); }
+  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2603288802639453, this, []); }
+  set phoneNumber(value: string) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4199062214673966, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit9MMSHandleV": true };
 }
 
@@ -141,35 +141,35 @@ export class MMSMessage extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2730527344306361, this, []); }
+  get description(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2730527344306361, this, []); }
   /**
    * init(cellularServiceID: CellularServiceID, messageID: MMSMessageID, content: MMSContent)
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, messageID: MMSMessageID, content: MMSContent): MMSMessage { return callSDK<MMSMessage>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2990910887671237, undefined, [cellularServiceID, messageID, content]); }
+  static init(cellularServiceID: CellularServiceID, messageID: MMSMessageID, content: MMSContent): MMSMessage { return callSDK<MMSMessage>("TelephonyMessagingKit_a956b86ef7a76a8e", 2990910887671237, undefined, [cellularServiceID, messageID, content]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3267248971296311, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 773317757379177, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3267248971296311, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 773317757379177, this, [value]); }
   /**
    * var content: MMSContent
    * @availability iOS 26.0+
    */
-  get content(): MMSContent { return callSDK<MMSContent>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1748349991023662, this, []); }
-  set content(value: MMSContent) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3776002295211369, this, [value]); }
+  get content(): MMSContent { return callSDK<MMSContent>("TelephonyMessagingKit_a956b86ef7a76a8e", 1748349991023662, this, []); }
+  set content(value: MMSContent) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3776002295211369, this, [value]); }
   /**
    * var messageID: MMSMessageID
    * @availability iOS 26.0+
    */
-  get messageID(): MMSMessageID { return callSDK<MMSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 804132333375101, this, []); }
-  set messageID(value: MMSMessageID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2368646204989552, this, [value]); }
+  get messageID(): MMSMessageID { return callSDK<MMSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 804132333375101, this, []); }
+  set messageID(value: MMSMessageID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2368646204989552, this, [value]); }
   /**
    * var totalSize: Measurement<UnitInformationStorage> { get }
    * @availability iOS 26.0+
    */
-  get totalSize(): $SDK0 { return callSDK<$SDK0>("TelephonyMessagingKit_d6c5d10d3352e6ec", 839657841929444, this, []); }
+  get totalSize(): $SDK0 { return callSDK<$SDK0>("TelephonyMessagingKit_a956b86ef7a76a8e", 839657841929444, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10MMSMessageV": true };
 }
 
@@ -184,17 +184,17 @@ export const MMSMessageID = {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  getDescription($self: MMSMessageID): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 463410327312234, $self, []); },
+  getDescription($self: MMSMessageID): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 463410327312234, $self, []); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): MMSMessageID { return callSDK<MMSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3931237072434419, undefined, [rawValue]); },
+  init(rawValue: number): MMSMessageID { return callSDK<MMSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3931237072434419, undefined, [rawValue]); },
   /**
    * let rawValue: UInt32
    * @availability iOS 26.0+
    */
-  getRawValue($self: MMSMessageID): number { return callSDK<number>("TelephonyMessagingKit_d6c5d10d3352e6ec", 390122951679517, $self, []); }
+  getRawValue($self: MMSMessageID): number { return callSDK<number>("TelephonyMessagingKit_a956b86ef7a76a8e", 390122951679517, $self, []); }
 };
 
 /**
@@ -212,48 +212,48 @@ export class MMSPartContent extends SDKHandle {
    * var contentType: UTType?
    * @availability iOS 26.0+
    */
-  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1820619875817246, this, []); }
-  set contentType(value: $SDK1) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1390774314626478, this, [value]); }
+  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_a956b86ef7a76a8e", 1820619875817246, this, []); }
+  set contentType(value: $SDK1) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1390774314626478, this, [value]); }
   /**
    * var disposition: MMSPartContent.MMSDispositionType
    * @availability iOS 26.0+
    */
-  get disposition(): MMSPartContent_MMSDispositionType { return callSDK<MMSPartContent_MMSDispositionType>("TelephonyMessagingKit_d6c5d10d3352e6ec", 573099284052415, this, []); }
-  set disposition(value: MMSPartContent_MMSDispositionType) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 862155882135313, this, [value]); }
+  get disposition(): MMSPartContent_MMSDispositionType { return callSDK<MMSPartContent_MMSDispositionType>("TelephonyMessagingKit_a956b86ef7a76a8e", 573099284052415, this, []); }
+  set disposition(value: MMSPartContent_MMSDispositionType) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 862155882135313, this, [value]); }
   /**
    * var customHeaders: [MMSPartContent.MMSCustomHeader]
    * @availability iOS 26.0+
    */
-  get customHeaders(): $SDK2 { return callSDK<$SDK2>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3303262024595231, this, []); }
-  set customHeaders(value: $SDK2) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2117008532289029, this, [value]); }
+  get customHeaders(): $SDK2 { return callSDK<$SDK2>("TelephonyMessagingKit_a956b86ef7a76a8e", 3303262024595231, this, []); }
+  set customHeaders(value: $SDK2) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2117008532289029, this, [value]); }
   /**
    * mutating func addCustomHeader(_ header: MMSPartContent.MMSCustomHeader)
    * @availability iOS 26.0+
    */
-  addCustomHeader(header: MMSPartContent_MMSCustomHeader): void { return callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 316515866801385, this, [header]); }
+  addCustomHeader(header: MMSPartContent_MMSCustomHeader): void { return callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 316515866801385, this, [header]); }
   /**
    * var data: Data
    * @availability iOS 26.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1304976010669344, this, []); }
-  set data(value: ArrayBuffer) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1643397434748020, this, [value]); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("TelephonyMessagingKit_a956b86ef7a76a8e", 1304976010669344, this, []); }
+  set data(value: ArrayBuffer) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1643397434748020, this, [value]); }
   /**
    * init(data: Data, contentType: UTType?, contentID: String, disposition: MMSPartContent.MMSDispositionType, fileName: String)
    * @availability iOS 26.0+
    */
-  static init(data: ArrayBuffer, contentType: $SDK1, contentID: string, disposition: MMSPartContent_MMSDispositionType, fileName: string): MMSPartContent { return callSDK<MMSPartContent>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4065230925028792, undefined, [data, contentType, contentID, disposition, fileName]); }
+  static init(data: ArrayBuffer, contentType: $SDK1, contentID: string, disposition: MMSPartContent_MMSDispositionType, fileName: string): MMSPartContent { return callSDK<MMSPartContent>("TelephonyMessagingKit_a956b86ef7a76a8e", 4065230925028792, undefined, [data, contentType, contentID, disposition, fileName]); }
   /**
    * var filename: String
    * @availability iOS 26.0+
    */
-  get filename(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3668356251672315, this, []); }
-  set filename(value: string) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4053908608938605, this, [value]); }
+  get filename(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3668356251672315, this, []); }
+  set filename(value: string) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4053908608938605, this, [value]); }
   /**
    * var contentID: String
    * @availability iOS 26.0+
    */
-  get contentID(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2937611573013196, this, []); }
-  set contentID(value: string) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2347841541706954, this, [value]); }
+  get contentID(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2937611573013196, this, []); }
+  set contentID(value: string) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2347841541706954, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit14MMSPartContentV": true };
 }
 
@@ -266,12 +266,12 @@ export class MMSPartContent_MMSCustomHeader extends SDKHandle {
    * let key: String
    * @availability iOS 26.0+
    */
-  get key(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3629492380325405, this, []); }
+  get key(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3629492380325405, this, []); }
   /**
    * let value: String
    * @availability iOS 26.0+
    */
-  get value(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1087174284189748, this, []); }
+  get value(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1087174284189748, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit14MMSPartContentV15MMSCustomHeaderV": true };
 }
 
@@ -290,38 +290,38 @@ export class MMSService extends SDKHandle {
    * final func reportSpam(_ message: MMSMessage) async throws
    * @availability iOS 26.0+
    */
-  reportSpam(message: MMSMessage): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2917377027863599, this, [message]); }
+  reportSpam(message: MMSMessage): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2917377027863599, this, [message]); }
   /**
    * final func sendMessage(_ message: MMSMessage) async throws
    * @availability iOS 26.0+
    */
-  sendMessage(message: MMSMessage): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2400988829517286, this, [message]); }
+  sendMessage(message: MMSMessage): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2400988829517286, this, [message]); }
   /**
    * final func configuration(for cellularServiceID: CellularServiceID) async throws -> MMSService.Configuration
    * @availability iOS 26.0+
    */
-  configuration(cellularServiceID: CellularServiceID): Promise<MMSService_Configuration> { return callSDKAsync<MMSService_Configuration>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1009759235204655, this, [cellularServiceID]); }
+  configuration(cellularServiceID: CellularServiceID): Promise<MMSService_Configuration> { return callSDKAsync<MMSService_Configuration>("TelephonyMessagingKit_a956b86ef7a76a8e", 1009759235204655, this, [cellularServiceID]); }
   /**
    * final func receiveMessage(using cellularServiceID: CellularServiceID, messageID: MMSMessageID) async throws -> MMSMessage
    * @availability iOS 26.0+
    * @deprecated iOS 26.1
    */
-  receiveMessage(cellularServiceID: CellularServiceID, messageID: MMSMessageID): Promise<MMSMessage> { return callSDKAsync<MMSMessage>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3308391073163667, this, [cellularServiceID, messageID]); }
+  receiveMessage(cellularServiceID: CellularServiceID, messageID: MMSMessageID): Promise<MMSMessage> { return callSDKAsync<MMSMessage>("TelephonyMessagingKit_a956b86ef7a76a8e", 3308391073163667, this, [cellularServiceID, messageID]); }
   /**
    * final var viabilityNotifications: some AsyncSequence<MMSService.ViabilityNotification, Never> { get throws }
    * @availability iOS 26.0+
    */
-  get viabilityNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3732044648971976, this, []); }
+  get viabilityNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 3732044648971976, this, []); }
   /**
    * final var incomingMessageNotifications: some AsyncSequence<MMSService.IncomingMessageNotification, Never> { get throws }
    * @availability iOS 26.0+
    */
-  get incomingMessageNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3301377401411756, this, []); }
+  get incomingMessageNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 3301377401411756, this, []); }
   /**
    * final func isViable(for cellularServiceID: CellularServiceID) -> Bool
    * @availability iOS 26.0+
    */
-  isViable(cellularServiceID: CellularServiceID): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3512255793768906, this, [cellularServiceID]); }
+  isViable(cellularServiceID: CellularServiceID): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3512255793768906, this, [cellularServiceID]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10MMSServiceC": true };
 }
 
@@ -334,32 +334,32 @@ export class MMSService_Configuration extends SDKHandle {
    * var maximumImageSize: Measurement<UnitInformationStorage>?
    * @availability iOS 26.0+
    */
-  get maximumImageSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_d6c5d10d3352e6ec", 874449824576702, this, []); }
-  set maximumImageSize(value: $SDK3) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2976332726786056, this, [value]); }
+  get maximumImageSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_a956b86ef7a76a8e", 874449824576702, this, []); }
+  set maximumImageSize(value: $SDK3) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2976332726786056, this, [value]); }
   /**
    * var maximumRecipients: Int?
    * @availability iOS 26.0+
    */
-  get maximumRecipients(): (number) | null { return callSDK<(number) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1659692862550181, this, []); }
-  set maximumRecipients(value: (number) | null) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1248772506024900, this, [value]); }
+  get maximumRecipients(): (number) | null { return callSDK<(number) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 1659692862550181, this, []); }
+  set maximumRecipients(value: (number) | null) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1248772506024900, this, [value]); }
   /**
    * var maximumMessageSize: Measurement<UnitInformationStorage>?
    * @availability iOS 26.0+
    */
-  get maximumMessageSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1885178436326977, this, []); }
-  set maximumMessageSize(value: $SDK3) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3922077160429124, this, [value]); }
+  get maximumMessageSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_a956b86ef7a76a8e", 1885178436326977, this, []); }
+  set maximumMessageSize(value: $SDK3) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3922077160429124, this, [value]); }
   /**
    * var maximumSubjectSize: Measurement<UnitInformationStorage>?
    * @availability iOS 26.0+
    */
-  get maximumSubjectSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3801536027968861, this, []); }
-  set maximumSubjectSize(value: $SDK3) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3722093318013242, this, [value]); }
+  get maximumSubjectSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_a956b86ef7a76a8e", 3801536027968861, this, []); }
+  set maximumSubjectSize(value: $SDK3) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3722093318013242, this, [value]); }
   /**
    * var smsSizeToBeSentAsMMSInstead: Measurement<UnitInformationStorage>?
    * @availability iOS 26.0+
    */
-  get smsSizeToBeSentAsMMSInstead(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3881783585434592, this, []); }
-  set smsSizeToBeSentAsMMSInstead(value: $SDK3) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4099273948953610, this, [value]); }
+  get smsSizeToBeSentAsMMSInstead(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_a956b86ef7a76a8e", 3881783585434592, this, []); }
+  set smsSizeToBeSentAsMMSInstead(value: $SDK3) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4099273948953610, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10MMSServiceC13ConfigurationV": true };
 }
 
@@ -379,18 +379,18 @@ export class MMSService_IncomingMessageNotification extends SDKHandle {
    * @availability iOS 26.0+
    * @deprecated iOS 26.1
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1141921871566645, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1141921871566645, this, []); }
   /**
    * var message: MMSMessage { get }
    * @availability iOS 26.1+
    */
-  get message(): MMSMessage { return callSDK<MMSMessage>("TelephonyMessagingKit_d6c5d10d3352e6ec", 882255257726367, this, []); }
+  get message(): MMSMessage { return callSDK<MMSMessage>("TelephonyMessagingKit_a956b86ef7a76a8e", 882255257726367, this, []); }
   /**
    * var messageID: MMSMessageID { get }
    * @availability iOS 26.0+
    * @deprecated iOS 26.1
    */
-  get messageID(): MMSMessageID { return callSDK<MMSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1262964999182588, this, []); }
+  get messageID(): MMSMessageID { return callSDK<MMSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1262964999182588, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10MMSServiceC27IncomingMessageNotificationV": true };
 }
 
@@ -403,12 +403,12 @@ export class MMSService_ViabilityNotification extends SDKHandle {
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3532811125089977, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3532811125089977, this, []); }
   /**
    * let isViable: Bool
    * @availability iOS 26.0+
    */
-  get isViable(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3029481613604728, this, []); }
+  get isViable(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3029481613604728, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10MMSServiceC21ViabilityNotificationV": true };
 }
 
@@ -421,39 +421,39 @@ export class RCSFileTransferMetadata extends SDKHandle {
    * let contentType: UTType?
    * @availability iOS 26.0+
    */
-  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1943115412241483, this, []); }
+  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_a956b86ef7a76a8e", 1943115412241483, this, []); }
   /**
    * var disposition: RCSFileTransferMetadata.Disposition?
    * @availability iOS 26.0+
    */
-  get disposition(): $SDK4 { return callSDK<$SDK4>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3322779749719356, this, []); }
-  set disposition(value: $SDK4) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4019127655552636, this, [value]); }
+  get disposition(): $SDK4 { return callSDK<$SDK4>("TelephonyMessagingKit_a956b86ef7a76a8e", 3322779749719356, this, []); }
+  set disposition(value: $SDK4) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4019127655552636, this, [value]); }
   /**
    * let expirationDate: Date
    * @availability iOS 26.0+
    */
-  get expirationDate(): globalThis.Date { return callSDK<globalThis.Date>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1187326208921147, this, []); }
+  get expirationDate(): globalThis.Date { return callSDK<globalThis.Date>("TelephonyMessagingKit_a956b86ef7a76a8e", 1187326208921147, this, []); }
   /**
    * var playbackLength: Duration?
    * @availability iOS 26.0+
    */
-  get playbackLength(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 985950878650158, this, []); }
-  set playbackLength(value: (SDKHandle) | null) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1165554465738156, this, [value]); }
+  get playbackLength(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 985950878650158, this, []); }
+  set playbackLength(value: (SDKHandle) | null) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1165554465738156, this, [value]); }
   /**
    * let url: URL
    * @availability iOS 26.0+
    */
-  get url(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1945806572062914, this, []); }
+  get url(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1945806572062914, this, []); }
   /**
    * let fileName: String?
    * @availability iOS 26.0+
    */
-  get fileName(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 221263627984521, this, []); }
+  get fileName(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 221263627984521, this, []); }
   /**
    * let fileSize: Int
    * @availability iOS 26.0+
    */
-  get fileSize(): number { return callSDK<number>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3670788556734009, this, []); }
+  get fileSize(): number { return callSDK<number>("TelephonyMessagingKit_a956b86ef7a76a8e", 3670788556734009, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit23RCSFileTransferMetadataV": true };
 }
 
@@ -472,12 +472,12 @@ export class RCSGroupContext extends SDKHandle {
    * let isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1824363988429921, this, []); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 1824363988429921, this, []); }
   /**
    * let handle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get handle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 980220011240618, this, []); }
+  get handle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 980220011240618, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit15RCSGroupContextV": true };
 }
 
@@ -490,12 +490,12 @@ export class RCSHandle extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3312204889415655, this, []); }
+  get description(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3312204889415655, this, []); }
   /**
    * static func phoneNumber(_ phoneNumber: String) -> RCSHandle?
    * @availability iOS 26.0+
    */
-  static phoneNumber(phoneNumber: string): (RCSHandle) | null { return callSDK<(RCSHandle) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4230137668017790, undefined, [phoneNumber]); }
+  static phoneNumber(phoneNumber: string): (RCSHandle) | null { return callSDK<(RCSHandle) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 4230137668017790, undefined, [phoneNumber]); }
   declare readonly $type: { "s:21TelephonyMessagingKit9RCSHandleO": true };
 }
 
@@ -508,12 +508,12 @@ export class RCSHandle_Group extends SDKHandle {
    * let conversationID: String
    * @availability iOS 26.0+
    */
-  get conversationID(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4347560738362283, this, []); }
+  get conversationID(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 4347560738362283, this, []); }
   /**
    * let focus: String
    * @availability iOS 26.0+
    */
-  get focus(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4485361212765933, this, []); }
+  get focus(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 4485361212765933, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit9RCSHandleO5GroupV": true };
 }
 
@@ -528,17 +528,17 @@ export const RCSHandle_URI = {
    * init(stringLiteral value: String)
    * @availability iOS 26.0+
    */
-  initStringLiteral(value: string): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3029485028509373, undefined, [value]); },
+  initStringLiteral(value: string): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_a956b86ef7a76a8e", 3029485028509373, undefined, [value]); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.0+
    */
-  initRawValue(rawValue: string): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2504761954177518, undefined, [rawValue]); },
+  initRawValue(rawValue: string): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_a956b86ef7a76a8e", 2504761954177518, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 26.0+
    */
-  getRawValue($self: RCSHandle_URI): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1159989464678213, $self, []); }
+  getRawValue($self: RCSHandle_URI): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1159989464678213, $self, []); }
 };
 
 /**
@@ -574,27 +574,27 @@ export class RCSMessage extends SDKHandle {
    * let originalID: RCSMessageID?
    * @availability iOS 26.5+
    */
-  get originalID(): (RCSMessageID) | null { return callSDK<(RCSMessageID) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3136077752224091, this, []); }
+  get originalID(): (RCSMessageID) | null { return callSDK<(RCSMessageID) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 3136077752224091, this, []); }
   /**
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1059785369439129, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1059785369439129, this, []); }
   /**
    * let id: RCSMessageID
    * @availability iOS 26.0+
    */
-  get id(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1226867607817726, this, []); }
+  get id(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1226867607817726, this, []); }
   /**
    * let handle: RCSHandle
    * @availability iOS 26.0+
    */
-  get handle(): RCSHandle { return callSDK<RCSHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3418167470903688, this, []); }
+  get handle(): RCSHandle { return callSDK<RCSHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 3418167470903688, this, []); }
   /**
    * let content: RCSMessage.Content
    * @availability iOS 26.0+
    */
-  get content(): RCSMessage_Content { return callSDK<RCSMessage_Content>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2639102999913254, this, []); }
+  get content(): RCSMessage_Content { return callSDK<RCSMessage_Content>("TelephonyMessagingKit_a956b86ef7a76a8e", 2639102999913254, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSMessageV": true };
 }
 
@@ -607,37 +607,37 @@ export class RCSMessage_ComposingIndicator extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2377895841283565, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3234731232594515, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 2377895841283565, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3234731232594515, this, [value]); }
   /**
    * var lastActive: Date?
    * @availability iOS 26.0+
    */
-  get lastActive(): $SDK5 { return callSDK<$SDK5>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1381561618017966, this, []); }
-  set lastActive(value: $SDK5) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4164051653503265, this, [value]); }
+  get lastActive(): $SDK5 { return callSDK<$SDK5>("TelephonyMessagingKit_a956b86ef7a76a8e", 1381561618017966, this, []); }
+  set lastActive(value: $SDK5) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4164051653503265, this, [value]); }
   /**
    * var contentType: UTType?
    * @availability iOS 26.0+
    */
-  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2637927476128098, this, []); }
-  set contentType(value: $SDK1) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4267784867991350, this, [value]); }
+  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_a956b86ef7a76a8e", 2637927476128098, this, []); }
+  set contentType(value: $SDK1) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4267784867991350, this, [value]); }
   /**
    * var refreshInterval: Duration?
    * @availability iOS 26.0+
    */
-  get refreshInterval(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 608903223434016, this, []); }
-  set refreshInterval(value: (SDKHandle) | null) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2743820822063281, this, [value]); }
+  get refreshInterval(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 608903223434016, this, []); }
+  set refreshInterval(value: (SDKHandle) | null) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2743820822063281, this, [value]); }
   /**
    * init(state: RCSMessage.ComposingIndicator.State, lastActive: Date? = nil, contentType: UTType? = nil, refreshInterval: Duration? = nil)
    * @availability iOS 26.0+
    */
-  static init(state: RCSMessage_ComposingIndicator_State, lastActive?: $SDK5, contentType?: $SDK1, refreshInterval?: (SDKHandle) | null): RCSMessage_ComposingIndicator { return callSDK<RCSMessage_ComposingIndicator>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1031330058714609, undefined, [state, lastActive, contentType, refreshInterval]); }
+  static init(state: RCSMessage_ComposingIndicator_State, lastActive?: $SDK5, contentType?: $SDK1, refreshInterval?: (SDKHandle) | null): RCSMessage_ComposingIndicator { return callSDK<RCSMessage_ComposingIndicator>("TelephonyMessagingKit_a956b86ef7a76a8e", 1031330058714609, undefined, [state, lastActive, contentType, refreshInterval]); }
   /**
    * var state: RCSMessage.ComposingIndicator.State
    * @availability iOS 26.0+
    */
-  get state(): RCSMessage_ComposingIndicator_State { return callSDK<RCSMessage_ComposingIndicator_State>("TelephonyMessagingKit_d6c5d10d3352e6ec", 800753504770362, this, []); }
-  set state(value: RCSMessage_ComposingIndicator_State) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1411812829505580, this, [value]); }
+  get state(): RCSMessage_ComposingIndicator_State { return callSDK<RCSMessage_ComposingIndicator_State>("TelephonyMessagingKit_a956b86ef7a76a8e", 800753504770362, this, []); }
+  set state(value: RCSMessage_ComposingIndicator_State) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1411812829505580, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSMessageV18ComposingIndicatorV": true };
 }
 
@@ -664,30 +664,30 @@ export class RCSMessage_CustomReaction extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 27.0+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 791906756335080, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3902334135889263, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 791906756335080, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3902334135889263, this, [value]); }
   /**
    * init(targetMessageID: RCSMessageID, operation: RCSMessage.CustomReaction.Operation, isEndToEndEncrypted: Bool)
    * @availability iOS 27.0+
    */
-  static initTargetMessageIDOperationIsEndToEndEncrypted(targetMessageID: RCSMessageID, operation: RCSMessage_CustomReaction_Operation, isEndToEndEncrypted: boolean): RCSMessage_CustomReaction { return callSDK<RCSMessage_CustomReaction>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3454063816153177, undefined, [targetMessageID, operation, isEndToEndEncrypted]); }
+  static initTargetMessageIDOperationIsEndToEndEncrypted(targetMessageID: RCSMessageID, operation: RCSMessage_CustomReaction_Operation, isEndToEndEncrypted: boolean): RCSMessage_CustomReaction { return callSDK<RCSMessage_CustomReaction>("TelephonyMessagingKit_a956b86ef7a76a8e", 3454063816153177, undefined, [targetMessageID, operation, isEndToEndEncrypted]); }
   /**
    * init(targetMessageID: RCSMessageID, operation: RCSMessage.CustomReaction.Operation)
    * @availability iOS 27.0+
    */
-  static initTargetMessageIDOperation(targetMessageID: RCSMessageID, operation: RCSMessage_CustomReaction_Operation): RCSMessage_CustomReaction { return callSDK<RCSMessage_CustomReaction>("TelephonyMessagingKit_d6c5d10d3352e6ec", 279862223043179, undefined, [targetMessageID, operation]); }
+  static initTargetMessageIDOperation(targetMessageID: RCSMessageID, operation: RCSMessage_CustomReaction_Operation): RCSMessage_CustomReaction { return callSDK<RCSMessage_CustomReaction>("TelephonyMessagingKit_a956b86ef7a76a8e", 279862223043179, undefined, [targetMessageID, operation]); }
   /**
    * var targetMessageID: RCSMessageID
    * @availability iOS 27.0+
    */
-  get targetMessageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 194655790726860, this, []); }
-  set targetMessageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1002019196212392, this, [value]); }
+  get targetMessageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 194655790726860, this, []); }
+  set targetMessageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1002019196212392, this, [value]); }
   /**
    * var operation: RCSMessage.CustomReaction.Operation
    * @availability iOS 27.0+
    */
-  get operation(): RCSMessage_CustomReaction_Operation { return callSDK<RCSMessage_CustomReaction_Operation>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2046376771989627, this, []); }
-  set operation(value: RCSMessage_CustomReaction_Operation) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2263771709637235, this, [value]); }
+  get operation(): RCSMessage_CustomReaction_Operation { return callSDK<RCSMessage_CustomReaction_Operation>("TelephonyMessagingKit_a956b86ef7a76a8e", 2046376771989627, this, []); }
+  set operation(value: RCSMessage_CustomReaction_Operation) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2263771709637235, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSMessageV14CustomReactionV": true };
 }
 
@@ -714,23 +714,23 @@ export class RCSMessage_DispositionNotification extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4393635933529788, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3701924625396627, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 4393635933529788, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3701924625396627, this, [value]); }
   /**
    * init(disposition: RCSMessage.Disposition, disposedMessageID: RCSMessageID)
    * @availability iOS 26.0+
    */
-  static init(disposition: RCSMessage_Disposition, disposedMessageID: RCSMessageID): RCSMessage_DispositionNotification { return callSDK<RCSMessage_DispositionNotification>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1418551119047905, undefined, [disposition, disposedMessageID]); }
+  static init(disposition: RCSMessage_Disposition, disposedMessageID: RCSMessageID): RCSMessage_DispositionNotification { return callSDK<RCSMessage_DispositionNotification>("TelephonyMessagingKit_a956b86ef7a76a8e", 1418551119047905, undefined, [disposition, disposedMessageID]); }
   /**
    * let disposition: RCSMessage.Disposition
    * @availability iOS 26.0+
    */
-  get disposition(): RCSMessage_Disposition { return callSDK<RCSMessage_Disposition>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4308343455351011, this, []); }
+  get disposition(): RCSMessage_Disposition { return callSDK<RCSMessage_Disposition>("TelephonyMessagingKit_a956b86ef7a76a8e", 4308343455351011, this, []); }
   /**
    * let disposedMessageID: RCSMessageID
    * @availability iOS 26.0+
    */
-  get disposedMessageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4302428683161667, this, []); }
+  get disposedMessageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 4302428683161667, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSMessageV23DispositionNotificationV": true };
 }
 
@@ -743,25 +743,25 @@ export class RCSMessage_FileTransfer extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3262365741118413, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1486059206327505, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3262365741118413, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1486059206327505, this, [value]); }
   /**
    * init(fileMetadata: RCSFileTransferMetadata, thumbnailMetadata: RCSFileTransferMetadata? = nil)
    * @availability iOS 26.0+
    */
-  static init(fileMetadata: RCSFileTransferMetadata, thumbnailMetadata?: $SDK6): RCSMessage_FileTransfer { return callSDK<RCSMessage_FileTransfer>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3524234344397358, undefined, [fileMetadata, thumbnailMetadata]); }
+  static init(fileMetadata: RCSFileTransferMetadata, thumbnailMetadata?: $SDK6): RCSMessage_FileTransfer { return callSDK<RCSMessage_FileTransfer>("TelephonyMessagingKit_a956b86ef7a76a8e", 3524234344397358, undefined, [fileMetadata, thumbnailMetadata]); }
   /**
    * var fileMetadata: RCSFileTransferMetadata
    * @availability iOS 26.0+
    */
-  get fileMetadata(): RCSFileTransferMetadata { return callSDK<RCSFileTransferMetadata>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3275322913294837, this, []); }
-  set fileMetadata(value: RCSFileTransferMetadata) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1502258344811781, this, [value]); }
+  get fileMetadata(): RCSFileTransferMetadata { return callSDK<RCSFileTransferMetadata>("TelephonyMessagingKit_a956b86ef7a76a8e", 3275322913294837, this, []); }
+  set fileMetadata(value: RCSFileTransferMetadata) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1502258344811781, this, [value]); }
   /**
    * var thumbnailMetadata: RCSFileTransferMetadata?
    * @availability iOS 26.0+
    */
-  get thumbnailMetadata(): $SDK6 { return callSDK<$SDK6>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2228271190676128, this, []); }
-  set thumbnailMetadata(value: $SDK6) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4303191871660059, this, [value]); }
+  get thumbnailMetadata(): $SDK6 { return callSDK<$SDK6>("TelephonyMessagingKit_a956b86ef7a76a8e", 2228271190676128, this, []); }
+  set thumbnailMetadata(value: $SDK6) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4303191871660059, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSMessageV12FileTransferV": true };
 }
 
@@ -774,31 +774,31 @@ export class RCSMessage_GeolocationPush extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2472087686747807, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1155118661893330, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 2472087686747807, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1155118661893330, this, [value]); }
   /**
    * var description: String?
    * @availability iOS 26.0+
    */
-  get description(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2212134790371184, this, []); }
-  set description(value: (string) | null) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 720257035160582, this, [value]); }
+  get description(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2212134790371184, this, []); }
+  set description(value: (string) | null) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 720257035160582, this, [value]); }
   /**
    * init(latitude: Double, longitude: Double, description: String? = nil)
    * @availability iOS 26.0+
    */
-  static init(latitude: number, longitude: number, description?: (string) | null): RCSMessage_GeolocationPush { return callSDK<RCSMessage_GeolocationPush>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3101140447242285, undefined, [latitude, longitude, description]); }
+  static init(latitude: number, longitude: number, description?: (string) | null): RCSMessage_GeolocationPush { return callSDK<RCSMessage_GeolocationPush>("TelephonyMessagingKit_a956b86ef7a76a8e", 3101140447242285, undefined, [latitude, longitude, description]); }
   /**
    * var latitude: Double
    * @availability iOS 26.0+
    */
-  get latitude(): number { return callSDK<number>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2395097062769891, this, []); }
-  set latitude(value: number) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 910839757458708, this, [value]); }
+  get latitude(): number { return callSDK<number>("TelephonyMessagingKit_a956b86ef7a76a8e", 2395097062769891, this, []); }
+  set latitude(value: number) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 910839757458708, this, [value]); }
   /**
    * var longitude: Double
    * @availability iOS 26.0+
    */
-  get longitude(): number { return callSDK<number>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2519338337648991, this, []); }
-  set longitude(value: number) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2462152889312364, this, [value]); }
+  get longitude(): number { return callSDK<number>("TelephonyMessagingKit_a956b86ef7a76a8e", 2519338337648991, this, []); }
+  set longitude(value: number) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2462152889312364, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSMessageV15GeolocationPushV": true };
 }
 
@@ -817,30 +817,30 @@ export class RCSMessage_Reaction extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 27.0+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1313537276134375, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 891795714519620, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 1313537276134375, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 891795714519620, this, [value]); }
   /**
    * init(targetMessageID: RCSMessageID, operation: RCSMessage.Reaction.Operation, isEndToEndEncrypted: Bool)
    * @availability iOS 27.0+
    */
-  static initTargetMessageIDOperationIsEndToEndEncrypted(targetMessageID: RCSMessageID, operation: RCSMessage_Reaction_Operation, isEndToEndEncrypted: boolean): RCSMessage_Reaction { return callSDK<RCSMessage_Reaction>("TelephonyMessagingKit_d6c5d10d3352e6ec", 776288213642291, undefined, [targetMessageID, operation, isEndToEndEncrypted]); }
+  static initTargetMessageIDOperationIsEndToEndEncrypted(targetMessageID: RCSMessageID, operation: RCSMessage_Reaction_Operation, isEndToEndEncrypted: boolean): RCSMessage_Reaction { return callSDK<RCSMessage_Reaction>("TelephonyMessagingKit_a956b86ef7a76a8e", 776288213642291, undefined, [targetMessageID, operation, isEndToEndEncrypted]); }
   /**
    * init(targetMessageID: RCSMessageID, operation: RCSMessage.Reaction.Operation)
    * @availability iOS 27.0+
    */
-  static initTargetMessageIDOperation(targetMessageID: RCSMessageID, operation: RCSMessage_Reaction_Operation): RCSMessage_Reaction { return callSDK<RCSMessage_Reaction>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4235979946486343, undefined, [targetMessageID, operation]); }
+  static initTargetMessageIDOperation(targetMessageID: RCSMessageID, operation: RCSMessage_Reaction_Operation): RCSMessage_Reaction { return callSDK<RCSMessage_Reaction>("TelephonyMessagingKit_a956b86ef7a76a8e", 4235979946486343, undefined, [targetMessageID, operation]); }
   /**
    * var targetMessageID: RCSMessageID
    * @availability iOS 27.0+
    */
-  get targetMessageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 633985556577205, this, []); }
-  set targetMessageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3318429360293572, this, [value]); }
+  get targetMessageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 633985556577205, this, []); }
+  set targetMessageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3318429360293572, this, [value]); }
   /**
    * var operation: RCSMessage.Reaction.Operation
    * @availability iOS 27.0+
    */
-  get operation(): RCSMessage_Reaction_Operation { return callSDK<RCSMessage_Reaction_Operation>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3837897661936939, this, []); }
-  set operation(value: RCSMessage_Reaction_Operation) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2688418338057168, this, [value]); }
+  get operation(): RCSMessage_Reaction_Operation { return callSDK<RCSMessage_Reaction_Operation>("TelephonyMessagingKit_a956b86ef7a76a8e", 3837897661936939, this, []); }
+  set operation(value: RCSMessage_Reaction_Operation) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2688418338057168, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSMessageV8ReactionV": true };
 }
 
@@ -861,19 +861,19 @@ export class RCSMessage_Reply extends SDKHandle {
    * init(targetMessageID: RCSMessageID, content: RCSMessage.Reply.Content)
    * @availability iOS 27.0+
    */
-  static init(targetMessageID: RCSMessageID, content: RCSMessage_Reply_Content): RCSMessage_Reply { return callSDK<RCSMessage_Reply>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3440716110980285, undefined, [targetMessageID, content]); }
+  static init(targetMessageID: RCSMessageID, content: RCSMessage_Reply_Content): RCSMessage_Reply { return callSDK<RCSMessage_Reply>("TelephonyMessagingKit_a956b86ef7a76a8e", 3440716110980285, undefined, [targetMessageID, content]); }
   /**
    * var targetMessageID: RCSMessageID
    * @availability iOS 27.0+
    */
-  get targetMessageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 663614214117743, this, []); }
-  set targetMessageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 247813415324159, this, [value]); }
+  get targetMessageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 663614214117743, this, []); }
+  set targetMessageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 247813415324159, this, [value]); }
   /**
    * var content: RCSMessage.Reply.Content
    * @availability iOS 27.0+
    */
-  get content(): RCSMessage_Reply_Content { return callSDK<RCSMessage_Reply_Content>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3429298962999974, this, []); }
-  set content(value: RCSMessage_Reply_Content) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3929472251843456, this, [value]); }
+  get content(): RCSMessage_Reply_Content { return callSDK<RCSMessage_Reply_Content>("TelephonyMessagingKit_a956b86ef7a76a8e", 3429298962999974, this, []); }
+  set content(value: RCSMessage_Reply_Content) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3929472251843456, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSMessageV5ReplyV": true };
 }
 
@@ -894,7 +894,7 @@ export class RCSMessage_SecureSendReceipt extends SDKHandle {
    * let id: UUID
    * @availability iOS 26.5+
    */
-  get id(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2294915587833579, this, []); }
+  get id(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2294915587833579, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSMessageV17SecureSendReceiptV": true };
 }
 
@@ -913,24 +913,24 @@ export class RCSMessage_Text extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1827303320932030, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4033800031986838, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 1827303320932030, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4033800031986838, this, [value]); }
   /**
    * init(stringLiteral value: String)
    * @availability iOS 26.0+
    */
-  static initStringLiteral(value: string): RCSMessage_Text { return callSDK<RCSMessage_Text>("TelephonyMessagingKit_d6c5d10d3352e6ec", 979810804770873, undefined, [value]); }
+  static initStringLiteral(value: string): RCSMessage_Text { return callSDK<RCSMessage_Text>("TelephonyMessagingKit_a956b86ef7a76a8e", 979810804770873, undefined, [value]); }
   /**
    * init(body: String)
    * @availability iOS 26.0+
    */
-  static initBody(body: string): RCSMessage_Text { return callSDK<RCSMessage_Text>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4394946613951600, undefined, [body]); }
+  static initBody(body: string): RCSMessage_Text { return callSDK<RCSMessage_Text>("TelephonyMessagingKit_a956b86ef7a76a8e", 4394946613951600, undefined, [body]); }
   /**
    * var body: String
    * @availability iOS 26.0+
    */
-  get body(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1520865901409922, this, []); }
-  set body(value: string) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3595288738596255, this, [value]); }
+  get body(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1520865901409922, this, []); }
+  set body(value: string) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3595288738596255, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSMessageV4TextV": true };
 }
 
@@ -963,17 +963,17 @@ export const RCSMessageID = {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  getDescription($self: RCSMessageID): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2483577954115549, $self, []); },
+  getDescription($self: RCSMessageID): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2483577954115549, $self, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 250300926711999, undefined, [rawValue]); },
+  init(rawValue: string): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 250300926711999, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 26.0+
    */
-  getRawValue($self: RCSMessageID): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1936356877023184, $self, []); }
+  getRawValue($self: RCSMessageID): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1936356877023184, $self, []); }
 };
 
 /**
@@ -991,142 +991,142 @@ export class RCSService extends SDKHandle {
    * final func reportSpam(_ request: RCSService.ReportSpamRequest) async throws
    * @availability iOS 26.0+
    */
-  reportSpam(request: RCSService_ReportSpamRequest): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1745950699917588, this, [request]); }
+  reportSpam(request: RCSService_ReportSpamRequest): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1745950699917588, this, [request]); }
   /**
    * final func sendMessage(_ content: RCSMessage.DispositionNotification, to destination: RCSHandle.URI, using cellularServiceID: CellularServiceID, messageID: RCSMessageID, group: RCSHandle.Group? = nil) async throws
    * @availability iOS 26.0+
    */
-  sendMessageToUsingMessageIDGroup(content: RCSMessage_DispositionNotification, destination: RCSHandle_URI, cellularServiceID: CellularServiceID, messageID: RCSMessageID, group?: (RCSHandle_Group) | null): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 940651157941296, this, [content, destination, cellularServiceID, messageID, group]); }
+  sendMessageToUsingMessageIDGroup(content: RCSMessage_DispositionNotification, destination: RCSHandle_URI, cellularServiceID: CellularServiceID, messageID: RCSMessageID, group?: (RCSHandle_Group) | null): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 940651157941296, this, [content, destination, cellularServiceID, messageID, group]); }
   /**
    * final func sendMessage(_ content: RCSMessage.FileTransfer, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
    * @availability iOS 26.0+
    */
-  sendMessageToUsingMessageID(content: RCSMessage_FileTransfer, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 176354076917502, this, [content, destination, cellularServiceID, messageID]); }
+  sendMessageToUsingMessageID(content: RCSMessage_FileTransfer, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 176354076917502, this, [content, destination, cellularServiceID, messageID]); }
   /**
    * final func sendMessage(_ content: RCSMessage.CustomReaction, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
    * @availability iOS 27.0+
    */
-  sendMessageToUsingMessageID11187(content: RCSMessage_CustomReaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3133630085493273, this, [content, destination, cellularServiceID, messageID]); }
+  sendMessageToUsingMessageID11187(content: RCSMessage_CustomReaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3133630085493273, this, [content, destination, cellularServiceID, messageID]); }
   /**
    * final func sendMessage(_ content: RCSMessage.GeolocationPush, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
    * @availability iOS 26.0+
    */
-  sendMessageToUsingMessageID10310(content: RCSMessage_GeolocationPush, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4066029990174323, this, [content, destination, cellularServiceID, messageID]); }
+  sendMessageToUsingMessageID10310(content: RCSMessage_GeolocationPush, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4066029990174323, this, [content, destination, cellularServiceID, messageID]); }
   /**
    * final func sendMessage(_ content: RCSMessage.ComposingIndicator, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
    * @availability iOS 26.0+
    */
-  sendMessageToUsingMessageID63683(content: RCSMessage_ComposingIndicator, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4299249215569211, this, [content, destination, cellularServiceID, messageID]); }
+  sendMessageToUsingMessageID63683(content: RCSMessage_ComposingIndicator, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4299249215569211, this, [content, destination, cellularServiceID, messageID]); }
   /**
    * final func sendMessage(_ content: RCSMessage.Text, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
    * @availability iOS 26.0+
    */
-  sendMessageToUsingMessageID18525(content: RCSMessage_Text, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2327322156743639, this, [content, destination, cellularServiceID, messageID]); }
+  sendMessageToUsingMessageID18525(content: RCSMessage_Text, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2327322156743639, this, [content, destination, cellularServiceID, messageID]); }
   /**
    * final func sendMessage(_ content: RCSMessage.Reply, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
    * @availability iOS 27.0+
    */
-  sendMessageToUsingMessageID56827(content: RCSMessage_Reply, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2249952633807437, this, [content, destination, cellularServiceID, messageID]); }
+  sendMessageToUsingMessageID56827(content: RCSMessage_Reply, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2249952633807437, this, [content, destination, cellularServiceID, messageID]); }
   /**
    * final func sendMessage(_ content: RCSMessage.Reaction, to destination: RCSHandle, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
    * @availability iOS 27.0+
    */
-  sendMessageToUsingMessageID94469(content: RCSMessage_Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2446979074607466, this, [content, destination, cellularServiceID, messageID]); }
+  sendMessageToUsingMessageID94469(content: RCSMessage_Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2446979074607466, this, [content, destination, cellularServiceID, messageID]); }
   /**
    * final func configuration(for cellularServiceID: CellularServiceID) throws -> RCSService.Configuration
    * @availability iOS 26.0+
    */
-  configuration(cellularServiceID: CellularServiceID): RCSService_Configuration { return callSDK<RCSService_Configuration>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3865073106481188, this, [cellularServiceID]); }
+  configuration(cellularServiceID: CellularServiceID): RCSService_Configuration { return callSDK<RCSService_Configuration>("TelephonyMessagingKit_a956b86ef7a76a8e", 3865073106481188, this, [cellularServiceID]); }
   /**
    * final func revokeMessage(_ request: RCSService.RevokeMessageRequest) async throws -> Bool
    * @availability iOS 26.0+
    */
-  revokeMessage(request: RCSService_RevokeMessageRequest): Promise<boolean> { return callSDKAsync<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3583200314333863, this, [request]); }
+  revokeMessage(request: RCSService_RevokeMessageRequest): Promise<boolean> { return callSDKAsync<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3583200314333863, this, [request]); }
   /**
    * final func leaveGroupChat(_ request: RCSService.LeaveGroupChatRequest) async throws
    * @availability iOS 26.0+
    */
-  leaveGroupChat(request: RCSService_LeaveGroupChatRequest): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2153333008148376, this, [request]); }
+  leaveGroupChat(request: RCSService_LeaveGroupChatRequest): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2153333008148376, this, [request]); }
   /**
    * final func createGroupChat(_ request: RCSService.CreateGroupChatRequest) async throws -> RCSService.CreateGroupChatRequest.Result
    * @availability iOS 26.0+
    */
-  createGroupChat(request: RCSService_CreateGroupChatRequest): Promise<RCSService_CreateGroupChatRequest_Result> { return callSDKAsync<RCSService_CreateGroupChatRequest_Result>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4461084209444251, this, [request]); }
+  createGroupChat(request: RCSService_CreateGroupChatRequest): Promise<RCSService_CreateGroupChatRequest_Result> { return callSDKAsync<RCSService_CreateGroupChatRequest_Result>("TelephonyMessagingKit_a956b86ef7a76a8e", 4461084209444251, this, [request]); }
   /**
    * final var groupChatEvents: some AsyncSequence<RCSService.GroupChatEvent, Never> { get throws }
    * @availability iOS 26.0+
    */
-  get groupChatEvents(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2844248394015359, this, []); }
+  get groupChatEvents(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 2844248394015359, this, []); }
   /**
    * final func remoteCapabilities(for request: RCSService.RemoteCapabilitiesRequest) async throws -> RCSService.RemoteCapabilities?
    * @availability iOS 26.0+
    */
-  remoteCapabilities(request: RCSService_RemoteCapabilitiesRequest): Promise<$SDK8> { return callSDKAsync<$SDK8>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4290945054575151, this, [request]); }
+  remoteCapabilities(request: RCSService_RemoteCapabilitiesRequest): Promise<$SDK8> { return callSDKAsync<$SDK8>("TelephonyMessagingKit_a956b86ef7a76a8e", 4290945054575151, this, [request]); }
   /**
    * final func businessInformation(for request: RCSService.BusinessInformationRequest) async throws -> RCSService.Business?
    * @availability iOS 26.0+
    */
-  businessInformation(request: RCSService_BusinessInformationRequest): Promise<(RCSService_Business) | null> { return callSDKAsync<(RCSService_Business) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1265202262137783, this, [request]); }
+  businessInformation(request: RCSService_BusinessInformationRequest): Promise<(RCSService_Business) | null> { return callSDKAsync<(RCSService_Business) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 1265202262137783, this, [request]); }
   /**
    * final var remoteHandleUpdates: some AsyncSequence<RCSService.RemoteHandleUpdate, Never> { get throws }
    * @availability iOS 26.0+
    */
-  get remoteHandleUpdates(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 153427700054240, this, []); }
+  get remoteHandleUpdates(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 153427700054240, this, []); }
   /**
    * final func sendDeviceSpecifics(to destination: RCSHandle.URI, using cellularServiceID: CellularServiceID, messageID: RCSMessageID) async throws
    * @availability iOS 26.0+
    */
-  sendDeviceSpecifics(destination: RCSHandle_URI, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3479626642989692, this, [destination, cellularServiceID, messageID]); }
+  sendDeviceSpecifics(destination: RCSHandle_URI, cellularServiceID: CellularServiceID, messageID: RCSMessageID): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3479626642989692, this, [destination, cellularServiceID, messageID]); }
   /**
    * final func changeGroupChatSubject(_ request: RCSService.ChangeGroupChatSubjectRequest) async throws
    * @availability iOS 26.0+
    */
-  changeGroupChatSubject(request: RCSService_ChangeGroupChatSubjectRequest): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1555848584192121, this, [request]); }
+  changeGroupChatSubject(request: RCSService_ChangeGroupChatSubjectRequest): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1555848584192121, this, [request]); }
   /**
    * final func sendSuggestionResponse(_ response: RCSService.SuggestionResponse) async throws
    * @availability iOS 26.0+
    */
-  sendSuggestionResponse(response: RCSService_SuggestionResponse): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3820226277323152, this, [response]); }
+  sendSuggestionResponse(response: RCSService_SuggestionResponse): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3820226277323152, this, [response]); }
   /**
    * final var viabilityNotifications: some AsyncSequence<RCSService.ViabilityNotification, Never> { get throws }
    * @availability iOS 26.0+
    */
-  get viabilityNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 716901097127841, this, []); }
+  get viabilityNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 716901097127841, this, []); }
   /**
    * final func addGroupChatParticipants(_ request: RCSService.AddGroupChatParticipantsRequest) async throws -> RCSService.AddGroupChatParticipantsRequest.Result
    * @availability iOS 26.0+
    */
-  addGroupChatParticipants(request: RCSService_AddGroupChatParticipantsRequest): Promise<RCSService_AddGroupChatParticipantsRequest_Result> { return callSDKAsync<RCSService_AddGroupChatParticipantsRequest_Result>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2645266833252624, this, [request]); }
+  addGroupChatParticipants(request: RCSService_AddGroupChatParticipantsRequest): Promise<RCSService_AddGroupChatParticipantsRequest_Result> { return callSDKAsync<RCSService_AddGroupChatParticipantsRequest_Result>("TelephonyMessagingKit_a956b86ef7a76a8e", 2645266833252624, this, [request]); }
   /**
    * final func removeGroupChatParticipants(_ request: RCSService.RemoveGroupChatParticipantsRequest) async throws -> RCSService.RemoveGroupChatParticipantsRequest.Result
    * @availability iOS 26.0+
    */
-  removeGroupChatParticipants(request: RCSService_RemoveGroupChatParticipantsRequest): Promise<RCSService_RemoveGroupChatParticipantsRequest_Result> { return callSDKAsync<RCSService_RemoveGroupChatParticipantsRequest_Result>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1649305006939979, this, [request]); }
+  removeGroupChatParticipants(request: RCSService_RemoveGroupChatParticipantsRequest): Promise<RCSService_RemoveGroupChatParticipantsRequest_Result> { return callSDKAsync<RCSService_RemoveGroupChatParticipantsRequest_Result>("TelephonyMessagingKit_a956b86ef7a76a8e", 1649305006939979, this, [request]); }
   /**
    * final func sendEncryptedMessageRequest(_ request: RCSService.SendEncryptedMessageRequest) async throws -> RCSService.SendEncryptedMessageRequest.Result
    * @availability iOS 26.5+
    */
-  sendEncryptedMessageRequest(request: RCSService_SendEncryptedMessageRequest): Promise<RCSService_SendEncryptedMessageRequest_Result> { return callSDKAsync<RCSService_SendEncryptedMessageRequest_Result>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2054002578406550, this, [request]); }
+  sendEncryptedMessageRequest(request: RCSService_SendEncryptedMessageRequest): Promise<RCSService_SendEncryptedMessageRequest_Result> { return callSDKAsync<RCSService_SendEncryptedMessageRequest_Result>("TelephonyMessagingKit_a956b86ef7a76a8e", 2054002578406550, this, [request]); }
   /**
    * final var incomingMessageNotifications: some AsyncSequence<RCSService.IncomingMessageNotification, Never> { get throws }
    * @availability iOS 26.0+
    */
-  get incomingMessageNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2902142107466948, this, []); }
+  get incomingMessageNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 2902142107466948, this, []); }
   /**
    * final func upload(_ uploadRequest: RCSService.FileUploadRequest) async throws -> RCSService.FileUploadRequest.Metadata
    * @availability iOS 26.0+
    */
-  upload(uploadRequest: RCSService_FileUploadRequest): Promise<RCSService_FileUploadRequest_Metadata> { return callSDKAsync<RCSService_FileUploadRequest_Metadata>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1644673514597763, this, [uploadRequest]); }
+  upload(uploadRequest: RCSService_FileUploadRequest): Promise<RCSService_FileUploadRequest_Metadata> { return callSDKAsync<RCSService_FileUploadRequest_Metadata>("TelephonyMessagingKit_a956b86ef7a76a8e", 1644673514597763, this, [uploadRequest]); }
   /**
    * final func download(_ downloadRequest: RCSService.FileDownloadRequest) async throws -> RCSService.FileDownloadRequest.Metadata
    * @availability iOS 26.0+
    */
-  download(downloadRequest: RCSService_FileDownloadRequest): Promise<RCSService_FileDownloadRequest_Metadata> { return callSDKAsync<RCSService_FileDownloadRequest_Metadata>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1893361943383181, this, [downloadRequest]); }
+  download(downloadRequest: RCSService_FileDownloadRequest): Promise<RCSService_FileDownloadRequest_Metadata> { return callSDKAsync<RCSService_FileDownloadRequest_Metadata>("TelephonyMessagingKit_a956b86ef7a76a8e", 1893361943383181, this, [downloadRequest]); }
   /**
    * final func isViable(for cellularServiceID: CellularServiceID) -> Bool
    * @availability iOS 26.0+
    */
-  isViable(cellularServiceID: CellularServiceID): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3502925100669834, this, [cellularServiceID]); }
+  isViable(cellularServiceID: CellularServiceID): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3502925100669834, this, [cellularServiceID]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC": true };
 }
 
@@ -1139,31 +1139,31 @@ export class RCSService_AddGroupChatParticipantsRequest extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 660190928424217, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2860751646017309, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 660190928424217, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2860751646017309, this, [value]); }
   /**
    * var groupHandle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 432554478944529, this, []); }
-  set groupHandle(value: RCSHandle_Group) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4193653595538784, this, [value]); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 432554478944529, this, []); }
+  set groupHandle(value: RCSHandle_Group) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4193653595538784, this, [value]); }
   /**
    * var participants: [RCSHandle.URI]
    * @availability iOS 26.0+
    */
-  get participants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3847627747809210, this, []); }
-  set participants(value: Array<RCSHandle_URI>) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3358271678213995, this, [value]); }
+  get participants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_a956b86ef7a76a8e", 3847627747809210, this, []); }
+  set participants(value: Array<RCSHandle_URI>) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3358271678213995, this, [value]); }
   /**
    * init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle.Group, participants: [RCSHandle.URI])
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle_Group, participants: Array<RCSHandle_URI>): RCSService_AddGroupChatParticipantsRequest { return callSDK<RCSService_AddGroupChatParticipantsRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1736499282649539, undefined, [cellularServiceID, groupHandle, participants]); }
+  static init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle_Group, participants: Array<RCSHandle_URI>): RCSService_AddGroupChatParticipantsRequest { return callSDK<RCSService_AddGroupChatParticipantsRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 1736499282649539, undefined, [cellularServiceID, groupHandle, participants]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3192016408361165, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1798129562879003, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3192016408361165, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1798129562879003, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC31AddGroupChatParticipantsRequestV": true };
 }
 
@@ -1176,7 +1176,7 @@ export class RCSService_AddGroupChatParticipantsRequest_Result extends SDKHandle
    * let added: [RCSHandle.URI]
    * @availability iOS 26.0+
    */
-  get added(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3613589651630602, this, []); }
+  get added(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_a956b86ef7a76a8e", 3613589651630602, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC31AddGroupChatParticipantsRequestV6ResultV": true };
 }
 
@@ -1189,92 +1189,92 @@ export class RCSService_Business extends SDKHandle {
    * var themeColor: CGColor? { get }
    * @availability iOS 26.0+
    */
-  get themeColor(): (_CoreGraphics_CGColor) | null { return callSDK<(_CoreGraphics_CGColor) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 722475963582176, this, []); }
+  get themeColor(): (_CoreGraphics_CGColor) | null { return callSDK<(_CoreGraphics_CGColor) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 722475963582176, this, []); }
   /**
    * let websiteURL: URL?
    * @availability iOS 26.0+
    */
-  get websiteURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3810178882154712, this, []); }
+  get websiteURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 3810178882154712, this, []); }
   /**
    * let description: String?
    * @availability iOS 26.0+
    */
-  get description(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 446501761682709, this, []); }
+  get description(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 446501761682709, this, []); }
   /**
    * let capabilities: RCSService.Business.Capabilities?
    * @availability iOS 27.0+
    */
-  get capabilities(): (RCSService_Business_Capabilities) | null { return callSDK<(RCSService_Business_Capabilities) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2693502976803813, this, []); }
+  get capabilities(): (RCSService_Business_Capabilities) | null { return callSDK<(RCSService_Business_Capabilities) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2693502976803813, this, []); }
   /**
    * let emailAddress: String?
    * @availability iOS 26.0+
    */
-  get emailAddress(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1667596807296326, this, []); }
+  get emailAddress(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 1667596807296326, this, []); }
   /**
    * let mediaEntries: [RCSService.Business.MediaEntry]
    * @availability iOS 26.0+
    */
-  get mediaEntries(): Array<RCSService_Business_MediaEntry> { return callSDK<Array<RCSService_Business_MediaEntry>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2014444050717760, this, []); }
+  get mediaEntries(): Array<RCSService_Business_MediaEntry> { return callSDK<Array<RCSService_Business_MediaEntry>>("TelephonyMessagingKit_a956b86ef7a76a8e", 2014444050717760, this, []); }
   /**
    * let providerName: String?
    * @availability iOS 26.0+
    */
-  get providerName(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 206675959496048, this, []); }
+  get providerName(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 206675959496048, this, []); }
   /**
    * let categoryNames: [String]
    * @availability iOS 26.0+
    */
-  get categoryNames(): Array<string> { return callSDK<Array<string>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1471417521263687, this, []); }
+  get categoryNames(): Array<string> { return callSDK<Array<string>>("TelephonyMessagingKit_a956b86ef7a76a8e", 1471417521263687, this, []); }
   /**
    * let addressEntries: [RCSService.Business.AddressEntry]
    * @availability iOS 26.0+
    */
-  get addressEntries(): Array<RCSService_Business_AddressEntry> { return callSDK<Array<RCSService_Business_AddressEntry>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 887124999185890, this, []); }
+  get addressEntries(): Array<RCSService_Business_AddressEntry> { return callSDK<Array<RCSService_Business_AddressEntry>>("TelephonyMessagingKit_a956b86ef7a76a8e", 887124999185890, this, []); }
   /**
    * let persistentMenu: RCSService.Business.Menu?
    * @availability iOS 26.0+
    */
-  get persistentMenu(): (RCSService_Business_Menu) | null { return callSDK<(RCSService_Business_Menu) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 463998613220831, this, []); }
+  get persistentMenu(): (RCSService_Business_Menu) | null { return callSDK<(RCSService_Business_Menu) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 463998613220831, this, []); }
   /**
    * let welcomeMessage: RCSService.Business.WelcomeMessage?
    * @availability iOS 27.0+
    */
-  get welcomeMessage(): (RCSService_Business_WelcomeMessage) | null { return callSDK<(RCSService_Business_WelcomeMessage) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3556010682911055, this, []); }
+  get welcomeMessage(): (RCSService_Business_WelcomeMessage) | null { return callSDK<(RCSService_Business_WelcomeMessage) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 3556010682911055, this, []); }
   /**
    * let organizationNames: [RCSService.Business.OrganizationName]
    * @availability iOS 26.0+
    */
-  get organizationNames(): Array<RCSService_Business_OrganizationName> { return callSDK<Array<RCSService_Business_OrganizationName>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1163683940720456, this, []); }
+  get organizationNames(): Array<RCSService_Business_OrganizationName> { return callSDK<Array<RCSService_Business_OrganizationName>>("TelephonyMessagingKit_a956b86ef7a76a8e", 1163683940720456, this, []); }
   /**
    * let backgroundImageURL: URL?
    * @availability iOS 26.0+
    */
-  get backgroundImageURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1686336893563097, this, []); }
+  get backgroundImageURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 1686336893563097, this, []); }
   /**
    * let verificationDetails: RCSService.Business.VerificationDetails?
    * @availability iOS 26.0+
    */
-  get verificationDetails(): (RCSService_Business_VerificationDetails) | null { return callSDK<(RCSService_Business_VerificationDetails) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1141386890820250, this, []); }
+  get verificationDetails(): (RCSService_Business_VerificationDetails) | null { return callSDK<(RCSService_Business_VerificationDetails) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 1141386890820250, this, []); }
   /**
    * let communicationAddress: RCSService.Business.CommunicationAddress?
    * @availability iOS 26.0+
    */
-  get communicationAddress(): (RCSService_Business_CommunicationAddress) | null { return callSDK<(RCSService_Business_CommunicationAddress) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 324079889863906, this, []); }
+  get communicationAddress(): (RCSService_Business_CommunicationAddress) | null { return callSDK<(RCSService_Business_CommunicationAddress) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 324079889863906, this, []); }
   /**
    * let styleSheetTemplateURL: URL?
    * @availability iOS 26.0+
    */
-  get styleSheetTemplateURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2810890425461815, this, []); }
+  get styleSheetTemplateURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2810890425461815, this, []); }
   /**
    * let termsAndConditionsURL: URL?
    * @availability iOS 26.0+
    */
-  get termsAndConditionsURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 904998998557795, this, []); }
+  get termsAndConditionsURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 904998998557795, this, []); }
   /**
    * let version: String?
    * @availability iOS 26.0+
    */
-  get version(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1458327299779325, this, []); }
+  get version(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 1458327299779325, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV": true };
 }
 
@@ -1287,12 +1287,12 @@ export class RCSService_Business_AddressEntry extends SDKHandle {
    * let label: String
    * @availability iOS 26.0+
    */
-  get label(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2639704698821407, this, []); }
+  get label(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2639704698821407, this, []); }
   /**
    * let address: String
    * @availability iOS 26.0+
    */
-  get address(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1705785248221683, this, []); }
+  get address(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1705785248221683, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV12AddressEntryV": true };
 }
 
@@ -1305,12 +1305,12 @@ export class RCSService_Business_Capabilities extends SDKHandle {
    * let supportedFeatures: [RCSService.Business.Feature]
    * @availability iOS 27.0+
    */
-  get supportedFeatures(): Array<RCSService_Business_Feature> { return callSDK<Array<RCSService_Business_Feature>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3511174871625452, this, []); }
+  get supportedFeatures(): Array<RCSService_Business_Feature> { return callSDK<Array<RCSService_Business_Feature>>("TelephonyMessagingKit_a956b86ef7a76a8e", 3511174871625452, this, []); }
   /**
    * let versionID: String
    * @availability iOS 27.0+
    */
-  get versionID(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3296870907430867, this, []); }
+  get versionID(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3296870907430867, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV12CapabilitiesV": true };
 }
 
@@ -1323,32 +1323,32 @@ export class RCSService_Business_Card extends SDKHandle {
    * let orientation: RCSService.Business.Card.Orientation
    * @availability iOS 26.0+
    */
-  get orientation(): RCSService_Business_Card_Orientation { return callSDK<RCSService_Business_Card_Orientation>("TelephonyMessagingKit_d6c5d10d3352e6ec", 910930499453861, this, []); }
+  get orientation(): RCSService_Business_Card_Orientation { return callSDK<RCSService_Business_Card_Orientation>("TelephonyMessagingKit_a956b86ef7a76a8e", 910930499453861, this, []); }
   /**
    * let styleSheetURL: URL?
    * @availability iOS 26.0+
    */
-  get styleSheetURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 981093040000114, this, []); }
+  get styleSheetURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 981093040000114, this, []); }
   /**
    * let imageAlignment: RCSService.Business.Card.ImageAlignment?
    * @availability iOS 26.0+
    */
-  get imageAlignment(): (RCSService_Business_Card_ImageAlignment) | null { return callSDK<(RCSService_Business_Card_ImageAlignment) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 236565321406947, this, []); }
+  get imageAlignment(): (RCSService_Business_Card_ImageAlignment) | null { return callSDK<(RCSService_Business_Card_ImageAlignment) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 236565321406947, this, []); }
   /**
    * let titleFontStyle: RCSService.Business.Card.FontStyle
    * @availability iOS 26.0+
    */
-  get titleFontStyle(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 364597284912069, this, []); }
+  get titleFontStyle(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_a956b86ef7a76a8e", 364597284912069, this, []); }
   /**
    * let descriptionFontStyle: RCSService.Business.Card.FontStyle
    * @availability iOS 26.0+
    */
-  get descriptionFontStyle(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 284532818251508, this, []); }
+  get descriptionFontStyle(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_a956b86ef7a76a8e", 284532818251508, this, []); }
   /**
    * let content: RCSService.Business.Card.Content
    * @availability iOS 26.0+
    */
-  get content(): RCSService_Business_Card_Content { return callSDK<RCSService_Business_Card_Content>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1135879189410178, this, []); }
+  get content(): RCSService_Business_Card_Content { return callSDK<RCSService_Business_Card_Content>("TelephonyMessagingKit_a956b86ef7a76a8e", 1135879189410178, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV4CardV": true };
 }
 
@@ -1361,22 +1361,22 @@ export class RCSService_Business_Card_Content extends SDKHandle {
    * let description: String?
    * @availability iOS 26.0+
    */
-  get description(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 221905936843796, this, []); }
+  get description(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 221905936843796, this, []); }
   /**
    * let suggestions: [RCSService.Business.Suggestion]
    * @availability iOS 26.0+
    */
-  get suggestions(): $SDK21 { return callSDK<$SDK21>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3482465869334621, this, []); }
+  get suggestions(): $SDK21 { return callSDK<$SDK21>("TelephonyMessagingKit_a956b86ef7a76a8e", 3482465869334621, this, []); }
   /**
    * let media: RCSService.Business.Card.Media?
    * @availability iOS 26.0+
    */
-  get media(): (RCSService_Business_Card_Media) | null { return callSDK<(RCSService_Business_Card_Media) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1497466714091433, this, []); }
+  get media(): (RCSService_Business_Card_Media) | null { return callSDK<(RCSService_Business_Card_Media) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 1497466714091433, this, []); }
   /**
    * let title: String?
    * @availability iOS 26.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2685121292804354, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2685121292804354, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV4CardV7ContentV": true };
 }
 
@@ -1391,27 +1391,27 @@ export const RCSService_Business_Card_FontStyle = {
    * static let bold: RCSService.Business.Card.FontStyle
    * @availability iOS 26.0+
    */
-  get bold(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3006374403167264, undefined, []); },
+  get bold(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_a956b86ef7a76a8e", 3006374403167264, undefined, []); },
   /**
    * static let italics: RCSService.Business.Card.FontStyle
    * @availability iOS 26.0+
    */
-  get italics(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 874332004322524, undefined, []); },
+  get italics(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_a956b86ef7a76a8e", 874332004322524, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 469580254186100, undefined, [rawValue]); },
+  init(rawValue: number): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_a956b86ef7a76a8e", 469580254186100, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 26.0+
    */
-  getRawValue($self: RCSService_Business_Card_FontStyle): number { return callSDK<number>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2422306865279097, $self, []); },
+  getRawValue($self: RCSService_Business_Card_FontStyle): number { return callSDK<number>("TelephonyMessagingKit_a956b86ef7a76a8e", 2422306865279097, $self, []); },
   /**
    * static let underline: RCSService.Business.Card.FontStyle
    * @availability iOS 26.0+
    */
-  get underline(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1508045239005046, undefined, []); }
+  get underline(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_a956b86ef7a76a8e", 1508045239005046, undefined, []); }
 };
 
 /**
@@ -1447,42 +1447,42 @@ export class RCSService_Business_Card_Media extends SDKHandle {
    * let contentType: UTType?
    * @availability iOS 26.0+
    */
-  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1428050019043880, this, []); }
+  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_a956b86ef7a76a8e", 1428050019043880, this, []); }
   /**
    * let description: String?
    * @availability iOS 26.0+
    */
-  get description(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 300249413403413, this, []); }
+  get description(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 300249413403413, this, []); }
   /**
    * let thumbnailURL: URL?
    * @availability iOS 26.0+
    */
-  get thumbnailURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 356282047253269, this, []); }
+  get thumbnailURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 356282047253269, this, []); }
   /**
    * let displayHeight: RCSService.Business.Card.Media.Height
    * @availability iOS 26.0+
    */
-  get displayHeight(): RCSService_Business_Card_Media_Height { return callSDK<RCSService_Business_Card_Media_Height>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2184641821569601, this, []); }
+  get displayHeight(): RCSService_Business_Card_Media_Height { return callSDK<RCSService_Business_Card_Media_Height>("TelephonyMessagingKit_a956b86ef7a76a8e", 2184641821569601, this, []); }
   /**
    * let thumbnailFileSize: Measurement<UnitInformationStorage>?
    * @availability iOS 26.0+
    */
-  get thumbnailFileSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_d6c5d10d3352e6ec", 693975727540964, this, []); }
+  get thumbnailFileSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_a956b86ef7a76a8e", 693975727540964, this, []); }
   /**
    * let thumbnailContentType: UTType?
    * @availability iOS 26.0+
    */
-  get thumbnailContentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2275075275546970, this, []); }
+  get thumbnailContentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_a956b86ef7a76a8e", 2275075275546970, this, []); }
   /**
    * let url: URL
    * @availability iOS 26.0+
    */
-  get url(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3515322440170241, this, []); }
+  get url(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3515322440170241, this, []); }
   /**
    * let fileSize: Measurement<UnitInformationStorage>
    * @availability iOS 26.0+
    */
-  get fileSize(): $SDK0 { return callSDK<$SDK0>("TelephonyMessagingKit_d6c5d10d3352e6ec", 888030828694198, this, []); }
+  get fileSize(): $SDK0 { return callSDK<$SDK0>("TelephonyMessagingKit_a956b86ef7a76a8e", 888030828694198, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV4CardV5MediaV": true };
 }
 
@@ -1513,27 +1513,27 @@ export class RCSService_Business_CardCarousel extends SDKHandle {
    * let styleSheetURL: URL?
    * @availability iOS 26.0+
    */
-  get styleSheetURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3896957769541203, this, []); }
+  get styleSheetURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 3896957769541203, this, []); }
   /**
    * let titleFontStyle: RCSService.Business.Card.FontStyle
    * @availability iOS 26.0+
    */
-  get titleFontStyle(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1094998408132371, this, []); }
+  get titleFontStyle(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_a956b86ef7a76a8e", 1094998408132371, this, []); }
   /**
    * let descriptionFontStyle: RCSService.Business.Card.FontStyle
    * @availability iOS 26.0+
    */
-  get descriptionFontStyle(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3007840678360430, this, []); }
+  get descriptionFontStyle(): RCSService_Business_Card_FontStyle { return callSDK<RCSService_Business_Card_FontStyle>("TelephonyMessagingKit_a956b86ef7a76a8e", 3007840678360430, this, []); }
   /**
    * let width: RCSService.Business.Card.Width
    * @availability iOS 26.0+
    */
-  get width(): RCSService_Business_Card_Width { return callSDK<RCSService_Business_Card_Width>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1870594865520565, this, []); }
+  get width(): RCSService_Business_Card_Width { return callSDK<RCSService_Business_Card_Width>("TelephonyMessagingKit_a956b86ef7a76a8e", 1870594865520565, this, []); }
   /**
    * let contents: [RCSService.Business.Card.Content]
    * @availability iOS 26.0+
    */
-  get contents(): Array<RCSService_Business_Card_Content> { return callSDK<Array<RCSService_Business_Card_Content>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3686823421994963, this, []); }
+  get contents(): Array<RCSService_Business_Card_Content> { return callSDK<Array<RCSService_Business_Card_Content>>("TelephonyMessagingKit_a956b86ef7a76a8e", 3686823421994963, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV12CardCarouselV": true };
 }
 
@@ -1546,12 +1546,12 @@ export class RCSService_Business_CommunicationAddress extends SDKHandle {
    * let uriEntries: [RCSService.Business.URIEntry]
    * @availability iOS 26.0+
    */
-  get uriEntries(): Array<RCSService_Business_URIEntry> { return callSDK<Array<RCSService_Business_URIEntry>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2678968032900562, this, []); }
+  get uriEntries(): Array<RCSService_Business_URIEntry> { return callSDK<Array<RCSService_Business_URIEntry>>("TelephonyMessagingKit_a956b86ef7a76a8e", 2678968032900562, this, []); }
   /**
    * let telephoneDetails: RCSService.Business.TelephoneDetails
    * @availability iOS 26.0+
    */
-  get telephoneDetails(): RCSService_Business_TelephoneDetails { return callSDK<RCSService_Business_TelephoneDetails>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1749220315674630, this, []); }
+  get telephoneDetails(): RCSService_Business_TelephoneDetails { return callSDK<RCSService_Business_TelephoneDetails>("TelephonyMessagingKit_a956b86ef7a76a8e", 1749220315674630, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV20CommunicationAddressV": true };
 }
 
@@ -1564,12 +1564,12 @@ export class RCSService_Business_ComposeRecordingAction extends SDKHandle {
    * let phoneNumber: String
    * @availability iOS 26.0+
    */
-  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 602093947370892, this, []); }
+  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 602093947370892, this, []); }
   /**
    * let mediaType: RCSService.Business.ComposeRecordingAction.MediaType
    * @availability iOS 26.0+
    */
-  get mediaType(): RCSService_Business_ComposeRecordingAction_MediaType { return callSDK<RCSService_Business_ComposeRecordingAction_MediaType>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2149059250381228, this, []); }
+  get mediaType(): RCSService_Business_ComposeRecordingAction_MediaType { return callSDK<RCSService_Business_ComposeRecordingAction_MediaType>("TelephonyMessagingKit_a956b86ef7a76a8e", 2149059250381228, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV22ComposeRecordingActionV": true };
 }
 
@@ -1588,12 +1588,12 @@ export class RCSService_Business_ComposeTextAction extends SDKHandle {
    * let phoneNumber: String
    * @availability iOS 26.0+
    */
-  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3695826798600035, this, []); }
+  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3695826798600035, this, []); }
   /**
    * let text: String
    * @availability iOS 26.0+
    */
-  get text(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2901651248012382, this, []); }
+  get text(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2901651248012382, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV17ComposeTextActionV": true };
 }
 
@@ -1606,27 +1606,27 @@ export class RCSService_Business_CreateCalendarEventAction extends SDKHandle {
    * let description: String?
    * @availability iOS 26.0+
    */
-  get description(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2895369916971922, this, []); }
+  get description(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2895369916971922, this, []); }
   /**
    * let fallbackURL: URL?
    * @availability iOS 26.0+
    */
-  get fallbackURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 827515968612407, this, []); }
+  get fallbackURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 827515968612407, this, []); }
   /**
    * let title: String
    * @availability iOS 26.0+
    */
-  get title(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1565013237083301, this, []); }
+  get title(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1565013237083301, this, []); }
   /**
    * let endTime: Date
    * @availability iOS 26.0+
    */
-  get endTime(): globalThis.Date { return callSDK<globalThis.Date>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2414380053041159, this, []); }
+  get endTime(): globalThis.Date { return callSDK<globalThis.Date>("TelephonyMessagingKit_a956b86ef7a76a8e", 2414380053041159, this, []); }
   /**
    * let startTime: Date
    * @availability iOS 26.0+
    */
-  get startTime(): globalThis.Date { return callSDK<globalThis.Date>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2644148089564248, this, []); }
+  get startTime(): globalThis.Date { return callSDK<globalThis.Date>("TelephonyMessagingKit_a956b86ef7a76a8e", 2644148089564248, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV25CreateCalendarEventActionV": true };
 }
 
@@ -1639,12 +1639,12 @@ export class RCSService_Business_DialPhoneNumberAction extends SDKHandle {
    * let phoneNumber: String
    * @availability iOS 26.0+
    */
-  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 157211213949222, this, []); }
+  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 157211213949222, this, []); }
   /**
    * let fallbackURL: URL?
    * @availability iOS 26.0+
    */
-  get fallbackURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3382941068247920, this, []); }
+  get fallbackURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 3382941068247920, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV21DialPhoneNumberActionV": true };
 }
 
@@ -1663,12 +1663,12 @@ export class RCSService_Business_Media extends SDKHandle {
    * let sha256Digest: String?
    * @availability iOS 26.0+
    */
-  get sha256Digest(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4330273328721348, this, []); }
+  get sha256Digest(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 4330273328721348, this, []); }
   /**
    * let url: URL
    * @availability iOS 26.0+
    */
-  get url(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2615657463586745, this, []); }
+  get url(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2615657463586745, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV5MediaV": true };
 }
 
@@ -1681,17 +1681,17 @@ export class RCSService_Business_MediaEntry extends SDKHandle {
    * let contentType: RCSService.Business.MediaEntry.ContentType
    * @availability iOS 26.0+
    */
-  get contentType(): RCSService_Business_MediaEntry_ContentType { return callSDK<RCSService_Business_MediaEntry_ContentType>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1422479660952078, this, []); }
+  get contentType(): RCSService_Business_MediaEntry_ContentType { return callSDK<RCSService_Business_MediaEntry_ContentType>("TelephonyMessagingKit_a956b86ef7a76a8e", 1422479660952078, this, []); }
   /**
    * let label: RCSService.Business.MediaEntry.Label
    * @availability iOS 26.0+
    */
-  get label(): RCSService_Business_MediaEntry_Label { return callSDK<RCSService_Business_MediaEntry_Label>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4357280025626092, this, []); }
+  get label(): RCSService_Business_MediaEntry_Label { return callSDK<RCSService_Business_MediaEntry_Label>("TelephonyMessagingKit_a956b86ef7a76a8e", 4357280025626092, this, []); }
   /**
    * let media: RCSService.Business.Media
    * @availability iOS 26.0+
    */
-  get media(): RCSService_Business_Media { return callSDK<RCSService_Business_Media>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4125205168883170, this, []); }
+  get media(): RCSService_Business_Media { return callSDK<RCSService_Business_Media>("TelephonyMessagingKit_a956b86ef7a76a8e", 4125205168883170, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV10MediaEntryV": true };
 }
 
@@ -1716,12 +1716,12 @@ export class RCSService_Business_Menu extends SDKHandle {
    * let title: String?
    * @availability iOS 26.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2548301443493485, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2548301443493485, this, []); }
   /**
    * let contents: [RCSService.Business.Menu.Content]
    * @availability iOS 26.0+
    */
-  get contents(): Array<RCSService_Business_Menu_Content> { return callSDK<Array<RCSService_Business_Menu_Content>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2192228904938045, this, []); }
+  get contents(): Array<RCSService_Business_Menu_Content> { return callSDK<Array<RCSService_Business_Menu_Content>>("TelephonyMessagingKit_a956b86ef7a76a8e", 2192228904938045, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV4MenuV": true };
 }
 
@@ -1742,12 +1742,12 @@ export class RCSService_Business_OpenURLAction extends SDKHandle {
    * let url: URL
    * @availability iOS 26.0+
    */
-  get url(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1871919653719434, this, []); }
+  get url(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1871919653719434, this, []); }
   /**
    * let target: RCSService.Business.OpenURLAction.Target
    * @availability iOS 26.0+
    */
-  get target(): RCSService_Business_OpenURLAction_Target { return callSDK<RCSService_Business_OpenURLAction_Target>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1984219619299940, this, []); }
+  get target(): RCSService_Business_OpenURLAction_Target { return callSDK<RCSService_Business_OpenURLAction_Target>("TelephonyMessagingKit_a956b86ef7a76a8e", 1984219619299940, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV13OpenURLActionV": true };
 }
 
@@ -1774,12 +1774,12 @@ export class RCSService_Business_OrganizationName extends SDKHandle {
    * let displayName: String
    * @availability iOS 26.0+
    */
-  get displayName(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1580510414883545, this, []); }
+  get displayName(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1580510414883545, this, []); }
   /**
    * let nameType: RCSService.Business.OrganizationName.NameType
    * @availability iOS 26.0+
    */
-  get nameType(): RCSService_Business_OrganizationName_NameType { return callSDK<RCSService_Business_OrganizationName_NameType>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3304378388960823, this, []); }
+  get nameType(): RCSService_Business_OrganizationName_NameType { return callSDK<RCSService_Business_OrganizationName_NameType>("TelephonyMessagingKit_a956b86ef7a76a8e", 3304378388960823, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV16OrganizationNameV": true };
 }
 
@@ -1798,17 +1798,17 @@ export class RCSService_Business_ShowLocationAction extends SDKHandle {
    * let fallbackURL: URL?
    * @availability iOS 26.0+
    */
-  get fallbackURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4349821887438997, this, []); }
+  get fallbackURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 4349821887438997, this, []); }
   /**
    * let label: String?
    * @availability iOS 26.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 931069999048009, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 931069999048009, this, []); }
   /**
    * let method: RCSService.Business.ShowLocationAction.Method
    * @availability iOS 26.0+
    */
-  get method(): RCSService_Business_ShowLocationAction_Method { return callSDK<RCSService_Business_ShowLocationAction_Method>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1722617880863241, this, []); }
+  get method(): RCSService_Business_ShowLocationAction_Method { return callSDK<RCSService_Business_ShowLocationAction_Method>("TelephonyMessagingKit_a956b86ef7a76a8e", 1722617880863241, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV18ShowLocationActionV": true };
 }
 
@@ -1829,12 +1829,12 @@ export class RCSService_Business_SuggestedAction extends SDKHandle {
    * let displayText: String
    * @availability iOS 26.0+
    */
-  get displayText(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3373110225093943, this, []); }
+  get displayText(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3373110225093943, this, []); }
   /**
    * let action: RCSService.Business.SuggestedAction.Action
    * @availability iOS 26.0+
    */
-  get action(): RCSService_Business_SuggestedAction_Action { return callSDK<RCSService_Business_SuggestedAction_Action>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4211031712904444, this, []); }
+  get action(): RCSService_Business_SuggestedAction_Action { return callSDK<RCSService_Business_SuggestedAction_Action>("TelephonyMessagingKit_a956b86ef7a76a8e", 4211031712904444, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV15SuggestedActionV": true };
 }
 
@@ -1855,7 +1855,7 @@ export class RCSService_Business_SuggestedReply extends SDKHandle {
    * let displayText: String
    * @availability iOS 26.0+
    */
-  get displayText(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3542138493236645, this, []); }
+  get displayText(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3542138493236645, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV14SuggestedReplyV": true };
 }
 
@@ -1876,17 +1876,17 @@ export class RCSService_Business_TelephoneDetails extends SDKHandle {
    * let phoneNumber: String
    * @availability iOS 26.0+
    */
-  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3041466868334427, this, []); }
+  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3041466868334427, this, []); }
   /**
    * let phoneNumberType: String
    * @availability iOS 26.0+
    */
-  get phoneNumberType(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2915685608610132, this, []); }
+  get phoneNumberType(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2915685608610132, this, []); }
   /**
    * let label: String
    * @availability iOS 26.0+
    */
-  get label(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3225415172695678, this, []); }
+  get label(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3225415172695678, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV16TelephoneDetailsV": true };
 }
 
@@ -1899,17 +1899,17 @@ export class RCSService_Business_URIEntry extends SDKHandle {
    * let uri: URL
    * @availability iOS 26.0+
    */
-  get uri(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3165097102157561, this, []); }
+  get uri(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 3165097102157561, this, []); }
   /**
    * let type: RCSService.Business.URIEntry.URIType
    * @availability iOS 26.0+
    */
-  get type(): RCSService_Business_URIEntry_URIType { return callSDK<RCSService_Business_URIEntry_URIType>("TelephonyMessagingKit_d6c5d10d3352e6ec", 748710782013860, this, []); }
+  get type(): RCSService_Business_URIEntry_URIType { return callSDK<RCSService_Business_URIEntry_URIType>("TelephonyMessagingKit_a956b86ef7a76a8e", 748710782013860, this, []); }
   /**
    * let label: RCSService.Business.URIEntry.Label
    * @availability iOS 26.0+
    */
-  get label(): RCSService_Business_URIEntry_Label { return callSDK<RCSService_Business_URIEntry_Label>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4335233058557894, this, []); }
+  get label(): RCSService_Business_URIEntry_Label { return callSDK<RCSService_Business_URIEntry_Label>("TelephonyMessagingKit_a956b86ef7a76a8e", 4335233058557894, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV8URIEntryV": true };
 }
 
@@ -1934,17 +1934,17 @@ export class RCSService_Business_VerificationDetails extends SDKHandle {
    * let isVerified: Bool
    * @availability iOS 26.0+
    */
-  get isVerified(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1371901920639759, this, []); }
+  get isVerified(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 1371901920639759, this, []); }
   /**
    * let verifiedBy: String?
    * @availability iOS 26.0+
    */
-  get verifiedBy(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3617823691126456, this, []); }
+  get verifiedBy(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 3617823691126456, this, []); }
   /**
    * let expirationDate: Date?
    * @availability iOS 26.0+
    */
-  get expirationDate(): $SDK5 { return callSDK<$SDK5>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1108726830806135, this, []); }
+  get expirationDate(): $SDK5 { return callSDK<$SDK5>("TelephonyMessagingKit_a956b86ef7a76a8e", 1108726830806135, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV19VerificationDetailsV": true };
 }
 
@@ -1957,7 +1957,7 @@ export class RCSService_Business_WelcomeMessage extends SDKHandle {
    * let content: RCSService.Business.WelcomeMessage.Content
    * @availability iOS 27.0+
    */
-  get content(): RCSService_Business_WelcomeMessage_Content { return callSDK<RCSService_Business_WelcomeMessage_Content>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3069524097018585, this, []); }
+  get content(): RCSService_Business_WelcomeMessage_Content { return callSDK<RCSService_Business_WelcomeMessage_Content>("TelephonyMessagingKit_a956b86ef7a76a8e", 3069524097018585, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC8BusinessV14WelcomeMessageV": true };
 }
 
@@ -1978,31 +1978,31 @@ export class RCSService_BusinessInformationRequest extends SDKHandle {
    * var welcomeMessageInformation: RCSService.BusinessInformationRequest.WelcomeMessageInformation?
    * @availability iOS 27.0+
    */
-  get welcomeMessageInformation(): $SDK26 { return callSDK<$SDK26>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1090025267795535, this, []); }
-  set welcomeMessageInformation(value: $SDK26) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1952731149504763, this, [value]); }
+  get welcomeMessageInformation(): $SDK26 { return callSDK<$SDK26>("TelephonyMessagingKit_a956b86ef7a76a8e", 1090025267795535, this, []); }
+  set welcomeMessageInformation(value: $SDK26) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1952731149504763, this, [value]); }
   /**
    * var cachePolicy: RCSService.BusinessInformationRequest.CachePolicy
    * @availability iOS 26.0+
    */
-  get cachePolicy(): RCSService_BusinessInformationRequest_CachePolicy { return callSDK<RCSService_BusinessInformationRequest_CachePolicy>("TelephonyMessagingKit_d6c5d10d3352e6ec", 858646662090282, this, []); }
-  set cachePolicy(value: RCSService_BusinessInformationRequest_CachePolicy) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4412999931824283, this, [value]); }
+  get cachePolicy(): RCSService_BusinessInformationRequest_CachePolicy { return callSDK<RCSService_BusinessInformationRequest_CachePolicy>("TelephonyMessagingKit_a956b86ef7a76a8e", 858646662090282, this, []); }
+  set cachePolicy(value: RCSService_BusinessInformationRequest_CachePolicy) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4412999931824283, this, [value]); }
   /**
    * init(cellularServiceID: CellularServiceID, handle: RCSHandle.URI, cachePolicy: RCSService.BusinessInformationRequest.CachePolicy = .cacheOrRemote)
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, handle: RCSHandle_URI, cachePolicy?: RCSService_BusinessInformationRequest_CachePolicy): RCSService_BusinessInformationRequest { return callSDK<RCSService_BusinessInformationRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2271628995090418, undefined, [cellularServiceID, handle, cachePolicy]); }
+  static init(cellularServiceID: CellularServiceID, handle: RCSHandle_URI, cachePolicy?: RCSService_BusinessInformationRequest_CachePolicy): RCSService_BusinessInformationRequest { return callSDK<RCSService_BusinessInformationRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 2271628995090418, undefined, [cellularServiceID, handle, cachePolicy]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1960124503870113, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 793930379401694, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1960124503870113, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 793930379401694, this, [value]); }
   /**
    * var handle: RCSHandle.URI
    * @availability iOS 26.0+
    */
-  get handle(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4003402360617790, this, []); }
-  set handle(value: RCSHandle_URI) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2755395828303839, this, [value]); }
+  get handle(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_a956b86ef7a76a8e", 4003402360617790, this, []); }
+  set handle(value: RCSHandle_URI) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2755395828303839, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC26BusinessInformationRequestV": true };
 }
 
@@ -2021,19 +2021,19 @@ export class RCSService_BusinessInformationRequest_WelcomeMessageInformation ext
    * var contextualInformation: String?
    * @availability iOS 27.0+
    */
-  get contextualInformation(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4151131715440851, this, []); }
-  set contextualInformation(value: (string) | null) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3895636153763771, this, [value]); }
+  get contextualInformation(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 4151131715440851, this, []); }
+  set contextualInformation(value: (string) | null) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3895636153763771, this, [value]); }
   /**
    * init(identifier: String, contextualInformation: String? = nil)
    * @availability iOS 27.0+
    */
-  static init(identifier: string, contextualInformation?: (string) | null): RCSService_BusinessInformationRequest_WelcomeMessageInformation { return callSDK<RCSService_BusinessInformationRequest_WelcomeMessageInformation>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3833479702680942, undefined, [identifier, contextualInformation]); }
+  static init(identifier: string, contextualInformation?: (string) | null): RCSService_BusinessInformationRequest_WelcomeMessageInformation { return callSDK<RCSService_BusinessInformationRequest_WelcomeMessageInformation>("TelephonyMessagingKit_a956b86ef7a76a8e", 3833479702680942, undefined, [identifier, contextualInformation]); }
   /**
    * var identifier: String
    * @availability iOS 27.0+
    */
-  get identifier(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 613357561839350, this, []); }
-  set identifier(value: string) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 649460953961781, this, [value]); }
+  get identifier(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 613357561839350, this, []); }
+  set identifier(value: string) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 649460953961781, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC26BusinessInformationRequestV014WelcomeMessageF0V": true };
 }
 
@@ -2046,31 +2046,31 @@ export class RCSService_ChangeGroupChatSubjectRequest extends SDKHandle {
    * var newSubject: String
    * @availability iOS 26.0+
    */
-  get newSubject(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1283012739971727, this, []); }
-  set newSubject(value: string) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4164182352542409, this, [value]); }
+  get newSubject(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1283012739971727, this, []); }
+  set newSubject(value: string) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4164182352542409, this, [value]); }
   /**
    * var isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2099062539337973, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1034927865955179, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 2099062539337973, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1034927865955179, this, [value]); }
   /**
    * var groupHandle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2826858798661781, this, []); }
-  set groupHandle(value: RCSHandle_Group) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 750293949135847, this, [value]); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 2826858798661781, this, []); }
+  set groupHandle(value: RCSHandle_Group) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 750293949135847, this, [value]); }
   /**
    * init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle.Group, newSubject: String)
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle_Group, newSubject: string): RCSService_ChangeGroupChatSubjectRequest { return callSDK<RCSService_ChangeGroupChatSubjectRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1179700997205871, undefined, [cellularServiceID, groupHandle, newSubject]); }
+  static init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle_Group, newSubject: string): RCSService_ChangeGroupChatSubjectRequest { return callSDK<RCSService_ChangeGroupChatSubjectRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 1179700997205871, undefined, [cellularServiceID, groupHandle, newSubject]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2622549318454354, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 80135597795500, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 2622549318454354, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 80135597795500, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC29ChangeGroupChatSubjectRequestV": true };
 }
 
@@ -2083,32 +2083,32 @@ export class RCSService_Configuration extends SDKHandle {
    * let supportsEndToEndEncryption: Bool
    * @availability iOS 26.5+
    */
-  get supportsEndToEndEncryption(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1364211400245754, this, []); }
+  get supportsEndToEndEncryption(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 1364211400245754, this, []); }
   /**
    * var maximumGroupSize: Int? { get }
    * @availability iOS 26.0+
    */
-  get maximumGroupSize(): (number) | null { return callSDK<(number) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1077834141812755, this, []); }
+  get maximumGroupSize(): (number) | null { return callSDK<(number) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 1077834141812755, this, []); }
   /**
    * let chatRevokeTimeout: Duration?
    * @availability iOS 26.0+
    */
-  get chatRevokeTimeout(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1649038574727813, this, []); }
+  get chatRevokeTimeout(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 1649038574727813, this, []); }
   /**
    * var maximumTextMessageSize: Measurement<UnitInformationStorage>? { get }
    * @availability iOS 26.0+
    */
-  get maximumTextMessageSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1949845485891303, this, []); }
+  get maximumTextMessageSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_a956b86ef7a76a8e", 1949845485891303, this, []); }
   /**
    * let fileTransferWarningSize: Measurement<UnitInformationStorage>?
    * @availability iOS 26.0+
    */
-  get fileTransferWarningSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_d6c5d10d3352e6ec", 722812711160365, this, []); }
+  get fileTransferWarningSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_a956b86ef7a76a8e", 722812711160365, this, []); }
   /**
    * var maximumFileTransferSize: Measurement<UnitInformationStorage>? { get }
    * @availability iOS 26.0+
    */
-  get maximumFileTransferSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2982037342011499, this, []); }
+  get maximumFileTransferSize(): $SDK3 { return callSDK<$SDK3>("TelephonyMessagingKit_a956b86ef7a76a8e", 2982037342011499, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC13ConfigurationV": true };
 }
 
@@ -2121,31 +2121,31 @@ export class RCSService_CreateGroupChatRequest extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4089147535059121, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1051466380999132, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 4089147535059121, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1051466380999132, this, [value]); }
   /**
    * var participants: [RCSHandle.URI]
    * @availability iOS 26.0+
    */
-  get participants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1713412168340895, this, []); }
-  set participants(value: Array<RCSHandle_URI>) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4447854852247602, this, [value]); }
+  get participants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_a956b86ef7a76a8e", 1713412168340895, this, []); }
+  set participants(value: Array<RCSHandle_URI>) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4447854852247602, this, [value]); }
   /**
    * init(cellularServiceID: CellularServiceID, participants: [RCSHandle.URI], subject: String)
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, participants: Array<RCSHandle_URI>, subject: string): RCSService_CreateGroupChatRequest { return callSDK<RCSService_CreateGroupChatRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1964051092985013, undefined, [cellularServiceID, participants, subject]); }
+  static init(cellularServiceID: CellularServiceID, participants: Array<RCSHandle_URI>, subject: string): RCSService_CreateGroupChatRequest { return callSDK<RCSService_CreateGroupChatRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 1964051092985013, undefined, [cellularServiceID, participants, subject]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3873360107414555, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2253766060066964, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3873360107414555, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2253766060066964, this, [value]); }
   /**
    * var subject: String
    * @availability iOS 26.0+
    */
-  get subject(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4154285231263988, this, []); }
-  set subject(value: string) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3710697706758009, this, [value]); }
+  get subject(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 4154285231263988, this, []); }
+  set subject(value: string) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3710697706758009, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC22CreateGroupChatRequestV": true };
 }
 
@@ -2158,22 +2158,22 @@ export class RCSService_CreateGroupChatRequest_Result extends SDKHandle {
    * let isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4091648412890842, this, []); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 4091648412890842, this, []); }
   /**
    * let groupHandle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4454130712463104, this, []); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 4454130712463104, this, []); }
   /**
    * let participants: [RCSHandle.URI]
    * @availability iOS 26.0+
    */
-  get participants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 513871883892329, this, []); }
+  get participants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_a956b86ef7a76a8e", 513871883892329, this, []); }
   /**
    * let subject: String?
    * @availability iOS 26.0+
    */
-  get subject(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2539233057099290, this, []); }
+  get subject(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2539233057099290, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC22CreateGroupChatRequestV6ResultV": true };
 }
 
@@ -2192,30 +2192,30 @@ export class RCSService_FileDownloadRequest extends SDKHandle {
    * var destinationFileURL: URL
    * @availability iOS 26.0+
    */
-  get destinationFileURL(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1751538908258386, this, []); }
-  set destinationFileURL(value: string) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 569990556420937, this, [value]); }
+  get destinationFileURL(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1751538908258386, this, []); }
+  set destinationFileURL(value: string) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 569990556420937, this, [value]); }
   /**
    * init(cellularServiceID: CellularServiceID, fileMetadata: RCSFileTransferMetadata, destinationFileURL: URL)
    * @availability iOS 26.5+
    */
-  static initCellularServiceIDFileMetadataDestinationFileURL(cellularServiceID: CellularServiceID, fileMetadata: RCSFileTransferMetadata, destinationFileURL: string): RCSService_FileDownloadRequest { return callSDK<RCSService_FileDownloadRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3940558172291487, undefined, [cellularServiceID, fileMetadata, destinationFileURL]); }
+  static initCellularServiceIDFileMetadataDestinationFileURL(cellularServiceID: CellularServiceID, fileMetadata: RCSFileTransferMetadata, destinationFileURL: string): RCSService_FileDownloadRequest { return callSDK<RCSService_FileDownloadRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 3940558172291487, undefined, [cellularServiceID, fileMetadata, destinationFileURL]); }
   /**
    * init(cellularServiceID: CellularServiceID, fileURL: URL, destinationFileURL: URL)
    * @availability iOS 26.0+
    */
-  static initCellularServiceIDFileURLDestinationFileURL(cellularServiceID: CellularServiceID, fileURL: string, destinationFileURL: string): RCSService_FileDownloadRequest { return callSDK<RCSService_FileDownloadRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3385181261224683, undefined, [cellularServiceID, fileURL, destinationFileURL]); }
+  static initCellularServiceIDFileURLDestinationFileURL(cellularServiceID: CellularServiceID, fileURL: string, destinationFileURL: string): RCSService_FileDownloadRequest { return callSDK<RCSService_FileDownloadRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 3385181261224683, undefined, [cellularServiceID, fileURL, destinationFileURL]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3432128177864844, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 240653168710910, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3432128177864844, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 240653168710910, this, [value]); }
   /**
    * var fileURL: URL
    * @availability iOS 26.0+
    */
-  get fileURL(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 419039568375968, this, []); }
-  set fileURL(value: string) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4277267094393929, this, [value]); }
+  get fileURL(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 419039568375968, this, []); }
+  set fileURL(value: string) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4277267094393929, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC19FileDownloadRequestV": true };
 }
 
@@ -2228,12 +2228,12 @@ export class RCSService_FileDownloadRequest_Metadata extends SDKHandle {
    * let suggestedFileName: String?
    * @availability iOS 26.0+
    */
-  get suggestedFileName(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2744661327778440, this, []); }
+  get suggestedFileName(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2744661327778440, this, []); }
   /**
    * let contentType: UTType?
    * @availability iOS 26.0+
    */
-  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1415797129140274, this, []); }
+  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_a956b86ef7a76a8e", 1415797129140274, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC19FileDownloadRequestV8MetadataV": true };
 }
 
@@ -2246,43 +2246,43 @@ export class RCSService_FileUploadRequest extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3845066247358994, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 442134325973730, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3845066247358994, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 442134325973730, this, [value]); }
   /**
    * var contentType: UTType?
    * @availability iOS 26.0+
    */
-  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1965918319831539, this, []); }
-  set contentType(value: $SDK1) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2445610919964948, this, [value]); }
+  get contentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_a956b86ef7a76a8e", 1965918319831539, this, []); }
+  set contentType(value: $SDK1) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2445610919964948, this, [value]); }
   /**
    * var thumbnailURL: URL?
    * @availability iOS 26.0+
    */
-  get thumbnailURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3447032374889345, this, []); }
-  set thumbnailURL(value: (string) | null) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3455019829852298, this, [value]); }
+  get thumbnailURL(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 3447032374889345, this, []); }
+  set thumbnailURL(value: (string) | null) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3455019829852298, this, [value]); }
   /**
    * init(cellularServiceID: CellularServiceID, fileURL: URL, contentType: UTType? = nil, thumbnailURL: URL? = nil, thumbnailContentType: UTType? = nil)
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, fileURL: string, contentType?: $SDK1, thumbnailURL?: (string) | null, thumbnailContentType?: $SDK1): RCSService_FileUploadRequest { return callSDK<RCSService_FileUploadRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1817667948868681, undefined, [cellularServiceID, fileURL, contentType, thumbnailURL, thumbnailContentType]); }
+  static init(cellularServiceID: CellularServiceID, fileURL: string, contentType?: $SDK1, thumbnailURL?: (string) | null, thumbnailContentType?: $SDK1): RCSService_FileUploadRequest { return callSDK<RCSService_FileUploadRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 1817667948868681, undefined, [cellularServiceID, fileURL, contentType, thumbnailURL, thumbnailContentType]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3408424317020293, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 678960158401989, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3408424317020293, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 678960158401989, this, [value]); }
   /**
    * var thumbnailContentType: UTType?
    * @availability iOS 26.0+
    */
-  get thumbnailContentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_d6c5d10d3352e6ec", 900935194038369, this, []); }
-  set thumbnailContentType(value: $SDK1) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4453523613809862, this, [value]); }
+  get thumbnailContentType(): $SDK1 { return callSDK<$SDK1>("TelephonyMessagingKit_a956b86ef7a76a8e", 900935194038369, this, []); }
+  set thumbnailContentType(value: $SDK1) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4453523613809862, this, [value]); }
   /**
    * var fileURL: URL
    * @availability iOS 26.0+
    */
-  get fileURL(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 317537442518291, this, []); }
-  set fileURL(value: string) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3677385795130096, this, [value]); }
+  get fileURL(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 317537442518291, this, []); }
+  set fileURL(value: string) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3677385795130096, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC17FileUploadRequestV": true };
 }
 
@@ -2295,17 +2295,17 @@ export class RCSService_FileUploadRequest_Metadata extends SDKHandle {
    * let fileMetadata: RCSFileTransferMetadata
    * @availability iOS 26.0+
    */
-  get fileMetadata(): RCSFileTransferMetadata { return callSDK<RCSFileTransferMetadata>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4282588179952762, this, []); }
+  get fileMetadata(): RCSFileTransferMetadata { return callSDK<RCSFileTransferMetadata>("TelephonyMessagingKit_a956b86ef7a76a8e", 4282588179952762, this, []); }
   /**
    * let thumbnailMetadata: RCSFileTransferMetadata?
    * @availability iOS 26.0+
    */
-  get thumbnailMetadata(): $SDK6 { return callSDK<$SDK6>("TelephonyMessagingKit_d6c5d10d3352e6ec", 85296963486164, this, []); }
+  get thumbnailMetadata(): $SDK6 { return callSDK<$SDK6>("TelephonyMessagingKit_a956b86ef7a76a8e", 85296963486164, this, []); }
   /**
    * let transactionID: UUID
    * @availability iOS 26.0+
    */
-  get transactionID(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 487938079943435, this, []); }
+  get transactionID(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 487938079943435, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC17FileUploadRequestV8MetadataV": true };
 }
 
@@ -2318,22 +2318,22 @@ export class RCSService_GroupChatEndedEvent extends SDKHandle {
    * let isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3590336076924543, this, []); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3590336076924543, this, []); }
   /**
    * let groupHandle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1193533194592281, this, []); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 1193533194592281, this, []); }
   /**
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2264683258668255, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 2264683258668255, this, []); }
   /**
    * let endedBy: RCSHandle.URI
    * @availability iOS 26.0+
    */
-  get endedBy(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4310617877477273, this, []); }
+  get endedBy(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_a956b86ef7a76a8e", 4310617877477273, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC19GroupChatEndedEventV": true };
 }
 
@@ -2354,27 +2354,27 @@ export class RCSService_GroupChatParticipantsAddedEvent extends SDKHandle {
    * let addedParticipants: [RCSHandle.URI]
    * @availability iOS 26.0+
    */
-  get addedParticipants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3593016059889621, this, []); }
+  get addedParticipants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_a956b86ef7a76a8e", 3593016059889621, this, []); }
   /**
    * let isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2902685400532624, this, []); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 2902685400532624, this, []); }
   /**
    * let groupHandle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2236618831091458, this, []); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 2236618831091458, this, []); }
   /**
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2927035524790615, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 2927035524790615, this, []); }
   /**
    * let addedBy: RCSHandle.URI
    * @availability iOS 26.0+
    */
-  get addedBy(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_d6c5d10d3352e6ec", 14725537794858, this, []); }
+  get addedBy(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_a956b86ef7a76a8e", 14725537794858, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC31GroupChatParticipantsAddedEventV": true };
 }
 
@@ -2387,32 +2387,32 @@ export class RCSService_GroupChatParticipantsRemovedEvent extends SDKHandle {
    * let isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2559256945555720, this, []); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 2559256945555720, this, []); }
   /**
    * let removedParticipants: [RCSHandle.URI]
    * @availability iOS 26.0+
    */
-  get removedParticipants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 8027152306056, this, []); }
+  get removedParticipants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_a956b86ef7a76a8e", 8027152306056, this, []); }
   /**
    * let groupHandle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3762768736827306, this, []); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 3762768736827306, this, []); }
   /**
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2928366432663799, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 2928366432663799, this, []); }
   /**
    * let removedCurrentUser: Bool
    * @availability iOS 26.0+
    */
-  get removedCurrentUser(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2140131621507664, this, []); }
+  get removedCurrentUser(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 2140131621507664, this, []); }
   /**
    * let removedBy: RCSHandle.URI
    * @availability iOS 26.0+
    */
-  get removedBy(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2539124592137776, this, []); }
+  get removedBy(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_a956b86ef7a76a8e", 2539124592137776, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC33GroupChatParticipantsRemovedEventV": true };
 }
 
@@ -2425,32 +2425,32 @@ export class RCSService_GroupChatStartedEvent extends SDKHandle {
    * let isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 502336344012885, this, []); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 502336344012885, this, []); }
   /**
    * let groupHandle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4023447089442464, this, []); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 4023447089442464, this, []); }
   /**
    * let participants: [RCSHandle.URI]
    * @availability iOS 26.0+
    */
-  get participants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1351971646254463, this, []); }
+  get participants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_a956b86ef7a76a8e", 1351971646254463, this, []); }
   /**
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 368646971144192, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 368646971144192, this, []); }
   /**
    * let creator: RCSHandle.URI
    * @availability iOS 26.0+
    */
-  get creator(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1775669590044932, this, []); }
+  get creator(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_a956b86ef7a76a8e", 1775669590044932, this, []); }
   /**
    * let subject: String
    * @availability iOS 26.0+
    */
-  get subject(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 59840397134557, this, []); }
+  get subject(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 59840397134557, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC21GroupChatStartedEventV": true };
 }
 
@@ -2463,12 +2463,12 @@ export class RCSService_GroupChatSubjectInvalidatedEvent extends SDKHandle {
    * let groupHandle: RCSHandle.Group
    * @availability iOS 26.5+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3523495424071033, this, []); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 3523495424071033, this, []); }
   /**
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.5+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3770360349938207, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3770360349938207, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC32GroupChatSubjectInvalidatedEventV": true };
 }
 
@@ -2481,27 +2481,27 @@ export class RCSService_GroupChatSubjectUpdatedEvent extends SDKHandle {
    * let newSubject: String
    * @availability iOS 26.0+
    */
-  get newSubject(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 783727270808109, this, []); }
+  get newSubject(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 783727270808109, this, []); }
   /**
    * let isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1730348896634072, this, []); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 1730348896634072, this, []); }
   /**
    * let groupHandle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 22044404644038, this, []); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 22044404644038, this, []); }
   /**
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1702156539611922, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1702156539611922, this, []); }
   /**
    * let changedBy: RCSHandle.URI
    * @availability iOS 26.0+
    */
-  get changedBy(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2733221985926499, this, []); }
+  get changedBy(): RCSHandle_URI { return callSDK<RCSHandle_URI>("TelephonyMessagingKit_a956b86ef7a76a8e", 2733221985926499, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC28GroupChatSubjectUpdatedEventV": true };
 }
 
@@ -2514,22 +2514,22 @@ export class RCSService_IncomingMessageNotification extends SDKHandle {
    * let suggestions: [RCSService.Business.Suggestion]
    * @availability iOS 26.0+
    */
-  get suggestions(): $SDK21 { return callSDK<$SDK21>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2390358226673232, this, []); }
+  get suggestions(): $SDK21 { return callSDK<$SDK21>("TelephonyMessagingKit_a956b86ef7a76a8e", 2390358226673232, this, []); }
   /**
    * let groupContext: RCSGroupContext?
    * @availability iOS 26.0+
    */
-  get groupContext(): (RCSGroupContext) | null { return callSDK<(RCSGroupContext) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 932988359724816, this, []); }
+  get groupContext(): (RCSGroupContext) | null { return callSDK<(RCSGroupContext) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 932988359724816, this, []); }
   /**
    * let requestedDispositions: [RCSMessage.Disposition]
    * @availability iOS 27.0+
    */
-  get requestedDispositions(): Array<RCSMessage_Disposition> { return callSDK<Array<RCSMessage_Disposition>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1377268913476008, this, []); }
+  get requestedDispositions(): Array<RCSMessage_Disposition> { return callSDK<Array<RCSMessage_Disposition>>("TelephonyMessagingKit_a956b86ef7a76a8e", 1377268913476008, this, []); }
   /**
    * let message: RCSMessage
    * @availability iOS 26.0+
    */
-  get message(): RCSMessage { return callSDK<RCSMessage>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1905280029730897, this, []); }
+  get message(): RCSMessage { return callSDK<RCSMessage>("TelephonyMessagingKit_a956b86ef7a76a8e", 1905280029730897, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC27IncomingMessageNotificationV": true };
 }
 
@@ -2542,19 +2542,19 @@ export class RCSService_LeaveGroupChatRequest extends SDKHandle {
    * var groupHandle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 181724569701521, this, []); }
-  set groupHandle(value: RCSHandle_Group) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2495810182924705, this, [value]); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 181724569701521, this, []); }
+  set groupHandle(value: RCSHandle_Group) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2495810182924705, this, [value]); }
   /**
    * init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle.Group)
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle_Group): RCSService_LeaveGroupChatRequest { return callSDK<RCSService_LeaveGroupChatRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4474055108461551, undefined, [cellularServiceID, groupHandle]); }
+  static init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle_Group): RCSService_LeaveGroupChatRequest { return callSDK<RCSService_LeaveGroupChatRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 4474055108461551, undefined, [cellularServiceID, groupHandle]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1758499765555606, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3081583238539186, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1758499765555606, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3081583238539186, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC21LeaveGroupChatRequestV": true };
 }
 
@@ -2567,57 +2567,57 @@ export class RCSService_RemoteCapabilities extends SDKHandle {
    * let supportsEndToEndEncryption: Bool
    * @availability iOS 26.5+
    */
-  get supportsEndToEndEncryption(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2084549589527028, this, []); }
+  get supportsEndToEndEncryption(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 2084549589527028, this, []); }
   /**
    * let supportsExtendedMessagingCustomReaction: Bool
    * @availability iOS 27.0+
    */
-  get supportsExtendedMessagingCustomReaction(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2567456471571237, this, []); }
+  get supportsExtendedMessagingCustomReaction(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 2567456471571237, this, []); }
   /**
    * let supportsExtendedMessagingReply: Bool
    * @availability iOS 27.0+
    */
-  get supportsExtendedMessagingReply(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2544803024279798, this, []); }
+  get supportsExtendedMessagingReply(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 2544803024279798, this, []); }
   /**
    * let supportsExtendedMessagingReaction: Bool
    * @availability iOS 27.0+
    */
-  get supportsExtendedMessagingReaction(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3486513704681279, this, []); }
+  get supportsExtendedMessagingReaction(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3486513704681279, this, []); }
   /**
    * let validUntil: Date?
    * @availability iOS 26.0+
    */
-  get validUntil(): $SDK5 { return callSDK<$SDK5>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2789798318128118, this, []); }
+  get validUntil(): $SDK5 { return callSDK<$SDK5>("TelephonyMessagingKit_a956b86ef7a76a8e", 2789798318128118, this, []); }
   /**
    * let availability: RCSService.RemoteCapabilities.Availability?
    * @availability iOS 26.0+
    */
-  get availability(): (RCSService_RemoteCapabilities_Availability) | null { return callSDK<(RCSService_RemoteCapabilities_Availability) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2217332522168658, this, []); }
+  get availability(): (RCSService_RemoteCapabilities_Availability) | null { return callSDK<(RCSService_RemoteCapabilities_Availability) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2217332522168658, this, []); }
   /**
    * let supportsChat: Bool
    * @availability iOS 26.0+
    */
-  get supportsChat(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 850593893819409, this, []); }
+  get supportsChat(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 850593893819409, this, []); }
   /**
    * let isBusinessHandle: Bool
    * @availability iOS 26.0+
    */
-  get isBusinessHandle(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3158447358781167, this, []); }
+  get isBusinessHandle(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3158447358781167, this, []); }
   /**
    * let alternativeHandles: [RCSHandle]
    * @availability iOS 26.0+
    */
-  get alternativeHandles(): Array<RCSHandle> { return callSDK<Array<RCSHandle>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3500844337755006, this, []); }
+  get alternativeHandles(): Array<RCSHandle> { return callSDK<Array<RCSHandle>>("TelephonyMessagingKit_a956b86ef7a76a8e", 3500844337755006, this, []); }
   /**
    * let supportsGeolocation: Bool
    * @availability iOS 26.0+
    */
-  get supportsGeolocation(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 496576023107995, this, []); }
+  get supportsGeolocation(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 496576023107995, this, []); }
   /**
    * let supportsFileTransfer: Bool
    * @availability iOS 26.0+
    */
-  get supportsFileTransfer(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1569726299436739, this, []); }
+  get supportsFileTransfer(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 1569726299436739, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC18RemoteCapabilitiesV": true };
 }
 
@@ -2636,25 +2636,25 @@ export class RCSService_RemoteCapabilitiesRequest extends SDKHandle {
    * var cachePolicy: RCSService.RemoteCapabilitiesRequest.CachePolicy
    * @availability iOS 26.0+
    */
-  get cachePolicy(): RCSService_RemoteCapabilitiesRequest_CachePolicy { return callSDK<RCSService_RemoteCapabilitiesRequest_CachePolicy>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3073433113186536, this, []); }
-  set cachePolicy(value: RCSService_RemoteCapabilitiesRequest_CachePolicy) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1707197950139314, this, [value]); }
+  get cachePolicy(): RCSService_RemoteCapabilitiesRequest_CachePolicy { return callSDK<RCSService_RemoteCapabilitiesRequest_CachePolicy>("TelephonyMessagingKit_a956b86ef7a76a8e", 3073433113186536, this, []); }
+  set cachePolicy(value: RCSService_RemoteCapabilitiesRequest_CachePolicy) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1707197950139314, this, [value]); }
   /**
    * init(cellularServiceID: CellularServiceID, handle: RCSHandle, cachePolicy: RCSService.RemoteCapabilitiesRequest.CachePolicy = .cacheOnly)
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, handle: RCSHandle, cachePolicy?: RCSService_RemoteCapabilitiesRequest_CachePolicy): RCSService_RemoteCapabilitiesRequest { return callSDK<RCSService_RemoteCapabilitiesRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 796303441191567, undefined, [cellularServiceID, handle, cachePolicy]); }
+  static init(cellularServiceID: CellularServiceID, handle: RCSHandle, cachePolicy?: RCSService_RemoteCapabilitiesRequest_CachePolicy): RCSService_RemoteCapabilitiesRequest { return callSDK<RCSService_RemoteCapabilitiesRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 796303441191567, undefined, [cellularServiceID, handle, cachePolicy]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2180930239943552, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1030109862554802, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 2180930239943552, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1030109862554802, this, [value]); }
   /**
    * var handle: RCSHandle
    * @availability iOS 26.0+
    */
-  get handle(): RCSHandle { return callSDK<RCSHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2046805494342985, this, []); }
-  set handle(value: RCSHandle) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 288936479762371, this, [value]); }
+  get handle(): RCSHandle { return callSDK<RCSHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 2046805494342985, this, []); }
+  set handle(value: RCSHandle) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 288936479762371, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC25RemoteCapabilitiesRequestV": true };
 }
 
@@ -2669,7 +2669,7 @@ export const RCSService_RemoteCapabilitiesRequest_CachePolicy = {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  getDescription($self: RCSService_RemoteCapabilitiesRequest_CachePolicy): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2063352669223151, $self, []); }
+  getDescription($self: RCSService_RemoteCapabilitiesRequest_CachePolicy): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2063352669223151, $self, []); }
 };
 
 /**
@@ -2681,27 +2681,27 @@ export class RCSService_RemoteHandleUpdate extends SDKHandle {
    * let isBusinessHandle: Bool
    * @availability iOS 26.0+
    */
-  get isBusinessHandle(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3547450419624111, this, []); }
+  get isBusinessHandle(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3547450419624111, this, []); }
   /**
    * let newHandle: RCSHandle?
    * @availability iOS 26.0+
    */
-  get newHandle(): (RCSHandle) | null { return callSDK<(RCSHandle) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 430913865002777, this, []); }
+  get newHandle(): (RCSHandle) | null { return callSDK<(RCSHandle) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 430913865002777, this, []); }
   /**
    * let capabilities: RCSService.RemoteCapabilities?
    * @availability iOS 26.0+
    */
-  get capabilities(): $SDK8 { return callSDK<$SDK8>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3646356203847060, this, []); }
+  get capabilities(): $SDK8 { return callSDK<$SDK8>("TelephonyMessagingKit_a956b86ef7a76a8e", 3646356203847060, this, []); }
   /**
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1292192639842945, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1292192639842945, this, []); }
   /**
    * let handle: RCSHandle
    * @availability iOS 26.0+
    */
-  get handle(): RCSHandle { return callSDK<RCSHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 562691250751045, this, []); }
+  get handle(): RCSHandle { return callSDK<RCSHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 562691250751045, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC18RemoteHandleUpdateV": true };
 }
 
@@ -2714,31 +2714,31 @@ export class RCSService_RemoveGroupChatParticipantsRequest extends SDKHandle {
    * var isEndToEndEncrypted: Bool
    * @availability iOS 26.5+
    */
-  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2114241055295839, this, []); }
-  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 827524629274425, this, [value]); }
+  get isEndToEndEncrypted(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 2114241055295839, this, []); }
+  set isEndToEndEncrypted(value: boolean) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 827524629274425, this, [value]); }
   /**
    * var groupHandle: RCSHandle.Group
    * @availability iOS 26.0+
    */
-  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1360091963418694, this, []); }
-  set groupHandle(value: RCSHandle_Group) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2542597720398220, this, [value]); }
+  get groupHandle(): RCSHandle_Group { return callSDK<RCSHandle_Group>("TelephonyMessagingKit_a956b86ef7a76a8e", 1360091963418694, this, []); }
+  set groupHandle(value: RCSHandle_Group) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2542597720398220, this, [value]); }
   /**
    * var participants: [RCSHandle.URI]
    * @availability iOS 26.0+
    */
-  get participants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 636033860671820, this, []); }
-  set participants(value: Array<RCSHandle_URI>) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2904582853979760, this, [value]); }
+  get participants(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_a956b86ef7a76a8e", 636033860671820, this, []); }
+  set participants(value: Array<RCSHandle_URI>) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2904582853979760, this, [value]); }
   /**
    * init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle.Group, participants: [RCSHandle.URI])
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle_Group, participants: Array<RCSHandle_URI>): RCSService_RemoveGroupChatParticipantsRequest { return callSDK<RCSService_RemoveGroupChatParticipantsRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3766287808388194, undefined, [cellularServiceID, groupHandle, participants]); }
+  static init(cellularServiceID: CellularServiceID, groupHandle: RCSHandle_Group, participants: Array<RCSHandle_URI>): RCSService_RemoveGroupChatParticipantsRequest { return callSDK<RCSService_RemoveGroupChatParticipantsRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 3766287808388194, undefined, [cellularServiceID, groupHandle, participants]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1076296810777074, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 26097064027237, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1076296810777074, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 26097064027237, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC34RemoveGroupChatParticipantsRequestV": true };
 }
 
@@ -2751,7 +2751,7 @@ export class RCSService_RemoveGroupChatParticipantsRequest_Result extends SDKHan
    * let removed: [RCSHandle.URI]
    * @availability iOS 26.0+
    */
-  get removed(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4311162091081391, this, []); }
+  get removed(): Array<RCSHandle_URI> { return callSDK<Array<RCSHandle_URI>>("TelephonyMessagingKit_a956b86ef7a76a8e", 4311162091081391, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC34RemoveGroupChatParticipantsRequestV6ResultV": true };
 }
 
@@ -2764,31 +2764,31 @@ export class RCSService_ReportSpamRequest extends SDKHandle {
    * var fileContent: Data?
    * @availability iOS 26.0+
    */
-  get fileContent(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2165689982776307, this, []); }
-  set fileContent(value: (ArrayBuffer) | null) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2339713220359694, this, [value]); }
+  get fileContent(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 2165689982776307, this, []); }
+  set fileContent(value: (ArrayBuffer) | null) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2339713220359694, this, [value]); }
   /**
    * var reason: String?
    * @availability iOS 26.0+
    */
-  get reason(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_d6c5d10d3352e6ec", 584290069230667, this, []); }
-  set reason(value: (string) | null) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1051696525600172, this, [value]); }
+  get reason(): (string) | null { return callSDK<(string) | null>("TelephonyMessagingKit_a956b86ef7a76a8e", 584290069230667, this, []); }
+  set reason(value: (string) | null) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1051696525600172, this, [value]); }
   /**
    * init(message: RCSMessage, fileContent: Data? = nil, category: RCSService.ReportSpamRequest.Category? = nil, reason: String? = nil)
    * @availability iOS 26.0+
    */
-  static init(message: RCSMessage, fileContent?: (ArrayBuffer) | null, category?: $SDK30, reason?: (string) | null): RCSService_ReportSpamRequest { return callSDK<RCSService_ReportSpamRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1447442533389376, undefined, [message, fileContent, category, reason]); }
+  static init(message: RCSMessage, fileContent?: (ArrayBuffer) | null, category?: $SDK30, reason?: (string) | null): RCSService_ReportSpamRequest { return callSDK<RCSService_ReportSpamRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 1447442533389376, undefined, [message, fileContent, category, reason]); }
   /**
    * var message: RCSMessage
    * @availability iOS 26.0+
    */
-  get message(): RCSMessage { return callSDK<RCSMessage>("TelephonyMessagingKit_d6c5d10d3352e6ec", 647177450370074, this, []); }
-  set message(value: RCSMessage) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3013819778362734, this, [value]); }
+  get message(): RCSMessage { return callSDK<RCSMessage>("TelephonyMessagingKit_a956b86ef7a76a8e", 647177450370074, this, []); }
+  set message(value: RCSMessage) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3013819778362734, this, [value]); }
   /**
    * var category: RCSService.ReportSpamRequest.Category?
    * @availability iOS 26.0+
    */
-  get category(): $SDK30 { return callSDK<$SDK30>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1171926853142504, this, []); }
-  set category(value: $SDK30) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 216789852727301, this, [value]); }
+  get category(): $SDK30 { return callSDK<$SDK30>("TelephonyMessagingKit_a956b86ef7a76a8e", 1171926853142504, this, []); }
+  set category(value: $SDK30) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 216789852727301, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC17ReportSpamRequestV": true };
 }
 
@@ -2807,25 +2807,25 @@ export class RCSService_RevokeMessageRequest extends SDKHandle {
    * init(cellularServiceID: CellularServiceID, handle: RCSHandle, messageID: RCSMessageID)
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, handle: RCSHandle, messageID: RCSMessageID): RCSService_RevokeMessageRequest { return callSDK<RCSService_RevokeMessageRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4023398817699999, undefined, [cellularServiceID, handle, messageID]); }
+  static init(cellularServiceID: CellularServiceID, handle: RCSHandle, messageID: RCSMessageID): RCSService_RevokeMessageRequest { return callSDK<RCSService_RevokeMessageRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 4023398817699999, undefined, [cellularServiceID, handle, messageID]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1409793018739340, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 142280404356379, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1409793018739340, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 142280404356379, this, [value]); }
   /**
    * var handle: RCSHandle
    * @availability iOS 26.0+
    */
-  get handle(): RCSHandle { return callSDK<RCSHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2891624989551806, this, []); }
-  set handle(value: RCSHandle) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1972066236334222, this, [value]); }
+  get handle(): RCSHandle { return callSDK<RCSHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 2891624989551806, this, []); }
+  set handle(value: RCSHandle) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1972066236334222, this, [value]); }
   /**
    * var messageID: RCSMessageID
    * @availability iOS 26.0+
    */
-  get messageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2568547575816008, this, []); }
-  set messageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1257035947616146, this, [value]); }
+  get messageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 2568547575816008, this, []); }
+  set messageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1257035947616146, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC20RevokeMessageRequestV": true };
 }
 
@@ -2838,38 +2838,38 @@ export class RCSService_SendEncryptedMessageRequest extends SDKHandle {
    * var secureSendReceipt: RCSMessage.SecureSendReceipt?
    * @availability iOS 26.5+
    */
-  get secureSendReceipt(): $SDK31 { return callSDK<$SDK31>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4370296792746494, this, []); }
-  set secureSendReceipt(value: $SDK31) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3469390801198205, this, [value]); }
+  get secureSendReceipt(): $SDK31 { return callSDK<$SDK31>("TelephonyMessagingKit_a956b86ef7a76a8e", 4370296792746494, this, []); }
+  set secureSendReceipt(value: $SDK31) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3469390801198205, this, [value]); }
   /**
    * init(content: RCSMessage.FileTransfer, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
    * @availability iOS 26.5+
    */
-  static initContentDestinationCellularServiceIDMessageID(content: RCSMessage_FileTransfer, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3092735316289574, undefined, [content, destination, cellularServiceID, messageID]); }
+  static initContentDestinationCellularServiceIDMessageID(content: RCSMessage_FileTransfer, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 3092735316289574, undefined, [content, destination, cellularServiceID, messageID]); }
   /**
    * init(content: RCSMessage.CustomReaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
    * @availability iOS 27.0+
    */
-  static initContentDestinationCellularServiceIDMessageID49504(content: RCSMessage_CustomReaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1616743291057400, undefined, [content, destination, cellularServiceID, messageID]); }
+  static initContentDestinationCellularServiceIDMessageID49504(content: RCSMessage_CustomReaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 1616743291057400, undefined, [content, destination, cellularServiceID, messageID]); }
   /**
    * init(content: RCSMessage.GeolocationPush, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
    * @availability iOS 26.5+
    */
-  static initContentDestinationCellularServiceIDMessageID5563(content: RCSMessage_GeolocationPush, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2849528850451682, undefined, [content, destination, cellularServiceID, messageID]); }
+  static initContentDestinationCellularServiceIDMessageID5563(content: RCSMessage_GeolocationPush, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 2849528850451682, undefined, [content, destination, cellularServiceID, messageID]); }
   /**
    * init(content: RCSMessage.Text, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
    * @availability iOS 26.5+
    */
-  static initContentDestinationCellularServiceIDMessageID14420(content: RCSMessage_Text, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1110028324250484, undefined, [content, destination, cellularServiceID, messageID]); }
+  static initContentDestinationCellularServiceIDMessageID14420(content: RCSMessage_Text, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 1110028324250484, undefined, [content, destination, cellularServiceID, messageID]); }
   /**
    * init(content: RCSMessage.Reply, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
    * @availability iOS 27.0+
    */
-  static initContentDestinationCellularServiceIDMessageID71492(content: RCSMessage_Reply, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2482218987825954, undefined, [content, destination, cellularServiceID, messageID]); }
+  static initContentDestinationCellularServiceIDMessageID71492(content: RCSMessage_Reply, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 2482218987825954, undefined, [content, destination, cellularServiceID, messageID]); }
   /**
    * init(content: RCSMessage.Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID)
    * @availability iOS 27.0+
    */
-  static initContentDestinationCellularServiceIDMessageID82708(content: RCSMessage_Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3435756681308710, undefined, [content, destination, cellularServiceID, messageID]); }
+  static initContentDestinationCellularServiceIDMessageID82708(content: RCSMessage_Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest { return callSDK<RCSService_SendEncryptedMessageRequest>("TelephonyMessagingKit_a956b86ef7a76a8e", 3435756681308710, undefined, [content, destination, cellularServiceID, messageID]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC27SendEncryptedMessageRequestV": true };
 }
 
@@ -2882,7 +2882,7 @@ export class RCSService_SendEncryptedMessageRequest_Result extends SDKHandle {
    * let secureSendReceipt: RCSMessage.SecureSendReceipt?
    * @availability iOS 26.5+
    */
-  get secureSendReceipt(): $SDK31 { return callSDK<$SDK31>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3655955585572267, this, []); }
+  get secureSendReceipt(): $SDK31 { return callSDK<$SDK31>("TelephonyMessagingKit_a956b86ef7a76a8e", 3655955585572267, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC27SendEncryptedMessageRequestV6ResultV": true };
 }
 
@@ -2895,37 +2895,37 @@ export class RCSService_SuggestionResponse extends SDKHandle {
    * var suggestion: RCSService.Business.Suggestion
    * @availability iOS 26.0+
    */
-  get suggestion(): RCSService_Business_Suggestion { return callSDK<RCSService_Business_Suggestion>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4434014204327516, this, []); }
-  set suggestion(value: RCSService_Business_Suggestion) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4128484130612156, this, [value]); }
+  get suggestion(): RCSService_Business_Suggestion { return callSDK<RCSService_Business_Suggestion>("TelephonyMessagingKit_a956b86ef7a76a8e", 4434014204327516, this, []); }
+  set suggestion(value: RCSService_Business_Suggestion) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 4128484130612156, this, [value]); }
   /**
    * var destination: RCSHandle
    * @availability iOS 26.0+
    */
-  get destination(): RCSHandle { return callSDK<RCSHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 671439419033197, this, []); }
-  set destination(value: RCSHandle) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2362198126943504, this, [value]); }
+  get destination(): RCSHandle { return callSDK<RCSHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 671439419033197, this, []); }
+  set destination(value: RCSHandle) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2362198126943504, this, [value]); }
   /**
    * init(cellularServiceID: CellularServiceID, destination: RCSHandle, messageID: RCSMessageID, originatingMessageID: RCSMessageID, suggestion: RCSService.Business.Suggestion)
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, destination: RCSHandle, messageID: RCSMessageID, originatingMessageID: RCSMessageID, suggestion: RCSService_Business_Suggestion): RCSService_SuggestionResponse { return callSDK<RCSService_SuggestionResponse>("TelephonyMessagingKit_d6c5d10d3352e6ec", 712111744164871, undefined, [cellularServiceID, destination, messageID, originatingMessageID, suggestion]); }
+  static init(cellularServiceID: CellularServiceID, destination: RCSHandle, messageID: RCSMessageID, originatingMessageID: RCSMessageID, suggestion: RCSService_Business_Suggestion): RCSService_SuggestionResponse { return callSDK<RCSService_SuggestionResponse>("TelephonyMessagingKit_a956b86ef7a76a8e", 712111744164871, undefined, [cellularServiceID, destination, messageID, originatingMessageID, suggestion]); }
   /**
    * var cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1427661406781027, this, []); }
-  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1535558344783526, this, [value]); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1427661406781027, this, []); }
+  set cellularServiceID(value: CellularServiceID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1535558344783526, this, [value]); }
   /**
    * var originatingMessageID: RCSMessageID
    * @availability iOS 26.0+
    */
-  get originatingMessageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2417039410619071, this, []); }
-  set originatingMessageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3540565103263202, this, [value]); }
+  get originatingMessageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 2417039410619071, this, []); }
+  set originatingMessageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 3540565103263202, this, [value]); }
   /**
    * var messageID: RCSMessageID
    * @availability iOS 26.0+
    */
-  get messageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 672402354350304, this, []); }
-  set messageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 585851729983884, this, [value]); }
+  get messageID(): RCSMessageID { return callSDK<RCSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 672402354350304, this, []); }
+  set messageID(value: RCSMessageID) { callSDK<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 585851729983884, this, [value]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC18SuggestionResponseV": true };
 }
 
@@ -2938,12 +2938,12 @@ export class RCSService_ViabilityNotification extends SDKHandle {
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2776541178918673, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 2776541178918673, this, []); }
   /**
    * let isViable: Bool
    * @availability iOS 26.0+
    */
-  get isViable(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3648901617407981, this, []); }
+  get isViable(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 3648901617407981, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10RCSServiceC21ViabilityNotificationV": true };
 }
 
@@ -2956,12 +2956,12 @@ export class SMSContent extends SDKHandle {
    * init(body: String)
    * @availability iOS 26.0+
    */
-  static init(body: string): SMSContent { return callSDK<SMSContent>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3144499112376413, undefined, [body]); }
+  static init(body: string): SMSContent { return callSDK<SMSContent>("TelephonyMessagingKit_a956b86ef7a76a8e", 3144499112376413, undefined, [body]); }
   /**
    * let body: String
    * @availability iOS 26.0+
    */
-  get body(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1659423258206322, this, []); }
+  get body(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 1659423258206322, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10SMSContentV": true };
 }
 
@@ -2974,12 +2974,12 @@ export class SMSHandle extends SDKHandle {
    * init(phoneNumber: String)
    * @availability iOS 26.0+
    */
-  static init(phoneNumber: string): SMSHandle { return callSDK<SMSHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 75973663266161, undefined, [phoneNumber]); }
+  static init(phoneNumber: string): SMSHandle { return callSDK<SMSHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 75973663266161, undefined, [phoneNumber]); }
   /**
    * let phoneNumber: String
    * @availability iOS 26.0+
    */
-  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 725260680085685, this, []); }
+  get phoneNumber(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 725260680085685, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit9SMSHandleV": true };
 }
 
@@ -2992,27 +2992,27 @@ export class SMSMessage extends SDKHandle {
    * init(cellularServiceID: CellularServiceID, handle: SMSHandle, messageID: SMSMessageID, content: SMSContent)
    * @availability iOS 26.0+
    */
-  static init(cellularServiceID: CellularServiceID, handle: SMSHandle, messageID: SMSMessageID, content: SMSContent): SMSMessage { return callSDK<SMSMessage>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2554892489130863, undefined, [cellularServiceID, handle, messageID, content]); }
+  static init(cellularServiceID: CellularServiceID, handle: SMSHandle, messageID: SMSMessageID, content: SMSContent): SMSMessage { return callSDK<SMSMessage>("TelephonyMessagingKit_a956b86ef7a76a8e", 2554892489130863, undefined, [cellularServiceID, handle, messageID, content]); }
   /**
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4337517662350169, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 4337517662350169, this, []); }
   /**
    * let handle: SMSHandle
    * @availability iOS 26.0+
    */
-  get handle(): SMSHandle { return callSDK<SMSHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3084862674265650, this, []); }
+  get handle(): SMSHandle { return callSDK<SMSHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 3084862674265650, this, []); }
   /**
    * let content: SMSContent
    * @availability iOS 26.0+
    */
-  get content(): SMSContent { return callSDK<SMSContent>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2414362578622062, this, []); }
+  get content(): SMSContent { return callSDK<SMSContent>("TelephonyMessagingKit_a956b86ef7a76a8e", 2414362578622062, this, []); }
   /**
    * let messageID: SMSMessageID
    * @availability iOS 26.0+
    */
-  get messageID(): SMSMessageID { return callSDK<SMSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2439826649267764, this, []); }
+  get messageID(): SMSMessageID { return callSDK<SMSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 2439826649267764, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10SMSMessageV": true };
 }
 
@@ -3027,17 +3027,17 @@ export const SMSMessageID = {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  getDescription($self: SMSMessageID): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2695029795836845, $self, []); },
+  getDescription($self: SMSMessageID): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 2695029795836845, $self, []); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): SMSMessageID { return callSDK<SMSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3671341558862950, undefined, [rawValue]); },
+  init(rawValue: number): SMSMessageID { return callSDK<SMSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3671341558862950, undefined, [rawValue]); },
   /**
    * let rawValue: UInt32
    * @availability iOS 26.0+
    */
-  getRawValue($self: SMSMessageID): number { return callSDK<number>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2143507989417187, $self, []); }
+  getRawValue($self: SMSMessageID): number { return callSDK<number>("TelephonyMessagingKit_a956b86ef7a76a8e", 2143507989417187, $self, []); }
 };
 
 /**
@@ -3055,32 +3055,32 @@ export class SMSService extends SDKHandle {
    * final func reportSpam(_ message: SMSMessage) async throws
    * @availability iOS 26.0+
    */
-  reportSpam(message: SMSMessage): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1291297965529488, this, [message]); }
+  reportSpam(message: SMSMessage): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 1291297965529488, this, [message]); }
   /**
    * final func sendMessage(_ message: SMSMessage) async throws
    * @availability iOS 26.0+
    */
-  sendMessage(message: SMSMessage): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2782180621842404, this, [message]); }
+  sendMessage(message: SMSMessage): Promise<void> { return callSDKAsync<void>("TelephonyMessagingKit_a956b86ef7a76a8e", 2782180621842404, this, [message]); }
   /**
    * final var viabilityNotifications: some AsyncSequence<SMSService.ViabilityNotification, Never> { get throws }
    * @availability iOS 26.0+
    */
-  get viabilityNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 302705402997864, this, []); }
+  get viabilityNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 302705402997864, this, []); }
   /**
    * final var incomingMessageNotifications: some AsyncSequence<SMSService.IncomingMessageNotification, Never> { get throws }
    * @availability iOS 26.0+
    */
-  get incomingMessageNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 222587213780395, this, []); }
+  get incomingMessageNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 222587213780395, this, []); }
   /**
    * final var criticalMessageStateNotifications: some AsyncSequence<SMSService.CriticalMessageStateNotification, Never> { get throws }
    * @availability iOS 26.0+
    */
-  get criticalMessageStateNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1084585334272780, this, []); }
+  get criticalMessageStateNotifications(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 1084585334272780, this, []); }
   /**
    * final func isViable(for cellularServiceID: CellularServiceID) -> Bool
    * @availability iOS 26.0+
    */
-  isViable(cellularServiceID: CellularServiceID): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 221615766496169, this, [cellularServiceID]); }
+  isViable(cellularServiceID: CellularServiceID): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 221615766496169, this, [cellularServiceID]); }
   declare readonly $type: { "s:21TelephonyMessagingKit10SMSServiceC": true };
 }
 
@@ -3093,17 +3093,17 @@ export class SMSService_CriticalMessageStateNotification extends SDKHandle {
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3739976269274502, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3739976269274502, this, []); }
   /**
    * let state: SMSService.CriticalMessageStateNotification.State
    * @availability iOS 26.0+
    */
-  get state(): SMSService_CriticalMessageStateNotification_State { return callSDK<SMSService_CriticalMessageStateNotification_State>("TelephonyMessagingKit_d6c5d10d3352e6ec", 929012458804693, this, []); }
+  get state(): SMSService_CriticalMessageStateNotification_State { return callSDK<SMSService_CriticalMessageStateNotification_State>("TelephonyMessagingKit_a956b86ef7a76a8e", 929012458804693, this, []); }
   /**
    * let messageID: SMSMessageID
    * @availability iOS 26.0+
    */
-  get messageID(): SMSMessageID { return callSDK<SMSMessageID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3563337870515352, this, []); }
+  get messageID(): SMSMessageID { return callSDK<SMSMessageID>("TelephonyMessagingKit_a956b86ef7a76a8e", 3563337870515352, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10SMSServiceC32CriticalMessageStateNotificationV": true };
 }
 
@@ -3128,7 +3128,7 @@ export class SMSService_IncomingMessageNotification extends SDKHandle {
    * let message: SMSMessage
    * @availability iOS 26.0+
    */
-  get message(): SMSMessage { return callSDK<SMSMessage>("TelephonyMessagingKit_d6c5d10d3352e6ec", 2051629551203890, this, []); }
+  get message(): SMSMessage { return callSDK<SMSMessage>("TelephonyMessagingKit_a956b86ef7a76a8e", 2051629551203890, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10SMSServiceC27IncomingMessageNotificationV": true };
 }
 
@@ -3141,12 +3141,12 @@ export class SMSService_ViabilityNotification extends SDKHandle {
    * let cellularServiceID: CellularServiceID
    * @availability iOS 26.0+
    */
-  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1442823293151932, this, []); }
+  get cellularServiceID(): CellularServiceID { return callSDK<CellularServiceID>("TelephonyMessagingKit_a956b86ef7a76a8e", 1442823293151932, this, []); }
   /**
    * let isViable: Bool
    * @availability iOS 26.0+
    */
-  get isViable(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 622827601043305, this, []); }
+  get isViable(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 622827601043305, this, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit10SMSServiceC21ViabilityNotificationV": true };
 }
 
@@ -3159,42 +3159,42 @@ export class TelephonyMessagingSession extends SDKHandle {
    * final var isConfiguredForCarrierMessaging: Bool { get }
    * @availability iOS 26.0+
    */
-  get isConfiguredForCarrierMessaging(): boolean { return callSDK<boolean>("TelephonyMessagingKit_d6c5d10d3352e6ec", 4305021941821890, this, []); }
+  get isConfiguredForCarrierMessaging(): boolean { return callSDK<boolean>("TelephonyMessagingKit_a956b86ef7a76a8e", 4305021941821890, this, []); }
   /**
    * final var mmsService: MMSService { get }
    * @availability iOS 26.0+
    */
-  get mmsService(): MMSService { return callSDK<MMSService>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3178803376109975, this, []); }
+  get mmsService(): MMSService { return callSDK<MMSService>("TelephonyMessagingKit_a956b86ef7a76a8e", 3178803376109975, this, []); }
   /**
    * final var rcsService: RCSService { get }
    * @availability iOS 26.0+
    */
-  get rcsService(): RCSService { return callSDK<RCSService>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3463553523028986, this, []); }
+  get rcsService(): RCSService { return callSDK<RCSService>("TelephonyMessagingKit_a956b86ef7a76a8e", 3463553523028986, this, []); }
   /**
    * final var smsService: SMSService { get }
    * @availability iOS 26.0+
    */
-  get smsService(): SMSService { return callSDK<SMSService>("TelephonyMessagingKit_d6c5d10d3352e6ec", 1837611538202605, this, []); }
+  get smsService(): SMSService { return callSDK<SMSService>("TelephonyMessagingKit_a956b86ef7a76a8e", 1837611538202605, this, []); }
   /**
    * final var cellularServices: [CellularServiceState] { get throws }
    * @availability iOS 26.0+
    */
-  get cellularServices(): Array<CellularServiceState> { return callSDK<Array<CellularServiceState>>("TelephonyMessagingKit_d6c5d10d3352e6ec", 560790160117759, this, []); }
+  get cellularServices(): Array<CellularServiceState> { return callSDK<Array<CellularServiceState>>("TelephonyMessagingKit_a956b86ef7a76a8e", 560790160117759, this, []); }
   /**
    * final var cellularServiceStateUpdates: some AsyncSequence<CellularServiceState, Never> { get }
    * @availability iOS 26.0+
    */
-  get cellularServiceStateUpdates(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_d6c5d10d3352e6ec", 3590842208024355, this, []); }
+  get cellularServiceStateUpdates(): SDKHandle { return callSDK<SDKHandle>("TelephonyMessagingKit_a956b86ef7a76a8e", 3590842208024355, this, []); }
   /**
    * final let id: UUID
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("TelephonyMessagingKit_d6c5d10d3352e6ec", 643812130470881, this, []); }
+  get id(): string { return callSDK<string>("TelephonyMessagingKit_a956b86ef7a76a8e", 643812130470881, this, []); }
   /**
    * static let shared: TelephonyMessagingSession
    * @availability iOS 26.0+
    */
-  static get shared(): TelephonyMessagingSession { return callSDK<TelephonyMessagingSession>("TelephonyMessagingKit_d6c5d10d3352e6ec", 726233772554438, undefined, []); }
+  static get shared(): TelephonyMessagingSession { return callSDK<TelephonyMessagingSession>("TelephonyMessagingKit_a956b86ef7a76a8e", 726233772554438, undefined, []); }
   declare readonly $type: { "s:21TelephonyMessagingKit0aB7SessionC": true };
 }
 
@@ -3210,103 +3210,103 @@ export type TelephonyMessagingSession_Error = "serviceUnavailable" | "invalidSes
  */
 export type TelephonyMessagingSession_ID = string;
 
-registerSDKClass("TelephonyMessagingKit.CellularServiceID", CellularServiceID, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.CellularServiceState", CellularServiceState, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.MMSContent", MMSContent, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.MMSHandle", MMSHandle, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.MMSMessage", MMSMessage, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.MMSPartContent", MMSPartContent, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.MMSPartContent.MMSCustomHeader", MMSPartContent_MMSCustomHeader, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.MMSService", MMSService, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.MMSService.Configuration", MMSService_Configuration, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.MMSService.IncomingMessageNotification", MMSService_IncomingMessageNotification, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.MMSService.ViabilityNotification", MMSService_ViabilityNotification, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSFileTransferMetadata", RCSFileTransferMetadata, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSGroupContext", RCSGroupContext, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSHandle", RCSHandle, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSHandle.Group", RCSHandle_Group, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage", RCSMessage, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.ComposingIndicator", RCSMessage_ComposingIndicator, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.Content", RCSMessage_Content, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.CustomReaction", RCSMessage_CustomReaction, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.CustomReaction.Operation", RCSMessage_CustomReaction_Operation, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.DispositionNotification", RCSMessage_DispositionNotification, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.FileTransfer", RCSMessage_FileTransfer, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.GeolocationPush", RCSMessage_GeolocationPush, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.Reaction", RCSMessage_Reaction, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.Reaction.Operation", RCSMessage_Reaction_Operation, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.Reply", RCSMessage_Reply, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.Reply.Content", RCSMessage_Reply_Content, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.SecureSendReceipt", RCSMessage_SecureSendReceipt, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSMessage.Text", RCSMessage_Text, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService", RCSService, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.AddGroupChatParticipantsRequest", RCSService_AddGroupChatParticipantsRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.AddGroupChatParticipantsRequest.Result", RCSService_AddGroupChatParticipantsRequest_Result, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business", RCSService_Business, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.AddressEntry", RCSService_Business_AddressEntry, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.Capabilities", RCSService_Business_Capabilities, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.Card", RCSService_Business_Card, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.Card.Content", RCSService_Business_Card_Content, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.Card.Media", RCSService_Business_Card_Media, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.CardCarousel", RCSService_Business_CardCarousel, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.CommunicationAddress", RCSService_Business_CommunicationAddress, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.ComposeRecordingAction", RCSService_Business_ComposeRecordingAction, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.ComposeTextAction", RCSService_Business_ComposeTextAction, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.CreateCalendarEventAction", RCSService_Business_CreateCalendarEventAction, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.DialPhoneNumberAction", RCSService_Business_DialPhoneNumberAction, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.Media", RCSService_Business_Media, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.MediaEntry", RCSService_Business_MediaEntry, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.Menu", RCSService_Business_Menu, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.Menu.Content", RCSService_Business_Menu_Content, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.OpenURLAction", RCSService_Business_OpenURLAction, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.OpenURLAction.Target", RCSService_Business_OpenURLAction_Target, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.OrganizationName", RCSService_Business_OrganizationName, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.ShowLocationAction", RCSService_Business_ShowLocationAction, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.ShowLocationAction.Method", RCSService_Business_ShowLocationAction_Method, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.SuggestedAction", RCSService_Business_SuggestedAction, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.SuggestedAction.Action", RCSService_Business_SuggestedAction_Action, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.SuggestedReply", RCSService_Business_SuggestedReply, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.Suggestion", RCSService_Business_Suggestion, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.TelephoneDetails", RCSService_Business_TelephoneDetails, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.URIEntry", RCSService_Business_URIEntry, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.VerificationDetails", RCSService_Business_VerificationDetails, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.WelcomeMessage", RCSService_Business_WelcomeMessage, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Business.WelcomeMessage.Content", RCSService_Business_WelcomeMessage_Content, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.BusinessInformationRequest", RCSService_BusinessInformationRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.BusinessInformationRequest.WelcomeMessageInformation", RCSService_BusinessInformationRequest_WelcomeMessageInformation, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.ChangeGroupChatSubjectRequest", RCSService_ChangeGroupChatSubjectRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.Configuration", RCSService_Configuration, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.CreateGroupChatRequest", RCSService_CreateGroupChatRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.CreateGroupChatRequest.Result", RCSService_CreateGroupChatRequest_Result, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.FileDownloadRequest", RCSService_FileDownloadRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.FileDownloadRequest.Metadata", RCSService_FileDownloadRequest_Metadata, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.FileUploadRequest", RCSService_FileUploadRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.FileUploadRequest.Metadata", RCSService_FileUploadRequest_Metadata, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatEndedEvent", RCSService_GroupChatEndedEvent, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatEvent", RCSService_GroupChatEvent, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatParticipantsAddedEvent", RCSService_GroupChatParticipantsAddedEvent, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatParticipantsRemovedEvent", RCSService_GroupChatParticipantsRemovedEvent, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatStartedEvent", RCSService_GroupChatStartedEvent, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatSubjectInvalidatedEvent", RCSService_GroupChatSubjectInvalidatedEvent, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatSubjectUpdatedEvent", RCSService_GroupChatSubjectUpdatedEvent, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.IncomingMessageNotification", RCSService_IncomingMessageNotification, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.LeaveGroupChatRequest", RCSService_LeaveGroupChatRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.RemoteCapabilities", RCSService_RemoteCapabilities, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.RemoteCapabilitiesRequest", RCSService_RemoteCapabilitiesRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.RemoteHandleUpdate", RCSService_RemoteHandleUpdate, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.RemoveGroupChatParticipantsRequest", RCSService_RemoveGroupChatParticipantsRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.RemoveGroupChatParticipantsRequest.Result", RCSService_RemoveGroupChatParticipantsRequest_Result, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.ReportSpamRequest", RCSService_ReportSpamRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.RevokeMessageRequest", RCSService_RevokeMessageRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.SendEncryptedMessageRequest", RCSService_SendEncryptedMessageRequest, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.SendEncryptedMessageRequest.Result", RCSService_SendEncryptedMessageRequest_Result, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.SuggestionResponse", RCSService_SuggestionResponse, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.RCSService.ViabilityNotification", RCSService_ViabilityNotification, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.SMSContent", SMSContent, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.SMSHandle", SMSHandle, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.SMSMessage", SMSMessage, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.SMSService", SMSService, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.SMSService.CriticalMessageStateNotification", SMSService_CriticalMessageStateNotification, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.SMSService.IncomingMessageNotification", SMSService_IncomingMessageNotification, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.SMSService.ViabilityNotification", SMSService_ViabilityNotification, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TelephonyMessagingKit.TelephonyMessagingSession", TelephonyMessagingSession, { module: "TelephonyMessagingKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("TelephonyMessagingKit.CellularServiceID", CellularServiceID, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.CellularServiceState", CellularServiceState, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.MMSContent", MMSContent, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.MMSHandle", MMSHandle, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.MMSMessage", MMSMessage, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.MMSPartContent", MMSPartContent, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {}, methods: {"addCustomHeader":{"id":316515866801385}} });
+registerSDKClass("TelephonyMessagingKit.MMSPartContent.MMSCustomHeader", MMSPartContent_MMSCustomHeader, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.MMSService", MMSService, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {}, methods: {"reportSpam":{"id":2917377027863599},"sendMessage":{"id":2400988829517286},"configuration":{"id":1009759235204655},"receiveMessage":{"id":3308391073163667},"isViable":{"id":3512255793768906}} });
+registerSDKClass("TelephonyMessagingKit.MMSService.Configuration", MMSService_Configuration, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.MMSService.IncomingMessageNotification", MMSService_IncomingMessageNotification, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.MMSService.ViabilityNotification", MMSService_ViabilityNotification, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSFileTransferMetadata", RCSFileTransferMetadata, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSGroupContext", RCSGroupContext, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSHandle", RCSHandle, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSHandle.Group", RCSHandle_Group, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage", RCSMessage, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.ComposingIndicator", RCSMessage_ComposingIndicator, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.Content", RCSMessage_Content, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.CustomReaction", RCSMessage_CustomReaction, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.CustomReaction.Operation", RCSMessage_CustomReaction_Operation, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.DispositionNotification", RCSMessage_DispositionNotification, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.FileTransfer", RCSMessage_FileTransfer, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.GeolocationPush", RCSMessage_GeolocationPush, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.Reaction", RCSMessage_Reaction, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.Reaction.Operation", RCSMessage_Reaction_Operation, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.Reply", RCSMessage_Reply, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.Reply.Content", RCSMessage_Reply_Content, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.SecureSendReceipt", RCSMessage_SecureSendReceipt, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSMessage.Text", RCSMessage_Text, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService", RCSService, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {}, methods: {"reportSpam":{"id":1745950699917588},"sendMessageToUsingMessageIDGroup":{"id":940651157941296},"sendMessageToUsingMessageID":{"id":176354076917502},"sendMessageToUsingMessageID11187":{"id":3133630085493273},"sendMessageToUsingMessageID10310":{"id":4066029990174323},"sendMessageToUsingMessageID63683":{"id":4299249215569211},"sendMessageToUsingMessageID18525":{"id":2327322156743639},"sendMessageToUsingMessageID56827":{"id":2249952633807437},"sendMessageToUsingMessageID94469":{"id":2446979074607466},"configuration":{"id":3865073106481188},"revokeMessage":{"id":3583200314333863},"leaveGroupChat":{"id":2153333008148376},"createGroupChat":{"id":4461084209444251},"remoteCapabilities":{"id":4290945054575151},"businessInformation":{"id":1265202262137783},"sendDeviceSpecifics":{"id":3479626642989692},"changeGroupChatSubject":{"id":1555848584192121},"sendSuggestionResponse":{"id":3820226277323152},"addGroupChatParticipants":{"id":2645266833252624},"removeGroupChatParticipants":{"id":1649305006939979},"sendEncryptedMessageRequest":{"id":2054002578406550},"upload":{"id":1644673514597763},"download":{"id":1893361943383181},"isViable":{"id":3502925100669834}} });
+registerSDKClass("TelephonyMessagingKit.RCSService.AddGroupChatParticipantsRequest", RCSService_AddGroupChatParticipantsRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.AddGroupChatParticipantsRequest.Result", RCSService_AddGroupChatParticipantsRequest_Result, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business", RCSService_Business, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.AddressEntry", RCSService_Business_AddressEntry, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.Capabilities", RCSService_Business_Capabilities, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.Card", RCSService_Business_Card, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.Card.Content", RCSService_Business_Card_Content, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.Card.Media", RCSService_Business_Card_Media, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.CardCarousel", RCSService_Business_CardCarousel, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.CommunicationAddress", RCSService_Business_CommunicationAddress, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.ComposeRecordingAction", RCSService_Business_ComposeRecordingAction, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.ComposeTextAction", RCSService_Business_ComposeTextAction, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.CreateCalendarEventAction", RCSService_Business_CreateCalendarEventAction, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.DialPhoneNumberAction", RCSService_Business_DialPhoneNumberAction, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.Media", RCSService_Business_Media, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.MediaEntry", RCSService_Business_MediaEntry, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.Menu", RCSService_Business_Menu, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.Menu.Content", RCSService_Business_Menu_Content, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.OpenURLAction", RCSService_Business_OpenURLAction, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.OpenURLAction.Target", RCSService_Business_OpenURLAction_Target, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.OrganizationName", RCSService_Business_OrganizationName, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.ShowLocationAction", RCSService_Business_ShowLocationAction, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.ShowLocationAction.Method", RCSService_Business_ShowLocationAction_Method, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.SuggestedAction", RCSService_Business_SuggestedAction, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.SuggestedAction.Action", RCSService_Business_SuggestedAction_Action, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.SuggestedReply", RCSService_Business_SuggestedReply, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.Suggestion", RCSService_Business_Suggestion, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.TelephoneDetails", RCSService_Business_TelephoneDetails, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.URIEntry", RCSService_Business_URIEntry, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.VerificationDetails", RCSService_Business_VerificationDetails, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.WelcomeMessage", RCSService_Business_WelcomeMessage, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Business.WelcomeMessage.Content", RCSService_Business_WelcomeMessage_Content, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.BusinessInformationRequest", RCSService_BusinessInformationRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.BusinessInformationRequest.WelcomeMessageInformation", RCSService_BusinessInformationRequest_WelcomeMessageInformation, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.ChangeGroupChatSubjectRequest", RCSService_ChangeGroupChatSubjectRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.Configuration", RCSService_Configuration, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.CreateGroupChatRequest", RCSService_CreateGroupChatRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.CreateGroupChatRequest.Result", RCSService_CreateGroupChatRequest_Result, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.FileDownloadRequest", RCSService_FileDownloadRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.FileDownloadRequest.Metadata", RCSService_FileDownloadRequest_Metadata, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.FileUploadRequest", RCSService_FileUploadRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.FileUploadRequest.Metadata", RCSService_FileUploadRequest_Metadata, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatEndedEvent", RCSService_GroupChatEndedEvent, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatEvent", RCSService_GroupChatEvent, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatParticipantsAddedEvent", RCSService_GroupChatParticipantsAddedEvent, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatParticipantsRemovedEvent", RCSService_GroupChatParticipantsRemovedEvent, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatStartedEvent", RCSService_GroupChatStartedEvent, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatSubjectInvalidatedEvent", RCSService_GroupChatSubjectInvalidatedEvent, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.GroupChatSubjectUpdatedEvent", RCSService_GroupChatSubjectUpdatedEvent, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.IncomingMessageNotification", RCSService_IncomingMessageNotification, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.LeaveGroupChatRequest", RCSService_LeaveGroupChatRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.RemoteCapabilities", RCSService_RemoteCapabilities, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.RemoteCapabilitiesRequest", RCSService_RemoteCapabilitiesRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.RemoteHandleUpdate", RCSService_RemoteHandleUpdate, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.RemoveGroupChatParticipantsRequest", RCSService_RemoveGroupChatParticipantsRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.RemoveGroupChatParticipantsRequest.Result", RCSService_RemoveGroupChatParticipantsRequest_Result, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.ReportSpamRequest", RCSService_ReportSpamRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.RevokeMessageRequest", RCSService_RevokeMessageRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.SendEncryptedMessageRequest", RCSService_SendEncryptedMessageRequest, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.SendEncryptedMessageRequest.Result", RCSService_SendEncryptedMessageRequest_Result, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.SuggestionResponse", RCSService_SuggestionResponse, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.RCSService.ViabilityNotification", RCSService_ViabilityNotification, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.SMSContent", SMSContent, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.SMSHandle", SMSHandle, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.SMSMessage", SMSMessage, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.SMSService", SMSService, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {}, methods: {"reportSpam":{"id":1291297965529488},"sendMessage":{"id":2782180621842404},"isViable":{"id":221615766496169}} });
+registerSDKClass("TelephonyMessagingKit.SMSService.CriticalMessageStateNotification", SMSService_CriticalMessageStateNotification, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.SMSService.IncomingMessageNotification", SMSService_IncomingMessageNotification, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.SMSService.ViabilityNotification", SMSService_ViabilityNotification, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TelephonyMessagingKit.TelephonyMessagingSession", TelephonyMessagingSession, { module: "TelephonyMessagingKit_a956b86ef7a76a8e", properties: {} });

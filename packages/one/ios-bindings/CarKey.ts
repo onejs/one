@@ -13,17 +13,17 @@ export const ActionIdentifier = {
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  initRawValue(rawValue: number): ActionIdentifier { return callSDK<ActionIdentifier>("CarKey_d6c5d10d3352e6ec", 2850399716473356, undefined, [rawValue]); },
+  initRawValue(rawValue: number): ActionIdentifier { return callSDK<ActionIdentifier>("CarKey_a956b86ef7a76a8e", 2850399716473356, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: ActionIdentifier): number { return callSDK<number>("CarKey_d6c5d10d3352e6ec", 621882838063564, $self, []); },
+  getRawValue($self: ActionIdentifier): number { return callSDK<number>("CarKey_a956b86ef7a76a8e", 621882838063564, $self, []); },
   /**
    * init(_ rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): ActionIdentifier { return callSDK<ActionIdentifier>("CarKey_d6c5d10d3352e6ec", 4018231379338740, undefined, [rawValue]); }
+  init(rawValue: number): ActionIdentifier { return callSDK<ActionIdentifier>("CarKey_a956b86ef7a76a8e", 4018231379338740, undefined, [rawValue]); }
 };
 
 /**
@@ -47,17 +47,17 @@ export class CarKeyRemoteControl extends SDKHandle {
    * class func registerForLaunchOnCarKeyEvent() throws
    * @availability iOS 26.0+
    */
-  static registerForLaunchOnCarKeyEvent(): void { return callSDK<void>("CarKey_d6c5d10d3352e6ec", 1089328576318860, undefined, []); }
+  static registerForLaunchOnCarKeyEvent(): void { return callSDK<void>("CarKey_a956b86ef7a76a8e", 1089328576318860, undefined, []); }
   /**
    * class func unregisterForLaunchOnCarKeyEvent() throws
    * @availability iOS 26.0+
    */
-  static unregisterForLaunchOnCarKeyEvent(): void { return callSDK<void>("CarKey_d6c5d10d3352e6ec", 3745896665764101, undefined, []); }
+  static unregisterForLaunchOnCarKeyEvent(): void { return callSDK<void>("CarKey_a956b86ef7a76a8e", 3745896665764101, undefined, []); }
   /**
    * class func start(delegate: any CarKeyRemoteControlSessionDelegate, subscriptionRange subscriptionFunctionIDRange: ClosedRange<Int>? = nil, with delegateCallbackQueue: DispatchQueue? = nil) async throws -> CarKeyRemoteControlSession
    * @availability iOS 16.0+
    */
-  static start(delegate: Implements<CarKeyRemoteControlSessionDelegate> | SDKHandle, subscriptionFunctionIDRange?: (SDKHandle) | null, delegateCallbackQueue?: (_Dispatch_DispatchQueue) | null): Promise<CarKeyRemoteControlSession> { return callSDKAsync<CarKeyRemoteControlSession>("CarKey_d6c5d10d3352e6ec", 390704356843590, undefined, [delegate, subscriptionFunctionIDRange, delegateCallbackQueue], [{"protocol":"s:6CarKey0aB28RemoteControlSessionDelegateP"},null,null]); }
+  static start(delegate: Implements<CarKeyRemoteControlSessionDelegate> | SDKHandle, subscriptionFunctionIDRange?: (SDKHandle) | null, delegateCallbackQueue?: (_Dispatch_DispatchQueue) | null): Promise<CarKeyRemoteControlSession> { return callSDKAsync<CarKeyRemoteControlSession>("CarKey_a956b86ef7a76a8e", 390704356843590, undefined, [delegate, subscriptionFunctionIDRange, delegateCallbackQueue], [{"protocol":"s:6CarKey0aB28RemoteControlSessionDelegateP"},null,null]); }
   declare readonly $type: { "s:6CarKey0aB13RemoteControlC": true };
 }
 
@@ -70,43 +70,43 @@ export class CarKeyRemoteControlSession extends SDKHandle {
    * var vehicleReports: [VehicleReport] { get throws }
    * @availability iOS 16.0+
    */
-  get vehicleReports(): Array<VehicleReport> { return callSDK<Array<VehicleReport>>("CarKey_d6c5d10d3352e6ec", 643436136451264, this, []); }
+  get vehicleReports(): Array<VehicleReport> { return callSDK<Array<VehicleReport>>("CarKey_a956b86ef7a76a8e", 643436136451264, this, []); }
   /**
    * func sendPassthroughData(_ passthroughData: Data, toVehicle vehicleID: String) throws
    * @availability iOS 16.0+
    */
-  sendPassthroughData(passthroughData: ArrayBuffer, vehicleID: string): void { return callSDK<void>("CarKey_d6c5d10d3352e6ec", 1639862656772786, this, [passthroughData, vehicleID]); }
+  sendPassthroughData(passthroughData: ArrayBuffer, vehicleID: string): void { return callSDK<void>("CarKey_a956b86ef7a76a8e", 1639862656772786, this, [passthroughData, vehicleID]); }
   /**
    * func isPassiveEntryAvailable(forVehicle vehicleID: String) throws -> Bool
    * @availability iOS 16.0+
    */
-  isPassiveEntryAvailable(vehicleID: string): boolean { return callSDK<boolean>("CarKey_d6c5d10d3352e6ec", 2276043410878342, this, [vehicleID]); }
+  isPassiveEntryAvailable(vehicleID: string): boolean { return callSDK<boolean>("CarKey_a956b86ef7a76a8e", 2276043410878342, this, [vehicleID]); }
   /**
    * func end() throws
    * @availability iOS 16.0+
    */
-  end(): void { return callSDK<void>("CarKey_d6c5d10d3352e6ec", 4296301586531376, this, []); }
+  end(): void { return callSDK<void>("CarKey_a956b86ef7a76a8e", 4296301586531376, this, []); }
   /**
    * func sign(data: Data, forVehicle vehicleID: String) throws -> CarKeyRemoteControlSession.Attestation
    * @availability iOS 18.0+
    */
-  sign(data: ArrayBuffer, vehicleID: string): CarKeyRemoteControlSession_Attestation { return callSDK<CarKeyRemoteControlSession_Attestation>("CarKey_d6c5d10d3352e6ec", 1196695151135601, this, [data, vehicleID]); }
+  sign(data: ArrayBuffer, vehicleID: string): CarKeyRemoteControlSession_Attestation { return callSDK<CarKeyRemoteControlSession_Attestation>("CarKey_a956b86ef7a76a8e", 1196695151135601, this, [data, vehicleID]); }
   /**
    * func perform(_ enduringAction: RemoteKeylessEntryConfigurableEnduringAction, continuationStrategy: CarKeyRemoteControlSession.ContinuationStrategy) throws -> RemoteKeylessEntryConfigurableEnduringAction.EnduringExecutionRequest
    * @availability iOS 18.0+
    */
-  performContinuationStrategy(enduringAction: RemoteKeylessEntryConfigurableEnduringAction, continuationStrategy: CarKeyRemoteControlSession_ContinuationStrategy): RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest { return callSDK<RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest>("CarKey_d6c5d10d3352e6ec", 839569845994157, this, [enduringAction, continuationStrategy]); }
+  performContinuationStrategy(enduringAction: RemoteKeylessEntryConfigurableEnduringAction, continuationStrategy: CarKeyRemoteControlSession_ContinuationStrategy): RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest { return callSDK<RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest>("CarKey_a956b86ef7a76a8e", 839569845994157, this, [enduringAction, continuationStrategy]); }
   /**
    * func perform(_ action: RemoteKeylessEntryAction) throws -> RemoteKeylessEntryAction.ExecutionRequest
    * @availability iOS 16.0+
    */
-  perform(action: RemoteKeylessEntryAction): RemoteKeylessEntryAction_ExecutionRequest { return callSDK<RemoteKeylessEntryAction_ExecutionRequest>("CarKey_d6c5d10d3352e6ec", 1122325037684805, this, [action]); }
+  perform(action: RemoteKeylessEntryAction): RemoteKeylessEntryAction_ExecutionRequest { return callSDK<RemoteKeylessEntryAction_ExecutionRequest>("CarKey_a956b86ef7a76a8e", 1122325037684805, this, [action]); }
   /**
    * func perform(_ enduringAction: RemoteKeylessEntryEnduringAction) throws -> RemoteKeylessEntryEnduringAction.EnduringExecutionRequest
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  perform98822(enduringAction: RemoteKeylessEntryEnduringAction): RemoteKeylessEntryEnduringAction_EnduringExecutionRequest { return callSDK<RemoteKeylessEntryEnduringAction_EnduringExecutionRequest>("CarKey_d6c5d10d3352e6ec", 490468588050508, this, [enduringAction]); }
+  perform98822(enduringAction: RemoteKeylessEntryEnduringAction): RemoteKeylessEntryEnduringAction_EnduringExecutionRequest { return callSDK<RemoteKeylessEntryEnduringAction_EnduringExecutionRequest>("CarKey_a956b86ef7a76a8e", 490468588050508, this, [enduringAction]); }
   declare readonly $type: { "s:6CarKey0aB20RemoteControlSessionC": true };
 }
 
@@ -119,22 +119,22 @@ export class CarKeyRemoteControlSession_Attestation extends SDKHandle {
    * let signedData: Data
    * @availability iOS 18.0+
    */
-  get signedData(): ArrayBuffer { return callSDK<ArrayBuffer>("CarKey_d6c5d10d3352e6ec", 257175542446998, this, []); }
+  get signedData(): ArrayBuffer { return callSDK<ArrayBuffer>("CarKey_a956b86ef7a76a8e", 257175542446998, this, []); }
   /**
    * let appBundleIdentifier: String
    * @availability iOS 18.0+
    */
-  get appBundleIdentifier(): string { return callSDK<string>("CarKey_d6c5d10d3352e6ec", 161598601026939, this, []); }
+  get appBundleIdentifier(): string { return callSDK<string>("CarKey_a956b86ef7a76a8e", 161598601026939, this, []); }
   /**
    * let nonce: Data
    * @availability iOS 18.0+
    */
-  get nonce(): ArrayBuffer { return callSDK<ArrayBuffer>("CarKey_d6c5d10d3352e6ec", 2605374945051721, this, []); }
+  get nonce(): ArrayBuffer { return callSDK<ArrayBuffer>("CarKey_a956b86ef7a76a8e", 2605374945051721, this, []); }
   /**
    * let signature: Data
    * @availability iOS 18.0+
    */
-  get signature(): ArrayBuffer { return callSDK<ArrayBuffer>("CarKey_d6c5d10d3352e6ec", 353574759331896, this, []); }
+  get signature(): ArrayBuffer { return callSDK<ArrayBuffer>("CarKey_a956b86ef7a76a8e", 353574759331896, this, []); }
   declare readonly $type: { "s:6CarKey0aB20RemoteControlSessionC11AttestationV": true };
 }
 
@@ -182,17 +182,17 @@ export const ExecutionStatus = {
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  initRawValue(rawValue: number): ExecutionStatus { return callSDK<ExecutionStatus>("CarKey_d6c5d10d3352e6ec", 2276236327081466, undefined, [rawValue]); },
+  initRawValue(rawValue: number): ExecutionStatus { return callSDK<ExecutionStatus>("CarKey_a956b86ef7a76a8e", 2276236327081466, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: ExecutionStatus): number { return callSDK<number>("CarKey_d6c5d10d3352e6ec", 1410091971256404, $self, []); },
+  getRawValue($self: ExecutionStatus): number { return callSDK<number>("CarKey_a956b86ef7a76a8e", 1410091971256404, $self, []); },
   /**
    * init(_ rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): ExecutionStatus { return callSDK<ExecutionStatus>("CarKey_d6c5d10d3352e6ec", 4218512500814863, undefined, [rawValue]); }
+  init(rawValue: number): ExecutionStatus { return callSDK<ExecutionStatus>("CarKey_a956b86ef7a76a8e", 4218512500814863, undefined, [rawValue]); }
 };
 
 /**
@@ -212,17 +212,17 @@ export const FunctionIdentifier = {
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  initRawValue(rawValue: number): FunctionIdentifier { return callSDK<FunctionIdentifier>("CarKey_d6c5d10d3352e6ec", 2788281965660144, undefined, [rawValue]); },
+  initRawValue(rawValue: number): FunctionIdentifier { return callSDK<FunctionIdentifier>("CarKey_a956b86ef7a76a8e", 2788281965660144, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: FunctionIdentifier): number { return callSDK<number>("CarKey_d6c5d10d3352e6ec", 2196596289500725, $self, []); },
+  getRawValue($self: FunctionIdentifier): number { return callSDK<number>("CarKey_a956b86ef7a76a8e", 2196596289500725, $self, []); },
   /**
    * init(_ rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): FunctionIdentifier { return callSDK<FunctionIdentifier>("CarKey_d6c5d10d3352e6ec", 1502489467214852, undefined, [rawValue]); }
+  init(rawValue: number): FunctionIdentifier { return callSDK<FunctionIdentifier>("CarKey_a956b86ef7a76a8e", 1502489467214852, undefined, [rawValue]); }
 };
 
 /**
@@ -242,17 +242,17 @@ export const FunctionStatus = {
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  initRawValue(rawValue: number): FunctionStatus { return callSDK<FunctionStatus>("CarKey_d6c5d10d3352e6ec", 3600364413221710, undefined, [rawValue]); },
+  initRawValue(rawValue: number): FunctionStatus { return callSDK<FunctionStatus>("CarKey_a956b86ef7a76a8e", 3600364413221710, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: FunctionStatus): number { return callSDK<number>("CarKey_d6c5d10d3352e6ec", 3110974096116712, $self, []); },
+  getRawValue($self: FunctionStatus): number { return callSDK<number>("CarKey_a956b86ef7a76a8e", 3110974096116712, $self, []); },
   /**
    * init(_ rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): FunctionStatus { return callSDK<FunctionStatus>("CarKey_d6c5d10d3352e6ec", 3413511852552749, undefined, [rawValue]); }
+  init(rawValue: number): FunctionStatus { return callSDK<FunctionStatus>("CarKey_a956b86ef7a76a8e", 3413511852552749, undefined, [rawValue]); }
 };
 
 /**
@@ -270,22 +270,22 @@ export class RemoteKeylessEntryAction extends SDKHandle {
    * init(functionID: FunctionIdentifier, actionID: ActionIdentifier, vehicleID: String)
    * @availability iOS 16.0+
    */
-  static init(functionID: FunctionIdentifier, actionID: ActionIdentifier, vehicleID: string): RemoteKeylessEntryAction { return callSDK<RemoteKeylessEntryAction>("CarKey_d6c5d10d3352e6ec", 856453429173633, undefined, [functionID, actionID, vehicleID]); }
+  static init(functionID: FunctionIdentifier, actionID: ActionIdentifier, vehicleID: string): RemoteKeylessEntryAction { return callSDK<RemoteKeylessEntryAction>("CarKey_a956b86ef7a76a8e", 856453429173633, undefined, [functionID, actionID, vehicleID]); }
   /**
    * let functionID: FunctionIdentifier
    * @availability iOS 16.0+
    */
-  get functionID(): FunctionIdentifier { return callSDK<FunctionIdentifier>("CarKey_d6c5d10d3352e6ec", 2397253113747219, this, []); }
+  get functionID(): FunctionIdentifier { return callSDK<FunctionIdentifier>("CarKey_a956b86ef7a76a8e", 2397253113747219, this, []); }
   /**
    * let recipientVehicleID: String
    * @availability iOS 16.0+
    */
-  get recipientVehicleID(): string { return callSDK<string>("CarKey_d6c5d10d3352e6ec", 915772900033477, this, []); }
+  get recipientVehicleID(): string { return callSDK<string>("CarKey_a956b86ef7a76a8e", 915772900033477, this, []); }
   /**
    * let actionID: ActionIdentifier
    * @availability iOS 16.0+
    */
-  get actionID(): ActionIdentifier { return callSDK<ActionIdentifier>("CarKey_d6c5d10d3352e6ec", 2409815452093414, this, []); }
+  get actionID(): ActionIdentifier { return callSDK<ActionIdentifier>("CarKey_a956b86ef7a76a8e", 2409815452093414, this, []); }
   declare readonly $type: { "s:6CarKey24RemoteKeylessEntryActionV": true };
 }
 
@@ -298,7 +298,7 @@ export class RemoteKeylessEntryAction_ExecutionRequest extends SDKHandle {
    * final func results() async throws -> ExecutionStatus
    * @availability iOS 16.0+
    */
-  results(): Promise<ExecutionStatus> { return callSDKAsync<ExecutionStatus>("CarKey_d6c5d10d3352e6ec", 849742983346138, this, []); }
+  results(): Promise<ExecutionStatus> { return callSDKAsync<ExecutionStatus>("CarKey_a956b86ef7a76a8e", 849742983346138, this, []); }
   declare readonly $type: { "s:6CarKey24RemoteKeylessEntryActionV16ExecutionRequestC": true };
 }
 
@@ -311,22 +311,22 @@ export class RemoteKeylessEntryConfigurableEnduringAction extends SDKHandle {
    * init(functionID: FunctionIdentifier, actionID: ActionIdentifier, vehicleID: String)
    * @availability iOS 18.0+
    */
-  static init(functionID: FunctionIdentifier, actionID: ActionIdentifier, vehicleID: string): RemoteKeylessEntryConfigurableEnduringAction { return callSDK<RemoteKeylessEntryConfigurableEnduringAction>("CarKey_d6c5d10d3352e6ec", 4090510540649085, undefined, [functionID, actionID, vehicleID]); }
+  static init(functionID: FunctionIdentifier, actionID: ActionIdentifier, vehicleID: string): RemoteKeylessEntryConfigurableEnduringAction { return callSDK<RemoteKeylessEntryConfigurableEnduringAction>("CarKey_a956b86ef7a76a8e", 4090510540649085, undefined, [functionID, actionID, vehicleID]); }
   /**
    * let functionID: FunctionIdentifier
    * @availability iOS 18.0+
    */
-  get functionID(): FunctionIdentifier { return callSDK<FunctionIdentifier>("CarKey_d6c5d10d3352e6ec", 1301812026858209, this, []); }
+  get functionID(): FunctionIdentifier { return callSDK<FunctionIdentifier>("CarKey_a956b86ef7a76a8e", 1301812026858209, this, []); }
   /**
    * let recipientVehicleID: String
    * @availability iOS 18.0+
    */
-  get recipientVehicleID(): string { return callSDK<string>("CarKey_d6c5d10d3352e6ec", 3790439782793863, this, []); }
+  get recipientVehicleID(): string { return callSDK<string>("CarKey_a956b86ef7a76a8e", 3790439782793863, this, []); }
   /**
    * let actionID: ActionIdentifier
    * @availability iOS 18.0+
    */
-  get actionID(): ActionIdentifier { return callSDK<ActionIdentifier>("CarKey_d6c5d10d3352e6ec", 2051638409628950, this, []); }
+  get actionID(): ActionIdentifier { return callSDK<ActionIdentifier>("CarKey_a956b86ef7a76a8e", 2051638409628950, this, []); }
   declare readonly $type: { "s:6CarKey44RemoteKeylessEntryConfigurableEnduringActionV": true };
 }
 
@@ -339,17 +339,17 @@ export class RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionReque
    * final var eventStream: AsyncStream<RemoteKeylessEntryConfigurableEnduringAction.EnduringExecutionRequest.Event> { get }
    * @availability iOS 18.0+
    */
-  get eventStream(): SDKSequence<RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest_Event> { return callSDK<SDKSequence<RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest_Event>>("CarKey_d6c5d10d3352e6ec", 4173857897031386, this, []); }
+  get eventStream(): SDKSequence<RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest_Event> { return callSDK<SDKSequence<RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest_Event>>("CarKey_a956b86ef7a76a8e", 4173857897031386, this, []); }
   /**
    * final func stop() throws
    * @availability iOS 18.0+
    */
-  stop(): void { return callSDK<void>("CarKey_d6c5d10d3352e6ec", 1369864889848986, this, []); }
+  stop(): void { return callSDK<void>("CarKey_a956b86ef7a76a8e", 1369864889848986, this, []); }
   /**
    * final func results() async throws -> ExecutionStatus
    * @availability iOS 18.0+
    */
-  results(): Promise<ExecutionStatus> { return callSDKAsync<ExecutionStatus>("CarKey_d6c5d10d3352e6ec", 4283220518520117, this, []); }
+  results(): Promise<ExecutionStatus> { return callSDKAsync<ExecutionStatus>("CarKey_a956b86ef7a76a8e", 4283220518520117, this, []); }
   declare readonly $type: { "s:6CarKey44RemoteKeylessEntryConfigurableEnduringActionV0G16ExecutionRequestC": true; "c:objc(cs)NSObject": true };
 }
 
@@ -362,12 +362,12 @@ export class RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionReque
    * let data: Data?
    * @availability iOS 18.0+
    */
-  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CarKey_d6c5d10d3352e6ec", 759660149677963, this, []); }
+  get data(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CarKey_a956b86ef7a76a8e", 759660149677963, this, []); }
   /**
    * func confirm(_ data: Data? = nil) throws
    * @availability iOS 18.0+
    */
-  confirm(data?: (ArrayBuffer) | null): void { return callSDK<void>("CarKey_d6c5d10d3352e6ec", 4001920741177968, this, [data]); }
+  confirm(data?: (ArrayBuffer) | null): void { return callSDK<void>("CarKey_a956b86ef7a76a8e", 4001920741177968, this, [data]); }
   declare readonly $type: { "s:6CarKey44RemoteKeylessEntryConfigurableEnduringActionV0G16ExecutionRequestC012ContinuationJ0V": true };
 }
 
@@ -390,25 +390,25 @@ export class RemoteKeylessEntryEnduringAction extends SDKHandle {
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  static init(functionID: FunctionIdentifier, actionID: ActionIdentifier, vehicleID: string): RemoteKeylessEntryEnduringAction { return callSDK<RemoteKeylessEntryEnduringAction>("CarKey_d6c5d10d3352e6ec", 229366974503749, undefined, [functionID, actionID, vehicleID]); }
+  static init(functionID: FunctionIdentifier, actionID: ActionIdentifier, vehicleID: string): RemoteKeylessEntryEnduringAction { return callSDK<RemoteKeylessEntryEnduringAction>("CarKey_a956b86ef7a76a8e", 229366974503749, undefined, [functionID, actionID, vehicleID]); }
   /**
    * let functionID: FunctionIdentifier
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  get functionID(): FunctionIdentifier { return callSDK<FunctionIdentifier>("CarKey_d6c5d10d3352e6ec", 1827530761638021, this, []); }
+  get functionID(): FunctionIdentifier { return callSDK<FunctionIdentifier>("CarKey_a956b86ef7a76a8e", 1827530761638021, this, []); }
   /**
    * let recipientVehicleID: String
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  get recipientVehicleID(): string { return callSDK<string>("CarKey_d6c5d10d3352e6ec", 298854523077851, this, []); }
+  get recipientVehicleID(): string { return callSDK<string>("CarKey_a956b86ef7a76a8e", 298854523077851, this, []); }
   /**
    * let actionID: ActionIdentifier
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  get actionID(): ActionIdentifier { return callSDK<ActionIdentifier>("CarKey_d6c5d10d3352e6ec", 999820123433650, this, []); }
+  get actionID(): ActionIdentifier { return callSDK<ActionIdentifier>("CarKey_a956b86ef7a76a8e", 999820123433650, this, []); }
   declare readonly $type: { "s:6CarKey32RemoteKeylessEntryEnduringActionV": true };
 }
 
@@ -423,13 +423,13 @@ export class RemoteKeylessEntryEnduringAction_EnduringExecutionRequest extends S
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  stop(): void { return callSDK<void>("CarKey_d6c5d10d3352e6ec", 2657860862219520, this, []); }
+  stop(): void { return callSDK<void>("CarKey_a956b86ef7a76a8e", 2657860862219520, this, []); }
   /**
    * final func results() async throws -> ExecutionStatus
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  results(): Promise<ExecutionStatus> { return callSDKAsync<ExecutionStatus>("CarKey_d6c5d10d3352e6ec", 421795969048852, this, []); }
+  results(): Promise<ExecutionStatus> { return callSDKAsync<ExecutionStatus>("CarKey_a956b86ef7a76a8e", 421795969048852, this, []); }
   declare readonly $type: { "s:6CarKey32RemoteKeylessEntryEnduringActionV0F16ExecutionRequestC": true };
 }
 
@@ -442,40 +442,40 @@ export class VehicleReport extends SDKHandle {
    * let identifier: String
    * @availability iOS 16.0+
    */
-  get identifier(): string { return callSDK<string>("CarKey_d6c5d10d3352e6ec", 2309289300507059, this, []); }
+  get identifier(): string { return callSDK<string>("CarKey_a956b86ef7a76a8e", 2309289300507059, this, []); }
   /**
    * var isConnected: Bool { get }
    * @availability iOS 16.0+
    */
-  get isConnected(): boolean { return callSDK<boolean>("CarKey_d6c5d10d3352e6ec", 95992048393731, this, []); }
+  get isConnected(): boolean { return callSDK<boolean>("CarKey_a956b86ef7a76a8e", 95992048393731, this, []); }
   /**
    * func proprietaryData(for function: FunctionIdentifier) throws -> Data?
    * @availability iOS 16.0+
    */
-  proprietaryData(function_: FunctionIdentifier): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CarKey_d6c5d10d3352e6ec", 4336889778762864, this, [function_]); }
+  proprietaryData(function_: FunctionIdentifier): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CarKey_a956b86ef7a76a8e", 4336889778762864, this, [function_]); }
   /**
    * var supportedFunctions: [FunctionIdentifier] { get }
    * @availability iOS 16.0+
    */
-  get supportedFunctions(): Array<FunctionIdentifier> { return callSDK<Array<FunctionIdentifier>>("CarKey_d6c5d10d3352e6ec", 2549156599265813, this, []); }
+  get supportedFunctions(): Array<FunctionIdentifier> { return callSDK<Array<FunctionIdentifier>>("CarKey_a956b86ef7a76a8e", 2549156599265813, this, []); }
   /**
    * func status(for function: FunctionIdentifier) throws -> FunctionStatus?
    * @availability iOS 16.0+
    */
-  status(function_: FunctionIdentifier): (FunctionStatus) | null { return callSDK<(FunctionStatus) | null>("CarKey_d6c5d10d3352e6ec", 3625647668441562, this, [function_]); }
+  status(function_: FunctionIdentifier): (FunctionStatus) | null { return callSDK<(FunctionStatus) | null>("CarKey_a956b86ef7a76a8e", 3625647668441562, this, [function_]); }
   declare readonly $type: { "s:6CarKey13VehicleReportV": true };
 }
 
-registerSDKClass("CarKey.CarKeyRemoteControl", CarKeyRemoteControl, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("CarKey.CarKeyRemoteControlSession", CarKeyRemoteControlSession, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("CarKey.CarKeyRemoteControlSession.Attestation", CarKeyRemoteControlSession_Attestation, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("CarKey.CarKeyRemoteControl", CarKeyRemoteControl, { module: "CarKey_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("CarKey.CarKeyRemoteControlSession", CarKeyRemoteControlSession, { module: "CarKey_a956b86ef7a76a8e", properties: {}, methods: {"sendPassthroughData":{"id":1639862656772786},"isPassiveEntryAvailable":{"id":2276043410878342},"end":{"id":4296301586531376},"sign":{"id":1196695151135601},"performContinuationStrategy":{"id":839569845994157},"perform":{"id":1122325037684805},"perform98822":{"id":490468588050508}} });
+registerSDKClass("CarKey.CarKeyRemoteControlSession.Attestation", CarKeyRemoteControlSession_Attestation, { module: "CarKey_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:6CarKey0aB28RemoteControlSessionDelegateP", {"remoteControlSessionDidInvalidateWithError":"remoteControlSession(_:didInvalidateWithError:)","remoteControlSessionDidCreateKeyForVehicle":"remoteControlSession(_:didCreateKey:forVehicle:)","remoteControlSessionVehicleDidUpdateReport":"remoteControlSession(_:vehicleDidUpdateReport:)","remoteControlSessionDidReceivePassthroughDataFromVehicle":"remoteControlSession(_:didReceivePassthroughData:fromVehicle:)"});
-registerSDKClass("CarKey.RemoteKeylessEntryAction", RemoteKeylessEntryAction, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("CarKey.RemoteKeylessEntryAction.ExecutionRequest", RemoteKeylessEntryAction_ExecutionRequest, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("CarKey.RemoteKeylessEntryConfigurableEnduringAction", RemoteKeylessEntryConfigurableEnduringAction, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("CarKey.RemoteKeylessEntryConfigurableEnduringAction.EnduringExecutionRequest", RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("CarKey.RemoteKeylessEntryConfigurableEnduringAction.EnduringExecutionRequest.ContinuationRequest", RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest_ContinuationRequest, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("CarKey.RemoteKeylessEntryConfigurableEnduringAction.EnduringExecutionRequest.Event", RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest_Event, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("CarKey.RemoteKeylessEntryEnduringAction", RemoteKeylessEntryEnduringAction, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("CarKey.RemoteKeylessEntryEnduringAction.EnduringExecutionRequest", RemoteKeylessEntryEnduringAction_EnduringExecutionRequest, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("CarKey.VehicleReport", VehicleReport, { module: "CarKey_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("CarKey.RemoteKeylessEntryAction", RemoteKeylessEntryAction, { module: "CarKey_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("CarKey.RemoteKeylessEntryAction.ExecutionRequest", RemoteKeylessEntryAction_ExecutionRequest, { module: "CarKey_a956b86ef7a76a8e", properties: {}, methods: {"results":{"id":849742983346138}} });
+registerSDKClass("CarKey.RemoteKeylessEntryConfigurableEnduringAction", RemoteKeylessEntryConfigurableEnduringAction, { module: "CarKey_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("CarKey.RemoteKeylessEntryConfigurableEnduringAction.EnduringExecutionRequest", RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest, { module: "CarKey_a956b86ef7a76a8e", properties: {}, methods: {"stop":{"id":1369864889848986},"results":{"id":4283220518520117}} });
+registerSDKClass("CarKey.RemoteKeylessEntryConfigurableEnduringAction.EnduringExecutionRequest.ContinuationRequest", RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest_ContinuationRequest, { module: "CarKey_a956b86ef7a76a8e", properties: {}, methods: {"confirm":{"id":4001920741177968}} });
+registerSDKClass("CarKey.RemoteKeylessEntryConfigurableEnduringAction.EnduringExecutionRequest.Event", RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest_Event, { module: "CarKey_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("CarKey.RemoteKeylessEntryEnduringAction", RemoteKeylessEntryEnduringAction, { module: "CarKey_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("CarKey.RemoteKeylessEntryEnduringAction.EnduringExecutionRequest", RemoteKeylessEntryEnduringAction_EnduringExecutionRequest, { module: "CarKey_a956b86ef7a76a8e", properties: {}, methods: {"stop":{"id":2657860862219520},"results":{"id":421795969048852}} });
+registerSDKClass("CarKey.VehicleReport", VehicleReport, { module: "CarKey_a956b86ef7a76a8e", properties: {}, methods: {"proprietaryData":{"id":4336889778762864},"status":{"id":3625647668441562}} });

@@ -37,67 +37,67 @@ type $SDK20 = Record<number, _UIKit_UIImage>;
  */
 export class PKCanvasView extends SDKHandle {
   /** init() */
-  static init(): PKCanvasView { return callSDK<PKCanvasView>("PencilKit_d6c5d10d3352e6ec", 1316179707980325, undefined, []); }
+  static init(): PKCanvasView { return callSDK<PKCanvasView>("PencilKit_a956b86ef7a76a8e", 1316179707980325, undefined, []); }
   /**
    * var allowsFingerDrawing: Bool { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  get allowsFingerDrawing(): boolean { return callSDK<boolean>("PencilKit_d6c5d10d3352e6ec", 3776056664840985, this, []); }
-  set allowsFingerDrawing(value: boolean) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 4068561277021130, this, [value]); }
+  get allowsFingerDrawing(): boolean { return callSDK<boolean>("PencilKit_a956b86ef7a76a8e", 3776056664840985, this, []); }
+  set allowsFingerDrawing(value: boolean) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 4068561277021130, this, [value]); }
   /**
    * weak var delegate: (any PKCanvasViewDelegate)? { get set }
    * @availability iOS 13.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PencilKit_d6c5d10d3352e6ec", 3118185131072665, this, []); }
-  set delegate(value: (Implements<PKCanvasViewDelegate> | SDKHandle) | null) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 833149882708064, this, [value], [{"protocol":"c:objc(pl)PKCanvasViewDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PencilKit_a956b86ef7a76a8e", 3118185131072665, this, []); }
+  set delegate(value: (Implements<PKCanvasViewDelegate> | SDKHandle) | null) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 833149882708064, this, [value], [{"protocol":"c:objc(pl)PKCanvasViewDelegate"}]); }
   /**
    * var drawing: PKDrawing { get set }
    * @availability iOS 13.0+
    */
-  get drawing(): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 2057177749435708, this, []); }
-  set drawing(value: PKDrawing) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3409486000786890, this, [value]); }
+  get drawing(): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 2057177749435708, this, []); }
+  set drawing(value: PKDrawing) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3409486000786890, this, [value]); }
   /**
    * var isDrawingEnabled: Bool { get set }
    * @availability iOS 18.0+
    */
-  get isDrawingEnabled(): boolean { return callSDK<boolean>("PencilKit_d6c5d10d3352e6ec", 2238061318937186, this, []); }
-  set isDrawingEnabled(value: boolean) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1110699098040734, this, [value]); }
+  get isDrawingEnabled(): boolean { return callSDK<boolean>("PencilKit_a956b86ef7a76a8e", 2238061318937186, this, []); }
+  set isDrawingEnabled(value: boolean) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 1110699098040734, this, [value]); }
   /**
    * var drawingGestureRecognizer: UIGestureRecognizer { get }
    * @availability iOS 13.0+
    */
-  get drawingGestureRecognizer(): _UIKit_UIGestureRecognizer { return callSDK<_UIKit_UIGestureRecognizer>("PencilKit_d6c5d10d3352e6ec", 3777940217221365, this, []); }
+  get drawingGestureRecognizer(): _UIKit_UIGestureRecognizer { return callSDK<_UIKit_UIGestureRecognizer>("PencilKit_a956b86ef7a76a8e", 3777940217221365, this, []); }
   /**
    * var drawingPolicy: PKCanvasViewDrawingPolicy { get set }
    * @availability iOS 14.0+
    */
-  get drawingPolicy(): PKCanvasViewDrawingPolicy { return callSDK<PKCanvasViewDrawingPolicy>("PencilKit_d6c5d10d3352e6ec", 3487977783443106, this, []); }
-  set drawingPolicy(value: PKCanvasViewDrawingPolicy) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2341502243523445, this, [value]); }
+  get drawingPolicy(): PKCanvasViewDrawingPolicy { return callSDK<PKCanvasViewDrawingPolicy>("PencilKit_a956b86ef7a76a8e", 3487977783443106, this, []); }
+  set drawingPolicy(value: PKCanvasViewDrawingPolicy) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2341502243523445, this, [value]); }
   /**
    * var maximumSupportedContentVersion: PKContentVersion { get set }
    * @availability iOS 17.0+
    */
-  get maximumSupportedContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 983593752395000, this, []); }
-  set maximumSupportedContentVersion(value: PKContentVersion) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3539407432599787, this, [value]); }
+  get maximumSupportedContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 983593752395000, this, []); }
+  set maximumSupportedContentVersion(value: PKContentVersion) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3539407432599787, this, [value]); }
   /**
    * var isRulerActive: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isRulerActive(): boolean { return callSDK<boolean>("PencilKit_d6c5d10d3352e6ec", 1083922949606176, this, []); }
-  set isRulerActive(value: boolean) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 4406496853432130, this, [value]); }
+  get isRulerActive(): boolean { return callSDK<boolean>("PencilKit_a956b86ef7a76a8e", 1083922949606176, this, []); }
+  set isRulerActive(value: boolean) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 4406496853432130, this, [value]); }
   /**
    * var selection: Set<UUID> { get set }
    * @availability iOS 27.0+
    */
-  get selection(): Array<string> { return callSDK<Array<string>>("PencilKit_d6c5d10d3352e6ec", 1463631226253901, this, []); }
-  set selection(value: Array<string>) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2405398255897461, this, [value]); }
+  get selection(): Array<string> { return callSDK<Array<string>>("PencilKit_a956b86ef7a76a8e", 1463631226253901, this, []); }
+  set selection(value: Array<string>) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2405398255897461, this, [value]); }
   /**
    * @MainActor @preconcurrency var tool: any PKTool { get set }
    * @availability iOS 13.0+
    */
-  get tool(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("PencilKit_d6c5d10d3352e6ec", 3809044744732023, this, []); }
-  setTool(value: $SDK1): Promise<void> { return callSDKAsync<void>("PencilKit_d6c5d10d3352e6ec", 3119775429705935, this, [value], [{"protocol":"s:9PencilKit6PKToolP"}]); }
+  get tool(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("PencilKit_a956b86ef7a76a8e", 3809044744732023, this, []); }
+  setTool(value: $SDK1): Promise<void> { return callSDKAsync<void>("PencilKit_a956b86ef7a76a8e", 3119775429705935, this, [value], [{"protocol":"s:9PencilKit6PKToolP"}]); }
   declare readonly $type: { "c:objc(cs)PKCanvasView": true; "c:objc(cs)UIScrollView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsFingerDrawing": true; "delegate": true; "drawing": true; "isDrawingEnabled": true; "drawingGestureRecognizer": true; "drawingPolicy": true; "maximumSupportedContentVersion": true; "isRulerActive": true; "selection": true };
 }
@@ -151,7 +151,7 @@ export type PKCanvasViewDrawingPolicy = "default" | "anyInput" | "pencilOnly";
 
 export const PKCanvasViewDrawingPolicy = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (PKCanvasViewDrawingPolicy) | null { return callSDK<(PKCanvasViewDrawingPolicy) | null>("PencilKit_d6c5d10d3352e6ec", 3165862005927812, undefined, [rawValue]); }
+  init(rawValue: number): (PKCanvasViewDrawingPolicy) | null { return callSDK<(PKCanvasViewDrawingPolicy) | null>("PencilKit_a956b86ef7a76a8e", 3165862005927812, undefined, [rawValue]); }
 };
 
 /**
@@ -165,12 +165,12 @@ export const PKContentVersion = {
    * static var latest: PKContentVersion { get }
    * @availability iOS 17.0+
    */
-  get latest(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 2055603083242066, undefined, []); },
+  get latest(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 2055603083242066, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): (PKContentVersion) | null { return callSDK<(PKContentVersion) | null>("PencilKit_d6c5d10d3352e6ec", 2618675590983126, undefined, [rawValue]); }
+  init(rawValue: number): (PKContentVersion) | null { return callSDK<(PKContentVersion) | null>("PencilKit_a956b86ef7a76a8e", 2618675590983126, undefined, [rawValue]); }
 };
 
 /**
@@ -182,22 +182,22 @@ export class PKConvertedBezierPointReference extends SDKHandle {
    * var bezierSegmentIndex: Int { get }
    * @availability iOS 27.0+
    */
-  get bezierSegmentIndex(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2426941704168021, this, []); }
+  get bezierSegmentIndex(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2426941704168021, this, []); }
   /**
    * var index: Int { get }
    * @availability iOS 27.0+
    */
-  get index(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2645644311142031, this, []); }
+  get index(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2645644311142031, this, []); }
   /**
    * var location: CGPoint { get }
    * @availability iOS 27.0+
    */
-  get location(): $SDK2 { return callSDK<$SDK2>("PencilKit_d6c5d10d3352e6ec", 3716407022516436, this, []); }
+  get location(): $SDK2 { return callSDK<$SDK2>("PencilKit_a956b86ef7a76a8e", 3716407022516436, this, []); }
   /**
    * var pointCount: Int { get }
    * @availability iOS 27.0+
    */
-  get pointCount(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2967902618704596, this, []); }
+  get pointCount(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2967902618704596, this, []); }
   declare readonly $type: { "c:objc(cs)PKConvertedBezierPoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bezierSegmentIndex": true; "index": true; "location": true; "pointCount": true };
 }
@@ -211,78 +211,78 @@ export class PKDrawing extends SDKHandle {
    * func erasingPath(_ eraserPath: PKStrokePath, mask: UIBezierPath? = nil, transform: CGAffineTransform = .identity) -> PKDrawing
    * @availability iOS 27.0+
    */
-  erasingPath(eraserPath: PKStrokePath, mask?: $SDK4, transform?: _CoreFoundation_CGAffineTransform): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 4435023174870312, this, [eraserPath, mask, transform]); }
+  erasingPath(eraserPath: PKStrokePath, mask?: $SDK4, transform?: _CoreFoundation_CGAffineTransform): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 4435023174870312, this, [eraserPath, mask, transform]); }
   /**
    * func transformed(using transform: CGAffineTransform) -> PKDrawing
    * @availability iOS 13.0+
    */
-  transformed(transform: _CoreFoundation_CGAffineTransform): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 2619675545613002, this, [transform]); }
+  transformed(transform: _CoreFoundation_CGAffineTransform): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 2619675545613002, this, [transform]); }
   /**
    * func dataRepresentation() -> Data
    * @availability iOS 13.0+
    */
-  dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("PencilKit_d6c5d10d3352e6ec", 3321056410616828, this, []); }
+  dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("PencilKit_a956b86ef7a76a8e", 3321056410616828, this, []); }
   /**
    * var requiredContentVersion: PKContentVersion { get }
    * @availability iOS 17.0+
    */
-  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 3933688479125389, this, []); }
+  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 3933688479125389, this, []); }
   /**
    * init(data: Data) throws
    * @availability iOS 13.0+
    */
-  static initData(data: ArrayBuffer): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 3196478143375877, undefined, [data]); }
+  static initData(data: ArrayBuffer): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 3196478143375877, undefined, [data]); }
   /**
    * nonisolated(nonsending) func draw(in cgContext: CGContext, frame: CGRect, from sourceRect: CGRect, darkUserInterfaceStyle: Bool = false) async
    * @availability iOS 26.0+
    */
-  draw(cgContext: _CoreGraphics_CGContext, frame: $SDK5, sourceRect: $SDK5, darkUserInterfaceStyle?: boolean): Promise<void> { return callSDKAsync<void>("PencilKit_d6c5d10d3352e6ec", 1773454009096461, this, [cgContext, frame, sourceRect, darkUserInterfaceStyle]); }
+  draw(cgContext: _CoreGraphics_CGContext, frame: $SDK5, sourceRect: $SDK5, darkUserInterfaceStyle?: boolean): Promise<void> { return callSDKAsync<void>("PencilKit_a956b86ef7a76a8e", 1773454009096461, this, [cgContext, frame, sourceRect, darkUserInterfaceStyle]); }
   /**
    * func image(from rect: CGRect, scale: CGFloat) -> UIImage
    * @availability iOS 13.0+
    */
-  image(rect: $SDK5, scale: number): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("PencilKit_d6c5d10d3352e6ec", 1144604367385784, this, [rect, scale]); }
+  image(rect: $SDK5, scale: number): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("PencilKit_a956b86ef7a76a8e", 1144604367385784, this, [rect, scale]); }
   /**
    * mutating func append(_ toAppend: PKDrawing)
    * @availability iOS 13.0+
    */
-  append(toAppend: PKDrawing): void { return callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1509114645295698, this, [toAppend]); }
+  append(toAppend: PKDrawing): void { return callSDK<void>("PencilKit_a956b86ef7a76a8e", 1509114645295698, this, [toAppend]); }
   /**
    * var bounds: CGRect { get }
    * @availability iOS 13.0+
    */
-  get bounds(): $SDK5 { return callSDK<$SDK5>("PencilKit_d6c5d10d3352e6ec", 1839196906547319, this, []); }
+  get bounds(): $SDK5 { return callSDK<$SDK5>("PencilKit_a956b86ef7a76a8e", 1839196906547319, this, []); }
   /**
    * init<S>(strokes: S) where S : Sequence, S.Element == PKStroke
    * @availability iOS 14.0+
    */
-  static initStrokes(strokes: Array<PKStroke>): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 2096140546710066, undefined, [strokes]); }
+  static initStrokes(strokes: Array<PKStroke>): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 2096140546710066, undefined, [strokes]); }
   /**
    * var strokes: [PKStroke] { get set }
    * @availability iOS 14.0+
    */
-  get strokes(): Array<PKStroke> { return callSDK<Array<PKStroke>>("PencilKit_d6c5d10d3352e6ec", 728505361880869, this, []); }
-  set strokes(value: Array<PKStroke>) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3102632830672360, this, [value]); }
+  get strokes(): Array<PKStroke> { return callSDK<Array<PKStroke>>("PencilKit_a956b86ef7a76a8e", 728505361880869, this, []); }
+  set strokes(value: Array<PKStroke>) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3102632830672360, this, [value]); }
   /**
    * func appending(_ toAppend: PKDrawing) -> PKDrawing
    * @availability iOS 13.0+
    */
-  appending(toAppend: PKDrawing): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 2999303525464977, this, [toAppend]); }
+  appending(toAppend: PKDrawing): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 2999303525464977, this, [toAppend]); }
   /**
    * mutating func erasePath(_ eraserPath: PKStrokePath, mask: UIBezierPath? = nil, transform: CGAffineTransform = .identity)
    * @availability iOS 27.0+
    */
-  erasePath(eraserPath: PKStrokePath, mask?: $SDK4, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("PencilKit_d6c5d10d3352e6ec", 160239741486107, this, [eraserPath, mask, transform]); }
+  erasePath(eraserPath: PKStrokePath, mask?: $SDK4, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("PencilKit_a956b86ef7a76a8e", 160239741486107, this, [eraserPath, mask, transform]); }
   /**
    * mutating func transform(using transform: CGAffineTransform)
    * @availability iOS 13.0+
    */
-  transform(transform: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3623173049199279, this, [transform]); }
+  transform(transform: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("PencilKit_a956b86ef7a76a8e", 3623173049199279, this, [transform]); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 2796952935894924, undefined, []); }
+  static init(): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 2796952935894924, undefined, []); }
   declare readonly $type: { "s:9PencilKit9PKDrawingV": true };
 }
 
@@ -295,62 +295,62 @@ export class PKDrawingReference extends SDKHandle {
    * func dataRepresentation() -> Data
    * @availability iOS 13.0+
    */
-  dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("PencilKit_d6c5d10d3352e6ec", 1184379908482186, this, []); }
+  dataRepresentation(): ArrayBuffer { return callSDK<ArrayBuffer>("PencilKit_a956b86ef7a76a8e", 1184379908482186, this, []); }
   /**
    * func appending(_ drawing: PKDrawing) -> PKDrawing
    * @availability iOS 13.0+
    */
-  appending(drawing: PKDrawing): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 820089016605735, this, [drawing]); }
+  appending(drawing: PKDrawing): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 820089016605735, this, [drawing]); }
   /**
    * func appendingStrokes(_ strokes: [PKStroke]) -> PKDrawing
    * @availability iOS 14.0+
    */
-  appendingStrokes(strokes: Array<PKStroke>): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 3363109491174340, this, [strokes]); }
+  appendingStrokes(strokes: Array<PKStroke>): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 3363109491174340, this, [strokes]); }
   /**
    * func applying(_ transform: CGAffineTransform) -> PKDrawing
    * @availability iOS 13.0+
    */
-  applying(transform: _CoreFoundation_CGAffineTransform): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 3163405503428206, this, [transform]); }
+  applying(transform: _CoreFoundation_CGAffineTransform): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 3163405503428206, this, [transform]); }
   /**
    * func erasingStrokePath(_ eraserPath: PKStrokePath, mask: UIBezierPath?, transform: CGAffineTransform) -> PKDrawing
    * @availability iOS 27.0+
    */
-  erasingStrokePath(eraserPath: PKStrokePath, mask: $SDK4, transform: _CoreFoundation_CGAffineTransform): PKDrawing { return callSDK<PKDrawing>("PencilKit_d6c5d10d3352e6ec", 4406613814035583, this, [eraserPath, mask, transform]); }
+  erasingStrokePath(eraserPath: PKStrokePath, mask: $SDK4, transform: _CoreFoundation_CGAffineTransform): PKDrawing { return callSDK<PKDrawing>("PencilKit_a956b86ef7a76a8e", 4406613814035583, this, [eraserPath, mask, transform]); }
   /**
    * func image(from rect: CGRect, scale: CGFloat) -> UIImage
    * @availability iOS 13.0+
    */
-  image(rect: $SDK5, scale: number): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("PencilKit_d6c5d10d3352e6ec", 4156542378014156, this, [rect, scale]); }
+  image(rect: $SDK5, scale: number): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("PencilKit_a956b86ef7a76a8e", 4156542378014156, this, [rect, scale]); }
   /**
    * init()
    * @availability iOS 13.0+
    */
-  static init(): PKDrawingReference { return callSDK<PKDrawingReference>("PencilKit_d6c5d10d3352e6ec", 327004420096997, undefined, []); }
+  static init(): PKDrawingReference { return callSDK<PKDrawingReference>("PencilKit_a956b86ef7a76a8e", 327004420096997, undefined, []); }
   /**
    * init(data: Data) throws
    * @availability iOS 13.0+
    */
-  static initData(data: ArrayBuffer): PKDrawingReference { return callSDK<PKDrawingReference>("PencilKit_d6c5d10d3352e6ec", 3562894558175086, undefined, [data]); }
+  static initData(data: ArrayBuffer): PKDrawingReference { return callSDK<PKDrawingReference>("PencilKit_a956b86ef7a76a8e", 3562894558175086, undefined, [data]); }
   /**
    * convenience init(strokes: [PKStroke])
    * @availability iOS 14.0+
    */
-  static initStrokes(strokes: Array<PKStroke>): PKDrawingReference { return callSDK<PKDrawingReference>("PencilKit_d6c5d10d3352e6ec", 21884618358837, undefined, [strokes]); }
+  static initStrokes(strokes: Array<PKStroke>): PKDrawingReference { return callSDK<PKDrawingReference>("PencilKit_a956b86ef7a76a8e", 21884618358837, undefined, [strokes]); }
   /**
    * var bounds: CGRect { get }
    * @availability iOS 13.0+
    */
-  get bounds(): $SDK5 { return callSDK<$SDK5>("PencilKit_d6c5d10d3352e6ec", 1906216341107601, this, []); }
+  get bounds(): $SDK5 { return callSDK<$SDK5>("PencilKit_a956b86ef7a76a8e", 1906216341107601, this, []); }
   /**
    * var requiredContentVersion: PKContentVersion { get }
    * @availability iOS 17.0+
    */
-  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 4455540352591573, this, []); }
+  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 4455540352591573, this, []); }
   /**
    * var strokes: [PKStroke] { get }
    * @availability iOS 14.0+
    */
-  get strokes(): Array<PKStroke> { return callSDK<Array<PKStroke>>("PencilKit_d6c5d10d3352e6ec", 3803131435142566, this, []); }
+  get strokes(): Array<PKStroke> { return callSDK<Array<PKStroke>>("PencilKit_a956b86ef7a76a8e", 3803131435142566, this, []); }
   declare readonly $type: { "c:objc(cs)PKDrawing": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bounds": true; "requiredContentVersion": true; "strokes": true };
 }
@@ -364,24 +364,24 @@ export class PKEraserTool extends SDKHandle {
    * var eraserType: PKEraserTool.EraserType { get set }
    * @availability iOS 13.0+
    */
-  get eraserType(): PKEraserTool_EraserType { return callSDK<PKEraserTool_EraserType>("PencilKit_d6c5d10d3352e6ec", 815296676191366, this, []); }
-  set eraserType(value: PKEraserTool_EraserType) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 4114136836446807, this, [value]); }
+  get eraserType(): PKEraserTool_EraserType { return callSDK<PKEraserTool_EraserType>("PencilKit_a956b86ef7a76a8e", 815296676191366, this, []); }
+  set eraserType(value: PKEraserTool_EraserType) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 4114136836446807, this, [value]); }
   /**
    * var width: CGFloat { get set }
    * @availability iOS 16.4+
    */
-  get width(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 618237733974087, this, []); }
-  set width(value: number) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3063847310980804, this, [value]); }
+  get width(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 618237733974087, this, []); }
+  set width(value: number) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3063847310980804, this, [value]); }
   /**
    * init(_ eraserType: PKEraserTool.EraserType, width: CGFloat)
    * @availability iOS 16.4+
    */
-  static initWidth(eraserType: PKEraserTool_EraserType, width: number): PKEraserTool { return callSDK<PKEraserTool>("PencilKit_d6c5d10d3352e6ec", 3826107626471095, undefined, [eraserType, width]); }
+  static initWidth(eraserType: PKEraserTool_EraserType, width: number): PKEraserTool { return callSDK<PKEraserTool>("PencilKit_a956b86ef7a76a8e", 3826107626471095, undefined, [eraserType, width]); }
   /**
    * init(_ eraserType: PKEraserTool.EraserType)
    * @availability iOS 13.0+
    */
-  static init(eraserType: PKEraserTool_EraserType): PKEraserTool { return callSDK<PKEraserTool>("PencilKit_d6c5d10d3352e6ec", 3126425361485475, undefined, [eraserType]); }
+  static init(eraserType: PKEraserTool_EraserType): PKEraserTool { return callSDK<PKEraserTool>("PencilKit_a956b86ef7a76a8e", 3126425361485475, undefined, [eraserType]); }
   declare readonly $type: { "s:9PencilKit12PKEraserToolV": true };
 }
 
@@ -396,12 +396,12 @@ export const PKEraserTool_EraserType = {
    * var defaultWidth: CGFloat { get }
    * @availability iOS 16.4+
    */
-  getDefaultWidth($self: PKEraserTool_EraserType): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2778169431055744, $self, []); },
+  getDefaultWidth($self: PKEraserTool_EraserType): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2778169431055744, $self, []); },
   /**
    * var validWidthRange: ClosedRange<CGFloat> { get }
    * @availability iOS 16.4+
    */
-  getValidWidthRange($self: PKEraserTool_EraserType): $SDK3 { return callSDK<$SDK3>("PencilKit_d6c5d10d3352e6ec", 1372945516867786, $self, []); }
+  getValidWidthRange($self: PKEraserTool_EraserType): $SDK3 { return callSDK<$SDK3>("PencilKit_a956b86ef7a76a8e", 1372945516867786, $self, []); }
 };
 
 /**
@@ -413,37 +413,37 @@ export class PKEraserToolReference extends SDKHandle {
    * class func defaultWidth(for eraserType: __PKEraserType) -> CGFloat
    * @availability iOS 16.4+
    */
-  static defaultWidth(eraserType: SDKHandle): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 3246667071765390, undefined, [eraserType]); }
+  static defaultWidth(eraserType: SDKHandle): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 3246667071765390, undefined, [eraserType]); }
   /**
    * class func maximumWidth(for eraserType: __PKEraserType) -> CGFloat
    * @availability iOS 16.4+
    */
-  static maximumWidth(eraserType: SDKHandle): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2472002671277925, undefined, [eraserType]); }
+  static maximumWidth(eraserType: SDKHandle): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2472002671277925, undefined, [eraserType]); }
   /**
    * class func minimumWidth(for eraserType: __PKEraserType) -> CGFloat
    * @availability iOS 16.4+
    */
-  static minimumWidth(eraserType: SDKHandle): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 1492769501028548, undefined, [eraserType]); }
+  static minimumWidth(eraserType: SDKHandle): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 1492769501028548, undefined, [eraserType]); }
   /**
    * init(eraserType: __PKEraserType)
    * @availability iOS 13.0+
    */
-  static initEraserType(eraserType: SDKHandle): PKEraserToolReference { return callSDK<PKEraserToolReference>("PencilKit_d6c5d10d3352e6ec", 4254449549429718, undefined, [eraserType]); }
+  static initEraserType(eraserType: SDKHandle): PKEraserToolReference { return callSDK<PKEraserToolReference>("PencilKit_a956b86ef7a76a8e", 4254449549429718, undefined, [eraserType]); }
   /**
    * init(eraserType: __PKEraserType, width: CGFloat)
    * @availability iOS 16.4+
    */
-  static initEraserTypeWidth(eraserType: SDKHandle, width: number): PKEraserToolReference { return callSDK<PKEraserToolReference>("PencilKit_d6c5d10d3352e6ec", 1975848039463449, undefined, [eraserType, width]); }
+  static initEraserTypeWidth(eraserType: SDKHandle, width: number): PKEraserToolReference { return callSDK<PKEraserToolReference>("PencilKit_a956b86ef7a76a8e", 1975848039463449, undefined, [eraserType, width]); }
   /**
    * var eraserType: __PKEraserType { get }
    * @availability iOS 13.0+
    */
-  get eraserType(): SDKHandle { return callSDK<SDKHandle>("PencilKit_d6c5d10d3352e6ec", 4128956452168155, this, []); }
+  get eraserType(): SDKHandle { return callSDK<SDKHandle>("PencilKit_a956b86ef7a76a8e", 4128956452168155, this, []); }
   /**
    * var width: CGFloat { get }
    * @availability iOS 16.4+
    */
-  get width(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 497017529434136, this, []); }
+  get width(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 497017529434136, this, []); }
   declare readonly $type: { "c:objc(cs)PKEraserTool": true };
   declare readonly $observable: { "eraserType": true; "width": true };
 }
@@ -457,24 +457,24 @@ export class PKInk extends SDKHandle {
    * var requiredContentVersion: PKContentVersion { get }
    * @availability iOS 17.0+
    */
-  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 1295288144943212, this, []); }
+  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 1295288144943212, this, []); }
   /**
    * var color: UIColor { get set }
    * @availability iOS 14.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_d6c5d10d3352e6ec", 701104359631116, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2313334808699805, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_a956b86ef7a76a8e", 701104359631116, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2313334808699805, this, [value]); }
   /**
    * var inkType: PKInk.InkType { get set }
    * @availability iOS 14.0+
    */
-  get inkType(): PKInkingTool_InkType { return callSDK<PKInkingTool_InkType>("PencilKit_d6c5d10d3352e6ec", 4258823298756541, this, []); }
-  set inkType(value: PKInkingTool_InkType) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 550153993600292, this, [value]); }
+  get inkType(): PKInkingTool_InkType { return callSDK<PKInkingTool_InkType>("PencilKit_a956b86ef7a76a8e", 4258823298756541, this, []); }
+  set inkType(value: PKInkingTool_InkType) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 550153993600292, this, [value]); }
   /**
    * init(_ inkType: PKInk.InkType, color: UIColor = UIColor.black)
    * @availability iOS 14.0+
    */
-  static init(inkType: PKInkingTool_InkType, color?: _UIKit_UIColor): PKInk { return callSDK<PKInk>("PencilKit_d6c5d10d3352e6ec", 2501832145945403, undefined, [inkType, color]); }
+  static init(inkType: PKInkingTool_InkType, color?: _UIKit_UIColor): PKInk { return callSDK<PKInk>("PencilKit_a956b86ef7a76a8e", 2501832145945403, undefined, [inkType, color]); }
   declare readonly $type: { "s:9PencilKit5PKInkV": true };
 }
 
@@ -493,56 +493,56 @@ export class PKInkingTool extends SDKHandle {
    * static func convertColor(_ color: UIColor, from: UIUserInterfaceStyle, to: UIUserInterfaceStyle) -> UIColor
    * @availability iOS 13.0+
    */
-  static convertColor(color: _UIKit_UIColor, from: _UIKit_UIUserInterfaceStyle, to: _UIKit_UIUserInterfaceStyle): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_d6c5d10d3352e6ec", 1664691047119653, undefined, [color, from, to]); }
+  static convertColor(color: _UIKit_UIColor, from: _UIKit_UIUserInterfaceStyle, to: _UIKit_UIUserInterfaceStyle): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_a956b86ef7a76a8e", 1664691047119653, undefined, [color, from, to]); }
   /**
    * var requiredContentVersion: PKContentVersion { get }
    * @availability iOS 17.0+
    */
-  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 1428239597703584, this, []); }
+  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 1428239597703584, this, []); }
   /**
    * init(ink: PKInk, width: CGFloat)
    * @availability iOS 14.0+
    */
-  static initInkWidth(ink: PKInk, width: number): PKInkingTool { return callSDK<PKInkingTool>("PencilKit_d6c5d10d3352e6ec", 2843876700796391, undefined, [ink, width]); }
+  static initInkWidth(ink: PKInk, width: number): PKInkingTool { return callSDK<PKInkingTool>("PencilKit_a956b86ef7a76a8e", 2843876700796391, undefined, [ink, width]); }
   /**
    * var ink: PKInk { get }
    * @availability iOS 14.0+
    */
-  get ink(): PKInk { return callSDK<PKInk>("PencilKit_d6c5d10d3352e6ec", 2646115705995488, this, []); }
+  get ink(): PKInk { return callSDK<PKInk>("PencilKit_a956b86ef7a76a8e", 2646115705995488, this, []); }
   /**
    * var color: UIColor { get set }
    * @availability iOS 13.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_d6c5d10d3352e6ec", 1637032985998014, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 847442242582639, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_a956b86ef7a76a8e", 1637032985998014, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 847442242582639, this, [value]); }
   /**
    * var width: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get width(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 699646473124573, this, []); }
-  set width(value: number) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3433033548252359, this, [value]); }
+  get width(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 699646473124573, this, []); }
+  set width(value: number) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3433033548252359, this, [value]); }
   /**
    * var azimuth: CGFloat { get set }
    * @availability iOS 26.0+
    */
-  get azimuth(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 616089828117410, this, []); }
-  set azimuth(value: number) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 618221512802116, this, [value]); }
+  get azimuth(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 616089828117410, this, []); }
+  set azimuth(value: number) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 618221512802116, this, [value]); }
   /**
    * var inkType: PKInkingTool.InkType { get set }
    * @availability iOS 13.0+
    */
-  get inkType(): PKInkingTool_InkType { return callSDK<PKInkingTool_InkType>("PencilKit_d6c5d10d3352e6ec", 4066688246063756, this, []); }
-  set inkType(value: PKInkingTool_InkType) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 4311619034501076, this, [value]); }
+  get inkType(): PKInkingTool_InkType { return callSDK<PKInkingTool_InkType>("PencilKit_a956b86ef7a76a8e", 4066688246063756, this, []); }
+  set inkType(value: PKInkingTool_InkType) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 4311619034501076, this, [value]); }
   /**
    * init(_ inkType: PKInkingTool.InkType, color: UIColor = UIColor.black, width: CGFloat? = nil, azimuth: CGFloat)
    * @availability iOS 26.0+
    */
-  static initColorWidthAzimuth(inkType: PKInkingTool_InkType, color: _UIKit_UIColor, width: (number) | null, azimuth: number): PKInkingTool { return callSDK<PKInkingTool>("PencilKit_d6c5d10d3352e6ec", 2669338981104035, undefined, [inkType, color, width, azimuth]); }
+  static initColorWidthAzimuth(inkType: PKInkingTool_InkType, color: _UIKit_UIColor, width: (number) | null, azimuth: number): PKInkingTool { return callSDK<PKInkingTool>("PencilKit_a956b86ef7a76a8e", 2669338981104035, undefined, [inkType, color, width, azimuth]); }
   /**
    * init(_ inkType: PKInkingTool.InkType, color: UIColor = UIColor.black, width: CGFloat? = nil)
    * @availability iOS 13.0+
    */
-  static initColorWidth(inkType: PKInkingTool_InkType, color?: _UIKit_UIColor, width?: (number) | null): PKInkingTool { return callSDK<PKInkingTool>("PencilKit_d6c5d10d3352e6ec", 2124696936583541, undefined, [inkType, color, width]); }
+  static initColorWidth(inkType: PKInkingTool_InkType, color?: _UIKit_UIColor, width?: (number) | null): PKInkingTool { return callSDK<PKInkingTool>("PencilKit_a956b86ef7a76a8e", 2124696936583541, undefined, [inkType, color, width]); }
   declare readonly $type: { "s:9PencilKit12PKInkingToolV": true };
 }
 
@@ -557,27 +557,27 @@ export const PKInkingTool_InkType = {
    * var defaultWidth: CGFloat { get }
    * @availability iOS 13.0+
    */
-  getDefaultWidth($self: PKInkingTool_InkType): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2638541651548540, $self, []); },
+  getDefaultWidth($self: PKInkingTool_InkType): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2638541651548540, $self, []); },
   /**
    * var validWidthRange: ClosedRange<CGFloat> { get }
    * @availability iOS 13.0+
    */
-  getValidWidthRange($self: PKInkingTool_InkType): $SDK3 { return callSDK<$SDK3>("PencilKit_d6c5d10d3352e6ec", 1361323609819248, $self, []); },
+  getValidWidthRange($self: PKInkingTool_InkType): $SDK3 { return callSDK<$SDK3>("PencilKit_a956b86ef7a76a8e", 1361323609819248, $self, []); },
   /**
    * var requiredContentVersion: PKContentVersion { get }
    * @availability iOS 17.0+
    */
-  getRequiredContentVersion($self: PKInkingTool_InkType): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 3829475951051102, $self, []); },
+  getRequiredContentVersion($self: PKInkingTool_InkType): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 3829475951051102, $self, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 13.0+
    */
-  init(rawValue: string): (PKInkingTool_InkType) | null { return callSDK<(PKInkingTool_InkType) | null>("PencilKit_d6c5d10d3352e6ec", 4484050909597604, undefined, [rawValue]); },
+  init(rawValue: string): (PKInkingTool_InkType) | null { return callSDK<(PKInkingTool_InkType) | null>("PencilKit_a956b86ef7a76a8e", 4484050909597604, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 13.0+
    */
-  getRawValue($self: PKInkingTool_InkType): string { return callSDK<string>("PencilKit_d6c5d10d3352e6ec", 2704870570119141, $self, []); }
+  getRawValue($self: PKInkingTool_InkType): string { return callSDK<string>("PencilKit_a956b86ef7a76a8e", 2704870570119141, $self, []); }
 };
 
 /**
@@ -595,72 +595,72 @@ export class PKInkingToolReference extends SDKHandle {
    * class func convert(_ color: UIColor, from fromUserInterfaceStyle: UIUserInterfaceStyle, to toUserInterfaceStyle: UIUserInterfaceStyle) -> UIColor
    * @availability iOS 13.0+
    */
-  static convert(color: _UIKit_UIColor, fromUserInterfaceStyle: _UIKit_UIUserInterfaceStyle, toUserInterfaceStyle: _UIKit_UIUserInterfaceStyle): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_d6c5d10d3352e6ec", 1627832571201112, undefined, [color, fromUserInterfaceStyle, toUserInterfaceStyle]); }
+  static convert(color: _UIKit_UIColor, fromUserInterfaceStyle: _UIKit_UIUserInterfaceStyle, toUserInterfaceStyle: _UIKit_UIUserInterfaceStyle): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_a956b86ef7a76a8e", 1627832571201112, undefined, [color, fromUserInterfaceStyle, toUserInterfaceStyle]); }
   /**
    * class func defaultWidth(forInkType inkType: __PKInkType) -> CGFloat
    * @availability iOS 13.0+
    */
-  static defaultWidth(inkType: SDKHandle): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 4502062605899630, undefined, [inkType]); }
+  static defaultWidth(inkType: SDKHandle): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 4502062605899630, undefined, [inkType]); }
   /**
    * class func maximumWidth(forInkType inkType: __PKInkType) -> CGFloat
    * @availability iOS 13.0+
    */
-  static maximumWidth(inkType: SDKHandle): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 4083079848298903, undefined, [inkType]); }
+  static maximumWidth(inkType: SDKHandle): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 4083079848298903, undefined, [inkType]); }
   /**
    * class func minimumWidth(forInkType inkType: __PKInkType) -> CGFloat
    * @availability iOS 13.0+
    */
-  static minimumWidth(inkType: SDKHandle): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2808587356304364, undefined, [inkType]); }
+  static minimumWidth(inkType: SDKHandle): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2808587356304364, undefined, [inkType]); }
   /**
    * convenience init(ink: PKInk, width: CGFloat)
    * @availability iOS 14.0+
    */
-  static initInkWidth(ink: PKInk, width: number): PKInkingToolReference { return callSDK<PKInkingToolReference>("PencilKit_d6c5d10d3352e6ec", 2288252500991740, undefined, [ink, width]); }
+  static initInkWidth(ink: PKInk, width: number): PKInkingToolReference { return callSDK<PKInkingToolReference>("PencilKit_a956b86ef7a76a8e", 2288252500991740, undefined, [ink, width]); }
   /**
    * convenience init(inkType type: __PKInkType, color: UIColor)
    * @availability iOS 13.0+
    */
-  static initInkTypeColor(type: SDKHandle, color: _UIKit_UIColor): PKInkingToolReference { return callSDK<PKInkingToolReference>("PencilKit_d6c5d10d3352e6ec", 4045465483122323, undefined, [type, color]); }
+  static initInkTypeColor(type: SDKHandle, color: _UIKit_UIColor): PKInkingToolReference { return callSDK<PKInkingToolReference>("PencilKit_a956b86ef7a76a8e", 4045465483122323, undefined, [type, color]); }
   /**
    * init(inkType type: __PKInkType, color: UIColor, width: CGFloat)
    * @availability iOS 13.0+
    */
-  static initInkTypeColorWidth(type: SDKHandle, color: _UIKit_UIColor, width: number): PKInkingToolReference { return callSDK<PKInkingToolReference>("PencilKit_d6c5d10d3352e6ec", 40097965842991, undefined, [type, color, width]); }
+  static initInkTypeColorWidth(type: SDKHandle, color: _UIKit_UIColor, width: number): PKInkingToolReference { return callSDK<PKInkingToolReference>("PencilKit_a956b86ef7a76a8e", 40097965842991, undefined, [type, color, width]); }
   /**
    * init(inkType type: __PKInkType, color: UIColor, width: CGFloat, azimuth angle: CGFloat)
    * @availability iOS 26.0+
    */
-  static initInkTypeColorWidthAzimuth(type: SDKHandle, color: _UIKit_UIColor, width: number, angle: number): PKInkingToolReference { return callSDK<PKInkingToolReference>("PencilKit_d6c5d10d3352e6ec", 3661457682441266, undefined, [type, color, width, angle]); }
+  static initInkTypeColorWidthAzimuth(type: SDKHandle, color: _UIKit_UIColor, width: number, angle: number): PKInkingToolReference { return callSDK<PKInkingToolReference>("PencilKit_a956b86ef7a76a8e", 3661457682441266, undefined, [type, color, width, angle]); }
   /**
    * var azimuth: CGFloat { get }
    * @availability iOS 26.0+
    */
-  get azimuth(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 4232653935027360, this, []); }
+  get azimuth(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 4232653935027360, this, []); }
   /**
    * var color: UIColor { get }
    * @availability iOS 13.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_d6c5d10d3352e6ec", 433296727012780, this, []); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_a956b86ef7a76a8e", 433296727012780, this, []); }
   /**
    * var ink: PKInk { get }
    * @availability iOS 14.0+
    */
-  get ink(): PKInk { return callSDK<PKInk>("PencilKit_d6c5d10d3352e6ec", 3799980183676224, this, []); }
+  get ink(): PKInk { return callSDK<PKInk>("PencilKit_a956b86ef7a76a8e", 3799980183676224, this, []); }
   /**
    * var inkType: __PKInkType { get }
    * @availability iOS 13.0+
    */
-  get inkType(): SDKHandle { return callSDK<SDKHandle>("PencilKit_d6c5d10d3352e6ec", 4258656589733573, this, []); }
+  get inkType(): SDKHandle { return callSDK<SDKHandle>("PencilKit_a956b86ef7a76a8e", 4258656589733573, this, []); }
   /**
    * var requiredContentVersion: PKContentVersion { get }
    * @availability iOS 17.0+
    */
-  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 2979226722919791, this, []); }
+  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 2979226722919791, this, []); }
   /**
    * var width: CGFloat { get }
    * @availability iOS 13.0+
    */
-  get width(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 4406710802016139, this, []); }
+  get width(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 4406710802016139, this, []); }
   declare readonly $type: { "c:objc(cs)PKInkingTool": true };
   declare readonly $observable: { "azimuth": true; "color": true; "ink": true; "inkType": true; "requiredContentVersion": true; "width": true };
 }
@@ -674,22 +674,22 @@ export class PKInkReference extends SDKHandle {
    * init(inkType type: __PKInkType, color: UIColor)
    * @availability iOS 14.0+
    */
-  static init(type: SDKHandle, color: _UIKit_UIColor): PKInkReference { return callSDK<PKInkReference>("PencilKit_d6c5d10d3352e6ec", 1916532075270411, undefined, [type, color]); }
+  static init(type: SDKHandle, color: _UIKit_UIColor): PKInkReference { return callSDK<PKInkReference>("PencilKit_a956b86ef7a76a8e", 1916532075270411, undefined, [type, color]); }
   /**
    * var color: UIColor { get }
    * @availability iOS 14.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_d6c5d10d3352e6ec", 1898078703825138, this, []); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_a956b86ef7a76a8e", 1898078703825138, this, []); }
   /**
    * var inkType: __PKInkType { get }
    * @availability iOS 14.0+
    */
-  get inkType(): SDKHandle { return callSDK<SDKHandle>("PencilKit_d6c5d10d3352e6ec", 3976611515156320, this, []); }
+  get inkType(): SDKHandle { return callSDK<SDKHandle>("PencilKit_a956b86ef7a76a8e", 3976611515156320, this, []); }
   /**
    * var requiredContentVersion: PKContentVersion { get }
    * @availability iOS 17.0+
    */
-  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 556757113840980, this, []); }
+  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 556757113840980, this, []); }
   declare readonly $type: { "c:objc(cs)PKInk": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "color": true; "inkType": true; "requiredContentVersion": true };
 }
@@ -703,7 +703,7 @@ export class PKLassoTool extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): PKLassoTool { return callSDK<PKLassoTool>("PencilKit_d6c5d10d3352e6ec", 2156868813382209, undefined, []); }
+  static init(): PKLassoTool { return callSDK<PKLassoTool>("PencilKit_a956b86ef7a76a8e", 2156868813382209, undefined, []); }
   declare readonly $type: { "s:9PencilKit11PKLassoToolV": true };
 }
 
@@ -716,7 +716,7 @@ export class PKLassoToolReference extends SDKHandle {
    * init()
    * @availability iOS 13.0+
    */
-  static init(): PKLassoToolReference { return callSDK<PKLassoToolReference>("PencilKit_d6c5d10d3352e6ec", 102717850223661, undefined, []); }
+  static init(): PKLassoToolReference { return callSDK<PKLassoToolReference>("PencilKit_a956b86ef7a76a8e", 102717850223661, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKLassoTool": true };
 }
 
@@ -726,19 +726,19 @@ export class PKLassoToolReference extends SDKHandle {
  */
 export class PKResponderState extends SDKHandle {
   /** init() */
-  static init(): PKResponderState { return callSDK<PKResponderState>("PencilKit_d6c5d10d3352e6ec", 1994117421338978, undefined, []); }
+  static init(): PKResponderState { return callSDK<PKResponderState>("PencilKit_a956b86ef7a76a8e", 1994117421338978, undefined, []); }
   /**
    * var activeToolPicker: PKToolPicker? { get set }
    * @availability iOS 26.0+
    */
-  get activeToolPicker(): (PKToolPicker) | null { return callSDK<(PKToolPicker) | null>("PencilKit_d6c5d10d3352e6ec", 1746980975055738, this, []); }
-  set activeToolPicker(value: (PKToolPicker) | null) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3336820310498726, this, [value]); }
+  get activeToolPicker(): (PKToolPicker) | null { return callSDK<(PKToolPicker) | null>("PencilKit_a956b86ef7a76a8e", 1746980975055738, this, []); }
+  set activeToolPicker(value: (PKToolPicker) | null) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3336820310498726, this, [value]); }
   /**
    * var toolPickerVisibility: PKToolPickerVisibility? { get set }
    * @availability iOS 26.0+
    */
-  get toolPickerVisibility(): $SDK6 { return callSDK<$SDK6>("PencilKit_d6c5d10d3352e6ec", 4479210267136985, this, []); }
-  set toolPickerVisibility(value: $SDK6) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 437496425322386, this, [value]); }
+  get toolPickerVisibility(): $SDK6 { return callSDK<$SDK6>("PencilKit_a956b86ef7a76a8e", 4479210267136985, this, []); }
+  set toolPickerVisibility(value: $SDK6) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 437496425322386, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKResponderState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activeToolPicker": true };
 }
@@ -752,85 +752,85 @@ export class PKStroke extends SDKHandle {
    * var randomSeed: UInt32 { get set }
    * @availability iOS 16.0+
    */
-  get randomSeed(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 4024518546014746, this, []); }
-  set randomSeed(value: number) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2379202127628693, this, [value]); }
+  get randomSeed(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 4024518546014746, this, []); }
+  set randomSeed(value: number) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2379202127628693, this, [value]); }
   /**
    * var renderState: PKStroke.RenderState? { get set }
    * @availability iOS 27.0+
    */
-  get renderState(): $SDK7 { return callSDK<$SDK7>("PencilKit_d6c5d10d3352e6ec", 1884598106892683, this, []); }
-  set renderState(value: $SDK7) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3519795018262363, this, [value]); }
+  get renderState(): $SDK7 { return callSDK<$SDK7>("PencilKit_a956b86ef7a76a8e", 1884598106892683, this, []); }
+  set renderState(value: $SDK7) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3519795018262363, this, [value]); }
   /**
    * var renderBounds: CGRect { get }
    * @availability iOS 14.0+
    */
-  get renderBounds(): $SDK5 { return callSDK<$SDK5>("PencilKit_d6c5d10d3352e6ec", 3023586655430381, this, []); }
+  get renderBounds(): $SDK5 { return callSDK<$SDK5>("PencilKit_a956b86ef7a76a8e", 3023586655430381, this, []); }
   /**
    * var renderGroupID: UUID? { get set }
    * @availability iOS 27.0+
    */
-  get renderGroupID(): (string) | null { return callSDK<(string) | null>("PencilKit_d6c5d10d3352e6ec", 3643091604324424, this, []); }
-  set renderGroupID(value: (string) | null) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2669363790703297, this, [value]); }
+  get renderGroupID(): (string) | null { return callSDK<(string) | null>("PencilKit_a956b86ef7a76a8e", 3643091604324424, this, []); }
+  set renderGroupID(value: (string) | null) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2669363790703297, this, [value]); }
   /**
    * var maskedPathRanges: [ClosedRange<CGFloat>] { get }
    * @availability iOS 14.0+
    */
-  get maskedPathRanges(): Array<"animatableData" | SDKHandle> { return callSDK<Array<"animatableData" | SDKHandle>>("PencilKit_d6c5d10d3352e6ec", 3662319459806045, this, []); }
+  get maskedPathRanges(): Array<"animatableData" | SDKHandle> { return callSDK<Array<"animatableData" | SDKHandle>>("PencilKit_a956b86ef7a76a8e", 3662319459806045, this, []); }
   /**
    * var requiredContentVersion: PKContentVersion { get }
    * @availability iOS 17.0+
    */
-  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 664158664132972, this, []); }
+  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 664158664132972, this, []); }
   /**
    * var id: UUID { get set }
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("PencilKit_d6c5d10d3352e6ec", 2420321910522008, this, []); }
-  set id(value: string) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2680829341924073, this, [value]); }
+  get id(): string { return callSDK<string>("PencilKit_a956b86ef7a76a8e", 2420321910522008, this, []); }
+  set id(value: string) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2680829341924073, this, [value]); }
   /**
    * init(ink: PKInk, path: PKStrokePath, transform: CGAffineTransform = .identity, mask: UIBezierPath? = nil, randomSeed: UInt32 = UInt32.random(in: 0...UInt32.max), id: UUID = UUID(), renderGroupID: UUID? = nil, renderState: PKStroke.RenderState? = nil)
    * @availability iOS 27.0+
    */
-  static initInkPathTransformMaskRandomSeedIdRenderGroupIDRenderState(ink: PKInk, path: PKStrokePath, transform?: _CoreFoundation_CGAffineTransform, mask?: $SDK4, randomSeed?: number, id?: string, renderGroupID?: (string) | null, renderState?: $SDK7): PKStroke { return callSDK<PKStroke>("PencilKit_d6c5d10d3352e6ec", 4490535557426008, undefined, [ink, path, transform, mask, randomSeed, id, renderGroupID, renderState]); }
+  static initInkPathTransformMaskRandomSeedIdRenderGroupIDRenderState(ink: PKInk, path: PKStrokePath, transform?: _CoreFoundation_CGAffineTransform, mask?: $SDK4, randomSeed?: number, id?: string, renderGroupID?: (string) | null, renderState?: $SDK7): PKStroke { return callSDK<PKStroke>("PencilKit_a956b86ef7a76a8e", 4490535557426008, undefined, [ink, path, transform, mask, randomSeed, id, renderGroupID, renderState]); }
   /**
    * init(ink: PKInk, path: PKStrokePath, transform: CGAffineTransform = .identity, mask: UIBezierPath? = nil, randomSeed: UInt32)
    * @availability iOS 16.0+
    */
-  static initInkPathTransformMaskRandomSeed(ink: PKInk, path: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK4, randomSeed: number): PKStroke { return callSDK<PKStroke>("PencilKit_d6c5d10d3352e6ec", 4194782959975587, undefined, [ink, path, transform, mask, randomSeed]); }
+  static initInkPathTransformMaskRandomSeed(ink: PKInk, path: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK4, randomSeed: number): PKStroke { return callSDK<PKStroke>("PencilKit_a956b86ef7a76a8e", 4194782959975587, undefined, [ink, path, transform, mask, randomSeed]); }
   /**
    * init(ink: PKInk, path: PKStrokePath, transform: CGAffineTransform = .identity, mask: UIBezierPath? = nil)
    * @availability iOS 14.0+
    */
-  static initInkPathTransformMask(ink: PKInk, path: PKStrokePath, transform?: _CoreFoundation_CGAffineTransform, mask?: $SDK4): PKStroke { return callSDK<PKStroke>("PencilKit_d6c5d10d3352e6ec", 84684994375330, undefined, [ink, path, transform, mask]); }
+  static initInkPathTransformMask(ink: PKInk, path: PKStrokePath, transform?: _CoreFoundation_CGAffineTransform, mask?: $SDK4): PKStroke { return callSDK<PKStroke>("PencilKit_a956b86ef7a76a8e", 84684994375330, undefined, [ink, path, transform, mask]); }
   /**
    * var ink: PKInk { get set }
    * @availability iOS 14.0+
    */
-  get ink(): PKInk { return callSDK<PKInk>("PencilKit_d6c5d10d3352e6ec", 4434814046354985, this, []); }
-  set ink(value: PKInk) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1261012623517243, this, [value]); }
+  get ink(): PKInk { return callSDK<PKInk>("PencilKit_a956b86ef7a76a8e", 4434814046354985, this, []); }
+  set ink(value: PKInk) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 1261012623517243, this, [value]); }
   /**
    * var mask: UIBezierPath? { get set }
    * @availability iOS 14.0+
    */
-  get mask(): $SDK4 { return callSDK<$SDK4>("PencilKit_d6c5d10d3352e6ec", 3134573045484520, this, []); }
-  set mask(value: $SDK4) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 227647076518654, this, [value]); }
+  get mask(): $SDK4 { return callSDK<$SDK4>("PencilKit_a956b86ef7a76a8e", 3134573045484520, this, []); }
+  set mask(value: $SDK4) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 227647076518654, this, [value]); }
   /**
    * var path: PKStrokePath { get set }
    * @availability iOS 14.0+
    */
-  get path(): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_d6c5d10d3352e6ec", 3569065130849501, this, []); }
-  set path(value: PKStrokePath) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2780229535142732, this, [value]); }
+  get path(): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_a956b86ef7a76a8e", 3569065130849501, this, []); }
+  set path(value: PKStrokePath) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2780229535142732, this, [value]); }
   /**
    * func substroke(range: ClosedRange<CGFloat>) -> PKStroke
    * @availability iOS 27.0+
    */
-  substroke(range: $SDK3): PKStroke { return callSDK<PKStroke>("PencilKit_d6c5d10d3352e6ec", 4198989957916789, this, [range]); }
+  substroke(range: $SDK3): PKStroke { return callSDK<PKStroke>("PencilKit_a956b86ef7a76a8e", 4198989957916789, this, [range]); }
   /**
    * var transform: CGAffineTransform { get set }
    * @availability iOS 14.0+
    */
-  get transform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("PencilKit_d6c5d10d3352e6ec", 895773079623094, this, []); }
-  set transform(value: _CoreFoundation_CGAffineTransform) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3386059598036000, this, [value]); }
+  get transform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("PencilKit_a956b86ef7a76a8e", 895773079623094, this, []); }
+  set transform(value: _CoreFoundation_CGAffineTransform) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3386059598036000, this, [value]); }
   declare readonly $type: { "s:9PencilKit8PKStrokeV": true };
 }
 
@@ -849,18 +849,18 @@ export class PKStroke_RenderState extends SDKHandle {
    * init(grainOffset: CGPoint? = nil)
    * @availability iOS 27.0+
    */
-  static initGrainOffset(grainOffset?: $SDK9): PKStroke_RenderState { return callSDK<PKStroke_RenderState>("PencilKit_d6c5d10d3352e6ec", 1584357823891705, undefined, [grainOffset]); }
+  static initGrainOffset(grainOffset?: $SDK9): PKStroke_RenderState { return callSDK<PKStroke_RenderState>("PencilKit_a956b86ef7a76a8e", 1584357823891705, undefined, [grainOffset]); }
   /**
    * var grainOffset: CGPoint?
    * @availability iOS 27.0+
    */
-  get grainOffset(): $SDK9 { return callSDK<$SDK9>("PencilKit_d6c5d10d3352e6ec", 498290464308931, this, []); }
-  set grainOffset(value: $SDK9) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2404064659360213, this, [value]); }
+  get grainOffset(): $SDK9 { return callSDK<$SDK9>("PencilKit_a956b86ef7a76a8e", 498290464308931, this, []); }
+  set grainOffset(value: $SDK9) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2404064659360213, this, [value]); }
   /**
    * init(_ objcValue: PKStrokeRenderStateReference)
    * @availability iOS 27.0+
    */
-  static init(objcValue: PKStrokeRenderStateReference): PKStroke_RenderState { return callSDK<PKStroke_RenderState>("PencilKit_d6c5d10d3352e6ec", 1242948109732868, undefined, [objcValue]); }
+  static init(objcValue: PKStrokeRenderStateReference): PKStroke_RenderState { return callSDK<PKStroke_RenderState>("PencilKit_a956b86ef7a76a8e", 1242948109732868, undefined, [objcValue]); }
   declare readonly $type: { "s:9PencilKit8PKStrokeV11RenderStateV": true };
 }
 
@@ -873,72 +873,72 @@ export class PKStrokePath extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 14.0+
    */
-  get startIndex(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2763989841023190, this, []); }
+  get startIndex(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2763989841023190, this, []); }
   /**
    * var creationDate: Date { get }
    * @availability iOS 14.0+
    */
-  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("PencilKit_d6c5d10d3352e6ec", 1001850630219447, this, []); }
+  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("PencilKit_a956b86ef7a76a8e", 1001850630219447, this, []); }
   /**
    * init<T>(controlPoints: T, creationDate: Date, id: UUID) where T : Sequence, T.Element == PKStrokePoint
    * @availability iOS 27.0+
    */
-  static initControlPointsCreationDateId(controlPoints: Array<PKStrokePoint>, creationDate: globalThis.Date, id: string): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_d6c5d10d3352e6ec", 2647359061046286, undefined, [controlPoints, creationDate, id]); }
+  static initControlPointsCreationDateId(controlPoints: Array<PKStrokePoint>, creationDate: globalThis.Date, id: string): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_a956b86ef7a76a8e", 2647359061046286, undefined, [controlPoints, creationDate, id]); }
   /**
    * init<T>(controlPoints: T, creationDate: Date) where T : Sequence, T.Element == PKStrokePoint
    * @availability iOS 14.0+
    */
-  static initControlPointsCreationDate(controlPoints: Array<PKStrokePoint>, creationDate: globalThis.Date): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_d6c5d10d3352e6ec", 875432530341367, undefined, [controlPoints, creationDate]); }
+  static initControlPointsCreationDate(controlPoints: Array<PKStrokePoint>, creationDate: globalThis.Date): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_a956b86ef7a76a8e", 875432530341367, undefined, [controlPoints, creationDate]); }
   /**
    * func parametricValue(_ parametricValue: CGFloat, offsetBy step: PKStrokePath.InterpolatedSlice.Stride) -> CGFloat
    * @availability iOS 14.0+
    */
-  parametricValue(parametricValue: number, step: PKStrokePath_InterpolatedSlice_Stride): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2218808657370079, this, [parametricValue, step]); }
+  parametricValue(parametricValue: number, step: PKStrokePath_InterpolatedSlice_Stride): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2218808657370079, this, [parametricValue, step]); }
   /**
    * func interpolatedPoint(at parametricValue: CGFloat) -> PKStrokePoint
    * @availability iOS 14.0+
    */
-  interpolatedPoint(parametricValue: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_d6c5d10d3352e6ec", 556753935450390, this, [parametricValue]); }
+  interpolatedPoint(parametricValue: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_a956b86ef7a76a8e", 556753935450390, this, [parametricValue]); }
   /**
    * func interpolatedPoints(in range: ClosedRange<CGFloat>? = nil, by stride: PKStrokePath.InterpolatedSlice.Stride) -> PKStrokePath.InterpolatedSlice
    * @availability iOS 14.0+
    */
-  interpolatedPoints(range: ("animatableData" | SDKHandle) | null, stride: PKStrokePath_InterpolatedSlice_Stride): PKStrokePath_InterpolatedSlice { return callSDK<PKStrokePath_InterpolatedSlice>("PencilKit_d6c5d10d3352e6ec", 2160653543317921, this, [range, stride]); }
+  interpolatedPoints(range: ("animatableData" | SDKHandle) | null, stride: PKStrokePath_InterpolatedSlice_Stride): PKStrokePath_InterpolatedSlice { return callSDK<PKStrokePath_InterpolatedSlice>("PencilKit_a956b86ef7a76a8e", 2160653543317921, this, [range, stride]); }
   /**
    * var bezierRepresentation: CGPath { get }
    * @availability iOS 27.0+
    */
-  get bezierRepresentation(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PencilKit_d6c5d10d3352e6ec", 372136338307427, this, []); }
+  get bezierRepresentation(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PencilKit_a956b86ef7a76a8e", 372136338307427, this, []); }
   /**
    * func interpolatedLocation(at parametricValue: CGFloat) -> CGPoint
    * @availability iOS 14.0+
    */
-  interpolatedLocation(parametricValue: number): $SDK2 { return callSDK<$SDK2>("PencilKit_d6c5d10d3352e6ec", 2090471036678480, this, [parametricValue]); }
+  interpolatedLocation(parametricValue: number): $SDK2 { return callSDK<$SDK2>("PencilKit_a956b86ef7a76a8e", 2090471036678480, this, [parametricValue]); }
   /**
    * var id: UUID { get }
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("PencilKit_d6c5d10d3352e6ec", 514386843666261, this, []); }
+  get id(): string { return callSDK<string>("PencilKit_a956b86ef7a76a8e", 514386843666261, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 14.0+
    */
-  get endIndex(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 492530151619936, this, []); }
+  get endIndex(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 492530151619936, this, []); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_d6c5d10d3352e6ec", 4486988819299450, undefined, []); }
+  static init(): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_a956b86ef7a76a8e", 4486988819299450, undefined, []); }
   /**
    * subscript(index: PKStrokePath.Index) -> PKStrokePoint { get }
    * @availability iOS 14.0+
    */
-  subscript(index: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_d6c5d10d3352e6ec", 1969491114921844, this, [index]); }
+  subscript(index: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_a956b86ef7a76a8e", 1969491114921844, this, [index]); }
   /**
    * subscript(range: ClosedRange<CGFloat>) -> PKStrokePath { get }
    * @availability iOS 27.0+
    */
-  subscript52479(range: $SDK3): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_d6c5d10d3352e6ec", 1215854183322181, this, [range]); }
+  subscript52479(range: $SDK3): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_a956b86ef7a76a8e", 1215854183322181, this, [range]); }
   declare readonly $type: { "s:9PencilKit12PKStrokePathV": true };
 }
 
@@ -951,22 +951,22 @@ export class PKStrokePath_ConvertedBezierPoint extends SDKHandle {
    * let pointCount: Int
    * @availability iOS 27.0+
    */
-  get pointCount(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 1986410285261204, this, []); }
+  get pointCount(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 1986410285261204, this, []); }
   /**
    * let bezierSegmentIndex: Int
    * @availability iOS 27.0+
    */
-  get bezierSegmentIndex(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 3916445200203250, this, []); }
+  get bezierSegmentIndex(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 3916445200203250, this, []); }
   /**
    * let index: Int
    * @availability iOS 27.0+
    */
-  get index(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 3864015614618978, this, []); }
+  get index(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 3864015614618978, this, []); }
   /**
    * let location: CGPoint
    * @availability iOS 27.0+
    */
-  get location(): $SDK2 { return callSDK<$SDK2>("PencilKit_d6c5d10d3352e6ec", 2724840175048588, this, []); }
+  get location(): $SDK2 { return callSDK<$SDK2>("PencilKit_a956b86ef7a76a8e", 2724840175048588, this, []); }
   declare readonly $type: { "s:9PencilKit12PKStrokePathV20ConvertedBezierPointV": true };
 }
 
@@ -1003,7 +1003,7 @@ export class PKStrokePath_InterpolatedSlice extends SDKHandle {
    * mutating func next() -> PKStrokePoint?
    * @availability iOS 14.0+
    */
-  next(): (PKStrokePoint) | null { return callSDK<(PKStrokePoint) | null>("PencilKit_d6c5d10d3352e6ec", 3254694443620135, this, []); }
+  next(): (PKStrokePoint) | null { return callSDK<(PKStrokePoint) | null>("PencilKit_a956b86ef7a76a8e", 3254694443620135, this, []); }
   declare readonly $type: { "s:9PencilKit12PKStrokePathV17InterpolatedSliceV": true };
 }
 
@@ -1048,67 +1048,67 @@ export class PKStrokePathReference extends SDKHandle {
    * init(controlPoints: [PKStrokePoint], creationDate: Date)
    * @availability iOS 14.0+
    */
-  static initControlPointsCreationDate(controlPoints: Array<PKStrokePoint>, creationDate: globalThis.Date): PKStrokePathReference { return callSDK<PKStrokePathReference>("PencilKit_d6c5d10d3352e6ec", 1463223363398106, undefined, [controlPoints, creationDate]); }
+  static initControlPointsCreationDate(controlPoints: Array<PKStrokePoint>, creationDate: globalThis.Date): PKStrokePathReference { return callSDK<PKStrokePathReference>("PencilKit_a956b86ef7a76a8e", 1463223363398106, undefined, [controlPoints, creationDate]); }
   /**
    * convenience init(controlPoints: [PKStrokePoint], creationDate: Date, strokePathID: UUID)
    * @availability iOS 27.0+
    */
-  static initControlPointsCreationDateStrokePathID(controlPoints: Array<PKStrokePoint>, creationDate: globalThis.Date, strokePathID: string): PKStrokePathReference { return callSDK<PKStrokePathReference>("PencilKit_d6c5d10d3352e6ec", 1489198489522603, undefined, [controlPoints, creationDate, strokePathID]); }
+  static initControlPointsCreationDateStrokePathID(controlPoints: Array<PKStrokePoint>, creationDate: globalThis.Date, strokePathID: string): PKStrokePathReference { return callSDK<PKStrokePathReference>("PencilKit_a956b86ef7a76a8e", 1489198489522603, undefined, [controlPoints, creationDate, strokePathID]); }
   /**
    * func interpolatedLocation(at parametricValue: CGFloat) -> CGPoint
    * @availability iOS 14.0+
    */
-  interpolatedLocation(parametricValue: number): $SDK2 { return callSDK<$SDK2>("PencilKit_d6c5d10d3352e6ec", 2737157959947350, this, [parametricValue]); }
+  interpolatedLocation(parametricValue: number): $SDK2 { return callSDK<$SDK2>("PencilKit_a956b86ef7a76a8e", 2737157959947350, this, [parametricValue]); }
   /**
    * func interpolatedPoint(at parametricValue: CGFloat) -> PKStrokePoint
    * @availability iOS 14.0+
    */
-  interpolatedPoint(parametricValue: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_d6c5d10d3352e6ec", 3942435475245128, this, [parametricValue]); }
+  interpolatedPoint(parametricValue: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_a956b86ef7a76a8e", 3942435475245128, this, [parametricValue]); }
   /**
    * subscript(i: Int) -> PKStrokePoint { get }
    * @availability iOS 14.0+
    */
-  subscript(i: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_d6c5d10d3352e6ec", 1053906445125073, this, [i]); }
+  subscript(i: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_a956b86ef7a76a8e", 1053906445125073, this, [i]); }
   /**
    * func parametricValue(_ parametricValue: CGFloat, offsetByDistance distanceStep: CGFloat) -> CGFloat
    * @availability iOS 14.0+
    */
-  parametricValueOffsetByDistance(parametricValue: number, distanceStep: number): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2155280728130605, this, [parametricValue, distanceStep]); }
+  parametricValueOffsetByDistance(parametricValue: number, distanceStep: number): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2155280728130605, this, [parametricValue, distanceStep]); }
   /**
    * func parametricValue(_ parametricValue: CGFloat, offsetByTime timeStep: TimeInterval) -> CGFloat
    * @availability iOS 14.0+
    */
-  parametricValueOffsetByTime(parametricValue: number, timeStep: number): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 3423657222197214, this, [parametricValue, timeStep]); }
+  parametricValueOffsetByTime(parametricValue: number, timeStep: number): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 3423657222197214, this, [parametricValue, timeStep]); }
   /**
    * func point(at i: Int) -> PKStrokePoint
    * @availability iOS 14.0+
    */
-  point(i: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_d6c5d10d3352e6ec", 2586635912494284, this, [i]); }
+  point(i: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_a956b86ef7a76a8e", 2586635912494284, this, [i]); }
   /**
    * func subpath(with range: __PKFloatRange) -> PKStrokePath
    * @availability iOS 27.0+
    */
-  subpath(range: SDKHandle): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_d6c5d10d3352e6ec", 1819364273227407, this, [range]); }
+  subpath(range: SDKHandle): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_a956b86ef7a76a8e", 1819364273227407, this, [range]); }
   /**
    * var bezierRepresentation: CGPath { get }
    * @availability iOS 27.0+
    */
-  get bezierRepresentation(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PencilKit_d6c5d10d3352e6ec", 3425184470419746, this, []); }
+  get bezierRepresentation(): _CoreGraphics_CGPath { return callSDK<_CoreGraphics_CGPath>("PencilKit_a956b86ef7a76a8e", 3425184470419746, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 14.0+
    */
-  get count(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 4407138925557743, this, []); }
+  get count(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 4407138925557743, this, []); }
   /**
    * var creationDate: Date { get }
    * @availability iOS 14.0+
    */
-  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("PencilKit_d6c5d10d3352e6ec", 853159440991366, this, []); }
+  get creationDate(): globalThis.Date { return callSDK<globalThis.Date>("PencilKit_a956b86ef7a76a8e", 853159440991366, this, []); }
   /**
    * var strokePathID: UUID { get }
    * @availability iOS 27.0+
    */
-  get strokePathID(): string { return callSDK<string>("PencilKit_d6c5d10d3352e6ec", 1456952795967474, this, []); }
+  get strokePathID(): string { return callSDK<string>("PencilKit_a956b86ef7a76a8e", 1456952795967474, this, []); }
   declare readonly $type: { "c:objc(cs)PKStrokePath": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bezierRepresentation": true; "count": true; "creationDate": true; "strokePathID": true };
 }
@@ -1122,72 +1122,72 @@ export class PKStrokePoint extends SDKHandle {
    * var timeOffset: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get timeOffset(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 3786803170541773, this, []); }
+  get timeOffset(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 3786803170541773, this, []); }
   /**
    * var lateralJitter: CGFloat { get }
    * @availability iOS 27.0+
    */
-  get lateralJitter(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2544183508554376, this, []); }
+  get lateralJitter(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2544183508554376, this, []); }
   /**
    * var secondaryScale: CGFloat { get }
    * @availability iOS 17.0+
    */
-  get secondaryScale(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 3122673143420834, this, []); }
+  get secondaryScale(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 3122673143420834, this, []); }
   /**
    * var size: CGSize { get }
    * @availability iOS 14.0+
    */
-  get size(): $SDK11 { return callSDK<$SDK11>("PencilKit_d6c5d10d3352e6ec", 77780306658855, this, []); }
+  get size(): $SDK11 { return callSDK<$SDK11>("PencilKit_a956b86ef7a76a8e", 77780306658855, this, []); }
   /**
    * var force: CGFloat { get }
    * @availability iOS 14.0+
    */
-  get force(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 1254644541794077, this, []); }
+  get force(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 1254644541794077, this, []); }
   /**
    * var azimuth: CGFloat { get }
    * @availability iOS 14.0+
    */
-  get azimuth(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 327331415679434, this, []); }
+  get azimuth(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 327331415679434, this, []); }
   /**
    * var opacity: CGFloat { get }
    * @availability iOS 14.0+
    */
-  get opacity(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 4471633035610053, this, []); }
+  get opacity(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 4471633035610053, this, []); }
   /**
    * var altitude: CGFloat { get }
    * @availability iOS 14.0+
    */
-  get altitude(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 721817093769777, this, []); }
+  get altitude(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 721817093769777, this, []); }
   /**
    * init(location: CGPoint, timeOffset: TimeInterval, size: CGSize, opacity: CGFloat, force: CGFloat, azimuth: CGFloat, altitude: CGFloat, secondaryScale: CGFloat, threshold: CGFloat, lateralJitter: CGFloat)
    * @availability iOS 27.0+
    */
-  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThresholdLateralJitter(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number, threshold: number, lateralJitter: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_d6c5d10d3352e6ec", 4317861331982428, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold, lateralJitter]); }
+  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThresholdLateralJitter(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number, threshold: number, lateralJitter: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_a956b86ef7a76a8e", 4317861331982428, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold, lateralJitter]); }
   /**
    * init(location: CGPoint, timeOffset: TimeInterval, size: CGSize, opacity: CGFloat, force: CGFloat, azimuth: CGFloat, altitude: CGFloat, secondaryScale: CGFloat, threshold: CGFloat)
    * @availability iOS 26.0+
    */
-  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThreshold(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number, threshold: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_d6c5d10d3352e6ec", 4077849048050132, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold]); }
+  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThreshold(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number, threshold: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_a956b86ef7a76a8e", 4077849048050132, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold]); }
   /**
    * init(location: CGPoint, timeOffset: TimeInterval, size: CGSize, opacity: CGFloat, force: CGFloat, azimuth: CGFloat, altitude: CGFloat, secondaryScale: CGFloat)
    * @availability iOS 17.0+
    */
-  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScale(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_d6c5d10d3352e6ec", 3139157989652987, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale]); }
+  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScale(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_a956b86ef7a76a8e", 3139157989652987, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale]); }
   /**
    * init(location: CGPoint, timeOffset: TimeInterval, size: CGSize, opacity: CGFloat, force: CGFloat, azimuth: CGFloat, altitude: CGFloat)
    * @availability iOS 14.0+
    */
-  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitude(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_d6c5d10d3352e6ec", 1130635770950365, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude]); }
+  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitude(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number): PKStrokePoint { return callSDK<PKStrokePoint>("PencilKit_a956b86ef7a76a8e", 1130635770950365, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude]); }
   /**
    * var location: CGPoint { get }
    * @availability iOS 14.0+
    */
-  get location(): $SDK2 { return callSDK<$SDK2>("PencilKit_d6c5d10d3352e6ec", 2691693102705813, this, []); }
+  get location(): $SDK2 { return callSDK<$SDK2>("PencilKit_a956b86ef7a76a8e", 2691693102705813, this, []); }
   /**
    * var threshold: CGFloat { get }
    * @availability iOS 26.0+
    */
-  get threshold(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2760786298163618, this, []); }
+  get threshold(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2760786298163618, this, []); }
   declare readonly $type: { "s:9PencilKit13PKStrokePointV": true };
 }
 
@@ -1200,72 +1200,72 @@ export class PKStrokePointReference extends SDKHandle {
    * init(location: CGPoint, timeOffset: TimeInterval, size: CGSize, opacity: CGFloat, force: CGFloat, azimuth: CGFloat, altitude: CGFloat)
    * @availability iOS 14.0+
    */
-  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitude(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number): PKStrokePointReference { return callSDK<PKStrokePointReference>("PencilKit_d6c5d10d3352e6ec", 3040212915492892, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude]); }
+  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitude(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number): PKStrokePointReference { return callSDK<PKStrokePointReference>("PencilKit_a956b86ef7a76a8e", 3040212915492892, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude]); }
   /**
    * init(location: CGPoint, timeOffset: TimeInterval, size: CGSize, opacity: CGFloat, force: CGFloat, azimuth: CGFloat, altitude: CGFloat, secondaryScale: CGFloat)
    * @availability iOS 17.0+
    */
-  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScale(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number): PKStrokePointReference { return callSDK<PKStrokePointReference>("PencilKit_d6c5d10d3352e6ec", 3433614733462313, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale]); }
+  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScale(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number): PKStrokePointReference { return callSDK<PKStrokePointReference>("PencilKit_a956b86ef7a76a8e", 3433614733462313, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale]); }
   /**
    * init(location: CGPoint, timeOffset: TimeInterval, size: CGSize, opacity: CGFloat, force: CGFloat, azimuth: CGFloat, altitude: CGFloat, secondaryScale: CGFloat, threshold: CGFloat)
    * @availability iOS 26.0+
    */
-  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThreshold(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number, threshold: number): PKStrokePointReference { return callSDK<PKStrokePointReference>("PencilKit_d6c5d10d3352e6ec", 1278386828887549, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold]); }
+  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThreshold(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number, threshold: number): PKStrokePointReference { return callSDK<PKStrokePointReference>("PencilKit_a956b86ef7a76a8e", 1278386828887549, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold]); }
   /**
    * init(location: CGPoint, timeOffset: TimeInterval, size: CGSize, opacity: CGFloat, force: CGFloat, azimuth: CGFloat, altitude: CGFloat, secondaryScale: CGFloat, threshold: CGFloat, lateralJitter: CGFloat)
    * @availability iOS 27.0+
    */
-  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThresholdLateralJitter(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number, threshold: number, lateralJitter: number): PKStrokePointReference { return callSDK<PKStrokePointReference>("PencilKit_d6c5d10d3352e6ec", 1763979919692222, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold, lateralJitter]); }
+  static initLocationTimeOffsetSizeOpacityForceAzimuthAltitudeSecondaryScaleThresholdLateralJitter(location: $SDK2, timeOffset: number, size: $SDK11, opacity: number, force: number, azimuth: number, altitude: number, secondaryScale: number, threshold: number, lateralJitter: number): PKStrokePointReference { return callSDK<PKStrokePointReference>("PencilKit_a956b86ef7a76a8e", 1763979919692222, undefined, [location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold, lateralJitter]); }
   /**
    * var altitude: CGFloat { get }
    * @availability iOS 14.0+
    */
-  get altitude(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 3186592453949372, this, []); }
+  get altitude(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 3186592453949372, this, []); }
   /**
    * var azimuth: CGFloat { get }
    * @availability iOS 14.0+
    */
-  get azimuth(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 1603042314880085, this, []); }
+  get azimuth(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 1603042314880085, this, []); }
   /**
    * var force: CGFloat { get }
    * @availability iOS 14.0+
    */
-  get force(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 484868387419479, this, []); }
+  get force(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 484868387419479, this, []); }
   /**
    * var lateralJitter: CGFloat { get }
    * @availability iOS 27.0+
    */
-  get lateralJitter(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 1451880284194714, this, []); }
+  get lateralJitter(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 1451880284194714, this, []); }
   /**
    * var location: CGPoint { get }
    * @availability iOS 14.0+
    */
-  get location(): $SDK2 { return callSDK<$SDK2>("PencilKit_d6c5d10d3352e6ec", 344745751973510, this, []); }
+  get location(): $SDK2 { return callSDK<$SDK2>("PencilKit_a956b86ef7a76a8e", 344745751973510, this, []); }
   /**
    * var opacity: CGFloat { get }
    * @availability iOS 14.0+
    */
-  get opacity(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2235881231926627, this, []); }
+  get opacity(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2235881231926627, this, []); }
   /**
    * var secondaryScale: CGFloat { get }
    * @availability iOS 17.0+
    */
-  get secondaryScale(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 1285673700937382, this, []); }
+  get secondaryScale(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 1285673700937382, this, []); }
   /**
    * var size: CGSize { get }
    * @availability iOS 14.0+
    */
-  get size(): $SDK11 { return callSDK<$SDK11>("PencilKit_d6c5d10d3352e6ec", 1071598549329338, this, []); }
+  get size(): $SDK11 { return callSDK<$SDK11>("PencilKit_a956b86ef7a76a8e", 1071598549329338, this, []); }
   /**
    * var threshold: CGFloat { get }
    * @availability iOS 26.0+
    */
-  get threshold(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2429180783057056, this, []); }
+  get threshold(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2429180783057056, this, []); }
   /**
    * var timeOffset: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get timeOffset(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 1675794664090432, this, []); }
+  get timeOffset(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 1675794664090432, this, []); }
   declare readonly $type: { "c:objc(cs)PKStrokePoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "altitude": true; "azimuth": true; "force": true; "lateralJitter": true; "location": true; "opacity": true; "secondaryScale": true; "size": true; "threshold": true; "timeOffset": true };
 }
@@ -1279,42 +1279,42 @@ export class PKStrokeRecognizer extends SDKHandle {
    * final func updateDrawing(_ drawing: PKDrawing) async
    * @availability iOS 27.0+
    */
-  updateDrawing(drawing: PKDrawing): Promise<void> { return callSDKAsync<void>("PencilKit_d6c5d10d3352e6ec", 1802836983800560, this, [drawing]); }
+  updateDrawing(drawing: PKDrawing): Promise<void> { return callSDKAsync<void>("PencilKit_a956b86ef7a76a8e", 1802836983800560, this, [drawing]); }
   /**
    * final func recognizedText(strokeIDs: Set<UUID>? = nil) async -> String?
    * @availability iOS 27.0+
    */
-  recognizedText(strokeIDs?: (Array<string>) | null): Promise<(string) | null> { return callSDKAsync<(string) | null>("PencilKit_d6c5d10d3352e6ec", 1865761055939002, this, [strokeIDs]); }
+  recognizedText(strokeIDs?: (Array<string>) | null): Promise<(string) | null> { return callSDKAsync<(string) | null>("PencilKit_a956b86ef7a76a8e", 1865761055939002, this, [strokeIDs]); }
   /**
    * nonisolated final var unownedExecutor: UnownedSerialExecutor { get }
    * @availability iOS 27.0+
    */
-  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("PencilKit_d6c5d10d3352e6ec", 1214174331469541, this, []); }
+  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("PencilKit_a956b86ef7a76a8e", 1214174331469541, this, []); }
   /**
    * final var indexableContent: String? { get async }
    * @availability iOS 27.0+
    */
-  get indexableContent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("PencilKit_d6c5d10d3352e6ec", 2251060962860488, this, []); }
+  get indexableContent(): Promise<(string) | null> { return callSDKAsync<(string) | null>("PencilKit_a956b86ef7a76a8e", 2251060962860488, this, []); }
   /**
    * init(preferredLanguages: [Locale.Language]? = nil)
    * @availability iOS 27.0+
    */
-  static init(preferredLanguages?: (Array<_Foundation_Locale_Language>) | null): PKStrokeRecognizer { return callSDK<PKStrokeRecognizer>("PencilKit_d6c5d10d3352e6ec", 1161913279376107, undefined, [preferredLanguages]); }
+  static init(preferredLanguages?: (Array<_Foundation_Locale_Language>) | null): PKStrokeRecognizer { return callSDK<PKStrokeRecognizer>("PencilKit_a956b86ef7a76a8e", 1161913279376107, undefined, [preferredLanguages]); }
   /**
    * static var recognitionVersion: Int { get }
    * @availability iOS 27.0+
    */
-  static get recognitionVersion(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 814994113456171, undefined, []); }
+  static get recognitionVersion(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 814994113456171, undefined, []); }
   /**
    * static var supportedLanguages: Set<Locale.Language> { get }
    * @availability iOS 27.0+
    */
-  static get supportedLanguages(): Array<_Foundation_Locale_Language> { return callSDK<Array<_Foundation_Locale_Language>>("PencilKit_d6c5d10d3352e6ec", 2443556672024244, undefined, []); }
+  static get supportedLanguages(): Array<_Foundation_Locale_Language> { return callSDK<Array<_Foundation_Locale_Language>>("PencilKit_a956b86ef7a76a8e", 2443556672024244, undefined, []); }
   /**
    * final func search(_ query: String, fullWordsOnly: Bool = false, caseMatchingOnly: Bool = false) async -> [PKStrokeRecognizer.SearchResult]
    * @availability iOS 27.0+
    */
-  search(query: string, fullWordsOnly?: boolean, caseMatchingOnly?: boolean): Promise<Array<PKStrokeRecognizer_SearchResult>> { return callSDKAsync<Array<PKStrokeRecognizer_SearchResult>>("PencilKit_d6c5d10d3352e6ec", 614091562436891, this, [query, fullWordsOnly, caseMatchingOnly]); }
+  search(query: string, fullWordsOnly?: boolean, caseMatchingOnly?: boolean): Promise<Array<PKStrokeRecognizer_SearchResult>> { return callSDKAsync<Array<PKStrokeRecognizer_SearchResult>>("PencilKit_a956b86ef7a76a8e", 614091562436891, this, [query, fullWordsOnly, caseMatchingOnly]); }
   declare readonly $type: { "s:9PencilKit18PKStrokeRecognizerC": true };
 }
 
@@ -1327,12 +1327,12 @@ export class PKStrokeRecognizer_SearchResult extends SDKHandle {
    * let bounds: CGRect
    * @availability iOS 27.0+
    */
-  get bounds(): $SDK5 { return callSDK<$SDK5>("PencilKit_d6c5d10d3352e6ec", 771960190083990, this, []); }
+  get bounds(): $SDK5 { return callSDK<$SDK5>("PencilKit_a956b86ef7a76a8e", 771960190083990, this, []); }
   /**
    * let strokes: Set<UUID>
    * @availability iOS 27.0+
    */
-  get strokes(): Array<string> { return callSDK<Array<string>>("PencilKit_d6c5d10d3352e6ec", 116160691547643, this, []); }
+  get strokes(): Array<string> { return callSDK<Array<string>>("PencilKit_a956b86ef7a76a8e", 116160691547643, this, []); }
   declare readonly $type: { "s:9PencilKit18PKStrokeRecognizerC12SearchResultV": true };
 }
 
@@ -1345,77 +1345,77 @@ export class PKStrokeReference extends SDKHandle {
    * init(ink: PKInk, strokePath: PKStrokePath, transform: CGAffineTransform, mask: UIBezierPath?)
    * @availability iOS 14.0+
    */
-  static initInkStrokePathTransformMask(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask?: $SDK4): PKStrokeReference { return callSDK<PKStrokeReference>("PencilKit_d6c5d10d3352e6ec", 1667903597741740, undefined, [ink, strokePath, transform, mask]); }
+  static initInkStrokePathTransformMask(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask?: $SDK4): PKStrokeReference { return callSDK<PKStrokeReference>("PencilKit_a956b86ef7a76a8e", 1667903597741740, undefined, [ink, strokePath, transform, mask]); }
   /**
    * init(ink: PKInk, strokePath: PKStrokePath, transform: CGAffineTransform, mask: UIBezierPath?, randomSeed: UInt32)
    * @availability iOS 16.0+
    */
-  static initInkStrokePathTransformMaskRandomSeed(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK4, randomSeed: number): PKStrokeReference { return callSDK<PKStrokeReference>("PencilKit_d6c5d10d3352e6ec", 388638778561011, undefined, [ink, strokePath, transform, mask, randomSeed]); }
+  static initInkStrokePathTransformMaskRandomSeed(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK4, randomSeed: number): PKStrokeReference { return callSDK<PKStrokeReference>("PencilKit_a956b86ef7a76a8e", 388638778561011, undefined, [ink, strokePath, transform, mask, randomSeed]); }
   /**
    * init(ink: PKInk, strokePath: PKStrokePath, transform: CGAffineTransform, mask: UIBezierPath?, randomSeed: UInt32, strokeID: UUID, renderGroupID: UUID?, renderState: PKStrokeRenderStateReference?)
    * @availability iOS 27.0+
    */
-  static initInkStrokePathTransformMaskRandomSeedStrokeIDRenderGroupIDRenderState(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK4, randomSeed: number, strokeID: string, renderGroupID?: (string) | null, renderState?: $SDK15): PKStrokeReference { return callSDK<PKStrokeReference>("PencilKit_d6c5d10d3352e6ec", 1505938527129324, undefined, [ink, strokePath, transform, mask, randomSeed, strokeID, renderGroupID, renderState]); }
+  static initInkStrokePathTransformMaskRandomSeedStrokeIDRenderGroupIDRenderState(ink: PKInk, strokePath: PKStrokePath, transform: _CoreFoundation_CGAffineTransform, mask: $SDK4, randomSeed: number, strokeID: string, renderGroupID?: (string) | null, renderState?: $SDK15): PKStrokeReference { return callSDK<PKStrokeReference>("PencilKit_a956b86ef7a76a8e", 1505938527129324, undefined, [ink, strokePath, transform, mask, randomSeed, strokeID, renderGroupID, renderState]); }
   /**
    * func substroke(with range: __PKFloatRange) -> PKStroke
    * @availability iOS 27.0+
    */
-  substroke(range: SDKHandle): PKStroke { return callSDK<PKStroke>("PencilKit_d6c5d10d3352e6ec", 2575728325902826, this, [range]); }
+  substroke(range: SDKHandle): PKStroke { return callSDK<PKStroke>("PencilKit_a956b86ef7a76a8e", 2575728325902826, this, [range]); }
   /**
    * var ink: PKInk { get }
    * @availability iOS 14.0+
    */
-  get ink(): PKInk { return callSDK<PKInk>("PencilKit_d6c5d10d3352e6ec", 3479776670282697, this, []); }
+  get ink(): PKInk { return callSDK<PKInk>("PencilKit_a956b86ef7a76a8e", 3479776670282697, this, []); }
   /**
    * var mask: UIBezierPath? { get }
    * @availability iOS 14.0+
    */
-  get mask(): $SDK4 { return callSDK<$SDK4>("PencilKit_d6c5d10d3352e6ec", 68545975722686, this, []); }
+  get mask(): $SDK4 { return callSDK<$SDK4>("PencilKit_a956b86ef7a76a8e", 68545975722686, this, []); }
   /**
    * var maskedPathRanges: [__PKFloatRange] { get }
    * @availability iOS 14.0+
    */
-  get maskedPathRanges(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("PencilKit_d6c5d10d3352e6ec", 2564140696661713, this, []); }
+  get maskedPathRanges(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("PencilKit_a956b86ef7a76a8e", 2564140696661713, this, []); }
   /**
    * var path: PKStrokePath { get }
    * @availability iOS 14.0+
    */
-  get path(): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_d6c5d10d3352e6ec", 4076666821040517, this, []); }
+  get path(): PKStrokePath { return callSDK<PKStrokePath>("PencilKit_a956b86ef7a76a8e", 4076666821040517, this, []); }
   /**
    * var randomSeed: UInt32 { get }
    * @availability iOS 16.0+
    */
-  get randomSeed(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2891131483106746, this, []); }
+  get randomSeed(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2891131483106746, this, []); }
   /**
    * var renderBounds: CGRect { get }
    * @availability iOS 14.0+
    */
-  get renderBounds(): $SDK5 { return callSDK<$SDK5>("PencilKit_d6c5d10d3352e6ec", 1823613398865687, this, []); }
+  get renderBounds(): $SDK5 { return callSDK<$SDK5>("PencilKit_a956b86ef7a76a8e", 1823613398865687, this, []); }
   /**
    * var renderGroupID: UUID? { get }
    * @availability iOS 27.0+
    */
-  get renderGroupID(): (string) | null { return callSDK<(string) | null>("PencilKit_d6c5d10d3352e6ec", 4380874679479909, this, []); }
+  get renderGroupID(): (string) | null { return callSDK<(string) | null>("PencilKit_a956b86ef7a76a8e", 4380874679479909, this, []); }
   /**
    * var renderState: PKStrokeRenderStateReference? { get }
    * @availability iOS 27.0+
    */
-  get renderState(): $SDK15 { return callSDK<$SDK15>("PencilKit_d6c5d10d3352e6ec", 2358154727028608, this, []); }
+  get renderState(): $SDK15 { return callSDK<$SDK15>("PencilKit_a956b86ef7a76a8e", 2358154727028608, this, []); }
   /**
    * var requiredContentVersion: PKContentVersion { get }
    * @availability iOS 17.0+
    */
-  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 4235874089956653, this, []); }
+  get requiredContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 4235874089956653, this, []); }
   /**
    * var strokeID: UUID { get }
    * @availability iOS 27.0+
    */
-  get strokeID(): string { return callSDK<string>("PencilKit_d6c5d10d3352e6ec", 1341771615489179, this, []); }
+  get strokeID(): string { return callSDK<string>("PencilKit_a956b86ef7a76a8e", 1341771615489179, this, []); }
   /**
    * var transform: CGAffineTransform { get }
    * @availability iOS 14.0+
    */
-  get transform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("PencilKit_d6c5d10d3352e6ec", 3336537797412145, this, []); }
+  get transform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("PencilKit_a956b86ef7a76a8e", 3336537797412145, this, []); }
   declare readonly $type: { "c:objc(cs)PKStroke": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ink": true; "mask": true; "maskedPathRanges": true; "path": true; "randomSeed": true; "renderBounds": true; "renderGroupID": true; "renderState": true; "requiredContentVersion": true; "strokeID": true; "transform": true };
 }
@@ -1429,13 +1429,13 @@ export class PKStrokeRenderStateReference extends SDKHandle {
    * var grainOffset: CGPoint { get set }
    * @availability iOS 27.0+
    */
-  get grainOffset(): $SDK2 { return callSDK<$SDK2>("PencilKit_d6c5d10d3352e6ec", 90569396043736, this, []); }
-  set grainOffset(value: $SDK2) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1761355103403255, this, [value]); }
+  get grainOffset(): $SDK2 { return callSDK<$SDK2>("PencilKit_a956b86ef7a76a8e", 90569396043736, this, []); }
+  set grainOffset(value: $SDK2) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 1761355103403255, this, [value]); }
   /**
    * convenience init(_ swiftValue: PKStroke.RenderState)
    * @availability iOS 27.0+
    */
-  static init(swiftValue: PKStroke_RenderState): PKStrokeRenderStateReference { return callSDK<PKStrokeRenderStateReference>("PencilKit_d6c5d10d3352e6ec", 1992532020960368, undefined, [swiftValue]); }
+  static init(swiftValue: PKStroke_RenderState): PKStrokeRenderStateReference { return callSDK<PKStrokeRenderStateReference>("PencilKit_a956b86ef7a76a8e", 1992532020960368, undefined, [swiftValue]); }
   declare readonly $type: { "c:objc(cs)PKStrokeRenderState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "grainOffset": true };
 }
@@ -1458,125 +1458,125 @@ export class PKToolPicker extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  static shared(window: _UIKit_UIWindow): (PKToolPicker) | null { return callSDK<(PKToolPicker) | null>("PencilKit_d6c5d10d3352e6ec", 46612896645019, undefined, [window]); }
+  static shared(window: _UIKit_UIWindow): (PKToolPicker) | null { return callSDK<(PKToolPicker) | null>("PencilKit_a956b86ef7a76a8e", 46612896645019, undefined, [window]); }
   /**
    * class var defaultToolItems: [PKToolPickerItem] { get }
    * @availability iOS 26.0+
    */
-  static get defaultToolItems(): Array<PKToolPickerItem> { return callSDK<Array<PKToolPickerItem>>("PencilKit_d6c5d10d3352e6ec", 4076356809110921, undefined, []); }
+  static get defaultToolItems(): Array<PKToolPickerItem> { return callSDK<Array<PKToolPickerItem>>("PencilKit_a956b86ef7a76a8e", 4076356809110921, undefined, []); }
   /**
    * func addObserver(_ observer: any PKToolPickerObserver)
    * @availability iOS 13.0+
    */
-  addObserver(observer: $SDK16): void { return callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1952952183478211, this, [observer], [{"protocol":"c:objc(pl)PKToolPickerObserver"}]); }
+  addObserver(observer: $SDK16): void { return callSDK<void>("PencilKit_a956b86ef7a76a8e", 1952952183478211, this, [observer], [{"protocol":"c:objc(pl)PKToolPickerObserver"}]); }
   /**
    * func frameObscured(in view: UIView) -> CGRect
    * @availability iOS 13.0+
    */
-  frameObscured(view: _UIKit_UIView): $SDK5 { return callSDK<$SDK5>("PencilKit_d6c5d10d3352e6ec", 3653145277077197, this, [view]); }
+  frameObscured(view: _UIKit_UIView): $SDK5 { return callSDK<$SDK5>("PencilKit_a956b86ef7a76a8e", 3653145277077197, this, [view]); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): PKToolPicker { return callSDK<PKToolPicker>("PencilKit_d6c5d10d3352e6ec", 2485107000900225, undefined, []); }
+  static init(): PKToolPicker { return callSDK<PKToolPicker>("PencilKit_a956b86ef7a76a8e", 2485107000900225, undefined, []); }
   /**
    * init(toolItems items: [PKToolPickerItem])
    * @availability iOS 18.0+
    */
-  static initToolItems(items: Array<PKToolPickerItem>): PKToolPicker { return callSDK<PKToolPicker>("PencilKit_d6c5d10d3352e6ec", 3374617376941809, undefined, [items]); }
+  static initToolItems(items: Array<PKToolPickerItem>): PKToolPicker { return callSDK<PKToolPicker>("PencilKit_a956b86ef7a76a8e", 3374617376941809, undefined, [items]); }
   /**
    * func removeObserver(_ observer: any PKToolPickerObserver)
    * @availability iOS 13.0+
    */
-  removeObserver(observer: $SDK16): void { return callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2592125962423135, this, [observer], [{"protocol":"c:objc(pl)PKToolPickerObserver"}]); }
+  removeObserver(observer: $SDK16): void { return callSDK<void>("PencilKit_a956b86ef7a76a8e", 2592125962423135, this, [observer], [{"protocol":"c:objc(pl)PKToolPickerObserver"}]); }
   /**
    * func setVisible(_ visible: Bool, forFirstResponder responder: UIResponder)
    * @availability iOS 13.0+
    */
-  setVisible(visible: boolean, responder: _UIKit_UIResponder): void { return callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1231876926393769, this, [visible, responder]); }
+  setVisible(visible: boolean, responder: _UIKit_UIResponder): void { return callSDK<void>("PencilKit_a956b86ef7a76a8e", 1231876926393769, this, [visible, responder]); }
   /**
    * var accessoryItem: UIBarButtonItem? { get set }
    * @availability iOS 18.0+
    */
-  get accessoryItem(): $SDK17 { return callSDK<$SDK17>("PencilKit_d6c5d10d3352e6ec", 2304801857879008, this, []); }
-  set accessoryItem(value: $SDK17) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2894394984260217, this, [value]); }
+  get accessoryItem(): $SDK17 { return callSDK<$SDK17>("PencilKit_a956b86ef7a76a8e", 2304801857879008, this, []); }
+  set accessoryItem(value: $SDK17) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2894394984260217, this, [value]); }
   /**
    * var colorMaximumLinearExposure: CGFloat { get set }
    * @availability iOS 26.0+
    */
-  get colorMaximumLinearExposure(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 463873251499304, this, []); }
-  set colorMaximumLinearExposure(value: number) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 961231424084438, this, [value]); }
+  get colorMaximumLinearExposure(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 463873251499304, this, []); }
+  set colorMaximumLinearExposure(value: number) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 961231424084438, this, [value]); }
   /**
    * var colorUserInterfaceStyle: UIUserInterfaceStyle { get set }
    * @availability iOS 13.0+
    */
-  get colorUserInterfaceStyle(): _UIKit_UIUserInterfaceStyle { return callSDK<_UIKit_UIUserInterfaceStyle>("PencilKit_d6c5d10d3352e6ec", 1329717923457737, this, []); }
-  set colorUserInterfaceStyle(value: _UIKit_UIUserInterfaceStyle) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2862271776346314, this, [value]); }
+  get colorUserInterfaceStyle(): _UIKit_UIUserInterfaceStyle { return callSDK<_UIKit_UIUserInterfaceStyle>("PencilKit_a956b86ef7a76a8e", 1329717923457737, this, []); }
+  set colorUserInterfaceStyle(value: _UIKit_UIUserInterfaceStyle) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2862271776346314, this, [value]); }
   /**
    * weak var delegate: (any PKToolPicker.Delegate)? { get set }
    * @availability iOS 18.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PencilKit_d6c5d10d3352e6ec", 593363227848410, this, []); }
-  set delegate(value: (Implements<PKToolPicker_Delegate> | SDKHandle) | null) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3488092109236233, this, [value], [{"protocol":"c:objc(pl)PKToolPickerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PencilKit_a956b86ef7a76a8e", 593363227848410, this, []); }
+  set delegate(value: (Implements<PKToolPicker_Delegate> | SDKHandle) | null) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3488092109236233, this, [value], [{"protocol":"c:objc(pl)PKToolPickerDelegate"}]); }
   /**
    * var isVisible: Bool { get }
    * @availability iOS 13.0+
    */
-  get isVisible(): boolean { return callSDK<boolean>("PencilKit_d6c5d10d3352e6ec", 197685022256327, this, []); }
+  get isVisible(): boolean { return callSDK<boolean>("PencilKit_a956b86ef7a76a8e", 197685022256327, this, []); }
   /**
    * var maximumSupportedContentVersion: PKContentVersion { get set }
    * @availability iOS 17.0+
    */
-  get maximumSupportedContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_d6c5d10d3352e6ec", 2435155899286447, this, []); }
-  set maximumSupportedContentVersion(value: PKContentVersion) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 602767640561772, this, [value]); }
+  get maximumSupportedContentVersion(): PKContentVersion { return callSDK<PKContentVersion>("PencilKit_a956b86ef7a76a8e", 2435155899286447, this, []); }
+  set maximumSupportedContentVersion(value: PKContentVersion) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 602767640561772, this, [value]); }
   /**
    * var overrideUserInterfaceStyle: UIUserInterfaceStyle { get set }
    * @availability iOS 13.0+
    */
-  get overrideUserInterfaceStyle(): _UIKit_UIUserInterfaceStyle { return callSDK<_UIKit_UIUserInterfaceStyle>("PencilKit_d6c5d10d3352e6ec", 4038050182535190, this, []); }
-  set overrideUserInterfaceStyle(value: _UIKit_UIUserInterfaceStyle) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 347476682377783, this, [value]); }
+  get overrideUserInterfaceStyle(): _UIKit_UIUserInterfaceStyle { return callSDK<_UIKit_UIUserInterfaceStyle>("PencilKit_a956b86ef7a76a8e", 4038050182535190, this, []); }
+  set overrideUserInterfaceStyle(value: _UIKit_UIUserInterfaceStyle) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 347476682377783, this, [value]); }
   /**
    * var isRulerActive: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isRulerActive(): boolean { return callSDK<boolean>("PencilKit_d6c5d10d3352e6ec", 1512185365190532, this, []); }
-  set isRulerActive(value: boolean) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1403422772467597, this, [value]); }
+  get isRulerActive(): boolean { return callSDK<boolean>("PencilKit_a956b86ef7a76a8e", 1512185365190532, this, []); }
+  set isRulerActive(value: boolean) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 1403422772467597, this, [value]); }
   /**
    * var selectedToolItem: PKToolPickerItem { get set }
    * @availability iOS 18.0+
    */
-  get selectedToolItem(): PKToolPickerItem { return callSDK<PKToolPickerItem>("PencilKit_d6c5d10d3352e6ec", 3313859735908882, this, []); }
-  set selectedToolItem(value: PKToolPickerItem) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2786729156019020, this, [value]); }
+  get selectedToolItem(): PKToolPickerItem { return callSDK<PKToolPickerItem>("PencilKit_a956b86ef7a76a8e", 3313859735908882, this, []); }
+  set selectedToolItem(value: PKToolPickerItem) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2786729156019020, this, [value]); }
   /**
    * var selectedToolItemIdentifier: String { get set }
    * @availability iOS 18.0+
    */
-  get selectedToolItemIdentifier(): string { return callSDK<string>("PencilKit_d6c5d10d3352e6ec", 1190673747007777, this, []); }
-  set selectedToolItemIdentifier(value: string) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 4144557869743011, this, [value]); }
+  get selectedToolItemIdentifier(): string { return callSDK<string>("PencilKit_a956b86ef7a76a8e", 1190673747007777, this, []); }
+  set selectedToolItemIdentifier(value: string) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 4144557869743011, this, [value]); }
   /**
    * var showsDrawingPolicyControls: Bool { get set }
    * @availability iOS 14.0+
    */
-  get showsDrawingPolicyControls(): boolean { return callSDK<boolean>("PencilKit_d6c5d10d3352e6ec", 4121630916355323, this, []); }
-  set showsDrawingPolicyControls(value: boolean) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 910330984095740, this, [value]); }
+  get showsDrawingPolicyControls(): boolean { return callSDK<boolean>("PencilKit_a956b86ef7a76a8e", 4121630916355323, this, []); }
+  set showsDrawingPolicyControls(value: boolean) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 910330984095740, this, [value]); }
   /**
    * var stateAutosaveName: String? { get set }
    * @availability iOS 14.0+
    */
-  get stateAutosaveName(): (string) | null { return callSDK<(string) | null>("PencilKit_d6c5d10d3352e6ec", 1476364584991706, this, []); }
-  set stateAutosaveName(value: (string) | null) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3158488190411871, this, [value]); }
+  get stateAutosaveName(): (string) | null { return callSDK<(string) | null>("PencilKit_a956b86ef7a76a8e", 1476364584991706, this, []); }
+  set stateAutosaveName(value: (string) | null) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3158488190411871, this, [value]); }
   /**
    * var toolItems: [PKToolPickerItem] { get }
    * @availability iOS 18.0+
    */
-  get toolItems(): Array<PKToolPickerItem> { return callSDK<Array<PKToolPickerItem>>("PencilKit_d6c5d10d3352e6ec", 4003420356510251, this, []); }
+  get toolItems(): Array<PKToolPickerItem> { return callSDK<Array<PKToolPickerItem>>("PencilKit_a956b86ef7a76a8e", 4003420356510251, this, []); }
   /**
    * var selectedTool: any PKTool { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 18.0
    */
-  get selectedTool(): SDKHandle { return callSDK<SDKHandle>("PencilKit_d6c5d10d3352e6ec", 4391287237525509, this, []); }
-  set selectedTool(value: $SDK1) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 179021926401890, this, [value], [{"protocol":"s:9PencilKit6PKToolP"}]); }
+  get selectedTool(): SDKHandle { return callSDK<SDKHandle>("PencilKit_a956b86ef7a76a8e", 4391287237525509, this, []); }
+  set selectedTool(value: $SDK1) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 179021926401890, this, [value], [{"protocol":"s:9PencilKit6PKToolP"}]); }
   declare readonly $type: { "c:objc(cs)PKToolPicker": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessoryItem": true; "colorMaximumLinearExposure": true; "colorUserInterfaceStyle": true; "delegate": true; "isVisible": true; "maximumSupportedContentVersion": true; "overrideUserInterfaceStyle": true; "isRulerActive": true; "selectedToolItem": true; "selectedToolItemIdentifier": true; "showsDrawingPolicyControls": true; "stateAutosaveName": true; "toolItems": true };
 }
@@ -1598,12 +1598,12 @@ export class PKToolPickerItem extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 18.0+
    */
-  get identifier(): string { return callSDK<string>("PencilKit_d6c5d10d3352e6ec", 471280059176414, this, []); }
+  get identifier(): string { return callSDK<string>("PencilKit_a956b86ef7a76a8e", 471280059176414, this, []); }
   /**
    * var tool: (any PKTool)? { get }
    * @availability iOS 26.0+
    */
-  get tool(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PencilKit_d6c5d10d3352e6ec", 88157296826314, this, []); }
+  get tool(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PencilKit_a956b86ef7a76a8e", 88157296826314, this, []); }
   declare readonly $type: { "c:objc(cs)PKToolPickerItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -1617,35 +1617,35 @@ export class PKToolPickerCustomItem extends PKToolPickerItem {
    * func reloadImage()
    * @availability iOS 18.0+
    */
-  reloadImage(): void { return callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1858629406636341, this, []); }
+  reloadImage(): void { return callSDK<void>("PencilKit_a956b86ef7a76a8e", 1858629406636341, this, []); }
   /**
    * var allowsColorSelection: Bool { get set }
    * @availability iOS 18.0+
    */
-  get allowsColorSelection(): boolean { return callSDK<boolean>("PencilKit_d6c5d10d3352e6ec", 2663402231849109, this, []); }
-  set allowsColorSelection(value: boolean) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2155528382293715, this, [value]); }
+  get allowsColorSelection(): boolean { return callSDK<boolean>("PencilKit_a956b86ef7a76a8e", 2663402231849109, this, []); }
+  set allowsColorSelection(value: boolean) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2155528382293715, this, [value]); }
   /**
    * var color: UIColor { get set }
    * @availability iOS 18.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_d6c5d10d3352e6ec", 3240912971851948, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1561393318928965, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_a956b86ef7a76a8e", 3240912971851948, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 1561393318928965, this, [value]); }
   /**
    * var width: CGFloat { get set }
    * @availability iOS 18.0+
    */
-  get width(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 2664634337091090, this, []); }
-  set width(value: number) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1716512383936996, this, [value]); }
+  get width(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 2664634337091090, this, []); }
+  set width(value: number) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 1716512383936996, this, [value]); }
   /**
    * convenience init(configuration: PKToolPickerCustomItem.Configuration)
    * @availability iOS 18.0+
    */
-  static init(configuration: PKToolPickerCustomItem_Configuration): PKToolPickerCustomItem { return callSDK<PKToolPickerCustomItem>("PencilKit_d6c5d10d3352e6ec", 1163351983468212, undefined, [configuration]); }
+  static init(configuration: PKToolPickerCustomItem_Configuration): PKToolPickerCustomItem { return callSDK<PKToolPickerCustomItem>("PencilKit_a956b86ef7a76a8e", 1163351983468212, undefined, [configuration]); }
   /**
    * var configuration: PKToolPickerCustomItem.Configuration { get }
    * @availability iOS 18.0+
    */
-  get configuration(): PKToolPickerCustomItem_Configuration { return callSDK<PKToolPickerCustomItem_Configuration>("PencilKit_d6c5d10d3352e6ec", 742003597405449, this, []); }
+  get configuration(): PKToolPickerCustomItem_Configuration { return callSDK<PKToolPickerCustomItem_Configuration>("PencilKit_a956b86ef7a76a8e", 742003597405449, this, []); }
   declare readonly $type: { "c:objc(cs)PKToolPickerCustomItem": true; "c:objc(cs)PKToolPickerItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "allowsColorSelection": true; "color": true; "width": true };
 }
@@ -1659,59 +1659,59 @@ export class PKToolPickerCustomItem_Configuration extends SDKHandle {
    * init(identifier: String, name: String)
    * @availability iOS 18.0+
    */
-  static init(identifier: string, name: string): PKToolPickerCustomItem_Configuration { return callSDK<PKToolPickerCustomItem_Configuration>("PencilKit_d6c5d10d3352e6ec", 3008462223811593, undefined, [identifier, name]); }
+  static init(identifier: string, name: string): PKToolPickerCustomItem_Configuration { return callSDK<PKToolPickerCustomItem_Configuration>("PencilKit_a956b86ef7a76a8e", 3008462223811593, undefined, [identifier, name]); }
   /**
    * var identifier: String
    * @availability iOS 18.0+
    */
-  get identifier(): string { return callSDK<string>("PencilKit_d6c5d10d3352e6ec", 486424920949469, this, []); }
-  set identifier(value: string) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1577540358576364, this, [value]); }
+  get identifier(): string { return callSDK<string>("PencilKit_a956b86ef7a76a8e", 486424920949469, this, []); }
+  set identifier(value: string) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 1577540358576364, this, [value]); }
   /**
    * var defaultColor: UIColor
    * @availability iOS 18.0+
    */
-  get defaultColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_d6c5d10d3352e6ec", 2859974598339316, this, []); }
-  set defaultColor(value: _UIKit_UIColor) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 1853748254466843, this, [value]); }
+  get defaultColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PencilKit_a956b86ef7a76a8e", 2859974598339316, this, []); }
+  set defaultColor(value: _UIKit_UIColor) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 1853748254466843, this, [value]); }
   /**
    * var defaultWidth: CGFloat
    * @availability iOS 18.0+
    */
-  get defaultWidth(): number { return callSDK<number>("PencilKit_d6c5d10d3352e6ec", 214715036101571, this, []); }
-  set defaultWidth(value: number) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 69468099831496, this, [value]); }
+  get defaultWidth(): number { return callSDK<number>("PencilKit_a956b86ef7a76a8e", 214715036101571, this, []); }
+  set defaultWidth(value: number) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 69468099831496, this, [value]); }
   /**
    * var imageProvider: ((PKToolPickerCustomItem) -> UIImage)?
    * @availability iOS 18.0+
    */
-  get imageProvider(): (((arg0: PKToolPickerCustomItem) => Promise<_UIKit_UIImage>)) | null { return callSDK<(((arg0: PKToolPickerCustomItem) => Promise<_UIKit_UIImage>)) | null>("PencilKit_d6c5d10d3352e6ec", 1683347669138228, this, []); }
+  get imageProvider(): (((arg0: PKToolPickerCustomItem) => Promise<_UIKit_UIImage>)) | null { return callSDK<(((arg0: PKToolPickerCustomItem) => Promise<_UIKit_UIImage>)) | null>("PencilKit_a956b86ef7a76a8e", 1683347669138228, this, []); }
   /**
    * var widthVariants: [CGFloat : UIImage]
    * @availability iOS 18.0+
    */
-  get widthVariants(): $SDK20 { return callSDK<$SDK20>("PencilKit_d6c5d10d3352e6ec", 1555999010200286, this, []); }
-  set widthVariants(value: $SDK20) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2045019428621892, this, [value]); }
+  get widthVariants(): $SDK20 { return callSDK<$SDK20>("PencilKit_a956b86ef7a76a8e", 1555999010200286, this, []); }
+  set widthVariants(value: $SDK20) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 2045019428621892, this, [value]); }
   /**
    * var allowsColorSelection: Bool
    * @availability iOS 18.0+
    */
-  get allowsColorSelection(): boolean { return callSDK<boolean>("PencilKit_d6c5d10d3352e6ec", 749536202021142, this, []); }
-  set allowsColorSelection(value: boolean) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 137587209796326, this, [value]); }
+  get allowsColorSelection(): boolean { return callSDK<boolean>("PencilKit_a956b86ef7a76a8e", 749536202021142, this, []); }
+  set allowsColorSelection(value: boolean) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 137587209796326, this, [value]); }
   /**
    * var toolAttributeControls: PKToolPickerCustomItem.ControlOptions
    * @availability iOS 18.0+
    */
-  get toolAttributeControls(): PKToolPickerCustomItem_ControlOptions { return callSDK<PKToolPickerCustomItem_ControlOptions>("PencilKit_d6c5d10d3352e6ec", 1391666611883509, this, []); }
-  set toolAttributeControls(value: PKToolPickerCustomItem_ControlOptions) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3655644231511439, this, [value]); }
+  get toolAttributeControls(): PKToolPickerCustomItem_ControlOptions { return callSDK<PKToolPickerCustomItem_ControlOptions>("PencilKit_a956b86ef7a76a8e", 1391666611883509, this, []); }
+  set toolAttributeControls(value: PKToolPickerCustomItem_ControlOptions) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3655644231511439, this, [value]); }
   /**
    * var viewControllerProvider: ((PKToolPickerCustomItem) -> UIViewController)?
    * @availability iOS 18.0+
    */
-  get viewControllerProvider(): (((arg0: PKToolPickerCustomItem) => Promise<_UIKit_UIViewController>)) | null { return callSDK<(((arg0: PKToolPickerCustomItem) => Promise<_UIKit_UIViewController>)) | null>("PencilKit_d6c5d10d3352e6ec", 2532529819188197, this, []); }
+  get viewControllerProvider(): (((arg0: PKToolPickerCustomItem) => Promise<_UIKit_UIViewController>)) | null { return callSDK<(((arg0: PKToolPickerCustomItem) => Promise<_UIKit_UIViewController>)) | null>("PencilKit_a956b86ef7a76a8e", 2532529819188197, this, []); }
   /**
    * var name: String
    * @availability iOS 18.0+
    */
-  get name(): string { return callSDK<string>("PencilKit_d6c5d10d3352e6ec", 4240554901992696, this, []); }
-  set name(value: string) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 420176033511365, this, [value]); }
+  get name(): string { return callSDK<string>("PencilKit_a956b86ef7a76a8e", 4240554901992696, this, []); }
+  set name(value: string) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 420176033511365, this, [value]); }
   declare readonly $type: { "s:So22PKToolPickerCustomItemC9PencilKitE13ConfigurationV": true };
 }
 
@@ -1726,17 +1726,17 @@ export const PKToolPickerCustomItem_ControlOptions = {
    * static var opacity: PKToolPickerCustomItem.ControlOptions { get }
    * @availability iOS 18.0+
    */
-  get opacity(): PKToolPickerCustomItem_ControlOptions { return callSDK<PKToolPickerCustomItem_ControlOptions>("PencilKit_d6c5d10d3352e6ec", 477417432098332, undefined, []); },
+  get opacity(): PKToolPickerCustomItem_ControlOptions { return callSDK<PKToolPickerCustomItem_ControlOptions>("PencilKit_a956b86ef7a76a8e", 477417432098332, undefined, []); },
   /**
    * static var width: PKToolPickerCustomItem.ControlOptions { get }
    * @availability iOS 18.0+
    */
-  get width(): PKToolPickerCustomItem_ControlOptions { return callSDK<PKToolPickerCustomItem_ControlOptions>("PencilKit_d6c5d10d3352e6ec", 2716469841699327, undefined, []); },
+  get width(): PKToolPickerCustomItem_ControlOptions { return callSDK<PKToolPickerCustomItem_ControlOptions>("PencilKit_a956b86ef7a76a8e", 2716469841699327, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): PKToolPickerCustomItem_ControlOptions { return callSDK<PKToolPickerCustomItem_ControlOptions>("PencilKit_d6c5d10d3352e6ec", 714117414820838, undefined, [rawValue]); }
+  init(rawValue: number): PKToolPickerCustomItem_ControlOptions { return callSDK<PKToolPickerCustomItem_ControlOptions>("PencilKit_a956b86ef7a76a8e", 714117414820838, undefined, [rawValue]); }
 };
 
 /**
@@ -1748,17 +1748,17 @@ export class PKToolPickerEraserItem extends PKToolPickerItem {
    * var eraserTool: PKEraserTool { get }
    * @availability iOS 18.0+
    */
-  get eraserTool(): PKEraserTool { return callSDK<PKEraserTool>("PencilKit_d6c5d10d3352e6ec", 2218981380121823, this, []); }
+  get eraserTool(): PKEraserTool { return callSDK<PKEraserTool>("PencilKit_a956b86ef7a76a8e", 2218981380121823, this, []); }
   /**
    * convenience init(type: PKEraserTool.EraserType, width: CGFloat)
    * @availability iOS 18.0+
    */
-  static initTypeWidth(type: PKEraserTool_EraserType, width: number): PKToolPickerEraserItem { return callSDK<PKToolPickerEraserItem>("PencilKit_d6c5d10d3352e6ec", 202766772114856, undefined, [type, width]); }
+  static initTypeWidth(type: PKEraserTool_EraserType, width: number): PKToolPickerEraserItem { return callSDK<PKToolPickerEraserItem>("PencilKit_a956b86ef7a76a8e", 202766772114856, undefined, [type, width]); }
   /**
    * convenience init(type: PKEraserTool.EraserType)
    * @availability iOS 18.0+
    */
-  static initType(type: PKEraserTool_EraserType): PKToolPickerEraserItem { return callSDK<PKToolPickerEraserItem>("PencilKit_d6c5d10d3352e6ec", 3061232731437621, undefined, [type]); }
+  static initType(type: PKEraserTool_EraserType): PKToolPickerEraserItem { return callSDK<PKToolPickerEraserItem>("PencilKit_a956b86ef7a76a8e", 3061232731437621, undefined, [type]); }
   declare readonly $type: { "c:objc(cs)PKToolPickerEraserItem": true; "c:objc(cs)PKToolPickerItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -1772,23 +1772,23 @@ export class PKToolPickerInkingItem extends PKToolPickerItem {
    * var allowsColorSelection: Bool { get set }
    * @availability iOS 18.0+
    */
-  get allowsColorSelection(): boolean { return callSDK<boolean>("PencilKit_d6c5d10d3352e6ec", 4188421112395784, this, []); }
-  set allowsColorSelection(value: boolean) { callSDK<void>("PencilKit_d6c5d10d3352e6ec", 3446489710920724, this, [value]); }
+  get allowsColorSelection(): boolean { return callSDK<boolean>("PencilKit_a956b86ef7a76a8e", 4188421112395784, this, []); }
+  set allowsColorSelection(value: boolean) { callSDK<void>("PencilKit_a956b86ef7a76a8e", 3446489710920724, this, [value]); }
   /**
    * var inkingTool: PKInkingTool { get }
    * @availability iOS 18.0+
    */
-  get inkingTool(): PKInkingTool { return callSDK<PKInkingTool>("PencilKit_d6c5d10d3352e6ec", 2951004198611931, this, []); }
+  get inkingTool(): PKInkingTool { return callSDK<PKInkingTool>("PencilKit_a956b86ef7a76a8e", 2951004198611931, this, []); }
   /**
    * convenience init(type: PKInkingTool.InkType, color: UIColor? = nil, width: CGFloat? = nil, identifier: String? = nil)
    * @availability iOS 18.0+
    */
-  static initTypeColorWidthIdentifier(type: PKInkingTool_InkType, color?: (_UIKit_UIColor) | null, width?: (number) | null, identifier?: (string) | null): PKToolPickerInkingItem { return callSDK<PKToolPickerInkingItem>("PencilKit_d6c5d10d3352e6ec", 3047959103196374, undefined, [type, color, width, identifier]); }
+  static initTypeColorWidthIdentifier(type: PKInkingTool_InkType, color?: (_UIKit_UIColor) | null, width?: (number) | null, identifier?: (string) | null): PKToolPickerInkingItem { return callSDK<PKToolPickerInkingItem>("PencilKit_a956b86ef7a76a8e", 3047959103196374, undefined, [type, color, width, identifier]); }
   /**
    * convenience init(type: PKInkingTool.InkType, color: UIColor? = nil, width: CGFloat? = nil, azimuth: CGFloat? = nil, identifier: String? = nil)
    * @availability iOS 26.0+
    */
-  static initTypeColorWidthAzimuthIdentifier(type: PKInkingTool_InkType, color?: (_UIKit_UIColor) | null, width?: (number) | null, azimuth?: (number) | null, identifier?: (string) | null): PKToolPickerInkingItem { return callSDK<PKToolPickerInkingItem>("PencilKit_d6c5d10d3352e6ec", 3203220272388702, undefined, [type, color, width, azimuth, identifier]); }
+  static initTypeColorWidthAzimuthIdentifier(type: PKInkingTool_InkType, color?: (_UIKit_UIColor) | null, width?: (number) | null, azimuth?: (number) | null, identifier?: (string) | null): PKToolPickerInkingItem { return callSDK<PKToolPickerInkingItem>("PencilKit_a956b86ef7a76a8e", 3203220272388702, undefined, [type, color, width, azimuth, identifier]); }
   declare readonly $type: { "c:objc(cs)PKToolPickerInkingItem": true; "c:objc(cs)PKToolPickerItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "allowsColorSelection": true };
 }
@@ -1802,12 +1802,12 @@ export class PKToolPickerLassoItem extends PKToolPickerItem {
    * init()
    * @availability iOS 18.0+
    */
-  static init(): PKToolPickerLassoItem { return callSDK<PKToolPickerLassoItem>("PencilKit_d6c5d10d3352e6ec", 3030961683244068, undefined, []); }
+  static init(): PKToolPickerLassoItem { return callSDK<PKToolPickerLassoItem>("PencilKit_a956b86ef7a76a8e", 3030961683244068, undefined, []); }
   /**
    * var lassoTool: PKLassoTool { get }
    * @availability iOS 18.0+
    */
-  get lassoTool(): PKLassoTool { return callSDK<PKLassoTool>("PencilKit_d6c5d10d3352e6ec", 1643446151466607, this, []); }
+  get lassoTool(): PKLassoTool { return callSDK<PKLassoTool>("PencilKit_a956b86ef7a76a8e", 1643446151466607, this, []); }
   declare readonly $type: { "c:objc(cs)PKToolPickerLassoItem": true; "c:objc(cs)PKToolPickerItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -1854,7 +1854,7 @@ export class PKToolPickerRulerItem extends PKToolPickerItem {
    * init()
    * @availability iOS 18.0+
    */
-  static init(): PKToolPickerRulerItem { return callSDK<PKToolPickerRulerItem>("PencilKit_d6c5d10d3352e6ec", 2249377407074674, undefined, []); }
+  static init(): PKToolPickerRulerItem { return callSDK<PKToolPickerRulerItem>("PencilKit_a956b86ef7a76a8e", 2249377407074674, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKToolPickerRulerItem": true; "c:objc(cs)PKToolPickerItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -1868,7 +1868,7 @@ export class PKToolPickerScribbleItem extends PKToolPickerItem {
    * init()
    * @availability iOS 18.0+
    */
-  static init(): PKToolPickerScribbleItem { return callSDK<PKToolPickerScribbleItem>("PencilKit_d6c5d10d3352e6ec", 1660786422560134, undefined, []); }
+  static init(): PKToolPickerScribbleItem { return callSDK<PKToolPickerScribbleItem>("PencilKit_a956b86ef7a76a8e", 1660786422560134, undefined, []); }
   declare readonly $type: { "c:objc(cs)PKToolPickerScribbleItem": true; "c:objc(cs)PKToolPickerItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -1884,12 +1884,12 @@ export const PKToolPickerVisibility = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (PKToolPickerVisibility) | null { return callSDK<(PKToolPickerVisibility) | null>("PencilKit_d6c5d10d3352e6ec", 2918483916583525, undefined, [rawValue]); },
+  init(rawValue: number): (PKToolPickerVisibility) | null { return callSDK<(PKToolPickerVisibility) | null>("PencilKit_a956b86ef7a76a8e", 2918483916583525, undefined, [rawValue]); },
   /**
    * mutating func toggle()
    * @availability iOS 26.0+
    */
-  toggle($self: PKToolPickerVisibility): void { return callSDK<void>("PencilKit_d6c5d10d3352e6ec", 2952742455347726, $self, []); }
+  toggle($self: PKToolPickerVisibility): void { return callSDK<void>("PencilKit_a956b86ef7a76a8e", 2952742455347726, $self, []); }
 };
 
 export class UIResponder extends SDKHandle {
@@ -1897,7 +1897,7 @@ export class UIResponder extends SDKHandle {
    * var pencilKitResponderState: PKResponderState { get }
    * @availability iOS 26.0+
    */
-  get pencilKitResponderState(): Promise<PKResponderState> { return callSDKAsync<PKResponderState>("PencilKit_d6c5d10d3352e6ec", 1372632781040107, this, []); }
+  get pencilKitResponderState(): Promise<PKResponderState> { return callSDKAsync<PKResponderState>("PencilKit_a956b86ef7a76a8e", 1372632781040107, this, []); }
   declare readonly $type: { "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1905,45 +1905,45 @@ export class UIResponder extends SDKHandle {
  * let PKAppleDrawingTypeIdentifier: CFString
  * @availability iOS 13.0+
  */
-export const PKAppleDrawingTypeIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("PencilKit_d6c5d10d3352e6ec", 3848436548283634, undefined, []);
+export const PKAppleDrawingTypeIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("PencilKit_a956b86ef7a76a8e", 3848436548283634, undefined, []);
 
-registerSDKClass("PKCanvasView", PKCanvasView, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"allowsFingerDrawing":3776056664840985,"delegate":3118185131072665,"drawing":2057177749435708,"isDrawingEnabled":2238061318937186,"drawingGestureRecognizer":3777940217221365,"drawingPolicy":3487977783443106,"maximumSupportedContentVersion":983593752395000,"isRulerActive":1083922949606176,"selection":1463631226253901} });
+registerSDKClass("PKCanvasView", PKCanvasView, { module: "PencilKit_a956b86ef7a76a8e", properties: {"allowsFingerDrawing":3776056664840985,"delegate":3118185131072665,"drawing":2057177749435708,"isDrawingEnabled":2238061318937186,"drawingGestureRecognizer":3777940217221365,"drawingPolicy":3487977783443106,"maximumSupportedContentVersion":983593752395000,"isRulerActive":1083922949606176,"selection":1463631226253901} });
 registerSDKProtocol("c:objc(pl)PKCanvasViewDelegate", {"scrollViewDidScroll":"scrollViewDidScroll(_:)","scrollViewDidZoom":"scrollViewDidZoom(_:)","scrollViewWillBeginDragging":"scrollViewWillBeginDragging(_:)","scrollViewWillEndDraggingWithVelocityTargetContentOffset":"scrollViewWillEndDragging(_:withVelocity:targetContentOffset:)","scrollViewDidEndDraggingWillDecelerate":"scrollViewDidEndDragging(_:willDecelerate:)","scrollViewWillBeginDecelerating":"scrollViewWillBeginDecelerating(_:)","scrollViewDidEndDecelerating":"scrollViewDidEndDecelerating(_:)","scrollViewDidEndScrollingAnimation":"scrollViewDidEndScrollingAnimation(_:)","scrollViewWillBeginZoomingWith":"scrollViewWillBeginZooming(_:with:)","scrollViewDidEndZoomingWithAtScale":"scrollViewDidEndZooming(_:with:atScale:)","scrollViewDidScrollToTop":"scrollViewDidScrollToTop(_:)","scrollViewDidChangeAdjustedContentInset":"scrollViewDidChangeAdjustedContentInset(_:)","canvasViewDrawingDidChange":"canvasViewDrawingDidChange(_:)","canvasViewDidFinishRendering":"canvasViewDidFinishRendering(_:)","canvasViewDidBeginUsingTool":"canvasViewDidBeginUsingTool(_:)","canvasViewDidEndUsingTool":"canvasViewDidEndUsingTool(_:)","canvasViewSelectionDidChange":"canvasViewSelectionDidChange(_:)"});
-registerSDKClass("PKConvertedBezierPoint", PKConvertedBezierPointReference, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"bezierSegmentIndex":2426941704168021,"index":2645644311142031,"location":3716407022516436,"pointCount":2967902618704596} });
-registerSDKClass("PencilKit.PKDrawing", PKDrawing, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKDrawing", PKDrawingReference, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"bounds":1906216341107601,"requiredContentVersion":4455540352591573,"strokes":3803131435142566} });
-registerSDKClass("PencilKit.PKEraserTool", PKEraserTool, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKEraserTool", PKEraserToolReference, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"eraserType":4128956452168155,"width":497017529434136} });
-registerSDKClass("PencilKit.PKInk", PKInk, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PencilKit.PKInkingTool", PKInkingTool, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKInkingTool", PKInkingToolReference, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"azimuth":4232653935027360,"color":433296727012780,"ink":3799980183676224,"inkType":4258656589733573,"requiredContentVersion":2979226722919791,"width":4406710802016139} });
-registerSDKClass("PKInk", PKInkReference, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"color":1898078703825138,"inkType":3976611515156320,"requiredContentVersion":556757113840980} });
-registerSDKClass("PencilKit.PKLassoTool", PKLassoTool, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKLassoTool", PKLassoToolReference, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKResponderState", PKResponderState, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"activeToolPicker":1746980975055738} });
-registerSDKClass("PencilKit.PKStroke", PKStroke, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PencilKit.PKStroke.RenderState", PKStroke_RenderState, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PencilKit.PKStrokePath", PKStrokePath, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PencilKit.PKStrokePath.ConvertedBezierPoint", PKStrokePath_ConvertedBezierPoint, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PencilKit.PKStrokePath.InterpolatedSlice", PKStrokePath_InterpolatedSlice, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PencilKit.PKStrokePath.InterpolatedSlice.Stride", PKStrokePath_InterpolatedSlice_Stride, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKStrokePath", PKStrokePathReference, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"bezierRepresentation":3425184470419746,"count":4407138925557743,"creationDate":853159440991366,"strokePathID":1456952795967474} });
-registerSDKClass("PencilKit.PKStrokePoint", PKStrokePoint, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKStrokePoint", PKStrokePointReference, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"altitude":3186592453949372,"azimuth":1603042314880085,"force":484868387419479,"lateralJitter":1451880284194714,"location":344745751973510,"opacity":2235881231926627,"secondaryScale":1285673700937382,"size":1071598549329338,"threshold":2429180783057056,"timeOffset":1675794664090432} });
-registerSDKClass("PencilKit.PKStrokeRecognizer", PKStrokeRecognizer, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PencilKit.PKStrokeRecognizer.SearchResult", PKStrokeRecognizer_SearchResult, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKStroke", PKStrokeReference, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"ink":3479776670282697,"mask":68545975722686,"maskedPathRanges":2564140696661713,"path":4076666821040517,"randomSeed":2891131483106746,"renderBounds":1823613398865687,"renderGroupID":4380874679479909,"renderState":2358154727028608,"requiredContentVersion":4235874089956653,"strokeID":1341771615489179,"transform":3336537797412145} });
-registerSDKClass("PKStrokeRenderState", PKStrokeRenderStateReference, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"grainOffset":90569396043736} });
+registerSDKClass("PKConvertedBezierPoint", PKConvertedBezierPointReference, { module: "PencilKit_a956b86ef7a76a8e", properties: {"bezierSegmentIndex":2426941704168021,"index":2645644311142031,"location":3716407022516436,"pointCount":2967902618704596} });
+registerSDKClass("PencilKit.PKDrawing", PKDrawing, { module: "PencilKit_a956b86ef7a76a8e", properties: {}, methods: {"erasingPath":{"id":4435023174870312},"transformed":{"id":2619675545613002},"dataRepresentation":{"id":3321056410616828},"draw":{"id":1773454009096461},"image":{"id":1144604367385784},"append":{"id":1509114645295698},"appending":{"id":2999303525464977},"erasePath":{"id":160239741486107},"transform":{"id":3623173049199279}} });
+registerSDKClass("PKDrawing", PKDrawingReference, { module: "PencilKit_a956b86ef7a76a8e", properties: {"bounds":1906216341107601,"requiredContentVersion":4455540352591573,"strokes":3803131435142566}, methods: {"dataRepresentation":{"id":1184379908482186},"appending":{"id":820089016605735},"appendingStrokes":{"id":3363109491174340},"applying":{"id":3163405503428206},"erasingStrokePath":{"id":4406613814035583},"image":{"id":4156542378014156}} });
+registerSDKClass("PencilKit.PKEraserTool", PKEraserTool, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PKEraserTool", PKEraserToolReference, { module: "PencilKit_a956b86ef7a76a8e", properties: {"eraserType":4128956452168155,"width":497017529434136} });
+registerSDKClass("PencilKit.PKInk", PKInk, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PencilKit.PKInkingTool", PKInkingTool, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PKInkingTool", PKInkingToolReference, { module: "PencilKit_a956b86ef7a76a8e", properties: {"azimuth":4232653935027360,"color":433296727012780,"ink":3799980183676224,"inkType":4258656589733573,"requiredContentVersion":2979226722919791,"width":4406710802016139} });
+registerSDKClass("PKInk", PKInkReference, { module: "PencilKit_a956b86ef7a76a8e", properties: {"color":1898078703825138,"inkType":3976611515156320,"requiredContentVersion":556757113840980} });
+registerSDKClass("PencilKit.PKLassoTool", PKLassoTool, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PKLassoTool", PKLassoToolReference, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PKResponderState", PKResponderState, { module: "PencilKit_a956b86ef7a76a8e", properties: {"activeToolPicker":1746980975055738} });
+registerSDKClass("PencilKit.PKStroke", PKStroke, { module: "PencilKit_a956b86ef7a76a8e", properties: {}, methods: {"substroke":{"id":4198989957916789}} });
+registerSDKClass("PencilKit.PKStroke.RenderState", PKStroke_RenderState, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PencilKit.PKStrokePath", PKStrokePath, { module: "PencilKit_a956b86ef7a76a8e", properties: {}, methods: {"parametricValue":{"id":2218808657370079},"interpolatedPoint":{"id":556753935450390},"interpolatedPoints":{"id":2160653543317921},"interpolatedLocation":{"id":2090471036678480},"subscript":{"id":1969491114921844},"subscript52479":{"id":1215854183322181}} });
+registerSDKClass("PencilKit.PKStrokePath.ConvertedBezierPoint", PKStrokePath_ConvertedBezierPoint, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PencilKit.PKStrokePath.InterpolatedSlice", PKStrokePath_InterpolatedSlice, { module: "PencilKit_a956b86ef7a76a8e", properties: {}, methods: {"next":{"id":3254694443620135}} });
+registerSDKClass("PencilKit.PKStrokePath.InterpolatedSlice.Stride", PKStrokePath_InterpolatedSlice_Stride, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PKStrokePath", PKStrokePathReference, { module: "PencilKit_a956b86ef7a76a8e", properties: {"bezierRepresentation":3425184470419746,"count":4407138925557743,"creationDate":853159440991366,"strokePathID":1456952795967474}, methods: {"interpolatedLocation":{"id":2737157959947350},"interpolatedPoint":{"id":3942435475245128},"subscript":{"id":1053906445125073},"parametricValueOffsetByDistance":{"id":2155280728130605},"parametricValueOffsetByTime":{"id":3423657222197214},"point":{"id":2586635912494284},"subpath":{"id":1819364273227407}} });
+registerSDKClass("PencilKit.PKStrokePoint", PKStrokePoint, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PKStrokePoint", PKStrokePointReference, { module: "PencilKit_a956b86ef7a76a8e", properties: {"altitude":3186592453949372,"azimuth":1603042314880085,"force":484868387419479,"lateralJitter":1451880284194714,"location":344745751973510,"opacity":2235881231926627,"secondaryScale":1285673700937382,"size":1071598549329338,"threshold":2429180783057056,"timeOffset":1675794664090432} });
+registerSDKClass("PencilKit.PKStrokeRecognizer", PKStrokeRecognizer, { module: "PencilKit_a956b86ef7a76a8e", properties: {}, methods: {"updateDrawing":{"id":1802836983800560},"recognizedText":{"id":1865761055939002},"search":{"id":614091562436891}} });
+registerSDKClass("PencilKit.PKStrokeRecognizer.SearchResult", PKStrokeRecognizer_SearchResult, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PKStroke", PKStrokeReference, { module: "PencilKit_a956b86ef7a76a8e", properties: {"ink":3479776670282697,"mask":68545975722686,"maskedPathRanges":2564140696661713,"path":4076666821040517,"randomSeed":2891131483106746,"renderBounds":1823613398865687,"renderGroupID":4380874679479909,"renderState":2358154727028608,"requiredContentVersion":4235874089956653,"strokeID":1341771615489179,"transform":3336537797412145}, methods: {"substroke":{"id":2575728325902826}} });
+registerSDKClass("PKStrokeRenderState", PKStrokeRenderStateReference, { module: "PencilKit_a956b86ef7a76a8e", properties: {"grainOffset":90569396043736} });
 registerSDKProtocol("s:9PencilKit6PKToolP", {});
-registerSDKClass("PKToolPicker", PKToolPicker, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"accessoryItem":2304801857879008,"colorMaximumLinearExposure":463873251499304,"colorUserInterfaceStyle":1329717923457737,"delegate":593363227848410,"isVisible":197685022256327,"maximumSupportedContentVersion":2435155899286447,"overrideUserInterfaceStyle":4038050182535190,"isRulerActive":1512185365190532,"selectedToolItem":3313859735908882,"selectedToolItemIdentifier":1190673747007777,"showsDrawingPolicyControls":4121630916355323,"stateAutosaveName":1476364584991706,"toolItems":4003420356510251} });
+registerSDKClass("PKToolPicker", PKToolPicker, { module: "PencilKit_a956b86ef7a76a8e", properties: {"accessoryItem":2304801857879008,"colorMaximumLinearExposure":463873251499304,"colorUserInterfaceStyle":1329717923457737,"delegate":593363227848410,"isVisible":197685022256327,"maximumSupportedContentVersion":2435155899286447,"overrideUserInterfaceStyle":4038050182535190,"isRulerActive":1512185365190532,"selectedToolItem":3313859735908882,"selectedToolItemIdentifier":1190673747007777,"showsDrawingPolicyControls":4121630916355323,"stateAutosaveName":1476364584991706,"toolItems":4003420356510251}, methods: {"addObserver":{"id":1952952183478211,"hints":[{"protocol":"c:objc(pl)PKToolPickerObserver"}]},"frameObscured":{"id":3653145277077197},"removeObserver":{"id":2592125962423135,"hints":[{"protocol":"c:objc(pl)PKToolPickerObserver"}]},"setVisible":{"id":1231876926393769}} });
 registerSDKProtocol("c:objc(pl)PKToolPickerDelegate", {});
-registerSDKClass("PKToolPickerItem", PKToolPickerItem, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"identifier":471280059176414} });
-registerSDKClass("PKToolPickerCustomItem", PKToolPickerCustomItem, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"allowsColorSelection":2663402231849109,"color":3240912971851948,"width":2664634337091090} });
-registerSDKClass("PencilKit.PKToolPickerCustomItem.Configuration", PKToolPickerCustomItem_Configuration, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKToolPickerEraserItem", PKToolPickerEraserItem, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKToolPickerInkingItem", PKToolPickerInkingItem, { module: "PencilKit_d6c5d10d3352e6ec", properties: {"allowsColorSelection":4188421112395784} });
-registerSDKClass("PKToolPickerLassoItem", PKToolPickerLassoItem, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("PKToolPickerItem", PKToolPickerItem, { module: "PencilKit_a956b86ef7a76a8e", properties: {"identifier":471280059176414} });
+registerSDKClass("PKToolPickerCustomItem", PKToolPickerCustomItem, { module: "PencilKit_a956b86ef7a76a8e", properties: {"allowsColorSelection":2663402231849109,"color":3240912971851948,"width":2664634337091090}, methods: {"reloadImage":{"id":1858629406636341}} });
+registerSDKClass("PencilKit.PKToolPickerCustomItem.Configuration", PKToolPickerCustomItem_Configuration, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PKToolPickerEraserItem", PKToolPickerEraserItem, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PKToolPickerInkingItem", PKToolPickerInkingItem, { module: "PencilKit_a956b86ef7a76a8e", properties: {"allowsColorSelection":4188421112395784} });
+registerSDKClass("PKToolPickerLassoItem", PKToolPickerLassoItem, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)PKToolPickerObserver", {"toolPickerSelectedToolDidChange":"toolPickerSelectedToolDidChange(_:)","toolPickerSelectedToolItemDidChange":"toolPickerSelectedToolItemDidChange(_:)","toolPickerIsRulerActiveDidChange":"toolPickerIsRulerActiveDidChange(_:)","toolPickerVisibilityDidChange":"toolPickerVisibilityDidChange(_:)","toolPickerFramesObscuredDidChange":"toolPickerFramesObscuredDidChange(_:)"});
-registerSDKClass("PKToolPickerRulerItem", PKToolPickerRulerItem, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("PKToolPickerScribbleItem", PKToolPickerScribbleItem, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("UIResponder", UIResponder, { module: "PencilKit_d6c5d10d3352e6ec", properties: {} }, true);
+registerSDKClass("PKToolPickerRulerItem", PKToolPickerRulerItem, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("PKToolPickerScribbleItem", PKToolPickerScribbleItem, { module: "PencilKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("UIResponder", UIResponder, { module: "PencilKit_a956b86ef7a76a8e", properties: {} }, true);

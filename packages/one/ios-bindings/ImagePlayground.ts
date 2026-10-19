@@ -21,27 +21,27 @@ export class ImageCreator extends SDKHandle {
    * @availability iOS 18.4+
    * @deprecated iOS 27.0
    */
-  get availableStyles(): $SDK0 { return callSDK<$SDK0>("ImagePlayground_d6c5d10d3352e6ec", 2226473737874828, this, []); }
+  get availableStyles(): $SDK0 { return callSDK<$SDK0>("ImagePlayground_a956b86ef7a76a8e", 2226473737874828, this, []); }
   /**
    * final func images(for concepts: [ImagePlaygroundConcept], style: ImagePlaygroundStyle, limit: Int) -> some AsyncSequence<ImageCreator.CreatedImage, any Error>
   
    * @availability iOS 18.4+
    * @deprecated iOS 27.0
    */
-  imagesForStyleLimit(concepts: $SDK1, style: ImagePlaygroundStyle, limit: number): SDKHandle { return callSDK<SDKHandle>("ImagePlayground_d6c5d10d3352e6ec", 4030182097982143, this, [concepts, style, limit]); }
+  imagesForStyleLimit(concepts: $SDK1, style: ImagePlaygroundStyle, limit: number): SDKHandle { return callSDK<SDKHandle>("ImagePlayground_a956b86ef7a76a8e", 4030182097982143, this, [concepts, style, limit]); }
   /**
    * final func images(for concepts: [ImagePlaygroundConcept], style: ImagePlaygroundStyle, options: ImagePlaygroundOptions, limit: Int) -> some AsyncSequence<ImageCreator.CreatedImage, any Error>
   
    * @availability iOS 26.4+
    * @deprecated iOS 27.0
    */
-  imagesForStyleOptionsLimit(concepts: $SDK1, style: ImagePlaygroundStyle, options: ImagePlaygroundOptions, limit: number): SDKHandle { return callSDK<SDKHandle>("ImagePlayground_d6c5d10d3352e6ec", 2700040506490728, this, [concepts, style, options, limit]); }
+  imagesForStyleOptionsLimit(concepts: $SDK1, style: ImagePlaygroundStyle, options: ImagePlaygroundOptions, limit: number): SDKHandle { return callSDK<SDKHandle>("ImagePlayground_a956b86ef7a76a8e", 2700040506490728, this, [concepts, style, options, limit]); }
   /**
    * init() async throws
    * @availability iOS 18.4+
    * @deprecated iOS 27.0
    */
-  static init(): Promise<ImageCreator> { return callSDKAsync<ImageCreator>("ImagePlayground_d6c5d10d3352e6ec", 186944353025313, undefined, []); }
+  static init(): Promise<ImageCreator> { return callSDKAsync<ImageCreator>("ImagePlayground_a956b86ef7a76a8e", 186944353025313, undefined, []); }
   declare readonly $type: { "s:15ImagePlayground0A7CreatorC": true };
 }
 
@@ -56,7 +56,7 @@ export class ImageCreator_CreatedImage extends SDKHandle {
    * @availability iOS 18.4+
    * @deprecated iOS 27.0
    */
-  get cgImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("ImagePlayground_d6c5d10d3352e6ec", 3773372824596081, this, []); }
+  get cgImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("ImagePlayground_a956b86ef7a76a8e", 3773372824596081, this, []); }
   declare readonly $type: { "s:15ImagePlayground0A7CreatorC07CreatedA0V": true };
 }
 
@@ -72,17 +72,17 @@ export const ImageCreator_Error = {
    * static var errorDomain: String { get }
    * @availability iOS 18.4+
    */
-  get errorDomain(): string { return callSDK<string>("ImagePlayground_d6c5d10d3352e6ec", 4113841832076048, undefined, []); },
+  get errorDomain(): string { return callSDK<string>("ImagePlayground_a956b86ef7a76a8e", 4113841832076048, undefined, []); },
   /**
    * var errorUserInfo: [String : Any] { get }
    * @availability iOS 18.4+
    */
-  getErrorUserInfo($self: ImageCreator_Error): Record<string, unknown> { return callSDK<Record<string, unknown>>("ImagePlayground_d6c5d10d3352e6ec", 1658961302620647, $self, []); },
+  getErrorUserInfo($self: ImageCreator_Error): Record<string, unknown> { return callSDK<Record<string, unknown>>("ImagePlayground_a956b86ef7a76a8e", 1658961302620647, $self, []); },
   /**
    * static var allCases: [ImageCreator.Error] { get }
    * @availability iOS 18.4+
    */
-  get allCases(): Array<ImageCreator_Error> { return callSDK<Array<ImageCreator_Error>>("ImagePlayground_d6c5d10d3352e6ec", 3623118024895592, undefined, []); }
+  get allCases(): Array<ImageCreator_Error> { return callSDK<Array<ImageCreator_Error>>("ImagePlayground_a956b86ef7a76a8e", 3623118024895592, undefined, []); }
 };
 
 /**
@@ -101,27 +101,27 @@ export class ImagePlaygroundConcept extends SDKHandle {
    * static func text(_ text: String) -> ImagePlaygroundConcept
    * @availability iOS 18.1+
    */
-  static text(text: string): ImagePlaygroundConcept { return callSDK<ImagePlaygroundConcept>("ImagePlayground_d6c5d10d3352e6ec", 1331663425933856, undefined, [text]); }
+  static text(text: string): ImagePlaygroundConcept { return callSDK<ImagePlaygroundConcept>("ImagePlayground_a956b86ef7a76a8e", 1331663425933856, undefined, [text]); }
   /**
    * static func image(_ url: URL) -> ImagePlaygroundConcept?
    * @availability iOS 18.1+
    */
-  static image(url: string): (ImagePlaygroundConcept) | null { return callSDK<(ImagePlaygroundConcept) | null>("ImagePlayground_d6c5d10d3352e6ec", 448444816911906, undefined, [url]); }
+  static image(url: string): (ImagePlaygroundConcept) | null { return callSDK<(ImagePlaygroundConcept) | null>("ImagePlayground_a956b86ef7a76a8e", 448444816911906, undefined, [url]); }
   /**
    * static func image(_ image: CGImage) -> ImagePlaygroundConcept
    * @availability iOS 18.1+
    */
-  static image80359(image: _CoreGraphics_CGImage): ImagePlaygroundConcept { return callSDK<ImagePlaygroundConcept>("ImagePlayground_d6c5d10d3352e6ec", 2877811613249608, undefined, [image]); }
+  static image80359(image: _CoreGraphics_CGImage): ImagePlaygroundConcept { return callSDK<ImagePlaygroundConcept>("ImagePlayground_a956b86ef7a76a8e", 2877811613249608, undefined, [image]); }
   /**
    * static func drawing(_ drawing: PKDrawing) -> ImagePlaygroundConcept
    * @availability iOS 18.1+
    */
-  static drawing(drawing: _PencilKit_PKDrawing): ImagePlaygroundConcept { return callSDK<ImagePlaygroundConcept>("ImagePlayground_d6c5d10d3352e6ec", 2802624511399078, undefined, [drawing]); }
+  static drawing(drawing: _PencilKit_PKDrawing): ImagePlaygroundConcept { return callSDK<ImagePlaygroundConcept>("ImagePlayground_a956b86ef7a76a8e", 2802624511399078, undefined, [drawing]); }
   /**
    * static func extracted(from text: String, title: String? = nil) -> ImagePlaygroundConcept
    * @availability iOS 18.1+
    */
-  static extracted(text: string, title?: (string) | null): ImagePlaygroundConcept { return callSDK<ImagePlaygroundConcept>("ImagePlayground_d6c5d10d3352e6ec", 3149374040985981, undefined, [text, title]); }
+  static extracted(text: string, title?: (string) | null): ImagePlaygroundConcept { return callSDK<ImagePlaygroundConcept>("ImagePlayground_a956b86ef7a76a8e", 3149374040985981, undefined, [text, title]); }
   declare readonly $type: { "s:15ImagePlayground0aB7ConceptV": true };
 }
 
@@ -134,31 +134,31 @@ export class ImagePlaygroundOptions extends SDKHandle {
    * var creationVariety: ImagePlaygroundOptions.CreationVariety
    * @availability iOS 26.4+
    */
-  get creationVariety(): ImagePlaygroundOptions_CreationVariety { return callSDK<ImagePlaygroundOptions_CreationVariety>("ImagePlayground_d6c5d10d3352e6ec", 3116574548273370, this, []); }
-  set creationVariety(value: ImagePlaygroundOptions_CreationVariety) { callSDK<void>("ImagePlayground_d6c5d10d3352e6ec", 3441484982317390, this, [value]); }
+  get creationVariety(): ImagePlaygroundOptions_CreationVariety { return callSDK<ImagePlaygroundOptions_CreationVariety>("ImagePlayground_a956b86ef7a76a8e", 3116574548273370, this, []); }
+  set creationVariety(value: ImagePlaygroundOptions_CreationVariety) { callSDK<void>("ImagePlayground_a956b86ef7a76a8e", 3441484982317390, this, [value]); }
   /**
    * var personalization: ImagePlaygroundOptions.Personalization
    * @availability iOS 26.4+
    */
-  get personalization(): ImagePlaygroundOptions_Personalization { return callSDK<ImagePlaygroundOptions_Personalization>("ImagePlayground_d6c5d10d3352e6ec", 23452438212371, this, []); }
-  set personalization(value: ImagePlaygroundOptions_Personalization) { callSDK<void>("ImagePlayground_d6c5d10d3352e6ec", 363378068166327, this, [value]); }
+  get personalization(): ImagePlaygroundOptions_Personalization { return callSDK<ImagePlaygroundOptions_Personalization>("ImagePlayground_a956b86ef7a76a8e", 23452438212371, this, []); }
+  set personalization(value: ImagePlaygroundOptions_Personalization) { callSDK<void>("ImagePlayground_a956b86ef7a76a8e", 363378068166327, this, [value]); }
   /**
    * var creationStrategy: ImagePlaygroundOptions.CreationStrategy
    * @availability iOS 27.0+
    */
-  get creationStrategy(): ImagePlaygroundOptions_CreationStrategy { return callSDK<ImagePlaygroundOptions_CreationStrategy>("ImagePlayground_d6c5d10d3352e6ec", 3583369112611760, this, []); }
-  set creationStrategy(value: ImagePlaygroundOptions_CreationStrategy) { callSDK<void>("ImagePlayground_d6c5d10d3352e6ec", 673020162037539, this, [value]); }
+  get creationStrategy(): ImagePlaygroundOptions_CreationStrategy { return callSDK<ImagePlaygroundOptions_CreationStrategy>("ImagePlayground_a956b86ef7a76a8e", 3583369112611760, this, []); }
+  set creationStrategy(value: ImagePlaygroundOptions_CreationStrategy) { callSDK<void>("ImagePlayground_a956b86ef7a76a8e", 673020162037539, this, [value]); }
   /**
    * var sizeSpecification: ImagePlaygroundOptions.SizeSpecification
    * @availability iOS 27.0+
    */
-  get sizeSpecification(): ImagePlaygroundOptions_SizeSpecification { return callSDK<ImagePlaygroundOptions_SizeSpecification>("ImagePlayground_d6c5d10d3352e6ec", 167619373478103, this, []); }
-  set sizeSpecification(value: ImagePlaygroundOptions_SizeSpecification) { callSDK<void>("ImagePlayground_d6c5d10d3352e6ec", 2824238240752660, this, [value]); }
+  get sizeSpecification(): ImagePlaygroundOptions_SizeSpecification { return callSDK<ImagePlaygroundOptions_SizeSpecification>("ImagePlayground_a956b86ef7a76a8e", 167619373478103, this, []); }
+  set sizeSpecification(value: ImagePlaygroundOptions_SizeSpecification) { callSDK<void>("ImagePlayground_a956b86ef7a76a8e", 2824238240752660, this, [value]); }
   /**
    * init()
    * @availability iOS 26.4+
    */
-  static init(): ImagePlaygroundOptions { return callSDK<ImagePlaygroundOptions>("ImagePlayground_d6c5d10d3352e6ec", 2787965248010004, undefined, []); }
+  static init(): ImagePlaygroundOptions { return callSDK<ImagePlaygroundOptions>("ImagePlayground_a956b86ef7a76a8e", 2787965248010004, undefined, []); }
   declare readonly $type: { "s:15ImagePlayground0aB7OptionsV": true };
 }
 
@@ -173,12 +173,12 @@ export const ImagePlaygroundOptions_CreationStrategy = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (ImagePlaygroundOptions_CreationStrategy) | null { return callSDK<(ImagePlaygroundOptions_CreationStrategy) | null>("ImagePlayground_d6c5d10d3352e6ec", 3216629250746183, undefined, [rawValue]); },
+  init(rawValue: number): (ImagePlaygroundOptions_CreationStrategy) | null { return callSDK<(ImagePlaygroundOptions_CreationStrategy) | null>("ImagePlayground_a956b86ef7a76a8e", 3216629250746183, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: ImagePlaygroundOptions_CreationStrategy): number { return callSDK<number>("ImagePlayground_d6c5d10d3352e6ec", 3509739206554558, $self, []); }
+  getRawValue($self: ImagePlaygroundOptions_CreationStrategy): number { return callSDK<number>("ImagePlayground_a956b86ef7a76a8e", 3509739206554558, $self, []); }
 };
 
 /**
@@ -198,12 +198,12 @@ export const ImagePlaygroundOptions_CreationVariety = {
    * init?(rawValue: Int)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): (ImagePlaygroundOptions_CreationVariety) | null { return callSDK<(ImagePlaygroundOptions_CreationVariety) | null>("ImagePlayground_d6c5d10d3352e6ec", 860202026526066, undefined, [rawValue]); },
+  init(rawValue: number): (ImagePlaygroundOptions_CreationVariety) | null { return callSDK<(ImagePlaygroundOptions_CreationVariety) | null>("ImagePlayground_a956b86ef7a76a8e", 860202026526066, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 26.4+
    */
-  getRawValue($self: ImagePlaygroundOptions_CreationVariety): number { return callSDK<number>("ImagePlayground_d6c5d10d3352e6ec", 3472800983649638, $self, []); }
+  getRawValue($self: ImagePlaygroundOptions_CreationVariety): number { return callSDK<number>("ImagePlayground_a956b86ef7a76a8e", 3472800983649638, $self, []); }
 };
 
 /**
@@ -223,12 +223,12 @@ export const ImagePlaygroundOptions_Personalization = {
    * init?(rawValue: Int)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): (ImagePlaygroundOptions_Personalization) | null { return callSDK<(ImagePlaygroundOptions_Personalization) | null>("ImagePlayground_d6c5d10d3352e6ec", 2334443974010080, undefined, [rawValue]); },
+  init(rawValue: number): (ImagePlaygroundOptions_Personalization) | null { return callSDK<(ImagePlaygroundOptions_Personalization) | null>("ImagePlayground_a956b86ef7a76a8e", 2334443974010080, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 26.4+
    */
-  getRawValue($self: ImagePlaygroundOptions_Personalization): number { return callSDK<number>("ImagePlayground_d6c5d10d3352e6ec", 2424256680887716, $self, []); }
+  getRawValue($self: ImagePlaygroundOptions_Personalization): number { return callSDK<number>("ImagePlayground_a956b86ef7a76a8e", 2424256680887716, $self, []); }
 };
 
 /**
@@ -246,7 +246,7 @@ export class ImagePlaygroundOptions_SizeSpecification extends SDKHandle {
    * static func closest(to size: CGSize) -> ImagePlaygroundOptions.SizeSpecification
    * @availability iOS 27.0+
    */
-  static closest(size: $SDK4): ImagePlaygroundOptions_SizeSpecification { return callSDK<ImagePlaygroundOptions_SizeSpecification>("ImagePlayground_d6c5d10d3352e6ec", 2218128750414428, undefined, [size]); }
+  static closest(size: $SDK4): ImagePlaygroundOptions_SizeSpecification { return callSDK<ImagePlaygroundOptions_SizeSpecification>("ImagePlayground_a956b86ef7a76a8e", 2218128750414428, undefined, [size]); }
   declare readonly $type: { "s:15ImagePlayground0aB7OptionsV17SizeSpecificationV": true };
 }
 
@@ -263,13 +263,13 @@ export const ImagePlaygroundPersonalizationPolicy = {
    * @availability iOS 18.4+
    * @deprecated iOS 26.4
    */
-  init(rawValue: number): (ImagePlaygroundPersonalizationPolicy) | null { return callSDK<(ImagePlaygroundPersonalizationPolicy) | null>("ImagePlayground_d6c5d10d3352e6ec", 3748073968706460, undefined, [rawValue]); },
+  init(rawValue: number): (ImagePlaygroundPersonalizationPolicy) | null { return callSDK<(ImagePlaygroundPersonalizationPolicy) | null>("ImagePlayground_a956b86ef7a76a8e", 3748073968706460, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 18.4+
    * @deprecated iOS 26.4
    */
-  getRawValue($self: ImagePlaygroundPersonalizationPolicy): number { return callSDK<number>("ImagePlayground_d6c5d10d3352e6ec", 134340692500577, $self, []); }
+  getRawValue($self: ImagePlaygroundPersonalizationPolicy): number { return callSDK<number>("ImagePlayground_a956b86ef7a76a8e", 134340692500577, $self, []); }
 };
 
 /**
@@ -288,42 +288,42 @@ export class ImagePlaygroundStyle extends SDKHandle {
    * static let illustration: ImagePlaygroundStyle
    * @availability iOS 18.4+
    */
-  static get illustration(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_d6c5d10d3352e6ec", 1409768349271761, undefined, []); }
+  static get illustration(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_a956b86ef7a76a8e", 1409768349271761, undefined, []); }
   /**
    * static let externalProvider: ImagePlaygroundStyle
    * @availability iOS 26.0+
    */
-  static get externalProvider(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_d6c5d10d3352e6ec", 2571153472632110, undefined, []); }
+  static get externalProvider(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_a956b86ef7a76a8e", 2571153472632110, undefined, []); }
   /**
    * let id: String
    * @availability iOS 18.4+
    */
-  get id(): string { return callSDK<string>("ImagePlayground_d6c5d10d3352e6ec", 3431180384429216, this, []); }
+  get id(): string { return callSDK<string>("ImagePlayground_a956b86ef7a76a8e", 3431180384429216, this, []); }
   /**
    * static var all: [ImagePlaygroundStyle] { get }
    * @availability iOS 18.4+
    */
-  static get all(): $SDK0 { return callSDK<$SDK0>("ImagePlayground_d6c5d10d3352e6ec", 3644739455274391, undefined, []); }
+  static get all(): $SDK0 { return callSDK<$SDK0>("ImagePlayground_a956b86ef7a76a8e", 3644739455274391, undefined, []); }
   /**
    * static let any: ImagePlaygroundStyle
    * @availability iOS 27.0+
    */
-  static get any(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_d6c5d10d3352e6ec", 3974569963471810, undefined, []); }
+  static get any(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_a956b86ef7a76a8e", 3974569963471810, undefined, []); }
   /**
    * static let emoji: ImagePlaygroundStyle
    * @availability iOS 18.4+
    */
-  static get emoji(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_d6c5d10d3352e6ec", 2957238530754039, undefined, []); }
+  static get emoji(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_a956b86ef7a76a8e", 2957238530754039, undefined, []); }
   /**
    * static let sketch: ImagePlaygroundStyle
    * @availability iOS 18.4+
    */
-  static get sketch(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_d6c5d10d3352e6ec", 1740081686161261, undefined, []); }
+  static get sketch(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_a956b86ef7a76a8e", 1740081686161261, undefined, []); }
   /**
    * static let animation: ImagePlaygroundStyle
    * @availability iOS 18.4+
    */
-  static get animation(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_d6c5d10d3352e6ec", 665687236014075, undefined, []); }
+  static get animation(): ImagePlaygroundStyle { return callSDK<ImagePlaygroundStyle>("ImagePlayground_a956b86ef7a76a8e", 665687236014075, undefined, []); }
   declare readonly $type: { "s:15ImagePlayground0aB5StyleV": true };
 }
 
@@ -342,83 +342,83 @@ export class ImagePlaygroundViewController extends SDKHandle {
    * @objc(available) nonisolated dynamic class var isAvailable: Bool { get }
    * @availability iOS 18.1+
    */
-  static get isAvailable(): Promise<boolean> { return callSDKAsync<boolean>("ImagePlayground_d6c5d10d3352e6ec", 4053338117025193, undefined, []); }
+  static get isAvailable(): Promise<boolean> { return callSDKAsync<boolean>("ImagePlayground_a956b86ef7a76a8e", 4053338117025193, undefined, []); }
   /**
    * @MainActor @preconcurrency dynamic convenience init()
    * @availability iOS 18.1+
    */
-  static init(): Promise<ImagePlaygroundViewController> { return callSDKAsync<ImagePlaygroundViewController>("ImagePlayground_d6c5d10d3352e6ec", 634643948790433, undefined, []); }
+  static init(): Promise<ImagePlaygroundViewController> { return callSDKAsync<ImagePlaygroundViewController>("ImagePlayground_a956b86ef7a76a8e", 634643948790433, undefined, []); }
   /**
    * @MainActor @preconcurrency override dynamic func viewDidDisappear(_ animated: Bool)
    * @availability iOS 18.1+
    */
-  viewDidDisappear(animated: boolean): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 4209526709012970, this, [animated]); }
+  viewDidDisappear(animated: boolean): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 4209526709012970, this, [animated]); }
   /**
    * @MainActor @preconcurrency override dynamic func viewDidLoad()
    * @availability iOS 18.1+
    */
-  viewDidLoad(): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 1974541112983192, this, []); }
+  viewDidLoad(): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 1974541112983192, this, []); }
   /**
    * @MainActor @objc @preconcurrency weak var delegate: (any ImagePlaygroundViewController.Delegate)?
    * @availability iOS 18.1+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ImagePlayground_d6c5d10d3352e6ec", 2790482530607553, this, []); }
-  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 1436434967579783, this, [value]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ImagePlayground_a956b86ef7a76a8e", 2790482530607553, this, []); }
+  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 1436434967579783, this, [value]); }
   /**
    * @MainActor @preconcurrency override dynamic var isModalInPresentation: Bool { get set }
    * @availability iOS 18.1+
    */
-  get isModalInPresentation(): Promise<boolean> { return callSDKAsync<boolean>("ImagePlayground_d6c5d10d3352e6ec", 3902273226328233, this, []); }
-  setIsModalInPresentation(value: boolean): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 4172731462256200, this, [value]); }
+  get isModalInPresentation(): Promise<boolean> { return callSDKAsync<boolean>("ImagePlayground_a956b86ef7a76a8e", 3902273226328233, this, []); }
+  setIsModalInPresentation(value: boolean): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 4172731462256200, this, [value]); }
   /**
    * @MainActor @preconcurrency override dynamic var modalPresentationStyle: UIModalPresentationStyle { get set }
    * @availability iOS 18.1+
    */
-  get modalPresentationStyle(): Promise<_UIKit_UIModalPresentationStyle> { return callSDKAsync<_UIKit_UIModalPresentationStyle>("ImagePlayground_d6c5d10d3352e6ec", 3231933691246710, this, []); }
-  setModalPresentationStyle(value: _UIKit_UIModalPresentationStyle): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 3499147228105371, this, [value]); }
+  get modalPresentationStyle(): Promise<_UIKit_UIModalPresentationStyle> { return callSDKAsync<_UIKit_UIModalPresentationStyle>("ImagePlayground_a956b86ef7a76a8e", 3231933691246710, this, []); }
+  setModalPresentationStyle(value: _UIKit_UIModalPresentationStyle): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 3499147228105371, this, [value]); }
   /**
    * @MainActor @preconcurrency override dynamic var preferredContentSize: CGSize { get set }
    * @availability iOS 18.1+
    */
-  get preferredContentSize(): Promise<$SDK4> { return callSDKAsync<$SDK4>("ImagePlayground_d6c5d10d3352e6ec", 1217949374258397, this, []); }
-  setPreferredContentSize(value: $SDK4): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 2973109051367725, this, [value]); }
+  get preferredContentSize(): Promise<$SDK4> { return callSDKAsync<$SDK4>("ImagePlayground_a956b86ef7a76a8e", 1217949374258397, this, []); }
+  setPreferredContentSize(value: $SDK4): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 2973109051367725, this, [value]); }
   /**
    * @MainActor @objc @preconcurrency var sourceImage: UIImage? { get set }
    * @availability iOS 18.1+
    */
-  get sourceImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("ImagePlayground_d6c5d10d3352e6ec", 4467989561210040, this, []); }
-  setSourceImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 3471579558444158, this, [value]); }
+  get sourceImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("ImagePlayground_a956b86ef7a76a8e", 4467989561210040, this, []); }
+  setSourceImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 3471579558444158, this, [value]); }
   /**
    * @MainActor @preconcurrency var personalizationPolicy: ImagePlaygroundPersonalizationPolicy { get set }
    * @availability iOS 18.4+
    * @deprecated iOS 26.4
    */
-  get personalizationPolicy(): Promise<ImagePlaygroundPersonalizationPolicy> { return callSDKAsync<ImagePlaygroundPersonalizationPolicy>("ImagePlayground_d6c5d10d3352e6ec", 3968787941074572, this, []); }
-  setPersonalizationPolicy(value: ImagePlaygroundPersonalizationPolicy): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 1667838318645463, this, [value]); }
+  get personalizationPolicy(): Promise<ImagePlaygroundPersonalizationPolicy> { return callSDKAsync<ImagePlaygroundPersonalizationPolicy>("ImagePlayground_a956b86ef7a76a8e", 3968787941074572, this, []); }
+  setPersonalizationPolicy(value: ImagePlaygroundPersonalizationPolicy): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 1667838318645463, this, [value]); }
   /**
    * @MainActor @preconcurrency var allowedGenerationStyles: [ImagePlaygroundStyle] { get set }
    * @availability iOS 18.4+
    */
-  get allowedGenerationStyles(): Promise<$SDK0> { return callSDKAsync<$SDK0>("ImagePlayground_d6c5d10d3352e6ec", 2550519195773356, this, []); }
-  setAllowedGenerationStyles(value: $SDK0): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 3546877276797846, this, [value]); }
+  get allowedGenerationStyles(): Promise<$SDK0> { return callSDKAsync<$SDK0>("ImagePlayground_a956b86ef7a76a8e", 2550519195773356, this, []); }
+  setAllowedGenerationStyles(value: $SDK0): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 3546877276797846, this, [value]); }
   /**
    * @MainActor @preconcurrency var selectedGenerationStyle: ImagePlaygroundStyle { get set }
    * @availability iOS 18.4+
    */
-  get selectedGenerationStyle(): Promise<ImagePlaygroundStyle> { return callSDKAsync<ImagePlaygroundStyle>("ImagePlayground_d6c5d10d3352e6ec", 3999515053684480, this, []); }
-  setSelectedGenerationStyle(value: ImagePlaygroundStyle): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 3343232828378087, this, [value]); }
+  get selectedGenerationStyle(): Promise<ImagePlaygroundStyle> { return callSDKAsync<ImagePlaygroundStyle>("ImagePlayground_a956b86ef7a76a8e", 3999515053684480, this, []); }
+  setSelectedGenerationStyle(value: ImagePlaygroundStyle): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 3343232828378087, this, [value]); }
   /**
    * @MainActor @preconcurrency var options: ImagePlaygroundOptions { get set }
    * @availability iOS 26.4+
    */
-  get options(): Promise<ImagePlaygroundOptions> { return callSDKAsync<ImagePlaygroundOptions>("ImagePlayground_d6c5d10d3352e6ec", 1564987869827215, this, []); }
-  setOptions(value: ImagePlaygroundOptions): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 2587014045878666, this, [value]); }
+  get options(): Promise<ImagePlaygroundOptions> { return callSDKAsync<ImagePlaygroundOptions>("ImagePlayground_a956b86ef7a76a8e", 1564987869827215, this, []); }
+  setOptions(value: ImagePlaygroundOptions): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 2587014045878666, this, [value]); }
   /**
    * @MainActor @preconcurrency var concepts: [ImagePlaygroundConcept] { get set }
    * @availability iOS 18.1+
    */
-  get concepts(): Promise<$SDK1> { return callSDKAsync<$SDK1>("ImagePlayground_d6c5d10d3352e6ec", 1173954029780230, this, []); }
-  setConcepts(value: $SDK1): Promise<void> { return callSDKAsync<void>("ImagePlayground_d6c5d10d3352e6ec", 4303244079420714, this, [value]); }
+  get concepts(): Promise<$SDK1> { return callSDKAsync<$SDK1>("ImagePlayground_a956b86ef7a76a8e", 1173954029780230, this, []); }
+  setConcepts(value: $SDK1): Promise<void> { return callSDKAsync<void>("ImagePlayground_a956b86ef7a76a8e", 4303244079420714, this, [value]); }
   declare readonly $type: { "c:@M@ImagePlayground@objc(cs)ImagePlaygroundViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -444,11 +444,11 @@ export interface ImagePlaygroundViewController_Delegate {
   "imagePlaygroundViewControllerDidCancel"?: (arg0: ImagePlaygroundViewController) => void;
 }
 
-registerSDKClass("ImagePlayground.ImageCreator", ImageCreator, { module: "ImagePlayground_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ImagePlayground.ImageCreator.CreatedImage", ImageCreator_CreatedImage, { module: "ImagePlayground_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ImagePlayground.ImagePlaygroundConcept", ImagePlaygroundConcept, { module: "ImagePlayground_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ImagePlayground.ImagePlaygroundOptions", ImagePlaygroundOptions, { module: "ImagePlayground_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ImagePlayground.ImagePlaygroundOptions.SizeSpecification", ImagePlaygroundOptions_SizeSpecification, { module: "ImagePlayground_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ImagePlayground.ImagePlaygroundStyle", ImagePlaygroundStyle, { module: "ImagePlayground_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("ImagePlayground.ImagePlaygroundViewController", ImagePlaygroundViewController, { module: "ImagePlayground_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("ImagePlayground.ImageCreator", ImageCreator, { module: "ImagePlayground_a956b86ef7a76a8e", properties: {}, methods: {"imagesForStyleLimit":{"id":4030182097982143},"imagesForStyleOptionsLimit":{"id":2700040506490728}} });
+registerSDKClass("ImagePlayground.ImageCreator.CreatedImage", ImageCreator_CreatedImage, { module: "ImagePlayground_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ImagePlayground.ImagePlaygroundConcept", ImagePlaygroundConcept, { module: "ImagePlayground_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ImagePlayground.ImagePlaygroundOptions", ImagePlaygroundOptions, { module: "ImagePlayground_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ImagePlayground.ImagePlaygroundOptions.SizeSpecification", ImagePlaygroundOptions_SizeSpecification, { module: "ImagePlayground_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ImagePlayground.ImagePlaygroundStyle", ImagePlaygroundStyle, { module: "ImagePlayground_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ImagePlayground.ImagePlaygroundViewController", ImagePlaygroundViewController, { module: "ImagePlayground_a956b86ef7a76a8e", properties: {}, methods: {"viewDidDisappear":{"id":4209526709012970},"viewDidLoad":{"id":1974541112983192}} });
 registerSDKProtocol("s:15ImagePlayground0aB14ViewControllerC8DelegateP", {"imagePlaygroundViewControllerDidCreateImageAt":"imagePlaygroundViewController(_:didCreateImageAt:)","imagePlaygroundViewControllerDidCreate":"imagePlaygroundViewController(_:didCreate:)","imagePlaygroundViewControllerDidCancel":"imagePlaygroundViewControllerDidCancel(_:)"});

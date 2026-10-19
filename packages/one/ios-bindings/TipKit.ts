@@ -171,12 +171,12 @@ export class TipGroup extends SDKHandle {
    * @MainActor final var currentTip: (any Tip)? { get }
    * @availability iOS 18.0+
    */
-  get currentTip(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("TipKit_d6c5d10d3352e6ec", 869990422699294, this, []); }
+  get currentTip(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("TipKit_a956b86ef7a76a8e", 869990422699294, this, []); }
   /**
    * final var currentTipUpdates: some AsyncSequence<any Tip, Never> { get }
    * @availability iOS 18.0+
    */
-  get currentTipUpdates(): SDKHandle { return callSDK<SDKHandle>("TipKit_d6c5d10d3352e6ec", 558491972495174, this, []); }
+  get currentTipUpdates(): SDKHandle { return callSDK<SDKHandle>("TipKit_a956b86ef7a76a8e", 558491972495174, this, []); }
   declare readonly $type: { "s:6TipKit0A5GroupC": true };
   declare readonly $observable: { "currentTipUpdates": true };
 }
@@ -196,27 +196,27 @@ export class TipKitError extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("TipKit_d6c5d10d3352e6ec", 3874488422174994, this, []); }
+  get description(): string { return callSDK<string>("TipKit_a956b86ef7a76a8e", 3874488422174994, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 17.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("TipKit_d6c5d10d3352e6ec", 636175339061286, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("TipKit_a956b86ef7a76a8e", 636175339061286, this, []); }
   /**
    * static let invalidPredicateValueType: TipKitError
    * @availability iOS 17.0+
    */
-  static get invalidPredicateValueType(): TipKitError { return callSDK<TipKitError>("TipKit_d6c5d10d3352e6ec", 410536518303539, undefined, []); }
+  static get invalidPredicateValueType(): TipKitError { return callSDK<TipKitError>("TipKit_a956b86ef7a76a8e", 410536518303539, undefined, []); }
   /**
    * static let tipsDatastoreAlreadyConfigured: TipKitError
    * @availability iOS 17.0+
    */
-  static get tipsDatastoreAlreadyConfigured(): TipKitError { return callSDK<TipKitError>("TipKit_d6c5d10d3352e6ec", 539850007556790, undefined, []); }
+  static get tipsDatastoreAlreadyConfigured(): TipKitError { return callSDK<TipKitError>("TipKit_a956b86ef7a76a8e", 539850007556790, undefined, []); }
   /**
    * static let missingGroupContainerEntitlements: TipKitError
    * @availability iOS 17.0+
    */
-  static get missingGroupContainerEntitlements(): TipKitError { return callSDK<TipKitError>("TipKit_d6c5d10d3352e6ec", 3194204852534302, undefined, []); }
+  static get missingGroupContainerEntitlements(): TipKitError { return callSDK<TipKitError>("TipKit_a956b86ef7a76a8e", 3194204852534302, undefined, []); }
   declare readonly $type: { "s:6TipKit0aB5ErrorV": true };
 }
 
@@ -237,22 +237,22 @@ export class Tips extends SDKHandle {
    * static func hideAllTipsForTesting()
    * @availability iOS 17.0+
    */
-  static hideAllTipsForTesting(): void { return callSDK<void>("TipKit_d6c5d10d3352e6ec", 101271938663582, undefined, []); }
+  static hideAllTipsForTesting(): void { return callSDK<void>("TipKit_a956b86ef7a76a8e", 101271938663582, undefined, []); }
   /**
    * static func showAllTipsForTesting()
    * @availability iOS 17.0+
    */
-  static showAllTipsForTesting(): void { return callSDK<void>("TipKit_d6c5d10d3352e6ec", 154802740164499, undefined, []); }
+  static showAllTipsForTesting(): void { return callSDK<void>("TipKit_a956b86ef7a76a8e", 154802740164499, undefined, []); }
   /**
    * static func resetDatastore() throws
    * @availability iOS 17.0+
    */
-  static resetDatastore(): void { return callSDK<void>("TipKit_d6c5d10d3352e6ec", 2575838360293291, undefined, []); }
+  static resetDatastore(): void { return callSDK<void>("TipKit_a956b86ef7a76a8e", 2575838360293291, undefined, []); }
   /**
    * static func configure(_ configuration: [Tips.ConfigurationOption] = []) throws
    * @availability iOS 17.0+
    */
-  static configure(configuration?: Array<Tips_ConfigurationOption>): void { return callSDK<void>("TipKit_d6c5d10d3352e6ec", 4090847292037120, undefined, [configuration]); }
+  static configure(configuration?: Array<Tips_ConfigurationOption>): void { return callSDK<void>("TipKit_a956b86ef7a76a8e", 4090847292037120, undefined, [configuration]); }
   declare readonly $type: { "s:6TipKit4TipsO": true };
 }
 
@@ -265,27 +265,27 @@ export class Tips_Action extends SDKHandle {
    * @preconcurrency nonisolated init(id: String? = nil, title: some StringProtocol, perform handler: @escaping @MainActor @Sendable () -> Void = {})
    * @availability iOS 17.0+
    */
-  static init(id: (string) | null, title: SDKHandle, handler?: (() => void)): Promise<Tips_Action> { return callSDKAsync<Tips_Action>("TipKit_d6c5d10d3352e6ec", 3968819440299387, undefined, [id, title, handler], [null,null,{"callback":{"out":[]}}]); }
+  static init(id: (string) | null, title: SDKHandle, handler?: (() => void)): Promise<Tips_Action> { return callSDKAsync<Tips_Action>("TipKit_a956b86ef7a76a8e", 3968819440299387, undefined, [id, title, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * let id: String
    * @availability iOS 17.0+
    */
-  get id(): string { return callSDK<string>("TipKit_d6c5d10d3352e6ec", 337190729719599, this, []); }
+  get id(): string { return callSDK<string>("TipKit_a956b86ef7a76a8e", 337190729719599, this, []); }
   /**
    * let index: Int?
    * @availability iOS 17.0+
    */
-  get index(): (number) | null { return callSDK<(number) | null>("TipKit_d6c5d10d3352e6ec", 2037337258710783, this, []); }
+  get index(): (number) | null { return callSDK<(number) | null>("TipKit_a956b86ef7a76a8e", 2037337258710783, this, []); }
   /**
    * let label: @Sendable () -> Text
    * @availability iOS 17.0+
    */
-  get label(): (() => Promise<_SwiftUICore_Text>) { return callSDK<(() => Promise<_SwiftUICore_Text>)>("TipKit_d6c5d10d3352e6ec", 945783076368807, this, []); }
+  get label(): (() => Promise<_SwiftUICore_Text>) { return callSDK<(() => Promise<_SwiftUICore_Text>)>("TipKit_a956b86ef7a76a8e", 945783076368807, this, []); }
   /**
    * @preconcurrency let handler: @MainActor @Sendable () -> Void
    * @availability iOS 17.0+
    */
-  get handler(): Promise<(() => Promise<void>)> { return callSDKAsync<(() => Promise<void>)>("TipKit_d6c5d10d3352e6ec", 3318370559833173, this, []); }
+  get handler(): Promise<(() => Promise<void>)> { return callSDKAsync<(() => Promise<void>)>("TipKit_a956b86ef7a76a8e", 3318370559833173, this, []); }
   declare readonly $type: { "s:6TipKit4TipsO6ActionV": true };
 }
 
@@ -304,17 +304,17 @@ export class Tips_ConfigurationOption extends SDKHandle {
    * static func cloudKitContainer(_ cloudKitContainer: Tips.ConfigurationOption.CloudKitContainer?) -> Tips.ConfigurationOption
    * @availability iOS 18.0+
    */
-  static cloudKitContainer(cloudKitContainer?: (Tips_ConfigurationOption_CloudKitContainer) | null): Tips_ConfigurationOption { return callSDK<Tips_ConfigurationOption>("TipKit_d6c5d10d3352e6ec", 4151730833134582, undefined, [cloudKitContainer]); }
+  static cloudKitContainer(cloudKitContainer?: (Tips_ConfigurationOption_CloudKitContainer) | null): Tips_ConfigurationOption { return callSDK<Tips_ConfigurationOption>("TipKit_a956b86ef7a76a8e", 4151730833134582, undefined, [cloudKitContainer]); }
   /**
    * static func displayFrequency(_ displayFrequency: Tips.ConfigurationOption.DisplayFrequency) -> Tips.ConfigurationOption
    * @availability iOS 17.0+
    */
-  static displayFrequency(displayFrequency: Tips_ConfigurationOption_DisplayFrequency): Tips_ConfigurationOption { return callSDK<Tips_ConfigurationOption>("TipKit_d6c5d10d3352e6ec", 4133389645214492, undefined, [displayFrequency]); }
+  static displayFrequency(displayFrequency: Tips_ConfigurationOption_DisplayFrequency): Tips_ConfigurationOption { return callSDK<Tips_ConfigurationOption>("TipKit_a956b86ef7a76a8e", 4133389645214492, undefined, [displayFrequency]); }
   /**
    * static func datastoreLocation(_ storeLocation: Tips.ConfigurationOption.DatastoreLocation) -> Tips.ConfigurationOption
    * @availability iOS 17.0+
    */
-  static datastoreLocation(storeLocation: Tips_ConfigurationOption_DatastoreLocation): Tips_ConfigurationOption { return callSDK<Tips_ConfigurationOption>("TipKit_d6c5d10d3352e6ec", 1090533952962866, undefined, [storeLocation]); }
+  static datastoreLocation(storeLocation: Tips_ConfigurationOption_DatastoreLocation): Tips_ConfigurationOption { return callSDK<Tips_ConfigurationOption>("TipKit_a956b86ef7a76a8e", 1090533952962866, undefined, [storeLocation]); }
   declare readonly $type: { "s:6TipKit4TipsO19ConfigurationOptionV": true };
 }
 
@@ -327,12 +327,12 @@ export class Tips_ConfigurationOption_CloudKitContainer extends SDKHandle {
    * static func named(_ containerName: String) -> Tips.ConfigurationOption.CloudKitContainer
    * @availability iOS 18.0+
    */
-  static named(containerName: string): Tips_ConfigurationOption_CloudKitContainer { return callSDK<Tips_ConfigurationOption_CloudKitContainer>("TipKit_d6c5d10d3352e6ec", 2863297957948080, undefined, [containerName]); }
+  static named(containerName: string): Tips_ConfigurationOption_CloudKitContainer { return callSDK<Tips_ConfigurationOption_CloudKitContainer>("TipKit_a956b86ef7a76a8e", 2863297957948080, undefined, [containerName]); }
   /**
    * static var automatic: Tips.ConfigurationOption.CloudKitContainer { get }
    * @availability iOS 18.0+
    */
-  static get automatic(): Tips_ConfigurationOption_CloudKitContainer { return callSDK<Tips_ConfigurationOption_CloudKitContainer>("TipKit_d6c5d10d3352e6ec", 307733890265552, undefined, []); }
+  static get automatic(): Tips_ConfigurationOption_CloudKitContainer { return callSDK<Tips_ConfigurationOption_CloudKitContainer>("TipKit_a956b86ef7a76a8e", 307733890265552, undefined, []); }
   declare readonly $type: { "s:6TipKit4TipsO19ConfigurationOptionV05CloudB9ContainerV": true };
 }
 
@@ -345,17 +345,17 @@ export class Tips_ConfigurationOption_DatastoreLocation extends SDKHandle {
    * static func groupContainer(identifier: String) throws -> Tips.ConfigurationOption.DatastoreLocation
    * @availability iOS 17.0+
    */
-  static groupContainer(identifier: string): Tips_ConfigurationOption_DatastoreLocation { return callSDK<Tips_ConfigurationOption_DatastoreLocation>("TipKit_d6c5d10d3352e6ec", 2285007077057192, undefined, [identifier]); }
+  static groupContainer(identifier: string): Tips_ConfigurationOption_DatastoreLocation { return callSDK<Tips_ConfigurationOption_DatastoreLocation>("TipKit_a956b86ef7a76a8e", 2285007077057192, undefined, [identifier]); }
   /**
    * static var applicationDefault: Tips.ConfigurationOption.DatastoreLocation { get }
    * @availability iOS 17.0+
    */
-  static get applicationDefault(): Tips_ConfigurationOption_DatastoreLocation { return callSDK<Tips_ConfigurationOption_DatastoreLocation>("TipKit_d6c5d10d3352e6ec", 557755148231040, undefined, []); }
+  static get applicationDefault(): Tips_ConfigurationOption_DatastoreLocation { return callSDK<Tips_ConfigurationOption_DatastoreLocation>("TipKit_a956b86ef7a76a8e", 557755148231040, undefined, []); }
   /**
    * static func url(_ url: URL) -> Tips.ConfigurationOption.DatastoreLocation
    * @availability iOS 17.0+
    */
-  static url(url: string): Tips_ConfigurationOption_DatastoreLocation { return callSDK<Tips_ConfigurationOption_DatastoreLocation>("TipKit_d6c5d10d3352e6ec", 2821092041664866, undefined, [url]); }
+  static url(url: string): Tips_ConfigurationOption_DatastoreLocation { return callSDK<Tips_ConfigurationOption_DatastoreLocation>("TipKit_a956b86ef7a76a8e", 2821092041664866, undefined, [url]); }
   declare readonly $type: { "s:6TipKit4TipsO19ConfigurationOptionV17DatastoreLocationV": true };
 }
 
@@ -368,27 +368,27 @@ export class Tips_ConfigurationOption_DisplayFrequency extends SDKHandle {
    * static var daily: Tips.ConfigurationOption.DisplayFrequency { get }
    * @availability iOS 17.0+
    */
-  static get daily(): Tips_ConfigurationOption_DisplayFrequency { return callSDK<Tips_ConfigurationOption_DisplayFrequency>("TipKit_d6c5d10d3352e6ec", 236481340600150, undefined, []); }
+  static get daily(): Tips_ConfigurationOption_DisplayFrequency { return callSDK<Tips_ConfigurationOption_DisplayFrequency>("TipKit_a956b86ef7a76a8e", 236481340600150, undefined, []); }
   /**
    * static var hourly: Tips.ConfigurationOption.DisplayFrequency { get }
    * @availability iOS 17.0+
    */
-  static get hourly(): Tips_ConfigurationOption_DisplayFrequency { return callSDK<Tips_ConfigurationOption_DisplayFrequency>("TipKit_d6c5d10d3352e6ec", 826694954856136, undefined, []); }
+  static get hourly(): Tips_ConfigurationOption_DisplayFrequency { return callSDK<Tips_ConfigurationOption_DisplayFrequency>("TipKit_a956b86ef7a76a8e", 826694954856136, undefined, []); }
   /**
    * static var weekly: Tips.ConfigurationOption.DisplayFrequency { get }
    * @availability iOS 17.0+
    */
-  static get weekly(): Tips_ConfigurationOption_DisplayFrequency { return callSDK<Tips_ConfigurationOption_DisplayFrequency>("TipKit_d6c5d10d3352e6ec", 370410804801979, undefined, []); }
+  static get weekly(): Tips_ConfigurationOption_DisplayFrequency { return callSDK<Tips_ConfigurationOption_DisplayFrequency>("TipKit_a956b86ef7a76a8e", 370410804801979, undefined, []); }
   /**
    * static var monthly: Tips.ConfigurationOption.DisplayFrequency { get }
    * @availability iOS 17.0+
    */
-  static get monthly(): Tips_ConfigurationOption_DisplayFrequency { return callSDK<Tips_ConfigurationOption_DisplayFrequency>("TipKit_d6c5d10d3352e6ec", 3563975635260429, undefined, []); }
+  static get monthly(): Tips_ConfigurationOption_DisplayFrequency { return callSDK<Tips_ConfigurationOption_DisplayFrequency>("TipKit_a956b86ef7a76a8e", 3563975635260429, undefined, []); }
   /**
    * static var immediate: Tips.ConfigurationOption.DisplayFrequency { get }
    * @availability iOS 17.0+
    */
-  static get immediate(): Tips_ConfigurationOption_DisplayFrequency { return callSDK<Tips_ConfigurationOption_DisplayFrequency>("TipKit_d6c5d10d3352e6ec", 2882207472788881, undefined, []); }
+  static get immediate(): Tips_ConfigurationOption_DisplayFrequency { return callSDK<Tips_ConfigurationOption_DisplayFrequency>("TipKit_a956b86ef7a76a8e", 2882207472788881, undefined, []); }
   declare readonly $type: { "s:6TipKit4TipsO19ConfigurationOptionV16DisplayFrequencyV": true };
 }
 
@@ -401,17 +401,17 @@ export class Tips_DonationLimit extends SDKHandle {
    * let maximumAge: Tips.DonationTimeRange?
    * @availability iOS 26.0+
    */
-  get maximumAge(): $SDK3 { return callSDK<$SDK3>("TipKit_d6c5d10d3352e6ec", 271457553844815, this, []); }
+  get maximumAge(): $SDK3 { return callSDK<$SDK3>("TipKit_a956b86ef7a76a8e", 271457553844815, this, []); }
   /**
    * init(maximumCount: Int, maximumAge: Tips.DonationTimeRange? = nil)
    * @availability iOS 26.0+
    */
-  static init(maximumCount: number, maximumAge?: $SDK3): Tips_DonationLimit { return callSDK<Tips_DonationLimit>("TipKit_d6c5d10d3352e6ec", 1299500542290280, undefined, [maximumCount, maximumAge]); }
+  static init(maximumCount: number, maximumAge?: $SDK3): Tips_DonationLimit { return callSDK<Tips_DonationLimit>("TipKit_a956b86ef7a76a8e", 1299500542290280, undefined, [maximumCount, maximumAge]); }
   /**
    * let maximumCount: Int
    * @availability iOS 26.0+
    */
-  get maximumCount(): number { return callSDK<number>("TipKit_d6c5d10d3352e6ec", 536057051709198, this, []); }
+  get maximumCount(): number { return callSDK<number>("TipKit_a956b86ef7a76a8e", 536057051709198, this, []); }
   declare readonly $type: { "s:6TipKit4TipsO13DonationLimitV": true };
 }
 
@@ -424,42 +424,42 @@ export class Tips_DonationTimeRange extends SDKHandle {
    * static var day: Tips.DonationTimeRange { get }
    * @availability iOS 17.0+
    */
-  static get day(): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_d6c5d10d3352e6ec", 2330963721226849, undefined, []); }
+  static get day(): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_a956b86ef7a76a8e", 2330963721226849, undefined, []); }
   /**
    * static func days(_ value: Int) -> Tips.DonationTimeRange
    * @availability iOS 17.0+
    */
-  static days(value: number): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_d6c5d10d3352e6ec", 3316443325841503, undefined, [value]); }
+  static days(value: number): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_a956b86ef7a76a8e", 3316443325841503, undefined, [value]); }
   /**
    * static var hour: Tips.DonationTimeRange { get }
    * @availability iOS 17.0+
    */
-  static get hour(): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_d6c5d10d3352e6ec", 3292921356845930, undefined, []); }
+  static get hour(): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_a956b86ef7a76a8e", 3292921356845930, undefined, []); }
   /**
    * static var week: Tips.DonationTimeRange { get }
    * @availability iOS 17.0+
    */
-  static get week(): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_d6c5d10d3352e6ec", 2926392431478870, undefined, []); }
+  static get week(): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_a956b86ef7a76a8e", 2926392431478870, undefined, []); }
   /**
    * static func hours(_ value: Int) -> Tips.DonationTimeRange
    * @availability iOS 17.0+
    */
-  static hours(value: number): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_d6c5d10d3352e6ec", 1231595323415883, undefined, [value]); }
+  static hours(value: number): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_a956b86ef7a76a8e", 1231595323415883, undefined, [value]); }
   /**
    * static func weeks(_ value: Int) -> Tips.DonationTimeRange
    * @availability iOS 17.0+
    */
-  static weeks(value: number): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_d6c5d10d3352e6ec", 1718805218843997, undefined, [value]); }
+  static weeks(value: number): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_a956b86ef7a76a8e", 1718805218843997, undefined, [value]); }
   /**
    * static var minute: Tips.DonationTimeRange { get }
    * @availability iOS 17.0+
    */
-  static get minute(): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_d6c5d10d3352e6ec", 899945795161740, undefined, []); }
+  static get minute(): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_a956b86ef7a76a8e", 899945795161740, undefined, []); }
   /**
    * static func minutes(_ value: Int) -> Tips.DonationTimeRange
    * @availability iOS 17.0+
    */
-  static minutes(value: number): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_d6c5d10d3352e6ec", 790147020007447, undefined, [value]); }
+  static minutes(value: number): Tips_DonationTimeRange { return callSDK<Tips_DonationTimeRange>("TipKit_a956b86ef7a76a8e", 790147020007447, undefined, [value]); }
   declare readonly $type: { "s:6TipKit4TipsO17DonationTimeRangeV": true };
 }
 
@@ -480,52 +480,52 @@ export class Tips_Event<DonationInfo = unknown> extends SDKHandle {
    * func sendDonation(_ donation: DonationInfo, _ completion: (@Sendable () -> Void)? = nil)
    * @availability iOS 17.0+
    */
-  sendDonation(donation: number, completion?: ((() => void)) | null): void { return callSDK<void>("TipKit_d6c5d10d3352e6ec", 2518677186299081, this, [donation, completion], [null,{"callback":{"out":[]}}]); }
+  sendDonation(donation: number, completion?: ((() => void)) | null): void { return callSDK<void>("TipKit_a956b86ef7a76a8e", 2518677186299081, this, [donation, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func sendDonation(_ completion: (@Sendable () -> Void)? = nil) where DonationInfo == Tips.EmptyDonation
    * @availability iOS 17.0+
    */
-  sendDonation24251(completion?: ((() => void)) | null): void { return callSDK<void>("TipKit_d6c5d10d3352e6ec", 599737511752065, this, [completion], [{"callback":{"out":[]}}]); }
+  sendDonation24251(completion?: ((() => void)) | null): void { return callSDK<void>("TipKit_a956b86ef7a76a8e", 599737511752065, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func deleteDonations() async throws
    * @availability iOS 26.0+
    */
-  deleteDonations(): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 4001921460460791, this, []); }
+  deleteDonations(): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 4001921460460791, this, []); }
   /**
    * init(id: String, donationLimit: Tips.DonationLimit) where DonationInfo == Tips.EmptyDonation
    * @availability iOS 26.0+
    */
-  static initIdDonationLimit(id: string, donationLimit: Tips_DonationLimit): $SDK4 { return callSDK<$SDK4>("TipKit_d6c5d10d3352e6ec", 2378046263409877, undefined, [id, donationLimit]); }
+  static initIdDonationLimit(id: string, donationLimit: Tips_DonationLimit): $SDK4 { return callSDK<$SDK4>("TipKit_a956b86ef7a76a8e", 2378046263409877, undefined, [id, donationLimit]); }
   /**
    * init(id: String, donationLimit: Tips.DonationLimit)
    * @availability iOS 26.0+
    */
-  static initIdDonationLimit30434(id: string, donationLimit: Tips_DonationLimit): Tips_Event<number> { return callSDK<Tips_Event<number>>("TipKit_d6c5d10d3352e6ec", 4476075856287465, undefined, [id, donationLimit]); }
+  static initIdDonationLimit30434(id: string, donationLimit: Tips_DonationLimit): Tips_Event<number> { return callSDK<Tips_Event<number>>("TipKit_a956b86ef7a76a8e", 4476075856287465, undefined, [id, donationLimit]); }
   /**
    * init(id: String) where DonationInfo == Tips.EmptyDonation
    * @availability iOS 17.0+
    */
-  static initId(id: string): $SDK4 { return callSDK<$SDK4>("TipKit_d6c5d10d3352e6ec", 2182571692241043, undefined, [id]); }
+  static initId(id: string): $SDK4 { return callSDK<$SDK4>("TipKit_a956b86ef7a76a8e", 2182571692241043, undefined, [id]); }
   /**
    * init(id: String)
    * @availability iOS 17.0+
    */
-  static initId86586(id: string): Tips_Event<number> { return callSDK<Tips_Event<number>>("TipKit_d6c5d10d3352e6ec", 873142314017995, undefined, [id]); }
+  static initId86586(id: string): Tips_Event<number> { return callSDK<Tips_Event<number>>("TipKit_a956b86ef7a76a8e", 873142314017995, undefined, [id]); }
   /**
    * func donate() async where DonationInfo == Tips.EmptyDonation
    * @availability iOS 17.0+
    */
-  donate(): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 3332476560632764, this, []); }
+  donate(): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 3332476560632764, this, []); }
   /**
    * func donate(_ donation: DonationInfo) async
    * @availability iOS 17.0+
    */
-  donate76458(donation: number): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 2568922523579797, this, [donation]); }
+  donate76458(donation: number): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 2568922523579797, this, [donation]); }
   /**
    * var donations: [Tips.Event<DonationInfo>.Donation] { get }
    * @availability iOS 17.0+
    */
-  get donations(): Array<Tips_Event_Donation<number>> { return callSDK<Array<Tips_Event_Donation<number>>>("TipKit_d6c5d10d3352e6ec", 3533740205507217, this, []); }
+  get donations(): Array<Tips_Event_Donation<number>> { return callSDK<Array<Tips_Event_Donation<number>>>("TipKit_a956b86ef7a76a8e", 3533740205507217, this, []); }
   declare readonly $type: { "s:6TipKit4TipsO5EventV": true };
 }
 
@@ -538,12 +538,12 @@ export class Tips_Event_Donation<DonationInfo = unknown> extends SDKHandle {
    * subscript<Value>(dynamicMember keyPath: KeyPath<DonationInfo, Value>) -> Value { get }
    * @availability iOS 17.0+
    */
-  subscript(keyPath: SDKHandle): unknown { return callSDK<unknown>("TipKit_d6c5d10d3352e6ec", 1120998559701880, this, [keyPath]); }
+  subscript(keyPath: SDKHandle): unknown { return callSDK<unknown>("TipKit_a956b86ef7a76a8e", 1120998559701880, this, [keyPath]); }
   /**
    * let date: Date
    * @availability iOS 17.0+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("TipKit_d6c5d10d3352e6ec", 1652285815036055, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("TipKit_a956b86ef7a76a8e", 1652285815036055, this, []); }
   declare readonly $type: { "s:6TipKit4TipsO5EventV8DonationV": true };
 }
 
@@ -568,7 +568,7 @@ export class Tips_IgnoresDisplayFrequency extends SDKHandle {
    * init(_ ignoresDisplayFrequency: Bool)
    * @availability iOS 17.0+
    */
-  static init(ignoresDisplayFrequency: boolean): Tips_IgnoresDisplayFrequency { return callSDK<Tips_IgnoresDisplayFrequency>("TipKit_d6c5d10d3352e6ec", 2525742848415541, undefined, [ignoresDisplayFrequency]); }
+  static init(ignoresDisplayFrequency: boolean): Tips_IgnoresDisplayFrequency { return callSDK<Tips_IgnoresDisplayFrequency>("TipKit_a956b86ef7a76a8e", 2525742848415541, undefined, [ignoresDisplayFrequency]); }
   declare readonly $type: { "s:6TipKit4TipsO23IgnoresDisplayFrequencyV": true };
 }
 
@@ -587,7 +587,7 @@ export class Tips_MaxDisplayCount extends SDKHandle {
    * init(_ maxDisplayCount: Int)
    * @availability iOS 17.0+
    */
-  static init(maxDisplayCount: number): Tips_MaxDisplayCount { return callSDK<Tips_MaxDisplayCount>("TipKit_d6c5d10d3352e6ec", 1724677690641538, undefined, [maxDisplayCount]); }
+  static init(maxDisplayCount: number): Tips_MaxDisplayCount { return callSDK<Tips_MaxDisplayCount>("TipKit_a956b86ef7a76a8e", 1724677690641538, undefined, [maxDisplayCount]); }
   declare readonly $type: { "s:6TipKit4TipsO15MaxDisplayCountV": true };
 }
 
@@ -600,7 +600,7 @@ export class Tips_MaxDisplayDuration extends SDKHandle {
    * init(_ maxDisplayDuration: TimeInterval)
    * @availability iOS 18.0+
    */
-  static init(maxDisplayDuration: number): Tips_MaxDisplayDuration { return callSDK<Tips_MaxDisplayDuration>("TipKit_d6c5d10d3352e6ec", 311366044756227, undefined, [maxDisplayDuration]); }
+  static init(maxDisplayDuration: number): Tips_MaxDisplayDuration { return callSDK<Tips_MaxDisplayDuration>("TipKit_a956b86ef7a76a8e", 311366044756227, undefined, [maxDisplayDuration]); }
   declare readonly $type: { "s:6TipKit4TipsO18MaxDisplayDurationV": true };
 }
 
@@ -633,7 +633,7 @@ export class Tips_ParameterOption extends SDKHandle {
    * static var transient: Tips.ParameterOption { get }
    * @availability iOS 17.0+
    */
-  static get transient(): Tips_ParameterOption { return callSDK<Tips_ParameterOption>("TipKit_d6c5d10d3352e6ec", 4155857084936224, undefined, []); }
+  static get transient(): Tips_ParameterOption { return callSDK<Tips_ParameterOption>("TipKit_a956b86ef7a76a8e", 4155857084936224, undefined, []); }
   declare readonly $type: { "s:6TipKit4TipsO15ParameterOptionV": true };
 }
 
@@ -668,29 +668,29 @@ export class TipUICollectionReusableView extends SDKHandle {
    * @MainActor @preconcurrency required dynamic init?(coder: NSCoder)
    * @availability iOS 17.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): Promise<(TipUICollectionReusableView) | null> { return callSDKAsync<(TipUICollectionReusableView) | null>("TipKit_d6c5d10d3352e6ec", 3715036428965654, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): Promise<(TipUICollectionReusableView) | null> { return callSDKAsync<(TipUICollectionReusableView) | null>("TipKit_a956b86ef7a76a8e", 3715036428965654, undefined, [coder]); }
   /**
    * @MainActor @preconcurrency override dynamic init(frame: CGRect)
    * @availability iOS 17.0+
    */
-  static initFrame(frame: $SDK6): Promise<TipUICollectionReusableView> { return callSDKAsync<TipUICollectionReusableView>("TipKit_d6c5d10d3352e6ec", 2094520826167692, undefined, [frame]); }
+  static initFrame(frame: $SDK6): Promise<TipUICollectionReusableView> { return callSDKAsync<TipUICollectionReusableView>("TipKit_a956b86ef7a76a8e", 2094520826167692, undefined, [frame]); }
   /**
    * @discardableResult @MainActor @preconcurrency final func configureTip(_ tip: any Tip, arrowEdge: Edge? = nil, actionHandler: @escaping @MainActor @Sendable (Tips.Action) -> Void = { _ in }) -> Self
    * @availability iOS 18.0+
    */
-  configureTip(tip: SDKHandle, arrowEdge?: $SDK7, actionHandler?: $SDK8): Promise<TipUICollectionReusableView> { return callSDKAsync<TipUICollectionReusableView>("TipKit_d6c5d10d3352e6ec", 2900043656983129, this, [tip, arrowEdge, actionHandler], [null,null,{"callback":{"out":[]}}]); }
+  configureTip(tip: SDKHandle, arrowEdge?: $SDK7, actionHandler?: $SDK8): Promise<TipUICollectionReusableView> { return callSDKAsync<TipUICollectionReusableView>("TipKit_a956b86ef7a76a8e", 2900043656983129, this, [tip, arrowEdge, actionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @MainActor @preconcurrency final var cornerRadius: CGFloat { get set }
    * @availability iOS 17.0+
    */
-  get cornerRadius(): Promise<number> { return callSDKAsync<number>("TipKit_d6c5d10d3352e6ec", 2684624811107043, this, []); }
-  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 2864387914023733, this, [value]); }
+  get cornerRadius(): Promise<number> { return callSDKAsync<number>("TipKit_a956b86ef7a76a8e", 2684624811107043, this, []); }
+  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 2864387914023733, this, [value]); }
   /**
    * @MainActor @preconcurrency final var imageSize: CGSize { get set }
    * @availability iOS 17.0+
    */
-  get imageSize(): Promise<$SDK9> { return callSDKAsync<$SDK9>("TipKit_d6c5d10d3352e6ec", 467756848376687, this, []); }
-  setImageSize(value: $SDK9): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 3397221820393974, this, [value]); }
+  get imageSize(): Promise<$SDK9> { return callSDKAsync<$SDK9>("TipKit_a956b86ef7a76a8e", 467756848376687, this, []); }
+  setImageSize(value: $SDK9): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 3397221820393974, this, [value]); }
   declare readonly $type: { "c:@M@TipKit@objc(cs)TipUICollectionReusableView": true; "c:objc(cs)UICollectionReusableView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -703,35 +703,35 @@ export class TipUICollectionViewCell extends SDKHandle {
    * @MainActor @preconcurrency required dynamic init?(coder: NSCoder)
    * @availability iOS 17.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): Promise<(TipUICollectionViewCell) | null> { return callSDKAsync<(TipUICollectionViewCell) | null>("TipKit_d6c5d10d3352e6ec", 720586661976826, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): Promise<(TipUICollectionViewCell) | null> { return callSDKAsync<(TipUICollectionViewCell) | null>("TipKit_a956b86ef7a76a8e", 720586661976826, undefined, [coder]); }
   /**
    * @MainActor @preconcurrency override dynamic init(frame: CGRect)
    * @availability iOS 17.0+
    */
-  static initFrame(frame: $SDK6): Promise<TipUICollectionViewCell> { return callSDKAsync<TipUICollectionViewCell>("TipKit_d6c5d10d3352e6ec", 316205349970396, undefined, [frame]); }
+  static initFrame(frame: $SDK6): Promise<TipUICollectionViewCell> { return callSDKAsync<TipUICollectionViewCell>("TipKit_a956b86ef7a76a8e", 316205349970396, undefined, [frame]); }
   /**
    * @MainActor @preconcurrency override final var backgroundColor: UIColor? { get set }
    * @availability iOS 17.0+
    */
-  get backgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("TipKit_d6c5d10d3352e6ec", 2183050721287958, this, []); }
-  setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 1352657853203522, this, [value]); }
+  get backgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("TipKit_a956b86ef7a76a8e", 2183050721287958, this, []); }
+  setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 1352657853203522, this, [value]); }
   /**
    * @discardableResult @MainActor @preconcurrency final func configureTip(_ tip: any Tip, arrowEdge: Edge? = nil, actionHandler: @escaping @MainActor @Sendable (Tips.Action) -> Void = { _ in }) -> Self
    * @availability iOS 18.0+
    */
-  configureTip(tip: SDKHandle, arrowEdge?: $SDK7, actionHandler?: $SDK8): Promise<TipUICollectionViewCell> { return callSDKAsync<TipUICollectionViewCell>("TipKit_d6c5d10d3352e6ec", 1914883967595391, this, [tip, arrowEdge, actionHandler], [null,null,{"callback":{"out":[]}}]); }
+  configureTip(tip: SDKHandle, arrowEdge?: $SDK7, actionHandler?: $SDK8): Promise<TipUICollectionViewCell> { return callSDKAsync<TipUICollectionViewCell>("TipKit_a956b86ef7a76a8e", 1914883967595391, this, [tip, arrowEdge, actionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @MainActor @preconcurrency final var cornerRadius: CGFloat { get set }
    * @availability iOS 17.0+
    */
-  get cornerRadius(): Promise<number> { return callSDKAsync<number>("TipKit_d6c5d10d3352e6ec", 1517674780549367, this, []); }
-  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 3595832264715607, this, [value]); }
+  get cornerRadius(): Promise<number> { return callSDKAsync<number>("TipKit_a956b86ef7a76a8e", 1517674780549367, this, []); }
+  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 3595832264715607, this, [value]); }
   /**
    * @MainActor @preconcurrency final var imageSize: CGSize { get set }
    * @availability iOS 17.0+
    */
-  get imageSize(): Promise<$SDK9> { return callSDKAsync<$SDK9>("TipKit_d6c5d10d3352e6ec", 578394756480110, this, []); }
-  setImageSize(value: $SDK9): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 2588172755898198, this, [value]); }
+  get imageSize(): Promise<$SDK9> { return callSDKAsync<$SDK9>("TipKit_a956b86ef7a76a8e", 578394756480110, this, []); }
+  setImageSize(value: $SDK9): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 2588172755898198, this, [value]); }
   declare readonly $type: { "c:@M@TipKit@objc(cs)TipUICollectionViewCell": true; "c:objc(cs)UICollectionViewCell": true; "c:objc(cs)UICollectionReusableView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -744,41 +744,41 @@ export class TipUIPopoverViewController extends SDKHandle {
    * @MainActor @preconcurrency required dynamic init?(coder: NSCoder)
    * @availability iOS 17.0+
    */
-  static initCoder(coder: _Foundation_NSCoder): Promise<(TipUIPopoverViewController) | null> { return callSDKAsync<(TipUIPopoverViewController) | null>("TipKit_d6c5d10d3352e6ec", 523393815361423, undefined, [coder]); }
+  static initCoder(coder: _Foundation_NSCoder): Promise<(TipUIPopoverViewController) | null> { return callSDKAsync<(TipUIPopoverViewController) | null>("TipKit_a956b86ef7a76a8e", 523393815361423, undefined, [coder]); }
   /**
    * @MainActor @preconcurrency override dynamic init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
    * @availability iOS 17.0+
    */
-  static initNibNameBundle(nibNameOrNil?: (string) | null, nibBundleOrNil?: (_Foundation_Bundle) | null): Promise<TipUIPopoverViewController> { return callSDKAsync<TipUIPopoverViewController>("TipKit_d6c5d10d3352e6ec", 4482801726977349, undefined, [nibNameOrNil, nibBundleOrNil]); }
+  static initNibNameBundle(nibNameOrNil?: (string) | null, nibBundleOrNil?: (_Foundation_Bundle) | null): Promise<TipUIPopoverViewController> { return callSDKAsync<TipUIPopoverViewController>("TipKit_a956b86ef7a76a8e", 4482801726977349, undefined, [nibNameOrNil, nibBundleOrNil]); }
   /**
    * @MainActor @preconcurrency final var sourceItem: (any UIPopoverPresentationControllerSourceItem)? { get set }
    * @availability iOS 17.0+
    */
-  get sourceItem(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("TipKit_d6c5d10d3352e6ec", 2910138402237490, this, []); }
-  setSourceItem(value?: (Implements<_UIKit_UIPopoverPresentationControllerSourceItem> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 1403844567951346, this, [value], [{"protocol":"c:objc(pl)UIPopoverPresentationControllerSourceItem"}]); }
+  get sourceItem(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("TipKit_a956b86ef7a76a8e", 2910138402237490, this, []); }
+  setSourceItem(value?: (Implements<_UIKit_UIPopoverPresentationControllerSourceItem> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 1403844567951346, this, [value], [{"protocol":"c:objc(pl)UIPopoverPresentationControllerSourceItem"}]); }
   /**
    * @MainActor @preconcurrency final var backgroundColor: UIColor? { get set }
    * @availability iOS 17.0+
    */
-  get backgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("TipKit_d6c5d10d3352e6ec", 3923845917538013, this, []); }
-  setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 2199563438191537, this, [value]); }
+  get backgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("TipKit_a956b86ef7a76a8e", 3923845917538013, this, []); }
+  setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 2199563438191537, this, [value]); }
   /**
    * @MainActor @preconcurrency final var presentationDelegate: (any UIPopoverPresentationControllerDelegate)? { get set }
    * @availability iOS 17.0+
    */
-  get presentationDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("TipKit_d6c5d10d3352e6ec", 309022359269661, this, []); }
-  setPresentationDelegate(value?: (Implements<_UIKit_UIPopoverPresentationControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 2910411473415519, this, [value], [{"protocol":"c:objc(pl)UIPopoverPresentationControllerDelegate"}]); }
+  get presentationDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("TipKit_a956b86ef7a76a8e", 309022359269661, this, []); }
+  setPresentationDelegate(value?: (Implements<_UIKit_UIPopoverPresentationControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 2910411473415519, this, [value], [{"protocol":"c:objc(pl)UIPopoverPresentationControllerDelegate"}]); }
   /**
    * @MainActor @preconcurrency final var imageSize: CGSize { get set }
    * @availability iOS 17.0+
    */
-  get imageSize(): Promise<$SDK9> { return callSDKAsync<$SDK9>("TipKit_d6c5d10d3352e6ec", 2665607751825101, this, []); }
-  setImageSize(value: $SDK9): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 770619113689829, this, [value]); }
+  get imageSize(): Promise<$SDK9> { return callSDKAsync<$SDK9>("TipKit_a956b86ef7a76a8e", 2665607751825101, this, []); }
+  setImageSize(value: $SDK9): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 770619113689829, this, [value]); }
   /**
    * @MainActor @preconcurrency convenience init(_ tip: any Tip, sourceItem: any UIPopoverPresentationControllerSourceItem, actionHandler: @escaping @MainActor @Sendable (Tips.Action) -> Void = { _ in })
    * @availability iOS 18.0+
    */
-  static initSourceItemActionHandler(tip: SDKHandle, sourceItem: Implements<_UIKit_UIPopoverPresentationControllerSourceItem> | SDKHandle, actionHandler?: $SDK8): Promise<TipUIPopoverViewController> { return callSDKAsync<TipUIPopoverViewController>("TipKit_d6c5d10d3352e6ec", 1631995434044104, undefined, [tip, sourceItem, actionHandler], [null,{"protocol":"c:objc(pl)UIPopoverPresentationControllerSourceItem"},{"callback":{"out":[]}}]); }
+  static initSourceItemActionHandler(tip: SDKHandle, sourceItem: Implements<_UIKit_UIPopoverPresentationControllerSourceItem> | SDKHandle, actionHandler?: $SDK8): Promise<TipUIPopoverViewController> { return callSDKAsync<TipUIPopoverViewController>("TipKit_a956b86ef7a76a8e", 1631995434044104, undefined, [tip, sourceItem, actionHandler], [null,{"protocol":"c:objc(pl)UIPopoverPresentationControllerSourceItem"},{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:@M@TipKit@objc(cs)TipUIPopoverViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -791,25 +791,25 @@ export class TipUIView extends SDKHandle {
    * @MainActor @preconcurrency override final var backgroundColor: UIColor? { get set }
    * @availability iOS 17.0+
    */
-  get backgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("TipKit_d6c5d10d3352e6ec", 1765129299113917, this, []); }
-  setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 939702813909761, this, [value]); }
+  get backgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("TipKit_a956b86ef7a76a8e", 1765129299113917, this, []); }
+  setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 939702813909761, this, [value]); }
   /**
    * @MainActor @preconcurrency final var cornerRadius: CGFloat { get set }
    * @availability iOS 17.0+
    */
-  get cornerRadius(): Promise<number> { return callSDKAsync<number>("TipKit_d6c5d10d3352e6ec", 3689139552666903, this, []); }
-  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 457200508245613, this, [value]); }
+  get cornerRadius(): Promise<number> { return callSDKAsync<number>("TipKit_a956b86ef7a76a8e", 3689139552666903, this, []); }
+  setCornerRadius(value: number): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 457200508245613, this, [value]); }
   /**
    * @MainActor @preconcurrency final var imageSize: CGSize { get set }
    * @availability iOS 17.0+
    */
-  get imageSize(): Promise<$SDK9> { return callSDKAsync<$SDK9>("TipKit_d6c5d10d3352e6ec", 3784939299433528, this, []); }
-  setImageSize(value: $SDK9): Promise<void> { return callSDKAsync<void>("TipKit_d6c5d10d3352e6ec", 473554689293012, this, [value]); }
+  get imageSize(): Promise<$SDK9> { return callSDKAsync<$SDK9>("TipKit_a956b86ef7a76a8e", 3784939299433528, this, []); }
+  setImageSize(value: $SDK9): Promise<void> { return callSDKAsync<void>("TipKit_a956b86ef7a76a8e", 473554689293012, this, [value]); }
   /**
    * @MainActor @preconcurrency init(_ tip: any Tip, arrowEdge: Edge? = nil, actionHandler: @escaping @MainActor @Sendable (Tips.Action) -> Void = { _ in })
    * @availability iOS 18.0+
    */
-  static init(tip: SDKHandle, arrowEdge?: $SDK7, actionHandler?: $SDK8): Promise<TipUIView> { return callSDKAsync<TipUIView>("TipKit_d6c5d10d3352e6ec", 361950709227370, undefined, [tip, arrowEdge, actionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static init(tip: SDKHandle, arrowEdge?: $SDK7, actionHandler?: $SDK8): Promise<TipUIView> { return callSDKAsync<TipUIView>("TipKit_a956b86ef7a76a8e", 361950709227370, undefined, [tip, arrowEdge, actionHandler], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:@M@TipKit@objc(cs)TipUIView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -822,17 +822,17 @@ export class TipView<Content = unknown> extends SDKHandle {
    * @MainActor @preconcurrency init(_ tip: (any Tip)?, isPresented: Binding<Bool>? = nil, arrowEdge: Edge? = nil, action: @escaping @MainActor @Sendable (Tips.Action) -> Void = { _ in }) where Content == AnyTip
    * @availability iOS 26.0+
    */
-  static initIsPresentedArrowEdgeAction(tip?: (SDKHandle) | null, isPresented?: $SDK14, arrowEdge?: $SDK7, action?: $SDK8): Promise<TipView<AnyTip>> { return callSDKAsync<TipView<AnyTip>>("TipKit_d6c5d10d3352e6ec", 2335359267950841, undefined, [tip, isPresented, arrowEdge, action], [null,null,null,{"callback":{"out":[]}}]); }
+  static initIsPresentedArrowEdgeAction(tip?: (SDKHandle) | null, isPresented?: $SDK14, arrowEdge?: $SDK7, action?: $SDK8): Promise<TipView<AnyTip>> { return callSDKAsync<TipView<AnyTip>>("TipKit_a956b86ef7a76a8e", 2335359267950841, undefined, [tip, isPresented, arrowEdge, action], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @MainActor @preconcurrency init<AnchorID>(_ tip: (any Tip)?, isPresented: Binding<Bool>? = nil, arrowEdge: Edge? = nil, anchorID: AnchorID, action: @escaping @MainActor @Sendable (Tips.Action) -> Void = { _ in }) where Content == AnyTip, AnchorID : Hashable, AnchorID : Sendable
    * @availability iOS 26.0+
    */
-  static initIsPresentedArrowEdgeAnchorIDAction(tip: (SDKHandle) | null, isPresented: $SDK14, arrowEdge: $SDK7, anchorID: number, action?: $SDK8): Promise<TipView<AnyTip>> { return callSDKAsync<TipView<AnyTip>>("TipKit_d6c5d10d3352e6ec", 609174048326054, undefined, [tip, isPresented, arrowEdge, anchorID, action], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static initIsPresentedArrowEdgeAnchorIDAction(tip: (SDKHandle) | null, isPresented: $SDK14, arrowEdge: $SDK7, anchorID: number, action?: $SDK8): Promise<TipView<AnyTip>> { return callSDKAsync<TipView<AnyTip>>("TipKit_a956b86ef7a76a8e", 609174048326054, undefined, [tip, isPresented, arrowEdge, anchorID, action], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * @MainActor @preconcurrency init(_ tip: (any Tip)?, arrowEdge: Edge? = nil, action: @escaping @MainActor @Sendable (Tips.Action) -> Void = { _ in }) where Content == AnyTip
    * @availability iOS 18.0+
    */
-  static initArrowEdgeAction(tip?: (SDKHandle) | null, arrowEdge?: $SDK7, action?: $SDK8): Promise<TipView<AnyTip>> { return callSDKAsync<TipView<AnyTip>>("TipKit_d6c5d10d3352e6ec", 3843673148779104, undefined, [tip, arrowEdge, action], [null,null,{"callback":{"out":[]}}]); }
+  static initArrowEdgeAction(tip?: (SDKHandle) | null, arrowEdge?: $SDK7, action?: $SDK8): Promise<TipView<AnyTip>> { return callSDKAsync<TipView<AnyTip>>("TipKit_a956b86ef7a76a8e", 3843673148779104, undefined, [tip, arrowEdge, action], [null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:6TipKit0A4ViewV": true };
 }
 
@@ -869,60 +869,60 @@ export class TipViewStyleConfiguration extends SDKHandle {
    * let tip: any Tip
    * @availability iOS 17.0+
    */
-  get tip(): SDKHandle { return callSDK<SDKHandle>("TipKit_d6c5d10d3352e6ec", 45765938753897, this, []); }
+  get tip(): SDKHandle { return callSDK<SDKHandle>("TipKit_a956b86ef7a76a8e", 45765938753897, this, []); }
   /**
    * @MainActor @preconcurrency var image: Image? { get }
    * @availability iOS 17.0+
    */
-  get image(): Promise<(_SwiftUICore_Image) | null> { return callSDKAsync<(_SwiftUICore_Image) | null>("TipKit_d6c5d10d3352e6ec", 3192947833964121, this, []); }
+  get image(): Promise<(_SwiftUICore_Image) | null> { return callSDKAsync<(_SwiftUICore_Image) | null>("TipKit_a956b86ef7a76a8e", 3192947833964121, this, []); }
   /**
    * @MainActor @preconcurrency var title: Text? { get }
    * @availability iOS 17.0+
    */
-  get title(): Promise<(_SwiftUICore_Text) | null> { return callSDKAsync<(_SwiftUICore_Text) | null>("TipKit_d6c5d10d3352e6ec", 1545492369995841, this, []); }
+  get title(): Promise<(_SwiftUICore_Text) | null> { return callSDKAsync<(_SwiftUICore_Text) | null>("TipKit_a956b86ef7a76a8e", 1545492369995841, this, []); }
   /**
    * @MainActor @preconcurrency var actions: [Tips.Action] { get }
    * @availability iOS 17.0+
    */
-  get actions(): Promise<Array<Tips_Action>> { return callSDKAsync<Array<Tips_Action>>("TipKit_d6c5d10d3352e6ec", 3671526861289482, this, []); }
+  get actions(): Promise<Array<Tips_Action>> { return callSDKAsync<Array<Tips_Action>>("TipKit_a956b86ef7a76a8e", 3671526861289482, this, []); }
   /**
    * @MainActor @preconcurrency var message: Text? { get }
    * @availability iOS 17.0+
    */
-  get message(): Promise<(_SwiftUICore_Text) | null> { return callSDKAsync<(_SwiftUICore_Text) | null>("TipKit_d6c5d10d3352e6ec", 2935668943553331, this, []); }
+  get message(): Promise<(_SwiftUICore_Text) | null> { return callSDKAsync<(_SwiftUICore_Text) | null>("TipKit_a956b86ef7a76a8e", 2935668943553331, this, []); }
   declare readonly $type: { "s:6TipKit0A22ViewStyleConfigurationV": true };
 }
 
-registerSDKClass("TipKit.AnyTip", AnyTip, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.MiniTipViewStyle", MiniTipViewStyle, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("TipKit.AnyTip", AnyTip, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.MiniTipViewStyle", MiniTipViewStyle, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:6TipKit0A0P", {});
-registerSDKClass("TipKit.TipGroup", TipGroup, { module: "TipKit_d6c5d10d3352e6ec", properties: {"currentTipUpdates":558491972495174} });
-registerSDKClass("TipKit.TipKitError", TipKitError, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("TipKit.TipGroup", TipGroup, { module: "TipKit_a956b86ef7a76a8e", properties: {"currentTipUpdates":558491972495174} });
+registerSDKClass("TipKit.TipKitError", TipKitError, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:6TipKit0A6OptionP", {});
-registerSDKClass("TipKit.Tips", Tips, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.Action", Tips_Action, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.ConfigurationOption", Tips_ConfigurationOption, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.ConfigurationOption.CloudKitContainer", Tips_ConfigurationOption_CloudKitContainer, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.ConfigurationOption.DatastoreLocation", Tips_ConfigurationOption_DatastoreLocation, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.ConfigurationOption.DisplayFrequency", Tips_ConfigurationOption_DisplayFrequency, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.DonationLimit", Tips_DonationLimit, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.DonationTimeRange", Tips_DonationTimeRange, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.EmptyDonation", Tips_EmptyDonation, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.Event", Tips_Event, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.Event.Donation", Tips_Event_Donation, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.IgnoresDisplayFrequency", Tips_IgnoresDisplayFrequency, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.MaxDisplayCount", Tips_MaxDisplayCount, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.MaxDisplayDuration", Tips_MaxDisplayDuration, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.Parameter", Tips_Parameter, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.ParameterOption", Tips_ParameterOption, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.Rule", Tips_Rule, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.Tips.Status", Tips_Status, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.TipUICollectionReusableView", TipUICollectionReusableView, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.TipUICollectionViewCell", TipUICollectionViewCell, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.TipUIPopoverViewController", TipUIPopoverViewController, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.TipUIView", TipUIView, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("TipKit.TipView", TipView, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("TipKit.Tips", Tips, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.Action", Tips_Action, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.ConfigurationOption", Tips_ConfigurationOption, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.ConfigurationOption.CloudKitContainer", Tips_ConfigurationOption_CloudKitContainer, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.ConfigurationOption.DatastoreLocation", Tips_ConfigurationOption_DatastoreLocation, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.ConfigurationOption.DisplayFrequency", Tips_ConfigurationOption_DisplayFrequency, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.DonationLimit", Tips_DonationLimit, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.DonationTimeRange", Tips_DonationTimeRange, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.EmptyDonation", Tips_EmptyDonation, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.Event", Tips_Event, { module: "TipKit_a956b86ef7a76a8e", properties: {}, methods: {"sendDonation":{"id":2518677186299081,"hints":[null,{"callback":{"out":[]}}]},"sendDonation24251":{"id":599737511752065,"hints":[{"callback":{"out":[]}}]},"deleteDonations":{"id":4001921460460791},"donate":{"id":3332476560632764},"donate76458":{"id":2568922523579797}} });
+registerSDKClass("TipKit.Tips.Event.Donation", Tips_Event_Donation, { module: "TipKit_a956b86ef7a76a8e", properties: {}, methods: {"subscript":{"id":1120998559701880}} });
+registerSDKClass("TipKit.Tips.IgnoresDisplayFrequency", Tips_IgnoresDisplayFrequency, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.MaxDisplayCount", Tips_MaxDisplayCount, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.MaxDisplayDuration", Tips_MaxDisplayDuration, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.Parameter", Tips_Parameter, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.ParameterOption", Tips_ParameterOption, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.Rule", Tips_Rule, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.Tips.Status", Tips_Status, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.TipUICollectionReusableView", TipUICollectionReusableView, { module: "TipKit_a956b86ef7a76a8e", properties: {}, methods: {"configureTip":{"id":2900043656983129,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("TipKit.TipUICollectionViewCell", TipUICollectionViewCell, { module: "TipKit_a956b86ef7a76a8e", properties: {}, methods: {"configureTip":{"id":1914883967595391,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("TipKit.TipUIPopoverViewController", TipUIPopoverViewController, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.TipUIView", TipUIView, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("TipKit.TipView", TipView, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:6TipKit0A9ViewStyleP", {"makeBodyConfiguration":"makeBody(configuration:)"});
-registerSDKClass("TipKit.TipViewStyleConfiguration", TipViewStyleConfiguration, { module: "TipKit_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("TipKit.TipViewStyleConfiguration", TipViewStyleConfiguration, { module: "TipKit_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)UIPopoverPresentationControllerSourceItem", {});
 registerSDKProtocol("c:objc(pl)UIPopoverPresentationControllerDelegate", {"adaptivePresentationStyleFor":"adaptivePresentationStyle(for:)","adaptivePresentationStyleForTraitCollection":"adaptivePresentationStyle(for:traitCollection:)","presentationControllerPrepare":"presentationController(_:prepare:)","presentationControllerViewControllerForAdaptivePresentationStyle":"presentationController(_:viewControllerForAdaptivePresentationStyle:)","presentationControllerWillPresentWithAdaptiveStyleTransitionCoordinator":"presentationController(_:willPresentWithAdaptiveStyle:transitionCoordinator:)","presentationControllerShouldDismiss":"presentationControllerShouldDismiss(_:)","presentationControllerWillDismiss":"presentationControllerWillDismiss(_:)","presentationControllerDidDismiss":"presentationControllerDidDismiss(_:)","presentationControllerDidAttemptToDismiss":"presentationControllerDidAttemptToDismiss(_:)","prepareForPopoverPresentation":"prepareForPopoverPresentation(_:)","popoverPresentationControllerShouldDismissPopover":"popoverPresentationControllerShouldDismissPopover(_:)","popoverPresentationControllerDidDismissPopover":"popoverPresentationControllerDidDismissPopover(_:)","popoverPresentationControllerWillRepositionPopoverToIn":"popoverPresentationController(_:willRepositionPopoverTo:in:)"});

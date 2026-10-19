@@ -17,285 +17,285 @@ export class AffineTransform3D extends SDKHandle {
    * func concatenating(_ t2: AffineTransform3D) -> AffineTransform3D
    * @availability iOS 16.0+
    */
-  concatenating(t2: AffineTransform3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 1430873875500503, this, [t2]); }
+  concatenating(t2: AffineTransform3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 1430873875500503, this, [t2]); }
   /**
    * var matrix3x3: simd_double3x3 { get }
    * @availability iOS 16.0+
    */
-  get matrix3x3(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 4423145424144160, this, []); }
+  get matrix3x3(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 4423145424144160, this, []); }
   /**
    * var matrix4x4: simd_double4x4 { get }
    * @availability iOS 16.0+
    */
-  get matrix4x4(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1049261941738153, this, []); }
+  get matrix4x4(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1049261941738153, this, []); }
   /**
    * var scale: Size3D { get }
    * @availability iOS 16.0+
    */
-  get scale(): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 579764756525967, this, []); }
+  get scale(): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 579764756525967, this, []); }
   /**
    * var isIdentity: Bool { get }
    * @availability iOS 16.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2528755255338405, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2528755255338405, this, []); }
   /**
    * var isInvertible: Bool { get }
    * @availability iOS 16.0+
    */
-  get isInvertible(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 416696562163667, this, []); }
+  get isInvertible(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 416696562163667, this, []); }
   /**
    * var isRectilinear: Bool { get }
    * @availability iOS 16.0+
    */
-  get isRectilinear(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3070085202160245, this, []); }
+  get isRectilinear(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3070085202160245, this, []); }
   /**
    * var isTranslation: Bool { get }
    * @availability iOS 16.0+
    */
-  get isTranslation(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3127531318546324, this, []); }
+  get isTranslation(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3127531318546324, this, []); }
   /**
    * var isUniform: Bool { get }
    * @availability iOS 16.0+
    */
-  get isUniform(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 601746153857373, this, []); }
+  get isUniform(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 601746153857373, this, []); }
   /**
    * init(rotation: Rotation3D)
    * @availability iOS 16.0+
    */
-  static initRotation(rotation: Rotation3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 3380162046310676, undefined, [rotation]); }
+  static initRotation(rotation: Rotation3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 3380162046310676, undefined, [rotation]); }
   /**
    * init(scale: Size3D)
    * @availability iOS 16.0+
    */
-  static initScale(scale: Size3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 1964445487430769, undefined, [scale]); }
+  static initScale(scale: Size3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 1964445487430769, undefined, [scale]); }
   /**
    * init(translation offset: Vector3D)
    * @availability iOS 16.0+
    */
-  static initTranslation(offset: Vector3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 2987872922431257, undefined, [offset]); }
+  static initTranslation(offset: Vector3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 2987872922431257, undefined, [offset]); }
   /**
    * init(_ matrix: simd_double4x3)
    * @availability iOS 16.0+
    */
-  static init(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 1807733146648109, undefined, [matrix]); }
+  static init(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 1807733146648109, undefined, [matrix]); }
   /**
    * init(truncating matrix: simd_double4x4)
    * @availability iOS 18.0+
    */
-  static initTruncating(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 3956705678020385, undefined, [matrix]); }
+  static initTruncating(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 3956705678020385, undefined, [matrix]); }
   /**
    * init(truncating transform: ProjectiveTransform3D)
    * @availability iOS 17.0+
    */
-  static initTruncating63499(transform: ProjectiveTransform3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 1912055303769502, undefined, [transform]); }
+  static initTruncating63499(transform: ProjectiveTransform3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 1912055303769502, undefined, [transform]); }
   /**
    * func rotated(by rotation: Rotation3D) -> AffineTransform3D
    * @availability iOS 16.0+
    */
-  rotatedBy(rotation: Rotation3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 3915647637905098, this, [rotation]); }
+  rotatedBy(rotation: Rotation3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 3915647637905098, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatd) -> AffineTransform3D
    * @availability iOS 16.0+
    */
-  rotatedBy49800(quaternion: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 764868201778422, this, [quaternion]); }
+  rotatedBy49800(quaternion: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 764868201778422, this, [quaternion]); }
   /**
    * func scaled(by scale: Size3D) -> AffineTransform3D
    * @availability iOS 16.0+
    */
-  scaled(scale: Size3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 393875483398212, this, [scale]); }
+  scaled(scale: Size3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 393875483398212, this, [scale]); }
   /**
    * func uniformlyScaled(by scale: Double) -> AffineTransform3D
    * @availability iOS 16.0+
    */
-  uniformlyScaled(scale: number): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 3402562411931522, this, [scale]); }
+  uniformlyScaled(scale: number): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 3402562411931522, this, [scale]); }
   /**
    * func translated(by offset: Vector3D) -> AffineTransform3D
    * @availability iOS 16.0+
    */
-  translatedBy(offset: Vector3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 3358249043887895, this, [offset]); }
+  translatedBy(offset: Vector3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 3358249043887895, this, [offset]); }
   /**
    * var matrix: simd_double4x3
    * @availability iOS 16.0+
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3161870277389174, this, []); }
-  set matrix(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 991573955192672, this, [value]); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3161870277389174, this, []); }
+  set matrix(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 991573955192672, this, [value]); }
   /**
    * static let identity: AffineTransform3D
    * @availability iOS 16.0+
    */
-  static get identity(): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 3805738732134587, undefined, []); }
+  static get identity(): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 3805738732134587, undefined, []); }
   /**
    * init(matrix: simd_double4x3)
    * @availability iOS 16.0+
    */
-  static initMatrix(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 4083508046854395, undefined, [matrix]); }
+  static initMatrix(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 4083508046854395, undefined, [matrix]); }
   /**
    * init(scaledPose: ScaledPose3D)
    * @availability iOS 18.0+
    */
-  static initScaledPose(scaledPose: ScaledPose3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 399954377629989, undefined, [scaledPose]); }
+  static initScaledPose(scaledPose: ScaledPose3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 399954377629989, undefined, [scaledPose]); }
   /**
    * func translated(by size: Size3D) -> AffineTransform3D
    * @availability iOS 16.0+
    */
-  translatedBy63138(size: Size3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 1555600191233436, this, [size]); }
+  translatedBy63138(size: Size3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 1555600191233436, this, [size]); }
   /**
    * init(truncating matrix: simd_float4x4)
    * @availability iOS 18.0+
    */
-  static initTruncating50825(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 4433773716414819, undefined, [matrix]); }
+  static initTruncating50825(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 4433773716414819, undefined, [matrix]); }
   /**
    * func changeBasis(from: AffineTransform3D = .identity, to: AffineTransform3D) -> AffineTransform3D?
    * @availability iOS 18.0+
    */
-  changeBasis(from: AffineTransform3D, to: AffineTransform3D): $SDK0 { return callSDK<$SDK0>("Spatial_d6c5d10d3352e6ec", 4011429674799569, this, [from, to]); }
+  changeBasis(from: AffineTransform3D, to: AffineTransform3D): $SDK0 { return callSDK<$SDK0>("Spatial_a956b86ef7a76a8e", 4011429674799569, this, [from, to]); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 4062951285786203, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 4062951285786203, this, []); }
   /**
    * init(translation: Size3D)
    * @availability iOS 16.0+
    */
-  static initTranslation40947(translation: Size3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 2930853842168491, undefined, [translation]); }
+  static initTranslation40947(translation: Size3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 2930853842168491, undefined, [translation]); }
   /**
    * var translation: Vector3D { get set }
    * @availability iOS 16.0+
    */
-  get translation(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3978775511852698, this, []); }
-  set translation(value: Vector3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 719297333429577, this, [value]); }
+  get translation(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3978775511852698, this, []); }
+  set translation(value: Vector3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 719297333429577, this, [value]); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 108546555434903, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 108546555434903, this, []); }
   /**
    * init?(projectiveTransform transform: ProjectiveTransform3D)
    * @availability iOS 16.0+
    */
-  static initProjectiveTransform(transform: ProjectiveTransform3D): (AffineTransform3D) | null { return callSDK<(AffineTransform3D) | null>("Spatial_d6c5d10d3352e6ec", 2106714526903873, undefined, [transform]); }
+  static initProjectiveTransform(transform: ProjectiveTransform3D): (AffineTransform3D) | null { return callSDK<(AffineTransform3D) | null>("Spatial_a956b86ef7a76a8e", 2106714526903873, undefined, [transform]); }
   /**
    * func isApproximatelyEqual(to other: AffineTransform3D, tolerance: Double = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 16.0+
    */
-  isApproximatelyEqual(other: AffineTransform3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3560086272382033, this, [other, tolerance]); }
+  isApproximatelyEqual(other: AffineTransform3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3560086272382033, this, [other, tolerance]); }
   /**
    * mutating func flip(along axis: Axis3D)
    * @availability iOS 16.0+
    */
-  flip(axis: Axis3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 2919639286793522, this, [axis]); }
+  flip(axis: Axis3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 2919639286793522, this, [axis]); }
   /**
    * init(pose: Pose3D)
    * @availability iOS 16.0+
    */
-  static initPose(pose: Pose3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 3987183708253828, undefined, [pose]); }
+  static initPose(pose: Pose3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 3987183708253828, undefined, [pose]); }
   /**
    * init(scale: Size3D = Size3D(width: 1.0, height: 1, depth: 1), rotation: Rotation3D = .zero, translation: Size3D)
    * @availability iOS 16.0+
    */
-  static initScaleRotationTranslation(scale: Size3D, rotation: Rotation3D, translation: Size3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 364241710794432, undefined, [scale, rotation, translation]); }
+  static initScaleRotationTranslation(scale: Size3D, rotation: Rotation3D, translation: Size3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 364241710794432, undefined, [scale, rotation, translation]); }
   /**
    * init(scale: Size3D = Size3D(width: 1.0, height: 1, depth: 1), rotation: Rotation3D = .zero, translation: Vector3D = .zero)
    * @availability iOS 16.0+
    */
-  static initScaleRotationTranslation39069(scale?: Size3D, rotation?: Rotation3D, translation?: Vector3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 632628735271281, undefined, [scale, rotation, translation]); }
+  static initScaleRotationTranslation39069(scale?: Size3D, rotation?: Rotation3D, translation?: Vector3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 632628735271281, undefined, [scale, rotation, translation]); }
   /**
    * init(shear: AxisWithFactors)
    * @availability iOS 16.0+
    */
-  static initShear(shear: AxisWithFactors): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 2097239098530728, undefined, [shear]); }
+  static initShear(shear: AxisWithFactors): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 2097239098530728, undefined, [shear]); }
   /**
    * init?(matrix: simd_float4x4)
    * @availability iOS 16.0+
    */
-  static initMatrix68970(matrix: SDKHandle): (AffineTransform3D) | null { return callSDK<(AffineTransform3D) | null>("Spatial_d6c5d10d3352e6ec", 1494919630016129, undefined, [matrix]); }
+  static initMatrix68970(matrix: SDKHandle): (AffineTransform3D) | null { return callSDK<(AffineTransform3D) | null>("Spatial_a956b86ef7a76a8e", 1494919630016129, undefined, [matrix]); }
   /**
    * init?(matrix: simd_double4x4)
    * @availability iOS 16.0+
    */
-  static initMatrix33370(matrix: SDKHandle): (AffineTransform3D) | null { return callSDK<(AffineTransform3D) | null>("Spatial_d6c5d10d3352e6ec", 1435329047486739, undefined, [matrix]); }
+  static initMatrix33370(matrix: SDKHandle): (AffineTransform3D) | null { return callSDK<(AffineTransform3D) | null>("Spatial_a956b86ef7a76a8e", 1435329047486739, undefined, [matrix]); }
   /**
    * init(matrix: simd_float4x3)
    * @availability iOS 16.0+
    */
-  static initMatrix56657(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 1340946691586517, undefined, [matrix]); }
+  static initMatrix56657(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 1340946691586517, undefined, [matrix]); }
   /**
    * var offset: Vector3D { get set }
    * @availability iOS 16.0+
    */
-  get offset(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 4025941324046607, this, []); }
-  set offset(value: Vector3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1869779238650507, this, [value]); }
+  get offset(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 4025941324046607, this, []); }
+  set offset(value: Vector3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1869779238650507, this, [value]); }
   /**
    * var columns: (Vector3D, Vector3D, Vector3D, Vector3D) { get }
    * @availability iOS 26.0+
    */
-  get columns(): [Vector3D, Vector3D, Vector3D, Vector3D] { return callSDK<[Vector3D, Vector3D, Vector3D, Vector3D]>("Spatial_d6c5d10d3352e6ec", 2464539739165593, this, []); }
+  get columns(): [Vector3D, Vector3D, Vector3D, Vector3D] { return callSDK<[Vector3D, Vector3D, Vector3D, Vector3D]>("Spatial_a956b86ef7a76a8e", 2464539739165593, this, []); }
   /**
    * func flipped(along axis: Axis3D) -> AffineTransform3D
    * @availability iOS 16.0+
    */
-  flipped(axis: Axis3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 4138872660882856, this, [axis]); }
+  flipped(axis: Axis3D): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 4138872660882856, this, [axis]); }
   /**
    * var inverse: AffineTransform3D? { get }
    * @availability iOS 16.0+
    */
-  get inverse(): $SDK0 { return callSDK<$SDK0>("Spatial_d6c5d10d3352e6ec", 4447377278847798, this, []); }
+  get inverse(): $SDK0 { return callSDK<$SDK0>("Spatial_a956b86ef7a76a8e", 4447377278847798, this, []); }
   /**
    * func sheared(_ shear: AxisWithFactors) -> AffineTransform3D
    * @availability iOS 16.0+
    */
-  sheared(shear: AxisWithFactors): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 356502892034776, this, [shear]); }
+  sheared(shear: AxisWithFactors): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 356502892034776, this, [shear]); }
   /**
    * func inverted() -> AffineTransform3D?
    * @availability iOS 16.0+
    */
-  inverted(): $SDK0 { return callSDK<$SDK0>("Spatial_d6c5d10d3352e6ec", 171728317334297, this, []); }
+  inverted(): $SDK0 { return callSDK<$SDK0>("Spatial_a956b86ef7a76a8e", 171728317334297, this, []); }
   /**
    * var rotation: Rotation3D? { get }
    * @availability iOS 16.0+
    */
-  get rotation(): (Rotation3D) | null { return callSDK<(Rotation3D) | null>("Spatial_d6c5d10d3352e6ec", 1814335924867655, this, []); }
+  get rotation(): (Rotation3D) | null { return callSDK<(Rotation3D) | null>("Spatial_a956b86ef7a76a8e", 1814335924867655, this, []); }
   /**
    * func scaledBy(x: Double = 1, y: Double = 1, z: Double = 1) -> AffineTransform3D
    * @availability iOS 16.0+
    */
-  scaledBy(x?: number, y?: number, z?: number): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 555744559664007, this, [x, y, z]); }
+  scaledBy(x?: number, y?: number, z?: number): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 555744559664007, this, [x, y, z]); }
   /**
    * func isUniform(overDimensions: Dimension3DSet) -> Bool
    * @availability iOS 16.0+
    */
-  isUniformOverDimensions(overDimensions: Dimension3DSet): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2060070472379173, this, [overDimensions]); }
+  isUniformOverDimensions(overDimensions: Dimension3DSet): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2060070472379173, this, [overDimensions]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init4476(): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 4452071834092457, undefined, []); }
+  static init4476(): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 4452071834092457, undefined, []); }
   /**
    * init?(_ matrix: simd_float4x4)
    * @availability iOS 16.0+
    */
-  static init51967(matrix: SDKHandle): (AffineTransform3D) | null { return callSDK<(AffineTransform3D) | null>("Spatial_d6c5d10d3352e6ec", 2932464489925087, undefined, [matrix]); }
+  static init51967(matrix: SDKHandle): (AffineTransform3D) | null { return callSDK<(AffineTransform3D) | null>("Spatial_a956b86ef7a76a8e", 2932464489925087, undefined, [matrix]); }
   /**
    * init?(_ matrix: simd_double4x4)
    * @availability iOS 16.0+
    */
-  static init50055(matrix: SDKHandle): (AffineTransform3D) | null { return callSDK<(AffineTransform3D) | null>("Spatial_d6c5d10d3352e6ec", 602932410225127, undefined, [matrix]); }
+  static init50055(matrix: SDKHandle): (AffineTransform3D) | null { return callSDK<(AffineTransform3D) | null>("Spatial_a956b86ef7a76a8e", 602932410225127, undefined, [matrix]); }
   /**
    * init(_ transform: AffineTransform3DFloat)
    * @availability iOS 26.0+
    */
-  static init74456(transform: AffineTransform3DFloat): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 2623500914628263, undefined, [transform]); }
+  static init74456(transform: AffineTransform3DFloat): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 2623500914628263, undefined, [transform]); }
   /**
    * init(_ matrix: simd_float4x3)
    * @availability iOS 16.0+
    */
-  static init64960(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 2193708166201415, undefined, [matrix]); }
+  static init64960(matrix: SDKHandle): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 2193708166201415, undefined, [matrix]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init74606(): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_d6c5d10d3352e6ec", 96158763180969, undefined, []); }
+  static init74606(): AffineTransform3D { return callSDK<AffineTransform3D>("Spatial_a956b86ef7a76a8e", 96158763180969, undefined, []); }
   declare readonly $type: { "c:@SA@SPAffineTransform3D": true };
 }
 
@@ -374,226 +374,226 @@ export class AffineTransform3DFloat extends SDKHandle {
    * func concatenating(_ t2: AffineTransform3DFloat) -> AffineTransform3DFloat
    * @availability iOS 26.0+
    */
-  concatenating(t2: AffineTransform3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 4150806705280372, this, [t2]); }
+  concatenating(t2: AffineTransform3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 4150806705280372, this, [t2]); }
   /**
    * var matrix3x3: simd_float3x3 { get }
    * @availability iOS 26.0+
    */
-  get matrix3x3(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 400496457367924, this, []); }
+  get matrix3x3(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 400496457367924, this, []); }
   /**
    * var matrix4x4: simd_float4x4 { get }
    * @availability iOS 26.0+
    */
-  get matrix4x4(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1098505939341091, this, []); }
+  get matrix4x4(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1098505939341091, this, []); }
   /**
    * var scale: Size3DFloat { get }
    * @availability iOS 26.0+
    */
-  get scale(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 3788605513073637, this, []); }
+  get scale(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 3788605513073637, this, []); }
   /**
    * var isIdentity: Bool { get }
    * @availability iOS 26.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1757885922231435, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1757885922231435, this, []); }
   /**
    * var isInvertible: Bool { get }
    * @availability iOS 26.0+
    */
-  get isInvertible(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1269738052720299, this, []); }
+  get isInvertible(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1269738052720299, this, []); }
   /**
    * var isRectilinear: Bool { get }
    * @availability iOS 26.0+
    */
-  get isRectilinear(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2636941864463999, this, []); }
+  get isRectilinear(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2636941864463999, this, []); }
   /**
    * var isTranslation: Bool { get }
    * @availability iOS 26.0+
    */
-  get isTranslation(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1311164276812475, this, []); }
+  get isTranslation(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1311164276812475, this, []); }
   /**
    * var isUniform: Bool { get }
    * @availability iOS 26.0+
    */
-  get isUniform(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 4162115709563466, this, []); }
+  get isUniform(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 4162115709563466, this, []); }
   /**
    * init(rotation: Rotation3DFloat)
    * @availability iOS 26.0+
    */
-  static initRotation(rotation: Rotation3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1452297473365975, undefined, [rotation]); }
+  static initRotation(rotation: Rotation3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1452297473365975, undefined, [rotation]); }
   /**
    * init(scale: Size3DFloat)
    * @availability iOS 26.0+
    */
-  static initScale(scale: Size3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 941127594573514, undefined, [scale]); }
+  static initScale(scale: Size3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 941127594573514, undefined, [scale]); }
   /**
    * init(translation offset: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static initTranslation(offset: Vector3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1588641956027932, undefined, [offset]); }
+  static initTranslation(offset: Vector3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1588641956027932, undefined, [offset]); }
   /**
    * init(_ matrix: simd_float4x3)
    * @availability iOS 26.0+
    */
-  static init(matrix: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 3515765981845945, undefined, [matrix]); }
+  static init(matrix: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 3515765981845945, undefined, [matrix]); }
   /**
    * init(truncating matrix: simd_float4x4)
    * @availability iOS 26.0+
    */
-  static initTruncating(matrix: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 85348836213024, undefined, [matrix]); }
+  static initTruncating(matrix: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 85348836213024, undefined, [matrix]); }
   /**
    * init(truncating transform: ProjectiveTransform3DFloat)
    * @availability iOS 26.0+
    */
-  static initTruncating93513(transform: ProjectiveTransform3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 2484464389896683, undefined, [transform]); }
+  static initTruncating93513(transform: ProjectiveTransform3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 2484464389896683, undefined, [transform]); }
   /**
    * func rotated(by rotation: Rotation3DFloat) -> AffineTransform3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy(rotation: Rotation3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 2251361612388016, this, [rotation]); }
+  rotatedBy(rotation: Rotation3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 2251361612388016, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatf) -> AffineTransform3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy78002(quaternion: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 4001392848019196, this, [quaternion]); }
+  rotatedBy78002(quaternion: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 4001392848019196, this, [quaternion]); }
   /**
    * func scaled(by scale: Size3DFloat) -> AffineTransform3DFloat
    * @availability iOS 26.0+
    */
-  scaled(scale: Size3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1777852615030567, this, [scale]); }
+  scaled(scale: Size3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1777852615030567, this, [scale]); }
   /**
    * func uniformlyScaled(by scale: Float) -> AffineTransform3DFloat
    * @availability iOS 26.0+
    */
-  uniformlyScaled(scale: number): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 6122716509293, this, [scale]); }
+  uniformlyScaled(scale: number): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 6122716509293, this, [scale]); }
   /**
    * func translated(by offset: Vector3DFloat) -> AffineTransform3DFloat
    * @availability iOS 26.0+
    */
-  translated(offset: Vector3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 2401113825514595, this, [offset]); }
+  translated(offset: Vector3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 2401113825514595, this, [offset]); }
   /**
    * var matrix: simd_float4x3
    * @availability iOS 26.0+
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 245998479378236, this, []); }
-  set matrix(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3981130152524569, this, [value]); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 245998479378236, this, []); }
+  set matrix(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3981130152524569, this, [value]); }
   /** static let identity: AffineTransform3DFloat */
-  static get identity(): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 543230515928336, undefined, []); }
+  static get identity(): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 543230515928336, undefined, []); }
   /**
    * init(matrix: simd_float4x3)
    * @availability iOS 26.0+
    */
-  static initMatrix(matrix: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 2081169691138333, undefined, [matrix]); }
+  static initMatrix(matrix: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 2081169691138333, undefined, [matrix]); }
   /**
    * init(scaledPose: ScaledPose3DFloat)
    * @availability iOS 26.0+
    */
-  static initScaledPose(scaledPose: ScaledPose3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1219836031914604, undefined, [scaledPose]); }
+  static initScaledPose(scaledPose: ScaledPose3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1219836031914604, undefined, [scaledPose]); }
   /**
    * init(truncating matrix: simd_double4x4)
    * @availability iOS 26.0+
    */
-  static initTruncating9639(matrix: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1517956106519185, undefined, [matrix]); }
+  static initTruncating9639(matrix: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1517956106519185, undefined, [matrix]); }
   /**
    * func changeBasis(from: AffineTransform3DFloat = .identity, to: AffineTransform3DFloat) -> AffineTransform3DFloat?
    * @availability iOS 26.0+
    */
-  changeBasis(from: AffineTransform3DFloat, to: AffineTransform3DFloat): $SDK2 { return callSDK<$SDK2>("Spatial_d6c5d10d3352e6ec", 2682519586032083, this, [from, to]); }
+  changeBasis(from: AffineTransform3DFloat, to: AffineTransform3DFloat): $SDK2 { return callSDK<$SDK2>("Spatial_a956b86ef7a76a8e", 2682519586032083, this, [from, to]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 471787679056459, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 471787679056459, this, []); }
   /**
    * var translation: Vector3DFloat { get set }
    * @availability iOS 26.0+
    */
-  get translation(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 55858128437323, this, []); }
-  set translation(value: Vector3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3257496198396215, this, [value]); }
+  get translation(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 55858128437323, this, []); }
+  set translation(value: Vector3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3257496198396215, this, [value]); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3901632865103933, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3901632865103933, this, []); }
   /**
    * func isApproximatelyEqual(to other: AffineTransform3DFloat, tolerance: Float = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 26.0+
    */
-  isApproximatelyEqual(other: AffineTransform3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 170693322708740, this, [other, tolerance]); }
+  isApproximatelyEqual(other: AffineTransform3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 170693322708740, this, [other, tolerance]); }
   /**
    * mutating func flip(along axis: Axis3D)
    * @availability iOS 26.0+
    */
-  flip(axis: Axis3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 2893953829888757, this, [axis]); }
+  flip(axis: Axis3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 2893953829888757, this, [axis]); }
   /**
    * init(pose: Pose3DFloat)
    * @availability iOS 26.0+
    */
-  static initPose(pose: Pose3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1268636490480361, undefined, [pose]); }
+  static initPose(pose: Pose3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1268636490480361, undefined, [pose]); }
   /**
    * init(scale: Size3DFloat = Size3DFloat(width: 1.0, height: 1, depth: 1), rotation: Rotation3DFloat = .identity, translation: Vector3DFloat = .zero)
    * @availability iOS 26.0+
    */
-  static initScaleRotationTranslation(scale?: Size3DFloat, rotation?: Rotation3DFloat, translation?: Vector3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1182078436167154, undefined, [scale, rotation, translation]); }
+  static initScaleRotationTranslation(scale?: Size3DFloat, rotation?: Rotation3DFloat, translation?: Vector3DFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1182078436167154, undefined, [scale, rotation, translation]); }
   /**
    * init(shear: AxisWithFactorsFloat)
    * @availability iOS 26.0+
    */
-  static initShear(shear: AxisWithFactorsFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 341899913871347, undefined, [shear]); }
+  static initShear(shear: AxisWithFactorsFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 341899913871347, undefined, [shear]); }
   /**
    * var columns: (Vector3DFloat, Vector3DFloat, Vector3DFloat, Vector3DFloat) { get }
    * @availability iOS 26.0+
    */
-  get columns(): [Vector3DFloat, Vector3DFloat, Vector3DFloat, Vector3DFloat] { return callSDK<[Vector3DFloat, Vector3DFloat, Vector3DFloat, Vector3DFloat]>("Spatial_d6c5d10d3352e6ec", 602189136810243, this, []); }
+  get columns(): [Vector3DFloat, Vector3DFloat, Vector3DFloat, Vector3DFloat] { return callSDK<[Vector3DFloat, Vector3DFloat, Vector3DFloat, Vector3DFloat]>("Spatial_a956b86ef7a76a8e", 602189136810243, this, []); }
   /**
    * func flipped(along axis: Axis3D) -> AffineTransform3DFloat
    * @availability iOS 26.0+
    */
-  flipped(axis: Axis3D): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 3130420117542054, this, [axis]); }
+  flipped(axis: Axis3D): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 3130420117542054, this, [axis]); }
   /**
    * var inverse: AffineTransform3DFloat? { get }
    * @availability iOS 26.0+
    */
-  get inverse(): $SDK2 { return callSDK<$SDK2>("Spatial_d6c5d10d3352e6ec", 1744740451062804, this, []); }
+  get inverse(): $SDK2 { return callSDK<$SDK2>("Spatial_a956b86ef7a76a8e", 1744740451062804, this, []); }
   /**
    * func sheared(_ shear: AxisWithFactorsFloat) -> AffineTransform3DFloat
    * @availability iOS 26.0+
    */
-  sheared(shear: AxisWithFactorsFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1261067682004740, this, [shear]); }
+  sheared(shear: AxisWithFactorsFloat): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1261067682004740, this, [shear]); }
   /**
    * var rotation: Rotation3DFloat? { get }
    * @availability iOS 26.0+
    */
-  get rotation(): (Rotation3DFloat) | null { return callSDK<(Rotation3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 4393223042600926, this, []); }
+  get rotation(): (Rotation3DFloat) | null { return callSDK<(Rotation3DFloat) | null>("Spatial_a956b86ef7a76a8e", 4393223042600926, this, []); }
   /**
    * func scaledBy(x: Float = 1, y: Float = 1, z: Float = 1) -> AffineTransform3DFloat
    * @availability iOS 26.0+
    */
-  scaledBy(x?: number, y?: number, z?: number): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1748685595276467, this, [x, y, z]); }
+  scaledBy(x?: number, y?: number, z?: number): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1748685595276467, this, [x, y, z]); }
   /**
    * func isUniform(overDimensions: Dimension3DSet) -> Bool
    * @availability iOS 26.0+
    */
-  isUniformOverDimensions(overDimensions: Dimension3DSet): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 726715122656147, this, [overDimensions]); }
+  isUniformOverDimensions(overDimensions: Dimension3DSet): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 726715122656147, this, [overDimensions]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init54764(): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 2882946018451191, undefined, []); }
+  static init54764(): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 2882946018451191, undefined, []); }
   /**
    * init(_ transform: AffineTransform3D)
    * @availability iOS 26.0+
    */
-  static init50539(transform: AffineTransform3D): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1501378207811016, undefined, [transform]); }
+  static init50539(transform: AffineTransform3D): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1501378207811016, undefined, [transform]); }
   /**
    * init(_ matrix: simd_double4x3)
    * @availability iOS 26.0+
    */
-  static init31936(matrix: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 439506492161204, undefined, [matrix]); }
+  static init31936(matrix: SDKHandle): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 439506492161204, undefined, [matrix]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init25726(): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 4206144863280110, undefined, []); }
+  static init25726(): AffineTransform3DFloat { return callSDK<AffineTransform3DFloat>("Spatial_a956b86ef7a76a8e", 4206144863280110, undefined, []); }
   declare readonly $type: { "c:@SA@SPAffineTransform3DFloat": true };
 }
 
@@ -672,113 +672,113 @@ export class Angle2D extends SDKHandle {
    * var degrees: Double { get }
    * @availability iOS 16.0+
    */
-  get degrees(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 4055402355175814, this, []); }
+  get degrees(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 4055402355175814, this, []); }
   /**
    * init(degrees: Double)
    * @availability iOS 16.0+
    */
-  static initDegrees(degrees: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 3927577903263757, undefined, [degrees]); }
+  static initDegrees(degrees: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 3927577903263757, undefined, [degrees]); }
   /**
    * init(radians: Double)
    * @availability iOS 16.0+
    */
-  static initRadians(radians: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 636017284765770, undefined, [radians]); }
+  static initRadians(radians: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 636017284765770, undefined, [radians]); }
   /**
    * var radians: Double
    * @availability iOS 16.0+
    */
-  get radians(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 941839202976921, this, []); }
-  set radians(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2608408845657021, this, [value]); }
+  get radians(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 941839202976921, this, []); }
+  set radians(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2608408845657021, this, [value]); }
   /**
    * static let zero: Angle2D
    * @availability iOS 16.0+
    */
-  static get zero(): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 3681055538896562, undefined, []); }
+  static get zero(): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 3681055538896562, undefined, []); }
   /**
    * var normalized: Angle2D { get }
    * @availability iOS 17.0+
    */
-  get normalized(): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 3140275164669769, this, []); }
+  get normalized(): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 3140275164669769, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 2341275558387911, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 2341275558387911, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3796208533296579, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3796208533296579, this, []); }
   /**
    * static func acos(_ x: Double) -> Angle2D
    * @availability iOS 17.0+
    */
-  static acos(x: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 2016138820188262, undefined, [x]); }
+  static acos(x: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 2016138820188262, undefined, [x]); }
   /**
    * static func asin(_ x: Double) -> Angle2D
    * @availability iOS 17.0+
    */
-  static asin(x: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 3260109479674341, undefined, [x]); }
+  static asin(x: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 3260109479674341, undefined, [x]); }
   /**
    * static func atan(_ x: Double) -> Angle2D
    * @availability iOS 17.0+
    */
-  static atan(x: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 1981530837863011, undefined, [x]); }
+  static atan(x: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 1981530837863011, undefined, [x]); }
   /**
    * static func acosh(_ x: Double) -> Angle2D
    * @availability iOS 17.0+
    */
-  static acosh(x: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 3409679306387782, undefined, [x]); }
+  static acosh(x: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 3409679306387782, undefined, [x]); }
   /**
    * static func asinh(_ x: Double) -> Angle2D
    * @availability iOS 17.0+
    */
-  static asinh(x: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 1524966889155983, undefined, [x]); }
+  static asinh(x: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 1524966889155983, undefined, [x]); }
   /**
    * static func atan2(y: Double, x: Double) -> Angle2D
    * @availability iOS 17.0+
    */
-  static atan2(y: number, x: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 2831401355672707, undefined, [y, x]); }
+  static atan2(y: number, x: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 2831401355672707, undefined, [y, x]); }
   /**
    * static func atanh(_ x: Double) -> Angle2D
    * @availability iOS 17.0+
    */
-  static atanh(x: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 2006270418051790, undefined, [x]); }
+  static atanh(x: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 2006270418051790, undefined, [x]); }
   /**
    * init<T>(degrees: T) where T : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initDegrees21144(degrees: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 2055825158159734, undefined, [degrees]); }
+  static initDegrees21144(degrees: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 2055825158159734, undefined, [degrees]); }
   /**
    * static func degrees(_ degrees: Double) -> Angle2D
    * @availability iOS 17.0+
    */
-  static degrees81281(degrees: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 2765263571724760, undefined, [degrees]); }
+  static degrees81281(degrees: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 2765263571724760, undefined, [degrees]); }
   /**
    * init<T>(radians: T) where T : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initRadians10623(radians: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 2349891780648819, undefined, [radians]); }
+  static initRadians10623(radians: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 2349891780648819, undefined, [radians]); }
   /**
    * static func radians(_ radians: Double) -> Angle2D
    * @availability iOS 17.0+
    */
-  static radians91124(radians: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 4015903734386047, undefined, [radians]); }
+  static radians91124(radians: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 4015903734386047, undefined, [radians]); }
   /**
    * init(_ angle: Angle2DFloat)
    * @availability iOS 26.0+
    */
-  static init(angle: Angle2DFloat): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 1646183101549400, undefined, [angle]); }
+  static init(angle: Angle2DFloat): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 1646183101549400, undefined, [angle]); }
   /**
    * init(radians: Double)
    * @availability iOS 16.0+
    */
-  static initRadians17394(radians: number): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 1120357444145129, undefined, [radians]); }
+  static initRadians17394(radians: number): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 1120357444145129, undefined, [radians]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init77930(): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 3353732762660130, undefined, []); }
+  static init77930(): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 3353732762660130, undefined, []); }
   declare readonly $type: { "c:@SA@SPAngle": true };
 }
 
@@ -791,110 +791,110 @@ export class Angle2DFloat extends SDKHandle {
    * init(radians: Float)
    * @availability iOS 26.0+
    */
-  static initRadians(radians: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 4247390142679438, undefined, [radians]); }
+  static initRadians(radians: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 4247390142679438, undefined, [radians]); }
   /**
    * var radians: Float
    * @availability iOS 26.0+
    */
-  get radians(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 3820964610137311, this, []); }
-  set radians(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 211854496605719, this, [value]); }
+  get radians(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 3820964610137311, this, []); }
+  set radians(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 211854496605719, this, [value]); }
   /** static let zero: Angle2DFloat */
-  static get zero(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 2481452368624246, undefined, []); }
+  static get zero(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 2481452368624246, undefined, []); }
   /**
    * var normalized: Angle2DFloat { get }
    * @availability iOS 26.0+
    */
-  get normalized(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 820258674266375, this, []); }
+  get normalized(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 820258674266375, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 229566523051749, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 229566523051749, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 743838890163238, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 743838890163238, this, []); }
   /**
    * static func acos(_ x: Float) -> Angle2DFloat
    * @availability iOS 26.0+
    */
-  static acos(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 3285707265764186, undefined, [x]); }
+  static acos(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 3285707265764186, undefined, [x]); }
   /**
    * static func asin(_ x: Float) -> Angle2DFloat
    * @availability iOS 26.0+
    */
-  static asin(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 2133684654770040, undefined, [x]); }
+  static asin(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 2133684654770040, undefined, [x]); }
   /**
    * static func atan(_ x: Float) -> Angle2DFloat
    * @availability iOS 26.0+
    */
-  static atan(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 3940141667440572, undefined, [x]); }
+  static atan(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 3940141667440572, undefined, [x]); }
   /**
    * static func acosh(_ x: Float) -> Angle2DFloat
    * @availability iOS 26.0+
    */
-  static acosh(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 54574644535298, undefined, [x]); }
+  static acosh(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 54574644535298, undefined, [x]); }
   /**
    * static func asinh(_ x: Float) -> Angle2DFloat
    * @availability iOS 26.0+
    */
-  static asinh(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 698022939290454, undefined, [x]); }
+  static asinh(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 698022939290454, undefined, [x]); }
   /**
    * static func atan2(y: Float, x: Float) -> Angle2DFloat
    * @availability iOS 26.0+
    */
-  static atan2(y: number, x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 2632293529753617, undefined, [y, x]); }
+  static atan2(y: number, x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 2632293529753617, undefined, [y, x]); }
   /**
    * static func atanh(_ x: Float) -> Angle2DFloat
    * @availability iOS 26.0+
    */
-  static atanh(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 1610800348299708, undefined, [x]); }
+  static atanh(x: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 1610800348299708, undefined, [x]); }
   /**
    * init(degrees: Float)
    * @availability iOS 26.0+
    */
-  static initDegrees(degrees: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 41480576039518, undefined, [degrees]); }
+  static initDegrees(degrees: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 41480576039518, undefined, [degrees]); }
   /**
    * init<T>(degrees: T) where T : BinaryFloatingPoint
    * @availability iOS 26.0+
    */
-  static initDegrees77438(degrees: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 3776274561637482, undefined, [degrees]); }
+  static initDegrees77438(degrees: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 3776274561637482, undefined, [degrees]); }
   /**
    * var degrees: Float { get }
    * @availability iOS 26.0+
    */
-  get degrees(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2250881870161195, this, []); }
+  get degrees(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2250881870161195, this, []); }
   /**
    * static func degrees(_ degrees: Float) -> Angle2DFloat
    * @availability iOS 26.0+
    */
-  static degrees52837(degrees: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 3411585239622949, undefined, [degrees]); }
+  static degrees52837(degrees: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 3411585239622949, undefined, [degrees]); }
   /**
    * init<T>(radians: T) where T : BinaryFloatingPoint
    * @availability iOS 26.0+
    */
-  static initRadians37613(radians: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 3917672266462869, undefined, [radians]); }
+  static initRadians37613(radians: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 3917672266462869, undefined, [radians]); }
   /**
    * static func radians(_ radians: Float) -> Angle2DFloat
    * @availability iOS 26.0+
    */
-  static radians36284(radians: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 1384688361621864, undefined, [radians]); }
+  static radians36284(radians: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 1384688361621864, undefined, [radians]); }
   /**
    * init(_ angle: Angle2D)
    * @availability iOS 26.0+
    */
-  static init(angle: Angle2D): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 1475789410655421, undefined, [angle]); }
+  static init(angle: Angle2D): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 1475789410655421, undefined, [angle]); }
   /**
    * init(radians: Float)
    * @availability iOS 26.0+
    */
-  static initRadians68418(radians: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 2812688144157704, undefined, [radians]); }
+  static initRadians68418(radians: number): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 2812688144157704, undefined, [radians]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init40000(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 1717667095666447, undefined, []); }
+  static init40000(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 1717667095666447, undefined, []); }
   declare readonly $type: { "c:@SA@SPAngleFloat": true };
 }
 
@@ -906,24 +906,24 @@ export const Axis3D = {
    * static var x: Axis3D { get }
    * @availability iOS 16.0+
    */
-  get x(): Axis3D { return callSDK<Axis3D>("Spatial_d6c5d10d3352e6ec", 1823590884925293, undefined, []); },
+  get x(): Axis3D { return callSDK<Axis3D>("Spatial_a956b86ef7a76a8e", 1823590884925293, undefined, []); },
   /**
    * static var y: Axis3D { get }
    * @availability iOS 16.0+
    */
-  get y(): Axis3D { return callSDK<Axis3D>("Spatial_d6c5d10d3352e6ec", 743401584545772, undefined, []); },
+  get y(): Axis3D { return callSDK<Axis3D>("Spatial_a956b86ef7a76a8e", 743401584545772, undefined, []); },
   /**
    * static var z: Axis3D { get }
    * @availability iOS 16.0+
    */
-  get z(): Axis3D { return callSDK<Axis3D>("Spatial_d6c5d10d3352e6ec", 2535975085071967, undefined, []); },
+  get z(): Axis3D { return callSDK<Axis3D>("Spatial_a956b86ef7a76a8e", 2535975085071967, undefined, []); },
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): Axis3D { return callSDK<Axis3D>("Spatial_d6c5d10d3352e6ec", 62598420979418, undefined, [rawValue]); },
+  initRawValue(rawValue: number): Axis3D { return callSDK<Axis3D>("Spatial_a956b86ef7a76a8e", 62598420979418, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: Axis3D): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1227902576848080, $self, []); },
-  setRawValue($self: Axis3D, value: number): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 2956448156211039, $self, [value]); },
+  getRawValue($self: Axis3D): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1227902576848080, $self, []); },
+  setRawValue($self: Axis3D, value: number): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 2956448156211039, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): Axis3D { return callSDK<Axis3D>("Spatial_d6c5d10d3352e6ec", 2365095199064459, undefined, [rawValue]); }
+  init(rawValue: number): Axis3D { return callSDK<Axis3D>("Spatial_a956b86ef7a76a8e", 2365095199064459, undefined, [rawValue]); }
 };
 
 /**
@@ -1021,32 +1021,32 @@ export const Dimension3DSet = {
    * static let x: Dimension3DSet
    * @availability iOS 16.0+
    */
-  get x(): Dimension3DSet { return callSDK<Dimension3DSet>("Spatial_d6c5d10d3352e6ec", 4452693964876564, undefined, []); },
+  get x(): Dimension3DSet { return callSDK<Dimension3DSet>("Spatial_a956b86ef7a76a8e", 4452693964876564, undefined, []); },
   /**
    * static let y: Dimension3DSet
    * @availability iOS 16.0+
    */
-  get y(): Dimension3DSet { return callSDK<Dimension3DSet>("Spatial_d6c5d10d3352e6ec", 2402657398240328, undefined, []); },
+  get y(): Dimension3DSet { return callSDK<Dimension3DSet>("Spatial_a956b86ef7a76a8e", 2402657398240328, undefined, []); },
   /**
    * static let z: Dimension3DSet
    * @availability iOS 16.0+
    */
-  get z(): Dimension3DSet { return callSDK<Dimension3DSet>("Spatial_d6c5d10d3352e6ec", 2781173876098797, undefined, []); },
+  get z(): Dimension3DSet { return callSDK<Dimension3DSet>("Spatial_a956b86ef7a76a8e", 2781173876098797, undefined, []); },
   /**
    * static let all: Dimension3DSet
    * @availability iOS 16.0+
    */
-  get all(): Dimension3DSet { return callSDK<Dimension3DSet>("Spatial_d6c5d10d3352e6ec", 3217724746634965, undefined, []); },
+  get all(): Dimension3DSet { return callSDK<Dimension3DSet>("Spatial_a956b86ef7a76a8e", 3217724746634965, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): Dimension3DSet { return callSDK<Dimension3DSet>("Spatial_d6c5d10d3352e6ec", 2730754938519237, undefined, [rawValue]); },
+  init(rawValue: number): Dimension3DSet { return callSDK<Dimension3DSet>("Spatial_a956b86ef7a76a8e", 2730754938519237, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 16.0+
    */
-  getRawValue($self: Dimension3DSet): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 530469081674592, $self, []); }
+  getRawValue($self: Dimension3DSet): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 530469081674592, $self, []); }
 };
 
 /**
@@ -1076,39 +1076,39 @@ export class EulerAngles extends SDKHandle {
    * var angles: simd_double3
    * @availability iOS 16.0+
    */
-  get angles(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 302629176070261, this, []); }
-  set angles(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 4363242071855769, this, [value]); }
+  get angles(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 302629176070261, this, []); }
+  set angles(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 4363242071855769, this, [value]); }
   /**
    * var order: __SPEulerAngleOrder
    * @availability iOS 16.0+
    */
-  get order(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3466482127316570, this, []); }
-  set order(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 4263739399160243, this, [value]); }
+  get order(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3466482127316570, this, []); }
+  set order(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 4263739399160243, this, [value]); }
   /**
    * init(angles: simd_double3, order: __SPEulerAngleOrder)
    * @availability iOS 16.0+
    */
-  static initAnglesOrder(angles: SDKHandle, order: SDKHandle): EulerAngles { return callSDK<EulerAngles>("Spatial_d6c5d10d3352e6ec", 3172607883497149, undefined, [angles, order]); }
+  static initAnglesOrder(angles: SDKHandle, order: SDKHandle): EulerAngles { return callSDK<EulerAngles>("Spatial_a956b86ef7a76a8e", 3172607883497149, undefined, [angles, order]); }
   /**
    * init(x: Angle2D, y: Angle2D, z: Angle2D, order: EulerAngles.Order)
    * @availability iOS 17.0+
    */
-  static initXYZOrder(x: Angle2D, y: Angle2D, z: Angle2D, order: EulerAngles): EulerAngles { return callSDK<EulerAngles>("Spatial_d6c5d10d3352e6ec", 3196467415393491, undefined, [x, y, z, order]); }
+  static initXYZOrder(x: Angle2D, y: Angle2D, z: Angle2D, order: EulerAngles): EulerAngles { return callSDK<EulerAngles>("Spatial_a956b86ef7a76a8e", 3196467415393491, undefined, [x, y, z, order]); }
   /**
    * init(angles: simd_float3, order: EulerAngles.Order)
    * @availability iOS 16.0+
    */
-  static initAnglesOrder17621(angles: SDKHandle, order: EulerAngles): EulerAngles { return callSDK<EulerAngles>("Spatial_d6c5d10d3352e6ec", 79939021816255, undefined, [angles, order]); }
+  static initAnglesOrder17621(angles: SDKHandle, order: EulerAngles): EulerAngles { return callSDK<EulerAngles>("Spatial_a956b86ef7a76a8e", 79939021816255, undefined, [angles, order]); }
   /**
    * init(_ x: Angle2D, _ y: Angle2D, _ z: Angle2D, order: EulerAngles.Order)
    * @availability iOS 17.0+
    */
-  static initOrder(x: Angle2D, y: Angle2D, z: Angle2D, order: EulerAngles): EulerAngles { return callSDK<EulerAngles>("Spatial_d6c5d10d3352e6ec", 1228714091033762, undefined, [x, y, z, order]); }
+  static initOrder(x: Angle2D, y: Angle2D, z: Angle2D, order: EulerAngles): EulerAngles { return callSDK<EulerAngles>("Spatial_a956b86ef7a76a8e", 1228714091033762, undefined, [x, y, z, order]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): EulerAngles { return callSDK<EulerAngles>("Spatial_d6c5d10d3352e6ec", 2764747481467548, undefined, []); }
+  static init(): EulerAngles { return callSDK<EulerAngles>("Spatial_a956b86ef7a76a8e", 2764747481467548, undefined, []); }
   declare readonly $type: { "c:@SA@SPEulerAngles": true };
 }
 
@@ -1127,29 +1127,29 @@ export class EulerAnglesFloat extends SDKHandle {
    * var angles: simd_float3
    * @availability iOS 26.0+
    */
-  get angles(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1879944636818780, this, []); }
-  set angles(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1959905782061269, this, [value]); }
+  get angles(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1879944636818780, this, []); }
+  set angles(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1959905782061269, this, [value]); }
   /**
    * var order: __SPEulerAngleOrder
    * @availability iOS 26.0+
    */
-  get order(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 2165314646315164, this, []); }
-  set order(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2100287552570530, this, [value]); }
+  get order(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 2165314646315164, this, []); }
+  set order(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2100287552570530, this, [value]); }
   /**
    * init(angles: simd_float3, order: __SPEulerAngleOrder)
    * @availability iOS 26.0+
    */
-  static initAnglesOrder(angles: SDKHandle, order: SDKHandle): EulerAnglesFloat { return callSDK<EulerAnglesFloat>("Spatial_d6c5d10d3352e6ec", 1132367731394364, undefined, [angles, order]); }
+  static initAnglesOrder(angles: SDKHandle, order: SDKHandle): EulerAnglesFloat { return callSDK<EulerAnglesFloat>("Spatial_a956b86ef7a76a8e", 1132367731394364, undefined, [angles, order]); }
   /**
    * init(x: Angle2DFloat, y: Angle2DFloat, z: Angle2DFloat, order: EulerAngles.Order)
    * @availability iOS 26.0+
    */
-  static initXYZOrder(x: Angle2DFloat, y: Angle2DFloat, z: Angle2DFloat, order: EulerAngles): EulerAnglesFloat { return callSDK<EulerAnglesFloat>("Spatial_d6c5d10d3352e6ec", 4384061336606671, undefined, [x, y, z, order]); }
+  static initXYZOrder(x: Angle2DFloat, y: Angle2DFloat, z: Angle2DFloat, order: EulerAngles): EulerAnglesFloat { return callSDK<EulerAnglesFloat>("Spatial_a956b86ef7a76a8e", 4384061336606671, undefined, [x, y, z, order]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): EulerAnglesFloat { return callSDK<EulerAnglesFloat>("Spatial_d6c5d10d3352e6ec", 3978525829360101, undefined, []); }
+  static init(): EulerAnglesFloat { return callSDK<EulerAnglesFloat>("Spatial_a956b86ef7a76a8e", 3978525829360101, undefined, []); }
   declare readonly $type: { "c:@SA@SPEulerAnglesFloat": true };
 }
 
@@ -1168,223 +1168,223 @@ export class Point3D extends SDKHandle {
    * func applying(_ transform: AffineTransform3D) -> Point3D
    * @availability iOS 16.0+
    */
-  applying(transform: AffineTransform3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 737178244942222, this, [transform]); }
+  applying(transform: AffineTransform3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 737178244942222, this, [transform]); }
   /**
    * func applying(_ transform: ProjectiveTransform3D) -> Point3D
    * @availability iOS 16.0+
    */
-  applying2397(transform: ProjectiveTransform3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 3758711975189860, this, [transform]); }
+  applying2397(transform: ProjectiveTransform3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 3758711975189860, this, [transform]); }
   /**
    * func clamped(to rect: Rect3D) -> Point3D
    * @availability iOS 16.0+
    */
-  clamped(rect: Rect3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 870619262047901, this, [rect]); }
+  clamped(rect: Rect3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 870619262047901, this, [rect]); }
   /**
    * func distance(to other: Point3D) -> Double
    * @availability iOS 16.0+
    */
-  distance(other: Point3D): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2691664110697867, this, [other]); }
+  distance(other: Point3D): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2691664110697867, this, [other]); }
   /**
    * var isFinite: Bool { get }
    * @availability iOS 16.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 578498487144483, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 578498487144483, this, []); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 16.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3773075677545666, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3773075677545666, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 16.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3996804302192182, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3996804302192182, this, []); }
   /**
    * func rotated(by rotation: Rotation3D) -> Point3D
    * @availability iOS 16.0+
    */
-  rotatedBy(rotation: Rotation3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 3917932146852223, this, [rotation]); }
+  rotatedBy(rotation: Rotation3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 3917932146852223, this, [rotation]); }
   /**
    * func rotated(by rotation: Rotation3D, around pivot: Point3D) -> Point3D
    * @availability iOS 16.0+
    */
-  rotatedByAround(rotation: Rotation3D, pivot: Point3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 471259233466677, this, [rotation, pivot]); }
+  rotatedByAround(rotation: Rotation3D, pivot: Point3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 471259233466677, this, [rotation, pivot]); }
   /**
    * func rotated(by quaternion: simd_quatd) -> Point3D
    * @availability iOS 16.0+
    */
-  rotatedBy92204(quaternion: SDKHandle): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 1470448353257088, this, [quaternion]); }
+  rotatedBy92204(quaternion: SDKHandle): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 1470448353257088, this, [quaternion]); }
   /**
    * func rotated(by quaternion: simd_quatd, around pivot: Point3D) -> Point3D
    * @availability iOS 16.0+
    */
-  rotatedByAround74328(quaternion: SDKHandle, pivot: Point3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 1455480899775993, this, [quaternion, pivot]); }
+  rotatedByAround74328(quaternion: SDKHandle, pivot: Point3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 1455480899775993, this, [quaternion, pivot]); }
   /**
    * func rotation(to other: Point3D) -> Rotation3D
    * @availability iOS 16.0+
    * @deprecated iOS 17.0
    */
-  rotation(other: Point3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 2776764934371028, this, [other]); }
+  rotation(other: Point3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 2776764934371028, this, [other]); }
   /**
    * func translated(by offset: Vector3D) -> Point3D
    * @availability iOS 16.0+
    */
-  translatedBy(offset: Vector3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 4272613617239619, this, [offset]); }
+  translatedBy(offset: Vector3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 4272613617239619, this, [offset]); }
   /**
    * func unapplying(_ transform: AffineTransform3D) -> Point3D
    * @availability iOS 16.0+
    */
-  unapplying(transform: AffineTransform3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 2822708241903088, this, [transform]); }
+  unapplying(transform: AffineTransform3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 2822708241903088, this, [transform]); }
   /**
    * func unapplying(_ transform: ProjectiveTransform3D) -> Point3D
    * @availability iOS 16.0+
    */
-  unapplying47776(transform: ProjectiveTransform3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 3261819944966802, this, [transform]); }
+  unapplying47776(transform: ProjectiveTransform3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 3261819944966802, this, [transform]); }
   /**
    * static let infinity: Point3D
    * @availability iOS 16.0+
    */
-  static get infinity(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 225243905101506, undefined, []); }
+  static get infinity(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 225243905101506, undefined, []); }
   /**
    * static let zero: Point3D
    * @availability iOS 16.0+
    */
-  static get zero(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 3979498765885258, undefined, []); }
+  static get zero(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 3979498765885258, undefined, []); }
   /**
    * var vector: simd_double3 { get set }
    * @availability iOS 16.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1420127852132935, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2198739654501086, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1420127852132935, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2198739654501086, this, [value]); }
   /**
    * var x: Double { get set }
    * @availability iOS 16.0+
    */
-  get x(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1843172136121473, this, []); }
-  set x(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2605159927554723, this, [value]); }
+  get x(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1843172136121473, this, []); }
+  set x(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2605159927554723, this, [value]); }
   /**
    * var y: Double { get set }
    * @availability iOS 16.0+
    */
-  get y(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 311946850587894, this, []); }
-  set y(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1417813149468428, this, [value]); }
+  get y(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 311946850587894, this, []); }
+  set y(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1417813149468428, this, [value]); }
   /**
    * var z: Double { get set }
    * @availability iOS 16.0+
    */
-  get z(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 618034904490123, this, []); }
-  set z(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 344739979631509, this, [value]); }
+  get z(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 618034904490123, this, []); }
+  set z(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 344739979631509, this, [value]); }
   /**
    * init(vector: simd_double3)
    * @availability iOS 16.0+
    */
-  static initVector(vector: SDKHandle): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 3784359158540485, undefined, [vector]); }
+  static initVector(vector: SDKHandle): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 3784359158540485, undefined, [vector]); }
   /**
    * func translated(by size: Size3D) -> Point3D
    * @availability iOS 16.0+
    */
-  translatedBy46426(size: Size3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 1572703103093841, this, [size]); }
+  translatedBy46426(size: Size3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 1572703103093841, this, [size]); }
   /**
    * func unapplying(_ pose: ScaledPose3D) -> Point3D
    * @availability iOS 18.0+
    */
-  unapplying97777(pose: ScaledPose3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 1405328880566367, this, [pose]); }
+  unapplying97777(pose: ScaledPose3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 1405328880566367, this, [pose]); }
   /**
    * func unapplying(_ pose: Pose3D) -> Point3D
    * @availability iOS 16.0+
    */
-  unapplying85026(pose: Pose3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 19418103849628, this, [pose]); }
+  unapplying85026(pose: Pose3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 19418103849628, this, [pose]); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 303514436463325, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 303514436463325, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1827676675416553, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1827676675416553, this, []); }
   /**
    * init(x: Double = 0, y: Double = 0, z: Double = 0)
    * @availability iOS 16.0+
    */
-  static initXYZ(x?: number, y?: number, z?: number): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 3207623866640214, undefined, [x, y, z]); }
+  static initXYZ(x?: number, y?: number, z?: number): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 3207623866640214, undefined, [x, y, z]); }
   /**
    * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initXYZ39734(x: number, y: number, z: number): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 2464534281615670, undefined, [x, y, z]); }
+  static initXYZ39734(x: number, y: number, z: number): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 2464534281615670, undefined, [x, y, z]); }
   /**
    * func isApproximatelyEqual(to other: Point3D, tolerance: Double = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 18.0+
    */
-  isApproximatelyEqual(other: Point3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1412207221513109, this, [other, tolerance]); }
+  isApproximatelyEqual(other: Point3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1412207221513109, this, [other, tolerance]); }
   /**
    * var simd: simd_double3 { get set }
    * @availability iOS 16.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 2933363431117910, this, []); }
-  set simd(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 4091325895686320, this, [value]); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 2933363431117910, this, []); }
+  set simd(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 4091325895686320, this, [value]); }
   /**
    * mutating func clamp(to rect: Rect3D)
    * @availability iOS 16.0+
    */
-  clamp(rect: Rect3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 1623868576133718, this, [rect]); }
+  clamp(rect: Rect3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 1623868576133718, this, [rect]); }
   /**
    * var origin: Point3D { get }
    * @availability iOS 16.0+
    */
-  get origin(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 2288777404974774, this, []); }
+  get origin(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 2288777404974774, this, []); }
   /**
    * func applying(_ scaledPose: ScaledPose3D) -> Point3D
    * @availability iOS 18.0+
    */
-  applying84967(scaledPose: ScaledPose3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 67648393110994, this, [scaledPose]); }
+  applying84967(scaledPose: ScaledPose3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 67648393110994, this, [scaledPose]); }
   /**
    * func applying(_ pose: Pose3D) -> Point3D
    * @availability iOS 16.0+
    */
-  applying5132(pose: Pose3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 2875446163714298, this, [pose]); }
+  applying5132(pose: Pose3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 2875446163714298, this, [pose]); }
   /**
    * init(_ point: Point3DFloat)
    * @availability iOS 26.0+
    */
-  static init(point: Point3DFloat): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 2142592752246634, undefined, [point]); }
+  static init(point: Point3DFloat): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 2142592752246634, undefined, [point]); }
   /**
    * init(_ xyz: Vector3D)
    * @availability iOS 16.0+
    */
-  static init2995(xyz: Vector3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 1328987068611924, undefined, [xyz]); }
+  static init2995(xyz: Vector3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 1328987068611924, undefined, [xyz]); }
   /**
    * init(_ coords: SphericalCoordinates3D)
    * @availability iOS 18.0+
    */
-  static init63521(coords: SphericalCoordinates3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 3060993008489884, undefined, [coords]); }
+  static init63521(coords: SphericalCoordinates3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 3060993008489884, undefined, [coords]); }
   /**
    * init(_ size: Size3D)
    * @availability iOS 16.0+
    */
-  static init83816(size: Size3D): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 1125948607104258, undefined, [size]); }
+  static init83816(size: Size3D): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 1125948607104258, undefined, [size]); }
   /**
    * init(_ xyz: simd_double3)
    * @availability iOS 16.0+
    */
-  static init81629(xyz: SDKHandle): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 3363495795897247, undefined, [xyz]); }
+  static init81629(xyz: SDKHandle): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 3363495795897247, undefined, [xyz]); }
   /**
    * init(_ xyz: simd_float3)
    * @availability iOS 16.0+
    */
-  static init22947(xyz: SDKHandle): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 513970993949193, undefined, [xyz]); }
+  static init22947(xyz: SDKHandle): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 513970993949193, undefined, [xyz]); }
   /**
    * init(_ source: simd_packed_double4)
    * @availability iOS 26.0+
    */
-  static init39640(source: SDKHandle): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 316069603610307, undefined, [source]); }
+  static init39640(source: SDKHandle): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 316069603610307, undefined, [source]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init19110(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 1803734838842858, undefined, []); }
+  static init19110(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 1803734838842858, undefined, []); }
   declare readonly $type: { "c:@UA@SPPoint3D": true };
 }
 
@@ -1463,190 +1463,190 @@ export class Point3DFloat extends SDKHandle {
    * func applying(_ transform: AffineTransform3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  applying(transform: AffineTransform3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 1016500365877332, this, [transform]); }
+  applying(transform: AffineTransform3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 1016500365877332, this, [transform]); }
   /**
    * func applying(_ transform: ProjectiveTransform3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  applying97943(transform: ProjectiveTransform3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3332827498282257, this, [transform]); }
+  applying97943(transform: ProjectiveTransform3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3332827498282257, this, [transform]); }
   /**
    * func clamped(to rect: Rect3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  clamped(rect: Rect3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3523579417918584, this, [rect]); }
+  clamped(rect: Rect3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3523579417918584, this, [rect]); }
   /**
    * var isFinite: Bool { get }
    * @availability iOS 26.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1267699420842218, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1267699420842218, this, []); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 26.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1991223316749065, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1991223316749065, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 26.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1552744837256294, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1552744837256294, this, []); }
   /**
    * func rotated(by rotation: Rotation3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy(rotation: Rotation3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3118632344774826, this, [rotation]); }
+  rotatedBy(rotation: Rotation3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3118632344774826, this, [rotation]); }
   /**
    * func rotated(by rotation: Rotation3DFloat, around pivot: Point3DFloat) -> Point3DFloat
    * @availability iOS 16.0+
    */
-  rotatedByAround(rotation: Rotation3DFloat, pivot: Point3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3518766539654639, this, [rotation, pivot]); }
+  rotatedByAround(rotation: Rotation3DFloat, pivot: Point3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3518766539654639, this, [rotation, pivot]); }
   /**
    * func rotated(by quaternion: simd_quatf) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy66624(quaternion: SDKHandle): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 2041327005361393, this, [quaternion]); }
+  rotatedBy66624(quaternion: SDKHandle): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 2041327005361393, this, [quaternion]); }
   /**
    * func rotated(by quaternion: simd_quatf, around pivot: Point3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  rotatedByAround22162(quaternion: SDKHandle, pivot: Point3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 159441772586230, this, [quaternion, pivot]); }
+  rotatedByAround22162(quaternion: SDKHandle, pivot: Point3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 159441772586230, this, [quaternion, pivot]); }
   /**
    * func translated(by offset: Vector3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  translated(offset: Vector3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3993606080839901, this, [offset]); }
+  translated(offset: Vector3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3993606080839901, this, [offset]); }
   /**
    * func unapplying(_ transform: AffineTransform3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  unapplying(transform: AffineTransform3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 2898631944025432, this, [transform]); }
+  unapplying(transform: AffineTransform3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 2898631944025432, this, [transform]); }
   /**
    * func unapplying(_ transform: ProjectiveTransform3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  unapplying1026(transform: ProjectiveTransform3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 2555556411779186, this, [transform]); }
+  unapplying1026(transform: ProjectiveTransform3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 2555556411779186, this, [transform]); }
   /** static let infinity: Point3DFloat */
-  static get infinity(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 1879356237772734, undefined, []); }
+  static get infinity(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 1879356237772734, undefined, []); }
   /** static let zero: Point3DFloat */
-  static get zero(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 1302707088165678, undefined, []); }
+  static get zero(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 1302707088165678, undefined, []); }
   /**
    * var vector: simd_float3 { get set }
    * @availability iOS 26.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1101095404895922, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1556581475551462, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1101095404895922, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1556581475551462, this, [value]); }
   /**
    * var x: Float { get set }
    * @availability iOS 26.0+
    */
-  get x(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 4232498437420300, this, []); }
-  set x(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2671838220047468, this, [value]); }
+  get x(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 4232498437420300, this, []); }
+  set x(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2671838220047468, this, [value]); }
   /**
    * var y: Float { get set }
    * @availability iOS 26.0+
    */
-  get y(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 564022658592082, this, []); }
-  set y(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 613124754333792, this, [value]); }
+  get y(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 564022658592082, this, []); }
+  set y(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 613124754333792, this, [value]); }
   /**
    * var z: Float { get set }
    * @availability iOS 26.0+
    */
-  get z(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 3246627500368248, this, []); }
-  set z(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2886799165717775, this, [value]); }
+  get z(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 3246627500368248, this, []); }
+  set z(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2886799165717775, this, [value]); }
   /**
    * init(vector: simd_float3)
    * @availability iOS 26.0+
    */
-  static initVector(vector: SDKHandle): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 2705718276704033, undefined, [vector]); }
+  static initVector(vector: SDKHandle): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 2705718276704033, undefined, [vector]); }
   /**
    * func unapplying(_ pose: ScaledPose3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  unapplying50866(pose: ScaledPose3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3618809111636279, this, [pose]); }
+  unapplying50866(pose: ScaledPose3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3618809111636279, this, [pose]); }
   /**
    * func unapplying(_ pose: Pose3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  unapplying55767(pose: Pose3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 169423467435785, this, [pose]); }
+  unapplying55767(pose: Pose3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 169423467435785, this, [pose]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 342337031696578, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 342337031696578, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 397378478942820, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 397378478942820, this, []); }
   /**
    * init(x: Float = 0, y: Float = 0, z: Float = 0)
    * @availability iOS 26.0+
    */
-  static initXYZ(x?: number, y?: number, z?: number): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 1283149943358999, undefined, [x, y, z]); }
+  static initXYZ(x?: number, y?: number, z?: number): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 1283149943358999, undefined, [x, y, z]); }
   /**
    * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
    * @availability iOS 26.0+
    */
-  static initXYZ27816(x: number, y: number, z: number): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 4321236686027830, undefined, [x, y, z]); }
+  static initXYZ27816(x: number, y: number, z: number): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 4321236686027830, undefined, [x, y, z]); }
   /**
    * func isApproximatelyEqual(to other: Point3DFloat, tolerance: Float = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 26.0+
    */
-  isApproximatelyEqual(other: Point3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2290601452000024, this, [other, tolerance]); }
+  isApproximatelyEqual(other: Point3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2290601452000024, this, [other, tolerance]); }
   /**
    * func applying(_ scaledPose: ScaledPose3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  applying55104(scaledPose: ScaledPose3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3164735599931220, this, [scaledPose]); }
+  applying55104(scaledPose: ScaledPose3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3164735599931220, this, [scaledPose]); }
   /**
    * func applying(_ pose: Pose3DFloat) -> Point3DFloat
    * @availability iOS 26.0+
    */
-  applying20217(pose: Pose3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 1483037401503273, this, [pose]); }
+  applying20217(pose: Pose3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 1483037401503273, this, [pose]); }
   /**
    * func distance(to other: Point3DFloat) -> Float
    * @availability iOS 26.0+
    */
-  distance(other: Point3DFloat): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1094717004049636, this, [other]); }
+  distance(other: Point3DFloat): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1094717004049636, this, [other]); }
   /**
    * init(_ coords: SphericalCoordinates3DFloat)
    * @availability iOS 26.0+
    */
-  static init(coords: SphericalCoordinates3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 1040287400403396, undefined, [coords]); }
+  static init(coords: SphericalCoordinates3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 1040287400403396, undefined, [coords]); }
   /**
    * init(_ size: Size3DFloat)
    * @availability iOS 26.0+
    */
-  static init38521(size: Size3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 1603236749044732, undefined, [size]); }
+  static init38521(size: Size3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 1603236749044732, undefined, [size]); }
   /**
    * init(_ xyz: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static init10841(xyz: Vector3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 2842671654552528, undefined, [xyz]); }
+  static init10841(xyz: Vector3DFloat): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 2842671654552528, undefined, [xyz]); }
   /**
    * init(_ point: Point3D)
    * @availability iOS 26.0+
    */
-  static init81729(point: Point3D): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 1464096417263436, undefined, [point]); }
+  static init81729(point: Point3D): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 1464096417263436, undefined, [point]); }
   /**
    * init(_ xyz: simd_double3)
    * @availability iOS 26.0+
    */
-  static init76159(xyz: SDKHandle): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 1584192507213863, undefined, [xyz]); }
+  static init76159(xyz: SDKHandle): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 1584192507213863, undefined, [xyz]); }
   /**
    * init(_ xyz: simd_float3)
    * @availability iOS 26.0+
    */
-  static init13929(xyz: SDKHandle): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 4066779564849488, undefined, [xyz]); }
+  static init13929(xyz: SDKHandle): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 4066779564849488, undefined, [xyz]); }
   /**
    * init(_ source: simd_packed_float4)
    * @availability iOS 26.0+
    */
-  static init25396(source: SDKHandle): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 436974726606771, undefined, [source]); }
+  static init25396(source: SDKHandle): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 436974726606771, undefined, [source]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init70276(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 4276814759656253, undefined, []); }
+  static init70276(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 4276814759656253, undefined, []); }
   declare readonly $type: { "c:@UA@SPPoint3DFloat": true };
 }
 
@@ -1725,164 +1725,164 @@ export class Pose3D extends SDKHandle {
    * var position: Point3D
    * @availability iOS 16.0+
    */
-  get position(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 1410217635410475, this, []); }
-  set position(value: Point3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2898544213378976, this, [value]); }
+  get position(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 1410217635410475, this, []); }
+  set position(value: Point3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2898544213378976, this, [value]); }
   /**
    * var rotation: Rotation3D
    * @availability iOS 16.0+
    */
-  get rotation(): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 3658576997827333, this, []); }
-  set rotation(value: Rotation3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 372620745939511, this, [value]); }
+  get rotation(): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 3658576997827333, this, []); }
+  set rotation(value: Rotation3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 372620745939511, this, [value]); }
   /**
    * var isIdentity: Bool { get }
    * @availability iOS 16.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 456702525087304, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 456702525087304, this, []); }
   /**
    * func translated(by offset: Vector3D) -> Pose3D
    * @availability iOS 16.0+
    */
-  translatedBy(offset: Vector3D): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 4271433154201733, this, [offset]); }
+  translatedBy(offset: Vector3D): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 4271433154201733, this, [offset]); }
   /**
    * func translated(by size: Size3D) -> Pose3D
    * @availability iOS 16.0+
    */
-  translatedBy72346(size: Size3D): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 1500202139381270, this, [size]); }
+  translatedBy72346(size: Size3D): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 1500202139381270, this, [size]); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 3013898630898931, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 3013898630898931, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 748690656553634, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 748690656553634, this, []); }
   /**
    * func concatenating(_ transform: Pose3D) -> Pose3D
    * @availability iOS 16.0+
    */
-  concatenating(transform: Pose3D): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 2585825089916577, this, [transform]); }
+  concatenating(transform: Pose3D): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 2585825089916577, this, [transform]); }
   /**
    * func concatenating(_ transform: ScaledPose3D) -> ScaledPose3D
    * @availability iOS 18.0+
    */
-  concatenating63023(transform: ScaledPose3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 3979842238048544, this, [transform]); }
+  concatenating63023(transform: ScaledPose3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 3979842238048544, this, [transform]); }
   /**
    * func isApproximatelyEqual(to other: Pose3D, tolerance: Double = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 16.0+
    */
-  isApproximatelyEqual(other: Pose3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 244409035974036, this, [other, tolerance]); }
+  isApproximatelyEqual(other: Pose3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 244409035974036, this, [other, tolerance]); }
   /**
    * mutating func flip(along axis: Axis3D)
    * @availability iOS 16.0+
    */
-  flip(axis: Axis3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 433538024950327, this, [axis]); }
+  flip(axis: Axis3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 433538024950327, this, [axis]); }
   /**
    * init?(matrix: simd_float4x4)
    * @availability iOS 16.0+
    */
-  static initMatrix(matrix: SDKHandle): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_d6c5d10d3352e6ec", 223260182682198, undefined, [matrix]); }
+  static initMatrix(matrix: SDKHandle): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_a956b86ef7a76a8e", 223260182682198, undefined, [matrix]); }
   /**
    * init?(matrix: simd_double4x4)
    * @availability iOS 16.0+
    */
-  static initMatrix96210(matrix: SDKHandle): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_d6c5d10d3352e6ec", 1418180439008856, undefined, [matrix]); }
+  static initMatrix96210(matrix: SDKHandle): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_a956b86ef7a76a8e", 1418180439008856, undefined, [matrix]); }
   /**
    * var matrix: simd_double4x4 { get }
    * @availability iOS 16.0+
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3233885445448844, this, []); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3233885445448844, this, []); }
   /**
    * func flipped(along axis: Axis3D) -> Pose3D
    * @availability iOS 16.0+
    */
-  flipped(axis: Axis3D): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 1807445120631315, this, [axis]); }
+  flipped(axis: Axis3D): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 1807445120631315, this, [axis]); }
   /**
    * init(forward: Vector3D, up: Vector3D = Vector3D(x: 0, y: 1, z: 0))
    * @availability iOS 16.0+
    */
-  static initForwardUp(forward: Vector3D, up?: Vector3D): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 2574738250197470, undefined, [forward, up]); }
+  static initForwardUp(forward: Vector3D, up?: Vector3D): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 2574738250197470, undefined, [forward, up]); }
   /**
    * var inverse: Pose3D { get }
    * @availability iOS 16.0+
    */
-  get inverse(): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 625291561386443, this, []); }
+  get inverse(): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 625291561386443, this, []); }
   /**
    * func rotated(by quaternion: simd_quatd) -> Pose3D
    * @availability iOS 16.0+
    */
-  rotatedBy(quaternion: SDKHandle): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 2860304960359717, this, [quaternion]); }
+  rotatedBy(quaternion: SDKHandle): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 2860304960359717, this, [quaternion]); }
   /**
    * func rotated(by rotation: Rotation3D) -> Pose3D
    * @availability iOS 16.0+
    */
-  rotatedBy97519(rotation: Rotation3D): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 179891385375537, this, [rotation]); }
+  rotatedBy97519(rotation: Rotation3D): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 179891385375537, this, [rotation]); }
   /**
    * func applying(_ transform: ProjectiveTransform3D) -> Pose3D
    * @availability iOS 27.0+
    */
-  applying(transform: ProjectiveTransform3D): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 3054097580812738, this, [transform]); }
+  applying(transform: ProjectiveTransform3D): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 3054097580812738, this, [transform]); }
   /**
    * static var identity: Pose3D { get }
    * @availability iOS 16.0+
    */
-  static get identity(): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 990724372827696, undefined, []); }
+  static get identity(): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 990724372827696, undefined, []); }
   /**
    * init(position: Point3D = .zero, target: Point3D, up: Vector3D = Vector3D(x: 0, y: 1, z: 0))
    * @availability iOS 16.0+
    */
-  static initPositionTargetUp(position: Point3D, target: Point3D, up?: Vector3D): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 4370893016735091, undefined, [position, target, up]); }
+  static initPositionTargetUp(position: Point3D, target: Point3D, up?: Vector3D): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 4370893016735091, undefined, [position, target, up]); }
   /**
    * init(position: Point3D = .zero, rotation: Rotation3D)
    * @availability iOS 16.0+
    */
-  static initPositionRotation(position: Point3D, rotation: Rotation3D): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 2869317941141784, undefined, [position, rotation]); }
+  static initPositionRotation(position: Point3D, rotation: Rotation3D): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 2869317941141784, undefined, [position, rotation]); }
   /**
    * init(position: simd_double3 = .zero, rotation: simd_quatd)
    * @availability iOS 16.0+
    */
-  static initPositionRotation12983(position: SDKHandle, rotation: SDKHandle): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 1433755993658134, undefined, [position, rotation]); }
+  static initPositionRotation12983(position: SDKHandle, rotation: SDKHandle): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 1433755993658134, undefined, [position, rotation]); }
   /**
    * init(position: simd_float3 = .zero, rotation: simd_quatf)
    * @availability iOS 16.0+
    */
-  static initPositionRotation32075(position: SDKHandle, rotation: SDKHandle): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 1494084311857260, undefined, [position, rotation]); }
+  static initPositionRotation32075(position: SDKHandle, rotation: SDKHandle): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 1494084311857260, undefined, [position, rotation]); }
   /**
    * init?(transform: AffineTransform3D)
    * @availability iOS 16.0+
    */
-  static initTransform(transform: AffineTransform3D): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_d6c5d10d3352e6ec", 3083753360802648, undefined, [transform]); }
+  static initTransform(transform: AffineTransform3D): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_a956b86ef7a76a8e", 3083753360802648, undefined, [transform]); }
   /**
    * init?(transform: ProjectiveTransform3D)
    * @availability iOS 16.0+
    */
-  static initTransform52696(transform: ProjectiveTransform3D): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_d6c5d10d3352e6ec", 771107758919738, undefined, [transform]); }
+  static initTransform52696(transform: ProjectiveTransform3D): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_a956b86ef7a76a8e", 771107758919738, undefined, [transform]); }
   /**
    * init?(_ matrix: simd_float4x4)
    * @availability iOS 16.0+
    */
-  static init(matrix: SDKHandle): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_d6c5d10d3352e6ec", 377254158854709, undefined, [matrix]); }
+  static init(matrix: SDKHandle): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_a956b86ef7a76a8e", 377254158854709, undefined, [matrix]); }
   /**
    * init?(_ matrix: simd_double4x4)
    * @availability iOS 16.0+
    */
-  static init18543(matrix: SDKHandle): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_d6c5d10d3352e6ec", 468773997845358, undefined, [matrix]); }
+  static init18543(matrix: SDKHandle): (Pose3D) | null { return callSDK<(Pose3D) | null>("Spatial_a956b86ef7a76a8e", 468773997845358, undefined, [matrix]); }
   /**
    * init(_ pose: Pose3DFloat)
    * @availability iOS 26.0+
    */
-  static init208(pose: Pose3DFloat): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 2104180638200720, undefined, [pose]); }
+  static init208(pose: Pose3DFloat): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 2104180638200720, undefined, [pose]); }
   /**
    * init(position: Point3D, rotation: Rotation3D)
    * @availability iOS 16.0+
    */
-  static initPositionRotation57303(position: Point3D, rotation: Rotation3D): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 3155457879124518, undefined, [position, rotation]); }
+  static initPositionRotation57303(position: Point3D, rotation: Rotation3D): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 3155457879124518, undefined, [position, rotation]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init39526(): Pose3D { return callSDK<Pose3D>("Spatial_d6c5d10d3352e6ec", 3608588394885301, undefined, []); }
+  static init39526(): Pose3D { return callSDK<Pose3D>("Spatial_a956b86ef7a76a8e", 3608588394885301, undefined, []); }
   declare readonly $type: { "c:@SA@SPPose3D": true };
 }
 
@@ -1961,139 +1961,139 @@ export class Pose3DFloat extends SDKHandle {
    * var position: Point3DFloat
    * @availability iOS 26.0+
    */
-  get position(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 4340858626719620, this, []); }
-  set position(value: Point3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 304639605548716, this, [value]); }
+  get position(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 4340858626719620, this, []); }
+  set position(value: Point3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 304639605548716, this, [value]); }
   /**
    * var rotation: Rotation3DFloat
    * @availability iOS 26.0+
    */
-  get rotation(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 2287359871066143, this, []); }
-  set rotation(value: Rotation3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 298111711153728, this, [value]); }
+  get rotation(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 2287359871066143, this, []); }
+  set rotation(value: Rotation3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 298111711153728, this, [value]); }
   /**
    * var isIdentity: Bool { get }
    * @availability iOS 26.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3619716853946384, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3619716853946384, this, []); }
   /**
    * func translated(by offset: Vector3DFloat) -> Pose3DFloat
    * @availability iOS 26.0+
    */
-  translated(offset: Vector3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 62086778486652, this, [offset]); }
+  translated(offset: Vector3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 62086778486652, this, [offset]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 942558775175205, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 942558775175205, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3521262920947649, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3521262920947649, this, []); }
   /**
    * func concatenating(_ transform: Pose3DFloat) -> Pose3DFloat
    * @availability iOS 26.0+
    */
-  concatenating(transform: Pose3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 4316498513565296, this, [transform]); }
+  concatenating(transform: Pose3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 4316498513565296, this, [transform]); }
   /**
    * func concatenating(_ transform: ScaledPose3DFloat) -> ScaledPose3DFloat
    * @availability iOS 26.0+
    */
-  concatenating79614(transform: ScaledPose3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 788423685597333, this, [transform]); }
+  concatenating79614(transform: ScaledPose3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 788423685597333, this, [transform]); }
   /**
    * func isApproximatelyEqual(to other: Pose3DFloat, tolerance: Float = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 26.0+
    */
-  isApproximatelyEqual(other: Pose3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 4381926582096607, this, [other, tolerance]); }
+  isApproximatelyEqual(other: Pose3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 4381926582096607, this, [other, tolerance]); }
   /**
    * mutating func flip(along axis: Axis3D)
    * @availability iOS 26.0+
    */
-  flip(axis: Axis3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 4388002518795896, this, [axis]); }
+  flip(axis: Axis3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 4388002518795896, this, [axis]); }
   /**
    * var matrix: simd_float4x4 { get }
    * @availability iOS 26.0+
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 2365802218979754, this, []); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 2365802218979754, this, []); }
   /**
    * func flipped(along axis: Axis3D) -> Pose3DFloat
    * @availability iOS 26.0+
    */
-  flipped(axis: Axis3D): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 1682546281803227, this, [axis]); }
+  flipped(axis: Axis3D): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 1682546281803227, this, [axis]); }
   /**
    * init(forward: Vector3DFloat, up: Vector3DFloat = Vector3DFloat(x: 0, y: 1, z: 0))
    * @availability iOS 26.0+
    */
-  static initForwardUp(forward: Vector3DFloat, up?: Vector3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 522816057919350, undefined, [forward, up]); }
+  static initForwardUp(forward: Vector3DFloat, up?: Vector3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 522816057919350, undefined, [forward, up]); }
   /**
    * var inverse: Pose3DFloat { get }
    * @availability iOS 26.0+
    */
-  get inverse(): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 3956595466701655, this, []); }
+  get inverse(): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 3956595466701655, this, []); }
   /**
    * func rotated(by rotation: Rotation3DFloat) -> Pose3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy(rotation: Rotation3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 3802700559989036, this, [rotation]); }
+  rotatedBy(rotation: Rotation3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 3802700559989036, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatf) -> Pose3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy10834(quaternion: SDKHandle): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 1867160788522497, this, [quaternion]); }
+  rotatedBy10834(quaternion: SDKHandle): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 1867160788522497, this, [quaternion]); }
   /**
    * func applying(_ transform: ProjectiveTransform3DFloat) -> Pose3DFloat
    * @availability iOS 27.0+
    */
-  applying(transform: ProjectiveTransform3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 2339822462640620, this, [transform]); }
+  applying(transform: ProjectiveTransform3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 2339822462640620, this, [transform]); }
   /**
    * static var identity: Pose3DFloat { get }
    * @availability iOS 26.0+
    */
-  static get identity(): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 926381351016590, undefined, []); }
+  static get identity(): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 926381351016590, undefined, []); }
   /**
    * init(position: Point3DFloat = .zero, target: Point3DFloat, up: Vector3DFloat = Vector3DFloat(x: 0, y: 1, z: 0))
    * @availability iOS 26.0+
    */
-  static initPositionTargetUp(position: Point3DFloat, target: Point3DFloat, up?: Vector3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 4185164353634036, undefined, [position, target, up]); }
+  static initPositionTargetUp(position: Point3DFloat, target: Point3DFloat, up?: Vector3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 4185164353634036, undefined, [position, target, up]); }
   /**
    * init(position: Point3DFloat = .zero, rotation: Rotation3DFloat)
    * @availability iOS 26.0+
    */
-  static initPositionRotation(position: Point3DFloat, rotation: Rotation3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 136095015219659, undefined, [position, rotation]); }
+  static initPositionRotation(position: Point3DFloat, rotation: Rotation3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 136095015219659, undefined, [position, rotation]); }
   /**
    * init(position: simd_float3 = .zero, rotation: simd_quatf)
    * @availability iOS 26.0+
    */
-  static initPositionRotation66407(position: SDKHandle, rotation: SDKHandle): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 4255015859553177, undefined, [position, rotation]); }
+  static initPositionRotation66407(position: SDKHandle, rotation: SDKHandle): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 4255015859553177, undefined, [position, rotation]); }
   /**
    * init?(transform: AffineTransform3DFloat)
    * @availability iOS 26.0+
    */
-  static initTransform(transform: AffineTransform3DFloat): (Pose3DFloat) | null { return callSDK<(Pose3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 3256842128418266, undefined, [transform]); }
+  static initTransform(transform: AffineTransform3DFloat): (Pose3DFloat) | null { return callSDK<(Pose3DFloat) | null>("Spatial_a956b86ef7a76a8e", 3256842128418266, undefined, [transform]); }
   /**
    * init?(transform: ProjectiveTransform3DFloat)
    * @availability iOS 26.0+
    */
-  static initTransform19709(transform: ProjectiveTransform3DFloat): (Pose3DFloat) | null { return callSDK<(Pose3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 2037471474036974, undefined, [transform]); }
+  static initTransform19709(transform: ProjectiveTransform3DFloat): (Pose3DFloat) | null { return callSDK<(Pose3DFloat) | null>("Spatial_a956b86ef7a76a8e", 2037471474036974, undefined, [transform]); }
   /**
    * init?(_ matrix: simd_float4x4)
    * @availability iOS 26.0+
    */
-  static init(matrix: SDKHandle): (Pose3DFloat) | null { return callSDK<(Pose3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 1909268613880156, undefined, [matrix]); }
+  static init(matrix: SDKHandle): (Pose3DFloat) | null { return callSDK<(Pose3DFloat) | null>("Spatial_a956b86ef7a76a8e", 1909268613880156, undefined, [matrix]); }
   /**
    * init(_ pose: Pose3D)
    * @availability iOS 26.0+
    */
-  static init32887(pose: Pose3D): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 3807479675762960, undefined, [pose]); }
+  static init32887(pose: Pose3D): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 3807479675762960, undefined, [pose]); }
   /**
    * init(position: Point3DFloat, rotation: Rotation3DFloat)
    * @availability iOS 26.0+
    */
-  static initPositionRotation33371(position: Point3DFloat, rotation: Rotation3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 1702313061271650, undefined, [position, rotation]); }
+  static initPositionRotation33371(position: Point3DFloat, rotation: Rotation3DFloat): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 1702313061271650, undefined, [position, rotation]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init30730(): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_d6c5d10d3352e6ec", 1485999309942342, undefined, []); }
+  static init30730(): Pose3DFloat { return callSDK<Pose3DFloat>("Spatial_a956b86ef7a76a8e", 1485999309942342, undefined, []); }
   declare readonly $type: { "c:@SA@SPPose3DFloat": true };
 }
 
@@ -2236,272 +2236,272 @@ export class ProjectiveTransform3D extends SDKHandle {
    * func concatenating(_ t2: ProjectiveTransform3D) -> ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  concatenating(t2: ProjectiveTransform3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 4107325293420631, this, [t2]); }
+  concatenating(t2: ProjectiveTransform3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 4107325293420631, this, [t2]); }
   /**
    * func is3DProjection() -> Bool
    * @availability iOS 16.0+
    */
-  is3DProjection(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2244944663091151, this, []); }
+  is3DProjection(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2244944663091151, this, []); }
   /**
    * var isAffine: Bool { get }
    * @availability iOS 16.0+
    */
-  get isAffine(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1374619652762846, this, []); }
+  get isAffine(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1374619652762846, this, []); }
   /**
    * var isIdentity: Bool { get }
    * @availability iOS 16.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3337132851615450, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3337132851615450, this, []); }
   /**
    * var isInvertible: Bool { get }
    * @availability iOS 16.0+
    */
-  get isInvertible(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3145062204812979, this, []); }
+  get isInvertible(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3145062204812979, this, []); }
   /**
    * var isRectilinear: Bool { get }
    * @availability iOS 16.0+
    */
-  get isRectilinear(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1459533027032513, this, []); }
+  get isRectilinear(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1459533027032513, this, []); }
   /**
    * var isTranslation: Bool { get }
    * @availability iOS 16.0+
    */
-  get isTranslation(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2259129314832869, this, []); }
+  get isTranslation(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2259129314832869, this, []); }
   /**
    * var isUniform: Bool { get }
    * @availability iOS 16.0+
    */
-  get isUniform(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1454153309491477, this, []); }
+  get isUniform(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1454153309491477, this, []); }
   /**
    * init(leftTangent: Double, rightTangent: Double, topTangent: Double, bottomTangent: Double, nearZ: Double, farZ: Double, reverseZ: Bool)
    * @availability iOS 16.0+
    */
-  static initLeftTangentRightTangentTopTangentBottomTangentNearZFarZReverseZ(leftTangent: number, rightTangent: number, topTangent: number, bottomTangent: number, nearZ: number, farZ: number, reverseZ: boolean): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 41375509173367, undefined, [leftTangent, rightTangent, topTangent, bottomTangent, nearZ, farZ, reverseZ]); }
+  static initLeftTangentRightTangentTopTangentBottomTangentNearZFarZReverseZ(leftTangent: number, rightTangent: number, topTangent: number, bottomTangent: number, nearZ: number, farZ: number, reverseZ: boolean): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 41375509173367, undefined, [leftTangent, rightTangent, topTangent, bottomTangent, nearZ, farZ, reverseZ]); }
   /**
    * init(rotation: Rotation3D)
    * @availability iOS 16.0+
    */
-  static initRotation(rotation: Rotation3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 396558987231088, undefined, [rotation]); }
+  static initRotation(rotation: Rotation3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 396558987231088, undefined, [rotation]); }
   /**
    * init(scale: Size3D)
    * @availability iOS 16.0+
    */
-  static initScale(scale: Size3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 2443631589312719, undefined, [scale]); }
+  static initScale(scale: Size3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 2443631589312719, undefined, [scale]); }
   /**
    * init(translation offset: Vector3D)
    * @availability iOS 16.0+
    */
-  static initTranslation(offset: Vector3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 1647923074973977, undefined, [offset]); }
+  static initTranslation(offset: Vector3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 1647923074973977, undefined, [offset]); }
   /**
    * init(_ matrix: simd_double4x4)
    * @availability iOS 16.0+
    */
-  static init(matrix: SDKHandle): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 3037618145479869, undefined, [matrix]); }
+  static init(matrix: SDKHandle): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 3037618145479869, undefined, [matrix]); }
   /**
    * init(_ transform: AffineTransform3D)
    * @availability iOS 16.0+
    */
-  static init30089(transform: AffineTransform3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 3013419370758837, undefined, [transform]); }
+  static init30089(transform: AffineTransform3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 3013419370758837, undefined, [transform]); }
   /**
    * init(fovY: Angle2D, aspectRatio: Double, nearZ: Double, farZ: Double)
    * @availability iOS 18.0+
    */
-  static initFovYAspectRatioNearZFarZ(fovY: Angle2D, aspectRatio: number, nearZ: number, farZ: number): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 4359779243969031, undefined, [fovY, aspectRatio, nearZ, farZ]); }
+  static initFovYAspectRatioNearZFarZ(fovY: Angle2D, aspectRatio: number, nearZ: number, farZ: number): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 4359779243969031, undefined, [fovY, aspectRatio, nearZ, farZ]); }
   /**
    * init(fovY: Angle2D, aspectRatio: Double, nearZ: Double, farZ: Double, reverseZ: Bool)
    * @availability iOS 18.0+
    */
-  static initFovYAspectRatioNearZFarZReverseZ(fovY: Angle2D, aspectRatio: number, nearZ: number, farZ: number, reverseZ: boolean): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 2760605041374525, undefined, [fovY, aspectRatio, nearZ, farZ, reverseZ]); }
+  static initFovYAspectRatioNearZFarZReverseZ(fovY: Angle2D, aspectRatio: number, nearZ: number, farZ: number, reverseZ: boolean): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 2760605041374525, undefined, [fovY, aspectRatio, nearZ, farZ, reverseZ]); }
   /**
    * init(fovyRadians: Double, aspectRatio: Double, nearZ: Double, farZ: Double)
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  static initFovyRadiansAspectRatioNearZFarZ(fovyRadians: number, aspectRatio: number, nearZ: number, farZ: number): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 2328053725434103, undefined, [fovyRadians, aspectRatio, nearZ, farZ]); }
+  static initFovyRadiansAspectRatioNearZFarZ(fovyRadians: number, aspectRatio: number, nearZ: number, farZ: number): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 2328053725434103, undefined, [fovyRadians, aspectRatio, nearZ, farZ]); }
   /**
    * init(fovyRadians: Double, aspectRatio: Double, nearZ: Double, farZ: Double, reverseZ: Bool)
    * @availability iOS 16.0+
    * @deprecated iOS 18.0
    */
-  static initFovyRadiansAspectRatioNearZFarZReverseZ(fovyRadians: number, aspectRatio: number, nearZ: number, farZ: number, reverseZ: boolean): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 1495859952630517, undefined, [fovyRadians, aspectRatio, nearZ, farZ, reverseZ]); }
+  static initFovyRadiansAspectRatioNearZFarZReverseZ(fovyRadians: number, aspectRatio: number, nearZ: number, farZ: number, reverseZ: boolean): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 1495859952630517, undefined, [fovyRadians, aspectRatio, nearZ, farZ, reverseZ]); }
   /**
    * func rotated(by rotation: Rotation3D) -> ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  rotatedBy(rotation: Rotation3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 2677906884044841, this, [rotation]); }
+  rotatedBy(rotation: Rotation3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 2677906884044841, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatd) -> ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  rotatedBy1264(quaternion: SDKHandle): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 2231021951126722, this, [quaternion]); }
+  rotatedBy1264(quaternion: SDKHandle): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 2231021951126722, this, [quaternion]); }
   /**
    * func scaled(by scale: Size3D) -> ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  scaled(scale: Size3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 170396375589596, this, [scale]); }
+  scaled(scale: Size3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 170396375589596, this, [scale]); }
   /**
    * func uniformlyScaled(by scale: Double) -> ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  uniformlyScaled(scale: number): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 653319178972454, this, [scale]); }
+  uniformlyScaled(scale: number): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 653319178972454, this, [scale]); }
   /**
    * func translated(by offset: Vector3D) -> ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  translatedBy(offset: Vector3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 2485497829517015, this, [offset]); }
+  translatedBy(offset: Vector3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 2485497829517015, this, [offset]); }
   /**
    * var matrix: simd_double4x4
    * @availability iOS 16.0+
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 682204462919770, this, []); }
-  set matrix(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 995171043539677, this, [value]); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 682204462919770, this, []); }
+  set matrix(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 995171043539677, this, [value]); }
   /**
    * static let identity: ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  static get identity(): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 3672035203872954, undefined, []); }
+  static get identity(): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 3672035203872954, undefined, []); }
   /**
    * init(matrix: simd_double4x4)
    * @availability iOS 16.0+
    */
-  static initMatrix(matrix: SDKHandle): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 2241318573638549, undefined, [matrix]); }
+  static initMatrix(matrix: SDKHandle): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 2241318573638549, undefined, [matrix]); }
   /**
    * init(scaledPose: ScaledPose3D)
    * @availability iOS 18.0+
    */
-  static initScaledPose(scaledPose: ScaledPose3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 10408046488043, undefined, [scaledPose]); }
+  static initScaledPose(scaledPose: ScaledPose3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 10408046488043, undefined, [scaledPose]); }
   /**
    * func translated(by size: Size3D) -> ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  translatedBy86539(size: Size3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 3657943685906600, this, [size]); }
+  translatedBy86539(size: Size3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 3657943685906600, this, [size]); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 1301460871973665, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 1301460871973665, this, []); }
   /**
    * init(translation: Size3D)
    * @availability iOS 16.0+
    */
-  static initTranslation37038(translation: Size3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 417437726093108, undefined, [translation]); }
+  static initTranslation37038(translation: Size3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 417437726093108, undefined, [translation]); }
   /**
    * var translation: Vector3D { get set }
    * @availability iOS 16.0+
    */
-  get translation(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 2147356195003083, this, []); }
-  set translation(value: Vector3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3347236508576886, this, [value]); }
+  get translation(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 2147356195003083, this, []); }
+  set translation(value: Vector3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3347236508576886, this, [value]); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3615561136590692, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3615561136590692, this, []); }
   /**
    * var scaleComponent: Size3D { get }
    * @availability iOS 17.0+
    */
-  get scaleComponent(): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 2017938383441707, this, []); }
+  get scaleComponent(): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 2017938383441707, this, []); }
   /**
    * func isApproximatelyEqual(to other: ProjectiveTransform3D, tolerance: Double = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 16.0+
    */
-  isApproximatelyEqual(other: ProjectiveTransform3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2976692924517664, this, [other, tolerance]); }
+  isApproximatelyEqual(other: ProjectiveTransform3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2976692924517664, this, [other, tolerance]); }
   /**
    * mutating func flip(along axis: Axis3D)
    * @availability iOS 16.0+
    */
-  flip(axis: Axis3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 393695160115940, this, [axis]); }
+  flip(axis: Axis3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 393695160115940, this, [axis]); }
   /**
    * init(pose: Pose3D)
    * @availability iOS 16.0+
    */
-  static initPose(pose: Pose3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 504109593264134, undefined, [pose]); }
+  static initPose(pose: Pose3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 504109593264134, undefined, [pose]); }
   /**
    * init(scale: Size3D = Size3D(width: 1.0, height: 1, depth: 1), rotation: Rotation3D = .zero, translation: Size3D)
    * @availability iOS 16.0+
    */
-  static initScaleRotationTranslation(scale: Size3D, rotation: Rotation3D, translation: Size3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 3449608881228549, undefined, [scale, rotation, translation]); }
+  static initScaleRotationTranslation(scale: Size3D, rotation: Rotation3D, translation: Size3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 3449608881228549, undefined, [scale, rotation, translation]); }
   /**
    * init(scale: Size3D = Size3D(width: 1.0, height: 1, depth: 1), rotation: Rotation3D = .zero, translation: Vector3D = .zero)
    * @availability iOS 16.0+
    */
-  static initScaleRotationTranslation71410(scale?: Size3D, rotation?: Rotation3D, translation?: Vector3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 1038315442576620, undefined, [scale, rotation, translation]); }
+  static initScaleRotationTranslation71410(scale?: Size3D, rotation?: Rotation3D, translation?: Vector3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 1038315442576620, undefined, [scale, rotation, translation]); }
   /**
    * var scale: Size3D? { get }
    * @availability iOS 16.0+
    */
-  get scale(): (Size3D) | null { return callSDK<(Size3D) | null>("Spatial_d6c5d10d3352e6ec", 3204217321511306, this, []); }
+  get scale(): (Size3D) | null { return callSDK<(Size3D) | null>("Spatial_a956b86ef7a76a8e", 3204217321511306, this, []); }
   /**
    * init(shear: AxisWithFactors)
    * @availability iOS 16.0+
    */
-  static initShear(shear: AxisWithFactors): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 2135582107828273, undefined, [shear]); }
+  static initShear(shear: AxisWithFactors): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 2135582107828273, undefined, [shear]); }
   /**
    * init(matrix: simd_float4x4)
    * @availability iOS 16.0+
    */
-  static initMatrix17069(matrix: SDKHandle): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 3279654213779636, undefined, [matrix]); }
+  static initMatrix17069(matrix: SDKHandle): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 3279654213779636, undefined, [matrix]); }
   /**
    * var offset: Vector3D { get set }
    * @availability iOS 16.0+
    */
-  get offset(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 2179225646451038, this, []); }
-  set offset(value: Vector3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 973660781954999, this, [value]); }
+  get offset(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 2179225646451038, this, []); }
+  set offset(value: Vector3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 973660781954999, this, [value]); }
   /**
    * func flipped(along axis: Axis3D) -> ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  flipped(axis: Axis3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 3744844288763508, this, [axis]); }
+  flipped(axis: Axis3D): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 3744844288763508, this, [axis]); }
   /**
    * var inverse: ProjectiveTransform3D? { get }
    * @availability iOS 16.0+
    */
-  get inverse(): $SDK5 { return callSDK<$SDK5>("Spatial_d6c5d10d3352e6ec", 1357919838283756, this, []); }
+  get inverse(): $SDK5 { return callSDK<$SDK5>("Spatial_a956b86ef7a76a8e", 1357919838283756, this, []); }
   /**
    * func sheared(_ shear: AxisWithFactors) -> ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  sheared(shear: AxisWithFactors): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 1638797521750560, this, [shear]); }
+  sheared(shear: AxisWithFactors): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 1638797521750560, this, [shear]); }
   /**
    * func inverted() -> ProjectiveTransform3D?
    * @availability iOS 16.0+
    */
-  inverted(): $SDK5 { return callSDK<$SDK5>("Spatial_d6c5d10d3352e6ec", 2653923574306520, this, []); }
+  inverted(): $SDK5 { return callSDK<$SDK5>("Spatial_a956b86ef7a76a8e", 2653923574306520, this, []); }
   /**
    * var rotation: Rotation3D? { get }
    * @availability iOS 16.0+
    */
-  get rotation(): (Rotation3D) | null { return callSDK<(Rotation3D) | null>("Spatial_d6c5d10d3352e6ec", 4281680104699747, this, []); }
+  get rotation(): (Rotation3D) | null { return callSDK<(Rotation3D) | null>("Spatial_a956b86ef7a76a8e", 4281680104699747, this, []); }
   /**
    * func scaledBy(x: Double, y: Double, z: Double) -> ProjectiveTransform3D
    * @availability iOS 16.0+
    */
-  scaledBy(x: number, y: number, z: number): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 3047992887729784, this, [x, y, z]); }
+  scaledBy(x: number, y: number, z: number): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 3047992887729784, this, [x, y, z]); }
   /**
    * func isUniform(overDimensions: Dimension3DSet) -> Bool
    * @availability iOS 16.0+
    */
-  isUniformOverDimensions(overDimensions: Dimension3DSet): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2831787025155719, this, [overDimensions]); }
+  isUniformOverDimensions(overDimensions: Dimension3DSet): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2831787025155719, this, [overDimensions]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init26901(): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 3393514459045287, undefined, []); }
+  static init26901(): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 3393514459045287, undefined, []); }
   /**
    * init(_ transform: ProjectiveTransform3DFloat)
    * @availability iOS 26.0+
    */
-  static init68251(transform: ProjectiveTransform3DFloat): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 26004654827043, undefined, [transform]); }
+  static init68251(transform: ProjectiveTransform3DFloat): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 26004654827043, undefined, [transform]); }
   /**
    * init(_ matrix: simd_float4x4)
    * @availability iOS 16.0+
    */
-  static init88572(matrix: SDKHandle): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 5678123518874, undefined, [matrix]); }
+  static init88572(matrix: SDKHandle): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 5678123518874, undefined, [matrix]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init85817(): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 115381555301861, undefined, []); }
+  static init85817(): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 115381555301861, undefined, []); }
   declare readonly $type: { "c:@SA@SPProjectiveTransform3D": true };
 }
 
@@ -2580,221 +2580,221 @@ export class ProjectiveTransform3DFloat extends SDKHandle {
    * func concatenating(_ t2: ProjectiveTransform3DFloat) -> ProjectiveTransform3DFloat
    * @availability iOS 26.0+
    */
-  concatenating(t2: ProjectiveTransform3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 2247572752477310, this, [t2]); }
+  concatenating(t2: ProjectiveTransform3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 2247572752477310, this, [t2]); }
   /**
    * func is3DFloatProjection() -> Bool
    * @availability iOS 26.0+
    */
-  is3DFloatProjection(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3274982580668570, this, []); }
+  is3DFloatProjection(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3274982580668570, this, []); }
   /**
    * var isAffine: Bool { get }
    * @availability iOS 26.0+
    */
-  get isAffine(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 20623541011068, this, []); }
+  get isAffine(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 20623541011068, this, []); }
   /**
    * var isIdentity: Bool { get }
    * @availability iOS 26.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3147292380616726, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3147292380616726, this, []); }
   /**
    * var isInvertible: Bool { get }
    * @availability iOS 26.0+
    */
-  get isInvertible(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3600240753428283, this, []); }
+  get isInvertible(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3600240753428283, this, []); }
   /**
    * var isRectilinear: Bool { get }
    * @availability iOS 26.0+
    */
-  get isRectilinear(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3690113095951628, this, []); }
+  get isRectilinear(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3690113095951628, this, []); }
   /**
    * var isTranslation: Bool { get }
    * @availability iOS 26.0+
    */
-  get isTranslation(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 246842563962714, this, []); }
+  get isTranslation(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 246842563962714, this, []); }
   /**
    * var isUniform: Bool { get }
    * @availability iOS 26.0+
    */
-  get isUniform(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 4473387722215395, this, []); }
+  get isUniform(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 4473387722215395, this, []); }
   /**
    * init(leftTangent: Float, rightTangent: Float, topTangent: Float, bottomTangent: Float, nearZ: Float, farZ: Float, reverseZ: Bool)
    * @availability iOS 26.0+
    */
-  static initLeftTangentRightTangentTopTangentBottomTangentNearZFarZReverseZ(leftTangent: number, rightTangent: number, topTangent: number, bottomTangent: number, nearZ: number, farZ: number, reverseZ: boolean): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 491322993248647, undefined, [leftTangent, rightTangent, topTangent, bottomTangent, nearZ, farZ, reverseZ]); }
+  static initLeftTangentRightTangentTopTangentBottomTangentNearZFarZReverseZ(leftTangent: number, rightTangent: number, topTangent: number, bottomTangent: number, nearZ: number, farZ: number, reverseZ: boolean): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 491322993248647, undefined, [leftTangent, rightTangent, topTangent, bottomTangent, nearZ, farZ, reverseZ]); }
   /**
    * init(rotation: Rotation3DFloat)
    * @availability iOS 26.0+
    */
-  static initRotation(rotation: Rotation3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1758893667956906, undefined, [rotation]); }
+  static initRotation(rotation: Rotation3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1758893667956906, undefined, [rotation]); }
   /**
    * init(scale: Size3DFloat)
    * @availability iOS 26.0+
    */
-  static initScale(scale: Size3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 420479226595591, undefined, [scale]); }
+  static initScale(scale: Size3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 420479226595591, undefined, [scale]); }
   /**
    * init(translation offset: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static initTranslation(offset: Vector3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 3133508608973583, undefined, [offset]); }
+  static initTranslation(offset: Vector3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 3133508608973583, undefined, [offset]); }
   /**
    * init(_ matrix: simd_float4x4)
    * @availability iOS 26.0+
    */
-  static init(matrix: SDKHandle): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 160136268516133, undefined, [matrix]); }
+  static init(matrix: SDKHandle): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 160136268516133, undefined, [matrix]); }
   /**
    * init(_ transform: AffineTransform3DFloat)
    * @availability iOS 26.0+
    */
-  static init29719(transform: AffineTransform3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 2239977624634323, undefined, [transform]); }
+  static init29719(transform: AffineTransform3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 2239977624634323, undefined, [transform]); }
   /**
    * init(fovY: Angle2DFloat, aspectRatio: Float, nearZ: Float, farZ: Float)
    * @availability iOS 26.0+
    */
-  static initFovYAspectRatioNearZFarZ(fovY: Angle2DFloat, aspectRatio: number, nearZ: number, farZ: number): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 4261854967546303, undefined, [fovY, aspectRatio, nearZ, farZ]); }
+  static initFovYAspectRatioNearZFarZ(fovY: Angle2DFloat, aspectRatio: number, nearZ: number, farZ: number): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 4261854967546303, undefined, [fovY, aspectRatio, nearZ, farZ]); }
   /**
    * init(fovY: Angle2DFloat, aspectRatio: Float, nearZ: Float, farZ: Float, reverseZ: Bool)
    * @availability iOS 26.0+
    */
-  static initFovYAspectRatioNearZFarZReverseZ(fovY: Angle2DFloat, aspectRatio: number, nearZ: number, farZ: number, reverseZ: boolean): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 747436142833459, undefined, [fovY, aspectRatio, nearZ, farZ, reverseZ]); }
+  static initFovYAspectRatioNearZFarZReverseZ(fovY: Angle2DFloat, aspectRatio: number, nearZ: number, farZ: number, reverseZ: boolean): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 747436142833459, undefined, [fovY, aspectRatio, nearZ, farZ, reverseZ]); }
   /**
    * func rotated(by rotation: Rotation3DFloat) -> ProjectiveTransform3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy(rotation: Rotation3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1332674502851929, this, [rotation]); }
+  rotatedBy(rotation: Rotation3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1332674502851929, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatf) -> ProjectiveTransform3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy43566(quaternion: SDKHandle): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 935226038671679, this, [quaternion]); }
+  rotatedBy43566(quaternion: SDKHandle): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 935226038671679, this, [quaternion]); }
   /**
    * func scaled(by scale: Size3DFloat) -> ProjectiveTransform3DFloat
    * @availability iOS 26.0+
    */
-  scaled(scale: Size3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1558461242116196, this, [scale]); }
+  scaled(scale: Size3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1558461242116196, this, [scale]); }
   /**
    * func uniformlyScaled(by scale: Float) -> ProjectiveTransform3DFloat
    * @availability iOS 26.0+
    */
-  uniformlyScaled(scale: number): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1820530713924634, this, [scale]); }
+  uniformlyScaled(scale: number): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1820530713924634, this, [scale]); }
   /**
    * func translated(by offset: Vector3DFloat) -> ProjectiveTransform3DFloat
    * @availability iOS 26.0+
    */
-  translated(offset: Vector3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1799084010194421, this, [offset]); }
+  translated(offset: Vector3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1799084010194421, this, [offset]); }
   /**
    * var matrix: simd_float4x4
    * @availability iOS 26.0+
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3359519545217448, this, []); }
-  set matrix(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 890564028709883, this, [value]); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3359519545217448, this, []); }
+  set matrix(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 890564028709883, this, [value]); }
   /** static let identity: ProjectiveTransform3DFloat */
-  static get identity(): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1670100859685736, undefined, []); }
+  static get identity(): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1670100859685736, undefined, []); }
   /**
    * init(matrix: simd_float4x4)
    * @availability iOS 26.0+
    */
-  static initMatrix(matrix: SDKHandle): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 940372650853665, undefined, [matrix]); }
+  static initMatrix(matrix: SDKHandle): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 940372650853665, undefined, [matrix]); }
   /**
    * init(scaledPose: ScaledPose3DFloat)
    * @availability iOS 26.0+
    */
-  static initScaledPose(scaledPose: ScaledPose3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 3254486470351563, undefined, [scaledPose]); }
+  static initScaledPose(scaledPose: ScaledPose3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 3254486470351563, undefined, [scaledPose]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 64890729924936, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 64890729924936, this, []); }
   /**
    * var translation: Vector3DFloat { get set }
    * @availability iOS 26.0+
    */
-  get translation(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3941080414907668, this, []); }
-  set translation(value: Vector3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3950959000733910, this, [value]); }
+  get translation(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3941080414907668, this, []); }
+  set translation(value: Vector3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3950959000733910, this, [value]); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 789340399228073, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 789340399228073, this, []); }
   /**
    * var scaleComponent: Size3DFloat { get }
    * @availability iOS 26.0+
    */
-  get scaleComponent(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 1263924677361002, this, []); }
+  get scaleComponent(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 1263924677361002, this, []); }
   /**
    * func isApproximatelyEqual(to other: ProjectiveTransform3DFloat, tolerance: Float = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 26.0+
    */
-  isApproximatelyEqual(other: ProjectiveTransform3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 944214133550714, this, [other, tolerance]); }
+  isApproximatelyEqual(other: ProjectiveTransform3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 944214133550714, this, [other, tolerance]); }
   /**
    * mutating func flip(along axis: Axis3D)
    * @availability iOS 26.0+
    */
-  flip(axis: Axis3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 1871294319243890, this, [axis]); }
+  flip(axis: Axis3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 1871294319243890, this, [axis]); }
   /**
    * init(pose: Pose3DFloat)
    * @availability iOS 26.0+
    */
-  static initPose(pose: Pose3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 2942722850311368, undefined, [pose]); }
+  static initPose(pose: Pose3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 2942722850311368, undefined, [pose]); }
   /**
    * init(scale: Size3DFloat = Size3DFloat(width: 1.0, height: 1, depth: 1), rotation: Rotation3DFloat = .identity, translation: Vector3DFloat = .zero)
    * @availability iOS 26.0+
    */
-  static initScaleRotationTranslation(scale?: Size3DFloat, rotation?: Rotation3DFloat, translation?: Vector3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 2697869484151283, undefined, [scale, rotation, translation]); }
+  static initScaleRotationTranslation(scale?: Size3DFloat, rotation?: Rotation3DFloat, translation?: Vector3DFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 2697869484151283, undefined, [scale, rotation, translation]); }
   /**
    * init(shear: AxisWithFactorsFloat)
    * @availability iOS 26.0+
    */
-  static initShear(shear: AxisWithFactorsFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1353157053249496, undefined, [shear]); }
+  static initShear(shear: AxisWithFactorsFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1353157053249496, undefined, [shear]); }
   /**
    * func flipped(along axis: Axis3D) -> ProjectiveTransform3DFloat
    * @availability iOS 26.0+
    */
-  flipped(axis: Axis3D): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 2644515893594905, this, [axis]); }
+  flipped(axis: Axis3D): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 2644515893594905, this, [axis]); }
   /**
    * var inverse: ProjectiveTransform3DFloat? { get }
    * @availability iOS 26.0+
    */
-  get inverse(): (ProjectiveTransform3DFloat) | null { return callSDK<(ProjectiveTransform3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 1243039257830536, this, []); }
+  get inverse(): (ProjectiveTransform3DFloat) | null { return callSDK<(ProjectiveTransform3DFloat) | null>("Spatial_a956b86ef7a76a8e", 1243039257830536, this, []); }
   /**
    * func sheared(_ shear: AxisWithFactorsFloat) -> ProjectiveTransform3DFloat
    * @availability iOS 26.0+
    */
-  sheared(shear: AxisWithFactorsFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1892760011034539, this, [shear]); }
+  sheared(shear: AxisWithFactorsFloat): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1892760011034539, this, [shear]); }
   /**
    * var rotation: Rotation3DFloat? { get }
    * @availability iOS 26.0+
    */
-  get rotation(): (Rotation3DFloat) | null { return callSDK<(Rotation3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 1778116350607807, this, []); }
+  get rotation(): (Rotation3DFloat) | null { return callSDK<(Rotation3DFloat) | null>("Spatial_a956b86ef7a76a8e", 1778116350607807, this, []); }
   /**
    * func scaledBy(x: Float, y: Float, z: Float) -> ProjectiveTransform3DFloat
    * @availability iOS 26.0+
    */
-  scaledBy(x: number, y: number, z: number): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 4467506264321615, this, [x, y, z]); }
+  scaledBy(x: number, y: number, z: number): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 4467506264321615, this, [x, y, z]); }
   /**
    * func isUniform(overDimensions: Dimension3DSet) -> Bool
    * @availability iOS 26.0+
    */
-  isUniformOverDimensions(overDimensions: Dimension3DSet): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2963043168928248, this, [overDimensions]); }
+  isUniformOverDimensions(overDimensions: Dimension3DSet): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2963043168928248, this, [overDimensions]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init69738(): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 3469951439916227, undefined, []); }
+  static init69738(): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 3469951439916227, undefined, []); }
   /**
    * init(_ transform: ProjectiveTransform3D)
    * @availability iOS 26.0+
    */
-  static init65573(transform: ProjectiveTransform3D): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 1338016034940751, undefined, [transform]); }
+  static init65573(transform: ProjectiveTransform3D): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 1338016034940751, undefined, [transform]); }
   /**
    * init(_ matrix: simd_double4x4)
    * @availability iOS 26.0+
    */
-  static init47155(matrix: SDKHandle): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 3350859731738228, undefined, [matrix]); }
+  static init47155(matrix: SDKHandle): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 3350859731738228, undefined, [matrix]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init31608(): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 456060826996959, undefined, []); }
+  static init31608(): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 456060826996959, undefined, []); }
   declare readonly $type: { "c:@SA@SPProjectiveTransform3DFloat": true };
 }
 
@@ -2897,164 +2897,164 @@ export class Ray3D extends SDKHandle {
    * func intersects(sphereOrigin: Point3D, sphereRadius: Double) -> Bool
    * @availability iOS 18.0+
    */
-  intersectsSphereOriginSphereRadius(sphereOrigin: Point3D, sphereRadius: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 592387209655678, this, [sphereOrigin, sphereRadius]); }
+  intersectsSphereOriginSphereRadius(sphereOrigin: Point3D, sphereRadius: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 592387209655678, this, [sphereOrigin, sphereRadius]); }
   /**
    * func translated(by offset: Vector3D) -> Ray3D
    * @availability iOS 16.0+
    */
-  translatedBy(offset: Vector3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 4133793504081112, this, [offset]); }
+  translatedBy(offset: Vector3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 4133793504081112, this, [offset]); }
   /**
    * var direction: Vector3D
    * @availability iOS 16.0+
    */
-  get direction(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 4173560750168722, this, []); }
-  set direction(value: Vector3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3777481267120696, this, [value]); }
+  get direction(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 4173560750168722, this, []); }
+  set direction(value: Vector3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3777481267120696, this, [value]); }
   /**
    * var origin: Point3D
    * @availability iOS 16.0+
    */
-  get origin(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 1775285600651052, this, []); }
-  set origin(value: Point3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 301041692213356, this, [value]); }
+  get origin(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 1775285600651052, this, []); }
+  set origin(value: Point3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 301041692213356, this, [value]); }
   /**
    * static let infinity: Ray3D
    * @availability iOS 17.0+
    */
-  static get infinity(): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 3347078029294786, undefined, []); }
+  static get infinity(): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 3347078029294786, undefined, []); }
   /**
    * static let zero: Ray3D
    * @availability iOS 17.0+
    */
-  static get zero(): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 3770548449286804, undefined, []); }
+  static get zero(): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 3770548449286804, undefined, []); }
   /**
    * init(origin: Point3D, direction: Vector3D)
    * @availability iOS 16.0+
    */
-  static initOriginDirection(origin: Point3D, direction: Vector3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 1871552236073440, undefined, [origin, direction]); }
+  static initOriginDirection(origin: Point3D, direction: Vector3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 1871552236073440, undefined, [origin, direction]); }
   /**
    * func intersects(_ rect: Rect3D) -> Bool
    * @availability iOS 16.0+
    */
-  intersects(rect: Rect3D): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2697523535690050, this, [rect]); }
+  intersects(rect: Rect3D): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2697523535690050, this, [rect]); }
   /**
    * func translated(by size: Size3D) -> Ray3D
    * @availability iOS 16.0+
    */
-  translatedBy42390(size: Size3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 4167620336131507, this, [size]); }
+  translatedBy42390(size: Size3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 4167620336131507, this, [size]); }
   /**
    * func unapplying(_ scaledPose: ScaledPose3D) -> Ray3D
    * @availability iOS 18.0+
    */
-  unapplying(scaledPose: ScaledPose3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 2310019876907686, this, [scaledPose]); }
+  unapplying(scaledPose: ScaledPose3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 2310019876907686, this, [scaledPose]); }
   /**
    * func unapplying(_ transform: AffineTransform3D) -> Ray3D
    * @availability iOS 17.0+
    */
-  unapplying45786(transform: AffineTransform3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 3721019508994446, this, [transform]); }
+  unapplying45786(transform: AffineTransform3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 3721019508994446, this, [transform]); }
   /**
    * func unapplying(_ transform: ProjectiveTransform3D) -> Ray3D
    * @availability iOS 17.0+
    */
-  unapplying2691(transform: ProjectiveTransform3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 2356105034978948, this, [transform]); }
+  unapplying2691(transform: ProjectiveTransform3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 2356105034978948, this, [transform]); }
   /**
    * func unapplying(_ pose: Pose3D) -> Ray3D
    * @availability iOS 17.0+
    */
-  unapplying29422(pose: Pose3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 4115453147619120, this, [pose]); }
+  unapplying29422(pose: Pose3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 4115453147619120, this, [pose]); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 1737201047671268, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 1737201047671268, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 28842510140696, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 28842510140696, this, []); }
   /**
    * mutating func apply(_ pose: Pose3D)
    * @availability iOS 16.0+
    */
-  apply(pose: Pose3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 2200818397342860, this, [pose]); }
+  apply(pose: Pose3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 2200818397342860, this, [pose]); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 17.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2027373693468448, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2027373693468448, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 17.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 4425713612680758, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 4425713612680758, this, []); }
   /**
    * init(origin: Point3D = .zero, direction: Vector3D)
    * @availability iOS 16.0+
    */
-  static initOriginDirection88617(origin: Point3D, direction: Vector3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 426924045597585, undefined, [origin, direction]); }
+  static initOriginDirection88617(origin: Point3D, direction: Vector3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 426924045597585, undefined, [origin, direction]); }
   /**
    * init(origin: simd_double3 = .zero, direction: simd_double3)
    * @availability iOS 16.0+
    */
-  static initOriginDirection51440(origin: SDKHandle, direction: SDKHandle): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 188801848058983, undefined, [origin, direction]); }
+  static initOriginDirection51440(origin: SDKHandle, direction: SDKHandle): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 188801848058983, undefined, [origin, direction]); }
   /**
    * init(origin: simd_float3 = .zero, direction: simd_float3)
    * @availability iOS 16.0+
    */
-  static initOriginDirection5118(origin: SDKHandle, direction: SDKHandle): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 3468649180527830, undefined, [origin, direction]); }
+  static initOriginDirection5118(origin: SDKHandle, direction: SDKHandle): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 3468649180527830, undefined, [origin, direction]); }
   /**
    * func rotated(by quaternion: simd_quatd, around pivot: Point3D) -> Ray3D
    * @availability iOS 17.0+
    */
-  rotatedByAround(quaternion: SDKHandle, pivot: Point3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 579278687144967, this, [quaternion, pivot]); }
+  rotatedByAround(quaternion: SDKHandle, pivot: Point3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 579278687144967, this, [quaternion, pivot]); }
   /**
    * func rotated(by rotation: Rotation3D, around pivot: Point3D) -> Ray3D
    * @availability iOS 17.0+
    */
-  rotatedByAround10824(rotation: Rotation3D, pivot: Point3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 599097472775138, this, [rotation, pivot]); }
+  rotatedByAround10824(rotation: Rotation3D, pivot: Point3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 599097472775138, this, [rotation, pivot]); }
   /**
    * func rotated(by quaternion: simd_quatd) -> Ray3D
    * @availability iOS 16.0+
    */
-  rotatedBy(quaternion: SDKHandle): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 2592798339923640, this, [quaternion]); }
+  rotatedBy(quaternion: SDKHandle): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 2592798339923640, this, [quaternion]); }
   /**
    * func rotated(by rotation: Rotation3D) -> Ray3D
    * @availability iOS 16.0+
    */
-  rotatedBy30755(rotation: Rotation3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 86556644232219, this, [rotation]); }
+  rotatedBy30755(rotation: Rotation3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 86556644232219, this, [rotation]); }
   /**
    * func applying(_ scaledPose: ScaledPose3D) -> Ray3D
    * @availability iOS 18.0+
    */
-  applying(scaledPose: ScaledPose3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 1604499719020699, this, [scaledPose]); }
+  applying(scaledPose: ScaledPose3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 1604499719020699, this, [scaledPose]); }
   /**
    * func applying(_ transform: AffineTransform3D) -> Ray3D
    * @availability iOS 17.0+
    */
-  applying11592(transform: AffineTransform3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 4453076181222921, this, [transform]); }
+  applying11592(transform: AffineTransform3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 4453076181222921, this, [transform]); }
   /**
    * func applying(_ transform: ProjectiveTransform3D) -> Ray3D
    * @availability iOS 17.0+
    */
-  applying56857(transform: ProjectiveTransform3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 3031120669000900, this, [transform]); }
+  applying56857(transform: ProjectiveTransform3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 3031120669000900, this, [transform]); }
   /**
    * func applying(_ pose: Pose3D) -> Ray3D
    * @availability iOS 16.0+
    */
-  applying21312(pose: Pose3D): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 2205699817078036, this, [pose]); }
+  applying21312(pose: Pose3D): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 2205699817078036, this, [pose]); }
   /**
    * var isFinite: Bool { get }
    * @availability iOS 17.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1262556934824301, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1262556934824301, this, []); }
   /**
    * init(_ ray: Ray3DFloat)
    * @availability iOS 26.0+
    */
-  static init(ray: Ray3DFloat): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 1390355833167094, undefined, [ray]); }
+  static init(ray: Ray3DFloat): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 1390355833167094, undefined, [ray]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init39042(): Ray3D { return callSDK<Ray3D>("Spatial_d6c5d10d3352e6ec", 3081771410438235, undefined, []); }
+  static init39042(): Ray3D { return callSDK<Ray3D>("Spatial_a956b86ef7a76a8e", 3081771410438235, undefined, []); }
   declare readonly $type: { "c:@SA@SPRay3D": true };
 }
 
@@ -3133,154 +3133,154 @@ export class Ray3DFloat extends SDKHandle {
    * func intersects(sphereOrigin: Point3DFloat, sphereRadius: Float) -> Bool
    * @availability iOS 26.0+
    */
-  intersectsSphereOriginSphereRadius(sphereOrigin: Point3DFloat, sphereRadius: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1987387324539004, this, [sphereOrigin, sphereRadius]); }
+  intersectsSphereOriginSphereRadius(sphereOrigin: Point3DFloat, sphereRadius: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1987387324539004, this, [sphereOrigin, sphereRadius]); }
   /**
    * func translated(by offset: Vector3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  translated(offset: Vector3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 1451666096045499, this, [offset]); }
+  translated(offset: Vector3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 1451666096045499, this, [offset]); }
   /**
    * var direction: Vector3DFloat
    * @availability iOS 26.0+
    */
-  get direction(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 1989005749692537, this, []); }
-  set direction(value: Vector3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3019726317766149, this, [value]); }
+  get direction(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 1989005749692537, this, []); }
+  set direction(value: Vector3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3019726317766149, this, [value]); }
   /**
    * var origin: Point3DFloat
    * @availability iOS 26.0+
    */
-  get origin(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3068529623528797, this, []); }
-  set origin(value: Point3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1096316437614793, this, [value]); }
+  get origin(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3068529623528797, this, []); }
+  set origin(value: Point3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1096316437614793, this, [value]); }
   /**
    * static let infinity: Ray3DFloat
    * @availability iOS 17.0+
    */
-  static get infinity(): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 2020397169261551, undefined, []); }
+  static get infinity(): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 2020397169261551, undefined, []); }
   /**
    * static let zero: Ray3DFloat
    * @availability iOS 17.0+
    */
-  static get zero(): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 3043568484697803, undefined, []); }
+  static get zero(): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 3043568484697803, undefined, []); }
   /**
    * init(origin: Point3DFloat, direction: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static initOriginDirection(origin: Point3DFloat, direction: Vector3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 1074083328653612, undefined, [origin, direction]); }
+  static initOriginDirection(origin: Point3DFloat, direction: Vector3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 1074083328653612, undefined, [origin, direction]); }
   /**
    * func intersects(_ rect: Rect3DFloat) -> Bool
    * @availability iOS 26.0+
    */
-  intersects(rect: Rect3DFloat): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1532549194624466, this, [rect]); }
+  intersects(rect: Rect3DFloat): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1532549194624466, this, [rect]); }
   /**
    * func unapplying(_ scaledPose: ScaledPose3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  unapplying(scaledPose: ScaledPose3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 3945612293814124, this, [scaledPose]); }
+  unapplying(scaledPose: ScaledPose3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 3945612293814124, this, [scaledPose]); }
   /**
    * func unapplying(_ transform: AffineTransform3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  unapplying28203(transform: AffineTransform3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 1663111113778028, this, [transform]); }
+  unapplying28203(transform: AffineTransform3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 1663111113778028, this, [transform]); }
   /**
    * func unapplying(_ transform: ProjectiveTransform3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  unapplying42960(transform: ProjectiveTransform3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 3815092123159636, this, [transform]); }
+  unapplying42960(transform: ProjectiveTransform3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 3815092123159636, this, [transform]); }
   /**
    * func unapplying(_ pose: Pose3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  unapplying89563(pose: Pose3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 2801460003543714, this, [pose]); }
+  unapplying89563(pose: Pose3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 2801460003543714, this, [pose]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 3229748366526525, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 3229748366526525, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 2265921936199342, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 2265921936199342, this, []); }
   /**
    * mutating func apply(_ pose: Pose3DFloat)
    * @availability iOS 26.0+
    */
-  apply(pose: Pose3DFloat): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 4039296756282283, this, [pose]); }
+  apply(pose: Pose3DFloat): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 4039296756282283, this, [pose]); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 26.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2614527203267626, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2614527203267626, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 26.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 4015194129245044, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 4015194129245044, this, []); }
   /**
    * init(origin: Point3DFloat = .zero, direction: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static initOriginDirection19664(origin: Point3DFloat, direction: Vector3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 1899842280812340, undefined, [origin, direction]); }
+  static initOriginDirection19664(origin: Point3DFloat, direction: Vector3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 1899842280812340, undefined, [origin, direction]); }
   /**
    * init(origin: simd_float3 = .zero, direction: simd_float3)
    * @availability iOS 26.0+
    */
-  static initOriginDirection16564(origin: SDKHandle, direction: SDKHandle): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 1657517116210009, undefined, [origin, direction]); }
+  static initOriginDirection16564(origin: SDKHandle, direction: SDKHandle): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 1657517116210009, undefined, [origin, direction]); }
   /**
    * func rotated(by rotation: Rotation3DFloat, around pivot: Point3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  rotatedByAround(rotation: Rotation3DFloat, pivot: Point3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 4015914500245488, this, [rotation, pivot]); }
+  rotatedByAround(rotation: Rotation3DFloat, pivot: Point3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 4015914500245488, this, [rotation, pivot]); }
   /**
    * func rotated(by quaternion: simd_quatf, around pivot: Point3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  rotatedByAround87476(quaternion: SDKHandle, pivot: Point3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 2199022858957186, this, [quaternion, pivot]); }
+  rotatedByAround87476(quaternion: SDKHandle, pivot: Point3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 2199022858957186, this, [quaternion, pivot]); }
   /**
    * func rotated(by rotation: Rotation3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy(rotation: Rotation3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 1822965250070372, this, [rotation]); }
+  rotatedBy(rotation: Rotation3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 1822965250070372, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatf) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy52468(quaternion: SDKHandle): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 402302688856929, this, [quaternion]); }
+  rotatedBy52468(quaternion: SDKHandle): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 402302688856929, this, [quaternion]); }
   /**
    * func applying(_ scaledPose: ScaledPose3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  applying(scaledPose: ScaledPose3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 1818519324784811, this, [scaledPose]); }
+  applying(scaledPose: ScaledPose3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 1818519324784811, this, [scaledPose]); }
   /**
    * func applying(_ transform: AffineTransform3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  applying17461(transform: AffineTransform3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 3391493965778627, this, [transform]); }
+  applying17461(transform: AffineTransform3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 3391493965778627, this, [transform]); }
   /**
    * func applying(_ transform: ProjectiveTransform3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  applying92642(transform: ProjectiveTransform3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 1581381057939648, this, [transform]); }
+  applying92642(transform: ProjectiveTransform3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 1581381057939648, this, [transform]); }
   /**
    * func applying(_ pose: Pose3DFloat) -> Ray3DFloat
    * @availability iOS 26.0+
    */
-  applying77189(pose: Pose3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 3286920273115371, this, [pose]); }
+  applying77189(pose: Pose3DFloat): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 3286920273115371, this, [pose]); }
   /**
    * var isFinite: Bool { get }
    * @availability iOS 26.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 4364985352092838, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 4364985352092838, this, []); }
   /**
    * init(_ ray: Ray3D)
    * @availability iOS 26.0+
    */
-  static init(ray: Ray3D): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 1694423020182747, undefined, [ray]); }
+  static init(ray: Ray3D): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 1694423020182747, undefined, [ray]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init55560(): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_d6c5d10d3352e6ec", 2017683286771098, undefined, []); }
+  static init55560(): Ray3DFloat { return callSDK<Ray3DFloat>("Spatial_a956b86ef7a76a8e", 2017683286771098, undefined, []); }
   declare readonly $type: { "c:@SA@SPRay3DFloat": true };
 }
 
@@ -3359,334 +3359,334 @@ export class Rect3D extends SDKHandle {
    * func applying(_ transform: AffineTransform3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  applying(transform: AffineTransform3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 4206117956437701, this, [transform]); }
+  applying(transform: AffineTransform3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 4206117956437701, this, [transform]); }
   /**
    * func applying(_ transform: ProjectiveTransform3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  applying92335(transform: ProjectiveTransform3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 3803190316878205, this, [transform]); }
+  applying92335(transform: ProjectiveTransform3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 3803190316878205, this, [transform]); }
   /**
    * func contains(point other: Point3D) -> Bool
    * @availability iOS 16.0+
    */
-  containsPoint(other: Point3D): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 47650423262547, this, [other]); }
+  containsPoint(other: Point3D): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 47650423262547, this, [other]); }
   /**
    * func contains(_ other: Rect3D) -> Bool
    * @availability iOS 16.0+
    */
-  contains(other: Rect3D): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1879471224323232, this, [other]); }
+  contains(other: Rect3D): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1879471224323232, this, [other]); }
   /**
    * var center: Point3D { get }
    * @availability iOS 16.0+
    */
-  get center(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 65285268688519, this, []); }
+  get center(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 65285268688519, this, []); }
   /**
    * var max: Point3D { get }
    * @availability iOS 16.0+
    */
-  get max(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 2512497061994607, this, []); }
+  get max(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 2512497061994607, this, []); }
   /**
    * var min: Point3D { get }
    * @availability iOS 16.0+
    */
-  get min(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 2930787544516197, this, []); }
+  get min(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 2930787544516197, this, []); }
   /**
    * func inset(by dXYZ: Size3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  inset(dXYZ: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 2078070558829244, this, [dXYZ]); }
+  inset(dXYZ: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 2078070558829244, this, [dXYZ]); }
   /**
    * var integral: Rect3D { get }
    * @availability iOS 16.0+
    */
-  get integral(): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 3732693629394269, this, []); }
+  get integral(): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 3732693629394269, this, []); }
   /**
    * func intersects(_ other: Rect3D) -> Bool
    * @availability iOS 16.0+
    */
-  intersects(other: Rect3D): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1601471549233023, this, [other]); }
+  intersects(other: Rect3D): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1601471549233023, this, [other]); }
   /**
    * var isEmpty: Bool { get }
    * @availability iOS 16.0+
    */
-  get isEmpty(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1459277635780451, this, []); }
+  get isEmpty(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1459277635780451, this, []); }
   /**
    * var isFinite: Bool { get }
    * @availability iOS 16.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 4102785475246195, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 4102785475246195, this, []); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 16.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2630633140190385, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2630633140190385, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 16.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1969928435896500, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1969928435896500, this, []); }
   /**
    * init(center: Point3D, size: Size3D)
    * @availability iOS 16.0+
    */
-  static initCenterSize(center: Point3D, size: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 1561821003261824, undefined, [center, size]); }
+  static initCenterSize(center: Point3D, size: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 1561821003261824, undefined, [center, size]); }
   /**
    * init(origin: Point3D, size: Size3D)
    * @availability iOS 16.0+
    */
-  static initOriginSize(origin: Point3D, size: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 2976625470861638, undefined, [origin, size]); }
+  static initOriginSize(origin: Point3D, size: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 2976625470861638, undefined, [origin, size]); }
   /**
    * func rotated(by rotation: Rotation3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  rotatedBy(rotation: Rotation3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 353118735000941, this, [rotation]); }
+  rotatedBy(rotation: Rotation3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 353118735000941, this, [rotation]); }
   /**
    * func rotated(by rotation: Rotation3D, around pivot: Point3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  rotatedByAround(rotation: Rotation3D, pivot: Point3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 4198714276909404, this, [rotation, pivot]); }
+  rotatedByAround(rotation: Rotation3D, pivot: Point3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 4198714276909404, this, [rotation, pivot]); }
   /**
    * func rotated(by quaternion: simd_quatd) -> Rect3D
    * @availability iOS 16.0+
    */
-  rotatedBy83504(quaternion: SDKHandle): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 4158865162035705, this, [quaternion]); }
+  rotatedBy83504(quaternion: SDKHandle): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 4158865162035705, this, [quaternion]); }
   /**
    * func rotated(by quaternion: simd_quatd, around pivot: Point3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  rotatedByAround39598(quaternion: SDKHandle, pivot: Point3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 2908000691926636, this, [quaternion, pivot]); }
+  rotatedByAround39598(quaternion: SDKHandle, pivot: Point3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 2908000691926636, this, [quaternion, pivot]); }
   /**
    * func scaled(by scale: Size3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  scaled(scale: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 3256018918745828, this, [scale]); }
+  scaled(scale: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 3256018918745828, this, [scale]); }
   /**
    * func uniformlyScaled(by scale: Double) -> Rect3D
    * @availability iOS 16.0+
    */
-  uniformlyScaled(scale: number): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 919512691485507, this, [scale]); }
+  uniformlyScaled(scale: number): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 919512691485507, this, [scale]); }
   /**
    * var standardized: Rect3D { get }
    * @availability iOS 16.0+
    */
-  get standardized(): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 721178033743530, this, []); }
+  get standardized(): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 721178033743530, this, []); }
   /**
    * func translated(by offset: Vector3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  translatedBy(offset: Vector3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 3826719019097472, this, [offset]); }
+  translatedBy(offset: Vector3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 3826719019097472, this, [offset]); }
   /**
    * func union(_ other: Rect3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  union(other: Rect3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 2512656946701187, this, [other]); }
+  union(other: Rect3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 2512656946701187, this, [other]); }
   /**
    * var origin: Point3D
    * @availability iOS 16.0+
    */
-  get origin(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 3166588241974594, this, []); }
-  set origin(value: Point3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3238789663226454, this, [value]); }
+  get origin(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 3166588241974594, this, []); }
+  set origin(value: Point3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3238789663226454, this, [value]); }
   /**
    * var size: Size3D
    * @availability iOS 16.0+
    */
-  get size(): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 3882534887004680, this, []); }
-  set size(value: Size3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2034016245341326, this, [value]); }
+  get size(): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 3882534887004680, this, []); }
+  set size(value: Size3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2034016245341326, this, [value]); }
   /**
    * static let infinity: Rect3D
    * @availability iOS 16.0+
    */
-  static get infinity(): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 2723855879541063, undefined, []); }
+  static get infinity(): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 2723855879541063, undefined, []); }
   /**
    * static let zero: Rect3D
    * @availability iOS 16.0+
    */
-  static get zero(): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 4450907023186116, undefined, []); }
+  static get zero(): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 4450907023186116, undefined, []); }
   /**
    * init(origin: Point3D, size: Size3D)
    * @availability iOS 16.0+
    */
-  static initOriginSize65198(origin: Point3D, size: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 3946923390505463, undefined, [origin, size]); }
+  static initOriginSize65198(origin: Point3D, size: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 3946923390505463, undefined, [origin, size]); }
   /**
    * func translated(by size: Size3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  translatedBy59021(size: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 1309507786309196, this, [size]); }
+  translatedBy59021(size: Size3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 1309507786309196, this, [size]); }
   /**
    * func unapplying(_ scaledPose: ScaledPose3D) -> Rect3D
    * @availability iOS 18.0+
    */
-  unapplying(scaledPose: ScaledPose3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 587562432406323, this, [scaledPose]); }
+  unapplying(scaledPose: ScaledPose3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 587562432406323, this, [scaledPose]); }
   /**
    * func unapplying(_ transform: AffineTransform3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  unapplying3453(transform: AffineTransform3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 3022977323853697, this, [transform]); }
+  unapplying3453(transform: AffineTransform3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 3022977323853697, this, [transform]); }
   /**
    * func unapplying(_ transform: ProjectiveTransform3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  unapplying35784(transform: ProjectiveTransform3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 2550552979400073, this, [transform]); }
+  unapplying35784(transform: ProjectiveTransform3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 2550552979400073, this, [transform]); }
   /**
    * func unapplying(_ pose: Pose3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  unapplying39689(pose: Pose3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 3507934697780572, this, [pose]); }
+  unapplying39689(pose: Pose3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 3507934697780572, this, [pose]); }
   /**
    * func containsAny(of points: [Point3D]) -> Bool
    * @availability iOS 16.0+
    */
-  containsAny(points: Array<Point3D>): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1470619144042996, this, [points]); }
+  containsAny(points: Array<Point3D>): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1470619144042996, this, [points]); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 212726779878582, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 212726779878582, this, []); }
   /**
    * var cornerPoints: [Point3D] { get }
    * @availability iOS 16.0+
    */
-  get cornerPoints(): Array<Point3D> { return callSDK<Array<Point3D>>("Spatial_d6c5d10d3352e6ec", 350473004460841, this, []); }
+  get cornerPoints(): Array<Point3D> { return callSDK<Array<Point3D>>("Spatial_a956b86ef7a76a8e", 350473004460841, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 73006088549419, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 73006088549419, this, []); }
   /**
    * func intersection(_ other: Rect3D) -> Rect3D?
    * @availability iOS 16.0+
    */
-  intersection(other: Rect3D): (Rect3D) | null { return callSDK<(Rect3D) | null>("Spatial_d6c5d10d3352e6ec", 3469867935978810, this, [other]); }
+  intersection(other: Rect3D): (Rect3D) | null { return callSDK<(Rect3D) | null>("Spatial_a956b86ef7a76a8e", 3469867935978810, this, [other]); }
   /**
    * var maxX: Double { get }
    * @availability iOS 17.0+
    */
-  get maxX(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 339140251468853, this, []); }
+  get maxX(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 339140251468853, this, []); }
   /**
    * var maxY: Double { get }
    * @availability iOS 17.0+
    */
-  get maxY(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1449544918721331, this, []); }
+  get maxY(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1449544918721331, this, []); }
   /**
    * var maxZ: Double { get }
    * @availability iOS 17.0+
    */
-  get maxZ(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2443940051554316, this, []); }
+  get maxZ(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2443940051554316, this, []); }
   /**
    * var midX: Double { get }
    * @availability iOS 17.0+
    */
-  get midX(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 4045275230955214, this, []); }
+  get midX(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 4045275230955214, this, []); }
   /**
    * var midY: Double { get }
    * @availability iOS 17.0+
    */
-  get midY(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2654021331258537, this, []); }
+  get midY(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2654021331258537, this, []); }
   /**
    * var midZ: Double { get }
    * @availability iOS 17.0+
    */
-  get midZ(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 3800294130039594, this, []); }
+  get midZ(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 3800294130039594, this, []); }
   /**
    * var minX: Double { get }
    * @availability iOS 17.0+
    */
-  get minX(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 835749833524440, this, []); }
+  get minX(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 835749833524440, this, []); }
   /**
    * var minY: Double { get }
    * @availability iOS 17.0+
    */
-  get minY(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2884042401174003, this, []); }
+  get minY(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2884042401174003, this, []); }
   /**
    * var minZ: Double { get }
    * @availability iOS 17.0+
    */
-  get minZ(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2720947222736824, this, []); }
+  get minZ(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2720947222736824, this, []); }
   /**
    * init(center: Vector3D = .zero, size: Vector3D)
    * @availability iOS 16.0+
    */
-  static initCenterSize80186(center: Vector3D, size: Vector3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 4026144042353305, undefined, [center, size]); }
+  static initCenterSize80186(center: Vector3D, size: Vector3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 4026144042353305, undefined, [center, size]); }
   /**
    * init(center: simd_double3 = .zero, size: simd_double3)
    * @availability iOS 16.0+
    */
-  static initCenterSize67077(center: SDKHandle, size: SDKHandle): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 3609792293048669, undefined, [center, size]); }
+  static initCenterSize67077(center: SDKHandle, size: SDKHandle): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 3609792293048669, undefined, [center, size]); }
   /**
    * init(center: simd_float3 = .zero, size: simd_float3)
    * @availability iOS 16.0+
    */
-  static initCenterSize55647(center: SDKHandle, size: SDKHandle): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 929964993599570, undefined, [center, size]); }
+  static initCenterSize55647(center: SDKHandle, size: SDKHandle): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 929964993599570, undefined, [center, size]); }
   /**
    * init(origin: Vector3D = .zero, size: Vector3D)
    * @availability iOS 16.0+
    */
-  static initOriginSize30819(origin: Vector3D, size: Vector3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 2555223713469106, undefined, [origin, size]); }
+  static initOriginSize30819(origin: Vector3D, size: Vector3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 2555223713469106, undefined, [origin, size]); }
   /**
    * init(origin: simd_double3 = .zero, size: simd_double3)
    * @availability iOS 16.0+
    */
-  static initOriginSize72206(origin: SDKHandle, size: SDKHandle): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 715442107962511, undefined, [origin, size]); }
+  static initOriginSize72206(origin: SDKHandle, size: SDKHandle): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 715442107962511, undefined, [origin, size]); }
   /**
    * init(origin: simd_float3 = .zero, size: simd_float3)
    * @availability iOS 16.0+
    */
-  static initOriginSize91456(origin: SDKHandle, size: SDKHandle): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 2846523679619954, undefined, [origin, size]); }
+  static initOriginSize91456(origin: SDKHandle, size: SDKHandle): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 2846523679619954, undefined, [origin, size]); }
   /**
    * init(points: [Point3D])
    * @availability iOS 16.0+
    */
-  static initPoints(points: Array<Point3D>): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 3825451648372731, undefined, [points]); }
+  static initPoints(points: Array<Point3D>): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 3825451648372731, undefined, [points]); }
   /**
    * func sheared(_ shear: AxisWithFactors) -> Rect3D
    * @availability iOS 16.0+
    */
-  sheared(shear: AxisWithFactors): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 2281966366849122, this, [shear]); }
+  sheared(shear: AxisWithFactors): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 2281966366849122, this, [shear]); }
   /**
    * func applying(_ scaledPose: ScaledPose3D) -> Rect3D
    * @availability iOS 18.0+
    */
-  applying22312(scaledPose: ScaledPose3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 44146358973625, this, [scaledPose]); }
+  applying22312(scaledPose: ScaledPose3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 44146358973625, this, [scaledPose]); }
   /**
    * func applying(_ pose: Pose3D) -> Rect3D
    * @availability iOS 16.0+
    */
-  applying23769(pose: Pose3D): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 840890623524462, this, [pose]); }
+  applying23769(pose: Pose3D): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 840890623524462, this, [pose]); }
   /**
    * func contains(anyOf points: [Point3D]) -> Bool
    * @availability iOS 16.0+
    */
-  containsAnyOf(points: Array<Point3D>): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2134631351619302, this, [points]); }
+  containsAnyOf(points: Array<Point3D>): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2134631351619302, this, [points]); }
   /**
    * func distance(to other: Rect3D) -> Double
    * @availability iOS 16.0+
    */
-  distance(other: Rect3D): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 3699333515128996, this, [other]); }
+  distance(other: Rect3D): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 3699333515128996, this, [other]); }
   /**
    * func rotation(to other: Rect3D) -> Rotation3D
    * @availability iOS 16.0+
    */
-  rotation(other: Rect3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 869882704580836, this, [other]); }
+  rotation(other: Rect3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 869882704580836, this, [other]); }
   /**
    * func scaledBy(x: Double = 1, y: Double = 1, z: Double = 1) -> Rect3D
    * @availability iOS 16.0+
    */
-  scaledBy(x?: number, y?: number, z?: number): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 736595179482321, this, [x, y, z]); }
+  scaledBy(x?: number, y?: number, z?: number): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 736595179482321, this, [x, y, z]); }
   /**
    * mutating func formInset(by dXYZ: Size3D)
    * @availability iOS 16.0+
    */
-  formInset(dXYZ: Size3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 26402398510923, this, [dXYZ]); }
+  formInset(dXYZ: Size3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 26402398510923, this, [dXYZ]); }
   /**
    * init(_ rect: Rect3DFloat)
    * @availability iOS 26.0+
    */
-  static init(rect: Rect3DFloat): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 2080680582240356, undefined, [rect]); }
+  static init(rect: Rect3DFloat): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 2080680582240356, undefined, [rect]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init80175(): Rect3D { return callSDK<Rect3D>("Spatial_d6c5d10d3352e6ec", 3754631434018853, undefined, []); }
+  static init80175(): Rect3D { return callSDK<Rect3D>("Spatial_a956b86ef7a76a8e", 3754631434018853, undefined, []); }
   declare readonly $type: { "c:@SA@SPRect3D": true };
 }
 
@@ -3765,268 +3765,268 @@ export class Rect3DFloat extends SDKHandle {
    * func applying(_ transform: AffineTransform3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  applying(transform: AffineTransform3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 2165373722400951, this, [transform]); }
+  applying(transform: AffineTransform3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 2165373722400951, this, [transform]); }
   /**
    * func applying(_ transform: ProjectiveTransform3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  applying30461(transform: ProjectiveTransform3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 885966839932759, this, [transform]); }
+  applying30461(transform: ProjectiveTransform3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 885966839932759, this, [transform]); }
   /**
    * func contains(point other: Point3DFloat) -> Bool
    * @availability iOS 26.0+
    */
-  containsPoint(other: Point3DFloat): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3606345355841279, this, [other]); }
+  containsPoint(other: Point3DFloat): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3606345355841279, this, [other]); }
   /**
    * func contains(_ other: Rect3DFloat) -> Bool
    * @availability iOS 26.0+
    */
-  contains(other: Rect3DFloat): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 18466916857768, this, [other]); }
+  contains(other: Rect3DFloat): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 18466916857768, this, [other]); }
   /**
    * var center: Point3DFloat { get }
    * @availability iOS 26.0+
    */
-  get center(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 1139338256318208, this, []); }
+  get center(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 1139338256318208, this, []); }
   /**
    * var max: Point3DFloat { get }
    * @availability iOS 26.0+
    */
-  get max(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3196241428407324, this, []); }
+  get max(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3196241428407324, this, []); }
   /**
    * var min: Point3DFloat { get }
    * @availability iOS 26.0+
    */
-  get min(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3139825077236249, this, []); }
+  get min(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3139825077236249, this, []); }
   /**
    * func inset(by dXYZ: Size3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  inset(dXYZ: Size3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 3853107871714311, this, [dXYZ]); }
+  inset(dXYZ: Size3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 3853107871714311, this, [dXYZ]); }
   /**
    * var integral: Rect3DFloat { get }
    * @availability iOS 26.0+
    */
-  get integral(): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 3372725897482811, this, []); }
+  get integral(): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 3372725897482811, this, []); }
   /**
    * func intersects(_ other: Rect3DFloat) -> Bool
    * @availability iOS 26.0+
    */
-  intersects(other: Rect3DFloat): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3049886519976471, this, [other]); }
+  intersects(other: Rect3DFloat): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3049886519976471, this, [other]); }
   /**
    * var isEmpty: Bool { get }
    * @availability iOS 26.0+
    */
-  get isEmpty(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1528586452151234, this, []); }
+  get isEmpty(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1528586452151234, this, []); }
   /**
    * var isFinite: Bool { get }
    * @availability iOS 26.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3548231190589752, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3548231190589752, this, []); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 26.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3597290655606298, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3597290655606298, this, []); }
   /**
    * var isNull: Bool { get }
    * @availability iOS 26.0+
    */
-  get isNull(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3808849990862765, this, []); }
+  get isNull(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3808849990862765, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 26.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2242533212953173, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2242533212953173, this, []); }
   /**
    * init(center: Point3DFloat, size: Size3DFloat)
    * @availability iOS 26.0+
    */
-  static initCenterSize(center: Point3DFloat, size: Size3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 206722389045149, undefined, [center, size]); }
+  static initCenterSize(center: Point3DFloat, size: Size3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 206722389045149, undefined, [center, size]); }
   /**
    * init(origin: Point3DFloat, size: Size3DFloat)
    * @availability iOS 26.0+
    */
-  static initOriginSize(origin: Point3DFloat, size: Size3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 2318870080955913, undefined, [origin, size]); }
+  static initOriginSize(origin: Point3DFloat, size: Size3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 2318870080955913, undefined, [origin, size]); }
   /**
    * func rotated(by rotation: Rotation3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy(rotation: Rotation3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 198429307743956, this, [rotation]); }
+  rotatedBy(rotation: Rotation3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 198429307743956, this, [rotation]); }
   /**
    * func rotated(by rotation: Rotation3DFloat, around pivot: Point3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  rotatedByAround(rotation: Rotation3DFloat, pivot: Point3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 2958731544035881, this, [rotation, pivot]); }
+  rotatedByAround(rotation: Rotation3DFloat, pivot: Point3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 2958731544035881, this, [rotation, pivot]); }
   /**
    * func rotated(by quaternion: simd_quatf) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy46216(quaternion: SDKHandle): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 1273543927202862, this, [quaternion]); }
+  rotatedBy46216(quaternion: SDKHandle): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 1273543927202862, this, [quaternion]); }
   /**
    * func rotated(by quaternion: simd_quatf, around pivot: Point3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  rotatedByAround98628(quaternion: SDKHandle, pivot: Point3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 2445436930261855, this, [quaternion, pivot]); }
+  rotatedByAround98628(quaternion: SDKHandle, pivot: Point3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 2445436930261855, this, [quaternion, pivot]); }
   /**
    * func scaled(by scale: Size3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  scaled(scale: Size3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 238031400759626, this, [scale]); }
+  scaled(scale: Size3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 238031400759626, this, [scale]); }
   /**
    * func uniformlyScaled(by scale: Float) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  uniformlyScaled(scale: number): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 3916846761579965, this, [scale]); }
+  uniformlyScaled(scale: number): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 3916846761579965, this, [scale]); }
   /**
    * var standardized: Rect3DFloat { get }
    * @availability iOS 26.0+
    */
-  get standardized(): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 117289306364917, this, []); }
+  get standardized(): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 117289306364917, this, []); }
   /**
    * func translated(by offset: Vector3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  translated(offset: Vector3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 238078493010643, this, [offset]); }
+  translated(offset: Vector3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 238078493010643, this, [offset]); }
   /**
    * func union(_ other: Rect3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  union(other: Rect3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 460274884169185, this, [other]); }
+  union(other: Rect3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 460274884169185, this, [other]); }
   /**
    * var origin: Point3DFloat
    * @availability iOS 26.0+
    */
-  get origin(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 666166639031358, this, []); }
-  set origin(value: Point3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1869561087946184, this, [value]); }
+  get origin(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 666166639031358, this, []); }
+  set origin(value: Point3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1869561087946184, this, [value]); }
   /**
    * var size: Size3DFloat
    * @availability iOS 26.0+
    */
-  get size(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 3146027622438159, this, []); }
-  set size(value: Size3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 793865618929042, this, [value]); }
+  get size(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 3146027622438159, this, []); }
+  set size(value: Size3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 793865618929042, this, [value]); }
   /** static let infinity: Rect3DFloat */
-  static get infinity(): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 3783150422950172, undefined, []); }
+  static get infinity(): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 3783150422950172, undefined, []); }
   /** static let zero: Rect3DFloat */
-  static get zero(): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 1285093877709374, undefined, []); }
+  static get zero(): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 1285093877709374, undefined, []); }
   /**
    * init(origin: Point3DFloat, size: Size3DFloat)
    * @availability iOS 26.0+
    */
-  static initOriginSize65486(origin: Point3DFloat, size: Size3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 3226733100494342, undefined, [origin, size]); }
+  static initOriginSize65486(origin: Point3DFloat, size: Size3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 3226733100494342, undefined, [origin, size]); }
   /**
    * func unapplying(_ scaledPose: ScaledPose3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  unapplying(scaledPose: ScaledPose3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 3189500625102244, this, [scaledPose]); }
+  unapplying(scaledPose: ScaledPose3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 3189500625102244, this, [scaledPose]); }
   /**
    * func unapplying(_ transform: AffineTransform3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  unapplying47908(transform: AffineTransform3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 3826338963171391, this, [transform]); }
+  unapplying47908(transform: AffineTransform3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 3826338963171391, this, [transform]); }
   /**
    * func unapplying(_ transform: ProjectiveTransform3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  unapplying93907(transform: ProjectiveTransform3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 583649085256046, this, [transform]); }
+  unapplying93907(transform: ProjectiveTransform3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 583649085256046, this, [transform]); }
   /**
    * func unapplying(_ pose: Pose3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  unapplying3896(pose: Pose3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 3700517866197880, this, [pose]); }
+  unapplying3896(pose: Pose3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 3700517866197880, this, [pose]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 4183354260229531, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 4183354260229531, this, []); }
   /**
    * var cornerPoints: [Point3DFloat] { get }
    * @availability iOS 26.0+
    */
-  get cornerPoints(): Array<Point3DFloat> { return callSDK<Array<Point3DFloat>>("Spatial_d6c5d10d3352e6ec", 1276930988698236, this, []); }
+  get cornerPoints(): Array<Point3DFloat> { return callSDK<Array<Point3DFloat>>("Spatial_a956b86ef7a76a8e", 1276930988698236, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1399978706796575, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1399978706796575, this, []); }
   /**
    * func intersection(_ other: Rect3DFloat) -> Rect3DFloat?
    * @availability iOS 26.0+
    */
-  intersection(other: Rect3DFloat): (Rect3DFloat) | null { return callSDK<(Rect3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 1901465246830927, this, [other]); }
+  intersection(other: Rect3DFloat): (Rect3DFloat) | null { return callSDK<(Rect3DFloat) | null>("Spatial_a956b86ef7a76a8e", 1901465246830927, this, [other]); }
   /**
    * init(center: Vector3DFloat = .zero, size: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static initCenterSize82956(center: Vector3DFloat, size: Vector3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 3578923970246688, undefined, [center, size]); }
+  static initCenterSize82956(center: Vector3DFloat, size: Vector3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 3578923970246688, undefined, [center, size]); }
   /**
    * init(center: simd_double3 = .zero, size: simd_double3)
    * @availability iOS 26.0+
    */
-  static initCenterSize52279(center: SDKHandle, size: SDKHandle): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 675443565391492, undefined, [center, size]); }
+  static initCenterSize52279(center: SDKHandle, size: SDKHandle): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 675443565391492, undefined, [center, size]); }
   /**
    * init(center: simd_float3 = .zero, size: simd_float3)
    * @availability iOS 26.0+
    */
-  static initCenterSize43421(center: SDKHandle, size: SDKHandle): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 3822135945987916, undefined, [center, size]); }
+  static initCenterSize43421(center: SDKHandle, size: SDKHandle): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 3822135945987916, undefined, [center, size]); }
   /**
    * init(origin: Vector3DFloat = .zero, size: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static initOriginSize31215(origin: Vector3DFloat, size: Vector3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 358424934110037, undefined, [origin, size]); }
+  static initOriginSize31215(origin: Vector3DFloat, size: Vector3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 358424934110037, undefined, [origin, size]); }
   /**
    * init(origin: simd_double3 = .zero, size: simd_double3)
    * @availability iOS 26.0+
    */
-  static initOriginSize79764(origin: SDKHandle, size: SDKHandle): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 4328968428845450, undefined, [origin, size]); }
+  static initOriginSize79764(origin: SDKHandle, size: SDKHandle): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 4328968428845450, undefined, [origin, size]); }
   /**
    * init(origin: simd_float3 = .zero, size: simd_float3)
    * @availability iOS 26.0+
    */
-  static initOriginSize32818(origin: SDKHandle, size: SDKHandle): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 4043594295438972, undefined, [origin, size]); }
+  static initOriginSize32818(origin: SDKHandle, size: SDKHandle): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 4043594295438972, undefined, [origin, size]); }
   /**
    * init(points: [Point3DFloat])
    * @availability iOS 26.0+
    */
-  static initPoints(points: Array<Point3DFloat>): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 2637121390234618, undefined, [points]); }
+  static initPoints(points: Array<Point3DFloat>): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 2637121390234618, undefined, [points]); }
   /**
    * func sheared(_ shear: AxisWithFactors) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  sheared(shear: AxisWithFactors): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 119776271273253, this, [shear]); }
+  sheared(shear: AxisWithFactors): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 119776271273253, this, [shear]); }
   /**
    * func applying(_ scaledPose: ScaledPose3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  applying5507(scaledPose: ScaledPose3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 563874290042977, this, [scaledPose]); }
+  applying5507(scaledPose: ScaledPose3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 563874290042977, this, [scaledPose]); }
   /**
    * func applying(_ pose: Pose3DFloat) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  applying70360(pose: Pose3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 1020946925024752, this, [pose]); }
+  applying70360(pose: Pose3DFloat): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 1020946925024752, this, [pose]); }
   /**
    * func contains(anyOf points: [Point3DFloat]) -> Bool
    * @availability iOS 26.0+
    */
-  containsAnyOf(points: Array<Point3DFloat>): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3681516111724241, this, [points]); }
+  containsAnyOf(points: Array<Point3DFloat>): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3681516111724241, this, [points]); }
   /**
    * func scaledBy(x: Float = 1, y: Float = 1, z: Float = 1) -> Rect3DFloat
    * @availability iOS 26.0+
    */
-  scaledBy(x?: number, y?: number, z?: number): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 825710072874753, this, [x, y, z]); }
+  scaledBy(x?: number, y?: number, z?: number): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 825710072874753, this, [x, y, z]); }
   /**
    * mutating func formInset(by dXYZ: Size3DFloat)
    * @availability iOS 26.0+
    */
-  formInset(dXYZ: Size3DFloat): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 2206289672395324, this, [dXYZ]); }
+  formInset(dXYZ: Size3DFloat): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 2206289672395324, this, [dXYZ]); }
   /**
    * init(_ rect: Rect3D)
    * @availability iOS 26.0+
    */
-  static init(rect: Rect3D): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 1921915243598172, undefined, [rect]); }
+  static init(rect: Rect3D): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 1921915243598172, undefined, [rect]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init22853(): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_d6c5d10d3352e6ec", 2668006542437432, undefined, []); }
+  static init22853(): Rect3DFloat { return callSDK<Rect3DFloat>("Spatial_a956b86ef7a76a8e", 2668006542437432, undefined, []); }
   declare readonly $type: { "c:@SA@SPRect3DFloat": true };
 }
 
@@ -4139,194 +4139,194 @@ export class Rotation3D extends SDKHandle {
    * func eulerAngles(order: __SPEulerAngleOrder) -> EulerAngles
    * @availability iOS 16.0+
    */
-  eulerAngles(order: SDKHandle): EulerAngles { return callSDK<EulerAngles>("Spatial_d6c5d10d3352e6ec", 3438743224531157, this, [order]); }
+  eulerAngles(order: SDKHandle): EulerAngles { return callSDK<EulerAngles>("Spatial_a956b86ef7a76a8e", 3438743224531157, this, [order]); }
   /**
    * var inverse: Rotation3D { get }
    * @availability iOS 17.0+
    */
-  get inverse(): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 112201881050733, this, []); }
+  get inverse(): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 112201881050733, this, []); }
   /**
    * var isIdentity: Bool { get }
    * @availability iOS 17.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1772906428354405, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1772906428354405, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 16.0+
    * @deprecated iOS 17.0
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 533988111034810, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 533988111034810, this, []); }
   /**
    * init(angle: Angle2D, axis: RotationAxis3D)
    * @availability iOS 16.0+
    */
-  static initAngleAxis(angle: Angle2D, axis: RotationAxis3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 2830224103874680, undefined, [angle, axis]); }
+  static initAngleAxis(angle: Angle2D, axis: RotationAxis3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 2830224103874680, undefined, [angle, axis]); }
   /**
    * init(forward: Vector3D, up: Vector3D)
    * @availability iOS 16.0+
    */
-  static initForwardUp(forward: Vector3D, up: Vector3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 4406134417647391, undefined, [forward, up]); }
+  static initForwardUp(forward: Vector3D, up: Vector3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 4406134417647391, undefined, [forward, up]); }
   /**
    * init(eulerAngles: EulerAngles)
    * @availability iOS 16.0+
    */
-  static initEulerAngles(eulerAngles: EulerAngles): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 1361041475523436, undefined, [eulerAngles]); }
+  static initEulerAngles(eulerAngles: EulerAngles): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 1361041475523436, undefined, [eulerAngles]); }
   /**
    * func swing(twistAxis: RotationAxis3D) -> Rotation3D
    * @availability iOS 17.0+
    */
-  swing(twistAxis: RotationAxis3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 473248039871419, this, [twistAxis]); }
+  swing(twistAxis: RotationAxis3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 473248039871419, this, [twistAxis]); }
   /**
    * func twist(twistAxis: RotationAxis3D) -> Rotation3D
    * @availability iOS 17.0+
    */
-  twist(twistAxis: RotationAxis3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 487463901283468, this, [twistAxis]); }
+  twist(twistAxis: RotationAxis3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 487463901283468, this, [twistAxis]); }
   /**
    * static let identity: Rotation3D
    * @availability iOS 17.0+
    */
-  static get identity(): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 281078845566048, undefined, []); }
+  static get identity(): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 281078845566048, undefined, []); }
   /**
    * static let zero: Rotation3D
    * @availability iOS 16.0+
    * @deprecated iOS 17.0
    */
-  static get zero(): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 764737419876724, undefined, []); }
+  static get zero(): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 764737419876724, undefined, []); }
   /**
    * var quaternion: simd_quatd { get set }
    * @availability iOS 16.0+
    */
-  get quaternion(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 2412911147417512, this, []); }
-  set quaternion(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 4012564914761789, this, [value]); }
+  get quaternion(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 2412911147417512, this, []); }
+  set quaternion(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 4012564914761789, this, [value]); }
   /**
    * var vector: simd_double4 { get set }
    * @availability iOS 16.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3185418814336640, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 779314197113527, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3185418814336640, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 779314197113527, this, [value]); }
   /**
    * init(quaternion: simd_quatd)
    * @availability iOS 16.0+
    */
-  static initQuaternion(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 3956960936229930, undefined, [quaternion]); }
+  static initQuaternion(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 3956960936229930, undefined, [quaternion]); }
   /**
    * init(quaternion: simd_quatd)
    * @availability iOS 16.0+
    */
-  static initQuaternion76540(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 313200782427272, undefined, [quaternion]); }
+  static initQuaternion76540(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 313200782427272, undefined, [quaternion]); }
   /**
    * init(quaternion: simd_quatf)
    * @availability iOS 16.0+
    */
-  static initQuaternion70374(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 2539427154996412, undefined, [quaternion]); }
+  static initQuaternion70374(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 2539427154996412, undefined, [quaternion]); }
   /**
    * func swingTwist(twistAxis: RotationAxis3D) -> (swing: Rotation3D, twist: Rotation3D)
    * @availability iOS 17.0+
    */
-  swingTwist(twistAxis: RotationAxis3D): { "swing": Rotation3D; "twist": Rotation3D } { return callSDK<{ "swing": Rotation3D; "twist": Rotation3D }>("Spatial_d6c5d10d3352e6ec", 1950828326877232, this, [twistAxis]); }
+  swingTwist(twistAxis: RotationAxis3D): { "swing": Rotation3D; "twist": Rotation3D } { return callSDK<{ "swing": Rotation3D; "twist": Rotation3D }>("Spatial_a956b86ef7a76a8e", 1950828326877232, this, [twistAxis]); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 4120828352050870, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 4120828352050870, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 2135990205486837, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 2135990205486837, this, []); }
   /**
    * func isApproximatelyEqual(to other: Rotation3D, tolerance: Double = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 18.0+
    */
-  isApproximatelyEqual(other: Rotation3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1428959734805932, this, [other, tolerance]); }
+  isApproximatelyEqual(other: Rotation3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1428959734805932, this, [other, tolerance]); }
   /**
    * init(eye: Point3D, target: Point3D, up: Vector3D = Vector3D(x: 0, y: 1, z: 0))
    * @availability iOS 16.0+
    */
-  static initEyeTargetUp(eye: Point3D, target: Point3D, up?: Vector3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 1006889841188912, undefined, [eye, target, up]); }
+  static initEyeTargetUp(eye: Point3D, target: Point3D, up?: Vector3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 1006889841188912, undefined, [eye, target, up]); }
   /**
    * init(axis: RotationAxis3D, angle: Angle2D)
    * @availability iOS 16.0+
    */
-  static initAxisAngle(axis: RotationAxis3D, angle: Angle2D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 199942450527381, undefined, [axis, angle]); }
+  static initAxisAngle(axis: RotationAxis3D, angle: Angle2D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 199942450527381, undefined, [axis, angle]); }
   /**
    * var axis: RotationAxis3D { get set }
    * @availability iOS 16.0+
    */
-  get axis(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 3907771831164405, this, []); }
-  set axis(value: RotationAxis3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1726277244081170, this, [value]); }
+  get axis(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 3907771831164405, this, []); }
+  set axis(value: RotationAxis3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1726277244081170, this, [value]); }
   /**
    * var angle: Angle2D { get set }
    * @availability iOS 16.0+
    */
-  get angle(): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 3060122508071433, this, []); }
-  set angle(value: Angle2D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3661820128808705, this, [value]); }
+  get angle(): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 3060122508071433, this, []); }
+  set angle(value: Angle2D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3661820128808705, this, [value]); }
   /**
    * static func slerp(from: Rotation3D, to: Rotation3D, t: Double, along path: Rotation3D.SlerpPath = .shortest) -> Rotation3D
    * @availability iOS 17.0+
    */
-  static slerp(from: Rotation3D, to: Rotation3D, t: number, path?: Rotation3D_SlerpPath): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 2595278996520530, undefined, [from, to, t, path]); }
+  static slerp(from: Rotation3D, to: Rotation3D, t: number, path?: Rotation3D_SlerpPath): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 2595278996520530, undefined, [from, to, t, path]); }
   /**
    * static func spline(leftEndpoint r0: Rotation3D, from r1: Rotation3D, to r2: Rotation3D, rightEndpoint r3: Rotation3D, t: Double) -> Rotation3D
    * @availability iOS 18.0+
    */
-  static spline(r0: Rotation3D, r1: Rotation3D, r2: Rotation3D, r3: Rotation3D, t: number): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 2930389114488014, undefined, [r0, r1, r2, r3, t]); }
+  static spline(r0: Rotation3D, r1: Rotation3D, r2: Rotation3D, r3: Rotation3D, t: number): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 2930389114488014, undefined, [r0, r1, r2, r3, t]); }
   /**
    * init(forward: Vector3D)
    * @availability iOS 18.0+
    */
-  static initForward(forward: Vector3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 3568448621665713, undefined, [forward]); }
+  static initForward(forward: Vector3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 3568448621665713, undefined, [forward]); }
   /**
    * func rotated(by rotation: Rotation3D) -> Rotation3D
    * @availability iOS 17.0+
    */
-  rotatedBy(rotation: Rotation3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 2763116147437608, this, [rotation]); }
+  rotatedBy(rotation: Rotation3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 2763116147437608, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatd) -> Rotation3D
    * @availability iOS 17.0+
    */
-  rotatedBy67528(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 864836998846777, this, [quaternion]); }
+  rotatedBy67528(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 864836998846777, this, [quaternion]); }
   /**
    * func applying(_ transform: ProjectiveTransform3D) -> Rotation3D
    * @availability iOS 27.0+
    */
-  applying(transform: ProjectiveTransform3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 695094678896232, this, [transform]); }
+  applying(transform: ProjectiveTransform3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 695094678896232, this, [transform]); }
   /**
    * init(position: Point3D = Point3D(x: 0, y: 0, z: 0), target: Point3D, up: Vector3D = Vector3D(x: 0, y: 1, z: 0))
    * @availability iOS 16.0+
    */
-  static initPositionTargetUp(position: Point3D, target: Point3D, up?: Vector3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 4079662536028925, undefined, [position, target, up]); }
+  static initPositionTargetUp(position: Point3D, target: Point3D, up?: Vector3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 4079662536028925, undefined, [position, target, up]); }
   /**
    * @backDeployed(before: macOS 14.0, iOS 17.0, tvOS 17.0, watchOS 10.0)
   init()
    * @availability iOS 16.0+
    */
-  static init(): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 2913252312630730, undefined, []); }
+  static init(): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 2913252312630730, undefined, []); }
   /**
    * init(_ rotation: Rotation3DFloat)
    * @availability iOS 26.0+
    */
-  static init50532(rotation: Rotation3DFloat): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 2960319946815645, undefined, [rotation]); }
+  static init50532(rotation: Rotation3DFloat): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 2960319946815645, undefined, [rotation]); }
   /**
    * init(_ quaternion: simd_quatd)
    * @availability iOS 16.0+
    */
-  static init42427(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 1965497901883099, undefined, [quaternion]); }
+  static init42427(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 1965497901883099, undefined, [quaternion]); }
   /**
    * init(_ quaternion: simd_quatf)
    * @availability iOS 16.0+
    */
-  static init98869(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 1901288939515906, undefined, [quaternion]); }
+  static init98869(quaternion: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 1901288939515906, undefined, [quaternion]); }
   /**
    * init(_ source: simd_packed_double4)
    * @availability iOS 26.0+
    */
-  static init15708(source: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 1712495138287690, undefined, [source]); }
+  static init15708(source: SDKHandle): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 1712495138287690, undefined, [source]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init61098(): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 129247553438577, undefined, []); }
+  static init61098(): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 129247553438577, undefined, []); }
   declare readonly $type: { "c:@UA@SPRotation3D": true };
 }
 
@@ -4411,158 +4411,158 @@ export class Rotation3DFloat extends SDKHandle {
    * func eulerAngles(order: __SPEulerAngleOrder) -> EulerAnglesFloat
    * @availability iOS 26.0+
    */
-  eulerAngles(order: SDKHandle): EulerAnglesFloat { return callSDK<EulerAnglesFloat>("Spatial_d6c5d10d3352e6ec", 3556893807394593, this, [order]); }
+  eulerAngles(order: SDKHandle): EulerAnglesFloat { return callSDK<EulerAnglesFloat>("Spatial_a956b86ef7a76a8e", 3556893807394593, this, [order]); }
   /**
    * var inverse: Rotation3DFloat { get }
    * @availability iOS 26.0+
    */
-  get inverse(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 3139218792569816, this, []); }
+  get inverse(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 3139218792569816, this, []); }
   /**
    * var isIdentity: Bool { get }
    * @availability iOS 26.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3241043953697569, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3241043953697569, this, []); }
   /**
    * init(eulerAngles: EulerAnglesFloat)
    * @availability iOS 26.0+
    */
-  static initEulerAngles(eulerAngles: EulerAnglesFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 3453230757908309, undefined, [eulerAngles]); }
+  static initEulerAngles(eulerAngles: EulerAnglesFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 3453230757908309, undefined, [eulerAngles]); }
   /**
    * func swing(twistAxis: RotationAxis3DFloat) -> Rotation3DFloat
    * @availability iOS 26.0+
    */
-  swing(twistAxis: RotationAxis3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 3826127949044892, this, [twistAxis]); }
+  swing(twistAxis: RotationAxis3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 3826127949044892, this, [twistAxis]); }
   /**
    * func twist(twistAxis: RotationAxis3DFloat) -> Rotation3DFloat
    * @availability iOS 26.0+
    */
-  twist(twistAxis: RotationAxis3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 3669981523518529, this, [twistAxis]); }
+  twist(twistAxis: RotationAxis3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 3669981523518529, this, [twistAxis]); }
   /** static let identity: Rotation3DFloat */
-  static get identity(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 2712043049784506, undefined, []); }
+  static get identity(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 2712043049784506, undefined, []); }
   /**
    * var quaternion: simd_quatf { get set }
    * @availability iOS 26.0+
    */
-  get quaternion(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 369629624304016, this, []); }
-  set quaternion(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3312523118954842, this, [value]); }
+  get quaternion(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 369629624304016, this, []); }
+  set quaternion(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3312523118954842, this, [value]); }
   /**
    * var vector: simd_float4 { get set }
    * @availability iOS 26.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 58926662553564, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 397609863692705, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 58926662553564, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 397609863692705, this, [value]); }
   /**
    * init(quaternion: simd_quatf)
    * @availability iOS 26.0+
    */
-  static initQuaternion(quaternion: SDKHandle): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 2938664559664686, undefined, [quaternion]); }
+  static initQuaternion(quaternion: SDKHandle): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 2938664559664686, undefined, [quaternion]); }
   /**
    * func swingTwist(twistAxis: RotationAxis3DFloat) -> (swing: Rotation3DFloat, twist: Rotation3DFloat)
    * @availability iOS 26.0+
    */
-  swingTwist(twistAxis: RotationAxis3DFloat): { "swing": Rotation3DFloat; "twist": Rotation3DFloat } { return callSDK<{ "swing": Rotation3DFloat; "twist": Rotation3DFloat }>("Spatial_d6c5d10d3352e6ec", 4490131020065677, this, [twistAxis]); }
+  swingTwist(twistAxis: RotationAxis3DFloat): { "swing": Rotation3DFloat; "twist": Rotation3DFloat } { return callSDK<{ "swing": Rotation3DFloat; "twist": Rotation3DFloat }>("Spatial_a956b86ef7a76a8e", 4490131020065677, this, [twistAxis]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 3182115568119785, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 3182115568119785, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 2657738457691434, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 2657738457691434, this, []); }
   /**
    * func isApproximatelyEqual(to other: Rotation3DFloat, tolerance: Float = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 26.0+
    */
-  isApproximatelyEqual(other: Rotation3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3668918324957499, this, [other, tolerance]); }
+  isApproximatelyEqual(other: Rotation3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3668918324957499, this, [other, tolerance]); }
   /**
    * var axis: RotationAxis3DFloat { get set }
    * @availability iOS 26.0+
    */
-  get axis(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 2663956510417780, this, []); }
-  set axis(value: RotationAxis3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 4455983819164273, this, [value]); }
+  get axis(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 2663956510417780, this, []); }
+  set axis(value: RotationAxis3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 4455983819164273, this, [value]); }
   /**
    * init(angle: Angle2DFloat, axis: RotationAxis3DFloat)
    * @availability iOS 26.0+
    */
-  static initAngleAxis(angle: Angle2DFloat, axis: RotationAxis3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 861135157705516, undefined, [angle, axis]); }
+  static initAngleAxis(angle: Angle2DFloat, axis: RotationAxis3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 861135157705516, undefined, [angle, axis]); }
   /**
    * var angle: Angle2DFloat { get set }
    * @availability iOS 26.0+
    */
-  get angle(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 1356614087569491, this, []); }
-  set angle(value: Angle2DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 482930743859690, this, [value]); }
+  get angle(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 1356614087569491, this, []); }
+  set angle(value: Angle2DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 482930743859690, this, [value]); }
   /**
    * static func slerp(from: Rotation3DFloat, to: Rotation3DFloat, t: Float, along path: Rotation3D.SlerpPath = .shortest) -> Rotation3DFloat
    * @availability iOS 26.0+
    */
-  static slerp(from: Rotation3DFloat, to: Rotation3DFloat, t: number, path?: Rotation3D_SlerpPath): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 2736035142651421, undefined, [from, to, t, path]); }
+  static slerp(from: Rotation3DFloat, to: Rotation3DFloat, t: number, path?: Rotation3D_SlerpPath): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 2736035142651421, undefined, [from, to, t, path]); }
   /**
    * static func spline(leftEndpoint r0: Rotation3DFloat, from r1: Rotation3DFloat, to r2: Rotation3DFloat, rightEndpoint r3: Rotation3DFloat, t: Float) -> Rotation3DFloat
    * @availability iOS 26.0+
    */
-  static spline(r0: Rotation3DFloat, r1: Rotation3DFloat, r2: Rotation3DFloat, r3: Rotation3DFloat, t: number): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 959615414504996, undefined, [r0, r1, r2, r3, t]); }
+  static spline(r0: Rotation3DFloat, r1: Rotation3DFloat, r2: Rotation3DFloat, r3: Rotation3DFloat, t: number): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 959615414504996, undefined, [r0, r1, r2, r3, t]); }
   /**
    * init(forward: Vector3DFloat, up: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static initForwardUp(forward: Vector3DFloat, up: Vector3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 2903750906647030, undefined, [forward, up]); }
+  static initForwardUp(forward: Vector3DFloat, up: Vector3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 2903750906647030, undefined, [forward, up]); }
   /**
    * init(forward: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static initForward(forward: Vector3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 4228004444390723, undefined, [forward]); }
+  static initForward(forward: Vector3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 4228004444390723, undefined, [forward]); }
   /**
    * func rotated(by rotation: Rotation3DFloat) -> Rotation3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy(rotation: Rotation3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 1918126373142608, this, [rotation]); }
+  rotatedBy(rotation: Rotation3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 1918126373142608, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatf) -> Rotation3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy56809(quaternion: SDKHandle): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 4096173577841251, this, [quaternion]); }
+  rotatedBy56809(quaternion: SDKHandle): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 4096173577841251, this, [quaternion]); }
   /**
    * func applying(_ transform: ProjectiveTransform3DFloat) -> Rotation3DFloat
    * @availability iOS 27.0+
    */
-  applying(transform: ProjectiveTransform3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 794667933913818, this, [transform]); }
+  applying(transform: ProjectiveTransform3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 794667933913818, this, [transform]); }
   /**
    * init(position: Point3DFloat = Point3DFloat(x: 0, y: 0, z: 0), target: Point3DFloat, up: Vector3DFloat = Vector3DFloat(x: 0, y: 1, z: 0))
    * @availability iOS 26.0+
    */
-  static initPositionTargetUp(position: Point3DFloat, target: Point3DFloat, up?: Vector3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 748239350094690, undefined, [position, target, up]); }
+  static initPositionTargetUp(position: Point3DFloat, target: Point3DFloat, up?: Vector3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 748239350094690, undefined, [position, target, up]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 2237048801851988, undefined, []); }
+  static init(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 2237048801851988, undefined, []); }
   /**
    * init(_ rotation: Rotation3D)
    * @availability iOS 26.0+
    */
-  static init76276(rotation: Rotation3D): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 3522908155136706, undefined, [rotation]); }
+  static init76276(rotation: Rotation3D): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 3522908155136706, undefined, [rotation]); }
   /**
    * init(_ quaternion: simd_quatd)
    * @availability iOS 26.0+
    */
-  static init31072(quaternion: SDKHandle): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 2541434465144708, undefined, [quaternion]); }
+  static init31072(quaternion: SDKHandle): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 2541434465144708, undefined, [quaternion]); }
   /**
    * init(_ quaternion: simd_quatf)
    * @availability iOS 26.0+
    */
-  static init1738(quaternion: SDKHandle): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 1976232671036699, undefined, [quaternion]); }
+  static init1738(quaternion: SDKHandle): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 1976232671036699, undefined, [quaternion]); }
   /**
    * init(_ source: simd_packed_float4)
    * @availability iOS 26.0+
    */
-  static init38047(source: SDKHandle): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 3679032771206566, undefined, [source]); }
+  static init38047(source: SDKHandle): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 3679032771206566, undefined, [source]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init76481(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 1084780876742428, undefined, []); }
+  static init76481(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 1084780876742428, undefined, []); }
   declare readonly $type: { "c:@UA@SPRotation3DFloat": true };
 }
 
@@ -4641,132 +4641,132 @@ export class RotationAxis3D extends SDKHandle {
    * var isZero: Bool { get }
    * @availability iOS 16.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3253623655094036, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3253623655094036, this, []); }
   /**
    * static let zero: RotationAxis3D
    * @availability iOS 16.0+
    */
-  static get zero(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 768755730948603, undefined, []); }
+  static get zero(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 768755730948603, undefined, []); }
   /**
    * var vector: simd_double3 { get set }
    * @availability iOS 16.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 2261548039532272, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2371980080783636, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 2261548039532272, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2371980080783636, this, [value]); }
   /**
    * init(vector: simd_double3)
    * @availability iOS 16.0+
    */
-  static initVector(vector: SDKHandle): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 2859788314622019, undefined, [vector]); }
+  static initVector(vector: SDKHandle): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 2859788314622019, undefined, [vector]); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 3405200742565219, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 3405200742565219, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3133202235851597, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3133202235851597, this, []); }
   /**
    * init(x: Double = 0, y: Double = 0, z: Double = 0)
    * @availability iOS 16.0+
    */
-  static initXYZ(x?: number, y?: number, z?: number): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 1441521304034929, undefined, [x, y, z]); }
+  static initXYZ(x?: number, y?: number, z?: number): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 1441521304034929, undefined, [x, y, z]); }
   /**
    * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initXYZ73711(x: number, y: number, z: number): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 1988593442171954, undefined, [x, y, z]); }
+  static initXYZ73711(x: number, y: number, z: number): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 1988593442171954, undefined, [x, y, z]); }
   /**
    * static let x: RotationAxis3D
    * @availability iOS 16.0+
    */
-  static get x(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 2260477239698736, undefined, []); }
+  static get x(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 2260477239698736, undefined, []); }
   /**
    * var x: Double { get set }
    * @availability iOS 16.0+
    */
-  get x82189(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2184218844284628, this, []); }
-  set x82189(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1938788315596923, this, [value]); }
+  get x82189(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2184218844284628, this, []); }
+  set x82189(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1938788315596923, this, [value]); }
   /**
    * static let y: RotationAxis3D
    * @availability iOS 16.0+
    */
-  static get y(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 3547946208501834, undefined, []); }
+  static get y(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 3547946208501834, undefined, []); }
   /**
    * var y: Double { get set }
    * @availability iOS 16.0+
    */
-  get y29646(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 57600449626072, this, []); }
-  set y29646(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 4450443401805280, this, [value]); }
+  get y29646(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 57600449626072, this, []); }
+  set y29646(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 4450443401805280, this, [value]); }
   /**
    * static let z: RotationAxis3D
    * @availability iOS 16.0+
    */
-  static get z(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 3469604180675740, undefined, []); }
+  static get z(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 3469604180675740, undefined, []); }
   /**
    * var z: Double { get set }
    * @availability iOS 16.0+
    */
-  get z10947(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 3728468392270189, this, []); }
-  set z10947(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2672262954261977, this, [value]); }
+  get z10947(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 3728468392270189, this, []); }
+  set z10947(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2672262954261977, this, [value]); }
   /**
    * static let xy: RotationAxis3D
    * @availability iOS 16.0+
    */
-  static get xy(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 1160613959709589, undefined, []); }
+  static get xy(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 1160613959709589, undefined, []); }
   /**
    * static let xz: RotationAxis3D
    * @availability iOS 16.0+
    */
-  static get xz(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 968913331441183, undefined, []); }
+  static get xz(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 968913331441183, undefined, []); }
   /**
    * static let yz: RotationAxis3D
    * @availability iOS 16.0+
    */
-  static get yz(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 1246060554756108, undefined, []); }
+  static get yz(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 1246060554756108, undefined, []); }
   /**
    * static let xyz: RotationAxis3D
    * @availability iOS 16.0+
    */
-  static get xyz(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 2136007675939251, undefined, []); }
+  static get xyz(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 2136007675939251, undefined, []); }
   /**
    * var simd: simd_double3 { get set }
    * @availability iOS 16.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3708909165500973, this, []); }
-  set simd(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2884727879595915, this, [value]); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3708909165500973, this, []); }
+  set simd(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2884727879595915, this, [value]); }
   /**
    * init(_ axis: RotationAxis3DFloat)
    * @availability iOS 26.0+
    */
-  static init(axis: RotationAxis3DFloat): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 2497635609132769, undefined, [axis]); }
+  static init(axis: RotationAxis3DFloat): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 2497635609132769, undefined, [axis]); }
   /**
    * init(_ xyz: Vector3D)
    * @availability iOS 16.0+
    */
-  static init97180(xyz: Vector3D): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 4268919922164077, undefined, [xyz]); }
+  static init97180(xyz: Vector3D): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 4268919922164077, undefined, [xyz]); }
   /**
    * init(_ xyz: simd_double3)
    * @availability iOS 16.0+
    */
-  static init19736(xyz: SDKHandle): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 3591323044800266, undefined, [xyz]); }
+  static init19736(xyz: SDKHandle): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 3591323044800266, undefined, [xyz]); }
   /**
    * init(_ xyz: simd_float3)
    * @availability iOS 16.0+
    */
-  static init56274(xyz: SDKHandle): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 411975246044184, undefined, [xyz]); }
+  static init56274(xyz: SDKHandle): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 411975246044184, undefined, [xyz]); }
   /**
    * init(_ source: simd_packed_double4)
    * @availability iOS 26.0+
    */
-  static init61725(source: SDKHandle): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 1336222820417343, undefined, [source]); }
+  static init61725(source: SDKHandle): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 1336222820417343, undefined, [source]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init72533(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_d6c5d10d3352e6ec", 109061214393872, undefined, []); }
+  static init72533(): RotationAxis3D { return callSDK<RotationAxis3D>("Spatial_a956b86ef7a76a8e", 109061214393872, undefined, []); }
   declare readonly $type: { "c:@UA@SPRotationAxis3D": true };
 }
 
@@ -4776,121 +4776,121 @@ export class RotationAxis3D extends SDKHandle {
  */
 export class RotationAxis3DFloat extends SDKHandle {
   /** static let zero: RotationAxis3DFloat */
-  static get zero(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 2684190843672406, undefined, []); }
+  static get zero(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 2684190843672406, undefined, []); }
   /**
    * var vector: simd_float3 { get set }
    * @availability iOS 26.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3242198905590472, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3816097148145217, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3242198905590472, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3816097148145217, this, [value]); }
   /**
    * init(vector: simd_float3)
    * @availability iOS 26.0+
    */
-  static initVector(vector: SDKHandle): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 533685252693392, undefined, [vector]); }
+  static initVector(vector: SDKHandle): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 533685252693392, undefined, [vector]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 4500046866150926, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 4500046866150926, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1096572587739254, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1096572587739254, this, []); }
   /**
    * init(x: Float = 0, y: Float = 0, z: Float = 0)
    * @availability iOS 26.0+
    */
-  static initXYZ(x?: number, y?: number, z?: number): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 2264929821918713, undefined, [x, y, z]); }
+  static initXYZ(x?: number, y?: number, z?: number): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 2264929821918713, undefined, [x, y, z]); }
   /**
    * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
    * @availability iOS 26.0+
    */
-  static initXYZ82827(x: number, y: number, z: number): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 707764004897915, undefined, [x, y, z]); }
+  static initXYZ82827(x: number, y: number, z: number): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 707764004897915, undefined, [x, y, z]); }
   /**
    * static let x: RotationAxis3DFloat
    * @availability iOS 26.0+
    */
-  static get x(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 2700184680561949, undefined, []); }
+  static get x(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 2700184680561949, undefined, []); }
   /**
    * var x: Float { get set }
    * @availability iOS 26.0+
    */
-  get x53467(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1242534298079881, this, []); }
-  set x53467(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 588525066901985, this, [value]); }
+  get x53467(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1242534298079881, this, []); }
+  set x53467(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 588525066901985, this, [value]); }
   /**
    * static let y: RotationAxis3DFloat
    * @availability iOS 26.0+
    */
-  static get y(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 4450244027924025, undefined, []); }
+  static get y(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 4450244027924025, undefined, []); }
   /**
    * var y: Float { get set }
    * @availability iOS 26.0+
    */
-  get y21148(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 317592762833833, this, []); }
-  set y21148(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 491029438878967, this, [value]); }
+  get y21148(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 317592762833833, this, []); }
+  set y21148(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 491029438878967, this, [value]); }
   /**
    * static let z: RotationAxis3DFloat
    * @availability iOS 26.0+
    */
-  static get z(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 448790959864570, undefined, []); }
+  static get z(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 448790959864570, undefined, []); }
   /**
    * var z: Float { get set }
    * @availability iOS 26.0+
    */
-  get z14333(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1464163089803945, this, []); }
-  set z14333(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 4069185978981665, this, [value]); }
+  get z14333(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1464163089803945, this, []); }
+  set z14333(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 4069185978981665, this, [value]); }
   /**
    * static let xy: RotationAxis3DFloat
    * @availability iOS 26.0+
    */
-  static get xy(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 529095982677655, undefined, []); }
+  static get xy(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 529095982677655, undefined, []); }
   /**
    * static let xz: RotationAxis3DFloat
    * @availability iOS 26.0+
    */
-  static get xz(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 1243033663046813, undefined, []); }
+  static get xz(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 1243033663046813, undefined, []); }
   /**
    * static let yz: RotationAxis3DFloat
    * @availability iOS 26.0+
    */
-  static get yz(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 789732436234124, undefined, []); }
+  static get yz(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 789732436234124, undefined, []); }
   /**
    * static let xyz: RotationAxis3DFloat
    * @availability iOS 26.0+
    */
-  static get xyz(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 4093025141981642, undefined, []); }
+  static get xyz(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 4093025141981642, undefined, []); }
   /**
    * init(_ xyz: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static init(xyz: Vector3DFloat): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 2692244706046657, undefined, [xyz]); }
+  static init(xyz: Vector3DFloat): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 2692244706046657, undefined, [xyz]); }
   /**
    * init(_ axis: RotationAxis3D)
    * @availability iOS 26.0+
    */
-  static init49614(axis: RotationAxis3D): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 2726050771467555, undefined, [axis]); }
+  static init49614(axis: RotationAxis3D): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 2726050771467555, undefined, [axis]); }
   /**
    * init(_ xyz: simd_double3)
    * @availability iOS 26.0+
    */
-  static init98996(xyz: SDKHandle): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 3969014839706459, undefined, [xyz]); }
+  static init98996(xyz: SDKHandle): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 3969014839706459, undefined, [xyz]); }
   /**
    * init(_ xyz: simd_float3)
    * @availability iOS 26.0+
    */
-  static init64478(xyz: SDKHandle): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 4404454321003913, undefined, [xyz]); }
+  static init64478(xyz: SDKHandle): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 4404454321003913, undefined, [xyz]); }
   /**
    * init(_ source: simd_packed_float4)
    * @availability iOS 26.0+
    */
-  static init68855(source: SDKHandle): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 2985896704096549, undefined, [source]); }
+  static init68855(source: SDKHandle): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 2985896704096549, undefined, [source]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init94713(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_d6c5d10d3352e6ec", 4178590855987450, undefined, []); }
+  static init94713(): RotationAxis3DFloat { return callSDK<RotationAxis3DFloat>("Spatial_a956b86ef7a76a8e", 4178590855987450, undefined, []); }
   declare readonly $type: { "c:@UA@SPRotationAxis3DFloat": true };
 }
 
@@ -4971,141 +4971,141 @@ export interface Scalable3DProtocol {
 /** struct ScaledPose3D */
 export class ScaledPose3D extends SDKHandle {
   /** var position: Point3D */
-  get position(): Point3D { return callSDK<Point3D>("Spatial_d6c5d10d3352e6ec", 3769150848595585, this, []); }
-  set position(value: Point3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 4417624432591564, this, [value]); }
+  get position(): Point3D { return callSDK<Point3D>("Spatial_a956b86ef7a76a8e", 3769150848595585, this, []); }
+  set position(value: Point3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 4417624432591564, this, [value]); }
   /** var rotation: Rotation3D */
-  get rotation(): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 3160965096355820, this, []); }
-  set rotation(value: Rotation3D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2797926433509007, this, [value]); }
+  get rotation(): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 3160965096355820, this, []); }
+  set rotation(value: Rotation3D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2797926433509007, this, [value]); }
   /** var scale: Double */
-  get scale(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1399607226676638, this, []); }
-  set scale(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2937379866007639, this, [value]); }
+  get scale(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1399607226676638, this, []); }
+  set scale(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2937379866007639, this, [value]); }
   /**
    * var isIdentity: Bool { get }
    * @availability iOS 18.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1248222074785841, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1248222074785841, this, []); }
   /**
    * func translated(by offset: Vector3D) -> ScaledPose3D
    * @availability iOS 18.0+
    */
-  translatedBy(offset: Vector3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 164538236932659, this, [offset]); }
+  translatedBy(offset: Vector3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 164538236932659, this, [offset]); }
   /**
    * func translated(by size: Size3D) -> ScaledPose3D
    * @availability iOS 18.0+
    */
-  translatedBy25809(size: Size3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 3979447420979365, this, [size]); }
+  translatedBy25809(size: Size3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 3979447420979365, this, [size]); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 699904977985124, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 699904977985124, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1781581350613931, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1781581350613931, this, []); }
   /**
    * func concatenating(_ transform: ScaledPose3D) -> ScaledPose3D
    * @availability iOS 18.0+
    */
-  concatenating(transform: ScaledPose3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 982131930388811, this, [transform]); }
+  concatenating(transform: ScaledPose3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 982131930388811, this, [transform]); }
   /**
    * func concatenating(_ transform: Pose3D) -> ScaledPose3D
    * @availability iOS 18.0+
    */
-  concatenating54535(transform: Pose3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 2665339178675134, this, [transform]); }
+  concatenating54535(transform: Pose3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 2665339178675134, this, [transform]); }
   /**
    * func isApproximatelyEqual(to other: ScaledPose3D, tolerance: Double = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 18.0+
    */
-  isApproximatelyEqual(other: ScaledPose3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1445288802918737, this, [other, tolerance]); }
+  isApproximatelyEqual(other: ScaledPose3D, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1445288802918737, this, [other, tolerance]); }
   /**
    * mutating func flip(along axis: Axis3D)
    * @availability iOS 18.0+
    */
-  flip(axis: Axis3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 3559990001193056, this, [axis]); }
+  flip(axis: Axis3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 3559990001193056, this, [axis]); }
   /**
    * var matrix: simd_double4x4 { get }
    * @availability iOS 18.0+
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 4230122256294277, this, []); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 4230122256294277, this, []); }
   /**
    * func flipped(along axis: Axis3D) -> ScaledPose3D
    * @availability iOS 18.0+
    */
-  flipped(axis: Axis3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 4292431998966793, this, [axis]); }
+  flipped(axis: Axis3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 4292431998966793, this, [axis]); }
   /**
    * init(forward: Vector3D, scale: Double = 1, up: Vector3D = Vector3D(x: 0, y: 1, z: 0))
    * @availability iOS 18.0+
    */
-  static initForwardScaleUp(forward: Vector3D, scale?: number, up?: Vector3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 4415475074678909, undefined, [forward, scale, up]); }
+  static initForwardScaleUp(forward: Vector3D, scale?: number, up?: Vector3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 4415475074678909, undefined, [forward, scale, up]); }
   /**
    * var inverse: ScaledPose3D { get }
    * @availability iOS 18.0+
    */
-  get inverse(): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 2628207765703649, this, []); }
+  get inverse(): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 2628207765703649, this, []); }
   /**
    * func rotated(by quaternion: simd_quatd) -> ScaledPose3D
    * @availability iOS 18.0+
    */
-  rotatedBy(quaternion: SDKHandle): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 2755366922013879, this, [quaternion]); }
+  rotatedBy(quaternion: SDKHandle): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 2755366922013879, this, [quaternion]); }
   /**
    * func rotated(by rotation: Rotation3D) -> ScaledPose3D
    * @availability iOS 18.0+
    */
-  rotatedBy84406(rotation: Rotation3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 2665752178786014, this, [rotation]); }
+  rotatedBy84406(rotation: Rotation3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 2665752178786014, this, [rotation]); }
   /**
    * static var identity: ScaledPose3D { get }
    * @availability iOS 18.0+
    */
-  static get identity(): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 1569346895586435, undefined, []); }
+  static get identity(): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 1569346895586435, undefined, []); }
   /**
    * init(position: Point3D = .zero, target: Point3D, scale: Double = 1, up: Vector3D = Vector3D(x: 0, y: 1, z: 0))
    * @availability iOS 18.0+
    */
-  static initPositionTargetScaleUp(position: Point3D, target: Point3D, scale?: number, up?: Vector3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 2694488001130716, undefined, [position, target, scale, up]); }
+  static initPositionTargetScaleUp(position: Point3D, target: Point3D, scale?: number, up?: Vector3D): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 2694488001130716, undefined, [position, target, scale, up]); }
   /**
    * init(position: Point3D = .zero, rotation: Rotation3D, scale: Double = 1)
    * @availability iOS 18.0+
    */
-  static initPositionRotationScale(position: Point3D, rotation: Rotation3D, scale?: number): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 1477329872154701, undefined, [position, rotation, scale]); }
+  static initPositionRotationScale(position: Point3D, rotation: Rotation3D, scale?: number): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 1477329872154701, undefined, [position, rotation, scale]); }
   /**
    * init(position: simd_double3 = .zero, rotation: simd_quatd, scale: Double = 1)
    * @availability iOS 18.0+
    */
-  static initPositionRotationScale5588(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 391486586876254, undefined, [position, rotation, scale]); }
+  static initPositionRotationScale5588(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 391486586876254, undefined, [position, rotation, scale]); }
   /**
    * init(position: simd_float3 = .zero, rotation: simd_quatf, scale: Float = 1)
    * @availability iOS 18.0+
    */
-  static initPositionRotationScale72222(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 2246183310125076, undefined, [position, rotation, scale]); }
+  static initPositionRotationScale72222(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 2246183310125076, undefined, [position, rotation, scale]); }
   /**
    * init?(transform: AffineTransform3D)
    * @availability iOS 18.0+
    */
-  static initTransform(transform: AffineTransform3D): (ScaledPose3D) | null { return callSDK<(ScaledPose3D) | null>("Spatial_d6c5d10d3352e6ec", 1550840975278878, undefined, [transform]); }
+  static initTransform(transform: AffineTransform3D): (ScaledPose3D) | null { return callSDK<(ScaledPose3D) | null>("Spatial_a956b86ef7a76a8e", 1550840975278878, undefined, [transform]); }
   /**
    * init?(transform: ProjectiveTransform3D)
    * @availability iOS 18.0+
    */
-  static initTransform81077(transform: ProjectiveTransform3D): (ScaledPose3D) | null { return callSDK<(ScaledPose3D) | null>("Spatial_d6c5d10d3352e6ec", 4328524239744434, undefined, [transform]); }
+  static initTransform81077(transform: ProjectiveTransform3D): (ScaledPose3D) | null { return callSDK<(ScaledPose3D) | null>("Spatial_a956b86ef7a76a8e", 4328524239744434, undefined, [transform]); }
   /**
    * init?(_ matrix: simd_float4x4)
    * @availability iOS 18.0+
    */
-  static init(matrix: SDKHandle): (ScaledPose3D) | null { return callSDK<(ScaledPose3D) | null>("Spatial_d6c5d10d3352e6ec", 3952469114632662, undefined, [matrix]); }
+  static init(matrix: SDKHandle): (ScaledPose3D) | null { return callSDK<(ScaledPose3D) | null>("Spatial_a956b86ef7a76a8e", 3952469114632662, undefined, [matrix]); }
   /**
    * init?(_ matrix: simd_double4x4)
    * @availability iOS 18.0+
    */
-  static init96470(matrix: SDKHandle): (ScaledPose3D) | null { return callSDK<(ScaledPose3D) | null>("Spatial_d6c5d10d3352e6ec", 144438531872281, undefined, [matrix]); }
+  static init96470(matrix: SDKHandle): (ScaledPose3D) | null { return callSDK<(ScaledPose3D) | null>("Spatial_a956b86ef7a76a8e", 144438531872281, undefined, [matrix]); }
   /**
    * init(_ pose: ScaledPose3DFloat)
    * @availability iOS 26.0+
    */
-  static init64461(pose: ScaledPose3DFloat): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 1042716972806539, undefined, [pose]); }
+  static init64461(pose: ScaledPose3DFloat): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 1042716972806539, undefined, [pose]); }
   /** init() */
-  static init73635(): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_d6c5d10d3352e6ec", 2838934267515796, undefined, []); }
+  static init73635(): ScaledPose3D { return callSDK<ScaledPose3D>("Spatial_a956b86ef7a76a8e", 2838934267515796, undefined, []); }
   declare readonly $type: { "c:@SA@SPScaledPose3D": true };
 }
 
@@ -5178,128 +5178,128 @@ export type ScaledPose3D_Vector = Vector3D;
 /** struct ScaledPose3DFloat */
 export class ScaledPose3DFloat extends SDKHandle {
   /** var position: Point3DFloat */
-  get position(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_d6c5d10d3352e6ec", 3315214702564830, this, []); }
-  set position(value: Point3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1895525535552868, this, [value]); }
+  get position(): Point3DFloat { return callSDK<Point3DFloat>("Spatial_a956b86ef7a76a8e", 3315214702564830, this, []); }
+  set position(value: Point3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1895525535552868, this, [value]); }
   /** var rotation: Rotation3DFloat */
-  get rotation(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 1133127579127637, this, []); }
-  set rotation(value: Rotation3DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1462773253025329, this, [value]); }
+  get rotation(): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 1133127579127637, this, []); }
+  set rotation(value: Rotation3DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1462773253025329, this, [value]); }
   /** var scale: Float */
-  get scale(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 599818319239278, this, []); }
-  set scale(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1566395892266361, this, [value]); }
+  get scale(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 599818319239278, this, []); }
+  set scale(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1566395892266361, this, [value]); }
   /**
    * var isIdentity: Bool { get }
    * @availability iOS 26.0+
    */
-  get isIdentity(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1255645773727721, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1255645773727721, this, []); }
   /**
    * func translated(by offset: Vector3DFloat) -> ScaledPose3DFloat
    * @availability iOS 26.0+
    */
-  translated(offset: Vector3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 627545838402314, this, [offset]); }
+  translated(offset: Vector3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 627545838402314, this, [offset]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 3324826487790359, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 3324826487790359, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 2462296038966039, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 2462296038966039, this, []); }
   /**
    * func concatenating(_ transform: ScaledPose3DFloat) -> ScaledPose3DFloat
    * @availability iOS 26.0+
    */
-  concatenating(transform: ScaledPose3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 2024302342698237, this, [transform]); }
+  concatenating(transform: ScaledPose3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 2024302342698237, this, [transform]); }
   /**
    * func concatenating(_ transform: Pose3DFloat) -> ScaledPose3DFloat
    * @availability iOS 26.0+
    */
-  concatenating96912(transform: Pose3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 1170743683828369, this, [transform]); }
+  concatenating96912(transform: Pose3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 1170743683828369, this, [transform]); }
   /**
    * func isApproximatelyEqual(to other: ScaledPose3DFloat, tolerance: Float = sqrt(.ulpOfOne)) -> Bool
    * @availability iOS 26.0+
    */
-  isApproximatelyEqual(other: ScaledPose3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 375345893419931, this, [other, tolerance]); }
+  isApproximatelyEqual(other: ScaledPose3DFloat, tolerance?: number): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 375345893419931, this, [other, tolerance]); }
   /**
    * mutating func flip(along axis: Axis3D)
    * @availability iOS 26.0+
    */
-  flip(axis: Axis3D): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 1278828751937042, this, [axis]); }
+  flip(axis: Axis3D): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 1278828751937042, this, [axis]); }
   /**
    * var matrix: simd_float4x4 { get }
    * @availability iOS 26.0+
    */
-  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3522534115048529, this, []); }
+  get matrix(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3522534115048529, this, []); }
   /**
    * func flipped(along axis: Axis3D) -> ScaledPose3DFloat
    * @availability iOS 26.0+
    */
-  flipped(axis: Axis3D): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 545973633509944, this, [axis]); }
+  flipped(axis: Axis3D): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 545973633509944, this, [axis]); }
   /**
    * init(forward: Vector3DFloat, scale: Float = 1, up: Vector3DFloat = Vector3DFloat(x: 0, y: 1, z: 0))
    * @availability iOS 26.0+
    */
-  static initForwardScaleUp(forward: Vector3DFloat, scale?: number, up?: Vector3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 3933589423222347, undefined, [forward, scale, up]); }
+  static initForwardScaleUp(forward: Vector3DFloat, scale?: number, up?: Vector3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 3933589423222347, undefined, [forward, scale, up]); }
   /**
    * var inverse: ScaledPose3DFloat { get }
    * @availability iOS 26.0+
    */
-  get inverse(): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 4049415611027021, this, []); }
+  get inverse(): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 4049415611027021, this, []); }
   /**
    * func rotated(by rotation: Rotation3DFloat) -> ScaledPose3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy(rotation: Rotation3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 2963240116349248, this, [rotation]); }
+  rotatedBy(rotation: Rotation3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 2963240116349248, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatf) -> ScaledPose3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy67970(quaternion: SDKHandle): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 4403726119312619, this, [quaternion]); }
+  rotatedBy67970(quaternion: SDKHandle): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 4403726119312619, this, [quaternion]); }
   /**
    * static var identity: ScaledPose3DFloat { get }
    * @availability iOS 26.0+
    */
-  static get identity(): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 3821449257004517, undefined, []); }
+  static get identity(): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 3821449257004517, undefined, []); }
   /**
    * init(position: Point3DFloat = .zero, target: Point3DFloat, scale: Float = 1, up: Vector3DFloat = Vector3DFloat(x: 0, y: 1, z: 0))
    * @availability iOS 26.0+
    */
-  static initPositionTargetScaleUp(position: Point3DFloat, target: Point3DFloat, scale?: number, up?: Vector3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 1749337657805703, undefined, [position, target, scale, up]); }
+  static initPositionTargetScaleUp(position: Point3DFloat, target: Point3DFloat, scale?: number, up?: Vector3DFloat): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 1749337657805703, undefined, [position, target, scale, up]); }
   /**
    * init(position: Point3DFloat = .zero, rotation: Rotation3DFloat, scale: Float = 1)
    * @availability iOS 26.0+
    */
-  static initPositionRotationScale(position: Point3DFloat, rotation: Rotation3DFloat, scale?: number): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 3871256467035192, undefined, [position, rotation, scale]); }
+  static initPositionRotationScale(position: Point3DFloat, rotation: Rotation3DFloat, scale?: number): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 3871256467035192, undefined, [position, rotation, scale]); }
   /**
    * init(position: simd_float3 = .zero, rotation: simd_quatf, scale: Float = 1)
    * @availability iOS 26.0+
    */
-  static initPositionRotationScale31997(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 4412257120397791, undefined, [position, rotation, scale]); }
+  static initPositionRotationScale31997(position: SDKHandle, rotation: SDKHandle, scale?: number): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 4412257120397791, undefined, [position, rotation, scale]); }
   /**
    * init?(transform: AffineTransform3DFloat)
    * @availability iOS 26.0+
    */
-  static initTransform(transform: AffineTransform3DFloat): (ScaledPose3DFloat) | null { return callSDK<(ScaledPose3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 401790590961259, undefined, [transform]); }
+  static initTransform(transform: AffineTransform3DFloat): (ScaledPose3DFloat) | null { return callSDK<(ScaledPose3DFloat) | null>("Spatial_a956b86ef7a76a8e", 401790590961259, undefined, [transform]); }
   /**
    * init?(transform: ProjectiveTransform3DFloat)
    * @availability iOS 26.0+
    */
-  static initTransform89780(transform: ProjectiveTransform3DFloat): (ScaledPose3DFloat) | null { return callSDK<(ScaledPose3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 4175312526792372, undefined, [transform]); }
+  static initTransform89780(transform: ProjectiveTransform3DFloat): (ScaledPose3DFloat) | null { return callSDK<(ScaledPose3DFloat) | null>("Spatial_a956b86ef7a76a8e", 4175312526792372, undefined, [transform]); }
   /**
    * init?(_ matrix: simd_float4x4)
    * @availability iOS 26.0+
    */
-  static init(matrix: SDKHandle): (ScaledPose3DFloat) | null { return callSDK<(ScaledPose3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 4142750359720875, undefined, [matrix]); }
+  static init(matrix: SDKHandle): (ScaledPose3DFloat) | null { return callSDK<(ScaledPose3DFloat) | null>("Spatial_a956b86ef7a76a8e", 4142750359720875, undefined, [matrix]); }
   /**
    * init(_ pose: ScaledPose3D)
    * @availability iOS 26.0+
    */
-  static init51775(pose: ScaledPose3D): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 4395398947391664, undefined, [pose]); }
+  static init51775(pose: ScaledPose3D): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 4395398947391664, undefined, [pose]); }
   /** init(position: Point3DFloat, rotation: Rotation3DFloat, scale: Float) */
-  static initPositionRotationScale70319(position: Point3DFloat, rotation: Rotation3DFloat, scale: number): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 3253266905864237, undefined, [position, rotation, scale]); }
+  static initPositionRotationScale70319(position: Point3DFloat, rotation: Rotation3DFloat, scale: number): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 3253266905864237, undefined, [position, rotation, scale]); }
   /** init() */
-  static init34842(): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_d6c5d10d3352e6ec", 1388428403435121, undefined, []); }
+  static init34842(): ScaledPose3DFloat { return callSDK<ScaledPose3DFloat>("Spatial_a956b86ef7a76a8e", 1388428403435121, undefined, []); }
   declare readonly $type: { "c:@SA@SPScaledPose3DFloat": true };
 }
 
@@ -5412,227 +5412,227 @@ export class Size3D extends SDKHandle {
    * func applying(_ transform: AffineTransform3D) -> Size3D
    * @availability iOS 16.0+
    */
-  applying(transform: AffineTransform3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 472814884164024, this, [transform]); }
+  applying(transform: AffineTransform3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 472814884164024, this, [transform]); }
   /**
    * func applying(_ transform: ProjectiveTransform3D) -> Size3D
    * @availability iOS 16.0+
    */
-  applying83077(transform: ProjectiveTransform3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 1186933941062505, this, [transform]); }
+  applying83077(transform: ProjectiveTransform3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 1186933941062505, this, [transform]); }
   /**
    * func contains(point other: Point3D) -> Bool
    * @availability iOS 16.0+
    */
-  containsPoint(other: Point3D): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3952745647308165, this, [other]); }
+  containsPoint(other: Point3D): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3952745647308165, this, [other]); }
   /**
    * func contains(_ other: Size3D) -> Bool
    * @availability iOS 16.0+
    */
-  contains(other: Size3D): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 767312919910946, this, [other]); }
+  contains(other: Size3D): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 767312919910946, this, [other]); }
   /**
    * var isFinite: Bool { get }
    * @availability iOS 16.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3314846332819254, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3314846332819254, this, []); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 16.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2650808472813195, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2650808472813195, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 16.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3707313071787032, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3707313071787032, this, []); }
   /**
    * func rotated(by rotation: Rotation3D) -> Size3D
    * @availability iOS 16.0+
    */
-  rotatedBy(rotation: Rotation3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 1329131956518661, this, [rotation]); }
+  rotatedBy(rotation: Rotation3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 1329131956518661, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatd) -> Size3D
    * @availability iOS 16.0+
    */
-  rotatedBy29826(quaternion: SDKHandle): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 1546902517433449, this, [quaternion]); }
+  rotatedBy29826(quaternion: SDKHandle): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 1546902517433449, this, [quaternion]); }
   /**
    * func scaled(by scale: Size3D) -> Size3D
    * @availability iOS 16.0+
    */
-  scaled(scale: Size3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 1988037192692564, this, [scale]); }
+  scaled(scale: Size3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 1988037192692564, this, [scale]); }
   /**
    * func uniformlyScaled(by scale: Double) -> Size3D
    * @availability iOS 16.0+
    */
-  uniformlyScaled(scale: number): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 3173747108057485, this, [scale]); }
+  uniformlyScaled(scale: number): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 3173747108057485, this, [scale]); }
   /**
    * func union(_ other: Size3D) -> Size3D
    * @availability iOS 16.0+
    */
-  union(other: Size3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 2257170571113486, this, [other]); }
+  union(other: Size3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 2257170571113486, this, [other]); }
   /**
    * static let infinity: Size3D
    * @availability iOS 16.0+
    */
-  static get infinity(): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 1203547259465748, undefined, []); }
+  static get infinity(): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 1203547259465748, undefined, []); }
   /**
    * static let zero: Size3D
    * @availability iOS 16.0+
    */
-  static get zero(): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 4492584318001994, undefined, []); }
+  static get zero(): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 4492584318001994, undefined, []); }
   /**
    * var vector: simd_double3 { get set }
    * @availability iOS 16.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1239448017505861, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1440775754444866, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1239448017505861, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1440775754444866, this, [value]); }
   /**
    * var depth: Double { get set }
    * @availability iOS 16.0+
    */
-  get depth(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1162155987799461, this, []); }
-  set depth(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 12088063923240, this, [value]); }
+  get depth(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1162155987799461, this, []); }
+  set depth(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 12088063923240, this, [value]); }
   /**
    * var height: Double { get set }
    * @availability iOS 16.0+
    */
-  get height(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2039845933787207, this, []); }
-  set height(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1255806447974281, this, [value]); }
+  get height(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2039845933787207, this, []); }
+  set height(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1255806447974281, this, [value]); }
   /**
    * var width: Double { get set }
    * @availability iOS 16.0+
    */
-  get width(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 729446477472631, this, []); }
-  set width(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3108246834968300, this, [value]); }
+  get width(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 729446477472631, this, []); }
+  set width(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3108246834968300, this, [value]); }
   /**
    * init(vector: simd_double3)
    * @availability iOS 16.0+
    */
-  static initVector(vector: SDKHandle): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 2793640006133657, undefined, [vector]); }
+  static initVector(vector: SDKHandle): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 2793640006133657, undefined, [vector]); }
   /**
    * func unapplying(_ scaledPose: ScaledPose3D) -> Size3D
    * @availability iOS 18.0+
    */
-  unapplying(scaledPose: ScaledPose3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 239904273486375, this, [scaledPose]); }
+  unapplying(scaledPose: ScaledPose3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 239904273486375, this, [scaledPose]); }
   /**
    * func unapplying(_ transform: AffineTransform3D) -> Size3D
    * @availability iOS 16.0+
    */
-  unapplying21518(transform: AffineTransform3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 4439193121248211, this, [transform]); }
+  unapplying21518(transform: AffineTransform3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 4439193121248211, this, [transform]); }
   /**
    * func unapplying(_ transform: ProjectiveTransform3D) -> Size3D
    * @availability iOS 16.0+
    */
-  unapplying22975(transform: ProjectiveTransform3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 3430556687938460, this, [transform]); }
+  unapplying22975(transform: ProjectiveTransform3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 3430556687938460, this, [transform]); }
   /**
    * func unapplying(_ pose: Pose3D) -> Size3D
    * @availability iOS 16.0+
    */
-  unapplying46554(pose: Pose3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 3673843309527988, this, [pose]); }
+  unapplying46554(pose: Pose3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 3673843309527988, this, [pose]); }
   /**
    * func containsAny(of points: [Point3D]) -> Bool
    * @availability iOS 16.0+
    */
-  containsAny(points: Array<Point3D>): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1062271536227833, this, [points]); }
+  containsAny(points: Array<Point3D>): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1062271536227833, this, [points]); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 4387265159274033, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 4387265159274033, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 198537729486825, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 198537729486825, this, []); }
   /**
    * func intersection(_ other: Size3D) -> Size3D?
    * @availability iOS 16.0+
    */
-  intersection(other: Size3D): (Size3D) | null { return callSDK<(Size3D) | null>("Spatial_d6c5d10d3352e6ec", 2270220068884289, this, [other]); }
+  intersection(other: Size3D): (Size3D) | null { return callSDK<(Size3D) | null>("Spatial_a956b86ef7a76a8e", 2270220068884289, this, [other]); }
   /**
    * static let one: Size3D
    * @availability iOS 16.0+
    */
-  static get one(): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 202353341455670, undefined, []); }
+  static get one(): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 202353341455670, undefined, []); }
   /**
    * var simd: simd_double3 { get set }
    * @availability iOS 16.0+
    */
-  get simd(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 4136797735581316, this, []); }
-  set simd(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2058518698053022, this, [value]); }
+  get simd(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 4136797735581316, this, []); }
+  set simd(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2058518698053022, this, [value]); }
   /**
    * var size: Size3D { get }
    * @availability iOS 16.0+
    */
-  get size(): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 4475451192996421, this, []); }
+  get size(): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 4475451192996421, this, []); }
   /**
    * init(width: Double = 0, height: Double = 0, depth: Double = 0)
    * @availability iOS 16.0+
    */
-  static initWidthHeightDepth(width?: number, height?: number, depth?: number): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 4104359722990716, undefined, [width, height, depth]); }
+  static initWidthHeightDepth(width?: number, height?: number, depth?: number): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 4104359722990716, undefined, [width, height, depth]); }
   /**
    * init<T>(width: T, height: T, depth: T) where T : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initWidthHeightDepth30320(width: number, height: number, depth: number): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 1140490042302481, undefined, [width, height, depth]); }
+  static initWidthHeightDepth30320(width: number, height: number, depth: number): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 1140490042302481, undefined, [width, height, depth]); }
   /**
    * func sheared(_ shear: AxisWithFactors) -> Size3D
    * @availability iOS 16.0+
    */
-  sheared(shear: AxisWithFactors): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 4147851600294533, this, [shear]); }
+  sheared(shear: AxisWithFactors): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 4147851600294533, this, [shear]); }
   /**
    * func applying(_ scaledPose: ScaledPose3D) -> Size3D
    * @availability iOS 18.0+
    */
-  applying58719(scaledPose: ScaledPose3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 216114575781620, this, [scaledPose]); }
+  applying58719(scaledPose: ScaledPose3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 216114575781620, this, [scaledPose]); }
   /**
    * func applying(_ pose: Pose3D) -> Size3D
    * @availability iOS 16.0+
    */
-  applying44116(pose: Pose3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 2153323566176775, this, [pose]); }
+  applying44116(pose: Pose3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 2153323566176775, this, [pose]); }
   /**
    * func contains(anyOf points: [Point3D]) -> Bool
    * @availability iOS 16.0+
    */
-  containsAnyOf(points: Array<Point3D>): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1748126881155395, this, [points]); }
+  containsAnyOf(points: Array<Point3D>): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1748126881155395, this, [points]); }
   /**
    * func scaledBy(x: Double = 1, y: Double = 1, z: Double = 1) -> Size3D
    * @availability iOS 16.0+
    */
-  scaledBy(x?: number, y?: number, z?: number): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 4476446563111964, this, [x, y, z]); }
+  scaledBy(x?: number, y?: number, z?: number): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 4476446563111964, this, [x, y, z]); }
   /**
    * init(_ size: Size3DFloat)
    * @availability iOS 26.0+
    */
-  static init(size: Size3DFloat): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 4364576775708562, undefined, [size]); }
+  static init(size: Size3DFloat): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 4364576775708562, undefined, [size]); }
   /**
    * init(_ xyz: Vector3D)
    * @availability iOS 16.0+
    */
-  static init62779(xyz: Vector3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 4456724069090546, undefined, [xyz]); }
+  static init62779(xyz: Vector3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 4456724069090546, undefined, [xyz]); }
   /**
    * init(_ point: Point3D)
    * @availability iOS 16.0+
    */
-  static init40312(point: Point3D): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 2398412450419805, undefined, [point]); }
+  static init40312(point: Point3D): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 2398412450419805, undefined, [point]); }
   /**
    * init(_ xyz: simd_double3)
    * @availability iOS 16.0+
    */
-  static init53157(xyz: SDKHandle): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 4495397391918318, undefined, [xyz]); }
+  static init53157(xyz: SDKHandle): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 4495397391918318, undefined, [xyz]); }
   /**
    * init(_ xyz: simd_float3)
    * @availability iOS 16.0+
    */
-  static init61867(xyz: SDKHandle): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 739524833304240, undefined, [xyz]); }
+  static init61867(xyz: SDKHandle): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 739524833304240, undefined, [xyz]); }
   /**
    * init(_ source: simd_packed_double4)
    * @availability iOS 26.0+
    */
-  static init21696(source: SDKHandle): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 2394886692497107, undefined, [source]); }
+  static init21696(source: SDKHandle): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 2394886692497107, undefined, [source]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init26542(): Size3D { return callSDK<Size3D>("Spatial_d6c5d10d3352e6ec", 48021055020808, undefined, []); }
+  static init26542(): Size3D { return callSDK<Size3D>("Spatial_a956b86ef7a76a8e", 48021055020808, undefined, []); }
   declare readonly $type: { "c:@UA@SPSize3D": true };
 }
 
@@ -5711,210 +5711,210 @@ export class Size3DFloat extends SDKHandle {
    * func applying(_ transform: AffineTransform3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  applying(transform: AffineTransform3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 921942318033499, this, [transform]); }
+  applying(transform: AffineTransform3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 921942318033499, this, [transform]); }
   /**
    * func applying(_ transform: ProjectiveTransform3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  applying1641(transform: ProjectiveTransform3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 2517366070254374, this, [transform]); }
+  applying1641(transform: ProjectiveTransform3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 2517366070254374, this, [transform]); }
   /**
    * func contains(point other: Point3DFloat) -> Bool
    * @availability iOS 26.0+
    */
-  containsPoint(other: Point3DFloat): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3943044613264707, this, [other]); }
+  containsPoint(other: Point3DFloat): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3943044613264707, this, [other]); }
   /**
    * func contains(_ other: Size3DFloat) -> Bool
    * @availability iOS 26.0+
    */
-  contains(other: Size3DFloat): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3235705397785286, this, [other]); }
+  contains(other: Size3DFloat): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3235705397785286, this, [other]); }
   /**
    * var isFinite: Bool { get }
    * @availability iOS 26.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2623566953188532, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2623566953188532, this, []); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 26.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1995461407240228, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1995461407240228, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 26.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3690609178790941, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3690609178790941, this, []); }
   /**
    * func rotated(by rotation: Rotation3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy(rotation: Rotation3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 1363276373277270, this, [rotation]); }
+  rotatedBy(rotation: Rotation3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 1363276373277270, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatf) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy6992(quaternion: SDKHandle): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 499782771657964, this, [quaternion]); }
+  rotatedBy6992(quaternion: SDKHandle): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 499782771657964, this, [quaternion]); }
   /**
    * func scaled(by scale: Size3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  scaled(scale: Size3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 1884566741785787, this, [scale]); }
+  scaled(scale: Size3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 1884566741785787, this, [scale]); }
   /**
    * func uniformlyScaled(by scale: Float) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  uniformlyScaled(scale: number): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 3168797513522567, this, [scale]); }
+  uniformlyScaled(scale: number): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 3168797513522567, this, [scale]); }
   /**
    * func union(_ other: Size3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  union(other: Size3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 1633460269752235, this, [other]); }
+  union(other: Size3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 1633460269752235, this, [other]); }
   /** static let infinity: Size3DFloat */
-  static get infinity(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 4373800469202765, undefined, []); }
+  static get infinity(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 4373800469202765, undefined, []); }
   /** static let zero: Size3DFloat */
-  static get zero(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 572587415849918, undefined, []); }
+  static get zero(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 572587415849918, undefined, []); }
   /**
    * var vector: simd_float3 { get set }
    * @availability iOS 26.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1064158720635298, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2969146431766007, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1064158720635298, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2969146431766007, this, [value]); }
   /**
    * var depth: Float { get set }
    * @availability iOS 26.0+
    */
-  get depth(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2382417693441475, this, []); }
-  set depth(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3446839436333003, this, [value]); }
+  get depth(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2382417693441475, this, []); }
+  set depth(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3446839436333003, this, [value]); }
   /**
    * var height: Float { get set }
    * @availability iOS 26.0+
    */
-  get height(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 144979202250333, this, []); }
-  set height(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2443931023546999, this, [value]); }
+  get height(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 144979202250333, this, []); }
+  set height(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2443931023546999, this, [value]); }
   /**
    * var width: Float { get set }
    * @availability iOS 26.0+
    */
-  get width(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 4273181996322832, this, []); }
-  set width(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3413168950792795, this, [value]); }
+  get width(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 4273181996322832, this, []); }
+  set width(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3413168950792795, this, [value]); }
   /**
    * init(vector: simd_float3)
    * @availability iOS 26.0+
    */
-  static initVector(vector: SDKHandle): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 1293567563667959, undefined, [vector]); }
+  static initVector(vector: SDKHandle): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 1293567563667959, undefined, [vector]); }
   /**
    * func unapplying(_ scaledPose: ScaledPose3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  unapplying(scaledPose: ScaledPose3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 4074716910330243, this, [scaledPose]); }
+  unapplying(scaledPose: ScaledPose3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 4074716910330243, this, [scaledPose]); }
   /**
    * func unapplying(_ transform: AffineTransform3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  unapplying16485(transform: AffineTransform3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 100137782701809, this, [transform]); }
+  unapplying16485(transform: AffineTransform3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 100137782701809, this, [transform]); }
   /**
    * func unapplying(_ transform: ProjectiveTransform3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  unapplying81554(transform: ProjectiveTransform3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 233585517618979, this, [transform]); }
+  unapplying81554(transform: ProjectiveTransform3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 233585517618979, this, [transform]); }
   /**
    * func unapplying(_ pose: Pose3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  unapplying821(pose: Pose3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 1889157707436170, this, [pose]); }
+  unapplying821(pose: Pose3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 1889157707436170, this, [pose]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 222572701855554, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 222572701855554, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 2342308066391683, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 2342308066391683, this, []); }
   /**
    * func intersection(_ other: Size3DFloat) -> Size3DFloat?
    * @availability iOS 26.0+
    */
-  intersection(other: Size3DFloat): (Size3DFloat) | null { return callSDK<(Size3DFloat) | null>("Spatial_d6c5d10d3352e6ec", 1530308574532390, this, [other]); }
+  intersection(other: Size3DFloat): (Size3DFloat) | null { return callSDK<(Size3DFloat) | null>("Spatial_a956b86ef7a76a8e", 1530308574532390, this, [other]); }
   /**
    * static let one: Size3DFloat
    * @availability iOS 26.0+
    */
-  static get one(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 1983473217054096, undefined, []); }
+  static get one(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 1983473217054096, undefined, []); }
   /**
    * var size: Size3DFloat { get }
    * @availability iOS 26.0+
    */
-  get size(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 3158581131904309, this, []); }
+  get size(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 3158581131904309, this, []); }
   /**
    * init(width: Float = 0, height: Float = 0, depth: Float = 0)
    * @availability iOS 26.0+
    */
-  static initWidthHeightDepth(width?: number, height?: number, depth?: number): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 2410625326188755, undefined, [width, height, depth]); }
+  static initWidthHeightDepth(width?: number, height?: number, depth?: number): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 2410625326188755, undefined, [width, height, depth]); }
   /**
    * init<T>(width: T, height: T, depth: T) where T : BinaryFloatingPoint
    * @availability iOS 26.0+
    */
-  static initWidthHeightDepth27956(width: number, height: number, depth: number): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 2810567283120047, undefined, [width, height, depth]); }
+  static initWidthHeightDepth27956(width: number, height: number, depth: number): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 2810567283120047, undefined, [width, height, depth]); }
   /**
    * func sheared(_ shear: AxisWithFactors) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  sheared(shear: AxisWithFactors): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 2321115928857607, this, [shear]); }
+  sheared(shear: AxisWithFactors): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 2321115928857607, this, [shear]); }
   /**
    * func applying(_ scaledPose: ScaledPose3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  applying13490(scaledPose: ScaledPose3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 3578629076747253, this, [scaledPose]); }
+  applying13490(scaledPose: ScaledPose3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 3578629076747253, this, [scaledPose]); }
   /**
    * func applying(_ pose: Pose3DFloat) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  applying45143(pose: Pose3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 2782843658355140, this, [pose]); }
+  applying45143(pose: Pose3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 2782843658355140, this, [pose]); }
   /**
    * func contains(anyOf points: [Point3DFloat]) -> Bool
    * @availability iOS 26.0+
    */
-  containsAnyOf(points: Array<Point3DFloat>): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3711194535013903, this, [points]); }
+  containsAnyOf(points: Array<Point3DFloat>): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3711194535013903, this, [points]); }
   /**
    * func scaledBy(x: Float = 1, y: Float = 1, z: Float = 1) -> Size3DFloat
    * @availability iOS 26.0+
    */
-  scaledBy(x?: number, y?: number, z?: number): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 2380301671925287, this, [x, y, z]); }
+  scaledBy(x?: number, y?: number, z?: number): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 2380301671925287, this, [x, y, z]); }
   /**
    * init(_ point: Point3DFloat)
    * @availability iOS 26.0+
    */
-  static init(point: Point3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 548982938536037, undefined, [point]); }
+  static init(point: Point3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 548982938536037, undefined, [point]); }
   /**
    * init(_ xyz: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static init3159(xyz: Vector3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 2592681657968536, undefined, [xyz]); }
+  static init3159(xyz: Vector3DFloat): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 2592681657968536, undefined, [xyz]); }
   /**
    * init(_ size: Size3D)
    * @availability iOS 26.0+
    */
-  static init12223(size: Size3D): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 850607406035309, undefined, [size]); }
+  static init12223(size: Size3D): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 850607406035309, undefined, [size]); }
   /**
    * init(_ xyz: simd_double3)
    * @availability iOS 26.0+
    */
-  static init69089(xyz: SDKHandle): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 1131308975144406, undefined, [xyz]); }
+  static init69089(xyz: SDKHandle): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 1131308975144406, undefined, [xyz]); }
   /**
    * init(_ xyz: simd_float3)
    * @availability iOS 26.0+
    */
-  static init8599(xyz: SDKHandle): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 4179759794796071, undefined, [xyz]); }
+  static init8599(xyz: SDKHandle): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 4179759794796071, undefined, [xyz]); }
   /**
    * init(_ source: simd_packed_float4)
    * @availability iOS 26.0+
    */
-  static init85758(source: SDKHandle): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 2793285180256248, undefined, [source]); }
+  static init85758(source: SDKHandle): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 2793285180256248, undefined, [source]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init30786(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_d6c5d10d3352e6ec", 976126853052164, undefined, []); }
+  static init30786(): Size3DFloat { return callSDK<Size3DFloat>("Spatial_a956b86ef7a76a8e", 976126853052164, undefined, []); }
   declare readonly $type: { "c:@UA@SPSize3DFloat": true };
 }
 
@@ -6001,81 +6001,81 @@ export class SphericalCoordinates3D extends SDKHandle {
    * init(radius: Double, inclination: Angle2D, azimuth: Angle2D)
    * @availability iOS 18.0+
    */
-  static initRadiusInclinationAzimuth(radius: number, inclination: Angle2D, azimuth: Angle2D): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_d6c5d10d3352e6ec", 1967877702007213, undefined, [radius, inclination, azimuth]); }
+  static initRadiusInclinationAzimuth(radius: number, inclination: Angle2D, azimuth: Angle2D): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_a956b86ef7a76a8e", 1967877702007213, undefined, [radius, inclination, azimuth]); }
   /**
    * var vector: simd_double3 { get set }
    * @availability iOS 18.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 570933388526671, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 4057607438324387, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 570933388526671, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 4057607438324387, this, [value]); }
   /**
    * var azimuth: Angle2D { get set }
    * @availability iOS 18.0+
    */
-  get azimuth(): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 3879928089916194, this, []); }
-  set azimuth(value: Angle2D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1397293822699715, this, [value]); }
+  get azimuth(): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 3879928089916194, this, []); }
+  set azimuth(value: Angle2D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1397293822699715, this, [value]); }
   /**
    * var inclination: Angle2D { get set }
    * @availability iOS 18.0+
    */
-  get inclination(): Angle2D { return callSDK<Angle2D>("Spatial_d6c5d10d3352e6ec", 3510766141771967, this, []); }
-  set inclination(value: Angle2D) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3708544606479915, this, [value]); }
+  get inclination(): Angle2D { return callSDK<Angle2D>("Spatial_a956b86ef7a76a8e", 3510766141771967, this, []); }
+  set inclination(value: Angle2D) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3708544606479915, this, [value]); }
   /**
    * var radius: Double { get set }
    * @availability iOS 18.0+
    */
-  get radius(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 645096992636317, this, []); }
-  set radius(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3069736229239974, this, [value]); }
+  get radius(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 645096992636317, this, []); }
+  set radius(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3069736229239974, this, [value]); }
   /**
    * init(vector: simd_double3)
    * @availability iOS 18.0+
    */
-  static initVector(vector: SDKHandle): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_d6c5d10d3352e6ec", 123528006979440, undefined, [vector]); }
+  static initVector(vector: SDKHandle): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_a956b86ef7a76a8e", 123528006979440, undefined, [vector]); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 2198997251084773, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 2198997251084773, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 552604656588098, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 552604656588098, this, []); }
   /**
    * init(x: Double, y: Double, z: Double)
    * @availability iOS 18.0+
    */
-  static initXYZ(x: number, y: number, z: number): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_d6c5d10d3352e6ec", 2521478185463304, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_a956b86ef7a76a8e", 2521478185463304, undefined, [x, y, z]); }
   /**
    * init(_ coords: SphericalCoordinates3DFloat)
    * @availability iOS 26.0+
    */
-  static init(coords: SphericalCoordinates3DFloat): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_d6c5d10d3352e6ec", 743851335438895, undefined, [coords]); }
+  static init(coords: SphericalCoordinates3DFloat): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_a956b86ef7a76a8e", 743851335438895, undefined, [coords]); }
   /**
    * init(_ vector: Vector3D)
    * @availability iOS 18.0+
    */
-  static init34404(vector: Vector3D): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_d6c5d10d3352e6ec", 4485612305690741, undefined, [vector]); }
+  static init34404(vector: Vector3D): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_a956b86ef7a76a8e", 4485612305690741, undefined, [vector]); }
   /**
    * init(_ point: Point3D)
    * @availability iOS 18.0+
    */
-  static init55927(point: Point3D): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_d6c5d10d3352e6ec", 2496548808742700, undefined, [point]); }
+  static init55927(point: Point3D): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_a956b86ef7a76a8e", 2496548808742700, undefined, [point]); }
   /**
    * init(_ vector: simd_double3)
    * @availability iOS 18.0+
    */
-  static init19488(vector: SDKHandle): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_d6c5d10d3352e6ec", 503420536487050, undefined, [vector]); }
+  static init19488(vector: SDKHandle): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_a956b86ef7a76a8e", 503420536487050, undefined, [vector]); }
   /**
    * init(_ source: simd_packed_double4)
    * @availability iOS 26.0+
    */
-  static init39141(source: SDKHandle): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_d6c5d10d3352e6ec", 3320404064065804, undefined, [source]); }
+  static init39141(source: SDKHandle): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_a956b86ef7a76a8e", 3320404064065804, undefined, [source]); }
   /**
    * init()
    * @availability iOS 18.0+
    */
-  static init61341(): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_d6c5d10d3352e6ec", 757068155930610, undefined, []); }
+  static init61341(): SphericalCoordinates3D { return callSDK<SphericalCoordinates3D>("Spatial_a956b86ef7a76a8e", 757068155930610, undefined, []); }
   declare readonly $type: { "c:@UA@SPSphericalCoordinates3D": true };
 }
 
@@ -6088,81 +6088,81 @@ export class SphericalCoordinates3DFloat extends SDKHandle {
    * init(radius: Float, inclination: Angle2DFloat, azimuth: Angle2DFloat)
    * @availability iOS 26.0+
    */
-  static initRadiusInclinationAzimuth(radius: number, inclination: Angle2DFloat, azimuth: Angle2DFloat): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_d6c5d10d3352e6ec", 626434220042684, undefined, [radius, inclination, azimuth]); }
+  static initRadiusInclinationAzimuth(radius: number, inclination: Angle2DFloat, azimuth: Angle2DFloat): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_a956b86ef7a76a8e", 626434220042684, undefined, [radius, inclination, azimuth]); }
   /**
    * var vector: simd_float3 { get set }
    * @availability iOS 26.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3458757408021301, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 694131717814685, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3458757408021301, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 694131717814685, this, [value]); }
   /**
    * var azimuth: Angle2DFloat { get set }
    * @availability iOS 26.0+
    */
-  get azimuth(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 1443902985742232, this, []); }
-  set azimuth(value: Angle2DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 2374669614134581, this, [value]); }
+  get azimuth(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 1443902985742232, this, []); }
+  set azimuth(value: Angle2DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 2374669614134581, this, [value]); }
   /**
    * var inclination: Angle2DFloat { get set }
    * @availability iOS 26.0+
    */
-  get inclination(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_d6c5d10d3352e6ec", 3397110313869920, this, []); }
-  set inclination(value: Angle2DFloat) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1991102932080317, this, [value]); }
+  get inclination(): Angle2DFloat { return callSDK<Angle2DFloat>("Spatial_a956b86ef7a76a8e", 3397110313869920, this, []); }
+  set inclination(value: Angle2DFloat) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1991102932080317, this, [value]); }
   /**
    * var radius: Float { get set }
    * @availability iOS 26.0+
    */
-  get radius(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1772709258898923, this, []); }
-  set radius(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1303545954501093, this, [value]); }
+  get radius(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1772709258898923, this, []); }
+  set radius(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1303545954501093, this, [value]); }
   /**
    * init(vector: simd_float3)
    * @availability iOS 26.0+
    */
-  static initVector(vector: SDKHandle): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_d6c5d10d3352e6ec", 3873853306131967, undefined, [vector]); }
+  static initVector(vector: SDKHandle): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_a956b86ef7a76a8e", 3873853306131967, undefined, [vector]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 182636038997710, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 182636038997710, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1616890672275388, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1616890672275388, this, []); }
   /**
    * init(x: Float, y: Float, z: Float)
    * @availability iOS 26.0+
    */
-  static initXYZ(x: number, y: number, z: number): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_d6c5d10d3352e6ec", 3723201684653319, undefined, [x, y, z]); }
+  static initXYZ(x: number, y: number, z: number): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_a956b86ef7a76a8e", 3723201684653319, undefined, [x, y, z]); }
   /**
    * init(_ point: Point3DFloat)
    * @availability iOS 26.0+
    */
-  static init(point: Point3DFloat): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_d6c5d10d3352e6ec", 4339381675394189, undefined, [point]); }
+  static init(point: Point3DFloat): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_a956b86ef7a76a8e", 4339381675394189, undefined, [point]); }
   /**
    * init(_ vector: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static init75424(vector: Vector3DFloat): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_d6c5d10d3352e6ec", 3968553069379919, undefined, [vector]); }
+  static init75424(vector: Vector3DFloat): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_a956b86ef7a76a8e", 3968553069379919, undefined, [vector]); }
   /**
    * init(_ coords: SphericalCoordinates3D)
    * @availability iOS 26.0+
    */
-  static init92049(coords: SphericalCoordinates3D): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_d6c5d10d3352e6ec", 965747978622006, undefined, [coords]); }
+  static init92049(coords: SphericalCoordinates3D): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_a956b86ef7a76a8e", 965747978622006, undefined, [coords]); }
   /**
    * init(_ vector: simd_float3)
    * @availability iOS 26.0+
    */
-  static init70017(vector: SDKHandle): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_d6c5d10d3352e6ec", 23255740632264, undefined, [vector]); }
+  static init70017(vector: SDKHandle): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_a956b86ef7a76a8e", 23255740632264, undefined, [vector]); }
   /**
    * init(_ source: simd_packed_float4)
    * @availability iOS 26.0+
    */
-  static init58636(source: SDKHandle): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_d6c5d10d3352e6ec", 2182852856063191, undefined, [source]); }
+  static init58636(source: SDKHandle): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_a956b86ef7a76a8e", 2182852856063191, undefined, [source]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init2236(): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_d6c5d10d3352e6ec", 554260956879728, undefined, []); }
+  static init2236(): SphericalCoordinates3DFloat { return callSDK<SphericalCoordinates3DFloat>("Spatial_a956b86ef7a76a8e", 554260956879728, undefined, []); }
   declare readonly $type: { "c:@UA@SPSphericalCoordinates3DFloat": true };
 }
 
@@ -6266,261 +6266,261 @@ export class Vector3D extends SDKHandle {
    * var isFinite: Bool { get }
    * @availability iOS 16.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 3365083759906974, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 3365083759906974, this, []); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 16.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 913937566674209, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 913937566674209, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 16.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 4360502030396908, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 4360502030396908, this, []); }
   /**
    * static let zero: Vector3D
    * @availability iOS 16.0+
    */
-  static get zero(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 2034066633050585, undefined, []); }
+  static get zero(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 2034066633050585, undefined, []); }
   /**
    * static let infinity: Vector3D
    * @availability iOS 16.0+
    */
-  static get infinity(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3432015096974155, undefined, []); }
+  static get infinity(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3432015096974155, undefined, []); }
   /**
    * var vector: simd_double3 { get set }
    * @availability iOS 16.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 1288022913547982, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1043112893360788, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 1288022913547982, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1043112893360788, this, [value]); }
   /**
    * var x: Double { get set }
    * @availability iOS 16.0+
    */
-  get x(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 3581714092770684, this, []); }
-  set x(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 4500094977933058, this, [value]); }
+  get x(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 3581714092770684, this, []); }
+  set x(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 4500094977933058, this, [value]); }
   /**
    * var y: Double { get set }
    * @availability iOS 16.0+
    */
-  get y(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1894815893097494, this, []); }
-  set y(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 526193984306749, this, [value]); }
+  get y(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1894815893097494, this, []); }
+  set y(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 526193984306749, this, [value]); }
   /**
    * var z: Double { get set }
    * @availability iOS 16.0+
    */
-  get z(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 3315488488495028, this, []); }
-  set z(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1991409224612952, this, [value]); }
+  get z(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 3315488488495028, this, []); }
+  set z(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1991409224612952, this, [value]); }
   /**
    * init(vector: simd_double3)
    * @availability iOS 16.0+
    */
-  static initVector(vector: SDKHandle): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 248086318873017, undefined, [vector]); }
+  static initVector(vector: SDKHandle): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 248086318873017, undefined, [vector]); }
   /**
    * var normalized: Vector3D { get }
    * @availability iOS 16.0+
    */
-  get normalized(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 759452175526149, this, []); }
+  get normalized(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 759452175526149, this, []); }
   /**
    * static func smoothstep(edge0: Vector3D, edge1: Vector3D, x: Vector3D) -> Vector3D
    * @availability iOS 26.0+
    */
-  static smoothstep(edge0: Vector3D, edge1: Vector3D, x: Vector3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3866696786798586, undefined, [edge0, edge1, x]); }
+  static smoothstep(edge0: Vector3D, edge1: Vector3D, x: Vector3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3866696786798586, undefined, [edge0, edge1, x]); }
   /**
    * func unapplying(_ scaledPose: ScaledPose3D) -> Vector3D
    * @availability iOS 18.0+
    */
-  unapplying(scaledPose: ScaledPose3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 750143285628373, this, [scaledPose]); }
+  unapplying(scaledPose: ScaledPose3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 750143285628373, this, [scaledPose]); }
   /**
    * func unapplying(_ transform: AffineTransform3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  unapplying1261(transform: AffineTransform3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1749966280809051, this, [transform]); }
+  unapplying1261(transform: AffineTransform3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1749966280809051, this, [transform]); }
   /**
    * func unapplying(_ transform: ProjectiveTransform3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  unapplying96568(transform: ProjectiveTransform3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1106396616732873, this, [transform]); }
+  unapplying96568(transform: ProjectiveTransform3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1106396616732873, this, [transform]); }
   /**
    * func unapplying(_ pose: Pose3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  unapplying1497(pose: Pose3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3116073019415864, this, [pose]); }
+  unapplying1497(pose: Pose3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3116073019415864, this, [pose]); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 1893443275424560, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 1893443275424560, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3467243206456989, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3467243206456989, this, []); }
   /**
    * var lengthSquared: Double { get }
    * @availability iOS 16.0+
    */
-  get lengthSquared(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1079903922946202, this, []); }
+  get lengthSquared(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1079903922946202, this, []); }
   /**
    * func uniformlyScaled(by scale: Double) -> Vector3D
    * @availability iOS 16.0+
    */
-  uniformlyScaled(scale: number): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 2576980626376887, this, [scale]); }
+  uniformlyScaled(scale: number): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 2576980626376887, this, [scale]); }
   /**
    * init(x: Double = 0, y: Double = 0, z: Double = 0)
    * @availability iOS 16.0+
    */
-  static initXYZ(x?: number, y?: number, z?: number): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 626277178870975, undefined, [x, y, z]); }
+  static initXYZ(x?: number, y?: number, z?: number): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 626277178870975, undefined, [x, y, z]); }
   /**
    * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initXYZ86701(x: number, y: number, z: number): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1877441899261561, undefined, [x, y, z]); }
+  static initXYZ86701(x: number, y: number, z: number): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1877441899261561, undefined, [x, y, z]); }
   /**
    * static let up: Vector3D
    * @availability iOS 16.0+
    */
-  static get up(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3387583559629619, undefined, []); }
+  static get up(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3387583559629619, undefined, []); }
   /**
    * func dot(_ other: Vector3D) -> Double
    * @availability iOS 16.0+
    */
-  dot(other: Vector3D): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 4408131009465355, this, [other]); }
+  dot(other: Vector3D): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 4408131009465355, this, [other]); }
   /**
    * static func lerp(from: Vector3D, to: Vector3D, t: Vector3D) -> Vector3D
    * @availability iOS 26.0+
    */
-  static lerp(from: Vector3D, to: Vector3D, t: Vector3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 2393192454363833, undefined, [from, to, t]); }
+  static lerp(from: Vector3D, to: Vector3D, t: Vector3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 2393192454363833, undefined, [from, to, t]); }
   /**
    * func cross(_ other: Vector3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  cross(other: Vector3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1314833497353308, this, [other]); }
+  cross(other: Vector3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1314833497353308, this, [other]); }
   /**
    * static let right: Vector3D
    * @availability iOS 16.0+
    */
-  static get right(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1227060391382290, undefined, []); }
+  static get right(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1227060391382290, undefined, []); }
   /**
    * var length: Double { get }
    * @availability iOS 16.0+
    */
-  get length(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1687546340837477, this, []); }
+  get length(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1687546340837477, this, []); }
   /**
    * func scaled(by size: Size3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  scaled(size: Size3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 2119131658548044, this, [size]); }
+  scaled(size: Size3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 2119131658548044, this, [size]); }
   /**
    * static let forward: Vector3D
    * @availability iOS 16.0+
    */
-  static get forward(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3026709953983737, undefined, []); }
+  static get forward(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3026709953983737, undefined, []); }
   /**
    * func rotated(by quaternion: simd_quatd) -> Vector3D
    * @availability iOS 16.0+
    */
-  rotatedBy(quaternion: SDKHandle): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 456886099256965, this, [quaternion]); }
+  rotatedBy(quaternion: SDKHandle): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 456886099256965, this, [quaternion]); }
   /**
    * func rotated(by rotation: Rotation3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  rotatedBy32266(rotation: Rotation3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 526737160107509, this, [rotation]); }
+  rotatedBy32266(rotation: Rotation3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 526737160107509, this, [rotation]); }
   /**
    * func sheared(_ shear: AxisWithFactors) -> Vector3D
    * @availability iOS 16.0+
    */
-  sheared(shear: AxisWithFactors): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 2957171501972133, this, [shear]); }
+  sheared(shear: AxisWithFactors): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 2957171501972133, this, [shear]); }
   /**
    * func applying(_ scaledPose: ScaledPose3D) -> Vector3D
    * @availability iOS 18.0+
    */
-  applying(scaledPose: ScaledPose3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 2680183022877891, this, [scaledPose]); }
+  applying(scaledPose: ScaledPose3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 2680183022877891, this, [scaledPose]); }
   /**
    * func applying(_ transform: AffineTransform3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  applying33501(transform: AffineTransform3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 795280794503283, this, [transform]); }
+  applying33501(transform: AffineTransform3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 795280794503283, this, [transform]); }
   /**
    * func applying(_ transform: ProjectiveTransform3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  applying26088(transform: ProjectiveTransform3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3653000536623060, this, [transform]); }
+  applying26088(transform: ProjectiveTransform3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3653000536623060, this, [transform]); }
   /**
    * func applying(_ pose: Pose3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  applying9385(pose: Pose3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3965219900539909, this, [pose]); }
+  applying9385(pose: Pose3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3965219900539909, this, [pose]); }
   /**
    * func rotation(to other: Vector3D) -> Rotation3D
    * @availability iOS 16.0+
    */
-  rotation(other: Vector3D): Rotation3D { return callSDK<Rotation3D>("Spatial_d6c5d10d3352e6ec", 951779566619784, this, [other]); }
+  rotation(other: Vector3D): Rotation3D { return callSDK<Rotation3D>("Spatial_a956b86ef7a76a8e", 951779566619784, this, [other]); }
   /**
    * func scaledBy(x: Double = 1, y: Double = 1, z: Double = 1) -> Vector3D
    * @availability iOS 16.0+
    */
-  scaledBy(x?: number, y?: number, z?: number): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1794262051129600, this, [x, y, z]); }
+  scaledBy(x?: number, y?: number, z?: number): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1794262051129600, this, [x, y, z]); }
   /**
    * mutating func normalize()
    * @availability iOS 16.0+
    */
-  normalize(): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 130674892979409, this, []); }
+  normalize(): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 130674892979409, this, []); }
   /**
    * func projected(_ other: Vector3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  projected(other: Vector3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3789645815471372, this, [other]); }
+  projected(other: Vector3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3789645815471372, this, [other]); }
   /**
    * func reflected(_ normal: Vector3D) -> Vector3D
    * @availability iOS 16.0+
    */
-  reflected(normal: Vector3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3924638385576027, this, [normal]); }
+  reflected(normal: Vector3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3924638385576027, this, [normal]); }
   /**
    * init(_ vector: Vector3DFloat)
    * @availability iOS 26.0+
    */
-  static init(vector: Vector3DFloat): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1145963619722347, undefined, [vector]); }
+  static init(vector: Vector3DFloat): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1145963619722347, undefined, [vector]); }
   /**
    * init(_ axis: RotationAxis3D)
    * @availability iOS 16.0+
    */
-  static init65124(axis: RotationAxis3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1876470130475948, undefined, [axis]); }
+  static init65124(axis: RotationAxis3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1876470130475948, undefined, [axis]); }
   /**
    * init(_ coords: SphericalCoordinates3D)
    * @availability iOS 18.0+
    */
-  static init57812(coords: SphericalCoordinates3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 2109681890667257, undefined, [coords]); }
+  static init57812(coords: SphericalCoordinates3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 2109681890667257, undefined, [coords]); }
   /**
    * init(_ size: Size3D)
    * @availability iOS 16.0+
    */
-  static init96699(size: Size3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1983205391760167, undefined, [size]); }
+  static init96699(size: Size3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1983205391760167, undefined, [size]); }
   /**
    * init(_ point: Point3D)
    * @availability iOS 16.0+
    */
-  static init26545(point: Point3D): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1940659182111338, undefined, [point]); }
+  static init26545(point: Point3D): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1940659182111338, undefined, [point]); }
   /**
    * init(_ xyz: simd_double3)
    * @availability iOS 16.0+
    */
-  static init51462(xyz: SDKHandle): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 3420011155557013, undefined, [xyz]); }
+  static init51462(xyz: SDKHandle): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 3420011155557013, undefined, [xyz]); }
   /**
    * init(_ xyz: simd_float3)
    * @availability iOS 16.0+
    */
-  static init78140(xyz: SDKHandle): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1731590960590286, undefined, [xyz]); }
+  static init78140(xyz: SDKHandle): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1731590960590286, undefined, [xyz]); }
   /**
    * init(_ source: simd_packed_double4)
    * @availability iOS 26.0+
    */
-  static init28359(source: SDKHandle): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1166529622813507, undefined, [source]); }
+  static init28359(source: SDKHandle): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1166529622813507, undefined, [source]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init65919(): Vector3D { return callSDK<Vector3D>("Spatial_d6c5d10d3352e6ec", 1838441963952834, undefined, []); }
+  static init65919(): Vector3D { return callSDK<Vector3D>("Spatial_a956b86ef7a76a8e", 1838441963952834, undefined, []); }
   declare readonly $type: { "c:@UA@SPVector3D": true };
 }
 
@@ -6599,255 +6599,255 @@ export class Vector3DFloat extends SDKHandle {
    * var isFinite: Bool { get }
    * @availability iOS 26.0+
    */
-  get isFinite(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 768600134531801, this, []); }
+  get isFinite(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 768600134531801, this, []); }
   /**
    * var isNaN: Bool { get }
    * @availability iOS 26.0+
    */
-  get isNaN(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 2861462126153416, this, []); }
+  get isNaN(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 2861462126153416, this, []); }
   /**
    * var isZero: Bool { get }
    * @availability iOS 26.0+
    */
-  get isZero(): boolean { return callSDK<boolean>("Spatial_d6c5d10d3352e6ec", 1328891586181086, this, []); }
+  get isZero(): boolean { return callSDK<boolean>("Spatial_a956b86ef7a76a8e", 1328891586181086, this, []); }
   /** static let infinity: Vector3DFloat */
-  static get infinity(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2823896706261111, undefined, []); }
+  static get infinity(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2823896706261111, undefined, []); }
   /** static let zero: Vector3DFloat */
-  static get zero(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 1991402078716427, undefined, []); }
+  static get zero(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 1991402078716427, undefined, []); }
   /**
    * var vector: simd_float3 { get set }
    * @availability iOS 26.0+
    */
-  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 866971185893428, this, []); }
-  set vector(value: SDKHandle) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1794018959875291, this, [value]); }
+  get vector(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 866971185893428, this, []); }
+  set vector(value: SDKHandle) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1794018959875291, this, [value]); }
   /**
    * var x: Float { get set }
    * @availability iOS 26.0+
    */
-  get x(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1897658719623659, this, []); }
-  set x(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 721327335903254, this, [value]); }
+  get x(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1897658719623659, this, []); }
+  set x(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 721327335903254, this, [value]); }
   /**
    * var y: Float { get set }
    * @availability iOS 26.0+
    */
-  get y(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1021216130444995, this, []); }
-  set y(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 1672277578115674, this, [value]); }
+  get y(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1021216130444995, this, []); }
+  set y(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 1672277578115674, this, [value]); }
   /**
    * var z: Float { get set }
    * @availability iOS 26.0+
    */
-  get z(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 86313900167026, this, []); }
-  set z(value: number) { callSDK<void>("Spatial_d6c5d10d3352e6ec", 3105656748578036, this, [value]); }
+  get z(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 86313900167026, this, []); }
+  set z(value: number) { callSDK<void>("Spatial_a956b86ef7a76a8e", 3105656748578036, this, [value]); }
   /**
    * init(vector: simd_float3)
    * @availability iOS 26.0+
    */
-  static initVector(vector: SDKHandle): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 190929563798896, undefined, [vector]); }
+  static initVector(vector: SDKHandle): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 190929563798896, undefined, [vector]); }
   /**
    * var normalized: Vector3DFloat { get }
    * @availability iOS 26.0+
    */
-  get normalized(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 1712358898422190, this, []); }
+  get normalized(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 1712358898422190, this, []); }
   /**
    * static func smoothstep(edge0: Vector3DFloat, edge1: Vector3DFloat, x: Vector3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  static smoothstep(edge0: Vector3DFloat, edge1: Vector3DFloat, x: Vector3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3993117675146789, undefined, [edge0, edge1, x]); }
+  static smoothstep(edge0: Vector3DFloat, edge1: Vector3DFloat, x: Vector3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3993117675146789, undefined, [edge0, edge1, x]); }
   /**
    * func unapplying(_ scaledPose: ScaledPose3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  unapplying(scaledPose: ScaledPose3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3711338597411375, this, [scaledPose]); }
+  unapplying(scaledPose: ScaledPose3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3711338597411375, this, [scaledPose]); }
   /**
    * func unapplying(_ transform: AffineTransform3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  unapplying3669(transform: AffineTransform3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 1556270086678163, this, [transform]); }
+  unapplying3669(transform: AffineTransform3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 1556270086678163, this, [transform]); }
   /**
    * func unapplying(_ transform: ProjectiveTransform3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  unapplying57954(transform: ProjectiveTransform3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3411212734946567, this, [transform]); }
+  unapplying57954(transform: ProjectiveTransform3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3411212734946567, this, [transform]); }
   /**
    * func unapplying(_ pose: Pose3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  unapplying76453(pose: Pose3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 1745291460450963, this, [pose]); }
+  unapplying76453(pose: Pose3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 1745291460450963, this, [pose]); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("Spatial_d6c5d10d3352e6ec", 3229041560272719, this, []); }
+  get description(): string { return callSDK<string>("Spatial_a956b86ef7a76a8e", 3229041560272719, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 26.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_d6c5d10d3352e6ec", 3525349334995263, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("Spatial_a956b86ef7a76a8e", 3525349334995263, this, []); }
   /**
    * var lengthSquared: Float { get }
    * @availability iOS 26.0+
    */
-  get lengthSquared(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2195113524558046, this, []); }
+  get lengthSquared(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2195113524558046, this, []); }
   /**
    * func uniformlyScaled(by scale: Float) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  uniformlyScaled(scale: number): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3898283296544478, this, [scale]); }
+  uniformlyScaled(scale: number): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3898283296544478, this, [scale]); }
   /**
    * init(x: Float = 0, y: Float = 0, z: Float = 0)
    * @availability iOS 26.0+
    */
-  static initXYZ(x?: number, y?: number, z?: number): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 624963905147856, undefined, [x, y, z]); }
+  static initXYZ(x?: number, y?: number, z?: number): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 624963905147856, undefined, [x, y, z]); }
   /**
    * init<T>(x: T, y: T, z: T) where T : BinaryFloatingPoint
    * @availability iOS 26.0+
    */
-  static initXYZ67034(x: number, y: number, z: number): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2909655433677079, undefined, [x, y, z]); }
+  static initXYZ67034(x: number, y: number, z: number): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2909655433677079, undefined, [x, y, z]); }
   /**
    * static let up: Vector3DFloat
    * @availability iOS 26.0+
    */
-  static get up(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 943553038467197, undefined, []); }
+  static get up(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 943553038467197, undefined, []); }
   /**
    * func dot(_ other: Vector3DFloat) -> Float
    * @availability iOS 26.0+
    */
-  dot(other: Vector3DFloat): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 844288545378404, this, [other]); }
+  dot(other: Vector3DFloat): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 844288545378404, this, [other]); }
   /**
    * static func lerp(from: Vector3DFloat, to: Vector3DFloat, t: Vector3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  static lerp(from: Vector3DFloat, to: Vector3DFloat, t: Vector3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3462953808971215, undefined, [from, to, t]); }
+  static lerp(from: Vector3DFloat, to: Vector3DFloat, t: Vector3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3462953808971215, undefined, [from, to, t]); }
   /**
    * func cross(_ other: Vector3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  cross(other: Vector3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 310538370036343, this, [other]); }
+  cross(other: Vector3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 310538370036343, this, [other]); }
   /**
    * static let right: Vector3DFloat
    * @availability iOS 26.0+
    */
-  static get right(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 1776293060211968, undefined, []); }
+  static get right(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 1776293060211968, undefined, []); }
   /**
    * var length: Float { get }
    * @availability iOS 26.0+
    */
-  get length(): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 1173216029762482, this, []); }
+  get length(): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 1173216029762482, this, []); }
   /**
    * func scaled(by size: Size3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  scaled(size: Size3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 560484035328964, this, [size]); }
+  scaled(size: Size3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 560484035328964, this, [size]); }
   /**
    * static let forward: Vector3DFloat
    * @availability iOS 26.0+
    */
-  static get forward(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3859251953197823, undefined, []); }
+  static get forward(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3859251953197823, undefined, []); }
   /**
    * func rotated(by rotation: Rotation3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy(rotation: Rotation3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3567765566204969, this, [rotation]); }
+  rotatedBy(rotation: Rotation3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3567765566204969, this, [rotation]); }
   /**
    * func rotated(by quaternion: simd_quatf) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  rotatedBy24026(quaternion: SDKHandle): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2782569497999695, this, [quaternion]); }
+  rotatedBy24026(quaternion: SDKHandle): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2782569497999695, this, [quaternion]); }
   /**
    * func sheared(_ shear: AxisWithFactors) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  sheared(shear: AxisWithFactors): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2667118498822851, this, [shear]); }
+  sheared(shear: AxisWithFactors): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2667118498822851, this, [shear]); }
   /**
    * func applying(_ scaledPose: ScaledPose3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  applying(scaledPose: ScaledPose3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2282412631511418, this, [scaledPose]); }
+  applying(scaledPose: ScaledPose3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2282412631511418, this, [scaledPose]); }
   /**
    * func applying(_ transform: AffineTransform3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  applying41255(transform: AffineTransform3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 1162385004856304, this, [transform]); }
+  applying41255(transform: AffineTransform3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 1162385004856304, this, [transform]); }
   /**
    * func applying(_ transform: ProjectiveTransform3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  applying64228(transform: ProjectiveTransform3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2066455875424096, this, [transform]); }
+  applying64228(transform: ProjectiveTransform3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2066455875424096, this, [transform]); }
   /**
    * func applying(_ pose: Pose3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  applying20519(pose: Pose3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3863722753809522, this, [pose]); }
+  applying20519(pose: Pose3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3863722753809522, this, [pose]); }
   /**
    * func rotation(to other: Vector3DFloat) -> Rotation3DFloat
    * @availability iOS 26.0+
    */
-  rotation(other: Vector3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_d6c5d10d3352e6ec", 2753935855980502, this, [other]); }
+  rotation(other: Vector3DFloat): Rotation3DFloat { return callSDK<Rotation3DFloat>("Spatial_a956b86ef7a76a8e", 2753935855980502, this, [other]); }
   /**
    * func scaledBy(x: Float = 1, y: Float = 1, z: Float = 1) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  scaledBy(x?: number, y?: number, z?: number): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2489061715810007, this, [x, y, z]); }
+  scaledBy(x?: number, y?: number, z?: number): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2489061715810007, this, [x, y, z]); }
   /**
    * mutating func normalize()
    * @availability iOS 26.0+
    */
-  normalize(): void { return callSDK<void>("Spatial_d6c5d10d3352e6ec", 1222180603158462, this, []); }
+  normalize(): void { return callSDK<void>("Spatial_a956b86ef7a76a8e", 1222180603158462, this, []); }
   /**
    * func projected(_ other: Vector3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  projected(other: Vector3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 1005680883256970, this, [other]); }
+  projected(other: Vector3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 1005680883256970, this, [other]); }
   /**
    * func reflected(_ normal: Vector3DFloat) -> Vector3DFloat
    * @availability iOS 26.0+
    */
-  reflected(normal: Vector3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 580645094124756, this, [normal]); }
+  reflected(normal: Vector3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 580645094124756, this, [normal]); }
   /**
    * init(_ axis: RotationAxis3DFloat)
    * @availability iOS 26.0+
    */
-  static init(axis: RotationAxis3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3432333789005390, undefined, [axis]); }
+  static init(axis: RotationAxis3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3432333789005390, undefined, [axis]); }
   /**
    * init(_ coords: SphericalCoordinates3DFloat)
    * @availability iOS 26.0+
    */
-  static init47528(coords: SphericalCoordinates3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3391527494729613, undefined, [coords]); }
+  static init47528(coords: SphericalCoordinates3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3391527494729613, undefined, [coords]); }
   /**
    * init(_ size: Size3DFloat)
    * @availability iOS 26.0+
    */
-  static init68627(size: Size3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2068640805259991, undefined, [size]); }
+  static init68627(size: Size3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2068640805259991, undefined, [size]); }
   /**
    * init(_ point: Point3DFloat)
    * @availability iOS 26.0+
    */
-  static init42463(point: Point3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2148636051969356, undefined, [point]); }
+  static init42463(point: Point3DFloat): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2148636051969356, undefined, [point]); }
   /**
    * init(_ vector: Vector3D)
    * @availability iOS 26.0+
    */
-  static init26095(vector: Vector3D): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 393069237141242, undefined, [vector]); }
+  static init26095(vector: Vector3D): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 393069237141242, undefined, [vector]); }
   /**
    * init(_ xyz: simd_double3)
    * @availability iOS 26.0+
    */
-  static init55921(xyz: SDKHandle): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 421350422759750, undefined, [xyz]); }
+  static init55921(xyz: SDKHandle): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 421350422759750, undefined, [xyz]); }
   /**
    * init(_ xyz: simd_float3)
    * @availability iOS 26.0+
    */
-  static init25127(xyz: SDKHandle): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 3206925705915953, undefined, [xyz]); }
+  static init25127(xyz: SDKHandle): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 3206925705915953, undefined, [xyz]); }
   /**
    * init(_ source: simd_packed_float4)
    * @availability iOS 26.0+
    */
-  static init2478(source: SDKHandle): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2969517670969014, undefined, [source]); }
+  static init2478(source: SDKHandle): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2969517670969014, undefined, [source]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init34322(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_d6c5d10d3352e6ec", 2561480593864405, undefined, []); }
+  static init34322(): Vector3DFloat { return callSDK<Vector3DFloat>("Spatial_a956b86ef7a76a8e", 2561480593864405, undefined, []); }
   declare readonly $type: { "c:@UA@SPVector3DFloat": true };
 }
 
@@ -7015,17 +7015,17 @@ export class WorldReferenceCoordinateSpace extends SDKHandle {
    * func ancestorFromSpaceTransformFloat() throws -> ProjectiveTransform3DFloat
    * @availability iOS 26.0+
    */
-  ancestorFromSpaceTransformFloat(): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_d6c5d10d3352e6ec", 4433645787078900, this, []); }
+  ancestorFromSpaceTransformFloat(): ProjectiveTransform3DFloat { return callSDK<ProjectiveTransform3DFloat>("Spatial_a956b86ef7a76a8e", 4433645787078900, this, []); }
   /**
    * func ancestorFromSpaceTransform() throws -> ProjectiveTransform3D
    * @availability iOS 26.0+
    */
-  ancestorFromSpaceTransform(): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_d6c5d10d3352e6ec", 3940447606938412, this, []); }
+  ancestorFromSpaceTransform(): ProjectiveTransform3D { return callSDK<ProjectiveTransform3D>("Spatial_a956b86ef7a76a8e", 3940447606938412, this, []); }
   /**
    * var ancestorSpace: Never? { get }
    * @availability iOS 26.0+
    */
-  get ancestorSpace(): (never) | null { return callSDK<(never) | null>("Spatial_d6c5d10d3352e6ec", 1366748398404843, this, []); }
+  get ancestorSpace(): (never) | null { return callSDK<(never) | null>("Spatial_a956b86ef7a76a8e", 1366748398404843, this, []); }
   declare readonly $type: { "s:7Spatial29WorldReferenceCoordinateSpaceV": true };
 }
 
@@ -7039,140 +7039,140 @@ export type WorldReferenceCoordinateSpace_AncestorCoordinateSpace = never;
  * func cos(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
  */
-export function cos(angle: Angle2D): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 793274954730753, undefined, [angle]); }
+export function cos(angle: Angle2D): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 793274954730753, undefined, [angle]); }
 
 /**
  * func cos(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export function cos98929(angle: Angle2DFloat): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 920255306164423, undefined, [angle]); }
+export function cos98929(angle: Angle2DFloat): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 920255306164423, undefined, [angle]); }
 
 /**
  * func sin(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
  */
-export function sin(angle: Angle2D): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 3415474466346240, undefined, [angle]); }
+export function sin(angle: Angle2D): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 3415474466346240, undefined, [angle]); }
 
 /**
  * func sin(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export function sin34202(angle: Angle2DFloat): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 4107888222931194, undefined, [angle]); }
+export function sin34202(angle: Angle2DFloat): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 4107888222931194, undefined, [angle]); }
 
 /**
  * func tan(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
  */
-export function tan(angle: Angle2D): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 311860076337751, undefined, [angle]); }
+export function tan(angle: Angle2D): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 311860076337751, undefined, [angle]); }
 
 /**
  * func tan(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export function tan86505(angle: Angle2DFloat): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 353309248852377, undefined, [angle]); }
+export function tan86505(angle: Angle2DFloat): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 353309248852377, undefined, [angle]); }
 
 /**
  * func cosh(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
  */
-export function cosh(angle: Angle2D): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 336188244723934, undefined, [angle]); }
+export function cosh(angle: Angle2D): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 336188244723934, undefined, [angle]); }
 
 /**
  * func cosh(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export function cosh84532(angle: Angle2DFloat): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 3285680231702273, undefined, [angle]); }
+export function cosh84532(angle: Angle2DFloat): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 3285680231702273, undefined, [angle]); }
 
 /**
  * func sinh(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
  */
-export function sinh(angle: Angle2D): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2866153504726994, undefined, [angle]); }
+export function sinh(angle: Angle2D): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2866153504726994, undefined, [angle]); }
 
 /**
  * func sinh(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export function sinh71789(angle: Angle2DFloat): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 2329619054776181, undefined, [angle]); }
+export function sinh71789(angle: Angle2DFloat): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 2329619054776181, undefined, [angle]); }
 
 /**
  * func tanh(_ angle: Angle2D) -> Double
  * @availability iOS 17.0+
  */
-export function tanh(angle: Angle2D): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 3093397784337812, undefined, [angle]); }
+export function tanh(angle: Angle2D): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 3093397784337812, undefined, [angle]); }
 
 /**
  * func tanh(_ angle: Angle2DFloat) -> Float
  * @availability iOS 26.0+
  */
-export function tanh4040(angle: Angle2DFloat): number { return callSDK<number>("Spatial_d6c5d10d3352e6ec", 4081046710074611, undefined, [angle]); }
+export function tanh4040(angle: Angle2DFloat): number { return callSDK<number>("Spatial_a956b86ef7a76a8e", 4081046710074611, undefined, [angle]); }
 
 /**
  * let x: Axis3D
  * @availability iOS 16.0+
  */
-export const x: Axis3D = callSDK<Axis3D>("Spatial_d6c5d10d3352e6ec", 1841972563838664, undefined, []);
+export const x: Axis3D = callSDK<Axis3D>("Spatial_a956b86ef7a76a8e", 1841972563838664, undefined, []);
 
 /**
  * let y: Axis3D
  * @availability iOS 16.0+
  */
-export const y: Axis3D = callSDK<Axis3D>("Spatial_d6c5d10d3352e6ec", 1598749329783048, undefined, []);
+export const y: Axis3D = callSDK<Axis3D>("Spatial_a956b86ef7a76a8e", 1598749329783048, undefined, []);
 
 /**
  * let z: Axis3D
  * @availability iOS 16.0+
  */
-export const z: Axis3D = callSDK<Axis3D>("Spatial_d6c5d10d3352e6ec", 1487984718967098, undefined, []);
+export const z: Axis3D = callSDK<Axis3D>("Spatial_a956b86ef7a76a8e", 1487984718967098, undefined, []);
 
-registerSDKClass("Spatial.AffineTransform3D", AffineTransform3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.AffineTransform3DFloat", AffineTransform3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Angle2D", Angle2D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Angle2DFloat", Angle2DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.AxisWithFactors", AxisWithFactors, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.AxisWithFactorsFloat", AxisWithFactorsFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("Spatial.AffineTransform3D", AffineTransform3D, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"concatenating":{"id":1430873875500503},"rotatedBy":{"id":3915647637905098},"rotatedBy49800":{"id":764868201778422},"scaled":{"id":393875483398212},"uniformlyScaled":{"id":3402562411931522},"translatedBy":{"id":3358249043887895},"translatedBy63138":{"id":1555600191233436},"changeBasis":{"id":4011429674799569},"isApproximatelyEqual":{"id":3560086272382033},"flip":{"id":2919639286793522},"flipped":{"id":4138872660882856},"sheared":{"id":356502892034776},"inverted":{"id":171728317334297},"scaledBy":{"id":555744559664007},"isUniformOverDimensions":{"id":2060070472379173}} });
+registerSDKClass("Spatial.AffineTransform3DFloat", AffineTransform3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"concatenating":{"id":4150806705280372},"rotatedBy":{"id":2251361612388016},"rotatedBy78002":{"id":4001392848019196},"scaled":{"id":1777852615030567},"uniformlyScaled":{"id":6122716509293},"translated":{"id":2401113825514595},"changeBasis":{"id":2682519586032083},"isApproximatelyEqual":{"id":170693322708740},"flip":{"id":2893953829888757},"flipped":{"id":3130420117542054},"sheared":{"id":1261067682004740},"scaledBy":{"id":1748685595276467},"isUniformOverDimensions":{"id":726715122656147}} });
+registerSDKClass("Spatial.Angle2D", Angle2D, { module: "Spatial_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("Spatial.Angle2DFloat", Angle2DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("Spatial.AxisWithFactors", AxisWithFactors, { module: "Spatial_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("Spatial.AxisWithFactorsFloat", AxisWithFactorsFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:7Spatial27ClampableWithinRectProtocolP", {"clampedTo":"clamped(to:)","clampTo":"clamp(to:)"});
 registerSDKProtocol("s:7Spatial17CoordinateSpace3DP", {"ancestorFromSpaceTransform":"ancestorFromSpaceTransform()","transformFrom":"transform(from:)"});
 registerSDKProtocol("s:7Spatial22CoordinateSpace3DFloatP", {"ancestorFromSpaceTransform":"ancestorFromSpaceTransform()","transformFrom":"transform(from:)","ancestorFromSpaceTransformFloat":"ancestorFromSpaceTransformFloat()"});
 registerSDKProtocol("s:7Spatial22CoordinateSpaceValue3DP", {"resolveIn":"resolve(in:)"});
-registerSDKClass("Spatial.EulerAngles", EulerAngles, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.EulerAnglesFloat", EulerAnglesFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Point3D", Point3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Point3DFloat", Point3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Pose3D", Pose3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Pose3DFloat", Pose3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("Spatial.EulerAngles", EulerAngles, { module: "Spatial_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("Spatial.EulerAnglesFloat", EulerAnglesFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("Spatial.Point3D", Point3D, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"applying":{"id":737178244942222},"applying2397":{"id":3758711975189860},"clamped":{"id":870619262047901},"distance":{"id":2691664110697867},"rotatedBy":{"id":3917932146852223},"rotatedByAround":{"id":471259233466677},"rotatedBy92204":{"id":1470448353257088},"rotatedByAround74328":{"id":1455480899775993},"rotation":{"id":2776764934371028},"translatedBy":{"id":4272613617239619},"unapplying":{"id":2822708241903088},"unapplying47776":{"id":3261819944966802},"translatedBy46426":{"id":1572703103093841},"unapplying97777":{"id":1405328880566367},"unapplying85026":{"id":19418103849628},"isApproximatelyEqual":{"id":1412207221513109},"clamp":{"id":1623868576133718},"applying84967":{"id":67648393110994},"applying5132":{"id":2875446163714298}} });
+registerSDKClass("Spatial.Point3DFloat", Point3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"applying":{"id":1016500365877332},"applying97943":{"id":3332827498282257},"clamped":{"id":3523579417918584},"rotatedBy":{"id":3118632344774826},"rotatedByAround":{"id":3518766539654639},"rotatedBy66624":{"id":2041327005361393},"rotatedByAround22162":{"id":159441772586230},"translated":{"id":3993606080839901},"unapplying":{"id":2898631944025432},"unapplying1026":{"id":2555556411779186},"unapplying50866":{"id":3618809111636279},"unapplying55767":{"id":169423467435785},"isApproximatelyEqual":{"id":2290601452000024},"applying55104":{"id":3164735599931220},"applying20217":{"id":1483037401503273},"distance":{"id":1094717004049636}} });
+registerSDKClass("Spatial.Pose3D", Pose3D, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"translatedBy":{"id":4271433154201733},"translatedBy72346":{"id":1500202139381270},"concatenating":{"id":2585825089916577},"concatenating63023":{"id":3979842238048544},"isApproximatelyEqual":{"id":244409035974036},"flip":{"id":433538024950327},"flipped":{"id":1807445120631315},"rotatedBy":{"id":2860304960359717},"rotatedBy97519":{"id":179891385375537},"applying":{"id":3054097580812738}} });
+registerSDKClass("Spatial.Pose3DFloat", Pose3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"translated":{"id":62086778486652},"concatenating":{"id":4316498513565296},"concatenating79614":{"id":788423685597333},"isApproximatelyEqual":{"id":4381926582096607},"flip":{"id":4388002518795896},"flipped":{"id":1682546281803227},"rotatedBy":{"id":3802700559989036},"rotatedBy10834":{"id":1867160788522497},"applying":{"id":2339822462640620}} });
 registerSDKProtocol("s:7Spatial11Primitive3DP", {"applying":"applying(_:)","apply":"apply(_:)","unapplying":"unapplying(_:)","unapply":"unapply(_:)"});
 registerSDKProtocol("s:7Spatial19Primitive3DProtocolP", {"rotatedBy":"rotated(by:)","rotateBy":"rotate(by:)","applying":"applying(_:)","apply":"apply(_:)","unapplying":"unapplying(_:)","unapply":"unapply(_:)"});
-registerSDKClass("Spatial.ProjectiveTransform3D", ProjectiveTransform3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.ProjectiveTransform3DFloat", ProjectiveTransform3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("Spatial.ProjectiveTransform3D", ProjectiveTransform3D, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"concatenating":{"id":4107325293420631},"is3DProjection":{"id":2244944663091151},"rotatedBy":{"id":2677906884044841},"rotatedBy1264":{"id":2231021951126722},"scaled":{"id":170396375589596},"uniformlyScaled":{"id":653319178972454},"translatedBy":{"id":2485497829517015},"translatedBy86539":{"id":3657943685906600},"isApproximatelyEqual":{"id":2976692924517664},"flip":{"id":393695160115940},"flipped":{"id":3744844288763508},"sheared":{"id":1638797521750560},"inverted":{"id":2653923574306520},"scaledBy":{"id":3047992887729784},"isUniformOverDimensions":{"id":2831787025155719}} });
+registerSDKClass("Spatial.ProjectiveTransform3DFloat", ProjectiveTransform3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"concatenating":{"id":2247572752477310},"is3DFloatProjection":{"id":3274982580668570},"rotatedBy":{"id":1332674502851929},"rotatedBy43566":{"id":935226038671679},"scaled":{"id":1558461242116196},"uniformlyScaled":{"id":1820530713924634},"translated":{"id":1799084010194421},"isApproximatelyEqual":{"id":944214133550714},"flip":{"id":1871294319243890},"flipped":{"id":2644515893594905},"sheared":{"id":1892760011034539},"scaledBy":{"id":4467506264321615},"isUniformOverDimensions":{"id":2963043168928248}} });
 registerSDKProtocol("s:7Spatial25ProjectiveTransformable3DP", {"applying":"applying(_:)"});
 registerSDKProtocol("s:7Spatial30ProjectiveTransformable3DFloatP", {"applying":"applying(_:)"});
-registerSDKClass("Spatial.Ray3D", Ray3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Ray3DFloat", Ray3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Rect3D", Rect3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Rect3DFloat", Rect3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("Spatial.Ray3D", Ray3D, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"intersectsSphereOriginSphereRadius":{"id":592387209655678},"translatedBy":{"id":4133793504081112},"intersects":{"id":2697523535690050},"translatedBy42390":{"id":4167620336131507},"unapplying":{"id":2310019876907686},"unapplying45786":{"id":3721019508994446},"unapplying2691":{"id":2356105034978948},"unapplying29422":{"id":4115453147619120},"apply":{"id":2200818397342860},"rotatedByAround":{"id":579278687144967},"rotatedByAround10824":{"id":599097472775138},"rotatedBy":{"id":2592798339923640},"rotatedBy30755":{"id":86556644232219},"applying":{"id":1604499719020699},"applying11592":{"id":4453076181222921},"applying56857":{"id":3031120669000900},"applying21312":{"id":2205699817078036}} });
+registerSDKClass("Spatial.Ray3DFloat", Ray3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"intersectsSphereOriginSphereRadius":{"id":1987387324539004},"translated":{"id":1451666096045499},"intersects":{"id":1532549194624466},"unapplying":{"id":3945612293814124},"unapplying28203":{"id":1663111113778028},"unapplying42960":{"id":3815092123159636},"unapplying89563":{"id":2801460003543714},"apply":{"id":4039296756282283},"rotatedByAround":{"id":4015914500245488},"rotatedByAround87476":{"id":2199022858957186},"rotatedBy":{"id":1822965250070372},"rotatedBy52468":{"id":402302688856929},"applying":{"id":1818519324784811},"applying17461":{"id":3391493965778627},"applying92642":{"id":1581381057939648},"applying77189":{"id":3286920273115371}} });
+registerSDKClass("Spatial.Rect3D", Rect3D, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"applying":{"id":4206117956437701},"applying92335":{"id":3803190316878205},"containsPoint":{"id":47650423262547},"contains":{"id":1879471224323232},"inset":{"id":2078070558829244},"intersects":{"id":1601471549233023},"rotatedBy":{"id":353118735000941},"rotatedByAround":{"id":4198714276909404},"rotatedBy83504":{"id":4158865162035705},"rotatedByAround39598":{"id":2908000691926636},"scaled":{"id":3256018918745828},"uniformlyScaled":{"id":919512691485507},"translatedBy":{"id":3826719019097472},"union":{"id":2512656946701187},"translatedBy59021":{"id":1309507786309196},"unapplying":{"id":587562432406323},"unapplying3453":{"id":3022977323853697},"unapplying35784":{"id":2550552979400073},"unapplying39689":{"id":3507934697780572},"containsAny":{"id":1470619144042996},"intersection":{"id":3469867935978810},"sheared":{"id":2281966366849122},"applying22312":{"id":44146358973625},"applying23769":{"id":840890623524462},"containsAnyOf":{"id":2134631351619302},"distance":{"id":3699333515128996},"rotation":{"id":869882704580836},"scaledBy":{"id":736595179482321},"formInset":{"id":26402398510923}} });
+registerSDKClass("Spatial.Rect3DFloat", Rect3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"applying":{"id":2165373722400951},"applying30461":{"id":885966839932759},"containsPoint":{"id":3606345355841279},"contains":{"id":18466916857768},"inset":{"id":3853107871714311},"intersects":{"id":3049886519976471},"rotatedBy":{"id":198429307743956},"rotatedByAround":{"id":2958731544035881},"rotatedBy46216":{"id":1273543927202862},"rotatedByAround98628":{"id":2445436930261855},"scaled":{"id":238031400759626},"uniformlyScaled":{"id":3916846761579965},"translated":{"id":238078493010643},"union":{"id":460274884169185},"unapplying":{"id":3189500625102244},"unapplying47908":{"id":3826338963171391},"unapplying93907":{"id":583649085256046},"unapplying3896":{"id":3700517866197880},"intersection":{"id":1901465246830927},"sheared":{"id":119776271273253},"applying5507":{"id":563874290042977},"applying70360":{"id":1020946925024752},"containsAnyOf":{"id":3681516111724241},"scaledBy":{"id":825710072874753},"formInset":{"id":2206289672395324}} });
 registerSDKProtocol("s:7Spatial11Rotatable3DP", {"rotatedBy":"rotated(by:)","rotateBy":"rotate(by:)"});
 registerSDKProtocol("s:7Spatial19Rotatable3DProtocolP", {"rotatedBy":"rotated(by:)","rotateBy":"rotate(by:)"});
-registerSDKClass("Spatial.Rotation3D", Rotation3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Rotation3DFloat", Rotation3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.RotationAxis3D", RotationAxis3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.RotationAxis3DFloat", RotationAxis3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("Spatial.Rotation3D", Rotation3D, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"eulerAngles":{"id":3438743224531157},"swing":{"id":473248039871419},"twist":{"id":487463901283468},"swingTwist":{"id":1950828326877232},"isApproximatelyEqual":{"id":1428959734805932},"rotatedBy":{"id":2763116147437608},"rotatedBy67528":{"id":864836998846777},"applying":{"id":695094678896232}} });
+registerSDKClass("Spatial.Rotation3DFloat", Rotation3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"eulerAngles":{"id":3556893807394593},"swing":{"id":3826127949044892},"twist":{"id":3669981523518529},"swingTwist":{"id":4490131020065677},"isApproximatelyEqual":{"id":3668918324957499},"rotatedBy":{"id":1918126373142608},"rotatedBy56809":{"id":4096173577841251},"applying":{"id":794667933913818}} });
+registerSDKClass("Spatial.RotationAxis3D", RotationAxis3D, { module: "Spatial_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("Spatial.RotationAxis3DFloat", RotationAxis3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:7Spatial10Scalable3DP", {"scaledByXYZ":"scaledBy(x:y:z:)","scaleByXYZ":"scaleBy(x:y:z:)","scaledBy":"scaled(by:)","scaleBy":"scale(by:)","uniformlyScaledBy":"uniformlyScaled(by:)","uniformlyScaleBy":"uniformlyScale(by:)"});
 registerSDKProtocol("s:7Spatial18Scalable3DProtocolP", {"scaledByXYZ":"scaledBy(x:y:z:)","scaleByXYZ":"scaleBy(x:y:z:)","scaledBy":"scaled(by:)","scaleBy":"scale(by:)","uniformlyScaledBy":"uniformlyScaled(by:)","uniformlyScaleBy":"uniformlyScale(by:)"});
-registerSDKClass("Spatial.ScaledPose3D", ScaledPose3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.ScaledPose3DFloat", ScaledPose3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("Spatial.ScaledPose3D", ScaledPose3D, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"translatedBy":{"id":164538236932659},"translatedBy25809":{"id":3979447420979365},"concatenating":{"id":982131930388811},"concatenating54535":{"id":2665339178675134},"isApproximatelyEqual":{"id":1445288802918737},"flip":{"id":3559990001193056},"flipped":{"id":4292431998966793},"rotatedBy":{"id":2755366922013879},"rotatedBy84406":{"id":2665752178786014}} });
+registerSDKClass("Spatial.ScaledPose3DFloat", ScaledPose3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"translated":{"id":627545838402314},"concatenating":{"id":2024302342698237},"concatenating96912":{"id":1170743683828369},"isApproximatelyEqual":{"id":375345893419931},"flip":{"id":1278828751937042},"flipped":{"id":545973633509944},"rotatedBy":{"id":2963240116349248},"rotatedBy67970":{"id":4403726119312619}} });
 registerSDKProtocol("s:7Spatial11Shearable3DP", {"sheared":"sheared(_:)","shear":"shear(_:)"});
 registerSDKProtocol("s:7Spatial19Shearable3DProtocolP", {"sheared":"sheared(_:)","shear":"shear(_:)"});
-registerSDKClass("Spatial.Size3D", Size3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Size3DFloat", Size3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("Spatial.Size3D", Size3D, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"applying":{"id":472814884164024},"applying83077":{"id":1186933941062505},"containsPoint":{"id":3952745647308165},"contains":{"id":767312919910946},"rotatedBy":{"id":1329131956518661},"rotatedBy29826":{"id":1546902517433449},"scaled":{"id":1988037192692564},"uniformlyScaled":{"id":3173747108057485},"union":{"id":2257170571113486},"unapplying":{"id":239904273486375},"unapplying21518":{"id":4439193121248211},"unapplying22975":{"id":3430556687938460},"unapplying46554":{"id":3673843309527988},"containsAny":{"id":1062271536227833},"intersection":{"id":2270220068884289},"sheared":{"id":4147851600294533},"applying58719":{"id":216114575781620},"applying44116":{"id":2153323566176775},"containsAnyOf":{"id":1748126881155395},"scaledBy":{"id":4476446563111964}} });
+registerSDKClass("Spatial.Size3DFloat", Size3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"applying":{"id":921942318033499},"applying1641":{"id":2517366070254374},"containsPoint":{"id":3943044613264707},"contains":{"id":3235705397785286},"rotatedBy":{"id":1363276373277270},"rotatedBy6992":{"id":499782771657964},"scaled":{"id":1884566741785787},"uniformlyScaled":{"id":3168797513522567},"union":{"id":1633460269752235},"unapplying":{"id":4074716910330243},"unapplying16485":{"id":100137782701809},"unapplying81554":{"id":233585517618979},"unapplying821":{"id":1889157707436170},"intersection":{"id":1530308574532390},"sheared":{"id":2321115928857607},"applying13490":{"id":3578629076747253},"applying45143":{"id":2782843658355140},"containsAnyOf":{"id":3711194535013903},"scaledBy":{"id":2380301671925287}} });
 registerSDKProtocol("s:7Spatial0A12TypeProtocolP", {});
-registerSDKClass("Spatial.SphericalCoordinates3D", SphericalCoordinates3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.SphericalCoordinates3DFloat", SphericalCoordinates3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("Spatial.SphericalCoordinates3D", SphericalCoordinates3D, { module: "Spatial_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("Spatial.SphericalCoordinates3DFloat", SphericalCoordinates3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:7Spatial19Transform3DProtocolP", {"initShear":"init(shear:)","initScale":"init(scale:)","initRotation":"init(rotation:)","initTranslation":"init(translation:)","initScaleRotationTranslation":"init(scale:rotation:translation:)","isUniformOverDimensions":"isUniform(overDimensions:)","concatenating":"concatenating(_:)","isApproximatelyEqualToTolerance":"isApproximatelyEqual(to:tolerance:)","flipAlong":"flip(along:)","flippedAlong":"flipped(along:)"});
 registerSDKProtocol("s:7Spatial14Translatable3DP", {"translatedBy":"translated(by:)","translateBy":"translate(by:)"});
 registerSDKProtocol("s:7Spatial22Translatable3DProtocolP", {"translatedBy":"translated(by:)","translateBy":"translate(by:)"});
-registerSDKClass("Spatial.Vector3D", Vector3D, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Spatial.Vector3DFloat", Vector3DFloat, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("Spatial.Vector3D", Vector3D, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"unapplying":{"id":750143285628373},"unapplying1261":{"id":1749966280809051},"unapplying96568":{"id":1106396616732873},"unapplying1497":{"id":3116073019415864},"uniformlyScaled":{"id":2576980626376887},"dot":{"id":4408131009465355},"cross":{"id":1314833497353308},"scaled":{"id":2119131658548044},"rotatedBy":{"id":456886099256965},"rotatedBy32266":{"id":526737160107509},"sheared":{"id":2957171501972133},"applying":{"id":2680183022877891},"applying33501":{"id":795280794503283},"applying26088":{"id":3653000536623060},"applying9385":{"id":3965219900539909},"rotation":{"id":951779566619784},"scaledBy":{"id":1794262051129600},"normalize":{"id":130674892979409},"projected":{"id":3789645815471372},"reflected":{"id":3924638385576027}} });
+registerSDKClass("Spatial.Vector3DFloat", Vector3DFloat, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"unapplying":{"id":3711338597411375},"unapplying3669":{"id":1556270086678163},"unapplying57954":{"id":3411212734946567},"unapplying76453":{"id":1745291460450963},"uniformlyScaled":{"id":3898283296544478},"dot":{"id":844288545378404},"cross":{"id":310538370036343},"scaled":{"id":560484035328964},"rotatedBy":{"id":3567765566204969},"rotatedBy24026":{"id":2782569497999695},"sheared":{"id":2667118498822851},"applying":{"id":2282412631511418},"applying41255":{"id":1162385004856304},"applying64228":{"id":2066455875424096},"applying20519":{"id":3863722753809522},"rotation":{"id":2753935855980502},"scaledBy":{"id":2489061715810007},"normalize":{"id":1222180603158462},"projected":{"id":1005680883256970},"reflected":{"id":580645094124756}} });
 registerSDKProtocol("s:7Spatial10VolumetricP", {"contains":"contains(_:)","containsPoint":"contains(point:)","union":"union(_:)","intersection":"intersection(_:)","formIntersection":"formIntersection(_:)","formUnion":"formUnion(_:)","containsAnyOf":"containsAny(of:)","containsAnyOf7":"contains(anyOf:)"});
 registerSDKProtocol("s:7Spatial18VolumetricProtocolP", {"contains":"contains(_:)","containsPoint":"contains(point:)","union":"union(_:)","intersection":"intersection(_:)","formIntersection":"formIntersection(_:)","formUnion":"formUnion(_:)","containsAnyOf":"contains(anyOf:)"});
-registerSDKClass("Spatial.WorldReferenceCoordinateSpace", WorldReferenceCoordinateSpace, { module: "Spatial_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("Spatial.WorldReferenceCoordinateSpace", WorldReferenceCoordinateSpace, { module: "Spatial_a956b86ef7a76a8e", properties: {}, methods: {"ancestorFromSpaceTransformFloat":{"id":4433645787078900},"ancestorFromSpaceTransform":{"id":3940447606938412}} });

@@ -11,17 +11,17 @@ export class AttributedEntityIdentifier extends SDKHandle {
    * init(entityType: AttributedTypeIdentifier, instanceIdentifier: String)
    * @availability iOS 27.0+
    */
-  static init(entityType: AttributedTypeIdentifier, instanceIdentifier: string): AttributedEntityIdentifier { return callSDK<AttributedEntityIdentifier>("AppIntentsTypeSupport_d6c5d10d3352e6ec", 4080601961732069, undefined, [entityType, instanceIdentifier]); }
+  static init(entityType: AttributedTypeIdentifier, instanceIdentifier: string): AttributedEntityIdentifier { return callSDK<AttributedEntityIdentifier>("AppIntentsTypeSupport_a956b86ef7a76a8e", 4080601961732069, undefined, [entityType, instanceIdentifier]); }
   /**
    * let entityType: AttributedTypeIdentifier
    * @availability iOS 27.0+
    */
-  get entityType(): AttributedTypeIdentifier { return callSDK<AttributedTypeIdentifier>("AppIntentsTypeSupport_d6c5d10d3352e6ec", 45641370802708, this, []); }
+  get entityType(): AttributedTypeIdentifier { return callSDK<AttributedTypeIdentifier>("AppIntentsTypeSupport_a956b86ef7a76a8e", 45641370802708, this, []); }
   /**
    * let instanceIdentifier: String
    * @availability iOS 27.0+
    */
-  get instanceIdentifier(): string { return callSDK<string>("AppIntentsTypeSupport_d6c5d10d3352e6ec", 454455988657027, this, []); }
+  get instanceIdentifier(): string { return callSDK<string>("AppIntentsTypeSupport_a956b86ef7a76a8e", 454455988657027, this, []); }
   declare readonly $type: { "s:21AppIntentsTypeSupport26AttributedEntityIdentifierV": true };
 }
 
@@ -30,7 +30,7 @@ export class AttributedString extends SDKHandle {
    * func makeContainer(context: IntentValueContainer.ConversionContext) -> IntentValueContainer
    * @availability iOS 27.0+
    */
-  makeContainer(context: IntentValueContainer_ConversionContext): IntentValueContainer { return callSDK<IntentValueContainer>("AppIntentsTypeSupport_d6c5d10d3352e6ec", 720567179680826, this, [context]); }
+  makeContainer(context: IntentValueContainer_ConversionContext): IntentValueContainer { return callSDK<IntentValueContainer>("AppIntentsTypeSupport_a956b86ef7a76a8e", 720567179680826, this, [context]); }
   declare readonly $type: { "s:10Foundation16AttributedStringV": true };
 }
 
@@ -43,17 +43,17 @@ export class AttributedTypeIdentifier extends SDKHandle {
    * init(persistentIdentifier: String, bundleIdentifier: String? = nil)
    * @availability iOS 27.0+
    */
-  static init(persistentIdentifier: string, bundleIdentifier?: (string) | null): AttributedTypeIdentifier { return callSDK<AttributedTypeIdentifier>("AppIntentsTypeSupport_d6c5d10d3352e6ec", 4258671036284942, undefined, [persistentIdentifier, bundleIdentifier]); }
+  static init(persistentIdentifier: string, bundleIdentifier?: (string) | null): AttributedTypeIdentifier { return callSDK<AttributedTypeIdentifier>("AppIntentsTypeSupport_a956b86ef7a76a8e", 4258671036284942, undefined, [persistentIdentifier, bundleIdentifier]); }
   /**
    * let persistentIdentifier: String
    * @availability iOS 27.0+
    */
-  get persistentIdentifier(): string { return callSDK<string>("AppIntentsTypeSupport_d6c5d10d3352e6ec", 2088321672183164, this, []); }
+  get persistentIdentifier(): string { return callSDK<string>("AppIntentsTypeSupport_a956b86ef7a76a8e", 2088321672183164, this, []); }
   /**
    * let bundleIdentifier: String?
    * @availability iOS 27.0+
    */
-  get bundleIdentifier(): (string) | null { return callSDK<(string) | null>("AppIntentsTypeSupport_d6c5d10d3352e6ec", 2035737275094592, this, []); }
+  get bundleIdentifier(): (string) | null { return callSDK<(string) | null>("AppIntentsTypeSupport_a956b86ef7a76a8e", 2035737275094592, this, []); }
   declare readonly $type: { "s:21AppIntentsTypeSupport010AttributedC10IdentifierV": true };
 }
 
@@ -66,7 +66,7 @@ export class IntentValueContainer extends SDKHandle {
    * func makeExpression() -> IntentValueExpression
    * @availability iOS 27.0+
    */
-  makeExpression(): IntentValueExpression { return callSDK<IntentValueExpression>("AppIntentsTypeSupport_d6c5d10d3352e6ec", 1714988266429871, this, []); }
+  makeExpression(): IntentValueExpression { return callSDK<IntentValueExpression>("AppIntentsTypeSupport_a956b86ef7a76a8e", 1714988266429871, this, []); }
   declare readonly $type: { "s:21AppIntentsTypeSupport20IntentValueContainerV": true };
 }
 
@@ -137,12 +137,12 @@ export class IntentValueExpression extends SDKHandle {
   declare readonly $type: { "s:21AppIntentsTypeSupport21IntentValueExpressionV": true };
 }
 
-registerSDKClass("AppIntentsTypeSupport.AttributedEntityIdentifier", AttributedEntityIdentifier, { module: "AppIntentsTypeSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("Foundation.AttributedString", AttributedString, { module: "AppIntentsTypeSupport_d6c5d10d3352e6ec", properties: {} }, true);
-registerSDKClass("AppIntentsTypeSupport.AttributedTypeIdentifier", AttributedTypeIdentifier, { module: "AppIntentsTypeSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AppIntentsTypeSupport.IntentValueContainer", IntentValueContainer, { module: "AppIntentsTypeSupport_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("AppIntentsTypeSupport.IntentValueContainer.ConversionContext", IntentValueContainer_ConversionContext, { module: "AppIntentsTypeSupport_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("AppIntentsTypeSupport.AttributedEntityIdentifier", AttributedEntityIdentifier, { module: "AppIntentsTypeSupport_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("Foundation.AttributedString", AttributedString, { module: "AppIntentsTypeSupport_a956b86ef7a76a8e", properties: {}, methods: {"makeContainer":{"id":720567179680826}} }, true);
+registerSDKClass("AppIntentsTypeSupport.AttributedTypeIdentifier", AttributedTypeIdentifier, { module: "AppIntentsTypeSupport_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AppIntentsTypeSupport.IntentValueContainer", IntentValueContainer, { module: "AppIntentsTypeSupport_a956b86ef7a76a8e", properties: {}, methods: {"makeExpression":{"id":1714988266429871}} });
+registerSDKClass("AppIntentsTypeSupport.IntentValueContainer.ConversionContext", IntentValueContainer_ConversionContext, { module: "AppIntentsTypeSupport_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("s:21AppIntentsTypeSupport22IntentValueConvertibleP", {"makeExpression":"makeExpression()","makeContainerContext":"makeContainer(context:)"});
 registerSDKProtocol("s:21AppIntentsTypeSupport29IntentValueConvertibleWrapperP", {"makeExpression":"makeExpression()","makeContainerContext":"makeContainer(context:)","initBaseValue":"init(baseValue:)"});
 registerSDKProtocol("s:21AppIntentsTypeSupport21IntentValueExpressingP", {"makeExpression":"makeExpression()"});
-registerSDKClass("AppIntentsTypeSupport.IntentValueExpression", IntentValueExpression, { module: "AppIntentsTypeSupport_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("AppIntentsTypeSupport.IntentValueExpression", IntentValueExpression, { module: "AppIntentsTypeSupport_a956b86ef7a76a8e", properties: {} });

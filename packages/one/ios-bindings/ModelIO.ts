@@ -40,50 +40,50 @@ export class MDLAnimatedValue extends SDKHandle {
    * func clear()
    * @availability iOS 11.0+
    */
-  clear(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1447786549302090, this, []); }
+  clear(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1447786549302090, this, []); }
   /** init() */
-  static init(): MDLAnimatedValue { return callSDK<MDLAnimatedValue>("ModelIO_d6c5d10d3352e6ec", 351745699732312, undefined, []); }
+  static init(): MDLAnimatedValue { return callSDK<MDLAnimatedValue>("ModelIO_a956b86ef7a76a8e", 351745699732312, undefined, []); }
   /**
    * func isAnimated() -> Bool
    * @availability iOS 11.0+
    */
-  isAnimated(): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 1642106234858391, this, []); }
+  isAnimated(): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 1642106234858391, this, []); }
   /**
    * var interpolation: MDLAnimatedValueInterpolation { get set }
    * @availability iOS 11.0+
    */
-  get interpolation(): MDLAnimatedValueInterpolation { return callSDK<MDLAnimatedValueInterpolation>("ModelIO_d6c5d10d3352e6ec", 4328873221417957, this, []); }
-  set interpolation(value: MDLAnimatedValueInterpolation) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 319956735684555, this, [value]); }
+  get interpolation(): MDLAnimatedValueInterpolation { return callSDK<MDLAnimatedValueInterpolation>("ModelIO_a956b86ef7a76a8e", 4328873221417957, this, []); }
+  set interpolation(value: MDLAnimatedValueInterpolation) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 319956735684555, this, [value]); }
   /**
    * var keyTimes: [NSNumber] { get }
    * @availability iOS 11.0+
    */
-  get keyTimes(): $SDK0 { return callSDK<$SDK0>("ModelIO_d6c5d10d3352e6ec", 2880960387817447, this, []); }
+  get keyTimes(): $SDK0 { return callSDK<$SDK0>("ModelIO_a956b86ef7a76a8e", 2880960387817447, this, []); }
   /**
    * var maximumTime: TimeInterval { get }
    * @availability iOS 11.0+
    */
-  get maximumTime(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 725722820813226, this, []); }
+  get maximumTime(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 725722820813226, this, []); }
   /**
    * var minimumTime: TimeInterval { get }
    * @availability iOS 11.0+
    */
-  get minimumTime(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3242733287902334, this, []); }
+  get minimumTime(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3242733287902334, this, []); }
   /**
    * var precision: MDLDataPrecision { get }
    * @availability iOS 11.0+
    */
-  get precision(): MDLDataPrecision { return callSDK<MDLDataPrecision>("ModelIO_d6c5d10d3352e6ec", 2542410240614, this, []); }
+  get precision(): MDLDataPrecision { return callSDK<MDLDataPrecision>("ModelIO_a956b86ef7a76a8e", 2542410240614, this, []); }
   /**
    * var timeSampleCount: Int { get }
    * @availability iOS 11.0+
    */
-  get timeSampleCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 672688820422555, this, []); }
+  get timeSampleCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 672688820422555, this, []); }
   /**
    * @nonobjc var times: [TimeInterval] { get }
    * @availability iOS 11.0+
    */
-  get times(): Array<number> { return callSDK<Array<number>>("ModelIO_d6c5d10d3352e6ec", 3180439923384418, this, []); }
+  get times(): Array<number> { return callSDK<Array<number>>("ModelIO_a956b86ef7a76a8e", 3180439923384418, this, []); }
   declare readonly $type: { "c:objc(cs)MDLAnimatedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolation": true; "keyTimes": true; "maximumTime": true; "minimumTime": true; "precision": true; "timeSampleCount": true };
 }
@@ -97,44 +97,44 @@ export class MDLAnimatedMatrix4x4 extends (MDLAnimatedValue as unknown as Omit<t
    * func double4x4Value(atTime time: TimeInterval) -> matrix_double4x4
    * @availability iOS 11.0+
    */
-  double4x4Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3426540237142648, this, [time]); }
+  double4x4Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3426540237142648, this, [time]); }
   /**
    * func float4x4Value(atTime time: TimeInterval) -> matrix_float4x4
    * @availability iOS 11.0+
    */
-  float4x4Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2742922738392605, this, [time]); }
+  float4x4Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2742922738392605, this, [time]); }
   /** init() */
-  static init(): MDLAnimatedMatrix4x4 { return callSDK<MDLAnimatedMatrix4x4>("ModelIO_d6c5d10d3352e6ec", 539642947800388, undefined, []); }
+  static init(): MDLAnimatedMatrix4x4 { return callSDK<MDLAnimatedMatrix4x4>("ModelIO_a956b86ef7a76a8e", 539642947800388, undefined, []); }
   /**
    * func setDouble4x4(_ value: matrix_double4x4, atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setDouble4x4(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3003797370443302, this, [value, time]); }
+  setDouble4x4(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3003797370443302, this, [value, time]); }
   /**
    * func setFloat4x4(_ value: matrix_float4x4, atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setFloat4x4(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3914543112348766, this, [value, time]); }
+  setFloat4x4(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3914543112348766, this, [value, time]); }
   /**
    * @nonobjc var float4x4Array: [float4x4] { get }
    * @availability iOS 11.0+
    */
-  get float4x4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 2488272970199117, this, []); }
+  get float4x4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 2488272970199117, this, []); }
   /**
    * @nonobjc var double4x4Array: [double4x4] { get }
    * @availability iOS 11.0+
    */
-  get double4x4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 2588044665386285, this, []); }
+  get double4x4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 2588044665386285, this, []); }
   /**
    * @nonobjc func reset(double4Array array: [double4x4], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetDouble4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 224910353625268, this, [array, times]); }
+  resetDouble4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 224910353625268, this, [array, times]); }
   /**
    * @nonobjc func reset(float4x4Array array: [float4x4], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetFloat4x4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 987384893915816, this, [array, times]); }
+  resetFloat4x4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 987384893915816, this, [array, times]); }
   declare readonly $type: { "c:objc(cs)MDLAnimatedMatrix4x4": true; "c:objc(cs)MDLAnimatedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolation": true; "keyTimes": true; "maximumTime": true; "minimumTime": true; "precision": true; "timeSampleCount": true };
 }
@@ -148,44 +148,44 @@ export class MDLAnimatedQuaternion extends (MDLAnimatedValue as unknown as Omit<
    * func doubleQuaternionValue(atTime time: TimeInterval) -> simd_quatd
    * @availability iOS 12.0+
    */
-  doubleQuaternionValue(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 4418079609202903, this, [time]); }
+  doubleQuaternionValue(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 4418079609202903, this, [time]); }
   /**
    * func floatQuaternionValue(atTime time: TimeInterval) -> simd_quatf
    * @availability iOS 12.0+
    */
-  floatQuaternionValue(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 21834137947778, this, [time]); }
+  floatQuaternionValue(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 21834137947778, this, [time]); }
   /** init() */
-  static init(): MDLAnimatedQuaternion { return callSDK<MDLAnimatedQuaternion>("ModelIO_d6c5d10d3352e6ec", 3378162024784767, undefined, []); }
+  static init(): MDLAnimatedQuaternion { return callSDK<MDLAnimatedQuaternion>("ModelIO_a956b86ef7a76a8e", 3378162024784767, undefined, []); }
   /**
    * func setDoubleQuaternion(_ value: simd_quatd, atTime time: TimeInterval)
    * @availability iOS 12.0+
    */
-  setDoubleQuaternion(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2084045113729794, this, [value, time]); }
+  setDoubleQuaternion(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2084045113729794, this, [value, time]); }
   /**
    * func setFloatQuaternion(_ value: simd_quatf, atTime time: TimeInterval)
    * @availability iOS 12.0+
    */
-  setFloatQuaternion(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2981862342622896, this, [value, time]); }
+  setFloatQuaternion(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2981862342622896, this, [value, time]); }
   /**
    * @nonobjc var floatQuaternionArray: [simd_quatf] { get }
    * @availability iOS 13.0+
    */
-  get floatQuaternionArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 2100662382617822, this, []); }
+  get floatQuaternionArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 2100662382617822, this, []); }
   /**
    * @nonobjc var doubleQuaternionArray: [simd_quatd] { get }
    * @availability iOS 13.0+
    */
-  get doubleQuaternionArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 1303028098210785, this, []); }
+  get doubleQuaternionArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 1303028098210785, this, []); }
   /**
    * @nonobjc func reset(floatQuaternionArray array: [simd_quatf], atTimes times: [TimeInterval])
    * @availability iOS 13.0+
    */
-  resetFloatQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 78003919710735, this, [array, times]); }
+  resetFloatQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 78003919710735, this, [array, times]); }
   /**
    * @nonobjc func reset(doubleQuaternionArray array: [simd_quatd], atTimes times: [TimeInterval])
    * @availability iOS 13.0+
    */
-  resetDoubleQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3353569542549372, this, [array, times]); }
+  resetDoubleQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3353569542549372, this, [array, times]); }
   declare readonly $type: { "c:objc(cs)MDLAnimatedQuaternion": true; "c:objc(cs)MDLAnimatedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolation": true; "keyTimes": true; "maximumTime": true; "minimumTime": true; "precision": true; "timeSampleCount": true };
 }
@@ -199,52 +199,52 @@ export class MDLAnimatedQuaternionArray extends (MDLAnimatedValue as unknown as 
    * init(elementCount arrayElementCount: Int)
    * @availability iOS 11.0+
    */
-  static init(arrayElementCount: number): MDLAnimatedQuaternionArray { return callSDK<MDLAnimatedQuaternionArray>("ModelIO_d6c5d10d3352e6ec", 1863219466801253, undefined, [arrayElementCount]); }
+  static init(arrayElementCount: number): MDLAnimatedQuaternionArray { return callSDK<MDLAnimatedQuaternionArray>("ModelIO_a956b86ef7a76a8e", 1863219466801253, undefined, [arrayElementCount]); }
   /**
    * var elementCount: Int { get }
    * @availability iOS 11.0+
    */
-  get elementCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2073312816518288, this, []); }
+  get elementCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2073312816518288, this, []); }
   /**
    * @nonobjc func floatQuaternionArray(atTime time: TimeInterval) -> [simd_quatf]
    * @availability iOS 11.0+
    */
-  floatQuaternionArrayAtTime(time: number): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 3343577845079829, this, [time]); }
+  floatQuaternionArrayAtTime(time: number): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 3343577845079829, this, [time]); }
   /**
    * @nonobjc var floatQuaternionArray: [simd_quatf] { get }
    * @availability iOS 11.0+
    */
-  get floatQuaternionArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 767400953496199, this, []); }
+  get floatQuaternionArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 767400953496199, this, []); }
   /**
    * @nonobjc func doubleQuaternionArray(atTime time: TimeInterval) -> [simd_quatd]
    * @availability iOS 11.0+
    */
-  doubleQuaternionArrayAtTime(time: number): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 72037568430142, this, [time]); }
+  doubleQuaternionArrayAtTime(time: number): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 72037568430142, this, [time]); }
   /**
    * @nonobjc var doubleQuaternionArray: [simd_quatd] { get }
    * @availability iOS 11.0+
    */
-  get doubleQuaternionArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 3079910226560329, this, []); }
+  get doubleQuaternionArray(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 3079910226560329, this, []); }
   /**
    * @nonobjc func set(floatQuaternionArray array: [simd_quatf], atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setFloatQuaternionArrayAtTime(array: Array<SDKHandle>, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1685588266887459, this, [array, time]); }
+  setFloatQuaternionArrayAtTime(array: Array<SDKHandle>, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1685588266887459, this, [array, time]); }
   /**
    * @nonobjc func set(doubleQuaternionArray array: [simd_quatd], atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setDoubleQuaternionArrayAtTime(array: Array<SDKHandle>, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 492911182948233, this, [array, time]); }
+  setDoubleQuaternionArrayAtTime(array: Array<SDKHandle>, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 492911182948233, this, [array, time]); }
   /**
    * @nonobjc func reset(floatQuaternionArray array: [simd_quatf], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetFloatQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 53864222551311, this, [array, times]); }
+  resetFloatQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 53864222551311, this, [array, times]); }
   /**
    * @nonobjc func reset(doubleQuaternionArray array: [simd_quatd], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetDoubleQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2855302684228180, this, [array, times]); }
+  resetDoubleQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2855302684228180, this, [array, times]); }
   declare readonly $type: { "c:objc(cs)MDLAnimatedQuaternionArray": true; "c:objc(cs)MDLAnimatedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolation": true; "keyTimes": true; "maximumTime": true; "minimumTime": true; "precision": true; "timeSampleCount": true; "elementCount": true };
 }
@@ -258,44 +258,44 @@ export class MDLAnimatedScalar extends (MDLAnimatedValue as unknown as Omit<type
    * func doubleValue(atTime time: TimeInterval) -> Double
    * @availability iOS 11.0+
    */
-  doubleValue(time: number): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2940514863600791, this, [time]); }
+  doubleValue(time: number): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2940514863600791, this, [time]); }
   /**
    * func floatValue(atTime time: TimeInterval) -> Float
    * @availability iOS 11.0+
    */
-  floatValue(time: number): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3625271585051212, this, [time]); }
+  floatValue(time: number): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3625271585051212, this, [time]); }
   /** init() */
-  static init(): MDLAnimatedScalar { return callSDK<MDLAnimatedScalar>("ModelIO_d6c5d10d3352e6ec", 1381439158699872, undefined, []); }
+  static init(): MDLAnimatedScalar { return callSDK<MDLAnimatedScalar>("ModelIO_a956b86ef7a76a8e", 1381439158699872, undefined, []); }
   /**
    * func setDouble(_ value: Double, atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setDouble(value: number, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 98619520192772, this, [value, time]); }
+  setDouble(value: number, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 98619520192772, this, [value, time]); }
   /**
    * func setFloat(_ value: Float, atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setFloat(value: number, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3596462109108649, this, [value, time]); }
+  setFloat(value: number, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3596462109108649, this, [value, time]); }
   /**
    * @nonobjc var floatArray: [Float] { get }
    * @availability iOS 11.0+
    */
-  get floatArray(): Array<number> { return callSDK<Array<number>>("ModelIO_d6c5d10d3352e6ec", 873132067680781, this, []); }
+  get floatArray(): Array<number> { return callSDK<Array<number>>("ModelIO_a956b86ef7a76a8e", 873132067680781, this, []); }
   /**
    * @nonobjc var doubleArray: [Double] { get }
    * @availability iOS 11.0+
    */
-  get doubleArray(): Array<number> { return callSDK<Array<number>>("ModelIO_d6c5d10d3352e6ec", 810310919493861, this, []); }
+  get doubleArray(): Array<number> { return callSDK<Array<number>>("ModelIO_a956b86ef7a76a8e", 810310919493861, this, []); }
   /**
    * @nonobjc func reset(floatArray array: [Float], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetFloatArrayAtTimes(array: Array<number>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1022806782588676, this, [array, times]); }
+  resetFloatArrayAtTimes(array: Array<number>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1022806782588676, this, [array, times]); }
   /**
    * @nonobjc func reset(doubleArray array: [Double], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetDoubleArrayAtTimes(array: Array<number>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3543972944729859, this, [array, times]); }
+  resetDoubleArrayAtTimes(array: Array<number>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3543972944729859, this, [array, times]); }
   declare readonly $type: { "c:objc(cs)MDLAnimatedScalar": true; "c:objc(cs)MDLAnimatedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolation": true; "keyTimes": true; "maximumTime": true; "minimumTime": true; "precision": true; "timeSampleCount": true };
 }
@@ -309,52 +309,52 @@ export class MDLAnimatedScalarArray extends (MDLAnimatedValue as unknown as Omit
    * init(elementCount arrayElementCount: Int)
    * @availability iOS 11.0+
    */
-  static init(arrayElementCount: number): MDLAnimatedScalarArray { return callSDK<MDLAnimatedScalarArray>("ModelIO_d6c5d10d3352e6ec", 1981698975419930, undefined, [arrayElementCount]); }
+  static init(arrayElementCount: number): MDLAnimatedScalarArray { return callSDK<MDLAnimatedScalarArray>("ModelIO_a956b86ef7a76a8e", 1981698975419930, undefined, [arrayElementCount]); }
   /**
    * var elementCount: Int { get }
    * @availability iOS 11.0+
    */
-  get elementCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3618388989039280, this, []); }
+  get elementCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3618388989039280, this, []); }
   /**
    * @nonobjc func floatArray(atTime time: TimeInterval) -> [Float]
    * @availability iOS 11.0+
    */
-  floatArrayAtTime(time: number): Array<number> { return callSDK<Array<number>>("ModelIO_d6c5d10d3352e6ec", 185190998871986, this, [time]); }
+  floatArrayAtTime(time: number): Array<number> { return callSDK<Array<number>>("ModelIO_a956b86ef7a76a8e", 185190998871986, this, [time]); }
   /**
    * @nonobjc var floatArray: [Float] { get }
    * @availability iOS 11.0+
    */
-  get floatArray(): Array<number> { return callSDK<Array<number>>("ModelIO_d6c5d10d3352e6ec", 760003077214232, this, []); }
+  get floatArray(): Array<number> { return callSDK<Array<number>>("ModelIO_a956b86ef7a76a8e", 760003077214232, this, []); }
   /**
    * @nonobjc func doubleArray(atTime time: TimeInterval) -> [Double]
    * @availability iOS 11.0+
    */
-  doubleArrayAtTime(time: number): Array<number> { return callSDK<Array<number>>("ModelIO_d6c5d10d3352e6ec", 1411570975030058, this, [time]); }
+  doubleArrayAtTime(time: number): Array<number> { return callSDK<Array<number>>("ModelIO_a956b86ef7a76a8e", 1411570975030058, this, [time]); }
   /**
    * @nonobjc var doubleArray: [Double] { get }
    * @availability iOS 11.0+
    */
-  get doubleArray(): Array<number> { return callSDK<Array<number>>("ModelIO_d6c5d10d3352e6ec", 574047697529593, this, []); }
+  get doubleArray(): Array<number> { return callSDK<Array<number>>("ModelIO_a956b86ef7a76a8e", 574047697529593, this, []); }
   /**
    * @nonobjc func set(floatArray array: [Float], atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setFloatArrayAtTime(array: Array<number>, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2844974702820581, this, [array, time]); }
+  setFloatArrayAtTime(array: Array<number>, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2844974702820581, this, [array, time]); }
   /**
    * @nonobjc func set(doubleArray array: [Double], atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setDoubleArrayAtTime(array: Array<number>, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1617785304515407, this, [array, time]); }
+  setDoubleArrayAtTime(array: Array<number>, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1617785304515407, this, [array, time]); }
   /**
    * @nonobjc func reset(floatArray array: [Float], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetFloatArrayAtTimes(array: Array<number>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1131594480237234, this, [array, times]); }
+  resetFloatArrayAtTimes(array: Array<number>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1131594480237234, this, [array, times]); }
   /**
    * @nonobjc func reset(doubleArray array: [Double], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetDoubleArrayAtTimes(array: Array<number>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3848293343166946, this, [array, times]); }
+  resetDoubleArrayAtTimes(array: Array<number>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3848293343166946, this, [array, times]); }
   declare readonly $type: { "c:objc(cs)MDLAnimatedScalarArray": true; "c:objc(cs)MDLAnimatedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolation": true; "keyTimes": true; "maximumTime": true; "minimumTime": true; "precision": true; "timeSampleCount": true; "elementCount": true };
 }
@@ -364,7 +364,7 @@ export type MDLAnimatedValueInterpolation = "constant" | "linear";
 
 export const MDLAnimatedValueInterpolation = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLAnimatedValueInterpolation) | null { return callSDK<(MDLAnimatedValueInterpolation) | null>("ModelIO_d6c5d10d3352e6ec", 1238119454330258, undefined, [rawValue]); }
+  init(rawValue: number): (MDLAnimatedValueInterpolation) | null { return callSDK<(MDLAnimatedValueInterpolation) | null>("ModelIO_a956b86ef7a76a8e", 1238119454330258, undefined, [rawValue]); }
 };
 
 /**
@@ -376,44 +376,44 @@ export class MDLAnimatedVector2 extends (MDLAnimatedValue as unknown as Omit<typ
    * func double2Value(atTime time: TimeInterval) -> vector_double2
    * @availability iOS 11.0+
    */
-  double2Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 1307435019191410, this, [time]); }
+  double2Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 1307435019191410, this, [time]); }
   /**
    * func float2Value(atTime time: TimeInterval) -> vector_float2
    * @availability iOS 11.0+
    */
-  float2Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3024991211310708, this, [time]); }
+  float2Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3024991211310708, this, [time]); }
   /** init() */
-  static init(): MDLAnimatedVector2 { return callSDK<MDLAnimatedVector2>("ModelIO_d6c5d10d3352e6ec", 2003292027805615, undefined, []); }
+  static init(): MDLAnimatedVector2 { return callSDK<MDLAnimatedVector2>("ModelIO_a956b86ef7a76a8e", 2003292027805615, undefined, []); }
   /**
    * func setDouble2(_ value: vector_double2, atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setDouble2(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4169328652299099, this, [value, time]); }
+  setDouble2(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 4169328652299099, this, [value, time]); }
   /**
    * func setFloat2(_ value: vector_float2, atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setFloat2(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2768827833317823, this, [value, time]); }
+  setFloat2(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2768827833317823, this, [value, time]); }
   /**
    * @nonobjc var float2Array: [SIMD2<Float>] { get }
    * @availability iOS 11.0+
    */
-  get float2Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 2759604049330142, this, []); }
+  get float2Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 2759604049330142, this, []); }
   /**
    * @nonobjc var double2Array: [SIMD2<Double>] { get }
    * @availability iOS 11.0+
    */
-  get double2Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 2558849886781488, this, []); }
+  get double2Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 2558849886781488, this, []); }
   /**
    * @nonobjc func reset(float2Array array: [SIMD2<Float>], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetFloat2ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 655383202182329, this, [array, times]); }
+  resetFloat2ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 655383202182329, this, [array, times]); }
   /**
    * @nonobjc func reset(double2Array array: [SIMD2<Double>], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetDouble2ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2635048643217409, this, [array, times]); }
+  resetDouble2ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2635048643217409, this, [array, times]); }
   declare readonly $type: { "c:objc(cs)MDLAnimatedVector2": true; "c:objc(cs)MDLAnimatedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolation": true; "keyTimes": true; "maximumTime": true; "minimumTime": true; "precision": true; "timeSampleCount": true };
 }
@@ -427,44 +427,44 @@ export class MDLAnimatedVector3 extends (MDLAnimatedValue as unknown as Omit<typ
    * func double3Value(atTime time: TimeInterval) -> vector_double3
    * @availability iOS 11.0+
    */
-  double3Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2570044930534660, this, [time]); }
+  double3Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2570044930534660, this, [time]); }
   /**
    * func float3Value(atTime time: TimeInterval) -> vector_float3
    * @availability iOS 11.0+
    */
-  float3Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 754841592947270, this, [time]); }
+  float3Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 754841592947270, this, [time]); }
   /** init() */
-  static init(): MDLAnimatedVector3 { return callSDK<MDLAnimatedVector3>("ModelIO_d6c5d10d3352e6ec", 3134614178263455, undefined, []); }
+  static init(): MDLAnimatedVector3 { return callSDK<MDLAnimatedVector3>("ModelIO_a956b86ef7a76a8e", 3134614178263455, undefined, []); }
   /**
    * func setDouble3(_ value: vector_double3, atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setDouble3(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2700404193588703, this, [value, time]); }
+  setDouble3(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2700404193588703, this, [value, time]); }
   /**
    * func setFloat3(_ value: vector_float3, atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setFloat3(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2785139220150055, this, [value, time]); }
+  setFloat3(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2785139220150055, this, [value, time]); }
   /**
    * @nonobjc var float3Array: [SIMD3<Float>] { get }
    * @availability iOS 11.0+
    */
-  get float3Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 1397393770022701, this, []); }
+  get float3Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 1397393770022701, this, []); }
   /**
    * @nonobjc var double3Array: [SIMD3<Double>] { get }
    * @availability iOS 11.0+
    */
-  get double3Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 1338000887728477, this, []); }
+  get double3Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 1338000887728477, this, []); }
   /**
    * @nonobjc func reset(float3Array array: [SIMD3<Float>], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetFloat3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 131008115826017, this, [array, times]); }
+  resetFloat3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 131008115826017, this, [array, times]); }
   /**
    * @nonobjc func reset(double3Array array: [SIMD3<Double>], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetDouble3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 641603856106599, this, [array, times]); }
+  resetDouble3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 641603856106599, this, [array, times]); }
   declare readonly $type: { "c:objc(cs)MDLAnimatedVector3": true; "c:objc(cs)MDLAnimatedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolation": true; "keyTimes": true; "maximumTime": true; "minimumTime": true; "precision": true; "timeSampleCount": true };
 }
@@ -478,52 +478,52 @@ export class MDLAnimatedVector3Array extends (MDLAnimatedValue as unknown as Omi
    * init(elementCount arrayElementCount: Int)
    * @availability iOS 11.0+
    */
-  static init(arrayElementCount: number): MDLAnimatedVector3Array { return callSDK<MDLAnimatedVector3Array>("ModelIO_d6c5d10d3352e6ec", 3177844077436615, undefined, [arrayElementCount]); }
+  static init(arrayElementCount: number): MDLAnimatedVector3Array { return callSDK<MDLAnimatedVector3Array>("ModelIO_a956b86ef7a76a8e", 3177844077436615, undefined, [arrayElementCount]); }
   /**
    * var elementCount: Int { get }
    * @availability iOS 11.0+
    */
-  get elementCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 627328514080647, this, []); }
+  get elementCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 627328514080647, this, []); }
   /**
    * @nonobjc func float3Array(atTime time: TimeInterval) -> [SIMD3<Float>]
    * @availability iOS 11.0+
    */
-  float3ArrayAtTime(time: number): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 1261261928583986, this, [time]); }
+  float3ArrayAtTime(time: number): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 1261261928583986, this, [time]); }
   /**
    * @nonobjc var float3Array: [SIMD3<Float>] { get }
    * @availability iOS 11.0+
    */
-  get float3Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 2574342231123041, this, []); }
+  get float3Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 2574342231123041, this, []); }
   /**
    * @nonobjc func double3Array(atTime time: TimeInterval) -> [SIMD3<Double>]
    * @availability iOS 11.0+
    */
-  double3ArrayAtTime(time: number): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 460093900062647, this, [time]); }
+  double3ArrayAtTime(time: number): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 460093900062647, this, [time]); }
   /**
    * @nonobjc var double3Array: [SIMD3<Double>] { get }
    * @availability iOS 11.0+
    */
-  get double3Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 3761543340671131, this, []); }
+  get double3Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 3761543340671131, this, []); }
   /**
    * @nonobjc func set(float3Array array: [SIMD3<Float>], atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setFloat3ArrayAtTime(array: Array<SDKHandle>, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3430613123707715, this, [array, time]); }
+  setFloat3ArrayAtTime(array: Array<SDKHandle>, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3430613123707715, this, [array, time]); }
   /**
    * @nonobjc func set(double3Array array: [SIMD3<Double>], atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setDouble3ArrayAtTime(array: Array<SDKHandle>, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2868741348032404, this, [array, time]); }
+  setDouble3ArrayAtTime(array: Array<SDKHandle>, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2868741348032404, this, [array, time]); }
   /**
    * @nonobjc func reset(float3Array array: [SIMD3<Float>], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetFloat3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 6630263381205, this, [array, times]); }
+  resetFloat3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 6630263381205, this, [array, times]); }
   /**
    * @nonobjc func reset(double3Array array: [SIMD3<Double>], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetDouble3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1204950616907763, this, [array, times]); }
+  resetDouble3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1204950616907763, this, [array, times]); }
   declare readonly $type: { "c:objc(cs)MDLAnimatedVector3Array": true; "c:objc(cs)MDLAnimatedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolation": true; "keyTimes": true; "maximumTime": true; "minimumTime": true; "precision": true; "timeSampleCount": true; "elementCount": true };
 }
@@ -537,44 +537,44 @@ export class MDLAnimatedVector4 extends (MDLAnimatedValue as unknown as Omit<typ
    * func double4Value(atTime time: TimeInterval) -> vector_double4
    * @availability iOS 11.0+
    */
-  double4Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3352136802725470, this, [time]); }
+  double4Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3352136802725470, this, [time]); }
   /**
    * func float4Value(atTime time: TimeInterval) -> vector_float4
    * @availability iOS 11.0+
    */
-  float4Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2215837362369372, this, [time]); }
+  float4Value(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2215837362369372, this, [time]); }
   /** init() */
-  static init(): MDLAnimatedVector4 { return callSDK<MDLAnimatedVector4>("ModelIO_d6c5d10d3352e6ec", 2062687631832293, undefined, []); }
+  static init(): MDLAnimatedVector4 { return callSDK<MDLAnimatedVector4>("ModelIO_a956b86ef7a76a8e", 2062687631832293, undefined, []); }
   /**
    * func setDouble4(_ value: vector_double4, atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setDouble4(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 483021664411128, this, [value, time]); }
+  setDouble4(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 483021664411128, this, [value, time]); }
   /**
    * func setFloat4(_ value: vector_float4, atTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setFloat4(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3950193519119918, this, [value, time]); }
+  setFloat4(value: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3950193519119918, this, [value, time]); }
   /**
    * @nonobjc var float4Array: [SIMD4<Float>] { get }
    * @availability iOS 11.0+
    */
-  get float4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 2486810137689077, this, []); }
+  get float4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 2486810137689077, this, []); }
   /**
    * @nonobjc var double4Array: [SIMD4<Double>] { get }
    * @availability iOS 11.0+
    */
-  get double4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 2973497858774906, this, []); }
+  get double4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 2973497858774906, this, []); }
   /**
    * @nonobjc func reset(float4Array array: [SIMD4<Float>], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetFloat4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1590809789140756, this, [array, times]); }
+  resetFloat4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1590809789140756, this, [array, times]); }
   /**
    * @nonobjc func reset(double4Array array: [SIMD4<Double>], atTimes times: [TimeInterval])
    * @availability iOS 11.0+
    */
-  resetDouble4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3759027527940055, this, [array, times]); }
+  resetDouble4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3759027527940055, this, [array, times]); }
   declare readonly $type: { "c:objc(cs)MDLAnimatedVector4": true; "c:objc(cs)MDLAnimatedValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolation": true; "keyTimes": true; "maximumTime": true; "minimumTime": true; "precision": true; "timeSampleCount": true };
 }
@@ -585,31 +585,31 @@ export class MDLAnimatedVector4 extends (MDLAnimatedValue as unknown as Omit<typ
  */
 export class MDLAnimationBindComponent extends SDKHandle {
   /** init() */
-  static init(): MDLAnimationBindComponent { return callSDK<MDLAnimationBindComponent>("ModelIO_d6c5d10d3352e6ec", 117041702747729, undefined, []); }
+  static init(): MDLAnimationBindComponent { return callSDK<MDLAnimationBindComponent>("ModelIO_a956b86ef7a76a8e", 117041702747729, undefined, []); }
   /**
    * var geometryBindTransform: matrix_double4x4 { get set }
    * @availability iOS 11.0+
    */
-  get geometryBindTransform(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2289693487753550, this, []); }
-  set geometryBindTransform(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4226880477634849, this, [value]); }
+  get geometryBindTransform(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2289693487753550, this, []); }
+  set geometryBindTransform(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4226880477634849, this, [value]); }
   /**
    * var jointAnimation: (any MDLJointAnimation)? { get set }
    * @availability iOS 11.0+
    */
-  get jointAnimation(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 2883280079848620, this, []); }
-  set jointAnimation(value: (Implements<MDLJointAnimation> | SDKHandle) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1209898359305711, this, [value], [{"protocol":"c:objc(pl)MDLJointAnimation"}]); }
+  get jointAnimation(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 2883280079848620, this, []); }
+  set jointAnimation(value: (Implements<MDLJointAnimation> | SDKHandle) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1209898359305711, this, [value], [{"protocol":"c:objc(pl)MDLJointAnimation"}]); }
   /**
    * var jointPaths: [String]? { get set }
    * @availability iOS 11.0+
    */
-  get jointPaths(): (Array<string>) | null { return callSDK<(Array<string>) | null>("ModelIO_d6c5d10d3352e6ec", 528841656181512, this, []); }
-  set jointPaths(value: (Array<string>) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2505187099371343, this, [value]); }
+  get jointPaths(): (Array<string>) | null { return callSDK<(Array<string>) | null>("ModelIO_a956b86ef7a76a8e", 528841656181512, this, []); }
+  set jointPaths(value: (Array<string>) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2505187099371343, this, [value]); }
   /**
    * var skeleton: MDLSkeleton? { get set }
    * @availability iOS 11.0+
    */
-  get skeleton(): (MDLSkeleton) | null { return callSDK<(MDLSkeleton) | null>("ModelIO_d6c5d10d3352e6ec", 91775824751323, this, []); }
-  set skeleton(value: (MDLSkeleton) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1961381123971807, this, [value]); }
+  get skeleton(): (MDLSkeleton) | null { return callSDK<(MDLSkeleton) | null>("ModelIO_a956b86ef7a76a8e", 91775824751323, this, []); }
+  set skeleton(value: (MDLSkeleton) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1961381123971807, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLAnimationBindComponent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "geometryBindTransform": true; "jointAnimation": true; "jointPaths": true; "skeleton": true };
 }
@@ -623,74 +623,74 @@ export class MDLObject extends SDKHandle {
    * func addChild(_ child: MDLObject)
    * @availability iOS 9.0+
    */
-  addChild(child: MDLObject): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1989600464214586, this, [child]); }
+  addChild(child: MDLObject): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1989600464214586, this, [child]); }
   /**
    * func boundingBox(atTime time: TimeInterval) -> MDLAxisAlignedBoundingBox
    * @availability iOS 9.0+
    */
-  boundingBox(time: number): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_d6c5d10d3352e6ec", 2592200373722635, this, [time]); }
+  boundingBox(time: number): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_a956b86ef7a76a8e", 2592200373722635, this, [time]); }
   /**
    * func componentConforming(to protocol: Protocol) -> (any MDLComponent)?
    * @availability iOS 9.0+
    */
-  componentConforming(protocol: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 193022653002759, this, [protocol]); }
+  componentConforming(protocol: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 193022653002759, this, [protocol]); }
   /** init() */
-  static init(): MDLObject { return callSDK<MDLObject>("ModelIO_d6c5d10d3352e6ec", 2167348744374616, undefined, []); }
+  static init(): MDLObject { return callSDK<MDLObject>("ModelIO_a956b86ef7a76a8e", 2167348744374616, undefined, []); }
   /**
    * func atPath(_ path: String) -> MDLObject
    * @availability iOS 9.0+
    */
-  atPath(path: string): MDLObject { return callSDK<MDLObject>("ModelIO_d6c5d10d3352e6ec", 4419962097107770, this, [path]); }
+  atPath(path: string): MDLObject { return callSDK<MDLObject>("ModelIO_a956b86ef7a76a8e", 4419962097107770, this, [path]); }
   /**
    * subscript(key: Protocol) -> (any MDLComponent)? { get set }
    * @availability iOS 9.0+
    */
-  subscript(key: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 1745152648108092, this, [key]); }
+  subscript(key: string): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 1745152648108092, this, [key]); }
   /**
    * func setComponent(_ component: any MDLComponent, for protocol: Protocol)
    * @availability iOS 9.0+
    */
-  setComponent(component: Implements<MDLComponent> | SDKHandle, protocol: string): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2911673719316583, this, [component, protocol], [{"protocol":"c:objc(pl)MDLComponent"},null]); }
+  setComponent(component: Implements<MDLComponent> | SDKHandle, protocol: string): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2911673719316583, this, [component, protocol], [{"protocol":"c:objc(pl)MDLComponent"},null]); }
   /**
    * var children: any MDLObjectContainerComponent { get set }
    * @availability iOS 9.0+
    */
-  get children(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2705699022056759, this, []); }
-  set children(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1514049181638201, this, [value]); }
+  get children(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2705699022056759, this, []); }
+  set children(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1514049181638201, this, [value]); }
   /**
    * var components: [any MDLComponent] { get }
    * @availability iOS 9.0+
    */
-  get components(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 4349214702255708, this, []); }
+  get components(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 4349214702255708, this, []); }
   /**
    * var hidden: Bool { get set }
    * @availability iOS 9.0+
    */
-  get hidden(): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 3247803840566625, this, []); }
-  set hidden(value: boolean) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1607655562990249, this, [value]); }
+  get hidden(): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 3247803840566625, this, []); }
+  set hidden(value: boolean) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1607655562990249, this, [value]); }
   /**
    * var instance: MDLObject? { get set }
    * @availability iOS 9.0+
    */
-  get instance(): (MDLObject) | null { return callSDK<(MDLObject) | null>("ModelIO_d6c5d10d3352e6ec", 1672171659416509, this, []); }
-  set instance(value: (MDLObject) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 604648147793829, this, [value]); }
+  get instance(): (MDLObject) | null { return callSDK<(MDLObject) | null>("ModelIO_a956b86ef7a76a8e", 1672171659416509, this, []); }
+  set instance(value: (MDLObject) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 604648147793829, this, [value]); }
   /**
    * weak var parent: MDLObject? { get set }
    * @availability iOS 9.0+
    */
-  get parent(): (MDLObject) | null { return callSDK<(MDLObject) | null>("ModelIO_d6c5d10d3352e6ec", 4432544300816843, this, []); }
-  set parent(value: (MDLObject) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1472374257573674, this, [value]); }
+  get parent(): (MDLObject) | null { return callSDK<(MDLObject) | null>("ModelIO_a956b86ef7a76a8e", 4432544300816843, this, []); }
+  set parent(value: (MDLObject) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1472374257573674, this, [value]); }
   /**
    * var path: String { get }
    * @availability iOS 9.0+
    */
-  get path(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 2392837107096786, this, []); }
+  get path(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 2392837107096786, this, []); }
   /**
    * var transform: (any MDLTransformComponent)? { get set }
    * @availability iOS 9.0+
    */
-  get transform(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 213461313596670, this, []); }
-  set transform(value: (SDKHandle) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 866909329378740, this, [value]); }
+  get transform(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 213461313596670, this, []); }
+  set transform(value: (SDKHandle) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 866909329378740, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true };
 }
@@ -701,29 +701,29 @@ export class MDLObject extends SDKHandle {
  */
 export class MDLLight extends (MDLObject as unknown as Omit<typeof MDLObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLObject)) {
   /** init() */
-  static init(): MDLLight { return callSDK<MDLLight>("ModelIO_d6c5d10d3352e6ec", 1090803324247506, undefined, []); }
+  static init(): MDLLight { return callSDK<MDLLight>("ModelIO_a956b86ef7a76a8e", 1090803324247506, undefined, []); }
   /**
    * func irradiance(atPoint point: vector_float3) -> Unmanaged<CGColor>
    * @availability iOS 9.0+
    */
-  irradianceAtPoint(point: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3883715508088296, this, [point]); }
+  irradianceAtPoint(point: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3883715508088296, this, [point]); }
   /**
    * func irradiance(atPoint point: vector_float3, colorSpace: CGColorSpace) -> Unmanaged<CGColor>
    * @availability iOS 9.0+
    */
-  irradianceAtPointColorSpace(point: SDKHandle, colorSpace: _CoreGraphics_CGColorSpace): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 4421142627670020, this, [point, colorSpace]); }
+  irradianceAtPointColorSpace(point: SDKHandle, colorSpace: _CoreGraphics_CGColorSpace): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 4421142627670020, this, [point, colorSpace]); }
   /**
    * var colorSpace: String { get set }
    * @availability iOS 9.0+
    */
-  get colorSpace(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 4229100285096841, this, []); }
-  set colorSpace(value: string) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2522796862674154, this, [value]); }
+  get colorSpace(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 4229100285096841, this, []); }
+  set colorSpace(value: string) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2522796862674154, this, [value]); }
   /**
    * var lightType: MDLLightType { get set }
    * @availability iOS 9.0+
    */
-  get lightType(): MDLLightType { return callSDK<MDLLightType>("ModelIO_d6c5d10d3352e6ec", 2999694053419853, this, []); }
-  set lightType(value: MDLLightType) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4317760604727803, this, [value]); }
+  get lightType(): MDLLightType { return callSDK<MDLLightType>("ModelIO_a956b86ef7a76a8e", 2999694053419853, this, []); }
+  set lightType(value: MDLLightType) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4317760604727803, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLLight": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "colorSpace": true; "lightType": true };
 }
@@ -734,48 +734,48 @@ export class MDLLight extends (MDLObject as unknown as Omit<typeof MDLObject, "i
  */
 export class MDLPhysicallyPlausibleLight extends (MDLLight as unknown as Omit<typeof MDLLight, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLLight)) {
   /** init() */
-  static init(): MDLPhysicallyPlausibleLight { return callSDK<MDLPhysicallyPlausibleLight>("ModelIO_d6c5d10d3352e6ec", 4217859520373889, undefined, []); }
+  static init(): MDLPhysicallyPlausibleLight { return callSDK<MDLPhysicallyPlausibleLight>("ModelIO_a956b86ef7a76a8e", 4217859520373889, undefined, []); }
   /**
    * func setColorByTemperature(_ temperature: Float)
    * @availability iOS 9.0+
    */
-  setColorByTemperature(temperature: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3657631906337430, this, [temperature]); }
+  setColorByTemperature(temperature: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3657631906337430, this, [temperature]); }
   /**
    * var attenuationEndDistance: Float { get set }
    * @availability iOS 9.0+
    */
-  get attenuationEndDistance(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2007916850477061, this, []); }
-  set attenuationEndDistance(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 459654554280382, this, [value]); }
+  get attenuationEndDistance(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2007916850477061, this, []); }
+  set attenuationEndDistance(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 459654554280382, this, [value]); }
   /**
    * var attenuationStartDistance: Float { get set }
    * @availability iOS 9.0+
    */
-  get attenuationStartDistance(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3996941755153476, this, []); }
-  set attenuationStartDistance(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3110967549280751, this, [value]); }
+  get attenuationStartDistance(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3996941755153476, this, []); }
+  set attenuationStartDistance(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3110967549280751, this, [value]); }
   /**
    * var color: CGColor? { get set }
    * @availability iOS 9.0+
    */
-  get color(): $SDK3 { return callSDK<$SDK3>("ModelIO_d6c5d10d3352e6ec", 1015531789092858, this, []); }
-  set color(value: $SDK3) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1060896713840440, this, [value]); }
+  get color(): $SDK3 { return callSDK<$SDK3>("ModelIO_a956b86ef7a76a8e", 1015531789092858, this, []); }
+  set color(value: $SDK3) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1060896713840440, this, [value]); }
   /**
    * var innerConeAngle: Float { get set }
    * @availability iOS 9.0+
    */
-  get innerConeAngle(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 529118728024336, this, []); }
-  set innerConeAngle(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2796109634190132, this, [value]); }
+  get innerConeAngle(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 529118728024336, this, []); }
+  set innerConeAngle(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2796109634190132, this, [value]); }
   /**
    * var lumens: Float { get set }
    * @availability iOS 9.0+
    */
-  get lumens(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 4072938612526608, this, []); }
-  set lumens(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2189338744996475, this, [value]); }
+  get lumens(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 4072938612526608, this, []); }
+  set lumens(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2189338744996475, this, [value]); }
   /**
    * var outerConeAngle: Float { get set }
    * @availability iOS 9.0+
    */
-  get outerConeAngle(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3304300717235162, this, []); }
-  set outerConeAngle(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2408412283060194, this, [value]); }
+  get outerConeAngle(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3304300717235162, this, []); }
+  set outerConeAngle(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2408412283060194, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLPhysicallyPlausibleLight": true; "c:objc(cs)MDLLight": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "colorSpace": true; "lightType": true; "attenuationEndDistance": true; "attenuationStartDistance": true; "color": true; "innerConeAngle": true; "lumens": true; "outerConeAngle": true };
 }
@@ -786,25 +786,25 @@ export class MDLPhysicallyPlausibleLight extends (MDLLight as unknown as Omit<ty
  */
 export class MDLAreaLight extends (MDLPhysicallyPlausibleLight as unknown as Omit<typeof MDLPhysicallyPlausibleLight, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLPhysicallyPlausibleLight)) {
   /** init() */
-  static init(): MDLAreaLight { return callSDK<MDLAreaLight>("ModelIO_d6c5d10d3352e6ec", 1914149632637483, undefined, []); }
+  static init(): MDLAreaLight { return callSDK<MDLAreaLight>("ModelIO_a956b86ef7a76a8e", 1914149632637483, undefined, []); }
   /**
    * var areaRadius: Float { get set }
    * @availability iOS 9.0+
    */
-  get areaRadius(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3097759107578572, this, []); }
-  set areaRadius(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2591924902221778, this, [value]); }
+  get areaRadius(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3097759107578572, this, []); }
+  set areaRadius(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2591924902221778, this, [value]); }
   /**
    * var aspect: Float { get set }
    * @availability iOS 9.0+
    */
-  get aspect(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1291497758328511, this, []); }
-  set aspect(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3051030357231808, this, [value]); }
+  get aspect(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1291497758328511, this, []); }
+  set aspect(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3051030357231808, this, [value]); }
   /**
    * var superEllipticPower: vector_float2 { get set }
    * @availability iOS 9.0+
    */
-  get superEllipticPower(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 1638448532568284, this, []); }
-  set superEllipticPower(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2429327115783099, this, [value]); }
+  get superEllipticPower(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 1638448532568284, this, []); }
+  set superEllipticPower(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2429327115783099, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLAreaLight": true; "c:objc(cs)MDLPhysicallyPlausibleLight": true; "c:objc(cs)MDLLight": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "colorSpace": true; "lightType": true; "attenuationEndDistance": true; "attenuationStartDistance": true; "color": true; "innerConeAngle": true; "lumens": true; "outerConeAngle": true; "areaRadius": true; "aspect": true; "superEllipticPower": true };
 }
@@ -818,153 +818,153 @@ export class MDLAsset extends SDKHandle {
    * class func canExportFileExtension(_ extension: String) -> Bool
    * @availability iOS 9.0+
    */
-  static canExportFileExtension(extension: string): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 2079094411016404, undefined, [extension]); }
+  static canExportFileExtension(extension: string): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 2079094411016404, undefined, [extension]); }
   /**
    * class func canImportFileExtension(_ extension: String) -> Bool
    * @availability iOS 9.0+
    */
-  static canImportFileExtension(extension: string): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 2039662437905357, undefined, [extension]); }
+  static canImportFileExtension(extension: string): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 2039662437905357, undefined, [extension]); }
   /** class func placeLightProbes(withDensity value: Float, heuristic type: MDLProbePlacement, using dataSource: any MDLLightProbeIrradianceDataSource) -> [MDLLightProbe] */
-  static placeLightProbes(value: number, type: MDLProbePlacement, dataSource: SDKHandle): Array<MDLLightProbe> { return callSDK<Array<MDLLightProbe>>("ModelIO_d6c5d10d3352e6ec", 4413878334212440, undefined, [value, type, dataSource]); }
+  static placeLightProbes(value: number, type: MDLProbePlacement, dataSource: SDKHandle): Array<MDLLightProbe> { return callSDK<Array<MDLLightProbe>>("ModelIO_a956b86ef7a76a8e", 4413878334212440, undefined, [value, type, dataSource]); }
   /**
    * func add(_ object: MDLObject)
    * @availability iOS 9.0+
    */
-  add(object: MDLObject): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 949623187371372, this, [object]); }
+  add(object: MDLObject): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 949623187371372, this, [object]); }
   /**
    * func boundingBox(atTime time: TimeInterval) -> MDLAxisAlignedBoundingBox
    * @availability iOS 9.0+
    */
-  boundingBoxAtTime(time: number): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_d6c5d10d3352e6ec", 3940970130470596, this, [time]); }
+  boundingBoxAtTime(time: number): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_a956b86ef7a76a8e", 3940970130470596, this, [time]); }
   /**
    * func childObjects(of objectClass: AnyClass) -> [MDLObject]
    * @availability iOS 9.0+
    */
-  childObjects(objectClass: string): Array<MDLObject> { return callSDK<Array<MDLObject>>("ModelIO_d6c5d10d3352e6ec", 1531545321965203, this, [objectClass]); }
+  childObjects(objectClass: string): Array<MDLObject> { return callSDK<Array<MDLObject>>("ModelIO_a956b86ef7a76a8e", 1531545321965203, this, [objectClass]); }
   /**
    * func export(to URL: URL) throws
    * @availability iOS 9.0+
    */
-  export(URL: string): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3219139254668255, this, [URL]); }
+  export(URL: string): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3219139254668255, this, [URL]); }
   /**
    * init(bufferAllocator: (any MDLMeshBufferAllocator)?)
    * @availability iOS 9.0+
    */
-  static initBufferAllocator(bufferAllocator?: (SDKHandle) | null): MDLAsset { return callSDK<MDLAsset>("ModelIO_d6c5d10d3352e6ec", 2839536867067336, undefined, [bufferAllocator]); }
+  static initBufferAllocator(bufferAllocator?: (SDKHandle) | null): MDLAsset { return callSDK<MDLAsset>("ModelIO_a956b86ef7a76a8e", 2839536867067336, undefined, [bufferAllocator]); }
   /**
    * init(url URL: URL)
    * @availability iOS 9.0+
    */
-  static initUrl(URL: string): MDLAsset { return callSDK<MDLAsset>("ModelIO_d6c5d10d3352e6ec", 3569418470345226, undefined, [URL]); }
+  static initUrl(URL: string): MDLAsset { return callSDK<MDLAsset>("ModelIO_a956b86ef7a76a8e", 3569418470345226, undefined, [URL]); }
   /**
    * init(url URL: URL?, vertexDescriptor: MDLVertexDescriptor?, bufferAllocator: (any MDLMeshBufferAllocator)?)
    * @availability iOS 9.0+
    */
-  static initUrlVertexDescriptorBufferAllocator(URL?: (string) | null, vertexDescriptor?: $SDK4, bufferAllocator?: (SDKHandle) | null): MDLAsset { return callSDK<MDLAsset>("ModelIO_d6c5d10d3352e6ec", 2518966675157773, undefined, [URL, vertexDescriptor, bufferAllocator]); }
+  static initUrlVertexDescriptorBufferAllocator(URL?: (string) | null, vertexDescriptor?: $SDK4, bufferAllocator?: (SDKHandle) | null): MDLAsset { return callSDK<MDLAsset>("ModelIO_a956b86ef7a76a8e", 2518966675157773, undefined, [URL, vertexDescriptor, bufferAllocator]); }
   /**
    * init(url URL: URL, vertexDescriptor: MDLVertexDescriptor?, bufferAllocator: (any MDLMeshBufferAllocator)?, preserveTopology: Bool, error: NSErrorPointer)
    * @availability iOS 9.0+
    */
-  static initUrlVertexDescriptorBufferAllocatorPreserveTopologyError(URL: string, vertexDescriptor: $SDK4, bufferAllocator: (SDKHandle) | null, preserveTopology: boolean): { $ret: MDLAsset; $out: { "error": (_Foundation_NSError) | null } } { return callSDK<{ $ret: MDLAsset; $out: { "error": (_Foundation_NSError) | null } }>("ModelIO_d6c5d10d3352e6ec", 843402207229765, undefined, [URL, vertexDescriptor, bufferAllocator, preserveTopology, null]); }
+  static initUrlVertexDescriptorBufferAllocatorPreserveTopologyError(URL: string, vertexDescriptor: $SDK4, bufferAllocator: (SDKHandle) | null, preserveTopology: boolean): { $ret: MDLAsset; $out: { "error": (_Foundation_NSError) | null } } { return callSDK<{ $ret: MDLAsset; $out: { "error": (_Foundation_NSError) | null } }>("ModelIO_a956b86ef7a76a8e", 843402207229765, undefined, [URL, vertexDescriptor, bufferAllocator, preserveTopology, null]); }
   /**
    * func loadTextures()
    * @availability iOS 11.0+
    */
-  loadTextures(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3285813836929177, this, []); }
+  loadTextures(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3285813836929177, this, []); }
   /**
    * func object(at index: Int) -> MDLObject
    * @availability iOS 9.0+
    */
-  objectAt(index: number): MDLObject { return callSDK<MDLObject>("ModelIO_d6c5d10d3352e6ec", 1742225867084079, this, [index]); }
+  objectAt(index: number): MDLObject { return callSDK<MDLObject>("ModelIO_a956b86ef7a76a8e", 1742225867084079, this, [index]); }
   /**
    * subscript(index: Int) -> MDLObject? { get }
    * @availability iOS 9.0+
    */
-  subscript(index: number): (MDLObject) | null { return callSDK<(MDLObject) | null>("ModelIO_d6c5d10d3352e6ec", 3111980319417555, this, [index]); }
+  subscript(index: number): (MDLObject) | null { return callSDK<(MDLObject) | null>("ModelIO_a956b86ef7a76a8e", 3111980319417555, this, [index]); }
   /**
    * func object(atPath path: String) -> MDLObject
    * @availability iOS 11.0+
    */
-  objectAtPath(path: string): MDLObject { return callSDK<MDLObject>("ModelIO_d6c5d10d3352e6ec", 3200580971817979, this, [path]); }
+  objectAtPath(path: string): MDLObject { return callSDK<MDLObject>("ModelIO_a956b86ef7a76a8e", 3200580971817979, this, [path]); }
   /**
    * func remove(_ object: MDLObject)
    * @availability iOS 9.0+
    */
-  remove(object: MDLObject): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1153749447547571, this, [object]); }
+  remove(object: MDLObject): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1153749447547571, this, [object]); }
   /**
    * var url: URL? { get }
    * @availability iOS 9.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("ModelIO_d6c5d10d3352e6ec", 2466722890150198, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("ModelIO_a956b86ef7a76a8e", 2466722890150198, this, []); }
   /**
    * var animations: any MDLObjectContainerComponent { get set }
    * @availability iOS 11.0+
    */
-  get animations(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2679865436056723, this, []); }
-  set animations(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4237781690588600, this, [value]); }
+  get animations(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2679865436056723, this, []); }
+  set animations(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4237781690588600, this, [value]); }
   /**
    * var boundingBox: MDLAxisAlignedBoundingBox { get }
    * @availability iOS 9.0+
    */
-  get boundingBox(): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_d6c5d10d3352e6ec", 4374232517036651, this, []); }
+  get boundingBox(): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_a956b86ef7a76a8e", 4374232517036651, this, []); }
   /**
    * var bufferAllocator: any MDLMeshBufferAllocator { get }
    * @availability iOS 9.0+
    */
-  get bufferAllocator(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 438957508402281, this, []); }
+  get bufferAllocator(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 438957508402281, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 9.0+
    */
-  get count(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 501087968648818, this, []); }
+  get count(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 501087968648818, this, []); }
   /**
    * var endTime: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get endTime(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3574463762134491, this, []); }
-  set endTime(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3941605930843246, this, [value]); }
+  get endTime(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3574463762134491, this, []); }
+  set endTime(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3941605930843246, this, [value]); }
   /**
    * var frameInterval: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get frameInterval(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1644883377367435, this, []); }
-  set frameInterval(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3214584125333584, this, [value]); }
+  get frameInterval(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1644883377367435, this, []); }
+  set frameInterval(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3214584125333584, this, [value]); }
   /**
    * var masters: any MDLObjectContainerComponent { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 15.0
    */
-  get masters(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2922102639340238, this, []); }
-  set masters(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3569918262078845, this, [value]); }
+  get masters(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2922102639340238, this, []); }
+  set masters(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3569918262078845, this, [value]); }
   /**
    * var originals: any MDLObjectContainerComponent { get set }
    * @availability iOS 15.0+
    */
-  get originals(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 1223331787445498, this, []); }
-  set originals(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3768300987395669, this, [value]); }
+  get originals(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 1223331787445498, this, []); }
+  set originals(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3768300987395669, this, [value]); }
   /**
    * var resolver: (any MDLAssetResolver)? { get set }
    * @availability iOS 11.0+
    */
-  get resolver(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 4278532650861138, this, []); }
-  set resolver(value: (SDKHandle) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 329917559966842, this, [value]); }
+  get resolver(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 4278532650861138, this, []); }
+  set resolver(value: (SDKHandle) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 329917559966842, this, [value]); }
   /**
    * var startTime: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get startTime(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 792477971054687, this, []); }
-  set startTime(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1153131068078670, this, [value]); }
+  get startTime(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 792477971054687, this, []); }
+  set startTime(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1153131068078670, this, [value]); }
   /**
    * var upAxis: vector_float3 { get set }
    * @availability iOS 11.0+
    */
-  get upAxis(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 4288167780492447, this, []); }
-  set upAxis(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2832195966950520, this, [value]); }
+  get upAxis(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 4288167780492447, this, []); }
+  set upAxis(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2832195966950520, this, [value]); }
   /**
    * var vertexDescriptor: MDLVertexDescriptor? { get }
    * @availability iOS 9.0+
    */
-  get vertexDescriptor(): $SDK4 { return callSDK<$SDK4>("ModelIO_d6c5d10d3352e6ec", 556838613899154, this, []); }
+  get vertexDescriptor(): $SDK4 { return callSDK<$SDK4>("ModelIO_a956b86ef7a76a8e", 556838613899154, this, []); }
   declare readonly $type: { "c:objc(cs)MDLAsset": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "animations": true; "boundingBox": true; "bufferAllocator": true; "count": true; "endTime": true; "frameInterval": true; "masters": true; "originals": true; "resolver": true; "startTime": true; "upAxis": true; "vertexDescriptor": true };
 }
@@ -989,15 +989,15 @@ export interface MDLAssetResolver {
 /** struct MDLAxisAlignedBoundingBox */
 export class MDLAxisAlignedBoundingBox extends SDKHandle {
   /** var maxBounds: vector_float3 */
-  get maxBounds(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 412560590971379, this, []); }
-  set maxBounds(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1869138054808251, this, [value]); }
+  get maxBounds(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 412560590971379, this, []); }
+  set maxBounds(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1869138054808251, this, [value]); }
   /** var minBounds: vector_float3 */
-  get minBounds(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2174006984754747, this, []); }
-  set minBounds(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 254124813839487, this, [value]); }
+  get minBounds(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2174006984754747, this, []); }
+  set minBounds(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 254124813839487, this, [value]); }
   /** init(maxBounds: vector_float3, minBounds: vector_float3) */
-  static initMaxBoundsMinBounds(maxBounds: SDKHandle, minBounds: SDKHandle): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_d6c5d10d3352e6ec", 1154717694466422, undefined, [maxBounds, minBounds]); }
+  static initMaxBoundsMinBounds(maxBounds: SDKHandle, minBounds: SDKHandle): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_a956b86ef7a76a8e", 1154717694466422, undefined, [maxBounds, minBounds]); }
   /** init() */
-  static init(): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_d6c5d10d3352e6ec", 1413484917222599, undefined, []); }
+  static init(): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_a956b86ef7a76a8e", 1413484917222599, undefined, []); }
   declare readonly $type: { "c:@SA@MDLAxisAlignedBoundingBox": true };
 }
 
@@ -1010,13 +1010,13 @@ export class MDLBundleAssetResolver extends SDKHandle {
    * init(bundle path: String)
    * @availability iOS 11.0+
    */
-  static init(path: string): MDLBundleAssetResolver { return callSDK<MDLBundleAssetResolver>("ModelIO_d6c5d10d3352e6ec", 1530171565654721, undefined, [path]); }
+  static init(path: string): MDLBundleAssetResolver { return callSDK<MDLBundleAssetResolver>("ModelIO_a956b86ef7a76a8e", 1530171565654721, undefined, [path]); }
   /**
    * var path: String { get set }
    * @availability iOS 11.0+
    */
-  get path(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 362980249876756, this, []); }
-  set path(value: string) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 694028084452645, this, [value]); }
+  get path(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 362980249876756, this, []); }
+  set path(value: string) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 694028084452645, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLBundleAssetResolver": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "path": true };
 }
@@ -1030,166 +1030,166 @@ export class MDLCamera extends (MDLObject as unknown as Omit<typeof MDLObject, "
    * func bokehKernel(withSize size: vector_int2) -> MDLTexture
    * @availability iOS 9.0+
    */
-  bokehKernel(size: SDKHandle): MDLTexture { return callSDK<MDLTexture>("ModelIO_d6c5d10d3352e6ec", 2816302771593553, this, [size]); }
+  bokehKernel(size: SDKHandle): MDLTexture { return callSDK<MDLTexture>("ModelIO_a956b86ef7a76a8e", 2816302771593553, this, [size]); }
   /**
    * func frameBoundingBox(_ boundingBox: MDLAxisAlignedBoundingBox, setNearAndFar: Bool)
    * @availability iOS 9.0+
    */
-  frameBoundingBox(boundingBox: MDLAxisAlignedBoundingBox, setNearAndFar: boolean): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1680169338042962, this, [boundingBox, setNearAndFar]); }
+  frameBoundingBox(boundingBox: MDLAxisAlignedBoundingBox, setNearAndFar: boolean): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1680169338042962, this, [boundingBox, setNearAndFar]); }
   /** init() */
-  static init(): MDLCamera { return callSDK<MDLCamera>("ModelIO_d6c5d10d3352e6ec", 1545104674849246, undefined, []); }
+  static init(): MDLCamera { return callSDK<MDLCamera>("ModelIO_a956b86ef7a76a8e", 1545104674849246, undefined, []); }
   /**
    * func look(at focusPosition: vector_float3)
    * @availability iOS 9.0+
    */
-  lookAt(focusPosition: SDKHandle): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1745188330468324, this, [focusPosition]); }
+  lookAt(focusPosition: SDKHandle): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1745188330468324, this, [focusPosition]); }
   /**
    * func look(at focusPosition: vector_float3, from cameraPosition: vector_float3)
    * @availability iOS 9.0+
    */
-  lookAtFrom(focusPosition: SDKHandle, cameraPosition: SDKHandle): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2959410610798093, this, [focusPosition, cameraPosition]); }
+  lookAtFrom(focusPosition: SDKHandle, cameraPosition: SDKHandle): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2959410610798093, this, [focusPosition, cameraPosition]); }
   /**
    * func ray(to pixel: vector_int2, forViewPort size: vector_int2) -> vector_float3
    * @availability iOS 9.0+
    */
-  ray(pixel: SDKHandle, size: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 4259666183976870, this, [pixel, size]); }
+  ray(pixel: SDKHandle, size: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 4259666183976870, this, [pixel, size]); }
   /**
    * var apertureBladeCount: Int { get set }
    * @availability iOS 9.0+
    */
-  get apertureBladeCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2094326668725897, this, []); }
-  set apertureBladeCount(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 65856404037259, this, [value]); }
+  get apertureBladeCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2094326668725897, this, []); }
+  set apertureBladeCount(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 65856404037259, this, [value]); }
   /**
    * var barrelDistortion: Float { get set }
    * @availability iOS 9.0+
    */
-  get barrelDistortion(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 404711464995952, this, []); }
-  set barrelDistortion(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3477732161785518, this, [value]); }
+  get barrelDistortion(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 404711464995952, this, []); }
+  set barrelDistortion(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3477732161785518, this, [value]); }
   /**
    * var chromaticAberration: Float { get set }
    * @availability iOS 9.0+
    */
-  get chromaticAberration(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3811539322510493, this, []); }
-  set chromaticAberration(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4286122805141526, this, [value]); }
+  get chromaticAberration(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3811539322510493, this, []); }
+  set chromaticAberration(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4286122805141526, this, [value]); }
   /**
    * var exposure: vector_float3 { get set }
    * @availability iOS 9.0+
    */
-  get exposure(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 991392798625760, this, []); }
-  set exposure(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2513249391175735, this, [value]); }
+  get exposure(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 991392798625760, this, []); }
+  set exposure(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2513249391175735, this, [value]); }
   /**
    * var exposureCompression: vector_float2 { get set }
    * @availability iOS 9.0+
    */
-  get exposureCompression(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3992336984390111, this, []); }
-  set exposureCompression(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3495667454263931, this, [value]); }
+  get exposureCompression(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3992336984390111, this, []); }
+  set exposureCompression(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3495667454263931, this, [value]); }
   /**
    * var fStop: Float { get set }
    * @availability iOS 9.0+
    */
-  get fStop(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3871622344234751, this, []); }
-  set fStop(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1558814476546887, this, [value]); }
+  get fStop(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3871622344234751, this, []); }
+  set fStop(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1558814476546887, this, [value]); }
   /**
    * var farVisibilityDistance: Float { get set }
    * @availability iOS 9.0+
    */
-  get farVisibilityDistance(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3793881208032968, this, []); }
-  set farVisibilityDistance(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3859561571824686, this, [value]); }
+  get farVisibilityDistance(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3793881208032968, this, []); }
+  set farVisibilityDistance(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3859561571824686, this, [value]); }
   /**
    * var fieldOfView: Float { get set }
    * @availability iOS 9.0+
    */
-  get fieldOfView(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3955113828070314, this, []); }
-  set fieldOfView(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3333081007561208, this, [value]); }
+  get fieldOfView(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3955113828070314, this, []); }
+  set fieldOfView(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3333081007561208, this, [value]); }
   /**
    * var fisheyeDistortion: Float { get set }
    * @availability iOS 9.0+
    */
-  get fisheyeDistortion(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 695149588941737, this, []); }
-  set fisheyeDistortion(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 779387369617073, this, [value]); }
+  get fisheyeDistortion(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 695149588941737, this, []); }
+  set fisheyeDistortion(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 779387369617073, this, [value]); }
   /**
    * var flash: vector_float3 { get set }
    * @availability iOS 9.0+
    */
-  get flash(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2846567139117267, this, []); }
-  set flash(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4179639239856419, this, [value]); }
+  get flash(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2846567139117267, this, []); }
+  set flash(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4179639239856419, this, [value]); }
   /**
    * var focalLength: Float { get set }
    * @availability iOS 9.0+
    */
-  get focalLength(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 888736919702903, this, []); }
-  set focalLength(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 34057124649395, this, [value]); }
+  get focalLength(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 888736919702903, this, []); }
+  set focalLength(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 34057124649395, this, [value]); }
   /**
    * var focusDistance: Float { get set }
    * @availability iOS 9.0+
    */
-  get focusDistance(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2313423816237901, this, []); }
-  set focusDistance(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1917524781036376, this, [value]); }
+  get focusDistance(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2313423816237901, this, []); }
+  set focusDistance(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1917524781036376, this, [value]); }
   /**
    * var maximumCircleOfConfusion: Float { get set }
    * @availability iOS 9.0+
    */
-  get maximumCircleOfConfusion(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 4322212063824117, this, []); }
-  set maximumCircleOfConfusion(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1936305910472603, this, [value]); }
+  get maximumCircleOfConfusion(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 4322212063824117, this, []); }
+  set maximumCircleOfConfusion(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1936305910472603, this, [value]); }
   /**
    * var nearVisibilityDistance: Float { get set }
    * @availability iOS 9.0+
    */
-  get nearVisibilityDistance(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 263313436781401, this, []); }
-  set nearVisibilityDistance(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1327037493255586, this, [value]); }
+  get nearVisibilityDistance(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 263313436781401, this, []); }
+  set nearVisibilityDistance(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1327037493255586, this, [value]); }
   /**
    * var opticalVignetting: Float { get set }
    * @availability iOS 9.0+
    */
-  get opticalVignetting(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1381750585950506, this, []); }
-  set opticalVignetting(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1097359530643945, this, [value]); }
+  get opticalVignetting(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1381750585950506, this, []); }
+  set opticalVignetting(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1097359530643945, this, [value]); }
   /**
    * var projection: MDLCameraProjection { get set }
    * @availability iOS 9.0+
    */
-  get projection(): MDLCameraProjection { return callSDK<MDLCameraProjection>("ModelIO_d6c5d10d3352e6ec", 3171103216229443, this, []); }
-  set projection(value: MDLCameraProjection) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4228302511413117, this, [value]); }
+  get projection(): MDLCameraProjection { return callSDK<MDLCameraProjection>("ModelIO_a956b86ef7a76a8e", 3171103216229443, this, []); }
+  set projection(value: MDLCameraProjection) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4228302511413117, this, [value]); }
   /**
    * var projectionMatrix: matrix_float4x4 { get }
    * @availability iOS 9.0+
    */
-  get projectionMatrix(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 1316012635449042, this, []); }
+  get projectionMatrix(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 1316012635449042, this, []); }
   /**
    * var sensorAspect: Float { get set }
    * @availability iOS 9.0+
    */
-  get sensorAspect(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1530902894816351, this, []); }
-  set sensorAspect(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4026186271172798, this, [value]); }
+  get sensorAspect(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1530902894816351, this, []); }
+  set sensorAspect(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4026186271172798, this, [value]); }
   /**
    * var sensorEnlargement: vector_float2 { get set }
    * @availability iOS 9.0+
    */
-  get sensorEnlargement(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 151232056275621, this, []); }
-  set sensorEnlargement(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3741221935139073, this, [value]); }
+  get sensorEnlargement(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 151232056275621, this, []); }
+  set sensorEnlargement(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3741221935139073, this, [value]); }
   /**
    * var sensorShift: vector_float2 { get set }
    * @availability iOS 9.0+
    */
-  get sensorShift(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2999099487514616, this, []); }
-  set sensorShift(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3365543273619559, this, [value]); }
+  get sensorShift(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2999099487514616, this, []); }
+  set sensorShift(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3365543273619559, this, [value]); }
   /**
    * var sensorVerticalAperture: Float { get set }
    * @availability iOS 9.0+
    */
-  get sensorVerticalAperture(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2995778367670585, this, []); }
-  set sensorVerticalAperture(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2419750369077243, this, [value]); }
+  get sensorVerticalAperture(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2995778367670585, this, []); }
+  set sensorVerticalAperture(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2419750369077243, this, [value]); }
   /**
    * var shutterOpenInterval: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get shutterOpenInterval(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 396919064374513, this, []); }
-  set shutterOpenInterval(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2275059887349086, this, [value]); }
+  get shutterOpenInterval(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 396919064374513, this, []); }
+  set shutterOpenInterval(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2275059887349086, this, [value]); }
   /**
    * var worldToMetersConversionScale: Float { get set }
    * @availability iOS 9.0+
    */
-  get worldToMetersConversionScale(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3822846069606828, this, []); }
-  set worldToMetersConversionScale(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1605425713524960, this, [value]); }
+  get worldToMetersConversionScale(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3822846069606828, this, []); }
+  set worldToMetersConversionScale(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1605425713524960, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLCamera": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "apertureBladeCount": true; "barrelDistortion": true; "chromaticAberration": true; "exposure": true; "exposureCompression": true; "fStop": true; "farVisibilityDistance": true; "fieldOfView": true; "fisheyeDistortion": true; "flash": true; "focalLength": true; "focusDistance": true; "maximumCircleOfConfusion": true; "nearVisibilityDistance": true; "opticalVignetting": true; "projection": true; "projectionMatrix": true; "sensorAspect": true; "sensorEnlargement": true; "sensorShift": true; "sensorVerticalAperture": true; "shutterOpenInterval": true; "worldToMetersConversionScale": true };
 }
@@ -1199,7 +1199,7 @@ export type MDLCameraProjection = "perspective" | "orthographic";
 
 export const MDLCameraProjection = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLCameraProjection) | null { return callSDK<(MDLCameraProjection) | null>("ModelIO_d6c5d10d3352e6ec", 103526780547144, undefined, [rawValue]); }
+  init(rawValue: number): (MDLCameraProjection) | null { return callSDK<(MDLCameraProjection) | null>("ModelIO_a956b86ef7a76a8e", 103526780547144, undefined, [rawValue]); }
 };
 
 /**
@@ -1211,134 +1211,134 @@ export class MDLTexture extends SDKHandle {
    * class func irradianceTextureCube(with texture: MDLTexture, name: String?, dimensions: vector_int2) -> Self
    * @availability iOS 9.0+
    */
-  static irradianceTextureCubeWithNameDimensions(texture: MDLTexture, name: (string) | null, dimensions: SDKHandle): MDLTexture { return callSDK<MDLTexture>("ModelIO_d6c5d10d3352e6ec", 3027665051086621, undefined, [texture, name, dimensions]); }
+  static irradianceTextureCubeWithNameDimensions(texture: MDLTexture, name: (string) | null, dimensions: SDKHandle): MDLTexture { return callSDK<MDLTexture>("ModelIO_a956b86ef7a76a8e", 3027665051086621, undefined, [texture, name, dimensions]); }
   /**
    * class func irradianceTextureCube(with texture: MDLTexture, name: String?, dimensions: vector_int2, roughness: Float) -> Self
    * @availability iOS 9.0+
    */
-  static irradianceTextureCubeWithNameDimensionsRoughness(texture: MDLTexture, name: (string) | null, dimensions: SDKHandle, roughness: number): MDLTexture { return callSDK<MDLTexture>("ModelIO_d6c5d10d3352e6ec", 2842239593267074, undefined, [texture, name, dimensions, roughness]); }
+  static irradianceTextureCubeWithNameDimensionsRoughness(texture: MDLTexture, name: (string) | null, dimensions: SDKHandle, roughness: number): MDLTexture { return callSDK<MDLTexture>("ModelIO_a956b86ef7a76a8e", 2842239593267074, undefined, [texture, name, dimensions, roughness]); }
   /**
    * convenience init?(cubeWithImagesNamed names: [String])
    * @availability iOS 9.0+
    */
-  static initCubeWithImagesNamed(names: Array<string>): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_d6c5d10d3352e6ec", 1444725639568965, undefined, [names]); }
+  static initCubeWithImagesNamed(names: Array<string>): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_a956b86ef7a76a8e", 1444725639568965, undefined, [names]); }
   /**
    * convenience init?(cubeWithImagesNamed names: [String], bundle bundleOrNil: Bundle?)
    * @availability iOS 9.0+
    */
-  static initCubeWithImagesNamedBundle(names: Array<string>, bundleOrNil?: $SDK6): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_d6c5d10d3352e6ec", 1323420574554941, undefined, [names, bundleOrNil]); }
+  static initCubeWithImagesNamedBundle(names: Array<string>, bundleOrNil?: $SDK6): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_a956b86ef7a76a8e", 1323420574554941, undefined, [names, bundleOrNil]); }
   /**
    * convenience init?(named name: String)
    * @availability iOS 9.0+
    */
-  static initNamed(name: string): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_d6c5d10d3352e6ec", 3710895865182081, undefined, [name]); }
+  static initNamed(name: string): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_a956b86ef7a76a8e", 3710895865182081, undefined, [name]); }
   /**
    * convenience init?(named name: String, assetResolver resolver: any MDLAssetResolver)
    * @availability iOS 12.0+
    */
-  static initNamedAssetResolver(name: string, resolver: SDKHandle): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_d6c5d10d3352e6ec", 2960226138748223, undefined, [name, resolver]); }
+  static initNamedAssetResolver(name: string, resolver: SDKHandle): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_a956b86ef7a76a8e", 2960226138748223, undefined, [name, resolver]); }
   /**
    * convenience init?(named name: String, bundle bundleOrNil: Bundle?)
    * @availability iOS 9.0+
    */
-  static initNamedBundle(name: string, bundleOrNil?: $SDK6): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_d6c5d10d3352e6ec", 48854982358972, undefined, [name, bundleOrNil]); }
+  static initNamedBundle(name: string, bundleOrNil?: $SDK6): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_a956b86ef7a76a8e", 48854982358972, undefined, [name, bundleOrNil]); }
   /**
    * func imageFromTexture() -> Unmanaged<CGImage>?
    * @availability iOS 9.0+
    */
-  imageFromTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 3575354365764517, this, []); }
+  imageFromTexture(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 3575354365764517, this, []); }
   /**
    * func imageFromTexture(atLevel level: Int) -> Unmanaged<CGImage>?
    * @availability iOS 11.0+
    */
-  imageFromTextureAtLevel(level: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 3924215240994812, this, [level]); }
+  imageFromTextureAtLevel(level: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 3924215240994812, this, [level]); }
   /**
    * init()
    * @availability iOS 9.0+
    */
-  static init(): MDLTexture { return callSDK<MDLTexture>("ModelIO_d6c5d10d3352e6ec", 1889302336047081, undefined, []); }
+  static init(): MDLTexture { return callSDK<MDLTexture>("ModelIO_a956b86ef7a76a8e", 1889302336047081, undefined, []); }
   /**
    * init(data pixelData: Data?, topLeftOrigin: Bool, name: String?, dimensions: vector_int2, rowStride: Int, channelCount: Int, channelEncoding: MDLTextureChannelEncoding, isCube: Bool)
    * @availability iOS 9.0+
    */
-  static initDataTopLeftOriginNameDimensionsRowStrideChannelCountChannelEncodingIsCube(pixelData: (ArrayBuffer) | null, topLeftOrigin: boolean, name: (string) | null, dimensions: SDKHandle, rowStride: number, channelCount: number, channelEncoding: MDLTextureChannelEncoding, isCube: boolean): MDLTexture { return callSDK<MDLTexture>("ModelIO_d6c5d10d3352e6ec", 4293529724701341, undefined, [pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube]); }
+  static initDataTopLeftOriginNameDimensionsRowStrideChannelCountChannelEncodingIsCube(pixelData: (ArrayBuffer) | null, topLeftOrigin: boolean, name: (string) | null, dimensions: SDKHandle, rowStride: number, channelCount: number, channelEncoding: MDLTextureChannelEncoding, isCube: boolean): MDLTexture { return callSDK<MDLTexture>("ModelIO_a956b86ef7a76a8e", 4293529724701341, undefined, [pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube]); }
   /**
    * func texelDataWithBottomLeftOrigin() -> Data?
    * @availability iOS 9.0+
    */
-  texelDataWithBottomLeftOrigin(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_d6c5d10d3352e6ec", 3921879779376685, this, []); }
+  texelDataWithBottomLeftOrigin(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_a956b86ef7a76a8e", 3921879779376685, this, []); }
   /**
    * func texelDataWithBottomLeftOrigin(atMipLevel level: Int, create: Bool) -> Data?
    * @availability iOS 9.0+
    */
-  texelDataWithBottomLeftOriginAtMipLevelCreate(level: number, create: boolean): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_d6c5d10d3352e6ec", 1871121568358349, this, [level, create]); }
+  texelDataWithBottomLeftOriginAtMipLevelCreate(level: number, create: boolean): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_a956b86ef7a76a8e", 1871121568358349, this, [level, create]); }
   /**
    * func texelDataWithTopLeftOrigin() -> Data?
    * @availability iOS 9.0+
    */
-  texelDataWithTopLeftOrigin(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_d6c5d10d3352e6ec", 1894416732898803, this, []); }
+  texelDataWithTopLeftOrigin(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_a956b86ef7a76a8e", 1894416732898803, this, []); }
   /**
    * func texelDataWithTopLeftOrigin(atMipLevel level: Int, create: Bool) -> Data?
    * @availability iOS 9.0+
    */
-  texelDataWithTopLeftOriginAtMipLevelCreate(level: number, create: boolean): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_d6c5d10d3352e6ec", 2079931551304443, this, [level, create]); }
+  texelDataWithTopLeftOriginAtMipLevelCreate(level: number, create: boolean): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_a956b86ef7a76a8e", 2079931551304443, this, [level, create]); }
   /**
    * func write(to URL: URL) -> Bool
    * @availability iOS 9.0+
    */
-  writeTo(URL: string): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 1006755870092265, this, [URL]); }
+  writeTo(URL: string): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 1006755870092265, this, [URL]); }
   /**
    * func write(to URL: URL, level: Int) -> Bool
    * @availability iOS 11.0+
    */
-  writeToLevel(URL: string, level: number): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 975839596927731, this, [URL, level]); }
+  writeToLevel(URL: string, level: number): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 975839596927731, this, [URL, level]); }
   /**
    * func write(to nsurl: URL, type: CFString) -> Bool
    * @availability iOS 9.0+
    */
-  writeToType(nsurl: string, type: _CoreFoundation_CFString): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 1679998559398251, this, [nsurl, type]); }
+  writeToType(nsurl: string, type: _CoreFoundation_CFString): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 1679998559398251, this, [nsurl, type]); }
   /**
    * func write(to nsurl: URL, type: CFString, level: Int) -> Bool
    * @availability iOS 11.0+
    */
-  writeToTypeLevel(nsurl: string, type: _CoreFoundation_CFString, level: number): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 1159274151913137, this, [nsurl, type, level]); }
+  writeToTypeLevel(nsurl: string, type: _CoreFoundation_CFString, level: number): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 1159274151913137, this, [nsurl, type, level]); }
   /**
    * var channelCount: Int { get }
    * @availability iOS 9.0+
    */
-  get channelCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2665599740017057, this, []); }
+  get channelCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2665599740017057, this, []); }
   /**
    * var channelEncoding: MDLTextureChannelEncoding { get }
    * @availability iOS 9.0+
    */
-  get channelEncoding(): MDLTextureChannelEncoding { return callSDK<MDLTextureChannelEncoding>("ModelIO_d6c5d10d3352e6ec", 1938824460092438, this, []); }
+  get channelEncoding(): MDLTextureChannelEncoding { return callSDK<MDLTextureChannelEncoding>("ModelIO_a956b86ef7a76a8e", 1938824460092438, this, []); }
   /**
    * var dimensions: vector_int2 { get }
    * @availability iOS 9.0+
    */
-  get dimensions(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2444494007431510, this, []); }
+  get dimensions(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2444494007431510, this, []); }
   /**
    * var hasAlphaValues: Bool { get set }
    * @availability iOS 9.0+
    */
-  get hasAlphaValues(): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 447661048865801, this, []); }
-  set hasAlphaValues(value: boolean) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4308690538432921, this, [value]); }
+  get hasAlphaValues(): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 447661048865801, this, []); }
+  set hasAlphaValues(value: boolean) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4308690538432921, this, [value]); }
   /**
    * var isCube: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isCube(): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 3069944566992754, this, []); }
-  set isCube(value: boolean) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 944358312954953, this, [value]); }
+  get isCube(): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 3069944566992754, this, []); }
+  set isCube(value: boolean) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 944358312954953, this, [value]); }
   /**
    * var mipLevelCount: Int { get }
    * @availability iOS 9.0+
    */
-  get mipLevelCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 492790022499251, this, []); }
+  get mipLevelCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 492790022499251, this, []); }
   /**
    * var rowStride: Int { get }
    * @availability iOS 9.0+
    */
-  get rowStride(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1791402570656438, this, []); }
+  get rowStride(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1791402570656438, this, []); }
   declare readonly $type: { "c:objc(cs)MDLTexture": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelCount": true; "channelEncoding": true; "dimensions": true; "hasAlphaValues": true; "isCube": true; "mipLevelCount": true; "rowStride": true };
 }
@@ -1352,25 +1352,25 @@ export class MDLCheckerboardTexture extends (MDLTexture as unknown as Omit<typeo
    * init(divisions: Float, name: String?, dimensions: vector_int2, channelCount: Int32, channelEncoding: MDLTextureChannelEncoding, color1: CGColor, color2: CGColor)
    * @availability iOS 9.0+
    */
-  static init(divisions: number, name: (string) | null, dimensions: SDKHandle, channelCount: number, channelEncoding: MDLTextureChannelEncoding, color1: _CoreGraphics_CGColor, color2: _CoreGraphics_CGColor): MDLCheckerboardTexture { return callSDK<MDLCheckerboardTexture>("ModelIO_d6c5d10d3352e6ec", 3939777658915195, undefined, [divisions, name, dimensions, channelCount, channelEncoding, color1, color2]); }
+  static init(divisions: number, name: (string) | null, dimensions: SDKHandle, channelCount: number, channelEncoding: MDLTextureChannelEncoding, color1: _CoreGraphics_CGColor, color2: _CoreGraphics_CGColor): MDLCheckerboardTexture { return callSDK<MDLCheckerboardTexture>("ModelIO_a956b86ef7a76a8e", 3939777658915195, undefined, [divisions, name, dimensions, channelCount, channelEncoding, color1, color2]); }
   /**
    * var color1: CGColor? { get set }
    * @availability iOS 9.0+
    */
-  get color1(): $SDK3 { return callSDK<$SDK3>("ModelIO_d6c5d10d3352e6ec", 962725624465734, this, []); }
-  set color1(value: $SDK3) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1484396517786844, this, [value]); }
+  get color1(): $SDK3 { return callSDK<$SDK3>("ModelIO_a956b86ef7a76a8e", 962725624465734, this, []); }
+  set color1(value: $SDK3) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1484396517786844, this, [value]); }
   /**
    * var color2: CGColor? { get set }
    * @availability iOS 9.0+
    */
-  get color2(): $SDK3 { return callSDK<$SDK3>("ModelIO_d6c5d10d3352e6ec", 3850012714436606, this, []); }
-  set color2(value: $SDK3) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 432524029539564, this, [value]); }
+  get color2(): $SDK3 { return callSDK<$SDK3>("ModelIO_a956b86ef7a76a8e", 3850012714436606, this, []); }
+  set color2(value: $SDK3) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 432524029539564, this, [value]); }
   /**
    * var divisions: Float { get set }
    * @availability iOS 9.0+
    */
-  get divisions(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3134435366966145, this, []); }
-  set divisions(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 147474302480102, this, [value]); }
+  get divisions(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3134435366966145, this, []); }
+  set divisions(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 147474302480102, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLCheckerboardTexture": true; "c:objc(cs)MDLTexture": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelCount": true; "channelEncoding": true; "dimensions": true; "hasAlphaValues": true; "isCube": true; "mipLevelCount": true; "rowStride": true; "color1": true; "color2": true; "divisions": true };
 }
@@ -1384,12 +1384,12 @@ export class MDLColorSwatchTexture extends MDLTexture {
    * init(colorGradientFrom color1: CGColor, to color2: CGColor, name: String?, textureDimensions: vector_int2)
    * @availability iOS 9.0+
    */
-  static initColorGradientFromToNameTextureDimensions(color1: _CoreGraphics_CGColor, color2: _CoreGraphics_CGColor, name: (string) | null, textureDimensions: SDKHandle): MDLColorSwatchTexture { return callSDK<MDLColorSwatchTexture>("ModelIO_d6c5d10d3352e6ec", 3772491533242683, undefined, [color1, color2, name, textureDimensions]); }
+  static initColorGradientFromToNameTextureDimensions(color1: _CoreGraphics_CGColor, color2: _CoreGraphics_CGColor, name: (string) | null, textureDimensions: SDKHandle): MDLColorSwatchTexture { return callSDK<MDLColorSwatchTexture>("ModelIO_a956b86ef7a76a8e", 3772491533242683, undefined, [color1, color2, name, textureDimensions]); }
   /**
    * init(colorTemperatureGradientFrom colorTemperature1: Float, toColorTemperature colorTemperature2: Float, name: String?, textureDimensions: vector_int2)
    * @availability iOS 9.0+
    */
-  static initColorTemperatureGradientFromToColorTemperatureNameTextureDimensions(colorTemperature1: number, colorTemperature2: number, name: (string) | null, textureDimensions: SDKHandle): MDLColorSwatchTexture { return callSDK<MDLColorSwatchTexture>("ModelIO_d6c5d10d3352e6ec", 1747105037836136, undefined, [colorTemperature1, colorTemperature2, name, textureDimensions]); }
+  static initColorTemperatureGradientFromToColorTemperatureNameTextureDimensions(colorTemperature1: number, colorTemperature2: number, name: (string) | null, textureDimensions: SDKHandle): MDLColorSwatchTexture { return callSDK<MDLColorSwatchTexture>("ModelIO_a956b86ef7a76a8e", 1747105037836136, undefined, [colorTemperature1, colorTemperature2, name, textureDimensions]); }
   declare readonly $type: { "c:objc(cs)MDLColorSwatchTexture": true; "c:objc(cs)MDLTexture": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelCount": true; "channelEncoding": true; "dimensions": true; "hasAlphaValues": true; "isCube": true; "mipLevelCount": true; "rowStride": true };
 }
@@ -1413,7 +1413,7 @@ export const MDLDataPrecision = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (MDLDataPrecision) | null { return callSDK<(MDLDataPrecision) | null>("ModelIO_d6c5d10d3352e6ec", 1518883999111616, undefined, [rawValue]); }
+  init(rawValue: number): (MDLDataPrecision) | null { return callSDK<(MDLDataPrecision) | null>("ModelIO_a956b86ef7a76a8e", 1518883999111616, undefined, [rawValue]); }
 };
 
 /** enum MDLGeometryType */
@@ -1421,7 +1421,7 @@ export type MDLGeometryType = "points" | "lines" | "triangles" | "triangleStrips
 
 export const MDLGeometryType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (MDLGeometryType) | null { return callSDK<(MDLGeometryType) | null>("ModelIO_d6c5d10d3352e6ec", 915444771690774, undefined, [rawValue]); }
+  init(rawValue: number): (MDLGeometryType) | null { return callSDK<(MDLGeometryType) | null>("ModelIO_a956b86ef7a76a8e", 915444771690774, undefined, [rawValue]); }
 };
 
 /** enum MDLIndexBitDepth */
@@ -1429,13 +1429,13 @@ export type MDLIndexBitDepth = "invalid" | "uInt8" | "uInt16" | "uInt32";
 
 export const MDLIndexBitDepth = {
   /** static var uint16: MDLIndexBitDepth { get } */
-  get uint16(): MDLIndexBitDepth { return callSDK<MDLIndexBitDepth>("ModelIO_d6c5d10d3352e6ec", 2815131085482654, undefined, []); },
+  get uint16(): MDLIndexBitDepth { return callSDK<MDLIndexBitDepth>("ModelIO_a956b86ef7a76a8e", 2815131085482654, undefined, []); },
   /** static var uint32: MDLIndexBitDepth { get } */
-  get uint32(): MDLIndexBitDepth { return callSDK<MDLIndexBitDepth>("ModelIO_d6c5d10d3352e6ec", 4055586653046013, undefined, []); },
+  get uint32(): MDLIndexBitDepth { return callSDK<MDLIndexBitDepth>("ModelIO_a956b86ef7a76a8e", 4055586653046013, undefined, []); },
   /** static var uint8: MDLIndexBitDepth { get } */
-  get uint8(): MDLIndexBitDepth { return callSDK<MDLIndexBitDepth>("ModelIO_d6c5d10d3352e6ec", 722538125777568, undefined, []); },
+  get uint8(): MDLIndexBitDepth { return callSDK<MDLIndexBitDepth>("ModelIO_a956b86ef7a76a8e", 722538125777568, undefined, []); },
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLIndexBitDepth) | null { return callSDK<(MDLIndexBitDepth) | null>("ModelIO_d6c5d10d3352e6ec", 1743396550728857, undefined, [rawValue]); }
+  init(rawValue: number): (MDLIndexBitDepth) | null { return callSDK<(MDLIndexBitDepth) | null>("ModelIO_a956b86ef7a76a8e", 1743396550728857, undefined, [rawValue]); }
 };
 
 /**
@@ -1452,37 +1452,37 @@ export interface MDLJointAnimation {
  */
 export class MDLLightProbe extends MDLLight {
   /** init?(textureSize: Int, forLocation transform: MDLTransform, lightsToConsider: [MDLLight], objectsToConsider: [MDLObject], reflectiveCubemap: MDLTexture?, irradianceCubemap: MDLTexture?) */
-  static initTextureSizeForLocationLightsToConsiderObjectsToConsiderReflectiveCubemapIrradianceCubemap(textureSize: number, transform: MDLTransform, lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, reflectiveCubemap?: (MDLTexture) | null, irradianceCubemap?: (MDLTexture) | null): (MDLLightProbe) | null { return callSDK<(MDLLightProbe) | null>("ModelIO_d6c5d10d3352e6ec", 1748021956774759, undefined, [textureSize, transform, lightsToConsider, objectsToConsider, reflectiveCubemap, irradianceCubemap]); }
+  static initTextureSizeForLocationLightsToConsiderObjectsToConsiderReflectiveCubemapIrradianceCubemap(textureSize: number, transform: MDLTransform, lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, reflectiveCubemap?: (MDLTexture) | null, irradianceCubemap?: (MDLTexture) | null): (MDLLightProbe) | null { return callSDK<(MDLLightProbe) | null>("ModelIO_a956b86ef7a76a8e", 1748021956774759, undefined, [textureSize, transform, lightsToConsider, objectsToConsider, reflectiveCubemap, irradianceCubemap]); }
   /**
    * func generateSphericalHarmonics(fromIrradiance sphericalHarmonicsLevel: Int)
    * @availability iOS 9.0+
    */
-  generateSphericalHarmonics(sphericalHarmonicsLevel: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4001743483957717, this, [sphericalHarmonicsLevel]); }
+  generateSphericalHarmonics(sphericalHarmonicsLevel: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 4001743483957717, this, [sphericalHarmonicsLevel]); }
   /**
    * init(reflectiveTexture: MDLTexture?, irradianceTexture: MDLTexture?)
    * @availability iOS 9.0+
    */
-  static initReflectiveTextureIrradianceTexture(reflectiveTexture?: (MDLTexture) | null, irradianceTexture?: (MDLTexture) | null): MDLLightProbe { return callSDK<MDLLightProbe>("ModelIO_d6c5d10d3352e6ec", 1727486875533771, undefined, [reflectiveTexture, irradianceTexture]); }
+  static initReflectiveTextureIrradianceTexture(reflectiveTexture?: (MDLTexture) | null, irradianceTexture?: (MDLTexture) | null): MDLLightProbe { return callSDK<MDLLightProbe>("ModelIO_a956b86ef7a76a8e", 1727486875533771, undefined, [reflectiveTexture, irradianceTexture]); }
   /**
    * var irradianceTexture: MDLTexture? { get }
    * @availability iOS 9.0+
    */
-  get irradianceTexture(): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_d6c5d10d3352e6ec", 308254784161453, this, []); }
+  get irradianceTexture(): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_a956b86ef7a76a8e", 308254784161453, this, []); }
   /**
    * var reflectiveTexture: MDLTexture? { get }
    * @availability iOS 9.0+
    */
-  get reflectiveTexture(): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_d6c5d10d3352e6ec", 3920549595947574, this, []); }
+  get reflectiveTexture(): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_a956b86ef7a76a8e", 3920549595947574, this, []); }
   /**
    * var sphericalHarmonicsCoefficients: Data? { get }
    * @availability iOS 9.0+
    */
-  get sphericalHarmonicsCoefficients(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_d6c5d10d3352e6ec", 1365893111627233, this, []); }
+  get sphericalHarmonicsCoefficients(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_a956b86ef7a76a8e", 1365893111627233, this, []); }
   /**
    * var sphericalHarmonicsLevel: Int { get }
    * @availability iOS 9.0+
    */
-  get sphericalHarmonicsLevel(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2447786035799181, this, []); }
+  get sphericalHarmonicsLevel(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2447786035799181, this, []); }
   declare readonly $type: { "c:objc(cs)MDLLightProbe": true; "c:objc(cs)MDLLight": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "colorSpace": true; "lightType": true; "irradianceTexture": true; "reflectiveTexture": true; "sphericalHarmonicsCoefficients": true; "sphericalHarmonicsLevel": true };
 }
@@ -1497,7 +1497,7 @@ export type MDLLightType = "unknown" | "ambient" | "directional" | "spot" | "poi
 
 export const MDLLightType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLLightType) | null { return callSDK<(MDLLightType) | null>("ModelIO_d6c5d10d3352e6ec", 1282166362489666, undefined, [rawValue]); }
+  init(rawValue: number): (MDLLightType) | null { return callSDK<(MDLLightType) | null>("ModelIO_a956b86ef7a76a8e", 1282166362489666, undefined, [rawValue]); }
 };
 
 /**
@@ -1509,85 +1509,85 @@ export class MDLMaterial extends SDKHandle {
    * init(name: String, scatteringFunction: MDLScatteringFunction)
    * @availability iOS 9.0+
    */
-  static init(name: string, scatteringFunction: MDLScatteringFunction): MDLMaterial { return callSDK<MDLMaterial>("ModelIO_d6c5d10d3352e6ec", 4061699771954089, undefined, [name, scatteringFunction]); }
+  static init(name: string, scatteringFunction: MDLScatteringFunction): MDLMaterial { return callSDK<MDLMaterial>("ModelIO_a956b86ef7a76a8e", 4061699771954089, undefined, [name, scatteringFunction]); }
   /**
    * func loadTextures(using resolver: any MDLAssetResolver)
    * @availability iOS 11.0+
    */
-  loadTextures(resolver: SDKHandle): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3454089597959923, this, [resolver]); }
+  loadTextures(resolver: SDKHandle): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3454089597959923, this, [resolver]); }
   /**
    * subscript(idx: Int) -> MDLMaterialProperty? { get }
    * @availability iOS 9.0+
    */
-  subscript(idx: number): $SDK7 { return callSDK<$SDK7>("ModelIO_d6c5d10d3352e6ec", 306132063042615, this, [idx]); }
+  subscript(idx: number): $SDK7 { return callSDK<$SDK7>("ModelIO_a956b86ef7a76a8e", 306132063042615, this, [idx]); }
   /**
    * subscript(name: String) -> MDLMaterialProperty? { get }
    * @availability iOS 9.0+
    */
-  subscript11387(name: string): $SDK7 { return callSDK<$SDK7>("ModelIO_d6c5d10d3352e6ec", 2710745443967894, this, [name]); }
+  subscript11387(name: string): $SDK7 { return callSDK<$SDK7>("ModelIO_a956b86ef7a76a8e", 2710745443967894, this, [name]); }
   /**
    * func properties(with semantic: MDLMaterialSemantic) -> [MDLMaterialProperty]
    * @availability iOS 11.0+
    */
-  properties(semantic: MDLMaterialSemantic): $SDK8 { return callSDK<$SDK8>("ModelIO_d6c5d10d3352e6ec", 1971793696898073, this, [semantic]); }
+  properties(semantic: MDLMaterialSemantic): $SDK8 { return callSDK<$SDK8>("ModelIO_a956b86ef7a76a8e", 1971793696898073, this, [semantic]); }
   /**
    * func propertyNamed(_ name: String) -> MDLMaterialProperty?
    * @availability iOS 9.0+
    */
-  propertyNamed(name: string): $SDK7 { return callSDK<$SDK7>("ModelIO_d6c5d10d3352e6ec", 1890076782991139, this, [name]); }
+  propertyNamed(name: string): $SDK7 { return callSDK<$SDK7>("ModelIO_a956b86ef7a76a8e", 1890076782991139, this, [name]); }
   /**
    * func property(with semantic: MDLMaterialSemantic) -> MDLMaterialProperty?
    * @availability iOS 9.0+
    */
-  property(semantic: MDLMaterialSemantic): $SDK7 { return callSDK<$SDK7>("ModelIO_d6c5d10d3352e6ec", 4270072817583539, this, [semantic]); }
+  property(semantic: MDLMaterialSemantic): $SDK7 { return callSDK<$SDK7>("ModelIO_a956b86ef7a76a8e", 4270072817583539, this, [semantic]); }
   /**
    * func removeAllProperties()
    * @availability iOS 9.0+
    */
-  removeAllProperties(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2797105997206092, this, []); }
+  removeAllProperties(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2797105997206092, this, []); }
   /**
    * func remove(_ property: MDLMaterialProperty)
    * @availability iOS 9.0+
    */
-  remove(property: MDLMaterialProperty): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1027012799906789, this, [property]); }
+  remove(property: MDLMaterialProperty): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1027012799906789, this, [property]); }
   /**
    * func resolveTextures(with resolver: any MDLAssetResolver)
    * @availability iOS 11.0+
    */
-  resolveTextures(resolver: SDKHandle): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3120713735129234, this, [resolver]); }
+  resolveTextures(resolver: SDKHandle): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3120713735129234, this, [resolver]); }
   /**
    * func setProperty(_ property: MDLMaterialProperty)
    * @availability iOS 9.0+
    */
-  setProperty(property: MDLMaterialProperty): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2778507848706676, this, [property]); }
+  setProperty(property: MDLMaterialProperty): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2778507848706676, this, [property]); }
   /**
    * var base: MDLMaterial? { get set }
    * @availability iOS 9.0+
    */
-  get base(): (MDLMaterial) | null { return callSDK<(MDLMaterial) | null>("ModelIO_d6c5d10d3352e6ec", 3374813403066704, this, []); }
-  set base(value: (MDLMaterial) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3138549950962122, this, [value]); }
+  get base(): (MDLMaterial) | null { return callSDK<(MDLMaterial) | null>("ModelIO_a956b86ef7a76a8e", 3374813403066704, this, []); }
+  set base(value: (MDLMaterial) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3138549950962122, this, [value]); }
   /**
    * var count: Int { get }
    * @availability iOS 9.0+
    */
-  get count(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3838314252952497, this, []); }
+  get count(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3838314252952497, this, []); }
   /**
    * var materialFace: MDLMaterialFace { get set }
    * @availability iOS 9.0+
    */
-  get materialFace(): MDLMaterialFace { return callSDK<MDLMaterialFace>("ModelIO_d6c5d10d3352e6ec", 441230386572329, this, []); }
-  set materialFace(value: MDLMaterialFace) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2603820815514049, this, [value]); }
+  get materialFace(): MDLMaterialFace { return callSDK<MDLMaterialFace>("ModelIO_a956b86ef7a76a8e", 441230386572329, this, []); }
+  set materialFace(value: MDLMaterialFace) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2603820815514049, this, [value]); }
   /**
    * var name: String { get set }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1290120407374153, this, []); }
-  set name(value: string) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 596823261214879, this, [value]); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 1290120407374153, this, []); }
+  set name(value: string) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 596823261214879, this, [value]); }
   /**
    * var scatteringFunction: MDLScatteringFunction { get }
    * @availability iOS 9.0+
    */
-  get scatteringFunction(): MDLScatteringFunction { return callSDK<MDLScatteringFunction>("ModelIO_d6c5d10d3352e6ec", 2596146698675810, this, []); }
+  get scatteringFunction(): MDLScatteringFunction { return callSDK<MDLScatteringFunction>("ModelIO_a956b86ef7a76a8e", 2596146698675810, this, []); }
   declare readonly $type: { "c:objc(cs)MDLMaterial": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "base": true; "count": true; "materialFace": true; "name": true; "scatteringFunction": true };
 }
@@ -1597,7 +1597,7 @@ export type MDLMaterialFace = "front" | "back" | "doubleSided";
 
 export const MDLMaterialFace = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLMaterialFace) | null { return callSDK<(MDLMaterialFace) | null>("ModelIO_d6c5d10d3352e6ec", 509662103244263, undefined, [rawValue]); }
+  init(rawValue: number): (MDLMaterialFace) | null { return callSDK<(MDLMaterialFace) | null>("ModelIO_a956b86ef7a76a8e", 509662103244263, undefined, [rawValue]); }
 };
 
 /** enum MDLMaterialMipMapFilterMode */
@@ -1605,7 +1605,7 @@ export type MDLMaterialMipMapFilterMode = "nearest" | "linear";
 
 export const MDLMaterialMipMapFilterMode = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLMaterialMipMapFilterMode) | null { return callSDK<(MDLMaterialMipMapFilterMode) | null>("ModelIO_d6c5d10d3352e6ec", 792690294154972, undefined, [rawValue]); }
+  init(rawValue: number): (MDLMaterialMipMapFilterMode) | null { return callSDK<(MDLMaterialMipMapFilterMode) | null>("ModelIO_a956b86ef7a76a8e", 792690294154972, undefined, [rawValue]); }
 };
 
 /**
@@ -1617,135 +1617,135 @@ export class MDLMaterialProperty extends SDKHandle {
    * init(name: String, semantic: MDLMaterialSemantic)
    * @availability iOS 9.0+
    */
-  static initNameSemantic(name: string, semantic: MDLMaterialSemantic): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 1587289402768988, undefined, [name, semantic]); }
+  static initNameSemantic(name: string, semantic: MDLMaterialSemantic): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 1587289402768988, undefined, [name, semantic]); }
   /**
    * convenience init(name: String, semantic: MDLMaterialSemantic, url URL: URL?)
    * @availability iOS 9.0+
    */
-  static initNameSemanticUrl(name: string, semantic: MDLMaterialSemantic, URL?: (string) | null): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 675622793969281, undefined, [name, semantic, URL]); }
+  static initNameSemanticUrl(name: string, semantic: MDLMaterialSemantic, URL?: (string) | null): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 675622793969281, undefined, [name, semantic, URL]); }
   /**
    * convenience init(name: String, semantic: MDLMaterialSemantic, color: CGColor)
    * @availability iOS 9.0+
    */
-  static initNameSemanticColor(name: string, semantic: MDLMaterialSemantic, color: _CoreGraphics_CGColor): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 3175526141730939, undefined, [name, semantic, color]); }
+  static initNameSemanticColor(name: string, semantic: MDLMaterialSemantic, color: _CoreGraphics_CGColor): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 3175526141730939, undefined, [name, semantic, color]); }
   /**
    * convenience init(name: String, semantic: MDLMaterialSemantic, float2 value: vector_float2)
    * @availability iOS 9.0+
    */
-  static initNameSemanticFloat2(name: string, semantic: MDLMaterialSemantic, value: SDKHandle): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 4166361044692356, undefined, [name, semantic, value]); }
+  static initNameSemanticFloat2(name: string, semantic: MDLMaterialSemantic, value: SDKHandle): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 4166361044692356, undefined, [name, semantic, value]); }
   /**
    * convenience init(name: String, semantic: MDLMaterialSemantic, float3 value: vector_float3)
    * @availability iOS 9.0+
    */
-  static initNameSemanticFloat3(name: string, semantic: MDLMaterialSemantic, value: SDKHandle): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 3395721663404509, undefined, [name, semantic, value]); }
+  static initNameSemanticFloat3(name: string, semantic: MDLMaterialSemantic, value: SDKHandle): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 3395721663404509, undefined, [name, semantic, value]); }
   /**
    * convenience init(name: String, semantic: MDLMaterialSemantic, float4 value: vector_float4)
    * @availability iOS 9.0+
    */
-  static initNameSemanticFloat4(name: string, semantic: MDLMaterialSemantic, value: SDKHandle): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 350054429146873, undefined, [name, semantic, value]); }
+  static initNameSemanticFloat4(name: string, semantic: MDLMaterialSemantic, value: SDKHandle): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 350054429146873, undefined, [name, semantic, value]); }
   /**
    * convenience init(name: String, semantic: MDLMaterialSemantic, float value: Float)
    * @availability iOS 9.0+
    */
-  static initNameSemanticFloat(name: string, semantic: MDLMaterialSemantic, value: number): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 2796350233164500, undefined, [name, semantic, value]); }
+  static initNameSemanticFloat(name: string, semantic: MDLMaterialSemantic, value: number): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 2796350233164500, undefined, [name, semantic, value]); }
   /**
    * convenience init(name: String, semantic: MDLMaterialSemantic, matrix4x4 value: matrix_float4x4)
    * @availability iOS 9.0+
    */
-  static initNameSemanticMatrix4x4(name: string, semantic: MDLMaterialSemantic, value: SDKHandle): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 1751465675917804, undefined, [name, semantic, value]); }
+  static initNameSemanticMatrix4x4(name: string, semantic: MDLMaterialSemantic, value: SDKHandle): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 1751465675917804, undefined, [name, semantic, value]); }
   /**
    * convenience init(name: String, semantic: MDLMaterialSemantic, string: String?)
    * @availability iOS 9.0+
    */
-  static initNameSemanticString(name: string, semantic: MDLMaterialSemantic, string?: (string) | null): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 590586090153367, undefined, [name, semantic, string]); }
+  static initNameSemanticString(name: string, semantic: MDLMaterialSemantic, string?: (string) | null): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 590586090153367, undefined, [name, semantic, string]); }
   /**
    * convenience init(name: String, semantic: MDLMaterialSemantic, textureSampler: MDLTextureSampler?)
    * @availability iOS 9.0+
    */
-  static initNameSemanticTextureSampler(name: string, semantic: MDLMaterialSemantic, textureSampler?: $SDK9): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 595123141497257, undefined, [name, semantic, textureSampler]); }
+  static initNameSemanticTextureSampler(name: string, semantic: MDLMaterialSemantic, textureSampler?: $SDK9): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 595123141497257, undefined, [name, semantic, textureSampler]); }
   /**
    * func setProperties(_ property: MDLMaterialProperty)
    * @availability iOS 9.0+
    */
-  setProperties(property: MDLMaterialProperty): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3295188907693366, this, [property]); }
+  setProperties(property: MDLMaterialProperty): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3295188907693366, this, [property]); }
   /**
    * var urlValue: URL? { get set }
    * @availability iOS 9.0+
    */
-  get urlValue(): (string) | null { return callSDK<(string) | null>("ModelIO_d6c5d10d3352e6ec", 1764541769322843, this, []); }
-  set urlValue(value: (string) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2351381057137545, this, [value]); }
+  get urlValue(): (string) | null { return callSDK<(string) | null>("ModelIO_a956b86ef7a76a8e", 1764541769322843, this, []); }
+  set urlValue(value: (string) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2351381057137545, this, [value]); }
   /**
    * var color: CGColor? { get set }
    * @availability iOS 9.0+
    */
-  get color(): $SDK3 { return callSDK<$SDK3>("ModelIO_d6c5d10d3352e6ec", 946772564903311, this, []); }
-  set color(value: $SDK3) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 781878540574068, this, [value]); }
+  get color(): $SDK3 { return callSDK<$SDK3>("ModelIO_a956b86ef7a76a8e", 946772564903311, this, []); }
+  set color(value: $SDK3) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 781878540574068, this, [value]); }
   /**
    * var float2Value: vector_float2 { get set }
    * @availability iOS 9.0+
    */
-  get float2Value(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3019545689320474, this, []); }
-  set float2Value(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 60962121666494, this, [value]); }
+  get float2Value(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3019545689320474, this, []); }
+  set float2Value(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 60962121666494, this, [value]); }
   /**
    * var float3Value: vector_float3 { get set }
    * @availability iOS 9.0+
    */
-  get float3Value(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2670952160387879, this, []); }
-  set float3Value(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1589177595064381, this, [value]); }
+  get float3Value(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2670952160387879, this, []); }
+  set float3Value(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1589177595064381, this, [value]); }
   /**
    * var float4Value: vector_float4 { get set }
    * @availability iOS 9.0+
    */
-  get float4Value(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 1445694977611317, this, []); }
-  set float4Value(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1168164739120904, this, [value]); }
+  get float4Value(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 1445694977611317, this, []); }
+  set float4Value(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1168164739120904, this, [value]); }
   /**
    * var floatValue: Float { get set }
    * @availability iOS 9.0+
    */
-  get floatValue(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 56676382458236, this, []); }
-  set floatValue(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 518296239520472, this, [value]); }
+  get floatValue(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 56676382458236, this, []); }
+  set floatValue(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 518296239520472, this, [value]); }
   /**
    * var luminance: Float { get set }
    * @availability iOS 9.0+
    */
-  get luminance(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1370712932999620, this, []); }
-  set luminance(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4121803597402531, this, [value]); }
+  get luminance(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1370712932999620, this, []); }
+  set luminance(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4121803597402531, this, [value]); }
   /**
    * var matrix4x4: matrix_float4x4 { get set }
    * @availability iOS 9.0+
    */
-  get matrix4x4(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2643934600812442, this, []); }
-  set matrix4x4(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 106418581885718, this, [value]); }
+  get matrix4x4(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2643934600812442, this, []); }
+  set matrix4x4(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 106418581885718, this, [value]); }
   /**
    * var name: String { get set }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1537596279129735, this, []); }
-  set name(value: string) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3541173840688885, this, [value]); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 1537596279129735, this, []); }
+  set name(value: string) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3541173840688885, this, [value]); }
   /**
    * var semantic: MDLMaterialSemantic { get set }
    * @availability iOS 9.0+
    */
-  get semantic(): MDLMaterialSemantic { return callSDK<MDLMaterialSemantic>("ModelIO_d6c5d10d3352e6ec", 1189465975646398, this, []); }
-  set semantic(value: MDLMaterialSemantic) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2740340815318328, this, [value]); }
+  get semantic(): MDLMaterialSemantic { return callSDK<MDLMaterialSemantic>("ModelIO_a956b86ef7a76a8e", 1189465975646398, this, []); }
+  set semantic(value: MDLMaterialSemantic) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2740340815318328, this, [value]); }
   /**
    * var stringValue: String? { get set }
    * @availability iOS 9.0+
    */
-  get stringValue(): (string) | null { return callSDK<(string) | null>("ModelIO_d6c5d10d3352e6ec", 702384038644310, this, []); }
-  set stringValue(value: (string) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3677125581551848, this, [value]); }
+  get stringValue(): (string) | null { return callSDK<(string) | null>("ModelIO_a956b86ef7a76a8e", 702384038644310, this, []); }
+  set stringValue(value: (string) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3677125581551848, this, [value]); }
   /**
    * var textureSamplerValue: MDLTextureSampler? { get set }
    * @availability iOS 9.0+
    */
-  get textureSamplerValue(): $SDK9 { return callSDK<$SDK9>("ModelIO_d6c5d10d3352e6ec", 1207109531522143, this, []); }
-  set textureSamplerValue(value: $SDK9) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1633346945083264, this, [value]); }
+  get textureSamplerValue(): $SDK9 { return callSDK<$SDK9>("ModelIO_a956b86ef7a76a8e", 1207109531522143, this, []); }
+  set textureSamplerValue(value: $SDK9) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1633346945083264, this, [value]); }
   /**
    * var type: MDLMaterialPropertyType { get set }
    * @availability iOS 9.0+
    */
-  get type(): MDLMaterialPropertyType { return callSDK<MDLMaterialPropertyType>("ModelIO_d6c5d10d3352e6ec", 1088432964697349, this, []); }
-  set type(value: MDLMaterialPropertyType) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3147898520296876, this, [value]); }
+  get type(): MDLMaterialPropertyType { return callSDK<MDLMaterialPropertyType>("ModelIO_a956b86ef7a76a8e", 1088432964697349, this, []); }
+  set type(value: MDLMaterialPropertyType) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3147898520296876, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLMaterialProperty": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "urlValue": true; "color": true; "float2Value": true; "float3Value": true; "float4Value": true; "floatValue": true; "luminance": true; "matrix4x4": true; "name": true; "semantic": true; "stringValue": true; "textureSamplerValue": true; "type": true };
 }
@@ -1759,17 +1759,17 @@ export class MDLMaterialPropertyConnection extends SDKHandle {
    * init(output: MDLMaterialProperty, input: MDLMaterialProperty)
    * @availability iOS 10.0+
    */
-  static init(output: MDLMaterialProperty, input: MDLMaterialProperty): MDLMaterialPropertyConnection { return callSDK<MDLMaterialPropertyConnection>("ModelIO_d6c5d10d3352e6ec", 414192812179506, undefined, [output, input]); }
+  static init(output: MDLMaterialProperty, input: MDLMaterialProperty): MDLMaterialPropertyConnection { return callSDK<MDLMaterialPropertyConnection>("ModelIO_a956b86ef7a76a8e", 414192812179506, undefined, [output, input]); }
   /**
    * weak var input: MDLMaterialProperty? { get }
    * @availability iOS 10.0+
    */
-  get input(): $SDK7 { return callSDK<$SDK7>("ModelIO_d6c5d10d3352e6ec", 4428551099239300, this, []); }
+  get input(): $SDK7 { return callSDK<$SDK7>("ModelIO_a956b86ef7a76a8e", 4428551099239300, this, []); }
   /**
    * weak var output: MDLMaterialProperty? { get }
    * @availability iOS 10.0+
    */
-  get output(): $SDK7 { return callSDK<$SDK7>("ModelIO_d6c5d10d3352e6ec", 1428706884258032, this, []); }
+  get output(): $SDK7 { return callSDK<$SDK7>("ModelIO_a956b86ef7a76a8e", 1428706884258032, this, []); }
   declare readonly $type: { "c:objc(cs)MDLMaterialPropertyConnection": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "input": true; "output": true };
 }
@@ -1783,23 +1783,23 @@ export class MDLMaterialPropertyNode extends SDKHandle {
    * init(inputs: [MDLMaterialProperty], outputs: [MDLMaterialProperty], evaluationFunction function: @escaping (MDLMaterialPropertyNode) -> Void)
    * @availability iOS 10.0+
    */
-  static init(inputs: $SDK8, outputs: $SDK8, function_: $SDK10): MDLMaterialPropertyNode { return callSDK<MDLMaterialPropertyNode>("ModelIO_d6c5d10d3352e6ec", 861976402980229, undefined, [inputs, outputs, function_], [null,null,{"callback":{"out":[]}}]); }
+  static init(inputs: $SDK8, outputs: $SDK8, function_: $SDK10): MDLMaterialPropertyNode { return callSDK<MDLMaterialPropertyNode>("ModelIO_a956b86ef7a76a8e", 861976402980229, undefined, [inputs, outputs, function_], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var evaluationFunction: (MDLMaterialPropertyNode) -> Void { get set }
    * @availability iOS 10.0+
    */
-  get evaluationFunction(): ((arg0: MDLMaterialPropertyNode) => Promise<void>) { return callSDK<((arg0: MDLMaterialPropertyNode) => Promise<void>)>("ModelIO_d6c5d10d3352e6ec", 4226395968697001, this, []); }
-  set evaluationFunction(value: $SDK10) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4328218320407656, this, [value], [{"callback":{"out":[]}}]); }
+  get evaluationFunction(): ((arg0: MDLMaterialPropertyNode) => Promise<void>) { return callSDK<((arg0: MDLMaterialPropertyNode) => Promise<void>)>("ModelIO_a956b86ef7a76a8e", 4226395968697001, this, []); }
+  set evaluationFunction(value: $SDK10) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4328218320407656, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var inputs: [MDLMaterialProperty] { get }
    * @availability iOS 10.0+
    */
-  get inputs(): $SDK8 { return callSDK<$SDK8>("ModelIO_d6c5d10d3352e6ec", 3314809096384424, this, []); }
+  get inputs(): $SDK8 { return callSDK<$SDK8>("ModelIO_a956b86ef7a76a8e", 3314809096384424, this, []); }
   /**
    * var outputs: [MDLMaterialProperty] { get }
    * @availability iOS 10.0+
    */
-  get outputs(): $SDK8 { return callSDK<$SDK8>("ModelIO_d6c5d10d3352e6ec", 1151171466686913, this, []); }
+  get outputs(): $SDK8 { return callSDK<$SDK8>("ModelIO_a956b86ef7a76a8e", 1151171466686913, this, []); }
   declare readonly $type: { "c:objc(cs)MDLMaterialPropertyNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "inputs": true; "outputs": true };
 }
@@ -1813,22 +1813,22 @@ export class MDLMaterialPropertyGraph extends (MDLMaterialPropertyNode as unknow
    * func evaluate()
    * @availability iOS 10.0+
    */
-  evaluate(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1876039709198510, this, []); }
+  evaluate(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1876039709198510, this, []); }
   /**
    * init(nodes: [MDLMaterialPropertyNode], connections: [MDLMaterialPropertyConnection])
    * @availability iOS 10.0+
    */
-  static init(nodes: $SDK12, connections: $SDK13): MDLMaterialPropertyGraph { return callSDK<MDLMaterialPropertyGraph>("ModelIO_d6c5d10d3352e6ec", 2831953198846305, undefined, [nodes, connections]); }
+  static init(nodes: $SDK12, connections: $SDK13): MDLMaterialPropertyGraph { return callSDK<MDLMaterialPropertyGraph>("ModelIO_a956b86ef7a76a8e", 2831953198846305, undefined, [nodes, connections]); }
   /**
    * var connections: [MDLMaterialPropertyConnection] { get }
    * @availability iOS 10.0+
    */
-  get connections(): $SDK13 { return callSDK<$SDK13>("ModelIO_d6c5d10d3352e6ec", 2135713665976484, this, []); }
+  get connections(): $SDK13 { return callSDK<$SDK13>("ModelIO_a956b86ef7a76a8e", 2135713665976484, this, []); }
   /**
    * var nodes: [MDLMaterialPropertyNode] { get }
    * @availability iOS 10.0+
    */
-  get nodes(): $SDK12 { return callSDK<$SDK12>("ModelIO_d6c5d10d3352e6ec", 4341746294131523, this, []); }
+  get nodes(): $SDK12 { return callSDK<$SDK12>("ModelIO_a956b86ef7a76a8e", 4341746294131523, this, []); }
   declare readonly $type: { "c:objc(cs)MDLMaterialPropertyGraph": true; "c:objc(cs)MDLMaterialPropertyNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "inputs": true; "outputs": true; "connections": true; "nodes": true };
 }
@@ -1838,7 +1838,7 @@ export type MDLMaterialPropertyType = "none" | "string" | "URL" | "texture" | "c
 
 export const MDLMaterialPropertyType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLMaterialPropertyType) | null { return callSDK<(MDLMaterialPropertyType) | null>("ModelIO_d6c5d10d3352e6ec", 1853878003648795, undefined, [rawValue]); }
+  init(rawValue: number): (MDLMaterialPropertyType) | null { return callSDK<(MDLMaterialPropertyType) | null>("ModelIO_a956b86ef7a76a8e", 1853878003648795, undefined, [rawValue]); }
 };
 
 /** enum MDLMaterialSemantic */
@@ -1846,7 +1846,7 @@ export type MDLMaterialSemantic = "baseColor" | "subsurface" | "metallic" | "spe
 
 export const MDLMaterialSemantic = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLMaterialSemantic) | null { return callSDK<(MDLMaterialSemantic) | null>("ModelIO_d6c5d10d3352e6ec", 2582411142366606, undefined, [rawValue]); }
+  init(rawValue: number): (MDLMaterialSemantic) | null { return callSDK<(MDLMaterialSemantic) | null>("ModelIO_a956b86ef7a76a8e", 2582411142366606, undefined, [rawValue]); }
 };
 
 /** enum MDLMaterialTextureFilterMode */
@@ -1854,7 +1854,7 @@ export type MDLMaterialTextureFilterMode = "nearest" | "linear";
 
 export const MDLMaterialTextureFilterMode = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLMaterialTextureFilterMode) | null { return callSDK<(MDLMaterialTextureFilterMode) | null>("ModelIO_d6c5d10d3352e6ec", 335568248320605, undefined, [rawValue]); }
+  init(rawValue: number): (MDLMaterialTextureFilterMode) | null { return callSDK<(MDLMaterialTextureFilterMode) | null>("ModelIO_a956b86ef7a76a8e", 335568248320605, undefined, [rawValue]); }
 };
 
 /** enum MDLMaterialTextureWrapMode */
@@ -1862,7 +1862,7 @@ export type MDLMaterialTextureWrapMode = "clamp" | "repeat" | "mirror";
 
 export const MDLMaterialTextureWrapMode = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLMaterialTextureWrapMode) | null { return callSDK<(MDLMaterialTextureWrapMode) | null>("ModelIO_d6c5d10d3352e6ec", 4242502576700829, undefined, [rawValue]); }
+  init(rawValue: number): (MDLMaterialTextureWrapMode) | null { return callSDK<(MDLMaterialTextureWrapMode) | null>("ModelIO_a956b86ef7a76a8e", 4242502576700829, undefined, [rawValue]); }
 };
 
 /**
@@ -1874,34 +1874,34 @@ export class MDLMatrix4x4Array extends SDKHandle {
    * func clear()
    * @availability iOS 11.0+
    */
-  clear(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 267623163265217, this, []); }
+  clear(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 267623163265217, this, []); }
   /**
    * init(elementCount arrayElementCount: Int)
    * @availability iOS 11.0+
    */
-  static init(arrayElementCount: number): MDLMatrix4x4Array { return callSDK<MDLMatrix4x4Array>("ModelIO_d6c5d10d3352e6ec", 2156700855686138, undefined, [arrayElementCount]); }
+  static init(arrayElementCount: number): MDLMatrix4x4Array { return callSDK<MDLMatrix4x4Array>("ModelIO_a956b86ef7a76a8e", 2156700855686138, undefined, [arrayElementCount]); }
   /**
    * var elementCount: Int { get }
    * @availability iOS 11.0+
    */
-  get elementCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2474378539726172, this, []); }
+  get elementCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2474378539726172, this, []); }
   /**
    * var precision: MDLDataPrecision { get }
    * @availability iOS 11.0+
    */
-  get precision(): MDLDataPrecision { return callSDK<MDLDataPrecision>("ModelIO_d6c5d10d3352e6ec", 3133575607508322, this, []); }
+  get precision(): MDLDataPrecision { return callSDK<MDLDataPrecision>("ModelIO_a956b86ef7a76a8e", 3133575607508322, this, []); }
   /**
    * @nonobjc var float4x4Array: [float4x4] { get set }
    * @availability iOS 11.0+
    */
-  get float4x4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 3513396361387738, this, []); }
-  set float4x4Array(value: Array<SDKHandle>) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 134355491308932, this, [value]); }
+  get float4x4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 3513396361387738, this, []); }
+  set float4x4Array(value: Array<SDKHandle>) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 134355491308932, this, [value]); }
   /**
    * @nonobjc var double4x4Array: [double4x4] { get set }
    * @availability iOS 11.0+
    */
-  get double4x4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 545302691388735, this, []); }
-  set double4x4Array(value: Array<SDKHandle>) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2424136327554797, this, [value]); }
+  get double4x4Array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 545302691388735, this, []); }
+  set double4x4Array(value: Array<SDKHandle>) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2424136327554797, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLMatrix4x4Array": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "elementCount": true; "precision": true };
 }
@@ -1912,166 +1912,166 @@ export class MDLMatrix4x4Array extends SDKHandle {
  */
 export class MDLMesh extends (MDLObject as unknown as Omit<typeof MDLObject, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MDLObject, "boundingBox">)) {
   /** class func newBox(withDimensions dimensions: vector_float3, segments: vector_uint3, geometryType: MDLGeometryType, inwardNormals: Bool, allocator: (any MDLMeshBufferAllocator)?) -> Self */
-  static newBox(dimensions: SDKHandle, segments: SDKHandle, geometryType: MDLGeometryType, inwardNormals: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 3179616184343764, undefined, [dimensions, segments, geometryType, inwardNormals, allocator]); }
+  static newBox(dimensions: SDKHandle, segments: SDKHandle, geometryType: MDLGeometryType, inwardNormals: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 3179616184343764, undefined, [dimensions, segments, geometryType, inwardNormals, allocator]); }
   /**
    * class func newCapsule(withHeight height: Float, radii: vector_float2, radialSegments: Int, verticalSegments: Int, hemisphereSegments: Int, geometryType: MDLGeometryType, inwardNormals: Bool, allocator: (any MDLMeshBufferAllocator)?) -> Self
    * @availability iOS 11.0+
    */
-  static newCapsule(height: number, radii: SDKHandle, radialSegments: number, verticalSegments: number, hemisphereSegments: number, geometryType: MDLGeometryType, inwardNormals: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 3712545502103504, undefined, [height, radii, radialSegments, verticalSegments, hemisphereSegments, geometryType, inwardNormals, allocator]); }
+  static newCapsule(height: number, radii: SDKHandle, radialSegments: number, verticalSegments: number, hemisphereSegments: number, geometryType: MDLGeometryType, inwardNormals: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 3712545502103504, undefined, [height, radii, radialSegments, verticalSegments, hemisphereSegments, geometryType, inwardNormals, allocator]); }
   /** class func newCylinder(withHeight height: Float, radii: vector_float2, radialSegments: Int, verticalSegments: Int, geometryType: MDLGeometryType, inwardNormals: Bool, allocator: (any MDLMeshBufferAllocator)?) -> Self */
-  static newCylinder(height: number, radii: SDKHandle, radialSegments: number, verticalSegments: number, geometryType: MDLGeometryType, inwardNormals: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 2938862065073551, undefined, [height, radii, radialSegments, verticalSegments, geometryType, inwardNormals, allocator]); }
+  static newCylinder(height: number, radii: SDKHandle, radialSegments: number, verticalSegments: number, geometryType: MDLGeometryType, inwardNormals: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 2938862065073551, undefined, [height, radii, radialSegments, verticalSegments, geometryType, inwardNormals, allocator]); }
   /** class func newEllipsoid(withRadii radii: vector_float3, radialSegments: Int, verticalSegments: Int, geometryType: MDLGeometryType, inwardNormals: Bool, hemisphere: Bool, allocator: (any MDLMeshBufferAllocator)?) -> Self */
-  static newEllipsoid(radii: SDKHandle, radialSegments: number, verticalSegments: number, geometryType: MDLGeometryType, inwardNormals: boolean, hemisphere: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 4033306401051253, undefined, [radii, radialSegments, verticalSegments, geometryType, inwardNormals, hemisphere, allocator]); }
+  static newEllipsoid(radii: SDKHandle, radialSegments: number, verticalSegments: number, geometryType: MDLGeometryType, inwardNormals: boolean, hemisphere: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 4033306401051253, undefined, [radii, radialSegments, verticalSegments, geometryType, inwardNormals, hemisphere, allocator]); }
   /** class func newEllipticalCone(withHeight height: Float, radii: vector_float2, radialSegments: Int, verticalSegments: Int, geometryType: MDLGeometryType, inwardNormals: Bool, allocator: (any MDLMeshBufferAllocator)?) -> Self */
-  static newEllipticalCone(height: number, radii: SDKHandle, radialSegments: number, verticalSegments: number, geometryType: MDLGeometryType, inwardNormals: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 2367340973657161, undefined, [height, radii, radialSegments, verticalSegments, geometryType, inwardNormals, allocator]); }
+  static newEllipticalCone(height: number, radii: SDKHandle, radialSegments: number, verticalSegments: number, geometryType: MDLGeometryType, inwardNormals: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 2367340973657161, undefined, [height, radii, radialSegments, verticalSegments, geometryType, inwardNormals, allocator]); }
   /** class func newIcosahedron(withRadius radius: Float, inwardNormals: Bool, allocator: (any MDLMeshBufferAllocator)?) -> Self */
-  static newIcosahedronWithRadiusInwardNormalsAllocator(radius: number, inwardNormals: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 596820074571559, undefined, [radius, inwardNormals, allocator]); }
+  static newIcosahedronWithRadiusInwardNormalsAllocator(radius: number, inwardNormals: boolean, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 596820074571559, undefined, [radius, inwardNormals, allocator]); }
   /**
    * class func newIcosahedron(withRadius radius: Float, inwardNormals: Bool, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) -> Self
    * @availability iOS 11.0+
    */
-  static newIcosahedronWithRadiusInwardNormalsGeometryTypeAllocator(radius: number, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 3889670046085937, undefined, [radius, inwardNormals, geometryType, allocator]); }
+  static newIcosahedronWithRadiusInwardNormalsGeometryTypeAllocator(radius: number, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 3889670046085937, undefined, [radius, inwardNormals, geometryType, allocator]); }
   /** class func newPlane(withDimensions dimensions: vector_float2, segments: vector_uint2, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) -> Self */
-  static newPlane(dimensions: SDKHandle, segments: SDKHandle, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 19158033425767, undefined, [dimensions, segments, geometryType, allocator]); }
+  static newPlane(dimensions: SDKHandle, segments: SDKHandle, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 19158033425767, undefined, [dimensions, segments, geometryType, allocator]); }
   /** class func newSubdividedMesh(_ mesh: MDLMesh, submeshIndex: Int, subdivisionLevels: Int) -> Self? */
-  static newSubdividedMesh(mesh: MDLMesh, submeshIndex: number, subdivisionLevels: number): (MDLMesh) | null { return callSDK<(MDLMesh) | null>("ModelIO_d6c5d10d3352e6ec", 1922137227217543, undefined, [mesh, submeshIndex, subdivisionLevels]); }
+  static newSubdividedMesh(mesh: MDLMesh, submeshIndex: number, subdivisionLevels: number): (MDLMesh) | null { return callSDK<(MDLMesh) | null>("ModelIO_a956b86ef7a76a8e", 1922137227217543, undefined, [mesh, submeshIndex, subdivisionLevels]); }
   /** func addAttribute(withName name: String, format: MDLVertexFormat) */
-  addAttributeWithNameFormat(name: string, format: MDLVertexFormat): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1882786234826687, this, [name, format]); }
+  addAttributeWithNameFormat(name: string, format: MDLVertexFormat): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1882786234826687, this, [name, format]); }
   /** func addAttribute(withName name: String, format: MDLVertexFormat, type: String, data: Data, stride: Int) */
-  addAttributeWithNameFormatTypeDataStride(name: string, format: MDLVertexFormat, type: string, data: ArrayBuffer, stride: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3785121195272548, this, [name, format, type, data, stride]); }
+  addAttributeWithNameFormatTypeDataStride(name: string, format: MDLVertexFormat, type: string, data: ArrayBuffer, stride: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3785121195272548, this, [name, format, type, data, stride]); }
   /** func addAttribute(withName name: String, format: MDLVertexFormat, type: String, data: Data, stride: Int, time: TimeInterval) */
-  addAttributeWithNameFormatTypeDataStrideTime(name: string, format: MDLVertexFormat, type: string, data: ArrayBuffer, stride: number, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 155544859998155, this, [name, format, type, data, stride, time]); }
+  addAttributeWithNameFormatTypeDataStrideTime(name: string, format: MDLVertexFormat, type: string, data: ArrayBuffer, stride: number, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 155544859998155, this, [name, format, type, data, stride, time]); }
   /** func addNormals(withAttributeNamed attributeName: String?, creaseThreshold: Float) */
-  addNormals(attributeName: (string) | null, creaseThreshold: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2074445887646587, this, [attributeName, creaseThreshold]); }
+  addNormals(attributeName: (string) | null, creaseThreshold: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2074445887646587, this, [attributeName, creaseThreshold]); }
   /**
    * func addOrthTanBasis(forTextureCoordinateAttributeNamed textureCoordinateAttributeName: String, normalAttributeNamed normalAttributeName: String, tangentAttributeNamed tangentAttributeName: String)
    * @availability iOS 11.0+
    */
-  addOrthTanBasis(textureCoordinateAttributeName: string, normalAttributeName: string, tangentAttributeName: string): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2397099627161119, this, [textureCoordinateAttributeName, normalAttributeName, tangentAttributeName]); }
+  addOrthTanBasis(textureCoordinateAttributeName: string, normalAttributeName: string, tangentAttributeName: string): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2397099627161119, this, [textureCoordinateAttributeName, normalAttributeName, tangentAttributeName]); }
   /** func addTangentBasis(forTextureCoordinateAttributeNamed textureCoordinateAttributeName: String, normalAttributeNamed normalAttributeName: String, tangentAttributeNamed tangentAttributeName: String) */
-  addTangentBasisForTextureCoordinateAttributeNamedNormalAttributeNamedTangentAttributeNamed(textureCoordinateAttributeName: string, normalAttributeName: string, tangentAttributeName: string): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2992774748133356, this, [textureCoordinateAttributeName, normalAttributeName, tangentAttributeName]); }
+  addTangentBasisForTextureCoordinateAttributeNamedNormalAttributeNamedTangentAttributeNamed(textureCoordinateAttributeName: string, normalAttributeName: string, tangentAttributeName: string): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2992774748133356, this, [textureCoordinateAttributeName, normalAttributeName, tangentAttributeName]); }
   /** func addTangentBasis(forTextureCoordinateAttributeNamed textureCoordinateAttributeName: String, tangentAttributeNamed tangentAttributeName: String, bitangentAttributeNamed bitangentAttributeName: String?) */
-  addTangentBasisForTextureCoordinateAttributeNamedTangentAttributeNamedBitangentAttributeNamed(textureCoordinateAttributeName: string, tangentAttributeName: string, bitangentAttributeName?: (string) | null): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3657337204284093, this, [textureCoordinateAttributeName, tangentAttributeName, bitangentAttributeName]); }
+  addTangentBasisForTextureCoordinateAttributeNamedTangentAttributeNamedBitangentAttributeNamed(textureCoordinateAttributeName: string, tangentAttributeName: string, bitangentAttributeName?: (string) | null): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3657337204284093, this, [textureCoordinateAttributeName, tangentAttributeName, bitangentAttributeName]); }
   /** func addUnwrappedTextureCoordinates(forAttributeNamed textureCoordinateAttributeName: String) */
-  addUnwrappedTextureCoordinates(textureCoordinateAttributeName: string): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3411764921862554, this, [textureCoordinateAttributeName]); }
+  addUnwrappedTextureCoordinates(textureCoordinateAttributeName: string): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3411764921862554, this, [textureCoordinateAttributeName]); }
   /**
    * func flipTextureCoordinates(inAttributeNamed textureCoordinateAttributeName: String)
    * @availability iOS 11.0+
    */
-  flipTextureCoordinates(textureCoordinateAttributeName: string): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2602839151041351, this, [textureCoordinateAttributeName]); }
+  flipTextureCoordinates(textureCoordinateAttributeName: string): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2602839151041351, this, [textureCoordinateAttributeName]); }
   /** func generateAmbientOcclusionTexture(withQuality bakeQuality: Float, attenuationFactor: Float, objectsToConsider: [MDLObject], vertexAttributeNamed vertexAttributeName: String, materialPropertyNamed materialPropertyName: String) -> Bool */
-  generateAmbientOcclusionTextureWithQualityAttenuationFactorObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed(bakeQuality: number, attenuationFactor: number, objectsToConsider: Array<MDLObject>, vertexAttributeName: string, materialPropertyName: string): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 2972052928698717, this, [bakeQuality, attenuationFactor, objectsToConsider, vertexAttributeName, materialPropertyName]); }
+  generateAmbientOcclusionTextureWithQualityAttenuationFactorObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed(bakeQuality: number, attenuationFactor: number, objectsToConsider: Array<MDLObject>, vertexAttributeName: string, materialPropertyName: string): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 2972052928698717, this, [bakeQuality, attenuationFactor, objectsToConsider, vertexAttributeName, materialPropertyName]); }
   /** func generateAmbientOcclusionTexture(withSize textureSize: vector_int2, raysPerSample: Int, attenuationFactor: Float, objectsToConsider: [MDLObject], vertexAttributeNamed vertexAttributeName: String, materialPropertyNamed materialPropertyName: String) -> Bool */
-  generateAmbientOcclusionTextureWithSizeRaysPerSampleAttenuationFactorObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed(textureSize: SDKHandle, raysPerSample: number, attenuationFactor: number, objectsToConsider: Array<MDLObject>, vertexAttributeName: string, materialPropertyName: string): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 3543388411759259, this, [textureSize, raysPerSample, attenuationFactor, objectsToConsider, vertexAttributeName, materialPropertyName]); }
+  generateAmbientOcclusionTextureWithSizeRaysPerSampleAttenuationFactorObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed(textureSize: SDKHandle, raysPerSample: number, attenuationFactor: number, objectsToConsider: Array<MDLObject>, vertexAttributeName: string, materialPropertyName: string): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 3543388411759259, this, [textureSize, raysPerSample, attenuationFactor, objectsToConsider, vertexAttributeName, materialPropertyName]); }
   /** func generateAmbientOcclusionVertexColors(withQuality bakeQuality: Float, attenuationFactor: Float, objectsToConsider: [MDLObject], vertexAttributeNamed vertexAttributeName: String) -> Bool */
-  generateAmbientOcclusionVertexColorsWithQualityAttenuationFactorObjectsToConsiderVertexAttributeNamed(bakeQuality: number, attenuationFactor: number, objectsToConsider: Array<MDLObject>, vertexAttributeName: string): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 3447559260664695, this, [bakeQuality, attenuationFactor, objectsToConsider, vertexAttributeName]); }
+  generateAmbientOcclusionVertexColorsWithQualityAttenuationFactorObjectsToConsiderVertexAttributeNamed(bakeQuality: number, attenuationFactor: number, objectsToConsider: Array<MDLObject>, vertexAttributeName: string): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 3447559260664695, this, [bakeQuality, attenuationFactor, objectsToConsider, vertexAttributeName]); }
   /** func generateAmbientOcclusionVertexColors(withRaysPerSample raysPerSample: Int, attenuationFactor: Float, objectsToConsider: [MDLObject], vertexAttributeNamed vertexAttributeName: String) -> Bool */
-  generateAmbientOcclusionVertexColorsWithRaysPerSampleAttenuationFactorObjectsToConsiderVertexAttributeNamed(raysPerSample: number, attenuationFactor: number, objectsToConsider: Array<MDLObject>, vertexAttributeName: string): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 2077638542604653, this, [raysPerSample, attenuationFactor, objectsToConsider, vertexAttributeName]); }
+  generateAmbientOcclusionVertexColorsWithRaysPerSampleAttenuationFactorObjectsToConsiderVertexAttributeNamed(raysPerSample: number, attenuationFactor: number, objectsToConsider: Array<MDLObject>, vertexAttributeName: string): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 2077638542604653, this, [raysPerSample, attenuationFactor, objectsToConsider, vertexAttributeName]); }
   /** func generateLightMapTexture(withQuality bakeQuality: Float, lightsToConsider: [MDLLight], objectsToConsider: [MDLObject], vertexAttributeNamed vertexAttributeName: String, materialPropertyNamed materialPropertyName: String) -> Bool */
-  generateLightMapTextureWithQualityLightsToConsiderObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed(bakeQuality: number, lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, vertexAttributeName: string, materialPropertyName: string): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 2618417889882979, this, [bakeQuality, lightsToConsider, objectsToConsider, vertexAttributeName, materialPropertyName]); }
+  generateLightMapTextureWithQualityLightsToConsiderObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed(bakeQuality: number, lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, vertexAttributeName: string, materialPropertyName: string): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 2618417889882979, this, [bakeQuality, lightsToConsider, objectsToConsider, vertexAttributeName, materialPropertyName]); }
   /** func generateLightMapTexture(withTextureSize textureSize: vector_int2, lightsToConsider: [MDLLight], objectsToConsider: [MDLObject], vertexAttributeNamed vertexAttributeName: String, materialPropertyNamed materialPropertyName: String) -> Bool */
-  generateLightMapTextureWithTextureSizeLightsToConsiderObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed(textureSize: SDKHandle, lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, vertexAttributeName: string, materialPropertyName: string): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 1679751083867893, this, [textureSize, lightsToConsider, objectsToConsider, vertexAttributeName, materialPropertyName]); }
+  generateLightMapTextureWithTextureSizeLightsToConsiderObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed(textureSize: SDKHandle, lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, vertexAttributeName: string, materialPropertyName: string): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 1679751083867893, this, [textureSize, lightsToConsider, objectsToConsider, vertexAttributeName, materialPropertyName]); }
   /** func generateLightMapVertexColorsWithLights(toConsider lightsToConsider: [MDLLight], objectsToConsider: [MDLObject], vertexAttributeNamed vertexAttributeName: String) -> Bool */
-  generateLightMapVertexColorsWithLights(lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, vertexAttributeName: string): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 611494134750891, this, [lightsToConsider, objectsToConsider, vertexAttributeName]); }
+  generateLightMapVertexColorsWithLights(lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, vertexAttributeName: string): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 611494134750891, this, [lightsToConsider, objectsToConsider, vertexAttributeName]); }
   /** init(boxWithExtent extent: vector_float3, segments: vector_uint3, inwardNormals: Bool, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) */
-  static initBoxWithExtentSegmentsInwardNormalsGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 2578511844834166, undefined, [extent, segments, inwardNormals, geometryType, allocator]); }
+  static initBoxWithExtentSegmentsInwardNormalsGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 2578511844834166, undefined, [extent, segments, inwardNormals, geometryType, allocator]); }
   /** init(capsuleWithExtent extent: vector_float3, cylinderSegments segments: vector_uint2, hemisphereSegments: Int32, inwardNormals: Bool, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) */
-  static initCapsuleWithExtentCylinderSegmentsHemisphereSegmentsInwardNormalsGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, hemisphereSegments: number, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 4463309810235196, undefined, [extent, segments, hemisphereSegments, inwardNormals, geometryType, allocator]); }
+  static initCapsuleWithExtentCylinderSegmentsHemisphereSegmentsInwardNormalsGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, hemisphereSegments: number, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 4463309810235196, undefined, [extent, segments, hemisphereSegments, inwardNormals, geometryType, allocator]); }
   /** init(coneWithExtent extent: vector_float3, segments: vector_uint2, inwardNormals: Bool, cap: Bool, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) */
-  static initConeWithExtentSegmentsInwardNormalsCapGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, cap: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 603858238977146, undefined, [extent, segments, inwardNormals, cap, geometryType, allocator]); }
+  static initConeWithExtentSegmentsInwardNormalsCapGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, cap: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 603858238977146, undefined, [extent, segments, inwardNormals, cap, geometryType, allocator]); }
   /** init(cylinderWithExtent extent: vector_float3, segments: vector_uint2, inwardNormals: Bool, topCap: Bool, bottomCap: Bool, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) */
-  static initCylinderWithExtentSegmentsInwardNormalsTopCapBottomCapGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, topCap: boolean, bottomCap: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 763117967092547, undefined, [extent, segments, inwardNormals, topCap, bottomCap, geometryType, allocator]); }
+  static initCylinderWithExtentSegmentsInwardNormalsTopCapBottomCapGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, topCap: boolean, bottomCap: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 763117967092547, undefined, [extent, segments, inwardNormals, topCap, bottomCap, geometryType, allocator]); }
   /** init(hemisphereWithExtent extent: vector_float3, segments: vector_uint2, inwardNormals: Bool, cap: Bool, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) */
-  static initHemisphereWithExtentSegmentsInwardNormalsCapGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, cap: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 2375945266760661, undefined, [extent, segments, inwardNormals, cap, geometryType, allocator]); }
+  static initHemisphereWithExtentSegmentsInwardNormalsCapGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, cap: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 2375945266760661, undefined, [extent, segments, inwardNormals, cap, geometryType, allocator]); }
   /** init(icosahedronWithExtent extent: vector_float3, inwardNormals: Bool, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) */
-  static initIcosahedronWithExtentInwardNormalsGeometryTypeAllocator(extent: SDKHandle, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 50792055330718, undefined, [extent, inwardNormals, geometryType, allocator]); }
+  static initIcosahedronWithExtentInwardNormalsGeometryTypeAllocator(extent: SDKHandle, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 50792055330718, undefined, [extent, inwardNormals, geometryType, allocator]); }
   /** init(meshBySubdividingMesh mesh: MDLMesh, submeshIndex: Int32, subdivisionLevels: UInt32, allocator: (any MDLMeshBufferAllocator)?) */
-  static initMeshBySubdividingMeshSubmeshIndexSubdivisionLevelsAllocator(mesh: MDLMesh, submeshIndex: number, subdivisionLevels: number, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 1319195063904758, undefined, [mesh, submeshIndex, subdivisionLevels, allocator]); }
+  static initMeshBySubdividingMeshSubmeshIndexSubdivisionLevelsAllocator(mesh: MDLMesh, submeshIndex: number, subdivisionLevels: number, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 1319195063904758, undefined, [mesh, submeshIndex, subdivisionLevels, allocator]); }
   /** init(planeWithExtent extent: vector_float3, segments: vector_uint2, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) */
-  static initPlaneWithExtentSegmentsGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 2978038136255940, undefined, [extent, segments, geometryType, allocator]); }
+  static initPlaneWithExtentSegmentsGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 2978038136255940, undefined, [extent, segments, geometryType, allocator]); }
   /** init(sphereWithExtent extent: vector_float3, segments: vector_uint2, inwardNormals: Bool, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) */
-  static initSphereWithExtentSegmentsInwardNormalsGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 1340963126916886, undefined, [extent, segments, inwardNormals, geometryType, allocator]); }
+  static initSphereWithExtentSegmentsInwardNormalsGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 1340963126916886, undefined, [extent, segments, inwardNormals, geometryType, allocator]); }
   /**
    * init(bufferAllocator: (any MDLMeshBufferAllocator)?)
    * @availability iOS 9.0+
    */
-  static initBufferAllocator(bufferAllocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 2018422080483500, undefined, [bufferAllocator]); }
+  static initBufferAllocator(bufferAllocator?: (SDKHandle) | null): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 2018422080483500, undefined, [bufferAllocator]); }
   /**
    * init(vertexBuffer: any MDLMeshBuffer, vertexCount: Int, descriptor: MDLVertexDescriptor, submeshes: [MDLSubmesh])
    * @availability iOS 9.0+
    */
-  static initVertexBufferVertexCountDescriptorSubmeshes(vertexBuffer: SDKHandle, vertexCount: number, descriptor: MDLVertexDescriptor, submeshes: Array<MDLSubmesh>): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 1637169671730680, undefined, [vertexBuffer, vertexCount, descriptor, submeshes]); }
+  static initVertexBufferVertexCountDescriptorSubmeshes(vertexBuffer: SDKHandle, vertexCount: number, descriptor: MDLVertexDescriptor, submeshes: Array<MDLSubmesh>): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 1637169671730680, undefined, [vertexBuffer, vertexCount, descriptor, submeshes]); }
   /**
    * init(vertexBuffers: [any MDLMeshBuffer], vertexCount: Int, descriptor: MDLVertexDescriptor, submeshes: [MDLSubmesh])
    * @availability iOS 9.0+
    */
-  static initVertexBuffersVertexCountDescriptorSubmeshes(vertexBuffers: Array<SDKHandle>, vertexCount: number, descriptor: MDLVertexDescriptor, submeshes: Array<MDLSubmesh>): MDLMesh { return callSDK<MDLMesh>("ModelIO_d6c5d10d3352e6ec", 4024957162427492, undefined, [vertexBuffers, vertexCount, descriptor, submeshes]); }
+  static initVertexBuffersVertexCountDescriptorSubmeshes(vertexBuffers: Array<SDKHandle>, vertexCount: number, descriptor: MDLVertexDescriptor, submeshes: Array<MDLSubmesh>): MDLMesh { return callSDK<MDLMesh>("ModelIO_a956b86ef7a76a8e", 4024957162427492, undefined, [vertexBuffers, vertexCount, descriptor, submeshes]); }
   /**
    * func makeVerticesUnique()
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  makeVerticesUnique(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3679307898530435, this, []); }
+  makeVerticesUnique(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3679307898530435, this, []); }
   /**
    * func makeVerticesUniqueAndReturnError() throws
    * @availability iOS 11.0+
    */
-  makeVerticesUniqueAndReturnError(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 834745129621702, this, []); }
+  makeVerticesUniqueAndReturnError(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 834745129621702, this, []); }
   /** func removeAttributeNamed(_ name: String) */
-  removeAttributeNamed(name: string): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3791179439005190, this, [name]); }
+  removeAttributeNamed(name: string): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3791179439005190, this, [name]); }
   /** func replaceAttributeNamed(_ name: String, with newData: MDLVertexAttributeData) */
-  replaceAttributeNamed(name: string, newData: MDLVertexAttributeData): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2643029913581377, this, [name, newData]); }
+  replaceAttributeNamed(name: string, newData: MDLVertexAttributeData): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2643029913581377, this, [name, newData]); }
   /** func updateAttributeNamed(_ name: String, with newData: MDLVertexAttributeData) */
-  updateAttributeNamed(name: string, newData: MDLVertexAttributeData): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1467249285508418, this, [name, newData]); }
+  updateAttributeNamed(name: string, newData: MDLVertexAttributeData): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1467249285508418, this, [name, newData]); }
   /**
    * func vertexAttributeData(forAttributeNamed name: String) -> MDLVertexAttributeData?
    * @availability iOS 9.0+
    */
-  vertexAttributeDataForAttributeNamed(name: string): $SDK14 { return callSDK<$SDK14>("ModelIO_d6c5d10d3352e6ec", 1138280606450284, this, [name]); }
+  vertexAttributeDataForAttributeNamed(name: string): $SDK14 { return callSDK<$SDK14>("ModelIO_a956b86ef7a76a8e", 1138280606450284, this, [name]); }
   /**
    * func vertexAttributeData(forAttributeNamed name: String, as format: MDLVertexFormat) -> MDLVertexAttributeData?
    * @availability iOS 9.0+
    */
-  vertexAttributeDataForAttributeNamedAs(name: string, format: MDLVertexFormat): $SDK14 { return callSDK<$SDK14>("ModelIO_d6c5d10d3352e6ec", 1892145197291135, this, [name, format]); }
+  vertexAttributeDataForAttributeNamedAs(name: string, format: MDLVertexFormat): $SDK14 { return callSDK<$SDK14>("ModelIO_a956b86ef7a76a8e", 1892145197291135, this, [name, format]); }
   /**
    * var allocator: any MDLMeshBufferAllocator { get }
    * @availability iOS 9.0+
    */
-  get allocator(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3803794082179295, this, []); }
+  get allocator(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3803794082179295, this, []); }
   /**
    * var boundingBox: MDLAxisAlignedBoundingBox { get }
    * @availability iOS 9.0+
    */
-  get boundingBox(): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_d6c5d10d3352e6ec", 3328750602616160, this, []); }
+  get boundingBox(): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_a956b86ef7a76a8e", 3328750602616160, this, []); }
   /**
    * @NSCopying var submeshes: NSMutableArray? { get set }
    * @availability iOS 9.0+
    */
-  get submeshes(): $SDK15 { return callSDK<$SDK15>("ModelIO_d6c5d10d3352e6ec", 1396712775531812, this, []); }
-  set submeshes(value: $SDK15) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3252967361177039, this, [value]); }
+  get submeshes(): $SDK15 { return callSDK<$SDK15>("ModelIO_a956b86ef7a76a8e", 1396712775531812, this, []); }
+  set submeshes(value: $SDK15) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3252967361177039, this, [value]); }
   /**
    * var vertexBuffers: [any MDLMeshBuffer] { get set }
    * @availability iOS 9.0+
    */
-  get vertexBuffers(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 1478682480411064, this, []); }
-  set vertexBuffers(value: Array<SDKHandle>) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 797967276292094, this, [value]); }
+  get vertexBuffers(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 1478682480411064, this, []); }
+  set vertexBuffers(value: Array<SDKHandle>) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 797967276292094, this, [value]); }
   /**
    * var vertexCount: Int { get set }
    * @availability iOS 9.0+
    */
-  get vertexCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2824218696589011, this, []); }
-  set vertexCount(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1925016652164455, this, [value]); }
+  get vertexCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2824218696589011, this, []); }
+  set vertexCount(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1925016652164455, this, [value]); }
   /**
    * @NSCopying var vertexDescriptor: MDLVertexDescriptor { get set }
    * @availability iOS 9.0+
    */
-  get vertexDescriptor(): MDLVertexDescriptor { return callSDK<MDLVertexDescriptor>("ModelIO_d6c5d10d3352e6ec", 830223565204565, this, []); }
-  set vertexDescriptor(value: MDLVertexDescriptor) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2361211346193518, this, [value]); }
+  get vertexDescriptor(): MDLVertexDescriptor { return callSDK<MDLVertexDescriptor>("ModelIO_a956b86ef7a76a8e", 830223565204565, this, []); }
+  set vertexDescriptor(value: MDLVertexDescriptor) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2361211346193518, this, [value]); }
   /**
    * func boundingBox(atTime time: TimeInterval) -> MDLAxisAlignedBoundingBox
    * @availability iOS 9.0+
    */
-  boundingBox16697(time: number): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_d6c5d10d3352e6ec", 2592200373722635, this, [time]); }
+  boundingBox16697(time: number): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_a956b86ef7a76a8e", 2592200373722635, this, [time]); }
   declare readonly $type: { "c:objc(cs)MDLMesh": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "allocator": true; "boundingBox": true; "submeshes": true; "vertexBuffers": true; "vertexCount": true; "vertexDescriptor": true };
 }
@@ -2140,17 +2140,17 @@ export class MDLMeshBufferData extends SDKHandle {
    * init(type: MDLMeshBufferType, data: Data?)
    * @availability iOS 9.0+
    */
-  static initTypeData(type: MDLMeshBufferType, data?: (ArrayBuffer) | null): MDLMeshBufferData { return callSDK<MDLMeshBufferData>("ModelIO_d6c5d10d3352e6ec", 1859711731243453, undefined, [type, data]); }
+  static initTypeData(type: MDLMeshBufferType, data?: (ArrayBuffer) | null): MDLMeshBufferData { return callSDK<MDLMeshBufferData>("ModelIO_a956b86ef7a76a8e", 1859711731243453, undefined, [type, data]); }
   /**
    * init(type: MDLMeshBufferType, length: Int)
    * @availability iOS 9.0+
    */
-  static initTypeLength(type: MDLMeshBufferType, length: number): MDLMeshBufferData { return callSDK<MDLMeshBufferData>("ModelIO_d6c5d10d3352e6ec", 1529325769989046, undefined, [type, length]); }
+  static initTypeLength(type: MDLMeshBufferType, length: number): MDLMeshBufferData { return callSDK<MDLMeshBufferData>("ModelIO_a956b86ef7a76a8e", 1529325769989046, undefined, [type, length]); }
   /**
    * var data: Data { get }
    * @availability iOS 9.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("ModelIO_d6c5d10d3352e6ec", 81313077542818, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("ModelIO_a956b86ef7a76a8e", 81313077542818, this, []); }
   declare readonly $type: { "c:objc(cs)MDLMeshBufferData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true };
 }
@@ -2161,7 +2161,7 @@ export class MDLMeshBufferData extends SDKHandle {
  */
 export class MDLMeshBufferDataAllocator extends SDKHandle {
   /** init() */
-  static init(): MDLMeshBufferDataAllocator { return callSDK<MDLMeshBufferDataAllocator>("ModelIO_d6c5d10d3352e6ec", 2012713176477064, undefined, []); }
+  static init(): MDLMeshBufferDataAllocator { return callSDK<MDLMeshBufferDataAllocator>("ModelIO_a956b86ef7a76a8e", 2012713176477064, undefined, []); }
   declare readonly $type: { "c:objc(cs)MDLMeshBufferDataAllocator": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2174,12 +2174,12 @@ export class MDLMeshBufferMap extends SDKHandle {
    * init(bytes: UnsafeMutableRawPointer, deallocator: (() -> Void)? = nil)
    * @availability iOS 9.0+
    */
-  static init(bytes: SDKHandle, deallocator?: ((() => void)) | null): MDLMeshBufferMap { return callSDK<MDLMeshBufferMap>("ModelIO_d6c5d10d3352e6ec", 4411052918074015, undefined, [bytes, deallocator], [null,{"callback":{"out":[]}}]); }
+  static init(bytes: SDKHandle, deallocator?: ((() => void)) | null): MDLMeshBufferMap { return callSDK<MDLMeshBufferMap>("ModelIO_a956b86ef7a76a8e", 4411052918074015, undefined, [bytes, deallocator], [null,{"callback":{"out":[]}}]); }
   /**
    * var bytes: UnsafeMutableRawPointer { get }
    * @availability iOS 9.0+
    */
-  get bytes(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 567689997633383, this, []); }
+  get bytes(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 567689997633383, this, []); }
   declare readonly $type: { "c:objc(cs)MDLMeshBufferMap": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bytes": true };
 }
@@ -2189,7 +2189,7 @@ export type MDLMeshBufferType = "vertex" | "index" | "custom";
 
 export const MDLMeshBufferType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLMeshBufferType) | null { return callSDK<(MDLMeshBufferType) | null>("ModelIO_d6c5d10d3352e6ec", 3535166019731696, undefined, [rawValue]); }
+  init(rawValue: number): (MDLMeshBufferType) | null { return callSDK<(MDLMeshBufferType) | null>("ModelIO_a956b86ef7a76a8e", 3535166019731696, undefined, [rawValue]); }
 };
 
 /**
@@ -2206,17 +2206,17 @@ export interface MDLMeshBufferZone {
  */
 export class MDLMeshBufferZoneDefault extends SDKHandle {
   /** init() */
-  static init(): MDLMeshBufferZoneDefault { return callSDK<MDLMeshBufferZoneDefault>("ModelIO_d6c5d10d3352e6ec", 3362895823438792, undefined, []); }
+  static init(): MDLMeshBufferZoneDefault { return callSDK<MDLMeshBufferZoneDefault>("ModelIO_a956b86ef7a76a8e", 3362895823438792, undefined, []); }
   /**
    * var allocator: any MDLMeshBufferAllocator { get }
    * @availability iOS 11.0+
    */
-  get allocator(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 4123911077860617, this, []); }
+  get allocator(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 4123911077860617, this, []); }
   /**
    * var capacity: Int { get }
    * @availability iOS 11.0+
    */
-  get capacity(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 276665407633335, this, []); }
+  get capacity(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 276665407633335, this, []); }
   declare readonly $type: { "c:objc(cs)MDLMeshBufferZoneDefault": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allocator": true; "capacity": true };
 }
@@ -2238,17 +2238,17 @@ export class MDLNoiseTexture extends MDLTexture {
    * init(cellularNoiseWithFrequency frequency: Float, name: String?, textureDimensions: vector_int2, channelEncoding: MDLTextureChannelEncoding)
    * @availability iOS 11.0+
    */
-  static initCellularNoiseWithFrequencyNameTextureDimensionsChannelEncoding(frequency: number, name: (string) | null, textureDimensions: SDKHandle, channelEncoding: MDLTextureChannelEncoding): MDLNoiseTexture { return callSDK<MDLNoiseTexture>("ModelIO_d6c5d10d3352e6ec", 1205141155893747, undefined, [frequency, name, textureDimensions, channelEncoding]); }
+  static initCellularNoiseWithFrequencyNameTextureDimensionsChannelEncoding(frequency: number, name: (string) | null, textureDimensions: SDKHandle, channelEncoding: MDLTextureChannelEncoding): MDLNoiseTexture { return callSDK<MDLNoiseTexture>("ModelIO_a956b86ef7a76a8e", 1205141155893747, undefined, [frequency, name, textureDimensions, channelEncoding]); }
   /**
    * init(scalarNoiseWithSmoothness smoothness: Float, name: String?, textureDimensions: vector_int2, channelCount: Int32, channelEncoding: MDLTextureChannelEncoding, grayscale: Bool)
    * @availability iOS 9.0+
    */
-  static initScalarNoiseWithSmoothnessNameTextureDimensionsChannelCountChannelEncodingGrayscale(smoothness: number, name: (string) | null, textureDimensions: SDKHandle, channelCount: number, channelEncoding: MDLTextureChannelEncoding, grayscale: boolean): MDLNoiseTexture { return callSDK<MDLNoiseTexture>("ModelIO_d6c5d10d3352e6ec", 3679887649281447, undefined, [smoothness, name, textureDimensions, channelCount, channelEncoding, grayscale]); }
+  static initScalarNoiseWithSmoothnessNameTextureDimensionsChannelCountChannelEncodingGrayscale(smoothness: number, name: (string) | null, textureDimensions: SDKHandle, channelCount: number, channelEncoding: MDLTextureChannelEncoding, grayscale: boolean): MDLNoiseTexture { return callSDK<MDLNoiseTexture>("ModelIO_a956b86ef7a76a8e", 3679887649281447, undefined, [smoothness, name, textureDimensions, channelCount, channelEncoding, grayscale]); }
   /**
    * init(vectorNoiseWithSmoothness smoothness: Float, name: String?, textureDimensions: vector_int2, channelEncoding: MDLTextureChannelEncoding)
    * @availability iOS 9.0+
    */
-  static initVectorNoiseWithSmoothnessNameTextureDimensionsChannelEncoding(smoothness: number, name: (string) | null, textureDimensions: SDKHandle, channelEncoding: MDLTextureChannelEncoding): MDLNoiseTexture { return callSDK<MDLNoiseTexture>("ModelIO_d6c5d10d3352e6ec", 465916562683485, undefined, [smoothness, name, textureDimensions, channelEncoding]); }
+  static initVectorNoiseWithSmoothnessNameTextureDimensionsChannelEncoding(smoothness: number, name: (string) | null, textureDimensions: SDKHandle, channelEncoding: MDLTextureChannelEncoding): MDLNoiseTexture { return callSDK<MDLNoiseTexture>("ModelIO_a956b86ef7a76a8e", 465916562683485, undefined, [smoothness, name, textureDimensions, channelEncoding]); }
   declare readonly $type: { "c:objc(cs)MDLNoiseTexture": true; "c:objc(cs)MDLTexture": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelCount": true; "channelEncoding": true; "dimensions": true; "hasAlphaValues": true; "isCube": true; "mipLevelCount": true; "rowStride": true };
 }
@@ -2262,7 +2262,7 @@ export class MDLNormalMapTexture extends (MDLTexture as unknown as Omit<typeof M
    * init(byGeneratingNormalMapWith sourceTexture: MDLTexture, name: String?, smoothness: Float, contrast: Float)
    * @availability iOS 9.0+
    */
-  static init(sourceTexture: MDLTexture, name: (string) | null, smoothness: number, contrast: number): MDLNormalMapTexture { return callSDK<MDLNormalMapTexture>("ModelIO_d6c5d10d3352e6ec", 4270883312432622, undefined, [sourceTexture, name, smoothness, contrast]); }
+  static init(sourceTexture: MDLTexture, name: (string) | null, smoothness: number, contrast: number): MDLNormalMapTexture { return callSDK<MDLNormalMapTexture>("ModelIO_a956b86ef7a76a8e", 4270883312432622, undefined, [sourceTexture, name, smoothness, contrast]); }
   declare readonly $type: { "c:objc(cs)MDLNormalMapTexture": true; "c:objc(cs)MDLTexture": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelCount": true; "channelEncoding": true; "dimensions": true; "hasAlphaValues": true; "isCube": true; "mipLevelCount": true; "rowStride": true };
 }
@@ -2273,7 +2273,7 @@ export class MDLNormalMapTexture extends (MDLTexture as unknown as Omit<typeof M
  */
 export class MDLObjectContainer extends SDKHandle {
   /** init() */
-  static init(): MDLObjectContainer { return callSDK<MDLObjectContainer>("ModelIO_d6c5d10d3352e6ec", 1160518900043751, undefined, []); }
+  static init(): MDLObjectContainer { return callSDK<MDLObjectContainer>("ModelIO_a956b86ef7a76a8e", 1160518900043751, undefined, []); }
   declare readonly $type: { "c:objc(cs)MDLObjectContainer": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2309,27 +2309,27 @@ export class MDLPackedJointAnimation extends (MDLObject as unknown as Omit<typeo
    * init(name: String, jointPaths: [String])
    * @availability iOS 11.0+
    */
-  static init(name: string, jointPaths: Array<string>): MDLPackedJointAnimation { return callSDK<MDLPackedJointAnimation>("ModelIO_d6c5d10d3352e6ec", 1433050213466754, undefined, [name, jointPaths]); }
+  static init(name: string, jointPaths: Array<string>): MDLPackedJointAnimation { return callSDK<MDLPackedJointAnimation>("ModelIO_a956b86ef7a76a8e", 1433050213466754, undefined, [name, jointPaths]); }
   /**
    * var jointPaths: [String] { get }
    * @availability iOS 11.0+
    */
-  get jointPaths(): Array<string> { return callSDK<Array<string>>("ModelIO_d6c5d10d3352e6ec", 1479136437386081, this, []); }
+  get jointPaths(): Array<string> { return callSDK<Array<string>>("ModelIO_a956b86ef7a76a8e", 1479136437386081, this, []); }
   /**
    * var rotations: MDLAnimatedQuaternionArray { get }
    * @availability iOS 11.0+
    */
-  get rotations(): MDLAnimatedQuaternionArray { return callSDK<MDLAnimatedQuaternionArray>("ModelIO_d6c5d10d3352e6ec", 2116272412468591, this, []); }
+  get rotations(): MDLAnimatedQuaternionArray { return callSDK<MDLAnimatedQuaternionArray>("ModelIO_a956b86ef7a76a8e", 2116272412468591, this, []); }
   /**
    * var scales: MDLAnimatedVector3Array { get }
    * @availability iOS 11.0+
    */
-  get scales(): MDLAnimatedVector3Array { return callSDK<MDLAnimatedVector3Array>("ModelIO_d6c5d10d3352e6ec", 3364883611275707, this, []); }
+  get scales(): MDLAnimatedVector3Array { return callSDK<MDLAnimatedVector3Array>("ModelIO_a956b86ef7a76a8e", 3364883611275707, this, []); }
   /**
    * var translations: MDLAnimatedVector3Array { get }
    * @availability iOS 11.0+
    */
-  get translations(): MDLAnimatedVector3Array { return callSDK<MDLAnimatedVector3Array>("ModelIO_d6c5d10d3352e6ec", 3845208975637750, this, []); }
+  get translations(): MDLAnimatedVector3Array { return callSDK<MDLAnimatedVector3Array>("ModelIO_a956b86ef7a76a8e", 3845208975637750, this, []); }
   declare readonly $type: { "c:objc(cs)MDLPackedJointAnimation": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "jointPaths": true; "rotations": true; "scales": true; "translations": true };
 }
@@ -2343,13 +2343,13 @@ export class MDLPathAssetResolver extends SDKHandle {
    * init(path: String)
    * @availability iOS 11.0+
    */
-  static init(path: string): MDLPathAssetResolver { return callSDK<MDLPathAssetResolver>("ModelIO_d6c5d10d3352e6ec", 3193260631518016, undefined, [path]); }
+  static init(path: string): MDLPathAssetResolver { return callSDK<MDLPathAssetResolver>("ModelIO_a956b86ef7a76a8e", 3193260631518016, undefined, [path]); }
   /**
    * var path: String { get set }
    * @availability iOS 11.0+
    */
-  get path(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1447568113494693, this, []); }
-  set path(value: string) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2249585081405469, this, [value]); }
+  get path(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 1447568113494693, this, []); }
+  set path(value: string) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2249585081405469, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLPathAssetResolver": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "path": true };
 }
@@ -2363,37 +2363,37 @@ export class MDLPhotometricLight extends (MDLPhysicallyPlausibleLight as unknown
    * func generateCubemap(fromLight textureSize: Int)
    * @availability iOS 9.0+
    */
-  generateCubemap(textureSize: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4199559621026328, this, [textureSize]); }
+  generateCubemap(textureSize: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 4199559621026328, this, [textureSize]); }
   /**
    * func generateSphericalHarmonics(fromLight sphericalHarmonicsLevel: Int)
    * @availability iOS 9.0+
    */
-  generateSphericalHarmonics(sphericalHarmonicsLevel: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3377136709288262, this, [sphericalHarmonicsLevel]); }
+  generateSphericalHarmonics(sphericalHarmonicsLevel: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3377136709288262, this, [sphericalHarmonicsLevel]); }
   /**
    * func generateTexture(_ textureSize: Int) -> MDLTexture
    * @availability iOS 11.0+
    */
-  generateTexture(textureSize: number): MDLTexture { return callSDK<MDLTexture>("ModelIO_d6c5d10d3352e6ec", 1495863966013151, this, [textureSize]); }
+  generateTexture(textureSize: number): MDLTexture { return callSDK<MDLTexture>("ModelIO_a956b86ef7a76a8e", 1495863966013151, this, [textureSize]); }
   /**
    * init?(iesProfile URL: URL)
    * @availability iOS 9.0+
    */
-  static init(URL: string): (MDLPhotometricLight) | null { return callSDK<(MDLPhotometricLight) | null>("ModelIO_d6c5d10d3352e6ec", 1912931195448201, undefined, [URL]); }
+  static init(URL: string): (MDLPhotometricLight) | null { return callSDK<(MDLPhotometricLight) | null>("ModelIO_a956b86ef7a76a8e", 1912931195448201, undefined, [URL]); }
   /**
    * var lightCubeMap: MDLTexture? { get }
    * @availability iOS 9.0+
    */
-  get lightCubeMap(): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_d6c5d10d3352e6ec", 2040304343655995, this, []); }
+  get lightCubeMap(): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_a956b86ef7a76a8e", 2040304343655995, this, []); }
   /**
    * var sphericalHarmonicsCoefficients: Data? { get }
    * @availability iOS 9.0+
    */
-  get sphericalHarmonicsCoefficients(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_d6c5d10d3352e6ec", 2671233171242029, this, []); }
+  get sphericalHarmonicsCoefficients(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_a956b86ef7a76a8e", 2671233171242029, this, []); }
   /**
    * var sphericalHarmonicsLevel: Int { get }
    * @availability iOS 9.0+
    */
-  get sphericalHarmonicsLevel(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2126479438918196, this, []); }
+  get sphericalHarmonicsLevel(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2126479438918196, this, []); }
   declare readonly $type: { "c:objc(cs)MDLPhotometricLight": true; "c:objc(cs)MDLPhysicallyPlausibleLight": true; "c:objc(cs)MDLLight": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "colorSpace": true; "lightType": true; "attenuationEndDistance": true; "attenuationStartDistance": true; "color": true; "innerConeAngle": true; "lumens": true; "outerConeAngle": true; "lightCubeMap": true; "sphericalHarmonicsCoefficients": true; "sphericalHarmonicsLevel": true };
 }
@@ -2404,53 +2404,53 @@ export class MDLPhotometricLight extends (MDLPhysicallyPlausibleLight as unknown
  */
 export class MDLScatteringFunction extends SDKHandle {
   /** init() */
-  static init(): MDLScatteringFunction { return callSDK<MDLScatteringFunction>("ModelIO_d6c5d10d3352e6ec", 1434211534896494, undefined, []); }
+  static init(): MDLScatteringFunction { return callSDK<MDLScatteringFunction>("ModelIO_a956b86ef7a76a8e", 1434211534896494, undefined, []); }
   /**
    * var ambientOcclusion: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get ambientOcclusion(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 3633487996515895, this, []); }
+  get ambientOcclusion(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 3633487996515895, this, []); }
   /**
    * var ambientOcclusionScale: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get ambientOcclusionScale(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 3960815920408020, this, []); }
+  get ambientOcclusionScale(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 3960815920408020, this, []); }
   /**
    * var baseColor: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get baseColor(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 1491373228319590, this, []); }
+  get baseColor(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 1491373228319590, this, []); }
   /**
    * var emission: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get emission(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 86591799065938, this, []); }
+  get emission(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 86591799065938, this, []); }
   /**
    * var interfaceIndexOfRefraction: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get interfaceIndexOfRefraction(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 4300489024206279, this, []); }
+  get interfaceIndexOfRefraction(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 4300489024206279, this, []); }
   /**
    * var materialIndexOfRefraction: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get materialIndexOfRefraction(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 2840482856149295, this, []); }
+  get materialIndexOfRefraction(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 2840482856149295, this, []); }
   /**
    * var name: String { get set }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1707650204914359, this, []); }
-  set name(value: string) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1782412628594744, this, [value]); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 1707650204914359, this, []); }
+  set name(value: string) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1782412628594744, this, [value]); }
   /**
    * var normal: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get normal(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 3303965603515542, this, []); }
+  get normal(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 3303965603515542, this, []); }
   /**
    * var specular: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get specular(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 1175606559278155, this, []); }
+  get specular(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 1175606559278155, this, []); }
   declare readonly $type: { "c:objc(cs)MDLScatteringFunction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ambientOcclusion": true; "ambientOcclusionScale": true; "baseColor": true; "emission": true; "interfaceIndexOfRefraction": true; "materialIndexOfRefraction": true; "name": true; "normal": true; "specular": true };
 }
@@ -2461,67 +2461,67 @@ export class MDLScatteringFunction extends SDKHandle {
  */
 export class MDLPhysicallyPlausibleScatteringFunction extends (MDLScatteringFunction as unknown as Omit<typeof MDLScatteringFunction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLScatteringFunction)) {
   /** init() */
-  static init(): MDLPhysicallyPlausibleScatteringFunction { return callSDK<MDLPhysicallyPlausibleScatteringFunction>("ModelIO_d6c5d10d3352e6ec", 3232367173903159, undefined, []); }
+  static init(): MDLPhysicallyPlausibleScatteringFunction { return callSDK<MDLPhysicallyPlausibleScatteringFunction>("ModelIO_a956b86ef7a76a8e", 3232367173903159, undefined, []); }
   /**
    * var anisotropic: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get anisotropic(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 2766542353162537, this, []); }
+  get anisotropic(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 2766542353162537, this, []); }
   /**
    * var anisotropicRotation: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get anisotropicRotation(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 1822464807926936, this, []); }
+  get anisotropicRotation(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 1822464807926936, this, []); }
   /**
    * var clearcoat: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get clearcoat(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 3979539468417372, this, []); }
+  get clearcoat(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 3979539468417372, this, []); }
   /**
    * var clearcoatGloss: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get clearcoatGloss(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 1520970503025661, this, []); }
+  get clearcoatGloss(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 1520970503025661, this, []); }
   /**
    * var metallic: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get metallic(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 2007291234392855, this, []); }
+  get metallic(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 2007291234392855, this, []); }
   /**
    * var roughness: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get roughness(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 2790653529096342, this, []); }
+  get roughness(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 2790653529096342, this, []); }
   /**
    * var sheen: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get sheen(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 227361924899563, this, []); }
+  get sheen(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 227361924899563, this, []); }
   /**
    * var sheenTint: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get sheenTint(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 4039586933762213, this, []); }
+  get sheenTint(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 4039586933762213, this, []); }
   /**
    * var specularAmount: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get specularAmount(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 1832404018163614, this, []); }
+  get specularAmount(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 1832404018163614, this, []); }
   /**
    * var specularTint: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get specularTint(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 2672320277137141, this, []); }
+  get specularTint(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 2672320277137141, this, []); }
   /**
    * var subsurface: MDLMaterialProperty { get }
    * @availability iOS 9.0+
    */
-  get subsurface(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_d6c5d10d3352e6ec", 988823454687441, this, []); }
+  get subsurface(): MDLMaterialProperty { return callSDK<MDLMaterialProperty>("ModelIO_a956b86ef7a76a8e", 988823454687441, this, []); }
   /**
    * var version: Int { get }
    * @availability iOS 9.0+
    */
-  get version(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 524154571682384, this, []); }
+  get version(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 524154571682384, this, []); }
   declare readonly $type: { "c:objc(cs)MDLPhysicallyPlausibleScatteringFunction": true; "c:objc(cs)MDLScatteringFunction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ambientOcclusion": true; "ambientOcclusionScale": true; "baseColor": true; "emission": true; "interfaceIndexOfRefraction": true; "materialIndexOfRefraction": true; "name": true; "normal": true; "specular": true; "anisotropic": true; "anisotropicRotation": true; "clearcoat": true; "clearcoatGloss": true; "metallic": true; "roughness": true; "sheen": true; "sheenTint": true; "specularAmount": true; "specularTint": true; "subsurface": true; "version": true };
 }
@@ -2531,7 +2531,7 @@ export type MDLProbePlacement = "uniformGrid" | "irradianceDistribution";
 
 export const MDLProbePlacement = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (MDLProbePlacement) | null { return callSDK<(MDLProbePlacement) | null>("ModelIO_d6c5d10d3352e6ec", 676155645537368, undefined, [rawValue]); }
+  init(rawValue: number): (MDLProbePlacement) | null { return callSDK<(MDLProbePlacement) | null>("ModelIO_a956b86ef7a76a8e", 676155645537368, undefined, [rawValue]); }
 };
 
 /**
@@ -2543,13 +2543,13 @@ export class MDLRelativeAssetResolver extends SDKHandle {
    * init(asset: MDLAsset)
    * @availability iOS 11.0+
    */
-  static init(asset: MDLAsset): MDLRelativeAssetResolver { return callSDK<MDLRelativeAssetResolver>("ModelIO_d6c5d10d3352e6ec", 517135384631211, undefined, [asset]); }
+  static init(asset: MDLAsset): MDLRelativeAssetResolver { return callSDK<MDLRelativeAssetResolver>("ModelIO_a956b86ef7a76a8e", 517135384631211, undefined, [asset]); }
   /**
    * weak var asset: MDLAsset? { get set }
    * @availability iOS 11.0+
    */
-  get asset(): (MDLAsset) | null { return callSDK<(MDLAsset) | null>("ModelIO_d6c5d10d3352e6ec", 2961710238044406, this, []); }
-  set asset(value: (MDLAsset) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 564307333550745, this, [value]); }
+  get asset(): (MDLAsset) | null { return callSDK<(MDLAsset) | null>("ModelIO_a956b86ef7a76a8e", 2961710238044406, this, []); }
+  set asset(value: (MDLAsset) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 564307333550745, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLRelativeAssetResolver": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "asset": true };
 }
@@ -2563,22 +2563,22 @@ export class MDLSkeleton extends (MDLObject as unknown as Omit<typeof MDLObject,
    * init(name: String, jointPaths: [String])
    * @availability iOS 11.0+
    */
-  static init(name: string, jointPaths: Array<string>): MDLSkeleton { return callSDK<MDLSkeleton>("ModelIO_d6c5d10d3352e6ec", 4201435492922948, undefined, [name, jointPaths]); }
+  static init(name: string, jointPaths: Array<string>): MDLSkeleton { return callSDK<MDLSkeleton>("ModelIO_a956b86ef7a76a8e", 4201435492922948, undefined, [name, jointPaths]); }
   /**
    * var jointBindTransforms: MDLMatrix4x4Array { get }
    * @availability iOS 11.0+
    */
-  get jointBindTransforms(): MDLMatrix4x4Array { return callSDK<MDLMatrix4x4Array>("ModelIO_d6c5d10d3352e6ec", 2429304095234652, this, []); }
+  get jointBindTransforms(): MDLMatrix4x4Array { return callSDK<MDLMatrix4x4Array>("ModelIO_a956b86ef7a76a8e", 2429304095234652, this, []); }
   /**
    * var jointPaths: [String] { get }
    * @availability iOS 11.0+
    */
-  get jointPaths(): Array<string> { return callSDK<Array<string>>("ModelIO_d6c5d10d3352e6ec", 2466632432761176, this, []); }
+  get jointPaths(): Array<string> { return callSDK<Array<string>>("ModelIO_a956b86ef7a76a8e", 2466632432761176, this, []); }
   /**
    * var jointRestTransforms: MDLMatrix4x4Array { get }
    * @availability iOS 11.0+
    */
-  get jointRestTransforms(): MDLMatrix4x4Array { return callSDK<MDLMatrix4x4Array>("ModelIO_d6c5d10d3352e6ec", 2820410104331833, this, []); }
+  get jointRestTransforms(): MDLMatrix4x4Array { return callSDK<MDLMatrix4x4Array>("ModelIO_a956b86ef7a76a8e", 2820410104331833, this, []); }
   declare readonly $type: { "c:objc(cs)MDLSkeleton": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "jointBindTransforms": true; "jointPaths": true; "jointRestTransforms": true };
 }
@@ -2592,95 +2592,95 @@ export class MDLSkyCubeTexture extends MDLTexture {
    * init(name: String?, channelEncoding: MDLTextureChannelEncoding, textureDimensions: vector_int2, turbidity: Float, sunElevation: Float, sunAzimuth: Float, upperAtmosphereScattering: Float, groundAlbedo: Float)
    * @availability iOS 11.0+
    */
-  static initNameChannelEncodingTextureDimensionsTurbiditySunElevationSunAzimuthUpperAtmosphereScatteringGroundAlbedo(name: (string) | null, channelEncoding: MDLTextureChannelEncoding, textureDimensions: SDKHandle, turbidity: number, sunElevation: number, sunAzimuth: number, upperAtmosphereScattering: number, groundAlbedo: number): MDLSkyCubeTexture { return callSDK<MDLSkyCubeTexture>("ModelIO_d6c5d10d3352e6ec", 1735790673639625, undefined, [name, channelEncoding, textureDimensions, turbidity, sunElevation, sunAzimuth, upperAtmosphereScattering, groundAlbedo]); }
+  static initNameChannelEncodingTextureDimensionsTurbiditySunElevationSunAzimuthUpperAtmosphereScatteringGroundAlbedo(name: (string) | null, channelEncoding: MDLTextureChannelEncoding, textureDimensions: SDKHandle, turbidity: number, sunElevation: number, sunAzimuth: number, upperAtmosphereScattering: number, groundAlbedo: number): MDLSkyCubeTexture { return callSDK<MDLSkyCubeTexture>("ModelIO_a956b86ef7a76a8e", 1735790673639625, undefined, [name, channelEncoding, textureDimensions, turbidity, sunElevation, sunAzimuth, upperAtmosphereScattering, groundAlbedo]); }
   /**
    * init(name: String?, channelEncoding: MDLTextureChannelEncoding, textureDimensions: vector_int2, turbidity: Float, sunElevation: Float, upperAtmosphereScattering: Float, groundAlbedo: Float)
    * @availability iOS 9.0+
    */
-  static initNameChannelEncodingTextureDimensionsTurbiditySunElevationUpperAtmosphereScatteringGroundAlbedo(name: (string) | null, channelEncoding: MDLTextureChannelEncoding, textureDimensions: SDKHandle, turbidity: number, sunElevation: number, upperAtmosphereScattering: number, groundAlbedo: number): MDLSkyCubeTexture { return callSDK<MDLSkyCubeTexture>("ModelIO_d6c5d10d3352e6ec", 4493702054647461, undefined, [name, channelEncoding, textureDimensions, turbidity, sunElevation, upperAtmosphereScattering, groundAlbedo]); }
+  static initNameChannelEncodingTextureDimensionsTurbiditySunElevationUpperAtmosphereScatteringGroundAlbedo(name: (string) | null, channelEncoding: MDLTextureChannelEncoding, textureDimensions: SDKHandle, turbidity: number, sunElevation: number, upperAtmosphereScattering: number, groundAlbedo: number): MDLSkyCubeTexture { return callSDK<MDLSkyCubeTexture>("ModelIO_a956b86ef7a76a8e", 4493702054647461, undefined, [name, channelEncoding, textureDimensions, turbidity, sunElevation, upperAtmosphereScattering, groundAlbedo]); }
   /**
    * func update()
    * @availability iOS 9.0+
    */
-  update(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3684696668921827, this, []); }
+  update(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3684696668921827, this, []); }
   /**
    * var brightness: Float { get set }
    * @availability iOS 9.0+
    */
-  get brightness(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 867182075589742, this, []); }
-  set brightness(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3685381722730876, this, [value]); }
+  get brightness(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 867182075589742, this, []); }
+  set brightness(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3685381722730876, this, [value]); }
   /**
    * var contrast: Float { get set }
    * @availability iOS 9.0+
    */
-  get contrast(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3345693294503012, this, []); }
-  set contrast(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1786562737249174, this, [value]); }
+  get contrast(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3345693294503012, this, []); }
+  set contrast(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1786562737249174, this, [value]); }
   /**
    * var exposure: Float { get set }
    * @availability iOS 9.0+
    */
-  get exposure(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 4357298608586436, this, []); }
-  set exposure(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 144689188131053, this, [value]); }
+  get exposure(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 4357298608586436, this, []); }
+  set exposure(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 144689188131053, this, [value]); }
   /**
    * var gamma: Float { get set }
    * @availability iOS 9.0+
    */
-  get gamma(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 185211149728263, this, []); }
-  set gamma(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2059715105534185, this, [value]); }
+  get gamma(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 185211149728263, this, []); }
+  set gamma(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2059715105534185, this, [value]); }
   /**
    * var groundAlbedo: Float { get set }
    * @availability iOS 9.0+
    */
-  get groundAlbedo(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2061254444232395, this, []); }
-  set groundAlbedo(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3518400180757928, this, [value]); }
+  get groundAlbedo(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2061254444232395, this, []); }
+  set groundAlbedo(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3518400180757928, this, [value]); }
   /**
    * var groundColor: CGColor? { get set }
    * @availability iOS 9.0+
    */
-  get groundColor(): $SDK3 { return callSDK<$SDK3>("ModelIO_d6c5d10d3352e6ec", 859889798063279, this, []); }
-  set groundColor(value: $SDK3) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1671524403568416, this, [value]); }
+  get groundColor(): $SDK3 { return callSDK<$SDK3>("ModelIO_a956b86ef7a76a8e", 859889798063279, this, []); }
+  set groundColor(value: $SDK3) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1671524403568416, this, [value]); }
   /**
    * var highDynamicRangeCompression: vector_float2 { get set }
    * @availability iOS 9.0+
    */
-  get highDynamicRangeCompression(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 1991516419555978, this, []); }
-  set highDynamicRangeCompression(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3464600933969947, this, [value]); }
+  get highDynamicRangeCompression(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 1991516419555978, this, []); }
+  set highDynamicRangeCompression(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3464600933969947, this, [value]); }
   /**
    * var horizonElevation: Float { get set }
    * @availability iOS 9.0+
    */
-  get horizonElevation(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2180855846294794, this, []); }
-  set horizonElevation(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3578062211252620, this, [value]); }
+  get horizonElevation(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2180855846294794, this, []); }
+  set horizonElevation(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3578062211252620, this, [value]); }
   /**
    * var saturation: Float { get set }
    * @availability iOS 9.0+
    */
-  get saturation(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2535682387623120, this, []); }
-  set saturation(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4176010345571307, this, [value]); }
+  get saturation(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2535682387623120, this, []); }
+  set saturation(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4176010345571307, this, [value]); }
   /**
    * var sunAzimuth: Float { get set }
    * @availability iOS 11.0+
    */
-  get sunAzimuth(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2213156601481898, this, []); }
-  set sunAzimuth(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1022345718715126, this, [value]); }
+  get sunAzimuth(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2213156601481898, this, []); }
+  set sunAzimuth(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1022345718715126, this, [value]); }
   /**
    * var sunElevation: Float { get set }
    * @availability iOS 9.0+
    */
-  get sunElevation(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 163103508469298, this, []); }
-  set sunElevation(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 743932306557354, this, [value]); }
+  get sunElevation(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 163103508469298, this, []); }
+  set sunElevation(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 743932306557354, this, [value]); }
   /**
    * var turbidity: Float { get set }
    * @availability iOS 9.0+
    */
-  get turbidity(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3763863068147442, this, []); }
-  set turbidity(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 433510133668901, this, [value]); }
+  get turbidity(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3763863068147442, this, []); }
+  set turbidity(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 433510133668901, this, [value]); }
   /**
    * var upperAtmosphereScattering: Float { get set }
    * @availability iOS 9.0+
    */
-  get upperAtmosphereScattering(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1690241596682368, this, []); }
-  set upperAtmosphereScattering(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2766146871216326, this, [value]); }
+  get upperAtmosphereScattering(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1690241596682368, this, []); }
+  set upperAtmosphereScattering(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2766146871216326, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLSkyCubeTexture": true; "c:objc(cs)MDLTexture": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelCount": true; "channelEncoding": true; "dimensions": true; "hasAlphaValues": true; "isCube": true; "mipLevelCount": true; "rowStride": true; "brightness": true; "contrast": true; "exposure": true; "gamma": true; "groundAlbedo": true; "groundColor": true; "highDynamicRangeCompression": true; "horizonElevation": true; "saturation": true; "sunAzimuth": true; "sunElevation": true; "turbidity": true; "upperAtmosphereScattering": true };
 }
@@ -2691,51 +2691,51 @@ export class MDLSkyCubeTexture extends MDLTexture {
  */
 export class MDLStereoscopicCamera extends (MDLCamera as unknown as Omit<typeof MDLCamera, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLCamera)) {
   /** init() */
-  static init(): MDLStereoscopicCamera { return callSDK<MDLStereoscopicCamera>("ModelIO_d6c5d10d3352e6ec", 3805751749909809, undefined, []); }
+  static init(): MDLStereoscopicCamera { return callSDK<MDLStereoscopicCamera>("ModelIO_a956b86ef7a76a8e", 3805751749909809, undefined, []); }
   /**
    * var interPupillaryDistance: Float { get set }
    * @availability iOS 9.0+
    */
-  get interPupillaryDistance(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3052105400697221, this, []); }
-  set interPupillaryDistance(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 798142317522738, this, [value]); }
+  get interPupillaryDistance(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3052105400697221, this, []); }
+  set interPupillaryDistance(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 798142317522738, this, [value]); }
   /**
    * var leftProjectionMatrix: matrix_float4x4 { get }
    * @availability iOS 9.0+
    */
-  get leftProjectionMatrix(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 274262098692534, this, []); }
+  get leftProjectionMatrix(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 274262098692534, this, []); }
   /**
    * var leftVergence: Float { get set }
    * @availability iOS 9.0+
    */
-  get leftVergence(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2795921016594227, this, []); }
-  set leftVergence(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4130597797262100, this, [value]); }
+  get leftVergence(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2795921016594227, this, []); }
+  set leftVergence(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4130597797262100, this, [value]); }
   /**
    * var leftViewMatrix: matrix_float4x4 { get }
    * @availability iOS 9.0+
    */
-  get leftViewMatrix(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2333209840514036, this, []); }
+  get leftViewMatrix(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2333209840514036, this, []); }
   /**
    * var overlap: Float { get set }
    * @availability iOS 9.0+
    */
-  get overlap(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1470829881735520, this, []); }
-  set overlap(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1290498985923721, this, [value]); }
+  get overlap(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1470829881735520, this, []); }
+  set overlap(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1290498985923721, this, [value]); }
   /**
    * var rightProjectionMatrix: matrix_float4x4 { get }
    * @availability iOS 9.0+
    */
-  get rightProjectionMatrix(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2931380554234286, this, []); }
+  get rightProjectionMatrix(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2931380554234286, this, []); }
   /**
    * var rightVergence: Float { get set }
    * @availability iOS 9.0+
    */
-  get rightVergence(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2954685894319178, this, []); }
-  set rightVergence(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1876086406088689, this, [value]); }
+  get rightVergence(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2954685894319178, this, []); }
+  set rightVergence(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1876086406088689, this, [value]); }
   /**
    * var rightViewMatrix: matrix_float4x4 { get }
    * @availability iOS 9.0+
    */
-  get rightViewMatrix(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3682262247192625, this, []); }
+  get rightViewMatrix(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3682262247192625, this, []); }
   declare readonly $type: { "c:objc(cs)MDLStereoscopicCamera": true; "c:objc(cs)MDLCamera": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "apertureBladeCount": true; "barrelDistortion": true; "chromaticAberration": true; "exposure": true; "exposureCompression": true; "fStop": true; "farVisibilityDistance": true; "fieldOfView": true; "fisheyeDistortion": true; "flash": true; "focalLength": true; "focusDistance": true; "maximumCircleOfConfusion": true; "nearVisibilityDistance": true; "opticalVignetting": true; "projection": true; "projectionMatrix": true; "sensorAspect": true; "sensorEnlargement": true; "sensorShift": true; "sensorVerticalAperture": true; "shutterOpenInterval": true; "worldToMetersConversionScale": true; "interPupillaryDistance": true; "leftProjectionMatrix": true; "leftVergence": true; "leftViewMatrix": true; "overlap": true; "rightProjectionMatrix": true; "rightVergence": true; "rightViewMatrix": true };
 }
@@ -2749,65 +2749,65 @@ export class MDLSubmesh extends SDKHandle {
    * func indexBuffer(asIndexType indexType: MDLIndexBitDepth) -> any MDLMeshBuffer
    * @availability iOS 9.0+
    */
-  indexBufferAsIndexType(indexType: MDLIndexBitDepth): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3418137493672782, this, [indexType]); }
+  indexBufferAsIndexType(indexType: MDLIndexBitDepth): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3418137493672782, this, [indexType]); }
   /**
    * init(indexBuffer: any MDLMeshBuffer, indexCount: Int, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material: MDLMaterial?)
    * @availability iOS 9.0+
    */
-  static initIndexBufferIndexCountIndexTypeGeometryTypeMaterial(indexBuffer: SDKHandle, indexCount: number, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material?: (MDLMaterial) | null): MDLSubmesh { return callSDK<MDLSubmesh>("ModelIO_d6c5d10d3352e6ec", 3953339049303126, undefined, [indexBuffer, indexCount, indexType, geometryType, material]); }
+  static initIndexBufferIndexCountIndexTypeGeometryTypeMaterial(indexBuffer: SDKHandle, indexCount: number, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material?: (MDLMaterial) | null): MDLSubmesh { return callSDK<MDLSubmesh>("ModelIO_a956b86ef7a76a8e", 3953339049303126, undefined, [indexBuffer, indexCount, indexType, geometryType, material]); }
   /**
    * init?(mdlSubmesh submesh: MDLSubmesh, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType)
    * @availability iOS 9.0+
    */
-  static initMdlSubmeshIndexTypeGeometryType(submesh: MDLSubmesh, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType): (MDLSubmesh) | null { return callSDK<(MDLSubmesh) | null>("ModelIO_d6c5d10d3352e6ec", 4049252821241003, undefined, [submesh, indexType, geometryType]); }
+  static initMdlSubmeshIndexTypeGeometryType(submesh: MDLSubmesh, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType): (MDLSubmesh) | null { return callSDK<(MDLSubmesh) | null>("ModelIO_a956b86ef7a76a8e", 4049252821241003, undefined, [submesh, indexType, geometryType]); }
   /**
    * init(name: String, indexBuffer: any MDLMeshBuffer, indexCount: Int, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material: MDLMaterial?)
    * @availability iOS 9.0+
    */
-  static initNameIndexBufferIndexCountIndexTypeGeometryTypeMaterial(name: string, indexBuffer: SDKHandle, indexCount: number, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material?: (MDLMaterial) | null): MDLSubmesh { return callSDK<MDLSubmesh>("ModelIO_d6c5d10d3352e6ec", 2740776547510205, undefined, [name, indexBuffer, indexCount, indexType, geometryType, material]); }
+  static initNameIndexBufferIndexCountIndexTypeGeometryTypeMaterial(name: string, indexBuffer: SDKHandle, indexCount: number, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material?: (MDLMaterial) | null): MDLSubmesh { return callSDK<MDLSubmesh>("ModelIO_a956b86ef7a76a8e", 2740776547510205, undefined, [name, indexBuffer, indexCount, indexType, geometryType, material]); }
   /**
    * init(name: String, indexBuffer: any MDLMeshBuffer, indexCount: Int, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material: MDLMaterial?, topology: MDLSubmeshTopology?)
    * @availability iOS 9.0+
    */
-  static initNameIndexBufferIndexCountIndexTypeGeometryTypeMaterialTopology(name: string, indexBuffer: SDKHandle, indexCount: number, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material?: (MDLMaterial) | null, topology?: $SDK17): MDLSubmesh { return callSDK<MDLSubmesh>("ModelIO_d6c5d10d3352e6ec", 2512232129137933, undefined, [name, indexBuffer, indexCount, indexType, geometryType, material, topology]); }
+  static initNameIndexBufferIndexCountIndexTypeGeometryTypeMaterialTopology(name: string, indexBuffer: SDKHandle, indexCount: number, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material?: (MDLMaterial) | null, topology?: $SDK17): MDLSubmesh { return callSDK<MDLSubmesh>("ModelIO_a956b86ef7a76a8e", 2512232129137933, undefined, [name, indexBuffer, indexCount, indexType, geometryType, material, topology]); }
   /**
    * var geometryType: MDLGeometryType { get }
    * @availability iOS 9.0+
    */
-  get geometryType(): MDLGeometryType { return callSDK<MDLGeometryType>("ModelIO_d6c5d10d3352e6ec", 2838100979993003, this, []); }
+  get geometryType(): MDLGeometryType { return callSDK<MDLGeometryType>("ModelIO_a956b86ef7a76a8e", 2838100979993003, this, []); }
   /**
    * var indexBuffer: any MDLMeshBuffer { get }
    * @availability iOS 9.0+
    */
-  get indexBuffer(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3130143004340622, this, []); }
+  get indexBuffer(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3130143004340622, this, []); }
   /**
    * var indexCount: Int { get }
    * @availability iOS 9.0+
    */
-  get indexCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3156883841348421, this, []); }
+  get indexCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3156883841348421, this, []); }
   /**
    * var indexType: MDLIndexBitDepth { get }
    * @availability iOS 9.0+
    */
-  get indexType(): MDLIndexBitDepth { return callSDK<MDLIndexBitDepth>("ModelIO_d6c5d10d3352e6ec", 4304481026425328, this, []); }
+  get indexType(): MDLIndexBitDepth { return callSDK<MDLIndexBitDepth>("ModelIO_a956b86ef7a76a8e", 4304481026425328, this, []); }
   /**
    * var material: MDLMaterial? { get set }
    * @availability iOS 9.0+
    */
-  get material(): (MDLMaterial) | null { return callSDK<(MDLMaterial) | null>("ModelIO_d6c5d10d3352e6ec", 2524614254936164, this, []); }
-  set material(value: (MDLMaterial) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3075662430794468, this, [value]); }
+  get material(): (MDLMaterial) | null { return callSDK<(MDLMaterial) | null>("ModelIO_a956b86ef7a76a8e", 2524614254936164, this, []); }
+  set material(value: (MDLMaterial) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3075662430794468, this, [value]); }
   /**
    * var name: String { get set }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 2561035366554811, this, []); }
-  set name(value: string) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1752553498227532, this, [value]); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 2561035366554811, this, []); }
+  set name(value: string) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1752553498227532, this, [value]); }
   /**
    * var topology: MDLSubmeshTopology? { get set }
    * @availability iOS 9.0+
    */
-  get topology(): $SDK17 { return callSDK<$SDK17>("ModelIO_d6c5d10d3352e6ec", 147300318024892, this, []); }
-  set topology(value: $SDK17) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1582212217482767, this, [value]); }
+  get topology(): $SDK17 { return callSDK<$SDK17>("ModelIO_a956b86ef7a76a8e", 147300318024892, this, []); }
+  set topology(value: $SDK17) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1582212217482767, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLSubmesh": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "geometryType": true; "indexBuffer": true; "indexCount": true; "indexType": true; "material": true; "name": true; "topology": true };
 }
@@ -2821,67 +2821,67 @@ export class MDLSubmeshTopology extends SDKHandle {
    * init(submesh: MDLSubmesh)
    * @availability iOS 9.0+
    */
-  static init(submesh: MDLSubmesh): MDLSubmeshTopology { return callSDK<MDLSubmeshTopology>("ModelIO_d6c5d10d3352e6ec", 3220617428145536, undefined, [submesh]); }
+  static init(submesh: MDLSubmesh): MDLSubmeshTopology { return callSDK<MDLSubmeshTopology>("ModelIO_a956b86ef7a76a8e", 3220617428145536, undefined, [submesh]); }
   /**
    * var edgeCreaseCount: Int { get set }
    * @availability iOS 9.0+
    */
-  get edgeCreaseCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3924754035009152, this, []); }
-  set edgeCreaseCount(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3976034982769741, this, [value]); }
+  get edgeCreaseCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3924754035009152, this, []); }
+  set edgeCreaseCount(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3976034982769741, this, [value]); }
   /**
    * var edgeCreaseIndices: (any MDLMeshBuffer)? { get set }
    * @availability iOS 9.0+
    */
-  get edgeCreaseIndices(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 3764401099437799, this, []); }
-  set edgeCreaseIndices(value: (SDKHandle) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1913043189123898, this, [value]); }
+  get edgeCreaseIndices(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 3764401099437799, this, []); }
+  set edgeCreaseIndices(value: (SDKHandle) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1913043189123898, this, [value]); }
   /**
    * var edgeCreases: (any MDLMeshBuffer)? { get set }
    * @availability iOS 9.0+
    */
-  get edgeCreases(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 4215574165514235, this, []); }
-  set edgeCreases(value: (SDKHandle) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3443217347684429, this, [value]); }
+  get edgeCreases(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 4215574165514235, this, []); }
+  set edgeCreases(value: (SDKHandle) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3443217347684429, this, [value]); }
   /**
    * var faceCount: Int { get set }
    * @availability iOS 9.0+
    */
-  get faceCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1908513028309105, this, []); }
-  set faceCount(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 92133138742548, this, [value]); }
+  get faceCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1908513028309105, this, []); }
+  set faceCount(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 92133138742548, this, [value]); }
   /**
    * var faceTopology: (any MDLMeshBuffer)? { get set }
    * @availability iOS 9.0+
    */
-  get faceTopology(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 1833406464287753, this, []); }
-  set faceTopology(value: (SDKHandle) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 433489992912383, this, [value]); }
+  get faceTopology(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 1833406464287753, this, []); }
+  set faceTopology(value: (SDKHandle) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 433489992912383, this, [value]); }
   /**
    * var holeCount: Int { get set }
    * @availability iOS 9.0+
    */
-  get holeCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3235300234124696, this, []); }
-  set holeCount(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2061784225347465, this, [value]); }
+  get holeCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3235300234124696, this, []); }
+  set holeCount(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2061784225347465, this, [value]); }
   /**
    * var holes: (any MDLMeshBuffer)? { get set }
    * @availability iOS 9.0+
    */
-  get holes(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 1451349290223064, this, []); }
-  set holes(value: (SDKHandle) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1902620955147267, this, [value]); }
+  get holes(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 1451349290223064, this, []); }
+  set holes(value: (SDKHandle) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1902620955147267, this, [value]); }
   /**
    * var vertexCreaseCount: Int { get set }
    * @availability iOS 9.0+
    */
-  get vertexCreaseCount(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1063689860456451, this, []); }
-  set vertexCreaseCount(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 750912896177745, this, [value]); }
+  get vertexCreaseCount(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1063689860456451, this, []); }
+  set vertexCreaseCount(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 750912896177745, this, [value]); }
   /**
    * var vertexCreaseIndices: (any MDLMeshBuffer)? { get set }
    * @availability iOS 9.0+
    */
-  get vertexCreaseIndices(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 636034256278465, this, []); }
-  set vertexCreaseIndices(value: (SDKHandle) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3295499259515729, this, [value]); }
+  get vertexCreaseIndices(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 636034256278465, this, []); }
+  set vertexCreaseIndices(value: (SDKHandle) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3295499259515729, this, [value]); }
   /**
    * var vertexCreases: (any MDLMeshBuffer)? { get set }
    * @availability iOS 9.0+
    */
-  get vertexCreases(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_d6c5d10d3352e6ec", 671624699101391, this, []); }
-  set vertexCreases(value: (SDKHandle) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1291860446520977, this, [value]); }
+  get vertexCreases(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ModelIO_a956b86ef7a76a8e", 671624699101391, this, []); }
+  set vertexCreases(value: (SDKHandle) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1291860446520977, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLSubmeshTopology": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "edgeCreaseCount": true; "edgeCreaseIndices": true; "edgeCreases": true; "faceCount": true; "faceTopology": true; "holeCount": true; "holes": true; "vertexCreaseCount": true; "vertexCreaseIndices": true; "vertexCreases": true };
 }
@@ -2891,15 +2891,15 @@ export type MDLTextureChannelEncoding = "uInt8" | "uInt16" | "uInt24" | "uInt32"
 
 export const MDLTextureChannelEncoding = {
   /** static var uint16: MDLTextureChannelEncoding { get } */
-  get uint16(): MDLTextureChannelEncoding { return callSDK<MDLTextureChannelEncoding>("ModelIO_d6c5d10d3352e6ec", 3884287649945420, undefined, []); },
+  get uint16(): MDLTextureChannelEncoding { return callSDK<MDLTextureChannelEncoding>("ModelIO_a956b86ef7a76a8e", 3884287649945420, undefined, []); },
   /** static var uint24: MDLTextureChannelEncoding { get } */
-  get uint24(): MDLTextureChannelEncoding { return callSDK<MDLTextureChannelEncoding>("ModelIO_d6c5d10d3352e6ec", 5241359875200, undefined, []); },
+  get uint24(): MDLTextureChannelEncoding { return callSDK<MDLTextureChannelEncoding>("ModelIO_a956b86ef7a76a8e", 5241359875200, undefined, []); },
   /** static var uint32: MDLTextureChannelEncoding { get } */
-  get uint32(): MDLTextureChannelEncoding { return callSDK<MDLTextureChannelEncoding>("ModelIO_d6c5d10d3352e6ec", 3211173277652101, undefined, []); },
+  get uint32(): MDLTextureChannelEncoding { return callSDK<MDLTextureChannelEncoding>("ModelIO_a956b86ef7a76a8e", 3211173277652101, undefined, []); },
   /** static var uint8: MDLTextureChannelEncoding { get } */
-  get uint8(): MDLTextureChannelEncoding { return callSDK<MDLTextureChannelEncoding>("ModelIO_d6c5d10d3352e6ec", 10191270502029, undefined, []); },
+  get uint8(): MDLTextureChannelEncoding { return callSDK<MDLTextureChannelEncoding>("ModelIO_a956b86ef7a76a8e", 10191270502029, undefined, []); },
   /** init?(rawValue: Int) */
-  init(rawValue: number): (MDLTextureChannelEncoding) | null { return callSDK<(MDLTextureChannelEncoding) | null>("ModelIO_d6c5d10d3352e6ec", 3326412270131205, undefined, [rawValue]); }
+  init(rawValue: number): (MDLTextureChannelEncoding) | null { return callSDK<(MDLTextureChannelEncoding) | null>("ModelIO_a956b86ef7a76a8e", 3326412270131205, undefined, [rawValue]); }
 };
 
 /**
@@ -2908,43 +2908,43 @@ export const MDLTextureChannelEncoding = {
  */
 export class MDLTextureFilter extends SDKHandle {
   /** init() */
-  static init(): MDLTextureFilter { return callSDK<MDLTextureFilter>("ModelIO_d6c5d10d3352e6ec", 2270923125371206, undefined, []); }
+  static init(): MDLTextureFilter { return callSDK<MDLTextureFilter>("ModelIO_a956b86ef7a76a8e", 2270923125371206, undefined, []); }
   /**
    * var magFilter: MDLMaterialTextureFilterMode { get set }
    * @availability iOS 9.0+
    */
-  get magFilter(): MDLMaterialTextureFilterMode { return callSDK<MDLMaterialTextureFilterMode>("ModelIO_d6c5d10d3352e6ec", 3756935622166531, this, []); }
-  set magFilter(value: MDLMaterialTextureFilterMode) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3173472079243400, this, [value]); }
+  get magFilter(): MDLMaterialTextureFilterMode { return callSDK<MDLMaterialTextureFilterMode>("ModelIO_a956b86ef7a76a8e", 3756935622166531, this, []); }
+  set magFilter(value: MDLMaterialTextureFilterMode) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3173472079243400, this, [value]); }
   /**
    * var minFilter: MDLMaterialTextureFilterMode { get set }
    * @availability iOS 9.0+
    */
-  get minFilter(): MDLMaterialTextureFilterMode { return callSDK<MDLMaterialTextureFilterMode>("ModelIO_d6c5d10d3352e6ec", 1061803166048257, this, []); }
-  set minFilter(value: MDLMaterialTextureFilterMode) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1169376119123486, this, [value]); }
+  get minFilter(): MDLMaterialTextureFilterMode { return callSDK<MDLMaterialTextureFilterMode>("ModelIO_a956b86ef7a76a8e", 1061803166048257, this, []); }
+  set minFilter(value: MDLMaterialTextureFilterMode) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1169376119123486, this, [value]); }
   /**
    * var mipFilter: MDLMaterialMipMapFilterMode { get set }
    * @availability iOS 9.0+
    */
-  get mipFilter(): MDLMaterialMipMapFilterMode { return callSDK<MDLMaterialMipMapFilterMode>("ModelIO_d6c5d10d3352e6ec", 1299830065035486, this, []); }
-  set mipFilter(value: MDLMaterialMipMapFilterMode) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1619306717926972, this, [value]); }
+  get mipFilter(): MDLMaterialMipMapFilterMode { return callSDK<MDLMaterialMipMapFilterMode>("ModelIO_a956b86ef7a76a8e", 1299830065035486, this, []); }
+  set mipFilter(value: MDLMaterialMipMapFilterMode) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1619306717926972, this, [value]); }
   /**
    * var rWrapMode: MDLMaterialTextureWrapMode { get set }
    * @availability iOS 9.0+
    */
-  get rWrapMode(): MDLMaterialTextureWrapMode { return callSDK<MDLMaterialTextureWrapMode>("ModelIO_d6c5d10d3352e6ec", 3780190927519876, this, []); }
-  set rWrapMode(value: MDLMaterialTextureWrapMode) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3393215878762884, this, [value]); }
+  get rWrapMode(): MDLMaterialTextureWrapMode { return callSDK<MDLMaterialTextureWrapMode>("ModelIO_a956b86ef7a76a8e", 3780190927519876, this, []); }
+  set rWrapMode(value: MDLMaterialTextureWrapMode) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3393215878762884, this, [value]); }
   /**
    * var sWrapMode: MDLMaterialTextureWrapMode { get set }
    * @availability iOS 9.0+
    */
-  get sWrapMode(): MDLMaterialTextureWrapMode { return callSDK<MDLMaterialTextureWrapMode>("ModelIO_d6c5d10d3352e6ec", 837528264576621, this, []); }
-  set sWrapMode(value: MDLMaterialTextureWrapMode) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2948356394887896, this, [value]); }
+  get sWrapMode(): MDLMaterialTextureWrapMode { return callSDK<MDLMaterialTextureWrapMode>("ModelIO_a956b86ef7a76a8e", 837528264576621, this, []); }
+  set sWrapMode(value: MDLMaterialTextureWrapMode) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2948356394887896, this, [value]); }
   /**
    * var tWrapMode: MDLMaterialTextureWrapMode { get set }
    * @availability iOS 9.0+
    */
-  get tWrapMode(): MDLMaterialTextureWrapMode { return callSDK<MDLMaterialTextureWrapMode>("ModelIO_d6c5d10d3352e6ec", 2604723976607156, this, []); }
-  set tWrapMode(value: MDLMaterialTextureWrapMode) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4278518298392875, this, [value]); }
+  get tWrapMode(): MDLMaterialTextureWrapMode { return callSDK<MDLMaterialTextureWrapMode>("ModelIO_a956b86ef7a76a8e", 2604723976607156, this, []); }
+  set tWrapMode(value: MDLMaterialTextureWrapMode) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4278518298392875, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLTextureFilter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "magFilter": true; "minFilter": true; "mipFilter": true; "rWrapMode": true; "sWrapMode": true; "tWrapMode": true };
 }
@@ -2955,25 +2955,25 @@ export class MDLTextureFilter extends SDKHandle {
  */
 export class MDLTextureSampler extends SDKHandle {
   /** init() */
-  static init(): MDLTextureSampler { return callSDK<MDLTextureSampler>("ModelIO_d6c5d10d3352e6ec", 2196720974119520, undefined, []); }
+  static init(): MDLTextureSampler { return callSDK<MDLTextureSampler>("ModelIO_a956b86ef7a76a8e", 2196720974119520, undefined, []); }
   /**
    * var hardwareFilter: MDLTextureFilter? { get set }
    * @availability iOS 9.0+
    */
-  get hardwareFilter(): (MDLTextureFilter) | null { return callSDK<(MDLTextureFilter) | null>("ModelIO_d6c5d10d3352e6ec", 1626073991066728, this, []); }
-  set hardwareFilter(value: (MDLTextureFilter) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3427560827409582, this, [value]); }
+  get hardwareFilter(): (MDLTextureFilter) | null { return callSDK<(MDLTextureFilter) | null>("ModelIO_a956b86ef7a76a8e", 1626073991066728, this, []); }
+  set hardwareFilter(value: (MDLTextureFilter) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3427560827409582, this, [value]); }
   /**
    * var texture: MDLTexture? { get set }
    * @availability iOS 9.0+
    */
-  get texture(): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_d6c5d10d3352e6ec", 3052768379242758, this, []); }
-  set texture(value: (MDLTexture) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3339125500780312, this, [value]); }
+  get texture(): (MDLTexture) | null { return callSDK<(MDLTexture) | null>("ModelIO_a956b86ef7a76a8e", 3052768379242758, this, []); }
+  set texture(value: (MDLTexture) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3339125500780312, this, [value]); }
   /**
    * var transform: MDLTransform? { get set }
    * @availability iOS 9.0+
    */
-  get transform(): (MDLTransform) | null { return callSDK<(MDLTransform) | null>("ModelIO_d6c5d10d3352e6ec", 3735873798957416, this, []); }
-  set transform(value: (MDLTransform) | null) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1029586542575516, this, [value]); }
+  get transform(): (MDLTransform) | null { return callSDK<(MDLTransform) | null>("ModelIO_a956b86ef7a76a8e", 3735873798957416, this, []); }
+  set transform(value: (MDLTransform) | null) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1029586542575516, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLTextureSampler": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hardwareFilter": true; "texture": true; "transform": true };
 }
@@ -2987,112 +2987,112 @@ export class MDLTransform extends SDKHandle {
    * init()
    * @availability iOS 9.0+
    */
-  static init(): MDLTransform { return callSDK<MDLTransform>("ModelIO_d6c5d10d3352e6ec", 901756319115305, undefined, []); }
+  static init(): MDLTransform { return callSDK<MDLTransform>("ModelIO_a956b86ef7a76a8e", 901756319115305, undefined, []); }
   /**
    * convenience init(identity: ())
    * @availability iOS 9.0+
    * @deprecated iOS 11.0
    */
-  static initIdentity(identity: void): MDLTransform { return callSDK<MDLTransform>("ModelIO_d6c5d10d3352e6ec", 1743291409361906, undefined, [identity]); }
+  static initIdentity(identity: void): MDLTransform { return callSDK<MDLTransform>("ModelIO_a956b86ef7a76a8e", 1743291409361906, undefined, [identity]); }
   /**
    * convenience init(matrix: matrix_float4x4)
    * @availability iOS 9.0+
    */
-  static initMatrix(matrix: SDKHandle): MDLTransform { return callSDK<MDLTransform>("ModelIO_d6c5d10d3352e6ec", 2731078445955257, undefined, [matrix]); }
+  static initMatrix(matrix: SDKHandle): MDLTransform { return callSDK<MDLTransform>("ModelIO_a956b86ef7a76a8e", 2731078445955257, undefined, [matrix]); }
   /**
    * convenience init(matrix: matrix_float4x4, resetsTransform: Bool)
    * @availability iOS 9.0+
    */
-  static initMatrixResetsTransform(matrix: SDKHandle, resetsTransform: boolean): MDLTransform { return callSDK<MDLTransform>("ModelIO_d6c5d10d3352e6ec", 4271457491231657, undefined, [matrix, resetsTransform]); }
+  static initMatrixResetsTransform(matrix: SDKHandle, resetsTransform: boolean): MDLTransform { return callSDK<MDLTransform>("ModelIO_a956b86ef7a76a8e", 4271457491231657, undefined, [matrix, resetsTransform]); }
   /**
    * convenience init(transformComponent component: any MDLTransformComponent)
    * @availability iOS 9.0+
    */
-  static initTransformComponent(component: SDKHandle): MDLTransform { return callSDK<MDLTransform>("ModelIO_d6c5d10d3352e6ec", 3951882711706734, undefined, [component]); }
+  static initTransformComponent(component: SDKHandle): MDLTransform { return callSDK<MDLTransform>("ModelIO_a956b86ef7a76a8e", 3951882711706734, undefined, [component]); }
   /**
    * convenience init(transformComponent component: any MDLTransformComponent, resetsTransform: Bool)
    * @availability iOS 9.0+
    */
-  static initTransformComponentResetsTransform(component: SDKHandle, resetsTransform: boolean): MDLTransform { return callSDK<MDLTransform>("ModelIO_d6c5d10d3352e6ec", 2251620333808832, undefined, [component, resetsTransform]); }
+  static initTransformComponentResetsTransform(component: SDKHandle, resetsTransform: boolean): MDLTransform { return callSDK<MDLTransform>("ModelIO_a956b86ef7a76a8e", 2251620333808832, undefined, [component, resetsTransform]); }
   /**
    * func rotation(atTime time: TimeInterval) -> vector_float3
    * @availability iOS 9.0+
    */
-  rotationAtTime(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 1451398394437026, this, [time]); }
+  rotationAtTime(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 1451398394437026, this, [time]); }
   /**
    * func rotationMatrix(atTime time: TimeInterval) -> matrix_float4x4
    * @availability iOS 9.0+
    */
-  rotationMatrix(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 4443584011533647, this, [time]); }
+  rotationMatrix(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 4443584011533647, this, [time]); }
   /**
    * func scale(atTime time: TimeInterval) -> vector_float3
    * @availability iOS 9.0+
    */
-  scaleAtTime(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 1701683521308591, this, [time]); }
+  scaleAtTime(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 1701683521308591, this, [time]); }
   /**
    * func setIdentity()
    * @availability iOS 9.0+
    */
-  setIdentity(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1359254601176000, this, []); }
+  setIdentity(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1359254601176000, this, []); }
   /**
    * func setMatrix(_ matrix: matrix_float4x4, forTime time: TimeInterval)
    * @availability iOS 11.0+
    */
-  setMatrix(matrix: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3322094184764329, this, [matrix, time]); }
+  setMatrix(matrix: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3322094184764329, this, [matrix, time]); }
   /**
    * func setRotation(_ rotation: vector_float3, forTime time: TimeInterval)
    * @availability iOS 9.0+
    */
-  setRotation(rotation: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1543446746175653, this, [rotation, time]); }
+  setRotation(rotation: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1543446746175653, this, [rotation, time]); }
   /**
    * func setScale(_ scale: vector_float3, forTime time: TimeInterval)
    * @availability iOS 9.0+
    */
-  setScale(scale: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 264800235588553, this, [scale, time]); }
+  setScale(scale: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 264800235588553, this, [scale, time]); }
   /**
    * func setShear(_ shear: vector_float3, forTime time: TimeInterval)
    * @availability iOS 9.0+
    */
-  setShear(shear: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3358166550016294, this, [shear, time]); }
+  setShear(shear: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3358166550016294, this, [shear, time]); }
   /**
    * func setTranslation(_ translation: vector_float3, forTime time: TimeInterval)
    * @availability iOS 9.0+
    */
-  setTranslation(translation: SDKHandle, time: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1822452670569020, this, [translation, time]); }
+  setTranslation(translation: SDKHandle, time: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1822452670569020, this, [translation, time]); }
   /**
    * func shear(atTime time: TimeInterval) -> vector_float3
    * @availability iOS 9.0+
    */
-  shearAtTime(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2258242970031, this, [time]); }
+  shearAtTime(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2258242970031, this, [time]); }
   /**
    * func translation(atTime time: TimeInterval) -> vector_float3
    * @availability iOS 9.0+
    */
-  translationAtTime(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 4309935891614535, this, [time]); }
+  translationAtTime(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 4309935891614535, this, [time]); }
   /**
    * var rotation: vector_float3 { get set }
    * @availability iOS 9.0+
    */
-  get rotation(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 928610315232335, this, []); }
-  set rotation(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4357342400730736, this, [value]); }
+  get rotation(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 928610315232335, this, []); }
+  set rotation(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4357342400730736, this, [value]); }
   /**
    * var scale: vector_float3 { get set }
    * @availability iOS 9.0+
    */
-  get scale(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3047530716146886, this, []); }
-  set scale(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3215801867071158, this, [value]); }
+  get scale(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3047530716146886, this, []); }
+  set scale(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3215801867071158, this, [value]); }
   /**
    * var shear: vector_float3 { get set }
    * @availability iOS 9.0+
    */
-  get shear(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 4320797170116086, this, []); }
-  set shear(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1494621847302619, this, [value]); }
+  get shear(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 4320797170116086, this, []); }
+  set shear(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1494621847302619, this, [value]); }
   /**
    * var translation: vector_float3 { get set }
    * @availability iOS 9.0+
    */
-  get translation(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 251589309634359, this, []); }
-  set translation(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3415582310163471, this, [value]); }
+  get translation(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 251589309634359, this, []); }
+  set translation(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3415582310163471, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLTransform": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "rotation": true; "scale": true; "shear": true; "translation": true };
 }
@@ -3120,17 +3120,17 @@ export interface MDLTransformComponent {
  */
 export class MDLTransformMatrixOp extends SDKHandle {
   /** init() */
-  static init(): MDLTransformMatrixOp { return callSDK<MDLTransformMatrixOp>("ModelIO_d6c5d10d3352e6ec", 3879627566754490, undefined, []); }
+  static init(): MDLTransformMatrixOp { return callSDK<MDLTransformMatrixOp>("ModelIO_a956b86ef7a76a8e", 3879627566754490, undefined, []); }
   /**
    * var animatedValue: MDLAnimatedMatrix4x4 { get }
    * @availability iOS 11.0+
    */
-  get animatedValue(): MDLAnimatedMatrix4x4 { return callSDK<MDLAnimatedMatrix4x4>("ModelIO_d6c5d10d3352e6ec", 3603022860608567, this, []); }
+  get animatedValue(): MDLAnimatedMatrix4x4 { return callSDK<MDLAnimatedMatrix4x4>("ModelIO_a956b86ef7a76a8e", 3603022860608567, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 11.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1836711872175537, this, []); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 1836711872175537, this, []); }
   declare readonly $type: { "c:objc(cs)MDLTransformMatrixOp": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animatedValue": true; "name": true };
 }
@@ -3162,7 +3162,7 @@ export type MDLTransformOpRotationOrder = "XYZ" | "XZY" | "YXZ" | "YZX" | "ZXY" 
 
 export const MDLTransformOpRotationOrder = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLTransformOpRotationOrder) | null { return callSDK<(MDLTransformOpRotationOrder) | null>("ModelIO_d6c5d10d3352e6ec", 3165629606210836, undefined, [rawValue]); }
+  init(rawValue: number): (MDLTransformOpRotationOrder) | null { return callSDK<(MDLTransformOpRotationOrder) | null>("ModelIO_a956b86ef7a76a8e", 3165629606210836, undefined, [rawValue]); }
 };
 
 /**
@@ -3171,17 +3171,17 @@ export const MDLTransformOpRotationOrder = {
  */
 export class MDLTransformOrientOp extends SDKHandle {
   /** init() */
-  static init(): MDLTransformOrientOp { return callSDK<MDLTransformOrientOp>("ModelIO_d6c5d10d3352e6ec", 257325679219080, undefined, []); }
+  static init(): MDLTransformOrientOp { return callSDK<MDLTransformOrientOp>("ModelIO_a956b86ef7a76a8e", 257325679219080, undefined, []); }
   /**
    * var animatedValue: MDLAnimatedQuaternion { get }
    * @availability iOS 12.0+
    */
-  get animatedValue(): MDLAnimatedQuaternion { return callSDK<MDLAnimatedQuaternion>("ModelIO_d6c5d10d3352e6ec", 3297506553620302, this, []); }
+  get animatedValue(): MDLAnimatedQuaternion { return callSDK<MDLAnimatedQuaternion>("ModelIO_a956b86ef7a76a8e", 3297506553620302, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 12.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 3540577885654660, this, []); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 3540577885654660, this, []); }
   declare readonly $type: { "c:objc(cs)MDLTransformOrientOp": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animatedValue": true; "name": true };
 }
@@ -3192,17 +3192,17 @@ export class MDLTransformOrientOp extends SDKHandle {
  */
 export class MDLTransformRotateOp extends SDKHandle {
   /** init() */
-  static init(): MDLTransformRotateOp { return callSDK<MDLTransformRotateOp>("ModelIO_d6c5d10d3352e6ec", 52299514206227, undefined, []); }
+  static init(): MDLTransformRotateOp { return callSDK<MDLTransformRotateOp>("ModelIO_a956b86ef7a76a8e", 52299514206227, undefined, []); }
   /**
    * var animatedValue: MDLAnimatedVector3 { get }
    * @availability iOS 11.0+
    */
-  get animatedValue(): MDLAnimatedVector3 { return callSDK<MDLAnimatedVector3>("ModelIO_d6c5d10d3352e6ec", 1890497445640893, this, []); }
+  get animatedValue(): MDLAnimatedVector3 { return callSDK<MDLAnimatedVector3>("ModelIO_a956b86ef7a76a8e", 1890497445640893, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 11.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 956712857439335, this, []); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 956712857439335, this, []); }
   declare readonly $type: { "c:objc(cs)MDLTransformRotateOp": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animatedValue": true; "name": true };
 }
@@ -3213,17 +3213,17 @@ export class MDLTransformRotateOp extends SDKHandle {
  */
 export class MDLTransformRotateXOp extends SDKHandle {
   /** init() */
-  static init(): MDLTransformRotateXOp { return callSDK<MDLTransformRotateXOp>("ModelIO_d6c5d10d3352e6ec", 1282123868949305, undefined, []); }
+  static init(): MDLTransformRotateXOp { return callSDK<MDLTransformRotateXOp>("ModelIO_a956b86ef7a76a8e", 1282123868949305, undefined, []); }
   /**
    * var animatedValue: MDLAnimatedScalar { get }
    * @availability iOS 11.0+
    */
-  get animatedValue(): MDLAnimatedScalar { return callSDK<MDLAnimatedScalar>("ModelIO_d6c5d10d3352e6ec", 485711223723094, this, []); }
+  get animatedValue(): MDLAnimatedScalar { return callSDK<MDLAnimatedScalar>("ModelIO_a956b86ef7a76a8e", 485711223723094, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 11.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1119439041924923, this, []); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 1119439041924923, this, []); }
   declare readonly $type: { "c:objc(cs)MDLTransformRotateXOp": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animatedValue": true; "name": true };
 }
@@ -3234,17 +3234,17 @@ export class MDLTransformRotateXOp extends SDKHandle {
  */
 export class MDLTransformRotateYOp extends SDKHandle {
   /** init() */
-  static init(): MDLTransformRotateYOp { return callSDK<MDLTransformRotateYOp>("ModelIO_d6c5d10d3352e6ec", 3925265323936182, undefined, []); }
+  static init(): MDLTransformRotateYOp { return callSDK<MDLTransformRotateYOp>("ModelIO_a956b86ef7a76a8e", 3925265323936182, undefined, []); }
   /**
    * var animatedValue: MDLAnimatedScalar { get }
    * @availability iOS 11.0+
    */
-  get animatedValue(): MDLAnimatedScalar { return callSDK<MDLAnimatedScalar>("ModelIO_d6c5d10d3352e6ec", 241451266440329, this, []); }
+  get animatedValue(): MDLAnimatedScalar { return callSDK<MDLAnimatedScalar>("ModelIO_a956b86ef7a76a8e", 241451266440329, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 11.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1105389707303368, this, []); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 1105389707303368, this, []); }
   declare readonly $type: { "c:objc(cs)MDLTransformRotateYOp": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animatedValue": true; "name": true };
 }
@@ -3255,17 +3255,17 @@ export class MDLTransformRotateYOp extends SDKHandle {
  */
 export class MDLTransformRotateZOp extends SDKHandle {
   /** init() */
-  static init(): MDLTransformRotateZOp { return callSDK<MDLTransformRotateZOp>("ModelIO_d6c5d10d3352e6ec", 2580356681277514, undefined, []); }
+  static init(): MDLTransformRotateZOp { return callSDK<MDLTransformRotateZOp>("ModelIO_a956b86ef7a76a8e", 2580356681277514, undefined, []); }
   /**
    * var animatedValue: MDLAnimatedScalar { get }
    * @availability iOS 11.0+
    */
-  get animatedValue(): MDLAnimatedScalar { return callSDK<MDLAnimatedScalar>("ModelIO_d6c5d10d3352e6ec", 2846259564448574, this, []); }
+  get animatedValue(): MDLAnimatedScalar { return callSDK<MDLAnimatedScalar>("ModelIO_a956b86ef7a76a8e", 2846259564448574, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 11.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1722544615811239, this, []); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 1722544615811239, this, []); }
   declare readonly $type: { "c:objc(cs)MDLTransformRotateZOp": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animatedValue": true; "name": true };
 }
@@ -3276,17 +3276,17 @@ export class MDLTransformRotateZOp extends SDKHandle {
  */
 export class MDLTransformScaleOp extends SDKHandle {
   /** init() */
-  static init(): MDLTransformScaleOp { return callSDK<MDLTransformScaleOp>("ModelIO_d6c5d10d3352e6ec", 344932280648907, undefined, []); }
+  static init(): MDLTransformScaleOp { return callSDK<MDLTransformScaleOp>("ModelIO_a956b86ef7a76a8e", 344932280648907, undefined, []); }
   /**
    * var animatedValue: MDLAnimatedVector3 { get }
    * @availability iOS 11.0+
    */
-  get animatedValue(): MDLAnimatedVector3 { return callSDK<MDLAnimatedVector3>("ModelIO_d6c5d10d3352e6ec", 4357285866196042, this, []); }
+  get animatedValue(): MDLAnimatedVector3 { return callSDK<MDLAnimatedVector3>("ModelIO_a956b86ef7a76a8e", 4357285866196042, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 11.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 3466122357541485, this, []); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 3466122357541485, this, []); }
   declare readonly $type: { "c:objc(cs)MDLTransformScaleOp": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animatedValue": true; "name": true };
 }
@@ -3300,77 +3300,77 @@ export class MDLTransformStack extends SDKHandle {
    * func addMatrixOp(_ animatedValueName: String, inverse: Bool) -> MDLTransformMatrixOp
    * @availability iOS 11.0+
    */
-  addMatrixOp(animatedValueName: string, inverse: boolean): MDLTransformMatrixOp { return callSDK<MDLTransformMatrixOp>("ModelIO_d6c5d10d3352e6ec", 2678025651715767, this, [animatedValueName, inverse]); }
+  addMatrixOp(animatedValueName: string, inverse: boolean): MDLTransformMatrixOp { return callSDK<MDLTransformMatrixOp>("ModelIO_a956b86ef7a76a8e", 2678025651715767, this, [animatedValueName, inverse]); }
   /**
    * func addOrientOp(_ animatedValueName: String, inverse: Bool) -> MDLTransformOrientOp
    * @availability iOS 11.0+
    */
-  addOrientOp(animatedValueName: string, inverse: boolean): MDLTransformOrientOp { return callSDK<MDLTransformOrientOp>("ModelIO_d6c5d10d3352e6ec", 342986396959260, this, [animatedValueName, inverse]); }
+  addOrientOp(animatedValueName: string, inverse: boolean): MDLTransformOrientOp { return callSDK<MDLTransformOrientOp>("ModelIO_a956b86ef7a76a8e", 342986396959260, this, [animatedValueName, inverse]); }
   /**
    * func addRotateOp(_ animatedValueName: String, order: MDLTransformOpRotationOrder, inverse: Bool) -> MDLTransformRotateOp
    * @availability iOS 11.0+
    */
-  addRotateOp(animatedValueName: string, order: MDLTransformOpRotationOrder, inverse: boolean): MDLTransformRotateOp { return callSDK<MDLTransformRotateOp>("ModelIO_d6c5d10d3352e6ec", 4201198568962499, this, [animatedValueName, order, inverse]); }
+  addRotateOp(animatedValueName: string, order: MDLTransformOpRotationOrder, inverse: boolean): MDLTransformRotateOp { return callSDK<MDLTransformRotateOp>("ModelIO_a956b86ef7a76a8e", 4201198568962499, this, [animatedValueName, order, inverse]); }
   /**
    * func addRotateXOp(_ animatedValueName: String, inverse: Bool) -> MDLTransformRotateXOp
    * @availability iOS 11.0+
    */
-  addRotateXOp(animatedValueName: string, inverse: boolean): MDLTransformRotateXOp { return callSDK<MDLTransformRotateXOp>("ModelIO_d6c5d10d3352e6ec", 866878100606997, this, [animatedValueName, inverse]); }
+  addRotateXOp(animatedValueName: string, inverse: boolean): MDLTransformRotateXOp { return callSDK<MDLTransformRotateXOp>("ModelIO_a956b86ef7a76a8e", 866878100606997, this, [animatedValueName, inverse]); }
   /**
    * func addRotateYOp(_ animatedValueName: String, inverse: Bool) -> MDLTransformRotateYOp
    * @availability iOS 11.0+
    */
-  addRotateYOp(animatedValueName: string, inverse: boolean): MDLTransformRotateYOp { return callSDK<MDLTransformRotateYOp>("ModelIO_d6c5d10d3352e6ec", 2437626528458961, this, [animatedValueName, inverse]); }
+  addRotateYOp(animatedValueName: string, inverse: boolean): MDLTransformRotateYOp { return callSDK<MDLTransformRotateYOp>("ModelIO_a956b86ef7a76a8e", 2437626528458961, this, [animatedValueName, inverse]); }
   /**
    * func addRotateZOp(_ animatedValueName: String, inverse: Bool) -> MDLTransformRotateZOp
    * @availability iOS 11.0+
    */
-  addRotateZOp(animatedValueName: string, inverse: boolean): MDLTransformRotateZOp { return callSDK<MDLTransformRotateZOp>("ModelIO_d6c5d10d3352e6ec", 2845130658407218, this, [animatedValueName, inverse]); }
+  addRotateZOp(animatedValueName: string, inverse: boolean): MDLTransformRotateZOp { return callSDK<MDLTransformRotateZOp>("ModelIO_a956b86ef7a76a8e", 2845130658407218, this, [animatedValueName, inverse]); }
   /**
    * func addScaleOp(_ animatedValueName: String, inverse: Bool) -> MDLTransformScaleOp
    * @availability iOS 11.0+
    */
-  addScaleOp(animatedValueName: string, inverse: boolean): MDLTransformScaleOp { return callSDK<MDLTransformScaleOp>("ModelIO_d6c5d10d3352e6ec", 4153352596742622, this, [animatedValueName, inverse]); }
+  addScaleOp(animatedValueName: string, inverse: boolean): MDLTransformScaleOp { return callSDK<MDLTransformScaleOp>("ModelIO_a956b86ef7a76a8e", 4153352596742622, this, [animatedValueName, inverse]); }
   /**
    * func addTranslateOp(_ animatedValueName: String, inverse: Bool) -> MDLTransformTranslateOp
    * @availability iOS 11.0+
    */
-  addTranslateOp(animatedValueName: string, inverse: boolean): MDLTransformTranslateOp { return callSDK<MDLTransformTranslateOp>("ModelIO_d6c5d10d3352e6ec", 3831912118138332, this, [animatedValueName, inverse]); }
+  addTranslateOp(animatedValueName: string, inverse: boolean): MDLTransformTranslateOp { return callSDK<MDLTransformTranslateOp>("ModelIO_a956b86ef7a76a8e", 3831912118138332, this, [animatedValueName, inverse]); }
   /**
    * func animatedValue(withName name: String) -> MDLAnimatedValue
    * @availability iOS 11.0+
    */
-  animatedValue(name: string): MDLAnimatedValue { return callSDK<MDLAnimatedValue>("ModelIO_d6c5d10d3352e6ec", 1554399722749878, this, [name]); }
+  animatedValue(name: string): MDLAnimatedValue { return callSDK<MDLAnimatedValue>("ModelIO_a956b86ef7a76a8e", 1554399722749878, this, [name]); }
   /**
    * func count() -> Int
    * @availability iOS 11.0+
    */
-  count(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2670734900623199, this, []); }
+  count(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2670734900623199, this, []); }
   /**
    * func double4x4(atTime time: TimeInterval) -> matrix_double4x4
    * @availability iOS 11.0+
    */
-  double4x4(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3139839239750256, this, [time]); }
+  double4x4(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3139839239750256, this, [time]); }
   /**
    * func float4x4(atTime time: TimeInterval) -> matrix_float4x4
    * @availability iOS 11.0+
    */
-  float4x4(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3269741133144009, this, [time]); }
+  float4x4(time: number): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3269741133144009, this, [time]); }
   /**
    * init()
    * @availability iOS 11.0+
    */
-  static init(): MDLTransformStack { return callSDK<MDLTransformStack>("ModelIO_d6c5d10d3352e6ec", 4152706782138554, undefined, []); }
+  static init(): MDLTransformStack { return callSDK<MDLTransformStack>("ModelIO_a956b86ef7a76a8e", 4152706782138554, undefined, []); }
   /**
    * var keyTimes: [NSNumber] { get }
    * @availability iOS 11.0+
    */
-  get keyTimes(): $SDK0 { return callSDK<$SDK0>("ModelIO_d6c5d10d3352e6ec", 2637306843735667, this, []); }
+  get keyTimes(): $SDK0 { return callSDK<$SDK0>("ModelIO_a956b86ef7a76a8e", 2637306843735667, this, []); }
   /**
    * var transformOps: [any MDLTransformOp] { get }
    * @availability iOS 11.0+
    */
-  get transformOps(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_d6c5d10d3352e6ec", 2549027426900918, this, []); }
+  get transformOps(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("ModelIO_a956b86ef7a76a8e", 2549027426900918, this, []); }
   declare readonly $type: { "c:objc(cs)MDLTransformStack": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "keyTimes": true; "transformOps": true };
 }
@@ -3381,17 +3381,17 @@ export class MDLTransformStack extends SDKHandle {
  */
 export class MDLTransformTranslateOp extends SDKHandle {
   /** init() */
-  static init(): MDLTransformTranslateOp { return callSDK<MDLTransformTranslateOp>("ModelIO_d6c5d10d3352e6ec", 2745862106362781, undefined, []); }
+  static init(): MDLTransformTranslateOp { return callSDK<MDLTransformTranslateOp>("ModelIO_a956b86ef7a76a8e", 2745862106362781, undefined, []); }
   /**
    * var animatedValue: MDLAnimatedVector3 { get }
    * @availability iOS 11.0+
    */
-  get animatedValue(): MDLAnimatedVector3 { return callSDK<MDLAnimatedVector3>("ModelIO_d6c5d10d3352e6ec", 1890558104636209, this, []); }
+  get animatedValue(): MDLAnimatedVector3 { return callSDK<MDLAnimatedVector3>("ModelIO_a956b86ef7a76a8e", 1890558104636209, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 11.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 291313348086383, this, []); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 291313348086383, this, []); }
   declare readonly $type: { "c:objc(cs)MDLTransformTranslateOp": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animatedValue": true; "name": true };
 }
@@ -3405,13 +3405,13 @@ export class MDLURLTexture extends (MDLTexture as unknown as Omit<typeof MDLText
    * init(url URL: URL, name: String?)
    * @availability iOS 9.0+
    */
-  static init(URL: string, name?: (string) | null): MDLURLTexture { return callSDK<MDLURLTexture>("ModelIO_d6c5d10d3352e6ec", 4333833399922338, undefined, [URL, name]); }
+  static init(URL: string, name?: (string) | null): MDLURLTexture { return callSDK<MDLURLTexture>("ModelIO_a956b86ef7a76a8e", 4333833399922338, undefined, [URL, name]); }
   /**
    * var url: URL { get set }
    * @availability iOS 9.0+
    */
-  get url(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1671794019843104, this, []); }
-  set url(value: string) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4264673743901750, this, [value]); }
+  get url(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 1671794019843104, this, []); }
+  set url(value: string) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4264673743901750, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLURLTexture": true; "c:objc(cs)MDLTexture": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelCount": true; "channelEncoding": true; "dimensions": true; "hasAlphaValues": true; "isCube": true; "mipLevelCount": true; "rowStride": true; "url": true };
 }
@@ -3425,9 +3425,9 @@ export class MDLUtility extends SDKHandle {
    * class func convert(toUSDZ inputURL: URL, writeTo outputURL: URL)
    * @availability iOS 18.0+
    */
-  static convert(inputURL: string, outputURL: string): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1275621214820061, undefined, [inputURL, outputURL]); }
+  static convert(inputURL: string, outputURL: string): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 1275621214820061, undefined, [inputURL, outputURL]); }
   /** init() */
-  static init(): MDLUtility { return callSDK<MDLUtility>("ModelIO_d6c5d10d3352e6ec", 3864351372049255, undefined, []); }
+  static init(): MDLUtility { return callSDK<MDLUtility>("ModelIO_a956b86ef7a76a8e", 3864351372049255, undefined, []); }
   declare readonly $type: { "c:objc(cs)MDLUtility": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3440,43 +3440,43 @@ export class MDLVertexAttribute extends SDKHandle {
    * init(name: String, format: MDLVertexFormat, offset: Int, bufferIndex: Int)
    * @availability iOS 9.0+
    */
-  static init(name: string, format: MDLVertexFormat, offset: number, bufferIndex: number): MDLVertexAttribute { return callSDK<MDLVertexAttribute>("ModelIO_d6c5d10d3352e6ec", 4299276145245052, undefined, [name, format, offset, bufferIndex]); }
+  static init(name: string, format: MDLVertexFormat, offset: number, bufferIndex: number): MDLVertexAttribute { return callSDK<MDLVertexAttribute>("ModelIO_a956b86ef7a76a8e", 4299276145245052, undefined, [name, format, offset, bufferIndex]); }
   /**
    * var bufferIndex: Int { get set }
    * @availability iOS 9.0+
    */
-  get bufferIndex(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3343349881864592, this, []); }
-  set bufferIndex(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1116024238620763, this, [value]); }
+  get bufferIndex(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3343349881864592, this, []); }
+  set bufferIndex(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1116024238620763, this, [value]); }
   /**
    * var format: MDLVertexFormat { get set }
    * @availability iOS 9.0+
    */
-  get format(): MDLVertexFormat { return callSDK<MDLVertexFormat>("ModelIO_d6c5d10d3352e6ec", 4434925848400730, this, []); }
-  set format(value: MDLVertexFormat) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 617415936713722, this, [value]); }
+  get format(): MDLVertexFormat { return callSDK<MDLVertexFormat>("ModelIO_a956b86ef7a76a8e", 4434925848400730, this, []); }
+  set format(value: MDLVertexFormat) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 617415936713722, this, [value]); }
   /**
    * var initializationValue: vector_float4 { get set }
    * @availability iOS 9.0+
    */
-  get initializationValue(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 931282974676863, this, []); }
-  set initializationValue(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1284951908530012, this, [value]); }
+  get initializationValue(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 931282974676863, this, []); }
+  set initializationValue(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1284951908530012, this, [value]); }
   /**
    * var name: String { get set }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("ModelIO_d6c5d10d3352e6ec", 3217191598033382, this, []); }
-  set name(value: string) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4119045120958418, this, [value]); }
+  get name(): string { return callSDK<string>("ModelIO_a956b86ef7a76a8e", 3217191598033382, this, []); }
+  set name(value: string) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4119045120958418, this, [value]); }
   /**
    * var offset: Int { get set }
    * @availability iOS 9.0+
    */
-  get offset(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 621798192260088, this, []); }
-  set offset(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1687199290096439, this, [value]); }
+  get offset(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 621798192260088, this, []); }
+  set offset(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1687199290096439, this, [value]); }
   /**
    * var time: TimeInterval { get set }
    * @availability iOS 9.0+
    */
-  get time(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 3047516314839220, this, []); }
-  set time(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1009684102281278, this, [value]); }
+  get time(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 3047516314839220, this, []); }
+  set time(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1009684102281278, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLVertexAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bufferIndex": true; "format": true; "initializationValue": true; "name": true; "offset": true; "time": true };
 }
@@ -3487,37 +3487,37 @@ export class MDLVertexAttribute extends SDKHandle {
  */
 export class MDLVertexAttributeData extends SDKHandle {
   /** init() */
-  static init(): MDLVertexAttributeData { return callSDK<MDLVertexAttributeData>("ModelIO_d6c5d10d3352e6ec", 3060295138670632, undefined, []); }
+  static init(): MDLVertexAttributeData { return callSDK<MDLVertexAttributeData>("ModelIO_a956b86ef7a76a8e", 3060295138670632, undefined, []); }
   /**
    * var bufferSize: Int { get set }
    * @availability iOS 11.0+
    */
-  get bufferSize(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2037275058003111, this, []); }
-  set bufferSize(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2511206437316728, this, [value]); }
+  get bufferSize(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2037275058003111, this, []); }
+  set bufferSize(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2511206437316728, this, [value]); }
   /**
    * var dataStart: UnsafeMutableRawPointer { get set }
    * @availability iOS 9.0+
    */
-  get dataStart(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2667476921636522, this, []); }
-  set dataStart(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1114456415340199, this, [value]); }
+  get dataStart(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2667476921636522, this, []); }
+  set dataStart(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1114456415340199, this, [value]); }
   /**
    * var format: MDLVertexFormat { get set }
    * @availability iOS 9.0+
    */
-  get format(): MDLVertexFormat { return callSDK<MDLVertexFormat>("ModelIO_d6c5d10d3352e6ec", 1062629555110526, this, []); }
-  set format(value: MDLVertexFormat) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2664273813199194, this, [value]); }
+  get format(): MDLVertexFormat { return callSDK<MDLVertexFormat>("ModelIO_a956b86ef7a76a8e", 1062629555110526, this, []); }
+  set format(value: MDLVertexFormat) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2664273813199194, this, [value]); }
   /**
    * var map: MDLMeshBufferMap { get set }
    * @availability iOS 9.0+
    */
-  get map(): MDLMeshBufferMap { return callSDK<MDLMeshBufferMap>("ModelIO_d6c5d10d3352e6ec", 458049734884057, this, []); }
-  set map(value: MDLMeshBufferMap) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2359422301117022, this, [value]); }
+  get map(): MDLMeshBufferMap { return callSDK<MDLMeshBufferMap>("ModelIO_a956b86ef7a76a8e", 458049734884057, this, []); }
+  set map(value: MDLMeshBufferMap) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 2359422301117022, this, [value]); }
   /**
    * var stride: Int { get set }
    * @availability iOS 9.0+
    */
-  get stride(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 4057028549441675, this, []); }
-  set stride(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4086351266405151, this, [value]); }
+  get stride(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 4057028549441675, this, []); }
+  set stride(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4086351266405151, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLVertexAttributeData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bufferSize": true; "dataStart": true; "format": true; "map": true; "stride": true };
 }
@@ -3531,13 +3531,13 @@ export class MDLVertexBufferLayout extends SDKHandle {
    * init(stride: Int)
    * @availability iOS 9.0+
    */
-  static init(stride: number): MDLVertexBufferLayout { return callSDK<MDLVertexBufferLayout>("ModelIO_d6c5d10d3352e6ec", 4106413045406088, undefined, [stride]); }
+  static init(stride: number): MDLVertexBufferLayout { return callSDK<MDLVertexBufferLayout>("ModelIO_a956b86ef7a76a8e", 4106413045406088, undefined, [stride]); }
   /**
    * var stride: Int { get set }
    * @availability iOS 9.0+
    */
-  get stride(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 2393721291257142, this, []); }
-  set stride(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 1409430813086316, this, [value]); }
+  get stride(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 2393721291257142, this, []); }
+  set stride(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 1409430813086316, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLVertexBufferLayout": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "stride": true };
 }
@@ -3551,49 +3551,49 @@ export class MDLVertexDescriptor extends SDKHandle {
    * func addOrReplaceAttribute(_ attribute: MDLVertexAttribute)
    * @availability iOS 9.0+
    */
-  addOrReplaceAttribute(attribute: MDLVertexAttribute): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3645662159268950, this, [attribute]); }
+  addOrReplaceAttribute(attribute: MDLVertexAttribute): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3645662159268950, this, [attribute]); }
   /**
    * func attributeNamed(_ name: String) -> MDLVertexAttribute?
    * @availability iOS 9.0+
    */
-  attributeNamed(name: string): (MDLVertexAttribute) | null { return callSDK<(MDLVertexAttribute) | null>("ModelIO_d6c5d10d3352e6ec", 85840042493361, this, [name]); }
+  attributeNamed(name: string): (MDLVertexAttribute) | null { return callSDK<(MDLVertexAttribute) | null>("ModelIO_a956b86ef7a76a8e", 85840042493361, this, [name]); }
   /**
    * init(vertexDescriptor: MDLVertexDescriptor)
    * @availability iOS 9.0+
    */
-  static init(vertexDescriptor: MDLVertexDescriptor): MDLVertexDescriptor { return callSDK<MDLVertexDescriptor>("ModelIO_d6c5d10d3352e6ec", 1866270071220260, undefined, [vertexDescriptor]); }
+  static init(vertexDescriptor: MDLVertexDescriptor): MDLVertexDescriptor { return callSDK<MDLVertexDescriptor>("ModelIO_a956b86ef7a76a8e", 1866270071220260, undefined, [vertexDescriptor]); }
   /**
    * func removeAttributeNamed(_ name: String)
    * @availability iOS 9.0+
    */
-  removeAttributeNamed(name: string): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 460050542776414, this, [name]); }
+  removeAttributeNamed(name: string): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 460050542776414, this, [name]); }
   /**
    * func reset()
    * @availability iOS 9.0+
    */
-  reset(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3982874024874143, this, []); }
+  reset(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3982874024874143, this, []); }
   /**
    * func setPackedOffsets()
    * @availability iOS 9.0+
    */
-  setPackedOffsets(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4059775463450550, this, []); }
+  setPackedOffsets(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 4059775463450550, this, []); }
   /**
    * func setPackedStrides()
    * @availability iOS 9.0+
    */
-  setPackedStrides(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3479671947602379, this, []); }
+  setPackedStrides(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3479671947602379, this, []); }
   /**
    * var attributes: NSMutableArray { get set }
    * @availability iOS 9.0+
    */
-  get attributes(): _Foundation_NSMutableArray { return callSDK<_Foundation_NSMutableArray>("ModelIO_d6c5d10d3352e6ec", 4280577833235754, this, []); }
-  set attributes(value: _Foundation_NSMutableArray) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 53964538197045, this, [value]); }
+  get attributes(): _Foundation_NSMutableArray { return callSDK<_Foundation_NSMutableArray>("ModelIO_a956b86ef7a76a8e", 4280577833235754, this, []); }
+  set attributes(value: _Foundation_NSMutableArray) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 53964538197045, this, [value]); }
   /**
    * var layouts: NSMutableArray { get set }
    * @availability iOS 9.0+
    */
-  get layouts(): _Foundation_NSMutableArray { return callSDK<_Foundation_NSMutableArray>("ModelIO_d6c5d10d3352e6ec", 3939259656228421, this, []); }
-  set layouts(value: _Foundation_NSMutableArray) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4124469921785396, this, [value]); }
+  get layouts(): _Foundation_NSMutableArray { return callSDK<_Foundation_NSMutableArray>("ModelIO_a956b86ef7a76a8e", 3939259656228421, this, []); }
+  set layouts(value: _Foundation_NSMutableArray) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 4124469921785396, this, [value]); }
   declare readonly $type: { "c:objc(cs)MDLVertexDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributes": true; "layouts": true };
 }
@@ -3603,7 +3603,7 @@ export type MDLVertexFormat = "invalid" | "packedBit" | "uCharBits" | "charBits"
 
 export const MDLVertexFormat = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MDLVertexFormat) | null { return callSDK<(MDLVertexFormat) | null>("ModelIO_d6c5d10d3352e6ec", 1922718598372702, undefined, [rawValue]); }
+  init(rawValue: number): (MDLVertexFormat) | null { return callSDK<(MDLVertexFormat) | null>("ModelIO_a956b86ef7a76a8e", 1922718598372702, undefined, [rawValue]); }
 };
 
 /**
@@ -3615,124 +3615,124 @@ export class MDLVoxelArray extends (MDLObject as unknown as Omit<typeof MDLObjec
    * func coarseMesh() -> MDLMesh?
    * @availability iOS 9.0+
    */
-  coarseMesh(): (MDLMesh) | null { return callSDK<(MDLMesh) | null>("ModelIO_d6c5d10d3352e6ec", 1053532013375392, this, []); }
+  coarseMesh(): (MDLMesh) | null { return callSDK<(MDLMesh) | null>("ModelIO_a956b86ef7a76a8e", 1053532013375392, this, []); }
   /**
    * func coarseMesh(using allocator: (any MDLMeshBufferAllocator)?) -> MDLMesh?
    * @availability iOS 9.0+
    */
-  coarseMeshUsing(allocator?: (SDKHandle) | null): (MDLMesh) | null { return callSDK<(MDLMesh) | null>("ModelIO_d6c5d10d3352e6ec", 1427953691793296, this, [allocator]); }
+  coarseMeshUsing(allocator?: (SDKHandle) | null): (MDLMesh) | null { return callSDK<(MDLMesh) | null>("ModelIO_a956b86ef7a76a8e", 1427953691793296, this, [allocator]); }
   /**
    * func convertToSignedShellField()
    * @availability iOS 9.0+
    */
-  convertToSignedShellField(): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3416998746589518, this, []); }
+  convertToSignedShellField(): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 3416998746589518, this, []); }
   /**
    * func difference(with voxels: MDLVoxelArray)
    * @availability iOS 9.0+
    */
-  difference(voxels: MDLVoxelArray): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 4228043366228789, this, [voxels]); }
+  difference(voxels: MDLVoxelArray): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 4228043366228789, this, [voxels]); }
   /**
    * func index(ofSpatialLocation location: vector_float3) -> MDLVoxelIndex
    * @availability iOS 9.0+
    */
-  index(location: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 1929711774565646, this, [location]); }
+  index(location: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 1929711774565646, this, [location]); }
   /**
    * init(asset: MDLAsset, divisions: Int32, patchRadius: Float)
    * @availability iOS 9.0+
    */
-  static initAssetDivisionsPatchRadius(asset: MDLAsset, divisions: number, patchRadius: number): MDLVoxelArray { return callSDK<MDLVoxelArray>("ModelIO_d6c5d10d3352e6ec", 2116560761246022, undefined, [asset, divisions, patchRadius]); }
+  static initAssetDivisionsPatchRadius(asset: MDLAsset, divisions: number, patchRadius: number): MDLVoxelArray { return callSDK<MDLVoxelArray>("ModelIO_a956b86ef7a76a8e", 2116560761246022, undefined, [asset, divisions, patchRadius]); }
   /**
    * init(data voxelData: Data, boundingBox: MDLAxisAlignedBoundingBox, voxelExtent: Float)
    * @availability iOS 9.0+
    */
-  static initDataBoundingBoxVoxelExtent(voxelData: ArrayBuffer, boundingBox: MDLAxisAlignedBoundingBox, voxelExtent: number): MDLVoxelArray { return callSDK<MDLVoxelArray>("ModelIO_d6c5d10d3352e6ec", 2106800495612800, undefined, [voxelData, boundingBox, voxelExtent]); }
+  static initDataBoundingBoxVoxelExtent(voxelData: ArrayBuffer, boundingBox: MDLAxisAlignedBoundingBox, voxelExtent: number): MDLVoxelArray { return callSDK<MDLVoxelArray>("ModelIO_a956b86ef7a76a8e", 2106800495612800, undefined, [voxelData, boundingBox, voxelExtent]); }
   /**
    * func intersect(with voxels: MDLVoxelArray)
    * @availability iOS 9.0+
    */
-  intersect(voxels: MDLVoxelArray): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 369331598681566, this, [voxels]); }
+  intersect(voxels: MDLVoxelArray): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 369331598681566, this, [voxels]); }
   /**
    * func mesh(using allocator: (any MDLMeshBufferAllocator)?) -> MDLMesh?
    * @availability iOS 9.0+
    */
-  mesh(allocator?: (SDKHandle) | null): (MDLMesh) | null { return callSDK<(MDLMesh) | null>("ModelIO_d6c5d10d3352e6ec", 2215802836265711, this, [allocator]); }
+  mesh(allocator?: (SDKHandle) | null): (MDLMesh) | null { return callSDK<(MDLMesh) | null>("ModelIO_a956b86ef7a76a8e", 2215802836265711, this, [allocator]); }
   /**
    * func setVoxelAtIndex(_ index: MDLVoxelIndex)
    * @availability iOS 9.0+
    */
-  setVoxelAtIndex(index: SDKHandle): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 841013064821893, this, [index]); }
+  setVoxelAtIndex(index: SDKHandle): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 841013064821893, this, [index]); }
   /**
    * func setVoxelsFor(_ mesh: MDLMesh, divisions: Int32, patchRadius: Float)
    * @availability iOS 9.0+
    */
-  setVoxelsFor(mesh: MDLMesh, divisions: number, patchRadius: number): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 390570640373130, this, [mesh, divisions, patchRadius]); }
+  setVoxelsFor(mesh: MDLMesh, divisions: number, patchRadius: number): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 390570640373130, this, [mesh, divisions, patchRadius]); }
   /**
    * func spatialLocation(ofIndex index: MDLVoxelIndex) -> vector_float3
    * @availability iOS 9.0+
    */
-  spatialLocation(index: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 3660589494334477, this, [index]); }
+  spatialLocation(index: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 3660589494334477, this, [index]); }
   /**
    * func union(with voxels: MDLVoxelArray)
    * @availability iOS 9.0+
    */
-  union(voxels: MDLVoxelArray): void { return callSDK<void>("ModelIO_d6c5d10d3352e6ec", 2133710279731204, this, [voxels]); }
+  union(voxels: MDLVoxelArray): void { return callSDK<void>("ModelIO_a956b86ef7a76a8e", 2133710279731204, this, [voxels]); }
   /**
    * func voxelBoundingBox(atIndex index: MDLVoxelIndex) -> MDLAxisAlignedBoundingBox
    * @availability iOS 9.0+
    */
-  voxelBoundingBox(index: SDKHandle): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_d6c5d10d3352e6ec", 378931396074678, this, [index]); }
+  voxelBoundingBox(index: SDKHandle): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_a956b86ef7a76a8e", 378931396074678, this, [index]); }
   /**
    * func voxelExists(atIndex index: MDLVoxelIndex, allowAnyX: Bool, allowAnyY: Bool, allowAnyZ: Bool, allowAnyShell: Bool) -> Bool
    * @availability iOS 9.0+
    */
-  voxelExists(index: SDKHandle, allowAnyX: boolean, allowAnyY: boolean, allowAnyZ: boolean, allowAnyShell: boolean): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 3245376746144316, this, [index, allowAnyX, allowAnyY, allowAnyZ, allowAnyShell]); }
+  voxelExists(index: SDKHandle, allowAnyX: boolean, allowAnyY: boolean, allowAnyZ: boolean, allowAnyShell: boolean): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 3245376746144316, this, [index, allowAnyX, allowAnyY, allowAnyZ, allowAnyShell]); }
   /**
    * func voxelIndices() -> Data?
    * @availability iOS 9.0+
    */
-  voxelIndices(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_d6c5d10d3352e6ec", 660308369016313, this, []); }
+  voxelIndices(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_a956b86ef7a76a8e", 660308369016313, this, []); }
   /**
    * func voxels(within extent: MDLVoxelIndexExtent) -> Data?
    * @availability iOS 9.0+
    */
-  voxels(extent: MDLVoxelIndexExtent): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_d6c5d10d3352e6ec", 1163534262289104, this, [extent]); }
+  voxels(extent: MDLVoxelIndexExtent): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ModelIO_a956b86ef7a76a8e", 1163534262289104, this, [extent]); }
   /**
    * var boundingBox: MDLAxisAlignedBoundingBox { get }
    * @availability iOS 9.0+
    */
-  get boundingBox(): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_d6c5d10d3352e6ec", 3351681176240107, this, []); }
+  get boundingBox(): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_a956b86ef7a76a8e", 3351681176240107, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 9.0+
    */
-  get count(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 585448113843517, this, []); }
+  get count(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 585448113843517, this, []); }
   /**
    * var isValidSignedShellField: Bool { get }
    * @availability iOS 9.0+
    */
-  get isValidSignedShellField(): boolean { return callSDK<boolean>("ModelIO_d6c5d10d3352e6ec", 3179245006814492, this, []); }
+  get isValidSignedShellField(): boolean { return callSDK<boolean>("ModelIO_a956b86ef7a76a8e", 3179245006814492, this, []); }
   /**
    * var shellFieldExteriorThickness: Float { get set }
    * @availability iOS 9.0+
    */
-  get shellFieldExteriorThickness(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 1236977732511426, this, []); }
-  set shellFieldExteriorThickness(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3987849414403154, this, [value]); }
+  get shellFieldExteriorThickness(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 1236977732511426, this, []); }
+  set shellFieldExteriorThickness(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3987849414403154, this, [value]); }
   /**
    * var shellFieldInteriorThickness: Float { get set }
    * @availability iOS 9.0+
    */
-  get shellFieldInteriorThickness(): number { return callSDK<number>("ModelIO_d6c5d10d3352e6ec", 4051560045717863, this, []); }
-  set shellFieldInteriorThickness(value: number) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 543543881513858, this, [value]); }
+  get shellFieldInteriorThickness(): number { return callSDK<number>("ModelIO_a956b86ef7a76a8e", 4051560045717863, this, []); }
+  set shellFieldInteriorThickness(value: number) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 543543881513858, this, [value]); }
   /**
    * var voxelIndexExtent: MDLVoxelIndexExtent { get }
    * @availability iOS 9.0+
    */
-  get voxelIndexExtent(): MDLVoxelIndexExtent { return callSDK<MDLVoxelIndexExtent>("ModelIO_d6c5d10d3352e6ec", 4433330821365352, this, []); }
+  get voxelIndexExtent(): MDLVoxelIndexExtent { return callSDK<MDLVoxelIndexExtent>("ModelIO_a956b86ef7a76a8e", 4433330821365352, this, []); }
   /**
    * func boundingBox(atTime time: TimeInterval) -> MDLAxisAlignedBoundingBox
    * @availability iOS 9.0+
    */
-  boundingBox16697(time: number): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_d6c5d10d3352e6ec", 2592200373722635, this, [time]); }
+  boundingBox16697(time: number): MDLAxisAlignedBoundingBox { return callSDK<MDLAxisAlignedBoundingBox>("ModelIO_a956b86ef7a76a8e", 2592200373722635, this, [time]); }
   declare readonly $type: { "c:objc(cs)MDLVoxelArray": true; "c:objc(cs)MDLObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "children": true; "components": true; "hidden": true; "instance": true; "parent": true; "path": true; "transform": true; "boundingBox": true; "count": true; "isValidSignedShellField": true; "shellFieldExteriorThickness": true; "shellFieldInteriorThickness": true; "voxelIndexExtent": true };
 }
@@ -3743,175 +3743,175 @@ export type MDLVoxelIndex = SDKHandle;
 /** struct MDLVoxelIndexExtent */
 export class MDLVoxelIndexExtent extends SDKHandle {
   /** var maximumExtent: MDLVoxelIndex */
-  get maximumExtent(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 892950645098429, this, []); }
-  set maximumExtent(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 3329142799721934, this, [value]); }
+  get maximumExtent(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 892950645098429, this, []); }
+  set maximumExtent(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 3329142799721934, this, [value]); }
   /** var minimumExtent: MDLVoxelIndex */
-  get minimumExtent(): SDKHandle { return callSDK<SDKHandle>("ModelIO_d6c5d10d3352e6ec", 2279318845865379, this, []); }
-  set minimumExtent(value: SDKHandle) { callSDK<void>("ModelIO_d6c5d10d3352e6ec", 480779327688301, this, [value]); }
+  get minimumExtent(): SDKHandle { return callSDK<SDKHandle>("ModelIO_a956b86ef7a76a8e", 2279318845865379, this, []); }
+  set minimumExtent(value: SDKHandle) { callSDK<void>("ModelIO_a956b86ef7a76a8e", 480779327688301, this, [value]); }
   /** init(minimumExtent: MDLVoxelIndex, maximumExtent: MDLVoxelIndex) */
-  static initMinimumExtentMaximumExtent(minimumExtent: SDKHandle, maximumExtent: SDKHandle): MDLVoxelIndexExtent { return callSDK<MDLVoxelIndexExtent>("ModelIO_d6c5d10d3352e6ec", 4029555879450366, undefined, [minimumExtent, maximumExtent]); }
+  static initMinimumExtentMaximumExtent(minimumExtent: SDKHandle, maximumExtent: SDKHandle): MDLVoxelIndexExtent { return callSDK<MDLVoxelIndexExtent>("ModelIO_a956b86ef7a76a8e", 4029555879450366, undefined, [minimumExtent, maximumExtent]); }
   /** init() */
-  static init(): MDLVoxelIndexExtent { return callSDK<MDLVoxelIndexExtent>("ModelIO_d6c5d10d3352e6ec", 4194361119242599, undefined, []); }
+  static init(): MDLVoxelIndexExtent { return callSDK<MDLVoxelIndexExtent>("ModelIO_a956b86ef7a76a8e", 4194361119242599, undefined, []); }
   declare readonly $type: { "c:@SA@MDLVoxelIndexExtent": true };
 }
 
 /** let MDLVertexAttributeAnisotropy: String */
-export const MDLVertexAttributeAnisotropy: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1399291986657668, undefined, []);
+export const MDLVertexAttributeAnisotropy: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 1399291986657668, undefined, []);
 
 /** let MDLVertexAttributeBinormal: String */
-export const MDLVertexAttributeBinormal: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 430212081685710, undefined, []);
+export const MDLVertexAttributeBinormal: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 430212081685710, undefined, []);
 
 /** let MDLVertexAttributeBitangent: String */
-export const MDLVertexAttributeBitangent: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1200279697177106, undefined, []);
+export const MDLVertexAttributeBitangent: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 1200279697177106, undefined, []);
 
 /** let MDLVertexAttributeColor: String */
-export const MDLVertexAttributeColor: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 2849897127216390, undefined, []);
+export const MDLVertexAttributeColor: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 2849897127216390, undefined, []);
 
 /** let MDLVertexAttributeEdgeCrease: String */
-export const MDLVertexAttributeEdgeCrease: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 3458551543161759, undefined, []);
+export const MDLVertexAttributeEdgeCrease: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 3458551543161759, undefined, []);
 
 /** let MDLVertexAttributeJointIndices: String */
-export const MDLVertexAttributeJointIndices: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 4406968523253060, undefined, []);
+export const MDLVertexAttributeJointIndices: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 4406968523253060, undefined, []);
 
 /** let MDLVertexAttributeJointWeights: String */
-export const MDLVertexAttributeJointWeights: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 2095142946799483, undefined, []);
+export const MDLVertexAttributeJointWeights: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 2095142946799483, undefined, []);
 
 /** let MDLVertexAttributeNormal: String */
-export const MDLVertexAttributeNormal: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 4495561567762256, undefined, []);
+export const MDLVertexAttributeNormal: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 4495561567762256, undefined, []);
 
 /** let MDLVertexAttributeOcclusionValue: String */
-export const MDLVertexAttributeOcclusionValue: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 2161783986460218, undefined, []);
+export const MDLVertexAttributeOcclusionValue: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 2161783986460218, undefined, []);
 
 /** let MDLVertexAttributePosition: String */
-export const MDLVertexAttributePosition: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 3262491481818120, undefined, []);
+export const MDLVertexAttributePosition: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 3262491481818120, undefined, []);
 
 /** let MDLVertexAttributeShadingBasisU: String */
-export const MDLVertexAttributeShadingBasisU: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 2305089374916078, undefined, []);
+export const MDLVertexAttributeShadingBasisU: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 2305089374916078, undefined, []);
 
 /** let MDLVertexAttributeShadingBasisV: String */
-export const MDLVertexAttributeShadingBasisV: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 2212017705613457, undefined, []);
+export const MDLVertexAttributeShadingBasisV: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 2212017705613457, undefined, []);
 
 /** let MDLVertexAttributeSubdivisionStencil: String */
-export const MDLVertexAttributeSubdivisionStencil: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 3276309532568077, undefined, []);
+export const MDLVertexAttributeSubdivisionStencil: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 3276309532568077, undefined, []);
 
 /** let MDLVertexAttributeTangent: String */
-export const MDLVertexAttributeTangent: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1277308024004856, undefined, []);
+export const MDLVertexAttributeTangent: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 1277308024004856, undefined, []);
 
 /** let MDLVertexAttributeTextureCoordinate: String */
-export const MDLVertexAttributeTextureCoordinate: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 4056715431568486, undefined, []);
+export const MDLVertexAttributeTextureCoordinate: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 4056715431568486, undefined, []);
 
 /**
  * let kUTType3dObject: String
  * @availability iOS 9.0+
  */
-export const kUTType3dObject: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 2142923066711832, undefined, []);
+export const kUTType3dObject: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 2142923066711832, undefined, []);
 
 /**
  * let kUTTypeAlembic: String
  * @availability iOS 9.0+
  */
-export const kUTTypeAlembic: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 3641452382404102, undefined, []);
+export const kUTTypeAlembic: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 3641452382404102, undefined, []);
 
 /**
  * let kUTTypePolygon: String
  * @availability iOS 9.0+
  */
-export const kUTTypePolygon: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 2622612537088587, undefined, []);
+export const kUTTypePolygon: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 2622612537088587, undefined, []);
 
 /**
  * let kUTTypeStereolithography: String
  * @availability iOS 9.0+
  */
-export const kUTTypeStereolithography: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 2516298291340721, undefined, []);
+export const kUTTypeStereolithography: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 2516298291340721, undefined, []);
 
 /**
  * let kUTTypeUniversalSceneDescription: String
  * @availability iOS 10.0+
  */
-export const kUTTypeUniversalSceneDescription: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 1013332418697205, undefined, []);
+export const kUTTypeUniversalSceneDescription: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 1013332418697205, undefined, []);
 
 /**
  * let kUTTypeUniversalSceneDescriptionMobile: String
  * @availability iOS 14.0+
  */
-export const kUTTypeUniversalSceneDescriptionMobile: string = callSDK<string>("ModelIO_d6c5d10d3352e6ec", 851749556094595, undefined, []);
+export const kUTTypeUniversalSceneDescriptionMobile: string = callSDK<string>("ModelIO_a956b86ef7a76a8e", 851749556094595, undefined, []);
 
-registerSDKClass("MDLAnimatedValue", MDLAnimatedValue, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"interpolation":4328873221417957,"keyTimes":2880960387817447,"maximumTime":725722820813226,"minimumTime":3242733287902334,"precision":2542410240614,"timeSampleCount":672688820422555} });
-registerSDKClass("MDLAnimatedMatrix4x4", MDLAnimatedMatrix4x4, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLAnimatedQuaternion", MDLAnimatedQuaternion, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLAnimatedQuaternionArray", MDLAnimatedQuaternionArray, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"elementCount":2073312816518288} });
-registerSDKClass("MDLAnimatedScalar", MDLAnimatedScalar, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLAnimatedScalarArray", MDLAnimatedScalarArray, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"elementCount":3618388989039280} });
-registerSDKClass("MDLAnimatedVector2", MDLAnimatedVector2, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLAnimatedVector3", MDLAnimatedVector3, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLAnimatedVector3Array", MDLAnimatedVector3Array, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"elementCount":627328514080647} });
-registerSDKClass("MDLAnimatedVector4", MDLAnimatedVector4, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLAnimationBindComponent", MDLAnimationBindComponent, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"geometryBindTransform":2289693487753550,"jointAnimation":2883280079848620,"jointPaths":528841656181512,"skeleton":91775824751323} });
-registerSDKClass("MDLObject", MDLObject, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"children":2705699022056759,"components":4349214702255708,"hidden":3247803840566625,"instance":1672171659416509,"parent":4432544300816843,"path":2392837107096786,"transform":213461313596670} });
-registerSDKClass("MDLLight", MDLLight, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"colorSpace":4229100285096841,"lightType":2999694053419853} });
-registerSDKClass("MDLPhysicallyPlausibleLight", MDLPhysicallyPlausibleLight, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"attenuationEndDistance":2007916850477061,"attenuationStartDistance":3996941755153476,"color":1015531789092858,"innerConeAngle":529118728024336,"lumens":4072938612526608,"outerConeAngle":3304300717235162} });
-registerSDKClass("MDLAreaLight", MDLAreaLight, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"areaRadius":3097759107578572,"aspect":1291497758328511,"superEllipticPower":1638448532568284} });
-registerSDKClass("MDLAsset", MDLAsset, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"url":2466722890150198,"animations":2679865436056723,"boundingBox":4374232517036651,"bufferAllocator":438957508402281,"count":501087968648818,"endTime":3574463762134491,"frameInterval":1644883377367435,"masters":2922102639340238,"originals":1223331787445498,"resolver":4278532650861138,"startTime":792477971054687,"upAxis":4288167780492447,"vertexDescriptor":556838613899154} });
+registerSDKClass("MDLAnimatedValue", MDLAnimatedValue, { module: "ModelIO_a956b86ef7a76a8e", properties: {"interpolation":4328873221417957,"keyTimes":2880960387817447,"maximumTime":725722820813226,"minimumTime":3242733287902334,"precision":2542410240614,"timeSampleCount":672688820422555}, methods: {"clear":{"id":1447786549302090},"isAnimated":{"id":1642106234858391}} });
+registerSDKClass("MDLAnimatedMatrix4x4", MDLAnimatedMatrix4x4, { module: "ModelIO_a956b86ef7a76a8e", properties: {}, methods: {"double4x4Value":{"id":3426540237142648},"float4x4Value":{"id":2742922738392605},"setDouble4x4":{"id":3003797370443302},"setFloat4x4":{"id":3914543112348766},"resetDouble4ArrayAtTimes":{"id":224910353625268},"resetFloat4x4ArrayAtTimes":{"id":987384893915816}} });
+registerSDKClass("MDLAnimatedQuaternion", MDLAnimatedQuaternion, { module: "ModelIO_a956b86ef7a76a8e", properties: {}, methods: {"doubleQuaternionValue":{"id":4418079609202903},"floatQuaternionValue":{"id":21834137947778},"setDoubleQuaternion":{"id":2084045113729794},"setFloatQuaternion":{"id":2981862342622896},"resetFloatQuaternionArrayAtTimes":{"id":78003919710735},"resetDoubleQuaternionArrayAtTimes":{"id":3353569542549372}} });
+registerSDKClass("MDLAnimatedQuaternionArray", MDLAnimatedQuaternionArray, { module: "ModelIO_a956b86ef7a76a8e", properties: {"elementCount":2073312816518288}, methods: {"floatQuaternionArrayAtTime":{"id":3343577845079829},"doubleQuaternionArrayAtTime":{"id":72037568430142},"setFloatQuaternionArrayAtTime":{"id":1685588266887459},"setDoubleQuaternionArrayAtTime":{"id":492911182948233},"resetFloatQuaternionArrayAtTimes":{"id":53864222551311},"resetDoubleQuaternionArrayAtTimes":{"id":2855302684228180}} });
+registerSDKClass("MDLAnimatedScalar", MDLAnimatedScalar, { module: "ModelIO_a956b86ef7a76a8e", properties: {}, methods: {"doubleValue":{"id":2940514863600791},"floatValue":{"id":3625271585051212},"setDouble":{"id":98619520192772},"setFloat":{"id":3596462109108649},"resetFloatArrayAtTimes":{"id":1022806782588676},"resetDoubleArrayAtTimes":{"id":3543972944729859}} });
+registerSDKClass("MDLAnimatedScalarArray", MDLAnimatedScalarArray, { module: "ModelIO_a956b86ef7a76a8e", properties: {"elementCount":3618388989039280}, methods: {"floatArrayAtTime":{"id":185190998871986},"doubleArrayAtTime":{"id":1411570975030058},"setFloatArrayAtTime":{"id":2844974702820581},"setDoubleArrayAtTime":{"id":1617785304515407},"resetFloatArrayAtTimes":{"id":1131594480237234},"resetDoubleArrayAtTimes":{"id":3848293343166946}} });
+registerSDKClass("MDLAnimatedVector2", MDLAnimatedVector2, { module: "ModelIO_a956b86ef7a76a8e", properties: {}, methods: {"double2Value":{"id":1307435019191410},"float2Value":{"id":3024991211310708},"setDouble2":{"id":4169328652299099},"setFloat2":{"id":2768827833317823},"resetFloat2ArrayAtTimes":{"id":655383202182329},"resetDouble2ArrayAtTimes":{"id":2635048643217409}} });
+registerSDKClass("MDLAnimatedVector3", MDLAnimatedVector3, { module: "ModelIO_a956b86ef7a76a8e", properties: {}, methods: {"double3Value":{"id":2570044930534660},"float3Value":{"id":754841592947270},"setDouble3":{"id":2700404193588703},"setFloat3":{"id":2785139220150055},"resetFloat3ArrayAtTimes":{"id":131008115826017},"resetDouble3ArrayAtTimes":{"id":641603856106599}} });
+registerSDKClass("MDLAnimatedVector3Array", MDLAnimatedVector3Array, { module: "ModelIO_a956b86ef7a76a8e", properties: {"elementCount":627328514080647}, methods: {"float3ArrayAtTime":{"id":1261261928583986},"double3ArrayAtTime":{"id":460093900062647},"setFloat3ArrayAtTime":{"id":3430613123707715},"setDouble3ArrayAtTime":{"id":2868741348032404},"resetFloat3ArrayAtTimes":{"id":6630263381205},"resetDouble3ArrayAtTimes":{"id":1204950616907763}} });
+registerSDKClass("MDLAnimatedVector4", MDLAnimatedVector4, { module: "ModelIO_a956b86ef7a76a8e", properties: {}, methods: {"double4Value":{"id":3352136802725470},"float4Value":{"id":2215837362369372},"setDouble4":{"id":483021664411128},"setFloat4":{"id":3950193519119918},"resetFloat4ArrayAtTimes":{"id":1590809789140756},"resetDouble4ArrayAtTimes":{"id":3759027527940055}} });
+registerSDKClass("MDLAnimationBindComponent", MDLAnimationBindComponent, { module: "ModelIO_a956b86ef7a76a8e", properties: {"geometryBindTransform":2289693487753550,"jointAnimation":2883280079848620,"jointPaths":528841656181512,"skeleton":91775824751323} });
+registerSDKClass("MDLObject", MDLObject, { module: "ModelIO_a956b86ef7a76a8e", properties: {"children":2705699022056759,"components":4349214702255708,"hidden":3247803840566625,"instance":1672171659416509,"parent":4432544300816843,"path":2392837107096786,"transform":213461313596670}, methods: {"addChild":{"id":1989600464214586},"boundingBox":{"id":2592200373722635},"componentConforming":{"id":193022653002759},"atPath":{"id":4419962097107770},"subscript":{"id":1745152648108092},"setComponent":{"id":2911673719316583,"hints":[{"protocol":"c:objc(pl)MDLComponent"},null]}} });
+registerSDKClass("MDLLight", MDLLight, { module: "ModelIO_a956b86ef7a76a8e", properties: {"colorSpace":4229100285096841,"lightType":2999694053419853}, methods: {"irradianceAtPoint":{"id":3883715508088296},"irradianceAtPointColorSpace":{"id":4421142627670020}} });
+registerSDKClass("MDLPhysicallyPlausibleLight", MDLPhysicallyPlausibleLight, { module: "ModelIO_a956b86ef7a76a8e", properties: {"attenuationEndDistance":2007916850477061,"attenuationStartDistance":3996941755153476,"color":1015531789092858,"innerConeAngle":529118728024336,"lumens":4072938612526608,"outerConeAngle":3304300717235162}, methods: {"setColorByTemperature":{"id":3657631906337430}} });
+registerSDKClass("MDLAreaLight", MDLAreaLight, { module: "ModelIO_a956b86ef7a76a8e", properties: {"areaRadius":3097759107578572,"aspect":1291497758328511,"superEllipticPower":1638448532568284} });
+registerSDKClass("MDLAsset", MDLAsset, { module: "ModelIO_a956b86ef7a76a8e", properties: {"url":2466722890150198,"animations":2679865436056723,"boundingBox":4374232517036651,"bufferAllocator":438957508402281,"count":501087968648818,"endTime":3574463762134491,"frameInterval":1644883377367435,"masters":2922102639340238,"originals":1223331787445498,"resolver":4278532650861138,"startTime":792477971054687,"upAxis":4288167780492447,"vertexDescriptor":556838613899154}, methods: {"add":{"id":949623187371372},"boundingBoxAtTime":{"id":3940970130470596},"childObjects":{"id":1531545321965203},"export":{"id":3219139254668255},"loadTextures":{"id":3285813836929177},"objectAt":{"id":1742225867084079},"subscript":{"id":3111980319417555},"objectAtPath":{"id":3200580971817979},"remove":{"id":1153749447547571}} });
 registerSDKProtocol("c:objc(pl)MDLAssetResolver", {"canResolveAssetNamed":"canResolveAssetNamed(_:)","resolveAssetNamed":"resolveAssetNamed(_:)"});
-registerSDKClass("ModelIO.MDLAxisAlignedBoundingBox", MDLAxisAlignedBoundingBox, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLBundleAssetResolver", MDLBundleAssetResolver, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"path":362980249876756} });
-registerSDKClass("MDLCamera", MDLCamera, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"apertureBladeCount":2094326668725897,"barrelDistortion":404711464995952,"chromaticAberration":3811539322510493,"exposure":991392798625760,"exposureCompression":3992336984390111,"fStop":3871622344234751,"farVisibilityDistance":3793881208032968,"fieldOfView":3955113828070314,"fisheyeDistortion":695149588941737,"flash":2846567139117267,"focalLength":888736919702903,"focusDistance":2313423816237901,"maximumCircleOfConfusion":4322212063824117,"nearVisibilityDistance":263313436781401,"opticalVignetting":1381750585950506,"projection":3171103216229443,"projectionMatrix":1316012635449042,"sensorAspect":1530902894816351,"sensorEnlargement":151232056275621,"sensorShift":2999099487514616,"sensorVerticalAperture":2995778367670585,"shutterOpenInterval":396919064374513,"worldToMetersConversionScale":3822846069606828} });
-registerSDKClass("MDLTexture", MDLTexture, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"channelCount":2665599740017057,"channelEncoding":1938824460092438,"dimensions":2444494007431510,"hasAlphaValues":447661048865801,"isCube":3069944566992754,"mipLevelCount":492790022499251,"rowStride":1791402570656438} });
-registerSDKClass("MDLCheckerboardTexture", MDLCheckerboardTexture, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"color1":962725624465734,"color2":3850012714436606,"divisions":3134435366966145} });
-registerSDKClass("MDLColorSwatchTexture", MDLColorSwatchTexture, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("ModelIO.MDLAxisAlignedBoundingBox", MDLAxisAlignedBoundingBox, { module: "ModelIO_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MDLBundleAssetResolver", MDLBundleAssetResolver, { module: "ModelIO_a956b86ef7a76a8e", properties: {"path":362980249876756} });
+registerSDKClass("MDLCamera", MDLCamera, { module: "ModelIO_a956b86ef7a76a8e", properties: {"apertureBladeCount":2094326668725897,"barrelDistortion":404711464995952,"chromaticAberration":3811539322510493,"exposure":991392798625760,"exposureCompression":3992336984390111,"fStop":3871622344234751,"farVisibilityDistance":3793881208032968,"fieldOfView":3955113828070314,"fisheyeDistortion":695149588941737,"flash":2846567139117267,"focalLength":888736919702903,"focusDistance":2313423816237901,"maximumCircleOfConfusion":4322212063824117,"nearVisibilityDistance":263313436781401,"opticalVignetting":1381750585950506,"projection":3171103216229443,"projectionMatrix":1316012635449042,"sensorAspect":1530902894816351,"sensorEnlargement":151232056275621,"sensorShift":2999099487514616,"sensorVerticalAperture":2995778367670585,"shutterOpenInterval":396919064374513,"worldToMetersConversionScale":3822846069606828}, methods: {"bokehKernel":{"id":2816302771593553},"frameBoundingBox":{"id":1680169338042962},"lookAt":{"id":1745188330468324},"lookAtFrom":{"id":2959410610798093},"ray":{"id":4259666183976870}} });
+registerSDKClass("MDLTexture", MDLTexture, { module: "ModelIO_a956b86ef7a76a8e", properties: {"channelCount":2665599740017057,"channelEncoding":1938824460092438,"dimensions":2444494007431510,"hasAlphaValues":447661048865801,"isCube":3069944566992754,"mipLevelCount":492790022499251,"rowStride":1791402570656438}, methods: {"imageFromTexture":{"id":3575354365764517},"imageFromTextureAtLevel":{"id":3924215240994812},"texelDataWithBottomLeftOrigin":{"id":3921879779376685},"texelDataWithBottomLeftOriginAtMipLevelCreate":{"id":1871121568358349},"texelDataWithTopLeftOrigin":{"id":1894416732898803},"texelDataWithTopLeftOriginAtMipLevelCreate":{"id":2079931551304443},"writeTo":{"id":1006755870092265},"writeToLevel":{"id":975839596927731},"writeToType":{"id":1679998559398251},"writeToTypeLevel":{"id":1159274151913137}} });
+registerSDKClass("MDLCheckerboardTexture", MDLCheckerboardTexture, { module: "ModelIO_a956b86ef7a76a8e", properties: {"color1":962725624465734,"color2":3850012714436606,"divisions":3134435366966145} });
+registerSDKClass("MDLColorSwatchTexture", MDLColorSwatchTexture, { module: "ModelIO_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)MDLComponent", {});
 registerSDKProtocol("c:objc(pl)MDLJointAnimation", {});
-registerSDKClass("MDLLightProbe", MDLLightProbe, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"irradianceTexture":308254784161453,"reflectiveTexture":3920549595947574,"sphericalHarmonicsCoefficients":1365893111627233,"sphericalHarmonicsLevel":2447786035799181} });
+registerSDKClass("MDLLightProbe", MDLLightProbe, { module: "ModelIO_a956b86ef7a76a8e", properties: {"irradianceTexture":308254784161453,"reflectiveTexture":3920549595947574,"sphericalHarmonicsCoefficients":1365893111627233,"sphericalHarmonicsLevel":2447786035799181}, methods: {"generateSphericalHarmonics":{"id":4001743483957717}} });
 registerSDKProtocol("c:objc(pl)MDLLightProbeIrradianceDataSource", {});
-registerSDKClass("MDLMaterial", MDLMaterial, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"base":3374813403066704,"count":3838314252952497,"materialFace":441230386572329,"name":1290120407374153,"scatteringFunction":2596146698675810} });
-registerSDKClass("MDLMaterialProperty", MDLMaterialProperty, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"urlValue":1764541769322843,"color":946772564903311,"float2Value":3019545689320474,"float3Value":2670952160387879,"float4Value":1445694977611317,"floatValue":56676382458236,"luminance":1370712932999620,"matrix4x4":2643934600812442,"name":1537596279129735,"semantic":1189465975646398,"stringValue":702384038644310,"textureSamplerValue":1207109531522143,"type":1088432964697349} });
-registerSDKClass("MDLMaterialPropertyConnection", MDLMaterialPropertyConnection, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"input":4428551099239300,"output":1428706884258032} });
-registerSDKClass("MDLMaterialPropertyNode", MDLMaterialPropertyNode, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"inputs":3314809096384424,"outputs":1151171466686913} });
-registerSDKClass("MDLMaterialPropertyGraph", MDLMaterialPropertyGraph, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"connections":2135713665976484,"nodes":4341746294131523} });
-registerSDKClass("MDLMatrix4x4Array", MDLMatrix4x4Array, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"elementCount":2474378539726172,"precision":3133575607508322} });
-registerSDKClass("MDLMesh", MDLMesh, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"allocator":3803794082179295,"boundingBox":3328750602616160,"submeshes":1396712775531812,"vertexBuffers":1478682480411064,"vertexCount":2824218696589011,"vertexDescriptor":830223565204565} });
+registerSDKClass("MDLMaterial", MDLMaterial, { module: "ModelIO_a956b86ef7a76a8e", properties: {"base":3374813403066704,"count":3838314252952497,"materialFace":441230386572329,"name":1290120407374153,"scatteringFunction":2596146698675810}, methods: {"loadTextures":{"id":3454089597959923},"subscript":{"id":306132063042615},"subscript11387":{"id":2710745443967894},"properties":{"id":1971793696898073},"propertyNamed":{"id":1890076782991139},"property":{"id":4270072817583539},"removeAllProperties":{"id":2797105997206092},"remove":{"id":1027012799906789},"resolveTextures":{"id":3120713735129234},"setProperty":{"id":2778507848706676}} });
+registerSDKClass("MDLMaterialProperty", MDLMaterialProperty, { module: "ModelIO_a956b86ef7a76a8e", properties: {"urlValue":1764541769322843,"color":946772564903311,"float2Value":3019545689320474,"float3Value":2670952160387879,"float4Value":1445694977611317,"floatValue":56676382458236,"luminance":1370712932999620,"matrix4x4":2643934600812442,"name":1537596279129735,"semantic":1189465975646398,"stringValue":702384038644310,"textureSamplerValue":1207109531522143,"type":1088432964697349}, methods: {"setProperties":{"id":3295188907693366}} });
+registerSDKClass("MDLMaterialPropertyConnection", MDLMaterialPropertyConnection, { module: "ModelIO_a956b86ef7a76a8e", properties: {"input":4428551099239300,"output":1428706884258032} });
+registerSDKClass("MDLMaterialPropertyNode", MDLMaterialPropertyNode, { module: "ModelIO_a956b86ef7a76a8e", properties: {"inputs":3314809096384424,"outputs":1151171466686913} });
+registerSDKClass("MDLMaterialPropertyGraph", MDLMaterialPropertyGraph, { module: "ModelIO_a956b86ef7a76a8e", properties: {"connections":2135713665976484,"nodes":4341746294131523}, methods: {"evaluate":{"id":1876039709198510}} });
+registerSDKClass("MDLMatrix4x4Array", MDLMatrix4x4Array, { module: "ModelIO_a956b86ef7a76a8e", properties: {"elementCount":2474378539726172,"precision":3133575607508322}, methods: {"clear":{"id":267623163265217}} });
+registerSDKClass("MDLMesh", MDLMesh, { module: "ModelIO_a956b86ef7a76a8e", properties: {"allocator":3803794082179295,"boundingBox":3328750602616160,"submeshes":1396712775531812,"vertexBuffers":1478682480411064,"vertexCount":2824218696589011,"vertexDescriptor":830223565204565}, methods: {"addAttributeWithNameFormat":{"id":1882786234826687},"addAttributeWithNameFormatTypeDataStride":{"id":3785121195272548},"addAttributeWithNameFormatTypeDataStrideTime":{"id":155544859998155},"addNormals":{"id":2074445887646587},"addOrthTanBasis":{"id":2397099627161119},"addTangentBasisForTextureCoordinateAttributeNamedNormalAttributeNamedTangentAttributeNamed":{"id":2992774748133356},"addTangentBasisForTextureCoordinateAttributeNamedTangentAttributeNamedBitangentAttributeNamed":{"id":3657337204284093},"addUnwrappedTextureCoordinates":{"id":3411764921862554},"flipTextureCoordinates":{"id":2602839151041351},"generateAmbientOcclusionTextureWithQualityAttenuationFactorObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed":{"id":2972052928698717},"generateAmbientOcclusionTextureWithSizeRaysPerSampleAttenuationFactorObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed":{"id":3543388411759259},"generateAmbientOcclusionVertexColorsWithQualityAttenuationFactorObjectsToConsiderVertexAttributeNamed":{"id":3447559260664695},"generateAmbientOcclusionVertexColorsWithRaysPerSampleAttenuationFactorObjectsToConsiderVertexAttributeNamed":{"id":2077638542604653},"generateLightMapTextureWithQualityLightsToConsiderObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed":{"id":2618417889882979},"generateLightMapTextureWithTextureSizeLightsToConsiderObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed":{"id":1679751083867893},"generateLightMapVertexColorsWithLights":{"id":611494134750891},"makeVerticesUnique":{"id":3679307898530435},"makeVerticesUniqueAndReturnError":{"id":834745129621702},"removeAttributeNamed":{"id":3791179439005190},"replaceAttributeNamed":{"id":2643029913581377},"updateAttributeNamed":{"id":1467249285508418},"vertexAttributeDataForAttributeNamed":{"id":1138280606450284},"vertexAttributeDataForAttributeNamedAs":{"id":1892145197291135},"boundingBox16697":{"id":2592200373722635}} });
 registerSDKProtocol("c:objc(pl)MDLMeshBuffer", {"copyWith":"copy(with:)","fillOffset":"fill(_:offset:)","map":"map()"});
 registerSDKProtocol("c:objc(pl)MDLMeshBufferAllocator", {"newZone":"newZone(_:)","newZoneForBuffersWithSizeAndType":"newZoneForBuffers(withSize:andType:)","newBufferType":"newBuffer(_:type:)","newBufferWithType":"newBuffer(with:type:)","newBufferFromLengthType":"newBuffer(from:length:type:)","newBufferFromDataType":"newBuffer(from:data:type:)"});
-registerSDKClass("MDLMeshBufferData", MDLMeshBufferData, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"data":81313077542818} });
-registerSDKClass("MDLMeshBufferDataAllocator", MDLMeshBufferDataAllocator, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLMeshBufferMap", MDLMeshBufferMap, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"bytes":567689997633383} });
+registerSDKClass("MDLMeshBufferData", MDLMeshBufferData, { module: "ModelIO_a956b86ef7a76a8e", properties: {"data":81313077542818} });
+registerSDKClass("MDLMeshBufferDataAllocator", MDLMeshBufferDataAllocator, { module: "ModelIO_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MDLMeshBufferMap", MDLMeshBufferMap, { module: "ModelIO_a956b86ef7a76a8e", properties: {"bytes":567689997633383} });
 registerSDKProtocol("c:objc(pl)MDLMeshBufferZone", {});
-registerSDKClass("MDLMeshBufferZoneDefault", MDLMeshBufferZoneDefault, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"allocator":4123911077860617,"capacity":276665407633335} });
+registerSDKClass("MDLMeshBufferZoneDefault", MDLMeshBufferZoneDefault, { module: "ModelIO_a956b86ef7a76a8e", properties: {"allocator":4123911077860617,"capacity":276665407633335} });
 registerSDKProtocol("c:objc(pl)MDLNamed", {});
-registerSDKClass("MDLNoiseTexture", MDLNoiseTexture, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLNormalMapTexture", MDLNormalMapTexture, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLObjectContainer", MDLObjectContainer, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("MDLNoiseTexture", MDLNoiseTexture, { module: "ModelIO_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MDLNormalMapTexture", MDLNormalMapTexture, { module: "ModelIO_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MDLObjectContainer", MDLObjectContainer, { module: "ModelIO_a956b86ef7a76a8e", properties: {} });
 registerSDKProtocol("c:objc(pl)MDLObjectContainerComponent", {"countByEnumeratingWithObjectsCount":"countByEnumerating(with:objects:count:)","add":"add(_:)","remove":"remove(_:)","subscript":"subscript(_:)"});
-registerSDKClass("MDLPackedJointAnimation", MDLPackedJointAnimation, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"jointPaths":1479136437386081,"rotations":2116272412468591,"scales":3364883611275707,"translations":3845208975637750} });
-registerSDKClass("MDLPathAssetResolver", MDLPathAssetResolver, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"path":1447568113494693} });
-registerSDKClass("MDLPhotometricLight", MDLPhotometricLight, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"lightCubeMap":2040304343655995,"sphericalHarmonicsCoefficients":2671233171242029,"sphericalHarmonicsLevel":2126479438918196} });
-registerSDKClass("MDLScatteringFunction", MDLScatteringFunction, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"ambientOcclusion":3633487996515895,"ambientOcclusionScale":3960815920408020,"baseColor":1491373228319590,"emission":86591799065938,"interfaceIndexOfRefraction":4300489024206279,"materialIndexOfRefraction":2840482856149295,"name":1707650204914359,"normal":3303965603515542,"specular":1175606559278155} });
-registerSDKClass("MDLPhysicallyPlausibleScatteringFunction", MDLPhysicallyPlausibleScatteringFunction, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"anisotropic":2766542353162537,"anisotropicRotation":1822464807926936,"clearcoat":3979539468417372,"clearcoatGloss":1520970503025661,"metallic":2007291234392855,"roughness":2790653529096342,"sheen":227361924899563,"sheenTint":4039586933762213,"specularAmount":1832404018163614,"specularTint":2672320277137141,"subsurface":988823454687441,"version":524154571682384} });
-registerSDKClass("MDLRelativeAssetResolver", MDLRelativeAssetResolver, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"asset":2961710238044406} });
-registerSDKClass("MDLSkeleton", MDLSkeleton, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"jointBindTransforms":2429304095234652,"jointPaths":2466632432761176,"jointRestTransforms":2820410104331833} });
-registerSDKClass("MDLSkyCubeTexture", MDLSkyCubeTexture, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"brightness":867182075589742,"contrast":3345693294503012,"exposure":4357298608586436,"gamma":185211149728263,"groundAlbedo":2061254444232395,"groundColor":859889798063279,"highDynamicRangeCompression":1991516419555978,"horizonElevation":2180855846294794,"saturation":2535682387623120,"sunAzimuth":2213156601481898,"sunElevation":163103508469298,"turbidity":3763863068147442,"upperAtmosphereScattering":1690241596682368} });
-registerSDKClass("MDLStereoscopicCamera", MDLStereoscopicCamera, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"interPupillaryDistance":3052105400697221,"leftProjectionMatrix":274262098692534,"leftVergence":2795921016594227,"leftViewMatrix":2333209840514036,"overlap":1470829881735520,"rightProjectionMatrix":2931380554234286,"rightVergence":2954685894319178,"rightViewMatrix":3682262247192625} });
-registerSDKClass("MDLSubmesh", MDLSubmesh, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"geometryType":2838100979993003,"indexBuffer":3130143004340622,"indexCount":3156883841348421,"indexType":4304481026425328,"material":2524614254936164,"name":2561035366554811,"topology":147300318024892} });
-registerSDKClass("MDLSubmeshTopology", MDLSubmeshTopology, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"edgeCreaseCount":3924754035009152,"edgeCreaseIndices":3764401099437799,"edgeCreases":4215574165514235,"faceCount":1908513028309105,"faceTopology":1833406464287753,"holeCount":3235300234124696,"holes":1451349290223064,"vertexCreaseCount":1063689860456451,"vertexCreaseIndices":636034256278465,"vertexCreases":671624699101391} });
-registerSDKClass("MDLTextureFilter", MDLTextureFilter, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"magFilter":3756935622166531,"minFilter":1061803166048257,"mipFilter":1299830065035486,"rWrapMode":3780190927519876,"sWrapMode":837528264576621,"tWrapMode":2604723976607156} });
-registerSDKClass("MDLTextureSampler", MDLTextureSampler, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"hardwareFilter":1626073991066728,"texture":3052768379242758,"transform":3735873798957416} });
-registerSDKClass("MDLTransform", MDLTransform, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"rotation":928610315232335,"scale":3047530716146886,"shear":4320797170116086,"translation":251589309634359} });
+registerSDKClass("MDLPackedJointAnimation", MDLPackedJointAnimation, { module: "ModelIO_a956b86ef7a76a8e", properties: {"jointPaths":1479136437386081,"rotations":2116272412468591,"scales":3364883611275707,"translations":3845208975637750} });
+registerSDKClass("MDLPathAssetResolver", MDLPathAssetResolver, { module: "ModelIO_a956b86ef7a76a8e", properties: {"path":1447568113494693} });
+registerSDKClass("MDLPhotometricLight", MDLPhotometricLight, { module: "ModelIO_a956b86ef7a76a8e", properties: {"lightCubeMap":2040304343655995,"sphericalHarmonicsCoefficients":2671233171242029,"sphericalHarmonicsLevel":2126479438918196}, methods: {"generateCubemap":{"id":4199559621026328},"generateSphericalHarmonics":{"id":3377136709288262},"generateTexture":{"id":1495863966013151}} });
+registerSDKClass("MDLScatteringFunction", MDLScatteringFunction, { module: "ModelIO_a956b86ef7a76a8e", properties: {"ambientOcclusion":3633487996515895,"ambientOcclusionScale":3960815920408020,"baseColor":1491373228319590,"emission":86591799065938,"interfaceIndexOfRefraction":4300489024206279,"materialIndexOfRefraction":2840482856149295,"name":1707650204914359,"normal":3303965603515542,"specular":1175606559278155} });
+registerSDKClass("MDLPhysicallyPlausibleScatteringFunction", MDLPhysicallyPlausibleScatteringFunction, { module: "ModelIO_a956b86ef7a76a8e", properties: {"anisotropic":2766542353162537,"anisotropicRotation":1822464807926936,"clearcoat":3979539468417372,"clearcoatGloss":1520970503025661,"metallic":2007291234392855,"roughness":2790653529096342,"sheen":227361924899563,"sheenTint":4039586933762213,"specularAmount":1832404018163614,"specularTint":2672320277137141,"subsurface":988823454687441,"version":524154571682384} });
+registerSDKClass("MDLRelativeAssetResolver", MDLRelativeAssetResolver, { module: "ModelIO_a956b86ef7a76a8e", properties: {"asset":2961710238044406} });
+registerSDKClass("MDLSkeleton", MDLSkeleton, { module: "ModelIO_a956b86ef7a76a8e", properties: {"jointBindTransforms":2429304095234652,"jointPaths":2466632432761176,"jointRestTransforms":2820410104331833} });
+registerSDKClass("MDLSkyCubeTexture", MDLSkyCubeTexture, { module: "ModelIO_a956b86ef7a76a8e", properties: {"brightness":867182075589742,"contrast":3345693294503012,"exposure":4357298608586436,"gamma":185211149728263,"groundAlbedo":2061254444232395,"groundColor":859889798063279,"highDynamicRangeCompression":1991516419555978,"horizonElevation":2180855846294794,"saturation":2535682387623120,"sunAzimuth":2213156601481898,"sunElevation":163103508469298,"turbidity":3763863068147442,"upperAtmosphereScattering":1690241596682368}, methods: {"update":{"id":3684696668921827}} });
+registerSDKClass("MDLStereoscopicCamera", MDLStereoscopicCamera, { module: "ModelIO_a956b86ef7a76a8e", properties: {"interPupillaryDistance":3052105400697221,"leftProjectionMatrix":274262098692534,"leftVergence":2795921016594227,"leftViewMatrix":2333209840514036,"overlap":1470829881735520,"rightProjectionMatrix":2931380554234286,"rightVergence":2954685894319178,"rightViewMatrix":3682262247192625} });
+registerSDKClass("MDLSubmesh", MDLSubmesh, { module: "ModelIO_a956b86ef7a76a8e", properties: {"geometryType":2838100979993003,"indexBuffer":3130143004340622,"indexCount":3156883841348421,"indexType":4304481026425328,"material":2524614254936164,"name":2561035366554811,"topology":147300318024892}, methods: {"indexBufferAsIndexType":{"id":3418137493672782}} });
+registerSDKClass("MDLSubmeshTopology", MDLSubmeshTopology, { module: "ModelIO_a956b86ef7a76a8e", properties: {"edgeCreaseCount":3924754035009152,"edgeCreaseIndices":3764401099437799,"edgeCreases":4215574165514235,"faceCount":1908513028309105,"faceTopology":1833406464287753,"holeCount":3235300234124696,"holes":1451349290223064,"vertexCreaseCount":1063689860456451,"vertexCreaseIndices":636034256278465,"vertexCreases":671624699101391} });
+registerSDKClass("MDLTextureFilter", MDLTextureFilter, { module: "ModelIO_a956b86ef7a76a8e", properties: {"magFilter":3756935622166531,"minFilter":1061803166048257,"mipFilter":1299830065035486,"rWrapMode":3780190927519876,"sWrapMode":837528264576621,"tWrapMode":2604723976607156} });
+registerSDKClass("MDLTextureSampler", MDLTextureSampler, { module: "ModelIO_a956b86ef7a76a8e", properties: {"hardwareFilter":1626073991066728,"texture":3052768379242758,"transform":3735873798957416} });
+registerSDKClass("MDLTransform", MDLTransform, { module: "ModelIO_a956b86ef7a76a8e", properties: {"rotation":928610315232335,"scale":3047530716146886,"shear":4320797170116086,"translation":251589309634359}, methods: {"rotationAtTime":{"id":1451398394437026},"rotationMatrix":{"id":4443584011533647},"scaleAtTime":{"id":1701683521308591},"setIdentity":{"id":1359254601176000},"setMatrix":{"id":3322094184764329},"setRotation":{"id":1543446746175653},"setScale":{"id":264800235588553},"setShear":{"id":3358166550016294},"setTranslation":{"id":1822452670569020},"shearAtTime":{"id":2258242970031},"translationAtTime":{"id":4309935891614535}} });
 registerSDKProtocol("c:objc(pl)MDLTransformComponent", {"setLocalTransformForTime":"setLocalTransform(_:forTime:)","setLocalTransform":"setLocalTransform(_:)"});
-registerSDKClass("MDLTransformMatrixOp", MDLTransformMatrixOp, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"animatedValue":3603022860608567,"name":1836711872175537} });
+registerSDKClass("MDLTransformMatrixOp", MDLTransformMatrixOp, { module: "ModelIO_a956b86ef7a76a8e", properties: {"animatedValue":3603022860608567,"name":1836711872175537} });
 registerSDKProtocol("c:objc(pl)MDLTransformOp", {"float4x4AtTime":"float4x4(atTime:)","double4x4AtTime":"double4x4(atTime:)","isInverseOp":"isInverseOp()"});
-registerSDKClass("MDLTransformOrientOp", MDLTransformOrientOp, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"animatedValue":3297506553620302,"name":3540577885654660} });
-registerSDKClass("MDLTransformRotateOp", MDLTransformRotateOp, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"animatedValue":1890497445640893,"name":956712857439335} });
-registerSDKClass("MDLTransformRotateXOp", MDLTransformRotateXOp, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"animatedValue":485711223723094,"name":1119439041924923} });
-registerSDKClass("MDLTransformRotateYOp", MDLTransformRotateYOp, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"animatedValue":241451266440329,"name":1105389707303368} });
-registerSDKClass("MDLTransformRotateZOp", MDLTransformRotateZOp, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"animatedValue":2846259564448574,"name":1722544615811239} });
-registerSDKClass("MDLTransformScaleOp", MDLTransformScaleOp, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"animatedValue":4357285866196042,"name":3466122357541485} });
-registerSDKClass("MDLTransformStack", MDLTransformStack, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"keyTimes":2637306843735667,"transformOps":2549027426900918} });
-registerSDKClass("MDLTransformTranslateOp", MDLTransformTranslateOp, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"animatedValue":1890558104636209,"name":291313348086383} });
-registerSDKClass("MDLURLTexture", MDLURLTexture, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"url":1671794019843104} });
-registerSDKClass("MDLUtility", MDLUtility, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
-registerSDKClass("MDLVertexAttribute", MDLVertexAttribute, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"bufferIndex":3343349881864592,"format":4434925848400730,"initializationValue":931282974676863,"name":3217191598033382,"offset":621798192260088,"time":3047516314839220} });
-registerSDKClass("MDLVertexAttributeData", MDLVertexAttributeData, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"bufferSize":2037275058003111,"dataStart":2667476921636522,"format":1062629555110526,"map":458049734884057,"stride":4057028549441675} });
-registerSDKClass("MDLVertexBufferLayout", MDLVertexBufferLayout, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"stride":2393721291257142} });
-registerSDKClass("MDLVertexDescriptor", MDLVertexDescriptor, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"attributes":4280577833235754,"layouts":3939259656228421} });
-registerSDKClass("MDLVoxelArray", MDLVoxelArray, { module: "ModelIO_d6c5d10d3352e6ec", properties: {"boundingBox":3351681176240107,"count":585448113843517,"isValidSignedShellField":3179245006814492,"shellFieldExteriorThickness":1236977732511426,"shellFieldInteriorThickness":4051560045717863,"voxelIndexExtent":4433330821365352} });
-registerSDKClass("ModelIO.MDLVoxelIndexExtent", MDLVoxelIndexExtent, { module: "ModelIO_d6c5d10d3352e6ec", properties: {} });
+registerSDKClass("MDLTransformOrientOp", MDLTransformOrientOp, { module: "ModelIO_a956b86ef7a76a8e", properties: {"animatedValue":3297506553620302,"name":3540577885654660} });
+registerSDKClass("MDLTransformRotateOp", MDLTransformRotateOp, { module: "ModelIO_a956b86ef7a76a8e", properties: {"animatedValue":1890497445640893,"name":956712857439335} });
+registerSDKClass("MDLTransformRotateXOp", MDLTransformRotateXOp, { module: "ModelIO_a956b86ef7a76a8e", properties: {"animatedValue":485711223723094,"name":1119439041924923} });
+registerSDKClass("MDLTransformRotateYOp", MDLTransformRotateYOp, { module: "ModelIO_a956b86ef7a76a8e", properties: {"animatedValue":241451266440329,"name":1105389707303368} });
+registerSDKClass("MDLTransformRotateZOp", MDLTransformRotateZOp, { module: "ModelIO_a956b86ef7a76a8e", properties: {"animatedValue":2846259564448574,"name":1722544615811239} });
+registerSDKClass("MDLTransformScaleOp", MDLTransformScaleOp, { module: "ModelIO_a956b86ef7a76a8e", properties: {"animatedValue":4357285866196042,"name":3466122357541485} });
+registerSDKClass("MDLTransformStack", MDLTransformStack, { module: "ModelIO_a956b86ef7a76a8e", properties: {"keyTimes":2637306843735667,"transformOps":2549027426900918}, methods: {"addMatrixOp":{"id":2678025651715767},"addOrientOp":{"id":342986396959260},"addRotateOp":{"id":4201198568962499},"addRotateXOp":{"id":866878100606997},"addRotateYOp":{"id":2437626528458961},"addRotateZOp":{"id":2845130658407218},"addScaleOp":{"id":4153352596742622},"addTranslateOp":{"id":3831912118138332},"animatedValue":{"id":1554399722749878},"count":{"id":2670734900623199},"double4x4":{"id":3139839239750256},"float4x4":{"id":3269741133144009}} });
+registerSDKClass("MDLTransformTranslateOp", MDLTransformTranslateOp, { module: "ModelIO_a956b86ef7a76a8e", properties: {"animatedValue":1890558104636209,"name":291313348086383} });
+registerSDKClass("MDLURLTexture", MDLURLTexture, { module: "ModelIO_a956b86ef7a76a8e", properties: {"url":1671794019843104} });
+registerSDKClass("MDLUtility", MDLUtility, { module: "ModelIO_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MDLVertexAttribute", MDLVertexAttribute, { module: "ModelIO_a956b86ef7a76a8e", properties: {"bufferIndex":3343349881864592,"format":4434925848400730,"initializationValue":931282974676863,"name":3217191598033382,"offset":621798192260088,"time":3047516314839220} });
+registerSDKClass("MDLVertexAttributeData", MDLVertexAttributeData, { module: "ModelIO_a956b86ef7a76a8e", properties: {"bufferSize":2037275058003111,"dataStart":2667476921636522,"format":1062629555110526,"map":458049734884057,"stride":4057028549441675} });
+registerSDKClass("MDLVertexBufferLayout", MDLVertexBufferLayout, { module: "ModelIO_a956b86ef7a76a8e", properties: {"stride":2393721291257142} });
+registerSDKClass("MDLVertexDescriptor", MDLVertexDescriptor, { module: "ModelIO_a956b86ef7a76a8e", properties: {"attributes":4280577833235754,"layouts":3939259656228421}, methods: {"addOrReplaceAttribute":{"id":3645662159268950},"attributeNamed":{"id":85840042493361},"removeAttributeNamed":{"id":460050542776414},"reset":{"id":3982874024874143},"setPackedOffsets":{"id":4059775463450550},"setPackedStrides":{"id":3479671947602379}} });
+registerSDKClass("MDLVoxelArray", MDLVoxelArray, { module: "ModelIO_a956b86ef7a76a8e", properties: {"boundingBox":3351681176240107,"count":585448113843517,"isValidSignedShellField":3179245006814492,"shellFieldExteriorThickness":1236977732511426,"shellFieldInteriorThickness":4051560045717863,"voxelIndexExtent":4433330821365352}, methods: {"coarseMesh":{"id":1053532013375392},"coarseMeshUsing":{"id":1427953691793296},"convertToSignedShellField":{"id":3416998746589518},"difference":{"id":4228043366228789},"index":{"id":1929711774565646},"intersect":{"id":369331598681566},"mesh":{"id":2215802836265711},"setVoxelAtIndex":{"id":841013064821893},"setVoxelsFor":{"id":390570640373130},"spatialLocation":{"id":3660589494334477},"union":{"id":2133710279731204},"voxelBoundingBox":{"id":378931396074678},"voxelExists":{"id":3245376746144316},"voxelIndices":{"id":660308369016313},"voxels":{"id":1163534262289104},"boundingBox16697":{"id":2592200373722635}} });
+registerSDKClass("ModelIO.MDLVoxelIndexExtent", MDLVoxelIndexExtent, { module: "ModelIO_a956b86ef7a76a8e", properties: {} });

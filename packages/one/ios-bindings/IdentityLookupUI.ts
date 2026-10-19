@@ -8,13 +8,13 @@ import type { ILClassificationResponse as _IdentityLookup_ILClassificationRespon
  */
 export class ILClassificationUIExtensionContext extends SDKHandle {
   /** init() */
-  static init(): ILClassificationUIExtensionContext { return callSDK<ILClassificationUIExtensionContext>("IdentityLookupUI_d6c5d10d3352e6ec", 3886538332242463, undefined, []); }
+  static init(): ILClassificationUIExtensionContext { return callSDK<ILClassificationUIExtensionContext>("IdentityLookupUI_a956b86ef7a76a8e", 3886538332242463, undefined, []); }
   /**
    * var isReadyForClassificationResponse: Bool { get set }
    * @availability iOS 12.0+
    */
-  get isReadyForClassificationResponse(): boolean { return callSDK<boolean>("IdentityLookupUI_d6c5d10d3352e6ec", 2727811364253133, this, []); }
-  set isReadyForClassificationResponse(value: boolean) { callSDK<void>("IdentityLookupUI_d6c5d10d3352e6ec", 293306704458662, this, [value]); }
+  get isReadyForClassificationResponse(): boolean { return callSDK<boolean>("IdentityLookupUI_a956b86ef7a76a8e", 2727811364253133, this, []); }
+  set isReadyForClassificationResponse(value: boolean) { callSDK<void>("IdentityLookupUI_a956b86ef7a76a8e", 293306704458662, this, [value]); }
   declare readonly $type: { "c:objc(cs)ILClassificationUIExtensionContext": true; "c:objc(cs)NSExtensionContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isReadyForClassificationResponse": true };
 }
@@ -28,22 +28,22 @@ export class ILClassificationUIExtensionViewController extends SDKHandle {
    * func classificationResponse(for request: ILClassificationRequest) -> ILClassificationResponse
    * @availability iOS 12.0+
    */
-  classificationResponse(request: _IdentityLookup_ILClassificationRequest): _IdentityLookup_ILClassificationResponse { return callSDK<_IdentityLookup_ILClassificationResponse>("IdentityLookupUI_d6c5d10d3352e6ec", 4052308141360537, this, [request]); }
+  classificationResponse(request: _IdentityLookup_ILClassificationRequest): _IdentityLookup_ILClassificationResponse { return callSDK<_IdentityLookup_ILClassificationResponse>("IdentityLookupUI_a956b86ef7a76a8e", 4052308141360537, this, [request]); }
   /** init() */
-  static init(): ILClassificationUIExtensionViewController { return callSDK<ILClassificationUIExtensionViewController>("IdentityLookupUI_d6c5d10d3352e6ec", 652538220851678, undefined, []); }
+  static init(): ILClassificationUIExtensionViewController { return callSDK<ILClassificationUIExtensionViewController>("IdentityLookupUI_a956b86ef7a76a8e", 652538220851678, undefined, []); }
   /**
    * func prepare(for request: ILClassificationRequest)
    * @availability iOS 12.0+
    */
-  prepare(request: _IdentityLookup_ILClassificationRequest): void { return callSDK<void>("IdentityLookupUI_d6c5d10d3352e6ec", 2376271628403047, this, [request]); }
+  prepare(request: _IdentityLookup_ILClassificationRequest): void { return callSDK<void>("IdentityLookupUI_a956b86ef7a76a8e", 2376271628403047, this, [request]); }
   /**
    * var extensionContext: ILClassificationUIExtensionContext { get }
    * @availability iOS 12.0+
    */
-  get extensionContext(): ILClassificationUIExtensionContext { return callSDK<ILClassificationUIExtensionContext>("IdentityLookupUI_d6c5d10d3352e6ec", 2121998577372919, this, []); }
+  get extensionContext(): ILClassificationUIExtensionContext { return callSDK<ILClassificationUIExtensionContext>("IdentityLookupUI_a956b86ef7a76a8e", 2121998577372919, this, []); }
   declare readonly $type: { "c:objc(cs)ILClassificationUIExtensionViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "extensionContext": true };
 }
 
-registerSDKClass("ILClassificationUIExtensionContext", ILClassificationUIExtensionContext, { module: "IdentityLookupUI_d6c5d10d3352e6ec", properties: {"isReadyForClassificationResponse":2727811364253133} });
-registerSDKClass("ILClassificationUIExtensionViewController", ILClassificationUIExtensionViewController, { module: "IdentityLookupUI_d6c5d10d3352e6ec", properties: {"extensionContext":2121998577372919} });
+registerSDKClass("ILClassificationUIExtensionContext", ILClassificationUIExtensionContext, { module: "IdentityLookupUI_a956b86ef7a76a8e", properties: {"isReadyForClassificationResponse":2727811364253133} });
+registerSDKClass("ILClassificationUIExtensionViewController", ILClassificationUIExtensionViewController, { module: "IdentityLookupUI_a956b86ef7a76a8e", properties: {"extensionContext":2121998577372919}, methods: {"classificationResponse":{"id":4052308141360537},"prepare":{"id":2376271628403047}} });
