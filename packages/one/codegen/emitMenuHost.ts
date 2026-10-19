@@ -1,4 +1,141 @@
-import SwiftUI
+import { components, menuRoot, nodes } from './catalog'
+import {
+  ios,
+  present,
+  selectConstructor,
+  selectModifier,
+  type Declaration,
+} from './inventory'
+
+type MenuSpec = {
+  name: string
+  props: Record<string, string>
+  events: Record<string, Record<string, string>>
+}
+
+const menuComponent = () =>
+  (components as unknown as readonly MenuSpec[]).find(
+    (component) => component.name === 'OneNativeMenu'
+  )!
+
+const swiftTypeOf = (prop: string, type: string) => {
+  if (type === 'boolean') return 'Bool'
+  if (type === 'Int32') return 'Int'
+  if (type === 'string') return 'String'
+  throw new Error(`OneNativeMenu host: ${prop} carries ${type}, which configure cannot take`)
+}
+
+const objcArgumentOf = (prop: string, type: string) => {
+  if (type === 'string') return `RCTNSStringFromString(next.${prop})`
+  if (type === 'boolean' || type === 'Int32') return `next.${prop}`
+  throw new Error(`OneNativeMenu host: ${prop} carries ${type}, which configure cannot take`)
+}
+
+// the SDK facts the menu host emits against: both root Menu initializers, every
+// fixed style's member and modifier, and the spec surface the glue fills. the
+// plain Menu initializer is the submenu node's constructor, reused rather than
+// restated. anything missing, reshaped, or newer than the floor fails instead
+// of emitting stale calls. the host carries no availability gates: menus ship
+// at iOS 16 and below, under every floor that builds it. the UIKit context
+// backend stays explicit semantic input: UIKit ships no scanned inventory.
+export function validateMenuHost(
+  inventory: readonly Declaration[],
+  floor: number,
+  ceiling: number,
+  menu: MenuSpec = menuComponent()
+) {
+  const fail = (message: string): never => {
+    throw new Error(`OneNativeMenu host: ${message}`)
+  }
+  const submenu = nodes.find((node) => node.kind === 'submenu')
+  if (!submenu) fail('catalog nodes name no submenu constructor')
+  for (const constructor of [
+    submenu!.constructor,
+    ...menuRoot.constructors,
+  ]) {
+    const declaration = selectConstructor(inventory, constructor)
+    if (ios(declaration) > floor)
+      fail(
+        `${constructor.type}(${constructor.parameters.map((parameter) => parameter.label).join(', ')}) needs iOS ${ios(declaration)}, past the floor ${floor}`
+      )
+  }
+  for (const style of menuRoot.styles) {
+    const members = inventory.filter(
+      (declaration) =>
+        declaration.kind === 'static' &&
+        declaration.owner === style.owner &&
+        declaration.name === style.member &&
+        declaration.parameters.length === 0 &&
+        declaration.requirements?.length === 1 &&
+        declaration.requirements[0] === `Self == ${style.type}` &&
+        declaration.type === style.type &&
+        present(declaration) &&
+        ios(declaration) <= ceiling
+    )
+    if (members.length !== 1)
+      fail(`${style.owner} has ${members.length} members spelling .${style.member}`)
+    if (ios(members[0]) > floor)
+      fail(`${style.owner}.${style.member} needs iOS ${ios(members[0])}, past the floor ${floor}`)
+    const modifier = selectModifier(inventory, {
+      name: style.modifier,
+      parameters: [{ label: '_', type: 'S' }],
+      requirements: [style.requirement],
+    })
+    if (ios(modifier) > floor)
+      fail(`${style.modifier} needs iOS ${ios(modifier)}, past the floor ${floor}`)
+  }
+  for (const { prop, type } of menuRoot.configureArgs) {
+    if (!(prop in menu.props)) fail(`configure prop ${prop} is not in the spec`)
+    if (menu.props[prop] !== type)
+      fail(`configure prop ${prop} carries ${menu.props[prop]}, not the ${type} the model reads`)
+  }
+  if (menu.props.items !== 'ReadonlyArray<NativeMenuItem>')
+    fail(`items crosses as ${menu.props.items}, not a NativeMenuItem array`)
+  const events: Record<string, Record<string, string>> = {
+    onNativeMenuAction: { id: 'string' },
+    onNativeMenuPrimaryAction: { kind: 'string' },
+    onNativeMenuValueChange: {
+      id: 'string',
+      value: 'boolean',
+      sourceIndex: 'Int32',
+      eventCount: 'Int32',
+      revision: 'Int32',
+    },
+    onNativeMenuPickerChange: { id: 'string', value: 'string', eventCount: 'Int32', revision: 'Int32' },
+  }
+  for (const [event, fields] of Object.entries(events)) {
+    const declared = menu.events[event] ?? fail(`event ${event} is not in the spec`)
+    if (JSON.stringify(declared) !== JSON.stringify(fields))
+      fail(`${event} must carry ${Object.keys(fields).join(', ')}`)
+  }
+}
+
+export function emitMenuHost(
+  header: string,
+  outputs: Map<string, string>,
+  inventory: readonly Declaration[],
+  floor: number,
+  ceiling: number
+) {
+  const menu = menuComponent()
+  validateMenuHost(inventory, floor, ceiling, menu)
+  const configureParams = menuRoot.configureArgs
+    .map(({ label, prop }) => {
+      const name = label === '_' ? `_ ${prop}` : label === prop ? prop : `${label} ${prop}`
+      return `${name}: ${swiftTypeOf(prop, menu.props[prop])}`
+    })
+    .join(',\n')
+  const configureCall = menuRoot.configureArgs
+    .map(({ label, prop }, index) => {
+      const value = objcArgumentOf(prop, menu.props[prop])
+      return index === 0 ? `configure:${value}` : `${label}:${value}`
+    })
+    .join('\n')
+  const [configureFirst, ...configureRest] = configureCall.split('\n')
+  outputs.set(
+    'ios/Generated/OneNativeMenuView.swift',
+    header +
+      `import SwiftUI
 import UIKit
 
 final class OneNativeMenuModel: ObservableObject {
@@ -84,10 +221,12 @@ public final class OneNativeMenuView: UIView {
     model.items = Dictionary(uniqueKeysWithValues: nodes.map { ($0.id, $0) })
     model.propValues = Dictionary(uniqueKeysWithValues: nodes.filter { $0.type == .toggle }.map { ($0.id, $0.values) })
     model.propPickerValues = Dictionary(uniqueKeysWithValues: nodes.filter { $0.type == .picker }.map { ($0.id, $0.selection) })
-    model.children = Dictionary(grouping: nodes, by: \.parentId)
+    model.children = Dictionary(grouping: nodes, by: \\.parentId)
   }
 
-  public func configure(_ triggerLabel: String, disabled: Bool, hasPrimaryAction: Bool, menuOrder: String, menuActionDismissBehavior: String, presentation: String, acknowledgedEvent: Int, pickerAcknowledgedEvent: Int, revision: Int) {
+  public func configure(
+    ${configureParams.replaceAll('\n', '\n    ')}
+  ) {
     if let next = model.controlled.applying(model.propValues, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if let next = model.pickerControlled.applying(model.propPickerValues, acknowledged: pickerAcknowledgedEvent, revision: revision) { model.pickerControlled = next }
     if model.label != triggerLabel { model.label = triggerLabel }
@@ -334,4 +473,118 @@ extension OneNativeMenuView: UIContextMenuInteractionDelegate {
     default: return .automatic
     }
   }
+}
+`
+  )
+  outputs.set(
+    'ios/Generated/OneNativeMenuComponentView.h',
+    `${header}#ifdef __cplusplus
+#import <React/RCTViewComponentView.h>
+
+NS_ASSUME_NONNULL_BEGIN
+@interface OneNativeMenuComponentView : RCTViewComponentView
+@end
+NS_ASSUME_NONNULL_END
+#endif
+`
+  )
+  outputs.set(
+    'ios/Generated/OneNativeMenuComponentView.mm',
+    `${header}#import "OneNativeMenuComponentView.h"
+#import <React/RCTView.h>
+#import "One-Swift.h"
+#import "Generated/OneNativeMenuPayload.h"
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import <react/renderer/components/OneNativeSpec/EventEmitters.h>
+#import <react/renderer/components/OneNativeSpec/Props.h>
+#import <React/RCTConversions.h>
+
+using namespace facebook::react;
+
+@implementation OneNativeMenuComponentView {
+  OneNativeMenuView *_menuView;
+  BOOL _itemsDirty;
+}
+
++ (ComponentDescriptorProvider)componentDescriptorProvider
+{
+  return concreteComponentDescriptorProvider<OneNativeMenuComponentDescriptor>();
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+  if (self = [super initWithFrame:frame]) {
+    _props = std::make_shared<const OneNativeMenuProps>();
+    _itemsDirty = YES;
+    _menuView = [OneNativeMenuView new];
+    self.contentView = _menuView;
+    __weak OneNativeMenuComponentView *weakSelf = self;
+    _menuView.onAction = ^(NSString *identifier) {
+      OneNativeMenuComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeMenuEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeMenuAction({.id = std::string(identifier.UTF8String)});
+    };
+    _menuView.onPrimaryAction = ^{
+      OneNativeMenuComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeMenuEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeMenuPrimaryAction({.kind = std::string("primary")});
+    };
+    _menuView.onValueChange = ^(NSString *identifier, BOOL value, NSInteger sourceIndex, NSInteger eventCount, NSInteger revision) {
+      OneNativeMenuComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeMenuEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeMenuValueChange({.id = std::string(identifier.UTF8String), .value = (bool)value, .sourceIndex = (int)sourceIndex, .eventCount = (int)eventCount, .revision = (int)revision});
+    };
+    _menuView.onPickerChange = ^(NSString *identifier, NSString *value, NSInteger eventCount, NSInteger revision) {
+      OneNativeMenuComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeMenuEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeMenuPickerChange({.id = std::string(identifier.UTF8String), .value = std::string(value.UTF8String), .eventCount = (int)eventCount, .revision = (int)revision});
+    };
+  }
+  return self;
+}
+
+- (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index
+{
+  [_menuView mountTrigger:child];
+}
+
+- (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index
+{
+  [_menuView unmountTrigger:child];
+}
+
+- (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps
+{
+  const auto &next = *std::static_pointer_cast<const OneNativeMenuProps>(props);
+  const auto &previous = *std::static_pointer_cast<const OneNativeMenuProps>(_props);
+  if (_itemsDirty || !OneNativeMenuItemsEqual(previous.items, next.items)) {
+    [_menuView configureItems:OneNativeMenuPayload(next.items)];
+    _itemsDirty = NO;
+  }
+  [_menuView ${configureFirst}
+${configureRest.map((line) => `              ${line}`).join('\n')}];
+  [super updateProps:props oldProps:oldProps];
+}
+
+- (void)updateLayoutMetrics:(const LayoutMetrics &)layoutMetrics oldLayoutMetrics:(const LayoutMetrics &)oldLayoutMetrics
+{
+  [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
+  // the representable shares the fabric parent's coordinates; yoga owns the trigger frame.
+  _menuView.frame = self.bounds;
+}
+
+- (void)prepareForRecycle
+{
+  [super prepareForRecycle];
+  [_menuView reset];
+  _itemsDirty = YES;
+}
+
+@end
+`
+  )
 }

@@ -64,6 +64,61 @@ export const menuMethods = [
     requirements: ['MenuItems : SwiftUICore.View'],
   },
 ] as const
+
+// the menu root's fixed SDK surface beyond the node constructors: the
+// primary-action Menu initializer, and the three style applications the host
+// and its picker apply. the plain Menu initializer is the submenu node's
+// constructor, reused rather than restated. each style pairs the View modifier
+// (with the requirement that selects its overload) and the style member.
+// configureArgs is the view configure selector in order: Swift label to the
+// spec prop that fills it and the exact spec type the fixed model reads.
+export const menuRoot = {
+  constructors: [
+    {
+      type: 'Menu',
+      parameters: [
+        { label: 'content', type: '() -> Content' },
+        { label: 'label', type: '() -> Label' },
+        { label: 'primaryAction', type: '@escaping () -> Swift.Void' },
+      ],
+      requirements: [],
+    },
+  ],
+  styles: [
+    {
+      modifier: 'menuStyle',
+      requirement: 'S : SwiftUI.MenuStyle',
+      member: 'button',
+      owner: 'SwiftUI.MenuStyle',
+      type: 'SwiftUI.ButtonMenuStyle',
+    },
+    {
+      modifier: 'buttonStyle',
+      requirement: 'S : SwiftUI.PrimitiveButtonStyle',
+      member: 'plain',
+      owner: 'SwiftUI.PrimitiveButtonStyle',
+      type: 'SwiftUI.PlainButtonStyle',
+    },
+    {
+      modifier: 'pickerStyle',
+      requirement: 'S : SwiftUI.PickerStyle',
+      member: 'menu',
+      owner: 'SwiftUI.PickerStyle',
+      type: 'SwiftUI.MenuPickerStyle',
+    },
+  ],
+  configureArgs: [
+    { label: '_', prop: 'triggerLabel', type: 'string' },
+    { label: 'disabled', prop: 'disabled', type: 'boolean' },
+    { label: 'hasPrimaryAction', prop: 'hasPrimaryAction', type: 'boolean' },
+    { label: 'menuOrder', prop: 'menuOrder', type: 'string' },
+    { label: 'menuActionDismissBehavior', prop: 'menuActionDismissBehavior', type: 'string' },
+    { label: 'presentation', prop: 'presentation', type: 'string' },
+    { label: 'acknowledgedEvent', prop: 'acknowledgedEvent', type: 'Int32' },
+    { label: 'pickerAcknowledgedEvent', prop: 'pickerAcknowledgedEvent', type: 'Int32' },
+    { label: 'revision', prop: 'revision', type: 'Int32' },
+  ],
+} as const
 export const styleModifiers = [
   {
     name: 'font',

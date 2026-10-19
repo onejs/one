@@ -9,6 +9,7 @@ import { emitStyle } from './emitStyle'
 import { sdkGuard } from './sdkGuard'
 import { deriveModifiers, deriveViewSlots, deriveViews } from './deriveSDK'
 import { emitMenuValidator } from './menuValidator'
+import { emitMenuHost } from './emitMenuHost'
 import {
   readInventory,
   ios,
@@ -886,6 +887,7 @@ ${Object.entries(nativeFields)
 #endif
 `
 )
+emitMenuHost(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
 const manifest = {
   // the ceiling, not the local toolchain: output must be identical on every SDK at or above it.
   sdk: String(MAXIMUM_IOS),
