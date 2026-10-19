@@ -42,6 +42,7 @@ import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './Androi
 import { ContextMenu as IOSContextMenu, Menu as IOSMenu } from './Menu.native'
 import { Page, Pager } from './Pager.native'
 import { UIKitView } from './UIKitView.native'
+import { collectionCellSource, tableCellSource, UIKitContent } from './UIKitContent.native'
 import { Popover } from './Popover.native'
 import {
   NavigationStack,
@@ -156,6 +157,9 @@ export const Swift =
         DisclosureGroup,
         Divider,
         UIKitView,
+        UIKitContent,
+        collectionCellSource,
+        tableCellSource,
         Link,
         Group,
         GroupBox,

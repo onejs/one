@@ -6,6 +6,11 @@ import type { SFSymbolName } from './generated/sfSymbolNames'
 import type { ControlGroupStyle } from './generated/swiftui'
 import type { OneNativeStyle } from './generated/controlTypes'
 import type { ViewSlotConfiguration } from './generated/viewSlots'
+import type {
+  UICollectionViewDiffableDataSource,
+  UITableViewDiffableDataSource,
+  UIView,
+} from 'one/ios/UIKit'
 
 // hand-written round-2 container types, pending the container emitter (see
 // listTypes.ts for round 1). they merge into src/generated/containerTypes.ts
@@ -34,6 +39,25 @@ export interface DisclosureGroupProps extends ViewProps {
 // `await UICalendarView.init()` from one/ios/UIKit. configure it there; this places it.
 export interface UIKitViewProps extends ViewProps {
   view: SDKHandle
+}
+
+// a source from One.iOS.collectionCellSource or tableCellSource
+export type UIKitContentSource =
+  | UICollectionViewDiffableDataSource<number, number>
+  | UITableViewDiffableDataSource<number, number>
+
+// react content that UIKit shows. give a source and the item whose cell shows it, or
+// onView to place the view with any UIKit API, such as UIStackView.addArrangedSubview.
+// the view props style the content's root.
+export interface UIKitContentProps extends ViewProps {
+  children: ReactNode
+  onView?: (view: UIView) => void
+  source?: UIKitContentSource
+  item?: number
+  // a fixed height that skips measurement
+  height?: number
+  // the height before the first measurement, 44 by default
+  estimatedHeight?: number
 }
 
 export interface DividerProps extends ViewProps {

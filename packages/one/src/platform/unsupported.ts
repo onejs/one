@@ -1,12 +1,19 @@
 import { Angle, Gradient, Path, Shading, type CanvasProps } from './canvas'
 import { unsupportedControls } from './generated/unsupportedControls'
 import type {
+  UICollectionView,
+  UICollectionViewDiffableDataSource,
+  UITableView,
+  UITableViewDiffableDataSource,
+} from 'one/ios/UIKit'
+import type {
   ButtonProps,
   ContextMenuProps,
   ControlGroupProps,
   DisclosureGroupProps,
   DividerProps,
   UIKitViewProps,
+  UIKitContentProps,
   FormProps,
   FullScreenCoverProps,
   GlassProps,
@@ -203,6 +210,19 @@ function Divider(_props: DividerProps): never {
 function UIKitView(_props: UIKitViewProps): never {
   throw new Error('Swift.UIKitView requires an iOS native build')
 }
+function UIKitContent(_props: UIKitContentProps): never {
+  throw new Error('Swift.UIKitContent requires an iOS native build')
+}
+function collectionCellSource(
+  _view: UICollectionView
+): Promise<UICollectionViewDiffableDataSource<number, number>> {
+  return Promise.reject(new Error('Swift.collectionCellSource requires an iOS native build'))
+}
+function tableCellSource(
+  _view: UITableView
+): Promise<UITableViewDiffableDataSource<number, number>> {
+  return Promise.reject(new Error('Swift.tableCellSource requires an iOS native build'))
+}
 function Link(_props: LinkProps): never {
   throw new Error('Swift.Link requires an iOS native build')
 }
@@ -349,6 +369,9 @@ export const Swift = {
   DisclosureGroup,
   Divider,
   UIKitView,
+  UIKitContent,
+  collectionCellSource,
+  tableCellSource,
   Link,
   Group,
   GroupBox,
