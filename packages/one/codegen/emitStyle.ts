@@ -579,12 +579,10 @@ ${parsedArguments}
     switch record.kind {
 ${modifier.gestureOptions!.map((option) => {
           const binds = option.type === dragGesture
-          const report = (event: string) => option.eventValue
-            ? `{ item in${binds && event.endsWith('.onChanged') ? `
-        binding?.changed(item.translation, from: item.startLocation)
-        guard changed else { return }` : ''}
-        ${binds && !event.includes('.') ? `var payload = ${eventValueSwift(option.eventValue, 'item')}
-        if let target = binding?.ended(predicted: item.predictedEndTranslation, from: item.startLocation) { payload["snapTarget"] = target }` : `let payload = ${eventValueSwift(option.eventValue, 'item')}`}
+          const report = (event: string, snap = false) => option.eventValue
+            ? `{ ${snap ? 'item, snapTarget' : 'item'} in
+        ${snap ? `var payload = ${eventValueSwift(option.eventValue, 'item')}
+        if let snapTarget { payload["snapTarget"] = snapTarget }` : `let payload = ${eventValueSwift(option.eventValue, 'item')}`}
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name}.${option.name} event") }
         emit(${JSON.stringify(event)}, encoded)
@@ -596,7 +594,7 @@ ${modifier.gestureOptions!.map((option) => {
             ? `let binding = OneNativeDragBinding(record)
       let changed = record.boolean("onChanged") == true
       if changed || binding != nil {
-        self.${modifier.sdkName ?? modifier.name}(${gesture}.onChanged(${report(`${modifier.name}.onChanged`)})${ended})
+        self.modifier(OneNativeDragHost(attachment: .${modifier.sdkName ?? modifier.name}, gesture: ${gesture}, binding: binding, changed: changed ? ${report(`${modifier.name}.onChanged`)} : nil, ended: ${report(modifier.name, true)}))
       } else {
         self.${modifier.sdkName ?? modifier.name}(${gesture}${ended})
       }`

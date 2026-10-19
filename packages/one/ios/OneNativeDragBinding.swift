@@ -11,17 +11,6 @@ struct OneNativeDragBinding {
   let targets: [Double]
   let animation: SwiftUI.Animation?
 
-  // the entry's value when each bound drag began, keyed by entry and the drag's
-  // start location. swiftui never calls onEnded for a cancelled drag, so a new
-  // drag is told apart by its own start location and never resumes a cancelled
-  // one, and views sharing an entry keep separate starts. main thread only.
-  private struct Start: Hashable {
-    let state: Int32
-    let x: CGFloat
-    let y: CGFloat
-  }
-  private static var starts: [Start: Double] = [:]
-
   init?(_ record: OneNativeSDKRecord) {
     guard let raw = record.fields["bind"] else {
       precondition(record.fields["snap"] == nil, "invalid \(record.context): snap needs bind")
@@ -56,16 +45,13 @@ struct OneNativeDragBinding {
     }
   }
 
-  func changed(_ translation: CGSize, from origin: CGPoint) {
-    let key = Start(state: state, x: origin.x, y: origin.y)
-    let start = Self.starts[key] ?? current()
-    Self.starts[key] = start
+  // writes start, the entry's value when this drag began, plus the translation.
+  func changed(_ translation: CGSize, from start: Double) {
     OneNativeSyncRegistry.set(state, value: NSNumber(value: clamped(start + along(translation))))
   }
 
   // the snap target the drag settled on, or nil without snap.
-  func ended(predicted: CGSize, from origin: CGPoint) -> Double? {
-    let start = Self.starts.removeValue(forKey: Start(state: state, x: origin.x, y: origin.y)) ?? current()
+  func ended(predicted: CGSize, from start: Double) -> Double? {
     guard !targets.isEmpty else { return nil }
     let projected = clamped(start + along(predicted))
     let target = targets.min { abs($0 - projected) < abs($1 - projected) }!
@@ -84,10 +70,56 @@ struct OneNativeDragBinding {
     return min(max(value, range.lowerBound), range.upperBound)
   }
 
-  private func current() -> Double {
+  func current() -> Double {
     guard let number = OneNativeSyncRegistry.get(state) as? NSNumber, number.doubleValue.isFinite else {
       preconditionFailure("drag bind state \(state) must hold a finite number")
     }
     return number.doubleValue
+  }
+}
+
+// attaches a drag whose bound start lives in the view's gesture state, so swiftui
+// clears it when the drag ends or is cancelled and each view keeps its own.
+struct OneNativeDragHost: ViewModifier {
+  enum Attachment {
+    case gesture
+    case highPriorityGesture
+    case simultaneousGesture
+  }
+
+  // hands the start of the drag in progress to onEnded, which runs after swiftui
+  // has reset the gesture state.
+  private final class Session {
+    var start: Double?
+  }
+
+  let attachment: Attachment
+  let gesture: SwiftUI.DragGesture
+  let binding: OneNativeDragBinding?
+  let changed: ((SwiftUI.DragGesture.Value) -> Void)?
+  let ended: (SwiftUI.DragGesture.Value, Double?) -> Void
+  @GestureState private var start: Double?
+  @State private var session = Session()
+
+  @ViewBuilder func body(content: Content) -> some View {
+    let drag = gesture.updating($start) { item, start, _ in
+      guard let binding else { return }
+      if start == nil {
+        start = binding.current()
+        session.start = start
+      }
+      binding.changed(item.translation, from: start!)
+    }.onChanged { item in
+      changed?(item)
+    }.onEnded { item in
+      let start = session.start
+      session.start = nil
+      ended(item, binding.flatMap { $0.ended(predicted: item.predictedEndTranslation, from: start ?? $0.current()) })
+    }
+    switch attachment {
+    case .gesture: content.gesture(drag)
+    case .highPriorityGesture: content.highPriorityGesture(drag)
+    case .simultaneousGesture: content.simultaneousGesture(drag)
+    }
   }
 }
