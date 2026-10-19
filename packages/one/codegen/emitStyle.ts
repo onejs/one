@@ -1361,28 +1361,10 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
           if ((argument.kind === 'string' || argument.kind === 'url' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
           if ((argument.kind === 'stringArray' || argument.kind === 'stringSet') && (!Array.isArray(item) || item.some((element) => typeof element !== 'string'))) throw new Error(name + '.' + argument.field + ' must be a string array')
           if (argument.unique && new Set(item as string[]).size !== (item as string[]).length) throw new Error(name + '.' + argument.field + ' must contain distinct strings')
-          if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
-            if (!item || typeof item !== 'object' || Array.isArray(item) ||
-              Object.keys(item).length !== argument.fields!.length ||
-              argument.fields!.some((field) => {
-                const number = (item as Record<string, unknown>)[field.name]
-                return typeof number !== 'number' || !Number.isFinite(number) || (field.integer && !Number.isSafeInteger(number))
-              })) throw new Error(name + '.' + argument.field + ' must be a numeric object')
-            return JSON.stringify(item)
-          }
-          if (argument.kind === 'numericRange') {
-            if (!item || typeof item !== 'object' || Array.isArray(item) ||
-              Object.keys(item).length !== argument.fields!.length ||
-              argument.fields!.some((field) => {
-                const number = (item as Record<string, unknown>)[field.name]
-                return typeof number !== 'number' || !Number.isFinite(number) || (field.integer && !Number.isSafeInteger(number))
-              })) throw new Error(name + '.' + argument.field + ' must be a numeric range')
-            if (argument.fields!.length === 2) {
-              const lower = (item as Record<string, number>).lower
-              const upper = (item as Record<string, number>).upper
-              if (lower > upper) throw new Error(name + '.' + argument.field + ' must have lower <= upper')
-            }
-            return JSON.stringify(item)
+          if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ||
+            argument.kind === 'numericRange') {
+            return sdkNumericRecordText(item, argument.fields!, name + '.' + argument.field,
+              argument.kind === 'numericRange')
           }
           return argument.kind === 'stringArray' || argument.kind === 'stringSet' ? JSON.stringify(item) : String(item)
         })

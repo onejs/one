@@ -3278,6 +3278,46 @@ export function sdkValueText(value: unknown, key: string, context: string): stri
   return typeof parsed === 'string' ? parsed : text
 }
 
+// returns the text native decodes for a numeric struct, tuple or range: the record as
+// JSON, validated as the parsed JSON it serializes to, so toJSON, getters and undefined
+// fields cannot send native anything other than what was checked.
+function sdkNumericRecordText(
+  item: unknown,
+  fields: readonly { name: string; integer: boolean }[],
+  context: string,
+  range: boolean
+): string {
+  const text = JSON.stringify(item)
+  if (typeof text !== 'string')
+    throw new Error(
+      context + (range ? ' must be a numeric range' : ' must be a numeric object')
+    )
+  const parsed: unknown = JSON.parse(text)
+  if (
+    !parsed ||
+    typeof parsed !== 'object' ||
+    Array.isArray(parsed) ||
+    Object.keys(parsed).length !== fields.length ||
+    fields.some((field) => {
+      const number = (parsed as Record<string, unknown>)[field.name]
+      return (
+        typeof number !== 'number' ||
+        !Number.isFinite(number) ||
+        (field.integer && !Number.isSafeInteger(number))
+      )
+    })
+  )
+    throw new Error(
+      context + (range ? ' must be a numeric range' : ' must be a numeric object')
+    )
+  if (range && fields.length === 2) {
+    const lower = (parsed as Record<string, number>).lower
+    const upper = (parsed as Record<string, number>).upper
+    if (lower > upper) throw new Error(context + ' must have lower <= upper')
+  }
+  return text
+}
+
 // the text withAnimation and PhaseAnimator hand native for an SDK Animation.
 export function encodeSDKAnimation(
   value: SDKAnimationValue,
@@ -3501,47 +3541,17 @@ export function swiftStyleNative(
             throw new Error(
               name + '.' + argument.field + ' must contain distinct strings'
             )
-          if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
-            if (
-              !item ||
-              typeof item !== 'object' ||
-              Array.isArray(item) ||
-              Object.keys(item).length !== argument.fields!.length ||
-              argument.fields!.some((field) => {
-                const number = (item as Record<string, unknown>)[field.name]
-                return (
-                  typeof number !== 'number' ||
-                  !Number.isFinite(number) ||
-                  (field.integer && !Number.isSafeInteger(number))
-                )
-              })
+          if (
+            argument.kind === 'numericStruct' ||
+            argument.kind === 'numericTuple' ||
+            argument.kind === 'numericRange'
+          ) {
+            return sdkNumericRecordText(
+              item,
+              argument.fields!,
+              name + '.' + argument.field,
+              argument.kind === 'numericRange'
             )
-              throw new Error(name + '.' + argument.field + ' must be a numeric object')
-            return JSON.stringify(item)
-          }
-          if (argument.kind === 'numericRange') {
-            if (
-              !item ||
-              typeof item !== 'object' ||
-              Array.isArray(item) ||
-              Object.keys(item).length !== argument.fields!.length ||
-              argument.fields!.some((field) => {
-                const number = (item as Record<string, unknown>)[field.name]
-                return (
-                  typeof number !== 'number' ||
-                  !Number.isFinite(number) ||
-                  (field.integer && !Number.isSafeInteger(number))
-                )
-              })
-            )
-              throw new Error(name + '.' + argument.field + ' must be a numeric range')
-            if (argument.fields!.length === 2) {
-              const lower = (item as Record<string, number>).lower
-              const upper = (item as Record<string, number>).upper
-              if (lower > upper)
-                throw new Error(name + '.' + argument.field + ' must have lower <= upper')
-            }
-            return JSON.stringify(item)
           }
           return argument.kind === 'stringArray' || argument.kind === 'stringSet'
             ? JSON.stringify(item)
