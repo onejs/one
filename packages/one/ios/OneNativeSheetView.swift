@@ -13,6 +13,9 @@ final class OneNativeSheetModel: ObservableObject {
   @Published var presentationBackgroundInteractionDetent: PresentationDetent = .large
   @Published var presentationContentInteraction = "automatic"
   @Published var presentationSizing = "automatic"
+  // the laid-out React Native content height, reported back from the bridge.
+  // fitted sizing reads it as the ideal height; detents ignore it.
+  @Published var measuredHeight: CGFloat = 0
   var detentValues: [(key: String, type: String, value: Double, detent: PresentationDetent)] = [
     ("large:0", "large", 0, .large)
   ]
@@ -48,6 +51,11 @@ final class OneNativeSheetModel: ObservableObject {
         next.type, next.value, selectedDetent.eventCount, selectedDetent.revision)
     }
   }
+
+  func setMeasuredHeight(_ height: CGFloat) {
+    guard height.isFinite, height > 0, abs(measuredHeight - height) >= 0.5 else { return }
+    measuredHeight = height
+  }
 }
 
 @objcMembers public final class OneNativeSheetView: UIView {
@@ -67,6 +75,7 @@ final class OneNativeSheetModel: ObservableObject {
     if model.content === view { model.content = nil }
     view.removeFromSuperview()
   }
+  public func setMeasuredHeight(_ height: CGFloat) { model.setMeasuredHeight(height) }
   public func setDetents(_ detents: [[String: Any]]) {
     let values = detents.map { item -> (key: String, type: String, value: Double, detent: PresentationDetent) in
       let type = item["type"] as! String
