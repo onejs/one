@@ -176,14 +176,14 @@ describe('sheet host generation', () => {
 
   it('measures presented content height only and aliases the slot shadow node', () => {
     const mm = emit().get('ios/Generated/OneNativeSheetComponentView.mm')!
-    expect(mm).toContain('CGFloat height = 0;')
-    expect(mm).toContain('height = MAX(height, CGRectGetMaxY(subview.frame));')
+    expect(mm).toContain('const auto height = _slotState->getData().content.height;')
+    expect(mm).toContain('if (std::isfinite(height) && height >= 0) _measuredHeightCallback(height);')
     expect(mm).toContain('_measuredHeightCallback(height);')
     expect(mm).not.toContain('measuredWidth')
     expect(mm).toContain('RCTSurfaceTouchHandler')
     expect(mm).toContain('if (old.measured && old.size == size) return;')
     const shadow = emit().get('cpp/OneNativeSheetContentShadowNode.h')!
-    expect(shadow).toContain('OneNativeSlotShadowNode<OneNativeSheetContentComponentName')
+    expect(shadow).toContain('OneNativePresentedSlotShadowNode<OneNativeSheetContentComponentName')
     expect(emit().get('cpp/OneNativeSheetContentShadowNode.cpp')!).toContain(
       'OneNativeSheetContentComponentName[] = "OneNativeSheetContent"'
     )
