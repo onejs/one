@@ -52,16 +52,17 @@ export function importedFrameworks(
   return [...found].sort()
 }
 
-// the generator's own source and the runtime it compiles against key the
-// cache, so a changed generator never reuses old tables. the key is also the
-// generation the tables and facades carry.
+// the sdk version, generator source and runtime key the cache, so a changed
+// sdk or generator never reuses old tables. tables and facades carry the key
+// as their generation.
 function cacheDir() {
   const here = dirname(fileURLToPath(import.meta.url))
-  const hash = createHash('sha256')
+  const version = sdkVersion()
+  const hash = createHash('sha256').update(version)
   for (const file of readdirSync(here).filter((f) => /\.(?:ts|mjs)$/.test(f)).sort()) hash.update(readFileSync(join(here, file)))
   hash.update(readFileSync(RUNTIME))
   const generation = hash.digest('hex').slice(0, 12)
-  const dir = join(homedir(), '.cache', 'one', 'sdk-bindings', `${sdkVersion()}-${generation}`)
+  const dir = join(homedir(), '.cache', 'one', 'sdk-bindings', `${version}-${generation}`)
   mkdirSync(dir, { recursive: true })
   return { dir, generation }
 }
