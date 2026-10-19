@@ -2,6 +2,7 @@ import { navigationHost } from './catalog'
 import { containerComponents, contentComponents } from './emitContainers'
 import {
   ios,
+  present,
   selectConstructor,
   selectModifier,
   type Declaration,
@@ -85,6 +86,91 @@ export function validateNavigationHost(
   }
 }
 
+// the SDK facts the split hosts emit against: the four columnVisibility
+// initializers, the visibility and compact-column members converted both ways,
+// and the exact spec surface of the split and its column. the compact gate
+// version is read from its initializers; the column members must already exist
+// there. anything missing, reshaped, or newer than its gate fails instead of
+// emitting stale calls.
+export function validateNavigationSplitHost(
+  inventory: readonly Declaration[],
+  floor: number,
+  ceiling: number,
+  menu: readonly NavSpec[] = rows()
+) {
+  const fail = (message: string): never => {
+    throw new Error(`OneNativeNavigationSplitView host: ${message}`)
+  }
+  const row = (name: string) =>
+    menu.find((entry) => entry.name === name) ?? fail(`components name no ${name}`)
+  const gated: number[] = []
+  for (const initializer of navigationHost.split.initializers) {
+    const declaration = selectConstructor(inventory, {
+      type: 'NavigationSplitView',
+      parameters: initializer.parameters,
+    })
+    if (!initializer.gated && ios(declaration) > floor)
+      fail(
+        `NavigationSplitView needs iOS ${ios(declaration)}, past the floor ${floor}`
+      )
+    if (initializer.gated) {
+      if (ios(declaration) > ceiling)
+        fail(
+          `NavigationSplitView needs iOS ${ios(declaration)}, past the ceiling ${ceiling}`
+        )
+      gated.push(ios(declaration))
+    }
+  }
+  if (new Set(gated).size !== 1) fail('the compact initializers ship different versions')
+  for (const table of [navigationHost.split.visibility, navigationHost.split.compactColumn]) {
+    if (!(table.members as readonly string[]).includes(table.default))
+      fail(`${table.type} names no ${table.default} fallback`)
+    for (const member of table.members) {
+      const matches = inventory.filter(
+        (declaration) =>
+          declaration.kind === 'static' &&
+          (declaration.owner === table.type || declaration.owner === `SwiftUI.${table.type}`) &&
+          declaration.name === member &&
+          declaration.parameters.length === 0 &&
+          declaration.type === `SwiftUI.${table.type}` &&
+          present(declaration) &&
+          ios(declaration) <= ceiling
+      )
+      if (matches.length !== 1)
+        fail(`${table.type} has ${matches.length} members spelling .${member}`)
+      const latest = table === navigationHost.split.visibility ? floor : gated[0]
+      if (ios(matches[0]) > latest)
+        fail(`${table.type}.${member} needs iOS ${ios(matches[0])}, past ${latest}`)
+    }
+  }
+  const split = row('OneNativeNavigationSplitView')
+  for (const { prop, type } of navigationHost.split.configure) {
+    if (!(prop in split.props)) fail(`configure prop ${prop} is not in the spec`)
+    if (split.props[prop] !== type)
+      fail(`configure prop ${prop} carries ${split.props[prop]}, not the ${type} the model reads`)
+  }
+  if (split.swiftStyle !== true) fail('OneNativeNavigationSplitView styles through swiftStyle')
+  const splitEvents: Record<string, Record<string, string>> = {
+    onNativeNavigationSplitViewColumnVisibilityChange: { visibility: 'string' },
+    onNativeNavigationSplitViewPreferredCompactColumnChange: { column: 'string' },
+    onNativeSDKEvent: { name: 'string', value: 'string' },
+  }
+  for (const [event, fields] of Object.entries(splitEvents)) {
+    const declared = split.events[event] ?? fail(`event ${event} is not in the spec`)
+    if (JSON.stringify(declared) !== JSON.stringify(fields))
+      fail(`${event} must carry ${Object.keys(fields).join(', ')}`)
+  }
+  const column = row(navigationHost.split.column.component)
+  const { prop, type } = navigationHost.split.column.column
+  if (!(prop in column.props)) fail(`configure prop ${prop} is not in the spec`)
+  if (column.props[prop] !== type)
+    fail(`configure prop ${prop} carries ${column.props[prop]}, not the ${type} the column reads`)
+  if (column.swiftStyle !== true)
+    fail(`${navigationHost.split.column.component} styles through swiftStyle`)
+  if (JSON.stringify(column.events.onNativeSDKEvent ?? null) !== JSON.stringify(sdkEvent))
+    fail(`${navigationHost.split.column.component} must carry the SDK event`)
+}
+
 export function emitNavigationHost(
   header: string,
   outputs: Map<string, string>,
@@ -93,6 +179,7 @@ export function emitNavigationHost(
   ceiling: number
 ) {
   validateNavigationHost(inventory, floor, ceiling)
+  validateNavigationSplitHost(inventory, floor, ceiling)
   const spacer = selectConstructor(
     inventory,
     navigationHost.entries.find((entry) => entry.kind === 'spacer')!
@@ -713,6 +800,601 @@ using OneNativeNavigationStackContentComponentDescriptor = OneNativeSlotComponen
 namespace facebook::react {
 extern const char OneNativeNavigationStackContentComponentName[] = "OneNativeNavigationStackContent";
 }
+`
+  )
+  const compact = selectConstructor(inventory, {
+    type: 'NavigationSplitView',
+    parameters: navigationHost.split.initializers.find((initializer) => initializer.gated)!.parameters,
+  })
+  const gate = Number.isInteger(ios(compact)) ? `${ios(compact)}.0` : `${ios(compact)}`
+  const splitRow = (
+    [...containerComponents, ...contentComponents] as unknown as readonly NavSpec[]
+  ).find((row) => row.name === 'OneNativeNavigationSplitView')!
+  const swiftParam = (label: string, prop: string) => {
+    const type = splitRow.props[prop]
+    const swift = type === 'boolean' ? 'Bool' : type === 'string' ? 'String' : 'Int'
+    return `${label === prop ? prop : `${label} ${prop}`}: ${swift}`
+  }
+  const configureParams = navigationHost.split.configure
+    .map(({ label, prop }) => swiftParam(label, prop))
+    .join(',\n')
+  const objcValue = (prop: string) =>
+    splitRow.props[prop] === 'string' ? `RCTNSStringFromString(next.${prop})` : `next.${prop}`
+  const configureCall = navigationHost.split.configure
+    .map(({ label, prop }, index) =>
+      index === 0
+        ? `configureWith${label[0].toUpperCase()}${label.slice(1)}:${objcValue(prop)}`
+        : `${label}:${objcValue(prop)}`
+    )
+    .join('\n    ')
+  const forward = (table: { members: readonly string[]; default: string }) =>
+    `${table.members.map((member) => `    case "${member}": return .${member}`).join('\n')}\n    default: return .${table.default}`
+  const backward = (table: { members: readonly string[]; default: string }) =>
+    `${table.members.map((member) => `    case .${member}: return "${member}"`).join('\n')}\n    default: return "${table.default}"`
+  outputs.set(
+    'ios/Generated/OneNativeNavigationSplitViewView.swift',
+    header +
+      `import SwiftUI
+import UIKit
+
+private final class NavigationSplitViewModel: ObservableObject {
+  @Published var columns: [OneNativeNavigationSplitViewColumnView] = []
+  @Published var columnVisibility = "automatic"
+  @Published var columnVisibilityIsControlled = false
+  @Published var uncontrolledColumnVisibility = "automatic"
+  @Published var preferredCompactColumn = "sidebar"
+  @Published var preferredCompactColumnIsControlled = false
+  @Published var uncontrolledCompactColumn = "sidebar"
+  @Published var swiftStyle = OneNativeStyle()
+  var active = false
+  var onColumnVisibilityChange: ((String) -> Void)?
+  var onPreferredCompactColumnChange: ((String) -> Void)?
+  var onSDKEvent: ((String, String) -> Void)?
+
+  var currentColumnVisibility: String {
+    columnVisibilityIsControlled ? columnVisibility : uncontrolledColumnVisibility
+  }
+
+  var currentCompactColumn: String {
+    preferredCompactColumnIsControlled ? preferredCompactColumn : uncontrolledCompactColumn
+  }
+
+  var columnVisibilityBinding: Binding<NavigationSplitViewVisibility> {
+    Binding(
+      get: { [self] in visibility(currentColumnVisibility) },
+      set: { [self] next in
+        let value = visibilityName(next)
+        guard value != currentColumnVisibility else { return }
+        if !columnVisibilityIsControlled { uncontrolledColumnVisibility = value }
+        if active { onColumnVisibilityChange?(value) }
+      }
+    )
+  }
+
+  @available(iOS ${gate}, *)
+  var compactColumnBinding: Binding<NavigationSplitViewColumn> {
+    Binding(
+      get: { [self] in compactColumn(currentCompactColumn) },
+      set: { [self] next in
+        let value = compactColumnName(next)
+        guard value != currentCompactColumn else { return }
+        if !preferredCompactColumnIsControlled { uncontrolledCompactColumn = value }
+        if active { onPreferredCompactColumnChange?(value) }
+      }
+    )
+  }
+
+  func configure(
+    ${configureParams.replaceAll('\n', '\n    ')}
+  ) {
+    self.columnVisibility = columnVisibility
+    self.columnVisibilityIsControlled = columnVisibilityIsControlled
+    self.preferredCompactColumn = preferredCompactColumn
+    self.preferredCompactColumnIsControlled = preferredCompactColumnIsControlled
+  }
+
+  func column(_ name: String) -> OneNativeNavigationSplitViewColumnView? {
+    columns.first { $0.columnName == name }
+  }
+
+  func emitSDKEvent(_ name: String, _ value: String) {
+    if active { onSDKEvent?(name, value) }
+  }
+
+  private func visibility(_ value: String) -> NavigationSplitViewVisibility {
+    switch value {
+${forward(navigationHost.split.visibility)}
+    }
+  }
+
+  private func visibilityName(_ value: NavigationSplitViewVisibility) -> String {
+    switch value {
+${backward(navigationHost.split.visibility)}
+    }
+  }
+
+  @available(iOS ${gate}, *)
+  private func compactColumn(_ value: String) -> NavigationSplitViewColumn {
+    switch value {
+${forward(navigationHost.split.compactColumn)}
+    }
+  }
+
+  @available(iOS ${gate}, *)
+  private func compactColumnName(_ value: NavigationSplitViewColumn) -> String {
+    switch value {
+${backward(navigationHost.split.compactColumn)}
+    }
+  }
+}
+
+@objcMembers
+public final class OneNativeNavigationSplitViewColumnView: UIView, OneNativeToolbarHost, ObservableObject {
+  @Published var content: UIView?
+  @Published var toolbarEntries: [OneNativeToolbarEntry] = []
+  @Published var swiftStyle = OneNativeStyle()
+  @Published public private(set) var columnName = "sidebar"
+  public var onSDKEvent: ((String, String) -> Void)?
+  public var compositionActive: Bool { active }
+  private var active = false
+  private var toolbars: [OneNativeToolbarView] = []
+  private var onLayout: ((CGRect) -> Void)?
+
+  public func configure(column: String, style: [String: Any]) {
+    if columnName != column { columnName = column }
+    let next = OneNativeStyle(dictionary: style)
+    if swiftStyle != next { swiftStyle = next }
+  }
+
+  public func mountContent(_ view: UIView, onLayout: @escaping (CGRect) -> Void) {
+    self.onLayout = onLayout
+    content = view
+  }
+
+  public func unmountContent(_ view: UIView) {
+    if content === view { content = nil }
+    onLayout = nil
+    view.removeFromSuperview()
+  }
+
+  public func mountToolbar(_ toolbar: OneNativeToolbarView) {
+    toolbars.append(toolbar)
+    toolbar.composeInto(self)
+    publishToolbars()
+  }
+
+  public func unmountToolbar(_ toolbar: OneNativeToolbarView) {
+    toolbars.removeAll { $0 === toolbar }
+    toolbar.decompose()
+    publishToolbars()
+  }
+
+  public func toolbarChanged() { publishToolbars() }
+
+  public func refreshRow(for child: UIView) {}
+
+  public func propagateActive(_ next: Bool) {
+    guard active != next else { return }
+    active = next
+    for toolbar in toolbars { toolbar.propagateActive(next) }
+  }
+
+  func emitSDKEvent(_ name: String, _ value: String) {
+    if active { onSDKEvent?(name, value) }
+  }
+
+  public func reset() {
+    propagateActive(false)
+    for toolbar in toolbars { toolbar.decompose() }
+    toolbars.removeAll()
+    toolbarEntries = []
+    content = nil
+    onLayout = nil
+    swiftStyle = OneNativeStyle()
+    columnName = "sidebar"
+  }
+
+  private func publishToolbars() {
+    toolbarEntries = toolbars.flatMap(\\.entries)
+  }
+}
+
+private struct NavigationSplitViewColumnContent: View {
+  @ObservedObject var column: OneNativeNavigationSplitViewColumnView
+  weak var host: OneNativeNavigationSplitViewView?
+
+  var body: some View {
+    Group {
+      if let content = column.content {
+        OneNativeSlot(
+          content: content,
+          mode: .fill,
+          layoutHost: host,
+          onLayout: { frame in column.updateNativeFrame(frame) }
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+      } else {
+        Color.clear
+      }
+    }
+    .oneNativeStyle(column.swiftStyle, emit: column.emitSDKEvent)
+    .toolbar {
+      ForEach(column.toolbarEntries) { entry in
+        OneNativeToolbarEntryContent(entry: entry)
+      }
+    }
+  }
+}
+
+private struct NavigationSplitViewRoot: View {
+  @ObservedObject var model: NavigationSplitViewModel
+  weak var host: OneNativeNavigationSplitViewView?
+
+  var body: some View {
+    Group {
+      if #available(iOS ${gate}, *) {
+        splitViewWithCompactColumn
+      } else {
+        splitViewWithoutCompactColumn
+      }
+    }
+    .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
+  }
+
+  @available(iOS ${gate}, *)
+  @ViewBuilder private var splitViewWithCompactColumn: some View {
+    if model.column("content") != nil {
+      NavigationSplitView(
+        columnVisibility: model.columnVisibilityBinding,
+        preferredCompactColumn: model.compactColumnBinding
+      ) {
+        columnContent("sidebar")
+      } content: {
+        columnContent("content")
+      } detail: {
+        columnContent("detail")
+      }
+    } else {
+      NavigationSplitView(
+        columnVisibility: model.columnVisibilityBinding,
+        preferredCompactColumn: model.compactColumnBinding
+      ) {
+        columnContent("sidebar")
+      } detail: {
+        columnContent("detail")
+      }
+    }
+  }
+
+  @ViewBuilder private var splitViewWithoutCompactColumn: some View {
+    if model.column("content") != nil {
+      NavigationSplitView(columnVisibility: model.columnVisibilityBinding) {
+        columnContent("sidebar")
+      } content: {
+        columnContent("content")
+      } detail: {
+        columnContent("detail")
+      }
+    } else {
+      NavigationSplitView(columnVisibility: model.columnVisibilityBinding) {
+        columnContent("sidebar")
+      } detail: {
+        columnContent("detail")
+      }
+    }
+  }
+
+  private func columnContent(_ name: String) -> some View {
+    Group {
+      if let column = model.column(name) {
+        NavigationSplitViewColumnContent(column: column, host: host)
+      } else {
+        Color.clear
+      }
+    }
+  }
+}
+
+@objcMembers
+public final class OneNativeNavigationSplitViewView: UIView {
+  public var onColumnVisibilityChange: ((String) -> Void)?
+  public var onPreferredCompactColumnChange: ((String) -> Void)?
+  public var onSDKEvent: ((String, String) -> Void)?
+  private var model = NavigationSplitViewModel()
+  private var controller: OneNativeHostingController<NavigationSplitViewRoot>?
+  private var active = false
+
+  public override init(frame: CGRect) {
+    super.init(frame: frame)
+    model.onColumnVisibilityChange = { [weak self] value in
+      self?.onColumnVisibilityChange?(value)
+    }
+    model.onPreferredCompactColumnChange = { [weak self] value in
+      self?.onPreferredCompactColumnChange?(value)
+    }
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+  }
+
+  required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+
+  public func configure(
+    ${configureParams.replaceAll('\n', '\n    ')}
+  ) {
+    model.configure(
+      columnVisibility: columnVisibility,
+      columnVisibilityIsControlled: columnVisibilityIsControlled,
+      preferredCompactColumn: preferredCompactColumn,
+      preferredCompactColumnIsControlled: preferredCompactColumnIsControlled
+    )
+  }
+
+  public func configureStyle(_ style: [String: Any]) {
+    let next = OneNativeStyle(dictionary: style)
+    if model.swiftStyle != next { model.swiftStyle = next }
+  }
+
+  public func mountColumn(_ column: OneNativeNavigationSplitViewColumnView) {
+    guard !model.columns.contains(where: { $0 === column }) else { return }
+    column.propagateActive(active)
+    model.columns.append(column)
+  }
+
+  public func unmountColumn(_ column: OneNativeNavigationSplitViewColumnView) {
+    model.columns.removeAll { $0 === column }
+    column.propagateActive(false)
+  }
+
+  public override func didMoveToWindow() {
+    super.didMoveToWindow()
+    updateHost()
+  }
+
+  public override func layoutSubviews() {
+    super.layoutSubviews()
+    updateHost()
+    controller?.view.frame = bounds
+  }
+
+  private func updateHost() {
+    guard window != nil else {
+      controller?.detach()
+      setActive(false)
+      return
+    }
+    if controller == nil {
+      controller = OneNativeHostingController(
+        rootView: NavigationSplitViewRoot(model: model, host: self), screenInsets: true)
+    }
+    controller?.attach(to: self)
+    setActive(controller?.isAttached == true)
+  }
+
+  private func setActive(_ next: Bool) {
+    guard active != next else { return }
+    active = next
+    model.active = next
+    for column in model.columns { column.propagateActive(next) }
+  }
+
+  public func reset() {
+    setActive(false)
+    controller?.detach()
+    controller = nil
+    model.columns = []
+    model.columnVisibility = "automatic"
+    model.columnVisibilityIsControlled = false
+    model.uncontrolledColumnVisibility = "automatic"
+    model.preferredCompactColumn = "sidebar"
+    model.preferredCompactColumnIsControlled = false
+    model.uncontrolledCompactColumn = "sidebar"
+    model.swiftStyle = OneNativeStyle()
+  }
+}
+
+extension OneNativeNavigationSplitViewColumnView {
+  fileprivate func updateNativeFrame(_ frame: CGRect) { onLayout?(frame) }
+}
+`
+  )
+  outputs.set(
+    'ios/Generated/OneNativeNavigationSplitViewComponentView.h',
+    `${header}#ifdef __cplusplus
+#import <React/RCTViewComponentView.h>
+#import "OneNativeNavigationStackComponentView.h"
+@class OneNativeNavigationSplitViewView;
+@class OneNativeNavigationSplitViewColumnView;
+@interface OneNativeNavigationSplitViewComponentView : RCTViewComponentView
+@end
+@interface OneNativeNavigationSplitViewColumnComponentView : RCTViewComponentView
+@property (nonatomic, readonly, strong) OneNativeNavigationSplitViewColumnView *columnView;
+@end
+#endif
+`
+  )
+  outputs.set(
+    'ios/Generated/OneNativeNavigationSplitViewComponentView.mm',
+    `${header}#import "OneNativeNavigationSplitViewComponentView.h"
+#import <React/RCTView.h>
+#import "One-Swift.h"
+#import "OneNativeStyleDictionary.h"
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import <react/renderer/components/OneNativeSpec/EventEmitters.h>
+#import <React/RCTConversions.h>
+
+using namespace facebook::react;
+
+@implementation OneNativeNavigationSplitViewComponentView {
+  OneNativeNavigationSplitViewView *_splitView;
+  NSMutableArray<OneNativeNavigationSplitViewColumnComponentView *> *_columns;
+}
+
++ (ComponentDescriptorProvider)componentDescriptorProvider {
+  return concreteComponentDescriptorProvider<OneNativeNavigationSplitViewComponentDescriptor>();
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _props = std::make_shared<const OneNativeNavigationSplitViewProps>();
+    _columns = [NSMutableArray new];
+    _splitView = [OneNativeNavigationSplitViewView new];
+    self.contentView = _splitView;
+    __weak OneNativeNavigationSplitViewComponentView *weakSelf = self;
+    _splitView.onColumnVisibilityChange = ^(NSString *visibility) {
+      OneNativeNavigationSplitViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeNavigationSplitViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeNavigationSplitViewColumnVisibilityChange({.visibility = std::string(visibility.UTF8String)});
+    };
+    _splitView.onPreferredCompactColumnChange = ^(NSString *column) {
+      OneNativeNavigationSplitViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeNavigationSplitViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeNavigationSplitViewPreferredCompactColumnChange({.column = std::string(column.UTF8String)});
+    };
+    _splitView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeNavigationSplitViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeNavigationSplitViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
+  }
+  return self;
+}
+
+- (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  if (![child isKindOfClass:OneNativeNavigationSplitViewColumnComponentView.class]) {
+    [NSException raise:@"OneNativeInvalidChild"
+                format:@"Swift.NavigationSplitView takes Sidebar, Content, and Detail column markers."];
+  }
+  OneNativeNavigationSplitViewColumnComponentView *column =
+    (OneNativeNavigationSplitViewColumnComponentView *)child;
+  NSString *name = column.columnView.columnName;
+  if (![@[@"sidebar", @"content", @"detail"] containsObject:name]) {
+    [NSException raise:@"OneNativeInvalidSlot"
+                format:@"Swift.NavigationSplitView has an invalid column: %@", name];
+  }
+  for (OneNativeNavigationSplitViewColumnComponentView *mounted in _columns) {
+    if ([mounted.columnView.columnName isEqualToString:name]) {
+      [NSException raise:@"OneNativeInvalidSlot"
+                  format:@"Swift.NavigationSplitView accepts one %@ column.", name];
+    }
+  }
+  [_columns insertObject:column atIndex:MIN(index, _columns.count)];
+  [_splitView mountColumn:column.columnView];
+}
+
+- (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  if (![child isKindOfClass:OneNativeNavigationSplitViewColumnComponentView.class]) return;
+  OneNativeNavigationSplitViewColumnComponentView *column =
+    (OneNativeNavigationSplitViewColumnComponentView *)child;
+  [_columns removeObjectIdenticalTo:column];
+  [_splitView unmountColumn:column.columnView];
+}
+
+- (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
+  const auto &next = *std::static_pointer_cast<const OneNativeNavigationSplitViewProps>(props);
+  [_splitView ${configureCall.split('\n').join('\n    ')}];
+  [_splitView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
+  [super updateProps:props oldProps:oldProps];
+}
+
+- (void)prepareForRecycle {
+  [super prepareForRecycle];
+  for (OneNativeNavigationSplitViewColumnComponentView *column in _columns) {
+    [_splitView unmountColumn:column.columnView];
+  }
+  [_columns removeAllObjects];
+  [_splitView reset];
+}
+
+@end
+
+@implementation OneNativeNavigationSplitViewColumnComponentView {
+  OneNativeNavigationSplitViewColumnView *_columnView;
+  __weak OneNativeNavigationStackContentComponentView *_content;
+  NSMutableArray<OneNativeToolbarView *> *_toolbars;
+}
+
++ (ComponentDescriptorProvider)componentDescriptorProvider {
+  return concreteComponentDescriptorProvider<OneNativeNavigationSplitViewColumnComponentDescriptor>();
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _props = std::make_shared<const OneNativeNavigationSplitViewColumnProps>();
+    _toolbars = [NSMutableArray new];
+    _columnView = [OneNativeNavigationSplitViewColumnView new];
+    self.contentView = _columnView;
+    __weak OneNativeNavigationSplitViewColumnComponentView *weakSelf = self;
+    _columnView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeNavigationSplitViewColumnComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeNavigationSplitViewColumnEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
+  }
+  return self;
+}
+
+- (OneNativeNavigationSplitViewColumnView *)columnView { return _columnView; }
+
+- (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  if ([child isKindOfClass:OneNativeNavigationStackContentComponentView.class]) {
+    if (_content) {
+      [NSException raise:@"OneNativeInvalidSlot"
+                  format:@"Swift.NavigationSplitView column takes one React Native content slot."];
+    }
+    OneNativeNavigationStackContentComponentView *content =
+      (OneNativeNavigationStackContentComponentView *)child;
+    __weak OneNativeNavigationStackContentComponentView *weakContent = content;
+    _content = content;
+    [_columnView mountContent:child onLayout:^(CGRect frame) {
+      [weakContent updateNativeFrame:frame];
+    }];
+    return;
+  }
+  if ([child isKindOfClass:OneNativeToolbarComponentView.class]) {
+    if (_toolbars.count > 0) {
+      [NSException raise:@"OneNativeInvalidSlot"
+                  format:@"Swift.NavigationSplitView column takes one Swift.Toolbar."];
+    }
+    OneNativeToolbarView *toolbar = ((OneNativeToolbarComponentView *)child).toolbarView;
+    [_toolbars addObject:toolbar];
+    [_columnView mountToolbar:toolbar];
+    return;
+  }
+  [NSException raise:@"OneNativeInvalidChild"
+              format:@"Swift.NavigationSplitView column takes Swift.Toolbar and its React Native content."];
+}
+
+- (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  if ([child isKindOfClass:OneNativeNavigationStackContentComponentView.class]) {
+    if (_content == child) _content = nil;
+    [_columnView unmountContent:child];
+    return;
+  }
+  if ([child isKindOfClass:OneNativeToolbarComponentView.class]) {
+    OneNativeToolbarView *toolbar = ((OneNativeToolbarComponentView *)child).toolbarView;
+    [_toolbars removeObjectIdenticalTo:toolbar];
+    [_columnView unmountToolbar:toolbar];
+  }
+}
+
+- (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
+  const auto &next = *std::static_pointer_cast<const OneNativeNavigationSplitViewColumnProps>(props);
+  [_columnView configureWithColumn:RCTNSStringFromString(next.column)
+    style:OneNativeStyleDictionary(next.swiftStyle)];
+  [super updateProps:props oldProps:oldProps];
+}
+
+- (void)prepareForRecycle {
+  [super prepareForRecycle];
+  _content = nil;
+  [_toolbars removeAllObjects];
+  [_columnView reset];
+}
+
+@end
 `
   )
 }

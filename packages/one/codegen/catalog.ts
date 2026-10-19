@@ -214,6 +214,70 @@ export const navigationHost = {
       sdkEvent: false,
     },
   ],
+  split: {
+    initializers: [
+      {
+        columns: 3,
+        gated: false,
+        parameters: [
+          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
+          { label: 'sidebar', type: '() -> Sidebar' },
+          { label: 'content', type: '() -> Content' },
+          { label: 'detail', type: '() -> Detail' },
+        ],
+      },
+      {
+        columns: 2,
+        gated: false,
+        parameters: [
+          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
+          { label: 'sidebar', type: '() -> Sidebar' },
+          { label: 'detail', type: '() -> Detail' },
+        ],
+      },
+      {
+        columns: 3,
+        gated: true,
+        parameters: [
+          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
+          { label: 'preferredCompactColumn', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewColumn>' },
+          { label: 'sidebar', type: '() -> Sidebar' },
+          { label: 'content', type: '() -> Content' },
+          { label: 'detail', type: '() -> Detail' },
+        ],
+      },
+      {
+        columns: 2,
+        gated: true,
+        parameters: [
+          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
+          { label: 'preferredCompactColumn', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewColumn>' },
+          { label: 'sidebar', type: '() -> Sidebar' },
+          { label: 'detail', type: '() -> Detail' },
+        ],
+      },
+    ],
+    visibility: {
+      type: 'NavigationSplitViewVisibility',
+      default: 'automatic',
+      members: ['all', 'doubleColumn', 'detailOnly', 'automatic'],
+    },
+    compactColumn: {
+      type: 'NavigationSplitViewColumn',
+      default: 'sidebar',
+      members: ['sidebar', 'content', 'detail'],
+    },
+    configure: [
+      { label: 'columnVisibility', prop: 'columnVisibility', type: 'string' },
+      { label: 'columnVisibilityIsControlled', prop: 'columnVisibilityIsControlled', type: 'boolean' },
+      { label: 'preferredCompactColumn', prop: 'preferredCompactColumn', type: 'string' },
+      { label: 'preferredCompactColumnIsControlled', prop: 'preferredCompactColumnIsControlled', type: 'boolean' },
+    ],
+    column: {
+      component: 'OneNativeNavigationSplitViewColumn',
+      column: { label: 'column', prop: 'column', type: 'string' },
+    },
+  },
 } as const
 export const styleModifiers = [
   {
