@@ -155,9 +155,16 @@ final class OneNativeCellSource: NSObject {
         if let table = view as? UITableView {
           table.performBatchUpdates(nil)
         } else if let collection = view as? UICollectionView {
-          let context = UICollectionViewLayoutInvalidationContext()
-          context.invalidateItems(at: collection.indexPathsForVisibleItems)
-          collection.collectionViewLayout.invalidateLayout(with: context)
+          // the layout's own self-sizing contract, so any layout takes its own context
+          let layout = collection.collectionViewLayout
+          for indexPath in collection.indexPathsForVisibleItems {
+            guard let cell = collection.cellForItem(at: indexPath),
+              let original = layout.layoutAttributesForItem(at: indexPath),
+              let fitting = original.copy() as? UICollectionViewLayoutAttributes else { continue }
+            let preferred = cell.preferredLayoutAttributesFitting(fitting)
+            guard layout.shouldInvalidateLayout(forPreferredLayoutAttributes: preferred, withOriginalAttributes: original) else { continue }
+            layout.invalidateLayout(with: layout.invalidationContext(forPreferredLayoutAttributes: preferred, withOriginalAttributes: original))
+          }
         }
       }
     }
