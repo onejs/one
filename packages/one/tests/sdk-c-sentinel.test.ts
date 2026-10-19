@@ -1,8 +1,14 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { Bridge, buildIndex, collectFacts } from '../codegen/sdk/bridge'
 import { emitModule } from '../codegen/sdk/emit'
 import { emitFacade } from '../codegen/sdk/emit-ts'
 import type { Graph, Symbol } from '../codegen/sdk/graph'
+
+const graphs = vi.hoisted(() => new Map<string, Graph>())
+vi.mock('../codegen/sdk/graph', async (importOriginal) => {
+  const original = await importOriginal<typeof import('../codegen/sdk/graph')>()
+  return { ...original, loadGraph: (module: string) => graphs.get(module) ?? null }
+})
 
 const allocator = 'c:@T@CFAllocatorRef'
 const constant = (name: string, usr = `c:@${name}`): Symbol => ({
@@ -21,6 +27,7 @@ function emitted(symbols: Symbol[]) {
       pathComponents: ['CFAllocator'], names: { title: 'CFAllocator' }, accessLevel: 'public' },
     ...symbols,
   ] }
+  graphs.set(graph.module, graph)
   const bridge = new Bridge(buildIndex([collectFacts(graph)]))
   const output = emitModule(graph, bridge, new Map())
   const facade = emitFacade({ module: graph.module,
