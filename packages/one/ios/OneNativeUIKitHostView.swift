@@ -32,6 +32,7 @@ enum OneNativeUIKitRegistry {
 
 private final class OneNativeUIKitHostModel: ObservableObject {
   @Published var hosted: NSObject?
+  @Published var accessibility = OneNativeAccessibility()
 }
 
 private struct OneNativeUIKitViewRepresentable: UIViewRepresentable {
@@ -49,13 +50,16 @@ private struct OneNativeUIKitControllerRepresentable: UIViewControllerRepresenta
 private struct OneNativeUIKitContent: View {
   @ObservedObject var model: OneNativeUIKitHostModel
   var body: some View {
-    if let controller = model.hosted as? UIViewController {
-      OneNativeUIKitControllerRepresentable(controller: controller)
-        .id(ObjectIdentifier(controller))
-    } else if let view = model.hosted as? UIView {
-      OneNativeUIKitViewRepresentable(view: view)
-        .id(ObjectIdentifier(view))
+    Group {
+      if let controller = model.hosted as? UIViewController {
+        OneNativeUIKitControllerRepresentable(controller: controller)
+          .id(ObjectIdentifier(controller))
+      } else if let view = model.hosted as? UIView {
+        OneNativeUIKitViewRepresentable(view: view)
+          .id(ObjectIdentifier(view))
+      }
     }
+    .oneNativeAccessibility(model.accessibility, containsChildren: true)
   }
 }
 
@@ -63,6 +67,11 @@ private struct OneNativeUIKitContent: View {
 public final class OneNativeUIKitHostView: UIView, OneNativeComposable {
   private let model = OneNativeUIKitHostModel()
   private var composed = false
+
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
 
   public func configure(viewId: Double) {
     let next = viewId > 0 ? OneNativeUIKitRegistry.object(Int(viewId)) : nil
@@ -139,6 +148,7 @@ public final class OneNativeUIKitHostView: UIView, OneNativeComposable {
   public func reset() {
     detach()
     model.hosted = nil
+    model.accessibility = OneNativeAccessibility()
     composed = false
   }
 }
