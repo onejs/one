@@ -119,6 +119,102 @@ export const menuRoot = {
     { label: 'revision', prop: 'revision', type: 'Int32' },
   ],
 } as const
+
+// the navigation host's fixed SDK surface: the root-only NavigationStack
+// initializer, the ToolbarContent toolbar modifier, and the four toolbar entry
+// initializers. the spacer carries a gate because it ships above the floor;
+// the gate version is read from the SDK, not restated here. markers lists the
+// three toolbar marker components: each configures the shared marker shape
+// with fixed literals where the sender sends nothing and spec props with
+// their exact expected types elsewhere, plus whether it styles and reports.
+export const navigationHost = {
+  stack: {
+    type: 'NavigationStack',
+    parameters: [{ label: 'root', type: '() -> Root' }],
+  },
+  toolbar: {
+    name: 'toolbar',
+    parameters: [{ label: 'content', type: '() -> Content' }],
+    requirements: ['Content : SwiftUI.ToolbarContent'],
+  },
+  entries: [
+    {
+      kind: 'item',
+      type: 'ToolbarItem',
+      parameters: [
+        { label: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
+        { label: 'content', type: '() -> Content' },
+      ],
+    },
+    {
+      kind: 'group',
+      type: 'ToolbarItemGroup',
+      parameters: [
+        { label: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
+        { label: 'content', type: '() -> Content' },
+      ],
+    },
+    {
+      kind: 'labelledGroup',
+      type: 'ToolbarItemGroup',
+      parameters: [
+        { label: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
+        { label: 'content', type: '() -> C' },
+        { label: 'label', type: '() -> L' },
+      ],
+    },
+    {
+      kind: 'spacer',
+      type: 'ToolbarSpacer',
+      parameters: [
+        { label: '_', type: 'SwiftUI.SpacerSizing' },
+        { label: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
+      ],
+      gated: true,
+    },
+  ],
+  markers: [
+    {
+      component: 'OneNativeToolbarItem',
+      kind: 'item',
+      args: [
+        { label: 'kind', fixed: '@"item"' },
+        { label: 'placement', prop: 'placement', type: 'string' },
+        { label: 'sizing', fixed: '@"flexible"' },
+        { label: 'label', fixed: '@""' },
+        { label: 'systemImage', fixed: '@""' },
+      ],
+      style: true,
+      sdkEvent: true,
+    },
+    {
+      component: 'OneNativeToolbarItemGroup',
+      kind: 'group',
+      args: [
+        { label: 'kind', fixed: '@"group"' },
+        { label: 'placement', prop: 'placement', type: 'string' },
+        { label: 'sizing', fixed: '@"flexible"' },
+        { label: 'label', prop: 'label', type: 'string' },
+        { label: 'systemImage', prop: 'systemImage', type: 'string' },
+      ],
+      style: true,
+      sdkEvent: true,
+    },
+    {
+      component: 'OneNativeToolbarSpacer',
+      kind: 'spacer',
+      args: [
+        { label: 'kind', fixed: '@"spacer"' },
+        { label: 'placement', prop: 'placement', type: 'string' },
+        { label: 'sizing', prop: 'sizing', type: 'string' },
+        { label: 'label', fixed: '@""' },
+        { label: 'systemImage', fixed: '@""' },
+      ],
+      style: false,
+      sdkEvent: false,
+    },
+  ],
+} as const
 export const styleModifiers = [
   {
     name: 'font',
