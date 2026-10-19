@@ -150,7 +150,7 @@ export function PhaseAnimator<Phase>({
       return encodeSDKAnimation(value, 'Swift.PhaseAnimator animation')
     } catch (cause) {
       throw new Error(
-        `Swift.PhaseAnimator animation must return null or one of ${sdkAnimationValues.join(', ')}, or a valid SDK animation record`,
+        `Swift.PhaseAnimator animation must return null or one of ${sdkAnimationValues.join(', ')}, or a valid SDK animation record${cause instanceof Error ? `: ${cause.message}` : ''}`,
         { cause }
       )
     }
