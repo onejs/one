@@ -58,6 +58,7 @@ import { KeyframeAnimator, PhaseAnimator } from './Animators.native'
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
 import * as Controls from './generated/Controls.native'
 import { Map as MapWithControls } from './mapControls.native'
+import { Picker as PickerWithChildren } from './pickerChildren.native'
 import { Tab, TabView, TabSection, TabViewBottomAccessory, TabViewSlot } from './TabView.native'
 import { Compose } from './compose'
 import * as UI from './effects'
@@ -184,6 +185,9 @@ export const Swift =
         // the generated map takes no children; the wrapper validates and names
         // the map-controls slot while the native view composes it.
         Map: MapWithControls,
+        // the generated picker takes no children; the wrapper validates the
+        // tagged text options while the native view composes them.
+        Picker: PickerWithChildren,
       }
     : UnsupportedSwift
 export { Compose }

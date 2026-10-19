@@ -6,7 +6,6 @@ import UIKit
 private final class PickerModel: ObservableObject {
   @Published var controlled = OneNativeControlled<String>("")
   @Published var label: String = ""
-  @Published var options: [OneNativePickerOption] = []
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -20,11 +19,14 @@ private final class PickerModel: ObservableObject {
     onChange?(value, controlled.eventCount, controlled.revision)
   }
 }
-@objcMembers public final class OneNativePickerView: UIView, OneNativeComposable {
+@objcMembers public final class OneNativePickerView: UIView, OneNativeComposable, OneNativeCompositionParent {
   public var onSDKEvent: ((String, String) -> Void)?
 
   public var onChange: ((String, Int, Int) -> Void)?
   private var model = PickerModel()
+  private let content = OneNativeChildren()
+  private var childViews: [UIView] = []
+  public var compositionActive: Bool { model.active }
   public var onHeight: ((CGFloat) -> Void)?
   private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<PickerContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
@@ -46,20 +48,41 @@ private final class PickerModel: ObservableObject {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
   }
-  public func setOptions(_ items: [[String: Any]]) { model.options = items.map { OneNativePickerOption(value: $0["value"] as! String, label: $0["label"] as! String) } }
 
+
+  public func insertChild(_ child: UIView, at index: Int) {
+    precondition(child is OneNativeTextView, "One.iOS.Picker accepts Text children")
+    guard let composable = child as? OneNativeComposable else {
+      preconditionFailure("One Native child must support composition")
+    }
+    let at = min(index, childViews.count)
+    childViews.insert(child, at: at)
+    composable.composeInto(self)
+    content.items.insert(
+      OneNativeComposedChild(id: String(describing: ObjectIdentifier(child)),
+        sourceID: ObjectIdentifier(child), content: composable.compositionContent()), at: at)
+  }
+  public func removeChild(_ child: UIView) {
+    guard let index = childViews.firstIndex(where: { $0 === child }) else { return }
+    childViews.remove(at: index)
+    (child as? OneNativeComposable)?.decompose()
+    content.items.removeAll { $0.sourceID == ObjectIdentifier(child) }
+  }
   private weak var compositionParent: OneNativeCompositionParent?
-  public func compositionContent() -> AnyView { AnyView(PickerContent(model: model)) }
+  public func compositionContent() -> AnyView { AnyView(PickerContent(model: model, content: content)) }
   // composed, activation follows the parent: a subtree mounted before root attachment
   // stays silent until the root attaches.
   public func composeInto(_ parent: OneNativeCompositionParent) {
     controller?.detach(); controller = nil
     compositionParent = parent
     bindCallbacks()
-    model.active = parent.compositionActive
+    propagateActive(parent.compositionActive)
   }
-  public func decompose() { compositionParent = nil; model.active = false }
-  public func propagateActive(_ active: Bool) { model.active = active }
+  public func decompose() { compositionParent = nil; propagateActive(false) }
+  public func propagateActive(_ active: Bool) {
+    model.active = active
+    for child in childViews { (child as? OneNativeComposable)?.propagateActive(active) }
+  }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
@@ -69,31 +92,33 @@ private final class PickerModel: ObservableObject {
   }
   private func updateHost() {
     guard compositionParent == nil else { return }
-    model.active = false
+    propagateActive(false)
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: PickerContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
+      controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: PickerContent(model: model, content: content), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
-    model.active = controller?.isAttached == true
+    propagateActive(controller?.isAttached == true)
   }
   public func reset() {
     compositionParent = nil
+    for child in childViews { (child as? OneNativeComposable)?.decompose() }
+    childViews.removeAll()
+    content.items = []
     model.active = false; model.onSDKEvent = nil; model.onChange = nil
     controller?.detach(); controller = nil; model = PickerModel()
   }
 }
 private struct PickerContent: View {
   @ObservedObject var model: PickerModel
+  @ObservedObject var content: OneNativeChildren
   var body: some View {
     Picker(selection: Binding(
         get: { model.controlled.value },
         set: { value in model.change(value) }
       )) {
-        ForEach(model.options, id: \.value) { option in
-          Text(option.label).tag(option.value)
-        }
+        ForEach(content.items) { child in child.content }
       } label: {
         Text(model.label)
       }

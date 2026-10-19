@@ -287,10 +287,16 @@ import { ArrangementView } from './ArrangementView'
 import type { KeyframeAnimatorProps, KeyframeValue, PhaseAnimatorProps } from './animatorTypes'
 import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
 import type { MapWithControlsProps } from './mapControls'
+import type { PickerWithChildrenProps } from './pickerChildren'
 // the map's controls slot is part of its props on every platform; off ios the
 // map itself throws, so children never mount there either.
 function MapWithControlsStub(_props: MapWithControlsProps): never {
   throw new Error('Swift.Map requires an iOS native build')
+}
+// the picker's options slot is part of its props on every platform; off ios
+// the picker itself throws, so children never mount there either.
+function PickerWithChildrenStub(_props: PickerWithChildrenProps): never {
+  throw new Error('Swift.Picker requires an iOS native build')
 }
 function PhaseAnimator<Phase>(_props: PhaseAnimatorProps<Phase>): never {
   throw new Error('Swift.PhaseAnimator requires an iOS native build')
@@ -375,5 +381,6 @@ export const Swift = {
   },
   ...unsupportedControls,
   Map: MapWithControlsStub,
+  Picker: PickerWithChildrenStub,
 }
 export type * from './types'

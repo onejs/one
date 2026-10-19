@@ -3,14 +3,10 @@ import { commonFields, type Control } from './controlTypes'
 export const pickerControls: Control[] = [
   {
     name: 'Picker',
+    contentSlot: { name: 'content', accepts: ['Text'] },
     value: { type: 'string', prop: 'selection', event: 'onSelectionChange', initial: '' },
     fields: {
       ...commonFields,
-      options: {
-        type: 'objects',
-        default: '',
-        payload: { name: 'PickerOption', element: { value: 'string', label: 'string' } },
-      },
     },
     constructors: [
       {
@@ -26,16 +22,11 @@ export const pickerControls: Control[] = [
         get: { model.controlled.value },
         set: { value in model.change(value) }
       )) {
-        ForEach(model.options, id: \\.value) { option in
-          Text(option.label).tag(option.value)
-        }
+        ForEach(content.items) { child in child.content }
       } label: {
         Text(model.label)
       }`,
-    validate: `  if (!Array.isArray(options) || options.some(option => typeof option?.value !== 'string' || typeof option?.label !== 'string')) throw new Error('Picker options must contain string value and label fields')
-  if (!options.length) throw new Error('Picker options must not be empty')
-  if (new Set(options.map(option => option.value)).size !== options.length) throw new Error('Picker option values must be unique')
-  if (!options.some(option => option.value === selection)) throw new Error('Picker selection must match an option value')`,
+    validate: `  if (typeof selection !== 'string') throw new Error('Picker selection must be a string')`,
   },
   {
     name: 'DatePicker',

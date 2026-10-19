@@ -14,23 +14,11 @@ export function Picker({
   onSelectionChange,
   revision = 0,
   label = '',
-  options,
   swiftStyle,
   style,
   ...props
 }: Types.PickerProps) {
-  if (
-    !Array.isArray(options) ||
-    options.some(
-      (option) => typeof option?.value !== 'string' || typeof option?.label !== 'string'
-    )
-  )
-    throw new Error('Picker options must contain string value and label fields')
-  if (!options.length) throw new Error('Picker options must not be empty')
-  if (new Set(options.map((option) => option.value)).size !== options.length)
-    throw new Error('Picker option values must be unique')
-  if (!options.some((option) => option.value === selection))
-    throw new Error('Picker selection must match an option value')
+  if (typeof selection !== 'string') throw new Error('Picker selection must be a string')
 
   const controlled = useControlled<{
     value: string
@@ -49,7 +37,6 @@ export function Picker({
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       label={label}
-      options={options}
       onNativePickerValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }

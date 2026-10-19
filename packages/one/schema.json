@@ -1118,9 +1118,6 @@
         },
         "label": {
           "type": "string"
-        },
-        "options": {
-          "type": "ReadonlyArray<PickerOption>"
         }
       },
       "events": {
@@ -1152,7 +1149,14 @@
       "layout": {
         "kind": "measured"
       },
-      "slots": [],
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
       "interfaceOnly": true
     },
     {
@@ -5126,16 +5130,6 @@
     }
   ],
   "payloads": {
-    "PickerOption": {
-      "fields": {
-        "value": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        }
-      }
-    },
     "DialogAction": {
       "fields": {
         "id": {
