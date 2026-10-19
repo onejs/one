@@ -363,9 +363,16 @@ function checkSDKValue(value: unknown, key: string, context: string) {
   }
 }
 
-// validates an SDK value and returns the text native decodes: the case name, or the record
-// as JSON.
+// returns the text native decodes: the case name, or the record as JSON. a record is
+// validated as the parsed JSON it serializes to, so toJSON, getters and undefined fields
+// cannot send native anything other than what was checked.
 export function sdkValueText(value: unknown, key: string, context: string): string {
-  checkSDKValue(value, key, context)
-  return typeof value === 'string' ? value : JSON.stringify(value)
+  if (typeof value === 'string') {
+    checkSDKValue(value, key, context)
+    return value
+  }
+  const text = JSON.stringify(value)
+  if (typeof text !== 'string') throw new Error(context + ' must be a case name or a record with a kind')
+  checkSDKValue(JSON.parse(text), key, context)
+  return text
 }`
