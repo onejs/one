@@ -182,8 +182,8 @@ jobs:
           ONE_NATIVE_LAUNCH_SCREEN_PROOF='${{ matrix.launch-screen-proof }}' \
             nohup bun run dev --port 8081 > "$RUNNER_TEMP/dev-server.log" 2>&1 &
           until curl -s -o /dev/null http://localhost:8081/; do sleep 2; done
-          # build the android bundle once so the first suite's mount wait measures the app, not bundling.
-          curl -sSf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true'
+          # match the native dev request's lazy graph; Metro keys eager and lazy graphs separately.
+          curl -sSf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true&lazy=true'
           failed=()
           for suite in $FIXTURE_SUITES; do
             echo "::group::$suite"
