@@ -1,3 +1,4 @@
+export declare function describingCalendar(identifier: string): string;
 export declare function unicodeCalendar(identifier: string): string;
 export declare function measurementSystemName(identifier: string): 'us' | 'uk' | 'metric';
 export declare function isSimulatorEnvironment(environment: Record<string, string>): boolean;
