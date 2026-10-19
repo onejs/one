@@ -2010,14 +2010,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Math.round((frame?.height ?? 0) * 3) === 56
       )
     }
-    const closed = (nodes: Node[], count: number) => {
-      const text = labels(nodes)
-      return (
-        Boolean(id(nodes, 'one-native-sheet-open')) &&
-        text.includes('closed') &&
-        text[text.indexOf('Dismiss count:') + 1] === String(count)
-      )
-    }
+    const closed = (nodes: Node[], count: number) =>
+      Boolean(id(nodes, 'one-native-sheet-open')) &&
+      id(nodes, 'one-native-sheet-status')?.AXLabel === 'closed' &&
+      id(nodes, 'one-native-sheet-dismiss-count')?.AXLabel === String(count)
     const blockDismiss = async (expected: '0' | '1') => {
       const nodes = await wait('sheet dismiss switch ready', (n) =>
         Boolean(id(n, 'one-native-sheet-block-dismiss')?.frame)
