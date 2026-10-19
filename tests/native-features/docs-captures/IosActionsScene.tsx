@@ -40,8 +40,7 @@ export function IosActionsScene() {
             label={`Guests: ${guests}`}
             value={guests}
             onValueChange={setGuests}
-            minimumValue={1}
-            maximumValue={8}
+            in={[1, 8]}
           />
         </One.iOS.Section>
         <One.iOS.Section>

@@ -31,7 +31,7 @@ export function IosProgressScene() {
             <One.iOS.Gauge
               label="Speed"
               value={64}
-              maximumValue={120}
+              in={[0, 120]}
               currentValueLabel="64"
               swiftStyle={{ gaugeStyle: 'accessoryCircular' }}
             />

@@ -51,8 +51,7 @@ export default function OneNativeHost() {
         <One.iOS.Stepper
           label="Composed stepper"
           value={step}
-          minimumValue={0}
-          maximumValue={10}
+          in={[0, 10]}
           onValueChange={setStep}
         />
       ) : null}

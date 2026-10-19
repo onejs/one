@@ -16,8 +16,7 @@ export default function OneNativeAnimation() {
         label="Level"
         value={level}
         onValueChange={() => {}}
-        minimumValue={0}
-        maximumValue={100}
+        in={[0, 100]}
         testID="one-native-animation-slider"
       />
       <View style={styles.row}>

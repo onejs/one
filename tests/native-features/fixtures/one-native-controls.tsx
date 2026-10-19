@@ -195,9 +195,8 @@ export default function OneNativeControls() {
         {category === 'Date' ? (
           <One.iOS.DatePicker
             displayedComponents="date"
+            in={[minimumDate, maximumDate]}
             label="Date"
-            maximumDate={maximumDate}
-            minimumDate={minimumDate}
             onSelectionChange={(value) => recordChange('Date', value)}
             revision={controls.Date.revision}
             selection={controls.Date.value as Date}
@@ -242,9 +241,8 @@ export default function OneNativeControls() {
         ) : null}
         {category === 'Slider' ? (
           <One.iOS.Slider
+            in={[0, 100]}
             label="Volume"
-            maximumValue={100}
-            minimumValue={0}
             onValueChange={(value) => recordChange('Slider', value)}
             revision={controls.Slider.revision}
             step={5}
@@ -255,9 +253,8 @@ export default function OneNativeControls() {
         ) : null}
         {category === 'Stepper' ? (
           <One.iOS.Stepper
+            in={[0, 10]}
             label="Guests"
-            maximumValue={10}
-            minimumValue={0}
             onValueChange={(value) => recordChange('Stepper', value)}
             revision={controls.Stepper.revision}
             step={1}

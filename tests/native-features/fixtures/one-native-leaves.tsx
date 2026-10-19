@@ -194,8 +194,7 @@ export default function OneNativeLeaves() {
           <One.iOS.Gauge
             label="Leaf gauge"
             value={gauge}
-            minimumValue={0}
-            maximumValue={100}
+            in={[0, 100]}
             currentValueLabel={String(gauge)}
             minimumValueLabel="0"
             maximumValueLabel="100"

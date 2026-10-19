@@ -37,8 +37,7 @@ export default function OneNativePickerPassKit() {
           setObserved(value.map(isoDay).join(',') || 'empty')
         }}
         revision={revision}
-        minimumDate={monthStart}
-        maximumDate={monthEnd}
+        in={[monthStart, monthEnd]}
         testID="one-native-picker-passkit-picker"
       />
       <Text testID="one-native-picker-passkit-status" style={styles.line}>
