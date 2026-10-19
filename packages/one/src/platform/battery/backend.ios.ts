@@ -24,12 +24,12 @@ import { mapBatteryState } from './map'
 // read enables it only for the read.
 //
 // every state transition runs through one chain, which is the serial
-// main queue the swift had: setup, events and teardown apply in order, a
-// failing step never blocks the next, and an add removed before its setup
-// runs leaves monitoring as it found it.
-const levelListeners = new Set<(event: BatteryLevelEvent) => void>()
-const stateListeners = new Set<(event: BatteryStateEvent) => void>()
-const lowPowerListeners = new Set<(event: BatteryPowerModeEvent) => void>()
+// main queue the swift had: reads, setup, events and teardown apply in
+// order, a failing step never blocks the next, and an add removed before
+// its setup runs leaves monitoring as it found it.
+const levelListeners = new Set<{ callback: (event: BatteryLevelEvent) => void }>()
+const stateListeners = new Set<{ callback: (event: BatteryStateEvent) => void }>()
+const lowPowerListeners = new Set<{ callback: (event: BatteryPowerModeEvent) => void }>()
 let observers: SDKHandle[] = []
 let lastLevel: number | undefined
 let lastState: BatteryState | undefined
@@ -47,18 +47,28 @@ function enqueue(step: () => Promise<void>): void {
 }
 
 // monitoring must be on for level and state to read anything but unknown.
-// one-shots leave it as they found it unless a listener needs it on.
-async function withMonitoring<T>(body: (device: UIDevice) => Promise<T>): Promise<T> {
-  const device = await UIDevice.current
-  const wasMonitoring = await device.isBatteryMonitoringEnabled
-  if (!wasMonitoring) await device.setIsBatteryMonitoringEnabled(true)
-  try {
-    return await body(device)
-  } finally {
-    if (!wasMonitoring && !listening()) {
-      await device.setIsBatteryMonitoringEnabled(false)
-    }
-  }
+// one-shots leave it as they found it unless a listener needs it on. the
+// whole enable/access/restore transaction runs on the chain, so overlapping
+// reads cannot restore monitoring out from under each other.
+function withMonitoring<T>(body: (device: UIDevice) => Promise<T>): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    enqueue(async () => {
+      let device: UIDevice | undefined
+      let wasMonitoring = true
+      try {
+        device = await UIDevice.current
+        wasMonitoring = await device.isBatteryMonitoringEnabled
+        if (!wasMonitoring) await device.setIsBatteryMonitoringEnabled(true)
+        resolve(await body(device))
+      } catch (error) {
+        reject(error)
+      } finally {
+        if (device && !wasMonitoring && !listening()) {
+          await device.setIsBatteryMonitoringEnabled(false)
+        }
+      }
+    })
+  })
 }
 
 async function getLevel(): Promise<number> {
@@ -132,7 +142,7 @@ function levelChanged(): void {
     const level = await (await UIDevice.current).batteryLevel
     if (level === lastLevel) return
     lastLevel = level
-    for (const listener of levelListeners) listener({ batteryLevel: level })
+    for (const entry of levelListeners) entry.callback({ batteryLevel: level })
   })
 }
 
@@ -142,7 +152,7 @@ function stateChanged(): void {
     const state = mapBatteryState(await (await UIDevice.current).batteryState)
     if (state === lastState) return
     lastState = state
-    for (const listener of stateListeners) listener({ batteryState: state })
+    for (const entry of stateListeners) entry.callback({ batteryState: state })
   })
 }
 
@@ -152,30 +162,35 @@ function lowPowerChanged(): void {
     const lowPower = ProcessInfo.processInfo.isLowPowerModeEnabled
     if (lowPower === lastLowPower) return
     lastLowPower = lowPower
-    for (const listener of lowPowerListeners) listener({ lowPowerMode: lowPower })
+    for (const entry of lowPowerListeners) entry.callback({ lowPowerMode: lowPower })
   })
 }
 
+// one entry per subscription, not per callback: subscribing the same
+// callback twice counts twice, and removing one subscription leaves the
+// other live with monitoring intact, matching the swift's id registrations.
 function addLevelListener(listener: (event: BatteryLevelEvent) => void): () => void {
-  levelListeners.add(listener)
+  const entry = { callback: listener }
+  levelListeners.add(entry)
   enqueue(startIfNeeded)
   let removed = false
   return () => {
     if (removed) return
     removed = true
-    levelListeners.delete(listener)
+    levelListeners.delete(entry)
     enqueue(stopIfIdle)
   }
 }
 
 function addStateListener(listener: (event: BatteryStateEvent) => void): () => void {
-  stateListeners.add(listener)
+  const entry = { callback: listener }
+  stateListeners.add(entry)
   enqueue(startIfNeeded)
   let removed = false
   return () => {
     if (removed) return
     removed = true
-    stateListeners.delete(listener)
+    stateListeners.delete(entry)
     enqueue(stopIfIdle)
   }
 }
@@ -183,13 +198,14 @@ function addStateListener(listener: (event: BatteryStateEvent) => void): () => v
 function addLowPowerModeListener(
   listener: (event: BatteryPowerModeEvent) => void
 ): () => void {
-  lowPowerListeners.add(listener)
+  const entry = { callback: listener }
+  lowPowerListeners.add(entry)
   enqueue(startIfNeeded)
   let removed = false
   return () => {
     if (removed) return
     removed = true
-    lowPowerListeners.delete(listener)
+    lowPowerListeners.delete(entry)
     enqueue(stopIfIdle)
   }
 }
