@@ -8,7 +8,7 @@ import {
   type ElementRef,
   type ReactNode,
 } from 'react'
-import { Platform, PlatformColor } from 'react-native'
+import { Platform } from 'react-native'
 import { Image, Label, Text } from './generated/Controls.native'
 import { dispatchSDKEvent, swiftStyleNative, validSDKEventValue } from './generated/swiftStyleNative'
 import { viewSlotArguments, viewSlotAvailability, viewSlotEvents } from './generated/viewSlots'
@@ -845,10 +845,8 @@ export function ViewThatFits({ axes = 'both', children, style, swiftStyle, ...pr
 export function Button({
   onPress,
   label = '',
-  subtitle = '',
   systemImage = '',
   buttonRole = '',
-  disclosureIndicator = false,
   children,
   swiftStyle,
   style,
@@ -856,7 +854,7 @@ export function Button({
 }: ButtonProps) {
   if (typeof label !== 'string') throw new Error('Button label must be a string')
   const hasChildren = Children.toArray(children).length > 0
-  if (hasChildren && (label !== '' || systemImage !== '' || subtitle !== ''))
+  if (hasChildren && (label !== '' || systemImage !== ''))
     throw new Error('Swift.Button takes either a label or children')
   if (!label && !systemImage && !hasChildren)
     throw new Error('Button needs a label, a systemImage, or both')
@@ -868,7 +866,7 @@ export function Button({
     )
   assertOneNativeChildren(children, 'Swift.Button')
   // an icon-only button shows the image alone, so no title spacing is reserved
-  const primary = hasChildren ? (
+  const content = hasChildren ? (
     children
   ) : label && systemImage ? (
     <Label label={label} systemImage={systemImage} />
@@ -876,27 +874,6 @@ export function Button({
     <Image systemName={systemImage} />
   ) : (
     <Text text={label} />
-  )
-  const disclosed = disclosureIndicator ? (
-    // swiftui's default spacing, which the stack gives no value for
-    <HStack spacing={8}>
-      {primary}
-      <Spacer />
-      <Image systemName="chevron.right" colorRole="secondary" />
-    </HStack>
-  ) : (
-    primary
-  )
-  const content = subtitle ? (
-    <VStack spacing={2}>
-      {disclosed}
-      <Text
-        text={subtitle}
-        swiftStyle={{ font: 'subheadline', foregroundStyle: PlatformColor('secondaryLabel') }}
-      />
-    </VStack>
-  ) : (
-    disclosed
   )
   return (
     <NativeButton
