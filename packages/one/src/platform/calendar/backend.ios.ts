@@ -221,7 +221,7 @@ async function create(input: CalendarEventInput): Promise<string> {
   const calendar = store().defaultCalendarForNewEvents
   if (!calendar)
     throw failure('CALENDAR_UNAVAILABLE', 'create', 'no writable calendar is available')
-  const event = EKEvent.initEventStore(store())
+  const event = EKEvent.init(store())
   event.calendar = calendar
   event.title = title
   event.startDate = new Date(input.startMs)
@@ -392,7 +392,7 @@ async function createReminder(input: ReminderInput): Promise<string> {
       'createReminder',
       'no writable reminders list is available'
     )
-  const reminder = EKReminder.initEventStore(store())
+  const reminder = EKReminder.init(store())
   reminder.calendar = calendar
   reminder.title = title
   if (input.dueMs !== undefined)
