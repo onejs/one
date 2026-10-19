@@ -32,11 +32,9 @@ export default function OneNativePopover() {
         onIsPresentedChange={setOpen}
         arrowEdge="top"
         presentationCompactAdaptation="popover"
-        contentWidth={260}
-        contentHeight={160}
         onLayout={({ nativeEvent }) => setHeight(Math.round(nativeEvent.layout.height))}
         content={
-          <View style={styles.body}>
+          <View style={styles.bodyMain}>
             <Text testID="one-native-popover-body">Popover body</Text>
             <Pressable
               testID="one-native-popover-tap"
@@ -64,10 +62,8 @@ export default function OneNativePopover() {
           <One.iOS.Popover
             isPresented={sectionOpen}
             onIsPresentedChange={setSectionOpen}
-            contentWidth={240}
-            contentHeight={120}
             content={
-              <View style={styles.body}>
+              <View style={styles.bodySection}>
                 <Text testID="one-native-popover-section-body">Section body</Text>
               </View>
             }
@@ -105,7 +101,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
   },
   form: { flex: 1 },
-  body: { flex: 1, padding: 12, gap: 8 },
+  bodyMain: { width: 260, height: 160, padding: 12, gap: 8 },
+  bodySection: { width: 240, height: 120, padding: 12, gap: 8 },
   action: {
     paddingHorizontal: 10,
     paddingVertical: 6,

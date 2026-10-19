@@ -68,9 +68,7 @@ using namespace facebook::react;
       acknowledgedEvent:next.acknowledgedEvent
       revision:next.revision
       arrowEdge:RCTNSStringFromString(next.arrowEdge)
-      presentationCompactAdaptation:RCTNSStringFromString(next.presentationCompactAdaptation)
-      contentWidth:next.contentWidth
-      contentHeight:next.contentHeight];
+      presentationCompactAdaptation:RCTNSStringFromString(next.presentationCompactAdaptation)];
   [super updateProps:props oldProps:oldProps];
 }
 

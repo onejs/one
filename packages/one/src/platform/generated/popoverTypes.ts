@@ -11,8 +11,6 @@ export interface PopoverProps extends ViewProps {
   revision?: number
   arrowEdge?: Edge
   presentationCompactAdaptation?: PresentationAdaptation
-  contentWidth: number
-  contentHeight: number
   content: ReactNode
   children: ReactNode
 }

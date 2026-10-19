@@ -7,8 +7,6 @@ private final class PopoverModel: ObservableObject {
   @Published var controlled = OneNativeControlled<Bool>(false)
   @Published var arrowEdge: String = ""
   @Published var presentationCompactAdaptation: String = ""
-  @Published var contentWidth: Double = 0
-  @Published var contentHeight: Double = 0
   var onHeight: ((CGFloat) -> Void)?
   @Published var content: UIView?
   var onLayout: ((CGRect) -> Void)?
@@ -48,7 +46,6 @@ private struct PopoverContent: View {
         OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
           if model.active && model.controlled.value { model.onLayout?(frame) }
         }, measuredWidth: model.measuredWidth, measuredHeight: model.measuredHeight)
-        .frame(width: model.contentWidth, height: model.contentHeight)
         .oneNativePresentationCompactAdaptation(model.presentationCompactAdaptation)
       }
     })
@@ -89,12 +86,10 @@ public final class OneNativePopoverView: OneNativeContainerView {
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
-  public func configure(isPresented: Bool, acknowledgedEvent: Int, revision: Int, arrowEdge: String, presentationCompactAdaptation: String, contentWidth: Double, contentHeight: Double) {
+  public func configure(isPresented: Bool, acknowledgedEvent: Int, revision: Int, arrowEdge: String, presentationCompactAdaptation: String) {
     if let next = model.controlled.applying(isPresented, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.arrowEdge != arrowEdge { model.arrowEdge = arrowEdge }
     if model.presentationCompactAdaptation != presentationCompactAdaptation { model.presentationCompactAdaptation = presentationCompactAdaptation }
-    if model.contentWidth != contentWidth { model.contentWidth = contentWidth }
-    if model.contentHeight != contentHeight { model.contentHeight = contentHeight }
   }
 
   public override func setActive(_ active: Bool) { model.active = active }
@@ -124,8 +119,6 @@ public final class OneNativePopoverView: OneNativeContainerView {
     model.measuredHeight = 0
     model.arrowEdge = ""
     model.presentationCompactAdaptation = ""
-    model.contentWidth = 0
-    model.contentHeight = 0
     super.reset()
   }
 }

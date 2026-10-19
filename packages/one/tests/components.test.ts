@@ -248,7 +248,7 @@ describe('one-native children', () => {
       [
         'Swift.Popover',
         Popover,
-        { isPresented: false, contentWidth: 200, contentHeight: 100, content: null },
+        { isPresented: false, content: null },
       ],
     ]
     for (const [owner, wrapper, props] of direct)

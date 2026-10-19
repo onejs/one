@@ -172,7 +172,7 @@ unless `presentationCompactAdaptation` says otherwise.
 
 ```tsx
 import { useState } from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import { One } from 'one'
 
 function FilterPopover() {
@@ -182,10 +182,12 @@ function FilterPopover() {
     <One.iOS.Popover
       isPresented={open}
       onIsPresentedChange={setOpen}
-      contentWidth={260}
-      contentHeight={120}
       presentationCompactAdaptation="popover"
-      content={<Text>Only direct flights.</Text>}
+      content={
+        <View style={{ width: 260, height: 120 }}>
+          <Text>Only direct flights.</Text>
+        </View>
+      }
     >
       <One.iOS.Button label="Filter" onPress={() => setOpen(true)} />
     </One.iOS.Popover>
@@ -202,13 +204,15 @@ function FilterPopover() {
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isPresented to reset it from outside.' },
     { name: 'arrowEdge', type: 'Edge', description: 'top, leading, bottom, or trailing. SwiftUI picks when unset.' },
     { name: 'presentationCompactAdaptation', type: 'PresentationAdaptation', default: '"automatic"', description: 'automatic, none, popover, sheet, or fullScreenCover on compact screens.' },
-    { name: 'contentWidth', required: true, type: 'number', description: 'The popover width in points. Must be above zero.' },
-    { name: 'contentHeight', required: true, type: 'number', description: 'The popover height in points. Must be above zero.' },
     { name: 'content', required: true, type: 'ReactNode', description: 'The popover body.' },
     { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The anchor.' },
   ]}
 />
+
+The popover sizes to its content. Give the content a fixed size and do not
+give it `flex: 1`; a flexible child fills the provisional popover and has no
+smaller size to fit.
 
 ## Alert
 

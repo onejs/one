@@ -4987,12 +4987,6 @@
         "presentationCompactAdaptation": {
           "type": "string",
           "enum": "PresentationAdaptation"
-        },
-        "contentWidth": {
-          "type": "Double"
-        },
-        "contentHeight": {
-          "type": "Double"
         }
       },
       "events": {

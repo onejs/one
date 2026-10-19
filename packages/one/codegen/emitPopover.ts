@@ -24,8 +24,6 @@ export const popoverComponents = [
       revision: 'Int32',
       arrowEdge: 'string',
       presentationCompactAdaptation: 'string',
-      contentWidth: 'Double',
-      contentHeight: 'Double',
     },
     events: {
       onNativePopoverIsPresentedChange: {
@@ -63,12 +61,9 @@ export const popoverComponents = [
       presented: {
         label: 'content',
         slot: 'OneNativePopoverContent',
-        // SwiftUI sizes a popover from its content and a React Native subtree has no
-        // ideal size, so the box is explicit
-        modifiers: [
-          '.frame(width: @contentWidth, height: @contentHeight)',
-          '.oneNativePresentationCompactAdaptation(@presentationCompactAdaptation)',
-        ],
+        // SwiftUI sizes a popover from its content, whose measured size the
+        // bridge reports back as the slot's ideal size
+        modifiers: ['.oneNativePresentationCompactAdaptation(@presentationCompactAdaptation)'],
       },
       // the trigger sits at the leading edge, as a host's content does
       modifiers: ['.frame(maxWidth: .infinity, alignment: .leading)'],
@@ -139,8 +134,6 @@ export interface PopoverProps extends ViewProps {
   revision?: number
   arrowEdge?: Edge
   presentationCompactAdaptation?: PresentationAdaptation
-  contentWidth: number
-  contentHeight: number
   content: ReactNode
   children: ReactNode
 }
