@@ -65,7 +65,8 @@ describe('One.UI.Icon', () => {
       fontSize: 20,
       width: 20,
       height: 20,
-      foregroundStyle: { semantic: ['systemBlue'] },
+      foregroundStyle: undefined,
+      foregroundColor: 'accentColor',
     })
     expect(ios.props.style).toEqual([{ width: 20, height: 20 }, undefined])
     expect(android.props.colorRole).toBe('secondary')
@@ -116,6 +117,7 @@ describe('One.UI.Icon', () => {
     expect(ios.props.swiftStyle).toMatchObject({
       foregroundStyle: { semantic: ['label'] },
     })
+    expect(ios.props.swiftStyle.foregroundColor).toBeUndefined()
     expect(android.props.colorRole).toBe('primary')
   })
 

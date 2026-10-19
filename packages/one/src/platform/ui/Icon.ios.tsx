@@ -6,13 +6,13 @@ import { iconColorRoles } from './iconRoles'
 import type { IconProps } from './iconTypes'
 
 // the semantic colors SwiftUI's roles name, as platform colors a foreground
-// style carries. accent is the default blue; a custom accent above the icon
-// will not recolor it.
+// style carries. accent stays dynamic: it rides foregroundColor, which
+// resolves the app and ancestor accent instead of freezing a blue.
 const roleColors = {
   primary: 'label',
   secondary: 'secondaryLabel',
   tertiary: 'tertiaryLabel',
-  accent: 'systemBlue',
+  accent: undefined,
   danger: 'systemRed',
 } as const
 
@@ -32,6 +32,7 @@ export function Icon({ icons, colorRole, color }: IconProps) {
     icons.ios.props.style,
   ]
   const { width, height } = StyleSheet.flatten(style)
+  const roleColorName = role ? roleColors[role] : undefined
   return cloneElement(icons.ios, {
     style,
     // standalone SwiftUI images report their intrinsic height back to Yoga.
@@ -41,7 +42,8 @@ export function Icon({ icons, colorRole, color }: IconProps) {
       fontSize: fallbackSize,
       width: typeof width === 'number' ? width : icons.ios.props.swiftStyle?.width,
       height: typeof height === 'number' ? height : icons.ios.props.swiftStyle?.height,
-      foregroundStyle: color ?? (role ? PlatformColor(roleColors[role]) : undefined),
+      foregroundStyle: color ?? (roleColorName ? PlatformColor(roleColorName) : undefined),
+      foregroundColor: role === 'accent' ? 'accentColor' : undefined,
     },
   })
 }
