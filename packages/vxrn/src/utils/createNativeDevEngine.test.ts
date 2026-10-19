@@ -3483,6 +3483,56 @@ describe('postProcessNativeBundle', () => {
   })
 })
 
+describe('native dev bundle post-processing failures', () => {
+  it('rejects the bundle request with the failure instead of timing out', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-postprocess-error-'))
+    await writeFile(join(root, 'package.json'), JSON.stringify({ type: 'module' }))
+    await writeFile(join(root, 'entry.js'), `globalThis.__postprocessProbe = 1\n`)
+    const native = await createNativeDevEngine({
+      root,
+      port: 0,
+      platform: 'ios',
+      plugins: [
+        {
+          name: 'postprocess-error-entry',
+          transform(code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.js'`
+          },
+        },
+        {
+          name: 'postprocess-error-poison',
+          renderChunk() {
+            // valid javascript, so rolldown delivers it: the single-line
+            // class fields inside the runtime region gain lines when
+            // downleveled, which throws inside handleOutput.
+            return {
+              code: [
+                '//#region \\0rolldown/runtime.js',
+                'class Poison { x = 1; y = 2; z = 3; }',
+                '//#endregion',
+                'globalThis.__postprocessProbe = new Poison();',
+                '',
+              ].join('\n'),
+            }
+          },
+        },
+      ],
+    })
+    try {
+      await expect(native.getBundle()).rejects.toThrow(
+        'Hermes runtime transform added lines'
+      )
+      // the failure is recorded for later callers, not just the waiter
+      await expect(native.getBundle()).rejects.toThrow(
+        'Hermes runtime transform added lines'
+      )
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+})
+
 describe('native package context identity', () => {
   it.each(['@tamagui/web', '@tamagui/adapt'])(
     'shares %s contexts with dependencies containing a second package copy',
