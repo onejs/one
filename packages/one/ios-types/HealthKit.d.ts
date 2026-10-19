@@ -923,7 +923,7 @@ export interface HKAsyncQuery {
      * func result(for healthStore: HKHealthStore) async throws -> Self.Output
      * @availability iOS 15.4+
      */
-    "resultFor"?: (arg0: HKHealthStore) => unknown;
+    "resultFor"?: (arg0: HKHealthStore) => Promise<unknown>;
 }
 /**
  * protocol HKAsyncSequenceQuery

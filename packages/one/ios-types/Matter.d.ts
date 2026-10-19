@@ -237,25 +237,26 @@ type $SDK239 = (MTRContentLauncherClusterBrandingInformationStruct) | null;
 type $SDK240 = (MTRContentLauncherClusterDimensionStruct) | null;
 type $SDK241 = (MTRDeviceController) | null;
 type $SDK242 = (Array<ArrayBuffer>) | null;
-type $SDK244 = Implements<MTRDeviceDelegate> | SDKHandle;
-type $SDK245 = NativeMap<MTRAttributePath, Record<string, unknown>>;
-type $SDK247 = Array<Record<string, unknown>>;
-type $SDK248 = Array<MTRAttributeRequestPath>;
-type $SDK249 = (globalThis.Date) | null;
-type $SDK251 = Implements<MTRDeviceControllerDelegate> | SDKHandle;
-type $SDK255 = Array<_Foundation_NSNumber>;
-type $SDK257 = (MTRDeviceStorageBehaviorConfiguration) | null;
-type $SDK259 = ((arg0: (unknown) | null, arg1: (NativeError) | null) => Promise<void>);
-type $SDK267 = (MTRDoorLockClusterCredentialStruct) | null;
-type $SDK268 = (MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) | null;
-type $SDK269 = Array<MTRDeviceTypeRevision>;
-type $SDK271 = ((arg0: ArrayBuffer, arg1: ArrayBuffer, arg2: ArrayBuffer, arg3: (ArrayBuffer) | null, arg4: (_Foundation_NSNumber) | null, arg5: (SDKHandle) | null) => Promise<void>);
-type $SDK273 = (MTRServiceAreaClusterLandmarkInfoStruct) | null;
-type $SDK274 = (MTRDataTypeLocationDescriptorStruct) | null;
-type $SDK278 = ((arg0: (NativeError) | null) => Promise<void>);
-type $SDK279 = (MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct) | null;
-type $SDK280 = NativeMap<unknown, unknown>;
-type $SDK281 = (() => Promise<_Foundation_NSXPCConnection>);
+type $SDK243 = Implements<MTRDeviceDelegate> | SDKHandle;
+type $SDK244 = NativeMap<MTRAttributePath, Record<string, unknown>>;
+type $SDK245 = Array<Array<MTRCommandWithRequiredResponse>>;
+type $SDK246 = Array<Record<string, unknown>>;
+type $SDK247 = Array<MTRAttributeRequestPath>;
+type $SDK248 = (globalThis.Date) | null;
+type $SDK250 = Implements<MTRDeviceControllerDelegate> | SDKHandle;
+type $SDK254 = Array<_Foundation_NSNumber>;
+type $SDK255 = (MTRDeviceStorageBehaviorConfiguration) | null;
+type $SDK257 = ((arg0: (unknown) | null, arg1: (NativeError) | null) => Promise<void>);
+type $SDK265 = (MTRDoorLockClusterCredentialStruct) | null;
+type $SDK266 = (MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) | null;
+type $SDK267 = Array<MTRDeviceTypeRevision>;
+type $SDK269 = ((arg0: ArrayBuffer, arg1: ArrayBuffer, arg2: ArrayBuffer, arg3: (ArrayBuffer) | null, arg4: (_Foundation_NSNumber) | null, arg5: (SDKHandle) | null) => Promise<void>);
+type $SDK272 = (MTRServiceAreaClusterLandmarkInfoStruct) | null;
+type $SDK273 = (MTRDataTypeLocationDescriptorStruct) | null;
+type $SDK277 = ((arg0: (NativeError) | null) => Promise<void>);
+type $SDK278 = (MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct) | null;
+type $SDK279 = NativeMap<unknown, unknown>;
+type $SDK280 = (() => Promise<_Foundation_NSXPCConnection>);
 /**
  * class AttestationInfo
  * @availability iOS 16.1+
@@ -98120,7 +98121,7 @@ export declare class MTRDeviceControllerFactoryParams extends SDKHandle {
      * @availability iOS 16.4+
      */
     get otaProviderDelegate(): (SDKHandle) | null;
-    set otaProviderDelegate(value: (Implements<MTROTAProviderDelegate> | SDKHandle) | null);
+    set otaProviderDelegate(value: (SDKHandle) | null);
     /**
      * @NSCopying var port: NSNumber? { get set }
      * @availability iOS 16.4+
@@ -98404,17 +98405,17 @@ export declare class MTRDevice extends SDKHandle {
      * func add(_ delegate: any MTRDeviceDelegate, queue: dispatch_queue_t)
      * @availability iOS 18.0+
      */
-    addQueue(delegate: $SDK244, queue: _Dispatch_DispatchQueue): void;
+    addQueue(delegate: $SDK243, queue: _Dispatch_DispatchQueue): void;
     /**
      * func add(_ delegate: any MTRDeviceDelegate, queue: dispatch_queue_t, interestedPathsForAttributes: [Any]?, interestedPathsForEvents: [Any]?)
      * @availability iOS 18.0+
      */
-    addQueueInterestedPathsForAttributesInterestedPathsForEvents(delegate: $SDK244, queue: _Dispatch_DispatchQueue, interestedPathsForAttributes?: (Array<unknown>) | null, interestedPathsForEvents?: (Array<unknown>) | null): void;
+    addQueueInterestedPathsForAttributesInterestedPathsForEvents(delegate: $SDK243, queue: _Dispatch_DispatchQueue, interestedPathsForAttributes?: (Array<unknown>) | null, interestedPathsForEvents?: (Array<unknown>) | null): void;
     /**
      * func descriptorClusters() -> [MTRAttributePath : [String : Any]]
      * @availability iOS 18.4+
      */
-    descriptorClusters(): $SDK245;
+    descriptorClusters(): $SDK244;
     /**
      * func downloadLog(of type: MTRDiagnosticLogType, timeout: TimeInterval, queue: dispatch_queue_t) async throws -> URL
      * @availability iOS 17.6+
@@ -98440,7 +98441,7 @@ export declare class MTRDevice extends SDKHandle {
      * func invokeCommands(_ commands: [[MTRCommandWithRequiredResponse]], queue: dispatch_queue_t) async throws -> [[String : Any]]
      * @availability iOS 18.4+
      */
-    invokeCommands(commands: Array<Array<MTRCommandWithRequiredResponse>>, queue: _Dispatch_DispatchQueue, completion: $SDK6): void;
+    invokeCommands(commands: $SDK245, queue: _Dispatch_DispatchQueue, completion: $SDK6): void;
     /**
      * func openCommissioningWindow(withDiscriminator discriminator: NSNumber, duration: NSNumber, queue: dispatch_queue_t) async throws -> MTRSetupPayload
      * @availability iOS 17.0+
@@ -98455,7 +98456,7 @@ export declare class MTRDevice extends SDKHandle {
      * func readAttributePaths(_ attributePaths: [MTRAttributeRequestPath]) -> [[String : Any]]
      * @availability iOS 18.2+
      */
-    readAttributePaths(attributePaths: $SDK248): $SDK247;
+    readAttributePaths(attributePaths: $SDK247): $SDK246;
     /**
      * func readAttribute(withEndpointID endpointID: NSNumber, clusterID: NSNumber, attributeID: NSNumber, params: MTRReadParams?) -> [String : Any]?
      * @availability iOS 16.1+
@@ -98465,18 +98466,18 @@ export declare class MTRDevice extends SDKHandle {
      * func remove(_ delegate: any MTRDeviceDelegate)
      * @availability iOS 18.0+
      */
-    remove(delegate: $SDK244): void;
+    remove(delegate: $SDK243): void;
     /**
      * func setDelegate(_ delegate: any MTRDeviceDelegate, queue: dispatch_queue_t)
      * @availability iOS 16.1+
      * @deprecated iOS 18.0
      */
-    setDelegate(delegate: $SDK244, queue: _Dispatch_DispatchQueue): void;
+    setDelegate(delegate: $SDK243, queue: _Dispatch_DispatchQueue): void;
     /**
      * func wait(forAttributeValues values: [MTRAttributePath : [String : Any]], timeout: TimeInterval, queue: dispatch_queue_t, completion: @escaping ((any Error)?) -> Void) -> MTRAttributeValueWaiter
      * @availability iOS 18.3+
      */
-    wait(values: $SDK245, timeout: number, queue: _Dispatch_DispatchQueue, completion: $SDK11): MTRAttributeValueWaiter;
+    wait(values: $SDK244, timeout: number, queue: _Dispatch_DispatchQueue, completion: $SDK11): MTRAttributeValueWaiter;
     /**
      * func writeAttribute(withEndpointID endpointID: NSNumber, clusterID: NSNumber, attributeID: NSNumber, value: Any, expectedValueInterval: NSNumber, timedWriteTimeout timeout: NSNumber?)
      * @availability iOS 16.1+
@@ -98496,7 +98497,7 @@ export declare class MTRDevice extends SDKHandle {
      * var estimatedStartTime: Date? { get }
      * @availability iOS 16.5+
      */
-    get estimatedStartTime(): $SDK249;
+    get estimatedStartTime(): $SDK248;
     /**
      * @NSCopying var estimatedSubscriptionLatency: NSNumber? { get }
      * @availability iOS 17.6+
@@ -98754,7 +98755,7 @@ export declare class MTRDeviceController extends SDKHandle {
      * func add(_ delegate: any MTRDeviceControllerDelegate, queue: dispatch_queue_t)
      * @availability iOS 18.2+
      */
-    addQueue(delegate: $SDK251, queue: _Dispatch_DispatchQueue): void;
+    addQueue(delegate: $SDK250, queue: _Dispatch_DispatchQueue): void;
     /**
      * func add(_ endpoint: MTRServerEndpoint) -> Bool
      * @availability iOS 17.6+
@@ -98865,7 +98866,7 @@ export declare class MTRDeviceController extends SDKHandle {
      * func remove(_ delegate: any MTRDeviceControllerDelegate)
      * @availability iOS 18.2+
      */
-    remove(delegate: $SDK251): void;
+    remove(delegate: $SDK250): void;
     /**
      * func remove(_ endpoint: MTRServerEndpoint)
      * @availability iOS 17.6+
@@ -98885,7 +98886,7 @@ export declare class MTRDeviceController extends SDKHandle {
      * func setDeviceControllerDelegate(_ delegate: any MTRDeviceControllerDelegate, queue: dispatch_queue_t)
      * @availability iOS 16.4+
      */
-    setDeviceControllerDelegate(delegate: $SDK251, queue: _Dispatch_DispatchQueue): void;
+    setDeviceControllerDelegate(delegate: $SDK250, queue: _Dispatch_DispatchQueue): void;
     /**
      * func setNocChainIssuer(_ nocChainIssuer: any MTRNOCChainIssuer, queue: dispatch_queue_t)
      * @availability iOS 16.1+
@@ -98954,7 +98955,7 @@ export declare class MTRDeviceController extends SDKHandle {
      * var nodesWithStoredData: [NSNumber] { get }
      * @availability iOS 18.4+
      */
-    get nodesWithStoredData(): $SDK255;
+    get nodesWithStoredData(): $SDK254;
     /**
      * var isRunning: Bool { get }
      * @availability iOS 16.1+
@@ -99081,7 +99082,7 @@ export declare class MTRDeviceControllerParameters extends MTRDeviceControllerAb
      * func setOTAProviderDelegate(_ otaProviderDelegate: any MTROTAProviderDelegate, queue: dispatch_queue_t)
      * @availability iOS 17.6+
      */
-    setOTAProviderDelegate(otaProviderDelegate: Implements<MTROTAProviderDelegate> | SDKHandle, queue: _Dispatch_DispatchQueue): void;
+    setOTAProviderDelegate(otaProviderDelegate: SDKHandle, queue: _Dispatch_DispatchQueue): void;
     /**
      * func setOperationalCertificateIssuer(_ operationalCertificateIssuer: any MTROperationalCertificateIssuer, queue: dispatch_queue_t)
      * @availability iOS 17.6+
@@ -99115,8 +99116,8 @@ export declare class MTRDeviceControllerParameters extends MTRDeviceControllerAb
      * @NSCopying var storageBehaviorConfiguration: MTRDeviceStorageBehaviorConfiguration? { get set }
      * @availability iOS 17.6+
      */
-    get storageBehaviorConfiguration(): $SDK257;
-    set storageBehaviorConfiguration(value: $SDK257);
+    get storageBehaviorConfiguration(): $SDK255;
+    set storageBehaviorConfiguration(value: $SDK255);
     readonly $type: {
         "c:objc(cs)MTRDeviceControllerParameters": true;
         "c:objc(cs)MTRDeviceControllerAbstractParameters": true;
@@ -99217,17 +99218,17 @@ export declare class MTRDeviceControllerFactory extends SDKHandle {
     };
 }
 /** typealias MTRDeviceControllerGetterHandler = (Any?, (any Error)?) -> Void */
-export type MTRDeviceControllerGetterHandler = $SDK259;
+export type MTRDeviceControllerGetterHandler = $SDK257;
 /** protocol MTRDeviceControllerServerProtocol : NSObjectProtocol */
 export interface MTRDeviceControllerServerProtocol {
     /** func anyDeviceController() async throws -> Any */
-    "anyDeviceController"?: () => unknown;
+    "anyDeviceController"?: () => Promise<unknown>;
     /** func readAttribute(withController controller: Any?, nodeId: UInt64, endpointId: NSNumber?, clusterId: NSNumber?, attributeId: NSNumber?, params: [String : Any]?) async throws -> Any */
-    "readAttributeWithControllerNodeIdEndpointIdClusterIdAttributeIdParams"?: (arg0: (unknown) | null, arg1: number, arg2: $SDK0, arg3: $SDK0, arg4: $SDK0, arg5: $SDK230) => unknown;
+    "readAttributeWithControllerNodeIdEndpointIdClusterIdAttributeIdParams"?: (arg0: (unknown) | null, arg1: number, arg2: $SDK0, arg3: $SDK0, arg4: $SDK0, arg5: $SDK230) => Promise<unknown>;
     /** func writeAttribute(withController controller: Any?, nodeId: UInt64, endpointId: NSNumber, clusterId: NSNumber, attributeId: NSNumber, value: Any, timedWriteTimeout timeoutMs: NSNumber?) async throws -> Any */
-    "writeAttributeWithControllerNodeIdEndpointIdClusterIdAttributeIdValueTimedWriteTimeout"?: (arg0: (unknown) | null, arg1: number, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: unknown, arg6: $SDK0) => unknown;
+    "writeAttributeWithControllerNodeIdEndpointIdClusterIdAttributeIdValueTimedWriteTimeout"?: (arg0: (unknown) | null, arg1: number, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: unknown, arg6: $SDK0) => Promise<unknown>;
     /** func invokeCommand(withController controller: Any?, nodeId: UInt64, endpointId: NSNumber, clusterId: NSNumber, commandId: NSNumber, fields: Any, timedInvokeTimeout timeoutMs: NSNumber?) async throws -> Any */
-    "invokeCommandWithControllerNodeIdEndpointIdClusterIdCommandIdFieldsTimedInvokeTimeout"?: (arg0: (unknown) | null, arg1: number, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: unknown, arg6: $SDK0) => unknown;
+    "invokeCommandWithControllerNodeIdEndpointIdClusterIdCommandIdFieldsTimedInvokeTimeout"?: (arg0: (unknown) | null, arg1: number, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: unknown, arg6: $SDK0) => Promise<unknown>;
     /** func subscribeAttribute(withController controller: Any?, nodeId: UInt64, endpointId: NSNumber?, clusterId: NSNumber?, attributeId: NSNumber?, minInterval: NSNumber, maxInterval: NSNumber, params: [String : Any]?, establishedHandler: @escaping () -> Void) */
     "subscribeAttributeWithControllerNodeIdEndpointIdClusterIdAttributeIdMinIntervalMaxIntervalParamsEstablishedHandler"?: (arg0: (unknown) | null, arg1: number, arg2: $SDK0, arg3: $SDK0, arg4: $SDK0, arg5: _Foundation_NSNumber, arg6: _Foundation_NSNumber, arg7: $SDK230, arg8: (() => Promise<void>)) => void;
     /** func stopReports(withController controller: Any?, nodeId: UInt64) async */
@@ -99235,7 +99236,18 @@ export interface MTRDeviceControllerServerProtocol {
     /** func subscribe(withController controller: Any?, nodeId: UInt64, minInterval: NSNumber, maxInterval: NSNumber, params: [String : Any]?, shouldCache: Bool) async throws */
     "subscribeWithControllerNodeIdMinIntervalMaxIntervalParamsShouldCache"?: (arg0: (unknown) | null, arg1: number, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: $SDK230, arg5: boolean) => void;
     /** func readAttributeCache(withController controller: Any?, nodeId: UInt64, endpointId: NSNumber?, clusterId: NSNumber?, attributeId: NSNumber?) async throws -> Any */
-    "readAttributeCacheWithControllerNodeIdEndpointIdClusterIdAttributeId"?: (arg0: (unknown) | null, arg1: number, arg2: $SDK0, arg3: $SDK0, arg4: $SDK0) => unknown;
+    "readAttributeCacheWithControllerNodeIdEndpointIdClusterIdAttributeId"?: (arg0: (unknown) | null, arg1: number, arg2: $SDK0, arg3: $SDK0, arg4: $SDK0) => Promise<unknown>;
+    /**
+     * optional func deviceController(withFabricId fabricId: UInt64) async throws -> Any
+     * @availability iOS 16.1+
+     * @deprecated iOS 16.4
+     */
+    "deviceControllerWithFabricId"?: (arg0: number) => Promise<unknown>;
+    /**
+     * optional func downloadLog(withController controller: Any?, nodeId: NSNumber, type: MTRDiagnosticLogType, timeout: TimeInterval) async throws -> String
+     * @availability iOS 17.6+
+     */
+    "downloadLogWithControllerNodeIdTypeTimeout"?: (arg0: (unknown) | null, arg1: _Foundation_NSNumber, arg2: MTRDiagnosticLogType, arg3: number) => Promise<string>;
 }
 /**
  * class MTRDeviceControllerStartupParams
@@ -99406,12 +99418,12 @@ export interface MTRDeviceDelegate {
      * func device(_ device: MTRDevice, receivedAttributeReport attributeReport: [[String : Any]])
      * @availability iOS 16.1+
      */
-    "deviceReceivedAttributeReport"?: (arg0: MTRDevice, arg1: $SDK247) => void;
+    "deviceReceivedAttributeReport"?: (arg0: MTRDevice, arg1: $SDK246) => void;
     /**
      * func device(_ device: MTRDevice, receivedEventReport eventReport: [[String : Any]])
      * @availability iOS 16.1+
      */
-    "deviceReceivedEventReport"?: (arg0: MTRDevice, arg1: $SDK247) => void;
+    "deviceReceivedEventReport"?: (arg0: MTRDevice, arg1: $SDK246) => void;
     /**
      * optional func deviceBecameActive(_ device: MTRDevice)
      * @availability iOS 16.4+
@@ -101251,7 +101263,7 @@ export declare class MTRDistinguishedNameInfo extends SDKHandle {
      * var caseAuthenticatedTags: Set<NSNumber> { get }
      * @availability iOS 16.4+
      */
-    get caseAuthenticatedTags(): $SDK255;
+    get caseAuthenticatedTags(): $SDK254;
     /**
      * var fabricID: NSNumber? { get }
      * @availability iOS 16.4+
@@ -101335,8 +101347,8 @@ export declare class MTRDoorLockClusterClearCredentialParams extends SDKHandle {
      * @NSCopying var credential: MTRDoorLockClusterCredentialStruct? { get set }
      * @availability iOS 16.1+
      */
-    get credential(): $SDK267;
-    set credential(value: $SDK267);
+    get credential(): $SDK265;
+    set credential(value: $SDK265);
     /**
      * @NSCopying var serverSideProcessingTimeout: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -104120,14 +104132,14 @@ export declare class MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasur
      * @NSCopying var energyExported: MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct? { get set }
      * @availability iOS 17.6+
      */
-    get energyExported(): $SDK268;
-    set energyExported(value: $SDK268);
+    get energyExported(): $SDK266;
+    set energyExported(value: $SDK266);
     /**
      * @NSCopying var energyImported: MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct? { get set }
      * @availability iOS 17.6+
      */
-    get energyImported(): $SDK268;
-    set energyImported(value: $SDK268);
+    get energyImported(): $SDK266;
+    set energyImported(value: $SDK266);
     readonly $type: {
         "c:objc(cs)MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent": true;
         "c:objc(cs)NSObject": true;
@@ -104358,14 +104370,14 @@ export declare class MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasured
      * @NSCopying var energyExported: MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct? { get set }
      * @availability iOS 17.6+
      */
-    get energyExported(): $SDK268;
-    set energyExported(value: $SDK268);
+    get energyExported(): $SDK266;
+    set energyExported(value: $SDK266);
     /**
      * @NSCopying var energyImported: MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct? { get set }
      * @availability iOS 17.6+
      */
-    get energyImported(): $SDK268;
-    set energyImported(value: $SDK268);
+    get energyImported(): $SDK266;
+    set energyImported(value: $SDK266);
     readonly $type: {
         "c:objc(cs)MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent": true;
         "c:objc(cs)NSObject": true;
@@ -104973,7 +104985,7 @@ export declare class MTREndpointInfo extends SDKHandle {
      * var deviceTypes: [MTRDeviceTypeRevision] { get }
      * @availability iOS 18.4+
      */
-    get deviceTypes(): $SDK269;
+    get deviceTypes(): $SDK267;
     /**
      * @NSCopying var endpointID: NSNumber { get }
      * @availability iOS 18.4+
@@ -104983,7 +104995,7 @@ export declare class MTREndpointInfo extends SDKHandle {
      * var partsList: [NSNumber] { get }
      * @availability iOS 18.4+
      */
-    get partsList(): $SDK255;
+    get partsList(): $SDK254;
     readonly $type: {
         "c:objc(cs)MTREndpointInfo": true;
         "c:objc(cs)NSObject": true;
@@ -106842,7 +106854,7 @@ export declare class MTREventReport extends SDKHandle {
      * var timestampDate: Date? { get }
      * @availability iOS 16.5+
      */
-    get timestampDate(): $SDK249;
+    get timestampDate(): $SDK248;
     /**
      * var value: Any? { get }
      * @availability iOS 16.1+
@@ -113667,7 +113679,7 @@ export declare const MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit: 
  * @availability iOS 16.1+
  * @deprecated iOS 16.4
  */
-export type MTRNOCChainGenerationCompleteHandler = $SDK271;
+export type MTRNOCChainGenerationCompleteHandler = $SDK269;
 /**
  * protocol MTRNOCChainIssuer : NSObjectProtocol
  * @availability iOS 16.1+
@@ -113679,7 +113691,7 @@ export interface MTRNOCChainIssuer {
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    "onNOCChainGenerationNeededAttestationInfoOnNOCChainGenerationComplete"?: (arg0: CSRInfo, arg1: AttestationInfo, arg2: $SDK271) => void;
+    "onNOCChainGenerationNeededAttestationInfoOnNOCChainGenerationComplete"?: (arg0: CSRInfo, arg1: AttestationInfo, arg2: $SDK269) => void;
 }
 /**
  * class MTROccupancySensingClusterHoldTimeLimitsStruct
@@ -114273,7 +114285,7 @@ export interface MTROperationalCertificateIssuer {
      * func issueOperationalCertificate(forRequest csrInfo: MTROperationalCSRInfo, attestationInfo: MTRDeviceAttestationInfo, controller: MTRDeviceController) async throws -> MTROperationalCertificateChain
      * @availability iOS 16.4+
      */
-    "issueOperationalCertificateForRequestAttestationInfoController"?: (arg0: MTROperationalCSRInfo, arg1: MTRDeviceAttestationInfo, arg2: MTRDeviceController) => MTROperationalCertificateChain;
+    "issueOperationalCertificateForRequestAttestationInfoController"?: (arg0: MTROperationalCSRInfo, arg1: MTRDeviceAttestationInfo, arg2: MTRDeviceController) => Promise<MTROperationalCertificateChain>;
 }
 /**
  * enum MTROperationalCredentialsCertificateChainType
@@ -115510,6 +115522,26 @@ export declare const MTROTAImageDigestType: {
 /** protocol MTROTAProviderDelegate : NSObjectProtocol */
 export interface MTROTAProviderDelegate {
     /**
+     * optional func handleQueryImage(forNodeID nodeID: NSNumber, controller: MTRDeviceController, params: MTROTASoftwareUpdateProviderClusterQueryImageParams) async throws -> MTROTASoftwareUpdateProviderClusterQueryImageResponseParams
+     * @availability iOS 16.4+
+     */
+    "handleQueryImageForNodeIDControllerParams"?: (arg0: _Foundation_NSNumber, arg1: MTRDeviceController, arg2: MTROTASoftwareUpdateProviderClusterQueryImageParams | MTROtaSoftwareUpdateProviderClusterQueryImageParams) => Promise<MTROTASoftwareUpdateProviderClusterQueryImageResponseParams> | Promise<MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams>;
+    /**
+     * optional func handleApplyUpdateRequest(forNodeID nodeID: NSNumber, controller: MTRDeviceController, params: MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams) async throws -> MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams
+     * @availability iOS 16.4+
+     */
+    "handleApplyUpdateRequestForNodeIDControllerParams"?: (arg0: _Foundation_NSNumber, arg1: MTRDeviceController, arg2: MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams | MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams) => Promise<MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams> | Promise<MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams>;
+    /**
+     * optional func handleNotifyUpdateApplied(forNodeID nodeID: NSNumber, controller: MTRDeviceController, params: MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) async throws
+     * @availability iOS 16.4+
+     */
+    "handleNotifyUpdateAppliedForNodeIDControllerParams"?: (arg0: _Foundation_NSNumber, arg1: MTRDeviceController, arg2: MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams | MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams) => void;
+    /**
+     * optional func handleBDXTransferSessionBegin(forNodeID nodeID: NSNumber, controller: MTRDeviceController, fileDesignator: String, offset: NSNumber) async throws
+     * @availability iOS 16.4+
+     */
+    "handleBDXTransferSessionBeginForNodeIDControllerFileDesignatorOffset"?: (arg0: _Foundation_NSNumber, arg1: MTRDeviceController, arg2: string, arg3: _Foundation_NSNumber) => void;
+    /**
      * optional func handleBDXTransferSessionEnd(forNodeID nodeID: NSNumber, controller: MTRDeviceController, metrics: MTRMetrics, error: (any Error)?)
      * @availability iOS 26.1+
      */
@@ -115520,6 +115552,11 @@ export interface MTROTAProviderDelegate {
      * @deprecated iOS 26.1
      */
     "handleBDXTransferSessionEndForNodeIDControllerError"?: (arg0: _Foundation_NSNumber, arg1: MTRDeviceController, arg2: (NativeError) | null) => void;
+    /**
+     * optional func handleBDXQuery(forNodeID nodeID: NSNumber, controller: MTRDeviceController, blockSize: NSNumber, blockIndex: NSNumber, bytesToSkip: NSNumber) async -> (Data?, Bool)
+     * @availability iOS 16.4+
+     */
+    "handleBDXQueryForNodeIDControllerBlockSizeBlockIndexBytesToSkip"?: (arg0: _Foundation_NSNumber, arg1: MTRDeviceController, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber) => Promise<[(ArrayBuffer) | null, boolean]>;
 }
 /**
  * enum MTROTASoftwareUpdateProviderApplyUpdateAction
@@ -119564,7 +119601,7 @@ export declare class MTRServerEndpoint extends SDKHandle {
      * init?(endpointID: NSNumber, deviceTypes: [MTRDeviceTypeRevision])
      * @availability iOS 17.6+
      */
-    static init(endpointID: _Foundation_NSNumber, deviceTypes: $SDK269): (MTRServerEndpoint) | null;
+    static init(endpointID: _Foundation_NSNumber, deviceTypes: $SDK267): (MTRServerEndpoint) | null;
     /**
      * func removeAccessGrant(_ accessGrant: MTRAccessGrant)
      * @availability iOS 17.6+
@@ -119579,7 +119616,7 @@ export declare class MTRServerEndpoint extends SDKHandle {
      * var deviceTypes: [MTRDeviceTypeRevision] { get }
      * @availability iOS 17.6+
      */
-    get deviceTypes(): $SDK269;
+    get deviceTypes(): $SDK267;
     /**
      * @NSCopying var endpointID: NSNumber { get }
      * @availability iOS 17.6+
@@ -119612,14 +119649,14 @@ export declare class MTRServiceAreaClusterAreaInfoStruct extends SDKHandle {
      * @NSCopying var landmarkInfo: MTRServiceAreaClusterLandmarkInfoStruct? { get set }
      * @availability iOS 18.4+
      */
-    get landmarkInfo(): $SDK273;
-    set landmarkInfo(value: $SDK273);
+    get landmarkInfo(): $SDK272;
+    set landmarkInfo(value: $SDK272);
     /**
      * @NSCopying var locationInfo: MTRDataTypeLocationDescriptorStruct? { get set }
      * @availability iOS 18.4+
      */
-    get locationInfo(): $SDK274;
-    set locationInfo(value: $SDK274);
+    get locationInfo(): $SDK273;
+    set locationInfo(value: $SDK273);
     readonly $type: {
         "c:objc(cs)MTRServiceAreaClusterAreaInfoStruct": true;
         "c:objc(cs)NSObject": true;
@@ -120632,7 +120669,7 @@ export declare const MTRSoftwareDiagnosticsFeature: {
     init(rawValue: number): MTRSoftwareDiagnosticsFeature;
 };
 /** typealias MTRStatusCompletion = ((any Error)?) -> Void */
-export type MTRStatusCompletion = $SDK278;
+export type MTRStatusCompletion = $SDK277;
 /**
  * protocol MTRStorage : NSObjectProtocol
  * @availability iOS 16.4+
@@ -128536,8 +128573,8 @@ export declare class MTRTimeSynchronizationClusterSetTrustedTimeSourceParams ext
      * @NSCopying var trustedTimeSource: MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct? { get set }
      * @availability iOS 18.4+
      */
-    get trustedTimeSource(): $SDK279;
-    set trustedTimeSource(value: $SDK279);
+    get trustedTimeSource(): $SDK278;
+    set trustedTimeSource(value: $SDK278);
     readonly $type: {
         "c:objc(cs)MTRTimeSynchronizationClusterSetTrustedTimeSourceParams": true;
         "c:objc(cs)NSObject": true;
@@ -129256,7 +129293,7 @@ export declare class MTRUserLabelClusterLabelStruct extends SDKHandle {
     };
 }
 /** typealias MTRValuesHandler = (Any?, (any Error)?) -> Void */
-export type MTRValuesHandler = $SDK259;
+export type MTRValuesHandler = $SDK257;
 /**
  * class MTRValveConfigurationAndControlClusterCloseParams
  * @availability iOS 17.6+
@@ -130620,7 +130657,7 @@ export interface MTRXPCClientProtocol {
      * optional func controller(_ controller: UUID, controllerConfigurationUpdated configuration: [AnyHashable : Any])
      * @availability iOS 18.3+
      */
-    "controllerControllerConfigurationUpdated"?: (arg0: string, arg1: $SDK280) => void;
+    "controllerControllerConfigurationUpdated"?: (arg0: string, arg1: $SDK279) => void;
     /**
      * func device(_ nodeID: NSNumber, stateChanged state: MTRDeviceState)
      * @availability iOS 18.2+
@@ -130630,12 +130667,12 @@ export interface MTRXPCClientProtocol {
      * func device(_ nodeID: NSNumber, receivedAttributeReport attributeReport: [[String : Any]])
      * @availability iOS 18.2+
      */
-    "deviceReceivedAttributeReport"?: (arg0: _Foundation_NSNumber, arg1: $SDK247) => void;
+    "deviceReceivedAttributeReport"?: (arg0: _Foundation_NSNumber, arg1: $SDK246) => void;
     /**
      * func device(_ nodeID: NSNumber, receivedEventReport eventReport: [[String : Any]])
      * @availability iOS 18.2+
      */
-    "deviceReceivedEventReport"?: (arg0: _Foundation_NSNumber, arg1: $SDK247) => void;
+    "deviceReceivedEventReport"?: (arg0: _Foundation_NSNumber, arg1: $SDK246) => void;
     /**
      * func deviceBecameActive(_ nodeID: NSNumber)
      * @availability iOS 18.2+
@@ -130655,7 +130692,7 @@ export interface MTRXPCClientProtocol {
      * func device(_ nodeID: NSNumber, internalStateUpdated dictionary: [AnyHashable : Any])
      * @availability iOS 18.2+
      */
-    "deviceInternalStateUpdated"?: (arg0: _Foundation_NSNumber, arg1: $SDK280) => void;
+    "deviceInternalStateUpdated"?: (arg0: _Foundation_NSNumber, arg1: $SDK279) => void;
 }
 /**
  * protocol MTRXPCClientProtocol_MTRDevice : NSObjectProtocol
@@ -130671,12 +130708,12 @@ export interface MTRXPCClientProtocol_MTRDevice {
      * func device(_ nodeID: NSNumber, receivedAttributeReport attributeReport: [[String : Any]])
      * @availability iOS 18.2+
      */
-    "deviceReceivedAttributeReport"?: (arg0: _Foundation_NSNumber, arg1: $SDK247) => void;
+    "deviceReceivedAttributeReport"?: (arg0: _Foundation_NSNumber, arg1: $SDK246) => void;
     /**
      * func device(_ nodeID: NSNumber, receivedEventReport eventReport: [[String : Any]])
      * @availability iOS 18.2+
      */
-    "deviceReceivedEventReport"?: (arg0: _Foundation_NSNumber, arg1: $SDK247) => void;
+    "deviceReceivedEventReport"?: (arg0: _Foundation_NSNumber, arg1: $SDK246) => void;
     /**
      * func deviceBecameActive(_ nodeID: NSNumber)
      * @availability iOS 18.2+
@@ -130696,7 +130733,7 @@ export interface MTRXPCClientProtocol_MTRDevice {
      * func device(_ nodeID: NSNumber, internalStateUpdated dictionary: [AnyHashable : Any])
      * @availability iOS 18.2+
      */
-    "deviceInternalStateUpdated"?: (arg0: _Foundation_NSNumber, arg1: $SDK280) => void;
+    "deviceInternalStateUpdated"?: (arg0: _Foundation_NSNumber, arg1: $SDK279) => void;
 }
 /**
  * protocol MTRXPCClientProtocol_MTRDeviceController : NSObjectProtocol
@@ -130707,10 +130744,10 @@ export interface MTRXPCClientProtocol_MTRDeviceController {
      * optional func controller(_ controller: UUID, controllerConfigurationUpdated configuration: [AnyHashable : Any])
      * @availability iOS 18.3+
      */
-    "controllerControllerConfigurationUpdated"?: (arg0: string, arg1: $SDK280) => void;
+    "controllerControllerConfigurationUpdated"?: (arg0: string, arg1: $SDK279) => void;
 }
 /** typealias MTRXPCConnectBlock = () -> NSXPCConnection */
-export type MTRXPCConnectBlock = $SDK281;
+export type MTRXPCConnectBlock = $SDK280;
 /**
  * class MTRXPCDeviceControllerParameters
  * @availability iOS 18.2+
@@ -130725,7 +130762,7 @@ export declare class MTRXPCDeviceControllerParameters extends MTRDeviceControlle
      * var xpcConnectionBlock: () -> NSXPCConnection { get }
      * @availability iOS 18.2+
      */
-    get xpcConnectionBlock(): $SDK281;
+    get xpcConnectionBlock(): $SDK280;
     readonly $type: {
         "c:objc(cs)MTRXPCDeviceControllerParameters": true;
         "c:objc(cs)MTRDeviceControllerAbstractParameters": true;
@@ -130760,32 +130797,32 @@ export interface MTRXPCServerProtocol {
      * optional func deviceController(_ controller: UUID, updateControllerConfiguration controllerState: [AnyHashable : Any])
      * @availability iOS 18.3+
      */
-    "deviceControllerUpdateControllerConfiguration"?: (arg0: string, arg1: $SDK280) => void;
+    "deviceControllerUpdateControllerConfiguration"?: (arg0: string, arg1: $SDK279) => void;
     /**
      * func deviceControllerGetState(_ controller: UUID, nodeID: NSNumber) async -> MTRDeviceState
      * @availability iOS 18.2+
      */
-    "deviceControllerGetStateNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => MTRDeviceState;
+    "deviceControllerGetStateNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => Promise<MTRDeviceState>;
     /**
      * func deviceControllerGetDeviceCachePrimed(_ controller: UUID, nodeID: NSNumber) async -> Bool
      * @availability iOS 18.2+
      */
-    "deviceControllerGetDeviceCachePrimedNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => boolean;
+    "deviceControllerGetDeviceCachePrimedNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => Promise<boolean>;
     /**
      * func deviceControllerGetEstimatedStartTime(_ controller: UUID, nodeID: NSNumber) async -> Date?
      * @availability iOS 18.2+
      */
-    "deviceControllerGetEstimatedStartTimeNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => $SDK249;
+    "deviceControllerGetEstimatedStartTimeNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => Promise<$SDK248>;
     /**
      * func deviceControllerGetEstimatedSubscriptionLatency(_ controller: UUID, nodeID: NSNumber) async -> NSNumber?
      * @availability iOS 18.2+
      */
-    "deviceControllerGetEstimatedSubscriptionLatencyNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => $SDK0;
+    "deviceControllerGetEstimatedSubscriptionLatencyNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => Promise<$SDK0>;
     /**
      * func deviceController(_ controller: UUID, nodeID: NSNumber, readAttributeWithEndpointID endpointID: NSNumber, clusterID: NSNumber, attributeID: NSNumber, params: MTRReadParams?) async -> [String : Any]?
      * @availability iOS 18.2+
      */
-    "deviceControllerNodeIDReadAttributeWithEndpointIDClusterIDAttributeIDParams"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: (MTRReadParams) | null) => $SDK230;
+    "deviceControllerNodeIDReadAttributeWithEndpointIDClusterIDAttributeIDParams"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: (MTRReadParams) | null) => Promise<$SDK230>;
     /**
      * func deviceController(_ controller: UUID, nodeID: NSNumber, writeAttributeWithEndpointID endpointID: NSNumber, clusterID: NSNumber, attributeID: NSNumber, value: Any, expectedValueInterval: NSNumber?, timedWriteTimeout timeout: NSNumber?)
      * @availability iOS 18.2+
@@ -130795,27 +130832,37 @@ export interface MTRXPCServerProtocol {
      * func deviceController(_ controller: UUID, nodeID: NSNumber, readAttributePaths attributePaths: [MTRAttributeRequestPath]) async -> [[String : Any]]
      * @availability iOS 18.2+
      */
-    "deviceControllerNodeIDReadAttributePaths"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: $SDK248) => $SDK247;
+    "deviceControllerNodeIDReadAttributePaths"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: $SDK247) => Promise<$SDK246>;
     /**
      * func deviceController(_ controller: UUID, nodeID: NSNumber, invokeCommandWithEndpointID endpointID: NSNumber, clusterID: NSNumber, commandID: NSNumber, commandFields: Any, expectedValues: [[String : Any]]?, expectedValueInterval: NSNumber?, timedInvokeTimeout timeout: NSNumber?, serverSideProcessingTimeout: NSNumber?) async throws -> [[String : Any]]
      * @availability iOS 18.2+
      */
-    "deviceControllerNodeIDInvokeCommandWithEndpointIDClusterIDCommandIDCommandFieldsExpectedValuesExpectedValueIntervalTimedInvokeTimeoutServerSideProcessingTimeout"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: unknown, arg6: $SDK231, arg7: $SDK0, arg8: $SDK0, arg9: $SDK0) => $SDK247;
+    "deviceControllerNodeIDInvokeCommandWithEndpointIDClusterIDCommandIDCommandFieldsExpectedValuesExpectedValueIntervalTimedInvokeTimeoutServerSideProcessingTimeout"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: unknown, arg6: $SDK231, arg7: $SDK0, arg8: $SDK0, arg9: $SDK0) => Promise<$SDK246>;
     /**
      * func deviceController(_ controller: UUID, nodeID: NSNumber, openCommissioningWindowWithSetupPasscode setupPasscode: NSNumber, discriminator: NSNumber, duration: NSNumber) async throws -> MTRSetupPayload
      * @availability iOS 18.2+
      */
-    "deviceControllerNodeIDOpenCommissioningWindowWithSetupPasscodeDiscriminatorDuration"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber) => MTRSetupPayload;
+    "deviceControllerNodeIDOpenCommissioningWindowWithSetupPasscodeDiscriminatorDuration"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber) => Promise<MTRSetupPayload>;
     /**
      * func downloadLog(of type: MTRDiagnosticLogType, nodeID: NSNumber, timeout: TimeInterval) async throws -> URL
      * @availability iOS 18.2+
      */
-    "downloadLogOfNodeIDTimeout"?: (arg0: MTRDiagnosticLogType, arg1: _Foundation_NSNumber, arg2: number) => string;
+    "downloadLogOfNodeIDTimeout"?: (arg0: MTRDiagnosticLogType, arg1: _Foundation_NSNumber, arg2: number) => Promise<string>;
+    /**
+     * optional func deviceController(_ controller: UUID, nodeID: NSNumber, downloadLogOf type: MTRDiagnosticLogType, timeout: TimeInterval) async throws -> URL
+     * @availability iOS 18.2+
+     */
+    "deviceControllerNodeIDDownloadLogOfTimeout"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: MTRDiagnosticLogType, arg3: number) => Promise<string>;
+    /**
+     * optional func deviceController(_ controller: UUID, nodeID: NSNumber, invokeCommands commands: [[MTRCommandWithRequiredResponse]]) async throws -> [[String : Any]]
+     * @availability iOS 18.4+
+     */
+    "deviceControllerNodeIDInvokeCommands"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: $SDK245) => Promise<$SDK246>;
     /**
      * optional func deviceController(_ controller: UUID, checkInWithContext context: [AnyHashable : Any])
      * @availability iOS 18.3+
      */
-    "deviceControllerCheckInWithContext"?: (arg0: string, arg1: $SDK280) => void;
+    "deviceControllerCheckInWithContext"?: (arg0: string, arg1: $SDK279) => void;
 }
 /**
  * protocol MTRXPCServerProtocol_MTRDevice : NSObjectProtocol
@@ -130826,27 +130873,27 @@ export interface MTRXPCServerProtocol_MTRDevice {
      * func deviceControllerGetState(_ controller: UUID, nodeID: NSNumber) async -> MTRDeviceState
      * @availability iOS 18.2+
      */
-    "deviceControllerGetStateNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => MTRDeviceState;
+    "deviceControllerGetStateNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => Promise<MTRDeviceState>;
     /**
      * func deviceControllerGetDeviceCachePrimed(_ controller: UUID, nodeID: NSNumber) async -> Bool
      * @availability iOS 18.2+
      */
-    "deviceControllerGetDeviceCachePrimedNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => boolean;
+    "deviceControllerGetDeviceCachePrimedNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => Promise<boolean>;
     /**
      * func deviceControllerGetEstimatedStartTime(_ controller: UUID, nodeID: NSNumber) async -> Date?
      * @availability iOS 18.2+
      */
-    "deviceControllerGetEstimatedStartTimeNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => $SDK249;
+    "deviceControllerGetEstimatedStartTimeNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => Promise<$SDK248>;
     /**
      * func deviceControllerGetEstimatedSubscriptionLatency(_ controller: UUID, nodeID: NSNumber) async -> NSNumber?
      * @availability iOS 18.2+
      */
-    "deviceControllerGetEstimatedSubscriptionLatencyNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => $SDK0;
+    "deviceControllerGetEstimatedSubscriptionLatencyNodeID"?: (arg0: string, arg1: _Foundation_NSNumber) => Promise<$SDK0>;
     /**
      * func deviceController(_ controller: UUID, nodeID: NSNumber, readAttributeWithEndpointID endpointID: NSNumber, clusterID: NSNumber, attributeID: NSNumber, params: MTRReadParams?) async -> [String : Any]?
      * @availability iOS 18.2+
      */
-    "deviceControllerNodeIDReadAttributeWithEndpointIDClusterIDAttributeIDParams"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: (MTRReadParams) | null) => $SDK230;
+    "deviceControllerNodeIDReadAttributeWithEndpointIDClusterIDAttributeIDParams"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: (MTRReadParams) | null) => Promise<$SDK230>;
     /**
      * func deviceController(_ controller: UUID, nodeID: NSNumber, writeAttributeWithEndpointID endpointID: NSNumber, clusterID: NSNumber, attributeID: NSNumber, value: Any, expectedValueInterval: NSNumber?, timedWriteTimeout timeout: NSNumber?)
      * @availability iOS 18.2+
@@ -130856,22 +130903,32 @@ export interface MTRXPCServerProtocol_MTRDevice {
      * func deviceController(_ controller: UUID, nodeID: NSNumber, readAttributePaths attributePaths: [MTRAttributeRequestPath]) async -> [[String : Any]]
      * @availability iOS 18.2+
      */
-    "deviceControllerNodeIDReadAttributePaths"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: $SDK248) => $SDK247;
+    "deviceControllerNodeIDReadAttributePaths"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: $SDK247) => Promise<$SDK246>;
     /**
      * func deviceController(_ controller: UUID, nodeID: NSNumber, invokeCommandWithEndpointID endpointID: NSNumber, clusterID: NSNumber, commandID: NSNumber, commandFields: Any, expectedValues: [[String : Any]]?, expectedValueInterval: NSNumber?, timedInvokeTimeout timeout: NSNumber?, serverSideProcessingTimeout: NSNumber?) async throws -> [[String : Any]]
      * @availability iOS 18.2+
      */
-    "deviceControllerNodeIDInvokeCommandWithEndpointIDClusterIDCommandIDCommandFieldsExpectedValuesExpectedValueIntervalTimedInvokeTimeoutServerSideProcessingTimeout"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: unknown, arg6: $SDK231, arg7: $SDK0, arg8: $SDK0, arg9: $SDK0) => $SDK247;
+    "deviceControllerNodeIDInvokeCommandWithEndpointIDClusterIDCommandIDCommandFieldsExpectedValuesExpectedValueIntervalTimedInvokeTimeoutServerSideProcessingTimeout"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber, arg5: unknown, arg6: $SDK231, arg7: $SDK0, arg8: $SDK0, arg9: $SDK0) => Promise<$SDK246>;
     /**
      * func deviceController(_ controller: UUID, nodeID: NSNumber, openCommissioningWindowWithSetupPasscode setupPasscode: NSNumber, discriminator: NSNumber, duration: NSNumber) async throws -> MTRSetupPayload
      * @availability iOS 18.2+
      */
-    "deviceControllerNodeIDOpenCommissioningWindowWithSetupPasscodeDiscriminatorDuration"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber) => MTRSetupPayload;
+    "deviceControllerNodeIDOpenCommissioningWindowWithSetupPasscodeDiscriminatorDuration"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: _Foundation_NSNumber, arg3: _Foundation_NSNumber, arg4: _Foundation_NSNumber) => Promise<MTRSetupPayload>;
     /**
      * func downloadLog(of type: MTRDiagnosticLogType, nodeID: NSNumber, timeout: TimeInterval) async throws -> URL
      * @availability iOS 18.2+
      */
-    "downloadLogOfNodeIDTimeout"?: (arg0: MTRDiagnosticLogType, arg1: _Foundation_NSNumber, arg2: number) => string;
+    "downloadLogOfNodeIDTimeout"?: (arg0: MTRDiagnosticLogType, arg1: _Foundation_NSNumber, arg2: number) => Promise<string>;
+    /**
+     * optional func deviceController(_ controller: UUID, nodeID: NSNumber, downloadLogOf type: MTRDiagnosticLogType, timeout: TimeInterval) async throws -> URL
+     * @availability iOS 18.2+
+     */
+    "deviceControllerNodeIDDownloadLogOfTimeout"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: MTRDiagnosticLogType, arg3: number) => Promise<string>;
+    /**
+     * optional func deviceController(_ controller: UUID, nodeID: NSNumber, invokeCommands commands: [[MTRCommandWithRequiredResponse]]) async throws -> [[String : Any]]
+     * @availability iOS 18.4+
+     */
+    "deviceControllerNodeIDInvokeCommands"?: (arg0: string, arg1: _Foundation_NSNumber, arg2: $SDK245) => Promise<$SDK246>;
 }
 /**
  * protocol MTRXPCServerProtocol_MTRDeviceController : NSObjectProtocol
@@ -130897,20 +130954,20 @@ export interface MTRXPCServerProtocol_MTRDeviceController {
      * optional func deviceController(_ controller: UUID, updateControllerConfiguration controllerState: [AnyHashable : Any])
      * @availability iOS 18.3+
      */
-    "deviceControllerUpdateControllerConfiguration"?: (arg0: string, arg1: $SDK280) => void;
+    "deviceControllerUpdateControllerConfiguration"?: (arg0: string, arg1: $SDK279) => void;
 }
 /**
  * typealias ResponseHandler = (Any?, (any Error)?) -> Void
  * @availability iOS 16.1+
  * @deprecated iOS 16.4
  */
-export type ResponseHandler = $SDK259;
+export type ResponseHandler = $SDK257;
 /**
  * typealias StatusCompletion = ((any Error)?) -> Void
  * @availability iOS 16.1+
  * @deprecated iOS 16.4
  */
-export type StatusCompletion = $SDK278;
+export type StatusCompletion = $SDK277;
 /**
  * typealias SubscriptionEstablishedHandler = () -> Void
  * @availability iOS 16.1+

@@ -10,72 +10,86 @@ import type { ColumnID as _TabularData_ColumnID, DataFrame as _TabularData_DataF
 import type { UTType as _UniformTypeIdentifiers_UTType } from "one/ios/UniformTypeIdentifiers";
 import type { VNImageCropAndScaleOption as _Vision_VNImageCropAndScaleOption, VNRecognizedPointsObservation as _Vision_VNRecognizedPointsObservation } from "one/ios/Vision";
 type $SDK0 = _CoreML_MLShapedArray<number>;
-type $SDK2 = ColumnSelectorTransformer<SDKHandle, unknown>;
-type $SDK5 = AnyTemporalIterator<TemporalFeature<unknown>>;
-type $SDK7 = TemporalFeature<unknown>;
-type $SDK8 = (((arg0: Event) => void)) | null;
-type $SDK9 = TemporalFeature<_CoreML_MLShapedArray<number>>;
-type $SDK12 = TemporalFeature<_AVFAudio_AVAudioPCMBuffer>;
-type $SDK13 = (TemporalFeature<_AVFAudio_AVAudioPCMBuffer>) | null;
-type $SDK15 = AnnotatedFeature<SDKHandle, unknown>;
-type $SDK17 = Array<AugmentationSequence<unknown, unknown, unknown, unknown>>;
-type $SDK19 = _TabularData_ColumnID<unknown>;
-type $SDK21 = (_TabularData_DataFrame) | null;
-type $SDK23 = CategoricalImputer_Strategy<number>;
-type $SDK25 = ClassificationDistribution<number>;
-type $SDK28 = ClassificationMetrics<number>;
-type $SDK30 = (((arg0: Event) => Promise<void>)) | null;
-type $SDK34 = DataFrameTemporalAnnotationParameters<number>;
-type $SDK35 = DataFrameTemporalAnnotationParameters_FilePathType<number>;
-type $SDK36 = (_TabularData_ColumnID<number>) | null;
-type $SDK47 = TransformerToTemporalAdaptor<SDKHandle>;
-type $SDK48 = NativeMap<MetricsKey, SDKHandle>;
-type $SDK51 = _CoreML_MLShapedArray<unknown>;
-type $SDK52 = ClassificationDistribution<unknown>;
-type $SDK55 = FullyConnectedNetworkRegressorModel<number>;
-type $SDK56 = Array<AnnotatedFeature<SDKHandle, number>>;
-type $SDK59 = Array<HumanBodyActionPeriodPredictor_Prediction>;
-type $SDK60 = {
+type $SDK2 = _TabularData_ColumnID<SDKHandle>;
+type $SDK3 = ColumnSelectorTransformer<SDKHandle, unknown>;
+type $SDK6 = AnyTemporalIterator<TemporalFeature<unknown>>;
+type $SDK8 = TemporalFeature<unknown>;
+type $SDK9 = (((arg0: Event) => void)) | null;
+type $SDK10 = TemporalFeature<_CoreML_MLShapedArray<number>>;
+type $SDK13 = TemporalFeature<_AVFAudio_AVAudioPCMBuffer>;
+type $SDK14 = (TemporalFeature<_AVFAudio_AVAudioPCMBuffer>) | null;
+type $SDK16 = AnnotatedFeature<SDKHandle, unknown>;
+type $SDK18 = TreeClassifierModel<SDKHandle>;
+type $SDK19 = (_TabularData_DataFrame) | null;
+type $SDK21 = _TabularData_ColumnID<unknown>;
+type $SDK24 = CategoricalImputer_Strategy<number>;
+type $SDK26 = ClassificationDistribution<number>;
+type $SDK29 = ClassificationMetrics<number>;
+type $SDK31 = (((arg0: Event) => Promise<void>)) | null;
+type $SDK33 = ColumnSelectorTransformer<unknown, unknown>;
+type $SDK36 = DataFrameTemporalAnnotationParameters<number>;
+type $SDK37 = DataFrameTemporalAnnotationParameters_FilePathType<number>;
+type $SDK38 = (_TabularData_ColumnID<number>) | null;
+type $SDK40 = _TabularData_ColumnID<number>;
+type $SDK42 = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-type $SDK61 = {
-    width: number;
-    height: number;
-};
-type $SDK62 = ImputeTransformer<number>;
+type $SDK46 = (TemporalFeature<number>) | null;
+type $SDK48 = TransformerToTemporalAdaptor<SDKHandle>;
+type $SDK49 = NativeMap<MetricsKey, SDKHandle>;
+type $SDK51 = FullyConnectedNetworkClassifierModel<number, SDKHandle>;
+type $SDK53 = ClassificationDistribution<SDKHandle>;
+type $SDK54 = _CoreML_MLShapedArray<unknown>;
+type $SDK55 = ClassificationDistribution<unknown>;
+type $SDK56 = FullyConnectedNetworkMultiLabelClassifierModel<number, SDKHandle>;
+type $SDK59 = FullyConnectedNetworkRegressorModel<number>;
+type $SDK60 = Array<AnnotatedFeature<SDKHandle, number>>;
+type $SDK62 = Array<HumanBodyActionPeriodPredictor_Prediction>;
 type $SDK63 = {
+    width: number;
+    height: number;
+};
+type $SDK64 = ImputeTransformer<number>;
+type $SDK65 = {
     x: number;
     y: number;
 };
-type $SDK64 = (Array<JointKey>) | null;
-type $SDK65 = LinearRegressor_Configuration<number>;
-type $SDK66 = LinearRegressorModel<number>;
-type $SDK69 = LinearTimeSeriesForecaster_Model<number>;
-type $SDK70 = (_CoreML_MLShapedArray<number>) | null;
-type $SDK75 = MaxAbsScaler_Transformer<number>;
-type $SDK76 = MinMaxScaler_Transformer<number>;
-type $SDK77 = MLModelClassifierAdaptor<number>;
-type $SDK79 = MLModelClassifierAdaptor_Label<number>;
-type $SDK81 = MLModelRegressorAdaptor<number>;
-type $SDK82 = MLModelTransformerAdaptor<number>;
-type $SDK84 = MultivariateLinearRegressor_Model<number>;
-type $SDK85 = (AnnotatedBatch<number>) | null;
-type $SDK87 = NormalizationScaler_NormalizationStrategy<number>;
-type $SDK89 = NormalizationScaler_Transformer<number>;
-type $SDK90 = NumericImputer_Strategy<number>;
-type $SDK92 = NativeMap<JointKey, JointPoint>;
-type $SDK94 = Array<TemporalFeature<unknown>>;
-type $SDK97 = ComposedTransformer<unknown, SDKHandle>;
-type $SDK98 = ComposedTabularTransformer<unknown, SDKHandle>;
-type $SDK99 = ComposedTemporalTransformer<unknown, SDKHandle>;
-type $SDK108 = StandardScaler_Transformer<number>;
-type $SDK116 = AnnotatedFeature<_CoreML_MLShapedArray<unknown>, _CoreML_MLShapedArray<unknown>>;
-type $SDK124 = TemporalFeature<_CoreImage_CIImage>;
-type $SDK125 = (TemporalFeature<_CoreImage_CIImage>) | null;
-type $SDK126 = Array<AnnotatedPrediction<number, number>>;
+type $SDK66 = (Array<JointKey>) | null;
+type $SDK67 = LinearRegressor_Configuration<number>;
+type $SDK68 = LinearRegressorModel<number>;
+type $SDK71 = LinearTimeSeriesForecaster_Model<number>;
+type $SDK72 = (_CoreML_MLShapedArray<number>) | null;
+type $SDK76 = LogisticRegressionClassifier_Configuration<number, SDKHandle>;
+type $SDK77 = LogisticRegressionClassifierModel<number, SDKHandle>;
+type $SDK79 = MaxAbsScaler_Transformer<number>;
+type $SDK80 = MinMaxScaler_Transformer<number>;
+type $SDK81 = MLModelClassifierAdaptor<number>;
+type $SDK83 = MLModelClassifierAdaptor_Label<number>;
+type $SDK85 = MLModelRegressorAdaptor<number>;
+type $SDK86 = MLModelTransformerAdaptor<number>;
+type $SDK88 = MultivariateLinearRegressor_Model<number>;
+type $SDK89 = (AnnotatedBatch<number>) | null;
+type $SDK91 = NormalizationScaler_NormalizationStrategy<number>;
+type $SDK93 = NormalizationScaler_Transformer<number>;
+type $SDK94 = NumericImputer_Strategy<number>;
+type $SDK96 = OneHotEncoder_Transformer<SDKHandle>;
+type $SDK98 = OrdinalEncoder_Transformer<SDKHandle>;
+type $SDK99 = NativeMap<JointKey, JointPoint>;
+type $SDK104 = ComposedTransformer<SDKHandle, unknown>;
+type $SDK105 = ComposedTransformer<unknown, SDKHandle>;
+type $SDK106 = ComposedTabularTransformer<TreeRegressorModel, unknown>;
+type $SDK107 = ComposedTabularTransformer<unknown, SDKHandle>;
+type $SDK108 = ComposedTemporalTransformer<SDKHandle, unknown>;
+type $SDK109 = ComposedTemporalTransformer<unknown, SDKHandle>;
+type $SDK119 = StandardScaler_Transformer<number>;
+type $SDK123 = TimeSeriesClassifier_Model<number, SDKHandle>;
+type $SDK128 = AnnotatedFeature<_CoreML_MLShapedArray<unknown>, _CoreML_MLShapedArray<unknown>>;
+type $SDK135 = TemporalFeature<_CoreImage_CIImage>;
+type $SDK136 = (TemporalFeature<_CoreImage_CIImage>) | null;
+type $SDK137 = Array<AnnotatedPrediction<number, number>>;
 /**
  * struct AnnotatedBatch<Scalar> where Scalar : MLShapedArrayScalar
  * @availability iOS 18.0+
@@ -138,6 +152,44 @@ export declare class AnnotatedFeature<Feature = unknown, Annotation = unknown> e
  * @availability iOS 16.0+
  */
 export declare class AnnotatedFeatureProvider<Base = unknown, UnwrappedInput = unknown> extends SDKHandle {
+    /**
+     * var resultsColumnName: String
+     * @availability iOS 16.0+
+     */
+    get resultsColumnName(): string;
+    set resultsColumnName(value: string);
+    /**
+     * var annotationColumnID: ColumnID<AnnotatedFeatureProvider<Base, UnwrappedInput>.Annotation>
+     * @availability iOS 16.0+
+     */
+    get annotationColumnID(): $SDK2;
+    set annotationColumnID(value: $SDK2);
+    /**
+     * var featuresColumnName: String
+     * @availability iOS 16.0+
+     */
+    get featuresColumnName(): string;
+    set featuresColumnName(value: string);
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> AnnotatedFeatureProvider<Base, UnwrappedInput>.Transformer
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK3;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: AnnotatedFeatureProvider<Base, UnwrappedInput>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: $SDK3, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents24AnnotatedFeatureProviderV": true;
     };
@@ -151,7 +203,7 @@ export type AnnotatedFeatureProvider_Annotation<Base = unknown, UnwrappedInput =
  * typealias Transformer = ColumnSelectorTransformer<Base.Transformer, UnwrappedInput>
  * @availability iOS 16.0+
  */
-export type AnnotatedFeatureProvider_Transformer<Base = unknown, UnwrappedInput = unknown> = $SDK2;
+export type AnnotatedFeatureProvider_Transformer<Base = unknown, UnwrappedInput = unknown> = $SDK3;
 /**
  * struct AnnotatedFiles
  * @availability iOS 16.0+
@@ -265,7 +317,7 @@ export declare class AnyTemporalSequence<Feature = unknown> extends SDKHandle {
      * func makeAsyncIterator() -> AnyTemporalIterator<AnyTemporalSequence<Feature>.Element>
      * @availability iOS 16.0+
      */
-    makeAsyncIterator(): $SDK5;
+    makeAsyncIterator(): $SDK6;
     /**
      * let count: Int?
      * @availability iOS 16.0+
@@ -280,12 +332,12 @@ export declare class AnyTemporalSequence<Feature = unknown> extends SDKHandle {
  * typealias AsyncIterator = AnyTemporalIterator<AnyTemporalSequence<Feature>.Element>
  * @availability iOS 16.0+
  */
-export type AnyTemporalSequence_AsyncIterator<Feature = unknown> = $SDK5;
+export type AnyTemporalSequence_AsyncIterator<Feature = unknown> = $SDK6;
 /**
  * typealias Element = TemporalFeature<Feature>
  * @availability iOS 16.0+
  */
-export type AnyTemporalSequence_Element<Feature = unknown> = $SDK7;
+export type AnyTemporalSequence_Element<Feature = unknown> = $SDK8;
 /**
  * struct ApplyEachRandomly<Element>
  * @availability iOS 17.0+
@@ -358,7 +410,7 @@ export declare class AudioConvertingTransformer extends SDKHandle {
      * func applied(to input: AVAudioPCMBuffer, eventHandler: EventHandler? = nil) throws -> AVAudioPCMBuffer
      * @availability iOS 16.0+
      */
-    applied(input: _AVFAudio_AVAudioPCMBuffer, eventHandler?: $SDK8): _AVFAudio_AVAudioPCMBuffer;
+    applied(input: _AVFAudio_AVAudioPCMBuffer, eventHandler?: $SDK9): _AVFAudio_AVAudioPCMBuffer;
     readonly $type: {
         "s:18CreateMLComponents26AudioConvertingTransformerV": true;
     };
@@ -420,7 +472,7 @@ export declare class AudioFeaturePrint_FeatureSequence extends SDKHandle {
     readonly $type: {
         "s:18CreateMLComponents17AudioFeaturePrintV0D8SequenceV": true;
     };
-    readonly $element: $SDK9;
+    readonly $element: $SDK10;
 }
 /**
  * typealias AsyncIterator = AudioFeaturePrint.FeatureSequence.Iterator
@@ -431,7 +483,7 @@ export type AudioFeaturePrint_FeatureSequence_AsyncIterator = AudioFeaturePrint_
  * typealias Element = TemporalFeature<AudioFeaturePrint.FeatureSequence.Feature>
  * @availability iOS 16.0+
  */
-export type AudioFeaturePrint_FeatureSequence_Element = $SDK9;
+export type AudioFeaturePrint_FeatureSequence_Element = $SDK10;
 /**
  * typealias Feature = MLShapedArray<Float>
  * @availability iOS 16.0+
@@ -455,7 +507,7 @@ export declare class AudioFeaturePrint_FeatureSequence_Iterator extends SDKHandl
  * typealias Element = TemporalFeature<MLShapedArray<Float>>
  * @availability iOS 16.0+
  */
-export type AudioFeaturePrint_FeatureSequence_Iterator_Element = $SDK9;
+export type AudioFeaturePrint_FeatureSequence_Iterator_Element = $SDK10;
 /**
  * typealias Input = AVAudioPCMBuffer
  * @availability iOS 16.0+
@@ -525,7 +577,7 @@ export declare class AudioReader extends SDKHandle {
      * func applied(to url: URL, eventHandler: EventHandler? = nil) throws -> AudioReader.AsyncBuffers
      * @availability iOS 16.0+
      */
-    applied(url: string, eventHandler?: $SDK8): AudioReader_AsyncBuffers;
+    applied(url: string, eventHandler?: $SDK9): AudioReader_AsyncBuffers;
     readonly $type: {
         "s:18CreateMLComponents11AudioReaderV": true;
     };
@@ -553,7 +605,7 @@ export declare class AudioReader_AsyncBuffers extends SDKHandle {
     readonly $type: {
         "s:18CreateMLComponents11AudioReaderV12AsyncBuffersV": true;
     };
-    readonly $element: $SDK12;
+    readonly $element: $SDK13;
 }
 /**
  * typealias AsyncIterator = AudioReader.AsyncBuffers.Iterator
@@ -564,7 +616,7 @@ export type AudioReader_AsyncBuffers_AsyncIterator = AudioReader_AsyncBuffers_It
  * typealias Element = TemporalFeature<AudioReader.AsyncBuffers.Feature>
  * @availability iOS 16.0+
  */
-export type AudioReader_AsyncBuffers_Element = $SDK12;
+export type AudioReader_AsyncBuffers_Element = $SDK13;
 /**
  * typealias Feature = AVAudioPCMBuffer
  * @availability iOS 16.0+
@@ -579,7 +631,7 @@ export declare class AudioReader_AsyncBuffers_Iterator extends SDKHandle {
      * mutating func next() async throws -> TemporalFeature<AVAudioPCMBuffer>?
      * @availability iOS 16.0+
      */
-    next(): Promise<$SDK13>;
+    next(): Promise<$SDK14>;
     readonly $type: {
         "s:18CreateMLComponents11AudioReaderV12AsyncBuffersV8IteratorV": true;
     };
@@ -588,7 +640,7 @@ export declare class AudioReader_AsyncBuffers_Iterator extends SDKHandle {
  * typealias Element = TemporalFeature<AVAudioPCMBuffer>
  * @availability iOS 16.0+
  */
-export type AudioReader_AsyncBuffers_Iterator_Element = $SDK12;
+export type AudioReader_AsyncBuffers_Iterator_Element = $SDK13;
 /**
  * struct Configuration
  * @availability iOS 16.0+
@@ -637,7 +689,7 @@ export declare class AudioReader_MicrophoneAsyncBuffers extends SDKHandle {
     readonly $type: {
         "s:18CreateMLComponents11AudioReaderV22MicrophoneAsyncBuffersV": true;
     };
-    readonly $element: $SDK12;
+    readonly $element: $SDK13;
 }
 /**
  * typealias AsyncIterator = AudioReader.MicrophoneAsyncBuffers.Iterator
@@ -648,7 +700,7 @@ export type AudioReader_MicrophoneAsyncBuffers_AsyncIterator = AudioReader_Micro
  * typealias Element = TemporalFeature<AudioReader.MicrophoneAsyncBuffers.Feature>
  * @availability iOS 16.0+
  */
-export type AudioReader_MicrophoneAsyncBuffers_Element = $SDK12;
+export type AudioReader_MicrophoneAsyncBuffers_Element = $SDK13;
 /**
  * typealias Feature = AVAudioPCMBuffer
  * @availability iOS 16.0+
@@ -663,7 +715,7 @@ export declare class AudioReader_MicrophoneAsyncBuffers_Iterator extends SDKHand
      * final func next() async throws -> TemporalFeature<AudioReader.MicrophoneAsyncBuffers.Feature>?
      * @availability iOS 16.0+
      */
-    next(): Promise<$SDK13>;
+    next(): Promise<$SDK14>;
     readonly $type: {
         "s:18CreateMLComponents11AudioReaderV22MicrophoneAsyncBuffersV8IteratorC": true;
     };
@@ -672,7 +724,7 @@ export declare class AudioReader_MicrophoneAsyncBuffers_Iterator extends SDKHand
  * typealias Element = TemporalFeature<AudioReader.MicrophoneAsyncBuffers.Feature>
  * @availability iOS 16.0+
  */
-export type AudioReader_MicrophoneAsyncBuffers_Iterator_Element = $SDK12;
+export type AudioReader_MicrophoneAsyncBuffers_Iterator_Element = $SDK13;
 /**
  * typealias Output = AudioReader.AsyncBuffers
  * @availability iOS 16.0+
@@ -709,6 +761,12 @@ export declare class AugmentationBuilder<Element = unknown> extends SDKHandle {
  * @availability iOS 17.0+
  */
 export declare class AugmentationSequence<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    /**
+     * var transformer: RandomTransformer
+     * @availability iOS 17.0+
+     */
+    get transformer(): RandomImageCropper;
+    set transformer(value: RandomImageCropper);
     readonly $type: {
         "s:18CreateMLComponents20AugmentationSequenceV": true;
     };
@@ -727,7 +785,7 @@ export declare class AugmentationSequence_AsyncIterator<Base = unknown, RandomTr
  * typealias Element = AnnotatedFeature<RandomTransformer.Input, Annotation>
  * @availability iOS 17.0+
  */
-export type AugmentationSequence_AsyncIterator_Element<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> = $SDK15;
+export type AugmentationSequence_AsyncIterator_Element<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> = $SDK16;
 /**
  * struct BatchedSequence
  * @availability iOS 17.0+
@@ -751,12 +809,12 @@ export declare class AugmentationSequence_BatchedSequence_AsyncIterator<Base = u
  * typealias Element = [AugmentationSequence<Base, RandomTransformer, RandomNumberGenerator, Annotation>.Element]
  * @availability iOS 17.0+
  */
-export type AugmentationSequence_BatchedSequence_AsyncIterator_Element<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> = $SDK17;
+export type AugmentationSequence_BatchedSequence_AsyncIterator_Element<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> = Array<SDKHandle>;
 /**
  * typealias Element = [AugmentationSequence<Base, RandomTransformer, RandomNumberGenerator, Annotation>.Element]
  * @availability iOS 17.0+
  */
-export type AugmentationSequence_BatchedSequence_Element<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> = $SDK17;
+export type AugmentationSequence_BatchedSequence_Element<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> = Array<SDKHandle>;
 /**
  * typealias Element = Base.Element
  * @availability iOS 17.0+
@@ -776,6 +834,84 @@ export declare class Augmenter<RandomTransformer = unknown, RandomNumberGenerato
  * @availability iOS 16.0+
  */
 export declare class BoostedTreeClassifier<Label = unknown> extends SDKHandle {
+    /**
+     * var configuration: BoostedTreeConfiguration { get set }
+     * @availability iOS 16.0+
+     */
+    get configuration(): BoostedTreeConfiguration;
+    set configuration(value: BoostedTreeConfiguration);
+    /**
+     * func makeTransformer() -> TreeClassifierModel<Label>
+     * @availability iOS 17.0+
+     */
+    makeTransformer(): $SDK18;
+    /**
+     * var annotationColumnID: ColumnID<Label>
+     * @availability iOS 16.0+
+     */
+    get annotationColumnID(): $SDK2;
+    set annotationColumnID(value: $SDK2);
+    /**
+     * var featureColumnNames: [String]
+     * @availability iOS 16.0+
+     */
+    get featureColumnNames(): Array<string>;
+    set featureColumnNames(value: Array<string>);
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> TreeClassifierModel<Label>
+     * @availability iOS 17.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK18;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: TreeClassifierModel<Label>, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encodeWithOptimizer(transformer: $SDK18, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> TreeClassifierModel<Label>
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK18;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: TreeClassifierModel<Label>, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: $SDK18, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func fitted(to input: DataFrame, validateOn validation: DataFrame? = nil, eventHandler: EventHandler? = nil) async throws -> TreeClassifierModel<Label>
+     * @availability iOS 16.0+
+     */
+    fitted(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK18>;
+    /**
+     * func update(_ transformer: inout TreeClassifierModel<Label>, with input: DataFrame, eventHandler: EventHandler?) async throws
+     * @availability iOS 17.0+
+     */
+    update(transformer: $SDK18, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{
+        $ret: null;
+        $out: {
+            "transformer": $SDK18;
+        };
+    }>;
     readonly $type: {
         "s:18CreateMLComponents21BoostedTreeClassifierV": true;
     };
@@ -891,8 +1027,8 @@ export declare class BoostedTreeRegressor<Annotation = unknown> extends SDKHandl
      * var annotationColumnID: ColumnID<Annotation>
      * @availability iOS 16.0+
      */
-    get annotationColumnID(): $SDK19;
-    set annotationColumnID(value: $SDK19);
+    get annotationColumnID(): $SDK21;
+    set annotationColumnID(value: $SDK21);
     /**
      * var featureColumnNames: [String]
      * @availability iOS 16.0+
@@ -948,12 +1084,12 @@ export declare class BoostedTreeRegressor<Annotation = unknown> extends SDKHandl
      * func fitted(to input: DataFrame, validateOn validation: DataFrame? = nil, eventHandler: EventHandler? = nil) async throws -> TreeRegressorModel
      * @availability iOS 16.0+
      */
-    fitted(input: _TabularData_DataFrame, validation?: $SDK21, eventHandler?: $SDK8): Promise<TreeRegressorModel>;
+    fitted(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<TreeRegressorModel>;
     /**
      * func update(_ transformer: inout TreeRegressorModel, with input: DataFrame, eventHandler: EventHandler?) async throws
      * @availability iOS 17.0+
      */
-    update(transformer: TreeRegressorModel, input: _TabularData_DataFrame, eventHandler?: $SDK8): Promise<{
+    update(transformer: TreeRegressorModel, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{
         $ret: null;
         $out: {
             "transformer": TreeRegressorModel;
@@ -987,13 +1123,13 @@ export declare class CategoricalImputer<Element = unknown> extends SDKHandle {
      * var strategy: CategoricalImputer<Element>.Strategy
      * @availability iOS 16.0+
      */
-    get strategy(): $SDK23;
-    set strategy(value: $SDK23);
+    get strategy(): $SDK24;
+    set strategy(value: $SDK24);
     /**
      * init(_ strategy: CategoricalImputer<Element>.Strategy)
      * @availability iOS 16.0+
      */
-    static init(strategy: $SDK23): CategoricalImputer<number>;
+    static init(strategy: $SDK24): CategoricalImputer<number>;
     readonly $type: {
         "s:18CreateMLComponents18CategoricalImputerV": true;
     };
@@ -1081,7 +1217,7 @@ export declare class ClassificationDistribution<Label = unknown> extends SDKHand
      * func map<T>(_ transform: (Classification<Label>) throws -> Classification<T>) rethrows -> ClassificationDistribution<T> where T : Hashable
      * @availability iOS 16.0+
      */
-    map(transform: ((arg0: Classification<number>) => Classification<number>)): $SDK25;
+    map(transform: ((arg0: Classification<number>) => Classification<number>)): $SDK26;
     /**
      * func index(after i: Int) -> Int
      * @availability iOS 16.0+
@@ -1111,7 +1247,7 @@ export declare class ClassificationDistribution<Label = unknown> extends SDKHand
      * init<C>(_ classifications: C) where C : Collection, C.Element == Classification<Label>
      * @availability iOS 16.0+
      */
-    static init(classifications: Array<Classification<number>>): $SDK25;
+    static init(classifications: Array<Classification<number>>): $SDK26;
     /**
      * subscript(label: Label) -> Float? { get }
      * @availability iOS 16.0+
@@ -1233,22 +1369,22 @@ export declare class ClassificationMetrics<Label = unknown> extends SDKHandle {
      * func mapLabels<T>(_ transform: (Label) throws -> T) rethrows -> ClassificationMetrics<T> where T : Hashable
      * @availability iOS 17.0+
      */
-    mapLabels(transform: ((arg0: number) => number)): $SDK28;
+    mapLabels(transform: ((arg0: number) => number)): $SDK29;
     /**
      * init<Predicted, Correct>(predicted: Predicted, groundTruth: Correct, labels: Set<Label>) where Label == Predicted.Element, Predicted : Sequence, Correct : Sequence, Predicted.Element == Correct.Element
      * @availability iOS 17.0+
      */
-    static initPredictedGroundTruthLabels(predicted: Array<number>, groundTruth: Array<number>, labels: Array<number>): $SDK28;
+    static initPredictedGroundTruthLabels(predicted: Array<number>, groundTruth: Array<number>, labels: Array<number>): $SDK29;
     /**
      * init()
      * @availability iOS 17.0+
      */
-    static init(): $SDK28;
+    static init(): $SDK29;
     /**
      * init<Predicted, Correct>(_ predicted: Predicted, _ groundTruth: Correct) where Label == Predicted.Element, Predicted : Collection, Correct : Collection, Predicted.Element == Correct.Element
      * @availability iOS 16.0+
      */
-    static init94512(predicted: Array<number>, groundTruth: Array<number>): $SDK28;
+    static init94512(predicted: Array<number>, groundTruth: Array<number>): $SDK29;
     readonly $type: {
         "s:18CreateMLComponents21ClassificationMetricsV": true;
     };
@@ -1262,7 +1398,7 @@ export interface Classifier {
      * func applied(to input: Self.Input, eventHandler: EventHandler?) async throws -> Self.Output
      * @availability iOS 16.0+
      */
-    "appliedToEventHandler"?: (arg0: unknown, arg1: $SDK30) => unknown;
+    "appliedToEventHandler"?: (arg0: unknown, arg1: $SDK31) => Promise<unknown>;
 }
 /**
  * struct ColumnConcatenator<Scalar> where Scalar : MLShapedArrayScalar, Scalar : BinaryFloatingPoint
@@ -1295,7 +1431,7 @@ export declare class ColumnConcatenator<Scalar = unknown> extends SDKHandle {
      * func applied(to input: DataFrame, eventHandler: EventHandler? = nil) throws -> DataFrame
      * @availability iOS 16.0+
      */
-    applied(input: _TabularData_DataFrame, eventHandler?: $SDK8): _TabularData_DataFrame;
+    applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): _TabularData_DataFrame;
     readonly $type: {
         "s:18CreateMLComponents18ColumnConcatenatorV": true;
     };
@@ -1324,6 +1460,37 @@ export declare class ColumnSelection extends SDKHandle {
  * @availability iOS 16.0+
  */
 export declare class ColumnSelector<Estimator = unknown, UnwrappedInput = unknown> extends SDKHandle {
+    /**
+     * var columnSelection: ColumnSelection
+     * @availability iOS 16.0+
+     */
+    get columnSelection(): ColumnSelection;
+    set columnSelection(value: ColumnSelection);
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> ColumnSelector<Estimator, UnwrappedInput>.Transformer
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK33;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: ColumnSelector<Estimator, UnwrappedInput>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: $SDK33, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func fitted(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> ColumnSelector<Estimator, UnwrappedInput>.Transformer
+     * @availability iOS 16.0+
+     */
+    fitted(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK33>;
     readonly $type: {
         "s:18CreateMLComponents14ColumnSelectorV": true;
     };
@@ -1342,12 +1509,28 @@ export type ColumnSelector_Output<Estimator = unknown, UnwrappedInput = unknown>
  * typealias Transformer = ColumnSelectorTransformer<Estimator.Transformer, UnwrappedInput>
  * @availability iOS 16.0+
  */
-export type ColumnSelector_Transformer<Estimator = unknown, UnwrappedInput = unknown> = $SDK2;
+export type ColumnSelector_Transformer<Estimator = unknown, UnwrappedInput = unknown> = $SDK3;
 /**
  * struct ColumnSelectorTransformer<Base, UnwrappedInput> where Base : Transformer, Base.Input == UnwrappedInput?
  * @availability iOS 16.0+
  */
 export declare class ColumnSelectorTransformer<Base = unknown, UnwrappedInput = unknown> extends SDKHandle {
+    /**
+     * var columnMapping: [String : String]
+     * @availability iOS 16.0+
+     */
+    get columnMapping(): Record<string, string>;
+    set columnMapping(value: Record<string, string>);
+    /**
+     * var debugDescription: String { get }
+     * @availability iOS 16.0+
+     */
+    get debugDescription(): string;
+    /**
+     * func applied(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
+     * @availability iOS 16.0+
+     */
+    applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame>;
     readonly $type: {
         "s:18CreateMLComponents25ColumnSelectorTransformerV": true;
     };
@@ -1407,7 +1590,7 @@ export declare class ComposedTabularTransformer<Inner = unknown, Outer = unknown
      * func applied(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
      * @availability iOS 16.0+
      */
-    applied(input: _TabularData_DataFrame, eventHandler?: $SDK8): Promise<_TabularData_DataFrame>;
+    applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame>;
     /**
      * init(_ inner: Inner, _ outer: Outer)
      * @availability iOS 16.0+
@@ -1432,6 +1615,11 @@ export type ComposedTabularTransformer_Output<Inner = unknown, Outer = unknown> 
  * @availability iOS 16.0+
  */
 export declare class ComposedTemporalTransformer<Inner = unknown, Outer = unknown> extends SDKHandle {
+    /**
+     * var debugDescription: String { get }
+     * @availability iOS 16.0+
+     */
+    get debugDescription(): string;
     readonly $type: {
         "s:18CreateMLComponents27ComposedTemporalTransformerV": true;
     };
@@ -1461,6 +1649,16 @@ export type ComposedTemporalTransformer_OutputSequence<Inner = unknown, Outer = 
  * @availability iOS 16.0+
  */
 export declare class ComposedTransformer<Inner = unknown, Outer = unknown> extends SDKHandle {
+    /**
+     * var debugDescription: String { get }
+     * @availability iOS 16.0+
+     */
+    get debugDescription(): string;
+    /**
+     * func applied(to input: ComposedTransformer<Inner, Outer>.Input, eventHandler: EventHandler? = nil) async throws -> ComposedTransformer<Inner, Outer>.Output
+     * @availability iOS 16.0+
+     */
+    applied(input: SDKHandle, eventHandler?: $SDK9): Promise<SDKHandle>;
     readonly $type: {
         "s:18CreateMLComponents19ComposedTransformerV": true;
     };
@@ -1504,7 +1702,7 @@ export declare class DataFrame extends SDKHandle {
      * func loadRangedAnnotations<Annotation>(parameters: DataFrameTemporalAnnotationParameters<Annotation> = .init(), continueOnFailure: Bool = false) throws -> [AnnotatedFeature<TemporalFileSegment, Annotation>] where Annotation : Equatable, Annotation : Sendable
      * @availability iOS 16.0+
      */
-    loadRangedAnnotations(parameters?: $SDK34, continueOnFailure?: boolean): Array<AnnotatedFeature<TemporalFileSegment, number>>;
+    loadRangedAnnotations(parameters?: $SDK36, continueOnFailure?: boolean): Array<AnnotatedFeature<TemporalFileSegment, number>>;
     /**
      * func selecting(_ selection: ColumnSelection) -> DataFrame
      * @availability iOS 16.0+
@@ -1523,14 +1721,14 @@ export declare class DataFrameTemporalAnnotationParameters<Annotation = unknown>
      * var filePathType: DataFrameTemporalAnnotationParameters<Annotation>.FilePathType
      * @availability iOS 16.0+
      */
-    get filePathType(): $SDK35;
-    set filePathType(value: $SDK35);
+    get filePathType(): $SDK37;
+    set filePathType(value: $SDK37);
     /**
      * var endTimeColumnID: ColumnID<Double>?
      * @availability iOS 16.0+
      */
-    get endTimeColumnID(): $SDK36;
-    set endTimeColumnID(value: $SDK36);
+    get endTimeColumnID(): $SDK38;
+    set endTimeColumnID(value: $SDK38);
     /**
      * var filePathColumnID: ColumnID<String>
      * @availability iOS 16.0+
@@ -1541,19 +1739,19 @@ export declare class DataFrameTemporalAnnotationParameters<Annotation = unknown>
      * var startTimeColumnID: ColumnID<Double>?
      * @availability iOS 16.0+
      */
-    get startTimeColumnID(): $SDK36;
-    set startTimeColumnID(value: $SDK36);
+    get startTimeColumnID(): $SDK38;
+    set startTimeColumnID(value: $SDK38);
     /**
      * var annotationColumnID: ColumnID<Annotation>
      * @availability iOS 16.0+
      */
-    get annotationColumnID(): _TabularData_ColumnID<number>;
-    set annotationColumnID(value: _TabularData_ColumnID<number>);
+    get annotationColumnID(): $SDK40;
+    set annotationColumnID(value: $SDK40);
     /**
      * init()
      * @availability iOS 16.0+
      */
-    static init(): $SDK34;
+    static init(): $SDK36;
     readonly $type: {
         "s:18CreateMLComponents37DataFrameTemporalAnnotationParametersV": true;
     };
@@ -1600,7 +1798,7 @@ export declare class DateFeatureExtractor<Scalar = unknown> extends SDKHandle {
      * func applied(to date: Date, eventHandler: EventHandler? = nil) -> [Scalar]
      * @availability iOS 18.0+
      */
-    applied(date: globalThis.Date, eventHandler?: $SDK8): Array<number>;
+    applied(date: globalThis.Date, eventHandler?: $SDK9): Array<number>;
     /**
      * let calendar: Calendar
      * @availability iOS 18.0+
@@ -1713,6 +1911,18 @@ export type DateFeatures_RawValue = number;
  * @availability iOS 17.0+
  */
 export declare class DetectedObject<Label = unknown> extends SDKHandle {
+    /**
+     * var confidence: Float
+     * @availability iOS 17.0+
+     */
+    get confidence(): number;
+    set confidence(value: number);
+    /**
+     * var boundingBox: CGRect
+     * @availability iOS 17.0+
+     */
+    get boundingBox(): $SDK42;
+    set boundingBox(value: $SDK42);
     readonly $type: {
         "s:18CreateMLComponents14DetectedObjectV": true;
     };
@@ -1765,7 +1975,7 @@ export type Downsampler_DownStreamSequence_AsyncIterator<Input = unknown> = Down
  * typealias Element = TemporalFeature<Downsampler<Input>.DownStreamSequence.Feature>
  * @availability iOS 16.0+
  */
-export type Downsampler_DownStreamSequence_Element<Input = unknown> = TemporalFeature<Downsampler_DownStreamSequence<unknown>>;
+export type Downsampler_DownStreamSequence_Element<Input = unknown> = $SDK8;
 /**
  * typealias Feature = Input
  * @availability iOS 16.0+
@@ -1780,7 +1990,7 @@ export declare class Downsampler_DownStreamSequence_Iterator<Input = unknown> ex
      * mutating func next() async throws -> TemporalFeature<Downsampler<Input>.Output>?
      * @availability iOS 16.0+
      */
-    next(): Promise<(TemporalFeature<Downsampler<number>>) | null>;
+    next(): Promise<$SDK46>;
     readonly $type: {
         "s:18CreateMLComponents11DownsamplerV18DownStreamSequenceV8IteratorV": true;
     };
@@ -1789,7 +1999,7 @@ export declare class Downsampler_DownStreamSequence_Iterator<Input = unknown> ex
  * typealias Element = TemporalFeature<Downsampler<Input>.Output>
  * @availability iOS 16.0+
  */
-export type Downsampler_DownStreamSequence_Iterator_Element<Input = unknown> = TemporalFeature<Downsampler<unknown>>;
+export type Downsampler_DownStreamSequence_Iterator_Element<Input = unknown> = $SDK8;
 /**
  * typealias Input = Input
  * @availability iOS 16.0+
@@ -1814,7 +2024,7 @@ export interface Estimator {
      * func fitted<S>(to input: S, eventHandler: EventHandler?) async throws -> Self.Transformer where S : Sequence, S.Element == Self.Transformer.Input
      * @availability iOS 16.0+
      */
-    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK30) => unknown;
+    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -1882,6 +2092,26 @@ export declare class EstimatorEncodingError extends SDKHandle {
  * @availability iOS 16.0+
  */
 export declare class EstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> EstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: unknown;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: EstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: unknown, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents28EstimatorToSupervisedAdaptorV": true;
     };
@@ -1897,6 +2127,28 @@ export type EstimatorToSupervisedAdaptor_Transformer<Estimator = unknown, Annota
  * @deprecated iOS 18.0
  */
 export declare class EstimatorToTemporalAdaptor<Base = unknown> extends SDKHandle {
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> EstimatorToTemporalAdaptor<Base>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK48;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: EstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encode(transformer: $SDK48, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents26EstimatorToTemporalAdaptorV": true;
     };
@@ -1918,7 +2170,7 @@ export type EstimatorToTemporalAdaptor_Output<Base = unknown> = SDKHandle;
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
-export type EstimatorToTemporalAdaptor_Transformer<Base = unknown> = $SDK47;
+export type EstimatorToTemporalAdaptor_Transformer<Base = unknown> = $SDK48;
 /**
  * struct Event
  * @availability iOS 16.0+
@@ -1939,7 +2191,7 @@ export declare class Event extends SDKHandle {
      * init(origin: String, itemCount: Int, totalItemCount: Int? = nil, metrics: [MetricsKey : any Sendable])
      * @availability iOS 16.0+
      */
-    static init(origin: string, itemCount: number, totalItemCount: (number) | null, metrics: $SDK48): Event;
+    static init(origin: string, itemCount: number, totalItemCount: (number) | null, metrics: $SDK49): Event;
     /**
      * var origin: String
      * @availability iOS 16.0+
@@ -1950,8 +2202,8 @@ export declare class Event extends SDKHandle {
      * var metrics: [MetricsKey : any Sendable]
      * @availability iOS 16.0+
      */
-    get metrics(): $SDK48;
-    set metrics(value: $SDK48);
+    get metrics(): $SDK49;
+    set metrics(value: $SDK49);
     /**
      * var itemCount: Int
      * @availability iOS 16.0+
@@ -1972,6 +2224,47 @@ export type EventHandler = ((arg0: Event) => Promise<void>);
  * @availability iOS 16.0+
  */
 export declare class FullyConnectedNetworkClassifier<Scalar = unknown, Label = unknown> extends SDKHandle {
+    /**
+     * var configuration: FullyConnectedNetworkConfiguration
+     * @availability iOS 16.0+
+     */
+    get configuration(): FullyConnectedNetworkConfiguration;
+    set configuration(value: FullyConnectedNetworkConfiguration);
+    /**
+     * func makeTransformer() -> FullyConnectedNetworkClassifierModel<Scalar, Label>
+     * @availability iOS 16.0+
+     */
+    makeTransformer(): $SDK51;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkClassifier<Scalar, Label>.Transformer
+     * @availability iOS 16.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK51;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: FullyConnectedNetworkClassifier<Scalar, Label>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encodeWithOptimizer(transformer: $SDK51, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkClassifierModel<Scalar, Label>
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK51;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents31FullyConnectedNetworkClassifierV": true;
     };
@@ -1991,6 +2284,16 @@ export type FullyConnectedNetworkClassifier_Transformer<Scalar = unknown, Label 
  * @availability iOS 16.0+
  */
 export declare class FullyConnectedNetworkClassifierModel<Scalar = unknown, Label = unknown> extends SDKHandle {
+    /**
+     * var debugDescription: String { get }
+     * @availability iOS 16.0+
+     */
+    get debugDescription(): string;
+    /**
+     * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> ClassificationDistribution<Label>
+     * @availability iOS 16.0+
+     */
+    applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK53>;
     readonly $type: {
         "s:18CreateMLComponents36FullyConnectedNetworkClassifierModelV": true;
     };
@@ -1999,12 +2302,12 @@ export declare class FullyConnectedNetworkClassifierModel<Scalar = unknown, Labe
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 16.0+
  */
-export type FullyConnectedNetworkClassifierModel_Input<Scalar = unknown, Label = unknown> = $SDK51;
+export type FullyConnectedNetworkClassifierModel_Input<Scalar = unknown, Label = unknown> = $SDK54;
 /**
  * typealias Output = ClassificationDistribution<Label>
  * @availability iOS 16.0+
  */
-export type FullyConnectedNetworkClassifierModel_Output<Scalar = unknown, Label = unknown> = $SDK52;
+export type FullyConnectedNetworkClassifierModel_Output<Scalar = unknown, Label = unknown> = $SDK55;
 /**
  * struct FullyConnectedNetworkConfiguration
  * @availability iOS 16.0+
@@ -2072,6 +2375,47 @@ export declare class FullyConnectedNetworkConfiguration extends SDKHandle {
  * @availability iOS 17.0+
  */
 export declare class FullyConnectedNetworkMultiLabelClassifier<Scalar = unknown, Label = unknown> extends SDKHandle {
+    /**
+     * var configuration: FullyConnectedNetworkConfiguration
+     * @availability iOS 17.0+
+     */
+    get configuration(): FullyConnectedNetworkConfiguration;
+    set configuration(value: FullyConnectedNetworkConfiguration);
+    /**
+     * func makeTransformer() -> FullyConnectedNetworkMultiLabelClassifierModel<Scalar, Label>
+     * @availability iOS 17.0+
+     */
+    makeTransformer(): $SDK56;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkMultiLabelClassifier<Scalar, Label>.Transformer
+     * @availability iOS 17.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK56;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: FullyConnectedNetworkMultiLabelClassifier<Scalar, Label>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encodeWithOptimizer(transformer: $SDK56, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkMultiLabelClassifierModel<Scalar, Label>
+     * @availability iOS 17.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK56;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents41FullyConnectedNetworkMultiLabelClassifierV": true;
     };
@@ -2091,6 +2435,16 @@ export type FullyConnectedNetworkMultiLabelClassifier_Transformer<Scalar = unkno
  * @availability iOS 17.0+
  */
 export declare class FullyConnectedNetworkMultiLabelClassifierModel<Scalar = unknown, Label = unknown> extends SDKHandle {
+    /**
+     * var debugDescription: String { get }
+     * @availability iOS 17.0+
+     */
+    get debugDescription(): string;
+    /**
+     * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) throws -> ClassificationDistribution<Label>
+     * @availability iOS 17.0+
+     */
+    applied(input: $SDK0, eventHandler?: $SDK9): $SDK53;
     readonly $type: {
         "s:18CreateMLComponents46FullyConnectedNetworkMultiLabelClassifierModelV": true;
     };
@@ -2099,12 +2453,12 @@ export declare class FullyConnectedNetworkMultiLabelClassifierModel<Scalar = unk
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 17.0+
  */
-export type FullyConnectedNetworkMultiLabelClassifierModel_Input<Scalar = unknown, Label = unknown> = $SDK51;
+export type FullyConnectedNetworkMultiLabelClassifierModel_Input<Scalar = unknown, Label = unknown> = $SDK54;
 /**
  * typealias Output = ClassificationDistribution<Label>
  * @availability iOS 17.0+
  */
-export type FullyConnectedNetworkMultiLabelClassifierModel_Output<Scalar = unknown, Label = unknown> = $SDK52;
+export type FullyConnectedNetworkMultiLabelClassifierModel_Output<Scalar = unknown, Label = unknown> = $SDK55;
 /**
  * struct FullyConnectedNetworkRegressor<Scalar> where Scalar : MLShapedArrayScalar, Scalar : BinaryFloatingPoint
  * @availability iOS 16.0+
@@ -2125,13 +2479,13 @@ export declare class FullyConnectedNetworkRegressor<Scalar = unknown> extends SD
      * func makeTransformer() -> FullyConnectedNetworkRegressorModel<Scalar>
      * @availability iOS 16.0+
      */
-    makeTransformer(): $SDK55;
+    makeTransformer(): $SDK59;
     /**
      * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> FullyConnectedNetworkRegressor<Scalar>.Transformer
      * @availability iOS 16.0+
      */
     decodeWithOptimizer(decoder: SDKHandle): {
-        $ret: $SDK55;
+        $ret: $SDK59;
         $out: {
             "decoder": SDKHandle;
         };
@@ -2140,7 +2494,7 @@ export declare class FullyConnectedNetworkRegressor<Scalar = unknown> extends SD
      * func encodeWithOptimizer(_ transformer: FullyConnectedNetworkRegressor<Scalar>.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
      */
-    encodeWithOptimizer(transformer: $SDK55, encoder: SDKHandle): {
+    encodeWithOptimizer(transformer: $SDK59, encoder: SDKHandle): {
         $ret: null;
         $out: {
             "encoder": SDKHandle;
@@ -2151,7 +2505,7 @@ export declare class FullyConnectedNetworkRegressor<Scalar = unknown> extends SD
      * @availability iOS 16.0+
      */
     decode(decoder: SDKHandle): {
-        $ret: $SDK55;
+        $ret: $SDK59;
         $out: {
             "decoder": SDKHandle;
         };
@@ -2160,20 +2514,20 @@ export declare class FullyConnectedNetworkRegressor<Scalar = unknown> extends SD
      * func fitted<Input, Validation>(to input: Input, validateOn validation: Validation, eventHandler: EventHandler? = nil) async throws -> FullyConnectedNetworkRegressorModel<Scalar> where Input : Sequence, Validation : Sequence, Input.Element == AnnotatedFeature<MLShapedArray<Scalar>, Float>, Validation.Element == AnnotatedFeature<MLShapedArray<Scalar>, Float>
      * @availability iOS 16.0+
      */
-    fittedToValidateOnEventHandler(input: $SDK56, validation: $SDK56, eventHandler?: $SDK8): Promise<$SDK55>;
+    fittedToValidateOnEventHandler(input: $SDK60, validation: $SDK60, eventHandler?: $SDK9): Promise<$SDK59>;
     /**
      * func fitted<Input>(to input: Input, eventHandler: EventHandler? = nil) async throws -> FullyConnectedNetworkRegressor<Scalar>.Transformer where Input : Sequence, Input.Element == AnnotatedFeature<MLShapedArray<Scalar>, Float>
      * @availability iOS 16.0+
      */
-    fittedToEventHandler(input: $SDK56, eventHandler?: $SDK8): Promise<$SDK55>;
+    fittedToEventHandler(input: $SDK60, eventHandler?: $SDK9): Promise<$SDK59>;
     /**
      * func update<InputSequence>(_ transformer: inout FullyConnectedNetworkRegressorModel<Scalar>, with input: InputSequence, eventHandler: EventHandler? = nil) async throws where InputSequence : Sequence, InputSequence.Element == AnnotatedFeature<MLShapedArray<Scalar>, Float>
      * @availability iOS 16.0+
      */
-    update(transformer: $SDK55, input: $SDK56, eventHandler?: $SDK8): Promise<{
+    update(transformer: $SDK59, input: $SDK60, eventHandler?: $SDK9): Promise<{
         $ret: null;
         $out: {
-            "transformer": $SDK55;
+            "transformer": $SDK59;
         };
     }>;
     readonly $type: {
@@ -2204,7 +2558,7 @@ export declare class FullyConnectedNetworkRegressorModel<Scalar = unknown> exten
      * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> FullyConnectedNetworkRegressorModel<Scalar>.Target
      * @availability iOS 16.0+
      */
-    applied(input: $SDK0, eventHandler?: $SDK8): Promise<number>;
+    applied(input: $SDK0, eventHandler?: $SDK9): Promise<number>;
     readonly $type: {
         "s:18CreateMLComponents35FullyConnectedNetworkRegressorModelV": true;
     };
@@ -2213,7 +2567,7 @@ export declare class FullyConnectedNetworkRegressorModel<Scalar = unknown> exten
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 16.0+
  */
-export type FullyConnectedNetworkRegressorModel_Input<Scalar = unknown> = $SDK51;
+export type FullyConnectedNetworkRegressorModel_Input<Scalar = unknown> = $SDK54;
 /**
  * typealias Output = FullyConnectedNetworkRegressorModel<Scalar>.Target
  * @availability iOS 16.0+
@@ -2282,7 +2636,7 @@ export declare class HumanBodyActionCounter_CumulativeSumSequence_Iterator exten
      * mutating func next() async throws -> TemporalFeature<Float>?
      * @availability iOS 16.0+
      */
-    next(): Promise<(TemporalFeature<number>) | null>;
+    next(): Promise<$SDK46>;
     readonly $type: {
         "s:18CreateMLComponents22HumanBodyActionCounterV21CumulativeSumSequenceV8IteratorV": true;
     };
@@ -2316,7 +2670,7 @@ export declare class HumanBodyActionPeriodPredictor extends SDKHandle {
      * func applied(to input: [Pose], eventHandler: EventHandler? = nil) async throws -> [HumanBodyActionPeriodPredictor.Prediction]
      * @availability iOS 16.0+
      */
-    applied(input: Array<Pose>, eventHandler?: $SDK8): Promise<$SDK59>;
+    applied(input: Array<Pose>, eventHandler?: $SDK9): Promise<$SDK62>;
     /**
      * init()
      * @availability iOS 16.0+
@@ -2335,7 +2689,7 @@ export type HumanBodyActionPeriodPredictor_Input = Array<Pose>;
  * typealias Output = [HumanBodyActionPeriodPredictor.Prediction]
  * @availability iOS 16.0+
  */
-export type HumanBodyActionPeriodPredictor_Output = $SDK59;
+export type HumanBodyActionPeriodPredictor_Output = $SDK62;
 /**
  * struct Prediction
  * @availability iOS 16.0+
@@ -2376,7 +2730,7 @@ export declare class HumanBodyPoseExtractor extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) async throws -> [Pose]
      * @availability iOS 16.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): Promise<Array<Pose>>;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<Array<Pose>>;
     /**
      * init()
      * @availability iOS 16.0+
@@ -2410,7 +2764,7 @@ export declare class HumanHandPoseExtractor extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) async throws -> [Pose]
      * @availability iOS 16.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): Promise<Array<Pose>>;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<Array<Pose>>;
     /**
      * init()
      * @availability iOS 16.0+
@@ -2450,7 +2804,7 @@ export declare class ImageBlur extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
      * @availability iOS 17.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): _CoreImage_CIImage;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage;
     readonly $type: {
         "s:18CreateMLComponents9ImageBlurV": true;
     };
@@ -2497,7 +2851,7 @@ export declare class ImageColorTransformer extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
      * @availability iOS 17.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): _CoreImage_CIImage;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage;
     /**
      * var contrast: Float?
      * @availability iOS 17.0+
@@ -2527,13 +2881,13 @@ export declare class ImageCropper extends SDKHandle {
      * init(cropRectangle: CGRect)
      * @availability iOS 16.0+
      */
-    static init(cropRectangle: $SDK60): ImageCropper;
+    static init(cropRectangle: $SDK42): ImageCropper;
     /**
      * var cropRectangle: CGRect
      * @availability iOS 16.0+
      */
-    get cropRectangle(): $SDK60;
-    set cropRectangle(value: $SDK60);
+    get cropRectangle(): $SDK42;
+    set cropRectangle(value: $SDK42);
     /**
      * var debugDescription: String { get }
      * @availability iOS 16.0+
@@ -2543,7 +2897,7 @@ export declare class ImageCropper extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) throws -> CIImage
      * @availability iOS 16.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): _CoreImage_CIImage;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage;
     readonly $type: {
         "s:18CreateMLComponents12ImageCropperV": true;
     };
@@ -2578,7 +2932,7 @@ export declare class ImageExposureAdjuster extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
      * @availability iOS 17.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): _CoreImage_CIImage;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage;
     readonly $type: {
         "s:18CreateMLComponents21ImageExposureAdjusterV": true;
     };
@@ -2602,7 +2956,7 @@ export interface ImageFeatureExtractor {
      * func applied(to input: Self.Input, eventHandler: EventHandler?) async throws -> Self.Output
      * @availability iOS 16.0+
      */
-    "appliedToEventHandler"?: (arg0: unknown, arg1: $SDK30) => unknown;
+    "appliedToEventHandler"?: (arg0: unknown, arg1: $SDK31) => Promise<unknown>;
 }
 /**
  * struct ImageFeaturePrint
@@ -2633,7 +2987,7 @@ export declare class ImageFeaturePrint extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Float>
      * @availability iOS 16.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): Promise<$SDK0>;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<$SDK0>;
     /**
      * init(revision: Int, cropAndScale: VNImageCropAndScaleOption = .centerCrop, context: CIContext = CIContext())
      * @availability iOS 17.0+
@@ -2679,7 +3033,7 @@ export declare class ImageFlipper extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
      * @availability iOS 17.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): _CoreImage_CIImage;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage;
     readonly $type: {
         "s:18CreateMLComponents12ImageFlipperV": true;
     };
@@ -2718,7 +3072,7 @@ export declare class ImageReader extends SDKHandle {
      * func applied(to url: URL, eventHandler: EventHandler? = nil) throws -> CIImage
      * @availability iOS 16.0+
      */
-    applied(url: string, eventHandler?: $SDK8): _CoreImage_CIImage;
+    applied(url: string, eventHandler?: $SDK9): _CoreImage_CIImage;
     /**
      * init()
      * @availability iOS 16.0+
@@ -2758,7 +3112,7 @@ export declare class ImageRotator extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
      * @availability iOS 17.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): _CoreImage_CIImage;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage;
     readonly $type: {
         "s:18CreateMLComponents12ImageRotatorV": true;
     };
@@ -2782,13 +3136,13 @@ export declare class ImageScaler extends SDKHandle {
      * init(targetSize: CGSize)
      * @availability iOS 16.0+
      */
-    static initTargetSize(targetSize: $SDK61): ImageScaler;
+    static initTargetSize(targetSize: $SDK63): ImageScaler;
     /**
      * var targetSize: CGSize { get set }
      * @availability iOS 16.0+
      */
-    get targetSize(): $SDK61;
-    set targetSize(value: $SDK61);
+    get targetSize(): $SDK63;
+    set targetSize(value: $SDK63);
     /**
      * init(targetWidth: Double)
      * @availability iOS 17.0+
@@ -2808,7 +3162,7 @@ export declare class ImageScaler extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) throws -> CIImage
      * @availability iOS 16.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): _CoreImage_CIImage;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage;
     readonly $type: {
         "s:18CreateMLComponents11ImageScalerV": true;
     };
@@ -2837,7 +3191,7 @@ export declare class ImputeTransformer<Element = unknown> extends SDKHandle {
      * init(value: Element)
      * @availability iOS 16.0+
      */
-    static init(value: number): $SDK62;
+    static init(value: number): $SDK64;
     /**
      * var value: Element
      * @availability iOS 16.0+
@@ -2848,7 +3202,7 @@ export declare class ImputeTransformer<Element = unknown> extends SDKHandle {
      * func applied(to input: Element?, eventHandler: EventHandler? = nil) -> Element
      * @availability iOS 16.0+
      */
-    applied(input?: (number) | null, eventHandler?: $SDK8): number;
+    applied(input?: (number) | null, eventHandler?: $SDK9): number;
     readonly $type: {
         "s:18CreateMLComponents17ImputeTransformerV": true;
     };
@@ -3111,13 +3465,13 @@ export declare class JointPoint extends SDKHandle {
      * var location: CGPoint
      * @availability iOS 16.0+
      */
-    get location(): $SDK63;
-    set location(value: $SDK63);
+    get location(): $SDK65;
+    set location(value: $SDK65);
     /**
      * init(_ key: JointKey, location: CGPoint, confidence: Float)
      * @availability iOS 16.0+
      */
-    static init(key: JointKey, location: $SDK63, confidence: number): JointPoint;
+    static init(key: JointKey, location: $SDK65, confidence: number): JointPoint;
     readonly $type: {
         "s:18CreateMLComponents10JointPointV": true;
     };
@@ -3136,8 +3490,8 @@ export declare class JointsSelector extends SDKHandle {
      * var ignoredJoints: [JointKey]?
      * @availability iOS 16.0+
      */
-    get ignoredJoints(): $SDK64;
-    set ignoredJoints(value: $SDK64);
+    get ignoredJoints(): $SDK66;
+    set ignoredJoints(value: $SDK66);
     /**
      * init(selectedJoints: [JointKey])
      * @availability iOS 16.0+
@@ -3147,8 +3501,8 @@ export declare class JointsSelector extends SDKHandle {
      * var selectedJoints: [JointKey]?
      * @availability iOS 16.0+
      */
-    get selectedJoints(): $SDK64;
-    set selectedJoints(value: $SDK64);
+    get selectedJoints(): $SDK66;
+    set selectedJoints(value: $SDK66);
     /**
      * var debugDescription: String { get }
      * @availability iOS 16.0+
@@ -3158,7 +3512,7 @@ export declare class JointsSelector extends SDKHandle {
      * func applied(to input: Pose, eventHandler: EventHandler? = nil) -> Pose
      * @availability iOS 16.0+
      */
-    applied(input: Pose, eventHandler?: $SDK8): Pose;
+    applied(input: Pose, eventHandler?: $SDK9): Pose;
     readonly $type: {
         "s:18CreateMLComponents14JointsSelectorV": true;
     };
@@ -3182,24 +3536,24 @@ export declare class LinearRegressor<Scalar = unknown> extends SDKHandle {
      * var configuration: LinearRegressor<Scalar>.Configuration { get set }
      * @availability iOS 16.0+
      */
-    get configuration(): $SDK65;
-    set configuration(value: $SDK65);
+    get configuration(): $SDK67;
+    set configuration(value: $SDK67);
     /**
      * init(configuration: LinearRegressor<Scalar>.Configuration = Configuration())
      * @availability iOS 16.0+
      */
-    static init(configuration?: $SDK65): LinearRegressor<number>;
+    static init(configuration?: $SDK67): LinearRegressor<number>;
     /**
      * func makeTransformer() -> LinearRegressorModel<Scalar>
      * @availability iOS 17.0+
      */
-    makeTransformer(): $SDK66;
+    makeTransformer(): $SDK68;
     /**
      * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> LinearRegressorModel<Scalar>
      * @availability iOS 17.0+
      */
     decodeWithOptimizer(decoder: SDKHandle): {
-        $ret: $SDK66;
+        $ret: $SDK68;
         $out: {
             "decoder": SDKHandle;
         };
@@ -3208,7 +3562,7 @@ export declare class LinearRegressor<Scalar = unknown> extends SDKHandle {
      * func encodeWithOptimizer(_ transformer: LinearRegressorModel<Scalar>, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 17.0+
      */
-    encodeWithOptimizer(transformer: $SDK66, encoder: SDKHandle): {
+    encodeWithOptimizer(transformer: $SDK68, encoder: SDKHandle): {
         $ret: null;
         $out: {
             "encoder": SDKHandle;
@@ -3219,7 +3573,7 @@ export declare class LinearRegressor<Scalar = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     decode(decoder: SDKHandle): {
-        $ret: $SDK66;
+        $ret: $SDK68;
         $out: {
             "decoder": SDKHandle;
         };
@@ -3228,7 +3582,7 @@ export declare class LinearRegressor<Scalar = unknown> extends SDKHandle {
      * func encode(_ transformer: LinearRegressorModel<Scalar>, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
      */
-    encode(transformer: $SDK66, encoder: SDKHandle): {
+    encode(transformer: $SDK68, encoder: SDKHandle): {
         $ret: null;
         $out: {
             "encoder": SDKHandle;
@@ -3238,20 +3592,20 @@ export declare class LinearRegressor<Scalar = unknown> extends SDKHandle {
      * func fitted<Input, Validation>(to input: Input, validateOn validation: Validation, eventHandler: EventHandler? = nil) async throws -> LinearRegressorModel<Scalar> where Input : Sequence, Validation : Sequence, Input.Element == AnnotatedFeature<MLShapedArray<Scalar>, Scalar>, Validation.Element == AnnotatedFeature<MLShapedArray<Scalar>, Scalar>
      * @availability iOS 16.0+
      */
-    fittedToValidateOnEventHandler(input: $SDK56, validation: $SDK56, eventHandler?: $SDK8): Promise<$SDK66>;
+    fittedToValidateOnEventHandler(input: $SDK60, validation: $SDK60, eventHandler?: $SDK9): Promise<$SDK68>;
     /**
      * func fitted<Input>(to input: Input, eventHandler: EventHandler? = nil) async throws -> LinearRegressorModel<Scalar> where Input : Sequence, Input.Element == AnnotatedFeature<MLShapedArray<Scalar>, Scalar>
      * @availability iOS 16.0+
      */
-    fittedToEventHandler(input: $SDK56, eventHandler?: $SDK8): Promise<$SDK66>;
+    fittedToEventHandler(input: $SDK60, eventHandler?: $SDK9): Promise<$SDK68>;
     /**
      * func update<InputSequence>(_ transformer: inout LinearRegressor<Scalar>.Transformer, with input: InputSequence, eventHandler: EventHandler?) async throws where InputSequence : Sequence, InputSequence.Element == AnnotatedFeature<MLShapedArray<Scalar>, Scalar>
      * @availability iOS 17.0+
      */
-    update(transformer: $SDK66, input: $SDK56, eventHandler?: $SDK8): Promise<{
+    update(transformer: $SDK68, input: $SDK60, eventHandler?: $SDK9): Promise<{
         $ret: null;
         $out: {
-            "transformer": $SDK66;
+            "transformer": $SDK68;
         };
     }>;
     readonly $type: {
@@ -3320,7 +3674,7 @@ export declare class LinearRegressor_Configuration<Scalar = unknown> extends SDK
      * init()
      * @availability iOS 16.0+
      */
-    static init(): $SDK65;
+    static init(): $SDK67;
     readonly $type: {
         "s:18CreateMLComponents15LinearRegressorV13ConfigurationV": true;
     };
@@ -3349,7 +3703,7 @@ export declare class LinearRegressorModel<Scalar = unknown> extends SDKHandle {
      * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> Scalar
      * @availability iOS 16.0+
      */
-    applied(input: $SDK0, eventHandler?: $SDK8): Promise<number>;
+    applied(input: $SDK0, eventHandler?: $SDK9): Promise<number>;
     readonly $type: {
         "s:18CreateMLComponents20LinearRegressorModelV": true;
     };
@@ -3358,7 +3712,7 @@ export declare class LinearRegressorModel<Scalar = unknown> extends SDKHandle {
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 16.0+
  */
-export type LinearRegressorModel_Input<Scalar = unknown> = $SDK51;
+export type LinearRegressorModel_Input<Scalar = unknown> = $SDK54;
 /**
  * typealias Output = Scalar
  * @availability iOS 16.0+
@@ -3388,7 +3742,7 @@ export declare class LinearTimeSeriesForecaster<Scalar = unknown> extends SDKHan
      * func makeTransformer() -> LinearTimeSeriesForecaster<Scalar>.Model
      * @availability iOS 18.0+
      */
-    makeTransformer(): $SDK69;
+    makeTransformer(): $SDK71;
     /**
      * var forecastWindowSize: Int { get }
      * @availability iOS 18.0+
@@ -3399,7 +3753,7 @@ export declare class LinearTimeSeriesForecaster<Scalar = unknown> extends SDKHan
      * @availability iOS 18.0+
      */
     decodeWithOptimizer(decoder: SDKHandle): {
-        $ret: $SDK69;
+        $ret: $SDK71;
         $out: {
             "decoder": SDKHandle;
         };
@@ -3408,7 +3762,7 @@ export declare class LinearTimeSeriesForecaster<Scalar = unknown> extends SDKHan
      * func encodeWithOptimizer(_ model: LinearTimeSeriesForecaster<Scalar>.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 18.0+
      */
-    encodeWithOptimizer(model: $SDK69, encoder: SDKHandle): {
+    encodeWithOptimizer(model: $SDK71, encoder: SDKHandle): {
         $ret: null;
         $out: {
             "encoder": SDKHandle;
@@ -3419,7 +3773,7 @@ export declare class LinearTimeSeriesForecaster<Scalar = unknown> extends SDKHan
      * @availability iOS 18.0+
      */
     decode(decoder: SDKHandle): {
-        $ret: $SDK69;
+        $ret: $SDK71;
         $out: {
             "decoder": SDKHandle;
         };
@@ -3428,7 +3782,7 @@ export declare class LinearTimeSeriesForecaster<Scalar = unknown> extends SDKHan
      * func encode(_ model: LinearTimeSeriesForecaster<Scalar>.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 18.0+
      */
-    encode(model: $SDK69, encoder: SDKHandle): {
+    encode(model: $SDK71, encoder: SDKHandle): {
         $ret: null;
         $out: {
             "encoder": SDKHandle;
@@ -3438,10 +3792,10 @@ export declare class LinearTimeSeriesForecaster<Scalar = unknown> extends SDKHan
      * func update(_ model: inout LinearTimeSeriesForecaster<Scalar>.Transformer, with input: AnnotatedBatch<Scalar>) async throws -> Scalar
      * @availability iOS 18.0+
      */
-    update(model: $SDK69, input: AnnotatedBatch<number>): Promise<{
+    update(model: $SDK71, input: AnnotatedBatch<number>): Promise<{
         $ret: number;
         $out: {
-            "model": $SDK69;
+            "model": $SDK71;
         };
     }>;
     readonly $type: {
@@ -3452,7 +3806,7 @@ export declare class LinearTimeSeriesForecaster<Scalar = unknown> extends SDKHan
  * typealias Annotation = MLShapedArray<Scalar>
  * @availability iOS 18.0+
  */
-export type LinearTimeSeriesForecaster_Annotation<Scalar = unknown> = $SDK51;
+export type LinearTimeSeriesForecaster_Annotation<Scalar = unknown> = $SDK54;
 /**
  * typealias Configuration = LinearTimeSeriesForecasterConfiguration
  * @availability iOS 18.0+
@@ -3487,7 +3841,7 @@ export declare class LinearTimeSeriesForecaster_Model<Scalar = unknown> extends 
      * var bias: MLShapedArray<Scalar>? { get }
      * @availability iOS 18.0+
      */
-    get bias(): $SDK70;
+    get bias(): $SDK72;
     /**
      * func export(to url: URL, metadata: ModelMetadata) throws
      * @availability iOS 18.0+
@@ -3513,12 +3867,12 @@ export declare class LinearTimeSeriesForecaster_Model<Scalar = unknown> extends 
      * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Scalar>
      * @availability iOS 18.0+
      */
-    appliedToEventHandler(input: $SDK0, eventHandler?: $SDK8): Promise<$SDK0>;
+    appliedToEventHandler(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0>;
     /**
      * func applied(toWindow input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Scalar>
      * @availability iOS 18.0+
      */
-    appliedToWindowEventHandler(input: $SDK0, eventHandler?: $SDK8): Promise<$SDK0>;
+    appliedToWindowEventHandler(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0>;
     readonly $type: {
         "s:18CreateMLComponents26LinearTimeSeriesForecasterV5ModelV": true;
     };
@@ -3527,12 +3881,12 @@ export declare class LinearTimeSeriesForecaster_Model<Scalar = unknown> extends 
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 18.0+
  */
-export type LinearTimeSeriesForecaster_Model_Input<Scalar = unknown> = $SDK51;
+export type LinearTimeSeriesForecaster_Model_Input<Scalar = unknown> = $SDK54;
 /**
  * typealias Output = MLShapedArray<Scalar>
  * @availability iOS 18.0+
  */
-export type LinearTimeSeriesForecaster_Model_Output<Scalar = unknown> = $SDK51;
+export type LinearTimeSeriesForecaster_Model_Output<Scalar = unknown> = $SDK54;
 /**
  * typealias OutputSequence = AnyTemporalSequence<MLShapedArray<Scalar>>
  * @availability iOS 18.0+
@@ -3636,12 +3990,12 @@ export declare class LinearTransformer<Element = unknown> extends SDKHandle {
      * func applied<S>(to input: S, eventHandler: EventHandler? = nil) -> [Element] where Element == S.Element, S : Sequence
      * @availability iOS 16.0+
      */
-    appliedToEventHandler(input: Array<number>, eventHandler?: $SDK8): Array<number>;
+    appliedToEventHandler(input: Array<number>, eventHandler?: $SDK9): Array<number>;
     /**
      * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
      * @availability iOS 16.0+
      */
-    appliedToEventHandler7721(input: number, eventHandler?: $SDK8): number;
+    appliedToEventHandler7721(input: number, eventHandler?: $SDK9): number;
     readonly $type: {
         "s:18CreateMLComponents17LinearTransformerV": true;
     };
@@ -3661,6 +4015,57 @@ export type LinearTransformer_Output<Element = unknown> = unknown;
  * @availability iOS 16.0+
  */
 export declare class LogisticRegressionClassifier<Scalar = unknown, Label = unknown> extends SDKHandle {
+    /**
+     * var configuration: LogisticRegressionClassifier<Scalar, Label>.Configuration { get set }
+     * @availability iOS 16.0+
+     */
+    get configuration(): $SDK76;
+    set configuration(value: $SDK76);
+    /**
+     * func makeTransformer() -> LogisticRegressionClassifier<Scalar, Label>.Transformer
+     * @availability iOS 17.0+
+     */
+    makeTransformer(): $SDK77;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> LogisticRegressionClassifier<Scalar, Label>.Transformer
+     * @availability iOS 17.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK77;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: LogisticRegressionClassifier<Scalar, Label>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encodeWithOptimizer(transformer: $SDK77, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> LogisticRegressionClassifierModel<Scalar, Label>
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK77;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: LogisticRegressionClassifierModel<Scalar, Label>, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: $SDK77, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents28LogisticRegressionClassifierV": true;
     };
@@ -3675,6 +4080,54 @@ export type LogisticRegressionClassifier_Annotation<Scalar = unknown, Label = un
  * @availability iOS 16.0+
  */
 export declare class LogisticRegressionClassifier_Configuration<Scalar = unknown, Label = unknown> extends SDKHandle {
+    /**
+     * var scaleFeatures: Bool
+     * @availability iOS 17.0+
+     */
+    get scaleFeatures(): boolean;
+    set scaleFeatures(value: boolean);
+    /**
+     * var maximumIterations: Int
+     * @availability iOS 16.0+
+     */
+    get maximumIterations(): number;
+    set maximumIterations(value: number);
+    /**
+     * var convergenceThreshold: Double
+     * @availability iOS 16.0+
+     */
+    get convergenceThreshold(): number;
+    set convergenceThreshold(value: number);
+    /**
+     * var optimizationStrategy: OptimizationStrategy { get set }
+     * @availability iOS 17.0+
+     */
+    get optimizationStrategy(): OptimizationStrategy;
+    set optimizationStrategy(value: OptimizationStrategy);
+    /**
+     * var earlyStopIterationCount: Int
+     * @availability iOS 17.0+
+     */
+    get earlyStopIterationCount(): number;
+    set earlyStopIterationCount(value: number);
+    /**
+     * var stepSize: Double
+     * @availability iOS 16.0+
+     */
+    get stepSize(): number;
+    set stepSize(value: number);
+    /**
+     * var l1Penalty: Double
+     * @availability iOS 16.0+
+     */
+    get l1Penalty(): number;
+    set l1Penalty(value: number);
+    /**
+     * var l2Penalty: Double
+     * @availability iOS 16.0+
+     */
+    get l2Penalty(): number;
+    set l2Penalty(value: number);
     readonly $type: {
         "s:18CreateMLComponents28LogisticRegressionClassifierV13ConfigurationV": true;
     };
@@ -3689,6 +4142,21 @@ export type LogisticRegressionClassifier_Transformer<Scalar = unknown, Label = u
  * @availability iOS 16.0+
  */
 export declare class LogisticRegressionClassifierModel<Scalar = unknown, Label = unknown> extends SDKHandle {
+    /**
+     * var coefficients: [Scalar] { get }
+     * @availability iOS 17.0+
+     */
+    get coefficients(): Array<number>;
+    /**
+     * var featureCount: Int { get }
+     * @availability iOS 17.0+
+     */
+    get featureCount(): number;
+    /**
+     * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> ClassificationDistribution<Label>
+     * @availability iOS 16.0+
+     */
+    applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK53>;
     readonly $type: {
         "s:18CreateMLComponents33LogisticRegressionClassifierModelV": true;
     };
@@ -3697,12 +4165,12 @@ export declare class LogisticRegressionClassifierModel<Scalar = unknown, Label =
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 16.0+
  */
-export type LogisticRegressionClassifierModel_Input<Scalar = unknown, Label = unknown> = $SDK51;
+export type LogisticRegressionClassifierModel_Input<Scalar = unknown, Label = unknown> = $SDK54;
 /**
  * typealias Output = ClassificationDistribution<Label>
  * @availability iOS 16.0+
  */
-export type LogisticRegressionClassifierModel_Output<Scalar = unknown, Label = unknown> = $SDK52;
+export type LogisticRegressionClassifierModel_Output<Scalar = unknown, Label = unknown> = $SDK55;
 /**
  * struct MaxAbsScaler<Element> where Element : BinaryFloatingPoint, Element : Decodable, Element : Encodable
  * @availability iOS 16.0+
@@ -3712,7 +4180,7 @@ export declare class MaxAbsScaler<Element = unknown> extends SDKHandle {
      * func fitted<S>(to input: S, eventHandler: EventHandler? = nil) throws -> MaxAbsScaler<Element>.Transformer where Element == S.Element, S : Sequence
      * @availability iOS 16.0+
      */
-    fitted(input: Array<number>, eventHandler?: $SDK8): $SDK75;
+    fitted(input: Array<number>, eventHandler?: $SDK9): $SDK79;
     /**
      * init()
      * @availability iOS 16.0+
@@ -3736,7 +4204,7 @@ export declare class MaxAbsScaler_Transformer<Element = unknown> extends SDKHand
      * init(maximumAbsoluteValue: Element)
      * @availability iOS 16.0+
      */
-    static init(maximumAbsoluteValue: number): $SDK75;
+    static init(maximumAbsoluteValue: number): $SDK79;
     /**
      * var maximumAbsoluteValue: Element
      * @availability iOS 16.0+
@@ -3747,7 +4215,7 @@ export declare class MaxAbsScaler_Transformer<Element = unknown> extends SDKHand
      * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
      * @availability iOS 16.0+
      */
-    applied(input: number, eventHandler?: $SDK8): number;
+    applied(input: number, eventHandler?: $SDK9): number;
     readonly $type: {
         "s:18CreateMLComponents12MaxAbsScalerV11TransformerV": true;
     };
@@ -3865,7 +4333,7 @@ export declare class MinMaxScaler<Element = unknown> extends SDKHandle {
      * func fitted<S>(to input: S, eventHandler: EventHandler? = nil) throws -> MinMaxScaler<Element>.Transformer where Element == S.Element, S : Sequence
      * @availability iOS 16.0+
      */
-    fitted(input: Array<number>, eventHandler?: $SDK8): $SDK76;
+    fitted(input: Array<number>, eventHandler?: $SDK9): $SDK80;
     readonly $type: {
         "s:18CreateMLComponents12MinMaxScalerV": true;
     };
@@ -3885,7 +4353,7 @@ export declare class MinMaxScaler_Transformer<Element = unknown> extends SDKHand
      * init(desiredRange: ClosedRange<Element>, fittedRange: ClosedRange<Element>)
      * @availability iOS 16.0+
      */
-    static init(desiredRange: SDKHandle, fittedRange: SDKHandle): $SDK76;
+    static init(desiredRange: SDKHandle, fittedRange: SDKHandle): $SDK80;
     /**
      * var desiredRange: ClosedRange<Element>
      * @availability iOS 16.0+
@@ -3901,7 +4369,7 @@ export declare class MinMaxScaler_Transformer<Element = unknown> extends SDKHand
      * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
      * @availability iOS 16.0+
      */
-    applied(input: number, eventHandler?: $SDK8): number;
+    applied(input: number, eventHandler?: $SDK9): number;
     readonly $type: {
         "s:18CreateMLComponents12MinMaxScalerV11TransformerV": true;
     };
@@ -3925,12 +4393,12 @@ export declare class MLModelClassifierAdaptor<Scalar = unknown> extends SDKHandl
      * init(contentsOf url: URL, configuration: MLModelConfiguration) throws
      * @availability iOS 16.0+
      */
-    static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK77;
+    static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK81;
     /**
      * init(model: MLModel) throws
      * @availability iOS 16.0+
      */
-    static initModel(model: _CoreML_MLModel): $SDK77;
+    static initModel(model: _CoreML_MLModel): $SDK81;
     /**
      * let model: MLModel
      * @availability iOS 16.0+
@@ -3940,7 +4408,7 @@ export declare class MLModelClassifierAdaptor<Scalar = unknown> extends SDKHandl
      * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> ClassificationDistribution<MLModelClassifierAdaptor<Scalar>.Label>
      * @availability iOS 16.0+
      */
-    applied(input: $SDK0, eventHandler?: $SDK8): Promise<ClassificationDistribution<MLModelClassifierAdaptor_Label<number>>>;
+    applied(input: $SDK0, eventHandler?: $SDK9): Promise<ClassificationDistribution<MLModelClassifierAdaptor_Label<number>>>;
     readonly $type: {
         "s:18CreateMLComponents24MLModelClassifierAdaptorV": true;
     };
@@ -3949,7 +4417,7 @@ export declare class MLModelClassifierAdaptor<Scalar = unknown> extends SDKHandl
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 16.0+
  */
-export type MLModelClassifierAdaptor_Input<Scalar = unknown> = $SDK51;
+export type MLModelClassifierAdaptor_Input<Scalar = unknown> = $SDK54;
 /**
  * enum Label
  * @availability iOS 16.0+
@@ -3959,12 +4427,12 @@ export declare class MLModelClassifierAdaptor_Label<Scalar = unknown> extends SD
      * init(stringLiteral value: String)
      * @availability iOS 16.0+
      */
-    static initStringLiteral(value: string): $SDK79;
+    static initStringLiteral(value: string): $SDK83;
     /**
      * init(integerLiteral value: Int)
      * @availability iOS 16.0+
      */
-    static initIntegerLiteral(value: number): $SDK79;
+    static initIntegerLiteral(value: number): $SDK83;
     /**
      * var debugDescription: String { get }
      * @availability iOS 16.0+
@@ -4028,7 +4496,7 @@ export declare class MLModelImageFeatureExtractor extends SDKHandle {
      * func applied(to input: CIImage, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Float>
      * @availability iOS 16.0+
      */
-    applied(input: _CoreImage_CIImage, eventHandler?: $SDK8): Promise<$SDK0>;
+    applied(input: _CoreImage_CIImage, eventHandler?: $SDK9): Promise<$SDK0>;
     /**
      * let inputName: String
      * @availability iOS 16.0+
@@ -4071,12 +4539,12 @@ export declare class MLModelRegressorAdaptor<Scalar = unknown> extends SDKHandle
      * init(contentsOf url: URL, configuration: MLModelConfiguration) throws
      * @availability iOS 16.0+
      */
-    static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK81;
+    static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK85;
     /**
      * init(model: MLModel) throws
      * @availability iOS 16.0+
      */
-    static initModel(model: _CoreML_MLModel): $SDK81;
+    static initModel(model: _CoreML_MLModel): $SDK85;
     /**
      * let model: MLModel
      * @availability iOS 16.0+
@@ -4086,7 +4554,7 @@ export declare class MLModelRegressorAdaptor<Scalar = unknown> extends SDKHandle
      * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> Double
      * @availability iOS 16.0+
      */
-    applied(input: $SDK0, eventHandler?: $SDK8): Promise<number>;
+    applied(input: $SDK0, eventHandler?: $SDK9): Promise<number>;
     readonly $type: {
         "s:18CreateMLComponents23MLModelRegressorAdaptorV": true;
     };
@@ -4095,7 +4563,7 @@ export declare class MLModelRegressorAdaptor<Scalar = unknown> extends SDKHandle
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 16.0+
  */
-export type MLModelRegressorAdaptor_Input<Scalar = unknown> = $SDK51;
+export type MLModelRegressorAdaptor_Input<Scalar = unknown> = $SDK54;
 /**
  * typealias Output = Double
  * @availability iOS 16.0+
@@ -4110,12 +4578,12 @@ export declare class MLModelTransformerAdaptor<Scalar = unknown> extends SDKHand
      * init(contentsOf url: URL, configuration: MLModelConfiguration) throws
      * @availability iOS 16.0+
      */
-    static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK82;
+    static initContentsOfConfiguration(url: string, configuration: _CoreML_MLModelConfiguration): $SDK86;
     /**
      * init(model: MLModel) throws
      * @availability iOS 16.0+
      */
-    static initModel(model: _CoreML_MLModel): $SDK82;
+    static initModel(model: _CoreML_MLModel): $SDK86;
     /**
      * let model: MLModel
      * @availability iOS 16.0+
@@ -4125,7 +4593,7 @@ export declare class MLModelTransformerAdaptor<Scalar = unknown> extends SDKHand
      * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Scalar>
      * @availability iOS 16.0+
      */
-    applied(input: $SDK0, eventHandler?: $SDK8): Promise<$SDK0>;
+    applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0>;
     readonly $type: {
         "s:18CreateMLComponents25MLModelTransformerAdaptorV": true;
     };
@@ -4134,12 +4602,12 @@ export declare class MLModelTransformerAdaptor<Scalar = unknown> extends SDKHand
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 16.0+
  */
-export type MLModelTransformerAdaptor_Input<Scalar = unknown> = $SDK51;
+export type MLModelTransformerAdaptor_Input<Scalar = unknown> = $SDK54;
 /**
  * typealias Output = MLShapedArray<Scalar>
  * @availability iOS 16.0+
  */
-export type MLModelTransformerAdaptor_Output<Scalar = unknown> = $SDK51;
+export type MLModelTransformerAdaptor_Output<Scalar = unknown> = $SDK54;
 /**
  * enum ModelCompatibilityError
  * @availability iOS 16.0+
@@ -4320,13 +4788,13 @@ export declare class MultivariateLinearRegressor<Scalar = unknown> extends SDKHa
      * func makeTransformer() -> MultivariateLinearRegressor<Scalar>.Model
      * @availability iOS 18.0+
      */
-    makeTransformer(): $SDK84;
+    makeTransformer(): $SDK88;
     /**
      * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> MultivariateLinearRegressor<Scalar>.Model
      * @availability iOS 18.0+
      */
     decodeWithOptimizer(decoder: SDKHandle): {
-        $ret: $SDK84;
+        $ret: $SDK88;
         $out: {
             "decoder": SDKHandle;
         };
@@ -4335,7 +4803,7 @@ export declare class MultivariateLinearRegressor<Scalar = unknown> extends SDKHa
      * func encodeWithOptimizer(_ model: MultivariateLinearRegressor<Scalar>.Model, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 18.0+
      */
-    encodeWithOptimizer(model: $SDK84, encoder: SDKHandle): {
+    encodeWithOptimizer(model: $SDK88, encoder: SDKHandle): {
         $ret: null;
         $out: {
             "encoder": SDKHandle;
@@ -4346,7 +4814,7 @@ export declare class MultivariateLinearRegressor<Scalar = unknown> extends SDKHa
      * @availability iOS 18.0+
      */
     decode(decoder: SDKHandle): {
-        $ret: $SDK84;
+        $ret: $SDK88;
         $out: {
             "decoder": SDKHandle;
         };
@@ -4355,7 +4823,7 @@ export declare class MultivariateLinearRegressor<Scalar = unknown> extends SDKHa
      * func encode(_ model: MultivariateLinearRegressor<Scalar>.Model, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 18.0+
      */
-    encode(model: $SDK84, encoder: SDKHandle): {
+    encode(model: $SDK88, encoder: SDKHandle): {
         $ret: null;
         $out: {
             "encoder": SDKHandle;
@@ -4365,15 +4833,15 @@ export declare class MultivariateLinearRegressor<Scalar = unknown> extends SDKHa
      * func fitted(to input: AnnotatedBatch<Scalar>, validateOn validation: AnnotatedBatch<Scalar>?, eventHandler: EventHandler? = nil) async throws -> MultivariateLinearRegressor<Scalar>.Model
      * @availability iOS 18.0+
      */
-    fitted(input: AnnotatedBatch<number>, validation?: $SDK85, eventHandler?: $SDK8): Promise<$SDK84>;
+    fitted(input: AnnotatedBatch<number>, validation?: $SDK89, eventHandler?: $SDK9): Promise<$SDK88>;
     /**
      * func update(_ model: inout MultivariateLinearRegressor<Scalar>.Model, with input: AnnotatedBatch<Scalar>) async throws -> Scalar
      * @availability iOS 18.0+
      */
-    update(model: $SDK84, input: AnnotatedBatch<number>): Promise<{
+    update(model: $SDK88, input: AnnotatedBatch<number>): Promise<{
         $ret: number;
         $out: {
-            "model": $SDK84;
+            "model": $SDK88;
         };
     }>;
     readonly $type: {
@@ -4384,7 +4852,7 @@ export declare class MultivariateLinearRegressor<Scalar = unknown> extends SDKHa
  * typealias Annotation = MLShapedArray<Scalar>
  * @availability iOS 18.0+
  */
-export type MultivariateLinearRegressor_Annotation<Scalar = unknown> = $SDK51;
+export type MultivariateLinearRegressor_Annotation<Scalar = unknown> = $SDK54;
 /**
  * typealias Configuration = MultivariateLinearRegressorConfiguration
  * @availability iOS 18.0+
@@ -4394,7 +4862,7 @@ export type MultivariateLinearRegressor_Configuration<Scalar = unknown> = Multiv
  * typealias Feature = MLShapedArray<Scalar>
  * @availability iOS 18.0+
  */
-export type MultivariateLinearRegressor_Feature<Scalar = unknown> = $SDK51;
+export type MultivariateLinearRegressor_Feature<Scalar = unknown> = $SDK54;
 /**
  * struct Model
  * @availability iOS 18.0+
@@ -4409,12 +4877,12 @@ export declare class MultivariateLinearRegressor_Model<Scalar = unknown> extends
      * var bias: MLShapedArray<Scalar>? { get }
      * @availability iOS 18.0+
      */
-    get bias(): $SDK70;
+    get bias(): $SDK72;
     /**
      * init(weight: MLShapedArray<Scalar>, bias: MLShapedArray<Scalar>?)
      * @availability iOS 18.0+
      */
-    static init(weight: $SDK0, bias?: $SDK70): $SDK84;
+    static init(weight: $SDK0, bias?: $SDK72): $SDK88;
     /**
      * var weight: MLShapedArray<Scalar> { get }
      * @availability iOS 18.0+
@@ -4424,7 +4892,7 @@ export declare class MultivariateLinearRegressor_Model<Scalar = unknown> extends
      * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> MLShapedArray<Scalar>
      * @availability iOS 18.0+
      */
-    applied(input: $SDK0, eventHandler?: $SDK8): Promise<$SDK0>;
+    applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK0>;
     /**
      * var inputSize: Int { get }
      * @availability iOS 18.0+
@@ -4438,12 +4906,12 @@ export declare class MultivariateLinearRegressor_Model<Scalar = unknown> extends
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 18.0+
  */
-export type MultivariateLinearRegressor_Model_Input<Scalar = unknown> = $SDK51;
+export type MultivariateLinearRegressor_Model_Input<Scalar = unknown> = $SDK54;
 /**
  * typealias Output = MLShapedArray<Scalar>
  * @availability iOS 18.0+
  */
-export type MultivariateLinearRegressor_Model_Output<Scalar = unknown> = $SDK51;
+export type MultivariateLinearRegressor_Model_Output<Scalar = unknown> = $SDK54;
 /**
  * typealias Transformer = MultivariateLinearRegressor<Scalar>.Model
  * @availability iOS 18.0+
@@ -4508,18 +4976,18 @@ export declare class NormalizationScaler<Element = unknown> extends SDKHandle {
      * var norm: NormalizationScaler<Element>.NormalizationStrategy
      * @availability iOS 16.0+
      */
-    get norm(): $SDK87;
-    set norm(value: $SDK87);
+    get norm(): $SDK91;
+    set norm(value: $SDK91);
     /**
      * init(norm: NormalizationScaler<Element>.NormalizationStrategy = .l2)
      * @availability iOS 16.0+
      */
-    static init(norm?: $SDK87): NormalizationScaler<number>;
+    static init(norm?: $SDK91): NormalizationScaler<number>;
     /**
      * func fitted<S>(to input: S, eventHandler: EventHandler? = nil) throws -> NormalizationScaler<Element>.Transformer where Element == S.Element, S : Sequence
      * @availability iOS 16.0+
      */
-    fitted(input: Array<number>, eventHandler?: $SDK8): $SDK89;
+    fitted(input: Array<number>, eventHandler?: $SDK9): $SDK93;
     readonly $type: {
         "s:18CreateMLComponents19NormalizationScalerV": true;
     };
@@ -4543,7 +5011,7 @@ export declare class NormalizationScaler_Transformer<Element = unknown> extends 
      * init(scale: Element)
      * @availability iOS 16.0+
      */
-    static init(scale: number): $SDK89;
+    static init(scale: number): $SDK93;
     /**
      * var scale: Element
      * @availability iOS 16.0+
@@ -4554,7 +5022,7 @@ export declare class NormalizationScaler_Transformer<Element = unknown> extends 
      * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
      * @availability iOS 16.0+
      */
-    applied(input: number, eventHandler?: $SDK8): number;
+    applied(input: number, eventHandler?: $SDK9): number;
     readonly $type: {
         "s:18CreateMLComponents19NormalizationScalerV11TransformerV": true;
     };
@@ -4578,13 +5046,13 @@ export declare class NumericImputer<Element = unknown> extends SDKHandle {
      * func makeTransformer() -> NumericImputer<Element>.Transformer
      * @availability iOS 17.0+
      */
-    makeTransformer(): $SDK62;
+    makeTransformer(): $SDK64;
     /**
      * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> NumericImputer<Element>.Transformer
      * @availability iOS 17.0+
      */
     decodeWithOptimizer(decoder: SDKHandle): {
-        $ret: $SDK62;
+        $ret: $SDK64;
         $out: {
             "decoder": SDKHandle;
         };
@@ -4593,7 +5061,7 @@ export declare class NumericImputer<Element = unknown> extends SDKHandle {
      * func encodeWithOptimizer(_ transformer: NumericImputer<Element>.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 17.0+
      */
-    encodeWithOptimizer(transformer: $SDK62, encoder: SDKHandle): {
+    encodeWithOptimizer(transformer: $SDK64, encoder: SDKHandle): {
         $ret: null;
         $out: {
             "encoder": SDKHandle;
@@ -4608,13 +5076,13 @@ export declare class NumericImputer<Element = unknown> extends SDKHandle {
      * var strategy: NumericImputer<Element>.Strategy
      * @availability iOS 16.0+
      */
-    get strategy(): $SDK90;
-    set strategy(value: $SDK90);
+    get strategy(): $SDK94;
+    set strategy(value: $SDK94);
     /**
      * init(_ strategy: NumericImputer<Element>.Strategy)
      * @availability iOS 16.0+
      */
-    static init(strategy: $SDK90): NumericImputer<number>;
+    static init(strategy: $SDK94): NumericImputer<number>;
     readonly $type: {
         "s:18CreateMLComponents14NumericImputerV": true;
     };
@@ -4638,6 +5106,21 @@ export type NumericImputer_Transformer<Element = unknown> = ImputeTransformer<un
  * @availability iOS 17.0+
  */
 export declare class ObjectDetectionAnnotation<Label = unknown> extends SDKHandle {
+    /**
+     * let imageFileName: String
+     * @availability iOS 17.0+
+     */
+    get imageFileName(): string;
+    /**
+     * var id: String { get }
+     * @availability iOS 17.0+
+     */
+    get id(): string;
+    /**
+     * let objects: [ObjectDetectionAnnotation<Label>.Annotation]
+     * @availability iOS 17.0+
+     */
+    get objects(): Array<ObjectDetectionAnnotation_Annotation<SDKHandle>>;
     readonly $type: {
         "s:18CreateMLComponents25ObjectDetectionAnnotationV": true;
     };
@@ -4647,6 +5130,11 @@ export declare class ObjectDetectionAnnotation<Label = unknown> extends SDKHandl
  * @availability iOS 17.0+
  */
 export declare class ObjectDetectionAnnotation_Annotation<Label = unknown> extends SDKHandle {
+    /**
+     * let boundingBox: CGRect
+     * @availability iOS 17.0+
+     */
+    get boundingBox(): $SDK42;
     readonly $type: {
         "s:18CreateMLComponents25ObjectDetectionAnnotationV0E0V": true;
     };
@@ -4656,6 +5144,23 @@ export declare class ObjectDetectionAnnotation_Annotation<Label = unknown> exten
  * @availability iOS 17.0+
  */
 export type ObjectDetectionAnnotation_Annotation_CodingKeys<Label = unknown> = "boundingBox" | "label";
+export declare const ObjectDetectionAnnotation_Annotation_CodingKeys: {
+    /**
+     * var stringValue: String { get }
+     * @availability iOS 17.0+
+     */
+    getStringValue($self: ObjectDetectionAnnotation_Annotation_CodingKeys): string;
+    /**
+     * var intValue: Int? { get }
+     * @availability iOS 17.0+
+     */
+    getIntValue($self: ObjectDetectionAnnotation_Annotation_CodingKeys): (number) | null;
+    /**
+     * var rawValue: String { get }
+     * @availability iOS 17.0+
+     */
+    getRawValue($self: ObjectDetectionAnnotation_Annotation_CodingKeys): string;
+};
 /**
  * typealias RawValue = String
  * @availability iOS 17.0+
@@ -4666,6 +5171,23 @@ export type ObjectDetectionAnnotation_Annotation_CodingKeys_RawValue<Label = unk
  * @availability iOS 17.0+
  */
 export type ObjectDetectionAnnotation_CodingKeys<Label = unknown> = "imageFileName" | "objects" | "prominentObject";
+export declare const ObjectDetectionAnnotation_CodingKeys: {
+    /**
+     * var stringValue: String { get }
+     * @availability iOS 17.0+
+     */
+    getStringValue($self: ObjectDetectionAnnotation_CodingKeys): string;
+    /**
+     * var intValue: Int? { get }
+     * @availability iOS 17.0+
+     */
+    getIntValue($self: ObjectDetectionAnnotation_CodingKeys): (number) | null;
+    /**
+     * var rawValue: String { get }
+     * @availability iOS 17.0+
+     */
+    getRawValue($self: ObjectDetectionAnnotation_CodingKeys): string;
+};
 /**
  * typealias RawValue = String
  * @availability iOS 17.0+
@@ -4681,6 +5203,12 @@ export type ObjectDetectionAnnotation_ID<Label = unknown> = string;
  * @availability iOS 17.0+
  */
 export declare class ObjectDetectionMetrics<Label = unknown> extends SDKHandle {
+    /**
+     * var defaultConfidenceThreshold: Float
+     * @availability iOS 17.0+
+     */
+    get defaultConfidenceThreshold(): number;
+    set defaultConfidenceThreshold(value: number);
     readonly $type: {
         "s:18CreateMLComponents22ObjectDetectionMetricsV": true;
     };
@@ -4690,6 +5218,31 @@ export declare class ObjectDetectionMetrics<Label = unknown> extends SDKHandle {
  * @availability iOS 16.0+
  */
 export declare class OneHotEncoder<Category = unknown> extends SDKHandle {
+    /**
+     * func makeTransformer() -> OneHotEncoder<Category>.Transformer
+     * @availability iOS 17.0+
+     */
+    makeTransformer(): $SDK96;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> OneHotEncoder<Category>.Transformer
+     * @availability iOS 17.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK96;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: OneHotEncoder<Category>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encodeWithOptimizer(transformer: $SDK96, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents13OneHotEncoderV": true;
     };
@@ -4699,6 +5252,11 @@ export declare class OneHotEncoder<Category = unknown> extends SDKHandle {
  * @availability iOS 16.0+
  */
 export declare class OneHotEncoder_Transformer<Category = unknown> extends SDKHandle {
+    /**
+     * var debugDescription: String { get }
+     * @availability iOS 16.0+
+     */
+    get debugDescription(): string;
     readonly $type: {
         "s:18CreateMLComponents13OneHotEncoderV11TransformerV": true;
     };
@@ -4744,7 +5302,7 @@ export declare class OptionalUnwrapper<Element = unknown> extends SDKHandle {
      * func applied(to input: Element?, eventHandler: EventHandler? = nil) throws -> Element
      * @availability iOS 16.0+
      */
-    applied(input?: (unknown) | null, eventHandler?: $SDK8): unknown;
+    applied(input?: (unknown) | null, eventHandler?: $SDK9): unknown;
     /**
      * init()
      * @availability iOS 16.0+
@@ -4769,6 +5327,31 @@ export type OptionalUnwrapper_Output<Element = unknown> = unknown;
  * @availability iOS 16.0+
  */
 export declare class OrdinalEncoder<Category = unknown> extends SDKHandle {
+    /**
+     * func makeTransformer() -> OrdinalEncoder<Category>.Transformer
+     * @availability iOS 17.0+
+     */
+    makeTransformer(): $SDK98;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> OrdinalEncoder<Category>.Transformer
+     * @availability iOS 17.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK98;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: OrdinalEncoder<Category>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encodeWithOptimizer(transformer: $SDK98, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents14OrdinalEncoderV": true;
     };
@@ -4778,6 +5361,11 @@ export declare class OrdinalEncoder<Category = unknown> extends SDKHandle {
  * @availability iOS 16.0+
  */
 export declare class OrdinalEncoder_Transformer<Category = unknown> extends SDKHandle {
+    /**
+     * var debugDescription: String { get }
+     * @availability iOS 16.0+
+     */
+    get debugDescription(): string;
     readonly $type: {
         "s:18CreateMLComponents14OrdinalEncoderV11TransformerV": true;
     };
@@ -4825,8 +5413,8 @@ export declare class Pose extends SDKHandle {
      * var keypoints: [JointKey : JointPoint]
      * @availability iOS 16.0+
      */
-    get keypoints(): $SDK92;
-    set keypoints(value: $SDK92);
+    get keypoints(): $SDK99;
+    set keypoints(value: $SDK99);
     /**
      * init(_ observation: VNRecognizedPointsObservation) throws
      * @availability iOS 16.0+
@@ -4861,7 +5449,7 @@ export declare class PoseSelector extends SDKHandle {
      * func applied(to input: [Pose], eventHandler: EventHandler? = nil) -> Pose
      * @availability iOS 16.0+
      */
-    applied(input: Array<Pose>, eventHandler?: $SDK8): Pose;
+    applied(input: Array<Pose>, eventHandler?: $SDK9): Pose;
     /**
      * init(strategy: PoseSelectionStrategy, confidenceThreshold: Float)
      * @availability iOS 16.0+
@@ -4916,8 +5504,8 @@ export declare class PreprocessedFeatureSequence<Feature = unknown> extends SDKH
      * var features: [TemporalFeature<Feature>]
      * @availability iOS 16.0+
      */
-    get features(): $SDK94;
-    set features(value: $SDK94);
+    get features(): Array<TemporalFeature<unknown>>;
+    set features(value: Array<TemporalFeature<unknown>>);
     readonly $type: {
         "s:18CreateMLComponents27PreprocessedFeatureSequenceV": true;
     };
@@ -4941,17 +5529,37 @@ export declare class PreprocessedFeatureSequence_AsyncIterator<Feature = unknown
  * typealias Element = TemporalFeature<Feature>
  * @availability iOS 16.0+
  */
-export type PreprocessedFeatureSequence_AsyncIterator_Element<Feature = unknown> = $SDK7;
+export type PreprocessedFeatureSequence_AsyncIterator_Element<Feature = unknown> = $SDK8;
 /**
  * typealias Element = TemporalFeature<Feature>
  * @availability iOS 16.0+
  */
-export type PreprocessedFeatureSequence_Element<Feature = unknown> = $SDK7;
+export type PreprocessedFeatureSequence_Element<Feature = unknown> = $SDK8;
 /**
  * struct PreprocessingEstimator<Preprocessor, Estimator> where Preprocessor : Transformer, Estimator : Estimator, Preprocessor.Output == Estimator.Transformer.Input
  * @availability iOS 16.0+
  */
 export declare class PreprocessingEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK104;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: $SDK104, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents22PreprocessingEstimatorV": true;
     };
@@ -4975,12 +5583,32 @@ export type PreprocessingEstimator_Output<Preprocessor = unknown, Estimator = un
  * typealias Transformer = ComposedTransformer<Preprocessor, Estimator.Transformer>
  * @availability iOS 16.0+
  */
-export type PreprocessingEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK97;
+export type PreprocessingEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK105;
 /**
  * struct PreprocessingSupervisedEstimator<Preprocessor, Estimator> where Preprocessor : Transformer, Estimator : SupervisedEstimator, Preprocessor.Output == Estimator.Transformer.Input
  * @availability iOS 16.0+
  */
 export declare class PreprocessingSupervisedEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingSupervisedEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK104;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingSupervisedEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: $SDK104, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV": true;
     };
@@ -5009,12 +5637,53 @@ export type PreprocessingSupervisedEstimator_Output<Preprocessor = unknown, Esti
  * typealias Transformer = ComposedTransformer<Preprocessor, Estimator.Transformer>
  * @availability iOS 16.0+
  */
-export type PreprocessingSupervisedEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK97;
+export type PreprocessingSupervisedEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK105;
 /**
  * struct PreprocessingSupervisedTabularEstimator<Preprocessor, Estimator> where Preprocessor : TabularTransformer, Estimator : SupervisedTabularEstimator
  * @availability iOS 17.0+
  */
 export declare class PreprocessingSupervisedTabularEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func preprocessed(from input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
+     * @availability iOS 17.0+
+     */
+    preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame>;
+    /**
+     * var preprocessor: Preprocessor
+     * @availability iOS 17.0+
+     */
+    get preprocessor(): TreeRegressorModel;
+    set preprocessor(value: TreeRegressorModel);
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK106;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encode(transformer: $SDK106, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func fitted(toPreprocessed preprocessedInput: DataFrame, validateOn preprocessedValidation: DataFrame?, eventHandler: EventHandler? = nil) async throws -> PreprocessingSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    fittedToPreprocessedValidateOnEventHandler(preprocessedInput: _TabularData_DataFrame, preprocessedValidation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106>;
+    /**
+     * func fitted(to input: DataFrame, validateOn validation: DataFrame?, eventHandler: EventHandler? = nil) async throws -> PreprocessingSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    fittedToValidateOnEventHandler(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106>;
     readonly $type: {
         "s:18CreateMLComponents39PreprocessingSupervisedTabularEstimatorV": true;
     };
@@ -5043,13 +5712,35 @@ export type PreprocessingSupervisedTabularEstimator_Output<Preprocessor = unknow
  * typealias Transformer = ComposedTabularTransformer<Preprocessor, Estimator.Transformer>
  * @availability iOS 17.0+
  */
-export type PreprocessingSupervisedTabularEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK98;
+export type PreprocessingSupervisedTabularEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK107;
 /**
  * struct PreprocessingSupervisedTemporalEstimator<Preprocessor, Estimator> where Preprocessor : TemporalTransformer, Estimator : SupervisedTemporalEstimator, Preprocessor.Output == Estimator.Transformer.Input
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
 export declare class PreprocessingSupervisedTemporalEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK108;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encode(transformer: $SDK108, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents40PreprocessingSupervisedTemporalEstimatorV": true;
     };
@@ -5083,12 +5774,53 @@ export type PreprocessingSupervisedTemporalEstimator_Output<Preprocessor = unkno
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
-export type PreprocessingSupervisedTemporalEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK99;
+export type PreprocessingSupervisedTemporalEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK109;
 /**
  * struct PreprocessingTabularEstimator<Preprocessor, Estimator> where Preprocessor : TabularTransformer, Estimator : TabularEstimator
  * @availability iOS 17.0+
  */
 export declare class PreprocessingTabularEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func preprocessed(from input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
+     * @availability iOS 17.0+
+     */
+    preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame>;
+    /**
+     * var preprocessor: Preprocessor
+     * @availability iOS 17.0+
+     */
+    get preprocessor(): TreeRegressorModel;
+    set preprocessor(value: TreeRegressorModel);
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK106;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encode(transformer: $SDK106, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func fitted(toPreprocessed preprocessed: DataFrame, eventHandler: EventHandler? = nil) async throws -> PreprocessingTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    fittedToPreprocessedEventHandler(preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106>;
+    /**
+     * func fitted(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> PreprocessingTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    fittedToEventHandler(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106>;
     readonly $type: {
         "s:18CreateMLComponents29PreprocessingTabularEstimatorV": true;
     };
@@ -5112,13 +5844,35 @@ export type PreprocessingTabularEstimator_Output<Preprocessor = unknown, Estimat
  * typealias Transformer = ComposedTabularTransformer<Preprocessor, Estimator.Transformer>
  * @availability iOS 17.0+
  */
-export type PreprocessingTabularEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK98;
+export type PreprocessingTabularEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK107;
 /**
  * struct PreprocessingTemporalEstimator<Preprocessor, Estimator> where Preprocessor : TemporalTransformer, Estimator : TemporalEstimator, Preprocessor.Output == Estimator.Transformer.Input
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
 export declare class PreprocessingTemporalEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingTemporalEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK108;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encode(transformer: $SDK108, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents30PreprocessingTemporalEstimatorV": true;
     };
@@ -5146,12 +5900,57 @@ export type PreprocessingTemporalEstimator_Output<Preprocessor = unknown, Estima
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
-export type PreprocessingTemporalEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK99;
+export type PreprocessingTemporalEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK109;
 /**
  * struct PreprocessingUpdatableEstimator<Preprocessor, Estimator> where Preprocessor : Transformer, Estimator : UpdatableEstimator, Preprocessor.Output == Estimator.Transformer.Input
  * @availability iOS 16.0+
  */
 export declare class PreprocessingUpdatableEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func makeTransformer() -> PreprocessingUpdatableEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     */
+    makeTransformer(): $SDK104;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK104;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encodeWithOptimizer(transformer: $SDK104, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK104;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingUpdatableEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: $SDK104, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents31PreprocessingUpdatableEstimatorV": true;
     };
@@ -5175,12 +5974,57 @@ export type PreprocessingUpdatableEstimator_Output<Preprocessor = unknown, Estim
  * typealias Transformer = ComposedTransformer<Preprocessor, Estimator.Transformer>
  * @availability iOS 16.0+
  */
-export type PreprocessingUpdatableEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK97;
+export type PreprocessingUpdatableEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK105;
 /**
  * struct PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator> where Preprocessor : Transformer, Estimator : UpdatableSupervisedEstimator, Preprocessor.Output == Estimator.Transformer.Input
  * @availability iOS 16.0+
  */
 export declare class PreprocessingUpdatableSupervisedEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func makeTransformer() -> PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     */
+    makeTransformer(): $SDK104;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK104;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encodeWithOptimizer(transformer: $SDK104, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK104;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingUpdatableSupervisedEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: $SDK104, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents41PreprocessingUpdatableSupervisedEstimatorV": true;
     };
@@ -5209,12 +6053,98 @@ export type PreprocessingUpdatableSupervisedEstimator_Output<Preprocessor = unkn
  * typealias Transformer = ComposedTransformer<Preprocessor, Estimator.Transformer>
  * @availability iOS 16.0+
  */
-export type PreprocessingUpdatableSupervisedEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK97;
+export type PreprocessingUpdatableSupervisedEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK105;
 /**
  * struct PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator> where Preprocessor : TabularTransformer, Estimator : UpdatableSupervisedTabularEstimator
  * @availability iOS 17.0+
  */
 export declare class PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func preprocessed(from input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
+     * @availability iOS 17.0+
+     */
+    preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame>;
+    /**
+     * var preprocessor: Preprocessor
+     * @availability iOS 17.0+
+     */
+    get preprocessor(): TreeRegressorModel;
+    set preprocessor(value: TreeRegressorModel);
+    /**
+     * func makeTransformer() -> PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    makeTransformer(): $SDK106;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK106;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encodeWithOptimizer(transformer: $SDK106, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK106;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encode(transformer: $SDK106, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func fitted(toPreprocessed preprocessedInput: DataFrame, validateOn preprocessedValidation: DataFrame?, eventHandler: EventHandler? = nil) async throws -> PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    fittedToPreprocessedValidateOnEventHandler(preprocessedInput: _TabularData_DataFrame, preprocessedValidation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106>;
+    /**
+     * func fitted(to input: DataFrame, validateOn validation: DataFrame?, eventHandler: EventHandler? = nil) async throws -> PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    fittedToValidateOnEventHandler(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<$SDK106>;
+    /**
+     * func update(_ transformer: inout PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer, withPreprocessed preprocessed: DataFrame, eventHandler: EventHandler? = nil) async throws
+     * @availability iOS 17.0+
+     */
+    updateWithPreprocessedEventHandler(transformer: $SDK106, preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{
+        $ret: null;
+        $out: {
+            "transformer": $SDK106;
+        };
+    }>;
+    /**
+     * func update(_ transformer: inout PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor, Estimator>.Transformer, with input: DataFrame, eventHandler: EventHandler? = nil) async throws
+     * @availability iOS 17.0+
+     */
+    updateWithEventHandler(transformer: $SDK106, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{
+        $ret: null;
+        $out: {
+            "transformer": $SDK106;
+        };
+    }>;
     readonly $type: {
         "s:18CreateMLComponents48PreprocessingUpdatableSupervisedTabularEstimatorV": true;
     };
@@ -5243,13 +6173,63 @@ export type PreprocessingUpdatableSupervisedTabularEstimator_Output<Preprocessor
  * typealias Transformer = ComposedTabularTransformer<Preprocessor, Estimator.Transformer>
  * @availability iOS 17.0+
  */
-export type PreprocessingUpdatableSupervisedTabularEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK98;
+export type PreprocessingUpdatableSupervisedTabularEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK107;
 /**
  * struct PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor, Estimator> where Preprocessor : TemporalTransformer, Estimator : UpdatableSupervisedTemporalEstimator, Preprocessor.Output == Estimator.Transformer.Input
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
 export declare class PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func makeTransformer() -> PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    makeTransformer(): $SDK108;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK108;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encodeWithOptimizer(transformer: $SDK108, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK108;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encode(transformer: $SDK108, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents49PreprocessingUpdatableSupervisedTemporalEstimatorV": true;
     };
@@ -5283,12 +6263,98 @@ export type PreprocessingUpdatableSupervisedTemporalEstimator_Output<Preprocesso
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
-export type PreprocessingUpdatableSupervisedTemporalEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK99;
+export type PreprocessingUpdatableSupervisedTemporalEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK109;
 /**
  * struct PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator> where Preprocessor : TabularTransformer, Estimator : UpdatableTabularEstimator
  * @availability iOS 17.0+
  */
 export declare class PreprocessingUpdatableTabularEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func preprocessed(from input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
+     * @availability iOS 17.0+
+     */
+    preprocessed(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame>;
+    /**
+     * var preprocessor: Preprocessor
+     * @availability iOS 17.0+
+     */
+    get preprocessor(): TreeRegressorModel;
+    set preprocessor(value: TreeRegressorModel);
+    /**
+     * func makeTransformer() -> PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    makeTransformer(): $SDK106;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK106;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encodeWithOptimizer(transformer: $SDK106, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK106;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 17.0+
+     */
+    encode(transformer: $SDK106, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func fitted(toPreprocessed preprocessed: DataFrame, eventHandler: EventHandler? = nil) async throws -> PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    fittedToPreprocessedEventHandler(preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106>;
+    /**
+     * func fitted(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 17.0+
+     */
+    fittedToEventHandler(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<$SDK106>;
+    /**
+     * func update(_ transformer: inout PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer, withPreprocessed preprocessed: DataFrame, eventHandler: EventHandler? = nil) async throws
+     * @availability iOS 17.0+
+     */
+    updateWithPreprocessedEventHandler(transformer: $SDK106, preprocessed: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{
+        $ret: null;
+        $out: {
+            "transformer": $SDK106;
+        };
+    }>;
+    /**
+     * func update(_ transformer: inout PreprocessingUpdatableTabularEstimator<Preprocessor, Estimator>.Transformer, with input: DataFrame, eventHandler: EventHandler? = nil) async throws
+     * @availability iOS 17.0+
+     */
+    updateWithEventHandler(transformer: $SDK106, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{
+        $ret: null;
+        $out: {
+            "transformer": $SDK106;
+        };
+    }>;
     readonly $type: {
         "s:18CreateMLComponents38PreprocessingUpdatableTabularEstimatorV": true;
     };
@@ -5312,13 +6378,63 @@ export type PreprocessingUpdatableTabularEstimator_Output<Preprocessor = unknown
  * typealias Transformer = ComposedTabularTransformer<Preprocessor, Estimator.Transformer>
  * @availability iOS 17.0+
  */
-export type PreprocessingUpdatableTabularEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK98;
+export type PreprocessingUpdatableTabularEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK107;
 /**
  * struct PreprocessingUpdatableTemporalEstimator<Preprocessor, Estimator> where Preprocessor : TemporalTransformer, Estimator : UpdatableTemporalEstimator, Preprocessor.Output == Estimator.Transformer.Input
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
 export declare class PreprocessingUpdatableTemporalEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    /**
+     * func makeTransformer() -> PreprocessingUpdatableTemporalEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    makeTransformer(): $SDK108;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableTemporalEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK108;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: PreprocessingUpdatableTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encodeWithOptimizer(transformer: $SDK108, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> PreprocessingUpdatableTemporalEstimator<Preprocessor, Estimator>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK108;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: PreprocessingUpdatableTemporalEstimator<Preprocessor, Estimator>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encode(transformer: $SDK108, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents39PreprocessingUpdatableTemporalEstimatorV": true;
     };
@@ -5346,7 +6462,7 @@ export type PreprocessingUpdatableTemporalEstimator_Output<Preprocessor = unknow
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
-export type PreprocessingUpdatableTemporalEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK99;
+export type PreprocessingUpdatableTemporalEstimator_Transformer<Preprocessor = unknown, Estimator = unknown> = $SDK109;
 /**
  * struct RandomImageCropper
  * @availability iOS 17.0+
@@ -5356,7 +6472,7 @@ export declare class RandomImageCropper extends SDKHandle {
      * init(targetSize: CGSize)
      * @availability iOS 17.0+
      */
-    static initTargetSize(targetSize: $SDK61): RandomImageCropper;
+    static initTargetSize(targetSize: $SDK63): RandomImageCropper;
     /**
      * init(targetWidth: Double, targetHeight: Double)
      * @availability iOS 17.0+
@@ -5390,7 +6506,7 @@ export declare class RandomImageNoiseGenerator extends SDKHandle {
      * func applied(to image: CIImage, eventHandler: EventHandler? = nil) -> CIImage
      * @availability iOS 17.0+
      */
-    applied(image: _CoreImage_CIImage, eventHandler?: $SDK8): _CoreImage_CIImage;
+    applied(image: _CoreImage_CIImage, eventHandler?: $SDK9): _CoreImage_CIImage;
     /**
      * init(intensity: Double)
      * @availability iOS 17.0+
@@ -5425,7 +6541,7 @@ export interface RandomTransformer {
      * func applied(to input: Self.Input, generator: inout some RandomNumberGenerator, eventHandler: EventHandler?) async throws -> Self.Output
      * @availability iOS 17.0+
      */
-    "appliedToGeneratorEventHandler"?: (arg0: unknown, arg1: SDKHandle, arg2: $SDK30) => unknown;
+    "appliedToGeneratorEventHandler"?: (arg0: unknown, arg1: SDKHandle, arg2: $SDK31) => Promise<unknown>;
 }
 /**
  * protocol Regressor : Transformer where Self.Output : FloatingPoint
@@ -5436,13 +6552,29 @@ export interface Regressor {
      * func applied(to input: Self.Input, eventHandler: EventHandler?) async throws -> Self.Output
      * @availability iOS 16.0+
      */
-    "appliedToEventHandler"?: (arg0: unknown, arg1: $SDK30) => unknown;
+    "appliedToEventHandler"?: (arg0: unknown, arg1: $SDK31) => Promise<unknown>;
 }
 /**
  * struct Reshaper<Scalar> where Scalar : MLShapedArrayScalar, Scalar : Decodable, Scalar : Encodable
  * @availability iOS 16.0+
  */
 export declare class Reshaper<Scalar = unknown> extends SDKHandle {
+    /**
+     * var debugDescription: String { get }
+     * @availability iOS 16.0+
+     */
+    get debugDescription(): string;
+    /**
+     * var shape: [Int]
+     * @availability iOS 16.0+
+     */
+    get shape(): Array<number>;
+    set shape(value: Array<number>);
+    /**
+     * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) throws -> MLShapedArray<Scalar>
+     * @availability iOS 16.0+
+     */
+    applied(input: _CoreML_MLShapedArray<SDKHandle>, eventHandler?: $SDK9): _CoreML_MLShapedArray<SDKHandle>;
     readonly $type: {
         "s:18CreateMLComponents8ReshaperV": true;
     };
@@ -5451,12 +6583,12 @@ export declare class Reshaper<Scalar = unknown> extends SDKHandle {
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 16.0+
  */
-export type Reshaper_Input<Scalar = unknown> = $SDK51;
+export type Reshaper_Input<Scalar = unknown> = $SDK54;
 /**
  * typealias Output = MLShapedArray<Scalar>
  * @availability iOS 16.0+
  */
-export type Reshaper_Output<Scalar = unknown> = $SDK51;
+export type Reshaper_Output<Scalar = unknown> = $SDK54;
 /**
  * struct RobustScaler<Element> where Element : BinaryFloatingPoint, Element : Decodable, Element : Encodable
  * @availability iOS 16.0+
@@ -5477,7 +6609,7 @@ export declare class RobustScaler<Element = unknown> extends SDKHandle {
      * func fitted<S>(to input: S, eventHandler: EventHandler? = nil) throws -> RobustScaler<Element>.Transformer where Element == S.Element, S : Sequence
      * @availability iOS 16.0+
      */
-    fitted(input: Array<number>, eventHandler?: $SDK8): RobustScaler_Transformer<number>;
+    fitted(input: Array<number>, eventHandler?: $SDK9): RobustScaler_Transformer<number>;
     readonly $type: {
         "s:18CreateMLComponents12RobustScalerV": true;
     };
@@ -5513,7 +6645,7 @@ export declare class RobustScaler_Transformer<Element = unknown> extends SDKHand
      * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
      * @availability iOS 16.0+
      */
-    applied(input: number, eventHandler?: $SDK8): number;
+    applied(input: number, eventHandler?: $SDK9): number;
     readonly $type: {
         "s:18CreateMLComponents12RobustScalerV11TransformerV": true;
     };
@@ -5634,7 +6766,7 @@ export declare class SlidingWindows<Scalar = unknown> extends SDKHandle {
  * typealias Element = MLShapedArray<Scalar>
  * @availability iOS 18.0+
  */
-export type SlidingWindows_Element<Scalar = unknown> = $SDK51;
+export type SlidingWindows_Element<Scalar = unknown> = $SDK54;
 /**
  * typealias Index = Int
  * @availability iOS 18.0+
@@ -5757,13 +6889,13 @@ export declare class StandardScaler<Element = unknown> extends SDKHandle {
      * func makeTransformer() -> StandardScaler<Element>.Transformer
      * @availability iOS 17.0+
      */
-    makeTransformer(): $SDK108;
+    makeTransformer(): $SDK119;
     /**
      * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> StandardScaler<Element>.Transformer
      * @availability iOS 17.0+
      */
     decodeWithOptimizer(decoder: SDKHandle): {
-        $ret: $SDK108;
+        $ret: $SDK119;
         $out: {
             "decoder": SDKHandle;
         };
@@ -5772,7 +6904,7 @@ export declare class StandardScaler<Element = unknown> extends SDKHandle {
      * func encodeWithOptimizer(_ transformer: StandardScaler<Element>.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 17.0+
      */
-    encodeWithOptimizer(transformer: $SDK108, encoder: SDKHandle): {
+    encodeWithOptimizer(transformer: $SDK119, encoder: SDKHandle): {
         $ret: null;
         $out: {
             "encoder": SDKHandle;
@@ -5782,7 +6914,7 @@ export declare class StandardScaler<Element = unknown> extends SDKHandle {
      * func fitted<S>(to input: S, eventHandler: EventHandler? = nil) throws -> StandardScaler<Element>.Transformer where Element == S.Element, S : Sequence
      * @availability iOS 16.0+
      */
-    fitted(input: Array<number>, eventHandler?: $SDK8): $SDK108;
+    fitted(input: Array<number>, eventHandler?: $SDK9): $SDK119;
     /**
      * init()
      * @availability iOS 16.0+
@@ -5812,7 +6944,7 @@ export declare class StandardScaler_Transformer<Element = unknown> extends SDKHa
      * init(mean: Element, standardDeviation: Element)
      * @availability iOS 16.0+
      */
-    static init(mean: number, standardDeviation: number): $SDK108;
+    static init(mean: number, standardDeviation: number): $SDK119;
     /**
      * var mean: Element
      * @availability iOS 16.0+
@@ -5823,7 +6955,7 @@ export declare class StandardScaler_Transformer<Element = unknown> extends SDKHa
      * func applied(to input: Element, eventHandler: EventHandler? = nil) -> Element
      * @availability iOS 16.0+
      */
-    applied(input: number, eventHandler?: $SDK8): number;
+    applied(input: number, eventHandler?: $SDK9): number;
     readonly $type: {
         "s:18CreateMLComponents14StandardScalerV11TransformerV": true;
     };
@@ -5847,12 +6979,12 @@ export interface SupervisedEstimator {
      * func fitted<Input>(to input: Input, eventHandler: EventHandler?) async throws -> Self.Transformer where Input : Sequence, Input.Element == AnnotatedFeature<Self.Transformer.Input, Self.Annotation>
      * @availability iOS 16.0+
      */
-    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK30) => unknown;
+    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK31) => Promise<unknown>;
     /**
      * func fitted<Input, Validation>(to input: Input, validateOn validation: Validation, eventHandler: EventHandler?) async throws -> Self.Transformer where Input : Sequence, Validation : Sequence, Input.Element == AnnotatedFeature<Self.Transformer.Input, Self.Annotation>, Validation.Element == AnnotatedFeature<Self.Transformer.Input, Self.Annotation>
      * @availability iOS 16.0+
      */
-    "fittedToValidateOnEventHandler"?: (arg0: SDKHandle, arg1: SDKHandle, arg2: $SDK30) => unknown;
+    "fittedToValidateOnEventHandler"?: (arg0: SDKHandle, arg1: SDKHandle, arg2: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -5870,6 +7002,28 @@ export interface SupervisedEstimator {
  * @deprecated iOS 18.0
  */
 export declare class SupervisedEstimatorToTemporalAdaptor<Base = unknown> extends SDKHandle {
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> SupervisedEstimatorToTemporalAdaptor<Base>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK48;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: SupervisedEstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encode(transformer: $SDK48, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents36SupervisedEstimatorToTemporalAdaptorV": true;
     };
@@ -5897,7 +7051,7 @@ export type SupervisedEstimatorToTemporalAdaptor_Output<Base = unknown> = SDKHan
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
-export type SupervisedEstimatorToTemporalAdaptor_Transformer<Base = unknown> = $SDK47;
+export type SupervisedEstimatorToTemporalAdaptor_Transformer<Base = unknown> = $SDK48;
 /**
  * protocol SupervisedTabularEstimator<Transformer, Annotation>
  * @availability iOS 16.0+
@@ -5907,7 +7061,7 @@ export interface SupervisedTabularEstimator {
      * func fitted(to input: DataFrame, validateOn validation: DataFrame?, eventHandler: EventHandler?) async throws -> Self.Transformer
      * @availability iOS 16.0+
      */
-    "fittedToValidateOnEventHandler"?: (arg0: _TabularData_DataFrame, arg1: $SDK21, arg2: $SDK30) => unknown;
+    "fittedToValidateOnEventHandler"?: (arg0: _TabularData_DataFrame, arg1: $SDK19, arg2: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -5930,13 +7084,13 @@ export interface SupervisedTemporalEstimator {
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK30) => unknown;
+    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK31) => Promise<unknown>;
     /**
      * func fitted<InputSequence, Validation, FeatureSequence>(to input: InputSequence, validateOn validation: Validation, eventHandler: EventHandler?) async throws -> Self.Transformer where InputSequence : Sequence, Validation : Sequence, FeatureSequence : TemporalSequence, InputSequence.Element == AnnotatedFeature<FeatureSequence, Self.Annotation>, Validation.Element == AnnotatedFeature<FeatureSequence, Self.Annotation>, FeatureSequence.Feature == Self.Transformer.Input
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    "fittedToValidateOnEventHandler"?: (arg0: SDKHandle, arg1: SDKHandle, arg2: $SDK30) => unknown;
+    "fittedToValidateOnEventHandler"?: (arg0: SDKHandle, arg1: SDKHandle, arg2: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -5959,7 +7113,7 @@ export interface TabularEstimator {
      * func fitted(to input: DataFrame, eventHandler: EventHandler?) async throws -> Self.Transformer
      * @availability iOS 16.0+
      */
-    "fittedToEventHandler"?: (arg0: _TabularData_DataFrame, arg1: $SDK30) => unknown;
+    "fittedToEventHandler"?: (arg0: _TabularData_DataFrame, arg1: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -5976,6 +7130,12 @@ export interface TabularEstimator {
  * @availability iOS 16.0+
  */
 export declare class TabularEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    /**
+     * var annotationColumnID: ColumnID<Annotation>
+     * @availability iOS 16.0+
+     */
+    get annotationColumnID(): $SDK21;
+    set annotationColumnID(value: $SDK21);
     readonly $type: {
         "s:18CreateMLComponents35TabularEstimatorToSupervisedAdaptorV": true;
     };
@@ -6013,7 +7173,7 @@ export interface TabularTransformer {
      * func applied(to input: Self.Input, eventHandler: EventHandler?) async throws -> Self.Output
      * @availability iOS 16.0+
      */
-    "appliedToEventHandler"?: (arg0: unknown, arg1: $SDK30) => unknown;
+    "appliedToEventHandler"?: (arg0: unknown, arg1: $SDK31) => Promise<unknown>;
 }
 /**
  * struct TabularTransformerToEstimatorAdaptor<Transformer> where Transformer : TabularTransformer
@@ -6049,7 +7209,7 @@ export declare class TabularTransformerToEstimatorAdaptor<Transformer = unknown>
      * func fitted(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> Transformer
      * @availability iOS 16.0+
      */
-    fitted(input: _TabularData_DataFrame, eventHandler?: $SDK8): Promise<TreeRegressorModel>;
+    fitted(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<TreeRegressorModel>;
     /**
      * init(_ transformer: Transformer)
      * @availability iOS 16.0+
@@ -6118,12 +7278,12 @@ export declare class TabularTransformerToUpdatableEstimatorAdaptor<Transformer =
      * func fitted(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> Transformer
      * @availability iOS 16.0+
      */
-    fitted(input: _TabularData_DataFrame, eventHandler?: $SDK8): Promise<TreeRegressorModel>;
+    fitted(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<TreeRegressorModel>;
     /**
      * func update(_ transformer: inout Transformer, with input: DataFrame, eventHandler: EventHandler? = nil) async throws
      * @availability iOS 16.0+
      */
-    update(transformer: TreeRegressorModel, input: _TabularData_DataFrame, eventHandler?: $SDK8): Promise<{
+    update(transformer: TreeRegressorModel, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{
         $ret: null;
         $out: {
             "transformer": TreeRegressorModel;
@@ -6161,7 +7321,7 @@ export type TemporalAdaptor_Output<Base = unknown> = SDKHandle;
  * typealias OutputSequence = AnyTemporalSequence<TemporalAdaptor<Base>.Output>
  * @availability iOS 18.0+
  */
-export type TemporalAdaptor_OutputSequence<Base = unknown> = AnyTemporalSequence<TemporalAdaptor<unknown>>;
+export type TemporalAdaptor_OutputSequence<Base = unknown> = AnyTemporalSequence<SDKHandle>;
 /**
  * protocol TemporalEstimator<Transformer>
  * @availability iOS 16.0+
@@ -6173,7 +7333,7 @@ export interface TemporalEstimator {
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK30) => unknown;
+    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -6193,6 +7353,28 @@ export interface TemporalEstimator {
  * @deprecated iOS 18.0
  */
 export declare class TemporalEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> TemporalEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decode(decoder: SDKHandle): {
+        $ret: unknown;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: TemporalEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encode(transformer: unknown, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents36TemporalEstimatorToSupervisedAdaptorV": true;
     };
@@ -6212,7 +7394,7 @@ export declare class TemporalFeature<Feature = unknown> extends SDKHandle {
      * init(id: TemporalSegmentIdentifier, feature: Feature)
      * @availability iOS 16.0+
      */
-    static init(id: TemporalSegmentIdentifier, feature: unknown): $SDK7;
+    static init(id: TemporalSegmentIdentifier, feature: unknown): $SDK8;
     /**
      * var id: TemporalSegmentIdentifier
      * @availability iOS 16.0+
@@ -6317,7 +7499,7 @@ export interface TemporalTransformer {
      * func applied<S>(to input: S, eventHandler: EventHandler?) async throws -> Self.OutputSequence where S : TemporalSequence, Self.Input == S.Feature
      * @availability iOS 16.0+
      */
-    "appliedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK30) => unknown;
+    "appliedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK31) => Promise<unknown>;
 }
 /**
  * struct TemporalTransformerToEstimatorAdaptor<Transformer> where Transformer : TemporalTransformer
@@ -6344,6 +7526,37 @@ export declare class TemporalTransformerToUpdatableEstimatorAdaptor<Transformer 
  * @availability iOS 18.0+
  */
 export declare class TimeSeriesClassifier<Scalar = unknown, Label = unknown> extends SDKHandle {
+    /**
+     * var configuration: TimeSeriesClassifierConfiguration
+     * @availability iOS 18.0+
+     */
+    get configuration(): TimeSeriesClassifierConfiguration;
+    set configuration(value: TimeSeriesClassifierConfiguration);
+    /**
+     * func makeTransformer() -> TimeSeriesClassifier<Scalar, Label>.Model
+     * @availability iOS 18.0+
+     */
+    makeTransformer(): $SDK123;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> TimeSeriesClassifier<Scalar, Label>.Transformer
+     * @availability iOS 18.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK123;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: TimeSeriesClassifier<Scalar, Label>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 18.0+
+     */
+    encodeWithOptimizer(transformer: $SDK123, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents20TimeSeriesClassifierV": true;
     };
@@ -6363,6 +7576,27 @@ export type TimeSeriesClassifier_Configuration<Scalar = unknown, Label = unknown
  * @availability iOS 18.0+
  */
 export declare class TimeSeriesClassifier_Model<Scalar = unknown, Label = unknown> extends SDKHandle {
+    /**
+     * func export(to url: URL, metadata: ModelMetadata) throws
+     * @availability iOS 18.0+
+     */
+    exportToMetadata(url: string, metadata: ModelMetadata): void;
+    /**
+     * func export(to url: URL) throws
+     * @availability iOS 18.0+
+     */
+    exportTo(url: string): void;
+    /**
+     * var stride: Int
+     * @availability iOS 18.0+
+     */
+    get stride(): number;
+    set stride(value: number);
+    /**
+     * func applied(to input: MLShapedArray<Scalar>, eventHandler: EventHandler? = nil) async throws -> ClassificationDistribution<Label>
+     * @availability iOS 18.0+
+     */
+    applied(input: $SDK0, eventHandler?: $SDK9): Promise<$SDK53>;
     readonly $type: {
         "s:18CreateMLComponents20TimeSeriesClassifierV5ModelV": true;
     };
@@ -6371,12 +7605,12 @@ export declare class TimeSeriesClassifier_Model<Scalar = unknown, Label = unknow
  * typealias Input = MLShapedArray<Scalar>
  * @availability iOS 18.0+
  */
-export type TimeSeriesClassifier_Model_Input<Scalar = unknown, Label = unknown> = $SDK51;
+export type TimeSeriesClassifier_Model_Input<Scalar = unknown, Label = unknown> = $SDK54;
 /**
  * typealias Output = ClassificationDistribution<Label>
  * @availability iOS 18.0+
  */
-export type TimeSeriesClassifier_Model_Output<Scalar = unknown, Label = unknown> = $SDK52;
+export type TimeSeriesClassifier_Model_Output<Scalar = unknown, Label = unknown> = $SDK55;
 /**
  * typealias OutputSequence = AnyTemporalSequence<ClassificationDistribution<Label>>
  * @availability iOS 18.0+
@@ -6509,7 +7743,7 @@ export declare class TimeSeriesForecasterAnnotatedWindows<Scalar = unknown> exte
  * typealias Element = AnnotatedFeature<MLShapedArray<Scalar>, MLShapedArray<Scalar>>
  * @availability iOS 18.0+
  */
-export type TimeSeriesForecasterAnnotatedWindows_Element<Scalar = unknown> = $SDK116;
+export type TimeSeriesForecasterAnnotatedWindows_Element<Scalar = unknown> = $SDK128;
 /**
  * struct Iterator
  * @availability iOS 18.0+
@@ -6528,7 +7762,7 @@ export declare class TimeSeriesForecasterAnnotatedWindows_Iterator<Scalar = unkn
  * typealias Element = AnnotatedFeature<MLShapedArray<Scalar>, MLShapedArray<Scalar>>
  * @availability iOS 18.0+
  */
-export type TimeSeriesForecasterAnnotatedWindows_Iterator_Element<Scalar = unknown> = $SDK116;
+export type TimeSeriesForecasterAnnotatedWindows_Iterator_Element<Scalar = unknown> = $SDK128;
 /**
  * struct TimeSeriesForecasterBatches<Scalar> where Scalar : MLShapedArrayScalar
  * @availability iOS 18.0+
@@ -6598,7 +7832,7 @@ export declare class TimeSeriesForecasterBatches_Iterator<Scalar = unknown> exte
      * mutating func next() -> AnnotatedBatch<Scalar>?
      * @availability iOS 18.0+
      */
-    next(): $SDK85;
+    next(): $SDK89;
     readonly $type: {
         "s:18CreateMLComponents27TimeSeriesForecasterBatchesV8IteratorV": true;
     };
@@ -6617,7 +7851,7 @@ export interface Transformer {
      * func applied(to input: Self.Input, eventHandler: EventHandler?) async throws -> Self.Output
      * @availability iOS 16.0+
      */
-    "appliedToEventHandler"?: (arg0: unknown, arg1: $SDK30) => unknown;
+    "appliedToEventHandler"?: (arg0: unknown, arg1: $SDK31) => Promise<unknown>;
 }
 /**
  * struct TransformerToEstimatorAdaptor<Transformer> where Transformer : Transformer
@@ -6655,7 +7889,7 @@ export type TransformerToTemporalAdaptor_Output<Base = unknown> = SDKHandle;
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
-export type TransformerToTemporalAdaptor_OutputSequence<Base = unknown> = AnyTemporalSequence<TransformerToTemporalAdaptor<unknown>>;
+export type TransformerToTemporalAdaptor_OutputSequence<Base = unknown> = AnyTemporalSequence<SDKHandle>;
 /**
  * struct TransformerToUpdatableEstimatorAdaptor<Transformer> where Transformer : Transformer
  * @availability iOS 16.0+
@@ -6700,7 +7934,7 @@ export declare class TreeClassifierModel<Label = unknown> extends SDKHandle {
      * func applied(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
      * @availability iOS 16.0+
      */
-    applied(input: _TabularData_DataFrame, eventHandler?: $SDK8): Promise<_TabularData_DataFrame>;
+    applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame>;
     readonly $type: {
         "s:18CreateMLComponents19TreeClassifierModelV": true;
     };
@@ -6740,7 +7974,7 @@ export declare class TreeRegressorModel extends SDKHandle {
      * func applied(to input: DataFrame, eventHandler: EventHandler? = nil) async throws -> DataFrame
      * @availability iOS 16.0+
      */
-    applied(input: _TabularData_DataFrame, eventHandler?: $SDK8): Promise<_TabularData_DataFrame>;
+    applied(input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<_TabularData_DataFrame>;
     readonly $type: {
         "s:18CreateMLComponents18TreeRegressorModelV": true;
     };
@@ -6814,7 +8048,7 @@ export interface UpdatableEstimator {
      * func fitted<S>(to input: S, eventHandler: EventHandler?) async throws -> Self.Transformer where S : Sequence, S.Element == Self.Transformer.Input
      * @availability iOS 16.0+
      */
-    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK30) => unknown;
+    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -6834,7 +8068,7 @@ export interface UpdatableEstimator {
      * func update<InputSequence>(_ transformer: inout Self.Transformer, with input: InputSequence, eventHandler: EventHandler?) async throws where InputSequence : Sequence, InputSequence.Element == Self.Transformer.Input
      * @availability iOS 16.0+
      */
-    "updateWithEventHandler"?: (arg0: unknown, arg1: SDKHandle, arg2: $SDK30) => void;
+    "updateWithEventHandler"?: (arg0: unknown, arg1: SDKHandle, arg2: $SDK31) => void;
     /**
      * func encodeWithOptimizer(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -6851,6 +8085,46 @@ export interface UpdatableEstimator {
  * @availability iOS 16.0+
  */
 export declare class UpdatableEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> UpdatableEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
+     * @availability iOS 16.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: unknown;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: UpdatableEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encodeWithOptimizer(transformer: unknown, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> UpdatableEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: unknown;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: UpdatableEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: unknown, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents37UpdatableEstimatorToSupervisedAdaptorV": true;
     };
@@ -6866,6 +8140,56 @@ export type UpdatableEstimatorToSupervisedAdaptor_Transformer<Estimator = unknow
  * @deprecated iOS 18.0
  */
 export declare class UpdatableEstimatorToTemporalAdaptor<Base = unknown> extends SDKHandle {
+    /**
+     * func makeTransformer() -> UpdatableEstimatorToTemporalAdaptor<Base>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    makeTransformer(): $SDK48;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> UpdatableEstimatorToTemporalAdaptor<Base>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK48;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: UpdatableEstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encodeWithOptimizer(transformer: $SDK48, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> UpdatableEstimatorToTemporalAdaptor<Base>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK48;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: UpdatableEstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encode(transformer: $SDK48, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents35UpdatableEstimatorToTemporalAdaptorV": true;
     };
@@ -6887,7 +8211,7 @@ export type UpdatableEstimatorToTemporalAdaptor_Output<Base = unknown> = SDKHand
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
-export type UpdatableEstimatorToTemporalAdaptor_Transformer<Base = unknown> = $SDK47;
+export type UpdatableEstimatorToTemporalAdaptor_Transformer<Base = unknown> = $SDK48;
 /**
  * protocol UpdatableSupervisedEstimator<Transformer, Annotation> : SupervisedEstimator
  * @availability iOS 16.0+
@@ -6897,12 +8221,12 @@ export interface UpdatableSupervisedEstimator {
      * func fitted<Input>(to input: Input, eventHandler: EventHandler?) async throws -> Self.Transformer where Input : Sequence, Input.Element == AnnotatedFeature<Self.Transformer.Input, Self.Annotation>
      * @availability iOS 16.0+
      */
-    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK30) => unknown;
+    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK31) => Promise<unknown>;
     /**
      * func fitted<Input, Validation>(to input: Input, validateOn validation: Validation, eventHandler: EventHandler?) async throws -> Self.Transformer where Input : Sequence, Validation : Sequence, Input.Element == AnnotatedFeature<Self.Transformer.Input, Self.Annotation>, Validation.Element == AnnotatedFeature<Self.Transformer.Input, Self.Annotation>
      * @availability iOS 16.0+
      */
-    "fittedToValidateOnEventHandler"?: (arg0: SDKHandle, arg1: SDKHandle, arg2: $SDK30) => unknown;
+    "fittedToValidateOnEventHandler"?: (arg0: SDKHandle, arg1: SDKHandle, arg2: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -6922,7 +8246,7 @@ export interface UpdatableSupervisedEstimator {
      * func update<InputSequence>(_ transformer: inout Self.Transformer, with input: InputSequence, eventHandler: EventHandler?) async throws where InputSequence : Sequence, InputSequence.Element == AnnotatedFeature<Self.Transformer.Input, Self.Annotation>
      * @availability iOS 16.0+
      */
-    "updateWithEventHandler"?: (arg0: unknown, arg1: SDKHandle, arg2: $SDK30) => void;
+    "updateWithEventHandler"?: (arg0: unknown, arg1: SDKHandle, arg2: $SDK31) => void;
     /**
      * func encodeWithOptimizer(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -6940,6 +8264,56 @@ export interface UpdatableSupervisedEstimator {
  * @deprecated iOS 18.0
  */
 export declare class UpdatableSupervisedEstimatorToTemporalAdaptor<Base = unknown> extends SDKHandle {
+    /**
+     * func makeTransformer() -> UpdatableSupervisedEstimatorToTemporalAdaptor<Base>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    makeTransformer(): $SDK48;
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> UpdatableSupervisedEstimatorToTemporalAdaptor<Base>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: $SDK48;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: UpdatableSupervisedEstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encodeWithOptimizer(transformer: $SDK48, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> UpdatableSupervisedEstimatorToTemporalAdaptor<Base>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decode(decoder: SDKHandle): {
+        $ret: $SDK48;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: UpdatableSupervisedEstimatorToTemporalAdaptor<Base>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encode(transformer: $SDK48, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents45UpdatableSupervisedEstimatorToTemporalAdaptorV": true;
     };
@@ -6967,7 +8341,7 @@ export type UpdatableSupervisedEstimatorToTemporalAdaptor_Output<Base = unknown>
  * @availability iOS 16.0+
  * @deprecated iOS 18.0
  */
-export type UpdatableSupervisedEstimatorToTemporalAdaptor_Transformer<Base = unknown> = $SDK47;
+export type UpdatableSupervisedEstimatorToTemporalAdaptor_Transformer<Base = unknown> = $SDK48;
 /**
  * protocol UpdatableSupervisedTabularEstimator<Transformer, Annotation> : SupervisedTabularEstimator
  * @availability iOS 16.0+
@@ -6977,7 +8351,7 @@ export interface UpdatableSupervisedTabularEstimator {
      * func fitted(to input: DataFrame, validateOn validation: DataFrame?, eventHandler: EventHandler?) async throws -> Self.Transformer
      * @availability iOS 16.0+
      */
-    "fittedToValidateOnEventHandler"?: (arg0: _TabularData_DataFrame, arg1: $SDK21, arg2: $SDK30) => unknown;
+    "fittedToValidateOnEventHandler"?: (arg0: _TabularData_DataFrame, arg1: $SDK19, arg2: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -6997,7 +8371,7 @@ export interface UpdatableSupervisedTabularEstimator {
      * func update(_ transformer: inout Self.Transformer, with input: DataFrame, eventHandler: EventHandler?) async throws
      * @availability iOS 16.0+
      */
-    "updateWithEventHandler"?: (arg0: unknown, arg1: _TabularData_DataFrame, arg2: $SDK30) => void;
+    "updateWithEventHandler"?: (arg0: unknown, arg1: _TabularData_DataFrame, arg2: $SDK31) => void;
     /**
      * func encodeWithOptimizer(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -7020,13 +8394,13 @@ export interface UpdatableSupervisedTemporalEstimator {
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK30) => unknown;
+    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK31) => Promise<unknown>;
     /**
      * func fitted<InputSequence, Validation, FeatureSequence>(to input: InputSequence, validateOn validation: Validation, eventHandler: EventHandler?) async throws -> Self.Transformer where InputSequence : Sequence, Validation : Sequence, FeatureSequence : TemporalSequence, InputSequence.Element == AnnotatedFeature<FeatureSequence, Self.Annotation>, Validation.Element == AnnotatedFeature<FeatureSequence, Self.Annotation>, FeatureSequence.Feature == Self.Transformer.Input
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    "fittedToValidateOnEventHandler"?: (arg0: SDKHandle, arg1: SDKHandle, arg2: $SDK30) => unknown;
+    "fittedToValidateOnEventHandler"?: (arg0: SDKHandle, arg1: SDKHandle, arg2: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -7050,7 +8424,7 @@ export interface UpdatableSupervisedTemporalEstimator {
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    "updateWithEventHandler"?: (arg0: unknown, arg1: SDKHandle, arg2: $SDK30) => void;
+    "updateWithEventHandler"?: (arg0: unknown, arg1: SDKHandle, arg2: $SDK31) => void;
     /**
      * func encodeWithOptimizer(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -7073,7 +8447,7 @@ export interface UpdatableTabularEstimator {
      * func fitted(to input: DataFrame, eventHandler: EventHandler?) async throws -> Self.Transformer
      * @availability iOS 16.0+
      */
-    "fittedToEventHandler"?: (arg0: _TabularData_DataFrame, arg1: $SDK30) => unknown;
+    "fittedToEventHandler"?: (arg0: _TabularData_DataFrame, arg1: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -7093,7 +8467,7 @@ export interface UpdatableTabularEstimator {
      * func update(_ transformer: inout Self.Transformer, with input: DataFrame, eventHandler: EventHandler?) async throws
      * @availability iOS 16.0+
      */
-    "updateWithEventHandler"?: (arg0: unknown, arg1: _TabularData_DataFrame, arg2: $SDK30) => void;
+    "updateWithEventHandler"?: (arg0: unknown, arg1: _TabularData_DataFrame, arg2: $SDK31) => void;
     /**
      * func encodeWithOptimizer(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -7110,6 +8484,67 @@ export interface UpdatableTabularEstimator {
  * @availability iOS 16.0+
  */
 export declare class UpdatableTabularEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    /**
+     * var annotationColumnID: ColumnID<Annotation>
+     * @availability iOS 16.0+
+     */
+    get annotationColumnID(): $SDK40;
+    set annotationColumnID(value: $SDK40);
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
+     * @availability iOS 16.0+
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: unknown;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encodeWithOptimizer(transformer: unknown, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
+     * @availability iOS 16.0+
+     */
+    decode(decoder: SDKHandle): {
+        $ret: unknown;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     */
+    encode(transformer: unknown, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func fitted(to input: DataFrame, validateOn validation: DataFrame?, eventHandler: EventHandler? = nil) async throws -> UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
+     * @availability iOS 16.0+
+     */
+    fitted(input: _TabularData_DataFrame, validation?: $SDK19, eventHandler?: $SDK9): Promise<unknown>;
+    /**
+     * func update(_ transformer: inout UpdatableTabularEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, with input: DataFrame, eventHandler: EventHandler? = nil) async throws
+     * @availability iOS 16.0+
+     */
+    update(transformer: unknown, input: _TabularData_DataFrame, eventHandler?: $SDK9): Promise<{
+        $ret: null;
+        $out: {
+            "transformer": unknown;
+        };
+    }>;
     readonly $type: {
         "s:18CreateMLComponents44UpdatableTabularEstimatorToSupervisedAdaptorV": true;
     };
@@ -7130,7 +8565,7 @@ export interface UpdatableTemporalEstimator {
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK30) => unknown;
+    "fittedToEventHandler"?: (arg0: SDKHandle, arg1: $SDK31) => Promise<unknown>;
     /**
      * func encode(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -7154,7 +8589,7 @@ export interface UpdatableTemporalEstimator {
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    "updateWithEventHandler"?: (arg0: unknown, arg1: SDKHandle, arg2: $SDK30) => void;
+    "updateWithEventHandler"?: (arg0: unknown, arg1: SDKHandle, arg2: $SDK31) => void;
     /**
      * func encodeWithOptimizer(_ transformer: Self.Transformer, to encoder: inout any EstimatorEncoder) throws
      * @availability iOS 16.0+
@@ -7174,6 +8609,50 @@ export interface UpdatableTemporalEstimator {
  * @deprecated iOS 18.0
  */
 export declare class UpdatableTemporalEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    /**
+     * func decodeWithOptimizer(from decoder: inout any EstimatorDecoder) throws -> UpdatableTemporalEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decodeWithOptimizer(decoder: SDKHandle): {
+        $ret: unknown;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encodeWithOptimizer(_ transformer: UpdatableTemporalEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encodeWithOptimizer(transformer: unknown, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
+    /**
+     * func decode(from decoder: inout any EstimatorDecoder) throws -> UpdatableTemporalEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    decode(decoder: SDKHandle): {
+        $ret: unknown;
+        $out: {
+            "decoder": SDKHandle;
+        };
+    };
+    /**
+     * func encode(_ transformer: UpdatableTemporalEstimatorToSupervisedAdaptor<Estimator, Annotation>.Transformer, to encoder: inout any EstimatorEncoder) throws
+     * @availability iOS 16.0+
+     * @deprecated iOS 18.0
+     */
+    encode(transformer: unknown, encoder: SDKHandle): {
+        $ret: null;
+        $out: {
+            "encoder": SDKHandle;
+        };
+    };
     readonly $type: {
         "s:18CreateMLComponents45UpdatableTemporalEstimatorToSupervisedAdaptorV": true;
     };
@@ -7189,6 +8668,11 @@ export type UpdatableTemporalEstimatorToSupervisedAdaptor_Transformer<Estimator 
  * @availability iOS 17.0+
  */
 export declare class UpsampledAugmentationSequence<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    /**
+     * let transformer: RandomTransformer
+     * @availability iOS 17.0+
+     */
+    get transformer(): RandomImageCropper;
     readonly $type: {
         "s:18CreateMLComponents29UpsampledAugmentationSequenceV": true;
     };
@@ -7207,7 +8691,7 @@ export declare class UpsampledAugmentationSequence_AsyncIterator<Base = unknown,
  * typealias Element = AnnotatedFeature<RandomTransformer.Input, Annotation>
  * @availability iOS 17.0+
  */
-export type UpsampledAugmentationSequence_AsyncIterator_Element<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> = $SDK15;
+export type UpsampledAugmentationSequence_AsyncIterator_Element<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> = $SDK16;
 /**
  * typealias Element = Base.Element
  * @availability iOS 17.0+
@@ -7237,7 +8721,7 @@ export declare class VideoReader extends SDKHandle {
      * func applied(to url: URL, eventHandler: EventHandler?) async throws -> VideoReader.AsyncFrames
      * @availability iOS 16.0+
      */
-    applied(url: string, eventHandler?: $SDK8): Promise<VideoReader_AsyncFrames>;
+    applied(url: string, eventHandler?: $SDK9): Promise<VideoReader_AsyncFrames>;
     /**
      * init()
      * @availability iOS 16.0+
@@ -7281,7 +8765,7 @@ export declare class VideoReader_AsyncFrames extends SDKHandle {
      * let frameSize: CGSize
      * @availability iOS 16.0+
      */
-    get frameSize(): $SDK61;
+    get frameSize(): $SDK63;
     /**
      * let timescale: CMTimeScale
      * @availability iOS 16.0+
@@ -7290,7 +8774,7 @@ export declare class VideoReader_AsyncFrames extends SDKHandle {
     readonly $type: {
         "s:18CreateMLComponents11VideoReaderV11AsyncFramesV": true;
     };
-    readonly $element: $SDK124;
+    readonly $element: $SDK135;
 }
 /**
  * typealias AsyncIterator = VideoReader.AsyncFrames.Iterator
@@ -7301,7 +8785,7 @@ export type VideoReader_AsyncFrames_AsyncIterator = VideoReader_AsyncFrames_Iter
  * typealias Element = TemporalFeature<VideoReader.AsyncFrames.Feature>
  * @availability iOS 16.0+
  */
-export type VideoReader_AsyncFrames_Element = $SDK124;
+export type VideoReader_AsyncFrames_Element = $SDK135;
 /**
  * typealias Feature = CIImage
  * @availability iOS 16.0+
@@ -7316,7 +8800,7 @@ export declare class VideoReader_AsyncFrames_Iterator extends SDKHandle {
      * mutating func next() async throws -> TemporalFeature<CIImage>?
      * @availability iOS 16.0+
      */
-    next(): Promise<$SDK125>;
+    next(): Promise<$SDK136>;
     readonly $type: {
         "s:18CreateMLComponents11VideoReaderV11AsyncFramesV8IteratorV": true;
     };
@@ -7325,7 +8809,7 @@ export declare class VideoReader_AsyncFrames_Iterator extends SDKHandle {
  * typealias Element = TemporalFeature<CIImage>
  * @availability iOS 16.0+
  */
-export type VideoReader_AsyncFrames_Iterator_Element = $SDK124;
+export type VideoReader_AsyncFrames_Iterator_Element = $SDK135;
 /**
  * struct CameraAsyncBuffers
  * @availability iOS 16.0+
@@ -7349,7 +8833,7 @@ export declare class VideoReader_CameraAsyncBuffers extends SDKHandle {
     readonly $type: {
         "s:18CreateMLComponents11VideoReaderV18CameraAsyncBuffersV": true;
     };
-    readonly $element: $SDK124;
+    readonly $element: $SDK135;
 }
 /**
  * typealias AsyncIterator = VideoReader.CameraAsyncBuffers.Iterator
@@ -7360,7 +8844,7 @@ export type VideoReader_CameraAsyncBuffers_AsyncIterator = VideoReader_CameraAsy
  * typealias Element = TemporalFeature<VideoReader.CameraAsyncBuffers.Feature>
  * @availability iOS 16.0+
  */
-export type VideoReader_CameraAsyncBuffers_Element = $SDK124;
+export type VideoReader_CameraAsyncBuffers_Element = $SDK135;
 /**
  * typealias Feature = CIImage
  * @availability iOS 16.0+
@@ -7375,7 +8859,7 @@ export declare class VideoReader_CameraAsyncBuffers_Iterator extends SDKHandle {
      * final func next() async throws -> TemporalFeature<CIImage>?
      * @availability iOS 16.0+
      */
-    next(): Promise<$SDK125>;
+    next(): Promise<$SDK136>;
     readonly $type: {
         "s:18CreateMLComponents11VideoReaderV18CameraAsyncBuffersV8IteratorC": true;
     };
@@ -7384,7 +8868,7 @@ export declare class VideoReader_CameraAsyncBuffers_Iterator extends SDKHandle {
  * typealias Element = TemporalFeature<CIImage>
  * @availability iOS 16.0+
  */
-export type VideoReader_CameraAsyncBuffers_Iterator_Element = $SDK124;
+export type VideoReader_CameraAsyncBuffers_Iterator_Element = $SDK135;
 /**
  * struct CameraConfiguration
  * @availability iOS 16.0+
@@ -7483,25 +8967,25 @@ export declare class VideoReaderError extends SDKHandle {
 func meanSquaredError<T>(_ annotatedPredictions: [AnnotatedPrediction<T, T>]) -> T where T : FloatingPoint
  * @availability iOS 17.0+
  */
-export declare function meanSquaredError(annotatedPredictions: $SDK126): number;
+export declare function meanSquaredError(annotatedPredictions: $SDK137): number;
 /**
  * func meanAbsoluteError<T>(_ annotatedPredictions: [AnnotatedPrediction<T, T>]) -> T where T : FloatingPoint
  * @availability iOS 17.0+
  */
-export declare function meanAbsoluteError(annotatedPredictions: $SDK126): number;
+export declare function meanAbsoluteError(annotatedPredictions: $SDK137): number;
 /**
  * func maximumAbsoluteError<T>(_ annotatedPredictions: [AnnotatedPrediction<T, T>]) -> T where T : FloatingPoint
  * @availability iOS 17.0+
  */
-export declare function maximumAbsoluteError(annotatedPredictions: $SDK126): number;
+export declare function maximumAbsoluteError(annotatedPredictions: $SDK137): number;
 /**
  * func rootMeanSquaredError<T>(_ annotatedPredictions: [AnnotatedPrediction<T, T>]) -> T where T : FloatingPoint
  * @availability iOS 17.0+
  */
-export declare function rootMeanSquaredError(annotatedPredictions: $SDK126): number;
+export declare function rootMeanSquaredError(annotatedPredictions: $SDK137): number;
 /**
  * func meanAbsolutePercentageError<T>(_ annotatedPredictions: [AnnotatedPrediction<T, T>]) -> T where T : FloatingPoint
  * @availability iOS 17.0+
  */
-export declare function meanAbsolutePercentageError(annotatedPredictions: $SDK126): number;
+export declare function meanAbsolutePercentageError(annotatedPredictions: $SDK137): number;
 export {};

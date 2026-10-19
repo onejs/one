@@ -41,12 +41,12 @@ type $SDK57 = (CMFormatDescription_Extensions_Value_ContentColorVolume_ColorPrim
 type $SDK58 = _CoreVideo_CVAttachmentAccess<CMBlockBufferAttachmentKeyDefinitions>;
 type $SDK63 = ((arg0: Uint8Array) => unknown);
 type $SDK64 = Array<CMReadOnlyDataBlockBuffer_BlockRegion>;
-type $SDK66 = CMReadySampleBuffer<CMReadOnlyDataBlockBuffer>;
-type $SDK67 = Array<_CoreAudioTypes_AudioStreamPacketDescription>;
-type $SDK69 = CMReadySampleBuffer<CMSampleBuffer_DynamicContent>;
-type $SDK70 = CMReadySampleBuffer<CMSampleDataReference>;
-type $SDK71 = CMReadySampleBuffer<_CoreVideo_CVReadOnlyPixelBuffer>;
-type $SDK72 = (CMFormatDescription) | null;
+type $SDK66 = (CMFormatDescription) | null;
+type $SDK67 = CMReadySampleBuffer<CMReadOnlyDataBlockBuffer>;
+type $SDK68 = Array<_CoreAudioTypes_AudioStreamPacketDescription>;
+type $SDK70 = CMReadySampleBuffer<CMSampleBuffer_DynamicContent>;
+type $SDK71 = CMReadySampleBuffer<CMSampleDataReference>;
+type $SDK72 = CMReadySampleBuffer<_CoreVideo_CVReadOnlyPixelBuffer>;
 type $SDK73 = CMReadySampleBuffer<Array<CMTaggedDynamicBuffer>>;
 type $SDK74 = Array<CMTaggedDynamicBuffer>;
 type $SDK75 = CMReadySampleBuffer<never>;
@@ -4510,25 +4510,66 @@ export type CMReadOnlyDataBlockBuffer_SubSequence = CMReadOnlyDataBlockBuffer;
  */
 export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
     /**
+     * var contentType: CMSampleBuffer.ContentType { get }
+     * @availability iOS 26.0+
+     */
+    get contentType(): CMSampleBuffer_ContentType;
+    /**
+     * var outputDuration: CMTime { get }
+     * @availability iOS 26.0+
+     */
+    get outputDuration(): CMTime;
+    /**
+     * var decodeTimeStamp: CMTime { get }
+     * @availability iOS 26.0+
+     */
+    get decodeTimeStamp(): CMTime;
+    /**
+     * var formatDescription: CMFormatDescription? { get }
+     * @availability iOS 26.0+
+     */
+    get formatDescription(): $SDK66;
+    /**
+     * var outputDecodeTimeStamp: CMTime { get }
+     * @availability iOS 26.0+
+     */
+    get outputDecodeTimeStamp(): CMTime;
+    /**
+     * var presentationTimeStamp: CMTime { get }
+     * @availability iOS 26.0+
+     */
+    get presentationTimeStamp(): CMTime;
+    /**
+     * var outputPresentationTimeStamp: CMTime { get set }
+     * @availability iOS 26.0+
+     */
+    get outputPresentationTimeStamp(): CMTime;
+    set outputPresentationTimeStamp(value: CMTime);
+    /**
+     * var duration: CMTime { get }
+     * @availability iOS 26.0+
+     */
+    get duration(): CMTime;
+    /**
      * init(unsafeWithDataBuffer unsafeBuffer: sending CMSampleBuffer)
      * @availability iOS 26.0+
      */
-    static initUnsafeWithDataBuffer(unsafeBuffer: CMSampleBuffer): $SDK66;
+    static initUnsafeWithDataBuffer(unsafeBuffer: CMSampleBuffer): $SDK67;
     /**
      * init(compressedAudioDataBuffer content: Content, formatDescription: CMAudioFormatDescription, presentationTimeStamp: CMTime, packetDescriptions: [AudioStreamPacketDescription])
      * @availability iOS 26.0+
      */
-    static initCompressedAudioDataBufferFormatDescriptionPresentationTimeStampPacketDescriptions(content: CMReadOnlyDataBlockBuffer, formatDescription: CMFormatDescription, presentationTimeStamp: CMTime, packetDescriptions: $SDK67): $SDK66;
+    static initCompressedAudioDataBufferFormatDescriptionPresentationTimeStampPacketDescriptions(content: CMReadOnlyDataBlockBuffer, formatDescription: CMFormatDescription, presentationTimeStamp: CMTime, packetDescriptions: $SDK68): $SDK67;
     /**
      * init(dataBuffer content: Content, formatDescription: CMFormatDescription, sampleProperties: CMSampleBuffer.SamplePropertiesCollection)
      * @availability iOS 26.0+
      */
-    static initDataBufferFormatDescriptionSampleProperties(content: CMReadOnlyDataBlockBuffer, formatDescription: CMFormatDescription, sampleProperties: CMSampleBuffer_SamplePropertiesCollection): $SDK66;
+    static initDataBufferFormatDescriptionSampleProperties(content: CMReadOnlyDataBlockBuffer, formatDescription: CMFormatDescription, sampleProperties: CMSampleBuffer_SamplePropertiesCollection): $SDK67;
     /**
      * init(audioDataBuffer content: Content, formatDescription: CMAudioFormatDescription, sampleCount: Int, presentationTimeStamp: CMTime)
      * @availability iOS 26.0+
      */
-    static initAudioDataBufferFormatDescriptionSampleCountPresentationTimeStamp(content: CMReadOnlyDataBlockBuffer, formatDescription: CMFormatDescription, sampleCount: number, presentationTimeStamp: CMTime): $SDK66;
+    static initAudioDataBufferFormatDescriptionSampleCountPresentationTimeStamp(content: CMReadOnlyDataBlockBuffer, formatDescription: CMFormatDescription, sampleCount: number, presentationTimeStamp: CMTime): $SDK67;
     /**
      * func copyPCMData(fromRange range: Range<Int>, into bufferList: UnsafeMutablePointer<AudioBufferList>) throws
      * @availability iOS 26.0+
@@ -4549,17 +4590,17 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * init?(_ other: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>)
      * @availability iOS 26.0+
      */
-    static init(other: $SDK69): ($SDK66) | null;
+    static init(other: $SDK70): ($SDK67) | null;
     /**
      * init(sampleDataReference content: Content, formatDescription: CMFormatDescription, sampleProperties: CMSampleBuffer.SamplePropertiesCollection)
      * @availability iOS 26.0+
      */
-    static initSampleDataReferenceFormatDescriptionSampleProperties(content: CMSampleDataReference, formatDescription: CMFormatDescription, sampleProperties: CMSampleBuffer_SamplePropertiesCollection): $SDK70;
+    static initSampleDataReferenceFormatDescriptionSampleProperties(content: CMSampleDataReference, formatDescription: CMFormatDescription, sampleProperties: CMSampleBuffer_SamplePropertiesCollection): $SDK71;
     /**
      * init(unsafeSampleDataReferenceBuffer unsafeBuffer: sending CMSampleBuffer)
      * @availability iOS 26.0+
      */
-    static initUnsafeSampleDataReferenceBuffer(unsafeBuffer: CMSampleBuffer): $SDK70;
+    static initUnsafeSampleDataReferenceBuffer(unsafeBuffer: CMSampleBuffer): $SDK71;
     /**
      * var content: CMSampleDataReference { get set }
      * @availability iOS 26.0+
@@ -4570,12 +4611,12 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * init(unsafeWithPixelBuffer unsafeBuffer: sending CMSampleBuffer)
      * @availability iOS 26.0+
      */
-    static initUnsafeWithPixelBuffer(unsafeBuffer: CMSampleBuffer): $SDK71;
+    static initUnsafeWithPixelBuffer(unsafeBuffer: CMSampleBuffer): $SDK72;
     /**
      * init(pixelBuffer content: Content, formatDescription: CMVideoFormatDescription? = nil, presentationTimeStamp: CMTime, duration: CMTime = .invalid)
      * @availability iOS 26.0+
      */
-    static initPixelBufferFormatDescriptionPresentationTimeStampDuration(content: _CoreVideo_CVReadOnlyPixelBuffer, formatDescription: $SDK72, presentationTimeStamp: CMTime, duration?: CMTime): $SDK71;
+    static initPixelBufferFormatDescriptionPresentationTimeStampDuration(content: _CoreVideo_CVReadOnlyPixelBuffer, formatDescription: $SDK66, presentationTimeStamp: CMTime, duration?: CMTime): $SDK72;
     /**
      * var sampleAttachments: CMSampleBuffer.SampleAttachments { get set }
      * @availability iOS 26.0+
@@ -4586,8 +4627,8 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * var presentationTimeStamp: CMTime { get set }
      * @availability iOS 26.0+
      */
-    get presentationTimeStamp(): CMTime;
-    set presentationTimeStamp(value: CMTime);
+    get presentationTimeStamp66982(): CMTime;
+    set presentationTimeStamp66982(value: CMTime);
     /**
      * var content: CVReadOnlyPixelBuffer { get set }
      * @availability iOS 26.0+
@@ -4598,18 +4639,18 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * var duration: CMTime { get set }
      * @availability iOS 26.0+
      */
-    get duration(): CMTime;
-    set duration(value: CMTime);
+    get duration60601(): CMTime;
+    set duration60601(value: CMTime);
     /**
      * init?(_ other: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>)
      * @availability iOS 26.0+
      */
-    static init5784(other: $SDK69): ($SDK71) | null;
+    static init5784(other: $SDK70): ($SDK72) | null;
     /**
      * init(taggedBuffers content: Content, formatDescription: CMTaggedBufferGroupFormatDescription? = nil, presentationTimeStamp: CMTime, duration: CMTime = .invalid)
      * @availability iOS 26.0+
      */
-    static initTaggedBuffersFormatDescriptionPresentationTimeStampDuration(content: $SDK74, formatDescription: $SDK72, presentationTimeStamp: CMTime, duration?: CMTime): $SDK73;
+    static initTaggedBuffersFormatDescriptionPresentationTimeStampDuration(content: $SDK74, formatDescription: $SDK66, presentationTimeStamp: CMTime, duration?: CMTime): $SDK73;
     /**
      * var sampleAttachments: CMSampleBuffer.SampleAttachments { get set }
      * @availability iOS 26.0+
@@ -4643,12 +4684,12 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * init?(_ other: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>)
      * @availability iOS 26.0+
      */
-    static init95260(other: $SDK69): ($SDK73) | null;
+    static init95260(other: $SDK70): ($SDK73) | null;
     /**
      * init(unsafeBuffer: sending CMSampleBuffer)
      * @availability iOS 26.0+
      */
-    static initUnsafeBuffer(unsafeBuffer: CMSampleBuffer): $SDK69;
+    static initUnsafeBuffer(unsafeBuffer: CMSampleBuffer): $SDK70;
     /**
      * var content: CMSampleBuffer.DynamicContent { get set }
      * @availability iOS 26.0+
@@ -4681,7 +4722,7 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * init?(_ other: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>)
      * @availability iOS 26.0+
      */
-    static init67888(other: $SDK69): ($SDK75) | null;
+    static init67888(other: $SDK70): ($SDK75) | null;
     readonly $type: {
         "s:9CoreMedia19CMReadySampleBufferV": true;
     };
@@ -4816,7 +4857,7 @@ export declare class CMSampleBuffer extends SDKHandle {
      * var formatDescription: CMFormatDescription? { get }
      * @availability iOS 13.0+
      */
-    get formatDescription(): $SDK72;
+    get formatDescription(): $SDK66;
     /**
      * var sampleAttachments: CMSampleBuffer.SampleAttachmentsArray { get set }
      * @availability iOS 13.0+
@@ -4867,7 +4908,7 @@ export declare class CMSampleBuffer extends SDKHandle {
      * func audioStreamPacketDescriptions() throws -> [AudioStreamPacketDescription]
      * @availability iOS 13.0+
      */
-    audioStreamPacketDescriptions(): $SDK67;
+    audioStreamPacketDescriptions(): $SDK68;
     /**
      * func setOutputPresentationTimeStamp(_ pts: CMTime) throws
      * @availability iOS 13.0+
@@ -6422,12 +6463,12 @@ export declare class CMTaggedDynamicBuffer extends SDKHandle {
      * init(tags: [CMTag], content: CMReadySampleBuffer<CVReadOnlyPixelBuffer>)
      * @availability iOS 26.0+
      */
-    static initTagsContent38854(tags: Array<CMTag>, content: $SDK71): CMTaggedDynamicBuffer;
+    static initTagsContent38854(tags: Array<CMTag>, content: $SDK72): CMTaggedDynamicBuffer;
     /**
      * init(tags: [CMTag], content: CMReadySampleBuffer<CMReadOnlyDataBlockBuffer>)
      * @availability iOS 26.0+
      */
-    static initTagsContent56374(tags: Array<CMTag>, content: $SDK66): CMTaggedDynamicBuffer;
+    static initTagsContent56374(tags: Array<CMTag>, content: $SDK67): CMTaggedDynamicBuffer;
     /**
      * init(tags: [CMTag], content: CMTaggedDynamicBuffer.Content)
      * @availability iOS 26.0+
@@ -7285,7 +7326,7 @@ export declare function CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionB
 export declare function CMAudioFormatDescriptionCreate(allocator: $SDK5, asbd: SDKHandle, layoutSize: number, layout: (SDKHandle) | null, magicCookieSize: number, magicCookie?: (SDKHandle) | null, extensions?: $SDK122): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7295,7 +7336,7 @@ export declare function CMAudioFormatDescriptionCreate(allocator: $SDK5, asbd: S
 export declare function CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(allocator: $SDK5, soundDescriptionBlockBuffer: CMBlockBuffer, flavor?: $SDK121): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7305,7 +7346,7 @@ export declare function CMAudioFormatDescriptionCreateFromBigEndianSoundDescript
 export declare function CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(allocator: $SDK5, soundDescriptionData: SDKHandle, size: number, flavor?: $SDK121): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7315,7 +7356,7 @@ export declare function CMAudioFormatDescriptionCreateFromBigEndianSoundDescript
 export declare function CMAudioFormatDescriptionCreateSummary(allocator: $SDK5, formatDescriptionArray: _CoreFoundation_CFArray, flags: number): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7681,7 +7722,7 @@ export declare function CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCap
 export declare function CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(allocator: $SDK5, closedCaptionDescriptionBlockBuffer: CMBlockBuffer, flavor?: $SDK123): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7691,7 +7732,7 @@ export declare function CMClosedCaptionFormatDescriptionCreateFromBigEndianClose
 export declare function CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(allocator: $SDK5, closedCaptionDescriptionData: SDKHandle, size: number, flavor?: $SDK123): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7711,19 +7752,19 @@ export declare function CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTab
 export declare function CMFormatDescriptionCreate(allocator: $SDK5, mediaType: SDKHandle, mediaSubType: SDKHandle, extensions?: $SDK122): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
  * func CMFormatDescriptionEqual(_ formatDescription: CMFormatDescription?, otherFormatDescription: CMFormatDescription?) -> Bool
  * @availability iOS 4.0+
  */
-export declare function CMFormatDescriptionEqual(formatDescription?: $SDK72, otherFormatDescription?: $SDK72): boolean;
+export declare function CMFormatDescriptionEqual(formatDescription?: $SDK66, otherFormatDescription?: $SDK66): boolean;
 /**
  * func CMFormatDescriptionEqualIgnoringExtensionKeys(_ formatDescription: CMFormatDescription?, otherFormatDescription: CMFormatDescription?, extensionKeysToIgnore formatDescriptionExtensionKeysToIgnore: CFTypeRef?, sampleDescriptionExtensionAtomKeysToIgnore: CFTypeRef?) -> Bool
  * @availability iOS 4.3+
  */
-export declare function CMFormatDescriptionEqualIgnoringExtensionKeys(formatDescription?: $SDK72, otherFormatDescription?: $SDK72, formatDescriptionExtensionKeysToIgnore?: (unknown) | null, sampleDescriptionExtensionAtomKeysToIgnore?: (unknown) | null): boolean;
+export declare function CMFormatDescriptionEqualIgnoringExtensionKeys(formatDescription?: $SDK66, otherFormatDescription?: $SDK66, formatDescriptionExtensionKeysToIgnore?: (unknown) | null, sampleDescriptionExtensionAtomKeysToIgnore?: (unknown) | null): boolean;
 /**
  * func CMFormatDescriptionGetExtension(_ desc: CMFormatDescription, extensionKey: CFString) -> CFPropertyList?
  * @availability iOS 4.0+
@@ -7876,7 +7917,7 @@ export declare function CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescri
 export declare function CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions(allocator: $SDK5, sourceDescription: CMFormatDescription, otherSourceDescription: CMFormatDescription): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7886,7 +7927,7 @@ export declare function CMMetadataFormatDescriptionCreateByMergingMetadataFormat
 export declare function CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(allocator: $SDK5, metadataDescriptionBlockBuffer: CMBlockBuffer, flavor?: $SDK127): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7896,7 +7937,7 @@ export declare function CMMetadataFormatDescriptionCreateFromBigEndianMetadataDe
 export declare function CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(allocator: $SDK5, metadataDescriptionData: SDKHandle, size: number, flavor?: $SDK127): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7906,7 +7947,7 @@ export declare function CMMetadataFormatDescriptionCreateFromBigEndianMetadataDe
 export declare function CMMetadataFormatDescriptionCreateWithKeys(allocator: $SDK5, metadataType: SDKHandle, keys?: $SDK126): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7916,7 +7957,7 @@ export declare function CMMetadataFormatDescriptionCreateWithKeys(allocator: $SD
 export declare function CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications(allocator: $SDK5, sourceDescription: CMFormatDescription, metadataSpecifications: _CoreFoundation_CFArray): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7926,7 +7967,7 @@ export declare function CMMetadataFormatDescriptionCreateWithMetadataFormatDescr
 export declare function CMMetadataFormatDescriptionCreateWithMetadataSpecifications(allocator: $SDK5, metadataType: SDKHandle, metadataSpecifications: _CoreFoundation_CFArray): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -7946,7 +7987,7 @@ export declare function CMMetadataFormatDescriptionGetKeyWithLocalID(desc: CMFor
 export declare function CMMuxedFormatDescriptionCreate(allocator: $SDK5, muxType: SDKHandle, extensions?: $SDK122): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -8003,7 +8044,7 @@ export declare function CMSampleBufferCreateCopyWithNewTiming(allocator: $SDK5, 
  * func CMSampleBufferCreateReady(allocator: CFAllocator?, dataBuffer: CMBlockBuffer?, formatDescription: CMFormatDescription?, sampleCount numSamples: CMItemCount, sampleTimingEntryCount numSampleTimingEntries: CMItemCount, sampleTimingArray: UnsafePointer<CMSampleTimingInfo>?, sampleSizeEntryCount numSampleSizeEntries: CMItemCount, sampleSizeArray: UnsafePointer<Int>?, sampleBufferOut: UnsafeMutablePointer<CMSampleBuffer?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export declare function CMSampleBufferCreateReady(allocator: $SDK5, dataBuffer: (CMBlockBuffer) | null, formatDescription: $SDK72, numSamples: number, numSampleTimingEntries: number, sampleTimingArray: (SDKHandle) | null, numSampleSizeEntries: number, sampleSizeArray?: (SDKHandle) | null): {
+export declare function CMSampleBufferCreateReady(allocator: $SDK5, dataBuffer: (CMBlockBuffer) | null, formatDescription: $SDK66, numSamples: number, numSampleTimingEntries: number, sampleTimingArray: (SDKHandle) | null, numSampleSizeEntries: number, sampleSizeArray?: (SDKHandle) | null): {
     $ret: number;
     $out: {
         "sampleBufferOut": (CMSampleBuffer) | null;
@@ -8068,7 +8109,7 @@ export declare function CMSampleBufferGetDuration(sbuf: CMSampleBuffer): CMTime;
  * func CMSampleBufferGetFormatDescription(_ sbuf: CMSampleBuffer) -> CMFormatDescription?
  * @availability iOS 4.0+
  */
-export declare function CMSampleBufferGetFormatDescription(sbuf: CMSampleBuffer): $SDK72;
+export declare function CMSampleBufferGetFormatDescription(sbuf: CMSampleBuffer): $SDK66;
 /**
  * func CMSampleBufferGetImageBuffer(_ sbuf: CMSampleBuffer) -> CVImageBuffer?
  * @availability iOS 4.0+
@@ -8351,7 +8392,7 @@ export declare function CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlo
 export declare function CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(allocator: $SDK5, textDescriptionBlockBuffer: CMBlockBuffer, flavor: $SDK128, mediaType: SDKHandle): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -8361,7 +8402,7 @@ export declare function CMTextFormatDescriptionCreateFromBigEndianTextDescriptio
 export declare function CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(allocator: $SDK5, textDescriptionData: SDKHandle, size: number, flavor: $SDK128, mediaType: SDKHandle): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -8433,7 +8474,7 @@ export declare function CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescri
 export declare function CMTimeCodeFormatDescriptionCreate(allocator: $SDK5, timeCodeFormatType: SDKHandle, frameDuration: CMTime, frameQuanta: number, flags: number, extensions?: $SDK122): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -8443,7 +8484,7 @@ export declare function CMTimeCodeFormatDescriptionCreate(allocator: $SDK5, time
 export declare function CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(allocator: $SDK5, timeCodeDescriptionBlockBuffer: CMBlockBuffer, flavor?: $SDK131): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -8453,7 +8494,7 @@ export declare function CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDe
 export declare function CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(allocator: $SDK5, timeCodeDescriptionData: SDKHandle, size: number, flavor?: $SDK131): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -8900,7 +8941,7 @@ export declare function CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionB
 export declare function CMVideoFormatDescriptionCreate(allocator: $SDK5, codecType: SDKHandle, width: number, height: number, extensions?: $SDK122): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -8910,7 +8951,7 @@ export declare function CMVideoFormatDescriptionCreate(allocator: $SDK5, codecTy
 export declare function CMVideoFormatDescriptionCreateForImageBuffer(allocator: $SDK5, imageBuffer: _CoreVideo_CVBuffer): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -8920,7 +8961,7 @@ export declare function CMVideoFormatDescriptionCreateForImageBuffer(allocator: 
 export declare function CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(allocator: $SDK5, imageDescriptionBlockBuffer: CMBlockBuffer, stringEncoding: number, flavor?: $SDK132): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**
@@ -8930,7 +8971,7 @@ export declare function CMVideoFormatDescriptionCreateFromBigEndianImageDescript
 export declare function CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(allocator: $SDK5, imageDescriptionData: SDKHandle, size: number, stringEncoding: number, flavor?: $SDK132): {
     $ret: number;
     $out: {
-        "formatDescriptionOut": $SDK72;
+        "formatDescriptionOut": $SDK66;
     };
 };
 /**

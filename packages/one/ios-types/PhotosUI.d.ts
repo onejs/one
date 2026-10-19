@@ -31,7 +31,7 @@ export interface PHContentEditingController {
      * func finishContentEditing() async -> PHContentEditingOutput?
      * @availability iOS 8.0+
      */
-    "finishContentEditing"?: () => (_Photos_PHContentEditingOutput) | null;
+    "finishContentEditing"?: () => Promise<(_Photos_PHContentEditingOutput) | null>;
     /**
      * func cancelContentEditing()
      * @availability iOS 8.0+

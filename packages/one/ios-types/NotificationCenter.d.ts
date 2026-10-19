@@ -45,7 +45,7 @@ export interface NCWidgetProviding {
      * @availability iOS 8.0+
      * @deprecated iOS 14.0
      */
-    "widgetPerformUpdate"?: () => NCUpdateResult;
+    "widgetPerformUpdate"?: () => Promise<NCUpdateResult>;
     /**
      * optional func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize)
      * @availability iOS 10.0+

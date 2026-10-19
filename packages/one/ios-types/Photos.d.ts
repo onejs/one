@@ -1451,7 +1451,7 @@ export interface PHBackgroundResourceUploadJobExtension {
      * func processJobs() async -> PHBackgroundResourceUploadProcessingResult
      * @availability iOS 27.0+
      */
-    "processJobs"?: () => PHBackgroundResourceUploadProcessingResult;
+    "processJobs"?: () => Promise<PHBackgroundResourceUploadProcessingResult>;
     /**
      * func willTerminate() async
      * @availability iOS 27.0+

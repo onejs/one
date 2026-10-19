@@ -121,7 +121,7 @@ export interface AVCustomRoutingControllerDelegate {
      * func customRoutingController(_ controller: AVCustomRoutingController, handle event: AVCustomRoutingEvent) async -> Bool
      * @availability iOS 16.0+
      */
-    "customRoutingControllerHandle"?: (arg0: AVCustomRoutingController, arg1: AVCustomRoutingEvent) => boolean;
+    "customRoutingControllerHandle"?: (arg0: AVCustomRoutingController, arg1: AVCustomRoutingEvent) => Promise<boolean>;
     /**
      * optional func customRoutingController(_ controller: AVCustomRoutingController, eventDidTimeOut event: AVCustomRoutingEvent)
      * @availability iOS 16.0+

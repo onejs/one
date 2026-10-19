@@ -33837,7 +33837,7 @@ export interface UIIndirectScribbleInteractionDelegate {
      * @MainActor func indirectScribbleInteraction(_ interaction: any UIInteraction, requestElementsIn rect: CGRect) async -> [Self.ElementIdentifier]
      * @availability iOS 15.0+
      */
-    "indirectScribbleInteractionRequestElementsIn"?: (arg0: SDKHandle, arg1: $SDK19) => Array<unknown>;
+    "indirectScribbleInteractionRequestElementsIn"?: (arg0: SDKHandle, arg1: $SDK19) => Promise<Array<unknown>>;
     /**
      * func indirectScribbleInteraction(_ interaction: any UIInteraction, isElementFocused elementIdentifier: Self.ElementIdentifier) -> Bool
      * @availability iOS 14.0+
@@ -33857,7 +33857,7 @@ export interface UIIndirectScribbleInteractionDelegate {
      * @MainActor func indirectScribbleInteraction(_ interaction: any UIInteraction, focusElementIfNeeded elementIdentifier: Self.ElementIdentifier, referencePoint focusReferencePoint: CGPoint) async -> (any UIResponder & UITextInput)?
      * @availability iOS 15.0+
      */
-    "indirectScribbleInteractionFocusElementIfNeededReferencePoint"?: (arg0: SDKHandle, arg1: unknown, arg2: $SDK26) => $SDK381;
+    "indirectScribbleInteractionFocusElementIfNeededReferencePoint"?: (arg0: SDKHandle, arg1: unknown, arg2: $SDK26) => Promise<$SDK381>;
     /**
      * func indirectScribbleInteraction(_ interaction: any UIInteraction, shouldDelayFocusForElement elementIdentifier: Self.ElementIdentifier) -> Bool
      * @availability iOS 14.0+
@@ -64320,12 +64320,12 @@ export interface UIWritingToolsCoordinator_Delegate {
      * func writingToolsCoordinator(_ writingToolsCoordinator: UIWritingToolsCoordinator, contextsFor scope: UIWritingToolsCoordinator.ContextScope) async -> [UIWritingToolsCoordinator.Context]
      * @availability iOS 18.2+
      */
-    "writingToolsCoordinatorContextsFor"?: (arg0: UIWritingToolsCoordinator, arg1: UIWritingToolsCoordinator_ContextScope) => Array<UIWritingToolsCoordinator_Context>;
+    "writingToolsCoordinatorContextsFor"?: (arg0: UIWritingToolsCoordinator, arg1: UIWritingToolsCoordinator_ContextScope) => Promise<Array<UIWritingToolsCoordinator_Context>>;
     /**
      * func writingToolsCoordinator(_ writingToolsCoordinator: UIWritingToolsCoordinator, replace range: NSRange, in context: UIWritingToolsCoordinator.Context, proposedText replacementText: NSAttributedString, reason: UIWritingToolsCoordinator.TextReplacementReason, animationParameters: UIWritingToolsCoordinator.AnimationParameters?) async -> NSAttributedString?
      * @availability iOS 18.2+
      */
-    "writingToolsCoordinatorReplaceInProposedTextReasonAnimationParameters"?: (arg0: UIWritingToolsCoordinator, arg1: SDKHandle, arg2: UIWritingToolsCoordinator_Context, arg3: _Foundation_NSAttributedString, arg4: UIWritingToolsCoordinator_TextReplacementReason, arg5: (UIWritingToolsCoordinator_AnimationParameters) | null) => $SDK58;
+    "writingToolsCoordinatorReplaceInProposedTextReasonAnimationParameters"?: (arg0: UIWritingToolsCoordinator, arg1: SDKHandle, arg2: UIWritingToolsCoordinator_Context, arg3: _Foundation_NSAttributedString, arg4: UIWritingToolsCoordinator_TextReplacementReason, arg5: (UIWritingToolsCoordinator_AnimationParameters) | null) => Promise<$SDK58>;
     /**
      * func writingToolsCoordinator(_ writingToolsCoordinator: UIWritingToolsCoordinator, select ranges: [NSValue], in context: UIWritingToolsCoordinator.Context) async
      * @availability iOS 18.2+
@@ -64335,12 +64335,12 @@ export interface UIWritingToolsCoordinator_Delegate {
      * func writingToolsCoordinator(_ writingToolsCoordinator: UIWritingToolsCoordinator, boundingBezierPathsFor range: NSRange, context: UIWritingToolsCoordinator.Context) async -> [UIBezierPath]
      * @availability iOS 18.2+
      */
-    "writingToolsCoordinatorBoundingBezierPathsForContext"?: (arg0: UIWritingToolsCoordinator, arg1: SDKHandle, arg2: UIWritingToolsCoordinator_Context) => Array<UIBezierPath>;
+    "writingToolsCoordinatorBoundingBezierPathsForContext"?: (arg0: UIWritingToolsCoordinator, arg1: SDKHandle, arg2: UIWritingToolsCoordinator_Context) => Promise<Array<UIBezierPath>>;
     /**
      * func writingToolsCoordinator(_ writingToolsCoordinator: UIWritingToolsCoordinator, underlinePathsFor range: NSRange, context: UIWritingToolsCoordinator.Context) async -> [UIBezierPath]
      * @availability iOS 18.2+
      */
-    "writingToolsCoordinatorUnderlinePathsForContext"?: (arg0: UIWritingToolsCoordinator, arg1: SDKHandle, arg2: UIWritingToolsCoordinator_Context) => Array<UIBezierPath>;
+    "writingToolsCoordinatorUnderlinePathsForContext"?: (arg0: UIWritingToolsCoordinator, arg1: SDKHandle, arg2: UIWritingToolsCoordinator_Context) => Promise<Array<UIBezierPath>>;
     /**
      * func writingToolsCoordinator(_ writingToolsCoordinator: UIWritingToolsCoordinator, prepareFor textAnimation: UIWritingToolsCoordinator.TextAnimation, for range: NSRange, in context: UIWritingToolsCoordinator.Context) async
      * @availability iOS 18.2+
@@ -64350,7 +64350,7 @@ export interface UIWritingToolsCoordinator_Delegate {
      * func writingToolsCoordinator(_ writingToolsCoordinator: UIWritingToolsCoordinator, previewFor textAnimation: UIWritingToolsCoordinator.TextAnimation, range: NSRange, context: UIWritingToolsCoordinator.Context) async -> UITargetedPreview?
      * @availability iOS 18.2+
      */
-    "writingToolsCoordinatorPreviewForRangeContext"?: (arg0: UIWritingToolsCoordinator, arg1: UIWritingToolsCoordinator_TextAnimation, arg2: SDKHandle, arg3: UIWritingToolsCoordinator_Context) => $SDK223;
+    "writingToolsCoordinatorPreviewForRangeContext"?: (arg0: UIWritingToolsCoordinator, arg1: UIWritingToolsCoordinator_TextAnimation, arg2: SDKHandle, arg3: UIWritingToolsCoordinator_Context) => Promise<$SDK223>;
     /**
      * func writingToolsCoordinator(_ writingToolsCoordinator: UIWritingToolsCoordinator, finish textAnimation: UIWritingToolsCoordinator.TextAnimation, for range: NSRange, in context: UIWritingToolsCoordinator.Context) async
      * @availability iOS 18.2+

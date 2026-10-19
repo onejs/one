@@ -4988,7 +4988,7 @@ export interface CPSearchTemplateDelegate {
      * func searchTemplate(_ searchTemplate: CPSearchTemplate, updatedSearchText searchText: String) async -> [CPListItem]
      * @availability iOS 12.0+
      */
-    "searchTemplateUpdatedSearchText"?: (arg0: CPSearchTemplate, arg1: string) => Array<CPListItem>;
+    "searchTemplateUpdatedSearchText"?: (arg0: CPSearchTemplate, arg1: string) => Promise<Array<CPListItem>>;
     /**
      * func searchTemplate(_ searchTemplate: CPSearchTemplate, selectedResult item: CPListItem) async
      * @availability iOS 12.0+

@@ -13,42 +13,42 @@ export class BEAudioSession extends SDKHandle {
    * @objc(initWithAudioSession:) init(audioSession: AVAudioSession)
    * @availability iOS 26.0+
    */
-  static initAudioSession(audioSession: _AVFAudio_AVAudioSession): BEAudioSession { return callSDK<BEAudioSession>("BrowserEngineCore_0e503aef608672fa", 1293825121069166, undefined, [audioSession]); }
+  static initAudioSession(audioSession: _AVFAudio_AVAudioSession): BEAudioSession { return callSDK<BEAudioSession>("BrowserEngineCore_212edf3d13b127f5", 1293825121069166, undefined, [audioSession]); }
   /**
    * @objc(setPreferredOutput:error:) func setPreferredOutput(_ outputPort: AVAudioSessionPortDescription?) throws
    * @availability iOS 26.0+
    */
-  setPreferredOutput(outputPort?: $SDK0): void { return callSDK<void>("BrowserEngineCore_0e503aef608672fa", 1995130712515784, this, [outputPort]); }
+  setPreferredOutput(outputPort?: $SDK0): void { return callSDK<void>("BrowserEngineCore_212edf3d13b127f5", 1995130712515784, this, [outputPort]); }
   /**
    * @objc(availableOutputs) var availableOutputs: Array<AVAudioSessionPortDescription> { get }
    * @availability iOS 26.0+
    */
-  get availableOutputs(): Array<_AVFAudio_AVAudioSessionPortDescription> { return callSDK<Array<_AVFAudio_AVAudioSessionPortDescription>>("BrowserEngineCore_0e503aef608672fa", 2749908754845861, this, []); }
+  get availableOutputs(): Array<_AVFAudio_AVAudioSessionPortDescription> { return callSDK<Array<_AVFAudio_AVAudioSessionPortDescription>>("BrowserEngineCore_212edf3d13b127f5", 2749908754845861, this, []); }
   /**
    * @objc(preferredOutput) var preferredOutput: AVAudioSessionPortDescription? { get }
    * @availability iOS 26.0+
    */
-  get preferredOutput(): $SDK0 { return callSDK<$SDK0>("BrowserEngineCore_0e503aef608672fa", 1580636915617325, this, []); }
+  get preferredOutput(): $SDK0 { return callSDK<$SDK0>("BrowserEngineCore_212edf3d13b127f5", 1580636915617325, this, []); }
   /**
    * init(audioSession: AVAudioSession)
    * @availability iOS 26.0+
    */
-  static initAudioSession19121(audioSession: _AVFAudio_AVAudioSession): BEAudioSession { return callSDK<BEAudioSession>("BrowserEngineCore_0e503aef608672fa", 878330919753739, undefined, [audioSession]); }
+  static initAudioSession19121(audioSession: _AVFAudio_AVAudioSession): BEAudioSession { return callSDK<BEAudioSession>("BrowserEngineCore_212edf3d13b127f5", 878330919753739, undefined, [audioSession]); }
   /**
    * func setPreferredOutput(_ outPort: AVAudioSessionPortDescription?) throws
    * @availability iOS 26.0+
    */
-  setPreferredOutput81081(outPort?: $SDK0): void { return callSDK<void>("BrowserEngineCore_0e503aef608672fa", 1702541101255737, this, [outPort]); }
+  setPreferredOutput81081(outPort?: $SDK0): void { return callSDK<void>("BrowserEngineCore_212edf3d13b127f5", 1702541101255737, this, [outPort]); }
   /**
    * var availableOutputs: [AVAudioSessionPortDescription]? { get }
    * @availability iOS 26.0+
    */
-  get availableOutputs52961(): (Array<_AVFAudio_AVAudioSessionPortDescription>) | null { return callSDK<(Array<_AVFAudio_AVAudioSessionPortDescription>) | null>("BrowserEngineCore_0e503aef608672fa", 4307219246351600, this, []); }
+  get availableOutputs52961(): (Array<_AVFAudio_AVAudioSessionPortDescription>) | null { return callSDK<(Array<_AVFAudio_AVAudioSessionPortDescription>) | null>("BrowserEngineCore_212edf3d13b127f5", 4307219246351600, this, []); }
   /**
    * var preferredOutput: AVAudioSessionPortDescription? { get }
    * @availability iOS 26.0+
    */
-  get preferredOutput63622(): $SDK0 { return callSDK<$SDK0>("BrowserEngineCore_0e503aef608672fa", 1362354722082462, this, []); }
+  get preferredOutput63622(): $SDK0 { return callSDK<$SDK0>("BrowserEngineCore_212edf3d13b127f5", 1362354722082462, this, []); }
   declare readonly $type: { "c:@M@BrowserEngineCore@objc(cs)BEAudioSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "availableOutputs52961": true; "preferredOutput63622": true };
 }
@@ -57,21 +57,21 @@ export class BEAudioSession extends SDKHandle {
  * func be_kevent(_ kq: Int32, _ changelist: UnsafePointer<kevent>!, _ nchanges: Int32, _ eventlist: UnsafeMutablePointer<kevent>!, _ nevents: Int32, _ be_flags: UInt32) -> Int32
  * @availability iOS 18.4+
  */
-export function be_kevent(kq: number, changelist: (SDKHandle) | null, nchanges: number, eventlist: (SDKHandle) | null, nevents: number, be_flags: number): number { return callSDK<number>("BrowserEngineCore_0e503aef608672fa", 4051619826249058, undefined, [kq, changelist, nchanges, eventlist, nevents, be_flags]); }
+export function be_kevent(kq: number, changelist: (SDKHandle) | null, nchanges: number, eventlist: (SDKHandle) | null, nevents: number, be_flags: number): number { return callSDK<number>("BrowserEngineCore_212edf3d13b127f5", 4051619826249058, undefined, [kq, changelist, nchanges, eventlist, nevents, be_flags]); }
 
 /**
  * func be_kevent64(_ kq: Int32, _ changelist: UnsafePointer<kevent64_s>!, _ nchanges: Int32, _ eventlist: UnsafeMutablePointer<kevent64_s>!, _ nevents: Int32, _ flags: UInt32) -> Int32
  * @availability iOS 18.4+
  */
-export function be_kevent64(kq: number, changelist: (SDKHandle) | null, nchanges: number, eventlist: (SDKHandle) | null, nevents: number, flags: number): number { return callSDK<number>("BrowserEngineCore_0e503aef608672fa", 578019606956118, undefined, [kq, changelist, nchanges, eventlist, nevents, flags]); }
+export function be_kevent64(kq: number, changelist: (SDKHandle) | null, nchanges: number, eventlist: (SDKHandle) | null, nevents: number, flags: number): number { return callSDK<number>("BrowserEngineCore_212edf3d13b127f5", 578019606956118, undefined, [kq, changelist, nchanges, eventlist, nevents, flags]); }
 
 /** var BE_JIT_WRITE_PROTECT_TAG: Int { get } */
-export const BE_JIT_WRITE_PROTECT_TAG: number = callSDK<number>("BrowserEngineCore_0e503aef608672fa", 4445787617232770, undefined, []);
+export const BE_JIT_WRITE_PROTECT_TAG: number = callSDK<number>("BrowserEngineCore_212edf3d13b127f5", 4445787617232770, undefined, []);
 
 /** var BE_KEVENT_NO_FLAGS: Int32 { get } */
-export const BE_KEVENT_NO_FLAGS: number = callSDK<number>("BrowserEngineCore_0e503aef608672fa", 1006514854718998, undefined, []);
+export const BE_KEVENT_NO_FLAGS: number = callSDK<number>("BrowserEngineCore_212edf3d13b127f5", 1006514854718998, undefined, []);
 
 /** var BE_KEVENT_RETURN_IMMEDIATELY: Int32 { get } */
-export const BE_KEVENT_RETURN_IMMEDIATELY: number = callSDK<number>("BrowserEngineCore_0e503aef608672fa", 2559237853955086, undefined, []);
+export const BE_KEVENT_RETURN_IMMEDIATELY: number = callSDK<number>("BrowserEngineCore_212edf3d13b127f5", 2559237853955086, undefined, []);
 
-registerSDKClass("BrowserEngineCore.BEAudioSession", BEAudioSession, { module: "BrowserEngineCore_0e503aef608672fa", properties: {"availableOutputs52961":4307219246351600,"preferredOutput63622":1362354722082462}, methods: {"setPreferredOutput":{"id":1995130712515784},"setPreferredOutput81081":{"id":1702541101255737}} });
+registerSDKClass("BrowserEngineCore.BEAudioSession", BEAudioSession, { module: "BrowserEngineCore_212edf3d13b127f5", properties: {"availableOutputs52961":4307219246351600,"preferredOutput63622":1362354722082462}, methods: {"setPreferredOutput":{"id":1995130712515784},"setPreferredOutput81081":{"id":1702541101255737}} });

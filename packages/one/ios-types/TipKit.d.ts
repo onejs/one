@@ -673,17 +673,35 @@ export declare class TipUICollectionReusableView extends SDKHandle {
      */
     configureTip(tip: SDKHandle, arrowEdge?: $SDK7, actionHandler?: $SDK8): Promise<TipUICollectionReusableView>;
     /**
+     * @MainActor @preconcurrency final var imageStyle: (any ShapeStyle)? { get set }
+     * @availability iOS 18.0+
+     */
+    get imageStyle(): Promise<(SDKHandle) | null>;
+    setImageStyle(value?: (SDKHandle) | null): Promise<void>;
+    /**
      * @MainActor @preconcurrency final var cornerRadius: CGFloat { get set }
      * @availability iOS 17.0+
      */
     get cornerRadius(): Promise<number>;
     setCornerRadius(value: number): Promise<void>;
     /**
+     * @MainActor @preconcurrency final var backgroundStyle: any ShapeStyle { get set }
+     * @availability iOS 26.0+
+     */
+    get backgroundStyle(): Promise<SDKHandle>;
+    setBackgroundStyle(value: SDKHandle): Promise<void>;
+    /**
      * @MainActor @preconcurrency final var imageSize: CGSize { get set }
      * @availability iOS 17.0+
      */
     get imageSize(): Promise<$SDK9>;
     setImageSize(value: $SDK9): Promise<void>;
+    /**
+     * @MainActor @preconcurrency final var viewStyle: any TipViewStyle { get set }
+     * @availability iOS 17.0+
+     */
+    get viewStyle(): Promise<SDKHandle>;
+    setViewStyle(value: SDKHandle): Promise<void>;
     readonly $type: {
         "c:@M@TipKit@objc(cs)TipUICollectionReusableView": true;
         "c:objc(cs)UICollectionReusableView": true;
@@ -719,17 +737,35 @@ export declare class TipUICollectionViewCell extends SDKHandle {
      */
     configureTip(tip: SDKHandle, arrowEdge?: $SDK7, actionHandler?: $SDK8): Promise<TipUICollectionViewCell>;
     /**
+     * @MainActor @preconcurrency final var imageStyle: (any ShapeStyle)? { get set }
+     * @availability iOS 18.0+
+     */
+    get imageStyle(): Promise<(SDKHandle) | null>;
+    setImageStyle(value?: (SDKHandle) | null): Promise<void>;
+    /**
      * @MainActor @preconcurrency final var cornerRadius: CGFloat { get set }
      * @availability iOS 17.0+
      */
     get cornerRadius(): Promise<number>;
     setCornerRadius(value: number): Promise<void>;
     /**
+     * @MainActor @preconcurrency final var backgroundStyle: any ShapeStyle { get set }
+     * @availability iOS 26.0+
+     */
+    get backgroundStyle(): Promise<SDKHandle>;
+    setBackgroundStyle(value: SDKHandle): Promise<void>;
+    /**
      * @MainActor @preconcurrency final var imageSize: CGSize { get set }
      * @availability iOS 17.0+
      */
     get imageSize(): Promise<$SDK9>;
     setImageSize(value: $SDK9): Promise<void>;
+    /**
+     * @MainActor @preconcurrency final var viewStyle: any TipViewStyle { get set }
+     * @availability iOS 17.0+
+     */
+    get viewStyle(): Promise<SDKHandle>;
+    setViewStyle(value: SDKHandle): Promise<void>;
     readonly $type: {
         "c:@M@TipKit@objc(cs)TipUICollectionViewCell": true;
         "c:objc(cs)UICollectionViewCell": true;
@@ -755,6 +791,12 @@ export declare class TipUIPopoverViewController extends SDKHandle {
      */
     static initNibNameBundle(nibNameOrNil?: (string) | null, nibBundleOrNil?: (_Foundation_Bundle) | null): Promise<TipUIPopoverViewController>;
     /**
+     * @MainActor @preconcurrency final var imageStyle: (any ShapeStyle)? { get set }
+     * @availability iOS 18.0+
+     */
+    get imageStyle(): Promise<(SDKHandle) | null>;
+    setImageStyle(value?: (SDKHandle) | null): Promise<void>;
+    /**
      * @MainActor @preconcurrency final var sourceItem: (any UIPopoverPresentationControllerSourceItem)? { get set }
      * @availability iOS 17.0+
      */
@@ -767,6 +809,12 @@ export declare class TipUIPopoverViewController extends SDKHandle {
     get backgroundColor(): Promise<(_UIKit_UIColor) | null>;
     setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     /**
+     * @MainActor @preconcurrency final var backgroundStyle: any ShapeStyle { get set }
+     * @availability iOS 26.0+
+     */
+    get backgroundStyle(): Promise<SDKHandle>;
+    setBackgroundStyle(value: SDKHandle): Promise<void>;
+    /**
      * @MainActor @preconcurrency final var presentationDelegate: (any UIPopoverPresentationControllerDelegate)? { get set }
      * @availability iOS 17.0+
      */
@@ -778,6 +826,12 @@ export declare class TipUIPopoverViewController extends SDKHandle {
      */
     get imageSize(): Promise<$SDK9>;
     setImageSize(value: $SDK9): Promise<void>;
+    /**
+     * @MainActor @preconcurrency final var viewStyle: any TipViewStyle { get set }
+     * @availability iOS 17.0+
+     */
+    get viewStyle(): Promise<SDKHandle>;
+    setViewStyle(value: SDKHandle): Promise<void>;
     /**
      * @MainActor @preconcurrency convenience init(_ tip: any Tip, sourceItem: any UIPopoverPresentationControllerSourceItem, actionHandler: @escaping @MainActor @Sendable (Tips.Action) -> Void = { _ in })
      * @availability iOS 18.0+
@@ -802,17 +856,35 @@ export declare class TipUIView extends SDKHandle {
     get backgroundColor(): Promise<(_UIKit_UIColor) | null>;
     setBackgroundColor(value?: (_UIKit_UIColor) | null): Promise<void>;
     /**
+     * @MainActor @preconcurrency final var imageStyle: (any ShapeStyle)? { get set }
+     * @availability iOS 18.0+
+     */
+    get imageStyle(): Promise<(SDKHandle) | null>;
+    setImageStyle(value?: (SDKHandle) | null): Promise<void>;
+    /**
      * @MainActor @preconcurrency final var cornerRadius: CGFloat { get set }
      * @availability iOS 17.0+
      */
     get cornerRadius(): Promise<number>;
     setCornerRadius(value: number): Promise<void>;
     /**
+     * @MainActor @preconcurrency final var backgroundStyle: any ShapeStyle { get set }
+     * @availability iOS 26.0+
+     */
+    get backgroundStyle(): Promise<SDKHandle>;
+    setBackgroundStyle(value: SDKHandle): Promise<void>;
+    /**
      * @MainActor @preconcurrency final var imageSize: CGSize { get set }
      * @availability iOS 17.0+
      */
     get imageSize(): Promise<$SDK9>;
     setImageSize(value: $SDK9): Promise<void>;
+    /**
+     * @MainActor @preconcurrency final var viewStyle: any TipViewStyle { get set }
+     * @availability iOS 17.0+
+     */
+    get viewStyle(): Promise<SDKHandle>;
+    setViewStyle(value: SDKHandle): Promise<void>;
     /**
      * @MainActor @preconcurrency init(_ tip: any Tip, arrowEdge: Edge? = nil, actionHandler: @escaping @MainActor @Sendable (Tips.Action) -> Void = { _ in })
      * @availability iOS 18.0+

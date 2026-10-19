@@ -7,7 +7,7 @@ type $SDK1 = Array<CommunicationTopic_PersonInformation>;
 type $SDK2 = Array<CommunicationTopic_Action>;
 type $SDK3 = (_CoreGraphics_CGImage) | null;
 type $SDK4 = (_Foundation_PersonNameComponents) | null;
-type $SDK5 = PermissionQuestion<CommunicationTopic>;
+type $SDK6 = PermissionQuestion<CommunicationTopic>;
 /**
  * final class AskCenter
  * @availability iOS 26.2+
@@ -226,20 +226,41 @@ export type PermissionFlow = "acknowledgmentAlert" | "askToApprove" | "approveIn
  */
 export declare class PermissionQuestion<Topic = unknown> extends SDKHandle {
     /**
+     * final var defaultChoice: PermissionChoice { get }
+     * @availability iOS 26.0+
+     */
+    get defaultChoice(): PermissionChoice;
+    /**
+     * final var expirationDate: Date?
+     * @availability iOS 26.0+
+     */
+    get expirationDate(): (globalThis.Date) | null;
+    set expirationDate(value: (globalThis.Date) | null);
+    /**
+     * final let id: UUID
+     * @availability iOS 26.0+
+     */
+    get id(): string;
+    /**
+     * final var choices: [PermissionChoice] { get }
+     * @availability iOS 26.0+
+     */
+    get choices(): Array<PermissionChoice>;
+    /**
      * convenience init(communicationTopic: Topic)
      * @availability iOS 26.0+
      */
-    static initCommunicationTopic(communicationTopic: CommunicationTopic): $SDK5;
+    static initCommunicationTopic(communicationTopic: CommunicationTopic): $SDK6;
     /**
      * convenience init(handle: CommunicationHandle)
      * @availability iOS 26.0+
      */
-    static initHandle(handle: CommunicationHandle): $SDK5;
+    static initHandle(handle: CommunicationHandle): $SDK6;
     /**
      * convenience init(handles: [CommunicationHandle])
      * @availability iOS 26.0+
      */
-    static initHandles(handles: $SDK0): $SDK5;
+    static initHandles(handles: $SDK0): $SDK6;
     /**
      * convenience init(significantAppUpdateTopic: Topic)
      * @availability iOS 26.2+
@@ -259,6 +280,16 @@ export type PermissionQuestion_ID<Topic = unknown> = string;
  * @availability iOS 26.0+
  */
 export declare class PermissionResponse<Topic = unknown> extends SDKHandle {
+    /**
+     * let choice: PermissionChoice
+     * @availability iOS 26.0+
+     */
+    get choice(): PermissionChoice;
+    /**
+     * let question: PermissionQuestion<Topic>
+     * @availability iOS 26.0+
+     */
+    get question(): PermissionQuestion<SDKHandle>;
     readonly $type: {
         "s:13PermissionKit0A8ResponseV": true;
     };

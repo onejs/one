@@ -228,7 +228,7 @@ export interface INActivateCarSignalIntentHandling {
      * func handle(intent: INActivateCarSignalIntent) async -> INActivateCarSignalIntentResponse
      * @availability iOS 10.3+
      */
-    "handleIntent"?: (arg0: INActivateCarSignalIntent) => INActivateCarSignalIntentResponse;
+    "handleIntent"?: (arg0: INActivateCarSignalIntent) => Promise<INActivateCarSignalIntentResponse>;
 }
 /**
  * class INIntentResponse
@@ -347,7 +347,7 @@ export interface INAddMediaIntentHandling {
      * func handle(intent: INAddMediaIntent) async -> INAddMediaIntentResponse
      * @availability iOS 13.0+
      */
-    "handleIntent"?: (arg0: INAddMediaIntent) => INAddMediaIntentResponse;
+    "handleIntent"?: (arg0: INAddMediaIntent) => Promise<INAddMediaIntentResponse>;
 }
 declare const INAddMediaIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -596,7 +596,7 @@ export interface INAddTasksIntentHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    "handleIntent"?: (arg0: INAddTasksIntent) => INAddTasksIntentResponse;
+    "handleIntent"?: (arg0: INAddTasksIntent) => Promise<INAddTasksIntentResponse>;
 }
 declare const INAddTasksIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -955,7 +955,7 @@ export interface INAnswerCallIntentHandling {
      * func handle(intent: INAnswerCallIntent) async -> INAnswerCallIntentResponse
      * @availability iOS 16.2+
      */
-    "handleIntent"?: (arg0: INAnswerCallIntent) => INAnswerCallIntentResponse;
+    "handleIntent"?: (arg0: INAnswerCallIntent) => Promise<INAnswerCallIntentResponse>;
 }
 declare const INAnswerCallIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -1053,7 +1053,7 @@ export interface INAppendToNoteIntentHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INAppendToNoteIntent) => INAppendToNoteIntentResponse;
+    "handleIntent"?: (arg0: INAppendToNoteIntent) => Promise<INAppendToNoteIntentResponse>;
 }
 declare const INAppendToNoteIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -1602,7 +1602,7 @@ export interface INBookRestaurantReservationIntentHandling {
      * func handle(bookRestaurantReservation intent: INBookRestaurantReservationIntent) async -> INBookRestaurantReservationIntentResponse
      * @availability iOS 10.0+
      */
-    "handleBookRestaurantReservation"?: (arg0: INBookRestaurantReservationIntent) => INBookRestaurantReservationIntentResponse;
+    "handleBookRestaurantReservation"?: (arg0: INBookRestaurantReservationIntent) => Promise<INBookRestaurantReservationIntentResponse>;
 }
 declare const INBookRestaurantReservationIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -2160,7 +2160,7 @@ export interface INCallsDomainHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSearchCallHistoryIntent | INStartVideoCallIntent | INStartAudioCallIntent) => INSearchCallHistoryIntentResponse | INStartVideoCallIntentResponse | INStartAudioCallIntentResponse;
+    "handleIntent"?: (arg0: INSearchCallHistoryIntent | INStartVideoCallIntent | INStartAudioCallIntent) => Promise<INSearchCallHistoryIntentResponse> | Promise<INStartVideoCallIntentResponse> | Promise<INStartAudioCallIntentResponse>;
 }
 declare const INCancelRideIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -2201,7 +2201,7 @@ export interface INCancelRideIntentHandling {
      * func handle(cancelRide intent: INCancelRideIntent) async -> INCancelRideIntentResponse
      * @availability iOS 11.0+
      */
-    "handleCancelRide"?: (arg0: INCancelRideIntent) => INCancelRideIntentResponse;
+    "handleCancelRide"?: (arg0: INCancelRideIntent) => Promise<INCancelRideIntentResponse>;
 }
 declare const INCancelRideIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -2294,7 +2294,7 @@ export interface INCancelWorkoutIntentHandling {
      * func handle(intent: INCancelWorkoutIntent) async -> INCancelWorkoutIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INCancelWorkoutIntent) => INCancelWorkoutIntentResponse;
+    "handleIntent"?: (arg0: INCancelWorkoutIntent) => Promise<INCancelWorkoutIntentResponse>;
 }
 declare const INCancelWorkoutIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -2581,7 +2581,7 @@ export interface INCarCommandsDomainHandling {
      * func handle(intent: INGetCarPowerLevelStatusIntent) async -> INGetCarPowerLevelStatusIntentResponse
      * @availability iOS 10.3+
      */
-    "handleIntent"?: (arg0: INGetCarPowerLevelStatusIntent | INGetCarLockStatusIntent | INSetCarLockStatusIntent | INActivateCarSignalIntent) => INGetCarPowerLevelStatusIntentResponse | INGetCarLockStatusIntentResponse | INSetCarLockStatusIntentResponse | INActivateCarSignalIntentResponse;
+    "handleIntent"?: (arg0: INGetCarPowerLevelStatusIntent | INGetCarLockStatusIntent | INSetCarLockStatusIntent | INActivateCarSignalIntent) => Promise<INGetCarPowerLevelStatusIntentResponse> | Promise<INGetCarLockStatusIntentResponse> | Promise<INSetCarLockStatusIntentResponse> | Promise<INActivateCarSignalIntentResponse>;
     /**
      * optional func startSendingUpdates(for intent: INGetCarPowerLevelStatusIntent, to observer: any INGetCarPowerLevelStatusIntentResponseObserver)
      * @availability iOS 14.0+
@@ -2642,7 +2642,7 @@ export interface INCarPlayDomainHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSaveProfileInCarIntent | INSetProfileInCarIntent | INSetSeatSettingsInCarIntent | INSetDefrosterSettingsInCarIntent | INSetClimateSettingsInCarIntent | INSetAudioSourceInCarIntent) => INSaveProfileInCarIntentResponse | INSetProfileInCarIntentResponse | INSetSeatSettingsInCarIntentResponse | INSetDefrosterSettingsInCarIntentResponse | INSetClimateSettingsInCarIntentResponse | INSetAudioSourceInCarIntentResponse;
+    "handleIntent"?: (arg0: INSaveProfileInCarIntent | INSetProfileInCarIntent | INSetSeatSettingsInCarIntent | INSetDefrosterSettingsInCarIntent | INSetClimateSettingsInCarIntent | INSetAudioSourceInCarIntent) => Promise<INSaveProfileInCarIntentResponse> | Promise<INSetProfileInCarIntentResponse> | Promise<INSetSeatSettingsInCarIntentResponse> | Promise<INSetDefrosterSettingsInCarIntentResponse> | Promise<INSetClimateSettingsInCarIntentResponse> | Promise<INSetAudioSourceInCarIntentResponse>;
 }
 /**
  * enum INCarSeat
@@ -2795,7 +2795,7 @@ export interface INCreateNoteIntentHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    "handleIntent"?: (arg0: INCreateNoteIntent) => INCreateNoteIntentResponse;
+    "handleIntent"?: (arg0: INCreateNoteIntent) => Promise<INCreateNoteIntentResponse>;
 }
 declare const INCreateNoteIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -2906,7 +2906,7 @@ export interface INCreateTaskListIntentHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INCreateTaskListIntent) => INCreateTaskListIntentResponse;
+    "handleIntent"?: (arg0: INCreateTaskListIntent) => Promise<INCreateTaskListIntentResponse>;
 }
 declare const INCreateTaskListIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -3372,7 +3372,7 @@ export interface INDeleteTasksIntentHandling {
      * @availability iOS 13.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INDeleteTasksIntent) => INDeleteTasksIntentResponse;
+    "handleIntent"?: (arg0: INDeleteTasksIntent) => Promise<INDeleteTasksIntentResponse>;
 }
 declare const INDeleteTasksIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -3601,7 +3601,7 @@ export interface INEditMessageIntentHandling {
      * func handle(intent: INEditMessageIntent) async -> INEditMessageIntentResponse
      * @availability iOS 17.0+
      */
-    "handleIntent"?: (arg0: INEditMessageIntent) => INEditMessageIntentResponse;
+    "handleIntent"?: (arg0: INEditMessageIntent) => Promise<INEditMessageIntentResponse>;
 }
 declare const INEditMessageIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -3680,7 +3680,7 @@ export interface INEndWorkoutIntentHandling {
      * func handle(intent: INEndWorkoutIntent) async -> INEndWorkoutIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INEndWorkoutIntent) => INEndWorkoutIntentResponse;
+    "handleIntent"?: (arg0: INEndWorkoutIntent) => Promise<INEndWorkoutIntentResponse>;
 }
 declare const INEndWorkoutIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -4052,7 +4052,7 @@ export interface INGetAvailableRestaurantReservationBookingDefaultsIntentHandlin
      * func handle(getAvailableRestaurantReservationBookingDefaults intent: INGetAvailableRestaurantReservationBookingDefaultsIntent) async -> INGetAvailableRestaurantReservationBookingDefaultsIntentResponse
      * @availability iOS 10.0+
      */
-    "handleGetAvailableRestaurantReservationBookingDefaults"?: (arg0: INGetAvailableRestaurantReservationBookingDefaultsIntent) => INGetAvailableRestaurantReservationBookingDefaultsIntentResponse;
+    "handleGetAvailableRestaurantReservationBookingDefaults"?: (arg0: INGetAvailableRestaurantReservationBookingDefaultsIntent) => Promise<INGetAvailableRestaurantReservationBookingDefaultsIntentResponse>;
 }
 declare const INGetAvailableRestaurantReservationBookingDefaultsIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -4200,7 +4200,7 @@ export interface INGetAvailableRestaurantReservationBookingsIntentHandling {
      * func handle(getAvailableRestaurantReservationBookings intent: INGetAvailableRestaurantReservationBookingsIntent) async -> INGetAvailableRestaurantReservationBookingsIntentResponse
      * @availability iOS 10.0+
      */
-    "handleGetAvailableRestaurantReservationBookings"?: (arg0: INGetAvailableRestaurantReservationBookingsIntent) => INGetAvailableRestaurantReservationBookingsIntentResponse;
+    "handleGetAvailableRestaurantReservationBookings"?: (arg0: INGetAvailableRestaurantReservationBookingsIntent) => Promise<INGetAvailableRestaurantReservationBookingsIntentResponse>;
 }
 declare const INGetAvailableRestaurantReservationBookingsIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -4294,7 +4294,7 @@ export interface INGetCarLockStatusIntentHandling {
      * func handle(intent: INGetCarLockStatusIntent) async -> INGetCarLockStatusIntentResponse
      * @availability iOS 10.3+
      */
-    "handleIntent"?: (arg0: INGetCarLockStatusIntent) => INGetCarLockStatusIntentResponse;
+    "handleIntent"?: (arg0: INGetCarLockStatusIntent) => Promise<INGetCarLockStatusIntentResponse>;
 }
 declare const INGetCarLockStatusIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -4379,7 +4379,7 @@ export interface INGetCarPowerLevelStatusIntentHandling {
      * func handle(intent: INGetCarPowerLevelStatusIntent) async -> INGetCarPowerLevelStatusIntentResponse
      * @availability iOS 10.3+
      */
-    "handleIntent"?: (arg0: INGetCarPowerLevelStatusIntent) => INGetCarPowerLevelStatusIntentResponse;
+    "handleIntent"?: (arg0: INGetCarPowerLevelStatusIntent) => Promise<INGetCarPowerLevelStatusIntentResponse>;
     /**
      * optional func startSendingUpdates(for intent: INGetCarPowerLevelStatusIntent, to observer: any INGetCarPowerLevelStatusIntentResponseObserver)
      * @availability iOS 14.0+
@@ -4673,7 +4673,7 @@ export interface INGetRestaurantGuestIntentHandling {
      * func handle(getRestaurantGuest intent: INGetRestaurantGuestIntent) async -> INGetRestaurantGuestIntentResponse
      * @availability iOS 10.0+
      */
-    "handleGetRestaurantGuest"?: (arg0: INGetRestaurantGuestIntent) => INGetRestaurantGuestIntentResponse;
+    "handleGetRestaurantGuest"?: (arg0: INGetRestaurantGuestIntent) => Promise<INGetRestaurantGuestIntentResponse>;
 }
 declare const INGetRestaurantGuestIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -4754,7 +4754,7 @@ export interface INGetRideStatusIntentHandling {
      * func handle(intent: INGetRideStatusIntent) async -> INGetRideStatusIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INGetRideStatusIntent) => INGetRideStatusIntentResponse;
+    "handleIntent"?: (arg0: INGetRideStatusIntent) => Promise<INGetRideStatusIntentResponse>;
     /**
      * func startSendingUpdates(for intent: INGetRideStatusIntent, to observer: any INGetRideStatusIntentResponseObserver)
      * @availability iOS 10.0+
@@ -4883,7 +4883,7 @@ export interface INGetUserCurrentRestaurantReservationBookingsIntentHandling {
      * func handle(getUserCurrentRestaurantReservationBookings intent: INGetUserCurrentRestaurantReservationBookingsIntent) async -> INGetUserCurrentRestaurantReservationBookingsIntentResponse
      * @availability iOS 10.0+
      */
-    "handleGetUserCurrentRestaurantReservationBookings"?: (arg0: INGetUserCurrentRestaurantReservationBookingsIntent) => INGetUserCurrentRestaurantReservationBookingsIntentResponse;
+    "handleGetUserCurrentRestaurantReservationBookings"?: (arg0: INGetUserCurrentRestaurantReservationBookingsIntent) => Promise<INGetUserCurrentRestaurantReservationBookingsIntentResponse>;
 }
 declare const INGetUserCurrentRestaurantReservationBookingsIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -4968,7 +4968,7 @@ export interface INGetVisualCodeIntentHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INGetVisualCodeIntent) => INGetVisualCodeIntentResponse;
+    "handleIntent"?: (arg0: INGetVisualCodeIntent) => Promise<INGetVisualCodeIntentResponse>;
 }
 declare const INGetVisualCodeIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -5060,7 +5060,7 @@ export interface INHangUpCallIntentHandling {
      * func handle(intent: INHangUpCallIntent) async -> INHangUpCallIntentResponse
      * @availability iOS 16.2+
      */
-    "handleIntent"?: (arg0: INHangUpCallIntent) => INHangUpCallIntentResponse;
+    "handleIntent"?: (arg0: INHangUpCallIntent) => Promise<INHangUpCallIntentResponse>;
 }
 declare const INHangUpCallIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -5591,7 +5591,7 @@ export interface INListCarsIntentHandling {
      * func handle(intent: INListCarsIntent) async -> INListCarsIntentResponse
      * @availability iOS 14.0+
      */
-    "handleIntent"?: (arg0: INListCarsIntent) => INListCarsIntentResponse;
+    "handleIntent"?: (arg0: INListCarsIntent) => Promise<INListCarsIntentResponse>;
 }
 declare const INListCarsIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -5683,7 +5683,7 @@ export interface INListRideOptionsIntentHandling {
      * func handle(intent: INListRideOptionsIntent) async -> INListRideOptionsIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INListRideOptionsIntent) => INListRideOptionsIntentResponse;
+    "handleIntent"?: (arg0: INListRideOptionsIntent) => Promise<INListRideOptionsIntentResponse>;
 }
 declare const INListRideOptionsIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -6577,7 +6577,7 @@ export interface INMessagesDomainHandling {
      * func handle(intent: INSetMessageAttributeIntent) async -> INSetMessageAttributeIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INSetMessageAttributeIntent | INSearchForMessagesIntent | INSendMessageIntent) => INSetMessageAttributeIntentResponse | INSearchForMessagesIntentResponse | INSendMessageIntentResponse;
+    "handleIntent"?: (arg0: INSetMessageAttributeIntent | INSearchForMessagesIntent | INSendMessageIntent) => Promise<INSetMessageAttributeIntentResponse> | Promise<INSearchForMessagesIntentResponse> | Promise<INSendMessageIntentResponse>;
 }
 /**
  * enum INMessageType
@@ -6663,7 +6663,7 @@ export interface INNotebookDomainHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    "handleIntent"?: (arg0: INSearchForNotebookItemsIntent | INSetTaskAttributeIntent | INCreateTaskListIntent | INAddTasksIntent | INAppendToNoteIntent | INCreateNoteIntent) => INSearchForNotebookItemsIntentResponse | INSetTaskAttributeIntentResponse | INCreateTaskListIntentResponse | INAddTasksIntentResponse | INAppendToNoteIntentResponse | INCreateNoteIntentResponse;
+    "handleIntent"?: (arg0: INSearchForNotebookItemsIntent | INSetTaskAttributeIntent | INCreateTaskListIntent | INAddTasksIntent | INAppendToNoteIntent | INCreateNoteIntent) => Promise<INSearchForNotebookItemsIntentResponse> | Promise<INSetTaskAttributeIntentResponse> | Promise<INCreateTaskListIntentResponse> | Promise<INAddTasksIntentResponse> | Promise<INAppendToNoteIntentResponse> | Promise<INCreateNoteIntentResponse>;
 }
 /**
  * enum INNotebookItemType
@@ -7094,7 +7094,7 @@ export interface INPauseWorkoutIntentHandling {
      * func handle(intent: INPauseWorkoutIntent) async -> INPauseWorkoutIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INPauseWorkoutIntent) => INPauseWorkoutIntentResponse;
+    "handleIntent"?: (arg0: INPauseWorkoutIntent) => Promise<INPauseWorkoutIntentResponse>;
 }
 declare const INPauseWorkoutIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -7220,7 +7220,7 @@ export interface INPayBillIntentHandling {
      * @availability iOS 10.3+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INPayBillIntent) => INPayBillIntentResponse;
+    "handleIntent"?: (arg0: INPayBillIntent) => Promise<INPayBillIntentResponse>;
 }
 declare const INPayBillIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -7604,7 +7604,7 @@ export interface INPaymentsDomainHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INTransferMoneyIntent | INSearchForAccountsIntent | INSearchForBillsIntent | INPayBillIntent | INRequestPaymentIntent | INSendPaymentIntent) => INTransferMoneyIntentResponse | INSearchForAccountsIntentResponse | INSearchForBillsIntentResponse | INPayBillIntentResponse | INRequestPaymentIntentResponse | INSendPaymentIntentResponse;
+    "handleIntent"?: (arg0: INTransferMoneyIntent | INSearchForAccountsIntent | INSearchForBillsIntent | INPayBillIntent | INRequestPaymentIntent | INSendPaymentIntent) => Promise<INTransferMoneyIntentResponse> | Promise<INSearchForAccountsIntentResponse> | Promise<INSearchForBillsIntentResponse> | Promise<INPayBillIntentResponse> | Promise<INRequestPaymentIntentResponse> | Promise<INSendPaymentIntentResponse>;
 }
 /**
  * enum INPaymentStatus
@@ -8189,7 +8189,7 @@ export interface INPhotosDomainHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INStartPhotoPlaybackIntent | INSearchForPhotosIntent) => INStartPhotoPlaybackIntentResponse | INSearchForPhotosIntentResponse;
+    "handleIntent"?: (arg0: INStartPhotoPlaybackIntent | INSearchForPhotosIntent) => Promise<INStartPhotoPlaybackIntentResponse> | Promise<INSearchForPhotosIntentResponse>;
 }
 /**
  * class INPlacemarkResolutionResult
@@ -8361,7 +8361,7 @@ export interface INPlayMediaIntentHandling {
      * func handle(intent: INPlayMediaIntent) async -> INPlayMediaIntentResponse
      * @availability iOS 12.0+
      */
-    "handleIntent"?: (arg0: INPlayMediaIntent) => INPlayMediaIntentResponse;
+    "handleIntent"?: (arg0: INPlayMediaIntent) => Promise<INPlayMediaIntentResponse>;
 }
 declare const INPlayMediaIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -8571,7 +8571,7 @@ export interface INRadioDomainHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSetRadioStationIntent) => INSetRadioStationIntentResponse;
+    "handleIntent"?: (arg0: INSetRadioStationIntent) => Promise<INSetRadioStationIntentResponse>;
 }
 /**
  * enum INRadioType
@@ -9009,7 +9009,7 @@ export interface INRequestPaymentIntentHandling {
      * func handle(intent: INRequestPaymentIntent) async -> INRequestPaymentIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INRequestPaymentIntent) => INRequestPaymentIntentResponse;
+    "handleIntent"?: (arg0: INRequestPaymentIntent) => Promise<INRequestPaymentIntentResponse>;
 }
 declare const INRequestPaymentIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -9159,7 +9159,7 @@ export interface INRequestRideIntentHandling {
      * func handle(intent: INRequestRideIntent) async -> INRequestRideIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INRequestRideIntent) => INRequestRideIntentResponse;
+    "handleIntent"?: (arg0: INRequestRideIntent) => Promise<INRequestRideIntentResponse>;
 }
 declare const INRequestRideIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -9770,7 +9770,7 @@ export interface INResumeWorkoutIntentHandling {
      * func handle(intent: INResumeWorkoutIntent) async -> INResumeWorkoutIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INResumeWorkoutIntent) => INResumeWorkoutIntentResponse;
+    "handleIntent"?: (arg0: INResumeWorkoutIntent) => Promise<INResumeWorkoutIntentResponse>;
 }
 declare const INResumeWorkoutIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -10190,17 +10190,17 @@ export interface INRidesharingDomainHandling {
      * func handle(sendRideFeedback sendRideFeedbackintent: INSendRideFeedbackIntent) async -> INSendRideFeedbackIntentResponse
      * @availability iOS 11.0+
      */
-    "handleSendRideFeedback"?: (arg0: INSendRideFeedbackIntent) => INSendRideFeedbackIntentResponse;
+    "handleSendRideFeedback"?: (arg0: INSendRideFeedbackIntent) => Promise<INSendRideFeedbackIntentResponse>;
     /**
      * func handle(cancelRide intent: INCancelRideIntent) async -> INCancelRideIntentResponse
      * @availability iOS 11.0+
      */
-    "handleCancelRide"?: (arg0: INCancelRideIntent) => INCancelRideIntentResponse;
+    "handleCancelRide"?: (arg0: INCancelRideIntent) => Promise<INCancelRideIntentResponse>;
     /**
      * func handle(intent: INGetRideStatusIntent) async -> INGetRideStatusIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INGetRideStatusIntent | INRequestRideIntent | INListRideOptionsIntent) => INGetRideStatusIntentResponse | INRequestRideIntentResponse | INListRideOptionsIntentResponse;
+    "handleIntent"?: (arg0: INGetRideStatusIntent | INRequestRideIntent | INListRideOptionsIntent) => Promise<INGetRideStatusIntentResponse> | Promise<INRequestRideIntentResponse> | Promise<INListRideOptionsIntentResponse>;
     /**
      * func startSendingUpdates(for intent: INGetRideStatusIntent, to observer: any INGetRideStatusIntentResponseObserver)
      * @availability iOS 10.0+
@@ -10437,7 +10437,7 @@ export interface INSaveProfileInCarIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSaveProfileInCarIntent) => INSaveProfileInCarIntentResponse;
+    "handleIntent"?: (arg0: INSaveProfileInCarIntent) => Promise<INSaveProfileInCarIntentResponse>;
 }
 declare const INSaveProfileInCarIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -10565,7 +10565,7 @@ export interface INSearchCallHistoryIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSearchCallHistoryIntent) => INSearchCallHistoryIntentResponse;
+    "handleIntent"?: (arg0: INSearchCallHistoryIntent) => Promise<INSearchCallHistoryIntentResponse>;
 }
 declare const INSearchCallHistoryIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -10675,7 +10675,7 @@ export interface INSearchForAccountsIntentHandling {
      * func handle(intent: INSearchForAccountsIntent) async -> INSearchForAccountsIntentResponse
      * @availability iOS 11.0+
      */
-    "handleIntent"?: (arg0: INSearchForAccountsIntent) => INSearchForAccountsIntentResponse;
+    "handleIntent"?: (arg0: INSearchForAccountsIntent) => Promise<INSearchForAccountsIntentResponse>;
 }
 declare const INSearchForAccountsIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -10794,7 +10794,7 @@ export interface INSearchForBillsIntentHandling {
      * @availability iOS 10.3+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSearchForBillsIntent) => INSearchForBillsIntentResponse;
+    "handleIntent"?: (arg0: INSearchForBillsIntent) => Promise<INSearchForBillsIntentResponse>;
 }
 declare const INSearchForBillsIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -10892,7 +10892,7 @@ export interface INSearchForMediaIntentHandling {
      * func handle(intent: INSearchForMediaIntent) async -> INSearchForMediaIntentResponse
      * @availability iOS 13.0+
      */
-    "handleIntent"?: (arg0: INSearchForMediaIntent) => INSearchForMediaIntentResponse;
+    "handleIntent"?: (arg0: INSearchForMediaIntent) => Promise<INSearchForMediaIntentResponse>;
 }
 declare const INSearchForMediaIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -11133,7 +11133,7 @@ export interface INSearchForMessagesIntentHandling {
      * func handle(intent: INSearchForMessagesIntent) async -> INSearchForMessagesIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INSearchForMessagesIntent) => INSearchForMessagesIntentResponse;
+    "handleIntent"?: (arg0: INSearchForMessagesIntent) => Promise<INSearchForMessagesIntentResponse>;
 }
 declare const INSearchForMessagesIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -11305,7 +11305,7 @@ export interface INSearchForNotebookItemsIntentHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    "handleIntent"?: (arg0: INSearchForNotebookItemsIntent) => INSearchForNotebookItemsIntentResponse;
+    "handleIntent"?: (arg0: INSearchForNotebookItemsIntent) => Promise<INSearchForNotebookItemsIntentResponse>;
 }
 declare const INSearchForNotebookItemsIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -11482,7 +11482,7 @@ export interface INSearchForPhotosIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSearchForPhotosIntent) => INSearchForPhotosIntentResponse;
+    "handleIntent"?: (arg0: INSearchForPhotosIntent) => Promise<INSearchForPhotosIntentResponse>;
 }
 declare const INSearchForPhotosIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -11749,7 +11749,7 @@ export interface INSendMessageIntentHandling {
      * func handle(intent: INSendMessageIntent) async -> INSendMessageIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INSendMessageIntent) => INSendMessageIntentResponse;
+    "handleIntent"?: (arg0: INSendMessageIntent) => Promise<INSendMessageIntentResponse>;
 }
 declare const INSendMessageIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -11925,7 +11925,7 @@ export interface INSendPaymentIntentHandling {
      * func handle(intent: INSendPaymentIntent) async -> INSendPaymentIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INSendPaymentIntent) => INSendPaymentIntentResponse;
+    "handleIntent"?: (arg0: INSendPaymentIntent) => Promise<INSendPaymentIntentResponse>;
 }
 declare const INSendPaymentIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -12060,7 +12060,7 @@ export interface INSendRideFeedbackIntentHandling {
      * func handle(sendRideFeedback sendRideFeedbackintent: INSendRideFeedbackIntent) async -> INSendRideFeedbackIntentResponse
      * @availability iOS 11.0+
      */
-    "handleSendRideFeedback"?: (arg0: INSendRideFeedbackIntent) => INSendRideFeedbackIntentResponse;
+    "handleSendRideFeedback"?: (arg0: INSendRideFeedbackIntent) => Promise<INSendRideFeedbackIntentResponse>;
 }
 declare const INSendRideFeedbackIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -12151,7 +12151,7 @@ export interface INSetAudioSourceInCarIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSetAudioSourceInCarIntent) => INSetAudioSourceInCarIntentResponse;
+    "handleIntent"?: (arg0: INSetAudioSourceInCarIntent) => Promise<INSetAudioSourceInCarIntentResponse>;
 }
 declare const INSetAudioSourceInCarIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -12240,7 +12240,7 @@ export interface INSetCarLockStatusIntentHandling {
      * func handle(intent: INSetCarLockStatusIntent) async -> INSetCarLockStatusIntentResponse
      * @availability iOS 10.3+
      */
-    "handleIntent"?: (arg0: INSetCarLockStatusIntent) => INSetCarLockStatusIntentResponse;
+    "handleIntent"?: (arg0: INSetCarLockStatusIntent) => Promise<INSetCarLockStatusIntentResponse>;
 }
 declare const INSetCarLockStatusIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -12395,7 +12395,7 @@ export interface INSetClimateSettingsInCarIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSetClimateSettingsInCarIntent) => INSetClimateSettingsInCarIntentResponse;
+    "handleIntent"?: (arg0: INSetClimateSettingsInCarIntent) => Promise<INSetClimateSettingsInCarIntentResponse>;
 }
 declare const INSetClimateSettingsInCarIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -12497,7 +12497,7 @@ export interface INSetDefrosterSettingsInCarIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSetDefrosterSettingsInCarIntent) => INSetDefrosterSettingsInCarIntentResponse;
+    "handleIntent"?: (arg0: INSetDefrosterSettingsInCarIntent) => Promise<INSetDefrosterSettingsInCarIntentResponse>;
 }
 declare const INSetDefrosterSettingsInCarIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -12587,7 +12587,7 @@ export interface INSetMessageAttributeIntentHandling {
      * func handle(intent: INSetMessageAttributeIntent) async -> INSetMessageAttributeIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INSetMessageAttributeIntent) => INSetMessageAttributeIntentResponse;
+    "handleIntent"?: (arg0: INSetMessageAttributeIntent) => Promise<INSetMessageAttributeIntentResponse>;
 }
 declare const INSetMessageAttributeIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -12756,7 +12756,7 @@ export interface INSetProfileInCarIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSetProfileInCarIntent) => INSetProfileInCarIntentResponse;
+    "handleIntent"?: (arg0: INSetProfileInCarIntent) => Promise<INSetProfileInCarIntentResponse>;
 }
 declare const INSetProfileInCarIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -12871,7 +12871,7 @@ export interface INSetRadioStationIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSetRadioStationIntent) => INSetRadioStationIntentResponse;
+    "handleIntent"?: (arg0: INSetRadioStationIntent) => Promise<INSetRadioStationIntentResponse>;
 }
 declare const INSetRadioStationIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -12998,7 +12998,7 @@ export interface INSetSeatSettingsInCarIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INSetSeatSettingsInCarIntent) => INSetSeatSettingsInCarIntentResponse;
+    "handleIntent"?: (arg0: INSetSeatSettingsInCarIntent) => Promise<INSetSeatSettingsInCarIntentResponse>;
 }
 declare const INSetSeatSettingsInCarIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -13127,7 +13127,7 @@ export interface INSetTaskAttributeIntentHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    "handleIntent"?: (arg0: INSetTaskAttributeIntent) => INSetTaskAttributeIntentResponse;
+    "handleIntent"?: (arg0: INSetTaskAttributeIntent) => Promise<INSetTaskAttributeIntentResponse>;
 }
 declare const INSetTaskAttributeIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -13259,7 +13259,7 @@ export interface INShareFocusStatusIntentHandling {
      * func handle(intent: INShareFocusStatusIntent) async -> INShareFocusStatusIntentResponse
      * @availability iOS 15.0+
      */
-    "handleIntent"?: (arg0: INShareFocusStatusIntent) => INShareFocusStatusIntentResponse;
+    "handleIntent"?: (arg0: INShareFocusStatusIntent) => Promise<INShareFocusStatusIntentResponse>;
 }
 declare const INShareFocusStatusIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -13491,7 +13491,7 @@ export interface INSnoozeTasksIntentHandling {
      * @availability iOS 13.0+
      * @deprecated iOS 27.0
      */
-    "handleIntent"?: (arg0: INSnoozeTasksIntent) => INSnoozeTasksIntentResponse;
+    "handleIntent"?: (arg0: INSnoozeTasksIntent) => Promise<INSnoozeTasksIntentResponse>;
 }
 declare const INSnoozeTasksIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -13805,7 +13805,7 @@ export interface INStartAudioCallIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 13.0
      */
-    "handleIntent"?: (arg0: INStartAudioCallIntent) => INStartAudioCallIntentResponse;
+    "handleIntent"?: (arg0: INStartAudioCallIntent) => Promise<INStartAudioCallIntentResponse>;
 }
 declare const INStartAudioCallIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -14036,7 +14036,7 @@ export interface INStartCallIntentHandling {
      * func handle(intent: INStartCallIntent) async -> INStartCallIntentResponse
      * @availability iOS 13.0+
      */
-    "handleIntent"?: (arg0: INStartCallIntent) => INStartCallIntentResponse;
+    "handleIntent"?: (arg0: INStartCallIntent) => Promise<INStartCallIntentResponse>;
 }
 declare const INStartCallIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -14176,7 +14176,7 @@ export interface INStartPhotoPlaybackIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INStartPhotoPlaybackIntent) => INStartPhotoPlaybackIntentResponse;
+    "handleIntent"?: (arg0: INStartPhotoPlaybackIntent) => Promise<INStartPhotoPlaybackIntentResponse>;
 }
 declare const INStartPhotoPlaybackIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -14272,7 +14272,7 @@ export interface INStartVideoCallIntentHandling {
      * @availability iOS 10.0+
      * @deprecated iOS 13.0
      */
-    "handleIntent"?: (arg0: INStartVideoCallIntent) => INStartVideoCallIntentResponse;
+    "handleIntent"?: (arg0: INStartVideoCallIntent) => Promise<INStartVideoCallIntentResponse>;
 }
 declare const INStartVideoCallIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -14378,7 +14378,7 @@ export interface INStartWorkoutIntentHandling {
      * func handle(intent: INStartWorkoutIntent) async -> INStartWorkoutIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INStartWorkoutIntent) => INStartWorkoutIntentResponse;
+    "handleIntent"?: (arg0: INStartWorkoutIntent) => Promise<INStartWorkoutIntentResponse>;
 }
 declare const INStartWorkoutIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -15187,7 +15187,7 @@ export interface INTransferMoneyIntentHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INTransferMoneyIntent) => INTransferMoneyIntentResponse;
+    "handleIntent"?: (arg0: INTransferMoneyIntent) => Promise<INTransferMoneyIntentResponse>;
 }
 declare const INTransferMoneyIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -15319,7 +15319,7 @@ export interface INUnsendMessagesIntentHandling {
      * func handle(intent: INUnsendMessagesIntent) async -> INUnsendMessagesIntentResponse
      * @availability iOS 17.0+
      */
-    "handleIntent"?: (arg0: INUnsendMessagesIntent) => INUnsendMessagesIntentResponse;
+    "handleIntent"?: (arg0: INUnsendMessagesIntent) => Promise<INUnsendMessagesIntentResponse>;
 }
 declare const INUnsendMessagesIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -15449,7 +15449,7 @@ export interface INUpdateMediaAffinityIntentHandling {
      * func handle(intent: INUpdateMediaAffinityIntent) async -> INUpdateMediaAffinityIntentResponse
      * @availability iOS 13.0+
      */
-    "handleIntent"?: (arg0: INUpdateMediaAffinityIntent) => INUpdateMediaAffinityIntentResponse;
+    "handleIntent"?: (arg0: INUpdateMediaAffinityIntent) => Promise<INUpdateMediaAffinityIntentResponse>;
 }
 declare const INUpdateMediaAffinityIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -15566,7 +15566,7 @@ export interface INVisualCodeDomainHandling {
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    "handleIntent"?: (arg0: INGetVisualCodeIntent) => INGetVisualCodeIntentResponse;
+    "handleIntent"?: (arg0: INGetVisualCodeIntent) => Promise<INGetVisualCodeIntentResponse>;
 }
 /**
  * enum INVisualCodeType
@@ -15923,7 +15923,7 @@ export interface INWorkoutsDomainHandling {
      * func handle(intent: INResumeWorkoutIntent) async -> INResumeWorkoutIntentResponse
      * @availability iOS 10.0+
      */
-    "handleIntent"?: (arg0: INResumeWorkoutIntent | INCancelWorkoutIntent | INEndWorkoutIntent | INPauseWorkoutIntent | INStartWorkoutIntent) => INResumeWorkoutIntentResponse | INCancelWorkoutIntentResponse | INEndWorkoutIntentResponse | INPauseWorkoutIntentResponse | INStartWorkoutIntentResponse;
+    "handleIntent"?: (arg0: INResumeWorkoutIntent | INCancelWorkoutIntent | INEndWorkoutIntent | INPauseWorkoutIntent | INStartWorkoutIntent) => Promise<INResumeWorkoutIntentResponse> | Promise<INCancelWorkoutIntentResponse> | Promise<INEndWorkoutIntentResponse> | Promise<INPauseWorkoutIntentResponse> | Promise<INStartWorkoutIntentResponse>;
 }
 export declare class NSExtensionContext extends SDKHandle {
     /**

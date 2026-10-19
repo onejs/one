@@ -4060,17 +4060,17 @@ export interface MTLDevice {
      * func makeLibrary(source: String, options: MTLCompileOptions?) throws -> any MTLLibrary
      * @availability iOS 8.0+
      */
-    "makeLibrarySourceOptions"?: (arg0: string, arg1: (MTLCompileOptions) | null) => SDKHandle;
+    "makeLibrarySourceOptions"?: (arg0: string, arg1: (MTLCompileOptions) | null) => SDKHandle | Promise<SDKHandle>;
     /**
      * func makeLibrary(stitchedDescriptor descriptor: MTLStitchedLibraryDescriptor) throws -> any MTLLibrary
      * @availability iOS 15.0+
      */
-    "makeLibraryStitchedDescriptor"?: (arg0: MTLStitchedLibraryDescriptor) => SDKHandle;
+    "makeLibraryStitchedDescriptor"?: (arg0: MTLStitchedLibraryDescriptor) => SDKHandle | Promise<SDKHandle>;
     /**
      * func makeRenderPipelineState(descriptor: MTLRenderPipelineDescriptor) throws -> any MTLRenderPipelineState
      * @availability iOS 8.0+
      */
-    "makeRenderPipelineStateDescriptor"?: (arg0: MTLRenderPipelineDescriptor) => SDKHandle;
+    "makeRenderPipelineStateDescriptor"?: (arg0: MTLRenderPipelineDescriptor) => SDKHandle | Promise<SDKHandle>;
     /**
      * func makeRenderPipelineState(descriptor: MTLRenderPipelineDescriptor, options: MTLPipelineOption, reflection: AutoreleasingUnsafeMutablePointer<MTLAutoreleasedRenderPipelineReflection?>?) throws -> any MTLRenderPipelineState
      * @availability iOS 8.0+
@@ -4080,12 +4080,12 @@ export interface MTLDevice {
      * func makeRenderPipelineState(descriptor: MTLRenderPipelineDescriptor, options: MTLPipelineOption) async throws -> (any MTLRenderPipelineState, MTLRenderPipelineReflection?)
      * @availability iOS 8.0+
      */
-    "makeRenderPipelineStateDescriptorOptions"?: (arg0: MTLRenderPipelineDescriptor | MTLMeshRenderPipelineDescriptor, arg1: MTLPipelineOption) => $SDK15;
+    "makeRenderPipelineStateDescriptorOptions"?: (arg0: MTLRenderPipelineDescriptor | MTLMeshRenderPipelineDescriptor, arg1: MTLPipelineOption) => Promise<$SDK15>;
     /**
      * func makeComputePipelineState(function computeFunction: any MTLFunction) throws -> any MTLComputePipelineState
      * @availability iOS 8.0+
      */
-    "makeComputePipelineStateFunction"?: (arg0: SDKHandle) => SDKHandle;
+    "makeComputePipelineStateFunction"?: (arg0: SDKHandle) => SDKHandle | Promise<SDKHandle>;
     /**
      * func makeComputePipelineState(function computeFunction: any MTLFunction, options: MTLPipelineOption, reflection: AutoreleasingUnsafeMutablePointer<MTLAutoreleasedComputePipelineReflection?>?) throws -> any MTLComputePipelineState
      * @availability iOS 8.0+
@@ -4095,7 +4095,7 @@ export interface MTLDevice {
      * func makeComputePipelineState(function computeFunction: any MTLFunction, options: MTLPipelineOption) async throws -> (any MTLComputePipelineState, MTLComputePipelineReflection?)
      * @availability iOS 8.0+
      */
-    "makeComputePipelineStateFunctionOptions"?: (arg0: SDKHandle, arg1: MTLPipelineOption) => $SDK16;
+    "makeComputePipelineStateFunctionOptions"?: (arg0: SDKHandle, arg1: MTLPipelineOption) => Promise<$SDK16>;
     /**
      * func makeComputePipelineState(descriptor: MTLComputePipelineDescriptor, options: MTLPipelineOption, reflection: AutoreleasingUnsafeMutablePointer<MTLAutoreleasedComputePipelineReflection?>?) throws -> any MTLComputePipelineState
      * @availability iOS 9.0+
@@ -4105,7 +4105,7 @@ export interface MTLDevice {
      * func makeComputePipelineState(descriptor: MTLComputePipelineDescriptor, options: MTLPipelineOption) async throws -> (any MTLComputePipelineState, MTLComputePipelineReflection?)
      * @availability iOS 9.0+
      */
-    "makeComputePipelineStateDescriptorOptions"?: (arg0: MTLComputePipelineDescriptor, arg1: MTLPipelineOption) => $SDK16;
+    "makeComputePipelineStateDescriptorOptions"?: (arg0: MTLComputePipelineDescriptor, arg1: MTLPipelineOption) => Promise<$SDK16>;
     /**
      * func makeFence() -> (any MTLFence)?
      * @availability iOS 10.0+
@@ -4146,7 +4146,7 @@ export interface MTLDevice {
      * func makeRenderPipelineState(tileDescriptor descriptor: MTLTileRenderPipelineDescriptor, options: MTLPipelineOption) async throws -> (any MTLRenderPipelineState, MTLRenderPipelineReflection?)
      * @availability iOS 11.0+
      */
-    "makeRenderPipelineStateTileDescriptorOptions"?: (arg0: MTLTileRenderPipelineDescriptor, arg1: MTLPipelineOption) => $SDK15;
+    "makeRenderPipelineStateTileDescriptorOptions"?: (arg0: MTLTileRenderPipelineDescriptor, arg1: MTLPipelineOption) => Promise<$SDK15>;
     /**
      * func makeArgumentEncoder(arguments: [MTLArgumentDescriptor]) -> (any MTLArgumentEncoder)?
      * @availability iOS 11.0+
@@ -5997,17 +5997,17 @@ export interface MTLLibrary {
      * func makeFunction(name: String, constantValues: MTLFunctionConstantValues) throws -> any MTLFunction
      * @availability iOS 10.0+
      */
-    "makeFunctionNameConstantValues"?: (arg0: string, arg1: MTLFunctionConstantValues) => SDKHandle;
+    "makeFunctionNameConstantValues"?: (arg0: string, arg1: MTLFunctionConstantValues) => SDKHandle | Promise<SDKHandle>;
     /**
      * func makeFunction(descriptor: MTLFunctionDescriptor) async throws -> any MTLFunction
      * @availability iOS 14.0+
      */
-    "makeFunctionDescriptor"?: (arg0: MTLFunctionDescriptor) => SDKHandle;
+    "makeFunctionDescriptor"?: (arg0: MTLFunctionDescriptor) => Promise<SDKHandle> | SDKHandle;
     /**
      * func makeIntersectionFunction(descriptor: MTLIntersectionFunctionDescriptor) async throws -> any MTLFunction
      * @availability iOS 14.0+
      */
-    "makeIntersectionFunctionDescriptor"?: (arg0: MTLIntersectionFunctionDescriptor) => SDKHandle;
+    "makeIntersectionFunctionDescriptor"?: (arg0: MTLIntersectionFunctionDescriptor) => Promise<SDKHandle> | SDKHandle;
 }
 /**
  * struct MTLLibraryError

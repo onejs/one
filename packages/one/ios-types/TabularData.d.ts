@@ -1935,6 +1935,27 @@ export type DiscontiguousColumnSlice_SubSequence<WrappedElement = unknown> = $SD
  * @availability iOS 15.0+
  */
 export declare class FilledColumn<Base = unknown> extends SDKHandle {
+    /**
+     * func description(options: FormattingOptions) -> String
+     * @availability iOS 15.0+
+     */
+    descriptionOptions(options: FormattingOptions): string;
+    /**
+     * var description: String { get }
+     * @availability iOS 15.0+
+     */
+    get description(): string;
+    /**
+     * var debugDescription: String { get }
+     * @availability iOS 15.0+
+     */
+    get debugDescription(): string;
+    /**
+     * var name: String { get set }
+     * @availability iOS 15.0+
+     */
+    get name(): string;
+    set name(value: string);
     readonly $type: {
         "s:11TabularData12FilledColumnV": true;
     };

@@ -2,14 +2,17 @@
 import { SDKHandle, type SDKSequence } from 'one/ios-runtime';
 import type { DateInterval as _Foundation_DateInterval, Measurement as _Foundation_Measurement, UnitEnergy as _Foundation_UnitEnergy, UnitPower as _Foundation_UnitPower, UnitLength as _Foundation_UnitLength, UnitTemperature as _Foundation_UnitTemperature } from "one/ios/Foundation";
 type $SDK1 = Array<ElectricityGuidance_Options>;
-type $SDK4 = Array<ElectricVehicleChargingReason_ActiveReason>;
-type $SDK5 = Array<ElectricVehicleChargingReason_IdleReason>;
-type $SDK6 = _Foundation_Measurement<_Foundation_UnitPower>;
-type $SDK7 = _Foundation_Measurement<_Foundation_UnitEnergy>;
-type $SDK8 = (ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics) | null;
-type $SDK9 = (_Foundation_Measurement<_Foundation_UnitLength>) | null;
-type $SDK10 = (_Foundation_Measurement<_Foundation_UnitTemperature>) | null;
-type $SDK11 = (ElectricVehicleStatusEvent_ChargingTarget) | null;
+type $SDK2 = (_Foundation_Measurement<_Foundation_UnitEnergy>) | null;
+type $SDK3 = (ElectricityInsightRecord_TariffPeak<SDKHandle>) | null;
+type $SDK4 = (ElectricityInsightRecord_GridCleanliness<SDKHandle>) | null;
+type $SDK7 = Array<ElectricVehicleChargingReason_ActiveReason>;
+type $SDK8 = Array<ElectricVehicleChargingReason_IdleReason>;
+type $SDK9 = _Foundation_Measurement<_Foundation_UnitPower>;
+type $SDK10 = _Foundation_Measurement<_Foundation_UnitEnergy>;
+type $SDK11 = (ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics) | null;
+type $SDK12 = (_Foundation_Measurement<_Foundation_UnitLength>) | null;
+type $SDK13 = (_Foundation_Measurement<_Foundation_UnitTemperature>) | null;
+type $SDK14 = (ElectricVehicleStatusEvent_ChargingTarget) | null;
 /**
  * struct ElectricalLoadDevice
  * @availability iOS 27.0+
@@ -416,6 +419,35 @@ export type ElectricityInsightQuery_Options_RawValue = number;
  * @availability iOS 26.0+
  */
 export declare class ElectricityInsightRecord<Measure = unknown> extends SDKHandle {
+    /**
+     * var totalEnergy: Measurement<UnitEnergy>?
+     * @availability iOS 26.0+
+     */
+    get totalEnergy(): $SDK2;
+    set totalEnergy(value: $SDK2);
+    /**
+     * var totalRuntime: Duration?
+     * @availability iOS 26.0+
+     */
+    get totalRuntime(): (SDKHandle) | null;
+    set totalRuntime(value: (SDKHandle) | null);
+    /**
+     * var dataByTariffPeak: ElectricityInsightRecord<Measure>.TariffPeak?
+     * @availability iOS 26.0+
+     */
+    get dataByTariffPeak(): $SDK3;
+    set dataByTariffPeak(value: $SDK3);
+    /**
+     * var dataByGridCleanliness: ElectricityInsightRecord<Measure>.GridCleanliness?
+     * @availability iOS 26.1+
+     */
+    get dataByGridCleanliness(): $SDK4;
+    set dataByGridCleanliness(value: $SDK4);
+    /**
+     * let range: DateInterval
+     * @availability iOS 26.0+
+     */
+    get range(): _Foundation_DateInterval;
     readonly $type: {
         "s:9EnergyKit24ElectricityInsightRecordV": true;
     };
@@ -486,13 +518,13 @@ export declare const ElectricVehicleChargingReason_ActiveReason: {
      * nonisolated static var allCases: [ElectricVehicleChargingReason.ActiveReason] { get }
      * @availability iOS 27.0+
      */
-    readonly allCases: $SDK4;
+    readonly allCases: $SDK7;
 };
 /**
  * typealias AllCases = [ElectricVehicleChargingReason.ActiveReason]
  * @availability iOS 27.0+
  */
-export type ElectricVehicleChargingReason_ActiveReason_AllCases = $SDK4;
+export type ElectricVehicleChargingReason_ActiveReason_AllCases = $SDK7;
 /**
  * enum IdleReason
  * @availability iOS 27.0+
@@ -503,13 +535,13 @@ export declare const ElectricVehicleChargingReason_IdleReason: {
      * nonisolated static var allCases: [ElectricVehicleChargingReason.IdleReason] { get }
      * @availability iOS 27.0+
      */
-    readonly allCases: $SDK5;
+    readonly allCases: $SDK8;
 };
 /**
  * typealias AllCases = [ElectricVehicleChargingReason.IdleReason]
  * @availability iOS 27.0+
  */
-export type ElectricVehicleChargingReason_IdleReason_AllCases = $SDK5;
+export type ElectricVehicleChargingReason_IdleReason_AllCases = $SDK8;
 /**
  * struct ElectricVehicleLoadEvent
  * @availability iOS 26.0+
@@ -569,13 +601,13 @@ export declare class ElectricVehicleLoadEvent_ElectricalMeasurement extends SDKH
      * init(stateOfCharge: Int, direction: ElectricityFlowDirection, power: Measurement<UnitPower>, energy: Measurement<UnitEnergy>, performanceMetrics: ElectricVehicleLoadEvent.ElectricalMeasurement.PerformanceMetrics?)
      * @availability iOS 27.0+
      */
-    static initStateOfChargeDirectionPowerEnergyPerformanceMetrics(stateOfCharge: number, direction: ElectricityFlowDirection, power: $SDK6, energy: $SDK7, performanceMetrics?: $SDK8): ElectricVehicleLoadEvent_ElectricalMeasurement;
+    static initStateOfChargeDirectionPowerEnergyPerformanceMetrics(stateOfCharge: number, direction: ElectricityFlowDirection, power: $SDK9, energy: $SDK10, performanceMetrics?: $SDK11): ElectricVehicleLoadEvent_ElectricalMeasurement;
     /**
      * init(stateOfCharge: Int, direction: ElectricityFlowDirection, power: Measurement<UnitPower>, energy: Measurement<UnitEnergy>)
      * @availability iOS 26.0+
      * @deprecated iOS 27.0
      */
-    static initStateOfChargeDirectionPowerEnergy(stateOfCharge: number, direction: ElectricityFlowDirection, power: $SDK6, energy: $SDK7): ElectricVehicleLoadEvent_ElectricalMeasurement;
+    static initStateOfChargeDirectionPowerEnergy(stateOfCharge: number, direction: ElectricityFlowDirection, power: $SDK9, energy: $SDK10): ElectricVehicleLoadEvent_ElectricalMeasurement;
     /**
      * let stateOfCharge: Int
      * @availability iOS 26.0+
@@ -585,17 +617,17 @@ export declare class ElectricVehicleLoadEvent_ElectricalMeasurement extends SDKH
      * var performanceMetrics: ElectricVehicleLoadEvent.ElectricalMeasurement.PerformanceMetrics? { get }
      * @availability iOS 27.0+
      */
-    get performanceMetrics(): $SDK8;
+    get performanceMetrics(): $SDK11;
     /**
      * let power: Measurement<UnitPower>
      * @availability iOS 26.0+
      */
-    get power(): $SDK6;
+    get power(): $SDK9;
     /**
      * let energy: Measurement<UnitEnergy>
      * @availability iOS 26.0+
      */
-    get energy(): $SDK7;
+    get energy(): $SDK10;
     /**
      * let direction: ElectricityFlowDirection
      * @availability iOS 26.0+
@@ -614,17 +646,17 @@ export declare class ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceM
      * let estimatedRange: Measurement<UnitLength>?
      * @availability iOS 27.0+
      */
-    get estimatedRange(): $SDK9;
+    get estimatedRange(): $SDK12;
     /**
      * init(estimatedRange: Measurement<UnitLength>? = nil, batteryTemperature: Measurement<UnitTemperature>? = nil)
      * @availability iOS 27.0+
      */
-    static init(estimatedRange?: $SDK9, batteryTemperature?: $SDK10): ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics;
+    static init(estimatedRange?: $SDK12, batteryTemperature?: $SDK13): ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceMetrics;
     /**
      * let batteryTemperature: Measurement<UnitTemperature>?
      * @availability iOS 27.0+
      */
-    get batteryTemperature(): $SDK10;
+    get batteryTemperature(): $SDK13;
     readonly $type: {
         "s:9EnergyKit24ElectricVehicleLoadEventV21ElectricalMeasurementV18PerformanceMetricsV": true;
     };
@@ -712,12 +744,12 @@ export declare class ElectricVehicleStatusEvent extends SDKHandle {
      * let chargingTarget: ElectricVehicleStatusEvent.ChargingTarget?
      * @availability iOS 27.0+
      */
-    get chargingTarget(): $SDK11;
+    get chargingTarget(): $SDK14;
     /**
      * let estimatedRange: Measurement<UnitLength>?
      * @availability iOS 27.0+
      */
-    get estimatedRange(): $SDK9;
+    get estimatedRange(): $SDK12;
     /**
      * let sessionIdentifier: UUID?
      * @availability iOS 27.0+
@@ -732,7 +764,7 @@ export declare class ElectricVehicleStatusEvent extends SDKHandle {
      * let energy: Measurement<UnitEnergy>
      * @availability iOS 27.0+
      */
-    get energy(): $SDK7;
+    get energy(): $SDK10;
     /**
      * let status: ElectricVehicleStatusEvent.Status
      * @availability iOS 27.0+
@@ -757,7 +789,7 @@ export declare class ElectricVehicleStatusEvent extends SDKHandle {
      * init(timestamp: Date, device: ElectricalLoadDevice, venueID: UUID, status: ElectricVehicleStatusEvent.Status, stateOfCharge: Int, energy: Measurement<UnitEnergy>, estimatedRange: Measurement<UnitLength>? = nil, chargingTarget: ElectricVehicleStatusEvent.ChargingTarget? = nil, sessionIdentifier: UUID? = nil)
      * @availability iOS 27.0+
      */
-    static init(timestamp: globalThis.Date, device: ElectricalLoadDevice, venueID: string, status: ElectricVehicleStatusEvent_Status, stateOfCharge: number, energy: $SDK7, estimatedRange?: $SDK9, chargingTarget?: $SDK11, sessionIdentifier?: (string) | null): ElectricVehicleStatusEvent;
+    static init(timestamp: globalThis.Date, device: ElectricalLoadDevice, venueID: string, status: ElectricVehicleStatusEvent_Status, stateOfCharge: number, energy: $SDK10, estimatedRange?: $SDK12, chargingTarget?: $SDK14, sessionIdentifier?: (string) | null): ElectricVehicleStatusEvent;
     readonly $type: {
         "s:9EnergyKit26ElectricVehicleStatusEventV": true;
     };
@@ -771,12 +803,12 @@ export declare class ElectricVehicleStatusEvent_ChargingTarget extends SDKHandle
      * let estimatedRangeAtTarget: Measurement<UnitLength>?
      * @availability iOS 27.0+
      */
-    get estimatedRangeAtTarget(): $SDK9;
+    get estimatedRangeAtTarget(): $SDK12;
     /**
      * init(stateOfCharge: Int, estimatedCompletionTime: Date, scheduledStartTime: Date, estimatedRangeAtTarget: Measurement<UnitLength>? = nil)
      * @availability iOS 27.0+
      */
-    static init(stateOfCharge: number, estimatedCompletionTime: globalThis.Date, scheduledStartTime: globalThis.Date, estimatedRangeAtTarget?: $SDK9): ElectricVehicleStatusEvent_ChargingTarget;
+    static init(stateOfCharge: number, estimatedCompletionTime: globalThis.Date, scheduledStartTime: globalThis.Date, estimatedRangeAtTarget?: $SDK12): ElectricVehicleStatusEvent_ChargingTarget;
     /**
      * let stateOfCharge: Int
      * @availability iOS 27.0+

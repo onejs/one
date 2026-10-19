@@ -614,17 +614,17 @@ export interface WebPage_DialogPresenting {
      * @MainActor func handleJavaScriptConfirm(message: String, initiatedBy frame: WebPage.FrameInfo) async -> WebPage.JavaScriptConfirmResult
      * @availability iOS 26.0+
      */
-    "handleJavaScriptConfirmMessageInitiatedBy"?: (arg0: string, arg1: WebPage_FrameInfo) => WebPage_JavaScriptConfirmResult;
+    "handleJavaScriptConfirmMessageInitiatedBy"?: (arg0: string, arg1: WebPage_FrameInfo) => Promise<WebPage_JavaScriptConfirmResult>;
     /**
      * @MainActor func handleJavaScriptPrompt(message: String, defaultText: String?, initiatedBy frame: WebPage.FrameInfo) async -> WebPage.JavaScriptPromptResult
      * @availability iOS 26.0+
      */
-    "handleJavaScriptPromptMessageDefaultTextInitiatedBy"?: (arg0: string, arg1: (string) | null, arg2: WebPage_FrameInfo) => WebPage_JavaScriptPromptResult;
+    "handleJavaScriptPromptMessageDefaultTextInitiatedBy"?: (arg0: string, arg1: (string) | null, arg2: WebPage_FrameInfo) => Promise<WebPage_JavaScriptPromptResult>;
     /**
      * @MainActor func handleFileInputPrompt(parameters: WKOpenPanelParameters, initiatedBy frame: WebPage.FrameInfo) async -> WebPage.FileInputPromptResult
      * @availability iOS 26.0+
      */
-    "handleFileInputPromptParametersInitiatedBy"?: (arg0: WKOpenPanelParameters, arg1: WebPage_FrameInfo) => WebPage_FileInputPromptResult;
+    "handleFileInputPromptParametersInitiatedBy"?: (arg0: WKOpenPanelParameters, arg1: WebPage_FrameInfo) => Promise<WebPage_FileInputPromptResult>;
 }
 /**
  * nonisolated struct ExportedContentConfiguration
@@ -803,17 +803,17 @@ export interface WebPage_NavigationDeciding {
      * @MainActor mutating func decidePolicy(for action: WebPage.NavigationAction, preferences: inout WebPage.NavigationPreferences) async -> WKNavigationActionPolicy
      * @availability iOS 26.0+
      */
-    "decidePolicyForPreferences"?: (arg0: WebPage_NavigationAction, arg1: WebPage_NavigationPreferences) => WKNavigationActionPolicy;
+    "decidePolicyForPreferences"?: (arg0: WebPage_NavigationAction, arg1: WebPage_NavigationPreferences) => Promise<WKNavigationActionPolicy>;
     /**
      * @MainActor mutating func decidePolicy(for response: WebPage.NavigationResponse) async -> WKNavigationResponsePolicy
      * @availability iOS 26.0+
      */
-    "decidePolicyFor"?: (arg0: WebPage_NavigationResponse) => WKNavigationResponsePolicy;
+    "decidePolicyFor"?: (arg0: WebPage_NavigationResponse) => Promise<WKNavigationResponsePolicy>;
     /**
      * @MainActor mutating func decideAuthenticationChallengeDisposition(for challenge: URLAuthenticationChallenge) async -> (URLSession.AuthChallengeDisposition, URLCredential?)
      * @availability iOS 26.0+
      */
-    "decideAuthenticationChallengeDispositionFor"?: (arg0: _Foundation_URLAuthenticationChallenge) => $SDK11;
+    "decideAuthenticationChallengeDispositionFor"?: (arg0: _Foundation_URLAuthenticationChallenge) => Promise<$SDK11>;
     /**
      * @MainActor mutating func willSubmit(formInfo: WebPage.FormInfo) async
      * @availability iOS 27.0+
@@ -1386,7 +1386,7 @@ export interface WKDownloadDelegate {
      * func download(_ download: WKDownload, decideDestinationUsing response: URLResponse, suggestedFilename: String) async -> URL?
      * @availability iOS 14.5+
      */
-    "downloadDecideDestinationUsingSuggestedFilename"?: (arg0: WKDownload, arg1: _Foundation_URLResponse, arg2: string) => (string) | null;
+    "downloadDecideDestinationUsingSuggestedFilename"?: (arg0: WKDownload, arg1: _Foundation_URLResponse, arg2: string) => Promise<(string) | null>;
     /**
      * optional func downloadDidFinish(_ download: WKDownload)
      * @availability iOS 14.5+
@@ -1898,12 +1898,12 @@ export interface WKNavigationDelegate {
      * optional func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy
      * @availability iOS 8.0+
      */
-    "webViewDecidePolicyFor"?: (arg0: WKWebView, arg1: WKNavigationAction | WKNavigationResponse) => WKNavigationActionPolicy | WKNavigationResponsePolicy;
+    "webViewDecidePolicyFor"?: (arg0: WKWebView, arg1: WKNavigationAction | WKNavigationResponse) => Promise<WKNavigationActionPolicy> | Promise<WKNavigationResponsePolicy>;
     /**
      * optional func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, preferences: WKWebpagePreferences) async -> (WKNavigationActionPolicy, WKWebpagePreferences)
      * @availability iOS 13.0+
      */
-    "webViewDecidePolicyForPreferences"?: (arg0: WKWebView, arg1: WKNavigationAction, arg2: WKWebpagePreferences) => [WKNavigationActionPolicy, WKWebpagePreferences];
+    "webViewDecidePolicyForPreferences"?: (arg0: WKWebView, arg1: WKNavigationAction, arg2: WKWebpagePreferences) => Promise<[WKNavigationActionPolicy, WKWebpagePreferences]>;
     /**
      * optional func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
      * @availability iOS 8.0+
@@ -1938,7 +1938,7 @@ export interface WKNavigationDelegate {
      * optional func webView(_ webView: WKWebView, respondTo challenge: URLAuthenticationChallenge) async -> (URLSession.AuthChallengeDisposition, URLCredential?)
      * @availability iOS 8.0+
      */
-    "webViewRespondTo"?: (arg0: WKWebView, arg1: _Foundation_URLAuthenticationChallenge) => $SDK11;
+    "webViewRespondTo"?: (arg0: WKWebView, arg1: _Foundation_URLAuthenticationChallenge) => Promise<$SDK11>;
     /**
      * optional func webViewWebContentProcessDidTerminate(_ webView: WKWebView)
      * @availability iOS 9.0+
@@ -1948,7 +1948,7 @@ export interface WKNavigationDelegate {
      * optional func webView(_ webView: WKWebView, shouldAllowDeprecatedTLSFor challenge: URLAuthenticationChallenge) async -> Bool
      * @availability iOS 14.0+
      */
-    "webViewShouldAllowDeprecatedTLSFor"?: (arg0: WKWebView, arg1: _Foundation_URLAuthenticationChallenge) => boolean;
+    "webViewShouldAllowDeprecatedTLSFor"?: (arg0: WKWebView, arg1: _Foundation_URLAuthenticationChallenge) => Promise<boolean>;
     /**
      * optional func webView(_ webView: WKWebView, navigationAction: WKNavigationAction, didBecome download: WKDownload)
      * @availability iOS 14.5+
@@ -1963,7 +1963,7 @@ export interface WKNavigationDelegate {
      * optional func webView(_ webView: WKWebView, shouldGoTo backForwardListItem: WKBackForwardListItem, willUseInstantBack: Bool) async -> Bool
      * @availability iOS 26.0+
      */
-    "webViewShouldGoToWillUseInstantBack"?: (arg0: WKWebView, arg1: WKBackForwardListItem, arg2: boolean) => boolean;
+    "webViewShouldGoToWillUseInstantBack"?: (arg0: WKWebView, arg1: WKBackForwardListItem, arg2: boolean) => Promise<boolean>;
     /**
      * optional func webView(_ webView: WKWebView, willSubmitForm formInfo: WKFormInfo) async
      * @availability iOS 27.0+
@@ -2287,7 +2287,7 @@ export interface WKScriptMessageHandlerWithReply {
      * func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) async -> (Any?, String?)
      * @availability iOS 14.0+
      */
-    "userContentControllerDidReceive"?: (arg0: WKUserContentController, arg1: WKScriptMessage) => [(unknown) | null, (string) | null];
+    "userContentControllerDidReceive"?: (arg0: WKUserContentController, arg1: WKScriptMessage) => Promise<[(unknown) | null, (string) | null]>;
 }
 /**
  * @MainActor class WKSecurityOrigin
@@ -4402,22 +4402,147 @@ export declare class WKWebExtensionController_Configuration extends SDKHandle {
  */
 export interface WKWebExtensionControllerDelegate {
     /**
+     * optional func webExtensionController(_ controller: WKWebExtensionController, openNewWindowUsing configuration: WKWebExtension.WindowConfiguration, for extensionContext: WKWebExtensionContext) async throws -> (any WKWebExtensionWindow)?
+     * @availability iOS 18.4+
+     */
+    "webExtensionControllerOpenNewWindowUsingFor"?: (arg0: WKWebExtensionController, arg1: WKWebExtension_WindowConfiguration, arg2: WKWebExtensionContext) => Promise<$SDK48>;
+    /**
+     * optional func webExtensionController(_ controller: WKWebExtensionController, openNewTabUsing configuration: WKWebExtension.TabConfiguration, for extensionContext: WKWebExtensionContext) async throws -> (any WKWebExtensionTab)?
+     * @availability iOS 18.4+
+     */
+    "webExtensionControllerOpenNewTabUsingFor"?: (arg0: WKWebExtensionController, arg1: WKWebExtension_TabConfiguration, arg2: WKWebExtensionContext) => Promise<$SDK44>;
+    /**
+     * optional func webExtensionController(_ controller: WKWebExtensionController, openOptionsPageFor extensionContext: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "webExtensionControllerOpenOptionsPageFor"?: (arg0: WKWebExtensionController, arg1: WKWebExtensionContext) => void;
+    /**
      * optional func webExtensionController(_ controller: WKWebExtensionController, didUpdate action: WKWebExtension.Action, forExtensionContext context: WKWebExtensionContext)
      * @availability iOS 18.4+
      */
     "webExtensionControllerDidUpdateForExtensionContext"?: (arg0: WKWebExtensionController, arg1: WKWebExtension_Action, arg2: WKWebExtensionContext) => void;
+    /**
+     * optional func webExtensionController(_ controller: WKWebExtensionController, presentActionPopup action: WKWebExtension.Action, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "webExtensionControllerPresentActionPopupFor"?: (arg0: WKWebExtensionController, arg1: WKWebExtension_Action, arg2: WKWebExtensionContext) => void;
+    /**
+     * optional func webExtensionController(_ controller: WKWebExtensionController, sendMessage message: Any, toApplicationWithIdentifier applicationIdentifier: String?, for extensionContext: WKWebExtensionContext) async throws -> Any?
+     * @availability iOS 18.4+
+     */
+    "webExtensionControllerSendMessageToApplicationWithIdentifierFor"?: (arg0: WKWebExtensionController, arg1: unknown, arg2: (string) | null, arg3: WKWebExtensionContext) => Promise<(unknown) | null>;
+    /**
+     * optional func webExtensionController(_ controller: WKWebExtensionController, connectUsing port: WKWebExtension.MessagePort, for extensionContext: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "webExtensionControllerConnectUsingFor"?: (arg0: WKWebExtensionController, arg1: WKWebExtension_MessagePort, arg2: WKWebExtensionContext) => void;
 }
 /**
  * @MainActor protocol WKWebExtensionTab : NSObjectProtocol
  * @availability iOS 18.4+
  */
 export interface WKWebExtensionTab {
+    /**
+     * optional func setParentTab(_ parentTab: (any WKWebExtensionTab)?, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "setParentTabFor"?: (arg0: (SDKHandle) | null, arg1: WKWebExtensionContext) => void;
+    /**
+     * optional func setPinned(_ pinned: Bool, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "setPinnedFor"?: (arg0: boolean, arg1: WKWebExtensionContext) => void;
+    /**
+     * optional func setReaderModeActive(_ active: Bool, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "setReaderModeActiveFor"?: (arg0: boolean, arg1: WKWebExtensionContext) => void;
+    /**
+     * optional func setMuted(_ muted: Bool, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "setMutedFor"?: (arg0: boolean, arg1: WKWebExtensionContext) => void;
+    /**
+     * optional func setZoomFactor(_ zoomFactor: Double, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "setZoomFactorFor"?: (arg0: number, arg1: WKWebExtensionContext) => void;
+    /**
+     * optional func detectWebpageLocale(for context: WKWebExtensionContext) async throws -> Locale?
+     * @availability iOS 18.4+
+     */
+    "detectWebpageLocaleFor"?: (arg0: WKWebExtensionContext) => Promise<(_Foundation_Locale) | null>;
+    /**
+     * optional func snapshot(using configuration: WKSnapshotConfiguration, for context: WKWebExtensionContext) async throws -> UIImage?
+     * @availability iOS 18.4+
+     */
+    "snapshotUsingFor"?: (arg0: WKSnapshotConfiguration, arg1: WKWebExtensionContext) => Promise<(_UIKit_UIImage) | null>;
+    /**
+     * optional func loadURL(_ url: URL, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "loadURLFor"?: (arg0: string, arg1: WKWebExtensionContext) => void;
+    /**
+     * optional func reload(fromOrigin: Bool, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "reloadFromOriginFor"?: (arg0: boolean, arg1: WKWebExtensionContext) => void;
+    /**
+     * optional func goBack(for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "goBackFor"?: (arg0: WKWebExtensionContext) => void;
+    /**
+     * optional func goForward(for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "goForwardFor"?: (arg0: WKWebExtensionContext) => void;
+    /**
+     * optional func activate(for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "activateFor"?: (arg0: WKWebExtensionContext) => void;
+    /**
+     * optional func setSelected(_ selected: Bool, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "setSelectedFor"?: (arg0: boolean, arg1: WKWebExtensionContext) => void;
+    /**
+     * optional func duplicate(using configuration: WKWebExtension.TabConfiguration, for context: WKWebExtensionContext) async throws -> (any WKWebExtensionTab)?
+     * @availability iOS 18.4+
+     */
+    "duplicateUsingFor"?: (arg0: WKWebExtension_TabConfiguration, arg1: WKWebExtensionContext) => Promise<$SDK44>;
+    /**
+     * optional func close(for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "closeFor"?: (arg0: WKWebExtensionContext) => void;
 }
 /**
  * @MainActor protocol WKWebExtensionWindow : NSObjectProtocol
  * @availability iOS 18.4+
  */
 export interface WKWebExtensionWindow {
+    /**
+     * optional func setWindowState(_ state: WKWebExtension.WindowState, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "setWindowStateFor"?: (arg0: WKWebExtension_WindowState, arg1: WKWebExtensionContext) => void;
+    /**
+     * optional func setFrame(_ frame: CGRect, for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "setFrameFor"?: (arg0: $SDK10, arg1: WKWebExtensionContext) => void;
+    /**
+     * optional func focus(for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "focusFor"?: (arg0: WKWebExtensionContext) => void;
+    /**
+     * optional func close(for context: WKWebExtensionContext) async throws
+     * @availability iOS 18.4+
+     */
+    "closeFor"?: (arg0: WKWebExtensionContext) => void;
 }
 /**
  * @MainActor class WKWebpagePreferences

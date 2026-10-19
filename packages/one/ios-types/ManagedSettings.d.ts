@@ -192,6 +192,11 @@ export declare class AppStoreSettings extends SDKHandle {
  * @availability iOS 15.0+
  */
 export declare class BoundedSettingMetadata<Value = unknown> extends SDKHandle {
+    /**
+     * let bounds: ClosedRange<Value>
+     * @availability iOS 15.0+
+     */
+    get bounds(): SDKHandle;
     readonly $type: {
         "s:15ManagedSettings22BoundedSettingMetadataV": true;
     };

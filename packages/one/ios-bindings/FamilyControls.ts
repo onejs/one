@@ -32,33 +32,33 @@ export class AuthorizationCenter extends SDKHandle {
    * func revokeAuthorization(completionHandler: @escaping (Result<Void, any Error>) -> Void)
    * @availability iOS 15.0+
    */
-  revokeAuthorization(completionHandler: $SDK0): void { return callSDK<void>("FamilyControls_0e503aef608672fa", 794547374483750, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  revokeAuthorization(completionHandler: $SDK0): void { return callSDK<void>("FamilyControls_212edf3d13b127f5", 794547374483750, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func requestAuthorization(completionHandler: @escaping (Result<Void, any Error>) -> Void)
    * @availability iOS 15.0+
    * @deprecated iOS 16.0
    */
-  requestAuthorizationCompletionHandler(completionHandler: $SDK0): void { return callSDK<void>("FamilyControls_0e503aef608672fa", 1968839520219341, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  requestAuthorizationCompletionHandler(completionHandler: $SDK0): void { return callSDK<void>("FamilyControls_212edf3d13b127f5", 1968839520219341, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func requestAuthorization(for member: FamilyControlsMember) async throws
    * @availability iOS 16.0+
    */
-  requestAuthorizationFor(member: FamilyControlsMember): Promise<void> { return callSDKAsync<void>("FamilyControls_0e503aef608672fa", 1611452503359662, this, [member]); }
+  requestAuthorizationFor(member: FamilyControlsMember): Promise<void> { return callSDKAsync<void>("FamilyControls_212edf3d13b127f5", 1611452503359662, this, [member]); }
   /**
    * @Published<AuthorizationStatus> var authorizationStatus: AuthorizationStatus { get }
    * @availability iOS 15.0+
    */
-  get authorizationStatus(): AuthorizationStatus { return callSDK<AuthorizationStatus>("FamilyControls_0e503aef608672fa", 3905170497734303, this, []); }
+  get authorizationStatus(): AuthorizationStatus { return callSDK<AuthorizationStatus>("FamilyControls_212edf3d13b127f5", 3905170497734303, this, []); }
   /**
    * var $authorizationStatus: Published<AuthorizationStatus>.Publisher { get }
    * @availability iOS 15.0+
    */
-  get $authorizationStatus(): _Combine_Published_Publisher<AuthorizationStatus> { return callSDK<_Combine_Published_Publisher<AuthorizationStatus>>("FamilyControls_0e503aef608672fa", 1987280079203084, this, []); }
+  get $authorizationStatus(): _Combine_Published_Publisher<AuthorizationStatus> { return callSDK<_Combine_Published_Publisher<AuthorizationStatus>>("FamilyControls_212edf3d13b127f5", 1987280079203084, this, []); }
   /**
    * static let shared: AuthorizationCenter
    * @availability iOS 15.0+
    */
-  static get shared(): AuthorizationCenter { return callSDK<AuthorizationCenter>("FamilyControls_0e503aef608672fa", 1381675384467777, undefined, []); }
+  static get shared(): AuthorizationCenter { return callSDK<AuthorizationCenter>("FamilyControls_212edf3d13b127f5", 1381675384467777, undefined, []); }
   declare readonly $type: { "s:14FamilyControls19AuthorizationCenterC": true };
 }
 
@@ -79,17 +79,17 @@ export const AuthorizationStatus = {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  getDescription($self: AuthorizationStatus): string { return callSDK<string>("FamilyControls_0e503aef608672fa", 2667305920469445, $self, []); },
+  getDescription($self: AuthorizationStatus): string { return callSDK<string>("FamilyControls_212edf3d13b127f5", 2667305920469445, $self, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (AuthorizationStatus) | null { return callSDK<(AuthorizationStatus) | null>("FamilyControls_0e503aef608672fa", 4389157061846584, undefined, [rawValue]); },
+  init(rawValue: number): (AuthorizationStatus) | null { return callSDK<(AuthorizationStatus) | null>("FamilyControls_212edf3d13b127f5", 4389157061846584, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 15.0+
    */
-  getRawValue($self: AuthorizationStatus): number { return callSDK<number>("FamilyControls_0e503aef608672fa", 3136682374935217, $self, []); }
+  getRawValue($self: AuthorizationStatus): number { return callSDK<number>("FamilyControls_212edf3d13b127f5", 3136682374935217, $self, []); }
 };
 
 /**
@@ -107,22 +107,22 @@ export class FamilyActivityData extends SDKHandle {
    * var visitedWebDomains: [WebDomain] { get async throws }
    * @availability iOS 26.4+
    */
-  get visitedWebDomains(): Promise<$SDK2> { return callSDKAsync<$SDK2>("FamilyControls_0e503aef608672fa", 2128348353515209, this, []); }
+  get visitedWebDomains(): Promise<$SDK2> { return callSDKAsync<$SDK2>("FamilyControls_212edf3d13b127f5", 2128348353515209, this, []); }
   /**
    * var activityCategories: Set<ActivityCategory> { get async throws }
    * @availability iOS 26.4+
    */
-  get activityCategories(): Promise<$SDK3> { return callSDKAsync<$SDK3>("FamilyControls_0e503aef608672fa", 4100469160485207, this, []); }
+  get activityCategories(): Promise<$SDK3> { return callSDKAsync<$SDK3>("FamilyControls_212edf3d13b127f5", 4100469160485207, this, []); }
   /**
    * var installedApplications: [Application] { get async throws }
    * @availability iOS 26.4+
    */
-  get installedApplications(): Promise<$SDK4> { return callSDKAsync<$SDK4>("FamilyControls_0e503aef608672fa", 3478103488736124, this, []); }
+  get installedApplications(): Promise<$SDK4> { return callSDKAsync<$SDK4>("FamilyControls_212edf3d13b127f5", 3478103488736124, this, []); }
   /**
    * static let shared: FamilyActivityData
    * @availability iOS 26.4+
    */
-  static get shared(): FamilyActivityData { return callSDK<FamilyActivityData>("FamilyControls_0e503aef608672fa", 3329388111178903, undefined, []); }
+  static get shared(): FamilyActivityData { return callSDK<FamilyActivityData>("FamilyControls_212edf3d13b127f5", 3329388111178903, undefined, []); }
   declare readonly $type: { "s:14FamilyControls0A12ActivityDataC": true };
 }
 
@@ -149,12 +149,12 @@ export class FamilyActivityPicker extends SDKHandle {
    * @MainActor @preconcurrency init(headerText: String? = nil, footerText: String? = nil, selection: Binding<FamilyActivitySelection>)
    * @availability iOS 16.0+
    */
-  static initHeaderTextFooterTextSelection(headerText: (string) | null, footerText: (string) | null, selection: $SDK5): Promise<FamilyActivityPicker> { return callSDKAsync<FamilyActivityPicker>("FamilyControls_0e503aef608672fa", 1856115642378018, undefined, [headerText, footerText, selection]); }
+  static initHeaderTextFooterTextSelection(headerText: (string) | null, footerText: (string) | null, selection: $SDK5): Promise<FamilyActivityPicker> { return callSDKAsync<FamilyActivityPicker>("FamilyControls_212edf3d13b127f5", 1856115642378018, undefined, [headerText, footerText, selection]); }
   /**
    * @MainActor @preconcurrency init(selection: Binding<FamilyActivitySelection>)
    * @availability iOS 15.0+
    */
-  static initSelection(selection: $SDK5): Promise<FamilyActivityPicker> { return callSDKAsync<FamilyActivityPicker>("FamilyControls_0e503aef608672fa", 2996833104157387, undefined, [selection]); }
+  static initSelection(selection: $SDK5): Promise<FamilyActivityPicker> { return callSDKAsync<FamilyActivityPicker>("FamilyControls_212edf3d13b127f5", 2996833104157387, undefined, [selection]); }
   declare readonly $type: { "s:14FamilyControls0A14ActivityPickerV": true };
 }
 
@@ -173,50 +173,50 @@ export class FamilyActivitySelection extends SDKHandle {
    * var categories: Set<ActivityCategory> { get }
    * @availability iOS 15.0+
    */
-  get categories(): $SDK3 { return callSDK<$SDK3>("FamilyControls_0e503aef608672fa", 2822533810639151, this, []); }
+  get categories(): $SDK3 { return callSDK<$SDK3>("FamilyControls_212edf3d13b127f5", 2822533810639151, this, []); }
   /**
    * var webDomains: Set<WebDomain> { get }
    * @availability iOS 15.0+
    */
-  get webDomains(): $SDK2 { return callSDK<$SDK2>("FamilyControls_0e503aef608672fa", 3079764908873859, this, []); }
+  get webDomains(): $SDK2 { return callSDK<$SDK2>("FamilyControls_212edf3d13b127f5", 3079764908873859, this, []); }
   /**
    * var applications: Set<Application> { get }
    * @availability iOS 15.0+
    */
-  get applications(): $SDK4 { return callSDK<$SDK4>("FamilyControls_0e503aef608672fa", 607362976073788, this, []); }
+  get applications(): $SDK4 { return callSDK<$SDK4>("FamilyControls_212edf3d13b127f5", 607362976073788, this, []); }
   /**
    * var categoryTokens: Set<ActivityCategoryToken>
    * @availability iOS 15.0+
    */
-  get categoryTokens(): $SDK6 { return callSDK<$SDK6>("FamilyControls_0e503aef608672fa", 919119161600441, this, []); }
-  set categoryTokens(value: $SDK6) { callSDK<void>("FamilyControls_0e503aef608672fa", 4017486043150290, this, [value]); }
+  get categoryTokens(): $SDK6 { return callSDK<$SDK6>("FamilyControls_212edf3d13b127f5", 919119161600441, this, []); }
+  set categoryTokens(value: $SDK6) { callSDK<void>("FamilyControls_212edf3d13b127f5", 4017486043150290, this, [value]); }
   /**
    * var webDomainTokens: Set<WebDomainToken>
    * @availability iOS 15.0+
    */
-  get webDomainTokens(): $SDK7 { return callSDK<$SDK7>("FamilyControls_0e503aef608672fa", 3125110738849000, this, []); }
-  set webDomainTokens(value: $SDK7) { callSDK<void>("FamilyControls_0e503aef608672fa", 1995716545547023, this, [value]); }
+  get webDomainTokens(): $SDK7 { return callSDK<$SDK7>("FamilyControls_212edf3d13b127f5", 3125110738849000, this, []); }
+  set webDomainTokens(value: $SDK7) { callSDK<void>("FamilyControls_212edf3d13b127f5", 1995716545547023, this, [value]); }
   /**
    * var applicationTokens: Set<ApplicationToken>
    * @availability iOS 15.0+
    */
-  get applicationTokens(): $SDK8 { return callSDK<$SDK8>("FamilyControls_0e503aef608672fa", 2252849329531265, this, []); }
-  set applicationTokens(value: $SDK8) { callSDK<void>("FamilyControls_0e503aef608672fa", 1249957919888903, this, [value]); }
+  get applicationTokens(): $SDK8 { return callSDK<$SDK8>("FamilyControls_212edf3d13b127f5", 2252849329531265, this, []); }
+  set applicationTokens(value: $SDK8) { callSDK<void>("FamilyControls_212edf3d13b127f5", 1249957919888903, this, [value]); }
   /**
    * init(includeEntireCategory: Bool)
    * @availability iOS 15.0+
    */
-  static initIncludeEntireCategory(includeEntireCategory: boolean): FamilyActivitySelection { return callSDK<FamilyActivitySelection>("FamilyControls_0e503aef608672fa", 1820783071175635, undefined, [includeEntireCategory]); }
+  static initIncludeEntireCategory(includeEntireCategory: boolean): FamilyActivitySelection { return callSDK<FamilyActivitySelection>("FamilyControls_212edf3d13b127f5", 1820783071175635, undefined, [includeEntireCategory]); }
   /**
    * let includeEntireCategory: Bool
    * @availability iOS 15.2+
    */
-  get includeEntireCategory(): boolean { return callSDK<boolean>("FamilyControls_0e503aef608672fa", 2520936599695633, this, []); }
+  get includeEntireCategory(): boolean { return callSDK<boolean>("FamilyControls_212edf3d13b127f5", 2520936599695633, this, []); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): FamilyActivitySelection { return callSDK<FamilyActivitySelection>("FamilyControls_0e503aef608672fa", 2772979526269758, undefined, []); }
+  static init(): FamilyActivitySelection { return callSDK<FamilyActivitySelection>("FamilyControls_212edf3d13b127f5", 2772979526269758, undefined, []); }
   declare readonly $type: { "s:14FamilyControls0A17ActivitySelectionV": true };
 }
 
@@ -245,22 +245,22 @@ export const FamilyControlsError = {
    * var errorUserInfo: [String : Any] { get }
    * @availability iOS 16.4+
    */
-  getErrorUserInfo($self: FamilyControlsError): Record<string, unknown> { return callSDK<Record<string, unknown>>("FamilyControls_0e503aef608672fa", 1103702460833176, $self, []); },
+  getErrorUserInfo($self: FamilyControlsError): Record<string, unknown> { return callSDK<Record<string, unknown>>("FamilyControls_212edf3d13b127f5", 1103702460833176, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 15.0+
    */
-  getErrorDescription($self: FamilyControlsError): (string) | null { return callSDK<(string) | null>("FamilyControls_0e503aef608672fa", 1391651743986135, $self, []); },
+  getErrorDescription($self: FamilyControlsError): (string) | null { return callSDK<(string) | null>("FamilyControls_212edf3d13b127f5", 1391651743986135, $self, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 16.4+
    */
-  init(rawValue: number): (FamilyControlsError) | null { return callSDK<(FamilyControlsError) | null>("FamilyControls_0e503aef608672fa", 2311262703051693, undefined, [rawValue]); },
+  init(rawValue: number): (FamilyControlsError) | null { return callSDK<(FamilyControlsError) | null>("FamilyControls_212edf3d13b127f5", 2311262703051693, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 16.4+
    */
-  getRawValue($self: FamilyControlsError): number { return callSDK<number>("FamilyControls_0e503aef608672fa", 4242131689960205, $self, []); }
+  getRawValue($self: FamilyControlsError): number { return callSDK<number>("FamilyControls_212edf3d13b127f5", 4242131689960205, $self, []); }
 };
 
 /**
@@ -280,17 +280,17 @@ export const FamilyControlsMember = {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  getDescription($self: FamilyControlsMember): string { return callSDK<string>("FamilyControls_0e503aef608672fa", 4238353956463463, $self, []); },
+  getDescription($self: FamilyControlsMember): string { return callSDK<string>("FamilyControls_212edf3d13b127f5", 4238353956463463, $self, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (FamilyControlsMember) | null { return callSDK<(FamilyControlsMember) | null>("FamilyControls_0e503aef608672fa", 1646488168891181, undefined, [rawValue]); },
+  init(rawValue: number): (FamilyControlsMember) | null { return callSDK<(FamilyControlsMember) | null>("FamilyControls_212edf3d13b127f5", 1646488168891181, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 16.0+
    */
-  getRawValue($self: FamilyControlsMember): number { return callSDK<number>("FamilyControls_0e503aef608672fa", 1216215004074127, $self, []); }
+  getRawValue($self: FamilyControlsMember): number { return callSDK<number>("FamilyControls_212edf3d13b127f5", 1216215004074127, $self, []); }
 };
 
 /**
@@ -304,24 +304,24 @@ export class Label<Title = unknown, Icon = unknown> extends SDKHandle {
    * nonisolated init(_ categoryToken: ActivityCategoryToken)
    * @availability iOS 15.2+
    */
-  static init(categoryToken: _ManagedSettings_Token<_ManagedSettings_ActivityCategory>): $SDK9 { return callSDK<$SDK9>("FamilyControls_0e503aef608672fa", 2941745744537093, undefined, [categoryToken]); }
+  static init(categoryToken: _ManagedSettings_Token<_ManagedSettings_ActivityCategory>): $SDK9 { return callSDK<$SDK9>("FamilyControls_212edf3d13b127f5", 2941745744537093, undefined, [categoryToken]); }
   /**
    * nonisolated init(_ applicationToken: ApplicationToken)
    * @availability iOS 15.2+
    */
-  static init69976(applicationToken: _ManagedSettings_Token<_ManagedSettings_Application>): $SDK9 { return callSDK<$SDK9>("FamilyControls_0e503aef608672fa", 68939497120118, undefined, [applicationToken]); }
+  static init69976(applicationToken: _ManagedSettings_Token<_ManagedSettings_Application>): $SDK9 { return callSDK<$SDK9>("FamilyControls_212edf3d13b127f5", 68939497120118, undefined, [applicationToken]); }
   /**
    * nonisolated init(_ webDomainToken: WebDomainToken)
    * @availability iOS 15.2+
    */
-  static init33463(webDomainToken: _ManagedSettings_Token<_ManagedSettings_WebDomain>): $SDK9 { return callSDK<$SDK9>("FamilyControls_0e503aef608672fa", 3420423906081356, undefined, [webDomainToken]); }
+  static init33463(webDomainToken: _ManagedSettings_Token<_ManagedSettings_WebDomain>): $SDK9 { return callSDK<$SDK9>("FamilyControls_212edf3d13b127f5", 3420423906081356, undefined, [webDomainToken]); }
   declare readonly $type: { "s:7SwiftUI5LabelV": true };
 }
 
-registerSDKClass("FamilyControls.AuthorizationCenter", AuthorizationCenter, { module: "FamilyControls_0e503aef608672fa", properties: {}, methods: {"revokeAuthorization":{"id":794547374483750,"hints":[{"callback":{"out":[]}}]},"requestAuthorizationCompletionHandler":{"id":1968839520219341,"hints":[{"callback":{"out":[]}}]},"requestAuthorizationFor":{"id":1611452503359662}} });
-registerSDKClass("FamilyControls.FamilyActivityData", FamilyActivityData, { module: "FamilyControls_0e503aef608672fa", properties: {} });
-registerSDKClass("FamilyControls.FamilyActivityIconView", FamilyActivityIconView, { module: "FamilyControls_0e503aef608672fa", properties: {} });
-registerSDKClass("FamilyControls.FamilyActivityPicker", FamilyActivityPicker, { module: "FamilyControls_0e503aef608672fa", properties: {} });
-registerSDKClass("FamilyControls.FamilyActivitySelection", FamilyActivitySelection, { module: "FamilyControls_0e503aef608672fa", properties: {} });
-registerSDKClass("FamilyControls.FamilyActivityTitleView", FamilyActivityTitleView, { module: "FamilyControls_0e503aef608672fa", properties: {} });
-registerSDKClass("SwiftUI.Label", Label, { module: "FamilyControls_0e503aef608672fa", properties: {} }, true);
+registerSDKClass("FamilyControls.AuthorizationCenter", AuthorizationCenter, { module: "FamilyControls_212edf3d13b127f5", properties: {}, methods: {"revokeAuthorization":{"id":794547374483750,"hints":[{"callback":{"out":[]}}]},"requestAuthorizationCompletionHandler":{"id":1968839520219341,"hints":[{"callback":{"out":[]}}]},"requestAuthorizationFor":{"id":1611452503359662}} });
+registerSDKClass("FamilyControls.FamilyActivityData", FamilyActivityData, { module: "FamilyControls_212edf3d13b127f5", properties: {} });
+registerSDKClass("FamilyControls.FamilyActivityIconView", FamilyActivityIconView, { module: "FamilyControls_212edf3d13b127f5", properties: {} });
+registerSDKClass("FamilyControls.FamilyActivityPicker", FamilyActivityPicker, { module: "FamilyControls_212edf3d13b127f5", properties: {} });
+registerSDKClass("FamilyControls.FamilyActivitySelection", FamilyActivitySelection, { module: "FamilyControls_212edf3d13b127f5", properties: {} });
+registerSDKClass("FamilyControls.FamilyActivityTitleView", FamilyActivityTitleView, { module: "FamilyControls_212edf3d13b127f5", properties: {} });
+registerSDKClass("SwiftUI.Label", Label, { module: "FamilyControls_212edf3d13b127f5", properties: {} }, true);

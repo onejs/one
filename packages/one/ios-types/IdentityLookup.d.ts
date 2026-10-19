@@ -199,7 +199,7 @@ export interface ILMessageFilterCapabilitiesQueryHandling {
      * func handle(_ capabilitiesQueryRequest: ILMessageFilterCapabilitiesQueryRequest, context: ILMessageFilterExtensionContext) async -> ILMessageFilterCapabilitiesQueryResponse
      * @availability iOS 16.0+
      */
-    "handleContext"?: (arg0: ILMessageFilterCapabilitiesQueryRequest, arg1: ILMessageFilterExtensionContext) => ILMessageFilterCapabilitiesQueryResponse;
+    "handleContext"?: (arg0: ILMessageFilterCapabilitiesQueryRequest, arg1: ILMessageFilterExtensionContext) => Promise<ILMessageFilterCapabilitiesQueryResponse>;
 }
 /**
  * class ILMessageFilterCapabilitiesQueryRequest
@@ -325,7 +325,7 @@ export interface ILMessageFilterQueryHandling {
      * func handle(_ queryRequest: ILMessageFilterQueryRequest, context: ILMessageFilterExtensionContext) async -> ILMessageFilterQueryResponse
      * @availability iOS 11.0+
      */
-    "handleContext"?: (arg0: ILMessageFilterQueryRequest, arg1: ILMessageFilterExtensionContext) => ILMessageFilterQueryResponse;
+    "handleContext"?: (arg0: ILMessageFilterQueryRequest, arg1: ILMessageFilterExtensionContext) => Promise<ILMessageFilterQueryResponse>;
 }
 /**
  * class ILMessageFilterQueryRequest

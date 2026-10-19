@@ -378,12 +378,12 @@ export interface NFCFeliCaTag {
      * func queryNDEFStatus() async throws -> (NFCNDEFStatus, Int)
      * @availability iOS 13.0+
      */
-    "queryNDEFStatus"?: () => [NFCNDEFStatus, number];
+    "queryNDEFStatus"?: () => Promise<[NFCNDEFStatus, number]>;
     /**
      * func readNDEF() async throws -> NFCNDEFMessage
      * @availability iOS 13.0+
      */
-    "readNDEF"?: () => NFCNDEFMessage;
+    "readNDEF"?: () => Promise<NFCNDEFMessage>;
     /**
      * func writeNDEF(_ ndefMessage: NFCNDEFMessage) async throws
      * @availability iOS 13.0+
@@ -398,52 +398,52 @@ export interface NFCFeliCaTag {
      * func polling(systemCode: Data, requestCode: NFCFeliCaPollingRequestCode, timeSlot: NFCFeliCaPollingTimeSlot) async throws -> (Data, Data)
      * @availability iOS 13.0+
      */
-    "pollingSystemCodeRequestCodeTimeSlot"?: (arg0: ArrayBuffer, arg1: NFCFeliCaPollingRequestCode, arg2: NFCFeliCaPollingTimeSlot) => [ArrayBuffer, ArrayBuffer];
+    "pollingSystemCodeRequestCodeTimeSlot"?: (arg0: ArrayBuffer, arg1: NFCFeliCaPollingRequestCode, arg2: NFCFeliCaPollingTimeSlot) => Promise<[ArrayBuffer, ArrayBuffer]>;
     /**
      * func requestService(nodeCodeList: [Data]) async throws -> [Data]
      * @availability iOS 13.0+
      */
-    "requestServiceNodeCodeList"?: (arg0: Array<ArrayBuffer>) => Array<ArrayBuffer>;
+    "requestServiceNodeCodeList"?: (arg0: Array<ArrayBuffer>) => Promise<Array<ArrayBuffer>>;
     /**
      * func requestResponse() async throws -> Int
      * @availability iOS 13.0+
      */
-    "requestResponse"?: () => number;
+    "requestResponse"?: () => Promise<number>;
     /**
      * func readWithoutEncryption(serviceCodeList: [Data], blockList: [Data]) async throws -> (Int, Int, [Data])
      * @availability iOS 13.0+
      */
-    "readWithoutEncryptionServiceCodeListBlockList"?: (arg0: Array<ArrayBuffer>, arg1: Array<ArrayBuffer>) => [number, number, Array<ArrayBuffer>];
+    "readWithoutEncryptionServiceCodeListBlockList"?: (arg0: Array<ArrayBuffer>, arg1: Array<ArrayBuffer>) => Promise<[number, number, Array<ArrayBuffer>]>;
     /**
      * func writeWithoutEncryption(serviceCodeList: [Data], blockList: [Data], blockData: [Data]) async throws -> (Int, Int)
      * @availability iOS 13.0+
      */
-    "writeWithoutEncryptionServiceCodeListBlockListBlockData"?: (arg0: Array<ArrayBuffer>, arg1: Array<ArrayBuffer>, arg2: Array<ArrayBuffer>) => [number, number];
+    "writeWithoutEncryptionServiceCodeListBlockListBlockData"?: (arg0: Array<ArrayBuffer>, arg1: Array<ArrayBuffer>, arg2: Array<ArrayBuffer>) => Promise<[number, number]>;
     /**
      * func requestSystemCode() async throws -> [Data]
      * @availability iOS 13.0+
      */
-    "requestSystemCode"?: () => Array<ArrayBuffer>;
+    "requestSystemCode"?: () => Promise<Array<ArrayBuffer>>;
     /**
      * func requestServiceV2(nodeCodeList: [Data]) async throws -> (Int, Int, NFCFeliCaEncryptionId, [Data], [Data])
      * @availability iOS 13.0+
      */
-    "requestServiceV2NodeCodeList"?: (arg0: Array<ArrayBuffer>) => [number, number, NFCFeliCaEncryptionId, Array<ArrayBuffer>, Array<ArrayBuffer>];
+    "requestServiceV2NodeCodeList"?: (arg0: Array<ArrayBuffer>) => Promise<[number, number, NFCFeliCaEncryptionId, Array<ArrayBuffer>, Array<ArrayBuffer>]>;
     /**
      * func requestSpecificationVersion() async throws -> (Int, Int, Data, Data)
      * @availability iOS 13.0+
      */
-    "requestSpecificationVersion"?: () => [number, number, ArrayBuffer, ArrayBuffer];
+    "requestSpecificationVersion"?: () => Promise<[number, number, ArrayBuffer, ArrayBuffer]>;
     /**
      * func resetMode() async throws -> (Int, Int)
      * @availability iOS 13.0+
      */
-    "resetMode"?: () => [number, number];
+    "resetMode"?: () => Promise<[number, number]>;
     /**
      * func sendFeliCaCommand(commandPacket: Data) async throws -> Data
      * @availability iOS 13.0+
      */
-    "sendFeliCaCommandCommandPacket"?: (arg0: ArrayBuffer) => ArrayBuffer;
+    "sendFeliCaCommandCommandPacket"?: (arg0: ArrayBuffer) => Promise<ArrayBuffer>;
 }
 /**
  * class NFCTagCommandConfiguration
@@ -760,12 +760,12 @@ export interface NFCISO15693Tag {
      * func queryNDEFStatus() async throws -> (NFCNDEFStatus, Int)
      * @availability iOS 13.0+
      */
-    "queryNDEFStatus"?: () => [NFCNDEFStatus, number];
+    "queryNDEFStatus"?: () => Promise<[NFCNDEFStatus, number]>;
     /**
      * func readNDEF() async throws -> NFCNDEFMessage
      * @availability iOS 13.0+
      */
-    "readNDEF"?: () => NFCNDEFMessage;
+    "readNDEF"?: () => Promise<NFCNDEFMessage>;
     /**
      * func writeNDEF(_ ndefMessage: NFCNDEFMessage) async throws
      * @availability iOS 13.0+
@@ -795,7 +795,7 @@ export interface NFCISO15693Tag {
      * func readSingleBlock(requestFlags flags: NFCISO15693RequestFlag, blockNumber: UInt8) async throws -> Data
      * @availability iOS 13.0+
      */
-    "readSingleBlockRequestFlagsBlockNumber"?: (arg0: NFCISO15693RequestFlag, arg1: number) => ArrayBuffer;
+    "readSingleBlockRequestFlagsBlockNumber"?: (arg0: NFCISO15693RequestFlag, arg1: number) => Promise<ArrayBuffer>;
     /**
      * func writeSingleBlock(requestFlags flags: NFCISO15693RequestFlag, blockNumber: UInt8, dataBlock: Data) async throws
      * @availability iOS 13.0+
@@ -810,7 +810,7 @@ export interface NFCISO15693Tag {
      * func readMultipleBlocks(requestFlags flags: NFCISO15693RequestFlag, blockRange: NSRange) async throws -> [Data]
      * @availability iOS 13.0+
      */
-    "readMultipleBlocksRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Array<ArrayBuffer>;
+    "readMultipleBlocksRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Promise<Array<ArrayBuffer>>;
     /**
      * func writeMultipleBlocks(requestFlags flags: NFCISO15693RequestFlag, blockRange: NSRange, dataBlocks: [Data]) async throws
      * @availability iOS 13.0+
@@ -862,17 +862,17 @@ export interface NFCISO15693Tag {
      * func getMultipleBlockSecurityStatus(requestFlags flags: NFCISO15693RequestFlag, blockRange: NSRange) async throws -> [NSNumber]
      * @availability iOS 13.0+
      */
-    "getMultipleBlockSecurityStatusRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Array<_Foundation_NSNumber>;
+    "getMultipleBlockSecurityStatusRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Promise<Array<_Foundation_NSNumber>>;
     /**
      * func customCommand(requestFlags flags: NFCISO15693RequestFlag, customCommandCode: Int, customRequestParameters: Data) async throws -> Data
      * @availability iOS 13.0+
      */
-    "customCommandRequestFlagsCustomCommandCodeCustomRequestParameters"?: (arg0: NFCISO15693RequestFlag, arg1: number, arg2: ArrayBuffer) => ArrayBuffer;
+    "customCommandRequestFlagsCustomCommandCodeCustomRequestParameters"?: (arg0: NFCISO15693RequestFlag, arg1: number, arg2: ArrayBuffer) => Promise<ArrayBuffer>;
     /**
      * func extendedReadSingleBlock(requestFlags flags: NFCISO15693RequestFlag, blockNumber: Int) async throws -> Data
      * @availability iOS 13.0+
      */
-    "extendedReadSingleBlockRequestFlagsBlockNumber"?: (arg0: NFCISO15693RequestFlag, arg1: number) => ArrayBuffer;
+    "extendedReadSingleBlockRequestFlagsBlockNumber"?: (arg0: NFCISO15693RequestFlag, arg1: number) => Promise<ArrayBuffer>;
     /**
      * func extendedWriteSingleBlock(requestFlags flags: NFCISO15693RequestFlag, blockNumber: Int, dataBlock: Data) async throws
      * @availability iOS 13.0+
@@ -887,7 +887,7 @@ export interface NFCISO15693Tag {
      * func extendedReadMultipleBlocks(requestFlags flags: NFCISO15693RequestFlag, blockRange: NSRange) async throws -> [Data]
      * @availability iOS 13.0+
      */
-    "extendedReadMultipleBlocksRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Array<ArrayBuffer>;
+    "extendedReadMultipleBlocksRequestFlagsBlockRange"?: (arg0: NFCISO15693RequestFlag, arg1: SDKHandle) => Promise<Array<ArrayBuffer>>;
 }
 /**
  * class NFCISO7816APDU
@@ -986,12 +986,12 @@ export interface NFCISO7816Tag {
      * func queryNDEFStatus() async throws -> (NFCNDEFStatus, Int)
      * @availability iOS 13.0+
      */
-    "queryNDEFStatus"?: () => [NFCNDEFStatus, number];
+    "queryNDEFStatus"?: () => Promise<[NFCNDEFStatus, number]>;
     /**
      * func readNDEF() async throws -> NFCNDEFMessage
      * @availability iOS 13.0+
      */
-    "readNDEF"?: () => NFCNDEFMessage;
+    "readNDEF"?: () => Promise<NFCNDEFMessage>;
     /**
      * func writeNDEF(_ ndefMessage: NFCNDEFMessage) async throws
      * @availability iOS 13.0+
@@ -1006,7 +1006,7 @@ export interface NFCISO7816Tag {
      * func sendCommand(apdu: NFCISO7816APDU) async throws -> (Data, UInt8, UInt8)
      * @availability iOS 13.0+
      */
-    "sendCommandApdu"?: (arg0: NFCISO7816APDU) => [ArrayBuffer, number, number];
+    "sendCommandApdu"?: (arg0: NFCISO7816APDU) => Promise<[ArrayBuffer, number, number]>;
 }
 /**
  * enum NFCMiFareFamily
@@ -1032,12 +1032,12 @@ export interface NFCMiFareTag {
      * func queryNDEFStatus() async throws -> (NFCNDEFStatus, Int)
      * @availability iOS 13.0+
      */
-    "queryNDEFStatus"?: () => [NFCNDEFStatus, number];
+    "queryNDEFStatus"?: () => Promise<[NFCNDEFStatus, number]>;
     /**
      * func readNDEF() async throws -> NFCNDEFMessage
      * @availability iOS 13.0+
      */
-    "readNDEF"?: () => NFCNDEFMessage;
+    "readNDEF"?: () => Promise<NFCNDEFMessage>;
     /**
      * func writeNDEF(_ ndefMessage: NFCNDEFMessage) async throws
      * @availability iOS 13.0+
@@ -1052,12 +1052,12 @@ export interface NFCMiFareTag {
      * func sendMiFareCommand(commandPacket command: Data) async throws -> Data
      * @availability iOS 13.0+
      */
-    "sendMiFareCommandCommandPacket"?: (arg0: ArrayBuffer) => ArrayBuffer;
+    "sendMiFareCommandCommandPacket"?: (arg0: ArrayBuffer) => Promise<ArrayBuffer>;
     /**
      * func sendMiFareISO7816Command(_ apdu: NFCISO7816APDU) async throws -> (Data, UInt8, UInt8)
      * @availability iOS 13.0+
      */
-    "sendMiFareISO7816Command"?: (arg0: NFCISO7816APDU) => [ArrayBuffer, number, number];
+    "sendMiFareISO7816Command"?: (arg0: NFCISO7816APDU) => Promise<[ArrayBuffer, number, number]>;
 }
 /**
  * class NFCNDEFMessage
@@ -1284,12 +1284,12 @@ export interface NFCNDEFTag {
      * func queryNDEFStatus() async throws -> (NFCNDEFStatus, Int)
      * @availability iOS 13.0+
      */
-    "queryNDEFStatus"?: () => [NFCNDEFStatus, number];
+    "queryNDEFStatus"?: () => Promise<[NFCNDEFStatus, number]>;
     /**
      * func readNDEF() async throws -> NFCNDEFMessage
      * @availability iOS 13.0+
      */
-    "readNDEF"?: () => NFCNDEFMessage;
+    "readNDEF"?: () => Promise<NFCNDEFMessage>;
     /**
      * func writeNDEF(_ ndefMessage: NFCNDEFMessage) async throws
      * @availability iOS 13.0+

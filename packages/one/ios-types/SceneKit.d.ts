@@ -5283,7 +5283,7 @@ export interface SCNSceneRenderer {
     /** func prepare(_ object: Any, shouldAbortBlock block: (() -> Bool)? = nil) -> Bool */
     "prepareShouldAbortBlock"?: (arg0: unknown, arg1: ((() => Promise<boolean>)) | null) => boolean;
     /** func prepare(_ objects: [Any]) async -> Bool */
-    "prepare"?: (arg0: Array<unknown>) => boolean;
+    "prepare"?: (arg0: Array<unknown>) => Promise<boolean>;
 }
 /** protocol SCNSceneRendererDelegate : NSObjectProtocol */
 export interface SCNSceneRendererDelegate {

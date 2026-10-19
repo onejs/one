@@ -4387,7 +4387,7 @@ export declare class SKStoreReviewController extends SDKHandle {
 export interface StoreDownloaderExtension {
     "init"?: () => void;
     "downloadsForManifestURLExtensionInfo"?: (arg0: _BackgroundAssets_BAContentRequest, arg1: string, arg2: _BackgroundAssets_BAAppExtensionInfo) => Array<_BackgroundAssets_BADownload>;
-    "backgroundDownloadDidReceive"?: (arg0: _BackgroundAssets_BADownload, arg1: _Foundation_URLAuthenticationChallenge) => [_Foundation_URLSession_AuthChallengeDisposition, (_Foundation_URLCredential) | null];
+    "backgroundDownloadDidReceive"?: (arg0: _BackgroundAssets_BADownload, arg1: _Foundation_URLAuthenticationChallenge) => Promise<[_Foundation_URLSession_AuthChallengeDisposition, (_Foundation_URLCredential) | null]>;
     "backgroundDownloadFailedWithError"?: (arg0: _BackgroundAssets_BADownload, arg1: NativeError) => void;
     "backgroundDownloadFinishedWithFileURL"?: (arg0: _BackgroundAssets_BADownload, arg1: string) => void;
     "extensionWillTerminate"?: () => void;

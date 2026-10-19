@@ -73,37 +73,37 @@ export interface CustomStage {
      * nonisolated(nonsending) func execute(items: [SearchableItem]) async throws -> SearchPipelineData
      * @availability iOS 27.0+
      */
-    "executeItems"?: (arg0: $SDK2) => SearchPipelineData;
+    "executeItems"?: (arg0: $SDK2) => Promise<SearchPipelineData>;
     /**
      * nonisolated(nonsending) func execute(scoredItems: [ScoredSearchableItem]) async throws -> SearchPipelineData
      * @availability iOS 27.0+
      */
-    "executeScoredItems"?: (arg0: $SDK3) => SearchPipelineData;
+    "executeScoredItems"?: (arg0: $SDK3) => Promise<SearchPipelineData>;
     /**
      * nonisolated(nonsending) func execute(groupedItems: [SearchableItemAttribute : [SearchableItem]]) async throws -> SearchPipelineData
      * @availability iOS 27.0+
      */
-    "executeGroupedItems"?: (arg0: $SDK4) => SearchPipelineData;
+    "executeGroupedItems"?: (arg0: $SDK4) => Promise<SearchPipelineData>;
     /**
      * nonisolated(nonsending) func execute(count: Int) async throws -> SearchPipelineData
      * @availability iOS 27.0+
      */
-    "executeCount"?: (arg0: number) => SearchPipelineData;
+    "executeCount"?: (arg0: number) => Promise<SearchPipelineData>;
     /**
      * nonisolated(nonsending) func execute(table: SearchResultsTable) async throws -> SearchPipelineData
      * @availability iOS 27.0+
      */
-    "executeTable"?: (arg0: SearchResultsTable) => SearchPipelineData;
+    "executeTable"?: (arg0: SearchResultsTable) => Promise<SearchPipelineData>;
     /**
      * nonisolated(nonsending) func execute(statistic: String, value: Double) async throws -> SearchPipelineData
      * @availability iOS 27.0+
      */
-    "executeStatisticValue"?: (arg0: string, arg1: number) => SearchPipelineData;
+    "executeStatisticValue"?: (arg0: string, arg1: number) => Promise<SearchPipelineData>;
     /**
      * nonisolated(nonsending) func execute(text: String) async throws -> SearchPipelineData
      * @availability iOS 27.0+
      */
-    "executeText"?: (arg0: string) => SearchPipelineData;
+    "executeText"?: (arg0: string) => Promise<SearchPipelineData>;
 }
 /**
  * struct FileSource

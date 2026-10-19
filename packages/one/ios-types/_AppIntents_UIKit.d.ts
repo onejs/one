@@ -165,7 +165,7 @@ export declare class UIScene_ConnectionOptions extends SDKHandle {
  * @availability iOS 26.0+
  */
 export interface UISceneAppIntent {
-    "perform"?: () => unknown;
+    "perform"?: () => Promise<unknown>;
     "init"?: () => void;
     /**
      * func performNavigation(forScene scene: UIScene)

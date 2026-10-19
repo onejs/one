@@ -11,27 +11,27 @@ export class AppearSymbolEffect extends SDKHandle {
    * var wholeSymbol: AppearSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get wholeSymbol(): AppearSymbolEffect { return callSDK<AppearSymbolEffect>("Symbols_0e503aef608672fa", 2013560700029319, this, []); }
+  get wholeSymbol(): AppearSymbolEffect { return callSDK<AppearSymbolEffect>("Symbols_212edf3d13b127f5", 2013560700029319, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 17.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 1883986666436872, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 1883986666436872, this, []); }
   /**
    * var up: AppearSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get up(): AppearSymbolEffect { return callSDK<AppearSymbolEffect>("Symbols_0e503aef608672fa", 3290261386074885, this, []); }
+  get up(): AppearSymbolEffect { return callSDK<AppearSymbolEffect>("Symbols_212edf3d13b127f5", 3290261386074885, this, []); }
   /**
    * var down: AppearSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get down(): AppearSymbolEffect { return callSDK<AppearSymbolEffect>("Symbols_0e503aef608672fa", 2000210408648382, this, []); }
+  get down(): AppearSymbolEffect { return callSDK<AppearSymbolEffect>("Symbols_212edf3d13b127f5", 2000210408648382, this, []); }
   /**
    * var byLayer: AppearSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get byLayer(): AppearSymbolEffect { return callSDK<AppearSymbolEffect>("Symbols_0e503aef608672fa", 2093315442403068, this, []); }
+  get byLayer(): AppearSymbolEffect { return callSDK<AppearSymbolEffect>("Symbols_212edf3d13b127f5", 2093315442403068, this, []); }
   declare readonly $type: { "s:7Symbols18AppearSymbolEffectV": true };
 }
 
@@ -44,7 +44,7 @@ export class AutomaticSymbolEffect extends SDKHandle {
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 17.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 3804179550549897, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 3804179550549897, this, []); }
   declare readonly $type: { "s:7Symbols21AutomaticSymbolEffectV": true };
 }
 
@@ -57,27 +57,27 @@ export class BounceSymbolEffect extends SDKHandle {
    * var wholeSymbol: BounceSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get wholeSymbol(): BounceSymbolEffect { return callSDK<BounceSymbolEffect>("Symbols_0e503aef608672fa", 1472918349803846, this, []); }
+  get wholeSymbol(): BounceSymbolEffect { return callSDK<BounceSymbolEffect>("Symbols_212edf3d13b127f5", 1472918349803846, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 17.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 1920467830866073, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 1920467830866073, this, []); }
   /**
    * var up: BounceSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get up(): BounceSymbolEffect { return callSDK<BounceSymbolEffect>("Symbols_0e503aef608672fa", 896911818212326, this, []); }
+  get up(): BounceSymbolEffect { return callSDK<BounceSymbolEffect>("Symbols_212edf3d13b127f5", 896911818212326, this, []); }
   /**
    * var down: BounceSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get down(): BounceSymbolEffect { return callSDK<BounceSymbolEffect>("Symbols_0e503aef608672fa", 3723130475701870, this, []); }
+  get down(): BounceSymbolEffect { return callSDK<BounceSymbolEffect>("Symbols_212edf3d13b127f5", 3723130475701870, this, []); }
   /**
    * var byLayer: BounceSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get byLayer(): BounceSymbolEffect { return callSDK<BounceSymbolEffect>("Symbols_0e503aef608672fa", 2603792351624680, this, []); }
+  get byLayer(): BounceSymbolEffect { return callSDK<BounceSymbolEffect>("Symbols_212edf3d13b127f5", 2603792351624680, this, []); }
   declare readonly $type: { "s:7Symbols18BounceSymbolEffectV": true };
 }
 
@@ -90,27 +90,27 @@ export class BreatheSymbolEffect extends SDKHandle {
    * var wholeSymbol: BreatheSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get wholeSymbol(): BreatheSymbolEffect { return callSDK<BreatheSymbolEffect>("Symbols_0e503aef608672fa", 2322579575821801, this, []); }
+  get wholeSymbol(): BreatheSymbolEffect { return callSDK<BreatheSymbolEffect>("Symbols_212edf3d13b127f5", 2322579575821801, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 18.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 3277257097255455, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 3277257097255455, this, []); }
   /**
    * var plain: BreatheSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get plain(): BreatheSymbolEffect { return callSDK<BreatheSymbolEffect>("Symbols_0e503aef608672fa", 503789948512456, this, []); }
+  get plain(): BreatheSymbolEffect { return callSDK<BreatheSymbolEffect>("Symbols_212edf3d13b127f5", 503789948512456, this, []); }
   /**
    * var pulse: BreatheSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get pulse(): BreatheSymbolEffect { return callSDK<BreatheSymbolEffect>("Symbols_0e503aef608672fa", 311845763801823, this, []); }
+  get pulse(): BreatheSymbolEffect { return callSDK<BreatheSymbolEffect>("Symbols_212edf3d13b127f5", 311845763801823, this, []); }
   /**
    * var byLayer: BreatheSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get byLayer(): BreatheSymbolEffect { return callSDK<BreatheSymbolEffect>("Symbols_0e503aef608672fa", 1779486456214163, this, []); }
+  get byLayer(): BreatheSymbolEffect { return callSDK<BreatheSymbolEffect>("Symbols_212edf3d13b127f5", 1779486456214163, this, []); }
   declare readonly $type: { "s:7Symbols19BreatheSymbolEffectV": true };
 }
 
@@ -131,27 +131,27 @@ export class DisappearSymbolEffect extends SDKHandle {
    * var wholeSymbol: DisappearSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get wholeSymbol(): DisappearSymbolEffect { return callSDK<DisappearSymbolEffect>("Symbols_0e503aef608672fa", 2408177110415529, this, []); }
+  get wholeSymbol(): DisappearSymbolEffect { return callSDK<DisappearSymbolEffect>("Symbols_212edf3d13b127f5", 2408177110415529, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 17.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 3935004773392761, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 3935004773392761, this, []); }
   /**
    * var up: DisappearSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get up(): DisappearSymbolEffect { return callSDK<DisappearSymbolEffect>("Symbols_0e503aef608672fa", 1974145312711792, this, []); }
+  get up(): DisappearSymbolEffect { return callSDK<DisappearSymbolEffect>("Symbols_212edf3d13b127f5", 1974145312711792, this, []); }
   /**
    * var down: DisappearSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get down(): DisappearSymbolEffect { return callSDK<DisappearSymbolEffect>("Symbols_0e503aef608672fa", 2661783103140907, this, []); }
+  get down(): DisappearSymbolEffect { return callSDK<DisappearSymbolEffect>("Symbols_212edf3d13b127f5", 2661783103140907, this, []); }
   /**
    * var byLayer: DisappearSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get byLayer(): DisappearSymbolEffect { return callSDK<DisappearSymbolEffect>("Symbols_0e503aef608672fa", 71979515292569, this, []); }
+  get byLayer(): DisappearSymbolEffect { return callSDK<DisappearSymbolEffect>("Symbols_212edf3d13b127f5", 71979515292569, this, []); }
   declare readonly $type: { "s:7Symbols21DisappearSymbolEffectV": true };
 }
 
@@ -172,32 +172,32 @@ export class DrawOffSymbolEffect extends SDKHandle {
    * var wholeSymbol: DrawOffSymbolEffect { get }
    * @availability iOS 26.0+
    */
-  get wholeSymbol(): DrawOffSymbolEffect { return callSDK<DrawOffSymbolEffect>("Symbols_0e503aef608672fa", 3129434959569301, this, []); }
+  get wholeSymbol(): DrawOffSymbolEffect { return callSDK<DrawOffSymbolEffect>("Symbols_212edf3d13b127f5", 3129434959569301, this, []); }
   /**
    * var nonReversed: DrawOffSymbolEffect { get }
    * @availability iOS 26.0+
    */
-  get nonReversed(): DrawOffSymbolEffect { return callSDK<DrawOffSymbolEffect>("Symbols_0e503aef608672fa", 3518825162554675, this, []); }
+  get nonReversed(): DrawOffSymbolEffect { return callSDK<DrawOffSymbolEffect>("Symbols_212edf3d13b127f5", 3518825162554675, this, []); }
   /**
    * var individually: DrawOffSymbolEffect { get }
    * @availability iOS 26.0+
    */
-  get individually(): DrawOffSymbolEffect { return callSDK<DrawOffSymbolEffect>("Symbols_0e503aef608672fa", 2188743558631379, this, []); }
+  get individually(): DrawOffSymbolEffect { return callSDK<DrawOffSymbolEffect>("Symbols_212edf3d13b127f5", 2188743558631379, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 26.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 122195517968271, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 122195517968271, this, []); }
   /**
    * var byLayer: DrawOffSymbolEffect { get }
    * @availability iOS 26.0+
    */
-  get byLayer(): DrawOffSymbolEffect { return callSDK<DrawOffSymbolEffect>("Symbols_0e503aef608672fa", 4228591981521167, this, []); }
+  get byLayer(): DrawOffSymbolEffect { return callSDK<DrawOffSymbolEffect>("Symbols_212edf3d13b127f5", 4228591981521167, this, []); }
   /**
    * var reversed: DrawOffSymbolEffect { get }
    * @availability iOS 26.0+
    */
-  get reversed(): DrawOffSymbolEffect { return callSDK<DrawOffSymbolEffect>("Symbols_0e503aef608672fa", 928055126548505, this, []); }
+  get reversed(): DrawOffSymbolEffect { return callSDK<DrawOffSymbolEffect>("Symbols_212edf3d13b127f5", 928055126548505, this, []); }
   declare readonly $type: { "s:7Symbols19DrawOffSymbolEffectV": true };
 }
 
@@ -210,22 +210,22 @@ export class DrawOnSymbolEffect extends SDKHandle {
    * var wholeSymbol: DrawOnSymbolEffect { get }
    * @availability iOS 26.0+
    */
-  get wholeSymbol(): DrawOnSymbolEffect { return callSDK<DrawOnSymbolEffect>("Symbols_0e503aef608672fa", 1000733399036555, this, []); }
+  get wholeSymbol(): DrawOnSymbolEffect { return callSDK<DrawOnSymbolEffect>("Symbols_212edf3d13b127f5", 1000733399036555, this, []); }
   /**
    * var individually: DrawOnSymbolEffect { get }
    * @availability iOS 26.0+
    */
-  get individually(): DrawOnSymbolEffect { return callSDK<DrawOnSymbolEffect>("Symbols_0e503aef608672fa", 1760481991429821, this, []); }
+  get individually(): DrawOnSymbolEffect { return callSDK<DrawOnSymbolEffect>("Symbols_212edf3d13b127f5", 1760481991429821, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 26.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 3272218597205638, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 3272218597205638, this, []); }
   /**
    * var byLayer: DrawOnSymbolEffect { get }
    * @availability iOS 26.0+
    */
-  get byLayer(): DrawOnSymbolEffect { return callSDK<DrawOnSymbolEffect>("Symbols_0e503aef608672fa", 87595238188841, this, []); }
+  get byLayer(): DrawOnSymbolEffect { return callSDK<DrawOnSymbolEffect>("Symbols_212edf3d13b127f5", 87595238188841, this, []); }
   declare readonly $type: { "s:7Symbols18DrawOnSymbolEffectV": true };
 }
 
@@ -246,17 +246,17 @@ export class PulseSymbolEffect extends SDKHandle {
    * var wholeSymbol: PulseSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get wholeSymbol(): PulseSymbolEffect { return callSDK<PulseSymbolEffect>("Symbols_0e503aef608672fa", 4433904457121835, this, []); }
+  get wholeSymbol(): PulseSymbolEffect { return callSDK<PulseSymbolEffect>("Symbols_212edf3d13b127f5", 4433904457121835, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 17.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 1116673220035275, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 1116673220035275, this, []); }
   /**
    * var byLayer: PulseSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get byLayer(): PulseSymbolEffect { return callSDK<PulseSymbolEffect>("Symbols_0e503aef608672fa", 2232435879789734, this, []); }
+  get byLayer(): PulseSymbolEffect { return callSDK<PulseSymbolEffect>("Symbols_212edf3d13b127f5", 2232435879789734, this, []); }
   declare readonly $type: { "s:7Symbols17PulseSymbolEffectV": true };
 }
 
@@ -269,52 +269,52 @@ export class ReplaceSymbolEffect extends SDKHandle {
    * var wholeSymbol: ReplaceSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get wholeSymbol(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_0e503aef608672fa", 2551670210437502, this, []); }
+  get wholeSymbol(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_212edf3d13b127f5", 2551670210437502, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 17.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 267074472512094, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 267074472512094, this, []); }
   /**
    * var upUp: ReplaceSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get upUp(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_0e503aef608672fa", 690157219048966, this, []); }
+  get upUp(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_212edf3d13b127f5", 690157219048966, this, []); }
   /**
    * static var upUp: ReplaceSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  static get upUp31977(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_0e503aef608672fa", 1992674738700199, undefined, []); }
+  static get upUp31977(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_212edf3d13b127f5", 1992674738700199, undefined, []); }
   /**
    * func magic(fallback: ReplaceSymbolEffect) -> ReplaceSymbolEffect.MagicReplace
    * @availability iOS 18.0+
    */
-  magic(fallback: ReplaceSymbolEffect): ReplaceSymbolEffect_MagicReplace { return callSDK<ReplaceSymbolEffect_MagicReplace>("Symbols_0e503aef608672fa", 274299134345248, this, [fallback]); }
+  magic(fallback: ReplaceSymbolEffect): ReplaceSymbolEffect_MagicReplace { return callSDK<ReplaceSymbolEffect_MagicReplace>("Symbols_212edf3d13b127f5", 274299134345248, this, [fallback]); }
   /**
    * var offUp: ReplaceSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get offUp(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_0e503aef608672fa", 2015365689349616, this, []); }
+  get offUp(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_212edf3d13b127f5", 2015365689349616, this, []); }
   /**
    * static var offUp: ReplaceSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  static get offUp97284(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_0e503aef608672fa", 2844727255838914, undefined, []); }
+  static get offUp97284(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_212edf3d13b127f5", 2844727255838914, undefined, []); }
   /**
    * var downUp: ReplaceSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get downUp(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_0e503aef608672fa", 2953071404170485, this, []); }
+  get downUp(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_212edf3d13b127f5", 2953071404170485, this, []); }
   /**
    * static var downUp: ReplaceSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  static get downUp4288(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_0e503aef608672fa", 204784060202688, undefined, []); }
+  static get downUp4288(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_212edf3d13b127f5", 204784060202688, undefined, []); }
   /**
    * var byLayer: ReplaceSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get byLayer(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_0e503aef608672fa", 483970385709036, this, []); }
+  get byLayer(): ReplaceSymbolEffect { return callSDK<ReplaceSymbolEffect>("Symbols_212edf3d13b127f5", 483970385709036, this, []); }
   declare readonly $type: { "s:7Symbols19ReplaceSymbolEffectV": true };
 }
 
@@ -327,7 +327,7 @@ export class ReplaceSymbolEffect_MagicReplace extends SDKHandle {
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 18.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 1062880684618794, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 1062880684618794, this, []); }
   declare readonly $type: { "s:7Symbols19ReplaceSymbolEffectV05MagicB0V": true };
 }
 
@@ -340,27 +340,27 @@ export class RotateSymbolEffect extends SDKHandle {
    * var wholeSymbol: RotateSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get wholeSymbol(): RotateSymbolEffect { return callSDK<RotateSymbolEffect>("Symbols_0e503aef608672fa", 4158197737679735, this, []); }
+  get wholeSymbol(): RotateSymbolEffect { return callSDK<RotateSymbolEffect>("Symbols_212edf3d13b127f5", 4158197737679735, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 18.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 4093441543301947, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 4093441543301947, this, []); }
   /**
    * var counterClockwise: RotateSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get counterClockwise(): RotateSymbolEffect { return callSDK<RotateSymbolEffect>("Symbols_0e503aef608672fa", 2841547003603618, this, []); }
+  get counterClockwise(): RotateSymbolEffect { return callSDK<RotateSymbolEffect>("Symbols_212edf3d13b127f5", 2841547003603618, this, []); }
   /**
    * var byLayer: RotateSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get byLayer(): RotateSymbolEffect { return callSDK<RotateSymbolEffect>("Symbols_0e503aef608672fa", 752497490126450, this, []); }
+  get byLayer(): RotateSymbolEffect { return callSDK<RotateSymbolEffect>("Symbols_212edf3d13b127f5", 752497490126450, this, []); }
   /**
    * var clockwise: RotateSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get clockwise(): RotateSymbolEffect { return callSDK<RotateSymbolEffect>("Symbols_0e503aef608672fa", 520209527071515, this, []); }
+  get clockwise(): RotateSymbolEffect { return callSDK<RotateSymbolEffect>("Symbols_212edf3d13b127f5", 520209527071515, this, []); }
   declare readonly $type: { "s:7Symbols18RotateSymbolEffectV": true };
 }
 
@@ -373,27 +373,27 @@ export class ScaleSymbolEffect extends SDKHandle {
    * var wholeSymbol: ScaleSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get wholeSymbol(): ScaleSymbolEffect { return callSDK<ScaleSymbolEffect>("Symbols_0e503aef608672fa", 2725574463847650, this, []); }
+  get wholeSymbol(): ScaleSymbolEffect { return callSDK<ScaleSymbolEffect>("Symbols_212edf3d13b127f5", 2725574463847650, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 17.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 3328950275877238, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 3328950275877238, this, []); }
   /**
    * var up: ScaleSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get up(): ScaleSymbolEffect { return callSDK<ScaleSymbolEffect>("Symbols_0e503aef608672fa", 4263870877226909, this, []); }
+  get up(): ScaleSymbolEffect { return callSDK<ScaleSymbolEffect>("Symbols_212edf3d13b127f5", 4263870877226909, this, []); }
   /**
    * var down: ScaleSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get down(): ScaleSymbolEffect { return callSDK<ScaleSymbolEffect>("Symbols_0e503aef608672fa", 1973227743709698, this, []); }
+  get down(): ScaleSymbolEffect { return callSDK<ScaleSymbolEffect>("Symbols_212edf3d13b127f5", 1973227743709698, this, []); }
   /**
    * var byLayer: ScaleSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get byLayer(): ScaleSymbolEffect { return callSDK<ScaleSymbolEffect>("Symbols_0e503aef608672fa", 964228596561726, this, []); }
+  get byLayer(): ScaleSymbolEffect { return callSDK<ScaleSymbolEffect>("Symbols_212edf3d13b127f5", 964228596561726, this, []); }
   declare readonly $type: { "s:7Symbols17ScaleSymbolEffectV": true };
 }
 
@@ -422,61 +422,61 @@ export class SymbolEffectOptions extends SDKHandle {
    * var nonRepeating: SymbolEffectOptions { get }
    * @availability iOS 17.0+
    */
-  get nonRepeating(): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 3996794249913586, this, []); }
+  get nonRepeating(): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 3996794249913586, this, []); }
   /**
    * static var nonRepeating: SymbolEffectOptions { get }
    * @availability iOS 17.0+
    */
-  static get nonRepeating3194(): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 1698778568086961, undefined, []); }
+  static get nonRepeating3194(): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 1698778568086961, undefined, []); }
   /**
    * func speed(_ speed: Double) -> SymbolEffectOptions
    * @availability iOS 17.0+
    */
-  speed(speed: number): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 1112449514949230, this, [speed]); }
+  speed(speed: number): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 1112449514949230, this, [speed]); }
   /**
    * static func speed(_ speed: Double) -> SymbolEffectOptions
    * @availability iOS 17.0+
    */
-  static speed7257(speed: number): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 2448047965157206, undefined, [speed]); }
+  static speed7257(speed: number): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 2448047965157206, undefined, [speed]); }
   /**
    * func `repeat`(_ behavior: SymbolEffectOptions.RepeatBehavior) -> SymbolEffectOptions
    * @availability iOS 18.0+
    */
-  repeat(behavior: SymbolEffectOptions_RepeatBehavior): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 2701294775522689, this, [behavior]); }
+  repeat(behavior: SymbolEffectOptions_RepeatBehavior): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 2701294775522689, this, [behavior]); }
   /**
    * static func `repeat`(_ behavior: SymbolEffectOptions.RepeatBehavior) -> SymbolEffectOptions
    * @availability iOS 18.0+
    */
-  static repeat32339(behavior: SymbolEffectOptions_RepeatBehavior): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 1117333994269948, undefined, [behavior]); }
+  static repeat32339(behavior: SymbolEffectOptions_RepeatBehavior): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 1117333994269948, undefined, [behavior]); }
   /**
    * func `repeat`(_ count: Int?) -> SymbolEffectOptions
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  repeat96399(count?: (number) | null): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 2169803991049303, this, [count]); }
+  repeat96399(count?: (number) | null): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 2169803991049303, this, [count]); }
   /**
    * static func `repeat`(_ count: Int?) -> SymbolEffectOptions
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  static repeat8111(count?: (number) | null): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 3768750475362721, undefined, [count]); }
+  static repeat8111(count?: (number) | null): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 3768750475362721, undefined, [count]); }
   /**
    * static var `default`: SymbolEffectOptions { get }
    * @availability iOS 17.0+
    */
-  static get default(): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 2475876834286518, undefined, []); }
+  static get default(): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 2475876834286518, undefined, []); }
   /**
    * var repeating: SymbolEffectOptions { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  get repeating(): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 27144976103240, this, []); }
+  get repeating(): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 27144976103240, this, []); }
   /**
    * static var repeating: SymbolEffectOptions { get }
    * @availability iOS 17.0+
    * @deprecated iOS 100000.0
    */
-  static get repeating64259(): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_0e503aef608672fa", 280849623977989, undefined, []); }
+  static get repeating64259(): SymbolEffectOptions { return callSDK<SymbolEffectOptions>("Symbols_212edf3d13b127f5", 280849623977989, undefined, []); }
   declare readonly $type: { "s:7Symbols19SymbolEffectOptionsV": true };
 }
 
@@ -489,17 +489,17 @@ export class SymbolEffectOptions_RepeatBehavior extends SDKHandle {
    * static var continuous: SymbolEffectOptions.RepeatBehavior { get }
    * @availability iOS 18.0+
    */
-  static get continuous(): SymbolEffectOptions_RepeatBehavior { return callSDK<SymbolEffectOptions_RepeatBehavior>("Symbols_0e503aef608672fa", 4170630393052967, undefined, []); }
+  static get continuous(): SymbolEffectOptions_RepeatBehavior { return callSDK<SymbolEffectOptions_RepeatBehavior>("Symbols_212edf3d13b127f5", 4170630393052967, undefined, []); }
   /**
    * static var periodic: SymbolEffectOptions.RepeatBehavior { get }
    * @availability iOS 18.0+
    */
-  static get periodic(): SymbolEffectOptions_RepeatBehavior { return callSDK<SymbolEffectOptions_RepeatBehavior>("Symbols_0e503aef608672fa", 3489420669025506, undefined, []); }
+  static get periodic(): SymbolEffectOptions_RepeatBehavior { return callSDK<SymbolEffectOptions_RepeatBehavior>("Symbols_212edf3d13b127f5", 3489420669025506, undefined, []); }
   /**
    * static func periodic(_ count: Int? = nil, delay: Double? = nil) -> SymbolEffectOptions.RepeatBehavior
    * @availability iOS 18.0+
    */
-  static periodicDelay(count?: (number) | null, delay?: (number) | null): SymbolEffectOptions_RepeatBehavior { return callSDK<SymbolEffectOptions_RepeatBehavior>("Symbols_0e503aef608672fa", 470837217807848, undefined, [count, delay]); }
+  static periodicDelay(count?: (number) | null, delay?: (number) | null): SymbolEffectOptions_RepeatBehavior { return callSDK<SymbolEffectOptions_RepeatBehavior>("Symbols_212edf3d13b127f5", 470837217807848, undefined, [count, delay]); }
   declare readonly $type: { "s:7Symbols19SymbolEffectOptionsV14RepeatBehaviorV": true };
 }
 
@@ -520,37 +520,37 @@ export class VariableColorSymbolEffect extends SDKHandle {
    * var cumulative: VariableColorSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get cumulative(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_0e503aef608672fa", 1386581500145569, this, []); }
+  get cumulative(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_212edf3d13b127f5", 1386581500145569, this, []); }
   /**
    * var nonReversing: VariableColorSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get nonReversing(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_0e503aef608672fa", 1175325119157275, this, []); }
+  get nonReversing(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_212edf3d13b127f5", 1175325119157275, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 17.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 2037966152887370, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 2037966152887370, this, []); }
   /**
    * var dimInactiveLayers: VariableColorSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get dimInactiveLayers(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_0e503aef608672fa", 3417271221678801, this, []); }
+  get dimInactiveLayers(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_212edf3d13b127f5", 3417271221678801, this, []); }
   /**
    * var hideInactiveLayers: VariableColorSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get hideInactiveLayers(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_0e503aef608672fa", 363312944664136, this, []); }
+  get hideInactiveLayers(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_212edf3d13b127f5", 363312944664136, this, []); }
   /**
    * var iterative: VariableColorSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get iterative(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_0e503aef608672fa", 3203571064561874, this, []); }
+  get iterative(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_212edf3d13b127f5", 3203571064561874, this, []); }
   /**
    * var reversing: VariableColorSymbolEffect { get }
    * @availability iOS 17.0+
    */
-  get reversing(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_0e503aef608672fa", 2218509051738689, this, []); }
+  get reversing(): VariableColorSymbolEffect { return callSDK<VariableColorSymbolEffect>("Symbols_212edf3d13b127f5", 2218509051738689, this, []); }
   declare readonly $type: { "s:7Symbols25VariableColorSymbolEffectV": true };
 }
 
@@ -563,84 +563,84 @@ export class WiggleSymbolEffect extends SDKHandle {
    * var wholeSymbol: WiggleSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get wholeSymbol(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 823517118785705, this, []); }
+  get wholeSymbol(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 823517118785705, this, []); }
   /**
    * var configuration: SymbolEffectConfiguration { get }
    * @availability iOS 18.0+
    */
-  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_0e503aef608672fa", 4427690506220667, this, []); }
+  get configuration(): SymbolEffectConfiguration { return callSDK<SymbolEffectConfiguration>("Symbols_212edf3d13b127f5", 4427690506220667, this, []); }
   /**
    * var counterClockwise: WiggleSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get counterClockwise(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 1292377471022235, this, []); }
+  get counterClockwise(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 1292377471022235, this, []); }
   /**
    * var up: WiggleSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get up(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 1657472867434906, this, []); }
+  get up(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 1657472867434906, this, []); }
   /**
    * var down: WiggleSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get down(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 3028183142170351, this, []); }
+  get down(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 3028183142170351, this, []); }
   /**
    * var left: WiggleSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get left(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 1898388772902966, this, []); }
+  get left(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 1898388772902966, this, []); }
   /**
    * var right: WiggleSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get right(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 102623788505965, this, []); }
+  get right(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 102623788505965, this, []); }
   /**
    * func custom(angle: Double) -> WiggleSymbolEffect
    * @availability iOS 18.0+
    */
-  custom(angle: number): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 4151814774839591, this, [angle]); }
+  custom(angle: number): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 4151814774839591, this, [angle]); }
   /**
    * var byLayer: WiggleSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get byLayer(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 2474055188386252, this, []); }
+  get byLayer(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 2474055188386252, this, []); }
   /**
    * var forward: WiggleSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get forward(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 4472716569772009, this, []); }
+  get forward(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 4472716569772009, this, []); }
   /**
    * var backward: WiggleSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get backward(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 2855854664616348, this, []); }
+  get backward(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 2855854664616348, this, []); }
   /**
    * var clockwise: WiggleSymbolEffect { get }
    * @availability iOS 18.0+
    */
-  get clockwise(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_0e503aef608672fa", 1996915269669938, this, []); }
+  get clockwise(): WiggleSymbolEffect { return callSDK<WiggleSymbolEffect>("Symbols_212edf3d13b127f5", 1996915269669938, this, []); }
   declare readonly $type: { "s:7Symbols18WiggleSymbolEffectV": true };
 }
 
-registerSDKClass("Symbols.AppearSymbolEffect", AppearSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
-registerSDKClass("Symbols.AutomaticSymbolEffect", AutomaticSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
-registerSDKClass("Symbols.BounceSymbolEffect", BounceSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
-registerSDKClass("Symbols.BreatheSymbolEffect", BreatheSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
+registerSDKClass("Symbols.AppearSymbolEffect", AppearSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
+registerSDKClass("Symbols.AutomaticSymbolEffect", AutomaticSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
+registerSDKClass("Symbols.BounceSymbolEffect", BounceSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
+registerSDKClass("Symbols.BreatheSymbolEffect", BreatheSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:7Symbols29ContentTransitionSymbolEffectP", {});
-registerSDKClass("Symbols.DisappearSymbolEffect", DisappearSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
+registerSDKClass("Symbols.DisappearSymbolEffect", DisappearSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:7Symbols20DiscreteSymbolEffectP", {});
-registerSDKClass("Symbols.DrawOffSymbolEffect", DrawOffSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
-registerSDKClass("Symbols.DrawOnSymbolEffect", DrawOnSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
+registerSDKClass("Symbols.DrawOffSymbolEffect", DrawOffSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
+registerSDKClass("Symbols.DrawOnSymbolEffect", DrawOnSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:7Symbols22IndefiniteSymbolEffectP", {});
-registerSDKClass("Symbols.PulseSymbolEffect", PulseSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
-registerSDKClass("Symbols.ReplaceSymbolEffect", ReplaceSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {}, methods: {"magic":{"id":274299134345248}} });
-registerSDKClass("Symbols.ReplaceSymbolEffect.MagicReplace", ReplaceSymbolEffect_MagicReplace, { module: "Symbols_0e503aef608672fa", properties: {} });
-registerSDKClass("Symbols.RotateSymbolEffect", RotateSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
-registerSDKClass("Symbols.ScaleSymbolEffect", ScaleSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
+registerSDKClass("Symbols.PulseSymbolEffect", PulseSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
+registerSDKClass("Symbols.ReplaceSymbolEffect", ReplaceSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {}, methods: {"magic":{"id":274299134345248}} });
+registerSDKClass("Symbols.ReplaceSymbolEffect.MagicReplace", ReplaceSymbolEffect_MagicReplace, { module: "Symbols_212edf3d13b127f5", properties: {} });
+registerSDKClass("Symbols.RotateSymbolEffect", RotateSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
+registerSDKClass("Symbols.ScaleSymbolEffect", ScaleSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:7Symbols12SymbolEffectP", {});
-registerSDKClass("Symbols.SymbolEffectConfiguration", SymbolEffectConfiguration, { module: "Symbols_0e503aef608672fa", properties: {} });
-registerSDKClass("Symbols.SymbolEffectOptions", SymbolEffectOptions, { module: "Symbols_0e503aef608672fa", properties: {}, methods: {"speed":{"id":1112449514949230},"repeat":{"id":2701294775522689},"repeat96399":{"id":2169803991049303}} });
-registerSDKClass("Symbols.SymbolEffectOptions.RepeatBehavior", SymbolEffectOptions_RepeatBehavior, { module: "Symbols_0e503aef608672fa", properties: {} });
+registerSDKClass("Symbols.SymbolEffectConfiguration", SymbolEffectConfiguration, { module: "Symbols_212edf3d13b127f5", properties: {} });
+registerSDKClass("Symbols.SymbolEffectOptions", SymbolEffectOptions, { module: "Symbols_212edf3d13b127f5", properties: {}, methods: {"speed":{"id":1112449514949230},"repeat":{"id":2701294775522689},"repeat96399":{"id":2169803991049303}} });
+registerSDKClass("Symbols.SymbolEffectOptions.RepeatBehavior", SymbolEffectOptions_RepeatBehavior, { module: "Symbols_212edf3d13b127f5", properties: {} });
 registerSDKProtocol("s:7Symbols22TransitionSymbolEffectP", {});
-registerSDKClass("Symbols.VariableColorSymbolEffect", VariableColorSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {} });
-registerSDKClass("Symbols.WiggleSymbolEffect", WiggleSymbolEffect, { module: "Symbols_0e503aef608672fa", properties: {}, methods: {"custom":{"id":4151814774839591}} });
+registerSDKClass("Symbols.VariableColorSymbolEffect", VariableColorSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {} });
+registerSDKClass("Symbols.WiggleSymbolEffect", WiggleSymbolEffect, { module: "Symbols_212edf3d13b127f5", properties: {}, methods: {"custom":{"id":4151814774839591}} });

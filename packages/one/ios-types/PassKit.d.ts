@@ -7,33 +7,33 @@ import type { UIImage as _UIKit_UIImage } from "one/ios/UIKit";
 type $SDK2 = JPKIPassContents_AuthenticationRequest<JPKIPassContents_UserIdentity>;
 type $SDK3 = JPKIPassContents_AuthenticationRequest<JPKIPassContents_SigningIdentity>;
 type $SDK4 = JPKIPassContents_AuthenticationRequest<unknown>;
-type $SDK17 = (PKPaymentNetwork) | null;
-type $SDK18 = (Implements<PKAddSecureElementPassViewControllerDelegate> | SDKHandle) | null;
-type $SDK19 = (PKSecureElementPass) | null;
-type $SDK21 = Array<PKShareablePassMetadata>;
-type $SDK22 = ((arg0: (PKAddShareablePassConfiguration) | null, arg1: (NativeError) | null) => void);
-type $SDK23 = (_Foundation_PersonNameComponents) | null;
-type $SDK24 = (_Contacts_CNPhoneNumber) | null;
-type $SDK25 = (_Contacts_CNPostalAddress) | null;
-type $SDK26 = (globalThis.Date) | null;
-type $SDK28 = Array<PKPaymentSummaryItem>;
-type $SDK29 = (Array<_Foundation_Locale_Region>) | null;
-type $SDK34 = (_Foundation_Locale_Region) | null;
-type $SDK37 = ((arg0: Array<PKIssuerProvisioningExtensionPassEntry>) => void);
-type $SDK42 = (((arg0: boolean, arg1: NativeError) => void)) | null;
-type $SDK45 = ((arg0: PKPassLibraryAddPassesStatus) => void);
-type $SDK56 = (Array<NativeError>) | null;
-type $SDK57 = (PKPaymentOrderDetails) | null;
-type $SDK61 = (PKAutomaticReloadPaymentRequest) | null;
-type $SDK62 = (PKDeferredPaymentRequest) | null;
-type $SDK64 = (PKRecurringPaymentRequest) | null;
-type $SDK65 = (Array<PKShippingMethod>) | null;
-type $SDK66 = (PKPaymentRequest_MerchantCategoryCode) | null;
-type $SDK67 = (Array<PKPaymentTokenContext>) | null;
-type $SDK68 = (PKPaymentMerchantSession) | null;
-type $SDK69 = (PKRecurringPaymentSummaryItem) | null;
-type $SDK70 = (Implements<PKShareSecureElementPassViewControllerDelegate> | SDKHandle) | null;
-type $SDK71 = (PKDateComponentsRange) | null;
+type $SDK18 = (PKPaymentNetwork) | null;
+type $SDK19 = (Implements<PKAddSecureElementPassViewControllerDelegate> | SDKHandle) | null;
+type $SDK20 = (PKSecureElementPass) | null;
+type $SDK22 = Array<PKShareablePassMetadata>;
+type $SDK23 = ((arg0: (PKAddShareablePassConfiguration) | null, arg1: (NativeError) | null) => void);
+type $SDK24 = (_Foundation_PersonNameComponents) | null;
+type $SDK25 = (_Contacts_CNPhoneNumber) | null;
+type $SDK26 = (_Contacts_CNPostalAddress) | null;
+type $SDK27 = (globalThis.Date) | null;
+type $SDK29 = Array<PKPaymentSummaryItem>;
+type $SDK30 = (Array<_Foundation_Locale_Region>) | null;
+type $SDK35 = (_Foundation_Locale_Region) | null;
+type $SDK38 = ((arg0: Array<PKIssuerProvisioningExtensionPassEntry>) => void);
+type $SDK43 = (((arg0: boolean, arg1: NativeError) => void)) | null;
+type $SDK46 = ((arg0: PKPassLibraryAddPassesStatus) => void);
+type $SDK57 = (Array<NativeError>) | null;
+type $SDK58 = (PKPaymentOrderDetails) | null;
+type $SDK62 = (PKAutomaticReloadPaymentRequest) | null;
+type $SDK63 = (PKDeferredPaymentRequest) | null;
+type $SDK65 = (PKRecurringPaymentRequest) | null;
+type $SDK66 = (Array<PKShippingMethod>) | null;
+type $SDK67 = (PKPaymentRequest_MerchantCategoryCode) | null;
+type $SDK68 = (Array<PKPaymentTokenContext>) | null;
+type $SDK69 = (PKPaymentMerchantSession) | null;
+type $SDK70 = (PKRecurringPaymentSummaryItem) | null;
+type $SDK71 = (Implements<PKShareSecureElementPassViewControllerDelegate> | SDKHandle) | null;
+type $SDK72 = (PKDateComponentsRange) | null;
 /**
  * struct JPKIPassContents
  * @availability iOS 18.0+
@@ -82,6 +82,11 @@ export declare class JPKIPassContents_AuthenticationRequest<IdentityType = unkno
  * @availability iOS 18.0+
  */
 export declare class JPKIPassContents_Certificate<IdentityType = unknown> extends SDKHandle {
+    /**
+     * let data: Data
+     * @availability iOS 18.0+
+     */
+    get data(): ArrayBuffer;
     readonly $type: {
         "s:7PassKit16JPKIPassContentsV11CertificateV": true;
     };
@@ -104,18 +109,28 @@ export interface JPKIPassContents_Identity {
      * func certificate(using request: JPKIPassContents.AuthenticationRequest<Self.IdentityType>) async throws -> JPKIPassContents.Certificate<Self.IdentityType>
      * @availability iOS 18.0+
      */
-    "certificateUsing"?: (arg0: $SDK4) => JPKIPassContents_Certificate<unknown>;
+    "certificateUsing"?: (arg0: $SDK4) => Promise<JPKIPassContents_Certificate<unknown>>;
     /**
      * func signature(for data: Data, using request: JPKIPassContents.AuthenticationRequest<Self.IdentityType>) async throws -> JPKIPassContents.Signature<Self.IdentityType>
      * @availability iOS 18.0+
      */
-    "signatureForUsing"?: (arg0: ArrayBuffer | Array<ArrayBuffer>, arg1: $SDK4) => JPKIPassContents_Signature<unknown> | Array<JPKIPassContents_Signature<unknown>>;
+    "signatureForUsing"?: (arg0: ArrayBuffer | Array<ArrayBuffer>, arg1: $SDK4) => Promise<JPKIPassContents_Signature<unknown>> | Promise<Array<JPKIPassContents_Signature<unknown>>>;
 }
 /**
  * struct Signature<IdentityType> where IdentityType : JPKIPassContents.Identity
  * @availability iOS 18.0+
  */
 export declare class JPKIPassContents_Signature<IdentityType = unknown> extends SDKHandle {
+    /**
+     * let certificate: JPKIPassContents.Certificate<IdentityType>
+     * @availability iOS 18.0+
+     */
+    get certificate(): JPKIPassContents_Certificate<SDKHandle>;
+    /**
+     * let signatureData: Data
+     * @availability iOS 18.0+
+     */
+    get signatureData(): ArrayBuffer;
     readonly $type: {
         "s:7PassKit16JPKIPassContentsV9SignatureV": true;
     };
@@ -642,8 +657,8 @@ export declare class PKAddPaymentPassRequestConfiguration extends SDKHandle {
      * var paymentNetwork: PKPaymentNetwork? { get set }
      * @availability iOS 9.0+
      */
-    get paymentNetwork(): $SDK17;
-    set paymentNetwork(value: $SDK17);
+    get paymentNetwork(): $SDK18;
+    set paymentNetwork(value: $SDK18);
     /**
      * var primaryAccountIdentifier: String? { get set }
      * @availability iOS 9.0+
@@ -743,7 +758,7 @@ export interface PKAddPaymentPassViewControllerDelegate {
      * func addPaymentPassViewController(_ controller: PKAddPaymentPassViewController, generateRequestWithCertificateChain certificates: [Data], nonce: Data, nonceSignature: Data) async -> PKAddPaymentPassRequest
      * @availability iOS 9.0+
      */
-    "addPaymentPassViewControllerGenerateRequestWithCertificateChainNonceNonceSignature"?: (arg0: PKAddPaymentPassViewController, arg1: Array<ArrayBuffer>, arg2: ArrayBuffer, arg3: ArrayBuffer) => PKAddPaymentPassRequest;
+    "addPaymentPassViewControllerGenerateRequestWithCertificateChainNonceNonceSignature"?: (arg0: PKAddPaymentPassViewController, arg1: Array<ArrayBuffer>, arg2: ArrayBuffer, arg3: ArrayBuffer) => Promise<PKAddPaymentPassRequest>;
     /**
      * func addPaymentPassViewController(_ controller: PKAddPaymentPassViewController, didFinishAdding pass: PKPaymentPass?, error: (any Error)?)
      * @availability iOS 9.0+
@@ -881,13 +896,13 @@ export declare class PKAddSecureElementPassViewController extends SDKHandle {
      * init?(configuration: PKAddSecureElementPassConfiguration, delegate: (any PKAddSecureElementPassViewControllerDelegate)?)
      * @availability iOS 13.4+
      */
-    static init(configuration: PKAddSecureElementPassConfiguration, delegate?: $SDK18): Promise<(PKAddSecureElementPassViewController) | null>;
+    static init(configuration: PKAddSecureElementPassConfiguration, delegate?: $SDK19): Promise<(PKAddSecureElementPassViewController) | null>;
     /**
      * weak var delegate: (any PKAddSecureElementPassViewControllerDelegate)? { get set }
      * @availability iOS 13.4+
      */
     get delegate(): Promise<(SDKHandle) | null>;
-    setDelegate(value?: $SDK18): Promise<void>;
+    setDelegate(value?: $SDK19): Promise<void>;
     readonly $type: {
         "c:objc(cs)PKAddSecureElementPassViewController": true;
         "c:objc(cs)UIViewController": true;
@@ -908,7 +923,7 @@ export interface PKAddSecureElementPassViewControllerDelegate {
      * @availability iOS 13.4+
      * @deprecated iOS 14.0
      */
-    "addSecureElementPassViewControllerDidFinishAddingError"?: (arg0: PKAddSecureElementPassViewController, arg1: $SDK19, arg2: (NativeError) | null) => void;
+    "addSecureElementPassViewControllerDidFinishAddingError"?: (arg0: PKAddSecureElementPassViewController, arg1: $SDK20, arg2: (NativeError) | null) => void;
     /**
      * func addSecureElementPassViewController(_ controller: PKAddSecureElementPassViewController, didFinishAddingSecureElementPasses passes: [PKSecureElementPass]?, error: (any Error)?)
      * @availability iOS 13.4+
@@ -924,18 +939,18 @@ export declare class PKAddShareablePassConfiguration extends PKAddSecureElementP
      * class func forPassMetadata(_ passMetadata: [PKShareablePassMetadata], action: PKAddShareablePassConfigurationPrimaryAction) async throws -> PKAddShareablePassConfiguration
      * @availability iOS 16.0+
      */
-    static forPassMetadata(passMetadata: $SDK21, action: PKAddShareablePassConfigurationPrimaryAction, completion: $SDK22): void;
+    static forPassMetadata(passMetadata: $SDK22, action: PKAddShareablePassConfigurationPrimaryAction, completion: $SDK23): void;
     /**
      * class func forPassMetaData(_ passMetadata: [PKShareablePassMetadata], provisioningPolicyIdentifier: String, action: PKAddShareablePassConfigurationPrimaryAction) async throws -> PKAddShareablePassConfiguration
      * @availability iOS 14.0+
      * @deprecated iOS 16.0
      */
-    static forPassMetaData(passMetadata: $SDK21, provisioningPolicyIdentifier: string, action: PKAddShareablePassConfigurationPrimaryAction, completion: $SDK22): void;
+    static forPassMetaData(passMetadata: $SDK22, provisioningPolicyIdentifier: string, action: PKAddShareablePassConfigurationPrimaryAction, completion: $SDK23): void;
     /**
      * var credentialsMetadata: [PKShareablePassMetadata] { get }
      * @availability iOS 14.0+
      */
-    get credentialsMetadata(): $SDK21;
+    get credentialsMetadata(): $SDK22;
     /**
      * var primaryAction: PKAddShareablePassConfigurationPrimaryAction { get }
      * @availability iOS 14.0+
@@ -1325,20 +1340,20 @@ export declare class PKContact extends SDKHandle {
      * var name: PersonNameComponents? { get set }
      * @availability iOS 9.0+
      */
-    get name(): $SDK23;
-    set name(value: $SDK23);
+    get name(): $SDK24;
+    set name(value: $SDK24);
     /**
      * var phoneNumber: CNPhoneNumber? { get set }
      * @availability iOS 9.0+
      */
-    get phoneNumber(): $SDK24;
-    set phoneNumber(value: $SDK24);
+    get phoneNumber(): $SDK25;
+    set phoneNumber(value: $SDK25);
     /**
      * var postalAddress: CNPostalAddress? { get set }
      * @availability iOS 9.0+
      */
-    get postalAddress(): $SDK25;
-    set postalAddress(value: $SDK25);
+    get postalAddress(): $SDK26;
+    set postalAddress(value: $SDK26);
     /**
      * var supplementarySubLocality: String? { get set }
      * @availability iOS 9.2+
@@ -1444,8 +1459,8 @@ export declare class PKDeferredPaymentRequest extends SDKHandle {
      * var freeCancellationDate: Date? { get set }
      * @availability iOS 16.4+
      */
-    get freeCancellationDate(): $SDK26;
-    set freeCancellationDate(value: $SDK26);
+    get freeCancellationDate(): $SDK27;
+    set freeCancellationDate(value: $SDK27);
     /**
      * var freeCancellationDateTimeZone: TimeZone? { get set }
      * @availability iOS 16.4+
@@ -1616,8 +1631,8 @@ export declare class PKDisbursementRequest extends SDKHandle {
      * var summaryItems: [PKPaymentSummaryItem] { get set }
      * @availability iOS 17.0+
      */
-    get summaryItems(): $SDK28;
-    set summaryItems(value: $SDK28);
+    get summaryItems(): $SDK29;
+    set summaryItems(value: $SDK29);
     /**
      * var supportedNetworks: [PKPaymentNetwork] { get set }
      * @availability iOS 17.0+
@@ -1634,13 +1649,13 @@ export declare class PKDisbursementRequest extends SDKHandle {
      * var supportedRegions: [Locale.Region]? { get set }
      * @availability iOS 17.0+
      */
-    get supportedRegions(): $SDK29;
-    set supportedRegions(value: $SDK29);
+    get supportedRegions(): $SDK30;
+    set supportedRegions(value: $SDK30);
     /**
      * convenience init(merchantIdentifier: String, currency: Locale.Currency, region: Locale.Region, supportedNetworks: [PKPaymentNetwork], merchantCapabilities: PKMerchantCapability, summaryItems: [PKPaymentSummaryItem])
      * @availability iOS 17.0+
      */
-    static init(merchantIdentifier: string, currency: _Foundation_Locale_Currency, region: _Foundation_Locale_Region, supportedNetworks: Array<PKPaymentNetwork>, merchantCapabilities: PKMerchantCapability, summaryItems: $SDK28): PKDisbursementRequest;
+    static init(merchantIdentifier: string, currency: _Foundation_Locale_Currency, region: _Foundation_Locale_Region, supportedNetworks: Array<PKPaymentNetwork>, merchantCapabilities: PKMerchantCapability, summaryItems: $SDK29): PKDisbursementRequest;
     /**
      * var region: Locale.Region { get set }
      * @availability iOS 17.0+
@@ -2092,8 +2107,8 @@ export declare class PKIdentityNationalIDCardDescriptor extends SDKHandle {
      * var region: Locale.Region? { get set }
      * @availability iOS 18.0+
      */
-    get region(): $SDK34;
-    set region(value: $SDK34);
+    get region(): $SDK35;
+    set region(value: $SDK35);
     readonly $type: {
         "c:objc(cs)PKIdentityNationalIDCardDescriptor": true;
         "c:objc(cs)NSObject": true;
@@ -2207,12 +2222,12 @@ export declare class PKIssuerProvisioningExtensionHandler extends SDKHandle {
      * func passEntries() async -> [PKIssuerProvisioningExtensionPassEntry]
      * @availability iOS 14.0+
      */
-    passEntries(completion: $SDK37): void;
+    passEntries(completion: $SDK38): void;
     /**
      * func remotePassEntries() async -> [PKIssuerProvisioningExtensionPassEntry]
      * @availability iOS 14.0+
      */
-    remotePassEntries(completion: $SDK37): void;
+    remotePassEntries(completion: $SDK38): void;
     /**
      * func status() async -> PKIssuerProvisioningExtensionStatus
      * @availability iOS 14.0+
@@ -2514,7 +2529,7 @@ export declare class PKPass extends PKPass_base {
      * @availability iOS 6.0+
      * @deprecated iOS 18.0
      */
-    get relevantDate(): $SDK26;
+    get relevantDate(): $SDK27;
     /**
      * var relevantDates: [PKPassRelevantDate] { get }
      * @availability iOS 18.0+
@@ -2529,7 +2544,7 @@ export declare class PKPass extends PKPass_base {
      * var secureElementPass: PKSecureElementPass? { get }
      * @availability iOS 13.4+
      */
-    get secureElementPass(): $SDK19;
+    get secureElementPass(): $SDK20;
     /** var serialNumber: String { get } */
     get serialNumber(): string;
     /**
@@ -2651,13 +2666,13 @@ export declare class PKPassLibrary extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 9.0
      */
-    activateWithActivationCodeCompletion(paymentPass: PKPaymentPass, activationCode: string, completion?: $SDK42): void;
+    activateWithActivationCodeCompletion(paymentPass: PKPaymentPass, activationCode: string, completion?: $SDK43): void;
     /**
      * func activate(_ paymentPass: PKPaymentPass, withActivationData activationData: Data, completion: ((Bool, any Error) -> Void)? = nil)
      * @availability iOS 8.0+
      * @deprecated iOS 100000.0
      */
-    activateWithActivationDataCompletion(paymentPass: PKPaymentPass, activationData: ArrayBuffer, completion?: $SDK42): void;
+    activateWithActivationDataCompletion(paymentPass: PKPaymentPass, activationData: ArrayBuffer, completion?: $SDK43): void;
     /**
      * func activate(_ secureElementPass: PKSecureElementPass, activationData: Data) async throws -> Bool
      * @availability iOS 13.4+
@@ -2672,17 +2687,17 @@ export declare class PKPassLibrary extends SDKHandle {
      * func addPasses(fromArchiveAt passesArchiveFileURL: URL) async -> PKPassLibraryAddPassesStatus
      * @availability iOS 27.0+
      */
-    addPassesFromArchiveAtCompletion(passesArchiveFileURL: string, completionHandler: $SDK45): void;
+    addPassesFromArchiveAtCompletion(passesArchiveFileURL: string, completionHandler: $SDK46): void;
     /**
      * func addPasses(fromArchiveData passesArchiveData: Data) async -> PKPassLibraryAddPassesStatus
      * @availability iOS 27.0+
      */
-    addPassesFromArchiveDataCompletion(passesArchiveData: ArrayBuffer, completionHandler: $SDK45): void;
+    addPassesFromArchiveDataCompletion(passesArchiveData: ArrayBuffer, completionHandler: $SDK46): void;
     /**
      * func addPasses(data passesData: [Data]) async -> PKPassLibraryAddPassesStatus
      * @availability iOS 27.0+
      */
-    addPassesDataCompletion(passesData: Array<ArrayBuffer>, completionHandler: $SDK45): void;
+    addPassesDataCompletion(passesData: Array<ArrayBuffer>, completionHandler: $SDK46): void;
     /**
      * func authorizationStatus(for capability: PKPassLibrary.Capability) -> PKPassLibrary.AuthorizationStatus
      * @availability iOS 26.0+
@@ -2907,7 +2922,7 @@ export declare const PKPassLibraryNotificationName: {
 /** class PKPassRelevantDate */
 export declare class PKPassRelevantDate extends SDKHandle {
     /** var date: Date? { get } */
-    get date(): $SDK26;
+    get date(): $SDK27;
     /** var interval: DateInterval? { get } */
     get interval(): (_Foundation_DateInterval) | null;
     readonly $type: {
@@ -3181,19 +3196,19 @@ export declare class PKPaymentAuthorizationResult extends SDKHandle {
      * init(status: PKPaymentAuthorizationStatus, errors: [any Error]?)
      * @availability iOS 11.0+
      */
-    static init(status: PKPaymentAuthorizationStatus, errors?: $SDK56): PKPaymentAuthorizationResult;
+    static init(status: PKPaymentAuthorizationStatus, errors?: $SDK57): PKPaymentAuthorizationResult;
     /**
      * var errors: [any Error]! { get set }
      * @availability iOS 11.0+
      */
-    get errors(): $SDK56;
-    set errors(value: $SDK56);
+    get errors(): $SDK57;
+    set errors(value: $SDK57);
     /**
      * var orderDetails: PKPaymentOrderDetails? { get set }
      * @availability iOS 16.0+
      */
-    get orderDetails(): $SDK57;
-    set orderDetails(value: $SDK57);
+    get orderDetails(): $SDK58;
+    set orderDetails(value: $SDK58);
     /**
      * var status: PKPaymentAuthorizationStatus { get set }
      * @availability iOS 11.0+
@@ -3443,12 +3458,12 @@ export interface PKPaymentInformationRequestHandling {
      * func handleInformationRequest(_ infoRequest: PKBarcodeEventMetadataRequest) async -> PKBarcodeEventMetadataResponse
      * @availability iOS 14.0+
      */
-    "handleInformationRequest"?: (arg0: PKBarcodeEventMetadataRequest) => PKBarcodeEventMetadataResponse;
+    "handleInformationRequest"?: (arg0: PKBarcodeEventMetadataRequest) => Promise<PKBarcodeEventMetadataResponse>;
     /**
      * func handle(_ signatureRequest: PKBarcodeEventSignatureRequest) async -> PKBarcodeEventSignatureResponse
      * @availability iOS 14.0+
      */
-    "handle"?: (arg0: PKBarcodeEventSignatureRequest | PKBarcodeEventConfigurationRequest) => PKBarcodeEventSignatureResponse | void;
+    "handle"?: (arg0: PKBarcodeEventSignatureRequest | PKBarcodeEventConfigurationRequest) => Promise<PKBarcodeEventSignatureResponse> | void;
 }
 /**
  * class PKPaymentMerchantSession
@@ -3486,7 +3501,7 @@ export declare class PKPaymentMethod extends SDKHandle {
      * var network: PKPaymentNetwork? { get }
      * @availability iOS 9.0+
      */
-    get network(): $SDK17;
+    get network(): $SDK18;
     /**
      * @NSCopying var paymentPass: PKPaymentPass? { get }
      * @availability iOS 8.0+
@@ -3497,7 +3512,7 @@ export declare class PKPaymentMethod extends SDKHandle {
      * @NSCopying var secureElementPass: PKSecureElementPass? { get }
      * @availability iOS 13.4+
      */
-    get secureElementPass(): $SDK19;
+    get secureElementPass(): $SDK20;
     /**
      * var type: PKPaymentMethodType { get }
      * @availability iOS 9.0+
@@ -4008,8 +4023,8 @@ export declare class PKPaymentRequest extends SDKHandle {
      * var automaticReloadPaymentRequest: PKAutomaticReloadPaymentRequest? { get set }
      * @availability iOS 16.0+
      */
-    get automaticReloadPaymentRequest(): $SDK61;
-    set automaticReloadPaymentRequest(value: $SDK61);
+    get automaticReloadPaymentRequest(): $SDK62;
+    set automaticReloadPaymentRequest(value: $SDK62);
     /**
      * unowned(unsafe) var billingAddress: ABRecord? { get set }
      * @availability iOS 8.0+
@@ -4045,8 +4060,8 @@ export declare class PKPaymentRequest extends SDKHandle {
      * var deferredPaymentRequest: PKDeferredPaymentRequest? { get set }
      * @availability iOS 16.4+
      */
-    get deferredPaymentRequest(): $SDK62;
-    set deferredPaymentRequest(value: $SDK62);
+    get deferredPaymentRequest(): $SDK63;
+    set deferredPaymentRequest(value: $SDK63);
     /**
      * var isDelegatedRequest: Bool { get set }
      * @availability iOS 26.4+
@@ -4075,14 +4090,14 @@ export declare class PKPaymentRequest extends SDKHandle {
      * var paymentSummaryItems: [PKPaymentSummaryItem] { get set }
      * @availability iOS 8.0+
      */
-    get paymentSummaryItems(): $SDK28;
-    set paymentSummaryItems(value: $SDK28);
+    get paymentSummaryItems(): $SDK29;
+    set paymentSummaryItems(value: $SDK29);
     /**
      * var recurringPaymentRequest: PKRecurringPaymentRequest? { get set }
      * @availability iOS 16.0+
      */
-    get recurringPaymentRequest(): $SDK64;
-    set recurringPaymentRequest(value: $SDK64);
+    get recurringPaymentRequest(): $SDK65;
+    set recurringPaymentRequest(value: $SDK65);
     /**
      * var requiredBillingAddressFields: PKAddressField { get set }
      * @availability iOS 8.0+
@@ -4132,8 +4147,8 @@ export declare class PKPaymentRequest extends SDKHandle {
      * var shippingMethods: [PKShippingMethod]? { get set }
      * @availability iOS 8.0+
      */
-    get shippingMethods(): $SDK65;
-    set shippingMethods(value: $SDK65);
+    get shippingMethods(): $SDK66;
+    set shippingMethods(value: $SDK66);
     /**
      * var shippingType: PKShippingType { get set }
      * @availability iOS 8.3+
@@ -4168,8 +4183,8 @@ export declare class PKPaymentRequest extends SDKHandle {
      * var merchantCategoryCode: PKPaymentRequest.MerchantCategoryCode? { get set }
      * @availability iOS 18.0+
      */
-    get merchantCategoryCode(): $SDK66;
-    set merchantCategoryCode(value: $SDK66);
+    get merchantCategoryCode(): $SDK67;
+    set merchantCategoryCode(value: $SDK67);
     /**
      * var applePayLaterAvailability: PKPaymentRequest.ApplePayLaterAvailability { get set }
      * @availability iOS 17.0+
@@ -4276,37 +4291,37 @@ export declare class PKPaymentRequestUpdate extends SDKHandle {
      * init(paymentSummaryItems: [PKPaymentSummaryItem])
      * @availability iOS 11.0+
      */
-    static init(paymentSummaryItems: $SDK28): PKPaymentRequestUpdate;
+    static init(paymentSummaryItems: $SDK29): PKPaymentRequestUpdate;
     /**
      * var automaticReloadPaymentRequest: PKAutomaticReloadPaymentRequest? { get set }
      * @availability iOS 16.0+
      */
-    get automaticReloadPaymentRequest(): $SDK61;
-    set automaticReloadPaymentRequest(value: $SDK61);
+    get automaticReloadPaymentRequest(): $SDK62;
+    set automaticReloadPaymentRequest(value: $SDK62);
     /**
      * var deferredPaymentRequest: PKDeferredPaymentRequest? { get set }
      * @availability iOS 16.4+
      */
-    get deferredPaymentRequest(): $SDK62;
-    set deferredPaymentRequest(value: $SDK62);
+    get deferredPaymentRequest(): $SDK63;
+    set deferredPaymentRequest(value: $SDK63);
     /**
      * var multiTokenContexts: [PKPaymentTokenContext]? { get set }
      * @availability iOS 16.0+
      */
-    get multiTokenContexts(): $SDK67;
-    set multiTokenContexts(value: $SDK67);
+    get multiTokenContexts(): $SDK68;
+    set multiTokenContexts(value: $SDK68);
     /**
      * var paymentSummaryItems: [PKPaymentSummaryItem] { get set }
      * @availability iOS 11.0+
      */
-    get paymentSummaryItems(): $SDK28;
-    set paymentSummaryItems(value: $SDK28);
+    get paymentSummaryItems(): $SDK29;
+    set paymentSummaryItems(value: $SDK29);
     /**
      * var recurringPaymentRequest: PKRecurringPaymentRequest? { get set }
      * @availability iOS 16.0+
      */
-    get recurringPaymentRequest(): $SDK64;
-    set recurringPaymentRequest(value: $SDK64);
+    get recurringPaymentRequest(): $SDK65;
+    set recurringPaymentRequest(value: $SDK65);
     /**
      * var shippingMethods: [PKShippingMethod] { get set }
      * @availability iOS 15.0+
@@ -4343,13 +4358,13 @@ export declare class PKPaymentRequestCouponCodeUpdate extends PKPaymentRequestCo
      * init(errors: [any Error]?, paymentSummaryItems: [PKPaymentSummaryItem], shippingMethods: [PKShippingMethod])
      * @availability iOS 15.0+
      */
-    static init(errors: $SDK56, paymentSummaryItems: $SDK28, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestCouponCodeUpdate;
+    static init(errors: $SDK57, paymentSummaryItems: $SDK29, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestCouponCodeUpdate;
     /**
      * var errors: [any Error]! { get set }
      * @availability iOS 15.0+
      */
-    get errors(): $SDK56;
-    set errors(value: $SDK56);
+    get errors(): $SDK57;
+    set errors(value: $SDK57);
     readonly $type: {
         "c:objc(cs)PKPaymentRequestCouponCodeUpdate": true;
         "c:objc(cs)PKPaymentRequestUpdate": true;
@@ -4375,13 +4390,13 @@ export declare class PKPaymentRequestMerchantSessionUpdate extends SDKHandle {
      * init(status: PKPaymentAuthorizationStatus, merchantSession session: PKPaymentMerchantSession?)
      * @availability iOS 14.0+
      */
-    static init(status: PKPaymentAuthorizationStatus, session?: $SDK68): PKPaymentRequestMerchantSessionUpdate;
+    static init(status: PKPaymentAuthorizationStatus, session?: $SDK69): PKPaymentRequestMerchantSessionUpdate;
     /**
      * var session: PKPaymentMerchantSession? { get set }
      * @availability iOS 14.0+
      */
-    get session(): $SDK68;
-    set session(value: $SDK68);
+    get session(): $SDK69;
+    set session(value: $SDK69);
     /**
      * var status: PKPaymentAuthorizationStatus { get set }
      * @availability iOS 14.0+
@@ -4407,13 +4422,13 @@ export declare class PKPaymentRequestPaymentMethodUpdate extends PKPaymentReques
      * init(errors: [any Error]?, paymentSummaryItems: [PKPaymentSummaryItem])
      * @availability iOS 11.0+
      */
-    static init(errors: $SDK56, paymentSummaryItems: $SDK28): PKPaymentRequestPaymentMethodUpdate;
+    static init(errors: $SDK57, paymentSummaryItems: $SDK29): PKPaymentRequestPaymentMethodUpdate;
     /**
      * var errors: [any Error]! { get set }
      * @availability iOS 11.0+
      */
-    get errors(): $SDK56;
-    set errors(value: $SDK56);
+    get errors(): $SDK57;
+    set errors(value: $SDK57);
     readonly $type: {
         "c:objc(cs)PKPaymentRequestPaymentMethodUpdate": true;
         "c:objc(cs)PKPaymentRequestUpdate": true;
@@ -4440,13 +4455,13 @@ export declare class PKPaymentRequestShippingContactUpdate extends PKPaymentRequ
      * init(errors: [any Error]?, paymentSummaryItems: [PKPaymentSummaryItem], shippingMethods: [PKShippingMethod])
      * @availability iOS 11.0+
      */
-    static init(errors: $SDK56, paymentSummaryItems: $SDK28, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestShippingContactUpdate;
+    static init(errors: $SDK57, paymentSummaryItems: $SDK29, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestShippingContactUpdate;
     /**
      * var errors: [any Error]! { get set }
      * @availability iOS 11.0+
      */
-    get errors(): $SDK56;
-    set errors(value: $SDK56);
+    get errors(): $SDK57;
+    set errors(value: $SDK57);
     /**
      * var shippingMethods: [PKShippingMethod] { get set }
      * @availability iOS 11.0+
@@ -4668,8 +4683,8 @@ export declare class PKRecurringPaymentRequest extends SDKHandle {
      * var trialBilling: PKRecurringPaymentSummaryItem? { get set }
      * @availability iOS 16.0+
      */
-    get trialBilling(): $SDK69;
-    set trialBilling(value: $SDK69);
+    get trialBilling(): $SDK70;
+    set trialBilling(value: $SDK70);
     readonly $type: {
         "c:objc(cs)PKRecurringPaymentRequest": true;
         "c:objc(cs)NSObject": true;
@@ -4694,8 +4709,8 @@ export declare class PKRecurringPaymentSummaryItem extends PKPaymentSummaryItem 
      * var endDate: Date? { get set }
      * @availability iOS 15.0+
      */
-    get endDate(): $SDK26;
-    set endDate(value: $SDK26);
+    get endDate(): $SDK27;
+    set endDate(value: $SDK27);
     /**
      * var intervalCount: Int { get set }
      * @availability iOS 15.0+
@@ -4712,8 +4727,8 @@ export declare class PKRecurringPaymentSummaryItem extends PKPaymentSummaryItem 
      * var startDate: Date? { get set }
      * @availability iOS 15.0+
      */
-    get startDate(): $SDK26;
-    set startDate(value: $SDK26);
+    get startDate(): $SDK27;
+    set startDate(value: $SDK27);
     readonly $type: {
         "c:objc(cs)PKRecurringPaymentSummaryItem": true;
         "c:objc(cs)PKPaymentSummaryItem": true;
@@ -4952,13 +4967,13 @@ export declare class PKShareSecureElementPassViewController extends SDKHandle {
      * init(secureElementPass pass: PKSecureElementPass, delegate: (any PKShareSecureElementPassViewControllerDelegate)?)
      * @availability iOS 16.0+
      */
-    static init(pass: PKSecureElementPass, delegate?: $SDK70): Promise<PKShareSecureElementPassViewController>;
+    static init(pass: PKSecureElementPass, delegate?: $SDK71): Promise<PKShareSecureElementPassViewController>;
     /**
      * weak var delegate: (any PKShareSecureElementPassViewControllerDelegate)? { get set }
      * @availability iOS 16.0+
      */
     get delegate(): Promise<(SDKHandle) | null>;
-    setDelegate(value?: $SDK70): Promise<void>;
+    setDelegate(value?: $SDK71): Promise<void>;
     /**
      * var promptToShareURL: Bool { get set }
      * @availability iOS 16.0+
@@ -5020,8 +5035,8 @@ export declare class PKShippingMethod extends PKPaymentSummaryItem {
      * @NSCopying var dateComponentsRange: PKDateComponentsRange? { get set }
      * @availability iOS 15.0+
      */
-    get dateComponentsRange(): $SDK71;
-    set dateComponentsRange(value: $SDK71);
+    get dateComponentsRange(): $SDK72;
+    set dateComponentsRange(value: $SDK72);
     /**
      * var detail: String? { get set }
      * @availability iOS 8.0+
@@ -5081,7 +5096,7 @@ export declare class PKStoredValuePassBalance extends SDKHandle {
      * var expiryDate: Date? { get }
      * @availability iOS 15.0+
      */
-    get expiryDate(): $SDK26;
+    get expiryDate(): $SDK27;
     /**
      * var amount: Decimal { get }
      * @availability iOS 15.0+
@@ -5143,7 +5158,7 @@ export declare class PKStoredValuePassProperties extends SDKHandle {
      * var expirationDate: Date? { get }
      * @availability iOS 15.0+
      */
-    get expirationDate(): $SDK26;
+    get expirationDate(): $SDK27;
     readonly $type: {
         "c:objc(cs)PKStoredValuePassProperties": true;
         "c:objc(cs)NSObject": true;
@@ -5177,7 +5192,7 @@ export declare class PKTransitPassProperties extends PKTransitPassProperties_bas
      * var expirationDate: Date? { get }
      * @availability iOS 11.3+
      */
-    get expirationDate(): $SDK26;
+    get expirationDate(): $SDK27;
     /**
      * var isInStation: Bool { get }
      * @availability iOS 11.3+

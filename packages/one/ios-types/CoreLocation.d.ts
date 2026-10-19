@@ -1369,7 +1369,7 @@ export declare class CLMonitor_Event extends SDKHandle {
      * var state: CLMonitor.Event.State { get }
      * @availability iOS 17.0+
      */
-    get state(): CLMonitor_Event;
+    get state(): SDKHandle;
     readonly $type: {
         "s:12CoreLocation9CLMonitorC5EventV": true;
     };

@@ -10,8 +10,8 @@ export class NSManagedObjectModel extends SDKHandle {
    * static func makeManagedObjectModel(for schema: Schema, mergedWith managedObjectModel: NSManagedObjectModel? = nil) -> NSManagedObjectModel?
    * @availability iOS 26.0+
    */
-  static makeManagedObjectModel(schema: _SwiftData_Schema, managedObjectModel?: $SDK0): $SDK0 { return callSDK<$SDK0>("_SwiftData_CoreData_0e503aef608672fa", 701980152051980, undefined, [schema, managedObjectModel]); }
+  static makeManagedObjectModel(schema: _SwiftData_Schema, managedObjectModel?: $SDK0): $SDK0 { return callSDK<$SDK0>("_SwiftData_CoreData_212edf3d13b127f5", 701980152051980, undefined, [schema, managedObjectModel]); }
   declare readonly $type: { "c:objc(cs)NSManagedObjectModel": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("NSManagedObjectModel", NSManagedObjectModel, { module: "_SwiftData_CoreData_0e503aef608672fa", properties: {} }, true);
+registerSDKClass("NSManagedObjectModel", NSManagedObjectModel, { module: "_SwiftData_CoreData_212edf3d13b127f5", properties: {} }, true);

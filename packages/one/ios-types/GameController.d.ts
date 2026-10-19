@@ -10,6 +10,7 @@ type $SDK27 = (((arg0: GCControllerTouchpad, arg1: number, arg2: number, arg3: n
 type $SDK45 = [number, number, number, number, number, number, number, number, number, number];
 type $SDK46 = (GCControllerButtonInput) | null;
 type $SDK49 = (GCControllerDirectionPad) | null;
+type $SDK72 = GCPhysicalInputElementCollection_Index<SDKHandle>;
 /**
  * struct GCAcceleration
  * @availability iOS 8.0+
@@ -4239,6 +4240,21 @@ export interface GCPhysicalInputElement {
  */
 export declare class GCPhysicalInputElementCollection<T = unknown> extends SDKHandle {
     /**
+     * var startIndex: GCPhysicalInputElementCollection<T>.Index { get }
+     * @availability iOS 16.0+
+     */
+    get startIndex(): $SDK72;
+    /**
+     * func index(after i: GCPhysicalInputElementCollection<T>.Index) -> GCPhysicalInputElementCollection<T>.Index
+     * @availability iOS 16.0+
+     */
+    index(i: $SDK72): $SDK72;
+    /**
+     * var endIndex: GCPhysicalInputElementCollection<T>.Index { get }
+     * @availability iOS 16.0+
+     */
+    get endIndex(): $SDK72;
+    /**
      * subscript(elementName: GCDirectionPadElementName) -> T? { get }
      * @availability iOS 16.0+
      */
@@ -4263,6 +4279,11 @@ export declare class GCPhysicalInputElementCollection<T = unknown> extends SDKHa
      * @availability iOS 16.0+
      */
     subscript28148(elementName: GCPhysicalInputElementName): (SDKHandle) | null;
+    /**
+     * subscript(position: GCPhysicalInputElementCollection<T>.Index) -> GCPhysicalInputElementCollection<T>.Element { get }
+     * @availability iOS 16.0+
+     */
+    subscript73322(position: $SDK72): SDKHandle;
     readonly $type: {
         "s:14GameController32GCPhysicalInputElementCollectionV": true;
     };

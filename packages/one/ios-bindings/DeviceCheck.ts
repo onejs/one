@@ -13,29 +13,29 @@ export class DCAppAttestService extends SDKHandle {
    * class var shared: DCAppAttestService { get }
    * @availability iOS 14.0+
    */
-  static get shared(): DCAppAttestService { return callSDK<DCAppAttestService>("DeviceCheck_0e503aef608672fa", 2203466143507274, undefined, []); }
+  static get shared(): DCAppAttestService { return callSDK<DCAppAttestService>("DeviceCheck_212edf3d13b127f5", 2203466143507274, undefined, []); }
   /**
    * func attestKey(_ keyId: String, clientDataHash: Data) async throws -> Data
    * @availability iOS 14.0+
    */
-  attestKey(keyId: string, clientDataHash: ArrayBuffer, completionHandler: $SDK0): void { return callSDK<void>("DeviceCheck_0e503aef608672fa", 2850795175739399, this, [keyId, clientDataHash, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  attestKey(keyId: string, clientDataHash: ArrayBuffer, completionHandler: $SDK0): void { return callSDK<void>("DeviceCheck_212edf3d13b127f5", 2850795175739399, this, [keyId, clientDataHash, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func generateAssertion(_ keyId: String, clientDataHash: Data) async throws -> Data
    * @availability iOS 14.0+
    */
-  generateAssertion(keyId: string, clientDataHash: ArrayBuffer, completionHandler: $SDK0): void { return callSDK<void>("DeviceCheck_0e503aef608672fa", 968991418961195, this, [keyId, clientDataHash, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  generateAssertion(keyId: string, clientDataHash: ArrayBuffer, completionHandler: $SDK0): void { return callSDK<void>("DeviceCheck_212edf3d13b127f5", 968991418961195, this, [keyId, clientDataHash, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func generateKey() async throws -> String
    * @availability iOS 14.0+
    */
-  generateKey(completionHandler: ((arg0: (string) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("DeviceCheck_0e503aef608672fa", 881276810961847, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  generateKey(completionHandler: ((arg0: (string) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("DeviceCheck_212edf3d13b127f5", 881276810961847, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): DCAppAttestService { return callSDK<DCAppAttestService>("DeviceCheck_0e503aef608672fa", 1644471492979368, undefined, []); }
+  static init(): DCAppAttestService { return callSDK<DCAppAttestService>("DeviceCheck_212edf3d13b127f5", 1644471492979368, undefined, []); }
   /**
    * var isSupported: Bool { get }
    * @availability iOS 14.0+
    */
-  get isSupported(): boolean { return callSDK<boolean>("DeviceCheck_0e503aef608672fa", 3120544264013261, this, []); }
+  get isSupported(): boolean { return callSDK<boolean>("DeviceCheck_212edf3d13b127f5", 3120544264013261, this, []); }
   declare readonly $type: { "c:objc(cs)DCAppAttestService": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isSupported": true };
 }
@@ -49,19 +49,19 @@ export class DCDevice extends SDKHandle {
    * class var current: DCDevice { get }
    * @availability iOS 11.0+
    */
-  static get current(): DCDevice { return callSDK<DCDevice>("DeviceCheck_0e503aef608672fa", 2550710879309874, undefined, []); }
+  static get current(): DCDevice { return callSDK<DCDevice>("DeviceCheck_212edf3d13b127f5", 2550710879309874, undefined, []); }
   /**
    * func generateToken() async throws -> Data
    * @availability iOS 11.0+
    */
-  generateToken(completion: $SDK0): void { return callSDK<void>("DeviceCheck_0e503aef608672fa", 15720909239264, this, [completion], [{"callback":{"out":[]}}]); }
+  generateToken(completion: $SDK0): void { return callSDK<void>("DeviceCheck_212edf3d13b127f5", 15720909239264, this, [completion], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): DCDevice { return callSDK<DCDevice>("DeviceCheck_0e503aef608672fa", 3788100146025264, undefined, []); }
+  static init(): DCDevice { return callSDK<DCDevice>("DeviceCheck_212edf3d13b127f5", 3788100146025264, undefined, []); }
   /**
    * var isSupported: Bool { get }
    * @availability iOS 11.0+
    */
-  get isSupported(): boolean { return callSDK<boolean>("DeviceCheck_0e503aef608672fa", 318524824658403, this, []); }
+  get isSupported(): boolean { return callSDK<boolean>("DeviceCheck_212edf3d13b127f5", 318524824658403, this, []); }
   declare readonly $type: { "c:objc(cs)DCDevice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isSupported": true };
 }
@@ -75,32 +75,32 @@ export class DCError extends SDKHandle {
    * static var invalidKey: DCError.Code { get }
    * @availability iOS 11.0+
    */
-  static get invalidKey(): DCError_Code { return callSDK<DCError_Code>("DeviceCheck_0e503aef608672fa", 2533405219248880, undefined, []); }
+  static get invalidKey(): DCError_Code { return callSDK<DCError_Code>("DeviceCheck_212edf3d13b127f5", 2533405219248880, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 11.0+
    */
-  static get errorDomain(): string { return callSDK<string>("DeviceCheck_0e503aef608672fa", 660500621844744, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("DeviceCheck_212edf3d13b127f5", 660500621844744, undefined, []); }
   /**
    * static var invalidInput: DCError.Code { get }
    * @availability iOS 11.0+
    */
-  static get invalidInput(): DCError_Code { return callSDK<DCError_Code>("DeviceCheck_0e503aef608672fa", 570332011431793, undefined, []); }
+  static get invalidInput(): DCError_Code { return callSDK<DCError_Code>("DeviceCheck_212edf3d13b127f5", 570332011431793, undefined, []); }
   /**
    * static var serverUnavailable: DCError.Code { get }
    * @availability iOS 11.0+
    */
-  static get serverUnavailable(): DCError_Code { return callSDK<DCError_Code>("DeviceCheck_0e503aef608672fa", 408653999363268, undefined, []); }
+  static get serverUnavailable(): DCError_Code { return callSDK<DCError_Code>("DeviceCheck_212edf3d13b127f5", 408653999363268, undefined, []); }
   /**
    * static var featureUnsupported: DCError.Code { get }
    * @availability iOS 11.0+
    */
-  static get featureUnsupported(): DCError_Code { return callSDK<DCError_Code>("DeviceCheck_0e503aef608672fa", 2460149010572309, undefined, []); }
+  static get featureUnsupported(): DCError_Code { return callSDK<DCError_Code>("DeviceCheck_212edf3d13b127f5", 2460149010572309, undefined, []); }
   /**
    * static var unknownSystemFailure: DCError.Code { get }
    * @availability iOS 11.0+
    */
-  static get unknownSystemFailure(): DCError_Code { return callSDK<DCError_Code>("DeviceCheck_0e503aef608672fa", 2531449724805126, undefined, []); }
+  static get unknownSystemFailure(): DCError_Code { return callSDK<DCError_Code>("DeviceCheck_212edf3d13b127f5", 2531449724805126, undefined, []); }
   declare readonly $type: { "s:SC7DCErrorLeV": true };
 }
 
@@ -115,15 +115,15 @@ export const DCError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (DCError_Code) | null { return callSDK<(DCError_Code) | null>("DeviceCheck_0e503aef608672fa", 142806877597481, undefined, [rawValue]); }
+  init(rawValue: number): (DCError_Code) | null { return callSDK<(DCError_Code) | null>("DeviceCheck_212edf3d13b127f5", 142806877597481, undefined, [rawValue]); }
 };
 
 /**
  * let DCErrorDomain: String
  * @availability iOS 11.0+
  */
-export const DCErrorDomain: string = callSDK<string>("DeviceCheck_0e503aef608672fa", 1136200099808647, undefined, []);
+export const DCErrorDomain: string = callSDK<string>("DeviceCheck_212edf3d13b127f5", 1136200099808647, undefined, []);
 
-registerSDKClass("DCAppAttestService", DCAppAttestService, { module: "DeviceCheck_0e503aef608672fa", properties: {"isSupported":3120544264013261}, methods: {"attestKey":{"id":2850795175739399,"hints":[null,null,{"callback":{"out":[]}}]},"generateAssertion":{"id":968991418961195,"hints":[null,null,{"callback":{"out":[]}}]},"generateKey":{"id":881276810961847,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("DCDevice", DCDevice, { module: "DeviceCheck_0e503aef608672fa", properties: {"isSupported":318524824658403}, methods: {"generateToken":{"id":15720909239264,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("DeviceCheck.DCError", DCError, { module: "DeviceCheck_0e503aef608672fa", properties: {} });
+registerSDKClass("DCAppAttestService", DCAppAttestService, { module: "DeviceCheck_212edf3d13b127f5", properties: {"isSupported":3120544264013261}, methods: {"attestKey":{"id":2850795175739399,"hints":[null,null,{"callback":{"out":[]}}]},"generateAssertion":{"id":968991418961195,"hints":[null,null,{"callback":{"out":[]}}]},"generateKey":{"id":881276810961847,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("DCDevice", DCDevice, { module: "DeviceCheck_212edf3d13b127f5", properties: {"isSupported":318524824658403}, methods: {"generateToken":{"id":15720909239264,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("DeviceCheck.DCError", DCError, { module: "DeviceCheck_212edf3d13b127f5", properties: {} });

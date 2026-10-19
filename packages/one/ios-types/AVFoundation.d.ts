@@ -27,141 +27,141 @@ type $SDK15 = Array<AVAssetDownloadContentConfiguration>;
 type $SDK16 = Array<AVAssetVariantQualifier>;
 type $SDK17 = Array<_Foundation_NSValue>;
 type $SDK19 = (Record<string, unknown>) | null;
-type $SDK23 = ((arg0: boolean) => void);
-type $SDK25 = ((arg0: _CoreMedia_CMTime, arg1: (NativeError) | null) => void);
-type $SDK26 = (Array<AVMetadataItem>) | null;
-type $SDK28 = (AVVideoComposition) | null;
-type $SDK29 = (SDKHandle) & (SDKHandle);
-type $SDK32 = (AVAssetImageGenerator_ApertureMode) | null;
-type $SDK33 = {
+type $SDK24 = ((arg0: boolean) => void);
+type $SDK26 = ((arg0: _CoreMedia_CMTime, arg1: (NativeError) | null) => void);
+type $SDK27 = (Array<AVMetadataItem>) | null;
+type $SDK29 = (AVVideoComposition) | null;
+type $SDK30 = (SDKHandle) & (SDKHandle);
+type $SDK33 = (AVAssetImageGenerator_ApertureMode) | null;
+type $SDK34 = {
     width: number;
     height: number;
 };
-type $SDK42 = (Implements<AVAssetReaderCaptionValidationHandling> | SDKHandle) | null;
-type $SDK47 = (_CoreMedia_CMSampleBuffer) | null;
-type $SDK48 = Array<_CoreMedia_CMTimeRange>;
-type $SDK49 = (AVTimedMetadataGroup) | null;
-type $SDK51 = (_Dispatch_DispatchQueue) | null;
-type $SDK52 = (globalThis.Date) | null;
-type $SDK55 = (_Foundation_URLRequest) | null;
-type $SDK56 = (_Foundation_URLResponse) | null;
-type $SDK61 = Array<AVAssetTrack_AssociationType>;
-type $SDK63 = Array<_Foundation_NSNumber>;
-type $SDK64 = Array<AVPlannedSegmentConfiguration>;
-type $SDK69 = (AVMediaSelectionOption) | null;
-type $SDK70 = (Record<string, SDKHandle>) | null;
-type $SDK71 = Array<AVPlannedVideoSegmentConfiguration>;
-type $SDK73 = Array<AVAssetWriterInput>;
-type $SDK75 = (_CoreVideo_CVPixelBufferCreationAttributes) | null;
-type $SDK82 = (_CoreMedia_CMFormatDescription) | null;
-type $SDK84 = (_CoreVideo_CVMutablePixelBuffer_Pool) | null;
-type $SDK85 = _CoreMedia_CMReadySampleBuffer<_CoreMedia_CMSampleBuffer_DynamicContent>;
-type $SDK86 = Array<_CoreMedia_CMTaggedDynamicBuffer>;
-type $SDK89 = (_CoreVideo_CVPixelBufferPool) | null;
-type $SDK91 = Record<string, SDKHandle>;
-type $SDK92 = (_CoreImage_CIContext) | null;
-type $SDK93 = (_CoreVideo_CVBuffer) | null;
-type $SDK95 = (_CoreVideo_CVReadOnlyPixelBuffer) | null;
-type $SDK100 = AVAsyncProperty<AVAssetTrack, boolean>;
-type $SDK102 = AVAsyncProperty<AVAssetTrack, (string) | null>;
-type $SDK103 = AVAsyncProperty<AVAssetTrack, Array<AVMetadataItem>>;
-type $SDK104 = AVAsyncProperty<AVAssetTrack, number>;
-type $SDK119 = AVAsyncProperty<AVAsset, boolean>;
-type $SDK123 = AVAsyncProperty<AVAsset, Array<AVMetadataItem>>;
-type $SDK126 = AVAsyncProperty<AVAsset, _CoreMedia_CMTime>;
-type $SDK132 = Array<AVAudioMixInputParameters>;
-type $SDK133 = (_MediaToolbox_MTAudioProcessingTap) | null;
-type $SDK134 = (AVAudioTimePitchAlgorithm) | null;
-type $SDK135 = {
+type $SDK43 = (Implements<AVAssetReaderCaptionValidationHandling> | SDKHandle) | null;
+type $SDK48 = (_CoreMedia_CMSampleBuffer) | null;
+type $SDK49 = Array<_CoreMedia_CMTimeRange>;
+type $SDK50 = (AVTimedMetadataGroup) | null;
+type $SDK52 = (_Dispatch_DispatchQueue) | null;
+type $SDK53 = (globalThis.Date) | null;
+type $SDK56 = (_Foundation_URLRequest) | null;
+type $SDK57 = (_Foundation_URLResponse) | null;
+type $SDK62 = Array<AVAssetTrack_AssociationType>;
+type $SDK64 = Array<_Foundation_NSNumber>;
+type $SDK65 = Array<AVPlannedSegmentConfiguration>;
+type $SDK70 = (AVMediaSelectionOption) | null;
+type $SDK71 = (Record<string, SDKHandle>) | null;
+type $SDK72 = Array<AVPlannedVideoSegmentConfiguration>;
+type $SDK75 = Array<AVAssetWriterInput>;
+type $SDK77 = (_CoreVideo_CVPixelBufferCreationAttributes) | null;
+type $SDK84 = (_CoreMedia_CMFormatDescription) | null;
+type $SDK86 = (_CoreVideo_CVMutablePixelBuffer_Pool) | null;
+type $SDK87 = _CoreMedia_CMReadySampleBuffer<_CoreMedia_CMSampleBuffer_DynamicContent>;
+type $SDK88 = Array<_CoreMedia_CMTaggedDynamicBuffer>;
+type $SDK91 = (_CoreVideo_CVPixelBufferPool) | null;
+type $SDK93 = Record<string, SDKHandle>;
+type $SDK95 = (_CoreImage_CIContext) | null;
+type $SDK96 = (_CoreVideo_CVBuffer) | null;
+type $SDK98 = (_CoreVideo_CVReadOnlyPixelBuffer) | null;
+type $SDK103 = AVAsyncProperty<AVAssetTrack, boolean>;
+type $SDK105 = AVAsyncProperty<AVAssetTrack, (string) | null>;
+type $SDK106 = AVAsyncProperty<AVAssetTrack, Array<AVMetadataItem>>;
+type $SDK107 = AVAsyncProperty<AVAssetTrack, number>;
+type $SDK122 = AVAsyncProperty<AVAsset, boolean>;
+type $SDK126 = AVAsyncProperty<AVAsset, Array<AVMetadataItem>>;
+type $SDK129 = AVAsyncProperty<AVAsset, _CoreMedia_CMTime>;
+type $SDK135 = Array<AVAudioMixInputParameters>;
+type $SDK136 = (_MediaToolbox_MTAudioProcessingTap) | null;
+type $SDK137 = (AVAudioTimePitchAlgorithm) | null;
+type $SDK138 = {
     x: number;
     y: number;
 };
-type $SDK140 = [(_CoreGraphics_CGColor) | null, SDKHandle];
-type $SDK143 = NativeMap<AVCaptionSettingsKey, unknown>;
-type $SDK148 = {
+type $SDK143 = [(_CoreGraphics_CGColor) | null, SDKHandle];
+type $SDK146 = NativeMap<AVCaptionSettingsKey, unknown>;
+type $SDK151 = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-type $SDK152 = Array<AVCaptureConnection>;
-type $SDK155 = Array<AVCaptureInput_Port>;
-type $SDK163 = (AVCaptureBracketedStillImageSettings) | null;
-type $SDK166 = (AVCaptureDevice_DeviceType) | null;
-type $SDK168 = (AVCaptureDevice) | null;
-type $SDK170 = (((arg0: _CoreMedia_CMTime) => void)) | null;
-type $SDK172 = Array<AVCaptureDeviceExposureSignal>;
-type $SDK183 = (AVFrameRateRange) | null;
-type $SDK186 = ("animatableData" | SDKHandle) | null;
-type $SDK188 = (_QuartzCore_CALayer) | null;
-type $SDK192 = ((arg0: number) => void);
-type $SDK193 = (_CoreMedia_CMClock) | null;
-type $SDK195 = Array<AVMetadataObject_ObjectType>;
-type $SDK196 = (Array<AVMetadataObject_ObjectType>) | null;
-type $SDK199 = Array<AVSemanticSegmentationMatte_MatteType>;
-type $SDK200 = Array<AVCaptureBracketedStillImageSettings>;
-type $SDK209 = ("attachments" | "sampleAttachments" | SDKHandle) | null;
-type $SDK212 = ((arg0: boolean, arg1: (NativeError) | null) => void);
-type $SDK213 = (AVCaptureSynchronizedData) | null;
-type $SDK219 = ((arg0: (Array<AVCompositionTrack>) | null, arg1: (NativeError) | null) => void);
-type $SDK221 = Array<AVCompositionTrack>;
-type $SDK225 = ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void);
-type $SDK226 = (NativeMap<AVContentKeySessionServerPlaybackContextOption, unknown>) | null;
-type $SDK228 = Array<AVCoordinatedPlaybackSuspension_Reason>;
-type $SDK229 = Array<AVMediaPresentationSetting>;
-type $SDK232 = (_CoreMedia_CMTimebase) | null;
-type $SDK234 = NativeMap<unknown, unknown>;
-type $SDK235 = (NativeMap<unknown, unknown>) | null;
-type $SDK236 = (_Foundation_NSString) | null;
-type $SDK237 = (_CoreMedia_CMTime) | null;
-type $SDK245 = ((arg0: (Array<AVFragmentedAssetTrack>) | null, arg1: (NativeError) | null) => void);
-type $SDK247 = Array<AVFragmentedAssetTrack>;
-type $SDK250 = ((arg0: (Array<AVMovieTrack>) | null, arg1: (NativeError) | null) => void);
-type $SDK251 = (AVMediaDataStorage) | null;
-type $SDK253 = ((arg0: (Array<AVFragmentedMovieTrack>) | null, arg1: (NativeError) | null) => void);
-type $SDK255 = Array<AVFragmentedMovieTrack>;
-type $SDK257 = (_Foundation_Locale) | null;
-type $SDK261 = (AVMetadataIdentifier) | null;
-type $SDK262 = (AVMetadataKeySpace) | null;
-type $SDK264 = (NativeMap<AVMetadataExtraAttributeKey, unknown>) | null;
-type $SDK265 = ((SDKHandle) & (SDKHandle)) | null;
-type $SDK269 = (AVMetricMediaResourceRequestEvent) | null;
-type $SDK270 = (AVMetricErrorEvent) | null;
-type $SDK277 = (AVMutableCompositionTrack) | null;
-type $SDK278 = ((arg0: (NativeError) | null) => void);
-type $SDK280 = ((arg0: (Array<AVMutableCompositionTrack>) | null, arg1: (NativeError) | null) => void);
-type $SDK281 = Array<AVMutableCompositionTrack>;
-type $SDK282 = (Array<AVCompositionTrackSegment>) | null;
-type $SDK283 = (AVMutableMovieTrack) | null;
-type $SDK284 = Array<AVMutableMovieTrack>;
-type $SDK286 = ((arg0: (Array<AVMutableMovieTrack>) | null, arg1: (NativeError) | null) => void);
-type $SDK288 = ((arg0: AVAsynchronousCIImageFilteringRequest) => void);
-type $SDK289 = ((arg0: (AVVideoComposition) | null, arg1: (NativeError) | null) => void);
-type $SDK290 = (Implements<AVVideoCompositionValidationHandling> | SDKHandle) | null;
-type $SDK291 = (AVVideoCompositionCoreAnimationTool) | null;
-type $SDK292 = (Array<Array<_CoreMedia_CMTag>>) | null;
-type $SDK293 = Array<AVSpatialVideoConfiguration>;
-type $SDK294 = ((arg0: (AVMutableVideoComposition) | null, arg1: (NativeError) | null) => void);
-type $SDK295 = (_CoreGraphics_CGColor) | null;
-type $SDK296 = Array<AVVideoCompositionLayerInstruction>;
-type $SDK297 = (AVVideoCompositionLayerInstruction_OpacityRamp) | null;
-type $SDK298 = (AVVideoCompositionLayerInstruction_TransformRamp) | null;
-type $SDK299 = (AVVideoCompositionLayerInstruction_CropRectangleRamp) | null;
-type $SDK303 = ((arg0: _CoreMedia_CMTime) => void);
-type $SDK304 = (AVPlayerMediaSelectionCriteria) | null;
-type $SDK305 = (((arg0: boolean) => void)) | null;
-type $SDK310 = (AVPlayerInterstitialEvent) | null;
-type $SDK312 = (Array<AVPlayerInterstitialEvent>) | null;
-type $SDK316 = NativeMap<AVMediaPresentationSelector, unknown>;
-type $SDK322 = Array<AVCustomMediaSelectionScheme>;
-type $SDK323 = (Array<AVTextStyleRule>) | null;
-type $SDK325 = Array<AVPartialAsyncProperty<AVAsset>>;
-type $SDK337 = (AVPlayerItemSampleBufferOutput_SampleBufferInSequence) | null;
-type $SDK339 = (Array<AVMediaCharacteristic>) | null;
-type $SDK340 = (AVPlaybackCoordinationMedium) | null;
-type $SDK343 = Array<Array<_CoreMedia_CMTag>>;
-type $SDK348 = (_CoreMedia_CMFormatDescription_Extensions_Value_CameraCalibrationDataLensCollection) | null;
-type $SDK350 = Array<_QuartzCore_CALayer>;
+type $SDK155 = Array<AVCaptureConnection>;
+type $SDK158 = Array<AVCaptureInput_Port>;
+type $SDK166 = (AVCaptureBracketedStillImageSettings) | null;
+type $SDK169 = (AVCaptureDevice_DeviceType) | null;
+type $SDK171 = (AVCaptureDevice) | null;
+type $SDK173 = (((arg0: _CoreMedia_CMTime) => void)) | null;
+type $SDK175 = Array<AVCaptureDeviceExposureSignal>;
+type $SDK186 = (AVFrameRateRange) | null;
+type $SDK189 = ("animatableData" | SDKHandle) | null;
+type $SDK191 = (_QuartzCore_CALayer) | null;
+type $SDK195 = ((arg0: number) => void);
+type $SDK196 = (_CoreMedia_CMClock) | null;
+type $SDK198 = Array<AVMetadataObject_ObjectType>;
+type $SDK199 = (Array<AVMetadataObject_ObjectType>) | null;
+type $SDK202 = Array<AVSemanticSegmentationMatte_MatteType>;
+type $SDK203 = Array<AVCaptureBracketedStillImageSettings>;
+type $SDK212 = ("attachments" | "sampleAttachments" | SDKHandle) | null;
+type $SDK215 = ((arg0: boolean, arg1: (NativeError) | null) => void);
+type $SDK216 = (AVCaptureSynchronizedData) | null;
+type $SDK222 = ((arg0: (Array<AVCompositionTrack>) | null, arg1: (NativeError) | null) => void);
+type $SDK224 = Array<AVCompositionTrack>;
+type $SDK228 = ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void);
+type $SDK229 = (NativeMap<AVContentKeySessionServerPlaybackContextOption, unknown>) | null;
+type $SDK232 = Array<AVCoordinatedPlaybackSuspension_Reason>;
+type $SDK233 = Array<AVMediaPresentationSetting>;
+type $SDK236 = (_CoreMedia_CMTimebase) | null;
+type $SDK238 = NativeMap<unknown, unknown>;
+type $SDK239 = (NativeMap<unknown, unknown>) | null;
+type $SDK240 = (_Foundation_NSString) | null;
+type $SDK241 = (_CoreMedia_CMTime) | null;
+type $SDK249 = ((arg0: (Array<AVFragmentedAssetTrack>) | null, arg1: (NativeError) | null) => void);
+type $SDK251 = Array<AVFragmentedAssetTrack>;
+type $SDK254 = ((arg0: (Array<AVMovieTrack>) | null, arg1: (NativeError) | null) => void);
+type $SDK255 = (AVMediaDataStorage) | null;
+type $SDK257 = ((arg0: (Array<AVFragmentedMovieTrack>) | null, arg1: (NativeError) | null) => void);
+type $SDK259 = Array<AVFragmentedMovieTrack>;
+type $SDK261 = (_Foundation_Locale) | null;
+type $SDK265 = (AVMetadataIdentifier) | null;
+type $SDK266 = (AVMetadataKeySpace) | null;
+type $SDK268 = (NativeMap<AVMetadataExtraAttributeKey, unknown>) | null;
+type $SDK269 = ((SDKHandle) & (SDKHandle)) | null;
+type $SDK273 = (AVMetricMediaResourceRequestEvent) | null;
+type $SDK274 = (AVMetricErrorEvent) | null;
+type $SDK281 = (AVMutableCompositionTrack) | null;
+type $SDK282 = ((arg0: (NativeError) | null) => void);
+type $SDK284 = ((arg0: (Array<AVMutableCompositionTrack>) | null, arg1: (NativeError) | null) => void);
+type $SDK285 = Array<AVMutableCompositionTrack>;
+type $SDK286 = (Array<AVCompositionTrackSegment>) | null;
+type $SDK287 = (AVMutableMovieTrack) | null;
+type $SDK288 = Array<AVMutableMovieTrack>;
+type $SDK290 = ((arg0: (Array<AVMutableMovieTrack>) | null, arg1: (NativeError) | null) => void);
+type $SDK292 = ((arg0: AVAsynchronousCIImageFilteringRequest) => void);
+type $SDK293 = ((arg0: (AVVideoComposition) | null, arg1: (NativeError) | null) => void);
+type $SDK294 = (Implements<AVVideoCompositionValidationHandling> | SDKHandle) | null;
+type $SDK295 = (AVVideoCompositionCoreAnimationTool) | null;
+type $SDK297 = (Array<Array<_CoreMedia_CMTag>>) | null;
+type $SDK298 = Array<AVSpatialVideoConfiguration>;
+type $SDK299 = ((arg0: (AVMutableVideoComposition) | null, arg1: (NativeError) | null) => void);
+type $SDK300 = (_CoreGraphics_CGColor) | null;
+type $SDK301 = Array<AVVideoCompositionLayerInstruction>;
+type $SDK302 = (AVVideoCompositionLayerInstruction_OpacityRamp) | null;
+type $SDK303 = (AVVideoCompositionLayerInstruction_TransformRamp) | null;
+type $SDK304 = (AVVideoCompositionLayerInstruction_CropRectangleRamp) | null;
+type $SDK308 = ((arg0: _CoreMedia_CMTime) => void);
+type $SDK309 = (AVPlayerMediaSelectionCriteria) | null;
+type $SDK310 = (((arg0: boolean) => void)) | null;
+type $SDK315 = (AVPlayerInterstitialEvent) | null;
+type $SDK317 = (Array<AVPlayerInterstitialEvent>) | null;
+type $SDK321 = NativeMap<AVMediaPresentationSelector, unknown>;
+type $SDK327 = Array<AVCustomMediaSelectionScheme>;
+type $SDK328 = (Array<AVTextStyleRule>) | null;
+type $SDK330 = Array<AVPartialAsyncProperty<AVAsset>>;
+type $SDK346 = (AVPlayerItemSampleBufferOutput_SampleBufferInSequence) | null;
+type $SDK349 = (Array<AVMediaCharacteristic>) | null;
+type $SDK350 = (AVPlaybackCoordinationMedium) | null;
+type $SDK354 = Array<Array<_CoreMedia_CMTag>>;
+type $SDK359 = (_CoreMedia_CMFormatDescription_Extensions_Value_CameraCalibrationDataLensCollection) | null;
+type $SDK361 = Array<_QuartzCore_CALayer>;
 /**
  * class AVAggregateAssetDownloadTask
  * @availability iOS 11.0+
@@ -805,7 +805,7 @@ export declare class AVAssetDownloadURLSession extends SDKHandle {
      * init(configuration: URLSessionConfiguration, assetDownloadDelegate delegate: (any AVAssetDownloadDelegate)?, delegateQueue: OperationQueue?)
      * @availability iOS 9.0+
      */
-    static init(configuration: _Foundation_URLSessionConfiguration, delegate?: (SDKHandle) | null, delegateQueue?: (_Foundation_OperationQueue) | null): AVAssetDownloadURLSession;
+    static init(configuration: _Foundation_URLSessionConfiguration, delegate?: (Implements<AVAssetDownloadDelegate> | SDKHandle) | null, delegateQueue?: (_Foundation_OperationQueue) | null): AVAssetDownloadURLSession;
     /**
      * func aggregateAssetDownloadTask(with URLAsset: AVURLAsset, mediaSelections: [AVMediaSelection], assetTitle title: String, assetArtworkData artworkData: Data?, options: [String : Any]? = nil) -> AVAggregateAssetDownloadTask?
      * @availability iOS 11.0+
@@ -849,7 +849,7 @@ export declare class AVAssetExportSession extends SDKHandle {
      * class func compatibility(ofExportPreset presetName: String, with asset: AVAsset, outputFileType: AVFileType?) async -> Bool
      * @availability iOS 6.0+
      */
-    static determineCompatibility(presetName: string, asset: AVAsset, outputFileType: (AVFileType) | null, handler: $SDK23): void;
+    static determineCompatibility(presetName: string, asset: AVAsset, outputFileType: (AVFileType) | null, handler: $SDK24): void;
     /**
      * class func exportPresets(compatibleWith asset: AVAsset) -> [String]
      * @availability iOS 4.0+
@@ -871,7 +871,7 @@ export declare class AVAssetExportSession extends SDKHandle {
      * var estimatedMaximumDuration: CMTime { get async throws }
      * @availability iOS 13.0+
      */
-    estimateMaximumDuration(handler: $SDK25): void;
+    estimateMaximumDuration(handler: $SDK26): void;
     /**
      * var estimatedOutputFileLengthInBytes: Int64 { get async throws }
      * @availability iOS 13.0+
@@ -956,8 +956,8 @@ export declare class AVAssetExportSession extends SDKHandle {
      * var metadata: [AVMetadataItem]? { get set }
      * @availability iOS 4.0+
      */
-    get metadata(): $SDK26;
-    set metadata(value: $SDK26);
+    get metadata(): $SDK27;
+    set metadata(value: $SDK27);
     /**
      * var metadataItemFilter: AVMetadataItemFilter? { get set }
      * @availability iOS 7.0+
@@ -1016,8 +1016,8 @@ export declare class AVAssetExportSession extends SDKHandle {
      * @NSCopying var videoComposition: AVVideoComposition? { get set }
      * @availability iOS 4.0+
      */
-    get videoComposition(): $SDK28;
-    set videoComposition(value: $SDK28);
+    get videoComposition(): $SDK29;
+    set videoComposition(value: $SDK29);
     /**
      * func configureForResumableExport() async -> AVAssetExportSession.ResumptionState
      * @availability iOS 27.0+
@@ -1034,7 +1034,7 @@ export declare class AVAssetExportSession extends SDKHandle {
     
      * @availability iOS 18.0+
      */
-    states(updateInterval?: number): $SDK29;
+    states(updateInterval?: number): $SDK30;
     readonly $type: {
         "c:objc(cs)AVAssetExportSession": true;
         "c:objc(cs)NSObject": true;
@@ -1160,8 +1160,8 @@ export declare class AVAssetImageGenerator extends SDKHandle {
      * var apertureMode: AVAssetImageGenerator.ApertureMode? { get set }
      * @availability iOS 4.0+
      */
-    get apertureMode(): $SDK32;
-    set apertureMode(value: $SDK32);
+    get apertureMode(): $SDK33;
+    set apertureMode(value: $SDK33);
     /**
      * var appliesPreferredTrackTransform: Bool { get set }
      * @availability iOS 4.0+
@@ -1188,8 +1188,8 @@ export declare class AVAssetImageGenerator extends SDKHandle {
      * var maximumSize: CGSize { get set }
      * @availability iOS 4.0+
      */
-    get maximumSize(): $SDK33;
-    set maximumSize(value: $SDK33);
+    get maximumSize(): $SDK34;
+    set maximumSize(value: $SDK34);
     /**
      * var requestedTimeToleranceAfter: CMTime { get set }
      * @availability iOS 5.0+
@@ -1206,8 +1206,8 @@ export declare class AVAssetImageGenerator extends SDKHandle {
      * @NSCopying var videoComposition: AVVideoComposition? { get set }
      * @availability iOS 4.0+
      */
-    get videoComposition(): $SDK28;
-    set videoComposition(value: $SDK28);
+    get videoComposition(): $SDK29;
+    set videoComposition(value: $SDK29);
     /**
      * func image(at time: CMTime) async throws -> (image: CGImage, actualTime: CMTime)
      * @availability iOS 16.0+
@@ -1462,7 +1462,7 @@ export declare class AVAssetReader extends SDKHandle {
      * func outputCaptionProvider(for output: AVAssetReaderTrackOutput, validationDelegate: (any AVAssetReaderCaptionValidationHandling)? = nil) -> sending AVAssetReaderOutput.Provider<AVCaptionGroup>
      * @availability iOS 26.0+
      */
-    outputCaptionProvider(output: AVAssetReaderTrackOutput, validationDelegate?: $SDK42): AVAssetReaderOutput_Provider<AVCaptionGroup>;
+    outputCaptionProvider(output: AVAssetReaderTrackOutput, validationDelegate?: $SDK43): AVAssetReaderOutput_Provider<AVCaptionGroup>;
     /**
      * func outputMetadataProvider(for output: AVAssetReaderTrackOutput) -> sending AVAssetReaderOutput.Provider<AVTimedMetadataGroup>
      * @availability iOS 26.0+
@@ -1477,7 +1477,7 @@ export declare class AVAssetReader extends SDKHandle {
      * func outputCaptionProviderWithRandomAccess(for output: AVAssetReaderTrackOutput, validationDelegate: (any AVAssetReaderCaptionValidationHandling)? = nil) -> sending (AVAssetReaderOutput.Provider<AVCaptionGroup>, AVAssetReaderOutput.RandomAccessController)
      * @availability iOS 26.0+
      */
-    outputCaptionProviderWithRandomAccess(output: AVAssetReaderTrackOutput, validationDelegate?: $SDK42): [AVAssetReaderOutput_Provider<AVCaptionGroup>, AVAssetReaderOutput_RandomAccessController];
+    outputCaptionProviderWithRandomAccess(output: AVAssetReaderTrackOutput, validationDelegate?: $SDK43): [AVAssetReaderOutput_Provider<AVCaptionGroup>, AVAssetReaderOutput_RandomAccessController];
     /**
      * func outputMetadataProviderWithRandomAccess(for output: AVAssetReaderTrackOutput) -> sending (AVAssetReaderOutput.Provider<AVTimedMetadataGroup>, AVAssetReaderOutput.RandomAccessController)
      * @availability iOS 26.0+
@@ -1516,7 +1516,7 @@ export declare class AVAssetReaderOutput extends SDKHandle {
      * @availability iOS 4.1+
      * @deprecated iOS 27.0
      */
-    copyNextSampleBuffer(): $SDK47;
+    copyNextSampleBuffer(): $SDK48;
     /** init() */
     static init(): AVAssetReaderOutput;
     /**
@@ -1642,7 +1642,7 @@ export declare class AVAssetReaderOutput_RandomAccessController extends SDKHandl
      * func resetForReading(timeRanges: [CMTimeRange])
      * @availability iOS 26.0+
      */
-    resetForReading(timeRanges: $SDK48): void;
+    resetForReading(timeRanges: $SDK49): void;
     /**
      * func markConfigurationAsFinal()
      * @availability iOS 26.0+
@@ -1693,7 +1693,7 @@ export declare class AVAssetReaderOutputCaptionAdaptor extends SDKHandle {
      * @availability iOS 18.0+
      */
     get validationDelegate(): (SDKHandle) | null;
-    set validationDelegate(value: $SDK42);
+    set validationDelegate(value: $SDK43);
     readonly $type: {
         "c:objc(cs)AVAssetReaderOutputCaptionAdaptor": true;
         "c:objc(cs)NSObject": true;
@@ -1720,7 +1720,7 @@ export declare class AVAssetReaderOutputMetadataAdaptor extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 27.0
      */
-    nextTimedMetadataGroup(): $SDK49;
+    nextTimedMetadataGroup(): $SDK50;
     /**
      * var assetReaderTrackOutput: AVAssetReaderTrackOutput { get }
      * @availability iOS 8.0+
@@ -1824,8 +1824,8 @@ export declare class AVAssetReaderVideoCompositionOutput extends AVAssetReaderVi
      * @NSCopying var videoComposition: AVVideoComposition? { get set }
      * @availability iOS 4.1+
      */
-    get videoComposition(): $SDK28;
-    set videoComposition(value: $SDK28);
+    get videoComposition(): $SDK29;
+    set videoComposition(value: $SDK29);
     /**
      * var videoSettings: [String : Any]? { get }
      * @availability iOS 4.1+
@@ -1878,7 +1878,7 @@ export declare class AVAssetResourceLoader extends SDKHandle {
      * func setDelegate(_ delegate: (any AVAssetResourceLoaderDelegate)?, queue delegateQueue: dispatch_queue_t?)
      * @availability iOS 6.0+
      */
-    setDelegate(delegate?: (Implements<AVAssetResourceLoaderDelegate> | SDKHandle) | null, delegateQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVAssetResourceLoaderDelegate> | SDKHandle) | null, delegateQueue?: $SDK52): void;
     /**
      * weak var delegate: (any AVAssetResourceLoaderDelegate)? { get }
      * @availability iOS 6.0+
@@ -1888,7 +1888,7 @@ export declare class AVAssetResourceLoader extends SDKHandle {
      * var delegateQueue: dispatch_queue_t? { get }
      * @availability iOS 6.0+
      */
-    get delegateQueue(): $SDK51;
+    get delegateQueue(): $SDK52;
     /**
      * var preloadsEligibleContentKeys: Bool { get set }
      * @availability iOS 9.0+
@@ -1958,8 +1958,8 @@ export declare class AVAssetResourceLoadingContentInformationRequest extends SDK
      * var renewalDate: Date? { get set }
      * @availability iOS 8.0+
      */
-    get renewalDate(): $SDK52;
-    set renewalDate(value: $SDK52);
+    get renewalDate(): $SDK53;
+    set renewalDate(value: $SDK53);
     readonly $type: {
         "c:objc(cs)AVAssetResourceLoadingContentInformationRequest": true;
         "c:objc(cs)NSObject": true;
@@ -2065,8 +2065,8 @@ export declare class AVAssetResourceLoadingRequest extends SDKHandle {
      * var redirect: URLRequest? { get set }
      * @availability iOS 7.0+
      */
-    get redirect(): $SDK55;
-    set redirect(value: $SDK55);
+    get redirect(): $SDK56;
+    set redirect(value: $SDK56);
     /**
      * var request: URLRequest { get }
      * @availability iOS 6.0+
@@ -2081,8 +2081,8 @@ export declare class AVAssetResourceLoadingRequest extends SDKHandle {
      * @NSCopying var response: URLResponse? { get set }
      * @availability iOS 7.0+
      */
-    get response(): $SDK56;
-    set response(value: $SDK56);
+    get response(): $SDK57;
+    set response(value: $SDK57);
     readonly $type: {
         "c:objc(cs)AVAssetResourceLoadingRequest": true;
         "c:objc(cs)NSObject": true;
@@ -2282,7 +2282,7 @@ export declare class AVAssetTrack extends SDKHandle {
      * func loadSamplePresentationTime(forTrackTime trackTime: CMTime) async throws -> CMTime
      * @availability iOS 15.0+
      */
-    loadSamplePresentationTime(trackTime: _CoreMedia_CMTime, completionHandler: $SDK25): void;
+    loadSamplePresentationTime(trackTime: _CoreMedia_CMTime, completionHandler: $SDK26): void;
     /**
      * func loadSegment(forTrackTime trackTime: CMTime) async throws -> AVAssetTrackSegment?
      * @availability iOS 15.0+
@@ -2337,7 +2337,7 @@ export declare class AVAssetTrack extends SDKHandle {
      * @availability iOS 7.0+
      * @deprecated iOS 16.0
      */
-    get availableTrackAssociationTypes(): $SDK61;
+    get availableTrackAssociationTypes(): $SDK62;
     /**
      * var commonMetadata: [AVMetadataItem] { get }
      * @availability iOS 4.0+
@@ -2405,7 +2405,7 @@ export declare class AVAssetTrack extends SDKHandle {
      * @availability iOS 4.0+
      * @deprecated iOS 16.0
      */
-    get naturalSize(): $SDK33;
+    get naturalSize(): $SDK34;
     /**
      * var naturalTimeScale: CMTimeScale { get }
      * @availability iOS 4.0+
@@ -2556,7 +2556,7 @@ export declare class AVAssetTrackGroup extends SDKHandle {
      * var trackIDs: [NSNumber] { get }
      * @availability iOS 7.0+
      */
-    get trackIDs(): $SDK63;
+    get trackIDs(): $SDK64;
     readonly $type: {
         "c:objc(cs)AVAssetTrackGroup": true;
         "c:objc(cs)NSObject": true;
@@ -2591,7 +2591,7 @@ export declare class AVAssetTrackPlan extends SDKHandle {
      * init(mediaType: AVMediaType, segmentConfigurations: [AVPlannedSegmentConfiguration], assemblyTrackID trackID: CMPersistentTrackID)
      * @availability iOS 27.0+
      */
-    static init(mediaType: AVMediaType, segmentConfigurations: $SDK64, trackID: number): AVAssetTrackPlan;
+    static init(mediaType: AVMediaType, segmentConfigurations: $SDK65, trackID: number): AVAssetTrackPlan;
     /**
      * var assemblyTrackID: CMPersistentTrackID { get }
      * @availability iOS 27.0+
@@ -2606,7 +2606,7 @@ export declare class AVAssetTrackPlan extends SDKHandle {
      * var segmentConfigurations: [AVPlannedSegmentConfiguration] { get }
      * @availability iOS 27.0+
      */
-    get segmentConfigurations(): $SDK64;
+    get segmentConfigurations(): $SDK65;
     readonly $type: {
         "c:objc(cs)AVAssetTrackPlan": true;
         "c:objc(cs)NSObject": true;
@@ -2747,7 +2747,7 @@ export declare class AVAssetVariant_VideoAttributes extends SDKHandle {
      * var presentationSize: CGSize { get }
      * @availability iOS 15.0+
      */
-    get presentationSize(): $SDK33;
+    get presentationSize(): $SDK34;
     /**
      * var videoLayoutAttributes: [AVAssetVariant.VideoAttributes.LayoutAttributes] { get }
      * @availability iOS 17.0+
@@ -2821,7 +2821,7 @@ export declare class AVAssetVariantQualifier extends SDKHandle {
      * class func predicate(forAudioSampleRate sampleRate: Double, mediaSelectionOption: AVMediaSelectionOption?, operatorType: NSComparisonPredicate.Operator) -> NSPredicate
      * @availability iOS 18.0+
      */
-    static predicateForAudioSampleRateMediaSelectionOptionOperatorType(sampleRate: number, mediaSelectionOption: $SDK69, operatorType: _Foundation_NSComparisonPredicate_Operator): _Foundation_NSPredicate;
+    static predicateForAudioSampleRateMediaSelectionOptionOperatorType(sampleRate: number, mediaSelectionOption: $SDK70, operatorType: _Foundation_NSComparisonPredicate_Operator): _Foundation_NSPredicate;
     /**
      * class func predicate(forAudioSampleRate sampleRate: Double, operatorType: NSComparisonPredicate.Operator) -> NSPredicate
      * @availability iOS 18.5+
@@ -2836,12 +2836,12 @@ export declare class AVAssetVariantQualifier extends SDKHandle {
      * class func predicate(forBinauralAudio isBinauralAudio: Bool, mediaSelectionOption: AVMediaSelectionOption?) -> NSPredicate
      * @availability iOS 17.0+
      */
-    static predicateForBinauralAudioMediaSelectionOption(isBinauralAudio: boolean, mediaSelectionOption?: $SDK69): _Foundation_NSPredicate;
+    static predicateForBinauralAudioMediaSelectionOption(isBinauralAudio: boolean, mediaSelectionOption?: $SDK70): _Foundation_NSPredicate;
     /**
      * class func predicate(forChannelCount channelCount: Int, mediaSelectionOption: AVMediaSelectionOption?, operatorType: NSComparisonPredicate.Operator) -> NSPredicate
      * @availability iOS 15.0+
      */
-    static predicateForChannelCountMediaSelectionOptionOperatorType(channelCount: number, mediaSelectionOption: $SDK69, operatorType: _Foundation_NSComparisonPredicate_Operator): _Foundation_NSPredicate;
+    static predicateForChannelCountMediaSelectionOptionOperatorType(channelCount: number, mediaSelectionOption: $SDK70, operatorType: _Foundation_NSComparisonPredicate_Operator): _Foundation_NSPredicate;
     /**
      * class func predicate(forChannelCount channelCount: Int, operatorType: NSComparisonPredicate.Operator) -> NSPredicate
      * @availability iOS 18.5+
@@ -2856,7 +2856,7 @@ export declare class AVAssetVariantQualifier extends SDKHandle {
      * class func predicate(forDownmixAudio isDownmixAudio: Bool, mediaSelectionOption: AVMediaSelectionOption?) -> NSPredicate
      * @availability iOS 17.0+
      */
-    static predicateForDownmixAudioMediaSelectionOption(isDownmixAudio: boolean, mediaSelectionOption?: $SDK69): _Foundation_NSPredicate;
+    static predicateForDownmixAudioMediaSelectionOption(isDownmixAudio: boolean, mediaSelectionOption?: $SDK70): _Foundation_NSPredicate;
     /**
      * class func predicate(forImmersiveAudio isImmersiveAudio: Bool) -> NSPredicate
      * @availability iOS 18.5+
@@ -2866,7 +2866,7 @@ export declare class AVAssetVariantQualifier extends SDKHandle {
      * class func predicate(forImmersiveAudio isImmersiveAudio: Bool, mediaSelectionOption: AVMediaSelectionOption?) -> NSPredicate
      * @availability iOS 17.0+
      */
-    static predicateForImmersiveAudioMediaSelectionOption(isImmersiveAudio: boolean, mediaSelectionOption?: $SDK69): _Foundation_NSPredicate;
+    static predicateForImmersiveAudioMediaSelectionOption(isImmersiveAudio: boolean, mediaSelectionOption?: $SDK70): _Foundation_NSPredicate;
     /**
      * class func predicate(forPresentationHeight height: CGFloat, operatorType: NSComparisonPredicate.Operator) -> NSPredicate
      * @availability iOS 15.0+
@@ -2897,7 +2897,7 @@ export declare class AVAssetVideoTrackPlan extends AVAssetVideoTrackPlan_base {
      * convenience init(videoCodecType: AVVideoCodecType, encoderSpecification: [String : any Sendable]? = nil, mediaType: AVMediaType, segmentConfigurations: [AVPlannedVideoSegmentConfiguration], assemblyTrackID: CMPersistentTrackID)
      * @availability iOS 27.0+
      */
-    static init(videoCodecType: AVVideoCodecType, encoderSpecification: $SDK70, mediaType: AVMediaType, segmentConfigurations: $SDK71, assemblyTrackID: number): AVAssetVideoTrackPlan;
+    static init(videoCodecType: AVVideoCodecType, encoderSpecification: $SDK71, mediaType: AVMediaType, segmentConfigurations: $SDK72, assemblyTrackID: number): AVAssetVideoTrackPlan;
     readonly $type: {
         "c:objc(cs)AVAssetVideoTrackPlan": true;
         "c:objc(cs)AVAssetTrackPlan": true;
@@ -2997,7 +2997,7 @@ export declare class AVAssetWriter extends SDKHandle {
      * @availability iOS 14.0+
      */
     get delegate(): (SDKHandle) | null;
-    set delegate(value: (SDKHandle) | null);
+    set delegate(value: (Implements<AVAssetWriterDelegate> | SDKHandle) | null);
     /**
      * var directoryForTemporaryFiles: URL? { get set }
      * @availability iOS 8.0+
@@ -3036,7 +3036,7 @@ export declare class AVAssetWriter extends SDKHandle {
      * var inputs: [AVAssetWriterInput] { get }
      * @availability iOS 4.1+
      */
-    get inputs(): $SDK73;
+    get inputs(): $SDK75;
     /**
      * var metadata: [AVMetadataItem] { get set }
      * @availability iOS 4.1+
@@ -3130,7 +3130,7 @@ export declare class AVAssetWriter extends SDKHandle {
      * func inputPixelBufferReceiver(for input: AVAssetWriterInput, pixelBufferAttributes attributes: CVPixelBufferCreationAttributes?) -> sending AVAssetWriterInput.PixelBufferReceiver
      * @availability iOS 26.0+
      */
-    inputPixelBufferReceiver(input: AVAssetWriterInput, attributes?: $SDK75): AVAssetWriterInput_PixelBufferReceiver;
+    inputPixelBufferReceiver(input: AVAssetWriterInput, attributes?: $SDK77): AVAssetWriterInput_PixelBufferReceiver;
     /**
      * func inputReceiverRequestingMultiPass(for input: AVAssetWriterInput) -> sending (AVAssetWriterInput.SampleBufferReceiver, AVAssetWriterInput.MultiPassController)
      * @availability iOS 26.0+
@@ -3140,7 +3140,7 @@ export declare class AVAssetWriter extends SDKHandle {
      * func inputTaggedPixelBufferGroupReceiver(for input: AVAssetWriterInput, pixelBufferAttributes attributes: CVPixelBufferCreationAttributes?) -> sending AVAssetWriterInput.TaggedPixelBufferGroupReceiver
      * @availability iOS 26.0+
      */
-    inputTaggedPixelBufferGroupReceiver(input: AVAssetWriterInput, attributes?: $SDK75): AVAssetWriterInput_TaggedPixelBufferGroupReceiver;
+    inputTaggedPixelBufferGroupReceiver(input: AVAssetWriterInput, attributes?: $SDK77): AVAssetWriterInput_TaggedPixelBufferGroupReceiver;
     /**
      * func inputCaptionReceiverRequestingMultiPass(for input: AVAssetWriterInput) -> sending (AVAssetWriterInput.CaptionReceiver, AVAssetWriterInput.MultiPassController)
      * @availability iOS 26.0+
@@ -3155,12 +3155,12 @@ export declare class AVAssetWriter extends SDKHandle {
      * func inputPixelBufferReceiverRequestingMultiPass(for input: AVAssetWriterInput, pixelBufferAttributes attributes: CVPixelBufferCreationAttributes?) -> sending (AVAssetWriterInput.PixelBufferReceiver, AVAssetWriterInput.MultiPassController)
      * @availability iOS 26.0+
      */
-    inputPixelBufferReceiverRequestingMultiPass(input: AVAssetWriterInput, attributes?: $SDK75): [AVAssetWriterInput_PixelBufferReceiver, AVAssetWriterInput_MultiPassController];
+    inputPixelBufferReceiverRequestingMultiPass(input: AVAssetWriterInput, attributes?: $SDK77): [AVAssetWriterInput_PixelBufferReceiver, AVAssetWriterInput_MultiPassController];
     /**
      * func inputTaggedPixelBufferGroupReceiverRequestingMultiPass(for input: AVAssetWriterInput, pixelBufferAttributes attributes: CVPixelBufferCreationAttributes?) -> sending (AVAssetWriterInput.TaggedPixelBufferGroupReceiver, AVAssetWriterInput.MultiPassController)
      * @availability iOS 26.0+
      */
-    inputTaggedPixelBufferGroupReceiverRequestingMultiPass(input: AVAssetWriterInput, attributes?: $SDK75): [AVAssetWriterInput_TaggedPixelBufferGroupReceiver, AVAssetWriterInput_MultiPassController];
+    inputTaggedPixelBufferGroupReceiverRequestingMultiPass(input: AVAssetWriterInput, attributes?: $SDK77): [AVAssetWriterInput_TaggedPixelBufferGroupReceiver, AVAssetWriterInput_MultiPassController];
     /**
      * func start() throws
      * @availability iOS 26.0+
@@ -3247,7 +3247,7 @@ export declare class AVAssetWriterInput extends SDKHandle {
      * init(mediaType: AVMediaType, outputSettings: [String : Any]?, sourceFormatHint: CMFormatDescription?)
      * @availability iOS 6.0+
      */
-    static initMediaTypeOutputSettingsSourceFormatHint(mediaType: AVMediaType, outputSettings?: $SDK19, sourceFormatHint?: $SDK82): AVAssetWriterInput;
+    static initMediaTypeOutputSettingsSourceFormatHint(mediaType: AVMediaType, outputSettings?: $SDK19, sourceFormatHint?: $SDK84): AVAssetWriterInput;
     /**
      * func markAsFinished()
      * @availability iOS 4.1+
@@ -3331,8 +3331,8 @@ export declare class AVAssetWriterInput extends SDKHandle {
      * var naturalSize: CGSize { get set }
      * @availability iOS 7.0+
      */
-    get naturalSize(): $SDK33;
-    set naturalSize(value: $SDK33);
+    get naturalSize(): $SDK34;
+    set naturalSize(value: $SDK34);
     /**
      * var outputSettings: [String : Any]? { get }
      * @availability iOS 4.1+
@@ -3378,7 +3378,7 @@ export declare class AVAssetWriterInput extends SDKHandle {
      * var sourceFormatHint: CMFormatDescription? { get }
      * @availability iOS 6.0+
      */
-    get sourceFormatHint(): $SDK82;
+    get sourceFormatHint(): $SDK84;
     /**
      * var transform: CGAffineTransform { get set }
      * @availability iOS 4.1+
@@ -3520,12 +3520,12 @@ export declare class AVAssetWriterInput_PixelBufferReceiver extends SDKHandle {
      * var pixelBufferPool: CVMutablePixelBuffer.Pool? { get }
      * @availability iOS 26.0+
      */
-    get pixelBufferPool(): $SDK84;
+    get pixelBufferPool(): $SDK86;
     /**
      * var sourcePixelBufferAttributes: CVPixelBufferCreationAttributes? { get }
      * @availability iOS 26.0+
      */
-    get sourcePixelBufferAttributes(): $SDK75;
+    get sourcePixelBufferAttributes(): $SDK77;
     /**
      * func appendImmediately(_ pixelBuffer: CVReadOnlyPixelBuffer, with presentationTime: CMTime) throws -> Bool
      * @availability iOS 26.0+
@@ -3554,12 +3554,12 @@ export declare class AVAssetWriterInput_SampleBufferReceiver extends SDKHandle {
      * func appendImmediately(_ sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>) throws -> Bool
      * @availability iOS 26.0+
      */
-    appendImmediately(sampleBuffer: $SDK85): boolean;
+    appendImmediately(sampleBuffer: $SDK87): boolean;
     /**
      * nonisolated(nonsending) func append(_ sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>) async throws
      * @availability iOS 26.0+
      */
-    append(sampleBuffer: $SDK85): Promise<void>;
+    append(sampleBuffer: $SDK87): Promise<void>;
     /**
      * func finish()
      * @availability iOS 26.0+
@@ -3578,22 +3578,22 @@ export declare class AVAssetWriterInput_TaggedPixelBufferGroupReceiver extends S
      * var pixelBufferPool: CVMutablePixelBuffer.Pool? { get }
      * @availability iOS 26.0+
      */
-    get pixelBufferPool(): $SDK84;
+    get pixelBufferPool(): $SDK86;
     /**
      * var sourcePixelBufferAttributes: CVPixelBufferCreationAttributes? { get }
      * @availability iOS 26.0+
      */
-    get sourcePixelBufferAttributes(): $SDK75;
+    get sourcePixelBufferAttributes(): $SDK77;
     /**
      * func appendImmediately(_ taggedPixelBufferGroup: [CMTaggedDynamicBuffer], with presentationTime: CMTime) throws -> Bool
      * @availability iOS 26.0+
      */
-    appendImmediately(taggedPixelBufferGroup: $SDK86, presentationTime: _CoreMedia_CMTime): boolean;
+    appendImmediately(taggedPixelBufferGroup: $SDK88, presentationTime: _CoreMedia_CMTime): boolean;
     /**
      * nonisolated(nonsending) func append(_ taggedPixelBufferGroup: [CMTaggedDynamicBuffer], with presentationTime: CMTime) async throws
      * @availability iOS 26.0+
      */
-    append(taggedPixelBufferGroup: $SDK86, presentationTime: _CoreMedia_CMTime): Promise<void>;
+    append(taggedPixelBufferGroup: $SDK88, presentationTime: _CoreMedia_CMTime): Promise<void>;
     /**
      * func finish()
      * @availability iOS 26.0+
@@ -3665,7 +3665,7 @@ export declare class AVMediaSelectionGroup extends SDKHandle {
      * func mediaSelectionOption(withPropertyList plist: Any) -> AVMediaSelectionOption?
      * @availability iOS 5.0+
      */
-    mediaSelectionOption(plist: unknown): $SDK69;
+    mediaSelectionOption(plist: unknown): $SDK70;
     /**
      * var allowsEmptySelection: Bool { get }
      * @availability iOS 5.0+
@@ -3680,7 +3680,7 @@ export declare class AVMediaSelectionGroup extends SDKHandle {
      * var defaultOption: AVMediaSelectionOption? { get }
      * @availability iOS 8.0+
      */
-    get defaultOption(): $SDK69;
+    get defaultOption(): $SDK70;
     /**
      * var options: [AVMediaSelectionOption] { get }
      * @availability iOS 5.0+
@@ -3707,7 +3707,7 @@ export declare class AVAssetWriterInputGroup extends AVAssetWriterInputGroup_bas
      * init(inputs: [AVAssetWriterInput], defaultInput: AVAssetWriterInput?)
      * @availability iOS 7.0+
      */
-    static init(inputs: $SDK73, defaultInput?: (AVAssetWriterInput) | null): AVAssetWriterInputGroup;
+    static init(inputs: $SDK75, defaultInput?: (AVAssetWriterInput) | null): AVAssetWriterInputGroup;
     /**
      * var defaultInput: AVAssetWriterInput? { get }
      * @availability iOS 7.0+
@@ -3717,7 +3717,7 @@ export declare class AVAssetWriterInputGroup extends AVAssetWriterInputGroup_bas
      * var inputs: [AVAssetWriterInput] { get }
      * @availability iOS 7.0+
      */
-    get inputs(): $SDK73;
+    get inputs(): $SDK75;
     readonly $type: {
         "c:objc(cs)AVAssetWriterInputGroup": true;
         "c:objc(cs)AVMediaSelectionGroup": true;
@@ -3811,13 +3811,13 @@ export declare class AVAssetWriterInputPixelBufferAdaptor extends SDKHandle {
      * @availability iOS 4.1+
      * @deprecated iOS 27.0
      */
-    get pixelBufferPool(): $SDK89;
+    get pixelBufferPool(): $SDK91;
     /**
      * var sourcePixelBufferAttributes: [String : any Sendable]? { get }
      * @availability iOS 4.1+
      * @deprecated iOS 27.0
      */
-    get sourcePixelBufferAttributes(): $SDK70;
+    get sourcePixelBufferAttributes(): $SDK71;
     readonly $type: {
         "c:objc(cs)AVAssetWriterInputPixelBufferAdaptor": true;
         "c:objc(cs)NSObject": true;
@@ -3857,13 +3857,13 @@ export declare class AVAssetWriterInputTaggedPixelBufferGroupAdaptor extends SDK
      * @availability iOS 17.0+
      * @deprecated iOS 27.0
      */
-    get pixelBufferPool(): $SDK89;
+    get pixelBufferPool(): $SDK91;
     /**
      * var sourcePixelBufferAttributes: [String : any Sendable]? { get }
      * @availability iOS 17.0+
      * @deprecated iOS 27.0
      */
-    get sourcePixelBufferAttributes(): $SDK70;
+    get sourcePixelBufferAttributes(): $SDK71;
     /**
      * func appendTaggedBuffers(_ taggedBuffers: [CMTaggedBuffer], withPresentationTime: CMTime) -> Bool
      * @availability iOS 17.0+
@@ -3889,7 +3889,7 @@ export declare class AVAssetWritingPlanner extends SDKHandle {
      * class func segmentBoundaryRecommendations(forVideoTrack videoAssetTrack: AVAssetTrack, minimumSegmentDuration: CMTime, minimumSegmentFrameCount: Int) -> [AVPlannedVideoSegmentConfiguration]
      * @availability iOS 27.0+
      */
-    static segmentBoundaryRecommendations(videoAssetTrack: AVAssetTrack, minimumSegmentDuration: _CoreMedia_CMTime, minimumSegmentFrameCount: number): $SDK71;
+    static segmentBoundaryRecommendations(videoAssetTrack: AVAssetTrack, minimumSegmentDuration: _CoreMedia_CMTime, minimumSegmentFrameCount: number): $SDK72;
     /**
      * var progress: AVAssetWritingPlannerProgress { get }
      * @availability iOS 27.0+
@@ -3909,7 +3909,12 @@ export declare class AVAssetWritingPlanner extends SDKHandle {
      * static func segmentBoundaryGuidelinesForVideo(codecType: AVVideoCodecType, encoderSpecification: [String : any Sendable]) -> AVAssetWritingPlanner.SegmentBoundaryGuidelines
      * @availability iOS 27.0+
      */
-    static segmentBoundaryGuidelinesForVideo(codecType: AVVideoCodecType, encoderSpecification: $SDK91): AVAssetWritingPlanner_SegmentBoundaryGuidelines;
+    static segmentBoundaryGuidelinesForVideo(codecType: AVVideoCodecType, encoderSpecification: $SDK93): AVAssetWritingPlanner_SegmentBoundaryGuidelines;
+    /**
+     * func plan(_ trackPlan: AVAssetTrackPlan, segmentHandler: @escaping @Sendable (AVPlannedSegmentWritingRequest) async throws -> AVAssetWritingPlanner.SegmentResult)
+     * @availability iOS 27.0+
+     */
+    plan(trackPlan: AVAssetTrackPlan, segmentHandler: ((arg0: AVPlannedSegmentWritingRequest) => Promise<AVAssetWritingPlanner_SegmentResult>)): void;
     readonly $type: {
         "c:objc(cs)AVAssetWritingPlanner": true;
         "c:objc(cs)NSObject": true;
@@ -4000,7 +4005,7 @@ export declare class AVAsynchronousCIImageFilteringRequest extends SDKHandle {
      * @availability iOS 9.0+
      * @deprecated iOS 27.0
      */
-    finishWithContext(filteredImage: _CoreImage_CIImage, context?: $SDK92): void;
+    finishWithContext(filteredImage: _CoreImage_CIImage, context?: $SDK95): void;
     /** init() */
     static init(): AVAsynchronousCIImageFilteringRequest;
     /**
@@ -4014,7 +4019,7 @@ export declare class AVAsynchronousCIImageFilteringRequest extends SDKHandle {
      * @availability iOS 9.0+
      * @deprecated iOS 27.0
      */
-    get renderSize(): $SDK33;
+    get renderSize(): $SDK34;
     /**
      * var sourceImage: CIImage { get }
      * @availability iOS 9.0+
@@ -4074,18 +4079,18 @@ export declare class AVAsynchronousVideoCompositionRequest extends SDKHandle {
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    sourceFrame(trackID: number): $SDK93;
+    sourceFrame(trackID: number): $SDK96;
     /**
      * func sourceSampleBuffer(byTrackID trackID: CMPersistentTrackID) -> CMSampleBuffer?
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    sourceSampleBuffer(trackID: number): $SDK47;
+    sourceSampleBuffer(trackID: number): $SDK48;
     /**
      * func sourceTimedMetadata(byTrackID trackID: CMPersistentTrackID) -> AVTimedMetadataGroup?
      * @availability iOS 15.0+
      */
-    sourceTimedMetadata(trackID: number): $SDK49;
+    sourceTimedMetadata(trackID: number): $SDK50;
     /**
      * var compositionTime: CMTime { get }
      * @availability iOS 7.0+
@@ -4100,7 +4105,7 @@ export declare class AVAsynchronousVideoCompositionRequest extends SDKHandle {
      * var sourceTrackIDs: [NSNumber] { get }
      * @availability iOS 7.0+
      */
-    get sourceTrackIDs(): $SDK63;
+    get sourceTrackIDs(): $SDK64;
     /**
      * var videoCompositionInstruction: any AVVideoCompositionInstructionProtocol { get }
      * @availability iOS 7.0+
@@ -4120,7 +4125,7 @@ export declare class AVAsynchronousVideoCompositionRequest extends SDKHandle {
      * func sourceReadOnlyPixelBuffer(byTrackID trackID: CMPersistentTrackID) -> CVReadOnlyPixelBuffer?
      * @availability iOS 26.0+
      */
-    sourceReadOnlyPixelBuffer(trackID: number): $SDK95;
+    sourceReadOnlyPixelBuffer(trackID: number): $SDK98;
     /**
      * func sourceTaggedDynamicBuffers(byTrackID trackID: CMPersistentTrackID) -> [CMTaggedDynamicBuffer]?
      * @availability iOS 26.0+
@@ -4135,7 +4140,7 @@ export declare class AVAsynchronousVideoCompositionRequest extends SDKHandle {
      * func finish(withComposedTaggedBuffers taggedBuffers: [CMTaggedDynamicBuffer])
      * @availability iOS 26.0+
      */
-    finishWithComposedTaggedBuffers(taggedBuffers: $SDK86): void;
+    finishWithComposedTaggedBuffers(taggedBuffers: $SDK88): void;
     readonly $type: {
         "c:objc(cs)AVAsynchronousVideoCompositionRequest": true;
         "c:objc(cs)NSObject": true;
@@ -4177,12 +4182,12 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var isPlayable: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isPlayable(): $SDK100;
+    static get isPlayable(): $SDK103;
     /**
      * static var isDecodable: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isDecodable(): $SDK100;
+    static get isDecodable(): $SDK103;
     /**
      * static var naturalSize: AVAsyncProperty<Root, CGSize> { get }
      * @availability iOS 15.0+
@@ -4195,22 +4200,22 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var languageCode: AVAsyncProperty<Root, String?> { get }
      * @availability iOS 15.0+
      */
-    static get languageCode(): $SDK102;
+    static get languageCode(): $SDK105;
     /**
      * static var commonMetadata: AVAsyncProperty<Root, [AVMetadataItem]> { get }
      * @availability iOS 15.0+
      */
-    static get commonMetadata(): $SDK103;
+    static get commonMetadata(): $SDK106;
     /**
      * static var isSelfContained: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isSelfContained(): $SDK100;
+    static get isSelfContained(): $SDK103;
     /**
      * static var preferredVolume: AVAsyncProperty<Root, Float> { get }
      * @availability iOS 15.0+
      */
-    static get preferredVolume(): $SDK104;
+    static get preferredVolume(): $SDK107;
     /**
      * static var minFrameDuration: AVAsyncProperty<Root, CMTime> { get }
      * @availability iOS 15.0+
@@ -4220,17 +4225,17 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var naturalTimeScale: AVAsyncProperty<Root, CMTimeScale> { get }
      * @availability iOS 15.0+
      */
-    static get naturalTimeScale(): $SDK104;
+    static get naturalTimeScale(): $SDK107;
     /**
      * static var nominalFrameRate: AVAsyncProperty<Root, Float> { get }
      * @availability iOS 15.0+
      */
-    static get nominalFrameRate(): $SDK104;
+    static get nominalFrameRate(): $SDK107;
     /**
      * static var estimatedDataRate: AVAsyncProperty<Root, Float> { get }
      * @availability iOS 15.0+
      */
-    static get estimatedDataRate(): $SDK104;
+    static get estimatedDataRate(): $SDK107;
     /**
      * static var formatDescriptions: AVAsyncProperty<Root, [CMFormatDescription]> { get }
      * @availability iOS 15.0+
@@ -4245,7 +4250,7 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var extendedLanguageTag: AVAsyncProperty<Root, String?> { get }
      * @availability iOS 15.0+
      */
-    static get extendedLanguageTag(): $SDK102;
+    static get extendedLanguageTag(): $SDK105;
     /**
      * static var mediaCharacteristics: AVAsyncProperty<Root, [AVMediaCharacteristic]> { get }
      * @availability iOS 15.0+
@@ -4255,17 +4260,17 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var totalSampleDataLength: AVAsyncProperty<Root, Int64> { get }
      * @availability iOS 15.0+
      */
-    static get totalSampleDataLength(): $SDK104;
+    static get totalSampleDataLength(): $SDK107;
     /**
      * static var canProvideSampleCursors: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 16.0+
      */
-    static get canProvideSampleCursors(): $SDK100;
+    static get canProvideSampleCursors(): $SDK103;
     /**
      * static var requiresFrameReordering: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get requiresFrameReordering(): $SDK100;
+    static get requiresFrameReordering(): $SDK103;
     /**
      * static var availableMetadataFormats: AVAsyncProperty<Root, [AVMetadataFormat]> { get }
      * @availability iOS 15.0+
@@ -4275,12 +4280,12 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var hasAudioSampleDependencies: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get hasAudioSampleDependencies(): $SDK100;
+    static get hasAudioSampleDependencies(): $SDK103;
     /**
      * static var metadata: AVAsyncProperty<Root, [AVMetadataItem]> { get }
      * @availability iOS 15.0+
      */
-    static get metadata(): $SDK103;
+    static get metadata(): $SDK106;
     /**
      * static var segments: AVAsyncProperty<Root, [AVAssetTrackSegment]> { get }
      * @availability iOS 15.0+
@@ -4290,7 +4295,7 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var isEnabled: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isEnabled(): $SDK100;
+    static get isEnabled(): $SDK103;
     /**
      * static var timeRange: AVAsyncProperty<Root, CMTimeRange> { get }
      * @availability iOS 15.0+
@@ -4335,12 +4340,12 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var isPlayable: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isPlayable592(): $SDK119;
+    static get isPlayable592(): $SDK122;
     /**
      * static var isReadable: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isReadable(): $SDK119;
+    static get isReadable(): $SDK122;
     /**
      * static var trackGroups: AVAsyncProperty<Root, [AVAssetTrackGroup]> { get }
      * @availability iOS 15.0+
@@ -4355,12 +4360,12 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var isComposable: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isComposable(): $SDK119;
+    static get isComposable(): $SDK122;
     /**
      * static var isExportable: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isExportable(): $SDK119;
+    static get isExportable(): $SDK122;
     /**
      * static var preferredRate: AVAsyncProperty<Root, Float> { get }
      * @availability iOS 15.0+
@@ -4370,7 +4375,7 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var commonMetadata: AVAsyncProperty<Root, [AVMetadataItem]> { get }
      * @availability iOS 15.0+
      */
-    static get commonMetadata64628(): $SDK123;
+    static get commonMetadata64628(): $SDK126;
     /**
      * static var preferredVolume: AVAsyncProperty<Root, Float> { get }
      * @availability iOS 15.0+
@@ -4380,7 +4385,7 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var containsFragments: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get containsFragments(): $SDK119;
+    static get containsFragments(): $SDK122;
     /**
      * static var allMediaSelections: AVAsyncProperty<Root, [AVMediaSelection]> { get }
      * @availability iOS 15.0+
@@ -4395,17 +4400,17 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var canContainFragments: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get canContainFragments(): $SDK119;
+    static get canContainFragments(): $SDK122;
     /**
      * static var hasProtectedContent: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get hasProtectedContent(): $SDK119;
+    static get hasProtectedContent(): $SDK122;
     /**
      * static var overallDurationHint: AVAsyncProperty<Root, CMTime> { get }
      * @availability iOS 15.0+
      */
-    static get overallDurationHint(): $SDK126;
+    static get overallDurationHint(): $SDK129;
     /**
      * static var availableChapterLocales: AVAsyncProperty<Root, [Locale]> { get }
      * @availability iOS 15.0+
@@ -4425,22 +4430,22 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var minimumTimeOffsetFromLive: AVAsyncProperty<Root, CMTime> { get }
      * @availability iOS 15.0+
      */
-    static get minimumTimeOffsetFromLive(): $SDK126;
+    static get minimumTimeOffsetFromLive(): $SDK129;
     /**
      * static var isCompatibleWithAirPlayVideo: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isCompatibleWithAirPlayVideo(): $SDK119;
+    static get isCompatibleWithAirPlayVideo(): $SDK122;
     /**
      * static var isCompatibleWithSavedPhotosAlbum: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get isCompatibleWithSavedPhotosAlbum(): $SDK119;
+    static get isCompatibleWithSavedPhotosAlbum(): $SDK122;
     /**
      * static var providesPreciseDurationAndTiming: AVAsyncProperty<Root, Bool> { get }
      * @availability iOS 15.0+
      */
-    static get providesPreciseDurationAndTiming(): $SDK119;
+    static get providesPreciseDurationAndTiming(): $SDK122;
     /**
      * static var lyrics: AVAsyncProperty<Root, String?> { get }
      * @availability iOS 15.0+
@@ -4455,12 +4460,12 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * static var duration: AVAsyncProperty<Root, CMTime> { get }
      * @availability iOS 15.0+
      */
-    static get duration(): $SDK126;
+    static get duration(): $SDK129;
     /**
      * static var metadata: AVAsyncProperty<Root, [AVMetadataItem]> { get }
      * @availability iOS 15.0+
      */
-    static get metadata69018(): $SDK123;
+    static get metadata69018(): $SDK126;
     readonly $type: {
         "s:12AVFoundation22AVPartialAsyncPropertyC": true;
         "s:12AVFoundation18AVAnyAsyncPropertyC": true;
@@ -4502,7 +4507,7 @@ export declare class AVAudioMix extends SDKHandle {
      * var inputParameters: [AVAudioMixInputParameters] { get }
      * @availability iOS 4.0+
      */
-    get inputParameters(): $SDK132;
+    get inputParameters(): $SDK135;
     readonly $type: {
         "c:objc(cs)AVAudioMix": true;
         "c:objc(cs)NSObject": true;
@@ -4527,12 +4532,12 @@ export declare class AVAudioMixInputParameters extends SDKHandle {
      * var audioTapProcessor: MTAudioProcessingTap? { get }
      * @availability iOS 6.0+
      */
-    get audioTapProcessor(): $SDK133;
+    get audioTapProcessor(): $SDK136;
     /**
      * var audioTimePitchAlgorithm: AVAudioTimePitchAlgorithm? { get }
      * @availability iOS 7.0+
      */
-    get audioTimePitchAlgorithm(): $SDK134;
+    get audioTimePitchAlgorithm(): $SDK137;
     /**
      * var trackID: CMPersistentTrackID { get }
      * @availability iOS 4.0+
@@ -4630,7 +4635,7 @@ export declare class AVCameraCalibrationData extends SDKHandle {
      * var intrinsicMatrixReferenceDimensions: CGSize { get }
      * @availability iOS 11.0+
      */
-    get intrinsicMatrixReferenceDimensions(): $SDK33;
+    get intrinsicMatrixReferenceDimensions(): $SDK34;
     /**
      * var inverseLensDistortionLookupTable: Data? { get }
      * @availability iOS 11.0+
@@ -4640,7 +4645,7 @@ export declare class AVCameraCalibrationData extends SDKHandle {
      * var lensDistortionCenter: CGPoint { get }
      * @availability iOS 11.0+
      */
-    get lensDistortionCenter(): $SDK135;
+    get lensDistortionCenter(): $SDK138;
     /**
      * var lensDistortionLookupTable: Data? { get }
      * @availability iOS 11.0+
@@ -4710,7 +4715,7 @@ export declare class AVCaption extends SDKHandle {
      * @nonobjc func backgroundColor(at index: String.Index) -> (CGColor?, Range<String.Index>)
      * @availability iOS 18.0+
      */
-    backgroundColor(index: SDKHandle): $SDK140;
+    backgroundColor(index: SDKHandle): $SDK143;
     /**
      * @nonobjc func ruby(at index: String.Index) -> (AVCaption.Ruby?, Range<String.Index>)
      * @availability iOS 18.0+
@@ -4725,7 +4730,7 @@ export declare class AVCaption extends SDKHandle {
      * @nonobjc func textColor(at index: String.Index) -> (CGColor?, Range<String.Index>)
      * @availability iOS 18.0+
      */
-    textColor(index: SDKHandle): $SDK140;
+    textColor(index: SDKHandle): $SDK143;
     readonly $type: {
         "c:objc(cs)AVCaption": true;
         "c:objc(cs)NSObject": true;
@@ -4959,7 +4964,7 @@ export declare class AVCaptionConversionValidator extends SDKHandle {
      * init(captions: [AVCaption], timeRange: CMTimeRange, conversionSettings: [AVCaptionSettingsKey : Any])
      * @availability iOS 18.0+
      */
-    static init(captions: Array<AVCaption>, timeRange: _CoreMedia_CMTimeRange, conversionSettings: $SDK143): AVCaptionConversionValidator;
+    static init(captions: Array<AVCaption>, timeRange: _CoreMedia_CMTimeRange, conversionSettings: $SDK146): AVCaptionConversionValidator;
     /**
      * func stopValidating()
      * @availability iOS 18.0+
@@ -5090,7 +5095,7 @@ export declare class AVCaptionFormatConformer extends SDKHandle {
      * init(conversionSettings: [AVCaptionSettingsKey : Any])
      * @availability iOS 18.0+
      */
-    static init(conversionSettings: $SDK143): AVCaptionFormatConformer;
+    static init(conversionSettings: $SDK146): AVCaptionFormatConformer;
     /**
      * var conformsCaptionsToTimeRange: Bool { get set }
      * @availability iOS 18.0+
@@ -5312,7 +5317,7 @@ export declare class AVCaptionRenderer extends SDKHandle {
      * class func captionPreview(forProfileID profileID: String, extendedLanguageTag: String?, renderSize: CGSize) -> NSAttributedString
      * @availability iOS 26.4+
      */
-    static captionPreview(profileID: string, extendedLanguageTag: (string) | null, renderSize: $SDK33): _Foundation_NSAttributedString;
+    static captionPreview(profileID: string, extendedLanguageTag: (string) | null, renderSize: $SDK34): _Foundation_NSAttributedString;
     /**
      * func captionSceneChanges(in consideredTimeRange: CMTimeRange) -> [AVCaptionRenderer.Scene]
      * @availability iOS 18.0+
@@ -5332,8 +5337,8 @@ export declare class AVCaptionRenderer extends SDKHandle {
      * var bounds: CGRect { get set }
      * @availability iOS 18.0+
      */
-    get bounds(): $SDK148;
-    set bounds(value: $SDK148);
+    get bounds(): $SDK151;
+    set bounds(value: $SDK151);
     /**
      * var captions: [AVCaption] { get set }
      * @availability iOS 18.0+
@@ -5549,12 +5554,12 @@ export declare class AVCaptureOutput extends SDKHandle {
      * func metadataOutputRectConverted(fromOutputRect rectInOutputCoordinates: CGRect) -> CGRect
      * @availability iOS 7.0+
      */
-    metadataOutputRectConverted(rectInOutputCoordinates: $SDK148): $SDK148;
+    metadataOutputRectConverted(rectInOutputCoordinates: $SDK151): $SDK151;
     /**
      * func outputRectConverted(fromMetadataOutputRect rectInMetadataOutputCoordinates: CGRect) -> CGRect
      * @availability iOS 7.0+
      */
-    outputRectConverted(rectInMetadataOutputCoordinates: $SDK148): $SDK148;
+    outputRectConverted(rectInMetadataOutputCoordinates: $SDK151): $SDK151;
     /**
      * func transformedMetadataObject(for metadataObject: AVMetadataObject, connection: AVCaptureConnection) -> AVMetadataObject?
      * @availability iOS 6.0+
@@ -5564,7 +5569,7 @@ export declare class AVCaptureOutput extends SDKHandle {
      * var connections: [AVCaptureConnection] { get }
      * @availability iOS 4.0+
      */
-    get connections(): $SDK152;
+    get connections(): $SDK155;
     /**
      * var isDeferredStartEnabled: Bool { get set }
      * @availability iOS 26.0+
@@ -5605,12 +5610,12 @@ export declare class AVCaptureAudioDataOutput extends AVCaptureOutput {
      * func setSampleBufferDelegate(_ sampleBufferDelegate: (any AVCaptureAudioDataOutputSampleBufferDelegate)?, queue sampleBufferCallbackQueue: dispatch_queue_t?)
      * @availability iOS 4.0+
      */
-    setSampleBufferDelegate(sampleBufferDelegate?: (Implements<AVCaptureAudioDataOutputSampleBufferDelegate> | SDKHandle) | null, sampleBufferCallbackQueue?: $SDK51): void;
+    setSampleBufferDelegate(sampleBufferDelegate?: (Implements<AVCaptureAudioDataOutputSampleBufferDelegate> | SDKHandle) | null, sampleBufferCallbackQueue?: $SDK52): void;
     /**
      * var sampleBufferCallbackQueue: dispatch_queue_t? { get }
      * @availability iOS 4.0+
      */
-    get sampleBufferCallbackQueue(): $SDK51;
+    get sampleBufferCallbackQueue(): $SDK52;
     /**
      * var sampleBufferDelegate: (any AVCaptureAudioDataOutputSampleBufferDelegate)? { get }
      * @availability iOS 4.0+
@@ -5710,7 +5715,7 @@ export declare class AVCaptureBroadcastVideoOutput extends AVCaptureOutput {
      * func setDelegate(_ delegate: (any AVCaptureBroadcastVideoOutputDelegate)?, queue delegateCallbackQueue: dispatch_queue_t?)
      * @availability iOS 27.0+
      */
-    setDelegate(delegate?: (Implements<AVCaptureBroadcastVideoOutputDelegate> | SDKHandle) | null, delegateCallbackQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVCaptureBroadcastVideoOutputDelegate> | SDKHandle) | null, delegateCallbackQueue?: $SDK52): void;
     /**
      * var ancillaryDataEncoder: AVCaptureAncillaryDataEncoder { get }
      * @availability iOS 27.0+
@@ -5725,7 +5730,7 @@ export declare class AVCaptureBroadcastVideoOutput extends AVCaptureOutput {
      * var delegateCallbackQueue: dispatch_queue_t? { get }
      * @availability iOS 27.0+
      */
-    get delegateCallbackQueue(): $SDK51;
+    get delegateCallbackQueue(): $SDK52;
     /**
      * var droppedFrameReplacementPolicy: AVCaptureBroadcastVideoOutput.DroppedFrameReplacementPolicy { get set }
      * @availability iOS 27.0+
@@ -5821,7 +5826,7 @@ export declare class AVCaptureConnection extends SDKHandle {
      * init(inputPorts ports: [AVCaptureInput.Port], output: AVCaptureOutput)
      * @availability iOS 8.0+
      */
-    static initInputPortsOutput(ports: $SDK155, output: AVCaptureOutput): AVCaptureConnection;
+    static initInputPortsOutput(ports: $SDK158, output: AVCaptureOutput): AVCaptureConnection;
     /**
      * func isVideoRotationAngleSupported(_ videoRotationAngle: CGFloat) -> Bool
      * @availability iOS 17.0+
@@ -5882,7 +5887,7 @@ export declare class AVCaptureConnection extends SDKHandle {
      * var inputPorts: [AVCaptureInput.Port] { get }
      * @availability iOS 4.0+
      */
-    get inputPorts(): $SDK155;
+    get inputPorts(): $SDK158;
     /**
      * var isLowLightVideoNoiseReductionEnabled: Bool { get set }
      * @availability iOS 27.0+
@@ -6026,7 +6031,7 @@ export declare class AVCaptureDataOutputSynchronizer extends SDKHandle {
      * func setDelegate(_ delegate: (any AVCaptureDataOutputSynchronizerDelegate)?, queue delegateCallbackQueue: dispatch_queue_t?)
      * @availability iOS 11.0+
      */
-    setDelegate(delegate?: (Implements<AVCaptureDataOutputSynchronizerDelegate> | SDKHandle) | null, delegateCallbackQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVCaptureDataOutputSynchronizerDelegate> | SDKHandle) | null, delegateCallbackQueue?: $SDK52): void;
     /**
      * var dataOutputs: [AVCaptureOutput] { get }
      * @availability iOS 11.0+
@@ -6041,7 +6046,7 @@ export declare class AVCaptureDataOutputSynchronizer extends SDKHandle {
      * var delegateCallbackQueue: dispatch_queue_t? { get }
      * @availability iOS 11.0+
      */
-    get delegateCallbackQueue(): $SDK51;
+    get delegateCallbackQueue(): $SDK52;
     readonly $type: {
         "c:objc(cs)AVCaptureDataOutputSynchronizer": true;
         "c:objc(cs)NSObject": true;
@@ -6088,7 +6093,7 @@ export declare class AVCapturePhoto extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 12.0
      */
-    fileDataRepresentationWithReplacementMetadataReplacementEmbeddedThumbnailPhotoFormatReplacementEmbeddedThumbnailPixelBufferReplacementDepthData(replacementMetadata?: $SDK19, replacementEmbeddedThumbnailPhotoFormat?: $SDK19, replacementEmbeddedThumbnailPixelBuffer?: $SDK93, replacementDepthData?: (AVDepthData) | null): (ArrayBuffer) | null;
+    fileDataRepresentationWithReplacementMetadataReplacementEmbeddedThumbnailPhotoFormatReplacementEmbeddedThumbnailPixelBufferReplacementDepthData(replacementMetadata?: $SDK19, replacementEmbeddedThumbnailPhotoFormat?: $SDK19, replacementEmbeddedThumbnailPixelBuffer?: $SDK96, replacementDepthData?: (AVDepthData) | null): (ArrayBuffer) | null;
     /**
      * func previewCGImageRepresentation() -> CGImage?
      * @availability iOS 11.0+
@@ -6103,7 +6108,7 @@ export declare class AVCapturePhoto extends SDKHandle {
      * var bracketSettings: AVCaptureBracketedStillImageSettings? { get }
      * @availability iOS 11.0+
      */
-    get bracketSettings(): $SDK163;
+    get bracketSettings(): $SDK166;
     /**
      * var cameraCalibrationData: AVCameraCalibrationData? { get }
      * @availability iOS 11.0+
@@ -6118,7 +6123,7 @@ export declare class AVCapturePhoto extends SDKHandle {
      * var constantColorConfidenceMap: CVPixelBuffer? { get }
      * @availability iOS 18.0+
      */
-    get constantColorConfidenceMap(): $SDK93;
+    get constantColorConfidenceMap(): $SDK96;
     /**
      * var isConstantColorFallbackPhoto: Bool { get }
      * @availability iOS 18.0+
@@ -6153,7 +6158,7 @@ export declare class AVCapturePhoto extends SDKHandle {
      * var pixelBuffer: CVPixelBuffer? { get }
      * @availability iOS 11.0+
      */
-    get pixelBuffer(): $SDK93;
+    get pixelBuffer(): $SDK96;
     /**
      * var portraitEffectsMatte: AVPortraitEffectsMatte? { get }
      * @availability iOS 12.0+
@@ -6163,7 +6168,7 @@ export declare class AVCapturePhoto extends SDKHandle {
      * var previewPixelBuffer: CVPixelBuffer? { get }
      * @availability iOS 11.0+
      */
-    get previewPixelBuffer(): $SDK93;
+    get previewPixelBuffer(): $SDK96;
     /**
      * var isRawPhoto: Bool { get }
      * @availability iOS 11.0+
@@ -6183,7 +6188,7 @@ export declare class AVCapturePhoto extends SDKHandle {
      * var sourceDeviceType: AVCaptureDevice.DeviceType? { get }
      * @availability iOS 11.0+
      */
-    get sourceDeviceType(): $SDK166;
+    get sourceDeviceType(): $SDK169;
     /**
      * var timestamp: CMTime { get }
      * @availability iOS 11.0+
@@ -6259,7 +6264,7 @@ export declare class AVCaptureDepthDataOutput extends AVCaptureOutput {
      * func setDelegate(_ delegate: (any AVCaptureDepthDataOutputDelegate)?, callbackQueue: dispatch_queue_t?)
      * @availability iOS 11.0+
      */
-    setDelegate(delegate?: (Implements<AVCaptureDepthDataOutputDelegate> | SDKHandle) | null, callbackQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVCaptureDepthDataOutputDelegate> | SDKHandle) | null, callbackQueue?: $SDK52): void;
     /**
      * var alwaysDiscardsLateDepthData: Bool { get set }
      * @availability iOS 11.0+
@@ -6275,7 +6280,7 @@ export declare class AVCaptureDepthDataOutput extends AVCaptureOutput {
      * var delegateCallbackQueue: dispatch_queue_t? { get }
      * @availability iOS 11.0+
      */
-    get delegateCallbackQueue(): $SDK51;
+    get delegateCallbackQueue(): $SDK52;
     /**
      * var isFilteringEnabled: Bool { get set }
      * @availability iOS 11.0+
@@ -6392,12 +6397,12 @@ export declare class AVCaptureDevice extends SDKHandle {
      * class func `default`(_ deviceType: AVCaptureDevice.DeviceType, for mediaType: AVMediaType?, position: AVCaptureDevice.Position) -> AVCaptureDevice?
      * @availability iOS 10.0+
      */
-    static defaultForPosition(deviceType: AVCaptureDevice_DeviceType, mediaType: (AVMediaType) | null, position: AVCaptureDevice_Position): $SDK168;
+    static defaultForPosition(deviceType: AVCaptureDevice_DeviceType, mediaType: (AVMediaType) | null, position: AVCaptureDevice_Position): $SDK171;
     /**
      * class func `default`(for mediaType: AVMediaType) -> AVCaptureDevice?
      * @availability iOS 4.0+
      */
-    static defaultFor(mediaType: AVMediaType): $SDK168;
+    static defaultFor(mediaType: AVMediaType): $SDK171;
     /**
      * init?(uniqueID deviceUniqueID: String)
      * @availability iOS 4.0+
@@ -6424,7 +6429,7 @@ export declare class AVCaptureDevice extends SDKHandle {
      * class func requestAccess(for mediaType: AVMediaType) async -> Bool
      * @availability iOS 7.0+
      */
-    static requestAccess(mediaType: AVMediaType, handler: $SDK23): void;
+    static requestAccess(mediaType: AVMediaType, handler: $SDK24): void;
     /**
      * class func showSystemUserInterface(_ systemUserInterface: AVCaptureDevice.SystemUserInterface)
      * @availability iOS 15.0+
@@ -6491,13 +6496,13 @@ export declare class AVCaptureDevice extends SDKHandle {
      * class var systemPreferredCamera: AVCaptureDevice? { get }
      * @availability iOS 17.0+
      */
-    static get systemPreferredCamera(): $SDK168;
+    static get systemPreferredCamera(): $SDK171;
     /**
      * class var userPreferredCamera: AVCaptureDevice? { get set }
      * @availability iOS 17.0+
      */
-    static get userPreferredCamera(): $SDK168;
-    static set userPreferredCamera(value: $SDK168);
+    static get userPreferredCamera(): $SDK171;
+    static set userPreferredCamera(value: $SDK171);
     /**
      * func cancelVideoZoomRamp()
      * @availability iOS 7.0+
@@ -6512,12 +6517,12 @@ export declare class AVCaptureDevice extends SDKHandle {
      * func defaultRectForExposurePoint(ofInterest pointOfInterest: CGPoint) -> CGRect
      * @availability iOS 26.0+
      */
-    defaultRectForExposurePoint(pointOfInterest: $SDK135): $SDK148;
+    defaultRectForExposurePoint(pointOfInterest: $SDK138): $SDK151;
     /**
      * func defaultRectForFocusPoint(ofInterest pointOfInterest: CGPoint) -> CGRect
      * @availability iOS 26.0+
      */
-    defaultRectForFocusPoint(pointOfInterest: $SDK135): $SDK148;
+    defaultRectForFocusPoint(pointOfInterest: $SDK138): $SDK151;
     /**
      * func deviceWhiteBalanceGains(for chromaticityValues: AVCaptureDevice.WhiteBalanceChromaticityValues) -> AVCaptureDevice.WhiteBalanceGains
      * @availability iOS 8.0+
@@ -6583,12 +6588,12 @@ export declare class AVCaptureDevice extends SDKHandle {
      * func setCinematicVideoFixedFocus(at point: CGPoint, focusMode: AVCaptureDevice.CinematicVideoFocusMode)
      * @availability iOS 26.0+
      */
-    setCinematicVideoFixedFocus(point: $SDK135, focusMode: AVCaptureDevice_CinematicVideoFocusMode): void;
+    setCinematicVideoFixedFocus(point: $SDK138, focusMode: AVCaptureDevice_CinematicVideoFocusMode): void;
     /**
      * func setCinematicVideoTrackingFocus(at point: CGPoint, focusMode: AVCaptureDevice.CinematicVideoFocusMode)
      * @availability iOS 26.0+
      */
-    setCinematicVideoTrackingFocusAtFocusMode(point: $SDK135, focusMode: AVCaptureDevice_CinematicVideoFocusMode): void;
+    setCinematicVideoTrackingFocusAtFocusMode(point: $SDK138, focusMode: AVCaptureDevice_CinematicVideoFocusMode): void;
     /**
      * func setCinematicVideoTrackingFocus(detectedObjectID: Int, focusMode: AVCaptureDevice.CinematicVideoFocusMode)
      * @availability iOS 26.0+
@@ -6603,22 +6608,22 @@ export declare class AVCaptureDevice extends SDKHandle {
      * func setExposureModeCustom(duration: CMTime, iso ISO: Float) async -> CMTime
      * @availability iOS 8.0+
      */
-    setExposureModeCustomDurationIsoCompletionHandler(duration: _CoreMedia_CMTime, ISO: number, handler?: $SDK170): void;
+    setExposureModeCustomDurationIsoCompletionHandler(duration: _CoreMedia_CMTime, ISO: number, handler?: $SDK173): void;
     /**
      * func setExposureModeCustom(lensAperture: Float, duration: CMTime, iso ISO: Float) async -> CMTime
      * @availability iOS 27.0+
      */
-    setExposureModeCustomLensApertureDurationIsoCompletionHandler(lensAperture: number, duration: _CoreMedia_CMTime, ISO: number, handler?: $SDK170): void;
+    setExposureModeCustomLensApertureDurationIsoCompletionHandler(lensAperture: number, duration: _CoreMedia_CMTime, ISO: number, handler?: $SDK173): void;
     /**
      * func setExposureTargetBias(_ bias: Float) async -> CMTime
      * @availability iOS 8.0+
      */
-    setExposureTargetBias(bias: number, handler?: $SDK170): void;
+    setExposureTargetBias(bias: number, handler?: $SDK173): void;
     /**
      * func setFocusModeLocked(lensPosition: Float) async -> CMTime
      * @availability iOS 8.0+
      */
-    setFocusModeLocked(lensPosition: number, handler?: $SDK170): void;
+    setFocusModeLocked(lensPosition: number, handler?: $SDK173): void;
     /**
      * func setPrimaryConstituentDeviceSwitchingBehavior(_ switchingBehavior: AVCaptureDevice.PrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions: AVCaptureDevice.PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)
      * @availability iOS 15.0+
@@ -6638,12 +6643,12 @@ export declare class AVCaptureDevice extends SDKHandle {
      * func setWhiteBalanceModeLocked(with whiteBalanceGains: AVCaptureDevice.WhiteBalanceGains) async -> CMTime
      * @availability iOS 8.0+
      */
-    setWhiteBalanceModeLockedWithCompletionHandler(whiteBalanceGains: AVCaptureDevice_WhiteBalanceGains, handler?: $SDK170): void;
+    setWhiteBalanceModeLockedWithCompletionHandler(whiteBalanceGains: AVCaptureDevice_WhiteBalanceGains, handler?: $SDK173): void;
     /**
      * func setWhiteBalanceModeLocked(whiteBalanceTemperatureAndTintValues: AVCaptureDevice.WhiteBalanceTemperatureAndTintValues, handler: ((CMTime) -> Void)? = nil)
      * @availability iOS 26.0+
      */
-    setWhiteBalanceModeLockedWhiteBalanceTemperatureAndTintValuesHandler(whiteBalanceTemperatureAndTintValues: AVCaptureDevice_WhiteBalanceTemperatureAndTintValues, handler?: $SDK170): void;
+    setWhiteBalanceModeLockedWhiteBalanceTemperatureAndTintValuesHandler(whiteBalanceTemperatureAndTintValues: AVCaptureDevice_WhiteBalanceTemperatureAndTintValues, handler?: $SDK173): void;
     /**
      * func supportsSessionPreset(_ preset: AVCaptureSession.Preset) -> Bool
      * @availability iOS 4.0+
@@ -6686,7 +6691,7 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var activeExposureSignals: Set<AVCaptureDeviceExposureSignal> { get }
      * @availability iOS 27.0+
      */
-    get activeExposureSignals(): $SDK172;
+    get activeExposureSignals(): $SDK175;
     /**
      * var activeFormat: AVCaptureDevice.Format { get set }
      * @availability iOS 7.0+
@@ -6703,7 +6708,7 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var activePrimaryConstituent: AVCaptureDevice? { get }
      * @availability iOS 15.0+
      */
-    get activePrimaryConstituent(): $SDK168;
+    get activePrimaryConstituent(): $SDK171;
     /**
      * var activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions: AVCaptureDevice.PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions { get }
      * @availability iOS 15.0+
@@ -6853,8 +6858,8 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var centerStageRectOfInterest: CGRect { get set }
      * @availability iOS 16.4+
      */
-    get centerStageRectOfInterest(): $SDK148;
-    set centerStageRectOfInterest(value: $SDK148);
+    get centerStageRectOfInterest(): $SDK151;
+    set centerStageRectOfInterest(value: $SDK151);
     /**
      * var cinematicVideoCaptureSceneMonitoringStatuses: Set<AVCaptureSceneMonitoringStatus> { get }
      * @availability iOS 26.0+
@@ -6864,7 +6869,7 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var companionDeskViewCamera: AVCaptureDevice? { get }
      * @availability iOS 16.0+
      */
-    get companionDeskViewCamera(): $SDK168;
+    get companionDeskViewCamera(): $SDK171;
     /**
      * var isConnected: Bool { get }
      * @availability iOS 4.0+
@@ -6932,8 +6937,8 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var enabledExposureSignals: Set<AVCaptureDeviceExposureSignal> { get set }
      * @availability iOS 27.0+
      */
-    get enabledExposureSignals(): $SDK172;
-    set enabledExposureSignals(value: $SDK172);
+    get enabledExposureSignals(): $SDK175;
+    set enabledExposureSignals(value: $SDK175);
     /**
      * var exposureDuration: CMTime { get }
      * @availability iOS 8.0+
@@ -6949,8 +6954,8 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var exposurePointOfInterest: CGPoint { get set }
      * @availability iOS 4.0+
      */
-    get exposurePointOfInterest(): $SDK135;
-    set exposurePointOfInterest(value: $SDK135);
+    get exposurePointOfInterest(): $SDK138;
+    set exposurePointOfInterest(value: $SDK138);
     /**
      * var isExposurePointOfInterestSupported: Bool { get }
      * @availability iOS 4.0+
@@ -6960,8 +6965,8 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var exposureRectOfInterest: CGRect { get set }
      * @availability iOS 26.0+
      */
-    get exposureRectOfInterest(): $SDK148;
-    set exposureRectOfInterest(value: $SDK148);
+    get exposureRectOfInterest(): $SDK151;
+    set exposureRectOfInterest(value: $SDK151);
     /**
      * var isExposureRectOfInterestSupported: Bool { get }
      * @availability iOS 26.0+
@@ -7023,8 +7028,8 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var focusPointOfInterest: CGPoint { get set }
      * @availability iOS 4.0+
      */
-    get focusPointOfInterest(): $SDK135;
-    set focusPointOfInterest(value: $SDK135);
+    get focusPointOfInterest(): $SDK138;
+    set focusPointOfInterest(value: $SDK138);
     /**
      * var isFocusPointOfInterestSupported: Bool { get }
      * @availability iOS 4.0+
@@ -7034,8 +7039,8 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var focusRectOfInterest: CGRect { get set }
      * @availability iOS 26.0+
      */
-    get focusRectOfInterest(): $SDK148;
-    set focusRectOfInterest(value: $SDK148);
+    get focusRectOfInterest(): $SDK151;
+    set focusRectOfInterest(value: $SDK151);
     /**
      * var isFocusRectOfInterestSupported: Bool { get }
      * @availability iOS 26.0+
@@ -7147,7 +7152,7 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var minExposureRectOfInterestSize: CGSize { get }
      * @availability iOS 26.0+
      */
-    get minExposureRectOfInterestSize(): $SDK33;
+    get minExposureRectOfInterestSize(): $SDK34;
     /**
      * var minExposureTargetBias: Float { get }
      * @availability iOS 8.0+
@@ -7157,7 +7162,7 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var minFocusRectOfInterestSize: CGSize { get }
      * @availability iOS 26.0+
      */
-    get minFocusRectOfInterestSize(): $SDK33;
+    get minFocusRectOfInterestSize(): $SDK34;
     /**
      * var minSupportedExternalSyncFrameDuration: CMTime { get }
      * @availability iOS 26.0+
@@ -7254,7 +7259,7 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var supportedExposureSignals: Set<AVCaptureDeviceExposureSignal> { get }
      * @availability iOS 27.0+
      */
-    get supportedExposureSignals(): $SDK172;
+    get supportedExposureSignals(): $SDK175;
     /**
      * var supportedFallbackPrimaryConstituentDevices: [AVCaptureDevice] { get }
      * @availability iOS 15.0+
@@ -7322,7 +7327,7 @@ export declare class AVCaptureDevice extends SDKHandle {
      * var virtualDeviceSwitchOverVideoZoomFactors: [NSNumber] { get }
      * @availability iOS 13.0+
      */
-    get virtualDeviceSwitchOverVideoZoomFactors(): $SDK63;
+    get virtualDeviceSwitchOverVideoZoomFactors(): $SDK64;
     /**
      * var whiteBalanceMode: AVCaptureDevice.WhiteBalanceMode { get set }
      * @availability iOS 4.0+
@@ -7909,32 +7914,32 @@ export declare class AVCaptureDevice_Format extends SDKHandle {
      * var videoFrameRateRangeForBackgroundReplacement: AVFrameRateRange? { get }
      * @availability iOS 18.0+
      */
-    get videoFrameRateRangeForBackgroundReplacement(): $SDK183;
+    get videoFrameRateRangeForBackgroundReplacement(): $SDK186;
     /**
      * var videoFrameRateRangeForCenterStage: AVFrameRateRange? { get }
      * @availability iOS 14.5+
      */
-    get videoFrameRateRangeForCenterStage(): $SDK183;
+    get videoFrameRateRangeForCenterStage(): $SDK186;
     /**
      * var videoFrameRateRangeForCinematicVideo: AVFrameRateRange? { get }
      * @availability iOS 26.0+
      */
-    get videoFrameRateRangeForCinematicVideo(): $SDK183;
+    get videoFrameRateRangeForCinematicVideo(): $SDK186;
     /**
      * var videoFrameRateRangeForPortraitEffect: AVFrameRateRange? { get }
      * @availability iOS 15.0+
      */
-    get videoFrameRateRangeForPortraitEffect(): $SDK183;
+    get videoFrameRateRangeForPortraitEffect(): $SDK186;
     /**
      * var videoFrameRateRangeForReactionEffectsInProgress: AVFrameRateRange? { get }
      * @availability iOS 17.0+
      */
-    get videoFrameRateRangeForReactionEffectsInProgress(): $SDK183;
+    get videoFrameRateRangeForReactionEffectsInProgress(): $SDK186;
     /**
      * var videoFrameRateRangeForStudioLight: AVFrameRateRange? { get }
      * @availability iOS 16.0+
      */
-    get videoFrameRateRangeForStudioLight(): $SDK183;
+    get videoFrameRateRangeForStudioLight(): $SDK186;
     /**
      * var isVideoHDRSupported: Bool { get }
      * @availability iOS 8.0+
@@ -8017,7 +8022,7 @@ export declare class AVCaptureDevice_Format extends SDKHandle {
      * @nonobjc var systemRecommendedVideoZoomRange: ClosedRange<CGFloat>? { get }
      * @availability iOS 18.0+
      */
-    get systemRecommendedVideoZoomRange(): $SDK186;
+    get systemRecommendedVideoZoomRange(): $SDK189;
     /**
      * @nonobjc var systemRecommendedExposureBiasRange: ClosedRange<Float>? { get }
      * @availability iOS 18.0+
@@ -8199,7 +8204,7 @@ export declare class AVCaptureDevice_RotationCoordinator extends SDKHandle {
      * init(device: AVCaptureDevice, previewLayer: CALayer?)
      * @availability iOS 17.0+
      */
-    static init(device: AVCaptureDevice, previewLayer?: $SDK188): AVCaptureDevice_RotationCoordinator;
+    static init(device: AVCaptureDevice, previewLayer?: $SDK191): AVCaptureDevice_RotationCoordinator;
     /**
      * func videoRotationAngleRelative(toDeviceOrientation deviceOrientation: AVCaptureVideoOrientation) -> CGFloat
      * @availability iOS 27.0+
@@ -8209,12 +8214,12 @@ export declare class AVCaptureDevice_RotationCoordinator extends SDKHandle {
      * weak var device: AVCaptureDevice? { get }
      * @availability iOS 17.0+
      */
-    get device(): $SDK168;
+    get device(): $SDK171;
     /**
      * weak var previewLayer: CALayer? { get }
      * @availability iOS 17.0+
      */
-    get previewLayer(): $SDK188;
+    get previewLayer(): $SDK191;
     /**
      * var videoRotationAngleForHorizonLevelCapture: CGFloat { get }
      * @availability iOS 17.0+
@@ -8540,7 +8545,7 @@ export declare class AVCaptureInput extends SDKHandle {
      * var ports: [AVCaptureInput.Port] { get }
      * @availability iOS 4.0+
      */
-    get ports(): $SDK155;
+    get ports(): $SDK158;
     readonly $type: {
         "c:objc(cs)AVCaptureInput": true;
         "c:objc(cs)NSObject": true;
@@ -8574,7 +8579,7 @@ export declare class AVCaptureDeviceInput extends AVCaptureDeviceInput_base {
      * func ports(for mediaType: AVMediaType?, sourceDeviceType: AVCaptureDevice.DeviceType?, sourceDevicePosition: AVCaptureDevice.Position) -> [AVCaptureInput.Port]
      * @availability iOS 13.0+
      */
-    ports(mediaType: (AVMediaType) | null, sourceDeviceType: $SDK166, sourceDevicePosition: AVCaptureDevice_Position): $SDK155;
+    ports(mediaType: (AVMediaType) | null, sourceDeviceType: $SDK169, sourceDevicePosition: AVCaptureDevice_Position): $SDK158;
     /**
      * func unfollowExternalSyncDevice()
      * @availability iOS 26.0+
@@ -8672,7 +8677,7 @@ export declare class AVCaptureDeviceInput extends AVCaptureDeviceInput_base {
      * var ports: [AVCaptureInput.Port] { get }
      * @availability iOS 4.0+
      */
-    get ports88360(): $SDK155;
+    get ports88360(): $SDK158;
     readonly $type: {
         "c:objc(cs)AVCaptureDeviceInput": true;
         "c:objc(cs)AVCaptureInput": true;
@@ -8778,12 +8783,12 @@ export declare class AVCaptureExternalDisplayConfigurator extends SDKHandle {
      * weak var device: AVCaptureDevice? { get }
      * @availability iOS 26.0+
      */
-    get device(): $SDK168;
+    get device(): $SDK171;
     /**
      * weak var previewLayer: CALayer? { get }
      * @availability iOS 26.0+
      */
-    get previewLayer(): $SDK188;
+    get previewLayer(): $SDK191;
     readonly $type: {
         "c:objc(cs)AVCaptureExternalDisplayConfigurator": true;
         "c:objc(cs)NSObject": true;
@@ -8891,27 +8896,27 @@ export interface AVCaptureFileOutputRecordingDelegate {
      * optional func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection])
      * @availability iOS 4.0+
      */
-    "fileOutputDidStartRecordingToFrom"?: (arg0: AVCaptureFileOutput, arg1: string, arg2: $SDK152) => void;
+    "fileOutputDidStartRecordingToFrom"?: (arg0: AVCaptureFileOutput, arg1: string, arg2: $SDK155) => void;
     /**
      * optional func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, startPTS: CMTime, from connections: [AVCaptureConnection])
      * @availability iOS 18.2+
      */
-    "fileOutputDidStartRecordingToStartPTSFrom"?: (arg0: AVCaptureFileOutput, arg1: string, arg2: _CoreMedia_CMTime, arg3: $SDK152) => void;
+    "fileOutputDidStartRecordingToStartPTSFrom"?: (arg0: AVCaptureFileOutput, arg1: string, arg2: _CoreMedia_CMTime, arg3: $SDK155) => void;
     /**
      * optional func fileOutput(_ output: AVCaptureFileOutput, didPauseRecordingTo fileURL: URL, from connections: [AVCaptureConnection])
      * @availability iOS 18.0+
      */
-    "fileOutputDidPauseRecordingToFrom"?: (arg0: AVCaptureFileOutput, arg1: string, arg2: $SDK152) => void;
+    "fileOutputDidPauseRecordingToFrom"?: (arg0: AVCaptureFileOutput, arg1: string, arg2: $SDK155) => void;
     /**
      * optional func fileOutput(_ output: AVCaptureFileOutput, didResumeRecordingTo fileURL: URL, from connections: [AVCaptureConnection])
      * @availability iOS 18.0+
      */
-    "fileOutputDidResumeRecordingToFrom"?: (arg0: AVCaptureFileOutput, arg1: string, arg2: $SDK152) => void;
+    "fileOutputDidResumeRecordingToFrom"?: (arg0: AVCaptureFileOutput, arg1: string, arg2: $SDK155) => void;
     /**
      * func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: (any Error)?)
      * @availability iOS 4.0+
      */
-    "fileOutputDidFinishRecordingToFromError"?: (arg0: AVCaptureFileOutput, arg1: string, arg2: $SDK152, arg3: (NativeError) | null) => void;
+    "fileOutputDidFinishRecordingToFromError"?: (arg0: AVCaptureFileOutput, arg1: string, arg2: $SDK155, arg3: (NativeError) | null) => void;
 }
 /**
  * class AVCaptureFraming
@@ -8988,7 +8993,7 @@ export declare class AVCaptureIndexPicker extends AVCaptureControl {
      * @nonobjc func setActionQueue(_ actionQueue: DispatchQueue, action: @escaping (Int) -> ())
      * @availability iOS 18.0+
      */
-    setActionQueue(actionQueue: _Dispatch_DispatchQueue, action: $SDK192): void;
+    setActionQueue(actionQueue: _Dispatch_DispatchQueue, action: $SDK195): void;
     readonly $type: {
         "c:objc(cs)AVCaptureIndexPicker": true;
         "c:objc(cs)AVCaptureControl": true;
@@ -9018,7 +9023,7 @@ export declare class AVCaptureInput_Port extends SDKHandle {
      * var clock: CMClock? { get }
      * @availability iOS 7.0+
      */
-    get clock(): $SDK193;
+    get clock(): $SDK196;
     /**
      * var isEnabled: Bool { get set }
      * @availability iOS 4.0+
@@ -9029,7 +9034,7 @@ export declare class AVCaptureInput_Port extends SDKHandle {
      * var formatDescription: CMFormatDescription? { get }
      * @availability iOS 4.0+
      */
-    get formatDescription(): $SDK82;
+    get formatDescription(): $SDK84;
     /**
      * var input: AVCaptureInput { get }
      * @availability iOS 4.0+
@@ -9049,7 +9054,7 @@ export declare class AVCaptureInput_Port extends SDKHandle {
      * var sourceDeviceType: AVCaptureDevice.DeviceType? { get }
      * @availability iOS 13.0+
      */
-    get sourceDeviceType(): $SDK166;
+    get sourceDeviceType(): $SDK169;
     readonly $type: {
         "c:objc(cs)AVCaptureInputPort": true;
         "c:objc(cs)NSObject": true;
@@ -9132,23 +9137,23 @@ export declare class AVCaptureMetadataOutput extends AVCaptureOutput {
      * func setMetadataObjectsDelegate(_ objectsDelegate: (any AVCaptureMetadataOutputObjectsDelegate)?, queue objectsCallbackQueue: dispatch_queue_t?)
      * @availability iOS 6.0+
      */
-    setMetadataObjectsDelegate(objectsDelegate?: (Implements<AVCaptureMetadataOutputObjectsDelegate> | SDKHandle) | null, objectsCallbackQueue?: $SDK51): void;
+    setMetadataObjectsDelegate(objectsDelegate?: (Implements<AVCaptureMetadataOutputObjectsDelegate> | SDKHandle) | null, objectsCallbackQueue?: $SDK52): void;
     /**
      * var availableMetadataObjectTypes: [AVMetadataObject.ObjectType] { get }
      * @availability iOS 6.0+
      */
-    get availableMetadataObjectTypes(): $SDK195;
+    get availableMetadataObjectTypes(): $SDK198;
     /**
      * var metadataObjectTypes: [AVMetadataObject.ObjectType]! { get set }
      * @availability iOS 6.0+
      */
-    get metadataObjectTypes(): $SDK196;
-    set metadataObjectTypes(value: $SDK196);
+    get metadataObjectTypes(): $SDK199;
+    set metadataObjectTypes(value: $SDK199);
     /**
      * var metadataObjectsCallbackQueue: dispatch_queue_t? { get }
      * @availability iOS 6.0+
      */
-    get metadataObjectsCallbackQueue(): $SDK51;
+    get metadataObjectsCallbackQueue(): $SDK52;
     /**
      * var metadataObjectsDelegate: (any AVCaptureMetadataOutputObjectsDelegate)? { get }
      * @availability iOS 6.0+
@@ -9158,13 +9163,13 @@ export declare class AVCaptureMetadataOutput extends AVCaptureOutput {
      * var rectOfInterest: CGRect { get set }
      * @availability iOS 7.0+
      */
-    get rectOfInterest(): $SDK148;
-    set rectOfInterest(value: $SDK148);
+    get rectOfInterest(): $SDK151;
+    set rectOfInterest(value: $SDK151);
     /**
      * var requiredMetadataObjectTypesForCinematicVideoCapture: [AVMetadataObject.ObjectType] { get }
      * @availability iOS 26.0+
      */
-    get requiredMetadataObjectTypesForCinematicVideoCapture(): $SDK195;
+    get requiredMetadataObjectTypesForCinematicVideoCapture(): $SDK198;
     readonly $type: {
         "c:objc(cs)AVCaptureMetadataOutput": true;
         "c:objc(cs)AVCaptureOutput": true;
@@ -9259,8 +9264,8 @@ export declare class AVCaptureMovieFileOutput extends AVCaptureFileOutput {
      * var metadata: [AVMetadataItem]? { get set }
      * @availability iOS 4.0+
      */
-    get metadata(): $SDK26;
-    set metadata(value: $SDK26);
+    get metadata(): $SDK27;
+    set metadata(value: $SDK27);
     /**
      * var movieFragmentInterval: CMTime { get set }
      * @availability iOS 4.0+
@@ -9464,12 +9469,12 @@ export declare class AVCaptureSession extends SDKHandle {
      * func setControlsDelegate(_ controlsDelegate: (any AVCaptureSessionControlsDelegate)?, queue controlsDelegateCallbackQueue: dispatch_queue_t?)
      * @availability iOS 18.0+
      */
-    setControlsDelegate(controlsDelegate?: (Implements<AVCaptureSessionControlsDelegate> | SDKHandle) | null, controlsDelegateCallbackQueue?: $SDK51): void;
+    setControlsDelegate(controlsDelegate?: (Implements<AVCaptureSessionControlsDelegate> | SDKHandle) | null, controlsDelegateCallbackQueue?: $SDK52): void;
     /**
      * func setDeferredStartDelegate(_ deferredStartDelegate: (any AVCaptureSessionDeferredStartDelegate)?, deferredStartDelegateCallbackQueue: dispatch_queue_t?)
      * @availability iOS 26.0+
      */
-    setDeferredStartDelegate(deferredStartDelegate?: (Implements<AVCaptureSessionDeferredStartDelegate> | SDKHandle) | null, deferredStartDelegateCallbackQueue?: $SDK51): void;
+    setDeferredStartDelegate(deferredStartDelegate?: (Implements<AVCaptureSessionDeferredStartDelegate> | SDKHandle) | null, deferredStartDelegateCallbackQueue?: $SDK52): void;
     /**
      * func startRunning()
      * @availability iOS 4.0+
@@ -9514,7 +9519,7 @@ export declare class AVCaptureSession extends SDKHandle {
      * var connections: [AVCaptureConnection] { get }
      * @availability iOS 13.0+
      */
-    get connections(): $SDK152;
+    get connections(): $SDK155;
     /**
      * var controls: [AVCaptureControl] { get }
      * @availability iOS 18.0+
@@ -9529,7 +9534,7 @@ export declare class AVCaptureSession extends SDKHandle {
      * var controlsDelegateCallbackQueue: dispatch_queue_t? { get }
      * @availability iOS 18.0+
      */
-    get controlsDelegateCallbackQueue(): $SDK51;
+    get controlsDelegateCallbackQueue(): $SDK52;
     /**
      * var deferredStartDelegate: (any AVCaptureSessionDeferredStartDelegate)? { get }
      * @availability iOS 26.0+
@@ -9539,7 +9544,7 @@ export declare class AVCaptureSession extends SDKHandle {
      * var deferredStartDelegateCallbackQueue: dispatch_queue_t? { get }
      * @availability iOS 26.0+
      */
-    get deferredStartDelegateCallbackQueue(): $SDK51;
+    get deferredStartDelegateCallbackQueue(): $SDK52;
     /**
      * var hardwareCost: Float { get }
      * @availability iOS 16.0+
@@ -9565,7 +9570,7 @@ export declare class AVCaptureSession extends SDKHandle {
      * @availability iOS 7.0+
      * @deprecated iOS 15.4
      */
-    get masterClock(): $SDK193;
+    get masterClock(): $SDK196;
     /**
      * var maxControlsCount: Int { get }
      * @availability iOS 18.0+
@@ -9607,7 +9612,7 @@ export declare class AVCaptureSession extends SDKHandle {
      * var synchronizationClock: CMClock? { get }
      * @availability iOS 15.4+
      */
-    get synchronizationClock(): $SDK193;
+    get synchronizationClock(): $SDK196;
     /**
      * var usesApplicationAudioSession: Bool { get set }
      * @availability iOS 7.0+
@@ -9859,8 +9864,8 @@ export declare class AVCapturePhotoSettings extends SDKHandle {
      * var enabledSemanticSegmentationMatteTypes: [AVSemanticSegmentationMatte.MatteType] { get set }
      * @availability iOS 13.0+
      */
-    get enabledSemanticSegmentationMatteTypes(): $SDK199;
-    set enabledSemanticSegmentationMatteTypes(value: $SDK199);
+    get enabledSemanticSegmentationMatteTypes(): $SDK202;
+    set enabledSemanticSegmentationMatteTypes(value: $SDK202);
     /**
      * var flashMode: AVCaptureDevice.FlashMode { get set }
      * @availability iOS 10.0+
@@ -9889,8 +9894,8 @@ export declare class AVCapturePhotoSettings extends SDKHandle {
      * var livePhotoMovieMetadata: [AVMetadataItem]! { get set }
      * @availability iOS 10.0+
      */
-    get livePhotoMovieMetadata(): $SDK26;
-    set livePhotoMovieMetadata(value: $SDK26);
+    get livePhotoMovieMetadata(): $SDK27;
+    set livePhotoMovieMetadata(value: $SDK27);
     /**
      * var livePhotoVideoCodecType: AVVideoCodecType { get set }
      * @availability iOS 11.0+
@@ -10029,17 +10034,17 @@ export declare class AVCapturePhotoBracketSettings extends AVCapturePhotoSetting
      * convenience init(rawPixelFormatType: OSType, processedFormat: [String : Any]?, bracketedSettings: [AVCaptureBracketedStillImageSettings])
      * @availability iOS 10.0+
      */
-    static initRawPixelFormatTypeProcessedFormatBracketedSettings(rawPixelFormatType: SDKHandle, processedFormat: $SDK19, bracketedSettings: $SDK200): AVCapturePhotoBracketSettings;
+    static initRawPixelFormatTypeProcessedFormatBracketedSettings(rawPixelFormatType: SDKHandle, processedFormat: $SDK19, bracketedSettings: $SDK203): AVCapturePhotoBracketSettings;
     /**
      * convenience init(rawPixelFormatType: OSType, rawFileType: AVFileType?, processedFormat: [String : Any]?, processedFileType: AVFileType?, bracketedSettings: [AVCaptureBracketedStillImageSettings])
      * @availability iOS 11.0+
      */
-    static initRawPixelFormatTypeRawFileTypeProcessedFormatProcessedFileTypeBracketedSettings(rawPixelFormatType: SDKHandle, rawFileType: (AVFileType) | null, processedFormat: $SDK19, processedFileType: (AVFileType) | null, bracketedSettings: $SDK200): AVCapturePhotoBracketSettings;
+    static initRawPixelFormatTypeRawFileTypeProcessedFormatProcessedFileTypeBracketedSettings(rawPixelFormatType: SDKHandle, rawFileType: (AVFileType) | null, processedFormat: $SDK19, processedFileType: (AVFileType) | null, bracketedSettings: $SDK203): AVCapturePhotoBracketSettings;
     /**
      * var bracketedSettings: [AVCaptureBracketedStillImageSettings] { get }
      * @availability iOS 10.0+
      */
-    get bracketedSettings(): $SDK200;
+    get bracketedSettings(): $SDK203;
     /**
      * var isLensStabilizationEnabled: Bool { get set }
      * @availability iOS 10.0+
@@ -10128,13 +10133,13 @@ export interface AVCapturePhotoCaptureDelegate {
      * @availability iOS 10.0+
      * @deprecated iOS 11.0
      */
-    "photoOutputDidFinishProcessingPhotoPreviewPhotoResolvedSettingsBracketSettingsError"?: (arg0: AVCapturePhotoOutput, arg1: $SDK47, arg2: $SDK47, arg3: AVCaptureResolvedPhotoSettings, arg4: $SDK163, arg5: (NativeError) | null) => void;
+    "photoOutputDidFinishProcessingPhotoPreviewPhotoResolvedSettingsBracketSettingsError"?: (arg0: AVCapturePhotoOutput, arg1: $SDK48, arg2: $SDK48, arg3: AVCaptureResolvedPhotoSettings, arg4: $SDK166, arg5: (NativeError) | null) => void;
     /**
      * optional func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingRawPhoto rawSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: (any Error)?)
      * @availability iOS 10.0+
      * @deprecated iOS 11.0
      */
-    "photoOutputDidFinishProcessingRawPhotoPreviewPhotoResolvedSettingsBracketSettingsError"?: (arg0: AVCapturePhotoOutput, arg1: $SDK47, arg2: $SDK47, arg3: AVCaptureResolvedPhotoSettings, arg4: $SDK163, arg5: (NativeError) | null) => void;
+    "photoOutputDidFinishProcessingRawPhotoPreviewPhotoResolvedSettingsBracketSettingsError"?: (arg0: AVCapturePhotoOutput, arg1: $SDK48, arg2: $SDK48, arg3: AVCaptureResolvedPhotoSettings, arg4: $SDK166, arg5: (NativeError) | null) => void;
     /**
      * optional func photoOutput(_ output: AVCapturePhotoOutput, didFinishRecordingLivePhotoMovieForEventualFileAt outputFileURL: URL, resolvedSettings: AVCaptureResolvedPhotoSettings)
      * @availability iOS 10.0+
@@ -10167,13 +10172,13 @@ export declare class AVCapturePhotoOutput extends AVCaptureOutput {
      * @availability iOS 10.0+
      * @deprecated iOS 11.0
      */
-    static dngPhotoDataRepresentation(rawSampleBuffer: _CoreMedia_CMSampleBuffer, previewPhotoSampleBuffer?: $SDK47): (ArrayBuffer) | null;
+    static dngPhotoDataRepresentation(rawSampleBuffer: _CoreMedia_CMSampleBuffer, previewPhotoSampleBuffer?: $SDK48): (ArrayBuffer) | null;
     /**
      * class func jpegPhotoDataRepresentation(forJPEGSampleBuffer JPEGSampleBuffer: CMSampleBuffer, previewPhotoSampleBuffer: CMSampleBuffer?) -> Data?
      * @availability iOS 10.0+
      * @deprecated iOS 11.0
      */
-    static jpegPhotoDataRepresentation(JPEGSampleBuffer: _CoreMedia_CMSampleBuffer, previewPhotoSampleBuffer?: $SDK47): (ArrayBuffer) | null;
+    static jpegPhotoDataRepresentation(JPEGSampleBuffer: _CoreMedia_CMSampleBuffer, previewPhotoSampleBuffer?: $SDK48): (ArrayBuffer) | null;
     /**
      * class func isAppleProRAWPixelFormat(_ pixelFormat: OSType) -> Bool
      * @availability iOS 14.3+
@@ -10265,7 +10270,7 @@ export declare class AVCapturePhotoOutput extends AVCaptureOutput {
      * var availableSemanticSegmentationMatteTypes: [AVSemanticSegmentationMatte.MatteType] { get }
      * @availability iOS 13.0+
      */
-    get availableSemanticSegmentationMatteTypes(): $SDK199;
+    get availableSemanticSegmentationMatteTypes(): $SDK202;
     /**
      * var isCameraCalibrationDataDeliverySupported: Bool { get }
      * @availability iOS 11.0+
@@ -10343,8 +10348,8 @@ export declare class AVCapturePhotoOutput extends AVCaptureOutput {
      * var enabledSemanticSegmentationMatteTypes: [AVSemanticSegmentationMatte.MatteType] { get set }
      * @availability iOS 13.0+
      */
-    get enabledSemanticSegmentationMatteTypes(): $SDK199;
-    set enabledSemanticSegmentationMatteTypes(value: $SDK199);
+    get enabledSemanticSegmentationMatteTypes(): $SDK202;
+    set enabledSemanticSegmentationMatteTypes(value: $SDK202);
     /**
      * var isFastCapturePrioritizationEnabled: Bool { get set }
      * @availability iOS 17.0+
@@ -11056,7 +11061,7 @@ export declare class AVCaptureSlider extends AVCaptureControl {
      * @nonobjc func setActionQueue(_ actionQueue: DispatchQueue, action: @escaping (Float) -> ())
      * @availability iOS 18.0+
      */
-    setActionQueue(actionQueue: _Dispatch_DispatchQueue, action: $SDK192): void;
+    setActionQueue(actionQueue: _Dispatch_DispatchQueue, action: $SDK195): void;
     /**
      * @nonobjc var prominentValues: [Float] { get set }
      * @availability iOS 18.0+
@@ -11155,7 +11160,7 @@ export declare class AVCaptureSpatialAudioMetadataSampleGenerator extends SDKHan
      * func newTimedMetadataSampleBufferAndResetAnalyzer() -> Unmanaged<CMSampleBuffer>?
      * @availability iOS 26.0+
      */
-    newTimedMetadataSampleBufferAndResetAnalyzer(): $SDK209;
+    newTimedMetadataSampleBufferAndResetAnalyzer(): $SDK212;
     /**
      * func resetAnalyzer()
      * @availability iOS 26.0+
@@ -11197,7 +11202,7 @@ export declare class AVCaptureStillImageOutput extends AVCaptureOutput {
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    captureStillImageBracketAsynchronously(connection: AVCaptureConnection, settings: $SDK200, handler: ((arg0: (_CoreMedia_CMSampleBuffer) | null, arg1: (AVCaptureBracketedStillImageSettings) | null, arg2: (NativeError) | null) => void)): void;
+    captureStillImageBracketAsynchronously(connection: AVCaptureConnection, settings: $SDK203, handler: ((arg0: (_CoreMedia_CMSampleBuffer) | null, arg1: (AVCaptureBracketedStillImageSettings) | null, arg2: (NativeError) | null) => void)): void;
     /**
      * init()
      * @availability iOS 4.0+
@@ -11209,7 +11214,7 @@ export declare class AVCaptureStillImageOutput extends AVCaptureOutput {
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    prepareToCaptureStillImageBracket(connection: AVCaptureConnection, settings: $SDK200, handler: $SDK212): void;
+    prepareToCaptureStillImageBracket(connection: AVCaptureConnection, settings: $SDK203, handler: $SDK215): void;
     /**
      * var automaticallyEnablesStillImageStabilizationWhenAvailable: Bool { get set }
      * @availability iOS 7.0+
@@ -11222,7 +11227,7 @@ export declare class AVCaptureStillImageOutput extends AVCaptureOutput {
      * @availability iOS 4.0+
      * @deprecated iOS 10.0
      */
-    get availableImageDataCVPixelFormatTypes(): $SDK63;
+    get availableImageDataCVPixelFormatTypes(): $SDK64;
     /**
      * var availableImageDataCodecTypes: [AVVideoCodecType] { get }
      * @availability iOS 4.0+
@@ -11344,12 +11349,12 @@ export declare class AVCaptureSynchronizedDataCollection extends SDKHandle {
      * subscript(key: AVCaptureOutput) -> AVCaptureSynchronizedData? { get }
      * @availability iOS 11.0+
      */
-    subscript(key: AVCaptureOutput): $SDK213;
+    subscript(key: AVCaptureOutput): $SDK216;
     /**
      * func synchronizedData(for captureOutput: AVCaptureOutput) -> AVCaptureSynchronizedData?
      * @availability iOS 11.0+
      */
-    synchronizedData(captureOutput: AVCaptureOutput): $SDK213;
+    synchronizedData(captureOutput: AVCaptureOutput): $SDK216;
     /**
      * var count: Int { get }
      * @availability iOS 11.0+
@@ -11382,7 +11387,7 @@ export declare class AVCaptureSynchronizedDataCollection_Iterator extends SDKHan
      * mutating func next() -> AVCaptureSynchronizedData?
      * @availability iOS 11.0+
      */
-    next(): $SDK213;
+    next(): $SDK216;
     readonly $type: {
         "s:So35AVCaptureSynchronizedDataCollectionC12AVFoundationE8IteratorV": true;
     };
@@ -11490,7 +11495,7 @@ export declare class AVCaptureSystemExposureBiasSlider extends AVCaptureControl 
      * init(device: AVCaptureDevice, action: @escaping @MainActor @Sendable (Float) -> Void)
      * @availability iOS 18.0+
      */
-    static initDeviceAction(device: AVCaptureDevice, action: $SDK192): Promise<AVCaptureSystemExposureBiasSlider>;
+    static initDeviceAction(device: AVCaptureDevice, action: $SDK195): Promise<AVCaptureSystemExposureBiasSlider>;
     readonly $type: {
         "c:objc(cs)AVCaptureSystemExposureBiasSlider": true;
         "c:objc(cs)AVCaptureControl": true;
@@ -11514,7 +11519,7 @@ export declare class AVCaptureSystemZoomSlider extends AVCaptureControl {
      * init(device: AVCaptureDevice, action: @escaping @MainActor @Sendable (CGFloat) -> Void)
      * @availability iOS 18.0+
      */
-    static initDeviceAction(device: AVCaptureDevice, action: $SDK192): Promise<AVCaptureSystemZoomSlider>;
+    static initDeviceAction(device: AVCaptureDevice, action: $SDK195): Promise<AVCaptureSystemZoomSlider>;
     readonly $type: {
         "c:objc(cs)AVCaptureSystemZoomSlider": true;
         "c:objc(cs)AVCaptureControl": true;
@@ -11538,12 +11543,12 @@ export declare class AVCaptureTimecode extends SDKHandle {
      * static func createMetadataSampleBuffer(from timecode: AVCaptureTimecode, associatedWithPresentationTimeStamp presentationTimeStamp: CMTime) -> Unmanaged<CMSampleBuffer>?
      * @availability iOS 26.0+
      */
-    static createMetadataSampleBufferFromAssociatedWithPresentationTimeStamp(timecode: AVCaptureTimecode, presentationTimeStamp: _CoreMedia_CMTime): $SDK209;
+    static createMetadataSampleBufferFromAssociatedWithPresentationTimeStamp(timecode: AVCaptureTimecode, presentationTimeStamp: _CoreMedia_CMTime): $SDK212;
     /**
      * static func createMetadataSampleBuffer(from timecode: AVCaptureTimecode, forDuration duration: CMTime) -> Unmanaged<CMSampleBuffer>?
      * @availability iOS 26.0+
      */
-    static createMetadataSampleBufferFromForDuration(timecode: AVCaptureTimecode, duration: _CoreMedia_CMTime): $SDK209;
+    static createMetadataSampleBufferFromForDuration(timecode: AVCaptureTimecode, duration: _CoreMedia_CMTime): $SDK212;
     /**
      * var frameDuration: CMTime
      * @availability iOS 26.0+
@@ -11670,7 +11675,7 @@ export declare class AVCaptureTimecodeGenerator extends SDKHandle {
      * func setDelegate(_ delegate: (any AVCaptureTimecodeGeneratorDelegate)?, queue callbackQueue: dispatch_queue_t?)
      * @availability iOS 26.0+
      */
-    setDelegate(delegate?: (Implements<AVCaptureTimecodeGeneratorDelegate> | SDKHandle) | null, callbackQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVCaptureTimecodeGeneratorDelegate> | SDKHandle) | null, callbackQueue?: $SDK52): void;
     /**
      * func startSynchronization(source: AVCaptureTimecode.Source)
      * @availability iOS 26.0+
@@ -11695,7 +11700,7 @@ export declare class AVCaptureTimecodeGenerator extends SDKHandle {
      * var delegateCallbackQueue: dispatch_queue_t? { get }
      * @availability iOS 26.0+
      */
-    get delegateCallbackQueue(): $SDK51;
+    get delegateCallbackQueue(): $SDK52;
     /**
      * var synchronizationTimeout: TimeInterval { get set }
      * @availability iOS 26.0+
@@ -11780,7 +11785,7 @@ export declare class AVCaptureVideoDataOutput extends AVCaptureOutput {
      * func recommendedMovieMetadata(forVideoCodecType videoCodecType: AVVideoCodecType, assetWriterOutputFileType outputFileType: AVFileType) -> [AVMetadataItem]?
      * @availability iOS 26.0+
      */
-    recommendedMovieMetadata(videoCodecType: AVVideoCodecType, outputFileType: AVFileType): $SDK26;
+    recommendedMovieMetadata(videoCodecType: AVVideoCodecType, outputFileType: AVFileType): $SDK27;
     /**
      * func recommendedVideoSettingsForAssetWriter(writingTo outputFileType: AVFileType) -> [String : Any]?
      * @availability iOS 7.0+
@@ -11800,7 +11805,7 @@ export declare class AVCaptureVideoDataOutput extends AVCaptureOutput {
      * func setSampleBufferDelegate(_ sampleBufferDelegate: (any AVCaptureVideoDataOutputSampleBufferDelegate)?, queue sampleBufferCallbackQueue: dispatch_queue_t?)
      * @availability iOS 4.0+
      */
-    setSampleBufferDelegate(sampleBufferDelegate?: (Implements<AVCaptureVideoDataOutputSampleBufferDelegate> | SDKHandle) | null, sampleBufferCallbackQueue?: $SDK51): void;
+    setSampleBufferDelegate(sampleBufferDelegate?: (Implements<AVCaptureVideoDataOutputSampleBufferDelegate> | SDKHandle) | null, sampleBufferCallbackQueue?: $SDK52): void;
     /**
      * var alwaysDiscardsLateVideoFrames: Bool { get set }
      * @availability iOS 4.0+
@@ -11845,7 +11850,7 @@ export declare class AVCaptureVideoDataOutput extends AVCaptureOutput {
      * var sampleBufferCallbackQueue: dispatch_queue_t? { get }
      * @availability iOS 4.0+
      */
-    get sampleBufferCallbackQueue(): $SDK51;
+    get sampleBufferCallbackQueue(): $SDK52;
     /**
      * var sampleBufferDelegate: (any AVCaptureVideoDataOutputSampleBufferDelegate)? { get }
      * @availability iOS 4.0+
@@ -11920,7 +11925,7 @@ export declare class AVCaptureVideoPreviewLayer extends SDKHandle {
      * func captureDevicePointConverted(fromLayerPoint pointInLayer: CGPoint) -> CGPoint
      * @availability iOS 6.0+
      */
-    captureDevicePointConverted(pointInLayer: $SDK135): $SDK135;
+    captureDevicePointConverted(pointInLayer: $SDK138): $SDK138;
     /**
      * init(session: AVCaptureSession)
      * @availability iOS 4.0+
@@ -11935,17 +11940,17 @@ export declare class AVCaptureVideoPreviewLayer extends SDKHandle {
      * func metadataOutputRectConverted(fromLayerRect rectInLayerCoordinates: CGRect) -> CGRect
      * @availability iOS 7.0+
      */
-    metadataOutputRectConverted(rectInLayerCoordinates: $SDK148): $SDK148;
+    metadataOutputRectConverted(rectInLayerCoordinates: $SDK151): $SDK151;
     /**
      * func layerPointConverted(fromCaptureDevicePoint captureDevicePointOfInterest: CGPoint) -> CGPoint
      * @availability iOS 6.0+
      */
-    layerPointConverted(captureDevicePointOfInterest: $SDK135): $SDK135;
+    layerPointConverted(captureDevicePointOfInterest: $SDK138): $SDK138;
     /**
      * func layerRectConverted(fromMetadataOutputRect rectInMetadataOutputCoordinates: CGRect) -> CGRect
      * @availability iOS 7.0+
      */
-    layerRectConverted(rectInMetadataOutputCoordinates: $SDK148): $SDK148;
+    layerRectConverted(rectInMetadataOutputCoordinates: $SDK151): $SDK151;
     /**
      * func setSessionWithNoConnection(_ session: AVCaptureSession)
      * @availability iOS 8.0+
@@ -12024,7 +12029,7 @@ export declare class AVCIImageFilteringParameters extends SDKHandle {
      * let renderSize: CGSize
      * @availability iOS 26.0+
      */
-    get renderSize(): $SDK33;
+    get renderSize(): $SDK34;
     /**
      * let sourceImage: CIImage
      * @availability iOS 26.0+
@@ -12048,7 +12053,7 @@ export declare class AVCIImageFilteringResult extends SDKHandle {
      * init(resultImage: CIImage, ciContext: CIContext? = nil)
      * @availability iOS 26.0+
      */
-    static init(resultImage: _CoreImage_CIImage, ciContext?: $SDK92): AVCIImageFilteringResult;
+    static init(resultImage: _CoreImage_CIImage, ciContext?: $SDK95): AVCIImageFilteringResult;
     /**
      * let resultImage: CIImage
      * @availability iOS 26.0+
@@ -12058,7 +12063,7 @@ export declare class AVCIImageFilteringResult extends SDKHandle {
      * let ciContext: CIContext?
      * @availability iOS 26.0+
      */
-    get ciContext(): $SDK92;
+    get ciContext(): $SDK95;
     readonly $type: {
         "s:12AVFoundation24AVCIImageFilteringResultV": true;
     };
@@ -12084,12 +12089,12 @@ export declare class AVComposition extends AVComposition_base {
      * func loadTracks(withMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) async throws -> [AVCompositionTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK219): void;
+    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK222): void;
     /**
      * func loadTracks(withMediaType mediaType: AVMediaType) async throws -> [AVCompositionTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK219): void;
+    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK222): void;
     /** func mediaSelectionGroup(forMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) -> AVMediaSelectionGroup? */
     mediaSelectionGroup(mediaCharacteristic: AVMediaCharacteristic): $SDK8;
     /** func metadata(forFormat format: AVMetadataFormat) -> [AVMetadataItem] */
@@ -12097,9 +12102,9 @@ export declare class AVComposition extends AVComposition_base {
     /** func track(withTrackID trackID: CMPersistentTrackID) -> AVCompositionTrack? */
     track(trackID: number): (AVCompositionTrack) | null;
     /** func tracks(withMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) -> [AVCompositionTrack] */
-    tracksWithMediaCharacteristic(mediaCharacteristic: AVMediaCharacteristic): $SDK221;
+    tracksWithMediaCharacteristic(mediaCharacteristic: AVMediaCharacteristic): $SDK224;
     /** func tracks(withMediaType mediaType: AVMediaType) -> [AVCompositionTrack] */
-    tracksWithMediaType(mediaType: AVMediaType): $SDK221;
+    tracksWithMediaType(mediaType: AVMediaType): $SDK224;
     /** func unusedTrackID() -> CMPersistentTrackID */
     unusedTrackID(): number;
     /**
@@ -12184,7 +12189,7 @@ export declare class AVComposition extends AVComposition_base {
      * var naturalSize: CGSize { get }
      * @availability iOS 4.0+
      */
-    get naturalSize(): $SDK33;
+    get naturalSize(): $SDK34;
     /**
      * var overallDurationHint: CMTime { get }
      * @availability iOS 10.2+
@@ -12222,7 +12227,7 @@ export declare class AVComposition extends AVComposition_base {
      * var tracks: [AVCompositionTrack] { get }
      * @availability iOS 4.0+
      */
-    get tracks(): $SDK221;
+    get tracks(): $SDK224;
     readonly $type: {
         "c:objc(cs)AVComposition": true;
         "c:objc(cs)AVAsset": true;
@@ -12289,7 +12294,7 @@ export declare class AVCompositionTrack extends AVCompositionTrack_base {
      * var availableTrackAssociationTypes: [AVAssetTrack.AssociationType] { get }
      * @availability iOS 7.0+
      */
-    get availableTrackAssociationTypes(): $SDK61;
+    get availableTrackAssociationTypes(): $SDK62;
     /**
      * var canProvideSampleCursors: Bool { get }
      * @availability iOS 16.0+
@@ -12333,7 +12338,7 @@ export declare class AVCompositionTrack extends AVCompositionTrack_base {
      */
     get minFrameDuration(): _CoreMedia_CMTime;
     /** var naturalSize: CGSize { get } */
-    get naturalSize(): $SDK33;
+    get naturalSize(): $SDK34;
     /** var naturalTimeScale: CMTimeScale { get } */
     get naturalTimeScale(): number;
     /** var nominalFrameRate: Float { get } */
@@ -12521,12 +12526,12 @@ export declare class AVContentKeyRequest extends SDKHandle {
      * func makeOptionalStreamingContentKeyRequestData(forApp appIdentifier: Data, contentIdentifier: Data?, options: [String : Any]? = nil) async throws -> Data
      * @availability iOS 27.0+
      */
-    makeOptionalStreamingContentKeyRequestData(appIdentifier: ArrayBuffer, contentIdentifier: (ArrayBuffer) | null, options: $SDK19, completionHandler: $SDK225): void;
+    makeOptionalStreamingContentKeyRequestData(appIdentifier: ArrayBuffer, contentIdentifier: (ArrayBuffer) | null, options: $SDK19, completionHandler: $SDK228): void;
     /**
      * func makeStreamingContentKeyRequestData(forApp appIdentifier: Data, contentIdentifier: Data?, options: [String : Any]? = nil) async throws -> Data
      * @availability iOS 10.3+
      */
-    makeStreamingContentKeyRequestData(appIdentifier: ArrayBuffer, contentIdentifier: (ArrayBuffer) | null, options: $SDK19, handler: $SDK225): void;
+    makeStreamingContentKeyRequestData(appIdentifier: ArrayBuffer, contentIdentifier: (ArrayBuffer) | null, options: $SDK19, handler: $SDK228): void;
     /**
      * func processContentKeyResponse(_ keyResponse: AVContentKeyResponse)
      * @availability iOS 10.3+
@@ -12587,7 +12592,7 @@ export declare class AVContentKeyRequest extends SDKHandle {
      * var options: [String : any Sendable] { get }
      * @availability iOS 12.2+
      */
-    get options(): $SDK91;
+    get options(): $SDK93;
     /**
      * weak var originatingRecipient: (any AVContentKeyRecipient)? { get }
      * @availability iOS 26.0+
@@ -12712,22 +12717,22 @@ export declare class AVContentKeySession extends SDKHandle {
      * func invalidateAllPersistableContentKeys(forApp appIdentifier: Data, options: [AVContentKeySessionServerPlaybackContextOption : Any]? = nil) async throws -> Data
      * @availability iOS 12.2+
      */
-    invalidateAllPersistableContentKeys(appIdentifier: ArrayBuffer, options: $SDK226, handler: $SDK225): void;
+    invalidateAllPersistableContentKeys(appIdentifier: ArrayBuffer, options: $SDK229, handler: $SDK228): void;
     /**
      * func invalidatePersistableContentKey(_ persistableContentKeyData: Data, options: [AVContentKeySessionServerPlaybackContextOption : Any]? = nil) async throws -> Data
      * @availability iOS 12.2+
      */
-    invalidatePersistableContentKey(persistableContentKeyData: ArrayBuffer, options: $SDK226, handler: $SDK225): void;
+    invalidatePersistableContentKey(persistableContentKeyData: ArrayBuffer, options: $SDK229, handler: $SDK228): void;
     /**
      * func makeSecureTokenForExpirationDate(ofPersistableContentKey persistableContentKeyData: Data) async throws -> Data
      * @availability iOS 11.0+
      */
-    makeSecureTokenForExpirationDate(persistableContentKeyData: ArrayBuffer, handler: $SDK225): void;
+    makeSecureTokenForExpirationDate(persistableContentKeyData: ArrayBuffer, handler: $SDK228): void;
     /**
      * func processContentKeyRequest(withIdentifier identifier: (any Sendable)?, initializationData: Data?, options: [String : any Sendable]? = nil)
      * @availability iOS 10.3+
      */
-    processContentKeyRequest(identifier?: (SDKHandle) | null, initializationData?: (ArrayBuffer) | null, options?: $SDK70): void;
+    processContentKeyRequest(identifier?: (SDKHandle) | null, initializationData?: (ArrayBuffer) | null, options?: $SDK71): void;
     /** func removeContentKeyRecipient(_ recipient: any AVContentKeyRecipient) */
     removeContentKeyRecipient(recipient: SDKHandle): void;
     /**
@@ -12739,7 +12744,7 @@ export declare class AVContentKeySession extends SDKHandle {
      * func setDelegate(_ delegate: (any AVContentKeySessionDelegate)?, queue delegateQueue: dispatch_queue_t?)
      * @availability iOS 10.3+
      */
-    setDelegate(delegate?: (SDKHandle) | null, delegateQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVContentKeySessionDelegate> | SDKHandle) | null, delegateQueue?: $SDK52): void;
     /** var contentKeyRecipients: [any AVContentKeyRecipient] { get } */
     get contentKeyRecipients(): Array<SDKHandle>;
     /**
@@ -12756,7 +12761,7 @@ export declare class AVContentKeySession extends SDKHandle {
      * var delegateQueue: dispatch_queue_t? { get }
      * @availability iOS 10.3+
      */
-    get delegateQueue(): $SDK51;
+    get delegateQueue(): $SDK52;
     /**
      * var keySystem: AVContentKeySystem { get }
      * @availability iOS 10.3+
@@ -12878,7 +12883,7 @@ export declare class AVContentKeySpecifier extends SDKHandle {
      * var options: [String : any Sendable] { get }
      * @availability iOS 14.5+
      */
-    get options(): $SDK91;
+    get options(): $SDK93;
     readonly $type: {
         "c:objc(cs)AVContentKeySpecifier": true;
         "c:objc(cs)NSObject": true;
@@ -12937,7 +12942,7 @@ export declare class AVCoordinatedPlaybackParticipant extends SDKHandle {
      * var suspensionReasons: [AVCoordinatedPlaybackSuspension.Reason] { get }
      * @availability iOS 15.0+
      */
-    get suspensionReasons(): $SDK228;
+    get suspensionReasons(): $SDK232;
     readonly $type: {
         "c:objc(cs)AVCoordinatedPlaybackParticipant": true;
         "c:objc(cs)NSObject": true;
@@ -13040,7 +13045,7 @@ export declare class AVCustomMediaSelectionScheme extends SDKHandle {
      * func mediaPresentationSettings(for selector: AVMediaPresentationSelector, complementaryToLanguage language: String?, settings: [AVMediaPresentationSetting]) -> [AVMediaPresentationSetting]
      * @availability iOS 26.0+
      */
-    mediaPresentationSettings(selector: AVMediaPresentationSelector, language: (string) | null, settings: $SDK229): $SDK229;
+    mediaPresentationSettings(selector: AVMediaPresentationSelector, language: (string) | null, settings: $SDK233): $SDK233;
     /**
      * var availableLanguages: [String] { get }
      * @availability iOS 26.0+
@@ -13108,12 +13113,12 @@ export declare class AVDateRangeMetadataGroup extends AVDateRangeMetadataGroup_b
      * init(items: [AVMetadataItem], start startDate: Date, end endDate: Date?)
      * @availability iOS 9.0+
      */
-    static init(items: Array<AVMetadataItem>, startDate: globalThis.Date, endDate?: $SDK52): AVDateRangeMetadataGroup;
+    static init(items: Array<AVMetadataItem>, startDate: globalThis.Date, endDate?: $SDK53): AVDateRangeMetadataGroup;
     /**
      * var endDate: Date? { get }
      * @availability iOS 9.0+
      */
-    get endDate(): $SDK52;
+    get endDate(): $SDK53;
     /**
      * var items: [AVMetadataItem] { get }
      * @availability iOS 9.0+
@@ -13187,13 +13192,13 @@ export declare class AVPlaybackCoordinator extends SDKHandle {
      * var suspensionReasons: [AVCoordinatedPlaybackSuspension.Reason] { get }
      * @availability iOS 15.0+
      */
-    get suspensionReasons(): $SDK228;
+    get suspensionReasons(): $SDK232;
     /**
      * var suspensionReasonsThatTriggerWaiting: [AVCoordinatedPlaybackSuspension.Reason] { get set }
      * @availability iOS 15.0+
      */
-    get suspensionReasonsThatTriggerWaiting(): $SDK228;
-    set suspensionReasonsThatTriggerWaiting(value: $SDK228);
+    get suspensionReasonsThatTriggerWaiting(): $SDK232;
+    set suspensionReasonsThatTriggerWaiting(value: $SDK232);
     readonly $type: {
         "c:objc(cs)AVPlaybackCoordinator": true;
         "c:objc(cs)NSObject": true;
@@ -13234,7 +13239,7 @@ export declare class AVDelegatingPlaybackCoordinator extends AVPlaybackCoordinat
      * func transitionToItem(withIdentifier itemIdentifier: String?, proposingInitialTimingBasedOn snapshotTimebase: CMTimebase?)
      * @availability iOS 15.0+
      */
-    transitionToItem(itemIdentifier?: (string) | null, snapshotTimebase?: $SDK232): void;
+    transitionToItem(itemIdentifier?: (string) | null, snapshotTimebase?: $SDK236): void;
     /**
      * var currentItemIdentifier: String? { get }
      * @availability iOS 15.0+
@@ -13297,7 +13302,7 @@ export declare class AVDelegatingPlaybackCoordinatorBufferingCommand extends AVD
      * var completionDueDate: Date? { get }
      * @availability iOS 15.0+
      */
-    get completionDueDate(): $SDK52;
+    get completionDueDate(): $SDK53;
     readonly $type: {
         "c:objc(cs)AVDelegatingPlaybackCoordinatorBufferingCommand": true;
         "c:objc(cs)AVDelegatingPlaybackCoordinatorPlaybackControlCommand": true;
@@ -13401,7 +13406,7 @@ export declare class AVDelegatingPlaybackCoordinatorSeekCommand extends AVDelega
      * var completionDueDate: Date? { get }
      * @availability iOS 15.0+
      */
-    get completionDueDate(): $SDK52;
+    get completionDueDate(): $SDK53;
     /**
      * var itemTime: CMTime { get }
      * @availability iOS 15.0+
@@ -13452,7 +13457,7 @@ export declare class AVDepthData extends SDKHandle {
      * convenience init(fromDictionaryRepresentation imageSourceAuxDataInfoDictionary: [AnyHashable : Any]) throws
      * @availability iOS 11.0+
      */
-    static init(imageSourceAuxDataInfoDictionary: $SDK234): AVDepthData;
+    static init(imageSourceAuxDataInfoDictionary: $SDK238): AVDepthData;
     /**
      * func applyingExifOrientation(_ exifOrientation: CGImagePropertyOrientation) -> Self
      * @availability iOS 11.0+
@@ -13473,9 +13478,9 @@ export declare class AVDepthData extends SDKHandle {
      * @availability iOS 11.0+
      */
     dictionaryRepresentation(): {
-        $ret: $SDK235;
+        $ret: $SDK239;
         $out: {
-            "outAuxDataType": $SDK236;
+            "outAuxDataType": $SDK240;
         };
     };
     /**
@@ -13587,11 +13592,11 @@ export declare class AVError extends SDKHandle {
      * var presentationTimeStamp: CMTime? { get }
      * @availability iOS 8.0+
      */
-    get presentationTimeStamp(): $SDK237;
+    get presentationTimeStamp(): $SDK241;
     /** var device: String? { get } */
     get device(): (string) | null;
     /** var device: AVCaptureDevice? { get } */
-    get device43143(): $SDK168;
+    get device43143(): $SDK171;
     /**
      * var fileType: AVFileType? { get }
      * @availability iOS 8.0+
@@ -13924,7 +13929,7 @@ export declare class AVExternalStorageDevice extends SDKHandle {
      * class func requestAccess() async -> Bool
      * @availability iOS 17.0+
      */
-    static requestAccess(handler: $SDK23): void;
+    static requestAccess(handler: $SDK24): void;
     /**
      * class var authorizationStatus: AVAuthorizationStatus { get }
      * @availability iOS 17.0+
@@ -14054,7 +14059,7 @@ export declare class AVExternalSyncDevice extends SDKHandle {
      * var clock: CMClock? { get }
      * @availability iOS 26.0+
      */
-    get clock(): $SDK193;
+    get clock(): $SDK196;
     /**
      * var productID: UInt32 { get }
      * @availability iOS 26.0+
@@ -14445,12 +14450,12 @@ export declare class AVFragmentedAsset extends AVFragmentedAsset_base {
      * func loadTracks(withMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) async throws -> [AVFragmentedAssetTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK245): void;
+    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK249): void;
     /**
      * func loadTracks(withMediaType mediaType: AVMediaType) async throws -> [AVFragmentedAssetTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK245): void;
+    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK249): void;
     /**
      * func track(withTrackID trackID: CMPersistentTrackID) -> AVFragmentedAssetTrack?
      * @availability iOS 4.0+
@@ -14462,19 +14467,19 @@ export declare class AVFragmentedAsset extends AVFragmentedAsset_base {
      * @availability iOS 4.0+
      * @deprecated iOS 16.0
      */
-    tracksWithMediaCharacteristic(mediaCharacteristic: AVMediaCharacteristic): $SDK247;
+    tracksWithMediaCharacteristic(mediaCharacteristic: AVMediaCharacteristic): $SDK251;
     /**
      * func tracks(withMediaType mediaType: AVMediaType) -> [AVFragmentedAssetTrack]
      * @availability iOS 4.0+
      * @deprecated iOS 16.0
      */
-    tracksWithMediaType(mediaType: AVMediaType): $SDK247;
+    tracksWithMediaType(mediaType: AVMediaType): $SDK251;
     /**
      * var tracks: [AVFragmentedAssetTrack] { get }
      * @availability iOS 12.0+
      * @deprecated iOS 16.0
      */
-    get tracks(): $SDK247;
+    get tracks(): $SDK251;
     readonly $type: {
         "c:objc(cs)AVFragmentedAsset": true;
         "c:objc(cs)AVURLAsset": true;
@@ -14632,12 +14637,12 @@ export declare class AVMovie extends AVMovie_base {
      * func loadTracks(withMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) async throws -> [AVMovieTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK250): void;
+    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK254): void;
     /**
      * func loadTracks(withMediaType mediaType: AVMediaType) async throws -> [AVMovieTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK250): void;
+    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK254): void;
     /**
      * func makeMovieHeader(fileType: AVFileType) throws -> Data
      * @availability iOS 13.0+
@@ -14690,7 +14695,7 @@ export declare class AVMovie extends AVMovie_base {
      * var defaultMediaDataStorage: AVMediaDataStorage? { get }
      * @availability iOS 13.0+
      */
-    get defaultMediaDataStorage(): $SDK251;
+    get defaultMediaDataStorage(): $SDK255;
     /**
      * var tracks: [AVMovieTrack] { get }
      * @availability iOS 13.0+
@@ -14759,12 +14764,12 @@ export declare class AVFragmentedMovie extends AVFragmentedMovie_base {
      * func loadTracks(withMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) async throws -> [AVFragmentedMovieTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK253): void;
+    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK257): void;
     /**
      * func loadTracks(withMediaType mediaType: AVMediaType) async throws -> [AVFragmentedMovieTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK253): void;
+    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK257): void;
     /**
      * func track(withTrackID trackID: CMPersistentTrackID) -> AVFragmentedMovieTrack?
      * @availability iOS 4.0+
@@ -14776,18 +14781,18 @@ export declare class AVFragmentedMovie extends AVFragmentedMovie_base {
      * @availability iOS 4.0+
      * @deprecated iOS 16.0
      */
-    tracksWithMediaCharacteristic(mediaCharacteristic: AVMediaCharacteristic): $SDK255;
+    tracksWithMediaCharacteristic(mediaCharacteristic: AVMediaCharacteristic): $SDK259;
     /**
      * func tracks(withMediaType mediaType: AVMediaType) -> [AVFragmentedMovieTrack]
      * @availability iOS 4.0+
      * @deprecated iOS 16.0
      */
-    tracksWithMediaType(mediaType: AVMediaType): $SDK255;
+    tracksWithMediaType(mediaType: AVMediaType): $SDK259;
     /**
      * var tracks: [AVFragmentedMovieTrack] { get }
      * @availability iOS 13.0+
      */
-    get tracks(): $SDK255;
+    get tracks(): $SDK259;
     readonly $type: {
         "c:objc(cs)AVFragmentedMovie": true;
         "c:objc(cs)AVMovie": true;
@@ -14887,7 +14892,7 @@ export declare class AVMovieTrack extends AVAssetTrack {
      * @NSCopying var mediaDataStorage: AVMediaDataStorage? { get }
      * @availability iOS 13.0+
      */
-    get mediaDataStorage(): $SDK251;
+    get mediaDataStorage(): $SDK255;
     /**
      * var mediaDecodeTimeRange: CMTimeRange { get }
      * @availability iOS 13.0+
@@ -15228,7 +15233,7 @@ export declare class AVMediaPresentationSelector extends SDKHandle {
      * var settings: [AVMediaPresentationSetting] { get }
      * @availability iOS 26.0+
      */
-    get settings(): $SDK229;
+    get settings(): $SDK233;
     readonly $type: {
         "c:objc(cs)AVMediaPresentationSelector": true;
         "c:objc(cs)NSObject": true;
@@ -15279,7 +15284,7 @@ export declare class AVMediaSelection extends SDKHandle {
      * func selectedMediaOption(in mediaSelectionGroup: AVMediaSelectionGroup) -> AVMediaSelectionOption?
      * @availability iOS 9.0+
      */
-    selectedMediaOption(mediaSelectionGroup: AVMediaSelectionGroup): $SDK69;
+    selectedMediaOption(mediaSelectionGroup: AVMediaSelectionGroup): $SDK70;
     /**
      * weak var asset: AVAsset? { get }
      * @availability iOS 9.0+
@@ -15302,7 +15307,7 @@ export declare class AVMediaSelectionOption extends SDKHandle {
      * func associatedMediaSelectionOption(in mediaSelectionGroup: AVMediaSelectionGroup) -> AVMediaSelectionOption?
      * @availability iOS 5.0+
      */
-    associatedMediaSelectionOption(mediaSelectionGroup: AVMediaSelectionGroup): $SDK69;
+    associatedMediaSelectionOption(mediaSelectionGroup: AVMediaSelectionGroup): $SDK70;
     /**
      * func displayName(with locale: Locale) -> String
      * @availability iOS 7.0+
@@ -15349,12 +15354,12 @@ export declare class AVMediaSelectionOption extends SDKHandle {
      * var locale: Locale? { get }
      * @availability iOS 5.0+
      */
-    get locale(): $SDK257;
+    get locale(): $SDK261;
     /**
      * var mediaSubTypes: [NSNumber] { get }
      * @availability iOS 5.0+
      */
-    get mediaSubTypes(): $SDK63;
+    get mediaSubTypes(): $SDK64;
     /**
      * var mediaType: AVMediaType { get }
      * @availability iOS 5.0+
@@ -15491,7 +15496,7 @@ export declare class AVMetadataObject extends SDKHandle {
      * var bounds: CGRect { get }
      * @availability iOS 6.0+
      */
-    get bounds(): $SDK148;
+    get bounds(): $SDK151;
     /**
      * var cinematicVideoFocusMode: AVCaptureDevice.CinematicVideoFocusMode { get }
      * @availability iOS 26.0+
@@ -15622,12 +15627,12 @@ export declare class AVMetadataCinematicVideoMetadataObject extends AVMetadataOb
      * class var cinematicVideoMetadataFormatDescription: CMFormatDescription? { get }
      * @availability iOS 27.0+
      */
-    static get cinematicVideoMetadataFormatDescription(): $SDK82;
+    static get cinematicVideoMetadataFormatDescription(): $SDK84;
     /**
      * var timedMetadataGroup: AVTimedMetadataGroup? { get }
      * @availability iOS 27.0+
      */
-    get timedMetadataGroup(): $SDK49;
+    get timedMetadataGroup(): $SDK50;
     readonly $type: {
         "c:objc(cs)AVMetadataCinematicVideoMetadataObject": true;
         "c:objc(cs)AVMetadataObject": true;
@@ -17359,7 +17364,7 @@ export declare class AVMetadataItem extends SDKHandle {
      * class func identifier(forKey key: Any, keySpace: AVMetadataKeySpace) -> AVMetadataIdentifier?
      * @availability iOS 8.0+
      */
-    static identifierForKeyKeySpace(key: unknown, keySpace: AVMetadataKeySpace): $SDK261;
+    static identifierForKeyKeySpace(key: unknown, keySpace: AVMetadataKeySpace): $SDK265;
     /**
      * class func key(forIdentifier identifier: AVMetadataIdentifier) -> Any?
      * @availability iOS 8.0+
@@ -17369,7 +17374,7 @@ export declare class AVMetadataItem extends SDKHandle {
      * class func keySpace(forIdentifier identifier: AVMetadataIdentifier) -> AVMetadataKeySpace?
      * @availability iOS 8.0+
      */
-    static keySpaceForIdentifier(identifier: AVMetadataIdentifier): $SDK262;
+    static keySpaceForIdentifier(identifier: AVMetadataIdentifier): $SDK266;
     /**
      * init(propertiesOf metadataItem: AVMetadataItem, valueLoadingHandler handler: @escaping @Sendable (AVMetadataItemValueRequest) -> Void)
      * @availability iOS 9.0+
@@ -17391,7 +17396,7 @@ export declare class AVMetadataItem extends SDKHandle {
      */
     static metadataItemsFromFilteredBy(metadataItems: Array<AVMetadataItem>, metadataItemFilter: AVMetadataItemFilter): Array<AVMetadataItem>;
     /** class func metadataItems(from metadataItems: [AVMetadataItem], withKey key: Any?, keySpace: AVMetadataKeySpace?) -> [AVMetadataItem] */
-    static metadataItemsFromWithKeyKeySpace(metadataItems: Array<AVMetadataItem>, key?: (unknown) | null, keySpace?: $SDK262): Array<AVMetadataItem>;
+    static metadataItemsFromWithKeyKeySpace(metadataItems: Array<AVMetadataItem>, key?: (unknown) | null, keySpace?: $SDK266): Array<AVMetadataItem>;
     /** class func metadataItems(from metadataItems: [AVMetadataItem], with locale: Locale) -> [AVMetadataItem] */
     static metadataItemsFromWith(metadataItems: Array<AVMetadataItem>, locale: _Foundation_Locale): Array<AVMetadataItem>;
     /** var commonKey: AVMetadataKey? { get } */
@@ -17412,7 +17417,7 @@ export declare class AVMetadataItem extends SDKHandle {
      * @availability iOS 4.0+
      * @deprecated iOS 16.0
      */
-    get dateValue(): $SDK52;
+    get dateValue(): $SDK53;
     /**
      * var duration: CMTime { get }
      * @availability iOS 4.2+
@@ -17428,21 +17433,21 @@ export declare class AVMetadataItem extends SDKHandle {
      * @availability iOS 4.0+
      * @deprecated iOS 16.0
      */
-    get extraAttributes(): $SDK264;
+    get extraAttributes(): $SDK268;
     /**
      * var identifier: AVMetadataIdentifier? { get }
      * @availability iOS 8.0+
      */
-    get identifier(): $SDK261;
+    get identifier(): $SDK265;
     /** @NSCopying var key: (any NSCopying & NSObjectProtocol)? { get } */
-    get key(): $SDK265;
+    get key(): $SDK269;
     /** var keySpace: AVMetadataKeySpace? { get } */
-    get keySpace(): $SDK262;
+    get keySpace(): $SDK266;
     /**
      * var locale: Locale? { get }
      * @availability iOS 4.0+
      */
-    get locale(): $SDK257;
+    get locale(): $SDK261;
     /**
      * var numberValue: NSNumber? { get }
      * @availability iOS 4.0+
@@ -17453,7 +17458,7 @@ export declare class AVMetadataItem extends SDKHandle {
      * var startDate: Date? { get }
      * @availability iOS 9.0+
      */
-    get startDate(): $SDK52;
+    get startDate(): $SDK53;
     /**
      * var stringValue: String? { get }
      * @availability iOS 4.0+
@@ -17470,7 +17475,7 @@ export declare class AVMetadataItem extends SDKHandle {
      * @availability iOS 4.0+
      * @deprecated iOS 16.0
      */
-    get value(): $SDK265;
+    get value(): $SDK269;
     readonly $type: {
         "c:objc(cs)AVMetadataItem": true;
         "c:objc(cs)NSObject": true;
@@ -17527,7 +17532,7 @@ export declare class AVMetadataItemValueRequest extends SDKHandle {
      * func respond(value: any NSCopying & NSObjectProtocol)
      * @availability iOS 9.0+
      */
-    respondValue(value: $SDK29): void;
+    respondValue(value: $SDK30): void;
     /**
      * weak var metadataItem: AVMetadataItem? { get }
      * @availability iOS 9.0+
@@ -19272,7 +19277,7 @@ export declare class AVMetricContentKeyRequestEvent extends AVMetricEvent {
      * var mediaResourceRequestEvent: AVMetricMediaResourceRequestEvent? { get }
      * @availability iOS 18.0+
      */
-    get mediaResourceRequestEvent(): $SDK269;
+    get mediaResourceRequestEvent(): $SDK273;
     /**
      * var mediaType: AVMediaType { get }
      * @availability iOS 18.0+
@@ -19312,7 +19317,7 @@ export declare class AVMetricDownloadSummaryEvent extends AVMetricEvent {
      * var errorEvent: AVMetricErrorEvent? { get }
      * @availability iOS 26.0+
      */
-    get errorEvent(): $SDK270;
+    get errorEvent(): $SDK274;
     /**
      * var mediaResourceRequestCount: Int { get }
      * @availability iOS 26.0+
@@ -19403,7 +19408,7 @@ export declare class AVMetricHLSMediaSegmentRequestEvent extends AVMetricEvent {
      * var mediaResourceRequestEvent: AVMetricMediaResourceRequestEvent? { get }
      * @availability iOS 18.0+
      */
-    get mediaResourceRequestEvent(): $SDK269;
+    get mediaResourceRequestEvent(): $SDK273;
     /**
      * var mediaType: AVMediaType { get }
      * @availability iOS 18.0+
@@ -19451,7 +19456,7 @@ export declare class AVMetricHLSPlaylistRequestEvent extends AVMetricEvent {
      * var mediaResourceRequestEvent: AVMetricMediaResourceRequestEvent? { get }
      * @availability iOS 18.0+
      */
-    get mediaResourceRequestEvent(): $SDK269;
+    get mediaResourceRequestEvent(): $SDK273;
     /**
      * var mediaType: AVMediaType { get }
      * @availability iOS 18.0+
@@ -19515,7 +19520,7 @@ export declare class AVMetricMediaResourceRequestEvent extends AVMetricEvent {
      * var errorEvent: AVMetricErrorEvent? { get }
      * @availability iOS 18.0+
      */
-    get errorEvent(): $SDK270;
+    get errorEvent(): $SDK274;
     /**
      * var networkTransactionMetrics: URLSessionTaskMetrics? { get }
      * @availability iOS 18.0+
@@ -19624,7 +19629,7 @@ export declare class AVMetricPlayerItemLikelyToKeepUpEvent extends AVMetricEvent
      * @nonobjc var loadedTimeRanges: [CMTimeRange] { get }
      * @availability iOS 18.0+
      */
-    get loadedTimeRanges(): $SDK48;
+    get loadedTimeRanges(): $SDK49;
     readonly $type: {
         "c:objc(cs)AVMetricPlayerItemLikelyToKeepUpEvent": true;
         "c:objc(cs)AVMetricEvent": true;
@@ -19684,7 +19689,7 @@ export declare class AVMetricPlayerItemPlaybackSummaryEvent extends AVMetricEven
      * var errorEvent: AVMetricErrorEvent? { get }
      * @availability iOS 18.0+
      */
-    get errorEvent(): $SDK270;
+    get errorEvent(): $SDK274;
     /**
      * var mediaResourceRequestCount: Int { get }
      * @availability iOS 18.0+
@@ -19890,7 +19895,7 @@ export declare class AVMetricPlayerItemVariantSwitchEvent extends AVMetricEvent 
      * @nonobjc var loadedTimeRanges: [CMTimeRange] { get }
      * @availability iOS 18.0+
      */
-    get loadedTimeRanges(): $SDK48;
+    get loadedTimeRanges(): $SDK49;
     readonly $type: {
         "c:objc(cs)AVMetricPlayerItemVariantSwitchEvent": true;
         "c:objc(cs)AVMetricEvent": true;
@@ -19942,7 +19947,7 @@ export declare class AVMetricPlayerItemVariantSwitchStartEvent extends AVMetricE
      * @nonobjc var loadedTimeRanges: [CMTimeRange] { get }
      * @availability iOS 18.0+
      */
-    get loadedTimeRanges(): $SDK48;
+    get loadedTimeRanges(): $SDK49;
     readonly $type: {
         "c:objc(cs)AVMetricPlayerItemVariantSwitchStartEvent": true;
         "c:objc(cs)AVMetricEvent": true;
@@ -20062,8 +20067,8 @@ export declare class AVMutableAudioMix extends AVMutableAudioMix_base {
      * var inputParameters: [AVAudioMixInputParameters] { get set }
      * @availability iOS 4.0+
      */
-    get inputParameters(): $SDK132;
-    set inputParameters(value: $SDK132);
+    get inputParameters(): $SDK135;
+    set inputParameters(value: $SDK135);
     readonly $type: {
         "c:objc(cs)AVMutableAudioMix": true;
         "c:objc(cs)AVAudioMix": true;
@@ -20098,14 +20103,14 @@ export declare class AVMutableAudioMixInputParameters extends AVMutableAudioMixI
      * var audioTapProcessor: MTAudioProcessingTap? { get set }
      * @availability iOS 6.0+
      */
-    get audioTapProcessor(): $SDK133;
-    set audioTapProcessor(value: $SDK133);
+    get audioTapProcessor(): $SDK136;
+    set audioTapProcessor(value: $SDK136);
     /**
      * var audioTimePitchAlgorithm: AVAudioTimePitchAlgorithm? { get set }
      * @availability iOS 7.0+
      */
-    get audioTimePitchAlgorithm(): $SDK134;
-    set audioTimePitchAlgorithm(value: $SDK134);
+    get audioTimePitchAlgorithm(): $SDK137;
+    set audioTimePitchAlgorithm(value: $SDK137);
     /**
      * var trackID: CMPersistentTrackID { get set }
      * @availability iOS 4.0+
@@ -20305,7 +20310,7 @@ export declare class AVMutableComposition extends AVMutableComposition_base {
      */
     static init(URLAssetInitializationOptions?: $SDK19): AVMutableComposition;
     /** func addMutableTrack(withMediaType mediaType: AVMediaType, preferredTrackID: CMPersistentTrackID) -> AVMutableCompositionTrack? */
-    addMutableTrack(mediaType: AVMediaType, preferredTrackID: number): $SDK277;
+    addMutableTrack(mediaType: AVMediaType, preferredTrackID: number): $SDK281;
     /** func insertEmptyTimeRange(_ timeRange: CMTimeRange) */
     insertEmptyTimeRange(timeRange: _CoreMedia_CMTimeRange): void;
     /**
@@ -20313,7 +20318,7 @@ export declare class AVMutableComposition extends AVMutableComposition_base {
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    insertTimeRangeOfAtCompletionHandler(timeRange: _CoreMedia_CMTimeRange, asset: AVAsset, startTime: _CoreMedia_CMTime, completionHandler: $SDK278): void;
+    insertTimeRangeOfAtCompletionHandler(timeRange: _CoreMedia_CMTimeRange, asset: AVAsset, startTime: _CoreMedia_CMTime, completionHandler: $SDK282): void;
     /**
      * func insertTimeRange(_ timeRange: CMTimeRange, of asset: AVAsset, at startTime: CMTime) throws
      * @availability iOS 4.0+
@@ -20329,14 +20334,14 @@ export declare class AVMutableComposition extends AVMutableComposition_base {
      * func loadTracks(withMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) async throws -> [AVMutableCompositionTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK280): void;
+    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK284): void;
     /**
      * func loadTracks(withMediaType mediaType: AVMediaType) async throws -> [AVMutableCompositionTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK280): void;
+    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK284): void;
     /** func mutableTrack(compatibleWith track: AVAssetTrack) -> AVMutableCompositionTrack? */
-    mutableTrack(track: AVAssetTrack): $SDK277;
+    mutableTrack(track: AVAssetTrack): $SDK281;
     /** func removeTimeRange(_ timeRange: CMTimeRange) */
     removeTimeRange(timeRange: _CoreMedia_CMTimeRange): void;
     /** func removeTrack(_ track: AVCompositionTrack) */
@@ -20344,22 +20349,22 @@ export declare class AVMutableComposition extends AVMutableComposition_base {
     /** func scaleTimeRange(_ timeRange: CMTimeRange, toDuration duration: CMTime) */
     scaleTimeRange(timeRange: _CoreMedia_CMTimeRange, duration: _CoreMedia_CMTime): void;
     /** func track(withTrackID trackID: CMPersistentTrackID) -> AVMutableCompositionTrack? */
-    track(trackID: number): $SDK277;
+    track(trackID: number): $SDK281;
     /** func tracks(withMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) -> [AVMutableCompositionTrack] */
-    tracksWithMediaCharacteristic(mediaCharacteristic: AVMediaCharacteristic): $SDK281;
+    tracksWithMediaCharacteristic(mediaCharacteristic: AVMediaCharacteristic): $SDK285;
     /** func tracks(withMediaType mediaType: AVMediaType) -> [AVMutableCompositionTrack] */
-    tracksWithMediaType(mediaType: AVMediaType): $SDK281;
+    tracksWithMediaType(mediaType: AVMediaType): $SDK285;
     /**
      * var naturalSize: CGSize { get set }
      * @availability iOS 4.0+
      */
-    get naturalSize(): $SDK33;
-    set naturalSize(value: $SDK33);
+    get naturalSize(): $SDK34;
+    set naturalSize(value: $SDK34);
     /**
      * var tracks: [AVMutableCompositionTrack] { get }
      * @availability iOS 4.0+
      */
-    get tracks(): $SDK281;
+    get tracks(): $SDK285;
     /**
      * @backDeployed(before: macOS 15, iOS 18, tvOS 18, watchOS 11, visionOS 2)
     final func insertTimeRange(_ timeRange: CMTimeRange, of asset: AVAsset, at time: CMTime, isolation: isolated (any Actor)? = #isolation) async throws
@@ -20445,7 +20450,7 @@ export declare class AVMutableCompositionTrack extends AVMutableCompositionTrack
      * func replaceFormatDescription(_ originalFormatDescription: CMFormatDescription, with replacementFormatDescription: CMFormatDescription?)
      * @availability iOS 13.0+
      */
-    replaceFormatDescription(originalFormatDescription: _CoreMedia_CMFormatDescription, replacementFormatDescription?: $SDK82): void;
+    replaceFormatDescription(originalFormatDescription: _CoreMedia_CMFormatDescription, replacementFormatDescription?: $SDK84): void;
     /**
      * func scaleTimeRange(_ timeRange: CMTimeRange, toDuration duration: CMTime)
      * @availability iOS 4.0+
@@ -20496,8 +20501,8 @@ export declare class AVMutableCompositionTrack extends AVMutableCompositionTrack
      * var segments: [AVCompositionTrackSegment]! { get set }
      * @availability iOS 4.0+
      */
-    get segments(): $SDK282;
-    set segments(value: $SDK282);
+    get segments(): $SDK286;
+    set segments(value: $SDK286);
     readonly $type: {
         "c:objc(cs)AVMutableCompositionTrack": true;
         "c:objc(cs)AVCompositionTrack": true;
@@ -20547,8 +20552,8 @@ export declare class AVMutableDateRangeMetadataGroup extends AVMutableDateRangeM
      * var endDate: Date? { get set }
      * @availability iOS 9.0+
      */
-    get endDate(): $SDK52;
-    set endDate(value: $SDK52);
+    get endDate(): $SDK53;
+    set endDate(value: $SDK53);
     /**
      * var items: [AVMetadataItem] { get set }
      * @availability iOS 9.0+
@@ -20587,7 +20592,7 @@ export declare class AVMutableMediaSelection extends AVMutableMediaSelection_bas
      * func select(_ mediaSelectionOption: AVMediaSelectionOption?, in mediaSelectionGroup: AVMediaSelectionGroup)
      * @availability iOS 9.0+
      */
-    select(mediaSelectionOption: $SDK69, mediaSelectionGroup: AVMediaSelectionGroup): void;
+    select(mediaSelectionOption: $SDK70, mediaSelectionGroup: AVMediaSelectionGroup): void;
     readonly $type: {
         "c:objc(cs)AVMutableMediaSelection": true;
         "c:objc(cs)AVMediaSelection": true;
@@ -20614,7 +20619,7 @@ export declare class AVMutableMetadataItem extends AVMutableMetadataItem_base {
     /** var dataValue: Data? { get } */
     get dataValue(): (ArrayBuffer) | null;
     /** var dateValue: Date? { get } */
-    get dateValue(): $SDK52;
+    get dateValue(): $SDK53;
     /**
      * var duration: CMTime { get set }
      * @availability iOS 4.2+
@@ -20631,34 +20636,34 @@ export declare class AVMutableMetadataItem extends AVMutableMetadataItem_base {
      * var extraAttributes: [AVMetadataExtraAttributeKey : Any]? { get set }
      * @availability iOS 4.0+
      */
-    get extraAttributes(): $SDK264;
-    set extraAttributes(value: $SDK264);
+    get extraAttributes(): $SDK268;
+    set extraAttributes(value: $SDK268);
     /**
      * var identifier: AVMetadataIdentifier? { get set }
      * @availability iOS 8.0+
      */
-    get identifier(): $SDK261;
-    set identifier(value: $SDK261);
+    get identifier(): $SDK265;
+    set identifier(value: $SDK265);
     /** @NSCopying var key: (any NSCopying & NSObjectProtocol)? { get set } */
-    get key(): $SDK265;
-    set key(value: $SDK265);
+    get key(): $SDK269;
+    set key(value: $SDK269);
     /** var keySpace: AVMetadataKeySpace? { get set } */
-    get keySpace(): $SDK262;
-    set keySpace(value: $SDK262);
+    get keySpace(): $SDK266;
+    set keySpace(value: $SDK266);
     /**
      * var locale: Locale? { get set }
      * @availability iOS 4.0+
      */
-    get locale(): $SDK257;
-    set locale(value: $SDK257);
+    get locale(): $SDK261;
+    set locale(value: $SDK261);
     /** var numberValue: NSNumber? { get } */
     get numberValue(): (_Foundation_NSNumber) | null;
     /**
      * var startDate: Date? { get set }
      * @availability iOS 9.0+
      */
-    get startDate(): $SDK52;
-    set startDate(value: $SDK52);
+    get startDate(): $SDK53;
+    set startDate(value: $SDK53);
     /** var stringValue: String? { get } */
     get stringValue(): (string) | null;
     /**
@@ -20671,8 +20676,8 @@ export declare class AVMutableMetadataItem extends AVMutableMetadataItem_base {
      * @NSCopying var value: (any NSCopying & NSObjectProtocol)? { get set }
      * @availability iOS 4.0+
      */
-    get value(): $SDK265;
-    set value(value: $SDK265);
+    get value(): $SDK269;
+    set value(value: $SDK269);
     readonly $type: {
         "c:objc(cs)AVMutableMetadataItem": true;
         "c:objc(cs)AVMetadataItem": true;
@@ -20707,12 +20712,12 @@ export declare class AVMutableMovie extends AVMutableMovie_base {
      * func addMutableTrack(withMediaType mediaType: AVMediaType, copySettingsFrom track: AVAssetTrack?, options: [String : Any]? = nil) -> AVMutableMovieTrack?
      * @availability iOS 13.0+
      */
-    addMutableTrack(mediaType: AVMediaType, track?: (AVAssetTrack) | null, options?: $SDK19): $SDK283;
+    addMutableTrack(mediaType: AVMediaType, track?: (AVAssetTrack) | null, options?: $SDK19): $SDK287;
     /**
      * func addMutableTracksCopyingSettings(from existingTracks: [AVAssetTrack], options: [String : Any]? = nil) -> [AVMutableMovieTrack]
      * @availability iOS 13.0+
      */
-    addMutableTracksCopyingSettings(existingTracks: Array<AVAssetTrack>, options?: $SDK19): $SDK284;
+    addMutableTracksCopyingSettings(existingTracks: Array<AVAssetTrack>, options?: $SDK19): $SDK288;
     /**
      * func chapterMetadataGroups(bestMatchingPreferredLanguages preferredLanguages: [String]) -> [AVTimedMetadataGroup]
      * @availability iOS 13.0+
@@ -20757,12 +20762,12 @@ export declare class AVMutableMovie extends AVMutableMovie_base {
      * func loadTracks(withMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) async throws -> [AVMutableMovieTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK286): void;
+    loadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic: AVMediaCharacteristic, completionHandler: $SDK290): void;
     /**
      * func loadTracks(withMediaType mediaType: AVMediaType) async throws -> [AVMutableMovieTrack]
      * @availability iOS 15.0+
      */
-    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK286): void;
+    loadTracksWithMediaTypeCompletionHandler(mediaType: AVMediaType, completionHandler: $SDK290): void;
     /**
      * func mediaSelectionGroup(forMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) -> AVMediaSelectionGroup?
      * @availability iOS 13.0+
@@ -20777,7 +20782,7 @@ export declare class AVMutableMovie extends AVMutableMovie_base {
      * func mutableTrack(compatibleWith track: AVAssetTrack) -> AVMutableMovieTrack?
      * @availability iOS 13.0+
      */
-    mutableTrack(track: AVAssetTrack): $SDK283;
+    mutableTrack(track: AVAssetTrack): $SDK287;
     /**
      * func removeTimeRange(_ timeRange: CMTimeRange)
      * @availability iOS 13.0+
@@ -20797,17 +20802,17 @@ export declare class AVMutableMovie extends AVMutableMovie_base {
      * func track(withTrackID trackID: CMPersistentTrackID) -> AVMutableMovieTrack?
      * @availability iOS 13.0+
      */
-    track(trackID: number): $SDK283;
+    track(trackID: number): $SDK287;
     /**
      * func tracks(withMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) -> [AVMutableMovieTrack]
      * @availability iOS 13.0+
      */
-    tracksWithMediaCharacteristic(mediaCharacteristic: AVMediaCharacteristic): $SDK284;
+    tracksWithMediaCharacteristic(mediaCharacteristic: AVMediaCharacteristic): $SDK288;
     /**
      * func tracks(withMediaType mediaType: AVMediaType) -> [AVMutableMovieTrack]
      * @availability iOS 13.0+
      */
-    tracksWithMediaType(mediaType: AVMediaType): $SDK284;
+    tracksWithMediaType(mediaType: AVMediaType): $SDK288;
     /**
      * func unusedTrackID() -> CMPersistentTrackID
      * @availability iOS 13.0+
@@ -20872,8 +20877,8 @@ export declare class AVMutableMovie extends AVMutableMovie_base {
      * @NSCopying var defaultMediaDataStorage: AVMediaDataStorage? { get set }
      * @availability iOS 13.0+
      */
-    get defaultMediaDataStorage(): $SDK251;
-    set defaultMediaDataStorage(value: $SDK251);
+    get defaultMediaDataStorage(): $SDK255;
+    set defaultMediaDataStorage(value: $SDK255);
     /**
      * var duration: CMTime { get }
      * @availability iOS 13.0+
@@ -20975,7 +20980,7 @@ export declare class AVMutableMovie extends AVMutableMovie_base {
      * var tracks: [AVMutableMovieTrack] { get }
      * @availability iOS 13.0+
      */
-    get tracks(): $SDK284;
+    get tracks(): $SDK288;
     readonly $type: {
         "c:objc(cs)AVMutableMovie": true;
         "c:objc(cs)AVMovie": true;
@@ -21113,7 +21118,7 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
      * var availableTrackAssociationTypes: [AVAssetTrack.AssociationType] { get }
      * @availability iOS 7.0+
      */
-    get availableTrackAssociationTypes(): $SDK61;
+    get availableTrackAssociationTypes(): $SDK62;
     /**
      * var canProvideSampleCursors: Bool { get }
      * @availability iOS 16.0+
@@ -21123,8 +21128,8 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
      * var cleanApertureDimensions: CGSize { get set }
      * @availability iOS 13.0+
      */
-    get cleanApertureDimensions(): $SDK33;
-    set cleanApertureDimensions(value: $SDK33);
+    get cleanApertureDimensions(): $SDK34;
+    set cleanApertureDimensions(value: $SDK34);
     /**
      * var commonMetadata: [AVMetadataItem] { get }
      * @availability iOS 13.0+
@@ -21145,8 +21150,8 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
      * var encodedPixelsDimensions: CGSize { get set }
      * @availability iOS 13.0+
      */
-    get encodedPixelsDimensions(): $SDK33;
-    set encodedPixelsDimensions(value: $SDK33);
+    get encodedPixelsDimensions(): $SDK34;
+    set encodedPixelsDimensions(value: $SDK34);
     /**
      * var estimatedDataRate: Float { get }
      * @availability iOS 13.0+
@@ -21189,8 +21194,8 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
      * @NSCopying var mediaDataStorage: AVMediaDataStorage? { get set }
      * @availability iOS 13.0+
      */
-    get mediaDataStorage(): $SDK251;
-    set mediaDataStorage(value: $SDK251);
+    get mediaDataStorage(): $SDK255;
+    set mediaDataStorage(value: $SDK255);
     /**
      * var metadata: [AVMetadataItem] { get set }
      * @availability iOS 13.0+
@@ -21212,8 +21217,8 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
      * var naturalSize: CGSize { get set }
      * @availability iOS 13.0+
      */
-    get naturalSize(): $SDK33;
-    set naturalSize(value: $SDK33);
+    get naturalSize(): $SDK34;
+    set naturalSize(value: $SDK34);
     /**
      * var naturalTimeScale: CMTimeScale { get }
      * @availability iOS 13.0+
@@ -21263,8 +21268,8 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
      * var productionApertureDimensions: CGSize { get set }
      * @availability iOS 13.0+
      */
-    get productionApertureDimensions(): $SDK33;
-    set productionApertureDimensions(value: $SDK33);
+    get productionApertureDimensions(): $SDK34;
+    set productionApertureDimensions(value: $SDK34);
     /**
      * var requiresFrameReordering: Bool { get }
      * @availability iOS 8.0+
@@ -21306,7 +21311,7 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
      * func append(_ sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>) throws -> (decodeTime: CMTime, presentationTime: CMTime)
      * @availability iOS 26.0+
      */
-    append(sampleBuffer: $SDK85): {
+    append(sampleBuffer: $SDK87): {
         "decodeTime": _CoreMedia_CMTime;
         "presentationTime": _CoreMedia_CMTime;
     };
@@ -21371,7 +21376,7 @@ export declare class AVTimedMetadataGroup extends AVTimedMetadataGroup_base {
      * func copyFormatDescription() -> CMMetadataFormatDescription?
      * @availability iOS 8.0+
      */
-    copyFormatDescription(): $SDK82;
+    copyFormatDescription(): $SDK84;
     /**
      * init(items: [AVMetadataItem], timeRange: CMTimeRange)
      * @availability iOS 4.3+
@@ -21397,7 +21402,7 @@ export declare class AVTimedMetadataGroup extends AVTimedMetadataGroup_base {
      * convenience init?(sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>)
      * @availability iOS 26.0+
      */
-    static initSampleBuffer97876(sampleBuffer: $SDK85): (AVTimedMetadataGroup) | null;
+    static initSampleBuffer97876(sampleBuffer: $SDK87): (AVTimedMetadataGroup) | null;
     readonly $type: {
         "c:objc(cs)AVTimedMetadataGroup": true;
         "c:objc(cs)AVMetadataGroup": true;
@@ -21458,13 +21463,13 @@ export declare class AVVideoComposition extends SDKHandle {
      * @availability iOS 9.0+
      * @deprecated iOS 18.0
      */
-    static initAssetApplyingCIFiltersWithHandler(asset: AVAsset, applier: $SDK288): AVVideoComposition;
+    static initAssetApplyingCIFiltersWithHandler(asset: AVAsset, applier: $SDK292): AVVideoComposition;
     /**
      * class func videoComposition(with asset: AVAsset, applyingCIFiltersWithHandler applier: @escaping @Sendable (AVAsynchronousCIImageFilteringRequest) -> Void) async throws -> AVVideoComposition
      * @availability iOS 16.0+
      * @deprecated iOS 27.0
      */
-    static videoCompositionWithApplyingCIFiltersWithHandlerCompletionHandler(asset: AVAsset, applier: $SDK288, completionHandler: $SDK289): void;
+    static videoCompositionWithApplyingCIFiltersWithHandlerCompletionHandler(asset: AVAsset, applier: $SDK292, completionHandler: $SDK293): void;
     /**
      * init(propertiesOf asset: AVAsset)
      * @availability iOS 6.0+
@@ -21475,29 +21480,29 @@ export declare class AVVideoComposition extends SDKHandle {
      * class func videoComposition(withPropertiesOf asset: AVAsset) async throws -> AVVideoComposition
      * @availability iOS 16.0+
      */
-    static videoCompositionWithPropertiesOfCompletionHandler(asset: AVAsset, completionHandler: $SDK289): void;
+    static videoCompositionWithPropertiesOfCompletionHandler(asset: AVAsset, completionHandler: $SDK293): void;
     /**
      * func isValid(for asset: AVAsset?, timeRange: CMTimeRange, validationDelegate: (any AVVideoCompositionValidationHandling)?) async throws -> Bool
      * @availability iOS 16.0+
      * @deprecated iOS 18.0
      */
-    determineValidity(asset: (AVAsset) | null, timeRange: _CoreMedia_CMTimeRange, validationDelegate: $SDK290, completionHandler: $SDK212): void;
+    determineValidity(asset: (AVAsset) | null, timeRange: _CoreMedia_CMTimeRange, validationDelegate: $SDK294, completionHandler: $SDK215): void;
     /**
      * func isValid(for asset: AVAsset?, timeRange: CMTimeRange, validationDelegate: (any AVVideoCompositionValidationHandling)?) -> Bool
      * @availability iOS 5.0+
      * @deprecated iOS 18.0
      */
-    isValidForTimeRangeValidationDelegate(asset: (AVAsset) | null, timeRange: _CoreMedia_CMTimeRange, validationDelegate?: $SDK290): boolean;
+    isValidForTimeRangeValidationDelegate(asset: (AVAsset) | null, timeRange: _CoreMedia_CMTimeRange, validationDelegate?: $SDK294): boolean;
     /**
      * func isValid(for tracks: [AVAssetTrack], assetDuration duration: CMTime, timeRange: CMTimeRange, validationDelegate: (any AVVideoCompositionValidationHandling)?) -> Bool
      * @availability iOS 18.0+
      */
-    isValidForAssetDurationTimeRangeValidationDelegate(tracks: Array<AVAssetTrack>, duration: _CoreMedia_CMTime, timeRange: _CoreMedia_CMTimeRange, validationDelegate?: $SDK290): boolean;
+    isValidForAssetDurationTimeRangeValidationDelegate(tracks: Array<AVAssetTrack>, duration: _CoreMedia_CMTime, timeRange: _CoreMedia_CMTimeRange, validationDelegate?: $SDK294): boolean;
     /**
      * var animationTool: AVVideoCompositionCoreAnimationTool? { get }
      * @availability iOS 4.0+
      */
-    get animationTool(): $SDK291;
+    get animationTool(): $SDK295;
     /**
      * var colorPrimaries: String? { get }
      * @availability iOS 10.0+
@@ -21542,7 +21547,7 @@ export declare class AVVideoComposition extends SDKHandle {
      * var renderSize: CGSize { get }
      * @availability iOS 4.0+
      */
-    get renderSize(): $SDK33;
+    get renderSize(): $SDK34;
     /**
      * var sourceTrackIDForFrameTiming: CMPersistentTrackID { get }
      * @availability iOS 11.0+
@@ -21554,15 +21559,20 @@ export declare class AVVideoComposition extends SDKHandle {
      */
     static initConfiguration(configuration: AVVideoComposition_Configuration): AVVideoComposition;
     /**
+     * nonisolated(nonsending) convenience init(applyingFiltersTo asset: AVAsset, applier: @escaping @Sendable (AVCIImageFilteringParameters) async throws -> AVCIImageFilteringResult) async throws
+     * @availability iOS 26.0+
+     */
+    static initApplyingFiltersToApplier(asset: AVAsset, applier: ((arg0: AVCIImageFilteringParameters) => Promise<AVCIImageFilteringResult>)): Promise<AVVideoComposition>;
+    /**
      * var outputBufferDescription: [[CMTag]]? { get }
      * @availability iOS 26.0+
      */
-    get outputBufferDescription(): $SDK292;
+    get outputBufferDescription(): $SDK297;
     /**
      * var spatialVideoConfigurations: [AVSpatialVideoConfiguration] { get }
      * @availability iOS 26.0+
      */
-    get spatialVideoConfigurations(): $SDK293;
+    get spatialVideoConfigurations(): $SDK298;
     readonly $type: {
         "c:objc(cs)AVVideoComposition": true;
         "c:objc(cs)NSObject": true;
@@ -21599,12 +21609,12 @@ export declare class AVMutableVideoComposition extends AVMutableVideoComposition
      * @availability iOS 9.0+
      * @deprecated iOS 18.0
      */
-    static initAssetApplyingCIFiltersWithHandler(asset: AVAsset, applier: $SDK288): AVMutableVideoComposition;
+    static initAssetApplyingCIFiltersWithHandler(asset: AVAsset, applier: $SDK292): AVMutableVideoComposition;
     /**
      * class func videoComposition(with asset: AVAsset, applyingCIFiltersWithHandler applier: @escaping @Sendable (AVAsynchronousCIImageFilteringRequest) -> Void) async throws -> AVMutableVideoComposition
      * @availability iOS 16.0+
      */
-    static videoCompositionWithApplyingCIFiltersWithHandlerCompletionHandler(asset: AVAsset, applier: $SDK288, completionHandler: $SDK294): void;
+    static videoCompositionWithApplyingCIFiltersWithHandlerCompletionHandler(asset: AVAsset, applier: $SDK292, completionHandler: $SDK299): void;
     /**
      * init(propertiesOf asset: AVAsset)
      * @availability iOS 6.0+
@@ -21616,7 +21626,7 @@ export declare class AVMutableVideoComposition extends AVMutableVideoComposition
      * @availability iOS 16.0+
      * @deprecated iOS 26.0
      */
-    static videoCompositionWithPropertiesOfCompletionHandler(asset: AVAsset, completionHandler: $SDK294): void;
+    static videoCompositionWithPropertiesOfCompletionHandler(asset: AVAsset, completionHandler: $SDK299): void;
     /**
      * init(propertiesOf asset: AVAsset, prototypeInstruction: AVVideoCompositionInstruction)
      * @availability iOS 13.0+
@@ -21628,14 +21638,14 @@ export declare class AVMutableVideoComposition extends AVMutableVideoComposition
      * @availability iOS 16.0+
      * @deprecated iOS 26.0
      */
-    static videoCompositionWithPropertiesOfPrototypeInstructionCompletionHandler(asset: AVAsset, prototypeInstruction: AVVideoCompositionInstruction, completionHandler: $SDK294): void;
+    static videoCompositionWithPropertiesOfPrototypeInstructionCompletionHandler(asset: AVAsset, prototypeInstruction: AVVideoCompositionInstruction, completionHandler: $SDK299): void;
     /**
      * var animationTool: AVVideoCompositionCoreAnimationTool? { get set }
      * @availability iOS 4.0+
      * @deprecated iOS 26.0
      */
-    get animationTool(): $SDK291;
-    set animationTool(value: $SDK291);
+    get animationTool(): $SDK295;
+    set animationTool(value: $SDK295);
     /**
      * var colorPrimaries: String? { get set }
      * @availability iOS 10.0+
@@ -21693,8 +21703,8 @@ export declare class AVMutableVideoComposition extends AVMutableVideoComposition
      * @availability iOS 4.0+
      * @deprecated iOS 26.0
      */
-    get renderSize(): $SDK33;
-    set renderSize(value: $SDK33);
+    get renderSize(): $SDK34;
+    set renderSize(value: $SDK34);
     /**
      * var sourceTrackIDForFrameTiming: CMPersistentTrackID { get set }
      * @availability iOS 11.0+
@@ -21730,7 +21740,7 @@ export declare class AVVideoCompositionInstruction extends SDKHandle {
      * var backgroundColor: CGColor? { get }
      * @availability iOS 4.0+
      */
-    get backgroundColor(): $SDK295;
+    get backgroundColor(): $SDK300;
     /**
      * var enablePostProcessing: Bool { get }
      * @availability iOS 4.0+
@@ -21740,7 +21750,7 @@ export declare class AVVideoCompositionInstruction extends SDKHandle {
      * var layerInstructions: [AVVideoCompositionLayerInstruction] { get }
      * @availability iOS 4.0+
      */
-    get layerInstructions(): $SDK296;
+    get layerInstructions(): $SDK301;
     /**
      * var passthroughTrackID: CMPersistentTrackID { get }
      * @availability iOS 7.0+
@@ -21750,7 +21760,7 @@ export declare class AVVideoCompositionInstruction extends SDKHandle {
      * var requiredSourceSampleDataTrackIDs: [NSNumber] { get }
      * @availability iOS 15.0+
      */
-    get requiredSourceSampleDataTrackIDs(): $SDK63;
+    get requiredSourceSampleDataTrackIDs(): $SDK64;
     /**
      * var requiredSourceTrackIDs: [NSValue] { get }
      * @availability iOS 7.0+
@@ -21794,8 +21804,8 @@ export declare class AVMutableVideoCompositionInstruction extends AVMutableVideo
      * @availability iOS 4.0+
      * @deprecated iOS 26.0
      */
-    get backgroundColor(): $SDK295;
-    set backgroundColor(value: $SDK295);
+    get backgroundColor(): $SDK300;
+    set backgroundColor(value: $SDK300);
     /**
      * var enablePostProcessing: Bool { get set }
      * @availability iOS 4.0+
@@ -21808,15 +21818,15 @@ export declare class AVMutableVideoCompositionInstruction extends AVMutableVideo
      * @availability iOS 4.0+
      * @deprecated iOS 26.0
      */
-    get layerInstructions(): $SDK296;
-    set layerInstructions(value: $SDK296);
+    get layerInstructions(): $SDK301;
+    set layerInstructions(value: $SDK301);
     /**
      * var requiredSourceSampleDataTrackIDs: [NSNumber] { get set }
      * @availability iOS 15.0+
      * @deprecated iOS 26.0
      */
-    get requiredSourceSampleDataTrackIDs(): $SDK63;
-    set requiredSourceSampleDataTrackIDs(value: $SDK63);
+    get requiredSourceSampleDataTrackIDs(): $SDK64;
+    set requiredSourceSampleDataTrackIDs(value: $SDK64);
     /**
      * var timeRange: CMTimeRange { get set }
      * @availability iOS 4.0+
@@ -21848,7 +21858,7 @@ export declare class AVVideoCompositionLayerInstruction extends SDKHandle {
      * func getCropRectangleRamp(for time: CMTime, startCropRectangle: UnsafeMutablePointer<CGRect>?, endCropRectangle: UnsafeMutablePointer<CGRect>?, timeRange: UnsafeMutablePointer<CMTimeRange>?) -> Bool
      * @availability iOS 7.0+
      */
-    getCropRectangleRamp(time: _CoreMedia_CMTime, startCropRectangle?: $SDK186, endCropRectangle?: $SDK186, timeRange?: (SDKHandle) | null): boolean;
+    getCropRectangleRamp(time: _CoreMedia_CMTime, startCropRectangle?: $SDK189, endCropRectangle?: $SDK189, timeRange?: (SDKHandle) | null): boolean;
     /**
      * func getOpacityRamp(for time: CMTime, startOpacity: UnsafeMutablePointer<Float>?, endOpacity: UnsafeMutablePointer<Float>?, timeRange: UnsafeMutablePointer<CMTimeRange>?) -> Bool
      * @availability iOS 4.0+
@@ -21868,7 +21878,7 @@ export declare class AVVideoCompositionLayerInstruction extends SDKHandle {
      * func opacityRamp(at time: CMTime) -> AVVideoCompositionLayerInstruction.OpacityRamp?
      * @availability iOS 26.0+
      */
-    opacityRamp(time: _CoreMedia_CMTime): $SDK297;
+    opacityRamp(time: _CoreMedia_CMTime): $SDK302;
     /**
      * convenience init(configuration: AVVideoCompositionLayerInstruction.Configuration)
      * @availability iOS 26.0+
@@ -21878,12 +21888,12 @@ export declare class AVVideoCompositionLayerInstruction extends SDKHandle {
      * func transformRamp(at time: CMTime) -> AVVideoCompositionLayerInstruction.TransformRamp?
      * @availability iOS 26.0+
      */
-    transformRamp(time: _CoreMedia_CMTime): $SDK298;
+    transformRamp(time: _CoreMedia_CMTime): $SDK303;
     /**
      * func cropRectangleRamp(at time: CMTime) -> AVVideoCompositionLayerInstruction.CropRectangleRamp?
      * @availability iOS 26.0+
      */
-    cropRectangleRamp(time: _CoreMedia_CMTime): $SDK299;
+    cropRectangleRamp(time: _CoreMedia_CMTime): $SDK304;
     readonly $type: {
         "c:objc(cs)AVVideoCompositionLayerInstruction": true;
         "c:objc(cs)NSObject": true;
@@ -21910,13 +21920,13 @@ export declare class AVMutableVideoCompositionLayerInstruction extends AVMutable
      * @availability iOS 7.0+
      * @deprecated iOS 26.0
      */
-    setCropRectangle(cropRectangle: $SDK148, time: _CoreMedia_CMTime): void;
+    setCropRectangle(cropRectangle: $SDK151, time: _CoreMedia_CMTime): void;
     /**
      * func setCropRectangleRamp(fromStartCropRectangle startCropRectangle: CGRect, toEndCropRectangle endCropRectangle: CGRect, timeRange: CMTimeRange)
      * @availability iOS 7.0+
      * @deprecated iOS 26.0
      */
-    setCropRectangleRamp(startCropRectangle: $SDK148, endCropRectangle: $SDK148, timeRange: _CoreMedia_CMTimeRange): void;
+    setCropRectangleRamp(startCropRectangle: $SDK151, endCropRectangle: $SDK151, timeRange: _CoreMedia_CMTimeRange): void;
     /**
      * func setOpacity(_ opacity: Float, at time: CMTime)
      * @availability iOS 4.0+
@@ -21986,8 +21996,8 @@ export declare class AVOutputSettingsAssistant extends SDKHandle {
      * var sourceAudioFormat: CMAudioFormatDescription? { get set }
      * @availability iOS 7.0+
      */
-    get sourceAudioFormat(): $SDK82;
-    set sourceAudioFormat(value: $SDK82);
+    get sourceAudioFormat(): $SDK84;
+    set sourceAudioFormat(value: $SDK84);
     /**
      * var sourceVideoAverageFrameDuration: CMTime { get set }
      * @availability iOS 7.0+
@@ -21998,8 +22008,8 @@ export declare class AVOutputSettingsAssistant extends SDKHandle {
      * var sourceVideoFormat: CMVideoFormatDescription? { get set }
      * @availability iOS 7.0+
      */
-    get sourceVideoFormat(): $SDK82;
-    set sourceVideoFormat(value: $SDK82);
+    get sourceVideoFormat(): $SDK84;
+    set sourceVideoFormat(value: $SDK84);
     /**
      * var sourceVideoMinFrameDuration: CMTime { get set }
      * @availability iOS 7.0+
@@ -22259,12 +22269,12 @@ export declare class AVPlannedVideoSegmentWritingRequest extends AVPlannedSegmen
      * func makeResumableWriterInput(for mediaType: AVMediaType, outputSettings: [String : any Sendable]? = nil, sourceFormatHint: CMFormatDescription? = nil) throws -> AVAssetWriterInput
      * @availability iOS 27.0+
      */
-    makeResumableWriterInput(mediaType: AVMediaType, outputSettings?: $SDK70, sourceFormatHint?: $SDK82): AVAssetWriterInput;
+    makeResumableWriterInput(mediaType: AVMediaType, outputSettings?: $SDK71, sourceFormatHint?: $SDK84): AVAssetWriterInput;
     /**
      * func createResumableCompressionSession(width: Int32, height: Int32, codecType: CMVideoCodecType, encoderSpecification: [String : any Sendable]? = nil, sourceImageBufferAttributes: [String : any Sendable]? = nil, outputHandler: @escaping @Sendable (OSStatus, VTEncodeInfoFlags, CMSampleBuffer?) -> Void) throws -> VTCompressionSession
      * @availability iOS 27.0+
      */
-    createResumableCompressionSession(width: number, height: number, codecType: SDKHandle, encoderSpecification: $SDK70, sourceImageBufferAttributes: $SDK70, outputHandler: ((arg0: number, arg1: _VideoToolbox_VTEncodeInfoFlags, arg2: (_CoreMedia_CMSampleBuffer) | null) => void)): _VideoToolbox_VTCompressionSession;
+    createResumableCompressionSession(width: number, height: number, codecType: SDKHandle, encoderSpecification: $SDK71, sourceImageBufferAttributes: $SDK71, outputHandler: ((arg0: number, arg1: _VideoToolbox_VTEncodeInfoFlags, arg2: (_CoreMedia_CMSampleBuffer) | null) => void)): _VideoToolbox_VTCompressionSession;
     readonly $type: {
         "c:objc(cs)AVPlannedVideoSegmentWritingRequest": true;
         "c:objc(cs)AVPlannedSegmentWritingRequest": true;
@@ -22356,9 +22366,9 @@ export declare class AVPlayer extends SDKHandle {
     static get isObservationEnabled(): Promise<boolean>;
     static setIsObservationEnabled(value: boolean): Promise<void>;
     /** nonisolated func addBoundaryTimeObserver(forTimes times: [NSValue], queue: dispatch_queue_t?, using block: @escaping @Sendable () -> Void) -> Any */
-    addBoundaryTimeObserver(times: $SDK17, queue: $SDK51, block: (() => void)): Promise<unknown>;
+    addBoundaryTimeObserver(times: $SDK17, queue: $SDK52, block: (() => void)): Promise<unknown>;
     /** nonisolated func addPeriodicTimeObserver(forInterval interval: CMTime, queue: dispatch_queue_t?, using block: @escaping @Sendable (CMTime) -> Void) -> Any */
-    addPeriodicTimeObserver(interval: _CoreMedia_CMTime, queue: $SDK51, block: $SDK303): Promise<unknown>;
+    addPeriodicTimeObserver(interval: _CoreMedia_CMTime, queue: $SDK52, block: $SDK308): Promise<unknown>;
     /**
      * nonisolated func cancelPendingPrerolls()
      * @availability iOS 6.0+
@@ -22385,7 +22395,7 @@ export declare class AVPlayer extends SDKHandle {
      * nonisolated func mediaSelectionCriteria(forMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic) -> AVPlayerMediaSelectionCriteria?
      * @availability iOS 7.0+
      */
-    mediaSelectionCriteria(mediaCharacteristic: AVMediaCharacteristic): Promise<$SDK304>;
+    mediaSelectionCriteria(mediaCharacteristic: AVMediaCharacteristic): Promise<$SDK309>;
     /** nonisolated func pause() */
     pause(): Promise<void>;
     /** nonisolated func play() */
@@ -22399,7 +22409,7 @@ export declare class AVPlayer extends SDKHandle {
      * nonisolated func preroll(atRate rate: Float) async -> Bool
      * @availability iOS 6.0+
      */
-    preroll(rate: number, completionHandler?: $SDK305): Promise<void>;
+    preroll(rate: number, completionHandler?: $SDK310): Promise<void>;
     /** nonisolated func removeTimeObserver(_ observer: Any) */
     removeTimeObserver(observer: unknown): Promise<void>;
     /** nonisolated func replaceCurrentItem(with item: AVPlayerItem?) */
@@ -22410,26 +22420,26 @@ export declare class AVPlayer extends SDKHandle {
      * nonisolated func seek(to date: Date) async -> Bool
      * @availability iOS 5.0+
      */
-    seekToCompletionHandler(date: globalThis.Date, completionHandler: $SDK23): Promise<void>;
+    seekToCompletionHandler(date: globalThis.Date, completionHandler: $SDK24): Promise<void>;
     /** nonisolated func seek(to time: CMTime) */
     seekTo47742(time: _CoreMedia_CMTime): Promise<void>;
     /**
      * nonisolated func seek(to time: CMTime) async -> Bool
      * @availability iOS 5.0+
      */
-    seekToCompletionHandler28014(time: _CoreMedia_CMTime, completionHandler: $SDK23): Promise<void>;
+    seekToCompletionHandler28014(time: _CoreMedia_CMTime, completionHandler: $SDK24): Promise<void>;
     /** nonisolated func seek(to time: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime) */
     seekToToleranceBeforeToleranceAfter(time: _CoreMedia_CMTime, toleranceBefore: _CoreMedia_CMTime, toleranceAfter: _CoreMedia_CMTime): Promise<void>;
     /**
      * nonisolated func seek(to time: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime) async -> Bool
      * @availability iOS 5.0+
      */
-    seekToToleranceBeforeToleranceAfterCompletionHandler(time: _CoreMedia_CMTime, toleranceBefore: _CoreMedia_CMTime, toleranceAfter: _CoreMedia_CMTime, completionHandler: $SDK23): Promise<void>;
+    seekToToleranceBeforeToleranceAfterCompletionHandler(time: _CoreMedia_CMTime, toleranceBefore: _CoreMedia_CMTime, toleranceAfter: _CoreMedia_CMTime, completionHandler: $SDK24): Promise<void>;
     /**
      * nonisolated func setMediaSelectionCriteria(_ criteria: AVPlayerMediaSelectionCriteria?, forMediaCharacteristic mediaCharacteristic: AVMediaCharacteristic)
      * @availability iOS 7.0+
      */
-    setMediaSelectionCriteria(criteria: $SDK304, mediaCharacteristic: AVMediaCharacteristic): Promise<void>;
+    setMediaSelectionCriteria(criteria: $SDK309, mediaCharacteristic: AVMediaCharacteristic): Promise<void>;
     /**
      * nonisolated func setRate(_ rate: Float, time itemTime: CMTime, atHostTime hostClockTime: CMTime)
      * @availability iOS 6.0+
@@ -22514,8 +22524,8 @@ export declare class AVPlayer extends SDKHandle {
      * @availability iOS 6.0+
      * @deprecated iOS 18.0
      */
-    get masterClock(): Promise<$SDK193>;
-    setMasterClock(value?: $SDK193): Promise<void>;
+    get masterClock(): Promise<$SDK196>;
+    setMasterClock(value?: $SDK196): Promise<void>;
     /**
      * nonisolated var isMuted: Bool { get set }
      * @availability iOS 7.0+
@@ -22556,8 +22566,8 @@ export declare class AVPlayer extends SDKHandle {
      * nonisolated var sourceClock: CMClock? { get set }
      * @availability iOS 15.0+
      */
-    get sourceClock(): Promise<$SDK193>;
-    setSourceClock(value?: $SDK193): Promise<void>;
+    get sourceClock(): Promise<$SDK196>;
+    setSourceClock(value?: $SDK196): Promise<void>;
     /**
      * nonisolated var status: AVPlayer.Status { get }
      * @availability iOS 4.0+
@@ -22842,8 +22852,8 @@ export declare class AVPlayerInterstitialEvent extends SDKHandle {
      * var date: Date? { get set }
      * @availability iOS 15.0+
      */
-    get date(): $SDK52;
-    set date(value: $SDK52);
+    get date(): $SDK53;
+    set date(value: $SDK53);
     /**
      * var identifier: String { get set }
      * @availability iOS 15.0+
@@ -23164,7 +23174,7 @@ export declare class AVPlayerInterstitialEventMonitor extends SDKHandle {
      * var currentEvent: AVPlayerInterstitialEvent? { get }
      * @availability iOS 15.0+
      */
-    get currentEvent(): $SDK310;
+    get currentEvent(): $SDK315;
     /**
      * var currentEventSkipControlLabel: String? { get }
      * @availability iOS 26.0+
@@ -23228,8 +23238,8 @@ export declare class AVPlayerInterstitialEventController extends AVPlayerInterst
      * var events: [AVPlayerInterstitialEvent]! { get set }
      * @availability iOS 15.0+
      */
-    get events(): $SDK312;
-    set events(value: $SDK312);
+    get events(): $SDK317;
+    set events(value: $SDK317);
     /**
      * @NSCopying var localizedStringsBundle: Bundle? { get set }
      * @availability iOS 26.0+
@@ -23379,14 +23389,14 @@ export declare class AVPlayerItem extends SDKHandle {
      */
     copy43054(): Promise<unknown>;
     /** nonisolated func currentDate() -> Date? */
-    currentDate(): Promise<$SDK52>;
+    currentDate(): Promise<$SDK53>;
     /** nonisolated func currentTime() -> CMTime */
     currentTime(): Promise<_CoreMedia_CMTime>;
     /**
      * func effectiveMediaPresentationSettings(for mediaSelectionGroup: AVMediaSelectionGroup) -> [AVMediaPresentationSelector : Any]
      * @availability iOS 26.0+
      */
-    effectiveMediaPresentationSettings(mediaSelectionGroup: AVMediaSelectionGroup): Promise<$SDK316>;
+    effectiveMediaPresentationSettings(mediaSelectionGroup: AVMediaSelectionGroup): Promise<$SDK321>;
     /**
      * nonisolated func errorLog() -> AVPlayerItemErrorLog?
      * @availability iOS 4.3+
@@ -23438,7 +23448,7 @@ export declare class AVPlayerItem extends SDKHandle {
      * nonisolated func seek(to date: Date, completionHandler: (@Sendable (Bool) -> Void)? = nil) -> Bool
      * @availability iOS 6.0+
      */
-    seekToCompletionHandler(date: globalThis.Date, completionHandler?: $SDK305): Promise<boolean>;
+    seekToCompletionHandler(date: globalThis.Date, completionHandler?: $SDK310): Promise<boolean>;
     /**
      * @MainActor func seek(to time: CMTime)
      * @availability iOS 4.0+
@@ -23449,7 +23459,7 @@ export declare class AVPlayerItem extends SDKHandle {
      * nonisolated func seek(to time: CMTime) async -> Bool
      * @availability iOS 5.0+
      */
-    seekToCompletionHandler63979(time: _CoreMedia_CMTime, completionHandler?: $SDK305): Promise<void>;
+    seekToCompletionHandler63979(time: _CoreMedia_CMTime, completionHandler?: $SDK310): Promise<void>;
     /**
      * func seek(to time: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime)
      * @availability iOS 4.0+
@@ -23460,12 +23470,12 @@ export declare class AVPlayerItem extends SDKHandle {
      * nonisolated func seek(to time: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime) async -> Bool
      * @availability iOS 5.0+
      */
-    seekToToleranceBeforeToleranceAfterCompletionHandler(time: _CoreMedia_CMTime, toleranceBefore: _CoreMedia_CMTime, toleranceAfter: _CoreMedia_CMTime, completionHandler?: $SDK305): Promise<void>;
+    seekToToleranceBeforeToleranceAfterCompletionHandler(time: _CoreMedia_CMTime, toleranceBefore: _CoreMedia_CMTime, toleranceAfter: _CoreMedia_CMTime, completionHandler?: $SDK310): Promise<void>;
     /**
      * nonisolated func select(_ mediaSelectionOption: AVMediaSelectionOption?, in mediaSelectionGroup: AVMediaSelectionGroup)
      * @availability iOS 5.0+
      */
-    selectIn(mediaSelectionOption: $SDK69, mediaSelectionGroup: AVMediaSelectionGroup): Promise<void>;
+    selectIn(mediaSelectionOption: $SDK70, mediaSelectionGroup: AVMediaSelectionGroup): Promise<void>;
     /**
      * nonisolated func selectMediaOptionAutomatically(in mediaSelectionGroup: AVMediaSelectionGroup)
      * @availability iOS 7.0+
@@ -23491,7 +23501,7 @@ export declare class AVPlayerItem extends SDKHandle {
      * @availability iOS 5.0+
      * @deprecated iOS 11.0
      */
-    selectedMediaOption(mediaSelectionGroup: AVMediaSelectionGroup): Promise<$SDK69>;
+    selectedMediaOption(mediaSelectionGroup: AVMediaSelectionGroup): Promise<$SDK70>;
     /**
      * func selectedMediaPresentationLanguage(for mediaSelectionGroup: AVMediaSelectionGroup) -> String?
      * @availability iOS 26.0+
@@ -23501,7 +23511,7 @@ export declare class AVPlayerItem extends SDKHandle {
      * func selectedMediaPresentationSettings(for mediaSelectionGroup: AVMediaSelectionGroup) -> [AVMediaPresentationSelector : Any]
      * @availability iOS 26.0+
      */
-    selectedMediaPresentationSettings(mediaSelectionGroup: AVMediaSelectionGroup): Promise<$SDK316>;
+    selectedMediaPresentationSettings(mediaSelectionGroup: AVMediaSelectionGroup): Promise<$SDK321>;
     /** nonisolated func step(byCount stepCount: Int) */
     step(stepCount: number): Promise<void>;
     /**
@@ -23653,8 +23663,8 @@ export declare class AVPlayerItem extends SDKHandle {
      * var preferredCustomMediaSelectionSchemes: [AVCustomMediaSelectionScheme] { get set }
      * @availability iOS 26.0+
      */
-    get preferredCustomMediaSelectionSchemes(): Promise<$SDK322>;
-    setPreferredCustomMediaSelectionSchemes(value: $SDK322): Promise<void>;
+    get preferredCustomMediaSelectionSchemes(): Promise<$SDK327>;
+    setPreferredCustomMediaSelectionSchemes(value: $SDK327): Promise<void>;
     /**
      * nonisolated var preferredForwardBufferDuration: TimeInterval { get set }
      * @availability iOS 10.0+
@@ -23665,14 +23675,14 @@ export declare class AVPlayerItem extends SDKHandle {
      * nonisolated var preferredMaximumResolution: CGSize { get set }
      * @availability iOS 11.0+
      */
-    get preferredMaximumResolution(): Promise<$SDK33>;
-    setPreferredMaximumResolution(value: $SDK33): Promise<void>;
+    get preferredMaximumResolution(): Promise<$SDK34>;
+    setPreferredMaximumResolution(value: $SDK34): Promise<void>;
     /**
      * nonisolated var preferredMaximumResolutionForExpensiveNetworks: CGSize { get set }
      * @availability iOS 15.0+
      */
-    get preferredMaximumResolutionForExpensiveNetworks(): Promise<$SDK33>;
-    setPreferredMaximumResolutionForExpensiveNetworks(value: $SDK33): Promise<void>;
+    get preferredMaximumResolutionForExpensiveNetworks(): Promise<$SDK34>;
+    setPreferredMaximumResolutionForExpensiveNetworks(value: $SDK34): Promise<void>;
     /**
      * nonisolated var preferredPeakBitRate: Double { get set }
      * @availability iOS 8.0+
@@ -23686,7 +23696,7 @@ export declare class AVPlayerItem extends SDKHandle {
     get preferredPeakBitRateForExpensiveNetworks(): Promise<number>;
     setPreferredPeakBitRateForExpensiveNetworks(value: number): Promise<void>;
     /** nonisolated var presentationSize: CGSize { get } */
-    get presentationSize(): Promise<$SDK33>;
+    get presentationSize(): Promise<$SDK34>;
     /**
      * nonisolated var recommendedTimeOffsetFromLive: CMTime { get }
      * @availability iOS 13.0+
@@ -23723,19 +23733,19 @@ export declare class AVPlayerItem extends SDKHandle {
      * nonisolated var textStyleRules: [AVTextStyleRule]? { get set }
      * @availability iOS 6.0+
      */
-    get textStyleRules(): Promise<$SDK323>;
-    setTextStyleRules(value?: $SDK323): Promise<void>;
+    get textStyleRules(): Promise<$SDK328>;
+    setTextStyleRules(value?: $SDK328): Promise<void>;
     /**
      * nonisolated var timebase: CMTimebase? { get }
      * @availability iOS 6.0+
      */
-    get timebase(): Promise<$SDK232>;
+    get timebase(): Promise<$SDK236>;
     /**
      * @MainActor var timedMetadata: [AVMetadataItem]? { get }
      * @availability iOS 4.0+
      * @deprecated iOS 13.0
      */
-    get timedMetadata(): Promise<$SDK26>;
+    get timedMetadata(): Promise<$SDK27>;
     /** nonisolated var tracks: [AVPlayerItemTrack] { get } */
     get tracks(): Promise<Array<AVPlayerItemTrack>>;
     /**
@@ -23754,8 +23764,8 @@ export declare class AVPlayerItem extends SDKHandle {
      * @NSCopying var videoComposition: AVVideoComposition? { get set }
      * @availability iOS 4.0+
      */
-    get videoComposition(): Promise<$SDK28>;
-    setVideoComposition(value?: $SDK28): Promise<void>;
+    get videoComposition(): Promise<$SDK29>;
+    setVideoComposition(value?: $SDK29): Promise<void>;
     /**
      * nonisolated func seek(to date: Date) async -> Bool
      * @availability iOS 16.0+
@@ -23765,12 +23775,12 @@ export declare class AVPlayerItem extends SDKHandle {
      * @MainActor @preconcurrency convenience init(asset: AVAsset, automaticallyLoadedAssetKeys: [AVPartialAsyncProperty<AVAsset>] = [])
      * @availability iOS 15.0+
      */
-    static initAssetAutomaticallyLoadedAssetKeys8573(asset: AVAsset, automaticallyLoadedAssetKeys?: $SDK325): Promise<AVPlayerItem>;
+    static initAssetAutomaticallyLoadedAssetKeys8573(asset: AVAsset, automaticallyLoadedAssetKeys?: $SDK330): Promise<AVPlayerItem>;
     /**
      * nonisolated convenience init(asset: any AVAsset & Sendable, automaticallyLoadedAssetKeys: [AVPartialAsyncProperty<AVAsset>])
      * @availability iOS 15.0+
      */
-    static initAssetAutomaticallyLoadedAssetKeys49425(asset: (AVAsset) & (SDKHandle), automaticallyLoadedAssetKeys: $SDK325): Promise<AVPlayerItem>;
+    static initAssetAutomaticallyLoadedAssetKeys49425(asset: (AVAsset) & (SDKHandle), automaticallyLoadedAssetKeys: $SDK330): Promise<AVPlayerItem>;
     /**
      * nonisolated convenience init(asset: any AVAsset & Sendable)
      * @availability iOS 4.0+
@@ -23971,7 +23981,7 @@ export declare class AVPlayerItemAccessLogEvent extends SDKHandle {
      * var playbackStartDate: Date? { get }
      * @availability iOS 4.3+
      */
-    get playbackStartDate(): $SDK52;
+    get playbackStartDate(): $SDK53;
     /**
      * var playbackStartOffset: TimeInterval { get }
      * @availability iOS 4.3+
@@ -24088,7 +24098,7 @@ export declare class AVPlayerItemErrorLogEvent extends SDKHandle {
      * var date: Date? { get }
      * @availability iOS 4.3+
      */
-    get date(): $SDK52;
+    get date(): $SDK53;
     /**
      * var errorComment: String? { get }
      * @availability iOS 4.3+
@@ -24148,17 +24158,17 @@ export declare class AVPlayerItemIntegratedTimeline extends SDKHandle {
      * func seek(to date: Date) async -> Bool
      * @availability iOS 18.0+
      */
-    seekToCompletionHandler(date: globalThis.Date, completionHandler?: $SDK305): void;
+    seekToCompletionHandler(date: globalThis.Date, completionHandler?: $SDK310): void;
     /**
      * func seek(to time: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime) async -> Bool
      * @availability iOS 18.0+
      */
-    seekToToleranceBeforeToleranceAfterCompletionHandler(time: _CoreMedia_CMTime, toleranceBefore: _CoreMedia_CMTime, toleranceAfter: _CoreMedia_CMTime, completionHandler?: $SDK305): void;
+    seekToToleranceBeforeToleranceAfterCompletionHandler(time: _CoreMedia_CMTime, toleranceBefore: _CoreMedia_CMTime, toleranceAfter: _CoreMedia_CMTime, completionHandler?: $SDK310): void;
     /**
      * var currentDate: Date? { get }
      * @availability iOS 18.0+
      */
-    get currentDate(): $SDK52;
+    get currentDate(): $SDK53;
     /**
      * var currentSnapshot: AVPlayerItemIntegratedTimelineSnapshot { get }
      * @availability iOS 18.0+
@@ -24223,7 +24233,7 @@ export declare class AVPlayerItemIntegratedTimeline_BoundaryTimes_Iterator exten
      * mutating func next() async -> AVPlayerItemIntegratedTimeline.BoundaryTimes.Element?
      * @availability iOS 18.0+
      */
-    next(): Promise<$SDK237>;
+    next(): Promise<$SDK241>;
     readonly $type: {
         "s:So30AVPlayerItemIntegratedTimelineC12AVFoundationE13BoundaryTimesV8IteratorV": true;
     };
@@ -24267,7 +24277,7 @@ export declare class AVPlayerItemIntegratedTimeline_PeriodicTimes_Iterator exten
      * mutating func next() async -> AVPlayerItemIntegratedTimeline.PeriodicTimes.Element?
      * @availability iOS 18.0+
      */
-    next(): Promise<$SDK237>;
+    next(): Promise<$SDK241>;
     readonly $type: {
         "s:So30AVPlayerItemIntegratedTimelineC12AVFoundationE13PeriodicTimesV8IteratorV": true;
     };
@@ -24289,7 +24299,7 @@ export declare class AVPlayerItemIntegratedTimelineSnapshot extends SDKHandle {
      * var currentDate: Date? { get }
      * @availability iOS 18.0+
      */
-    get currentDate(): $SDK52;
+    get currentDate(): $SDK53;
     /**
      * var currentSegment: AVPlayerItemSegment? { get }
      * @availability iOS 18.0+
@@ -24368,12 +24378,12 @@ export declare class AVPlayerItemLegibleOutput extends AVPlayerItemLegibleOutput
      * init(mediaSubtypesForNativeRepresentation subtypes: [NSNumber])
      * @availability iOS 7.0+
      */
-    static init(subtypes: $SDK63): AVPlayerItemLegibleOutput;
+    static init(subtypes: $SDK64): AVPlayerItemLegibleOutput;
     /**
      * func setDelegate(_ delegate: (any AVPlayerItemLegibleOutputPushDelegate)?, queue delegateQueue: dispatch_queue_t?)
      * @availability iOS 7.0+
      */
-    setDelegate(delegate?: (SDKHandle) | null, delegateQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVPlayerItemLegibleOutputPushDelegate> | SDKHandle) | null, delegateQueue?: $SDK52): void;
     /**
      * var advanceIntervalForDelegateInvocation: TimeInterval { get set }
      * @availability iOS 7.0+
@@ -24389,7 +24399,7 @@ export declare class AVPlayerItemLegibleOutput extends AVPlayerItemLegibleOutput
      * var delegateQueue: dispatch_queue_t? { get }
      * @availability iOS 7.0+
      */
-    get delegateQueue(): $SDK51;
+    get delegateQueue(): $SDK52;
     /**
      * var textStylingResolution: AVPlayerItemLegibleOutput.TextStylingResolution { get set }
      * @availability iOS 7.0+
@@ -24465,7 +24475,7 @@ export declare class AVPlayerItemMetadataCollector extends AVPlayerItemMetadataC
      * func setDelegate(_ delegate: (any AVPlayerItemMetadataCollectorPushDelegate)?, queue delegateQueue: dispatch_queue_t?)
      * @availability iOS 9.3+
      */
-    setDelegate(delegate?: (SDKHandle) | null, delegateQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVPlayerItemMetadataCollectorPushDelegate> | SDKHandle) | null, delegateQueue?: $SDK52): void;
     /**
      * weak var delegate: (any AVPlayerItemMetadataCollectorPushDelegate)? { get }
      * @availability iOS 9.3+
@@ -24475,7 +24485,7 @@ export declare class AVPlayerItemMetadataCollector extends AVPlayerItemMetadataC
      * var delegateQueue: dispatch_queue_t? { get }
      * @availability iOS 9.3+
      */
-    get delegateQueue(): $SDK51;
+    get delegateQueue(): $SDK52;
     readonly $type: {
         "c:objc(cs)AVPlayerItemMetadataCollector": true;
         "c:objc(cs)AVPlayerItemMediaDataCollector": true;
@@ -24509,7 +24519,7 @@ export declare class AVPlayerItemMetadataOutput extends AVPlayerItemMetadataOutp
      * func setDelegate(_ delegate: (any AVPlayerItemMetadataOutputPushDelegate)?, queue delegateQueue: dispatch_queue_t?)
      * @availability iOS 8.0+
      */
-    setDelegate(delegate?: (SDKHandle) | null, delegateQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVPlayerItemMetadataOutputPushDelegate> | SDKHandle) | null, delegateQueue?: $SDK52): void;
     /**
      * var advanceIntervalForDelegateInvocation: TimeInterval { get set }
      * @availability iOS 8.0+
@@ -24525,7 +24535,7 @@ export declare class AVPlayerItemMetadataOutput extends AVPlayerItemMetadataOutp
      * var delegateQueue: dispatch_queue_t? { get }
      * @availability iOS 8.0+
      */
-    get delegateQueue(): $SDK51;
+    get delegateQueue(): $SDK52;
     readonly $type: {
         "c:objc(cs)AVPlayerItemMetadataOutput": true;
         "c:objc(cs)AVPlayerItemOutput": true;
@@ -24582,12 +24592,12 @@ export declare class AVPlayerItemRenderedLegibleOutput extends AVPlayerItemRende
      * init(videoDisplay videoDisplaySize: CGSize)
      * @availability iOS 18.0+
      */
-    static init(videoDisplaySize: $SDK33): AVPlayerItemRenderedLegibleOutput;
+    static init(videoDisplaySize: $SDK34): AVPlayerItemRenderedLegibleOutput;
     /**
      * func setDelegate(_ delegate: (any AVPlayerItemRenderedLegibleOutputPushDelegate)?, queue delegateQueue: dispatch_queue_t?)
      * @availability iOS 18.0+
      */
-    setDelegate(delegate?: (SDKHandle) | null, delegateQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVPlayerItemRenderedLegibleOutputPushDelegate> | SDKHandle) | null, delegateQueue?: $SDK52): void;
     /**
      * var advanceIntervalForDelegateInvocation: TimeInterval { get set }
      * @availability iOS 18.0+
@@ -24603,13 +24613,13 @@ export declare class AVPlayerItemRenderedLegibleOutput extends AVPlayerItemRende
      * var delegateQueue: dispatch_queue_t? { get }
      * @availability iOS 18.0+
      */
-    get delegateQueue(): $SDK51;
+    get delegateQueue(): $SDK52;
     /**
      * var videoDisplaySize: CGSize { get set }
      * @availability iOS 18.0+
      */
-    get videoDisplaySize(): $SDK33;
-    set videoDisplaySize(value: $SDK33);
+    get videoDisplaySize(): $SDK34;
+    set videoDisplaySize(value: $SDK34);
     readonly $type: {
         "c:objc(cs)AVPlayerItemRenderedLegibleOutput": true;
         "c:objc(cs)AVPlayerItemOutput": true;
@@ -24654,12 +24664,12 @@ export declare class AVPlayerItemSampleBufferOutput extends AVPlayerItemSampleBu
      * func nextAvailableSampleBuffer() -> AVPlayerItemSampleBufferOutput.SampleBufferInSequence?
      * @availability iOS 27.0+
      */
-    nextAvailableSampleBuffer(): $SDK337;
+    nextAvailableSampleBuffer(): $SDK346;
     /**
      * nonisolated func nextSampleBuffer() async -> AVPlayerItemSampleBufferOutput.SampleBufferInSequence?
      * @availability iOS 27.0+
      */
-    nextSampleBuffer(): Promise<$SDK337>;
+    nextSampleBuffer(): Promise<$SDK346>;
     readonly $type: {
         "c:objc(cs)AVPlayerItemSampleBufferOutput": true;
         "c:objc(cs)AVPlayerItemOutput": true;
@@ -24678,13 +24688,13 @@ export declare class AVPlayerItemSampleBufferOutput_SampleBufferInSequence exten
      * init(sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>, sequenceWasRestarted: Bool)
      * @availability iOS 27.0+
      */
-    static init(sampleBuffer: $SDK85, sequenceWasRestarted: boolean): AVPlayerItemSampleBufferOutput_SampleBufferInSequence;
+    static init(sampleBuffer: $SDK87, sequenceWasRestarted: boolean): AVPlayerItemSampleBufferOutput_SampleBufferInSequence;
     /**
      * var sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>
      * @availability iOS 27.0+
      */
-    get sampleBuffer(): $SDK85;
-    set sampleBuffer(value: $SDK85);
+    get sampleBuffer(): $SDK87;
+    set sampleBuffer(value: $SDK87);
     /**
      * var sequenceWasRestarted: Bool
      * @availability iOS 27.0+
@@ -24719,8 +24729,8 @@ export declare class AVPlayerItemSampleBufferOutputAudioConfiguration extends AV
      * var requestedAudioFormat: CMFormatDescription? { get set }
      * @availability iOS 27.0+
      */
-    get requestedAudioFormat(): $SDK82;
-    set requestedAudioFormat(value: $SDK82);
+    get requestedAudioFormat(): $SDK84;
+    set requestedAudioFormat(value: $SDK84);
     readonly $type: {
         "c:objc(cs)AVPlayerItemSampleBufferOutputAudioConfiguration": true;
         "c:objc(cs)AVPlayerItemSampleBufferOutputConfiguration": true;
@@ -24739,7 +24749,7 @@ export declare class AVPlayerItemSegment extends SDKHandle {
      * var interstitialEvent: AVPlayerInterstitialEvent? { get }
      * @availability iOS 18.0+
      */
-    get interstitialEvent(): $SDK310;
+    get interstitialEvent(): $SDK315;
     /**
      * var segmentType: AVPlayerItemSegment.SegmentType { get }
      * @availability iOS 18.0+
@@ -24749,7 +24759,7 @@ export declare class AVPlayerItemSegment extends SDKHandle {
      * var startDate: Date? { get }
      * @availability iOS 18.0+
      */
-    get startDate(): $SDK52;
+    get startDate(): $SDK53;
     /**
      * var timeMapping: CMTimeMapping { get }
      * @availability iOS 18.0+
@@ -24759,7 +24769,7 @@ export declare class AVPlayerItemSegment extends SDKHandle {
      * @nonobjc var loadedTimeRanges: [CMTimeRange] { get }
      * @availability iOS 18.0+
      */
-    get loadedTimeRanges(): $SDK48;
+    get loadedTimeRanges(): $SDK49;
     readonly $type: {
         "c:objc(cs)AVPlayerItemSegment": true;
         "c:objc(cs)NSObject": true;
@@ -24826,7 +24836,7 @@ export declare class AVPlayerItemVideoOutput extends AVPlayerItemOutput {
      * @availability iOS 6.0+
      * @deprecated iOS 27.0
      */
-    copyPixelBuffer(itemTime: _CoreMedia_CMTime, outItemTimeForDisplay?: (SDKHandle) | null): $SDK93;
+    copyPixelBuffer(itemTime: _CoreMedia_CMTime, outItemTimeForDisplay?: (SDKHandle) | null): $SDK96;
     /**
      * func hasNewPixelBuffer(forItemTime itemTime: CMTime) -> Bool
      * @availability iOS 6.0+
@@ -24836,13 +24846,13 @@ export declare class AVPlayerItemVideoOutput extends AVPlayerItemOutput {
      * init(outputSettings: [String : any Sendable]?)
      * @availability iOS 10.0+
      */
-    static initOutputSettings(outputSettings?: $SDK70): AVPlayerItemVideoOutput;
+    static initOutputSettings(outputSettings?: $SDK71): AVPlayerItemVideoOutput;
     /**
      * init(pixelBufferAttributes: [String : any Sendable]? = nil)
      * @availability iOS 6.0+
      * @deprecated iOS 27.0
      */
-    static initPixelBufferAttributes(pixelBufferAttributes?: $SDK70): AVPlayerItemVideoOutput;
+    static initPixelBufferAttributes(pixelBufferAttributes?: $SDK71): AVPlayerItemVideoOutput;
     /**
      * func requestNotificationOfMediaDataChange(withAdvanceInterval interval: TimeInterval)
      * @availability iOS 6.0+
@@ -24852,7 +24862,7 @@ export declare class AVPlayerItemVideoOutput extends AVPlayerItemOutput {
      * func setDelegate(_ delegate: (any AVPlayerItemOutputPullDelegate)?, queue delegateQueue: dispatch_queue_t?)
      * @availability iOS 6.0+
      */
-    setDelegate(delegate?: (SDKHandle) | null, delegateQueue?: $SDK51): void;
+    setDelegate(delegate?: (Implements<AVPlayerItemOutputPullDelegate> | SDKHandle) | null, delegateQueue?: $SDK52): void;
     /**
      * weak var delegate: (any AVPlayerItemOutputPullDelegate)? { get }
      * @availability iOS 6.0+
@@ -24862,7 +24872,7 @@ export declare class AVPlayerItemVideoOutput extends AVPlayerItemOutput {
      * var delegateQueue: dispatch_queue_t? { get }
      * @availability iOS 6.0+
      */
-    get delegateQueue(): $SDK51;
+    get delegateQueue(): $SDK52;
     /**
      * convenience init(pixelBufferAttributes: CVPixelBufferAttributes)
      * @availability iOS 26.0+
@@ -24902,12 +24912,12 @@ export declare class AVPlayerLayer extends SDKHandle {
      * @availability iOS 16.0+
      * @deprecated iOS 27.0
      */
-    displayedPixelBuffer(): $SDK93;
+    displayedPixelBuffer(): $SDK96;
     /**
      * func setCaptionPreviewProfileID(_ profileID: String, position: CGPoint, text: String?)
      * @availability iOS 26.4+
      */
-    setCaptionPreviewProfileID(profileID: string, position: $SDK135, text?: (string) | null): void;
+    setCaptionPreviewProfileID(profileID: string, position: $SDK138, text?: (string) | null): void;
     /**
      * func stopShowingCaptionPreview()
      * @availability iOS 26.4+
@@ -24940,12 +24950,12 @@ export declare class AVPlayerLayer extends SDKHandle {
      * var videoRect: CGRect { get }
      * @availability iOS 7.0+
      */
-    get videoRect(): $SDK148;
+    get videoRect(): $SDK151;
     /**
      * func displayedReadOnlyPixelBuffer() -> CVReadOnlyPixelBuffer?
      * @availability iOS 26.0+
      */
-    displayedReadOnlyPixelBuffer(): $SDK95;
+    displayedReadOnlyPixelBuffer(): $SDK98;
     readonly $type: {
         "c:objc(cs)AVPlayerLayer": true;
         "c:objc(cs)CALayer": true;
@@ -25042,12 +25052,12 @@ export declare class AVPlayerMediaSelectionCriteria extends SDKHandle {
      * init(preferredLanguages: [String]?, preferredMediaCharacteristics: [AVMediaCharacteristic]?)
      * @availability iOS 7.0+
      */
-    static initPreferredLanguagesPreferredMediaCharacteristics(preferredLanguages?: (Array<string>) | null, preferredMediaCharacteristics?: $SDK339): AVPlayerMediaSelectionCriteria;
+    static initPreferredLanguagesPreferredMediaCharacteristics(preferredLanguages?: (Array<string>) | null, preferredMediaCharacteristics?: $SDK349): AVPlayerMediaSelectionCriteria;
     /**
      * init(principalMediaCharacteristics: [AVMediaCharacteristic]?, preferredLanguages: [String]?, preferredMediaCharacteristics: [AVMediaCharacteristic]?)
      * @availability iOS 12.0+
      */
-    static initPrincipalMediaCharacteristicsPreferredLanguagesPreferredMediaCharacteristics(principalMediaCharacteristics?: $SDK339, preferredLanguages?: (Array<string>) | null, preferredMediaCharacteristics?: $SDK339): AVPlayerMediaSelectionCriteria;
+    static initPrincipalMediaCharacteristicsPreferredLanguagesPreferredMediaCharacteristics(principalMediaCharacteristics?: $SDK349, preferredLanguages?: (Array<string>) | null, preferredMediaCharacteristics?: $SDK349): AVPlayerMediaSelectionCriteria;
     /**
      * var preferredLanguages: [String]? { get }
      * @availability iOS 7.0+
@@ -25057,12 +25067,12 @@ export declare class AVPlayerMediaSelectionCriteria extends SDKHandle {
      * var preferredMediaCharacteristics: [AVMediaCharacteristic]? { get }
      * @availability iOS 7.0+
      */
-    get preferredMediaCharacteristics(): $SDK339;
+    get preferredMediaCharacteristics(): $SDK349;
     /**
      * var principalMediaCharacteristics: [AVMediaCharacteristic]? { get }
      * @availability iOS 12.0+
      */
-    get principalMediaCharacteristics(): $SDK339;
+    get principalMediaCharacteristics(): $SDK349;
     readonly $type: {
         "c:objc(cs)AVPlayerMediaSelectionCriteria": true;
         "c:objc(cs)NSObject": true;
@@ -25082,18 +25092,18 @@ export declare class AVPlayerPlaybackCoordinator extends AVPlaybackCoordinator {
      * func coordinate(using coordinationMedium: AVPlaybackCoordinationMedium?) throws
      * @availability iOS 26.0+
      */
-    coordinate(coordinationMedium?: $SDK340): void;
+    coordinate(coordinationMedium?: $SDK350): void;
     /**
      * weak var delegate: (any AVPlayerPlaybackCoordinatorDelegate)? { get set }
      * @availability iOS 15.0+
      */
     get delegate(): (SDKHandle) | null;
-    set delegate(value: (SDKHandle) | null);
+    set delegate(value: (Implements<AVPlayerPlaybackCoordinatorDelegate> | SDKHandle) | null);
     /**
      * var playbackCoordinationMedium: AVPlaybackCoordinationMedium? { get }
      * @availability iOS 26.0+
      */
-    get playbackCoordinationMedium(): $SDK340;
+    get playbackCoordinationMedium(): $SDK350;
     /**
      * weak var player: AVPlayer? { get }
      * @availability iOS 15.0+
@@ -25174,7 +25184,7 @@ export declare class AVPlayerVideoOutput_Configuration extends SDKHandle {
      * var dataChannelDescription: [[CMTag]] { get }
      * @availability iOS 17.2+
      */
-    get dataChannelDescription(): $SDK343;
+    get dataChannelDescription(): $SDK354;
     readonly $type: {
         "c:objc(cs)AVPlayerVideoOutputConfiguration": true;
         "c:objc(cs)NSObject": true;
@@ -25194,7 +25204,7 @@ export declare class AVPlayerVideoOutput_Sample extends SDKHandle {
      * let taggedBuffers: [CMTaggedDynamicBuffer]
      * @availability iOS 26.0+
      */
-    get taggedBuffers(): $SDK86;
+    get taggedBuffers(): $SDK88;
     /**
      * let presentationTime: CMTime
      * @availability iOS 26.0+
@@ -25218,15 +25228,15 @@ export declare class AVPortraitEffectsMatte extends SDKHandle {
      * convenience init(fromDictionaryRepresentation imageSourceAuxDataInfoDictionary: [AnyHashable : Any]) throws
      * @availability iOS 12.0+
      */
-    static init(imageSourceAuxDataInfoDictionary: $SDK234): AVPortraitEffectsMatte;
+    static init(imageSourceAuxDataInfoDictionary: $SDK238): AVPortraitEffectsMatte;
     /**
      * func dictionaryRepresentation(forAuxiliaryDataType outAuxDataType: AutoreleasingUnsafeMutablePointer<NSString?>?) -> [AnyHashable : Any]?
      * @availability iOS 12.0+
      */
     dictionaryRepresentation(): {
-        $ret: $SDK235;
+        $ret: $SDK239;
         $out: {
-            "outAuxDataType": $SDK236;
+            "outAuxDataType": $SDK240;
         };
     };
     /**
@@ -25474,7 +25484,7 @@ export declare class AVRenderedCaptionImage extends SDKHandle {
      * var position: CGPoint { get }
      * @availability iOS 18.0+
      */
-    get position(): $SDK135;
+    get position(): $SDK138;
     /**
      * var readOnlyPixelBuffer: CVReadOnlyPixelBuffer { get }
      * @availability iOS 26.0+
@@ -25545,7 +25555,7 @@ export declare class AVSampleBufferAudioRenderer extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    flushFromSourceTimeCompletionHandler(time: _CoreMedia_CMTime, completionHandler: $SDK23): void;
+    flushFromSourceTimeCompletionHandler(time: _CoreMedia_CMTime, completionHandler: $SDK24): void;
     /** init() */
     static init(): AVSampleBufferAudioRenderer;
     /**
@@ -25626,12 +25636,12 @@ export declare class AVSampleBufferAudioRenderer_Receiver extends SDKHandle {
      * func enqueueImmediately(_ sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>) -> AVSampleBufferAudioRenderer.Receiver.EnqueueResult
      * @availability iOS 27.0+
      */
-    enqueueImmediately(sampleBuffer: $SDK85): AVSampleBufferAudioRenderer_Receiver_EnqueueResult;
+    enqueueImmediately(sampleBuffer: $SDK87): AVSampleBufferAudioRenderer_Receiver_EnqueueResult;
     /**
      * var renderingEventsAfterFinishedEnqueuing: some Sendable & AsyncSequence<AVSampleBufferAudioRenderer.Receiver.RenderingEvent, Never> { get }
      * @availability iOS 27.0+
      */
-    get renderingEventsAfterFinishedEnqueuing(): $SDK29;
+    get renderingEventsAfterFinishedEnqueuing(): $SDK30;
     /**
      * nonisolated(nonsending) func flush(fromSourceTime sourceTime: CMTime) async -> Bool
      * @availability iOS 27.0+
@@ -25646,7 +25656,7 @@ export declare class AVSampleBufferAudioRenderer_Receiver extends SDKHandle {
      * nonisolated(nonsending) func enqueue(_ sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>) async throws -> AVSampleBufferAudioRenderer.Receiver.EnqueueResult
      * @availability iOS 27.0+
      */
-    enqueue(sampleBuffer: $SDK85): Promise<AVSampleBufferAudioRenderer_Receiver_EnqueueResult>;
+    enqueue(sampleBuffer: $SDK87): Promise<AVSampleBufferAudioRenderer_Receiver_EnqueueResult>;
     readonly $type: {
         "s:So27AVSampleBufferAudioRendererC12AVFoundationE8ReceiverC": true;
     };
@@ -25719,8 +25729,8 @@ export declare class AVSampleBufferDisplayLayer extends SDKHandle {
      * var controlTimebase: CMTimebase? { get set }
      * @availability iOS 8.0+
      */
-    get controlTimebase(): Promise<$SDK232>;
-    setControlTimebase(value?: $SDK232): Promise<void>;
+    get controlTimebase(): Promise<$SDK236>;
+    setControlTimebase(value?: $SDK236): Promise<void>;
     /**
      * var error: (any Error)? { get }
      * @availability iOS 8.0+
@@ -25820,7 +25830,7 @@ export declare class AVSampleBufferGenerator extends SDKHandle {
      * class func notifyOfDataReady(for sbuf: CMSampleBuffer) async throws
      * @availability iOS 16.0+
      */
-    static notifyOfDataReady(sbuf: _CoreMedia_CMSampleBuffer, completionHandler: $SDK212): void;
+    static notifyOfDataReady(sbuf: _CoreMedia_CMSampleBuffer, completionHandler: $SDK215): void;
     /**
      * func makeSampleBuffer(for request: AVSampleBufferRequest, addTo batch: AVSampleBufferGeneratorBatch) throws -> CMSampleBuffer
      * @availability iOS 16.0+
@@ -25835,7 +25845,7 @@ export declare class AVSampleBufferGenerator extends SDKHandle {
      * init(asset: AVAsset, timebase: CMTimebase?)
      * @availability iOS 16.0+
      */
-    static init(asset: AVAsset, timebase?: $SDK232): AVSampleBufferGenerator;
+    static init(asset: AVAsset, timebase?: $SDK236): AVSampleBufferGenerator;
     /**
      * func makeBatch() -> AVSampleBufferGeneratorBatch
      * @availability iOS 16.0+
@@ -25860,7 +25870,7 @@ export declare class AVSampleBufferGeneratorBatch extends SDKHandle {
      * func makeDataReady() async throws
      * @availability iOS 16.0+
      */
-    makeDataReady(completionHandler: $SDK278): void;
+    makeDataReady(completionHandler: $SDK282): void;
     readonly $type: {
         "c:objc(cs)AVSampleBufferGeneratorBatch": true;
         "c:objc(cs)NSObject": true;
@@ -25877,9 +25887,9 @@ export declare class AVSampleBufferRenderSynchronizer extends SDKHandle {
      */
     static get rateDidChangeNotification(): _Foundation_NSNotification_Name;
     /** func addBoundaryTimeObserver(forTimes times: [NSValue], queue: dispatch_queue_t?, using block: @escaping @Sendable () -> Void) -> Any */
-    addBoundaryTimeObserver(times: $SDK17, queue: $SDK51, block: (() => void)): unknown;
+    addBoundaryTimeObserver(times: $SDK17, queue: $SDK52, block: (() => void)): unknown;
     /** func addPeriodicTimeObserver(forInterval interval: CMTime, queue: dispatch_queue_t?, using block: @escaping @Sendable (CMTime) -> Void) -> Any */
-    addPeriodicTimeObserver(interval: _CoreMedia_CMTime, queue: $SDK51, block: $SDK303): unknown;
+    addPeriodicTimeObserver(interval: _CoreMedia_CMTime, queue: $SDK52, block: $SDK308): unknown;
     /**
      * func addRenderer(_ renderer: any AVQueuedSampleBufferRendering)
      * @availability iOS 11.0+
@@ -25898,7 +25908,7 @@ export declare class AVSampleBufferRenderSynchronizer extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    removeRenderer(renderer: SDKHandle, time: _CoreMedia_CMTime, completionHandler?: $SDK305): void;
+    removeRenderer(renderer: SDKHandle, time: _CoreMedia_CMTime, completionHandler?: $SDK310): void;
     /** func removeTimeObserver(_ observer: Any) */
     removeTimeObserver(observer: unknown): void;
     /**
@@ -26069,7 +26079,7 @@ export declare class AVSampleBufferVideoRenderer extends SDKHandle {
      * func displayedPixelBuffer() -> CVPixelBuffer?
      * @availability iOS 17.4+
      */
-    displayedPixelBuffer(): $SDK93;
+    displayedPixelBuffer(): $SDK96;
     /**
      * func enqueue(_ sampleBuffer: CMSampleBuffer)
      * @availability iOS 11.0+
@@ -26177,12 +26187,12 @@ export declare class AVSampleBufferVideoRenderer_Receiver extends SDKHandle {
      * func enqueueImmediately(_ sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>) -> AVSampleBufferVideoRenderer.Receiver.EnqueueResult
      * @availability iOS 27.0+
      */
-    enqueueImmediately(sampleBuffer: $SDK85): AVSampleBufferVideoRenderer_Receiver_EnqueueResult;
+    enqueueImmediately(sampleBuffer: $SDK87): AVSampleBufferVideoRenderer_Receiver_EnqueueResult;
     /**
      * var renderingEventsAfterFinishedEnqueuing: some Sendable & AsyncSequence<AVSampleBufferVideoRenderer.Receiver.RenderingEvent, Never> { get }
      * @availability iOS 27.0+
      */
-    get renderingEventsAfterFinishedEnqueuing(): $SDK29;
+    get renderingEventsAfterFinishedEnqueuing(): $SDK30;
     /**
      * nonisolated(nonsending) func flush(removingDisplayedImage removeDisplayedImage: Bool) async
      * @availability iOS 27.0+
@@ -26197,7 +26207,7 @@ export declare class AVSampleBufferVideoRenderer_Receiver extends SDKHandle {
      * nonisolated(nonsending) func enqueue(_ sampleBuffer: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>) async throws -> AVSampleBufferVideoRenderer.Receiver.EnqueueResult
      * @availability iOS 27.0+
      */
-    enqueue(sampleBuffer: $SDK85): Promise<AVSampleBufferVideoRenderer_Receiver_EnqueueResult>;
+    enqueue(sampleBuffer: $SDK87): Promise<AVSampleBufferVideoRenderer_Receiver_EnqueueResult>;
     readonly $type: {
         "s:So27AVSampleBufferVideoRendererC12AVFoundationE8ReceiverC": true;
     };
@@ -26299,7 +26309,7 @@ export declare class AVSampleCursor extends SDKHandle {
      * var currentSampleDependencyAttachments: [AnyHashable : Any]? { get }
      * @availability iOS 16.0+
      */
-    get currentSampleDependencyAttachments(): $SDK235;
+    get currentSampleDependencyAttachments(): $SDK239;
     /**
      * var currentSampleDependencyInfo: AVSampleCursorDependencyInfo { get }
      * @availability iOS 16.0+
@@ -26470,15 +26480,15 @@ export declare class AVSemanticSegmentationMatte extends SDKHandle {
      * convenience init(fromImageSourceAuxiliaryDataType imageSourceAuxiliaryDataType: CFString, dictionaryRepresentation imageSourceAuxiliaryDataInfoDictionary: [AnyHashable : Any]) throws
      * @availability iOS 13.0+
      */
-    static init(imageSourceAuxiliaryDataType: _CoreFoundation_CFString, imageSourceAuxiliaryDataInfoDictionary: $SDK234): AVSemanticSegmentationMatte;
+    static init(imageSourceAuxiliaryDataType: _CoreFoundation_CFString, imageSourceAuxiliaryDataInfoDictionary: $SDK238): AVSemanticSegmentationMatte;
     /**
      * func dictionaryRepresentation(forAuxiliaryDataType outAuxDataType: AutoreleasingUnsafeMutablePointer<NSString?>?) -> [AnyHashable : Any]?
      * @availability iOS 13.0+
      */
     dictionaryRepresentation(): {
-        $ret: $SDK235;
+        $ret: $SDK239;
         $out: {
-            "outAuxDataType": $SDK236;
+            "outAuxDataType": $SDK240;
         };
     };
     /**
@@ -26601,8 +26611,8 @@ export declare class AVSpatialVideoConfiguration extends SDKHandle {
      * var cameraCalibrationDataLensCollection: CMFormatDescription.Extensions.Value.CameraCalibrationDataLensCollection?
      * @availability iOS 26.0+
      */
-    get cameraCalibrationDataLensCollection(): $SDK348;
-    set cameraCalibrationDataLensCollection(value: $SDK348);
+    get cameraCalibrationDataLensCollection(): $SDK359;
+    set cameraCalibrationDataLensCollection(value: $SDK359);
     /**
      * init()
      * @availability iOS 26.0+
@@ -26651,7 +26661,7 @@ export declare class AVTextStyleRule extends SDKHandle {
      * class func textStyleRules(fromPropertyList plist: Any) -> [AVTextStyleRule]?
      * @availability iOS 6.0+
      */
-    static textStyleRules(plist: unknown): $SDK323;
+    static textStyleRules(plist: unknown): $SDK328;
     /**
      * convenience init?(textMarkupAttributes: [String : Any] = [:])
      * @availability iOS 6.0+
@@ -26830,8 +26840,8 @@ export declare class AVVideoComposition_Configuration extends SDKHandle {
      * var renderSize: CGSize { get set }
      * @availability iOS 26.0+
      */
-    get renderSize(): $SDK33;
-    set renderSize(value: $SDK33);
+    get renderSize(): $SDK34;
+    set renderSize(value: $SDK34);
     /**
      * var renderScale: Float { get set }
      * @availability iOS 26.0+
@@ -26848,13 +26858,13 @@ export declare class AVVideoComposition_Configuration extends SDKHandle {
      * init(animationTool: AVVideoCompositionCoreAnimationTool? = nil, colorPrimaries: String? = nil, colorTransferFunction: String? = nil, colorYCbCrMatrix: String? = nil, customVideoCompositorClass: (any AVVideoCompositing.Type)? = nil, frameDuration: CMTime = CMTime.zero, instructions: [any AVVideoCompositionInstructionProtocol] = [any AVVideoCompositionInstructionProtocol](), outputBufferDescription: [[CMTag]]? = nil, perFrameHDRDisplayMetadataPolicy: AVVideoComposition.PerFrameHDRDisplayMetadataPolicy = .propagate, renderScale: Float = 1.0, renderSize: CGSize = .zero, sourceSampleDataTrackIDs: [CMPersistentTrackID] = [CMPersistentTrackID](), sourceTrackIDForFrameTiming: Int32 = CMPersistentTrackID.zero, spatialVideoConfigurations: [AVSpatialVideoConfiguration] = [])
      * @availability iOS 26.0+
      */
-    static initAnimationToolColorPrimariesColorTransferFunctionColorYCbCrMatrixCustomVideoCompositorClassFrameDurationInstructionsOutputBufferDescriptionPerFrameHDRDisplayMetadataPolicyRenderScaleRenderSizeSourceSampleDataTrackIDsSourceTrackIDForFrameTimingSpatialVideoConfigurations(animationTool?: $SDK291, colorPrimaries?: (string) | null, colorTransferFunction?: (string) | null, colorYCbCrMatrix?: (string) | null, customVideoCompositorClass?: (string) | null, frameDuration?: _CoreMedia_CMTime, instructions?: Array<SDKHandle>, outputBufferDescription?: $SDK292, perFrameHDRDisplayMetadataPolicy?: AVVideoComposition_PerFrameHDRDisplayMetadataPolicy, renderScale?: number, renderSize?: $SDK33, sourceSampleDataTrackIDs?: Array<number>, sourceTrackIDForFrameTiming?: number, spatialVideoConfigurations?: $SDK293): AVVideoComposition_Configuration;
+    static initAnimationToolColorPrimariesColorTransferFunctionColorYCbCrMatrixCustomVideoCompositorClassFrameDurationInstructionsOutputBufferDescriptionPerFrameHDRDisplayMetadataPolicyRenderScaleRenderSizeSourceSampleDataTrackIDsSourceTrackIDForFrameTimingSpatialVideoConfigurations(animationTool?: $SDK295, colorPrimaries?: (string) | null, colorTransferFunction?: (string) | null, colorYCbCrMatrix?: (string) | null, customVideoCompositorClass?: (string) | null, frameDuration?: _CoreMedia_CMTime, instructions?: Array<SDKHandle>, outputBufferDescription?: $SDK297, perFrameHDRDisplayMetadataPolicy?: AVVideoComposition_PerFrameHDRDisplayMetadataPolicy, renderScale?: number, renderSize?: $SDK34, sourceSampleDataTrackIDs?: Array<number>, sourceTrackIDForFrameTiming?: number, spatialVideoConfigurations?: $SDK298): AVVideoComposition_Configuration;
     /**
      * var animationTool: AVVideoCompositionCoreAnimationTool? { get set }
      * @availability iOS 26.0+
      */
-    get animationTool(): $SDK291;
-    set animationTool(value: $SDK291);
+    get animationTool(): $SDK295;
+    set animationTool(value: $SDK295);
     /**
      * var frameDuration: CMTime { get set }
      * @availability iOS 26.0+
@@ -26883,8 +26893,8 @@ export declare class AVVideoComposition_Configuration extends SDKHandle {
      * var outputBufferDescription: [[CMTag]]? { get set }
      * @availability iOS 26.0+
      */
-    get outputBufferDescription(): $SDK292;
-    set outputBufferDescription(value: $SDK292);
+    get outputBufferDescription(): $SDK297;
+    set outputBufferDescription(value: $SDK297);
     /**
      * var sourceSampleDataTrackIDs: [CMPersistentTrackID] { get set }
      * @availability iOS 26.0+
@@ -26901,8 +26911,8 @@ export declare class AVVideoComposition_Configuration extends SDKHandle {
      * var spatialVideoConfigurations: [AVSpatialVideoConfiguration] { get set }
      * @availability iOS 26.0+
      */
-    get spatialVideoConfigurations(): $SDK293;
-    set spatialVideoConfigurations(value: $SDK293);
+    get spatialVideoConfigurations(): $SDK298;
+    set spatialVideoConfigurations(value: $SDK298);
     /**
      * var sourceTrackIDForFrameTiming: CMPersistentTrackID { get set }
      * @availability iOS 26.0+
@@ -26966,7 +26976,7 @@ export declare class AVVideoCompositionCoreAnimationTool extends SDKHandle {
      * convenience init(postProcessingAsVideoLayers videoLayers: [CALayer], in animationLayer: CALayer)
      * @availability iOS 7.0+
      */
-    static initPostProcessingAsVideoLayersIn(videoLayers: $SDK350, animationLayer: _QuartzCore_CALayer): AVVideoCompositionCoreAnimationTool;
+    static initPostProcessingAsVideoLayersIn(videoLayers: $SDK361, animationLayer: _QuartzCore_CALayer): AVVideoCompositionCoreAnimationTool;
     /**
      * convenience init(configuration: sending AVVideoCompositionCoreAnimationTool.Configuration)
      * @availability iOS 26.0+
@@ -26997,13 +27007,13 @@ export declare class AVVideoCompositionCoreAnimationTool_Configuration extends S
      * init(postProcessingAsVideoLayers layers: [CALayer], containingLayer: CALayer)
      * @availability iOS 26.0+
      */
-    static initPostProcessingAsVideoLayersContainingLayer(layers: $SDK350, containingLayer: _QuartzCore_CALayer): AVVideoCompositionCoreAnimationTool_Configuration;
+    static initPostProcessingAsVideoLayersContainingLayer(layers: $SDK361, containingLayer: _QuartzCore_CALayer): AVVideoCompositionCoreAnimationTool_Configuration;
     /**
      * var layers: [CALayer]
      * @availability iOS 26.0+
      */
-    get layers(): $SDK350;
-    set layers(value: $SDK350);
+    get layers(): $SDK361;
+    set layers(value: $SDK361);
     readonly $type: {
         "s:So35AVVideoCompositionCoreAnimationToolC12AVFoundationE13ConfigurationV": true;
     };
@@ -27017,19 +27027,19 @@ export declare class AVVideoCompositionInstruction_Configuration extends SDKHand
      * init(backgroundColor: CGColor? = nil, enablePostProcessing: Bool = true, layerInstructions: [AVVideoCompositionLayerInstruction] = [], requiredSourceSampleDataTrackIDs: [CMPersistentTrackID] = [], timeRange: CMTimeRange = .zero)
      * @availability iOS 26.0+
      */
-    static init(backgroundColor?: $SDK295, enablePostProcessing?: boolean, layerInstructions?: $SDK296, requiredSourceSampleDataTrackIDs?: Array<number>, timeRange?: _CoreMedia_CMTimeRange): AVVideoCompositionInstruction_Configuration;
+    static init(backgroundColor?: $SDK300, enablePostProcessing?: boolean, layerInstructions?: $SDK301, requiredSourceSampleDataTrackIDs?: Array<number>, timeRange?: _CoreMedia_CMTimeRange): AVVideoCompositionInstruction_Configuration;
     /**
      * var backgroundColor: CGColor?
      * @availability iOS 26.0+
      */
-    get backgroundColor(): $SDK295;
-    set backgroundColor(value: $SDK295);
+    get backgroundColor(): $SDK300;
+    set backgroundColor(value: $SDK300);
     /**
      * var layerInstructions: [AVVideoCompositionLayerInstruction] { get set }
      * @availability iOS 26.0+
      */
-    get layerInstructions(): $SDK296;
-    set layerInstructions(value: $SDK296);
+    get layerInstructions(): $SDK301;
+    set layerInstructions(value: $SDK301);
     /**
      * var enablePostProcessing: Bool
      * @availability iOS 26.0+
@@ -27077,7 +27087,7 @@ export declare class AVVideoCompositionLayerInstruction_Configuration extends SD
      * func opacityRamp(at time: CMTime) -> AVVideoCompositionLayerInstruction.OpacityRamp?
      * @availability iOS 26.0+
      */
-    opacityRamp(time: _CoreMedia_CMTime): $SDK297;
+    opacityRamp(time: _CoreMedia_CMTime): $SDK302;
     /**
      * mutating func setTransform(_ transform: CGAffineTransform, at time: CMTime)
      * @availability iOS 26.0+
@@ -27087,7 +27097,7 @@ export declare class AVVideoCompositionLayerInstruction_Configuration extends SD
      * func transformRamp(at time: CMTime) -> AVVideoCompositionLayerInstruction.TransformRamp?
      * @availability iOS 26.0+
      */
-    transformRamp(time: _CoreMedia_CMTime): $SDK298;
+    transformRamp(time: _CoreMedia_CMTime): $SDK303;
     /**
      * mutating func addOpacityRamp(_ ramp: AVVideoCompositionLayerInstruction.OpacityRamp)
      * @availability iOS 26.0+
@@ -27102,12 +27112,12 @@ export declare class AVVideoCompositionLayerInstruction_Configuration extends SD
      * mutating func setCropRectangle(_ rect: CGRect, at time: CMTime)
      * @availability iOS 26.0+
      */
-    setCropRectangle(rect: $SDK148, time: _CoreMedia_CMTime): void;
+    setCropRectangle(rect: $SDK151, time: _CoreMedia_CMTime): void;
     /**
      * func cropRectangleRamp(at time: CMTime) -> AVVideoCompositionLayerInstruction.CropRectangleRamp?
      * @availability iOS 26.0+
      */
-    cropRectangleRamp(time: _CoreMedia_CMTime): $SDK299;
+    cropRectangleRamp(time: _CoreMedia_CMTime): $SDK304;
     /**
      * mutating func addCropRectangleRamp(_ ramp: AVVideoCompositionLayerInstruction.CropRectangleRamp)
      * @availability iOS 26.0+
@@ -27137,19 +27147,19 @@ export declare class AVVideoCompositionLayerInstruction_CropRectangleRamp extend
      * var end: CGRect
      * @availability iOS 26.0+
      */
-    get end(): $SDK148;
-    set end(value: $SDK148);
+    get end(): $SDK151;
+    set end(value: $SDK151);
     /**
      * var start: CGRect
      * @availability iOS 26.0+
      */
-    get start(): $SDK148;
-    set start(value: $SDK148);
+    get start(): $SDK151;
+    set start(value: $SDK151);
     /**
      * init(timeRange: CMTimeRange, start: CGRect, end: CGRect)
      * @availability iOS 26.0+
      */
-    static init(timeRange: _CoreMedia_CMTimeRange, start: $SDK148, end: $SDK148): AVVideoCompositionLayerInstruction_CropRectangleRamp;
+    static init(timeRange: _CoreMedia_CMTimeRange, start: $SDK151, end: $SDK151): AVVideoCompositionLayerInstruction_CropRectangleRamp;
     /**
      * var timeRange: CMTimeRange
      * @availability iOS 26.0+
@@ -27236,7 +27246,7 @@ export declare class AVVideoCompositionRenderContext extends SDKHandle {
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    newPixelBuffer(): $SDK93;
+    newPixelBuffer(): $SDK96;
     /**
      * var edgeWidths: AVEdgeWidths { get }
      * @availability iOS 7.0+
@@ -27266,7 +27276,7 @@ export declare class AVVideoCompositionRenderContext extends SDKHandle {
      * var size: CGSize { get }
      * @availability iOS 7.0+
      */
-    get size(): $SDK33;
+    get size(): $SDK34;
     /**
      * var videoComposition: AVVideoComposition { get }
      * @availability iOS 7.0+
@@ -27327,8 +27337,8 @@ export declare class AVVideoOutputSpecification extends SDKHandle {
      * var defaultOutputSettings: [String : any Sendable]? { get set }
      * @availability iOS 18.0+
      */
-    get defaultOutputSettings(): $SDK70;
-    set defaultOutputSettings(value: $SDK70);
+    get defaultOutputSettings(): $SDK71;
+    set defaultOutputSettings(value: $SDK71);
     /**
      * var defaultPixelBufferAttributes: [String : Any]? { get set }
      * @availability iOS 17.2+
@@ -27346,17 +27356,17 @@ export declare class AVVideoOutputSpecification extends SDKHandle {
      * func setOutputSettings(_ outputSettings: [String : any Sendable]?, for tagCollection: [CMTag])
      * @availability iOS 18.0+
      */
-    setOutputSettings(outputSettings: $SDK70, tagCollection: Array<_CoreMedia_CMTag>): void;
+    setOutputSettings(outputSettings: $SDK71, tagCollection: Array<_CoreMedia_CMTag>): void;
     /**
      * convenience init(tagCollections: [[CMTag]])
      * @availability iOS 17.2+
      */
-    static init(tagCollections: $SDK343): AVVideoOutputSpecification;
+    static init(tagCollections: $SDK354): AVVideoOutputSpecification;
     /**
      * var preferredTagCollections: [[CMTag]] { get }
      * @availability iOS 17.2+
      */
-    get preferredTagCollections(): $SDK343;
+    get preferredTagCollections(): $SDK354;
     readonly $type: {
         "c:objc(cs)AVVideoOutputSpecification": true;
         "c:objc(cs)NSObject": true;
@@ -27429,6 +27439,16 @@ export declare const AVVideoRange: {
     /** init(rawValue: String) */
     init(rawValue: string): AVVideoRange;
 };
+export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
+    /**
+     * mutating func attach(contentKey: AVContentKey) throws
+     * @availability iOS 26.0+
+     */
+    attach(contentKey: AVContentKey): void;
+    readonly $type: {
+        "s:9CoreMedia19CMReadySampleBufferV": true;
+    };
+}
 export declare class NSCoder extends SDKHandle {
     /**
      * func decodeTime(forKey key: String) -> CMTime
@@ -27733,7 +27753,7 @@ export declare class NSValue extends SDKHandle {
  * func AVMakeRect(aspectRatio: CGSize, insideRect boundingRect: CGRect) -> CGRect
  * @availability iOS 4.0+
  */
-export declare function AVMakeRect(aspectRatio: $SDK33, boundingRect: $SDK148): $SDK148;
+export declare function AVMakeRect(aspectRatio: $SDK34, boundingRect: $SDK151): $SDK151;
 /**
  * func AVSampleBufferAttachContentKey(_ sbuf: CMSampleBuffer, _ contentKey: AVContentKey, _ outError: NSErrorPointer) -> Bool
  * @availability iOS 8.0+

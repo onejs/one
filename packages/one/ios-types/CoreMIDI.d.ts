@@ -2435,26 +2435,26 @@ export declare class MIDIUniversalMessage extends SDKHandle {
     get type(): MIDIMessageType;
     set type(value: MIDIMessageType);
     /** var channelVoice1: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_channelVoice1 { get set } */
-    get channelVoice1(): MIDIUniversalMessage;
-    set channelVoice1(value: MIDIUniversalMessage);
+    get channelVoice1(): SDKHandle;
+    set channelVoice1(value: SDKHandle);
     /** var channelVoice2: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_channelVoice2 { get set } */
-    get channelVoice2(): MIDIUniversalMessage;
-    set channelVoice2(value: MIDIUniversalMessage);
+    get channelVoice2(): SDKHandle;
+    set channelVoice2(value: SDKHandle);
     /** var data128: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_data128 { get set } */
-    get data128(): MIDIUniversalMessage;
-    set data128(value: MIDIUniversalMessage);
+    get data128(): SDKHandle;
+    set data128(value: SDKHandle);
     /** var sysEx: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_sysEx { get set } */
-    get sysEx(): MIDIUniversalMessage;
-    set sysEx(value: MIDIUniversalMessage);
+    get sysEx(): SDKHandle;
+    set sysEx(value: SDKHandle);
     /** var system: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_system { get set } */
-    get system(): MIDIUniversalMessage;
-    set system(value: MIDIUniversalMessage);
+    get system(): SDKHandle;
+    set system(value: SDKHandle);
     /** var unknown: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_unknown { get set } */
-    get unknown(): MIDIUniversalMessage;
-    set unknown(value: MIDIUniversalMessage);
+    get unknown(): SDKHandle;
+    set unknown(value: SDKHandle);
     /** var utility: MIDIUniversalMessage.__Unnamed_union___Anonymous_field3.__Unnamed_struct_utility { get set } */
-    get utility(): MIDIUniversalMessage;
-    set utility(value: MIDIUniversalMessage);
+    get utility(): SDKHandle;
+    set utility(value: SDKHandle);
     /** init() */
     static init(): MIDIUniversalMessage;
     readonly $type: {

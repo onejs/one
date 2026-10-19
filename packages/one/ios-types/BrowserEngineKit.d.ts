@@ -1131,7 +1131,7 @@ export interface BETextInput {
      * func handleKeyEntry(_ entry: BEKeyEntry) async -> (BEKeyEntry, Bool)
      * @availability iOS 17.4+
      */
-    "handleKeyEntry"?: (arg0: BEKeyEntry) => [BEKeyEntry, boolean];
+    "handleKeyEntry"?: (arg0: BEKeyEntry) => Promise<[BEKeyEntry, boolean]>;
     /**
      * func shiftKeyStateChanged(fromState oldState: BEKeyModifierFlags, toState newState: BEKeyModifierFlags)
      * @availability iOS 17.4+
@@ -1166,22 +1166,22 @@ export interface BETextInput {
      * func replaceText(_ originalText: String, withText replacementText: String, options: BETextReplacementOptions = []) async -> [UITextSelectionRect]
      * @availability iOS 17.4+
      */
-    "replaceTextWithTextOptions"?: (arg0: string, arg1: string, arg2: BETextReplacementOptions) => $SDK14;
+    "replaceTextWithTextOptions"?: (arg0: string, arg1: string, arg2: BETextReplacementOptions) => Promise<$SDK14>;
     /**
      * func requestTextContextForAutocorrection() async -> BETextDocumentContext
      * @availability iOS 17.4+
      */
-    "requestTextContextForAutocorrection"?: () => BETextDocumentContext;
+    "requestTextContextForAutocorrection"?: () => Promise<BETextDocumentContext>;
     /**
      * func requestTextRects(for input: String) async -> [UITextSelectionRect]
      * @availability iOS 17.4+
      */
-    "requestTextRectsFor"?: (arg0: string) => $SDK14;
+    "requestTextRectsFor"?: (arg0: string) => Promise<$SDK14>;
     /**
      * func requestPreferredArrowDirectionForEditMenu() async -> UIEditMenuArrowDirection
      * @availability iOS 17.4+
      */
-    "requestPreferredArrowDirectionForEditMenu"?: () => _UIKit_UIEditMenuArrowDirection;
+    "requestPreferredArrowDirectionForEditMenu"?: () => Promise<_UIKit_UIEditMenuArrowDirection>;
     /**
      * func systemWillPresentEditMenu(withAnimator animator: any UIEditMenuInteractionAnimating)
      * @availability iOS 17.4+
@@ -1241,7 +1241,7 @@ export interface BETextInput {
      * func updateSelection(extent point: CGPoint, boundary granularity: UITextGranularity) async -> Bool
      * @availability iOS 17.4+
      */
-    "updateSelectionExtentBoundary"?: (arg0: $SDK3, arg1: _UIKit_UITextGranularity) => boolean;
+    "updateSelectionExtentBoundary"?: (arg0: $SDK3, arg1: _UIKit_UITextGranularity) => Promise<boolean>;
     /**
      * func selectText(in granularity: UITextGranularity, at point: CGPoint) async
      * @availability iOS 17.4+
@@ -1256,7 +1256,7 @@ export interface BETextInput {
      * func selectPosition(at point: CGPoint, for request: BETextDocumentRequest) async -> BETextDocumentContext
      * @availability iOS 17.4+
      */
-    "selectPositionAtFor"?: (arg0: $SDK3, arg1: BETextDocumentRequest) => BETextDocumentContext;
+    "selectPositionAtFor"?: (arg0: $SDK3, arg1: BETextDocumentRequest) => Promise<BETextDocumentContext>;
     /**
      * func adjustSelection(by range: BEDirectionalTextRange) async
      * @availability iOS 17.4+
@@ -1276,7 +1276,7 @@ export interface BETextInput {
      * func selectTextForEditMenuWithLocation(inView locationInView: CGPoint) async -> (Bool, String?, NSRange)
      * @availability iOS 17.4+
      */
-    "selectTextForEditMenuWithLocationInView"?: (arg0: $SDK3) => [boolean, (string) | null, SDKHandle];
+    "selectTextForEditMenuWithLocationInView"?: (arg0: $SDK3) => Promise<[boolean, (string) | null, SDKHandle]>;
     /**
      * func setMarkedText(_ markedText: String?, selectedRange: NSRange)
      * @availability iOS 17.4+
@@ -1301,7 +1301,7 @@ export interface BETextInput {
      * func requestDocumentContext(_ request: BETextDocumentRequest) async -> BETextDocumentContext
      * @availability iOS 17.4+
      */
-    "requestDocumentContext"?: (arg0: BETextDocumentRequest) => BETextDocumentContext;
+    "requestDocumentContext"?: (arg0: BETextDocumentRequest) => Promise<BETextDocumentContext>;
     /**
      * func willInsertFinalDictationResult()
      * @availability iOS 17.4+
@@ -1341,7 +1341,7 @@ export interface BETextInput {
      * func insertTextPlaceholder(size: CGSize) async -> UITextPlaceholder
      * @availability iOS 17.4+
      */
-    "insertTextPlaceholderSize"?: (arg0: $SDK18) => _UIKit_UITextPlaceholder;
+    "insertTextPlaceholderSize"?: (arg0: $SDK18) => Promise<_UIKit_UITextPlaceholder>;
     /**
      * func remove(_ placeholder: UITextPlaceholder, willInsertText: Bool) async
      * @availability iOS 17.4+

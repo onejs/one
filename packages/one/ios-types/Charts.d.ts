@@ -221,6 +221,11 @@ export declare class AnyAxisMark extends SDKHandle {
  * @availability iOS 16.0+
  */
 export declare class AnyChartContent extends SDKHandle {
+    /**
+     * nonisolated init(_ content: any ChartContent)
+     * @availability iOS 16.0+
+     */
+    static init(content: SDKHandle): Promise<AnyChartContent>;
     readonly $type: {
         "s:6Charts15AnyChartContentV": true;
     };

@@ -1566,13 +1566,13 @@ export type AudioUnitElement = number;
 /** struct AudioUnitEvent */
 export declare class AudioUnitEvent extends SDKHandle {
     /** var mArgument: AudioUnitEvent.__Unnamed_union_mArgument */
-    get mArgument(): AudioUnitEvent;
-    set mArgument(value: AudioUnitEvent);
+    get mArgument(): SDKHandle;
+    set mArgument(value: SDKHandle);
     /** var mEventType: AudioUnitEventType */
     get mEventType(): AudioUnitEventType;
     set mEventType(value: AudioUnitEventType);
     /** init(mEventType: AudioUnitEventType, mArgument: AudioUnitEvent.__Unnamed_union_mArgument) */
-    static initMEventTypeMArgument(mEventType: AudioUnitEventType, mArgument: AudioUnitEvent): AudioUnitEvent;
+    static initMEventTypeMArgument(mEventType: AudioUnitEventType, mArgument: SDKHandle): AudioUnitEvent;
     /** init() */
     static init(): AudioUnitEvent;
     readonly $type: {
@@ -1693,8 +1693,8 @@ export declare class AudioUnitParameterEvent extends SDKHandle {
     get eventType(): AUParameterEventType;
     set eventType(value: AUParameterEventType);
     /** var eventValues: AudioUnitParameterEvent.__Unnamed_union_eventValues */
-    get eventValues(): AudioUnitParameterEvent;
-    set eventValues(value: AudioUnitParameterEvent);
+    get eventValues(): SDKHandle;
+    set eventValues(value: SDKHandle);
     /** var parameter: AudioUnitParameterID */
     get parameter(): number;
     set parameter(value: number);
@@ -1702,7 +1702,7 @@ export declare class AudioUnitParameterEvent extends SDKHandle {
     get scope(): number;
     set scope(value: number);
     /** init(scope: AudioUnitScope, element: AudioUnitElement, parameter: AudioUnitParameterID, eventType: AUParameterEventType, eventValues: AudioUnitParameterEvent.__Unnamed_union_eventValues) */
-    static initScopeElementParameterEventTypeEventValues(scope: number, element: number, parameter: number, eventType: AUParameterEventType, eventValues: AudioUnitParameterEvent): AudioUnitParameterEvent;
+    static initScopeElementParameterEventTypeEventValues(scope: number, element: number, parameter: number, eventType: AUParameterEventType, eventValues: SDKHandle): AudioUnitParameterEvent;
     /** init() */
     static init(): AudioUnitParameterEvent;
     readonly $type: {
@@ -2177,13 +2177,13 @@ export type AUNodeConnection = AudioUnitNodeConnection;
 /** struct AUNodeInteraction */
 export declare class AUNodeInteraction extends SDKHandle {
     /** var nodeInteraction: AUNodeInteraction.__Unnamed_union_nodeInteraction */
-    get nodeInteraction(): AUNodeInteraction;
-    set nodeInteraction(value: AUNodeInteraction);
+    get nodeInteraction(): SDKHandle;
+    set nodeInteraction(value: SDKHandle);
     /** var nodeInteractionType: UInt32 */
     get nodeInteractionType(): number;
     set nodeInteractionType(value: number);
     /** init(nodeInteractionType: UInt32, nodeInteraction: AUNodeInteraction.__Unnamed_union_nodeInteraction) */
-    static initNodeInteractionTypeNodeInteraction(nodeInteractionType: number, nodeInteraction: AUNodeInteraction): AUNodeInteraction;
+    static initNodeInteractionTypeNodeInteraction(nodeInteractionType: number, nodeInteraction: SDKHandle): AUNodeInteraction;
     /** init() */
     static init(): AUNodeInteraction;
     readonly $type: {

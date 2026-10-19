@@ -5,14 +5,14 @@ import type { Image as _SwiftUICore_Image, Visibility as _SwiftUICore_Visibility
 type $SDK0 = SubscriptionStorePicker<unknown, unknown>;
 type $SDK1 = SubscriptionStorePickerOption<unknown>;
 type $SDK2 = EntitlementTaskState<unknown>;
-type $SDK6 = (Array<_StoreKit_Product>) | null;
-type $SDK7 = (_StoreKit_Product) | null;
-type $SDK13 = (_StoreKit_Product_SubscriptionOffer) | null;
-type $SDK17 = Array<SubscriptionStoreControlStyleConfiguration_Option>;
-type $SDK19 = (SubscriptionStoreControlStyleConfiguration_Icon) | null;
-type $SDK20 = (SubscriptionStoreControlStyleConfiguration_Section_Footer) | null;
-type $SDK21 = (SubscriptionStoreControlStyleConfiguration_Section_Header) | null;
-type $SDK22 = SubscriptionStorePickerOption<AutomaticSubscriptionStorePickerOptionLabel>;
+type $SDK8 = (Array<_StoreKit_Product>) | null;
+type $SDK9 = (_StoreKit_Product) | null;
+type $SDK15 = (_StoreKit_Product_SubscriptionOffer) | null;
+type $SDK19 = Array<SubscriptionStoreControlStyleConfiguration_Option>;
+type $SDK21 = (SubscriptionStoreControlStyleConfiguration_Icon) | null;
+type $SDK22 = (SubscriptionStoreControlStyleConfiguration_Section_Footer) | null;
+type $SDK23 = (SubscriptionStoreControlStyleConfiguration_Section_Header) | null;
+type $SDK24 = SubscriptionStorePickerOption<AutomaticSubscriptionStorePickerOptionLabel>;
 /**
  * @MainActor @preconcurrency struct AutomaticProductPlaceholderIcon
  * @availability iOS 17.0+
@@ -434,6 +434,11 @@ export declare class EntitlementTaskState<Value = unknown> extends SDKHandle {
      */
     map(transform: ((arg0: unknown) => unknown)): $SDK2;
     /**
+     * func map<NewValue>(_ transform: (Value) async throws -> NewValue) async rethrows -> EntitlementTaskState<NewValue>
+     * @availability iOS 17.0+
+     */
+    map44069(transform: ((arg0: unknown) => Promise<unknown>)): Promise<$SDK2>;
+    /**
      * var value: Value? { get }
      * @availability iOS 17.0+
      */
@@ -443,6 +448,11 @@ export declare class EntitlementTaskState<Value = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     flatMap(transform: ((arg0: unknown) => EntitlementTaskState<unknown>)): $SDK2;
+    /**
+     * func flatMap<NewValue>(_ transform: (Value) async throws -> EntitlementTaskState<NewValue>) async rethrows -> EntitlementTaskState<NewValue>
+     * @availability iOS 17.0+
+     */
+    flatMap44951(transform: ((arg0: unknown) => Promise<EntitlementTaskState<unknown>>)): Promise<$SDK2>;
     /**
      * var transaction: VerificationResult<Transaction>? { get }
      * @availability iOS 17.0+
@@ -694,7 +704,7 @@ export declare class Product_CollectionTaskState extends SDKHandle {
      * var products: [Product]? { get }
      * @availability iOS 17.0+
      */
-    get products(): $SDK6;
+    get products(): $SDK8;
     readonly $type: {
         "s:8StoreKit7ProductV01_aB8_SwiftUIE19CollectionTaskStateO": true;
     };
@@ -766,7 +776,7 @@ export declare class Product_TaskState extends SDKHandle {
      * var product: Product? { get }
      * @availability iOS 17.0+
      */
-    get product(): $SDK7;
+    get product(): $SDK9;
     readonly $type: {
         "s:8StoreKit7ProductV01_aB8_SwiftUIE9TaskStateO": true;
     };
@@ -854,7 +864,7 @@ export declare class ProductViewStyleConfiguration extends SDKHandle {
      * var product: Product? { get }
      * @availability iOS 17.0+
      */
-    get product(): $SDK7;
+    get product(): $SDK9;
     /**
      * func purchase()
      * @availability iOS 17.0+
@@ -1090,18 +1100,18 @@ export declare class SubscriptionOfferViewStyleConfiguration extends SDKHandle {
      * let activeOffer: Product.SubscriptionOffer?
      * @availability iOS 26.0+
      */
-    get activeOffer(): $SDK13;
+    get activeOffer(): $SDK15;
     /**
      * var visibleSubscription: Product?
      * @availability iOS 26.0+
      */
-    get visibleSubscription(): $SDK7;
-    set visibleSubscription(value: $SDK7);
+    get visibleSubscription(): $SDK9;
+    set visibleSubscription(value: $SDK9);
     /**
      * var subscriptions: [Product]? { get }
      * @availability iOS 26.0+
      */
-    get subscriptions(): $SDK6;
+    get subscriptions(): $SDK8;
     /**
      * func displayDetails()
      * @availability iOS 26.0+
@@ -1427,7 +1437,7 @@ export declare class SubscriptionStoreControlStyleConfiguration extends SDKHandl
      * var autoRenewPreference: Product? { get }
      * @availability iOS 18.0+
      */
-    get autoRenewPreference(): $SDK7;
+    get autoRenewPreference(): $SDK9;
     /**
      * var descriptionVisibility: Visibility { get }
      * @availability iOS 18.0+
@@ -1437,7 +1447,7 @@ export declare class SubscriptionStoreControlStyleConfiguration extends SDKHandl
      * var options: [SubscriptionStoreControlStyleConfiguration.Option] { get }
      * @availability iOS 18.0+
      */
-    get options(): $SDK17;
+    get options(): $SDK19;
     /**
      * var sections: [SubscriptionStoreControlStyleConfiguration.Section] { get }
      * @availability iOS 18.0+
@@ -1470,7 +1480,7 @@ export declare class SubscriptionStoreControlStyleConfiguration_Option extends S
      * var activeOffer: Product.SubscriptionOffer? { get }
      * @availability iOS 18.0+
      */
-    get activeOffer(): $SDK13;
+    get activeOffer(): $SDK15;
     /**
      * var subscription: Product { get }
      * @availability iOS 18.0+
@@ -1500,7 +1510,7 @@ export declare class SubscriptionStoreControlStyleConfiguration_Option extends S
      * var icon: SubscriptionStoreControlStyleConfiguration.Icon? { get }
      * @availability iOS 18.0+
      */
-    get icon(): $SDK19;
+    get icon(): $SDK21;
     /**
      * func subscribe()
      * @availability iOS 18.0+
@@ -1529,7 +1539,7 @@ export declare class SubscriptionStoreControlStyleConfiguration_PickerOption ext
      * var activeOffer: Product.SubscriptionOffer? { get }
      * @availability iOS 18.0+
      */
-    get activeOffer(): $SDK13;
+    get activeOffer(): $SDK15;
     /**
      * var subscription: Product { get }
      * @availability iOS 18.0+
@@ -1559,7 +1569,7 @@ export declare class SubscriptionStoreControlStyleConfiguration_PickerOption ext
      * var icon: SubscriptionStoreControlStyleConfiguration.Icon? { get }
      * @availability iOS 18.0+
      */
-    get icon(): $SDK19;
+    get icon(): $SDK21;
     readonly $type: {
         "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV12PickerOptionV": true;
     };
@@ -1584,20 +1594,20 @@ export declare class SubscriptionStoreControlStyleConfiguration_Section extends 
      * var footer: SubscriptionStoreControlStyleConfiguration.Section.Footer?
      * @availability iOS 18.0+
      */
-    get footer(): $SDK20;
-    set footer(value: $SDK20);
+    get footer(): $SDK22;
+    set footer(value: $SDK22);
     /**
      * var header: SubscriptionStoreControlStyleConfiguration.Section.Header?
      * @availability iOS 18.0+
      */
-    get header(): $SDK21;
-    set header(value: $SDK21);
+    get header(): $SDK23;
+    set header(value: $SDK23);
     /**
      * var options: [SubscriptionStoreControlStyleConfiguration.Option]
      * @availability iOS 18.0+
      */
-    get options(): $SDK17;
-    set options(value: $SDK17);
+    get options(): $SDK19;
+    set options(value: $SDK19);
     readonly $type: {
         "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV7SectionV": true;
     };
@@ -1662,12 +1672,12 @@ export declare class SubscriptionStorePickerOption<Label = unknown> extends SDKH
      * @MainActor @preconcurrency init(_ option: SubscriptionStoreControlStyleConfiguration.Option) where Label == AutomaticSubscriptionStorePickerOptionLabel
      * @availability iOS 18.0+
      */
-    static init(option: SubscriptionStoreControlStyleConfiguration_Option): Promise<$SDK22>;
+    static init(option: SubscriptionStoreControlStyleConfiguration_Option): Promise<$SDK24>;
     /**
      * @MainActor @preconcurrency init(_ option: SubscriptionStoreControlStyleConfiguration.PickerOption) where Label == AutomaticSubscriptionStorePickerOptionLabel
      * @availability iOS 18.0+
      */
-    static init43180(option: SubscriptionStoreControlStyleConfiguration_PickerOption): Promise<$SDK22>;
+    static init43180(option: SubscriptionStoreControlStyleConfiguration_PickerOption): Promise<$SDK24>;
     readonly $type: {
         "s:17_StoreKit_SwiftUI012SubscriptionA12PickerOptionV": true;
     };

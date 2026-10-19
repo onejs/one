@@ -13,113 +13,113 @@ export class ManagedApp extends SDKHandle {
    * let description: String?
    * @availability iOS 17.2+
    */
-  get description(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 747071051486052, this, []); }
+  get description(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 747071051486052, this, []); }
   /**
    * let releaseDate: Date?
    * @availability iOS 17.2+
    */
-  get releaseDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("ManagedAppDistribution_0e503aef608672fa", 1734412429197731, this, []); }
+  get releaseDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("ManagedAppDistribution_212edf3d13b127f5", 1734412429197731, this, []); }
   /**
    * let releaseNotes: String?
    * @availability iOS 17.2+
    */
-  get releaseNotes(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 2304508111720333, this, []); }
+  get releaseNotes(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 2304508111720333, this, []); }
   /**
    * let requirements: String?
    * @availability iOS 17.2+
    */
-  get requirements(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 2070409476094682, this, []); }
+  get requirements(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 2070409476094682, this, []); }
   /**
    * let contentRating: String?
    * @availability iOS 17.2+
    */
-  get contentRating(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 2052365158061684, this, []); }
+  get contentRating(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 2052365158061684, this, []); }
   /**
    * let privacyPolicy: URL?
    * @availability iOS 17.2+
    */
-  get privacyPolicy(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 630150668805281, this, []); }
+  get privacyPolicy(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 630150668805281, this, []); }
   /**
    * func screenshotURLs(fitting size: CGSize) -> [URL]
    * @availability iOS 17.2+
    */
-  screenshotURLs(size: $SDK1): Array<string> { return callSDK<Array<string>>("ManagedAppDistribution_0e503aef608672fa", 2630036528270643, this, [size]); }
+  screenshotURLs(size: $SDK1): Array<string> { return callSDK<Array<string>>("ManagedAppDistribution_212edf3d13b127f5", 2630036528270643, this, [size]); }
   /**
    * let developerWebsite: URL?
    * @availability iOS 17.2+
    */
-  get developerWebsite(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 3904471881409478, this, []); }
+  get developerWebsite(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 3904471881409478, this, []); }
   /**
    * var licenseAgreement: URL? { get }
    * @availability iOS 17.4+
    * @deprecated iOS 27.0
    */
-  get licenseAgreement(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 1994896703563131, this, []); }
+  get licenseAgreement(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 1994896703563131, this, []); }
   /**
    * let metadataLanguage: Locale.Language?
    * @availability iOS 17.2+
    */
-  get metadataLanguage(): (_Foundation_Locale_Language) | null { return callSDK<(_Foundation_Locale_Language) | null>("ManagedAppDistribution_0e503aef608672fa", 3412516591404951, this, []); }
+  get metadataLanguage(): (_Foundation_Locale_Language) | null { return callSDK<(_Foundation_Locale_Language) | null>("ManagedAppDistribution_212edf3d13b127f5", 3412516591404951, this, []); }
   /**
    * var licenseAgreementText: AttributedString? { get async }
    * @availability iOS 27.0+
    */
-  get licenseAgreementText(): Promise<(_Foundation_AttributedString) | null> { return callSDKAsync<(_Foundation_AttributedString) | null>("ManagedAppDistribution_0e503aef608672fa", 61956495642724, this, []); }
+  get licenseAgreementText(): Promise<(_Foundation_AttributedString) | null> { return callSDKAsync<(_Foundation_AttributedString) | null>("ManagedAppDistribution_212edf3d13b127f5", 61956495642724, this, []); }
   /**
    * var id: String { get }
    * @availability iOS 17.2+
    */
-  get id(): string { return callSDK<string>("ManagedAppDistribution_0e503aef608672fa", 2553912536029870, this, []); }
+  get id(): string { return callSDK<string>("ManagedAppDistribution_212edf3d13b127f5", 2553912536029870, this, []); }
   /**
    * let name: String
    * @availability iOS 17.2+
    */
-  get name(): string { return callSDK<string>("ManagedAppDistribution_0e503aef608672fa", 702996628730397, this, []); }
+  get name(): string { return callSDK<string>("ManagedAppDistribution_212edf3d13b127f5", 702996628730397, this, []); }
   /**
    * let genres: [String]
    * @availability iOS 17.2+
    */
-  get genres(): Array<string> { return callSDK<Array<string>>("ManagedAppDistribution_0e503aef608672fa", 25833522335757, this, []); }
+  get genres(): Array<string> { return callSDK<Array<string>>("ManagedAppDistribution_212edf3d13b127f5", 25833522335757, this, []); }
   /**
    * let seller: String?
    * @availability iOS 17.2+
    */
-  get seller(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 3939275413609394, this, []); }
+  get seller(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 3939275413609394, this, []); }
   /**
    * func iconURL(fitting size: CGSize) -> URL?
    * @availability iOS 17.2+
    */
-  iconURL(size: $SDK1): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 924174804172135, this, [size]); }
+  iconURL(size: $SDK1): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 924174804172135, this, [size]); }
   /**
    * let version: String?
    * @availability iOS 17.2+
    */
-  get version(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 1494036797118500, this, []); }
+  get version(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 1494036797118500, this, []); }
   /**
    * let fileSize: Measurement<UnitInformationStorage>?
    * @availability iOS 17.2+
    */
-  get fileSize(): (_Foundation_Measurement<_Foundation_UnitInformationStorage>) | null { return callSDK<(_Foundation_Measurement<_Foundation_UnitInformationStorage>) | null>("ManagedAppDistribution_0e503aef608672fa", 1306008135135486, this, []); }
+  get fileSize(): (_Foundation_Measurement<_Foundation_UnitInformationStorage>) | null { return callSDK<(_Foundation_Measurement<_Foundation_UnitInformationStorage>) | null>("ManagedAppDistribution_212edf3d13b127f5", 1306008135135486, this, []); }
   /**
    * let platform: Platform
    * @availability iOS 17.2+
    */
-  get platform(): Platform { return callSDK<Platform>("ManagedAppDistribution_0e503aef608672fa", 3560461427209049, this, []); }
+  get platform(): Platform { return callSDK<Platform>("ManagedAppDistribution_212edf3d13b127f5", 3560461427209049, this, []); }
   /**
    * let subtitle: String?
    * @availability iOS 17.2+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 4195036061803784, this, []); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 4195036061803784, this, []); }
   /**
    * let copyright: String?
    * @availability iOS 17.2+
    */
-  get copyright(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 2118239356496566, this, []); }
+  get copyright(): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 2118239356496566, this, []); }
   /**
    * let languages: [Locale.Language]
    * @availability iOS 17.2+
    */
-  get languages(): Array<_Foundation_Locale_Language> { return callSDK<Array<_Foundation_Locale_Language>>("ManagedAppDistribution_0e503aef608672fa", 746581260529244, this, []); }
+  get languages(): Array<_Foundation_Locale_Language> { return callSDK<Array<_Foundation_Locale_Language>>("ManagedAppDistribution_212edf3d13b127f5", 746581260529244, this, []); }
   declare readonly $type: { "s:22ManagedAppDistribution0aB0V": true };
 }
 
@@ -138,22 +138,22 @@ export class ManagedApp_Platform extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.2+
    */
-  get description(): string { return callSDK<string>("ManagedAppDistribution_0e503aef608672fa", 2486547737222157, this, []); }
+  get description(): string { return callSDK<string>("ManagedAppDistribution_212edf3d13b127f5", 2486547737222157, this, []); }
   /**
    * static var iOS: ManagedApp.Platform { get }
    * @availability iOS 17.2+
    */
-  static get iOS(): ManagedApp_Platform { return callSDK<ManagedApp_Platform>("ManagedAppDistribution_0e503aef608672fa", 434617502514080, undefined, []); }
+  static get iOS(): ManagedApp_Platform { return callSDK<ManagedApp_Platform>("ManagedAppDistribution_212edf3d13b127f5", 434617502514080, undefined, []); }
   /**
    * static var macOS: ManagedApp.Platform { get }
    * @availability iOS 17.2+
    */
-  static get macOS(): ManagedApp_Platform { return callSDK<ManagedApp_Platform>("ManagedAppDistribution_0e503aef608672fa", 881530626939309, undefined, []); }
+  static get macOS(): ManagedApp_Platform { return callSDK<ManagedApp_Platform>("ManagedAppDistribution_212edf3d13b127f5", 881530626939309, undefined, []); }
   /**
    * static var visionOS: ManagedApp.Platform { get }
    * @availability iOS 17.2+
    */
-  static get visionOS(): ManagedApp_Platform { return callSDK<ManagedApp_Platform>("ManagedAppDistribution_0e503aef608672fa", 1150224255452373, undefined, []); }
+  static get visionOS(): ManagedApp_Platform { return callSDK<ManagedApp_Platform>("ManagedAppDistribution_212edf3d13b127f5", 1150224255452373, undefined, []); }
   declare readonly $type: { "s:22ManagedAppDistribution0aB0V8PlatformV": true };
 }
 
@@ -168,47 +168,47 @@ export const ManagedAppDistributionError = {
    * var helpAnchor: String? { get }
    * @availability iOS 17.2+
    */
-  getHelpAnchor($self: ManagedAppDistributionError): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 4288798129591062, $self, []); },
+  getHelpAnchor($self: ManagedAppDistributionError): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 4288798129591062, $self, []); },
   /**
    * var description: String { get }
    * @availability iOS 17.2+
    */
-  getDescription($self: ManagedAppDistributionError): string { return callSDK<string>("ManagedAppDistribution_0e503aef608672fa", 2868282901953017, $self, []); },
+  getDescription($self: ManagedAppDistributionError): string { return callSDK<string>("ManagedAppDistribution_212edf3d13b127f5", 2868282901953017, $self, []); },
   /**
    * var failureReason: String? { get }
    * @availability iOS 17.2+
    */
-  getFailureReason($self: ManagedAppDistributionError): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 3732972273747215, $self, []); },
+  getFailureReason($self: ManagedAppDistributionError): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 3732972273747215, $self, []); },
   /**
    * func attemptRecovery(optionIndex recoveryOptionIndex: Int, resultHandler handler: @escaping (Bool) -> Void)
    * @availability iOS 17.2+
    */
-  attemptRecoveryOptionIndexResultHandler($self: ManagedAppDistributionError, recoveryOptionIndex: number, handler: ((arg0: boolean) => void)): void { return callSDK<void>("ManagedAppDistribution_0e503aef608672fa", 3496485068852180, $self, [recoveryOptionIndex, handler], [null,{"callback":{"out":[]}}]); },
+  attemptRecoveryOptionIndexResultHandler($self: ManagedAppDistributionError, recoveryOptionIndex: number, handler: ((arg0: boolean) => void)): void { return callSDK<void>("ManagedAppDistribution_212edf3d13b127f5", 3496485068852180, $self, [recoveryOptionIndex, handler], [null,{"callback":{"out":[]}}]); },
   /**
    * func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool
    * @availability iOS 17.2+
    */
-  attemptRecoveryOptionIndex($self: ManagedAppDistributionError, recoveryOptionIndex: number): boolean { return callSDK<boolean>("ManagedAppDistribution_0e503aef608672fa", 1496213755553381, $self, [recoveryOptionIndex]); },
+  attemptRecoveryOptionIndex($self: ManagedAppDistributionError, recoveryOptionIndex: number): boolean { return callSDK<boolean>("ManagedAppDistribution_212edf3d13b127f5", 1496213755553381, $self, [recoveryOptionIndex]); },
   /**
    * var recoveryOptions: [String] { get }
    * @availability iOS 17.2+
    */
-  getRecoveryOptions($self: ManagedAppDistributionError): Array<string> { return callSDK<Array<string>>("ManagedAppDistribution_0e503aef608672fa", 1201969464955899, $self, []); },
+  getRecoveryOptions($self: ManagedAppDistributionError): Array<string> { return callSDK<Array<string>>("ManagedAppDistribution_212edf3d13b127f5", 1201969464955899, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 17.2+
    */
-  getErrorDescription($self: ManagedAppDistributionError): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 3156499891220159, $self, []); },
+  getErrorDescription($self: ManagedAppDistributionError): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 3156499891220159, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 17.2+
    */
-  getRecoverySuggestion($self: ManagedAppDistributionError): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_0e503aef608672fa", 4322231574005605, $self, []); },
+  getRecoverySuggestion($self: ManagedAppDistributionError): (string) | null { return callSDK<(string) | null>("ManagedAppDistribution_212edf3d13b127f5", 4322231574005605, $self, []); },
   /**
    * var localizedStringResource: LocalizedStringResource { get }
    * @availability iOS 17.2+
    */
-  getLocalizedStringResource($self: ManagedAppDistributionError): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("ManagedAppDistribution_0e503aef608672fa", 2796284715910493, $self, []); }
+  getLocalizedStringResource($self: ManagedAppDistributionError): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("ManagedAppDistribution_212edf3d13b127f5", 2796284715910493, $self, []); }
 };
 
 /**
@@ -220,12 +220,12 @@ export class ManagedAppLibrary extends SDKHandle {
    * final var availableApps: ManagedAppLibrary.ManagedApps { get }
    * @availability iOS 17.2+
    */
-  get availableApps(): ManagedAppLibrary_ManagedApps { return callSDK<ManagedAppLibrary_ManagedApps>("ManagedAppDistribution_0e503aef608672fa", 2716175273499169, this, []); }
+  get availableApps(): ManagedAppLibrary_ManagedApps { return callSDK<ManagedAppLibrary_ManagedApps>("ManagedAppDistribution_212edf3d13b127f5", 2716175273499169, this, []); }
   /**
    * static let currentDistributor: ManagedAppLibrary
    * @availability iOS 17.2+
    */
-  static get currentDistributor(): ManagedAppLibrary { return callSDK<ManagedAppLibrary>("ManagedAppDistribution_0e503aef608672fa", 719589219361638, undefined, []); }
+  static get currentDistributor(): ManagedAppLibrary { return callSDK<ManagedAppLibrary>("ManagedAppDistribution_212edf3d13b127f5", 719589219361638, undefined, []); }
   declare readonly $type: { "s:22ManagedAppDistribution0aB7LibraryC": true };
 }
 
@@ -238,7 +238,7 @@ export class ManagedAppLibrary_ManagedApps extends SDKHandle {
    * func makeAsyncIterator() -> ManagedAppLibrary.ManagedApps.AsyncIterator
    * @availability iOS 17.2+
    */
-  makeAsyncIterator(): ManagedAppLibrary_ManagedApps_AsyncIterator { return callSDK<ManagedAppLibrary_ManagedApps_AsyncIterator>("ManagedAppDistribution_0e503aef608672fa", 842500394683379, this, []); }
+  makeAsyncIterator(): ManagedAppLibrary_ManagedApps_AsyncIterator { return callSDK<ManagedAppLibrary_ManagedApps_AsyncIterator>("ManagedAppDistribution_212edf3d13b127f5", 842500394683379, this, []); }
   declare readonly $type: { "s:22ManagedAppDistribution0aB7LibraryC0A4AppsV": true };
   declare readonly $element: SDKHandle;
 }
@@ -252,12 +252,12 @@ export class ManagedAppLibrary_ManagedApps_AsyncIterator extends SDKHandle {
    * func next(isolation actor: isolated (any Actor)?) async throws(ManagedAppLibrary.ManagedApps.AsyncIterator.Failure) -> ManagedAppLibrary.ManagedApps.AsyncIterator.Element?
    * @availability iOS 18.0+
    */
-  nextIsolation(actor?: (SDKHandle) | null): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ManagedAppDistribution_0e503aef608672fa", 236169332121608, this, [actor]); }
+  nextIsolation(actor?: (SDKHandle) | null): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ManagedAppDistribution_212edf3d13b127f5", 236169332121608, this, [actor]); }
   /**
    * mutating func next() async throws -> ManagedAppLibrary.ManagedApps.AsyncIterator.Element?
    * @availability iOS 17.2+
    */
-  next(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ManagedAppDistribution_0e503aef608672fa", 3953610514845073, this, []); }
+  next(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("ManagedAppDistribution_212edf3d13b127f5", 3953610514845073, this, []); }
   declare readonly $type: { "s:22ManagedAppDistribution0aB7LibraryC0A4AppsV13AsyncIteratorV": true };
 }
 
@@ -288,28 +288,28 @@ export class Platform extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.2+
    */
-  get description(): string { return callSDK<string>("ManagedAppDistribution_0e503aef608672fa", 950635697312963, this, []); }
+  get description(): string { return callSDK<string>("ManagedAppDistribution_212edf3d13b127f5", 950635697312963, this, []); }
   /**
    * static var iOS: Platform { get }
    * @availability iOS 17.2+
    */
-  static get iOS(): Platform { return callSDK<Platform>("ManagedAppDistribution_0e503aef608672fa", 4391557335872118, undefined, []); }
+  static get iOS(): Platform { return callSDK<Platform>("ManagedAppDistribution_212edf3d13b127f5", 4391557335872118, undefined, []); }
   /**
    * static var macOS: Platform { get }
    * @availability iOS 17.2+
    */
-  static get macOS(): Platform { return callSDK<Platform>("ManagedAppDistribution_0e503aef608672fa", 4412503059787687, undefined, []); }
+  static get macOS(): Platform { return callSDK<Platform>("ManagedAppDistribution_212edf3d13b127f5", 4412503059787687, undefined, []); }
   /**
    * static var visionOS: Platform { get }
    * @availability iOS 17.2+
    */
-  static get visionOS(): Platform { return callSDK<Platform>("ManagedAppDistribution_0e503aef608672fa", 930545435772067, undefined, []); }
+  static get visionOS(): Platform { return callSDK<Platform>("ManagedAppDistribution_212edf3d13b127f5", 930545435772067, undefined, []); }
   declare readonly $type: { "s:22ManagedAppDistribution8PlatformV": true };
 }
 
-registerSDKClass("ManagedAppDistribution.ManagedApp", ManagedApp, { module: "ManagedAppDistribution_0e503aef608672fa", properties: {}, methods: {"screenshotURLs":{"id":2630036528270643},"iconURL":{"id":924174804172135}} });
-registerSDKClass("ManagedAppDistribution.ManagedApp.Platform", ManagedApp_Platform, { module: "ManagedAppDistribution_0e503aef608672fa", properties: {} });
-registerSDKClass("ManagedAppDistribution.ManagedAppLibrary", ManagedAppLibrary, { module: "ManagedAppDistribution_0e503aef608672fa", properties: {} });
-registerSDKClass("ManagedAppDistribution.ManagedAppLibrary.ManagedApps", ManagedAppLibrary_ManagedApps, { module: "ManagedAppDistribution_0e503aef608672fa", properties: {}, methods: {"makeAsyncIterator":{"id":842500394683379}} });
-registerSDKClass("ManagedAppDistribution.ManagedAppLibrary.ManagedApps.AsyncIterator", ManagedAppLibrary_ManagedApps_AsyncIterator, { module: "ManagedAppDistribution_0e503aef608672fa", properties: {}, methods: {"nextIsolation":{"id":236169332121608},"next":{"id":3953610514845073}} });
-registerSDKClass("ManagedAppDistribution.Platform", Platform, { module: "ManagedAppDistribution_0e503aef608672fa", properties: {} });
+registerSDKClass("ManagedAppDistribution.ManagedApp", ManagedApp, { module: "ManagedAppDistribution_212edf3d13b127f5", properties: {}, methods: {"screenshotURLs":{"id":2630036528270643},"iconURL":{"id":924174804172135}} });
+registerSDKClass("ManagedAppDistribution.ManagedApp.Platform", ManagedApp_Platform, { module: "ManagedAppDistribution_212edf3d13b127f5", properties: {} });
+registerSDKClass("ManagedAppDistribution.ManagedAppLibrary", ManagedAppLibrary, { module: "ManagedAppDistribution_212edf3d13b127f5", properties: {} });
+registerSDKClass("ManagedAppDistribution.ManagedAppLibrary.ManagedApps", ManagedAppLibrary_ManagedApps, { module: "ManagedAppDistribution_212edf3d13b127f5", properties: {}, methods: {"makeAsyncIterator":{"id":842500394683379}} });
+registerSDKClass("ManagedAppDistribution.ManagedAppLibrary.ManagedApps.AsyncIterator", ManagedAppLibrary_ManagedApps_AsyncIterator, { module: "ManagedAppDistribution_212edf3d13b127f5", properties: {}, methods: {"nextIsolation":{"id":236169332121608},"next":{"id":3953610514845073}} });
+registerSDKClass("ManagedAppDistribution.Platform", Platform, { module: "ManagedAppDistribution_212edf3d13b127f5", properties: {} });

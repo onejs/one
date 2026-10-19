@@ -33,13 +33,13 @@ type $SDK28 = Array<MPNowPlayingInfoLanguageOption>;
 
 export class AVMediaSelectionGroup extends SDKHandle {
   /** func makeNowPlayingInfoLanguageOptionGroup() -> MPNowPlayingInfoLanguageOptionGroup */
-  makeNowPlayingInfoLanguageOptionGroup(): MPNowPlayingInfoLanguageOptionGroup { return callSDK<MPNowPlayingInfoLanguageOptionGroup>("MediaPlayer_0e503aef608672fa", 3666984528127285, this, []); }
+  makeNowPlayingInfoLanguageOptionGroup(): MPNowPlayingInfoLanguageOptionGroup { return callSDK<MPNowPlayingInfoLanguageOptionGroup>("MediaPlayer_212edf3d13b127f5", 3666984528127285, this, []); }
   declare readonly $type: { "c:objc(cs)AVMediaSelectionGroup": true; "c:objc(cs)NSObject": true };
 }
 
 export class AVMediaSelectionOption extends SDKHandle {
   /** func makeNowPlayingInfoLanguageOption() -> MPNowPlayingInfoLanguageOption? */
-  makeNowPlayingInfoLanguageOption(): $SDK0 { return callSDK<$SDK0>("MediaPlayer_0e503aef608672fa", 1419248458819803, this, []); }
+  makeNowPlayingInfoLanguageOption(): $SDK0 { return callSDK<$SDK0>("MediaPlayer_212edf3d13b127f5", 1419248458819803, this, []); }
   declare readonly $type: { "c:objc(cs)AVMediaSelectionOption": true; "c:objc(cs)NSObject": true };
 }
 
@@ -48,8 +48,8 @@ export class AVPlayerItem extends SDKHandle {
    * var nowPlayingInfo: [String : Any]? { get set }
    * @availability iOS 16.0+
    */
-  get nowPlayingInfo(): Promise<$SDK1> { return callSDKAsync<$SDK1>("MediaPlayer_0e503aef608672fa", 153760473005918, this, []); }
-  setNowPlayingInfo(value?: $SDK1): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 2442985252912273, this, [value]); }
+  get nowPlayingInfo(): Promise<$SDK1> { return callSDKAsync<$SDK1>("MediaPlayer_212edf3d13b127f5", 153760473005918, this, []); }
+  setNowPlayingInfo(value?: $SDK1): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 2442985252912273, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVPlayerItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "nowPlayingInfo": true };
 }
@@ -63,13 +63,13 @@ export class MPAdTimeRange extends SDKHandle {
    * init(_ timeRange: CMTimeRange)
    * @availability iOS 16.0+
    */
-  static init(timeRange: _CoreMedia_CMTimeRange): MPAdTimeRange { return callSDK<MPAdTimeRange>("MediaPlayer_0e503aef608672fa", 319501927232775, undefined, [timeRange]); }
+  static init(timeRange: _CoreMedia_CMTimeRange): MPAdTimeRange { return callSDK<MPAdTimeRange>("MediaPlayer_212edf3d13b127f5", 319501927232775, undefined, [timeRange]); }
   /**
    * var timeRange: CMTimeRange { get set }
    * @availability iOS 16.0+
    */
-  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("MediaPlayer_0e503aef608672fa", 326201542400191, this, []); }
-  set timeRange(value: _CoreMedia_CMTimeRange) { callSDK<void>("MediaPlayer_0e503aef608672fa", 581315926867266, this, [value]); }
+  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("MediaPlayer_212edf3d13b127f5", 326201542400191, this, []); }
+  set timeRange(value: _CoreMedia_CMTimeRange) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 581315926867266, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPAdTimeRange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timeRange": true };
 }
@@ -80,17 +80,17 @@ export class MPAdTimeRange extends SDKHandle {
  */
 export class MPRemoteCommandEvent extends SDKHandle {
   /** init() */
-  static init(): MPRemoteCommandEvent { return callSDK<MPRemoteCommandEvent>("MediaPlayer_0e503aef608672fa", 1408836925002663, undefined, []); }
+  static init(): MPRemoteCommandEvent { return callSDK<MPRemoteCommandEvent>("MediaPlayer_212edf3d13b127f5", 1408836925002663, undefined, []); }
   /**
    * var command: MPRemoteCommand { get }
    * @availability iOS 7.1+
    */
-  get command(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 3163150048613284, this, []); }
+  get command(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 3163150048613284, this, []); }
   /**
    * var timestamp: TimeInterval { get }
    * @availability iOS 7.1+
    */
-  get timestamp(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 3549685959271184, this, []); }
+  get timestamp(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 3549685959271184, this, []); }
   declare readonly $type: { "c:objc(cs)MPRemoteCommandEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "command": true; "timestamp": true };
 }
@@ -101,17 +101,17 @@ export class MPRemoteCommandEvent extends SDKHandle {
  */
 export class MPChangeLanguageOptionCommandEvent extends (MPRemoteCommandEvent as unknown as Omit<typeof MPRemoteCommandEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPRemoteCommandEvent)) {
   /** init() */
-  static init(): MPChangeLanguageOptionCommandEvent { return callSDK<MPChangeLanguageOptionCommandEvent>("MediaPlayer_0e503aef608672fa", 540002710459274, undefined, []); }
+  static init(): MPChangeLanguageOptionCommandEvent { return callSDK<MPChangeLanguageOptionCommandEvent>("MediaPlayer_212edf3d13b127f5", 540002710459274, undefined, []); }
   /**
    * var languageOption: MPNowPlayingInfoLanguageOption { get }
    * @availability iOS 9.0+
    */
-  get languageOption(): MPNowPlayingInfoLanguageOption { return callSDK<MPNowPlayingInfoLanguageOption>("MediaPlayer_0e503aef608672fa", 258144050803452, this, []); }
+  get languageOption(): MPNowPlayingInfoLanguageOption { return callSDK<MPNowPlayingInfoLanguageOption>("MediaPlayer_212edf3d13b127f5", 258144050803452, this, []); }
   /**
    * var setting: MPChangeLanguageOptionSetting { get }
    * @availability iOS 9.0+
    */
-  get setting(): MPChangeLanguageOptionSetting { return callSDK<MPChangeLanguageOptionSetting>("MediaPlayer_0e503aef608672fa", 1326873229757842, this, []); }
+  get setting(): MPChangeLanguageOptionSetting { return callSDK<MPChangeLanguageOptionSetting>("MediaPlayer_212edf3d13b127f5", 1326873229757842, this, []); }
   declare readonly $type: { "c:objc(cs)MPChangeLanguageOptionCommandEvent": true; "c:objc(cs)MPRemoteCommandEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "command": true; "timestamp": true; "languageOption": true; "setting": true };
 }
@@ -127,7 +127,7 @@ export const MPChangeLanguageOptionSetting = {
    * init?(rawValue: Int)
    * @availability iOS 9.3+
    */
-  init(rawValue: number): (MPChangeLanguageOptionSetting) | null { return callSDK<(MPChangeLanguageOptionSetting) | null>("MediaPlayer_0e503aef608672fa", 592603455696770, undefined, [rawValue]); }
+  init(rawValue: number): (MPChangeLanguageOptionSetting) | null { return callSDK<(MPChangeLanguageOptionSetting) | null>("MediaPlayer_212edf3d13b127f5", 592603455696770, undefined, [rawValue]); }
 };
 
 /**
@@ -139,13 +139,13 @@ export class MPRemoteCommand extends SDKHandle {
    * func removeTarget(_ target: Any?)
    * @availability iOS 7.1+
    */
-  removeTarget(target?: (unknown) | null): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1291831667918801, this, [target]); }
+  removeTarget(target?: (unknown) | null): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1291831667918801, this, [target]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 7.1+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 4004560288803583, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2753988669228291, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 4004560288803583, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2753988669228291, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPRemoteCommand": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true };
 }
@@ -165,12 +165,12 @@ export class MPChangePlaybackPositionCommand extends MPRemoteCommand {
  */
 export class MPChangePlaybackPositionCommandEvent extends (MPRemoteCommandEvent as unknown as Omit<typeof MPRemoteCommandEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPRemoteCommandEvent)) {
   /** init() */
-  static init(): MPChangePlaybackPositionCommandEvent { return callSDK<MPChangePlaybackPositionCommandEvent>("MediaPlayer_0e503aef608672fa", 2584835970590033, undefined, []); }
+  static init(): MPChangePlaybackPositionCommandEvent { return callSDK<MPChangePlaybackPositionCommandEvent>("MediaPlayer_212edf3d13b127f5", 2584835970590033, undefined, []); }
   /**
    * var positionTime: TimeInterval { get }
    * @availability iOS 8.0+
    */
-  get positionTime(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1901844612062140, this, []); }
+  get positionTime(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1901844612062140, this, []); }
   declare readonly $type: { "c:objc(cs)MPChangePlaybackPositionCommandEvent": true; "c:objc(cs)MPRemoteCommandEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "command": true; "timestamp": true; "positionTime": true };
 }
@@ -184,8 +184,8 @@ export class MPChangePlaybackRateCommand extends MPRemoteCommand {
    * var supportedPlaybackRates: [NSNumber] { get set }
    * @availability iOS 7.1+
    */
-  get supportedPlaybackRates(): $SDK2 { return callSDK<$SDK2>("MediaPlayer_0e503aef608672fa", 2120167993896372, this, []); }
-  set supportedPlaybackRates(value: $SDK2) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2305536508852611, this, [value]); }
+  get supportedPlaybackRates(): $SDK2 { return callSDK<$SDK2>("MediaPlayer_212edf3d13b127f5", 2120167993896372, this, []); }
+  set supportedPlaybackRates(value: $SDK2) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2305536508852611, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPChangePlaybackRateCommand": true; "c:objc(cs)MPRemoteCommand": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "supportedPlaybackRates": true };
 }
@@ -196,12 +196,12 @@ export class MPChangePlaybackRateCommand extends MPRemoteCommand {
  */
 export class MPChangePlaybackRateCommandEvent extends (MPRemoteCommandEvent as unknown as Omit<typeof MPRemoteCommandEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPRemoteCommandEvent)) {
   /** init() */
-  static init(): MPChangePlaybackRateCommandEvent { return callSDK<MPChangePlaybackRateCommandEvent>("MediaPlayer_0e503aef608672fa", 1956684371472626, undefined, []); }
+  static init(): MPChangePlaybackRateCommandEvent { return callSDK<MPChangePlaybackRateCommandEvent>("MediaPlayer_212edf3d13b127f5", 1956684371472626, undefined, []); }
   /**
    * var playbackRate: Float { get }
    * @availability iOS 7.1+
    */
-  get playbackRate(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2705863531148752, this, []); }
+  get playbackRate(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2705863531148752, this, []); }
   declare readonly $type: { "c:objc(cs)MPChangePlaybackRateCommandEvent": true; "c:objc(cs)MPRemoteCommandEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "command": true; "timestamp": true; "playbackRate": true };
 }
@@ -215,8 +215,8 @@ export class MPChangeRepeatModeCommand extends MPRemoteCommand {
    * var currentRepeatType: MPRepeatType { get set }
    * @availability iOS 8.0+
    */
-  get currentRepeatType(): MPRepeatType { return callSDK<MPRepeatType>("MediaPlayer_0e503aef608672fa", 452115470803209, this, []); }
-  set currentRepeatType(value: MPRepeatType) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2043459903593560, this, [value]); }
+  get currentRepeatType(): MPRepeatType { return callSDK<MPRepeatType>("MediaPlayer_212edf3d13b127f5", 452115470803209, this, []); }
+  set currentRepeatType(value: MPRepeatType) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2043459903593560, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPChangeRepeatModeCommand": true; "c:objc(cs)MPRemoteCommand": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "currentRepeatType": true };
 }
@@ -227,17 +227,17 @@ export class MPChangeRepeatModeCommand extends MPRemoteCommand {
  */
 export class MPChangeRepeatModeCommandEvent extends (MPRemoteCommandEvent as unknown as Omit<typeof MPRemoteCommandEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPRemoteCommandEvent)) {
   /** init() */
-  static init(): MPChangeRepeatModeCommandEvent { return callSDK<MPChangeRepeatModeCommandEvent>("MediaPlayer_0e503aef608672fa", 3027350292292956, undefined, []); }
+  static init(): MPChangeRepeatModeCommandEvent { return callSDK<MPChangeRepeatModeCommandEvent>("MediaPlayer_212edf3d13b127f5", 3027350292292956, undefined, []); }
   /**
    * var preservesRepeatMode: Bool { get }
    * @availability iOS 8.0+
    */
-  get preservesRepeatMode(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 3011491637539145, this, []); }
+  get preservesRepeatMode(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 3011491637539145, this, []); }
   /**
    * var repeatType: MPRepeatType { get }
    * @availability iOS 8.0+
    */
-  get repeatType(): MPRepeatType { return callSDK<MPRepeatType>("MediaPlayer_0e503aef608672fa", 2144233239038251, this, []); }
+  get repeatType(): MPRepeatType { return callSDK<MPRepeatType>("MediaPlayer_212edf3d13b127f5", 2144233239038251, this, []); }
   declare readonly $type: { "c:objc(cs)MPChangeRepeatModeCommandEvent": true; "c:objc(cs)MPRemoteCommandEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "command": true; "timestamp": true; "preservesRepeatMode": true; "repeatType": true };
 }
@@ -251,8 +251,8 @@ export class MPChangeShuffleModeCommand extends MPRemoteCommand {
    * var currentShuffleType: MPShuffleType { get set }
    * @availability iOS 8.0+
    */
-  get currentShuffleType(): MPShuffleType { return callSDK<MPShuffleType>("MediaPlayer_0e503aef608672fa", 2391090313429970, this, []); }
-  set currentShuffleType(value: MPShuffleType) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2300985986135299, this, [value]); }
+  get currentShuffleType(): MPShuffleType { return callSDK<MPShuffleType>("MediaPlayer_212edf3d13b127f5", 2391090313429970, this, []); }
+  set currentShuffleType(value: MPShuffleType) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2300985986135299, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPChangeShuffleModeCommand": true; "c:objc(cs)MPRemoteCommand": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "currentShuffleType": true };
 }
@@ -263,17 +263,17 @@ export class MPChangeShuffleModeCommand extends MPRemoteCommand {
  */
 export class MPChangeShuffleModeCommandEvent extends (MPRemoteCommandEvent as unknown as Omit<typeof MPRemoteCommandEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPRemoteCommandEvent)) {
   /** init() */
-  static init(): MPChangeShuffleModeCommandEvent { return callSDK<MPChangeShuffleModeCommandEvent>("MediaPlayer_0e503aef608672fa", 620002588919778, undefined, []); }
+  static init(): MPChangeShuffleModeCommandEvent { return callSDK<MPChangeShuffleModeCommandEvent>("MediaPlayer_212edf3d13b127f5", 620002588919778, undefined, []); }
   /**
    * var preservesShuffleMode: Bool { get }
    * @availability iOS 8.0+
    */
-  get preservesShuffleMode(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 3370671421739224, this, []); }
+  get preservesShuffleMode(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 3370671421739224, this, []); }
   /**
    * var shuffleType: MPShuffleType { get }
    * @availability iOS 8.0+
    */
-  get shuffleType(): MPShuffleType { return callSDK<MPShuffleType>("MediaPlayer_0e503aef608672fa", 3519654700931986, this, []); }
+  get shuffleType(): MPShuffleType { return callSDK<MPShuffleType>("MediaPlayer_212edf3d13b127f5", 3519654700931986, this, []); }
   declare readonly $type: { "c:objc(cs)MPChangeShuffleModeCommandEvent": true; "c:objc(cs)MPRemoteCommandEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "command": true; "timestamp": true; "preservesShuffleMode": true; "shuffleType": true };
 }
@@ -287,60 +287,60 @@ export class MPContentItem extends SDKHandle {
    * init(identifier: String)
    * @availability iOS 7.1+
    */
-  static init(identifier: string): MPContentItem { return callSDK<MPContentItem>("MediaPlayer_0e503aef608672fa", 3766518631110646, undefined, [identifier]); }
+  static init(identifier: string): MPContentItem { return callSDK<MPContentItem>("MediaPlayer_212edf3d13b127f5", 3766518631110646, undefined, [identifier]); }
   /**
    * var artwork: MPMediaItemArtwork? { get set }
    * @availability iOS 7.1+
    */
-  get artwork(): $SDK3 { return callSDK<$SDK3>("MediaPlayer_0e503aef608672fa", 3984289361165344, this, []); }
-  set artwork(value: $SDK3) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3547386218870600, this, [value]); }
+  get artwork(): $SDK3 { return callSDK<$SDK3>("MediaPlayer_212edf3d13b127f5", 3984289361165344, this, []); }
+  set artwork(value: $SDK3) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3547386218870600, this, [value]); }
   /**
    * var isContainer: Bool { get set }
    * @availability iOS 7.1+
    */
-  get isContainer(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 1339481027492370, this, []); }
-  set isContainer(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 215420856774545, this, [value]); }
+  get isContainer(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 1339481027492370, this, []); }
+  set isContainer(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 215420856774545, this, [value]); }
   /**
    * var isExplicitContent: Bool { get set }
    * @availability iOS 10.0+
    */
-  get isExplicitContent(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 664038198274669, this, []); }
-  set isExplicitContent(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 4005816925472325, this, [value]); }
+  get isExplicitContent(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 664038198274669, this, []); }
+  set isExplicitContent(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 4005816925472325, this, [value]); }
   /**
    * var identifier: String { get }
    * @availability iOS 7.1+
    */
-  get identifier(): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 1028649628631809, this, []); }
+  get identifier(): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 1028649628631809, this, []); }
   /**
    * var isPlayable: Bool { get set }
    * @availability iOS 7.1+
    */
-  get isPlayable(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 1972246762140168, this, []); }
-  set isPlayable(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2597011057217646, this, [value]); }
+  get isPlayable(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 1972246762140168, this, []); }
+  set isPlayable(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2597011057217646, this, [value]); }
   /**
    * var playbackProgress: Float { get set }
    * @availability iOS 7.1+
    */
-  get playbackProgress(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2330050000019826, this, []); }
-  set playbackProgress(value: number) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3614993360772378, this, [value]); }
+  get playbackProgress(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2330050000019826, this, []); }
+  set playbackProgress(value: number) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3614993360772378, this, [value]); }
   /**
    * var isStreamingContent: Bool { get set }
    * @availability iOS 10.0+
    */
-  get isStreamingContent(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 3107936277365230, this, []); }
-  set isStreamingContent(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1291716219711311, this, [value]); }
+  get isStreamingContent(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 3107936277365230, this, []); }
+  set isStreamingContent(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1291716219711311, this, [value]); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 7.1+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 3841513239784714, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2650967507668093, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 3841513239784714, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2650967507668093, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 7.1+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 925138463494031, this, []); }
-  set title(value: (string) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3551429131017244, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 925138463494031, this, []); }
+  set title(value: (string) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3551429131017244, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPContentItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "artwork": true; "isContainer": true; "isExplicitContent": true; "identifier": true; "isPlayable": true; "playbackProgress": true; "isStreamingContent": true; "subtitle": true; "title": true };
 }
@@ -354,47 +354,47 @@ export class MPError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 9.3+
    */
-  static get errorDomain(): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 3306649949250872, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 3306649949250872, undefined, []); }
   /**
    * static var notSupported: MPError.Code { get }
    * @availability iOS 9.3+
    */
-  static get notSupported(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_0e503aef608672fa", 3077071985478217, undefined, []); }
+  static get notSupported(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_212edf3d13b127f5", 3077071985478217, undefined, []); }
   /**
    * static var requestTimedOut: MPError.Code { get }
    * @availability iOS 10.3+
    */
-  static get requestTimedOut(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_0e503aef608672fa", 2879737380355958, undefined, []); }
+  static get requestTimedOut(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_212edf3d13b127f5", 2879737380355958, undefined, []); }
   /**
    * static var permissionDenied: MPError.Code { get }
    * @availability iOS 9.3+
    */
-  static get permissionDenied(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_0e503aef608672fa", 3037975375663399, undefined, []); }
+  static get permissionDenied(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_212edf3d13b127f5", 3037975375663399, undefined, []); }
   /**
    * static var networkConnectionFailed: MPError.Code { get }
    * @availability iOS 9.3+
    */
-  static get networkConnectionFailed(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_0e503aef608672fa", 1169576382932446, undefined, []); }
+  static get networkConnectionFailed(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_212edf3d13b127f5", 1169576382932446, undefined, []); }
   /**
    * static var cloudServiceCapabilityMissing: MPError.Code { get }
    * @availability iOS 9.3+
    */
-  static get cloudServiceCapabilityMissing(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_0e503aef608672fa", 2179041648349960, undefined, []); }
+  static get cloudServiceCapabilityMissing(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_212edf3d13b127f5", 2179041648349960, undefined, []); }
   /**
    * static var unknown: MPError.Code { get }
    * @availability iOS 9.3+
    */
-  static get unknown(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_0e503aef608672fa", 2587055214424395, undefined, []); }
+  static get unknown(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_212edf3d13b127f5", 2587055214424395, undefined, []); }
   /**
    * static var notFound: MPError.Code { get }
    * @availability iOS 9.3+
    */
-  static get notFound(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_0e503aef608672fa", 3155617355488992, undefined, []); }
+  static get notFound(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_212edf3d13b127f5", 3155617355488992, undefined, []); }
   /**
    * static var cancelled: MPError.Code { get }
    * @availability iOS 10.1+
    */
-  static get cancelled(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_0e503aef608672fa", 2463814523079854, undefined, []); }
+  static get cancelled(): MPError_Code { return callSDK<MPError_Code>("MediaPlayer_212edf3d13b127f5", 2463814523079854, undefined, []); }
   declare readonly $type: { "s:SC11MPErrorCodeLeV": true };
 }
 
@@ -409,7 +409,7 @@ export const MPError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 9.3+
    */
-  init(rawValue: number): (MPError_Code) | null { return callSDK<(MPError_Code) | null>("MediaPlayer_0e503aef608672fa", 1956550532968013, undefined, [rawValue]); }
+  init(rawValue: number): (MPError_Code) | null { return callSDK<(MPError_Code) | null>("MediaPlayer_212edf3d13b127f5", 1956550532968013, undefined, [rawValue]); }
 };
 
 /**
@@ -421,20 +421,20 @@ export class MPFeedbackCommand extends MPRemoteCommand {
    * var isActive: Bool { get set }
    * @availability iOS 7.1+
    */
-  get isActive(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 4273471101100618, this, []); }
-  set isActive(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1821027475584579, this, [value]); }
+  get isActive(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 4273471101100618, this, []); }
+  set isActive(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1821027475584579, this, [value]); }
   /**
    * var localizedShortTitle: String { get set }
    * @availability iOS 8.0+
    */
-  get localizedShortTitle(): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 3726421470542508, this, []); }
-  set localizedShortTitle(value: string) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1324435603922100, this, [value]); }
+  get localizedShortTitle(): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 3726421470542508, this, []); }
+  set localizedShortTitle(value: string) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1324435603922100, this, [value]); }
   /**
    * var localizedTitle: String { get set }
    * @availability iOS 7.1+
    */
-  get localizedTitle(): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 1432853279360198, this, []); }
-  set localizedTitle(value: string) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2211654310465536, this, [value]); }
+  get localizedTitle(): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 1432853279360198, this, []); }
+  set localizedTitle(value: string) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2211654310465536, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPFeedbackCommand": true; "c:objc(cs)MPRemoteCommand": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isActive": true; "localizedShortTitle": true; "localizedTitle": true };
 }
@@ -445,12 +445,12 @@ export class MPFeedbackCommand extends MPRemoteCommand {
  */
 export class MPFeedbackCommandEvent extends (MPRemoteCommandEvent as unknown as Omit<typeof MPRemoteCommandEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPRemoteCommandEvent)) {
   /** init() */
-  static init(): MPFeedbackCommandEvent { return callSDK<MPFeedbackCommandEvent>("MediaPlayer_0e503aef608672fa", 2974539402864954, undefined, []); }
+  static init(): MPFeedbackCommandEvent { return callSDK<MPFeedbackCommandEvent>("MediaPlayer_212edf3d13b127f5", 2974539402864954, undefined, []); }
   /**
    * var isNegative: Bool { get }
    * @availability iOS 7.1+
    */
-  get isNegative(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 158427941327938, this, []); }
+  get isNegative(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 158427941327938, this, []); }
   declare readonly $type: { "c:objc(cs)MPFeedbackCommandEvent": true; "c:objc(cs)MPRemoteCommandEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "command": true; "timestamp": true; "isNegative": true };
 }
@@ -464,24 +464,24 @@ export class MPMediaEntity extends SDKHandle {
    * class func canFilter(byProperty property: String) -> Bool
    * @availability iOS 4.2+
    */
-  static canFilter(property: string): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 3422721396822852, undefined, [property]); }
+  static canFilter(property: string): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 3422721396822852, undefined, [property]); }
   /** init() */
-  static init(): MPMediaEntity { return callSDK<MPMediaEntity>("MediaPlayer_0e503aef608672fa", 1661306294991415, undefined, []); }
+  static init(): MPMediaEntity { return callSDK<MPMediaEntity>("MediaPlayer_212edf3d13b127f5", 1661306294991415, undefined, []); }
   /**
    * subscript(key: Any) -> Any? { get }
    * @availability iOS 4.2+
    */
-  subscript(key: unknown): (unknown) | null { return callSDK<(unknown) | null>("MediaPlayer_0e503aef608672fa", 3719419840504789, this, [key]); }
+  subscript(key: unknown): (unknown) | null { return callSDK<(unknown) | null>("MediaPlayer_212edf3d13b127f5", 3719419840504789, this, [key]); }
   /**
    * func value(forProperty property: String) -> Any?
    * @availability iOS 4.2+
    */
-  value(property: string): (unknown) | null { return callSDK<(unknown) | null>("MediaPlayer_0e503aef608672fa", 2963697220906112, this, [property]); }
+  value(property: string): (unknown) | null { return callSDK<(unknown) | null>("MediaPlayer_212edf3d13b127f5", 2963697220906112, this, [property]); }
   /**
    * var persistentID: MPMediaEntityPersistentID { get }
    * @availability iOS 7.0+
    */
-  get persistentID(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2437078834217025, this, []); }
+  get persistentID(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2437078834217025, this, []); }
   declare readonly $type: { "c:objc(cs)MPMediaEntity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "persistentID": true };
 }
@@ -500,7 +500,7 @@ export const MPMediaGrouping = {
    * init?(rawValue: Int)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MPMediaGrouping) | null { return callSDK<(MPMediaGrouping) | null>("MediaPlayer_0e503aef608672fa", 1535015417140539, undefined, [rawValue]); }
+  init(rawValue: number): (MPMediaGrouping) | null { return callSDK<(MPMediaGrouping) | null>("MediaPlayer_212edf3d13b127f5", 1535015417140539, undefined, [rawValue]); }
 };
 
 /**
@@ -512,209 +512,209 @@ export class MPMediaItem extends (MPMediaEntity as unknown as Omit<typeof MPMedi
    * class func persistentIDProperty(forGroupingType groupingType: MPMediaGrouping) -> String
    * @availability iOS 4.2+
    */
-  static persistentIDProperty(groupingType: MPMediaGrouping): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 4418541524055721, undefined, [groupingType]); }
+  static persistentIDProperty(groupingType: MPMediaGrouping): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 4418541524055721, undefined, [groupingType]); }
   /**
    * class func titleProperty(forGroupingType groupingType: MPMediaGrouping) -> String
    * @availability iOS 4.2+
    */
-  static titleProperty(groupingType: MPMediaGrouping): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 369629943644484, undefined, [groupingType]); }
+  static titleProperty(groupingType: MPMediaGrouping): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 369629943644484, undefined, [groupingType]); }
   /** init() */
-  static init(): MPMediaItem { return callSDK<MPMediaItem>("MediaPlayer_0e503aef608672fa", 1801169072830364, undefined, []); }
+  static init(): MPMediaItem { return callSDK<MPMediaItem>("MediaPlayer_212edf3d13b127f5", 1801169072830364, undefined, []); }
   /**
    * var albumArtist: String? { get }
    * @availability iOS 7.0+
    */
-  get albumArtist(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 1883029401268530, this, []); }
+  get albumArtist(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 1883029401268530, this, []); }
   /**
    * var albumArtistPersistentID: MPMediaEntityPersistentID { get }
    * @availability iOS 8.0+
    */
-  get albumArtistPersistentID(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 337176620092425, this, []); }
+  get albumArtistPersistentID(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 337176620092425, this, []); }
   /**
    * var albumPersistentID: MPMediaEntityPersistentID { get }
    * @availability iOS 8.0+
    */
-  get albumPersistentID(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 598878518578535, this, []); }
+  get albumPersistentID(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 598878518578535, this, []); }
   /**
    * var albumTitle: String? { get }
    * @availability iOS 7.0+
    */
-  get albumTitle(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 2789347046317199, this, []); }
+  get albumTitle(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 2789347046317199, this, []); }
   /**
    * var albumTrackCount: Int { get }
    * @availability iOS 8.0+
    */
-  get albumTrackCount(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2067941671289310, this, []); }
+  get albumTrackCount(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2067941671289310, this, []); }
   /**
    * var albumTrackNumber: Int { get }
    * @availability iOS 7.0+
    */
-  get albumTrackNumber(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2046384202101913, this, []); }
+  get albumTrackNumber(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2046384202101913, this, []); }
   /**
    * var artist: String? { get }
    * @availability iOS 7.0+
    */
-  get artist(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 2177432684090295, this, []); }
+  get artist(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 2177432684090295, this, []); }
   /**
    * var artistPersistentID: MPMediaEntityPersistentID { get }
    * @availability iOS 8.0+
    */
-  get artistPersistentID(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1077232004476934, this, []); }
+  get artistPersistentID(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1077232004476934, this, []); }
   /**
    * var artwork: MPMediaItemArtwork? { get }
    * @availability iOS 7.0+
    */
-  get artwork(): $SDK3 { return callSDK<$SDK3>("MediaPlayer_0e503aef608672fa", 2048622628325730, this, []); }
+  get artwork(): $SDK3 { return callSDK<$SDK3>("MediaPlayer_212edf3d13b127f5", 2048622628325730, this, []); }
   /**
    * var assetURL: URL? { get }
    * @availability iOS 8.0+
    */
-  get assetURL(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 2727006445873346, this, []); }
+  get assetURL(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 2727006445873346, this, []); }
   /**
    * var beatsPerMinute: Int { get }
    * @availability iOS 8.0+
    */
-  get beatsPerMinute(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 4403870624926538, this, []); }
+  get beatsPerMinute(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 4403870624926538, this, []); }
   /**
    * var bookmarkTime: TimeInterval { get }
    * @availability iOS 7.0+
    */
-  get bookmarkTime(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 3027574609300947, this, []); }
+  get bookmarkTime(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 3027574609300947, this, []); }
   /**
    * var isCloudItem: Bool { get }
    * @availability iOS 8.0+
    */
-  get isCloudItem(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 1548232863098897, this, []); }
+  get isCloudItem(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 1548232863098897, this, []); }
   /**
    * var comments: String? { get }
    * @availability iOS 8.0+
    */
-  get comments(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 3313709382098087, this, []); }
+  get comments(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 3313709382098087, this, []); }
   /**
    * var isCompilation: Bool { get }
    * @availability iOS 8.0+
    */
-  get isCompilation(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 1069019200832785, this, []); }
+  get isCompilation(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 1069019200832785, this, []); }
   /**
    * var composer: String? { get }
    * @availability iOS 7.0+
    */
-  get composer(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 4351104636968994, this, []); }
+  get composer(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 4351104636968994, this, []); }
   /**
    * var composerPersistentID: MPMediaEntityPersistentID { get }
    * @availability iOS 8.0+
    */
-  get composerPersistentID(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2320745228095854, this, []); }
+  get composerPersistentID(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2320745228095854, this, []); }
   /**
    * var dateAdded: Date { get }
    * @availability iOS 10.0+
    */
-  get dateAdded(): globalThis.Date { return callSDK<globalThis.Date>("MediaPlayer_0e503aef608672fa", 3420707763598526, this, []); }
+  get dateAdded(): globalThis.Date { return callSDK<globalThis.Date>("MediaPlayer_212edf3d13b127f5", 3420707763598526, this, []); }
   /**
    * var discCount: Int { get }
    * @availability iOS 8.0+
    */
-  get discCount(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1240890049794908, this, []); }
+  get discCount(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1240890049794908, this, []); }
   /**
    * var discNumber: Int { get }
    * @availability iOS 7.0+
    */
-  get discNumber(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 609336615184624, this, []); }
+  get discNumber(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 609336615184624, this, []); }
   /**
    * var isExplicitItem: Bool { get }
    * @availability iOS 10.0+
    */
-  get isExplicitItem(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 2331833563485834, this, []); }
+  get isExplicitItem(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 2331833563485834, this, []); }
   /**
    * var genre: String? { get }
    * @availability iOS 7.0+
    */
-  get genre(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 3128513100100142, this, []); }
+  get genre(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 3128513100100142, this, []); }
   /**
    * var genrePersistentID: MPMediaEntityPersistentID { get }
    * @availability iOS 8.0+
    */
-  get genrePersistentID(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1208657852066719, this, []); }
+  get genrePersistentID(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1208657852066719, this, []); }
   /**
    * var lastPlayedDate: Date? { get }
    * @availability iOS 7.0+
    */
-  get lastPlayedDate(): $SDK4 { return callSDK<$SDK4>("MediaPlayer_0e503aef608672fa", 1023644680922011, this, []); }
+  get lastPlayedDate(): $SDK4 { return callSDK<$SDK4>("MediaPlayer_212edf3d13b127f5", 1023644680922011, this, []); }
   /**
    * var lyrics: String? { get }
    * @availability iOS 8.0+
    */
-  get lyrics(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 3415865977834415, this, []); }
+  get lyrics(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 3415865977834415, this, []); }
   /**
    * var mediaType: MPMediaType { get }
    * @availability iOS 7.0+
    */
-  get mediaType(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 4039096155789217, this, []); }
+  get mediaType(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 4039096155789217, this, []); }
   /**
    * var persistentID: MPMediaEntityPersistentID { get }
    * @availability iOS 5.0+
    */
-  get persistentID(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1952792832924300, this, []); }
+  get persistentID(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1952792832924300, this, []); }
   /**
    * var playCount: Int { get }
    * @availability iOS 7.0+
    */
-  get playCount(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 3794590949940479, this, []); }
+  get playCount(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 3794590949940479, this, []); }
   /**
    * var playbackDuration: TimeInterval { get }
    * @availability iOS 7.0+
    */
-  get playbackDuration(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 4103917648531103, this, []); }
+  get playbackDuration(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 4103917648531103, this, []); }
   /**
    * var playbackStoreID: String { get }
    * @availability iOS 10.3+
    */
-  get playbackStoreID(): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 2317852902527607, this, []); }
+  get playbackStoreID(): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 2317852902527607, this, []); }
   /**
    * var podcastPersistentID: MPMediaEntityPersistentID { get }
    * @availability iOS 8.0+
    */
-  get podcastPersistentID(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 978822527480475, this, []); }
+  get podcastPersistentID(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 978822527480475, this, []); }
   /**
    * var podcastTitle: String? { get }
    * @availability iOS 7.0+
    */
-  get podcastTitle(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 1398182904380431, this, []); }
+  get podcastTitle(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 1398182904380431, this, []); }
   /**
    * var isPreorder: Bool { get }
    * @availability iOS 10.3+
    */
-  get isPreorder(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 542708585575569, this, []); }
+  get isPreorder(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 542708585575569, this, []); }
   /**
    * var hasProtectedAsset: Bool { get }
    * @availability iOS 9.2+
    */
-  get hasProtectedAsset(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 2136542428079722, this, []); }
+  get hasProtectedAsset(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 2136542428079722, this, []); }
   /**
    * var rating: Int { get }
    * @availability iOS 7.0+
    */
-  get rating(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 4334672459825188, this, []); }
+  get rating(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 4334672459825188, this, []); }
   /**
    * var releaseDate: Date? { get }
    * @availability iOS 7.0+
    */
-  get releaseDate(): $SDK4 { return callSDK<$SDK4>("MediaPlayer_0e503aef608672fa", 294360540565983, this, []); }
+  get releaseDate(): $SDK4 { return callSDK<$SDK4>("MediaPlayer_212edf3d13b127f5", 294360540565983, this, []); }
   /**
    * var skipCount: Int { get }
    * @availability iOS 7.0+
    */
-  get skipCount(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2742473044979455, this, []); }
+  get skipCount(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2742473044979455, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 7.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 4074186762124323, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 4074186762124323, this, []); }
   /**
    * var userGrouping: String? { get }
    * @availability iOS 8.0+
    */
-  get userGrouping(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 2561686292123313, this, []); }
+  get userGrouping(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 2561686292123313, this, []); }
   declare readonly $type: { "c:objc(cs)MPMediaItem": true; "c:objc(cs)MPMediaEntity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "persistentID": true; "albumArtist": true; "albumArtistPersistentID": true; "albumPersistentID": true; "albumTitle": true; "albumTrackCount": true; "albumTrackNumber": true; "artist": true; "artistPersistentID": true; "artwork": true; "assetURL": true; "beatsPerMinute": true; "bookmarkTime": true; "isCloudItem": true; "comments": true; "isCompilation": true; "composer": true; "composerPersistentID": true; "dateAdded": true; "discCount": true; "discNumber": true; "isExplicitItem": true; "genre": true; "genrePersistentID": true; "lastPlayedDate": true; "lyrics": true; "mediaType": true; "playCount": true; "playbackDuration": true; "playbackStoreID": true; "podcastPersistentID": true; "podcastTitle": true; "isPreorder": true; "hasProtectedAsset": true; "rating": true; "releaseDate": true; "skipCount": true; "title": true; "userGrouping": true };
 }
@@ -728,7 +728,7 @@ export class MPMediaItemAnimatedArtwork extends SDKHandle {
    * init(artworkID: String, previewImageRequestHandler: @escaping (CGSize, @escaping (UIImage?) -> Void) -> Void, videoAssetFileURLRequestHandler: @escaping (CGSize, @escaping (URL?) -> Void) -> Void)
    * @availability iOS 26.0+
    */
-  static init(artworkID: string, previewImageRequestHandler: ((arg0: { width: number; height: number }, arg1: ((arg0: (_UIKit_UIImage) | null) => Promise<void>)) => void), videoAssetFileURLRequestHandler: ((arg0: { width: number; height: number }, arg1: ((arg0: (string) | null) => Promise<void>)) => void)): MPMediaItemAnimatedArtwork { return callSDK<MPMediaItemAnimatedArtwork>("MediaPlayer_0e503aef608672fa", 4492569994002911, undefined, [artworkID, previewImageRequestHandler, videoAssetFileURLRequestHandler], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static init(artworkID: string, previewImageRequestHandler: ((arg0: { width: number; height: number }, arg1: ((arg0: (_UIKit_UIImage) | null) => Promise<void>)) => void), videoAssetFileURLRequestHandler: ((arg0: { width: number; height: number }, arg1: ((arg0: (string) | null) => Promise<void>)) => void)): MPMediaItemAnimatedArtwork { return callSDK<MPMediaItemAnimatedArtwork>("MediaPlayer_212edf3d13b127f5", 4492569994002911, undefined, [artworkID, previewImageRequestHandler, videoAssetFileURLRequestHandler], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)MPMediaItemAnimatedArtwork": true; "c:objc(cs)NSObject": true };
 }
 
@@ -741,24 +741,24 @@ export class MPMediaItemArtwork extends SDKHandle {
    * func image(at size: CGSize) -> UIImage?
    * @availability iOS 3.0+
    */
-  image(size: $SDK7): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("MediaPlayer_0e503aef608672fa", 3956793718109444, this, [size]); }
+  image(size: $SDK7): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("MediaPlayer_212edf3d13b127f5", 3956793718109444, this, [size]); }
   /**
    * convenience init(image: UIImage)
    * @availability iOS 5.0+
    * @deprecated iOS 10.0
    */
-  static init(image: _UIKit_UIImage): MPMediaItemArtwork { return callSDK<MPMediaItemArtwork>("MediaPlayer_0e503aef608672fa", 464851220280044, undefined, [image]); }
+  static init(image: _UIKit_UIImage): MPMediaItemArtwork { return callSDK<MPMediaItemArtwork>("MediaPlayer_212edf3d13b127f5", 464851220280044, undefined, [image]); }
   /**
    * var bounds: CGRect { get }
    * @availability iOS 3.0+
    */
-  get bounds(): $SDK8 { return callSDK<$SDK8>("MediaPlayer_0e503aef608672fa", 1360363740894200, this, []); }
+  get bounds(): $SDK8 { return callSDK<$SDK8>("MediaPlayer_212edf3d13b127f5", 1360363740894200, this, []); }
   /**
    * var imageCropRect: CGRect { get }
    * @availability iOS 3.0+
    * @deprecated iOS 10.0
    */
-  get imageCropRect(): $SDK8 { return callSDK<$SDK8>("MediaPlayer_0e503aef608672fa", 616753597135276, this, []); }
+  get imageCropRect(): $SDK8 { return callSDK<$SDK8>("MediaPlayer_212edf3d13b127f5", 616753597135276, this, []); }
   declare readonly $type: { "c:objc(cs)MPMediaItemArtwork": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bounds": true; "imageCropRect": true };
 }
@@ -772,27 +772,27 @@ export class MPMediaItemCollection extends (MPMediaEntity as unknown as Omit<typ
    * init(items: [MPMediaItem])
    * @availability iOS 3.0+
    */
-  static init(items: Array<MPMediaItem>): MPMediaItemCollection { return callSDK<MPMediaItemCollection>("MediaPlayer_0e503aef608672fa", 272427124649036, undefined, [items]); }
+  static init(items: Array<MPMediaItem>): MPMediaItemCollection { return callSDK<MPMediaItemCollection>("MediaPlayer_212edf3d13b127f5", 272427124649036, undefined, [items]); }
   /**
    * var count: Int { get }
    * @availability iOS 3.0+
    */
-  get count(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1428051535569343, this, []); }
+  get count(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1428051535569343, this, []); }
   /**
    * var items: [MPMediaItem] { get }
    * @availability iOS 3.0+
    */
-  get items(): Array<MPMediaItem> { return callSDK<Array<MPMediaItem>>("MediaPlayer_0e503aef608672fa", 26303964153426, this, []); }
+  get items(): Array<MPMediaItem> { return callSDK<Array<MPMediaItem>>("MediaPlayer_212edf3d13b127f5", 26303964153426, this, []); }
   /**
    * var mediaTypes: MPMediaType { get }
    * @availability iOS 3.0+
    */
-  get mediaTypes(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 2239199058797913, this, []); }
+  get mediaTypes(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 2239199058797913, this, []); }
   /**
    * var representativeItem: MPMediaItem? { get }
    * @availability iOS 3.0+
    */
-  get representativeItem(): (MPMediaItem) | null { return callSDK<(MPMediaItem) | null>("MediaPlayer_0e503aef608672fa", 544512636040307, this, []); }
+  get representativeItem(): (MPMediaItem) | null { return callSDK<(MPMediaItem) | null>("MediaPlayer_212edf3d13b127f5", 544512636040307, this, []); }
   declare readonly $type: { "c:objc(cs)MPMediaItemCollection": true; "c:objc(cs)MPMediaEntity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "persistentID": true; "count": true; "items": true; "mediaTypes": true; "representativeItem": true };
 }
@@ -806,44 +806,44 @@ export class MPMediaLibrary extends SDKHandle {
    * class func authorizationStatus() -> MPMediaLibraryAuthorizationStatus
    * @availability iOS 9.3+
    */
-  static authorizationStatus(): MPMediaLibraryAuthorizationStatus { return callSDK<MPMediaLibraryAuthorizationStatus>("MediaPlayer_0e503aef608672fa", 976486541323774, undefined, []); }
+  static authorizationStatus(): MPMediaLibraryAuthorizationStatus { return callSDK<MPMediaLibraryAuthorizationStatus>("MediaPlayer_212edf3d13b127f5", 976486541323774, undefined, []); }
   /**
    * class func `default`() -> MPMediaLibrary
    * @availability iOS 3.0+
    */
-  static default(): MPMediaLibrary { return callSDK<MPMediaLibrary>("MediaPlayer_0e503aef608672fa", 2846046252390835, undefined, []); }
+  static default(): MPMediaLibrary { return callSDK<MPMediaLibrary>("MediaPlayer_212edf3d13b127f5", 2846046252390835, undefined, []); }
   /**
    * class func requestAuthorization() async -> MPMediaLibraryAuthorizationStatus
    * @availability iOS 9.3+
    */
-  static requestAuthorization(completionHandler: ((arg0: MPMediaLibraryAuthorizationStatus) => void)): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2425992497345414, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static requestAuthorization(completionHandler: ((arg0: MPMediaLibraryAuthorizationStatus) => void)): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2425992497345414, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func addItem(withProductID productID: String) async throws -> [MPMediaEntity]
    * @availability iOS 9.3+
    */
-  addItem(productID: string, completionHandler?: (((arg0: Array<MPMediaEntity>, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2181085296982141, this, [productID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  addItem(productID: string, completionHandler?: (((arg0: Array<MPMediaEntity>, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2181085296982141, this, [productID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func beginGeneratingLibraryChangeNotifications()
    * @availability iOS 3.0+
    */
-  beginGeneratingLibraryChangeNotifications(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 3682273109105990, this, []); }
+  beginGeneratingLibraryChangeNotifications(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 3682273109105990, this, []); }
   /**
    * func endGeneratingLibraryChangeNotifications()
    * @availability iOS 3.0+
    */
-  endGeneratingLibraryChangeNotifications(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1666647781125736, this, []); }
+  endGeneratingLibraryChangeNotifications(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1666647781125736, this, []); }
   /**
    * func getPlaylist(with uuid: UUID, creationMetadata: MPMediaPlaylistCreationMetadata?) async throws -> MPMediaPlaylist
    * @availability iOS 9.3+
    */
-  getPlaylist(uuid: string, creationMetadata: (MPMediaPlaylistCreationMetadata) | null, completionHandler: ((arg0: (MPMediaPlaylist) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2417508673002697, this, [uuid, creationMetadata, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  getPlaylist(uuid: string, creationMetadata: (MPMediaPlaylistCreationMetadata) | null, completionHandler: ((arg0: (MPMediaPlaylist) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2417508673002697, this, [uuid, creationMetadata, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): MPMediaLibrary { return callSDK<MPMediaLibrary>("MediaPlayer_0e503aef608672fa", 2799102836338212, undefined, []); }
+  static init(): MPMediaLibrary { return callSDK<MPMediaLibrary>("MediaPlayer_212edf3d13b127f5", 2799102836338212, undefined, []); }
   /**
    * var lastModifiedDate: Date { get }
    * @availability iOS 3.0+
    */
-  get lastModifiedDate(): globalThis.Date { return callSDK<globalThis.Date>("MediaPlayer_0e503aef608672fa", 959773737098265, this, []); }
+  get lastModifiedDate(): globalThis.Date { return callSDK<globalThis.Date>("MediaPlayer_212edf3d13b127f5", 959773737098265, this, []); }
   declare readonly $type: { "c:objc(cs)MPMediaLibrary": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "lastModifiedDate": true };
 }
@@ -859,7 +859,7 @@ export const MPMediaLibraryAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 9.3+
    */
-  init(rawValue: number): (MPMediaLibraryAuthorizationStatus) | null { return callSDK<(MPMediaLibraryAuthorizationStatus) | null>("MediaPlayer_0e503aef608672fa", 1091372516725776, undefined, [rawValue]); }
+  init(rawValue: number): (MPMediaLibraryAuthorizationStatus) | null { return callSDK<(MPMediaLibraryAuthorizationStatus) | null>("MediaPlayer_212edf3d13b127f5", 1091372516725776, undefined, [rawValue]); }
 };
 
 /**
@@ -871,42 +871,42 @@ export class MPMediaPickerController extends SDKHandle {
    * init(mediaTypes: MPMediaType)
    * @availability iOS 3.0+
    */
-  static init(mediaTypes: MPMediaType): Promise<MPMediaPickerController> { return callSDKAsync<MPMediaPickerController>("MediaPlayer_0e503aef608672fa", 2981085370592702, undefined, [mediaTypes]); }
+  static init(mediaTypes: MPMediaType): Promise<MPMediaPickerController> { return callSDKAsync<MPMediaPickerController>("MediaPlayer_212edf3d13b127f5", 2981085370592702, undefined, [mediaTypes]); }
   /**
    * var allowsPickingMultipleItems: Bool { get set }
    * @availability iOS 3.0+
    */
-  get allowsPickingMultipleItems(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_0e503aef608672fa", 1755196822351550, this, []); }
-  setAllowsPickingMultipleItems(value: boolean): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 1731755591099918, this, [value]); }
+  get allowsPickingMultipleItems(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_212edf3d13b127f5", 1755196822351550, this, []); }
+  setAllowsPickingMultipleItems(value: boolean): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 1731755591099918, this, [value]); }
   /**
    * weak var delegate: (any MPMediaPickerControllerDelegate)? { get set }
    * @availability iOS 3.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MediaPlayer_0e503aef608672fa", 777216915606519, this, []); }
-  setDelegate(value?: (Implements<MPMediaPickerControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 3112827916124179, this, [value], [{"protocol":"c:objc(pl)MPMediaPickerControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MediaPlayer_212edf3d13b127f5", 777216915606519, this, []); }
+  setDelegate(value?: (Implements<MPMediaPickerControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 3112827916124179, this, [value], [{"protocol":"c:objc(pl)MPMediaPickerControllerDelegate"}]); }
   /**
    * var mediaTypes: MPMediaType { get }
    * @availability iOS 3.0+
    */
-  get mediaTypes(): Promise<MPMediaType> { return callSDKAsync<MPMediaType>("MediaPlayer_0e503aef608672fa", 3068669634491627, this, []); }
+  get mediaTypes(): Promise<MPMediaType> { return callSDKAsync<MPMediaType>("MediaPlayer_212edf3d13b127f5", 3068669634491627, this, []); }
   /**
    * var prompt: String? { get set }
    * @availability iOS 3.0+
    */
-  get prompt(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MediaPlayer_0e503aef608672fa", 920339820205072, this, []); }
-  setPrompt(value?: (string) | null): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 4136450105226895, this, [value]); }
+  get prompt(): Promise<(string) | null> { return callSDKAsync<(string) | null>("MediaPlayer_212edf3d13b127f5", 920339820205072, this, []); }
+  setPrompt(value?: (string) | null): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 4136450105226895, this, [value]); }
   /**
    * var showsCloudItems: Bool { get set }
    * @availability iOS 6.0+
    */
-  get showsCloudItems(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_0e503aef608672fa", 3749171069647024, this, []); }
-  setShowsCloudItems(value: boolean): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 4024737831595286, this, [value]); }
+  get showsCloudItems(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_212edf3d13b127f5", 3749171069647024, this, []); }
+  setShowsCloudItems(value: boolean): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 4024737831595286, this, [value]); }
   /**
    * var showsItemsWithProtectedAssets: Bool { get set }
    * @availability iOS 9.2+
    */
-  get showsItemsWithProtectedAssets(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_0e503aef608672fa", 4337801107240805, this, []); }
-  setShowsItemsWithProtectedAssets(value: boolean): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 1523394057789504, this, [value]); }
+  get showsItemsWithProtectedAssets(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_212edf3d13b127f5", 4337801107240805, this, []); }
+  setShowsItemsWithProtectedAssets(value: boolean): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 1523394057789504, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPMediaPickerController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsPickingMultipleItems": true; "delegate": true; "mediaTypes": true; "prompt": true; "showsCloudItems": true; "showsItemsWithProtectedAssets": true };
 }
@@ -976,49 +976,49 @@ export class MPMediaPlaylist extends (MPMediaItemCollection as unknown as Omit<t
    * func addItem(withProductID productID: String) async throws
    * @availability iOS 9.3+
    */
-  addItem(productID: string, completionHandler?: $SDK14): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1045225802162716, this, [productID, completionHandler], [null,{"callback":{"out":[]}}]); }
+  addItem(productID: string, completionHandler?: $SDK14): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1045225802162716, this, [productID, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func add(_ mediaItems: [MPMediaItem]) async throws
    * @availability iOS 9.3+
    */
-  add(mediaItems: Array<MPMediaItem>, completionHandler?: $SDK14): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1815910739273108, this, [mediaItems, completionHandler], [null,{"callback":{"out":[]}}]); }
+  add(mediaItems: Array<MPMediaItem>, completionHandler?: $SDK14): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1815910739273108, this, [mediaItems, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): MPMediaPlaylist { return callSDK<MPMediaPlaylist>("MediaPlayer_0e503aef608672fa", 149008280966992, undefined, []); }
+  static init(): MPMediaPlaylist { return callSDK<MPMediaPlaylist>("MediaPlayer_212edf3d13b127f5", 149008280966992, undefined, []); }
   /**
    * var authorDisplayName: String? { get }
    * @availability iOS 9.3+
    */
-  get authorDisplayName(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 4119632613398846, this, []); }
+  get authorDisplayName(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 4119632613398846, this, []); }
   /**
    * var cloudGlobalID: String? { get }
    * @availability iOS 14.0+
    */
-  get cloudGlobalID(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 1796330261623619, this, []); }
+  get cloudGlobalID(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 1796330261623619, this, []); }
   /**
    * var descriptionText: String? { get }
    * @availability iOS 9.3+
    */
-  get descriptionText(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 166093557890014, this, []); }
+  get descriptionText(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 166093557890014, this, []); }
   /**
    * var name: String? { get }
    * @availability iOS 7.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 3929961260732162, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 3929961260732162, this, []); }
   /**
    * var persistentID: MPMediaEntityPersistentID { get }
    * @availability iOS 7.0+
    */
-  get persistentID(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 4137139009922572, this, []); }
+  get persistentID(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 4137139009922572, this, []); }
   /**
    * var playlistAttributes: MPMediaPlaylistAttribute { get }
    * @availability iOS 7.0+
    */
-  get playlistAttributes(): MPMediaPlaylistAttribute { return callSDK<MPMediaPlaylistAttribute>("MediaPlayer_0e503aef608672fa", 4101567179167021, this, []); }
+  get playlistAttributes(): MPMediaPlaylistAttribute { return callSDK<MPMediaPlaylistAttribute>("MediaPlayer_212edf3d13b127f5", 4101567179167021, this, []); }
   /**
    * var seedItems: [MPMediaItem]? { get }
    * @availability iOS 8.0+
    */
-  get seedItems(): (Array<MPMediaItem>) | null { return callSDK<(Array<MPMediaItem>) | null>("MediaPlayer_0e503aef608672fa", 2758281254964383, this, []); }
+  get seedItems(): (Array<MPMediaItem>) | null { return callSDK<(Array<MPMediaItem>) | null>("MediaPlayer_212edf3d13b127f5", 2758281254964383, this, []); }
   declare readonly $type: { "c:objc(cs)MPMediaPlaylist": true; "c:objc(cs)MPMediaItemCollection": true; "c:objc(cs)MPMediaEntity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "persistentID": true; "count": true; "items": true; "mediaTypes": true; "representativeItem": true; "authorDisplayName": true; "cloudGlobalID": true; "descriptionText": true; "name": true; "playlistAttributes": true; "seedItems": true };
 }
@@ -1034,22 +1034,22 @@ export const MPMediaPlaylistAttribute = {
    * static var genius: MPMediaPlaylistAttribute { get }
    * @availability iOS 3.0+
    */
-  get genius(): MPMediaPlaylistAttribute { return callSDK<MPMediaPlaylistAttribute>("MediaPlayer_0e503aef608672fa", 952292631044118, undefined, []); },
+  get genius(): MPMediaPlaylistAttribute { return callSDK<MPMediaPlaylistAttribute>("MediaPlayer_212edf3d13b127f5", 952292631044118, undefined, []); },
   /**
    * static var onTheGo: MPMediaPlaylistAttribute { get }
    * @availability iOS 3.0+
    */
-  get onTheGo(): MPMediaPlaylistAttribute { return callSDK<MPMediaPlaylistAttribute>("MediaPlayer_0e503aef608672fa", 648981084925234, undefined, []); },
+  get onTheGo(): MPMediaPlaylistAttribute { return callSDK<MPMediaPlaylistAttribute>("MediaPlayer_212edf3d13b127f5", 648981084925234, undefined, []); },
   /**
    * static var smart: MPMediaPlaylistAttribute { get }
    * @availability iOS 3.0+
    */
-  get smart(): MPMediaPlaylistAttribute { return callSDK<MPMediaPlaylistAttribute>("MediaPlayer_0e503aef608672fa", 774432502461355, undefined, []); },
+  get smart(): MPMediaPlaylistAttribute { return callSDK<MPMediaPlaylistAttribute>("MediaPlayer_212edf3d13b127f5", 774432502461355, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): MPMediaPlaylistAttribute { return callSDK<MPMediaPlaylistAttribute>("MediaPlayer_0e503aef608672fa", 2121874349153291, undefined, [rawValue]); }
+  init(rawValue: number): MPMediaPlaylistAttribute { return callSDK<MPMediaPlaylistAttribute>("MediaPlayer_212edf3d13b127f5", 2121874349153291, undefined, [rawValue]); }
 };
 
 /**
@@ -1061,24 +1061,24 @@ export class MPMediaPlaylistCreationMetadata extends SDKHandle {
    * init(name: String)
    * @availability iOS 9.3+
    */
-  static init(name: string): MPMediaPlaylistCreationMetadata { return callSDK<MPMediaPlaylistCreationMetadata>("MediaPlayer_0e503aef608672fa", 4162611657705945, undefined, [name]); }
+  static init(name: string): MPMediaPlaylistCreationMetadata { return callSDK<MPMediaPlaylistCreationMetadata>("MediaPlayer_212edf3d13b127f5", 4162611657705945, undefined, [name]); }
   /**
    * var authorDisplayName: String! { get set }
    * @availability iOS 9.3+
    */
-  get authorDisplayName(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 1852363236969852, this, []); }
-  set authorDisplayName(value: (string) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2058895420856757, this, [value]); }
+  get authorDisplayName(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 1852363236969852, this, []); }
+  set authorDisplayName(value: (string) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2058895420856757, this, [value]); }
   /**
    * var descriptionText: String { get set }
    * @availability iOS 9.3+
    */
-  get descriptionText(): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 1998946848658379, this, []); }
-  set descriptionText(value: string) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3948358913833851, this, [value]); }
+  get descriptionText(): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 1998946848658379, this, []); }
+  set descriptionText(value: string) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3948358913833851, this, [value]); }
   /**
    * var name: String { get }
    * @availability iOS 9.3+
    */
-  get name(): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 1620417416266501, this, []); }
+  get name(): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 1620417416266501, this, []); }
   declare readonly $type: { "c:objc(cs)MPMediaPlaylistCreationMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorDisplayName": true; "descriptionText": true; "name": true };
 }
@@ -1089,7 +1089,7 @@ export class MPMediaPlaylistCreationMetadata extends SDKHandle {
  */
 export class MPMediaPredicate extends SDKHandle {
   /** init() */
-  static init(): MPMediaPredicate { return callSDK<MPMediaPredicate>("MediaPlayer_0e503aef608672fa", 1629173215115450, undefined, []); }
+  static init(): MPMediaPredicate { return callSDK<MPMediaPredicate>("MediaPlayer_212edf3d13b127f5", 1629173215115450, undefined, []); }
   declare readonly $type: { "c:objc(cs)MPMediaPredicate": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1104,7 +1104,7 @@ export const MPMediaPredicateComparison = {
    * init?(rawValue: Int)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MPMediaPredicateComparison) | null { return callSDK<(MPMediaPredicateComparison) | null>("MediaPlayer_0e503aef608672fa", 4210230575479366, undefined, [rawValue]); }
+  init(rawValue: number): (MPMediaPredicateComparison) | null { return callSDK<(MPMediaPredicateComparison) | null>("MediaPlayer_212edf3d13b127f5", 4210230575479366, undefined, [rawValue]); }
 };
 
 /**
@@ -1116,27 +1116,27 @@ export class MPMediaPropertyPredicate extends MPMediaPredicate {
    * init(value: Any?, forProperty property: String)
    * @availability iOS 3.0+
    */
-  static initValueForProperty(value: (unknown) | null, property: string): MPMediaPropertyPredicate { return callSDK<MPMediaPropertyPredicate>("MediaPlayer_0e503aef608672fa", 437321340251107, undefined, [value, property]); }
+  static initValueForProperty(value: (unknown) | null, property: string): MPMediaPropertyPredicate { return callSDK<MPMediaPropertyPredicate>("MediaPlayer_212edf3d13b127f5", 437321340251107, undefined, [value, property]); }
   /**
    * init(value: Any?, forProperty property: String, comparisonType: MPMediaPredicateComparison)
    * @availability iOS 3.0+
    */
-  static initValueForPropertyComparisonType(value: (unknown) | null, property: string, comparisonType: MPMediaPredicateComparison): MPMediaPropertyPredicate { return callSDK<MPMediaPropertyPredicate>("MediaPlayer_0e503aef608672fa", 2051612809152379, undefined, [value, property, comparisonType]); }
+  static initValueForPropertyComparisonType(value: (unknown) | null, property: string, comparisonType: MPMediaPredicateComparison): MPMediaPropertyPredicate { return callSDK<MPMediaPropertyPredicate>("MediaPlayer_212edf3d13b127f5", 2051612809152379, undefined, [value, property, comparisonType]); }
   /**
    * var comparisonType: MPMediaPredicateComparison { get }
    * @availability iOS 3.0+
    */
-  get comparisonType(): MPMediaPredicateComparison { return callSDK<MPMediaPredicateComparison>("MediaPlayer_0e503aef608672fa", 3824502005814643, this, []); }
+  get comparisonType(): MPMediaPredicateComparison { return callSDK<MPMediaPredicateComparison>("MediaPlayer_212edf3d13b127f5", 3824502005814643, this, []); }
   /**
    * var property: String { get }
    * @availability iOS 3.0+
    */
-  get property(): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 3249743302648449, this, []); }
+  get property(): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 3249743302648449, this, []); }
   /**
    * var value: Any? { get }
    * @availability iOS 3.0+
    */
-  get value(): (unknown) | null { return callSDK<(unknown) | null>("MediaPlayer_0e503aef608672fa", 1456001851848103, this, []); }
+  get value(): (unknown) | null { return callSDK<(unknown) | null>("MediaPlayer_212edf3d13b127f5", 1456001851848103, this, []); }
   declare readonly $type: { "c:objc(cs)MPMediaPropertyPredicate": true; "c:objc(cs)MPMediaPredicate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "comparisonType": true; "property": true; "value": true };
 }
@@ -1150,94 +1150,94 @@ export class MPMediaQuery extends SDKHandle {
    * class func albums() -> MPMediaQuery
    * @availability iOS 3.0+
    */
-  static albums(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 2539639185197549, undefined, []); }
+  static albums(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 2539639185197549, undefined, []); }
   /**
    * class func artists() -> MPMediaQuery
    * @availability iOS 3.0+
    */
-  static artists(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 2133664635724968, undefined, []); }
+  static artists(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 2133664635724968, undefined, []); }
   /**
    * class func audiobooks() -> MPMediaQuery
    * @availability iOS 3.0+
    */
-  static audiobooks(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 411542925117080, undefined, []); }
+  static audiobooks(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 411542925117080, undefined, []); }
   /**
    * class func compilations() -> MPMediaQuery
    * @availability iOS 3.0+
    */
-  static compilations(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 3571123657344809, undefined, []); }
+  static compilations(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 3571123657344809, undefined, []); }
   /**
    * class func composers() -> MPMediaQuery
    * @availability iOS 3.0+
    */
-  static composers(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 1635055665379477, undefined, []); }
+  static composers(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 1635055665379477, undefined, []); }
   /**
    * class func genres() -> MPMediaQuery
    * @availability iOS 3.0+
    */
-  static genres(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 1335871099094663, undefined, []); }
+  static genres(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 1335871099094663, undefined, []); }
   /**
    * class func playlists() -> MPMediaQuery
    * @availability iOS 3.0+
    */
-  static playlists(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 3557880889531248, undefined, []); }
+  static playlists(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 3557880889531248, undefined, []); }
   /**
    * class func podcasts() -> MPMediaQuery
    * @availability iOS 3.0+
    */
-  static podcasts(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 2444715102491006, undefined, []); }
+  static podcasts(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 2444715102491006, undefined, []); }
   /**
    * class func songs() -> MPMediaQuery
    * @availability iOS 3.0+
    */
-  static songs(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 3008111088154354, undefined, []); }
+  static songs(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 3008111088154354, undefined, []); }
   /**
    * func addFilterPredicate(_ predicate: MPMediaPredicate)
    * @availability iOS 3.0+
    */
-  addFilterPredicate(predicate: MPMediaPredicate): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 872335649059612, this, [predicate]); }
+  addFilterPredicate(predicate: MPMediaPredicate): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 872335649059612, this, [predicate]); }
   /**
    * init(filterPredicates: Set<MPMediaPredicate>?)
    * @availability iOS 3.0+
    */
-  static init(filterPredicates?: $SDK16): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 878671659619373, undefined, [filterPredicates]); }
+  static init(filterPredicates?: $SDK16): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 878671659619373, undefined, [filterPredicates]); }
   /**
    * func removeFilterPredicate(_ predicate: MPMediaPredicate)
    * @availability iOS 3.0+
    */
-  removeFilterPredicate(predicate: MPMediaPredicate): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1769446953710421, this, [predicate]); }
+  removeFilterPredicate(predicate: MPMediaPredicate): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1769446953710421, this, [predicate]); }
   /**
    * var collectionSections: [MPMediaQuerySection]? { get }
    * @availability iOS 4.2+
    */
-  get collectionSections(): $SDK17 { return callSDK<$SDK17>("MediaPlayer_0e503aef608672fa", 277079504824178, this, []); }
+  get collectionSections(): $SDK17 { return callSDK<$SDK17>("MediaPlayer_212edf3d13b127f5", 277079504824178, this, []); }
   /**
    * var collections: [MPMediaItemCollection]? { get }
    * @availability iOS 3.0+
    */
-  get collections(): (Array<MPMediaItemCollection>) | null { return callSDK<(Array<MPMediaItemCollection>) | null>("MediaPlayer_0e503aef608672fa", 3799534101411018, this, []); }
+  get collections(): (Array<MPMediaItemCollection>) | null { return callSDK<(Array<MPMediaItemCollection>) | null>("MediaPlayer_212edf3d13b127f5", 3799534101411018, this, []); }
   /**
    * var filterPredicates: Set<MPMediaPredicate>? { get set }
    * @availability iOS 3.0+
    */
-  get filterPredicates(): $SDK16 { return callSDK<$SDK16>("MediaPlayer_0e503aef608672fa", 3218646446768170, this, []); }
-  set filterPredicates(value: $SDK16) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1815554910498735, this, [value]); }
+  get filterPredicates(): $SDK16 { return callSDK<$SDK16>("MediaPlayer_212edf3d13b127f5", 3218646446768170, this, []); }
+  set filterPredicates(value: $SDK16) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1815554910498735, this, [value]); }
   /**
    * var groupingType: MPMediaGrouping { get set }
    * @availability iOS 3.0+
    */
-  get groupingType(): MPMediaGrouping { return callSDK<MPMediaGrouping>("MediaPlayer_0e503aef608672fa", 1345391306801365, this, []); }
-  set groupingType(value: MPMediaGrouping) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3820898492869951, this, [value]); }
+  get groupingType(): MPMediaGrouping { return callSDK<MPMediaGrouping>("MediaPlayer_212edf3d13b127f5", 1345391306801365, this, []); }
+  set groupingType(value: MPMediaGrouping) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3820898492869951, this, [value]); }
   /**
    * var itemSections: [MPMediaQuerySection]? { get }
    * @availability iOS 4.2+
    */
-  get itemSections(): $SDK17 { return callSDK<$SDK17>("MediaPlayer_0e503aef608672fa", 4353846280571403, this, []); }
+  get itemSections(): $SDK17 { return callSDK<$SDK17>("MediaPlayer_212edf3d13b127f5", 4353846280571403, this, []); }
   /**
    * var items: [MPMediaItem]? { get }
    * @availability iOS 3.0+
    */
-  get items(): (Array<MPMediaItem>) | null { return callSDK<(Array<MPMediaItem>) | null>("MediaPlayer_0e503aef608672fa", 1790415924302459, this, []); }
+  get items(): (Array<MPMediaItem>) | null { return callSDK<(Array<MPMediaItem>) | null>("MediaPlayer_212edf3d13b127f5", 1790415924302459, this, []); }
   declare readonly $type: { "c:objc(cs)MPMediaQuery": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "collectionSections": true; "collections": true; "filterPredicates": true; "groupingType": true; "itemSections": true; "items": true };
 }
@@ -1248,17 +1248,17 @@ export class MPMediaQuery extends SDKHandle {
  */
 export class MPMediaQuerySection extends SDKHandle {
   /** init() */
-  static init(): MPMediaQuerySection { return callSDK<MPMediaQuerySection>("MediaPlayer_0e503aef608672fa", 2787679209831306, undefined, []); }
+  static init(): MPMediaQuerySection { return callSDK<MPMediaQuerySection>("MediaPlayer_212edf3d13b127f5", 2787679209831306, undefined, []); }
   /**
    * var range: NSRange { get }
    * @availability iOS 4.2+
    */
-  get range(): SDKHandle { return callSDK<SDKHandle>("MediaPlayer_0e503aef608672fa", 3731828121588013, this, []); }
+  get range(): SDKHandle { return callSDK<SDKHandle>("MediaPlayer_212edf3d13b127f5", 3731828121588013, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 4.2+
    */
-  get title(): string { return callSDK<string>("MediaPlayer_0e503aef608672fa", 773177357705313, this, []); }
+  get title(): string { return callSDK<string>("MediaPlayer_212edf3d13b127f5", 773177357705313, this, []); }
   declare readonly $type: { "c:objc(cs)MPMediaQuerySection": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "range": true; "title": true };
 }
@@ -1274,72 +1274,72 @@ export const MPMediaType = {
    * static var any: MPMediaType { get }
    * @availability iOS 3.0+
    */
-  get any(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 1158715183963142, undefined, []); },
+  get any(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 1158715183963142, undefined, []); },
   /**
    * static var anyAudio: MPMediaType { get }
    * @availability iOS 3.0+
    */
-  get anyAudio(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 1760825731323819, undefined, []); },
+  get anyAudio(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 1760825731323819, undefined, []); },
   /**
    * static var anyVideo: MPMediaType { get }
    * @availability iOS 5.0+
    */
-  get anyVideo(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 463773522048526, undefined, []); },
+  get anyVideo(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 463773522048526, undefined, []); },
   /**
    * static var audioBook: MPMediaType { get }
    * @availability iOS 3.0+
    */
-  get audioBook(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 2525484628953530, undefined, []); },
+  get audioBook(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 2525484628953530, undefined, []); },
   /**
    * static var audioITunesU: MPMediaType { get }
    * @availability iOS 5.0+
    */
-  get audioITunesU(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 2558955015501303, undefined, []); },
+  get audioITunesU(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 2558955015501303, undefined, []); },
   /**
    * static var homeVideo: MPMediaType { get }
    * @availability iOS 7.0+
    */
-  get homeVideo(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 2352196240305277, undefined, []); },
+  get homeVideo(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 2352196240305277, undefined, []); },
   /**
    * static var movie: MPMediaType { get }
    * @availability iOS 5.0+
    */
-  get movie(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 3307852909681724, undefined, []); },
+  get movie(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 3307852909681724, undefined, []); },
   /**
    * static var music: MPMediaType { get }
    * @availability iOS 3.0+
    */
-  get music(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 2121673686777661, undefined, []); },
+  get music(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 2121673686777661, undefined, []); },
   /**
    * static var musicVideo: MPMediaType { get }
    * @availability iOS 5.0+
    */
-  get musicVideo(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 1080725476421455, undefined, []); },
+  get musicVideo(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 1080725476421455, undefined, []); },
   /**
    * static var podcast: MPMediaType { get }
    * @availability iOS 3.0+
    */
-  get podcast(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 1106055806317952, undefined, []); },
+  get podcast(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 1106055806317952, undefined, []); },
   /**
    * static var tvShow: MPMediaType { get }
    * @availability iOS 5.0+
    */
-  get tvShow(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 4265694143329693, undefined, []); },
+  get tvShow(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 4265694143329693, undefined, []); },
   /**
    * static var videoITunesU: MPMediaType { get }
    * @availability iOS 5.0+
    */
-  get videoITunesU(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 1511654665909028, undefined, []); },
+  get videoITunesU(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 1511654665909028, undefined, []); },
   /**
    * static var videoPodcast: MPMediaType { get }
    * @availability iOS 5.0+
    */
-  get videoPodcast(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 4250924258239506, undefined, []); },
+  get videoPodcast(): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 4250924258239506, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_0e503aef608672fa", 4082152552319122, undefined, [rawValue]); }
+  init(rawValue: number): MPMediaType { return callSDK<MPMediaType>("MediaPlayer_212edf3d13b127f5", 4082152552319122, undefined, [rawValue]); }
 };
 
 /**
@@ -1349,25 +1349,25 @@ export const MPMediaType = {
  */
 export class MPMovieAccessLog extends SDKHandle {
   /** init() */
-  static init(): MPMovieAccessLog { return callSDK<MPMovieAccessLog>("MediaPlayer_0e503aef608672fa", 38893825361288, undefined, []); }
+  static init(): MPMovieAccessLog { return callSDK<MPMovieAccessLog>("MediaPlayer_212edf3d13b127f5", 38893825361288, undefined, []); }
   /**
    * var events: [Any]! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get events(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("MediaPlayer_0e503aef608672fa", 2556532367764128, this, []); }
+  get events(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("MediaPlayer_212edf3d13b127f5", 2556532367764128, this, []); }
   /**
    * var extendedLogData: Data! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get extendedLogData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("MediaPlayer_0e503aef608672fa", 731943862426212, this, []); }
+  get extendedLogData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("MediaPlayer_212edf3d13b127f5", 731943862426212, this, []); }
   /**
    * var extendedLogDataStringEncoding: UInt { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get extendedLogDataStringEncoding(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2859014000182164, this, []); }
+  get extendedLogDataStringEncoding(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2859014000182164, this, []); }
   declare readonly $type: { "c:objc(cs)MPMovieAccessLog": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "events": true; "extendedLogData": true; "extendedLogDataStringEncoding": true };
 }
@@ -1379,91 +1379,91 @@ export class MPMovieAccessLog extends SDKHandle {
  */
 export class MPMovieAccessLogEvent extends SDKHandle {
   /** init() */
-  static init(): MPMovieAccessLogEvent { return callSDK<MPMovieAccessLogEvent>("MediaPlayer_0e503aef608672fa", 2625525987425254, undefined, []); }
+  static init(): MPMovieAccessLogEvent { return callSDK<MPMovieAccessLogEvent>("MediaPlayer_212edf3d13b127f5", 2625525987425254, undefined, []); }
   /**
    * var uri: String! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get uri(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 2828234354187908, this, []); }
+  get uri(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 2828234354187908, this, []); }
   /**
    * var durationWatched: TimeInterval { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get durationWatched(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 395379260739719, this, []); }
+  get durationWatched(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 395379260739719, this, []); }
   /**
    * var indicatedBitrate: Double { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get indicatedBitrate(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 3079754957129663, this, []); }
+  get indicatedBitrate(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 3079754957129663, this, []); }
   /**
    * var numberOfBytesTransferred: Int64 { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get numberOfBytesTransferred(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 3724556109470873, this, []); }
+  get numberOfBytesTransferred(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 3724556109470873, this, []); }
   /**
    * var numberOfDroppedVideoFrames: Int { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get numberOfDroppedVideoFrames(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 479730066233654, this, []); }
+  get numberOfDroppedVideoFrames(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 479730066233654, this, []); }
   /**
    * var numberOfSegmentsDownloaded: Int { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get numberOfSegmentsDownloaded(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 3386321227056340, this, []); }
+  get numberOfSegmentsDownloaded(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 3386321227056340, this, []); }
   /**
    * var numberOfServerAddressChanges: Int { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get numberOfServerAddressChanges(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 3373234562012164, this, []); }
+  get numberOfServerAddressChanges(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 3373234562012164, this, []); }
   /**
    * var numberOfStalls: Int { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get numberOfStalls(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 3776424604663941, this, []); }
+  get numberOfStalls(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 3776424604663941, this, []); }
   /**
    * var observedBitrate: Double { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get observedBitrate(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 4245814156190451, this, []); }
+  get observedBitrate(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 4245814156190451, this, []); }
   /**
    * var playbackSessionID: String! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get playbackSessionID(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 5963373222733, this, []); }
+  get playbackSessionID(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 5963373222733, this, []); }
   /**
    * var playbackStartDate: Date! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get playbackStartDate(): $SDK4 { return callSDK<$SDK4>("MediaPlayer_0e503aef608672fa", 1130946079915099, this, []); }
+  get playbackStartDate(): $SDK4 { return callSDK<$SDK4>("MediaPlayer_212edf3d13b127f5", 1130946079915099, this, []); }
   /**
    * var playbackStartOffset: TimeInterval { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get playbackStartOffset(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2864998656362803, this, []); }
+  get playbackStartOffset(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2864998656362803, this, []); }
   /**
    * var segmentsDownloadedDuration: TimeInterval { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get segmentsDownloadedDuration(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 182530263422450, this, []); }
+  get segmentsDownloadedDuration(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 182530263422450, this, []); }
   /**
    * var serverAddress: String! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get serverAddress(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 1822657402764950, this, []); }
+  get serverAddress(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 1822657402764950, this, []); }
   declare readonly $type: { "c:objc(cs)MPMovieAccessLogEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uri": true; "durationWatched": true; "indicatedBitrate": true; "numberOfBytesTransferred": true; "numberOfDroppedVideoFrames": true; "numberOfSegmentsDownloaded": true; "numberOfServerAddressChanges": true; "numberOfStalls": true; "observedBitrate": true; "playbackSessionID": true; "playbackStartDate": true; "playbackStartOffset": true; "segmentsDownloadedDuration": true; "serverAddress": true };
 }
@@ -1481,13 +1481,13 @@ export const MPMovieControlStyle = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get default(): MPMovieControlStyle { return callSDK<MPMovieControlStyle>("MediaPlayer_0e503aef608672fa", 4364860459600221, undefined, []); },
+  get default(): MPMovieControlStyle { return callSDK<MPMovieControlStyle>("MediaPlayer_212edf3d13b127f5", 4364860459600221, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): (MPMovieControlStyle) | null { return callSDK<(MPMovieControlStyle) | null>("MediaPlayer_0e503aef608672fa", 3642361953910332, undefined, [rawValue]); }
+  init(rawValue: number): (MPMovieControlStyle) | null { return callSDK<(MPMovieControlStyle) | null>("MediaPlayer_212edf3d13b127f5", 3642361953910332, undefined, [rawValue]); }
 };
 
 /**
@@ -1497,25 +1497,25 @@ export const MPMovieControlStyle = {
  */
 export class MPMovieErrorLog extends SDKHandle {
   /** init() */
-  static init(): MPMovieErrorLog { return callSDK<MPMovieErrorLog>("MediaPlayer_0e503aef608672fa", 3314351367767794, undefined, []); }
+  static init(): MPMovieErrorLog { return callSDK<MPMovieErrorLog>("MediaPlayer_212edf3d13b127f5", 3314351367767794, undefined, []); }
   /**
    * var events: [Any]! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get events(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("MediaPlayer_0e503aef608672fa", 3607275995905021, this, []); }
+  get events(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("MediaPlayer_212edf3d13b127f5", 3607275995905021, this, []); }
   /**
    * var extendedLogData: Data! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get extendedLogData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("MediaPlayer_0e503aef608672fa", 1847601645759246, this, []); }
+  get extendedLogData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("MediaPlayer_212edf3d13b127f5", 1847601645759246, this, []); }
   /**
    * var extendedLogDataStringEncoding: UInt { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get extendedLogDataStringEncoding(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1045007073352910, this, []); }
+  get extendedLogDataStringEncoding(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1045007073352910, this, []); }
   declare readonly $type: { "c:objc(cs)MPMovieErrorLog": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "events": true; "extendedLogData": true; "extendedLogDataStringEncoding": true };
 }
@@ -1527,49 +1527,49 @@ export class MPMovieErrorLog extends SDKHandle {
  */
 export class MPMovieErrorLogEvent extends SDKHandle {
   /** init() */
-  static init(): MPMovieErrorLogEvent { return callSDK<MPMovieErrorLogEvent>("MediaPlayer_0e503aef608672fa", 1974939590725247, undefined, []); }
+  static init(): MPMovieErrorLogEvent { return callSDK<MPMovieErrorLogEvent>("MediaPlayer_212edf3d13b127f5", 1974939590725247, undefined, []); }
   /**
    * var uri: String! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get uri(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 2236339684930135, this, []); }
+  get uri(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 2236339684930135, this, []); }
   /**
    * var date: Date! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get date(): $SDK4 { return callSDK<$SDK4>("MediaPlayer_0e503aef608672fa", 4306280319300908, this, []); }
+  get date(): $SDK4 { return callSDK<$SDK4>("MediaPlayer_212edf3d13b127f5", 4306280319300908, this, []); }
   /**
    * var errorComment: String! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get errorComment(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 4475053738063829, this, []); }
+  get errorComment(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 4475053738063829, this, []); }
   /**
    * var errorDomain: String! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get errorDomain(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 2583036926544191, this, []); }
+  get errorDomain(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 2583036926544191, this, []); }
   /**
    * var errorStatusCode: Int { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get errorStatusCode(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 448923187061829, this, []); }
+  get errorStatusCode(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 448923187061829, this, []); }
   /**
    * var playbackSessionID: String! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get playbackSessionID(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 2052237844362029, this, []); }
+  get playbackSessionID(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 2052237844362029, this, []); }
   /**
    * var serverAddress: String! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get serverAddress(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 269512748802796, this, []); }
+  get serverAddress(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 269512748802796, this, []); }
   declare readonly $type: { "c:objc(cs)MPMovieErrorLogEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uri": true; "date": true; "errorComment": true; "errorDomain": true; "errorStatusCode": true; "playbackSessionID": true; "serverAddress": true };
 }
@@ -1587,7 +1587,7 @@ export const MPMovieFinishReason = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): (MPMovieFinishReason) | null { return callSDK<(MPMovieFinishReason) | null>("MediaPlayer_0e503aef608672fa", 1402869395776539, undefined, [rawValue]); }
+  init(rawValue: number): (MPMovieFinishReason) | null { return callSDK<(MPMovieFinishReason) | null>("MediaPlayer_212edf3d13b127f5", 1402869395776539, undefined, [rawValue]); }
 };
 
 /**
@@ -1603,25 +1603,25 @@ export const MPMovieLoadState = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get playable(): MPMovieLoadState { return callSDK<MPMovieLoadState>("MediaPlayer_0e503aef608672fa", 2211063725995469, undefined, []); },
+  get playable(): MPMovieLoadState { return callSDK<MPMovieLoadState>("MediaPlayer_212edf3d13b127f5", 2211063725995469, undefined, []); },
   /**
    * static var playthroughOK: MPMovieLoadState { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get playthroughOK(): MPMovieLoadState { return callSDK<MPMovieLoadState>("MediaPlayer_0e503aef608672fa", 3877952903625626, undefined, []); },
+  get playthroughOK(): MPMovieLoadState { return callSDK<MPMovieLoadState>("MediaPlayer_212edf3d13b127f5", 3877952903625626, undefined, []); },
   /**
    * static var stalled: MPMovieLoadState { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get stalled(): MPMovieLoadState { return callSDK<MPMovieLoadState>("MediaPlayer_0e503aef608672fa", 3037978869010388, undefined, []); },
+  get stalled(): MPMovieLoadState { return callSDK<MPMovieLoadState>("MediaPlayer_212edf3d13b127f5", 3037978869010388, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): MPMovieLoadState { return callSDK<MPMovieLoadState>("MediaPlayer_0e503aef608672fa", 3065689130670865, undefined, [rawValue]); }
+  init(rawValue: number): MPMovieLoadState { return callSDK<MPMovieLoadState>("MediaPlayer_212edf3d13b127f5", 3065689130670865, undefined, [rawValue]); }
 };
 
 /**
@@ -1637,19 +1637,19 @@ export const MPMovieMediaTypeMask = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get audio(): MPMovieMediaTypeMask { return callSDK<MPMovieMediaTypeMask>("MediaPlayer_0e503aef608672fa", 4242606298263846, undefined, []); },
+  get audio(): MPMovieMediaTypeMask { return callSDK<MPMovieMediaTypeMask>("MediaPlayer_212edf3d13b127f5", 4242606298263846, undefined, []); },
   /**
    * static var video: MPMovieMediaTypeMask { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get video(): MPMovieMediaTypeMask { return callSDK<MPMovieMediaTypeMask>("MediaPlayer_0e503aef608672fa", 654800532931430, undefined, []); },
+  get video(): MPMovieMediaTypeMask { return callSDK<MPMovieMediaTypeMask>("MediaPlayer_212edf3d13b127f5", 654800532931430, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): MPMovieMediaTypeMask { return callSDK<MPMovieMediaTypeMask>("MediaPlayer_0e503aef608672fa", 1107505668473432, undefined, [rawValue]); }
+  init(rawValue: number): MPMovieMediaTypeMask { return callSDK<MPMovieMediaTypeMask>("MediaPlayer_212edf3d13b127f5", 1107505668473432, undefined, [rawValue]); }
 };
 
 /**
@@ -1665,7 +1665,7 @@ export const MPMoviePlaybackState = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): (MPMoviePlaybackState) | null { return callSDK<(MPMoviePlaybackState) | null>("MediaPlayer_0e503aef608672fa", 2226000644091536, undefined, [rawValue]); }
+  init(rawValue: number): (MPMoviePlaybackState) | null { return callSDK<(MPMoviePlaybackState) | null>("MediaPlayer_212edf3d13b127f5", 2226000644091536, undefined, [rawValue]); }
 };
 
 /**
@@ -1679,186 +1679,186 @@ export class MPMoviePlayerController extends SDKHandle {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  cancelAllThumbnailImageRequests(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2677746729257550, this, []); }
+  cancelAllThumbnailImageRequests(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2677746729257550, this, []); }
   /**
    * init!(contentURL url: URL!)
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  static init(url?: (string) | null): MPMoviePlayerController { return callSDK<MPMoviePlayerController>("MediaPlayer_0e503aef608672fa", 2778429897193372, undefined, [url]); }
+  static init(url?: (string) | null): MPMoviePlayerController { return callSDK<MPMoviePlayerController>("MediaPlayer_212edf3d13b127f5", 2778429897193372, undefined, [url]); }
   /**
    * func requestThumbnailImages(atTimes playbackTimes: [Any]!, timeOption option: MPMovieTimeOption)
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  requestThumbnailImages(playbackTimes: (Array<unknown>) | null, option: MPMovieTimeOption): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1805044199724731, this, [playbackTimes, option]); }
+  requestThumbnailImages(playbackTimes: (Array<unknown>) | null, option: MPMovieTimeOption): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1805044199724731, this, [playbackTimes, option]); }
   /**
    * func setFullscreen(_ fullscreen: Bool, animated: Bool)
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  setFullscreen(fullscreen: boolean, animated: boolean): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2278873080215571, this, [fullscreen, animated]); }
+  setFullscreen(fullscreen: boolean, animated: boolean): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2278873080215571, this, [fullscreen, animated]); }
   /**
    * func thumbnailImage(atTime playbackTime: TimeInterval, timeOption option: MPMovieTimeOption) -> UIImage!
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  thumbnailImage(playbackTime: number, option: MPMovieTimeOption): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("MediaPlayer_0e503aef608672fa", 3772031623627988, this, [playbackTime, option]); }
+  thumbnailImage(playbackTime: number, option: MPMovieTimeOption): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("MediaPlayer_212edf3d13b127f5", 3772031623627988, this, [playbackTime, option]); }
   /**
    * var accessLog: MPMovieAccessLog! { get }
    * @availability iOS 4.3+
    * @deprecated iOS 9.0
    */
-  get accessLog(): (MPMovieAccessLog) | null { return callSDK<(MPMovieAccessLog) | null>("MediaPlayer_0e503aef608672fa", 4002630806126421, this, []); }
+  get accessLog(): (MPMovieAccessLog) | null { return callSDK<(MPMovieAccessLog) | null>("MediaPlayer_212edf3d13b127f5", 4002630806126421, this, []); }
   /**
    * var isAirPlayVideoActive: Bool { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get isAirPlayVideoActive(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 2594054965432691, this, []); }
+  get isAirPlayVideoActive(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 2594054965432691, this, []); }
   /**
    * var allowsAirPlay: Bool { get set }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get allowsAirPlay(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 2318036198000711, this, []); }
-  set allowsAirPlay(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2541624752223374, this, [value]); }
+  get allowsAirPlay(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 2318036198000711, this, []); }
+  set allowsAirPlay(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2541624752223374, this, [value]); }
   /**
    * var backgroundView: UIView! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get backgroundView(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("MediaPlayer_0e503aef608672fa", 4260000271557132, this, []); }
+  get backgroundView(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("MediaPlayer_212edf3d13b127f5", 4260000271557132, this, []); }
   /**
    * var contentURL: URL! { get set }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get contentURL(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 1460313188052871, this, []); }
-  set contentURL(value: (string) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3672231230348780, this, [value]); }
+  get contentURL(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 1460313188052871, this, []); }
+  set contentURL(value: (string) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3672231230348780, this, [value]); }
   /**
    * var controlStyle: MPMovieControlStyle { get set }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get controlStyle(): MPMovieControlStyle { return callSDK<MPMovieControlStyle>("MediaPlayer_0e503aef608672fa", 4458510637559307, this, []); }
-  set controlStyle(value: MPMovieControlStyle) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1167542797039064, this, [value]); }
+  get controlStyle(): MPMovieControlStyle { return callSDK<MPMovieControlStyle>("MediaPlayer_212edf3d13b127f5", 4458510637559307, this, []); }
+  set controlStyle(value: MPMovieControlStyle) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1167542797039064, this, [value]); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get duration(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2942240096630619, this, []); }
+  get duration(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2942240096630619, this, []); }
   /**
    * var endPlaybackTime: TimeInterval { get set }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get endPlaybackTime(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1216180603047713, this, []); }
-  set endPlaybackTime(value: number) { callSDK<void>("MediaPlayer_0e503aef608672fa", 4048330895460395, this, [value]); }
+  get endPlaybackTime(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1216180603047713, this, []); }
+  set endPlaybackTime(value: number) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 4048330895460395, this, [value]); }
   /**
    * var errorLog: MPMovieErrorLog! { get }
    * @availability iOS 4.3+
    * @deprecated iOS 9.0
    */
-  get errorLog(): (MPMovieErrorLog) | null { return callSDK<(MPMovieErrorLog) | null>("MediaPlayer_0e503aef608672fa", 27891711396617, this, []); }
+  get errorLog(): (MPMovieErrorLog) | null { return callSDK<(MPMovieErrorLog) | null>("MediaPlayer_212edf3d13b127f5", 27891711396617, this, []); }
   /**
    * var isFullscreen: Bool { get set }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get isFullscreen(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 4192914733937009, this, []); }
-  set isFullscreen(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1415846992514873, this, [value]); }
+  get isFullscreen(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 4192914733937009, this, []); }
+  set isFullscreen(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1415846992514873, this, [value]); }
   /**
    * var initialPlaybackTime: TimeInterval { get set }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get initialPlaybackTime(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1339332308199552, this, []); }
-  set initialPlaybackTime(value: number) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2851853812546194, this, [value]); }
+  get initialPlaybackTime(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1339332308199552, this, []); }
+  set initialPlaybackTime(value: number) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2851853812546194, this, [value]); }
   /**
    * var loadState: MPMovieLoadState { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get loadState(): MPMovieLoadState { return callSDK<MPMovieLoadState>("MediaPlayer_0e503aef608672fa", 1680078082298671, this, []); }
+  get loadState(): MPMovieLoadState { return callSDK<MPMovieLoadState>("MediaPlayer_212edf3d13b127f5", 1680078082298671, this, []); }
   /**
    * var movieMediaTypes: MPMovieMediaTypeMask { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get movieMediaTypes(): MPMovieMediaTypeMask { return callSDK<MPMovieMediaTypeMask>("MediaPlayer_0e503aef608672fa", 2055001085351614, this, []); }
+  get movieMediaTypes(): MPMovieMediaTypeMask { return callSDK<MPMovieMediaTypeMask>("MediaPlayer_212edf3d13b127f5", 2055001085351614, this, []); }
   /**
    * var movieSourceType: MPMovieSourceType { get set }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get movieSourceType(): MPMovieSourceType { return callSDK<MPMovieSourceType>("MediaPlayer_0e503aef608672fa", 3212194666545545, this, []); }
-  set movieSourceType(value: MPMovieSourceType) { callSDK<void>("MediaPlayer_0e503aef608672fa", 4111894896639142, this, [value]); }
+  get movieSourceType(): MPMovieSourceType { return callSDK<MPMovieSourceType>("MediaPlayer_212edf3d13b127f5", 3212194666545545, this, []); }
+  set movieSourceType(value: MPMovieSourceType) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 4111894896639142, this, [value]); }
   /**
    * var naturalSize: CGSize { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get naturalSize(): $SDK7 { return callSDK<$SDK7>("MediaPlayer_0e503aef608672fa", 888914727394221, this, []); }
+  get naturalSize(): $SDK7 { return callSDK<$SDK7>("MediaPlayer_212edf3d13b127f5", 888914727394221, this, []); }
   /**
    * var playableDuration: TimeInterval { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get playableDuration(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2791433390468484, this, []); }
+  get playableDuration(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2791433390468484, this, []); }
   /**
    * var playbackState: MPMoviePlaybackState { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get playbackState(): MPMoviePlaybackState { return callSDK<MPMoviePlaybackState>("MediaPlayer_0e503aef608672fa", 153174546869976, this, []); }
+  get playbackState(): MPMoviePlaybackState { return callSDK<MPMoviePlaybackState>("MediaPlayer_212edf3d13b127f5", 153174546869976, this, []); }
   /**
    * var readyForDisplay: Bool { get }
    * @availability iOS 6.0+
    * @deprecated iOS 9.0
    */
-  get readyForDisplay(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 4283934881744171, this, []); }
+  get readyForDisplay(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 4283934881744171, this, []); }
   /**
    * var repeatMode: MPMovieRepeatMode { get set }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get repeatMode(): MPMovieRepeatMode { return callSDK<MPMovieRepeatMode>("MediaPlayer_0e503aef608672fa", 4198792361991971, this, []); }
-  set repeatMode(value: MPMovieRepeatMode) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2058300365114945, this, [value]); }
+  get repeatMode(): MPMovieRepeatMode { return callSDK<MPMovieRepeatMode>("MediaPlayer_212edf3d13b127f5", 4198792361991971, this, []); }
+  set repeatMode(value: MPMovieRepeatMode) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2058300365114945, this, [value]); }
   /**
    * var scalingMode: MPMovieScalingMode { get set }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get scalingMode(): MPMovieScalingMode { return callSDK<MPMovieScalingMode>("MediaPlayer_0e503aef608672fa", 2230672544565415, this, []); }
-  set scalingMode(value: MPMovieScalingMode) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3576769840291847, this, [value]); }
+  get scalingMode(): MPMovieScalingMode { return callSDK<MPMovieScalingMode>("MediaPlayer_212edf3d13b127f5", 2230672544565415, this, []); }
+  set scalingMode(value: MPMovieScalingMode) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3576769840291847, this, [value]); }
   /**
    * var shouldAutoplay: Bool { get set }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get shouldAutoplay(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 2075313982717387, this, []); }
-  set shouldAutoplay(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3410142788710669, this, [value]); }
+  get shouldAutoplay(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 2075313982717387, this, []); }
+  set shouldAutoplay(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3410142788710669, this, [value]); }
   /**
    * var timedMetadata: [Any]! { get }
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get timedMetadata(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("MediaPlayer_0e503aef608672fa", 3765032337391464, this, []); }
+  get timedMetadata(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("MediaPlayer_212edf3d13b127f5", 3765032337391464, this, []); }
   /**
    * var useApplicationAudioSession: Bool { get set }
    * @availability iOS 6.0+
    * @deprecated iOS 9.0
    */
-  get useApplicationAudioSession(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 259903872108924, this, []); }
-  set useApplicationAudioSession(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 971775902921526, this, [value]); }
+  get useApplicationAudioSession(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 259903872108924, this, []); }
+  set useApplicationAudioSession(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 971775902921526, this, [value]); }
   /**
    * var view: UIView! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get view(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("MediaPlayer_0e503aef608672fa", 1675285961438552, this, []); }
+  get view(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("MediaPlayer_212edf3d13b127f5", 1675285961438552, this, []); }
   declare readonly $type: { "c:objc(cs)MPMoviePlayerController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessLog": true; "isAirPlayVideoActive": true; "allowsAirPlay": true; "backgroundView": true; "contentURL": true; "controlStyle": true; "duration": true; "endPlaybackTime": true; "errorLog": true; "isFullscreen": true; "initialPlaybackTime": true; "loadState": true; "movieMediaTypes": true; "movieSourceType": true; "naturalSize": true; "playableDuration": true; "playbackState": true; "readyForDisplay": true; "repeatMode": true; "scalingMode": true; "shouldAutoplay": true; "timedMetadata": true; "useApplicationAudioSession": true; "view": true };
 }
@@ -1874,13 +1874,13 @@ export class MPMoviePlayerViewController extends SDKHandle {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  static init(contentURL?: (string) | null): Promise<MPMoviePlayerViewController> { return callSDKAsync<MPMoviePlayerViewController>("MediaPlayer_0e503aef608672fa", 1989588280533997, undefined, [contentURL]); }
+  static init(contentURL?: (string) | null): Promise<MPMoviePlayerViewController> { return callSDKAsync<MPMoviePlayerViewController>("MediaPlayer_212edf3d13b127f5", 1989588280533997, undefined, [contentURL]); }
   /**
    * var moviePlayer: MPMoviePlayerController! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get moviePlayer(): Promise<(MPMoviePlayerController) | null> { return callSDKAsync<(MPMoviePlayerController) | null>("MediaPlayer_0e503aef608672fa", 3021482900986353, this, []); }
+  get moviePlayer(): Promise<(MPMoviePlayerController) | null> { return callSDKAsync<(MPMoviePlayerController) | null>("MediaPlayer_212edf3d13b127f5", 3021482900986353, this, []); }
   declare readonly $type: { "c:objc(cs)MPMoviePlayerViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "moviePlayer": true };
 }
@@ -1898,7 +1898,7 @@ export const MPMovieRepeatMode = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): (MPMovieRepeatMode) | null { return callSDK<(MPMovieRepeatMode) | null>("MediaPlayer_0e503aef608672fa", 296000395753230, undefined, [rawValue]); }
+  init(rawValue: number): (MPMovieRepeatMode) | null { return callSDK<(MPMovieRepeatMode) | null>("MediaPlayer_212edf3d13b127f5", 296000395753230, undefined, [rawValue]); }
 };
 
 /**
@@ -1914,7 +1914,7 @@ export const MPMovieScalingMode = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): (MPMovieScalingMode) | null { return callSDK<(MPMovieScalingMode) | null>("MediaPlayer_0e503aef608672fa", 681259099015208, undefined, [rawValue]); }
+  init(rawValue: number): (MPMovieScalingMode) | null { return callSDK<(MPMovieScalingMode) | null>("MediaPlayer_212edf3d13b127f5", 681259099015208, undefined, [rawValue]); }
 };
 
 /**
@@ -1930,7 +1930,7 @@ export const MPMovieSourceType = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): (MPMovieSourceType) | null { return callSDK<(MPMovieSourceType) | null>("MediaPlayer_0e503aef608672fa", 3422038796070970, undefined, [rawValue]); }
+  init(rawValue: number): (MPMovieSourceType) | null { return callSDK<(MPMovieSourceType) | null>("MediaPlayer_212edf3d13b127f5", 3422038796070970, undefined, [rawValue]); }
 };
 
 /**
@@ -1946,7 +1946,7 @@ export const MPMovieTimeOption = {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  init(rawValue: number): (MPMovieTimeOption) | null { return callSDK<(MPMovieTimeOption) | null>("MediaPlayer_0e503aef608672fa", 4247169075097091, undefined, [rawValue]); }
+  init(rawValue: number): (MPMovieTimeOption) | null { return callSDK<(MPMovieTimeOption) | null>("MediaPlayer_212edf3d13b127f5", 4247169075097091, undefined, [rawValue]); }
 };
 
 /**
@@ -1960,7 +1960,7 @@ export const MPMusicPlaybackState = {
    * init?(rawValue: Int)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MPMusicPlaybackState) | null { return callSDK<(MPMusicPlaybackState) | null>("MediaPlayer_0e503aef608672fa", 4359954762850726, undefined, [rawValue]); }
+  init(rawValue: number): (MPMusicPlaybackState) | null { return callSDK<(MPMusicPlaybackState) | null>("MediaPlayer_212edf3d13b127f5", 4359954762850726, undefined, [rawValue]); }
 };
 
 /**
@@ -1972,111 +1972,111 @@ export class MPMusicPlayerController extends SDKHandle {
    * class var applicationMusicPlayer: MPMusicPlayerController { get }
    * @availability iOS 3.0+
    */
-  static get applicationMusicPlayer(): MPMusicPlayerController { return callSDK<MPMusicPlayerController>("MediaPlayer_0e503aef608672fa", 3401497178337081, undefined, []); }
+  static get applicationMusicPlayer(): MPMusicPlayerController { return callSDK<MPMusicPlayerController>("MediaPlayer_212edf3d13b127f5", 3401497178337081, undefined, []); }
   /**
    * class var applicationQueuePlayer: MPMusicPlayerApplicationController { get }
    * @availability iOS 10.3+
    */
-  static get applicationQueuePlayer(): MPMusicPlayerApplicationController { return callSDK<MPMusicPlayerApplicationController>("MediaPlayer_0e503aef608672fa", 2399228856370047, undefined, []); }
+  static get applicationQueuePlayer(): MPMusicPlayerApplicationController { return callSDK<MPMusicPlayerApplicationController>("MediaPlayer_212edf3d13b127f5", 2399228856370047, undefined, []); }
   /**
    * class var iPodMusicPlayer: MPMusicPlayerController { get }
    * @availability iOS 3.0+
    * @deprecated iOS 8.0
    */
-  static get iPodMusicPlayer(): MPMusicPlayerController { return callSDK<MPMusicPlayerController>("MediaPlayer_0e503aef608672fa", 3670283255537081, undefined, []); }
+  static get iPodMusicPlayer(): MPMusicPlayerController { return callSDK<MPMusicPlayerController>("MediaPlayer_212edf3d13b127f5", 3670283255537081, undefined, []); }
   /**
    * class var systemMusicPlayer: any MPMusicPlayerController & MPSystemMusicPlayerController { get }
    * @availability iOS 3.0+
    */
-  static get systemMusicPlayer(): (MPMusicPlayerController) & (SDKHandle) { return callSDK<(MPMusicPlayerController) & (SDKHandle)>("MediaPlayer_0e503aef608672fa", 1223859676055486, undefined, []); }
+  static get systemMusicPlayer(): (MPMusicPlayerController) & (SDKHandle) { return callSDK<(MPMusicPlayerController) & (SDKHandle)>("MediaPlayer_212edf3d13b127f5", 1223859676055486, undefined, []); }
   /**
    * func append(_ descriptor: MPMusicPlayerQueueDescriptor)
    * @availability iOS 10.3+
    */
-  append(descriptor: MPMusicPlayerQueueDescriptor): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 649256958056033, this, [descriptor]); }
+  append(descriptor: MPMusicPlayerQueueDescriptor): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 649256958056033, this, [descriptor]); }
   /**
    * func beginGeneratingPlaybackNotifications()
    * @availability iOS 3.0+
    */
-  beginGeneratingPlaybackNotifications(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 4426353788432954, this, []); }
+  beginGeneratingPlaybackNotifications(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 4426353788432954, this, []); }
   /**
    * func endGeneratingPlaybackNotifications()
    * @availability iOS 3.0+
    */
-  endGeneratingPlaybackNotifications(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 238228494297098, this, []); }
+  endGeneratingPlaybackNotifications(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 238228494297098, this, []); }
   /**
    * func prepareToPlay() async throws
    * @availability iOS 10.1+
    */
-  prepareToPlay(completionHandler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1597761879837120, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  prepareToPlay(completionHandler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1597761879837120, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func prepend(_ descriptor: MPMusicPlayerQueueDescriptor)
    * @availability iOS 10.3+
    */
-  prepend(descriptor: MPMusicPlayerQueueDescriptor): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2458308044952683, this, [descriptor]); }
+  prepend(descriptor: MPMusicPlayerQueueDescriptor): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2458308044952683, this, [descriptor]); }
   /**
    * func setQueue(with descriptor: MPMusicPlayerQueueDescriptor)
    * @availability iOS 10.1+
    */
-  setQueueWith(descriptor: MPMusicPlayerQueueDescriptor): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2997665429176826, this, [descriptor]); }
+  setQueueWith(descriptor: MPMusicPlayerQueueDescriptor): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2997665429176826, this, [descriptor]); }
   /**
    * func setQueue(with itemCollection: MPMediaItemCollection)
    * @availability iOS 3.0+
    */
-  setQueueWith17497(itemCollection: MPMediaItemCollection): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 163682434003962, this, [itemCollection]); }
+  setQueueWith17497(itemCollection: MPMediaItemCollection): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 163682434003962, this, [itemCollection]); }
   /**
    * func setQueue(with query: MPMediaQuery)
    * @availability iOS 3.0+
    */
-  setQueueWith78008(query: MPMediaQuery): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1927230378325813, this, [query]); }
+  setQueueWith78008(query: MPMediaQuery): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1927230378325813, this, [query]); }
   /**
    * func setQueue(with storeIDs: [String])
    * @availability iOS 9.3+
    */
-  setQueueWith89099(storeIDs: Array<string>): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 132006534126164, this, [storeIDs]); }
+  setQueueWith89099(storeIDs: Array<string>): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 132006534126164, this, [storeIDs]); }
   /**
    * func skipToBeginning()
    * @availability iOS 3.0+
    */
-  skipToBeginning(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1212384751975313, this, []); }
+  skipToBeginning(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1212384751975313, this, []); }
   /**
    * func skipToNextItem()
    * @availability iOS 3.0+
    */
-  skipToNextItem(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 3925994456289788, this, []); }
+  skipToNextItem(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 3925994456289788, this, []); }
   /**
    * func skipToPreviousItem()
    * @availability iOS 3.0+
    */
-  skipToPreviousItem(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2957670509792454, this, []); }
+  skipToPreviousItem(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2957670509792454, this, []); }
   /**
    * var indexOfNowPlayingItem: Int { get }
    * @availability iOS 5.0+
    */
-  get indexOfNowPlayingItem(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2059763222926791, this, []); }
+  get indexOfNowPlayingItem(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2059763222926791, this, []); }
   /**
    * @NSCopying var nowPlayingItem: MPMediaItem? { get set }
    * @availability iOS 3.0+
    */
-  get nowPlayingItem(): (MPMediaItem) | null { return callSDK<(MPMediaItem) | null>("MediaPlayer_0e503aef608672fa", 2894642009460153, this, []); }
-  set nowPlayingItem(value: (MPMediaItem) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2125943849389387, this, [value]); }
+  get nowPlayingItem(): (MPMediaItem) | null { return callSDK<(MPMediaItem) | null>("MediaPlayer_212edf3d13b127f5", 2894642009460153, this, []); }
+  set nowPlayingItem(value: (MPMediaItem) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2125943849389387, this, [value]); }
   /**
    * var playbackState: MPMusicPlaybackState { get }
    * @availability iOS 3.0+
    */
-  get playbackState(): MPMusicPlaybackState { return callSDK<MPMusicPlaybackState>("MediaPlayer_0e503aef608672fa", 2587640254838402, this, []); }
+  get playbackState(): MPMusicPlaybackState { return callSDK<MPMusicPlaybackState>("MediaPlayer_212edf3d13b127f5", 2587640254838402, this, []); }
   /**
    * var repeatMode: MPMusicRepeatMode { get set }
    * @availability iOS 3.0+
    */
-  get repeatMode(): MPMusicRepeatMode { return callSDK<MPMusicRepeatMode>("MediaPlayer_0e503aef608672fa", 1166936590722089, this, []); }
-  set repeatMode(value: MPMusicRepeatMode) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1078191238528354, this, [value]); }
+  get repeatMode(): MPMusicRepeatMode { return callSDK<MPMusicRepeatMode>("MediaPlayer_212edf3d13b127f5", 1166936590722089, this, []); }
+  set repeatMode(value: MPMusicRepeatMode) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1078191238528354, this, [value]); }
   /**
    * var shuffleMode: MPMusicShuffleMode { get set }
    * @availability iOS 3.0+
    */
-  get shuffleMode(): MPMusicShuffleMode { return callSDK<MPMusicShuffleMode>("MediaPlayer_0e503aef608672fa", 3721169900595433, this, []); }
-  set shuffleMode(value: MPMusicShuffleMode) { callSDK<void>("MediaPlayer_0e503aef608672fa", 947869516689434, this, [value]); }
+  get shuffleMode(): MPMusicShuffleMode { return callSDK<MPMusicShuffleMode>("MediaPlayer_212edf3d13b127f5", 3721169900595433, this, []); }
+  set shuffleMode(value: MPMusicShuffleMode) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 947869516689434, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPMusicPlayerController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "indexOfNowPlayingItem": true; "nowPlayingItem": true; "playbackState": true; "repeatMode": true; "shuffleMode": true };
 }
@@ -2090,7 +2090,7 @@ export class MPMusicPlayerApplicationController extends MPMusicPlayerController 
    * func perform(queueTransaction: @escaping (MPMusicPlayerControllerMutableQueue) -> Void) async throws -> MPMusicPlayerControllerQueue
    * @availability iOS 10.3+
    */
-  perform(queueTransaction: ((arg0: MPMusicPlayerControllerMutableQueue) => void), completionHandler: ((arg0: MPMusicPlayerControllerQueue, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 3478167892713496, this, [queueTransaction, completionHandler], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  perform(queueTransaction: ((arg0: MPMusicPlayerControllerMutableQueue) => void), completionHandler: ((arg0: MPMusicPlayerControllerQueue, arg1: (NativeError) | null) => void)): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 3478167892713496, this, [queueTransaction, completionHandler], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)MPMusicPlayerApplicationController": true; "c:objc(cs)MPMusicPlayerController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "indexOfNowPlayingItem": true; "nowPlayingItem": true; "playbackState": true; "repeatMode": true; "shuffleMode": true };
 }
@@ -2104,7 +2104,7 @@ export class MPMusicPlayerControllerQueue extends SDKHandle {
    * var items: [MPMediaItem] { get }
    * @availability iOS 10.3+
    */
-  get items(): Array<MPMediaItem> { return callSDK<Array<MPMediaItem>>("MediaPlayer_0e503aef608672fa", 1947877749390126, this, []); }
+  get items(): Array<MPMediaItem> { return callSDK<Array<MPMediaItem>>("MediaPlayer_212edf3d13b127f5", 1947877749390126, this, []); }
   declare readonly $type: { "c:objc(cs)MPMusicPlayerControllerQueue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "items": true };
 }
@@ -2118,12 +2118,12 @@ export class MPMusicPlayerControllerMutableQueue extends MPMusicPlayerController
    * func insert(_ queueDescriptor: MPMusicPlayerQueueDescriptor, after afterItem: MPMediaItem?)
    * @availability iOS 10.3+
    */
-  insert(queueDescriptor: MPMusicPlayerQueueDescriptor, afterItem?: (MPMediaItem) | null): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2470573748851195, this, [queueDescriptor, afterItem]); }
+  insert(queueDescriptor: MPMusicPlayerQueueDescriptor, afterItem?: (MPMediaItem) | null): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2470573748851195, this, [queueDescriptor, afterItem]); }
   /**
    * func remove(_ item: MPMediaItem)
    * @availability iOS 10.3+
    */
-  remove(item: MPMediaItem): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 272201944715416, this, [item]); }
+  remove(item: MPMediaItem): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 272201944715416, this, [item]); }
   declare readonly $type: { "c:objc(cs)MPMusicPlayerControllerMutableQueue": true; "c:objc(cs)MPMusicPlayerControllerQueue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "items": true };
 }
@@ -2145,38 +2145,38 @@ export class MPMusicPlayerMediaItemQueueDescriptor extends MPMusicPlayerQueueDes
    * init(itemCollection: MPMediaItemCollection)
    * @availability iOS 10.1+
    */
-  static initItemCollection(itemCollection: MPMediaItemCollection): MPMusicPlayerMediaItemQueueDescriptor { return callSDK<MPMusicPlayerMediaItemQueueDescriptor>("MediaPlayer_0e503aef608672fa", 1441216722421709, undefined, [itemCollection]); }
+  static initItemCollection(itemCollection: MPMediaItemCollection): MPMusicPlayerMediaItemQueueDescriptor { return callSDK<MPMusicPlayerMediaItemQueueDescriptor>("MediaPlayer_212edf3d13b127f5", 1441216722421709, undefined, [itemCollection]); }
   /**
    * init(query: MPMediaQuery)
    * @availability iOS 10.1+
    */
-  static initQuery(query: MPMediaQuery): MPMusicPlayerMediaItemQueueDescriptor { return callSDK<MPMusicPlayerMediaItemQueueDescriptor>("MediaPlayer_0e503aef608672fa", 1666990319803326, undefined, [query]); }
+  static initQuery(query: MPMediaQuery): MPMusicPlayerMediaItemQueueDescriptor { return callSDK<MPMusicPlayerMediaItemQueueDescriptor>("MediaPlayer_212edf3d13b127f5", 1666990319803326, undefined, [query]); }
   /**
    * func setEndTime(_ endTime: TimeInterval, for mediaItem: MPMediaItem)
    * @availability iOS 10.1+
    */
-  setEndTime(endTime: number, mediaItem: MPMediaItem): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1005153004540610, this, [endTime, mediaItem]); }
+  setEndTime(endTime: number, mediaItem: MPMediaItem): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1005153004540610, this, [endTime, mediaItem]); }
   /**
    * func setStartTime(_ startTime: TimeInterval, for mediaItem: MPMediaItem)
    * @availability iOS 10.1+
    */
-  setStartTime(startTime: number, mediaItem: MPMediaItem): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 4319686617495524, this, [startTime, mediaItem]); }
+  setStartTime(startTime: number, mediaItem: MPMediaItem): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 4319686617495524, this, [startTime, mediaItem]); }
   /**
    * var itemCollection: MPMediaItemCollection { get }
    * @availability iOS 10.1+
    */
-  get itemCollection(): MPMediaItemCollection { return callSDK<MPMediaItemCollection>("MediaPlayer_0e503aef608672fa", 1805176126942766, this, []); }
+  get itemCollection(): MPMediaItemCollection { return callSDK<MPMediaItemCollection>("MediaPlayer_212edf3d13b127f5", 1805176126942766, this, []); }
   /**
    * @NSCopying var query: MPMediaQuery { get }
    * @availability iOS 10.1+
    */
-  get query(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_0e503aef608672fa", 4404283391639322, this, []); }
+  get query(): MPMediaQuery { return callSDK<MPMediaQuery>("MediaPlayer_212edf3d13b127f5", 4404283391639322, this, []); }
   /**
    * var startItem: MPMediaItem? { get set }
    * @availability iOS 10.1+
    */
-  get startItem(): (MPMediaItem) | null { return callSDK<(MPMediaItem) | null>("MediaPlayer_0e503aef608672fa", 4159766855526305, this, []); }
-  set startItem(value: (MPMediaItem) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1219768313060375, this, [value]); }
+  get startItem(): (MPMediaItem) | null { return callSDK<(MPMediaItem) | null>("MediaPlayer_212edf3d13b127f5", 4159766855526305, this, []); }
+  set startItem(value: (MPMediaItem) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1219768313060375, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPMusicPlayerMediaItemQueueDescriptor": true; "c:objc(cs)MPMusicPlayerQueueDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "itemCollection": true; "query": true; "startItem": true };
 }
@@ -2190,12 +2190,12 @@ export class MPMusicPlayerPlayParameters extends SDKHandle {
    * init?(dictionary: [String : Any])
    * @availability iOS 11.0+
    */
-  static init(dictionary: Record<string, unknown>): (MPMusicPlayerPlayParameters) | null { return callSDK<(MPMusicPlayerPlayParameters) | null>("MediaPlayer_0e503aef608672fa", 3144187523285196, undefined, [dictionary]); }
+  static init(dictionary: Record<string, unknown>): (MPMusicPlayerPlayParameters) | null { return callSDK<(MPMusicPlayerPlayParameters) | null>("MediaPlayer_212edf3d13b127f5", 3144187523285196, undefined, [dictionary]); }
   /**
    * var dictionary: [String : Any] { get }
    * @availability iOS 11.0+
    */
-  get dictionary(): Record<string, unknown> { return callSDK<Record<string, unknown>>("MediaPlayer_0e503aef608672fa", 4086827292736944, this, []); }
+  get dictionary(): Record<string, unknown> { return callSDK<Record<string, unknown>>("MediaPlayer_212edf3d13b127f5", 4086827292736944, this, []); }
   declare readonly $type: { "c:objc(cs)MPMusicPlayerPlayParameters": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dictionary": true };
 }
@@ -2209,29 +2209,29 @@ export class MPMusicPlayerPlayParametersQueueDescriptor extends MPMusicPlayerQue
    * init(playParametersQueue: [MPMusicPlayerPlayParameters])
    * @availability iOS 11.0+
    */
-  static init(playParametersQueue: $SDK26): MPMusicPlayerPlayParametersQueueDescriptor { return callSDK<MPMusicPlayerPlayParametersQueueDescriptor>("MediaPlayer_0e503aef608672fa", 231785102750794, undefined, [playParametersQueue]); }
+  static init(playParametersQueue: $SDK26): MPMusicPlayerPlayParametersQueueDescriptor { return callSDK<MPMusicPlayerPlayParametersQueueDescriptor>("MediaPlayer_212edf3d13b127f5", 231785102750794, undefined, [playParametersQueue]); }
   /**
    * func setEndTime(_ endTime: TimeInterval, forItemWith playParameters: MPMusicPlayerPlayParameters)
    * @availability iOS 11.0+
    */
-  setEndTime(endTime: number, playParameters: MPMusicPlayerPlayParameters): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 3163510114708418, this, [endTime, playParameters]); }
+  setEndTime(endTime: number, playParameters: MPMusicPlayerPlayParameters): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 3163510114708418, this, [endTime, playParameters]); }
   /**
    * func setStartTime(_ startTime: TimeInterval, forItemWith playParameters: MPMusicPlayerPlayParameters)
    * @availability iOS 11.0+
    */
-  setStartTime(startTime: number, playParameters: MPMusicPlayerPlayParameters): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2784751632963960, this, [startTime, playParameters]); }
+  setStartTime(startTime: number, playParameters: MPMusicPlayerPlayParameters): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2784751632963960, this, [startTime, playParameters]); }
   /**
    * var playParametersQueue: [MPMusicPlayerPlayParameters] { get set }
    * @availability iOS 11.0+
    */
-  get playParametersQueue(): $SDK26 { return callSDK<$SDK26>("MediaPlayer_0e503aef608672fa", 1257892179590773, this, []); }
-  set playParametersQueue(value: $SDK26) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3689545198632655, this, [value]); }
+  get playParametersQueue(): $SDK26 { return callSDK<$SDK26>("MediaPlayer_212edf3d13b127f5", 1257892179590773, this, []); }
+  set playParametersQueue(value: $SDK26) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3689545198632655, this, [value]); }
   /**
    * var startItemPlayParameters: MPMusicPlayerPlayParameters? { get set }
    * @availability iOS 11.0+
    */
-  get startItemPlayParameters(): $SDK27 { return callSDK<$SDK27>("MediaPlayer_0e503aef608672fa", 3602597231086709, this, []); }
-  set startItemPlayParameters(value: $SDK27) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1097398395312407, this, [value]); }
+  get startItemPlayParameters(): $SDK27 { return callSDK<$SDK27>("MediaPlayer_212edf3d13b127f5", 3602597231086709, this, []); }
+  set startItemPlayParameters(value: $SDK27) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1097398395312407, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPMusicPlayerPlayParametersQueueDescriptor": true; "c:objc(cs)MPMusicPlayerQueueDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "playParametersQueue": true; "startItemPlayParameters": true };
 }
@@ -2245,29 +2245,29 @@ export class MPMusicPlayerStoreQueueDescriptor extends MPMusicPlayerQueueDescrip
    * init(storeIDs: [String])
    * @availability iOS 10.1+
    */
-  static init(storeIDs: Array<string>): MPMusicPlayerStoreQueueDescriptor { return callSDK<MPMusicPlayerStoreQueueDescriptor>("MediaPlayer_0e503aef608672fa", 3966360055706235, undefined, [storeIDs]); }
+  static init(storeIDs: Array<string>): MPMusicPlayerStoreQueueDescriptor { return callSDK<MPMusicPlayerStoreQueueDescriptor>("MediaPlayer_212edf3d13b127f5", 3966360055706235, undefined, [storeIDs]); }
   /**
    * func setEndTime(_ endTime: TimeInterval, forItemWithStoreID storeID: String)
    * @availability iOS 10.1+
    */
-  setEndTime(endTime: number, storeID: string): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 213902595228667, this, [endTime, storeID]); }
+  setEndTime(endTime: number, storeID: string): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 213902595228667, this, [endTime, storeID]); }
   /**
    * func setStartTime(_ startTime: TimeInterval, forItemWithStoreID storeID: String)
    * @availability iOS 10.1+
    */
-  setStartTime(startTime: number, storeID: string): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 959711431234613, this, [startTime, storeID]); }
+  setStartTime(startTime: number, storeID: string): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 959711431234613, this, [startTime, storeID]); }
   /**
    * var startItemID: String? { get set }
    * @availability iOS 10.1+
    */
-  get startItemID(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 1556678957136702, this, []); }
-  set startItemID(value: (string) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 862254971634276, this, [value]); }
+  get startItemID(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 1556678957136702, this, []); }
+  set startItemID(value: (string) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 862254971634276, this, [value]); }
   /**
    * var storeIDs: [String]? { get set }
    * @availability iOS 10.1+
    */
-  get storeIDs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("MediaPlayer_0e503aef608672fa", 1386080205866901, this, []); }
-  set storeIDs(value: (Array<string>) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2933718016952595, this, [value]); }
+  get storeIDs(): (Array<string>) | null { return callSDK<(Array<string>) | null>("MediaPlayer_212edf3d13b127f5", 1386080205866901, this, []); }
+  set storeIDs(value: (Array<string>) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2933718016952595, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPMusicPlayerStoreQueueDescriptor": true; "c:objc(cs)MPMusicPlayerQueueDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "startItemID": true; "storeIDs": true };
 }
@@ -2283,7 +2283,7 @@ export const MPMusicRepeatMode = {
    * init?(rawValue: Int)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MPMusicRepeatMode) | null { return callSDK<(MPMusicRepeatMode) | null>("MediaPlayer_0e503aef608672fa", 300336739220714, undefined, [rawValue]); }
+  init(rawValue: number): (MPMusicRepeatMode) | null { return callSDK<(MPMusicRepeatMode) | null>("MediaPlayer_212edf3d13b127f5", 300336739220714, undefined, [rawValue]); }
 };
 
 /**
@@ -2297,7 +2297,7 @@ export const MPMusicShuffleMode = {
    * init?(rawValue: Int)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MPMusicShuffleMode) | null { return callSDK<(MPMusicShuffleMode) | null>("MediaPlayer_0e503aef608672fa", 3909283605893344, undefined, [rawValue]); }
+  init(rawValue: number): (MPMusicShuffleMode) | null { return callSDK<(MPMusicShuffleMode) | null>("MediaPlayer_212edf3d13b127f5", 3909283605893344, undefined, [rawValue]); }
 };
 
 /**
@@ -2309,24 +2309,24 @@ export class MPNowPlayingInfoCenter extends SDKHandle {
    * class func `default`() -> MPNowPlayingInfoCenter
    * @availability iOS 5.0+
    */
-  static default(): MPNowPlayingInfoCenter { return callSDK<MPNowPlayingInfoCenter>("MediaPlayer_0e503aef608672fa", 3814702367880279, undefined, []); }
+  static default(): MPNowPlayingInfoCenter { return callSDK<MPNowPlayingInfoCenter>("MediaPlayer_212edf3d13b127f5", 3814702367880279, undefined, []); }
   /**
    * class var supportedAnimatedArtworkKeys: [String] { get }
    * @availability iOS 26.0+
    */
-  static get supportedAnimatedArtworkKeys(): Array<string> { return callSDK<Array<string>>("MediaPlayer_0e503aef608672fa", 1965690285802256, undefined, []); }
+  static get supportedAnimatedArtworkKeys(): Array<string> { return callSDK<Array<string>>("MediaPlayer_212edf3d13b127f5", 1965690285802256, undefined, []); }
   /**
    * var nowPlayingInfo: [String : Any]? { get set }
    * @availability iOS 5.0+
    */
-  get nowPlayingInfo(): $SDK1 { return callSDK<$SDK1>("MediaPlayer_0e503aef608672fa", 3762918669515569, this, []); }
-  set nowPlayingInfo(value: $SDK1) { callSDK<void>("MediaPlayer_0e503aef608672fa", 595235544125871, this, [value]); }
+  get nowPlayingInfo(): $SDK1 { return callSDK<$SDK1>("MediaPlayer_212edf3d13b127f5", 3762918669515569, this, []); }
+  set nowPlayingInfo(value: $SDK1) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 595235544125871, this, [value]); }
   /**
    * var playbackState: MPNowPlayingPlaybackState { get set }
    * @availability iOS 13.0+
    */
-  get playbackState(): MPNowPlayingPlaybackState { return callSDK<MPNowPlayingPlaybackState>("MediaPlayer_0e503aef608672fa", 1465088211590869, this, []); }
-  set playbackState(value: MPNowPlayingPlaybackState) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1968893392356445, this, [value]); }
+  get playbackState(): MPNowPlayingPlaybackState { return callSDK<MPNowPlayingPlaybackState>("MediaPlayer_212edf3d13b127f5", 1465088211590869, this, []); }
+  set playbackState(value: MPNowPlayingPlaybackState) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1968893392356445, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPNowPlayingInfoCenter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "nowPlayingInfo": true; "playbackState": true };
 }
@@ -2340,42 +2340,42 @@ export class MPNowPlayingInfoLanguageOption extends SDKHandle {
    * init(type languageOptionType: MPNowPlayingInfoLanguageOptionType, languageTag: String, characteristics languageOptionCharacteristics: [String]?, displayName: String, identifier: String)
    * @availability iOS 9.0+
    */
-  static init(languageOptionType: MPNowPlayingInfoLanguageOptionType, languageTag: string, languageOptionCharacteristics: (Array<string>) | null, displayName: string, identifier: string): MPNowPlayingInfoLanguageOption { return callSDK<MPNowPlayingInfoLanguageOption>("MediaPlayer_0e503aef608672fa", 138011718362520, undefined, [languageOptionType, languageTag, languageOptionCharacteristics, displayName, identifier]); }
+  static init(languageOptionType: MPNowPlayingInfoLanguageOptionType, languageTag: string, languageOptionCharacteristics: (Array<string>) | null, displayName: string, identifier: string): MPNowPlayingInfoLanguageOption { return callSDK<MPNowPlayingInfoLanguageOption>("MediaPlayer_212edf3d13b127f5", 138011718362520, undefined, [languageOptionType, languageTag, languageOptionCharacteristics, displayName, identifier]); }
   /**
    * func isAutomaticAudibleLanguageOption() -> Bool
    * @availability iOS 9.0+
    */
-  isAutomaticAudibleLanguageOption(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 828219247189427, this, []); }
+  isAutomaticAudibleLanguageOption(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 828219247189427, this, []); }
   /**
    * func isAutomaticLegibleLanguageOption() -> Bool
    * @availability iOS 9.0+
    */
-  isAutomaticLegibleLanguageOption(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 2284403011958260, this, []); }
+  isAutomaticLegibleLanguageOption(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 2284403011958260, this, []); }
   /**
    * var displayName: String? { get }
    * @availability iOS 9.0+
    */
-  get displayName(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 2895567730225958, this, []); }
+  get displayName(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 2895567730225958, this, []); }
   /**
    * var identifier: String? { get }
    * @availability iOS 9.0+
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 3874734653260217, this, []); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 3874734653260217, this, []); }
   /**
    * var languageOptionCharacteristics: [String]? { get }
    * @availability iOS 9.0+
    */
-  get languageOptionCharacteristics(): (Array<string>) | null { return callSDK<(Array<string>) | null>("MediaPlayer_0e503aef608672fa", 186645886307159, this, []); }
+  get languageOptionCharacteristics(): (Array<string>) | null { return callSDK<(Array<string>) | null>("MediaPlayer_212edf3d13b127f5", 186645886307159, this, []); }
   /**
    * var languageOptionType: MPNowPlayingInfoLanguageOptionType { get }
    * @availability iOS 9.0+
    */
-  get languageOptionType(): MPNowPlayingInfoLanguageOptionType { return callSDK<MPNowPlayingInfoLanguageOptionType>("MediaPlayer_0e503aef608672fa", 2412521684147994, this, []); }
+  get languageOptionType(): MPNowPlayingInfoLanguageOptionType { return callSDK<MPNowPlayingInfoLanguageOptionType>("MediaPlayer_212edf3d13b127f5", 2412521684147994, this, []); }
   /**
    * var languageTag: String? { get }
    * @availability iOS 9.0+
    */
-  get languageTag(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 3305907348441247, this, []); }
+  get languageTag(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 3305907348441247, this, []); }
   declare readonly $type: { "c:objc(cs)MPNowPlayingInfoLanguageOption": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "displayName": true; "identifier": true; "languageOptionCharacteristics": true; "languageOptionType": true; "languageTag": true };
 }
@@ -2389,22 +2389,22 @@ export class MPNowPlayingInfoLanguageOptionGroup extends SDKHandle {
    * init(languageOptions: [MPNowPlayingInfoLanguageOption], defaultLanguageOption: MPNowPlayingInfoLanguageOption?, allowEmptySelection: Bool)
    * @availability iOS 9.0+
    */
-  static init(languageOptions: $SDK28, defaultLanguageOption: $SDK0, allowEmptySelection: boolean): MPNowPlayingInfoLanguageOptionGroup { return callSDK<MPNowPlayingInfoLanguageOptionGroup>("MediaPlayer_0e503aef608672fa", 2845133525571359, undefined, [languageOptions, defaultLanguageOption, allowEmptySelection]); }
+  static init(languageOptions: $SDK28, defaultLanguageOption: $SDK0, allowEmptySelection: boolean): MPNowPlayingInfoLanguageOptionGroup { return callSDK<MPNowPlayingInfoLanguageOptionGroup>("MediaPlayer_212edf3d13b127f5", 2845133525571359, undefined, [languageOptions, defaultLanguageOption, allowEmptySelection]); }
   /**
    * var allowEmptySelection: Bool { get }
    * @availability iOS 9.0+
    */
-  get allowEmptySelection(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 1501090651043208, this, []); }
+  get allowEmptySelection(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 1501090651043208, this, []); }
   /**
    * var defaultLanguageOption: MPNowPlayingInfoLanguageOption? { get }
    * @availability iOS 9.0+
    */
-  get defaultLanguageOption(): $SDK0 { return callSDK<$SDK0>("MediaPlayer_0e503aef608672fa", 3645471780992235, this, []); }
+  get defaultLanguageOption(): $SDK0 { return callSDK<$SDK0>("MediaPlayer_212edf3d13b127f5", 3645471780992235, this, []); }
   /**
    * var languageOptions: [MPNowPlayingInfoLanguageOption] { get }
    * @availability iOS 9.0+
    */
-  get languageOptions(): $SDK28 { return callSDK<$SDK28>("MediaPlayer_0e503aef608672fa", 3434100552615329, this, []); }
+  get languageOptions(): $SDK28 { return callSDK<$SDK28>("MediaPlayer_212edf3d13b127f5", 3434100552615329, this, []); }
   declare readonly $type: { "c:objc(cs)MPNowPlayingInfoLanguageOptionGroup": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowEmptySelection": true; "defaultLanguageOption": true; "languageOptions": true };
 }
@@ -2420,7 +2420,7 @@ export const MPNowPlayingInfoLanguageOptionType = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (MPNowPlayingInfoLanguageOptionType) | null { return callSDK<(MPNowPlayingInfoLanguageOptionType) | null>("MediaPlayer_0e503aef608672fa", 4240510351805861, undefined, [rawValue]); }
+  init(rawValue: number): (MPNowPlayingInfoLanguageOptionType) | null { return callSDK<(MPNowPlayingInfoLanguageOptionType) | null>("MediaPlayer_212edf3d13b127f5", 4240510351805861, undefined, [rawValue]); }
 };
 
 /**
@@ -2434,7 +2434,7 @@ export const MPNowPlayingInfoMediaType = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MPNowPlayingInfoMediaType) | null { return callSDK<(MPNowPlayingInfoMediaType) | null>("MediaPlayer_0e503aef608672fa", 4111339320554002, undefined, [rawValue]); }
+  init(rawValue: number): (MPNowPlayingInfoMediaType) | null { return callSDK<(MPNowPlayingInfoMediaType) | null>("MediaPlayer_212edf3d13b127f5", 4111339320554002, undefined, [rawValue]); }
 };
 
 /**
@@ -2448,7 +2448,7 @@ export const MPNowPlayingPlaybackState = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (MPNowPlayingPlaybackState) | null { return callSDK<(MPNowPlayingPlaybackState) | null>("MediaPlayer_0e503aef608672fa", 1038084278418282, undefined, [rawValue]); }
+  init(rawValue: number): (MPNowPlayingPlaybackState) | null { return callSDK<(MPNowPlayingPlaybackState) | null>("MediaPlayer_212edf3d13b127f5", 1038084278418282, undefined, [rawValue]); }
 };
 
 /**
@@ -2460,59 +2460,59 @@ export class MPNowPlayingSession extends SDKHandle {
    * func addPlayer(_ player: AVPlayer)
    * @availability iOS 16.0+
    */
-  addPlayer(player: _AVFoundation_AVPlayer): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1452259704467469, this, [player]); }
+  addPlayer(player: _AVFoundation_AVPlayer): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1452259704467469, this, [player]); }
   /**
    * func becomeActiveIfPossible() async -> Bool
    * @availability iOS 16.0+
    */
-  becomeActiveIfPossible(completion?: (((arg0: boolean) => void)) | null): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1866755460748771, this, [completion], [{"callback":{"out":[]}}]); }
+  becomeActiveIfPossible(completion?: (((arg0: boolean) => void)) | null): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1866755460748771, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * init(players: [AVPlayer])
    * @availability iOS 16.0+
    */
-  static init(players: Array<_AVFoundation_AVPlayer>): MPNowPlayingSession { return callSDK<MPNowPlayingSession>("MediaPlayer_0e503aef608672fa", 397754699790932, undefined, [players]); }
+  static init(players: Array<_AVFoundation_AVPlayer>): MPNowPlayingSession { return callSDK<MPNowPlayingSession>("MediaPlayer_212edf3d13b127f5", 397754699790932, undefined, [players]); }
   /**
    * func removePlayer(_ player: AVPlayer)
    * @availability iOS 16.0+
    */
-  removePlayer(player: _AVFoundation_AVPlayer): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 491794185459602, this, [player]); }
+  removePlayer(player: _AVFoundation_AVPlayer): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 491794185459602, this, [player]); }
   /**
    * var isActive: Bool { get }
    * @availability iOS 16.0+
    */
-  get isActive(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 2962966698810947, this, []); }
+  get isActive(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 2962966698810947, this, []); }
   /**
    * var automaticallyPublishesNowPlayingInfo: Bool { get set }
    * @availability iOS 16.0+
    */
-  get automaticallyPublishesNowPlayingInfo(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 1659280693029051, this, []); }
-  set automaticallyPublishesNowPlayingInfo(value: boolean) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3824403004158232, this, [value]); }
+  get automaticallyPublishesNowPlayingInfo(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 1659280693029051, this, []); }
+  set automaticallyPublishesNowPlayingInfo(value: boolean) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3824403004158232, this, [value]); }
   /**
    * var canBecomeActive: Bool { get }
    * @availability iOS 16.0+
    */
-  get canBecomeActive(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 1148481970437997, this, []); }
+  get canBecomeActive(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 1148481970437997, this, []); }
   /**
    * weak var delegate: (any MPNowPlayingSessionDelegate)? { get set }
    * @availability iOS 16.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MediaPlayer_0e503aef608672fa", 744141056037135, this, []); }
-  set delegate(value: (Implements<MPNowPlayingSessionDelegate> | SDKHandle) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1781957464869400, this, [value], [{"protocol":"c:objc(pl)MPNowPlayingSessionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MediaPlayer_212edf3d13b127f5", 744141056037135, this, []); }
+  set delegate(value: (Implements<MPNowPlayingSessionDelegate> | SDKHandle) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1781957464869400, this, [value], [{"protocol":"c:objc(pl)MPNowPlayingSessionDelegate"}]); }
   /**
    * var nowPlayingInfoCenter: MPNowPlayingInfoCenter { get }
    * @availability iOS 16.0+
    */
-  get nowPlayingInfoCenter(): MPNowPlayingInfoCenter { return callSDK<MPNowPlayingInfoCenter>("MediaPlayer_0e503aef608672fa", 1631112623453879, this, []); }
+  get nowPlayingInfoCenter(): MPNowPlayingInfoCenter { return callSDK<MPNowPlayingInfoCenter>("MediaPlayer_212edf3d13b127f5", 1631112623453879, this, []); }
   /**
    * var players: [AVPlayer] { get }
    * @availability iOS 16.0+
    */
-  get players(): Array<_AVFoundation_AVPlayer> { return callSDK<Array<_AVFoundation_AVPlayer>>("MediaPlayer_0e503aef608672fa", 211177079224631, this, []); }
+  get players(): Array<_AVFoundation_AVPlayer> { return callSDK<Array<_AVFoundation_AVPlayer>>("MediaPlayer_212edf3d13b127f5", 211177079224631, this, []); }
   /**
    * var remoteCommandCenter: MPRemoteCommandCenter { get }
    * @availability iOS 16.0+
    */
-  get remoteCommandCenter(): MPRemoteCommandCenter { return callSDK<MPRemoteCommandCenter>("MediaPlayer_0e503aef608672fa", 3790927524261705, this, []); }
+  get remoteCommandCenter(): MPRemoteCommandCenter { return callSDK<MPRemoteCommandCenter>("MediaPlayer_212edf3d13b127f5", 3790927524261705, this, []); }
   declare readonly $type: { "c:objc(cs)MPNowPlayingSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isActive": true; "automaticallyPublishesNowPlayingInfo": true; "canBecomeActive": true; "delegate": true; "nowPlayingInfoCenter": true; "players": true; "remoteCommandCenter": true };
 }
@@ -2541,6 +2541,18 @@ export interface MPNowPlayingSessionDelegate {
  */
 export interface MPPlayableContentDataSource {
   /**
+   * optional func beginLoadingChildItems(at indexPath: IndexPath) async throws
+   * @availability iOS 7.1+
+   * @deprecated iOS 14.0
+   */
+  "beginLoadingChildItemsAt"?: (arg0: _Foundation_IndexPath) => void;
+  /**
+   * optional func contentItem(forIdentifier identifier: String) async throws -> MPContentItem
+   * @availability iOS 10.0+
+   * @deprecated iOS 14.0
+   */
+  "contentItemForIdentifier"?: (arg0: string) => Promise<MPContentItem>;
+  /**
    * func numberOfChildItems(at indexPath: IndexPath) -> Int
    * @availability iOS 7.1+
    * @deprecated iOS 14.0
@@ -2561,6 +2573,12 @@ export interface MPPlayableContentDataSource {
  */
 export interface MPPlayableContentDelegate {
   /**
+   * optional func playableContentManager(_ contentManager: MPPlayableContentManager, initiatePlaybackOfContentItemAt indexPath: IndexPath) async throws
+   * @availability iOS 7.1+
+   * @deprecated iOS 14.0
+   */
+  "playableContentManagerInitiatePlaybackOfContentItemAt"?: (arg0: MPPlayableContentManager, arg1: _Foundation_IndexPath) => void;
+  /**
    * optional func playableContentManager(_ contentManager: MPPlayableContentManager, didUpdate context: MPPlayableContentManagerContext)
    * @availability iOS 8.4+
    * @deprecated iOS 14.0
@@ -2579,54 +2597,54 @@ export class MPPlayableContentManager extends SDKHandle {
    * @availability iOS 7.1+
    * @deprecated iOS 14.0
    */
-  static shared(): MPPlayableContentManager { return callSDK<MPPlayableContentManager>("MediaPlayer_0e503aef608672fa", 489260075048542, undefined, []); }
+  static shared(): MPPlayableContentManager { return callSDK<MPPlayableContentManager>("MediaPlayer_212edf3d13b127f5", 489260075048542, undefined, []); }
   /**
    * func beginUpdates()
    * @availability iOS 7.1+
    * @deprecated iOS 14.0
    */
-  beginUpdates(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 2762790989797379, this, []); }
+  beginUpdates(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 2762790989797379, this, []); }
   /**
    * func endUpdates()
    * @availability iOS 7.1+
    * @deprecated iOS 14.0
    */
-  endUpdates(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 4184212084793887, this, []); }
+  endUpdates(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 4184212084793887, this, []); }
   /** init() */
-  static init(): MPPlayableContentManager { return callSDK<MPPlayableContentManager>("MediaPlayer_0e503aef608672fa", 452809050399885, undefined, []); }
+  static init(): MPPlayableContentManager { return callSDK<MPPlayableContentManager>("MediaPlayer_212edf3d13b127f5", 452809050399885, undefined, []); }
   /**
    * func reloadData()
    * @availability iOS 7.1+
    * @deprecated iOS 14.0
    */
-  reloadData(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1798851047874623, this, []); }
+  reloadData(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1798851047874623, this, []); }
   /**
    * var context: MPPlayableContentManagerContext { get }
    * @availability iOS 8.4+
    * @deprecated iOS 14.0
    */
-  get context(): MPPlayableContentManagerContext { return callSDK<MPPlayableContentManagerContext>("MediaPlayer_0e503aef608672fa", 1732138880026074, this, []); }
+  get context(): MPPlayableContentManagerContext { return callSDK<MPPlayableContentManagerContext>("MediaPlayer_212edf3d13b127f5", 1732138880026074, this, []); }
   /**
    * weak var dataSource: (any MPPlayableContentDataSource)? { get set }
    * @availability iOS 7.1+
    * @deprecated iOS 14.0
    */
-  get dataSource(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MediaPlayer_0e503aef608672fa", 625933969756086, this, []); }
-  set dataSource(value: (SDKHandle) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3393817663699739, this, [value]); }
+  get dataSource(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MediaPlayer_212edf3d13b127f5", 625933969756086, this, []); }
+  set dataSource(value: (SDKHandle) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3393817663699739, this, [value]); }
   /**
    * weak var delegate: (any MPPlayableContentDelegate)? { get set }
    * @availability iOS 7.1+
    * @deprecated iOS 14.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MediaPlayer_0e503aef608672fa", 4463283986271079, this, []); }
-  set delegate(value: (Implements<MPPlayableContentDelegate> | SDKHandle) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 2167240440362970, this, [value], [{"protocol":"c:objc(pl)MPPlayableContentDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MediaPlayer_212edf3d13b127f5", 4463283986271079, this, []); }
+  set delegate(value: (Implements<MPPlayableContentDelegate> | SDKHandle) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 2167240440362970, this, [value], [{"protocol":"c:objc(pl)MPPlayableContentDelegate"}]); }
   /**
    * var nowPlayingIdentifiers: [String] { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 14.0
    */
-  get nowPlayingIdentifiers(): Array<string> { return callSDK<Array<string>>("MediaPlayer_0e503aef608672fa", 2405247707280106, this, []); }
-  set nowPlayingIdentifiers(value: Array<string>) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3532633381432636, this, [value]); }
+  get nowPlayingIdentifiers(): Array<string> { return callSDK<Array<string>>("MediaPlayer_212edf3d13b127f5", 2405247707280106, this, []); }
+  set nowPlayingIdentifiers(value: Array<string>) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3532633381432636, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPPlayableContentManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "context": true; "dataSource": true; "delegate": true; "nowPlayingIdentifiers": true };
 }
@@ -2638,37 +2656,37 @@ export class MPPlayableContentManager extends SDKHandle {
  */
 export class MPPlayableContentManagerContext extends SDKHandle {
   /** init() */
-  static init(): MPPlayableContentManagerContext { return callSDK<MPPlayableContentManagerContext>("MediaPlayer_0e503aef608672fa", 3820306955305628, undefined, []); }
+  static init(): MPPlayableContentManagerContext { return callSDK<MPPlayableContentManagerContext>("MediaPlayer_212edf3d13b127f5", 3820306955305628, undefined, []); }
   /**
    * var contentLimitsEnabled: Bool { get }
    * @availability iOS 8.4+
    * @deprecated iOS 9.0
    */
-  get contentLimitsEnabled(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 3857940610680842, this, []); }
+  get contentLimitsEnabled(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 3857940610680842, this, []); }
   /**
    * var contentLimitsEnforced: Bool { get }
    * @availability iOS 8.4+
    * @deprecated iOS 14.0
    */
-  get contentLimitsEnforced(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 493016199479006, this, []); }
+  get contentLimitsEnforced(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 493016199479006, this, []); }
   /**
    * var endpointAvailable: Bool { get }
    * @availability iOS 8.4+
    * @deprecated iOS 14.0
    */
-  get endpointAvailable(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 1698250110292702, this, []); }
+  get endpointAvailable(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 1698250110292702, this, []); }
   /**
    * var enforcedContentItemsCount: Int { get }
    * @availability iOS 8.4+
    * @deprecated iOS 14.0
    */
-  get enforcedContentItemsCount(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1198194643197274, this, []); }
+  get enforcedContentItemsCount(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1198194643197274, this, []); }
   /**
    * var enforcedContentTreeDepth: Int { get }
    * @availability iOS 8.4+
    * @deprecated iOS 14.0
    */
-  get enforcedContentTreeDepth(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2718888682204479, this, []); }
+  get enforcedContentTreeDepth(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2718888682204479, this, []); }
   declare readonly $type: { "c:objc(cs)MPPlayableContentManagerContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentLimitsEnabled": true; "contentLimitsEnforced": true; "endpointAvailable": true; "enforcedContentItemsCount": true; "enforcedContentTreeDepth": true };
 }
@@ -2682,14 +2700,14 @@ export class MPRatingCommand extends MPRemoteCommand {
    * var maximumRating: Float { get set }
    * @availability iOS 7.1+
    */
-  get maximumRating(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1567852209895744, this, []); }
-  set maximumRating(value: number) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1226391104675495, this, [value]); }
+  get maximumRating(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1567852209895744, this, []); }
+  set maximumRating(value: number) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1226391104675495, this, [value]); }
   /**
    * var minimumRating: Float { get set }
    * @availability iOS 7.1+
    */
-  get minimumRating(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 460545524161891, this, []); }
-  set minimumRating(value: number) { callSDK<void>("MediaPlayer_0e503aef608672fa", 3925260610326423, this, [value]); }
+  get minimumRating(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 460545524161891, this, []); }
+  set minimumRating(value: number) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 3925260610326423, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPRatingCommand": true; "c:objc(cs)MPRemoteCommand": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "maximumRating": true; "minimumRating": true };
 }
@@ -2700,12 +2718,12 @@ export class MPRatingCommand extends MPRemoteCommand {
  */
 export class MPRatingCommandEvent extends (MPRemoteCommandEvent as unknown as Omit<typeof MPRemoteCommandEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPRemoteCommandEvent)) {
   /** init() */
-  static init(): MPRatingCommandEvent { return callSDK<MPRatingCommandEvent>("MediaPlayer_0e503aef608672fa", 429153777325379, undefined, []); }
+  static init(): MPRatingCommandEvent { return callSDK<MPRatingCommandEvent>("MediaPlayer_212edf3d13b127f5", 429153777325379, undefined, []); }
   /**
    * var rating: Float { get }
    * @availability iOS 7.1+
    */
-  get rating(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2951702235551472, this, []); }
+  get rating(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2951702235551472, this, []); }
   declare readonly $type: { "c:objc(cs)MPRatingCommandEvent": true; "c:objc(cs)MPRemoteCommandEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "command": true; "timestamp": true; "rating": true };
 }
@@ -2719,107 +2737,107 @@ export class MPRemoteCommandCenter extends SDKHandle {
    * class func shared() -> MPRemoteCommandCenter
    * @availability iOS 7.1+
    */
-  static shared(): MPRemoteCommandCenter { return callSDK<MPRemoteCommandCenter>("MediaPlayer_0e503aef608672fa", 1835557716308248, undefined, []); }
+  static shared(): MPRemoteCommandCenter { return callSDK<MPRemoteCommandCenter>("MediaPlayer_212edf3d13b127f5", 1835557716308248, undefined, []); }
   /**
    * var bookmarkCommand: MPFeedbackCommand { get }
    * @availability iOS 7.1+
    */
-  get bookmarkCommand(): MPFeedbackCommand { return callSDK<MPFeedbackCommand>("MediaPlayer_0e503aef608672fa", 4410737113776677, this, []); }
+  get bookmarkCommand(): MPFeedbackCommand { return callSDK<MPFeedbackCommand>("MediaPlayer_212edf3d13b127f5", 4410737113776677, this, []); }
   /**
    * var changePlaybackPositionCommand: MPChangePlaybackPositionCommand { get }
    * @availability iOS 9.1+
    */
-  get changePlaybackPositionCommand(): MPChangePlaybackPositionCommand { return callSDK<MPChangePlaybackPositionCommand>("MediaPlayer_0e503aef608672fa", 1548843422278607, this, []); }
+  get changePlaybackPositionCommand(): MPChangePlaybackPositionCommand { return callSDK<MPChangePlaybackPositionCommand>("MediaPlayer_212edf3d13b127f5", 1548843422278607, this, []); }
   /**
    * var changePlaybackRateCommand: MPChangePlaybackRateCommand { get }
    * @availability iOS 7.1+
    */
-  get changePlaybackRateCommand(): MPChangePlaybackRateCommand { return callSDK<MPChangePlaybackRateCommand>("MediaPlayer_0e503aef608672fa", 4053792563388315, this, []); }
+  get changePlaybackRateCommand(): MPChangePlaybackRateCommand { return callSDK<MPChangePlaybackRateCommand>("MediaPlayer_212edf3d13b127f5", 4053792563388315, this, []); }
   /**
    * var changeRepeatModeCommand: MPChangeRepeatModeCommand { get }
    * @availability iOS 7.1+
    */
-  get changeRepeatModeCommand(): MPChangeRepeatModeCommand { return callSDK<MPChangeRepeatModeCommand>("MediaPlayer_0e503aef608672fa", 4161976384339097, this, []); }
+  get changeRepeatModeCommand(): MPChangeRepeatModeCommand { return callSDK<MPChangeRepeatModeCommand>("MediaPlayer_212edf3d13b127f5", 4161976384339097, this, []); }
   /**
    * var changeShuffleModeCommand: MPChangeShuffleModeCommand { get }
    * @availability iOS 7.1+
    */
-  get changeShuffleModeCommand(): MPChangeShuffleModeCommand { return callSDK<MPChangeShuffleModeCommand>("MediaPlayer_0e503aef608672fa", 825212271024605, this, []); }
+  get changeShuffleModeCommand(): MPChangeShuffleModeCommand { return callSDK<MPChangeShuffleModeCommand>("MediaPlayer_212edf3d13b127f5", 825212271024605, this, []); }
   /**
    * var disableLanguageOptionCommand: MPRemoteCommand { get }
    * @availability iOS 9.0+
    */
-  get disableLanguageOptionCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 4444579100836040, this, []); }
+  get disableLanguageOptionCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 4444579100836040, this, []); }
   /**
    * var dislikeCommand: MPFeedbackCommand { get }
    * @availability iOS 7.1+
    */
-  get dislikeCommand(): MPFeedbackCommand { return callSDK<MPFeedbackCommand>("MediaPlayer_0e503aef608672fa", 1912928487535402, this, []); }
+  get dislikeCommand(): MPFeedbackCommand { return callSDK<MPFeedbackCommand>("MediaPlayer_212edf3d13b127f5", 1912928487535402, this, []); }
   /**
    * var enableLanguageOptionCommand: MPRemoteCommand { get }
    * @availability iOS 9.0+
    */
-  get enableLanguageOptionCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 73431407981051, this, []); }
+  get enableLanguageOptionCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 73431407981051, this, []); }
   /**
    * var likeCommand: MPFeedbackCommand { get }
    * @availability iOS 7.1+
    */
-  get likeCommand(): MPFeedbackCommand { return callSDK<MPFeedbackCommand>("MediaPlayer_0e503aef608672fa", 1827523973771135, this, []); }
+  get likeCommand(): MPFeedbackCommand { return callSDK<MPFeedbackCommand>("MediaPlayer_212edf3d13b127f5", 1827523973771135, this, []); }
   /**
    * var nextTrackCommand: MPRemoteCommand { get }
    * @availability iOS 7.1+
    */
-  get nextTrackCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 1726181676501408, this, []); }
+  get nextTrackCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 1726181676501408, this, []); }
   /**
    * var pauseCommand: MPRemoteCommand { get }
    * @availability iOS 7.1+
    */
-  get pauseCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 2451582468669894, this, []); }
+  get pauseCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 2451582468669894, this, []); }
   /**
    * var playCommand: MPRemoteCommand { get }
    * @availability iOS 7.1+
    */
-  get playCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 1278433272370780, this, []); }
+  get playCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 1278433272370780, this, []); }
   /**
    * var previousTrackCommand: MPRemoteCommand { get }
    * @availability iOS 7.1+
    */
-  get previousTrackCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 3904663065358672, this, []); }
+  get previousTrackCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 3904663065358672, this, []); }
   /**
    * var ratingCommand: MPRatingCommand { get }
    * @availability iOS 7.1+
    */
-  get ratingCommand(): MPRatingCommand { return callSDK<MPRatingCommand>("MediaPlayer_0e503aef608672fa", 564260833461595, this, []); }
+  get ratingCommand(): MPRatingCommand { return callSDK<MPRatingCommand>("MediaPlayer_212edf3d13b127f5", 564260833461595, this, []); }
   /**
    * var seekBackwardCommand: MPRemoteCommand { get }
    * @availability iOS 7.1+
    */
-  get seekBackwardCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 4053145580012273, this, []); }
+  get seekBackwardCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 4053145580012273, this, []); }
   /**
    * var seekForwardCommand: MPRemoteCommand { get }
    * @availability iOS 7.1+
    */
-  get seekForwardCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 2154592194514114, this, []); }
+  get seekForwardCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 2154592194514114, this, []); }
   /**
    * var skipBackwardCommand: MPSkipIntervalCommand { get }
    * @availability iOS 7.1+
    */
-  get skipBackwardCommand(): MPSkipIntervalCommand { return callSDK<MPSkipIntervalCommand>("MediaPlayer_0e503aef608672fa", 2038683653823247, this, []); }
+  get skipBackwardCommand(): MPSkipIntervalCommand { return callSDK<MPSkipIntervalCommand>("MediaPlayer_212edf3d13b127f5", 2038683653823247, this, []); }
   /**
    * var skipForwardCommand: MPSkipIntervalCommand { get }
    * @availability iOS 7.1+
    */
-  get skipForwardCommand(): MPSkipIntervalCommand { return callSDK<MPSkipIntervalCommand>("MediaPlayer_0e503aef608672fa", 2872767369868147, this, []); }
+  get skipForwardCommand(): MPSkipIntervalCommand { return callSDK<MPSkipIntervalCommand>("MediaPlayer_212edf3d13b127f5", 2872767369868147, this, []); }
   /**
    * var stopCommand: MPRemoteCommand { get }
    * @availability iOS 7.1+
    */
-  get stopCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 4368860072872353, this, []); }
+  get stopCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 4368860072872353, this, []); }
   /**
    * var togglePlayPauseCommand: MPRemoteCommand { get }
    * @availability iOS 7.1+
    */
-  get togglePlayPauseCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_0e503aef608672fa", 4159829136287741, this, []); }
+  get togglePlayPauseCommand(): MPRemoteCommand { return callSDK<MPRemoteCommand>("MediaPlayer_212edf3d13b127f5", 4159829136287741, this, []); }
   declare readonly $type: { "c:objc(cs)MPRemoteCommandCenter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bookmarkCommand": true; "changePlaybackPositionCommand": true; "changePlaybackRateCommand": true; "changeRepeatModeCommand": true; "changeShuffleModeCommand": true; "disableLanguageOptionCommand": true; "dislikeCommand": true; "enableLanguageOptionCommand": true; "likeCommand": true; "nextTrackCommand": true; "pauseCommand": true; "playCommand": true; "previousTrackCommand": true; "ratingCommand": true; "seekBackwardCommand": true; "seekForwardCommand": true; "skipBackwardCommand": true; "skipForwardCommand": true; "stopCommand": true; "togglePlayPauseCommand": true };
 }
@@ -2835,7 +2853,7 @@ export const MPRemoteCommandHandlerStatus = {
    * init?(rawValue: Int)
    * @availability iOS 7.1+
    */
-  init(rawValue: number): (MPRemoteCommandHandlerStatus) | null { return callSDK<(MPRemoteCommandHandlerStatus) | null>("MediaPlayer_0e503aef608672fa", 3163398835816545, undefined, [rawValue]); }
+  init(rawValue: number): (MPRemoteCommandHandlerStatus) | null { return callSDK<(MPRemoteCommandHandlerStatus) | null>("MediaPlayer_212edf3d13b127f5", 3163398835816545, undefined, [rawValue]); }
 };
 
 /**
@@ -2849,7 +2867,7 @@ export const MPRepeatType = {
    * init?(rawValue: Int)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MPRepeatType) | null { return callSDK<(MPRepeatType) | null>("MediaPlayer_0e503aef608672fa", 2452169557552012, undefined, [rawValue]); }
+  init(rawValue: number): (MPRepeatType) | null { return callSDK<(MPRepeatType) | null>("MediaPlayer_212edf3d13b127f5", 2452169557552012, undefined, [rawValue]); }
 };
 
 /**
@@ -2858,12 +2876,12 @@ export const MPRepeatType = {
  */
 export class MPSeekCommandEvent extends (MPRemoteCommandEvent as unknown as Omit<typeof MPRemoteCommandEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPRemoteCommandEvent)) {
   /** init() */
-  static init(): MPSeekCommandEvent { return callSDK<MPSeekCommandEvent>("MediaPlayer_0e503aef608672fa", 301612284875765, undefined, []); }
+  static init(): MPSeekCommandEvent { return callSDK<MPSeekCommandEvent>("MediaPlayer_212edf3d13b127f5", 301612284875765, undefined, []); }
   /**
    * var type: MPSeekCommandEventType { get }
    * @availability iOS 7.1+
    */
-  get type(): MPSeekCommandEventType { return callSDK<MPSeekCommandEventType>("MediaPlayer_0e503aef608672fa", 2649173018265049, this, []); }
+  get type(): MPSeekCommandEventType { return callSDK<MPSeekCommandEventType>("MediaPlayer_212edf3d13b127f5", 2649173018265049, this, []); }
   declare readonly $type: { "c:objc(cs)MPSeekCommandEvent": true; "c:objc(cs)MPRemoteCommandEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "command": true; "timestamp": true; "type": true };
 }
@@ -2879,7 +2897,7 @@ export const MPSeekCommandEventType = {
    * init?(rawValue: UInt)
    * @availability iOS 7.1+
    */
-  init(rawValue: number): (MPSeekCommandEventType) | null { return callSDK<(MPSeekCommandEventType) | null>("MediaPlayer_0e503aef608672fa", 3024632974512252, undefined, [rawValue]); }
+  init(rawValue: number): (MPSeekCommandEventType) | null { return callSDK<(MPSeekCommandEventType) | null>("MediaPlayer_212edf3d13b127f5", 3024632974512252, undefined, [rawValue]); }
 };
 
 /**
@@ -2893,7 +2911,7 @@ export const MPShuffleType = {
    * init?(rawValue: Int)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MPShuffleType) | null { return callSDK<(MPShuffleType) | null>("MediaPlayer_0e503aef608672fa", 818758603682352, undefined, [rawValue]); }
+  init(rawValue: number): (MPShuffleType) | null { return callSDK<(MPShuffleType) | null>("MediaPlayer_212edf3d13b127f5", 818758603682352, undefined, [rawValue]); }
 };
 
 /**
@@ -2905,8 +2923,8 @@ export class MPSkipIntervalCommand extends MPRemoteCommand {
    * var preferredIntervals: [NSNumber] { get set }
    * @availability iOS 7.1+
    */
-  get preferredIntervals(): $SDK2 { return callSDK<$SDK2>("MediaPlayer_0e503aef608672fa", 1650913588976202, this, []); }
-  set preferredIntervals(value: $SDK2) { callSDK<void>("MediaPlayer_0e503aef608672fa", 1558229593228282, this, [value]); }
+  get preferredIntervals(): $SDK2 { return callSDK<$SDK2>("MediaPlayer_212edf3d13b127f5", 1650913588976202, this, []); }
+  set preferredIntervals(value: $SDK2) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 1558229593228282, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSkipIntervalCommand": true; "c:objc(cs)MPRemoteCommand": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "preferredIntervals": true };
 }
@@ -2917,12 +2935,12 @@ export class MPSkipIntervalCommand extends MPRemoteCommand {
  */
 export class MPSkipIntervalCommandEvent extends (MPRemoteCommandEvent as unknown as Omit<typeof MPRemoteCommandEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPRemoteCommandEvent)) {
   /** init() */
-  static init(): MPSkipIntervalCommandEvent { return callSDK<MPSkipIntervalCommandEvent>("MediaPlayer_0e503aef608672fa", 1693333725445327, undefined, []); }
+  static init(): MPSkipIntervalCommandEvent { return callSDK<MPSkipIntervalCommandEvent>("MediaPlayer_212edf3d13b127f5", 1693333725445327, undefined, []); }
   /**
    * var interval: TimeInterval { get }
    * @availability iOS 7.1+
    */
-  get interval(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 1571255706487026, this, []); }
+  get interval(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 1571255706487026, this, []); }
   declare readonly $type: { "c:objc(cs)MPSkipIntervalCommandEvent": true; "c:objc(cs)MPRemoteCommandEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "command": true; "timestamp": true; "interval": true };
 }
@@ -2943,37 +2961,37 @@ export interface MPSystemMusicPlayerController {
  */
 export class MPTimedMetadata extends SDKHandle {
   /** init() */
-  static init(): MPTimedMetadata { return callSDK<MPTimedMetadata>("MediaPlayer_0e503aef608672fa", 1180082347888956, undefined, []); }
+  static init(): MPTimedMetadata { return callSDK<MPTimedMetadata>("MediaPlayer_212edf3d13b127f5", 1180082347888956, undefined, []); }
   /**
    * var allMetadata: [AnyHashable : Any]! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get allMetadata(): (NativeMap<unknown, unknown>) | null { return callSDK<(NativeMap<unknown, unknown>) | null>("MediaPlayer_0e503aef608672fa", 4131888185429861, this, []); }
+  get allMetadata(): (NativeMap<unknown, unknown>) | null { return callSDK<(NativeMap<unknown, unknown>) | null>("MediaPlayer_212edf3d13b127f5", 4131888185429861, this, []); }
   /**
    * var key: String! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get key(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 1033693743300974, this, []); }
+  get key(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 1033693743300974, this, []); }
   /**
    * var keyspace: String! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get keyspace(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 444219945363653, this, []); }
+  get keyspace(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 444219945363653, this, []); }
   /**
    * var timestamp: TimeInterval { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get timestamp(): number { return callSDK<number>("MediaPlayer_0e503aef608672fa", 2352362417758932, this, []); }
+  get timestamp(): number { return callSDK<number>("MediaPlayer_212edf3d13b127f5", 2352362417758932, this, []); }
   /**
    * var value: Any! { get }
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get value(): (unknown) | null { return callSDK<(unknown) | null>("MediaPlayer_0e503aef608672fa", 2058999111232541, this, []); }
+  get value(): (unknown) | null { return callSDK<(unknown) | null>("MediaPlayer_212edf3d13b127f5", 2058999111232541, this, []); }
   declare readonly $type: { "c:objc(cs)MPTimedMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allMetadata": true; "key": true; "keyspace": true; "timestamp": true; "value": true };
 }
@@ -2984,97 +3002,97 @@ export class MPTimedMetadata extends SDKHandle {
  */
 export class MPVolumeView extends SDKHandle {
   /** init() */
-  static init(): Promise<MPVolumeView> { return callSDKAsync<MPVolumeView>("MediaPlayer_0e503aef608672fa", 3070323336932616, undefined, []); }
+  static init(): Promise<MPVolumeView> { return callSDKAsync<MPVolumeView>("MediaPlayer_212edf3d13b127f5", 3070323336932616, undefined, []); }
   /**
    * func maximumVolumeSliderImage(for state: UIControl.State) -> UIImage?
    * @availability iOS 6.0+
    */
-  maximumVolumeSliderImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MediaPlayer_0e503aef608672fa", 2976929709530829, this, [state]); }
+  maximumVolumeSliderImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MediaPlayer_212edf3d13b127f5", 2976929709530829, this, [state]); }
   /**
    * func minimumVolumeSliderImage(for state: UIControl.State) -> UIImage?
    * @availability iOS 6.0+
    */
-  minimumVolumeSliderImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MediaPlayer_0e503aef608672fa", 72632537989557, this, [state]); }
+  minimumVolumeSliderImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MediaPlayer_212edf3d13b127f5", 72632537989557, this, [state]); }
   /**
    * func routeButtonImage(for state: UIControl.State) -> UIImage?
    * @availability iOS 6.0+
    * @deprecated iOS 13.0
    */
-  routeButtonImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MediaPlayer_0e503aef608672fa", 2223799011810975, this, [state]); }
+  routeButtonImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MediaPlayer_212edf3d13b127f5", 2223799011810975, this, [state]); }
   /**
    * func routeButtonRect(forBounds bounds: CGRect) -> CGRect
    * @availability iOS 6.0+
    * @deprecated iOS 13.0
    */
-  routeButtonRect(bounds: $SDK8): Promise<$SDK8> { return callSDKAsync<$SDK8>("MediaPlayer_0e503aef608672fa", 2328327118968125, this, [bounds]); }
+  routeButtonRect(bounds: $SDK8): Promise<$SDK8> { return callSDKAsync<$SDK8>("MediaPlayer_212edf3d13b127f5", 2328327118968125, this, [bounds]); }
   /**
    * func setMaximumVolumeSliderImage(_ image: UIImage?, for state: UIControl.State)
    * @availability iOS 6.0+
    */
-  setMaximumVolumeSliderImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 360573147831565, this, [image, state]); }
+  setMaximumVolumeSliderImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 360573147831565, this, [image, state]); }
   /**
    * func setMinimumVolumeSliderImage(_ image: UIImage?, for state: UIControl.State)
    * @availability iOS 6.0+
    */
-  setMinimumVolumeSliderImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 1776677704685601, this, [image, state]); }
+  setMinimumVolumeSliderImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 1776677704685601, this, [image, state]); }
   /**
    * func setRouteButtonImage(_ image: UIImage?, for state: UIControl.State)
    * @availability iOS 6.0+
    * @deprecated iOS 13.0
    */
-  setRouteButtonImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 674892635974124, this, [image, state]); }
+  setRouteButtonImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 674892635974124, this, [image, state]); }
   /**
    * func setVolumeThumbImage(_ image: UIImage?, for state: UIControl.State)
    * @availability iOS 6.0+
    */
-  setVolumeThumbImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 455219830885508, this, [image, state]); }
+  setVolumeThumbImage(image: (_UIKit_UIImage) | null, state: _UIKit_UIControl_State): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 455219830885508, this, [image, state]); }
   /**
    * func volumeSliderRect(forBounds bounds: CGRect) -> CGRect
    * @availability iOS 6.0+
    */
-  volumeSliderRect(bounds: $SDK8): Promise<$SDK8> { return callSDKAsync<$SDK8>("MediaPlayer_0e503aef608672fa", 357509821998774, this, [bounds]); }
+  volumeSliderRect(bounds: $SDK8): Promise<$SDK8> { return callSDKAsync<$SDK8>("MediaPlayer_212edf3d13b127f5", 357509821998774, this, [bounds]); }
   /**
    * func volumeThumbImage(for state: UIControl.State) -> UIImage?
    * @availability iOS 6.0+
    */
-  volumeThumbImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MediaPlayer_0e503aef608672fa", 1816655325306250, this, [state]); }
+  volumeThumbImage(state: _UIKit_UIControl_State): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MediaPlayer_212edf3d13b127f5", 1816655325306250, this, [state]); }
   /**
    * func volumeThumbRect(forBounds bounds: CGRect, volumeSliderRect rect: CGRect, value: Float) -> CGRect
    * @availability iOS 6.0+
    */
-  volumeThumbRect(bounds: $SDK8, rect: $SDK8, value: number): Promise<$SDK8> { return callSDKAsync<$SDK8>("MediaPlayer_0e503aef608672fa", 2382720689063013, this, [bounds, rect, value]); }
+  volumeThumbRect(bounds: $SDK8, rect: $SDK8, value: number): Promise<$SDK8> { return callSDKAsync<$SDK8>("MediaPlayer_212edf3d13b127f5", 2382720689063013, this, [bounds, rect, value]); }
   /**
    * var showsRouteButton: Bool { get set }
    * @availability iOS 4.2+
    * @deprecated iOS 13.0
    */
-  get showsRouteButton(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_0e503aef608672fa", 3941529543077126, this, []); }
-  setShowsRouteButton(value: boolean): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 2902524605190911, this, [value]); }
+  get showsRouteButton(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_212edf3d13b127f5", 3941529543077126, this, []); }
+  setShowsRouteButton(value: boolean): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 2902524605190911, this, [value]); }
   /**
    * var showsVolumeSlider: Bool { get set }
    * @availability iOS 4.2+
    */
-  get showsVolumeSlider(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_0e503aef608672fa", 1721510641885300, this, []); }
-  setShowsVolumeSlider(value: boolean): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 499525367025150, this, [value]); }
+  get showsVolumeSlider(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_212edf3d13b127f5", 1721510641885300, this, []); }
+  setShowsVolumeSlider(value: boolean): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 499525367025150, this, [value]); }
   /**
    * var volumeWarningSliderImage: UIImage? { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 17.0
    */
-  get volumeWarningSliderImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MediaPlayer_0e503aef608672fa", 1195930950903234, this, []); }
-  setVolumeWarningSliderImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 1399078181937933, this, [value]); }
+  get volumeWarningSliderImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("MediaPlayer_212edf3d13b127f5", 1195930950903234, this, []); }
+  setVolumeWarningSliderImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 1399078181937933, this, [value]); }
   /**
    * var isWirelessRouteActive: Bool { get }
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get isWirelessRouteActive(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_0e503aef608672fa", 3298913118140313, this, []); }
+  get isWirelessRouteActive(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_212edf3d13b127f5", 3298913118140313, this, []); }
   /**
    * var areWirelessRoutesAvailable: Bool { get }
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get areWirelessRoutesAvailable(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_0e503aef608672fa", 3848308105665080, this, []); }
+  get areWirelessRoutesAvailable(): Promise<boolean> { return callSDKAsync<boolean>("MediaPlayer_212edf3d13b127f5", 3848308105665080, this, []); }
   declare readonly $type: { "c:objc(cs)MPVolumeView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsRouteButton": true; "showsVolumeSlider": true; "volumeWarningSliderImage": true; "isWirelessRouteActive": true; "areWirelessRoutesAvailable": true };
 }
@@ -3083,147 +3101,147 @@ export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudio
 
 export const NSNotification_Name = {
   /** static let MPMediaLibraryDidChange: NSNotification.Name */
-  get MPMediaLibraryDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 1724510765919152, undefined, []); },
+  get MPMediaLibraryDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 1724510765919152, undefined, []); },
   /**
    * static let MPMediaPlaybackIsPreparedToPlayDidChange: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMediaPlaybackIsPreparedToPlayDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 2088033337201585, undefined, []); },
+  get MPMediaPlaybackIsPreparedToPlayDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 2088033337201585, undefined, []); },
   /**
    * static let MPMovieDurationAvailable: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMovieDurationAvailable(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 1865994019698377, undefined, []); },
+  get MPMovieDurationAvailable(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 1865994019698377, undefined, []); },
   /**
    * static let MPMovieMediaTypesAvailable: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMovieMediaTypesAvailable(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 2810609504181086, undefined, []); },
+  get MPMovieMediaTypesAvailable(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 2810609504181086, undefined, []); },
   /**
    * static let MPMovieNaturalSizeAvailable: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMovieNaturalSizeAvailable(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 4069244149101936, undefined, []); },
+  get MPMovieNaturalSizeAvailable(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 4069244149101936, undefined, []); },
   /**
    * static let MPMoviePlayerDidEnterFullscreen: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerDidEnterFullscreen(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 3089898562734146, undefined, []); },
+  get MPMoviePlayerDidEnterFullscreen(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 3089898562734146, undefined, []); },
   /**
    * static let MPMoviePlayerDidExitFullscreen: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerDidExitFullscreen(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 1939514748294293, undefined, []); },
+  get MPMoviePlayerDidExitFullscreen(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 1939514748294293, undefined, []); },
   /**
    * static let MPMoviePlayerIsAirPlayVideoActiveDidChange: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerIsAirPlayVideoActiveDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 3257909146770395, undefined, []); },
+  get MPMoviePlayerIsAirPlayVideoActiveDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 3257909146770395, undefined, []); },
   /**
    * static let MPMoviePlayerLoadStateDidChange: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerLoadStateDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 1841510636738791, undefined, []); },
+  get MPMoviePlayerLoadStateDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 1841510636738791, undefined, []); },
   /**
    * static let MPMoviePlayerNowPlayingMovieDidChange: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerNowPlayingMovieDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 464777398135359, undefined, []); },
+  get MPMoviePlayerNowPlayingMovieDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 464777398135359, undefined, []); },
   /**
    * static let MPMoviePlayerPlaybackDidFinish: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerPlaybackDidFinish(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 3253300240612335, undefined, []); },
+  get MPMoviePlayerPlaybackDidFinish(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 3253300240612335, undefined, []); },
   /**
    * static let MPMoviePlayerPlaybackStateDidChange: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerPlaybackStateDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 833968215268172, undefined, []); },
+  get MPMoviePlayerPlaybackStateDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 833968215268172, undefined, []); },
   /**
    * static let MPMoviePlayerReadyForDisplayDidChange: NSNotification.Name
    * @availability iOS 6.0+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerReadyForDisplayDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 2945819450357098, undefined, []); },
+  get MPMoviePlayerReadyForDisplayDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 2945819450357098, undefined, []); },
   /**
    * static let MPMoviePlayerScalingModeDidChange: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerScalingModeDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 631114619647591, undefined, []); },
+  get MPMoviePlayerScalingModeDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 631114619647591, undefined, []); },
   /**
    * static let MPMoviePlayerThumbnailImageRequestDidFinish: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerThumbnailImageRequestDidFinish(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 2753685577016526, undefined, []); },
+  get MPMoviePlayerThumbnailImageRequestDidFinish(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 2753685577016526, undefined, []); },
   /**
    * static let MPMoviePlayerTimedMetadataUpdated: NSNotification.Name
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerTimedMetadataUpdated(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 3213795770135711, undefined, []); },
+  get MPMoviePlayerTimedMetadataUpdated(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 3213795770135711, undefined, []); },
   /**
    * static let MPMoviePlayerWillEnterFullscreen: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerWillEnterFullscreen(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 659573071782434, undefined, []); },
+  get MPMoviePlayerWillEnterFullscreen(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 659573071782434, undefined, []); },
   /**
    * static let MPMoviePlayerWillExitFullscreen: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMoviePlayerWillExitFullscreen(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 980549757807810, undefined, []); },
+  get MPMoviePlayerWillExitFullscreen(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 980549757807810, undefined, []); },
   /**
    * static let MPMovieSourceTypeAvailable: NSNotification.Name
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  get MPMovieSourceTypeAvailable(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 4197071332194695, undefined, []); },
+  get MPMovieSourceTypeAvailable(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 4197071332194695, undefined, []); },
   /**
    * static let MPMusicPlayerControllerNowPlayingItemDidChange: NSNotification.Name
    * @availability iOS 3.0+
    */
-  get MPMusicPlayerControllerNowPlayingItemDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 3473458076191316, undefined, []); },
+  get MPMusicPlayerControllerNowPlayingItemDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 3473458076191316, undefined, []); },
   /**
    * static let MPMusicPlayerControllerPlaybackStateDidChange: NSNotification.Name
    * @availability iOS 3.0+
    */
-  get MPMusicPlayerControllerPlaybackStateDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 4494922012140846, undefined, []); },
+  get MPMusicPlayerControllerPlaybackStateDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 4494922012140846, undefined, []); },
   /**
    * static let MPMusicPlayerControllerQueueDidChange: NSNotification.Name
    * @availability iOS 10.3+
    */
-  get MPMusicPlayerControllerQueueDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 3878423066308823, undefined, []); },
+  get MPMusicPlayerControllerQueueDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 3878423066308823, undefined, []); },
   /**
    * static let MPMusicPlayerControllerVolumeDidChange: NSNotification.Name
    * @availability iOS 3.0+
    */
-  get MPMusicPlayerControllerVolumeDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 2017339560516577, undefined, []); },
+  get MPMusicPlayerControllerVolumeDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 2017339560516577, undefined, []); },
   /**
    * static let MPVolumeViewWirelessRouteActiveDidChange: NSNotification.Name
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get MPVolumeViewWirelessRouteActiveDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 4390843510750001, undefined, []); },
+  get MPVolumeViewWirelessRouteActiveDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 4390843510750001, undefined, []); },
   /**
    * static let MPVolumeViewWirelessRoutesAvailableDidChange: NSNotification.Name
    * @availability iOS 7.0+
    * @deprecated iOS 13.0
    */
-  get MPVolumeViewWirelessRoutesAvailableDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_0e503aef608672fa", 3538979628008370, undefined, []); }
+  get MPVolumeViewWirelessRoutesAvailableDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MediaPlayer_212edf3d13b127f5", 3538979628008370, undefined, []); }
 };
 
 export class NSUserActivity extends SDKHandle {
@@ -3231,8 +3249,8 @@ export class NSUserActivity extends SDKHandle {
    * var externalMediaContentIdentifier: String? { get set }
    * @availability iOS 10.1+
    */
-  get externalMediaContentIdentifier(): (string) | null { return callSDK<(string) | null>("MediaPlayer_0e503aef608672fa", 666909777292237, this, []); }
-  set externalMediaContentIdentifier(value: (string) | null) { callSDK<void>("MediaPlayer_0e503aef608672fa", 4090424266870799, this, [value]); }
+  get externalMediaContentIdentifier(): (string) | null { return callSDK<(string) | null>("MediaPlayer_212edf3d13b127f5", 666909777292237, this, []); }
+  set externalMediaContentIdentifier(value: (string) | null) { callSDK<void>("MediaPlayer_212edf3d13b127f5", 4090424266870799, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSUserActivity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "externalMediaContentIdentifier": true };
 }
@@ -3243,13 +3261,13 @@ export class UIViewController extends SDKHandle {
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  dismissMoviePlayerViewControllerAnimated(): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 91277921079811, this, []); }
+  dismissMoviePlayerViewControllerAnimated(): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 91277921079811, this, []); }
   /**
    * func presentMoviePlayerViewControllerAnimated(_ moviePlayerViewController: MPMoviePlayerViewController!)
    * @availability iOS 3.2+
    * @deprecated iOS 9.0
    */
-  presentMoviePlayerViewControllerAnimated(moviePlayerViewController?: (MPMoviePlayerViewController) | null): Promise<void> { return callSDKAsync<void>("MediaPlayer_0e503aef608672fa", 4398114192464455, this, [moviePlayerViewController]); }
+  presentMoviePlayerViewControllerAnimated(moviePlayerViewController?: (MPMoviePlayerViewController) | null): Promise<void> { return callSDKAsync<void>("MediaPlayer_212edf3d13b127f5", 4398114192464455, this, [moviePlayerViewController]); }
   declare readonly $type: { "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3258,658 +3276,658 @@ export class UIViewController extends SDKHandle {
  * @availability iOS 2.0+
  * @deprecated iOS 11.3
  */
-export function MPVolumeSettingsAlertHide(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1490116638186782, undefined, []); }
+export function MPVolumeSettingsAlertHide(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1490116638186782, undefined, []); }
 
 /**
  * func MPVolumeSettingsAlertIsVisible() -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 11.3
  */
-export function MPVolumeSettingsAlertIsVisible(): boolean { return callSDK<boolean>("MediaPlayer_0e503aef608672fa", 3322666030099892, undefined, []); }
+export function MPVolumeSettingsAlertIsVisible(): boolean { return callSDK<boolean>("MediaPlayer_212edf3d13b127f5", 3322666030099892, undefined, []); }
 
 /**
  * func MPVolumeSettingsAlertShow()
  * @availability iOS 2.0+
  * @deprecated iOS 11.3
  */
-export function MPVolumeSettingsAlertShow(): void { return callSDK<void>("MediaPlayer_0e503aef608672fa", 1713011119382927, undefined, []); }
+export function MPVolumeSettingsAlertShow(): void { return callSDK<void>("MediaPlayer_212edf3d13b127f5", 1713011119382927, undefined, []); }
 
 /**
  * let MPErrorDomain: String
  * @availability iOS 9.3+
  */
-export const MPErrorDomain: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3074555161212515, undefined, []);
+export const MPErrorDomain: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3074555161212515, undefined, []);
 
 /**
  * let MPLanguageOptionCharacteristicContainsOnlyForcedSubtitles: String
  * @availability iOS 9.0+
  */
-export const MPLanguageOptionCharacteristicContainsOnlyForcedSubtitles: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 4233278755228252, undefined, []);
+export const MPLanguageOptionCharacteristicContainsOnlyForcedSubtitles: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 4233278755228252, undefined, []);
 
 /**
  * let MPLanguageOptionCharacteristicDescribesMusicAndSound: String
  * @availability iOS 9.0+
  */
-export const MPLanguageOptionCharacteristicDescribesMusicAndSound: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 720270163624326, undefined, []);
+export const MPLanguageOptionCharacteristicDescribesMusicAndSound: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 720270163624326, undefined, []);
 
 /**
  * let MPLanguageOptionCharacteristicDescribesVideo: String
  * @availability iOS 9.0+
  */
-export const MPLanguageOptionCharacteristicDescribesVideo: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2913973851578705, undefined, []);
+export const MPLanguageOptionCharacteristicDescribesVideo: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2913973851578705, undefined, []);
 
 /**
  * let MPLanguageOptionCharacteristicDubbedTranslation: String
  * @availability iOS 9.0+
  */
-export const MPLanguageOptionCharacteristicDubbedTranslation: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 900940657676525, undefined, []);
+export const MPLanguageOptionCharacteristicDubbedTranslation: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 900940657676525, undefined, []);
 
 /**
  * let MPLanguageOptionCharacteristicEasyToRead: String
  * @availability iOS 9.0+
  */
-export const MPLanguageOptionCharacteristicEasyToRead: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3531507042847943, undefined, []);
+export const MPLanguageOptionCharacteristicEasyToRead: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3531507042847943, undefined, []);
 
 /**
  * let MPLanguageOptionCharacteristicIsAuxiliaryContent: String
  * @availability iOS 9.0+
  */
-export const MPLanguageOptionCharacteristicIsAuxiliaryContent: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 128443857362864, undefined, []);
+export const MPLanguageOptionCharacteristicIsAuxiliaryContent: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 128443857362864, undefined, []);
 
 /**
  * let MPLanguageOptionCharacteristicIsMainProgramContent: String
  * @availability iOS 9.0+
  */
-export const MPLanguageOptionCharacteristicIsMainProgramContent: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3341990083612913, undefined, []);
+export const MPLanguageOptionCharacteristicIsMainProgramContent: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3341990083612913, undefined, []);
 
 /**
  * let MPLanguageOptionCharacteristicLanguageTranslation: String
  * @availability iOS 9.0+
  */
-export const MPLanguageOptionCharacteristicLanguageTranslation: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2298183418659299, undefined, []);
+export const MPLanguageOptionCharacteristicLanguageTranslation: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2298183418659299, undefined, []);
 
 /**
  * let MPLanguageOptionCharacteristicTranscribesSpokenDialog: String
  * @availability iOS 9.0+
  */
-export const MPLanguageOptionCharacteristicTranscribesSpokenDialog: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1810648813473849, undefined, []);
+export const MPLanguageOptionCharacteristicTranscribesSpokenDialog: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1810648813473849, undefined, []);
 
 /**
  * let MPLanguageOptionCharacteristicVoiceOverTranslation: String
  * @availability iOS 9.0+
  */
-export const MPLanguageOptionCharacteristicVoiceOverTranslation: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3466411503788272, undefined, []);
+export const MPLanguageOptionCharacteristicVoiceOverTranslation: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3466411503788272, undefined, []);
 
 /**
  * let MPMediaEntityPropertyPersistentID: String
  * @availability iOS 4.2+
  */
-export const MPMediaEntityPropertyPersistentID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1201209286015823, undefined, []);
+export const MPMediaEntityPropertyPersistentID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1201209286015823, undefined, []);
 
 /**
  * let MPMediaItemPropertyAlbumArtist: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyAlbumArtist: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 143763714000710, undefined, []);
+export const MPMediaItemPropertyAlbumArtist: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 143763714000710, undefined, []);
 
 /**
  * let MPMediaItemPropertyAlbumArtistPersistentID: String
  * @availability iOS 4.2+
  */
-export const MPMediaItemPropertyAlbumArtistPersistentID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3264610940256706, undefined, []);
+export const MPMediaItemPropertyAlbumArtistPersistentID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3264610940256706, undefined, []);
 
 /**
  * let MPMediaItemPropertyAlbumPersistentID: String
  * @availability iOS 4.2+
  */
-export const MPMediaItemPropertyAlbumPersistentID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2540499804597956, undefined, []);
+export const MPMediaItemPropertyAlbumPersistentID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2540499804597956, undefined, []);
 
 /**
  * let MPMediaItemPropertyAlbumTitle: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyAlbumTitle: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3402807988056992, undefined, []);
+export const MPMediaItemPropertyAlbumTitle: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3402807988056992, undefined, []);
 
 /**
  * let MPMediaItemPropertyAlbumTrackCount: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyAlbumTrackCount: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1889686086061208, undefined, []);
+export const MPMediaItemPropertyAlbumTrackCount: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1889686086061208, undefined, []);
 
 /**
  * let MPMediaItemPropertyAlbumTrackNumber: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyAlbumTrackNumber: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2968683309146364, undefined, []);
+export const MPMediaItemPropertyAlbumTrackNumber: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2968683309146364, undefined, []);
 
 /**
  * let MPMediaItemPropertyArtist: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyArtist: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 112675588160223, undefined, []);
+export const MPMediaItemPropertyArtist: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 112675588160223, undefined, []);
 
 /**
  * let MPMediaItemPropertyArtistPersistentID: String
  * @availability iOS 4.2+
  */
-export const MPMediaItemPropertyArtistPersistentID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3419034799603063, undefined, []);
+export const MPMediaItemPropertyArtistPersistentID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3419034799603063, undefined, []);
 
 /**
  * let MPMediaItemPropertyArtwork: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyArtwork: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1585464310684835, undefined, []);
+export const MPMediaItemPropertyArtwork: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1585464310684835, undefined, []);
 
 /**
  * let MPMediaItemPropertyAssetURL: String
  * @availability iOS 4.0+
  */
-export const MPMediaItemPropertyAssetURL: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 545077853036804, undefined, []);
+export const MPMediaItemPropertyAssetURL: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 545077853036804, undefined, []);
 
 /**
  * let MPMediaItemPropertyBeatsPerMinute: String
  * @availability iOS 4.0+
  */
-export const MPMediaItemPropertyBeatsPerMinute: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 609897852424459, undefined, []);
+export const MPMediaItemPropertyBeatsPerMinute: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 609897852424459, undefined, []);
 
 /**
  * let MPMediaItemPropertyBookmarkTime: String
  * @availability iOS 6.0+
  */
-export const MPMediaItemPropertyBookmarkTime: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1234741221874397, undefined, []);
+export const MPMediaItemPropertyBookmarkTime: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1234741221874397, undefined, []);
 
 /**
  * let MPMediaItemPropertyComments: String
  * @availability iOS 4.0+
  */
-export const MPMediaItemPropertyComments: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3487547007159196, undefined, []);
+export const MPMediaItemPropertyComments: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3487547007159196, undefined, []);
 
 /**
  * let MPMediaItemPropertyComposer: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyComposer: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2913077973718836, undefined, []);
+export const MPMediaItemPropertyComposer: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2913077973718836, undefined, []);
 
 /**
  * let MPMediaItemPropertyComposerPersistentID: String
  * @availability iOS 4.2+
  */
-export const MPMediaItemPropertyComposerPersistentID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1465274498015922, undefined, []);
+export const MPMediaItemPropertyComposerPersistentID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1465274498015922, undefined, []);
 
 /**
  * let MPMediaItemPropertyDateAdded: String
  * @availability iOS 10.0+
  */
-export const MPMediaItemPropertyDateAdded: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3199682405949607, undefined, []);
+export const MPMediaItemPropertyDateAdded: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3199682405949607, undefined, []);
 
 /**
  * let MPMediaItemPropertyDiscCount: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyDiscCount: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1817760182079878, undefined, []);
+export const MPMediaItemPropertyDiscCount: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1817760182079878, undefined, []);
 
 /**
  * let MPMediaItemPropertyDiscNumber: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyDiscNumber: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 241226532543780, undefined, []);
+export const MPMediaItemPropertyDiscNumber: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 241226532543780, undefined, []);
 
 /**
  * let MPMediaItemPropertyGenre: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyGenre: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 439460983541138, undefined, []);
+export const MPMediaItemPropertyGenre: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 439460983541138, undefined, []);
 
 /**
  * let MPMediaItemPropertyGenrePersistentID: String
  * @availability iOS 4.2+
  */
-export const MPMediaItemPropertyGenrePersistentID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3060294099703137, undefined, []);
+export const MPMediaItemPropertyGenrePersistentID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3060294099703137, undefined, []);
 
 /**
  * let MPMediaItemPropertyHasProtectedAsset: String
  * @availability iOS 9.2+
  */
-export const MPMediaItemPropertyHasProtectedAsset: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2544018354822983, undefined, []);
+export const MPMediaItemPropertyHasProtectedAsset: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2544018354822983, undefined, []);
 
 /**
  * let MPMediaItemPropertyIsCloudItem: String
  * @availability iOS 6.0+
  */
-export const MPMediaItemPropertyIsCloudItem: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3007218312887346, undefined, []);
+export const MPMediaItemPropertyIsCloudItem: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3007218312887346, undefined, []);
 
 /**
  * let MPMediaItemPropertyIsCompilation: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyIsCompilation: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 875536514822706, undefined, []);
+export const MPMediaItemPropertyIsCompilation: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 875536514822706, undefined, []);
 
 /**
  * let MPMediaItemPropertyIsExplicit: String
  * @availability iOS 7.0+
  */
-export const MPMediaItemPropertyIsExplicit: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3558305672985863, undefined, []);
+export const MPMediaItemPropertyIsExplicit: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3558305672985863, undefined, []);
 
 /**
  * let MPMediaItemPropertyIsPreorder: String
  * @availability iOS 14.5+
  */
-export const MPMediaItemPropertyIsPreorder: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 24957910668316, undefined, []);
+export const MPMediaItemPropertyIsPreorder: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 24957910668316, undefined, []);
 
 /**
  * let MPMediaItemPropertyLastPlayedDate: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyLastPlayedDate: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 725246972818148, undefined, []);
+export const MPMediaItemPropertyLastPlayedDate: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 725246972818148, undefined, []);
 
 /**
  * let MPMediaItemPropertyLyrics: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyLyrics: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3975975172020402, undefined, []);
+export const MPMediaItemPropertyLyrics: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3975975172020402, undefined, []);
 
 /**
  * let MPMediaItemPropertyMediaType: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyMediaType: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 4246622510854412, undefined, []);
+export const MPMediaItemPropertyMediaType: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 4246622510854412, undefined, []);
 
 /**
  * let MPMediaItemPropertyPersistentID: String
  * @availability iOS 4.2+
  */
-export const MPMediaItemPropertyPersistentID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 4170954094192085, undefined, []);
+export const MPMediaItemPropertyPersistentID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 4170954094192085, undefined, []);
 
 /**
  * let MPMediaItemPropertyPlayCount: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyPlayCount: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3389962168195397, undefined, []);
+export const MPMediaItemPropertyPlayCount: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3389962168195397, undefined, []);
 
 /**
  * let MPMediaItemPropertyPlaybackDuration: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyPlaybackDuration: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1225198547944844, undefined, []);
+export const MPMediaItemPropertyPlaybackDuration: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1225198547944844, undefined, []);
 
 /**
  * let MPMediaItemPropertyPlaybackStoreID: String
  * @availability iOS 10.3+
  */
-export const MPMediaItemPropertyPlaybackStoreID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 381292830095061, undefined, []);
+export const MPMediaItemPropertyPlaybackStoreID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 381292830095061, undefined, []);
 
 /**
  * let MPMediaItemPropertyPodcastPersistentID: String
  * @availability iOS 4.2+
  */
-export const MPMediaItemPropertyPodcastPersistentID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 358881082301430, undefined, []);
+export const MPMediaItemPropertyPodcastPersistentID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 358881082301430, undefined, []);
 
 /**
  * let MPMediaItemPropertyPodcastTitle: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyPodcastTitle: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 4014509948888507, undefined, []);
+export const MPMediaItemPropertyPodcastTitle: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 4014509948888507, undefined, []);
 
 /**
  * let MPMediaItemPropertyRating: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyRating: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1445768340822028, undefined, []);
+export const MPMediaItemPropertyRating: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1445768340822028, undefined, []);
 
 /**
  * let MPMediaItemPropertyReleaseDate: String
  * @availability iOS 4.0+
  */
-export const MPMediaItemPropertyReleaseDate: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 386302716715789, undefined, []);
+export const MPMediaItemPropertyReleaseDate: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 386302716715789, undefined, []);
 
 /**
  * let MPMediaItemPropertySkipCount: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertySkipCount: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 4198664738649551, undefined, []);
+export const MPMediaItemPropertySkipCount: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 4198664738649551, undefined, []);
 
 /**
  * let MPMediaItemPropertyTitle: String
  * @availability iOS 3.0+
  */
-export const MPMediaItemPropertyTitle: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1639804374465324, undefined, []);
+export const MPMediaItemPropertyTitle: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1639804374465324, undefined, []);
 
 /**
  * let MPMediaItemPropertyUserGrouping: String
  * @availability iOS 4.0+
  */
-export const MPMediaItemPropertyUserGrouping: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1659339258895104, undefined, []);
+export const MPMediaItemPropertyUserGrouping: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1659339258895104, undefined, []);
 
 /**
  * let MPMediaPlaylistPropertyAuthorDisplayName: String
  * @availability iOS 9.3+
  */
-export const MPMediaPlaylistPropertyAuthorDisplayName: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1641619964554120, undefined, []);
+export const MPMediaPlaylistPropertyAuthorDisplayName: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1641619964554120, undefined, []);
 
 /**
  * let MPMediaPlaylistPropertyCloudGlobalID: String
  * @availability iOS 9.0+
  */
-export const MPMediaPlaylistPropertyCloudGlobalID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1318150979924210, undefined, []);
+export const MPMediaPlaylistPropertyCloudGlobalID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1318150979924210, undefined, []);
 
 /**
  * let MPMediaPlaylistPropertyDescriptionText: String
  * @availability iOS 9.3+
  */
-export const MPMediaPlaylistPropertyDescriptionText: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3283679025308699, undefined, []);
+export const MPMediaPlaylistPropertyDescriptionText: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3283679025308699, undefined, []);
 
 /** let MPMediaPlaylistPropertyName: String */
-export const MPMediaPlaylistPropertyName: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 118636525565295, undefined, []);
+export const MPMediaPlaylistPropertyName: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 118636525565295, undefined, []);
 
 /** let MPMediaPlaylistPropertyPersistentID: String */
-export const MPMediaPlaylistPropertyPersistentID: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 4361777435108493, undefined, []);
+export const MPMediaPlaylistPropertyPersistentID: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 4361777435108493, undefined, []);
 
 /** let MPMediaPlaylistPropertyPlaylistAttributes: String */
-export const MPMediaPlaylistPropertyPlaylistAttributes: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 940901875916443, undefined, []);
+export const MPMediaPlaylistPropertyPlaylistAttributes: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 940901875916443, undefined, []);
 
 /** let MPMediaPlaylistPropertySeedItems: String */
-export const MPMediaPlaylistPropertySeedItems: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3196111177633859, undefined, []);
+export const MPMediaPlaylistPropertySeedItems: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3196111177633859, undefined, []);
 
 /**
  * let MPMoviePlayerFullscreenAnimationCurveUserInfoKey: String
  * @availability iOS 3.2+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerFullscreenAnimationCurveUserInfoKey: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2022845932384900, undefined, []);
+export const MPMoviePlayerFullscreenAnimationCurveUserInfoKey: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2022845932384900, undefined, []);
 
 /**
  * let MPMoviePlayerFullscreenAnimationDurationUserInfoKey: String
  * @availability iOS 3.2+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerFullscreenAnimationDurationUserInfoKey: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3324636046524244, undefined, []);
+export const MPMoviePlayerFullscreenAnimationDurationUserInfoKey: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3324636046524244, undefined, []);
 
 /**
  * let MPMoviePlayerPlaybackDidFinishReasonUserInfoKey: String
  * @availability iOS 3.2+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerPlaybackDidFinishReasonUserInfoKey: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 4005975591971073, undefined, []);
+export const MPMoviePlayerPlaybackDidFinishReasonUserInfoKey: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 4005975591971073, undefined, []);
 
 /**
  * let MPMoviePlayerThumbnailErrorKey: String
  * @availability iOS 3.2+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerThumbnailErrorKey: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2599534350230325, undefined, []);
+export const MPMoviePlayerThumbnailErrorKey: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2599534350230325, undefined, []);
 
 /**
  * let MPMoviePlayerThumbnailImageKey: String
  * @availability iOS 3.2+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerThumbnailImageKey: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 4439540033917048, undefined, []);
+export const MPMoviePlayerThumbnailImageKey: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 4439540033917048, undefined, []);
 
 /**
  * let MPMoviePlayerThumbnailTimeKey: String
  * @availability iOS 3.2+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerThumbnailTimeKey: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2710982637190182, undefined, []);
+export const MPMoviePlayerThumbnailTimeKey: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2710982637190182, undefined, []);
 
 /**
  * let MPMoviePlayerTimedMetadataKeyDataType: String
  * @availability iOS 4.0+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerTimedMetadataKeyDataType: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2826906240383119, undefined, []);
+export const MPMoviePlayerTimedMetadataKeyDataType: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2826906240383119, undefined, []);
 
 /**
  * let MPMoviePlayerTimedMetadataKeyInfo: String
  * @availability iOS 4.0+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerTimedMetadataKeyInfo: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2856631712946785, undefined, []);
+export const MPMoviePlayerTimedMetadataKeyInfo: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2856631712946785, undefined, []);
 
 /**
  * let MPMoviePlayerTimedMetadataKeyLanguageCode: String
  * @availability iOS 4.0+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerTimedMetadataKeyLanguageCode: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1016084734885, undefined, []);
+export const MPMoviePlayerTimedMetadataKeyLanguageCode: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1016084734885, undefined, []);
 
 /**
  * let MPMoviePlayerTimedMetadataKeyMIMEType: String
  * @availability iOS 4.0+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerTimedMetadataKeyMIMEType: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3298574257008276, undefined, []);
+export const MPMoviePlayerTimedMetadataKeyMIMEType: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3298574257008276, undefined, []);
 
 /**
  * let MPMoviePlayerTimedMetadataKeyName: String
  * @availability iOS 4.0+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerTimedMetadataKeyName: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2627734871672579, undefined, []);
+export const MPMoviePlayerTimedMetadataKeyName: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2627734871672579, undefined, []);
 
 /**
  * let MPMoviePlayerTimedMetadataUserInfoKey: String
  * @availability iOS 4.0+
  * @deprecated iOS 9.0
  */
-export const MPMoviePlayerTimedMetadataUserInfoKey: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3512538919575179, undefined, []);
+export const MPMoviePlayerTimedMetadataUserInfoKey: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3512538919575179, undefined, []);
 
 /**
  * let MPNowPlayingInfoCollectionIdentifier: String
  * @availability iOS 9.3+
  */
-export const MPNowPlayingInfoCollectionIdentifier: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2761244557491592, undefined, []);
+export const MPNowPlayingInfoCollectionIdentifier: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2761244557491592, undefined, []);
 
 /**
  * let MPNowPlayingInfoProperty1x1AnimatedArtwork: String
  * @availability iOS 26.0+
  */
-export const MPNowPlayingInfoProperty1x1AnimatedArtwork: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 4103190556939274, undefined, []);
+export const MPNowPlayingInfoProperty1x1AnimatedArtwork: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 4103190556939274, undefined, []);
 
 /**
  * let MPNowPlayingInfoProperty3x4AnimatedArtwork: String
  * @availability iOS 26.0+
  */
-export const MPNowPlayingInfoProperty3x4AnimatedArtwork: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 383472175846333, undefined, []);
+export const MPNowPlayingInfoProperty3x4AnimatedArtwork: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 383472175846333, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyAdTimeRanges: String
  * @availability iOS 16.0+
  */
-export const MPNowPlayingInfoPropertyAdTimeRanges: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2082643291976906, undefined, []);
+export const MPNowPlayingInfoPropertyAdTimeRanges: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2082643291976906, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyAppEntityIdentifiers: String
  * @availability iOS 27.0+
  */
-export const MPNowPlayingInfoPropertyAppEntityIdentifiers: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1018649523796721, undefined, []);
+export const MPNowPlayingInfoPropertyAppEntityIdentifiers: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1018649523796721, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyAssetURL: String
  * @availability iOS 10.3+
  */
-export const MPNowPlayingInfoPropertyAssetURL: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1642799752988580, undefined, []);
+export const MPNowPlayingInfoPropertyAssetURL: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1642799752988580, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyAvailableLanguageOptions: String
  * @availability iOS 9.0+
  */
-export const MPNowPlayingInfoPropertyAvailableLanguageOptions: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 863162861510047, undefined, []);
+export const MPNowPlayingInfoPropertyAvailableLanguageOptions: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 863162861510047, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyChapterCount: String
  * @availability iOS 5.0+
  */
-export const MPNowPlayingInfoPropertyChapterCount: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1348794801821090, undefined, []);
+export const MPNowPlayingInfoPropertyChapterCount: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1348794801821090, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyChapterNumber: String
  * @availability iOS 5.0+
  */
-export const MPNowPlayingInfoPropertyChapterNumber: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1342048680461033, undefined, []);
+export const MPNowPlayingInfoPropertyChapterNumber: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1342048680461033, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyCreditsStartTime: String
  * @availability iOS 16.0+
  */
-export const MPNowPlayingInfoPropertyCreditsStartTime: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1831778909547259, undefined, []);
+export const MPNowPlayingInfoPropertyCreditsStartTime: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1831778909547259, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyCurrentLanguageOptions: String
  * @availability iOS 9.0+
  */
-export const MPNowPlayingInfoPropertyCurrentLanguageOptions: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1271743523440476, undefined, []);
+export const MPNowPlayingInfoPropertyCurrentLanguageOptions: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1271743523440476, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyCurrentPlaybackDate: String
  * @availability iOS 11.1+
  */
-export const MPNowPlayingInfoPropertyCurrentPlaybackDate: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3799025579771226, undefined, []);
+export const MPNowPlayingInfoPropertyCurrentPlaybackDate: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3799025579771226, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyDefaultPlaybackRate: String
  * @availability iOS 8.0+
  */
-export const MPNowPlayingInfoPropertyDefaultPlaybackRate: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2694478456533593, undefined, []);
+export const MPNowPlayingInfoPropertyDefaultPlaybackRate: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2694478456533593, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyElapsedPlaybackTime: String
  * @availability iOS 5.0+
  */
-export const MPNowPlayingInfoPropertyElapsedPlaybackTime: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 296325317625827, undefined, []);
+export const MPNowPlayingInfoPropertyElapsedPlaybackTime: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 296325317625827, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyExcludeFromSuggestions: String
  * @availability iOS 18.0+
  */
-export const MPNowPlayingInfoPropertyExcludeFromSuggestions: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 581702116215362, undefined, []);
+export const MPNowPlayingInfoPropertyExcludeFromSuggestions: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 581702116215362, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyExternalContentIdentifier: String
  * @availability iOS 10.0+
  */
-export const MPNowPlayingInfoPropertyExternalContentIdentifier: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2642664554345556, undefined, []);
+export const MPNowPlayingInfoPropertyExternalContentIdentifier: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2642664554345556, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyExternalUserProfileIdentifier: String
  * @availability iOS 10.0+
  */
-export const MPNowPlayingInfoPropertyExternalUserProfileIdentifier: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2115188888647887, undefined, []);
+export const MPNowPlayingInfoPropertyExternalUserProfileIdentifier: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2115188888647887, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyInternationalStandardRecordingCode: String
  * @availability iOS 18.0+
  */
-export const MPNowPlayingInfoPropertyInternationalStandardRecordingCode: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 532653189624518, undefined, []);
+export const MPNowPlayingInfoPropertyInternationalStandardRecordingCode: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 532653189624518, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyIsLiveStream: String
  * @availability iOS 10.0+
  */
-export const MPNowPlayingInfoPropertyIsLiveStream: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3362190390082872, undefined, []);
+export const MPNowPlayingInfoPropertyIsLiveStream: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3362190390082872, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyMediaType: String
  * @availability iOS 10.0+
  */
-export const MPNowPlayingInfoPropertyMediaType: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 4180469233475021, undefined, []);
+export const MPNowPlayingInfoPropertyMediaType: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 4180469233475021, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyPlaybackProgress: String
  * @availability iOS 10.0+
  */
-export const MPNowPlayingInfoPropertyPlaybackProgress: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 2178543102085402, undefined, []);
+export const MPNowPlayingInfoPropertyPlaybackProgress: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 2178543102085402, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyPlaybackQueueCount: String
  * @availability iOS 5.0+
  */
-export const MPNowPlayingInfoPropertyPlaybackQueueCount: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3698774735824453, undefined, []);
+export const MPNowPlayingInfoPropertyPlaybackQueueCount: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3698774735824453, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyPlaybackQueueIndex: String
  * @availability iOS 5.0+
  */
-export const MPNowPlayingInfoPropertyPlaybackQueueIndex: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1492712650450511, undefined, []);
+export const MPNowPlayingInfoPropertyPlaybackQueueIndex: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1492712650450511, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyPlaybackRate: String
  * @availability iOS 5.0+
  */
-export const MPNowPlayingInfoPropertyPlaybackRate: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 1127607957354613, undefined, []);
+export const MPNowPlayingInfoPropertyPlaybackRate: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 1127607957354613, undefined, []);
 
 /**
  * let MPNowPlayingInfoPropertyServiceIdentifier: String
  * @availability iOS 11.0+
  */
-export const MPNowPlayingInfoPropertyServiceIdentifier: string = callSDK<string>("MediaPlayer_0e503aef608672fa", 3260459357772414, undefined, []);
+export const MPNowPlayingInfoPropertyServiceIdentifier: string = callSDK<string>("MediaPlayer_212edf3d13b127f5", 3260459357772414, undefined, []);
 
-registerSDKClass("AVMediaSelectionGroup", AVMediaSelectionGroup, { module: "MediaPlayer_0e503aef608672fa", properties: {}, methods: {"makeNowPlayingInfoLanguageOptionGroup":{"id":3666984528127285}} }, true);
-registerSDKClass("AVMediaSelectionOption", AVMediaSelectionOption, { module: "MediaPlayer_0e503aef608672fa", properties: {}, methods: {"makeNowPlayingInfoLanguageOption":{"id":1419248458819803}} }, true);
-registerSDKClass("AVPlayerItem", AVPlayerItem, { module: "MediaPlayer_0e503aef608672fa", properties: {"nowPlayingInfo":153760473005918} }, true);
-registerSDKClass("MPAdTimeRange", MPAdTimeRange, { module: "MediaPlayer_0e503aef608672fa", properties: {"timeRange":326201542400191} });
-registerSDKClass("MPRemoteCommandEvent", MPRemoteCommandEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"command":3163150048613284,"timestamp":3549685959271184} });
-registerSDKClass("MPChangeLanguageOptionCommandEvent", MPChangeLanguageOptionCommandEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"languageOption":258144050803452,"setting":1326873229757842} });
-registerSDKClass("MPRemoteCommand", MPRemoteCommand, { module: "MediaPlayer_0e503aef608672fa", properties: {"isEnabled":4004560288803583}, methods: {"removeTarget":{"id":1291831667918801}} });
-registerSDKClass("MPChangePlaybackPositionCommand", MPChangePlaybackPositionCommand, { module: "MediaPlayer_0e503aef608672fa", properties: {} });
-registerSDKClass("MPChangePlaybackPositionCommandEvent", MPChangePlaybackPositionCommandEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"positionTime":1901844612062140} });
-registerSDKClass("MPChangePlaybackRateCommand", MPChangePlaybackRateCommand, { module: "MediaPlayer_0e503aef608672fa", properties: {"supportedPlaybackRates":2120167993896372} });
-registerSDKClass("MPChangePlaybackRateCommandEvent", MPChangePlaybackRateCommandEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"playbackRate":2705863531148752} });
-registerSDKClass("MPChangeRepeatModeCommand", MPChangeRepeatModeCommand, { module: "MediaPlayer_0e503aef608672fa", properties: {"currentRepeatType":452115470803209} });
-registerSDKClass("MPChangeRepeatModeCommandEvent", MPChangeRepeatModeCommandEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"preservesRepeatMode":3011491637539145,"repeatType":2144233239038251} });
-registerSDKClass("MPChangeShuffleModeCommand", MPChangeShuffleModeCommand, { module: "MediaPlayer_0e503aef608672fa", properties: {"currentShuffleType":2391090313429970} });
-registerSDKClass("MPChangeShuffleModeCommandEvent", MPChangeShuffleModeCommandEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"preservesShuffleMode":3370671421739224,"shuffleType":3519654700931986} });
-registerSDKClass("MPContentItem", MPContentItem, { module: "MediaPlayer_0e503aef608672fa", properties: {"artwork":3984289361165344,"isContainer":1339481027492370,"isExplicitContent":664038198274669,"identifier":1028649628631809,"isPlayable":1972246762140168,"playbackProgress":2330050000019826,"isStreamingContent":3107936277365230,"subtitle":3841513239784714,"title":925138463494031} });
-registerSDKClass("MediaPlayer.MPError", MPError, { module: "MediaPlayer_0e503aef608672fa", properties: {} });
-registerSDKClass("MPFeedbackCommand", MPFeedbackCommand, { module: "MediaPlayer_0e503aef608672fa", properties: {"isActive":4273471101100618,"localizedShortTitle":3726421470542508,"localizedTitle":1432853279360198} });
-registerSDKClass("MPFeedbackCommandEvent", MPFeedbackCommandEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"isNegative":158427941327938} });
-registerSDKClass("MPMediaEntity", MPMediaEntity, { module: "MediaPlayer_0e503aef608672fa", properties: {"persistentID":2437078834217025}, methods: {"subscript":{"id":3719419840504789},"value":{"id":2963697220906112}} });
-registerSDKClass("MPMediaItem", MPMediaItem, { module: "MediaPlayer_0e503aef608672fa", properties: {"albumArtist":1883029401268530,"albumArtistPersistentID":337176620092425,"albumPersistentID":598878518578535,"albumTitle":2789347046317199,"albumTrackCount":2067941671289310,"albumTrackNumber":2046384202101913,"artist":2177432684090295,"artistPersistentID":1077232004476934,"artwork":2048622628325730,"assetURL":2727006445873346,"beatsPerMinute":4403870624926538,"bookmarkTime":3027574609300947,"isCloudItem":1548232863098897,"comments":3313709382098087,"isCompilation":1069019200832785,"composer":4351104636968994,"composerPersistentID":2320745228095854,"dateAdded":3420707763598526,"discCount":1240890049794908,"discNumber":609336615184624,"isExplicitItem":2331833563485834,"genre":3128513100100142,"genrePersistentID":1208657852066719,"lastPlayedDate":1023644680922011,"lyrics":3415865977834415,"mediaType":4039096155789217,"persistentID":1952792832924300,"playCount":3794590949940479,"playbackDuration":4103917648531103,"playbackStoreID":2317852902527607,"podcastPersistentID":978822527480475,"podcastTitle":1398182904380431,"isPreorder":542708585575569,"hasProtectedAsset":2136542428079722,"rating":4334672459825188,"releaseDate":294360540565983,"skipCount":2742473044979455,"title":4074186762124323,"userGrouping":2561686292123313} });
-registerSDKClass("MPMediaItemAnimatedArtwork", MPMediaItemAnimatedArtwork, { module: "MediaPlayer_0e503aef608672fa", properties: {} });
-registerSDKClass("MPMediaItemArtwork", MPMediaItemArtwork, { module: "MediaPlayer_0e503aef608672fa", properties: {"bounds":1360363740894200,"imageCropRect":616753597135276}, methods: {"image":{"id":3956793718109444}} });
-registerSDKClass("MPMediaItemCollection", MPMediaItemCollection, { module: "MediaPlayer_0e503aef608672fa", properties: {"count":1428051535569343,"items":26303964153426,"mediaTypes":2239199058797913,"representativeItem":544512636040307} });
-registerSDKClass("MPMediaLibrary", MPMediaLibrary, { module: "MediaPlayer_0e503aef608672fa", properties: {"lastModifiedDate":959773737098265}, methods: {"addItem":{"id":2181085296982141,"hints":[null,{"callback":{"out":[]}}]},"beginGeneratingLibraryChangeNotifications":{"id":3682273109105990},"endGeneratingLibraryChangeNotifications":{"id":1666647781125736},"getPlaylist":{"id":2417508673002697,"hints":[null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("MPMediaPickerController", MPMediaPickerController, { module: "MediaPlayer_0e503aef608672fa", properties: {"allowsPickingMultipleItems":1755196822351550,"delegate":777216915606519,"mediaTypes":3068669634491627,"prompt":920339820205072,"showsCloudItems":3749171069647024,"showsItemsWithProtectedAssets":4337801107240805} });
+registerSDKClass("AVMediaSelectionGroup", AVMediaSelectionGroup, { module: "MediaPlayer_212edf3d13b127f5", properties: {}, methods: {"makeNowPlayingInfoLanguageOptionGroup":{"id":3666984528127285}} }, true);
+registerSDKClass("AVMediaSelectionOption", AVMediaSelectionOption, { module: "MediaPlayer_212edf3d13b127f5", properties: {}, methods: {"makeNowPlayingInfoLanguageOption":{"id":1419248458819803}} }, true);
+registerSDKClass("AVPlayerItem", AVPlayerItem, { module: "MediaPlayer_212edf3d13b127f5", properties: {"nowPlayingInfo":153760473005918} }, true);
+registerSDKClass("MPAdTimeRange", MPAdTimeRange, { module: "MediaPlayer_212edf3d13b127f5", properties: {"timeRange":326201542400191} });
+registerSDKClass("MPRemoteCommandEvent", MPRemoteCommandEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"command":3163150048613284,"timestamp":3549685959271184} });
+registerSDKClass("MPChangeLanguageOptionCommandEvent", MPChangeLanguageOptionCommandEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"languageOption":258144050803452,"setting":1326873229757842} });
+registerSDKClass("MPRemoteCommand", MPRemoteCommand, { module: "MediaPlayer_212edf3d13b127f5", properties: {"isEnabled":4004560288803583}, methods: {"removeTarget":{"id":1291831667918801}} });
+registerSDKClass("MPChangePlaybackPositionCommand", MPChangePlaybackPositionCommand, { module: "MediaPlayer_212edf3d13b127f5", properties: {} });
+registerSDKClass("MPChangePlaybackPositionCommandEvent", MPChangePlaybackPositionCommandEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"positionTime":1901844612062140} });
+registerSDKClass("MPChangePlaybackRateCommand", MPChangePlaybackRateCommand, { module: "MediaPlayer_212edf3d13b127f5", properties: {"supportedPlaybackRates":2120167993896372} });
+registerSDKClass("MPChangePlaybackRateCommandEvent", MPChangePlaybackRateCommandEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"playbackRate":2705863531148752} });
+registerSDKClass("MPChangeRepeatModeCommand", MPChangeRepeatModeCommand, { module: "MediaPlayer_212edf3d13b127f5", properties: {"currentRepeatType":452115470803209} });
+registerSDKClass("MPChangeRepeatModeCommandEvent", MPChangeRepeatModeCommandEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"preservesRepeatMode":3011491637539145,"repeatType":2144233239038251} });
+registerSDKClass("MPChangeShuffleModeCommand", MPChangeShuffleModeCommand, { module: "MediaPlayer_212edf3d13b127f5", properties: {"currentShuffleType":2391090313429970} });
+registerSDKClass("MPChangeShuffleModeCommandEvent", MPChangeShuffleModeCommandEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"preservesShuffleMode":3370671421739224,"shuffleType":3519654700931986} });
+registerSDKClass("MPContentItem", MPContentItem, { module: "MediaPlayer_212edf3d13b127f5", properties: {"artwork":3984289361165344,"isContainer":1339481027492370,"isExplicitContent":664038198274669,"identifier":1028649628631809,"isPlayable":1972246762140168,"playbackProgress":2330050000019826,"isStreamingContent":3107936277365230,"subtitle":3841513239784714,"title":925138463494031} });
+registerSDKClass("MediaPlayer.MPError", MPError, { module: "MediaPlayer_212edf3d13b127f5", properties: {} });
+registerSDKClass("MPFeedbackCommand", MPFeedbackCommand, { module: "MediaPlayer_212edf3d13b127f5", properties: {"isActive":4273471101100618,"localizedShortTitle":3726421470542508,"localizedTitle":1432853279360198} });
+registerSDKClass("MPFeedbackCommandEvent", MPFeedbackCommandEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"isNegative":158427941327938} });
+registerSDKClass("MPMediaEntity", MPMediaEntity, { module: "MediaPlayer_212edf3d13b127f5", properties: {"persistentID":2437078834217025}, methods: {"subscript":{"id":3719419840504789},"value":{"id":2963697220906112}} });
+registerSDKClass("MPMediaItem", MPMediaItem, { module: "MediaPlayer_212edf3d13b127f5", properties: {"albumArtist":1883029401268530,"albumArtistPersistentID":337176620092425,"albumPersistentID":598878518578535,"albumTitle":2789347046317199,"albumTrackCount":2067941671289310,"albumTrackNumber":2046384202101913,"artist":2177432684090295,"artistPersistentID":1077232004476934,"artwork":2048622628325730,"assetURL":2727006445873346,"beatsPerMinute":4403870624926538,"bookmarkTime":3027574609300947,"isCloudItem":1548232863098897,"comments":3313709382098087,"isCompilation":1069019200832785,"composer":4351104636968994,"composerPersistentID":2320745228095854,"dateAdded":3420707763598526,"discCount":1240890049794908,"discNumber":609336615184624,"isExplicitItem":2331833563485834,"genre":3128513100100142,"genrePersistentID":1208657852066719,"lastPlayedDate":1023644680922011,"lyrics":3415865977834415,"mediaType":4039096155789217,"persistentID":1952792832924300,"playCount":3794590949940479,"playbackDuration":4103917648531103,"playbackStoreID":2317852902527607,"podcastPersistentID":978822527480475,"podcastTitle":1398182904380431,"isPreorder":542708585575569,"hasProtectedAsset":2136542428079722,"rating":4334672459825188,"releaseDate":294360540565983,"skipCount":2742473044979455,"title":4074186762124323,"userGrouping":2561686292123313} });
+registerSDKClass("MPMediaItemAnimatedArtwork", MPMediaItemAnimatedArtwork, { module: "MediaPlayer_212edf3d13b127f5", properties: {} });
+registerSDKClass("MPMediaItemArtwork", MPMediaItemArtwork, { module: "MediaPlayer_212edf3d13b127f5", properties: {"bounds":1360363740894200,"imageCropRect":616753597135276}, methods: {"image":{"id":3956793718109444}} });
+registerSDKClass("MPMediaItemCollection", MPMediaItemCollection, { module: "MediaPlayer_212edf3d13b127f5", properties: {"count":1428051535569343,"items":26303964153426,"mediaTypes":2239199058797913,"representativeItem":544512636040307} });
+registerSDKClass("MPMediaLibrary", MPMediaLibrary, { module: "MediaPlayer_212edf3d13b127f5", properties: {"lastModifiedDate":959773737098265}, methods: {"addItem":{"id":2181085296982141,"hints":[null,{"callback":{"out":[]}}]},"beginGeneratingLibraryChangeNotifications":{"id":3682273109105990},"endGeneratingLibraryChangeNotifications":{"id":1666647781125736},"getPlaylist":{"id":2417508673002697,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("MPMediaPickerController", MPMediaPickerController, { module: "MediaPlayer_212edf3d13b127f5", properties: {"allowsPickingMultipleItems":1755196822351550,"delegate":777216915606519,"mediaTypes":3068669634491627,"prompt":920339820205072,"showsCloudItems":3749171069647024,"showsItemsWithProtectedAssets":4337801107240805} });
 registerSDKProtocol("c:objc(pl)MPMediaPickerControllerDelegate", {"mediaPickerDidPickMediaItems":"mediaPicker(_:didPickMediaItems:)","mediaPickerDidCancel":"mediaPickerDidCancel(_:)"});
 registerSDKProtocol("c:objc(pl)MPMediaPlayback", {"prepareToPlay":"prepareToPlay()","play":"play()","pause":"pause()","stop":"stop()","beginSeekingForward":"beginSeekingForward()","beginSeekingBackward":"beginSeekingBackward()","endSeeking":"endSeeking()"});
-registerSDKClass("MPMediaPlaylist", MPMediaPlaylist, { module: "MediaPlayer_0e503aef608672fa", properties: {"authorDisplayName":4119632613398846,"cloudGlobalID":1796330261623619,"descriptionText":166093557890014,"name":3929961260732162,"persistentID":4137139009922572,"playlistAttributes":4101567179167021,"seedItems":2758281254964383}, methods: {"addItem":{"id":1045225802162716,"hints":[null,{"callback":{"out":[]}}]},"add":{"id":1815910739273108,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("MPMediaPlaylistCreationMetadata", MPMediaPlaylistCreationMetadata, { module: "MediaPlayer_0e503aef608672fa", properties: {"authorDisplayName":1852363236969852,"descriptionText":1998946848658379,"name":1620417416266501} });
-registerSDKClass("MPMediaPredicate", MPMediaPredicate, { module: "MediaPlayer_0e503aef608672fa", properties: {} });
-registerSDKClass("MPMediaPropertyPredicate", MPMediaPropertyPredicate, { module: "MediaPlayer_0e503aef608672fa", properties: {"comparisonType":3824502005814643,"property":3249743302648449,"value":1456001851848103} });
-registerSDKClass("MPMediaQuery", MPMediaQuery, { module: "MediaPlayer_0e503aef608672fa", properties: {"collectionSections":277079504824178,"collections":3799534101411018,"filterPredicates":3218646446768170,"groupingType":1345391306801365,"itemSections":4353846280571403,"items":1790415924302459}, methods: {"addFilterPredicate":{"id":872335649059612},"removeFilterPredicate":{"id":1769446953710421}} });
-registerSDKClass("MPMediaQuerySection", MPMediaQuerySection, { module: "MediaPlayer_0e503aef608672fa", properties: {"range":3731828121588013,"title":773177357705313} });
-registerSDKClass("MPMovieAccessLog", MPMovieAccessLog, { module: "MediaPlayer_0e503aef608672fa", properties: {"events":2556532367764128,"extendedLogData":731943862426212,"extendedLogDataStringEncoding":2859014000182164} });
-registerSDKClass("MPMovieAccessLogEvent", MPMovieAccessLogEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"uri":2828234354187908,"durationWatched":395379260739719,"indicatedBitrate":3079754957129663,"numberOfBytesTransferred":3724556109470873,"numberOfDroppedVideoFrames":479730066233654,"numberOfSegmentsDownloaded":3386321227056340,"numberOfServerAddressChanges":3373234562012164,"numberOfStalls":3776424604663941,"observedBitrate":4245814156190451,"playbackSessionID":5963373222733,"playbackStartDate":1130946079915099,"playbackStartOffset":2864998656362803,"segmentsDownloadedDuration":182530263422450,"serverAddress":1822657402764950} });
-registerSDKClass("MPMovieErrorLog", MPMovieErrorLog, { module: "MediaPlayer_0e503aef608672fa", properties: {"events":3607275995905021,"extendedLogData":1847601645759246,"extendedLogDataStringEncoding":1045007073352910} });
-registerSDKClass("MPMovieErrorLogEvent", MPMovieErrorLogEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"uri":2236339684930135,"date":4306280319300908,"errorComment":4475053738063829,"errorDomain":2583036926544191,"errorStatusCode":448923187061829,"playbackSessionID":2052237844362029,"serverAddress":269512748802796} });
-registerSDKClass("MPMoviePlayerController", MPMoviePlayerController, { module: "MediaPlayer_0e503aef608672fa", properties: {"accessLog":4002630806126421,"isAirPlayVideoActive":2594054965432691,"allowsAirPlay":2318036198000711,"backgroundView":4260000271557132,"contentURL":1460313188052871,"controlStyle":4458510637559307,"duration":2942240096630619,"endPlaybackTime":1216180603047713,"errorLog":27891711396617,"isFullscreen":4192914733937009,"initialPlaybackTime":1339332308199552,"loadState":1680078082298671,"movieMediaTypes":2055001085351614,"movieSourceType":3212194666545545,"naturalSize":888914727394221,"playableDuration":2791433390468484,"playbackState":153174546869976,"readyForDisplay":4283934881744171,"repeatMode":4198792361991971,"scalingMode":2230672544565415,"shouldAutoplay":2075313982717387,"timedMetadata":3765032337391464,"useApplicationAudioSession":259903872108924,"view":1675285961438552}, methods: {"cancelAllThumbnailImageRequests":{"id":2677746729257550},"requestThumbnailImages":{"id":1805044199724731},"setFullscreen":{"id":2278873080215571},"thumbnailImage":{"id":3772031623627988}} });
-registerSDKClass("MPMoviePlayerViewController", MPMoviePlayerViewController, { module: "MediaPlayer_0e503aef608672fa", properties: {"moviePlayer":3021482900986353} });
-registerSDKClass("MPMusicPlayerController", MPMusicPlayerController, { module: "MediaPlayer_0e503aef608672fa", properties: {"indexOfNowPlayingItem":2059763222926791,"nowPlayingItem":2894642009460153,"playbackState":2587640254838402,"repeatMode":1166936590722089,"shuffleMode":3721169900595433}, methods: {"append":{"id":649256958056033},"beginGeneratingPlaybackNotifications":{"id":4426353788432954},"endGeneratingPlaybackNotifications":{"id":238228494297098},"prepareToPlay":{"id":1597761879837120,"hints":[{"callback":{"out":[]}}]},"prepend":{"id":2458308044952683},"setQueueWith":{"id":2997665429176826},"setQueueWith17497":{"id":163682434003962},"setQueueWith78008":{"id":1927230378325813},"setQueueWith89099":{"id":132006534126164},"skipToBeginning":{"id":1212384751975313},"skipToNextItem":{"id":3925994456289788},"skipToPreviousItem":{"id":2957670509792454}} });
-registerSDKClass("MPMusicPlayerApplicationController", MPMusicPlayerApplicationController, { module: "MediaPlayer_0e503aef608672fa", properties: {}, methods: {"perform":{"id":3478167892713496,"hints":[{"callback":{"out":[]}},{"callback":{"out":[]}}]}} });
-registerSDKClass("MPMusicPlayerControllerQueue", MPMusicPlayerControllerQueue, { module: "MediaPlayer_0e503aef608672fa", properties: {"items":1947877749390126} });
-registerSDKClass("MPMusicPlayerControllerMutableQueue", MPMusicPlayerControllerMutableQueue, { module: "MediaPlayer_0e503aef608672fa", properties: {}, methods: {"insert":{"id":2470573748851195},"remove":{"id":272201944715416}} });
-registerSDKClass("MPMusicPlayerQueueDescriptor", MPMusicPlayerQueueDescriptor, { module: "MediaPlayer_0e503aef608672fa", properties: {} });
-registerSDKClass("MPMusicPlayerMediaItemQueueDescriptor", MPMusicPlayerMediaItemQueueDescriptor, { module: "MediaPlayer_0e503aef608672fa", properties: {"itemCollection":1805176126942766,"query":4404283391639322,"startItem":4159766855526305}, methods: {"setEndTime":{"id":1005153004540610},"setStartTime":{"id":4319686617495524}} });
-registerSDKClass("MPMusicPlayerPlayParameters", MPMusicPlayerPlayParameters, { module: "MediaPlayer_0e503aef608672fa", properties: {"dictionary":4086827292736944} });
-registerSDKClass("MPMusicPlayerPlayParametersQueueDescriptor", MPMusicPlayerPlayParametersQueueDescriptor, { module: "MediaPlayer_0e503aef608672fa", properties: {"playParametersQueue":1257892179590773,"startItemPlayParameters":3602597231086709}, methods: {"setEndTime":{"id":3163510114708418},"setStartTime":{"id":2784751632963960}} });
-registerSDKClass("MPMusicPlayerStoreQueueDescriptor", MPMusicPlayerStoreQueueDescriptor, { module: "MediaPlayer_0e503aef608672fa", properties: {"startItemID":1556678957136702,"storeIDs":1386080205866901}, methods: {"setEndTime":{"id":213902595228667},"setStartTime":{"id":959711431234613}} });
-registerSDKClass("MPNowPlayingInfoCenter", MPNowPlayingInfoCenter, { module: "MediaPlayer_0e503aef608672fa", properties: {"nowPlayingInfo":3762918669515569,"playbackState":1465088211590869} });
-registerSDKClass("MPNowPlayingInfoLanguageOption", MPNowPlayingInfoLanguageOption, { module: "MediaPlayer_0e503aef608672fa", properties: {"displayName":2895567730225958,"identifier":3874734653260217,"languageOptionCharacteristics":186645886307159,"languageOptionType":2412521684147994,"languageTag":3305907348441247}, methods: {"isAutomaticAudibleLanguageOption":{"id":828219247189427},"isAutomaticLegibleLanguageOption":{"id":2284403011958260}} });
-registerSDKClass("MPNowPlayingInfoLanguageOptionGroup", MPNowPlayingInfoLanguageOptionGroup, { module: "MediaPlayer_0e503aef608672fa", properties: {"allowEmptySelection":1501090651043208,"defaultLanguageOption":3645471780992235,"languageOptions":3434100552615329} });
-registerSDKClass("MPNowPlayingSession", MPNowPlayingSession, { module: "MediaPlayer_0e503aef608672fa", properties: {"isActive":2962966698810947,"automaticallyPublishesNowPlayingInfo":1659280693029051,"canBecomeActive":1148481970437997,"delegate":744141056037135,"nowPlayingInfoCenter":1631112623453879,"players":211177079224631,"remoteCommandCenter":3790927524261705}, methods: {"addPlayer":{"id":1452259704467469},"becomeActiveIfPossible":{"id":1866755460748771,"hints":[{"callback":{"out":[]}}]},"removePlayer":{"id":491794185459602}} });
+registerSDKClass("MPMediaPlaylist", MPMediaPlaylist, { module: "MediaPlayer_212edf3d13b127f5", properties: {"authorDisplayName":4119632613398846,"cloudGlobalID":1796330261623619,"descriptionText":166093557890014,"name":3929961260732162,"persistentID":4137139009922572,"playlistAttributes":4101567179167021,"seedItems":2758281254964383}, methods: {"addItem":{"id":1045225802162716,"hints":[null,{"callback":{"out":[]}}]},"add":{"id":1815910739273108,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("MPMediaPlaylistCreationMetadata", MPMediaPlaylistCreationMetadata, { module: "MediaPlayer_212edf3d13b127f5", properties: {"authorDisplayName":1852363236969852,"descriptionText":1998946848658379,"name":1620417416266501} });
+registerSDKClass("MPMediaPredicate", MPMediaPredicate, { module: "MediaPlayer_212edf3d13b127f5", properties: {} });
+registerSDKClass("MPMediaPropertyPredicate", MPMediaPropertyPredicate, { module: "MediaPlayer_212edf3d13b127f5", properties: {"comparisonType":3824502005814643,"property":3249743302648449,"value":1456001851848103} });
+registerSDKClass("MPMediaQuery", MPMediaQuery, { module: "MediaPlayer_212edf3d13b127f5", properties: {"collectionSections":277079504824178,"collections":3799534101411018,"filterPredicates":3218646446768170,"groupingType":1345391306801365,"itemSections":4353846280571403,"items":1790415924302459}, methods: {"addFilterPredicate":{"id":872335649059612},"removeFilterPredicate":{"id":1769446953710421}} });
+registerSDKClass("MPMediaQuerySection", MPMediaQuerySection, { module: "MediaPlayer_212edf3d13b127f5", properties: {"range":3731828121588013,"title":773177357705313} });
+registerSDKClass("MPMovieAccessLog", MPMovieAccessLog, { module: "MediaPlayer_212edf3d13b127f5", properties: {"events":2556532367764128,"extendedLogData":731943862426212,"extendedLogDataStringEncoding":2859014000182164} });
+registerSDKClass("MPMovieAccessLogEvent", MPMovieAccessLogEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"uri":2828234354187908,"durationWatched":395379260739719,"indicatedBitrate":3079754957129663,"numberOfBytesTransferred":3724556109470873,"numberOfDroppedVideoFrames":479730066233654,"numberOfSegmentsDownloaded":3386321227056340,"numberOfServerAddressChanges":3373234562012164,"numberOfStalls":3776424604663941,"observedBitrate":4245814156190451,"playbackSessionID":5963373222733,"playbackStartDate":1130946079915099,"playbackStartOffset":2864998656362803,"segmentsDownloadedDuration":182530263422450,"serverAddress":1822657402764950} });
+registerSDKClass("MPMovieErrorLog", MPMovieErrorLog, { module: "MediaPlayer_212edf3d13b127f5", properties: {"events":3607275995905021,"extendedLogData":1847601645759246,"extendedLogDataStringEncoding":1045007073352910} });
+registerSDKClass("MPMovieErrorLogEvent", MPMovieErrorLogEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"uri":2236339684930135,"date":4306280319300908,"errorComment":4475053738063829,"errorDomain":2583036926544191,"errorStatusCode":448923187061829,"playbackSessionID":2052237844362029,"serverAddress":269512748802796} });
+registerSDKClass("MPMoviePlayerController", MPMoviePlayerController, { module: "MediaPlayer_212edf3d13b127f5", properties: {"accessLog":4002630806126421,"isAirPlayVideoActive":2594054965432691,"allowsAirPlay":2318036198000711,"backgroundView":4260000271557132,"contentURL":1460313188052871,"controlStyle":4458510637559307,"duration":2942240096630619,"endPlaybackTime":1216180603047713,"errorLog":27891711396617,"isFullscreen":4192914733937009,"initialPlaybackTime":1339332308199552,"loadState":1680078082298671,"movieMediaTypes":2055001085351614,"movieSourceType":3212194666545545,"naturalSize":888914727394221,"playableDuration":2791433390468484,"playbackState":153174546869976,"readyForDisplay":4283934881744171,"repeatMode":4198792361991971,"scalingMode":2230672544565415,"shouldAutoplay":2075313982717387,"timedMetadata":3765032337391464,"useApplicationAudioSession":259903872108924,"view":1675285961438552}, methods: {"cancelAllThumbnailImageRequests":{"id":2677746729257550},"requestThumbnailImages":{"id":1805044199724731},"setFullscreen":{"id":2278873080215571},"thumbnailImage":{"id":3772031623627988}} });
+registerSDKClass("MPMoviePlayerViewController", MPMoviePlayerViewController, { module: "MediaPlayer_212edf3d13b127f5", properties: {"moviePlayer":3021482900986353} });
+registerSDKClass("MPMusicPlayerController", MPMusicPlayerController, { module: "MediaPlayer_212edf3d13b127f5", properties: {"indexOfNowPlayingItem":2059763222926791,"nowPlayingItem":2894642009460153,"playbackState":2587640254838402,"repeatMode":1166936590722089,"shuffleMode":3721169900595433}, methods: {"append":{"id":649256958056033},"beginGeneratingPlaybackNotifications":{"id":4426353788432954},"endGeneratingPlaybackNotifications":{"id":238228494297098},"prepareToPlay":{"id":1597761879837120,"hints":[{"callback":{"out":[]}}]},"prepend":{"id":2458308044952683},"setQueueWith":{"id":2997665429176826},"setQueueWith17497":{"id":163682434003962},"setQueueWith78008":{"id":1927230378325813},"setQueueWith89099":{"id":132006534126164},"skipToBeginning":{"id":1212384751975313},"skipToNextItem":{"id":3925994456289788},"skipToPreviousItem":{"id":2957670509792454}} });
+registerSDKClass("MPMusicPlayerApplicationController", MPMusicPlayerApplicationController, { module: "MediaPlayer_212edf3d13b127f5", properties: {}, methods: {"perform":{"id":3478167892713496,"hints":[{"callback":{"out":[]}},{"callback":{"out":[]}}]}} });
+registerSDKClass("MPMusicPlayerControllerQueue", MPMusicPlayerControllerQueue, { module: "MediaPlayer_212edf3d13b127f5", properties: {"items":1947877749390126} });
+registerSDKClass("MPMusicPlayerControllerMutableQueue", MPMusicPlayerControllerMutableQueue, { module: "MediaPlayer_212edf3d13b127f5", properties: {}, methods: {"insert":{"id":2470573748851195},"remove":{"id":272201944715416}} });
+registerSDKClass("MPMusicPlayerQueueDescriptor", MPMusicPlayerQueueDescriptor, { module: "MediaPlayer_212edf3d13b127f5", properties: {} });
+registerSDKClass("MPMusicPlayerMediaItemQueueDescriptor", MPMusicPlayerMediaItemQueueDescriptor, { module: "MediaPlayer_212edf3d13b127f5", properties: {"itemCollection":1805176126942766,"query":4404283391639322,"startItem":4159766855526305}, methods: {"setEndTime":{"id":1005153004540610},"setStartTime":{"id":4319686617495524}} });
+registerSDKClass("MPMusicPlayerPlayParameters", MPMusicPlayerPlayParameters, { module: "MediaPlayer_212edf3d13b127f5", properties: {"dictionary":4086827292736944} });
+registerSDKClass("MPMusicPlayerPlayParametersQueueDescriptor", MPMusicPlayerPlayParametersQueueDescriptor, { module: "MediaPlayer_212edf3d13b127f5", properties: {"playParametersQueue":1257892179590773,"startItemPlayParameters":3602597231086709}, methods: {"setEndTime":{"id":3163510114708418},"setStartTime":{"id":2784751632963960}} });
+registerSDKClass("MPMusicPlayerStoreQueueDescriptor", MPMusicPlayerStoreQueueDescriptor, { module: "MediaPlayer_212edf3d13b127f5", properties: {"startItemID":1556678957136702,"storeIDs":1386080205866901}, methods: {"setEndTime":{"id":213902595228667},"setStartTime":{"id":959711431234613}} });
+registerSDKClass("MPNowPlayingInfoCenter", MPNowPlayingInfoCenter, { module: "MediaPlayer_212edf3d13b127f5", properties: {"nowPlayingInfo":3762918669515569,"playbackState":1465088211590869} });
+registerSDKClass("MPNowPlayingInfoLanguageOption", MPNowPlayingInfoLanguageOption, { module: "MediaPlayer_212edf3d13b127f5", properties: {"displayName":2895567730225958,"identifier":3874734653260217,"languageOptionCharacteristics":186645886307159,"languageOptionType":2412521684147994,"languageTag":3305907348441247}, methods: {"isAutomaticAudibleLanguageOption":{"id":828219247189427},"isAutomaticLegibleLanguageOption":{"id":2284403011958260}} });
+registerSDKClass("MPNowPlayingInfoLanguageOptionGroup", MPNowPlayingInfoLanguageOptionGroup, { module: "MediaPlayer_212edf3d13b127f5", properties: {"allowEmptySelection":1501090651043208,"defaultLanguageOption":3645471780992235,"languageOptions":3434100552615329} });
+registerSDKClass("MPNowPlayingSession", MPNowPlayingSession, { module: "MediaPlayer_212edf3d13b127f5", properties: {"isActive":2962966698810947,"automaticallyPublishesNowPlayingInfo":1659280693029051,"canBecomeActive":1148481970437997,"delegate":744141056037135,"nowPlayingInfoCenter":1631112623453879,"players":211177079224631,"remoteCommandCenter":3790927524261705}, methods: {"addPlayer":{"id":1452259704467469},"becomeActiveIfPossible":{"id":1866755460748771,"hints":[{"callback":{"out":[]}}]},"removePlayer":{"id":491794185459602}} });
 registerSDKProtocol("c:objc(pl)MPNowPlayingSessionDelegate", {"nowPlayingSessionDidChangeActive":"nowPlayingSessionDidChangeActive(_:)","nowPlayingSessionDidChangeCanBecomeActive":"nowPlayingSessionDidChangeCanBecomeActive(_:)"});
-registerSDKProtocol("c:objc(pl)MPPlayableContentDataSource", {"numberOfChildItemsAt":"numberOfChildItems(at:)","contentItemAt":"contentItem(at:)"});
-registerSDKProtocol("c:objc(pl)MPPlayableContentDelegate", {"playableContentManagerDidUpdate":"playableContentManager(_:didUpdate:)"});
-registerSDKClass("MPPlayableContentManager", MPPlayableContentManager, { module: "MediaPlayer_0e503aef608672fa", properties: {"context":1732138880026074,"dataSource":625933969756086,"delegate":4463283986271079,"nowPlayingIdentifiers":2405247707280106}, methods: {"beginUpdates":{"id":2762790989797379},"endUpdates":{"id":4184212084793887},"reloadData":{"id":1798851047874623}} });
-registerSDKClass("MPPlayableContentManagerContext", MPPlayableContentManagerContext, { module: "MediaPlayer_0e503aef608672fa", properties: {"contentLimitsEnabled":3857940610680842,"contentLimitsEnforced":493016199479006,"endpointAvailable":1698250110292702,"enforcedContentItemsCount":1198194643197274,"enforcedContentTreeDepth":2718888682204479} });
-registerSDKClass("MPRatingCommand", MPRatingCommand, { module: "MediaPlayer_0e503aef608672fa", properties: {"maximumRating":1567852209895744,"minimumRating":460545524161891} });
-registerSDKClass("MPRatingCommandEvent", MPRatingCommandEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"rating":2951702235551472} });
-registerSDKClass("MPRemoteCommandCenter", MPRemoteCommandCenter, { module: "MediaPlayer_0e503aef608672fa", properties: {"bookmarkCommand":4410737113776677,"changePlaybackPositionCommand":1548843422278607,"changePlaybackRateCommand":4053792563388315,"changeRepeatModeCommand":4161976384339097,"changeShuffleModeCommand":825212271024605,"disableLanguageOptionCommand":4444579100836040,"dislikeCommand":1912928487535402,"enableLanguageOptionCommand":73431407981051,"likeCommand":1827523973771135,"nextTrackCommand":1726181676501408,"pauseCommand":2451582468669894,"playCommand":1278433272370780,"previousTrackCommand":3904663065358672,"ratingCommand":564260833461595,"seekBackwardCommand":4053145580012273,"seekForwardCommand":2154592194514114,"skipBackwardCommand":2038683653823247,"skipForwardCommand":2872767369868147,"stopCommand":4368860072872353,"togglePlayPauseCommand":4159829136287741} });
-registerSDKClass("MPSeekCommandEvent", MPSeekCommandEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"type":2649173018265049} });
-registerSDKClass("MPSkipIntervalCommand", MPSkipIntervalCommand, { module: "MediaPlayer_0e503aef608672fa", properties: {"preferredIntervals":1650913588976202} });
-registerSDKClass("MPSkipIntervalCommandEvent", MPSkipIntervalCommandEvent, { module: "MediaPlayer_0e503aef608672fa", properties: {"interval":1571255706487026} });
+registerSDKProtocol("c:objc(pl)MPPlayableContentDataSource", {"beginLoadingChildItemsAt":"beginLoadingChildItems(at:)","contentItemForIdentifier":"contentItem(forIdentifier:)","numberOfChildItemsAt":"numberOfChildItems(at:)","contentItemAt":"contentItem(at:)"});
+registerSDKProtocol("c:objc(pl)MPPlayableContentDelegate", {"playableContentManagerInitiatePlaybackOfContentItemAt":"playableContentManager(_:initiatePlaybackOfContentItemAt:)","playableContentManagerDidUpdate":"playableContentManager(_:didUpdate:)"});
+registerSDKClass("MPPlayableContentManager", MPPlayableContentManager, { module: "MediaPlayer_212edf3d13b127f5", properties: {"context":1732138880026074,"dataSource":625933969756086,"delegate":4463283986271079,"nowPlayingIdentifiers":2405247707280106}, methods: {"beginUpdates":{"id":2762790989797379},"endUpdates":{"id":4184212084793887},"reloadData":{"id":1798851047874623}} });
+registerSDKClass("MPPlayableContentManagerContext", MPPlayableContentManagerContext, { module: "MediaPlayer_212edf3d13b127f5", properties: {"contentLimitsEnabled":3857940610680842,"contentLimitsEnforced":493016199479006,"endpointAvailable":1698250110292702,"enforcedContentItemsCount":1198194643197274,"enforcedContentTreeDepth":2718888682204479} });
+registerSDKClass("MPRatingCommand", MPRatingCommand, { module: "MediaPlayer_212edf3d13b127f5", properties: {"maximumRating":1567852209895744,"minimumRating":460545524161891} });
+registerSDKClass("MPRatingCommandEvent", MPRatingCommandEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"rating":2951702235551472} });
+registerSDKClass("MPRemoteCommandCenter", MPRemoteCommandCenter, { module: "MediaPlayer_212edf3d13b127f5", properties: {"bookmarkCommand":4410737113776677,"changePlaybackPositionCommand":1548843422278607,"changePlaybackRateCommand":4053792563388315,"changeRepeatModeCommand":4161976384339097,"changeShuffleModeCommand":825212271024605,"disableLanguageOptionCommand":4444579100836040,"dislikeCommand":1912928487535402,"enableLanguageOptionCommand":73431407981051,"likeCommand":1827523973771135,"nextTrackCommand":1726181676501408,"pauseCommand":2451582468669894,"playCommand":1278433272370780,"previousTrackCommand":3904663065358672,"ratingCommand":564260833461595,"seekBackwardCommand":4053145580012273,"seekForwardCommand":2154592194514114,"skipBackwardCommand":2038683653823247,"skipForwardCommand":2872767369868147,"stopCommand":4368860072872353,"togglePlayPauseCommand":4159829136287741} });
+registerSDKClass("MPSeekCommandEvent", MPSeekCommandEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"type":2649173018265049} });
+registerSDKClass("MPSkipIntervalCommand", MPSkipIntervalCommand, { module: "MediaPlayer_212edf3d13b127f5", properties: {"preferredIntervals":1650913588976202} });
+registerSDKClass("MPSkipIntervalCommandEvent", MPSkipIntervalCommandEvent, { module: "MediaPlayer_212edf3d13b127f5", properties: {"interval":1571255706487026} });
 registerSDKProtocol("c:objc(pl)MPSystemMusicPlayerController", {"openToPlay":"openToPlay(_:)"});
-registerSDKClass("MPTimedMetadata", MPTimedMetadata, { module: "MediaPlayer_0e503aef608672fa", properties: {"allMetadata":4131888185429861,"key":1033693743300974,"keyspace":444219945363653,"timestamp":2352362417758932,"value":2058999111232541} });
-registerSDKClass("MPVolumeView", MPVolumeView, { module: "MediaPlayer_0e503aef608672fa", properties: {"showsRouteButton":3941529543077126,"showsVolumeSlider":1721510641885300,"volumeWarningSliderImage":1195930950903234,"isWirelessRouteActive":3298913118140313,"areWirelessRoutesAvailable":3848308105665080}, methods: {"maximumVolumeSliderImage":{"id":2976929709530829},"minimumVolumeSliderImage":{"id":72632537989557},"routeButtonImage":{"id":2223799011810975},"routeButtonRect":{"id":2328327118968125},"setMaximumVolumeSliderImage":{"id":360573147831565},"setMinimumVolumeSliderImage":{"id":1776677704685601},"setRouteButtonImage":{"id":674892635974124},"setVolumeThumbImage":{"id":455219830885508},"volumeSliderRect":{"id":357509821998774},"volumeThumbImage":{"id":1816655325306250},"volumeThumbRect":{"id":2382720689063013}} });
-registerSDKClass("NSUserActivity", NSUserActivity, { module: "MediaPlayer_0e503aef608672fa", properties: {"externalMediaContentIdentifier":666909777292237} }, true);
-registerSDKClass("UIViewController", UIViewController, { module: "MediaPlayer_0e503aef608672fa", properties: {}, methods: {"dismissMoviePlayerViewControllerAnimated":{"id":91277921079811},"presentMoviePlayerViewControllerAnimated":{"id":4398114192464455}} }, true);
+registerSDKClass("MPTimedMetadata", MPTimedMetadata, { module: "MediaPlayer_212edf3d13b127f5", properties: {"allMetadata":4131888185429861,"key":1033693743300974,"keyspace":444219945363653,"timestamp":2352362417758932,"value":2058999111232541} });
+registerSDKClass("MPVolumeView", MPVolumeView, { module: "MediaPlayer_212edf3d13b127f5", properties: {"showsRouteButton":3941529543077126,"showsVolumeSlider":1721510641885300,"volumeWarningSliderImage":1195930950903234,"isWirelessRouteActive":3298913118140313,"areWirelessRoutesAvailable":3848308105665080}, methods: {"maximumVolumeSliderImage":{"id":2976929709530829},"minimumVolumeSliderImage":{"id":72632537989557},"routeButtonImage":{"id":2223799011810975},"routeButtonRect":{"id":2328327118968125},"setMaximumVolumeSliderImage":{"id":360573147831565},"setMinimumVolumeSliderImage":{"id":1776677704685601},"setRouteButtonImage":{"id":674892635974124},"setVolumeThumbImage":{"id":455219830885508},"volumeSliderRect":{"id":357509821998774},"volumeThumbImage":{"id":1816655325306250},"volumeThumbRect":{"id":2382720689063013}} });
+registerSDKClass("NSUserActivity", NSUserActivity, { module: "MediaPlayer_212edf3d13b127f5", properties: {"externalMediaContentIdentifier":666909777292237} }, true);
+registerSDKClass("UIViewController", UIViewController, { module: "MediaPlayer_212edf3d13b127f5", properties: {}, methods: {"dismissMoviePlayerViewControllerAnimated":{"id":91277921079811},"presentMoviePlayerViewControllerAnimated":{"id":4398114192464455}} }, true);

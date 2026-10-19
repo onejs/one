@@ -2077,7 +2077,7 @@ export interface NEHotspotAuthenticationProvider {
      * func start() async -> Bool
      * @availability iOS 26.0+
      */
-    "start"?: () => boolean;
+    "start"?: () => Promise<boolean>;
     /**
      * func stop(reason: NEProviderStopReason) async
      * @availability iOS 26.0+
@@ -2087,7 +2087,7 @@ export interface NEHotspotAuthenticationProvider {
      * func handleCommand(_ command: NEHotspotHelperCommand) async -> NEHotspotHelperResponse
      * @availability iOS 26.0+
      */
-    "handleCommand"?: (arg0: NEHotspotHelperCommand) => NEHotspotHelperResponse;
+    "handleCommand"?: (arg0: NEHotspotHelperCommand) => Promise<NEHotspotHelperResponse>;
 }
 /**
  * @MainActor @preconcurrency class NEHotspotAuthenticationProviderConfiguration
@@ -2361,7 +2361,7 @@ export interface NEHotspotEvaluationProvider {
      * func start() async -> Bool
      * @availability iOS 26.0+
      */
-    "start"?: () => boolean;
+    "start"?: () => Promise<boolean>;
     /**
      * func stop(reason: NEProviderStopReason) async
      * @availability iOS 26.0+
@@ -2371,7 +2371,7 @@ export interface NEHotspotEvaluationProvider {
      * func handleCommand(_ command: NEHotspotHelperCommand) async -> NEHotspotHelperResponse
      * @availability iOS 26.0+
      */
-    "handleCommand"?: (arg0: NEHotspotHelperCommand) => NEHotspotHelperResponse;
+    "handleCommand"?: (arg0: NEHotspotHelperCommand) => Promise<NEHotspotHelperResponse>;
 }
 /**
  * @MainActor @preconcurrency class NEHotspotEvaluationProviderConfiguration
@@ -3906,7 +3906,7 @@ export interface NEURLFilterControlProvider {
      * func fetchPrefilter(existingPrefilterTag: String?) async throws -> NEURLFilterPrefilter?
      * @availability iOS 26.0+
      */
-    "fetchPrefilterExistingPrefilterTag"?: (arg0: (string) | null) => (NEURLFilterPrefilter) | null;
+    "fetchPrefilterExistingPrefilterTag"?: (arg0: (string) | null) => Promise<(NEURLFilterPrefilter) | null>;
 }
 /**
  * @MainActor @preconcurrency class NEURLFilterControlProviderConfiguration

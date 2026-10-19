@@ -99,24 +99,24 @@ export class CHHapticDynamicParameter extends SDKHandle {
    * init(parameterID: CHHapticDynamicParameter.ID, value: Float, relativeTime time: TimeInterval)
    * @availability iOS 13.0+
    */
-  static init(parameterID: CHHapticDynamicParameter_ID, value: number, time: number): CHHapticDynamicParameter { return callSDK<CHHapticDynamicParameter>("CoreHaptics_0e503aef608672fa", 3776499197488224, undefined, [parameterID, value, time]); }
+  static init(parameterID: CHHapticDynamicParameter_ID, value: number, time: number): CHHapticDynamicParameter { return callSDK<CHHapticDynamicParameter>("CoreHaptics_212edf3d13b127f5", 3776499197488224, undefined, [parameterID, value, time]); }
   /**
    * var parameterID: CHHapticDynamicParameter.ID { get }
    * @availability iOS 13.0+
    */
-  get parameterID(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 4074252043889870, this, []); }
+  get parameterID(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 4074252043889870, this, []); }
   /**
    * var relativeTime: TimeInterval { get set }
    * @availability iOS 13.0+
    */
-  get relativeTime(): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 3139825840089551, this, []); }
-  set relativeTime(value: number) { callSDK<void>("CoreHaptics_0e503aef608672fa", 4073507547499552, this, [value]); }
+  get relativeTime(): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 3139825840089551, this, []); }
+  set relativeTime(value: number) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 4073507547499552, this, [value]); }
   /**
    * var value: Float { get set }
    * @availability iOS 13.0+
    */
-  get value(): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 2340367146978628, this, []); }
-  set value(value: number) { callSDK<void>("CoreHaptics_0e503aef608672fa", 1005436552042206, this, [value]); }
+  get value(): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 2340367146978628, this, []); }
+  set value(value: number) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 1005436552042206, this, [value]); }
   declare readonly $type: { "c:objc(cs)CHHapticDynamicParameter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "parameterID": true; "relativeTime": true; "value": true };
 }
@@ -129,64 +129,64 @@ export const CHHapticDynamicParameter_ID = {
    * static let audioAttackTimeControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get audioAttackTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 3056770635130705, undefined, []); },
+  get audioAttackTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 3056770635130705, undefined, []); },
   /**
    * static let audioBrightnessControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get audioBrightnessControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 2309871662868759, undefined, []); },
+  get audioBrightnessControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 2309871662868759, undefined, []); },
   /**
    * static let audioDecayTimeControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get audioDecayTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 1545789369684942, undefined, []); },
+  get audioDecayTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 1545789369684942, undefined, []); },
   /**
    * static let audioPanControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get audioPanControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 2130118574655502, undefined, []); },
+  get audioPanControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 2130118574655502, undefined, []); },
   /**
    * static let audioPitchControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get audioPitchControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 1903343056389173, undefined, []); },
+  get audioPitchControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 1903343056389173, undefined, []); },
   /**
    * static let audioReleaseTimeControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get audioReleaseTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 2269611194599853, undefined, []); },
+  get audioReleaseTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 2269611194599853, undefined, []); },
   /**
    * static let audioVolumeControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get audioVolumeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 1651589537851374, undefined, []); },
+  get audioVolumeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 1651589537851374, undefined, []); },
   /**
    * static let hapticAttackTimeControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get hapticAttackTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 1932120273663007, undefined, []); },
+  get hapticAttackTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 1932120273663007, undefined, []); },
   /**
    * static let hapticDecayTimeControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get hapticDecayTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 3433684273143216, undefined, []); },
+  get hapticDecayTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 3433684273143216, undefined, []); },
   /**
    * static let hapticIntensityControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get hapticIntensityControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 1970016321790413, undefined, []); },
+  get hapticIntensityControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 1970016321790413, undefined, []); },
   /**
    * static let hapticReleaseTimeControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get hapticReleaseTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 496457257433345, undefined, []); },
+  get hapticReleaseTimeControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 496457257433345, undefined, []); },
   /**
    * static let hapticSharpnessControl: CHHapticDynamicParameter.ID
    * @availability iOS 13.0+
    */
-  get hapticSharpnessControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 1656528157868678, undefined, []); },
+  get hapticSharpnessControl(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 1656528157868678, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 1351189004312019, undefined, [rawValue]); }
+  init(rawValue: string): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 1351189004312019, undefined, [rawValue]); }
 };
 
 /**
@@ -198,109 +198,109 @@ export class CHHapticEngine extends SDKHandle {
    * class func capabilitiesForHardware() -> any CHHapticDeviceCapability
    * @availability iOS 13.0+
    */
-  static capabilitiesForHardware(): SDKHandle { return callSDK<SDKHandle>("CoreHaptics_0e503aef608672fa", 4431544871172140, undefined, []); }
+  static capabilitiesForHardware(): SDKHandle { return callSDK<SDKHandle>("CoreHaptics_212edf3d13b127f5", 4431544871172140, undefined, []); }
   /**
    * func makeAdvancedPlayer(with pattern: CHHapticPattern) throws -> any CHHapticAdvancedPatternPlayer
    * @availability iOS 13.0+
    */
-  makeAdvancedPlayer(pattern: CHHapticPattern): SDKHandle { return callSDK<SDKHandle>("CoreHaptics_0e503aef608672fa", 3162856887202979, this, [pattern]); }
+  makeAdvancedPlayer(pattern: CHHapticPattern): SDKHandle { return callSDK<SDKHandle>("CoreHaptics_212edf3d13b127f5", 3162856887202979, this, [pattern]); }
   /**
    * func makePlayer(with pattern: CHHapticPattern) throws -> any CHHapticPatternPlayer
    * @availability iOS 13.0+
    */
-  makePlayer(pattern: CHHapticPattern): SDKHandle { return callSDK<SDKHandle>("CoreHaptics_0e503aef608672fa", 1551500957906500, this, [pattern]); }
+  makePlayer(pattern: CHHapticPattern): SDKHandle { return callSDK<SDKHandle>("CoreHaptics_212edf3d13b127f5", 1551500957906500, this, [pattern]); }
   /**
    * init() throws
    * @availability iOS 13.0+
    */
-  static init(): CHHapticEngine { return callSDK<CHHapticEngine>("CoreHaptics_0e503aef608672fa", 2283943412760835, undefined, []); }
+  static init(): CHHapticEngine { return callSDK<CHHapticEngine>("CoreHaptics_212edf3d13b127f5", 2283943412760835, undefined, []); }
   /**
    * init(audioSession: AVAudioSession?) throws
    * @availability iOS 13.0+
    */
-  static initAudioSession(audioSession?: (_AVFAudio_AVAudioSession) | null): CHHapticEngine { return callSDK<CHHapticEngine>("CoreHaptics_0e503aef608672fa", 4291269181210039, undefined, [audioSession]); }
+  static initAudioSession(audioSession?: (_AVFAudio_AVAudioSession) | null): CHHapticEngine { return callSDK<CHHapticEngine>("CoreHaptics_212edf3d13b127f5", 4291269181210039, undefined, [audioSession]); }
   /**
    * func playPattern(from data: Data) throws
    * @availability iOS 13.0+
    */
-  playPatternFrom(data: ArrayBuffer): void { return callSDK<void>("CoreHaptics_0e503aef608672fa", 491310902127741, this, [data]); }
+  playPatternFrom(data: ArrayBuffer): void { return callSDK<void>("CoreHaptics_212edf3d13b127f5", 491310902127741, this, [data]); }
   /**
    * func playPattern(from fileURL: URL) throws
    * @availability iOS 13.0+
    */
-  playPatternFrom83173(fileURL: string): void { return callSDK<void>("CoreHaptics_0e503aef608672fa", 3468113947837825, this, [fileURL]); }
+  playPatternFrom83173(fileURL: string): void { return callSDK<void>("CoreHaptics_212edf3d13b127f5", 3468113947837825, this, [fileURL]); }
   /**
    * func registerAudioResource(_ resourceURL: URL, options: [AnyHashable : Any] = [:]) throws -> CHHapticAudioResourceID
    * @availability iOS 13.0+
    */
-  registerAudioResource(resourceURL: string, options?: NativeMap<unknown, unknown>): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 842061320599723, this, [resourceURL, options]); }
+  registerAudioResource(resourceURL: string, options?: NativeMap<unknown, unknown>): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 842061320599723, this, [resourceURL, options]); }
   /**
    * func start() throws
    * @availability iOS 13.0+
    */
-  start(): void { return callSDK<void>("CoreHaptics_0e503aef608672fa", 4031226426624348, this, []); }
+  start(): void { return callSDK<void>("CoreHaptics_212edf3d13b127f5", 4031226426624348, this, []); }
   /**
    * func start() async throws
    * @availability iOS 13.0+
    */
-  startCompletionHandler(completionHandler?: $SDK4): void { return callSDK<void>("CoreHaptics_0e503aef608672fa", 368939679319461, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  startCompletionHandler(completionHandler?: $SDK4): void { return callSDK<void>("CoreHaptics_212edf3d13b127f5", 368939679319461, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func stop() async throws
    * @availability iOS 13.0+
    */
-  stop(completionHandler?: $SDK4): void { return callSDK<void>("CoreHaptics_0e503aef608672fa", 1263527532464175, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  stop(completionHandler?: $SDK4): void { return callSDK<void>("CoreHaptics_212edf3d13b127f5", 1263527532464175, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func unregisterAudioResource(_ resourceID: CHHapticAudioResourceID) throws
    * @availability iOS 13.0+
    */
-  unregisterAudioResource(resourceID: number): void { return callSDK<void>("CoreHaptics_0e503aef608672fa", 1230301231690515, this, [resourceID]); }
+  unregisterAudioResource(resourceID: number): void { return callSDK<void>("CoreHaptics_212edf3d13b127f5", 1230301231690515, this, [resourceID]); }
   /**
    * var isAutoShutdownEnabled: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isAutoShutdownEnabled(): boolean { return callSDK<boolean>("CoreHaptics_0e503aef608672fa", 3674420511891809, this, []); }
-  set isAutoShutdownEnabled(value: boolean) { callSDK<void>("CoreHaptics_0e503aef608672fa", 3324947419725904, this, [value]); }
+  get isAutoShutdownEnabled(): boolean { return callSDK<boolean>("CoreHaptics_212edf3d13b127f5", 3674420511891809, this, []); }
+  set isAutoShutdownEnabled(value: boolean) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 3324947419725904, this, [value]); }
   /**
    * var currentTime: TimeInterval { get }
    * @availability iOS 13.0+
    */
-  get currentTime(): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 942415640751691, this, []); }
+  get currentTime(): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 942415640751691, this, []); }
   /**
    * var isMutedForAudio: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isMutedForAudio(): boolean { return callSDK<boolean>("CoreHaptics_0e503aef608672fa", 1861949571561260, this, []); }
-  set isMutedForAudio(value: boolean) { callSDK<void>("CoreHaptics_0e503aef608672fa", 2063406391060443, this, [value]); }
+  get isMutedForAudio(): boolean { return callSDK<boolean>("CoreHaptics_212edf3d13b127f5", 1861949571561260, this, []); }
+  set isMutedForAudio(value: boolean) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 2063406391060443, this, [value]); }
   /**
    * var isMutedForHaptics: Bool { get set }
    * @availability iOS 13.0+
    */
-  get isMutedForHaptics(): boolean { return callSDK<boolean>("CoreHaptics_0e503aef608672fa", 2183274603222828, this, []); }
-  set isMutedForHaptics(value: boolean) { callSDK<void>("CoreHaptics_0e503aef608672fa", 1504191824846159, this, [value]); }
+  get isMutedForHaptics(): boolean { return callSDK<boolean>("CoreHaptics_212edf3d13b127f5", 2183274603222828, this, []); }
+  set isMutedForHaptics(value: boolean) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 1504191824846159, this, [value]); }
   /**
    * var playsAudioOnly: Bool { get set }
    * @availability iOS 16.0+
    */
-  get playsAudioOnly(): boolean { return callSDK<boolean>("CoreHaptics_0e503aef608672fa", 2147653979968576, this, []); }
-  set playsAudioOnly(value: boolean) { callSDK<void>("CoreHaptics_0e503aef608672fa", 2401982877040863, this, [value]); }
+  get playsAudioOnly(): boolean { return callSDK<boolean>("CoreHaptics_212edf3d13b127f5", 2147653979968576, this, []); }
+  set playsAudioOnly(value: boolean) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 2401982877040863, this, [value]); }
   /**
    * var playsHapticsOnly: Bool { get set }
    * @availability iOS 13.0+
    */
-  get playsHapticsOnly(): boolean { return callSDK<boolean>("CoreHaptics_0e503aef608672fa", 1795505931700295, this, []); }
-  set playsHapticsOnly(value: boolean) { callSDK<void>("CoreHaptics_0e503aef608672fa", 1571137793243745, this, [value]); }
+  get playsHapticsOnly(): boolean { return callSDK<boolean>("CoreHaptics_212edf3d13b127f5", 1795505931700295, this, []); }
+  set playsHapticsOnly(value: boolean) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 1571137793243745, this, [value]); }
   /**
    * var resetHandler: CHHapticEngine.ResetHandler { get set }
    * @availability iOS 13.0+
    */
-  get resetHandler(): (() => Promise<void>) { return callSDK<(() => Promise<void>)>("CoreHaptics_0e503aef608672fa", 3189964459301355, this, []); }
-  set resetHandler(value: (() => void)) { callSDK<void>("CoreHaptics_0e503aef608672fa", 3893884346296981, this, [value], [{"callback":{"out":[]}}]); }
+  get resetHandler(): (() => Promise<void>) { return callSDK<(() => Promise<void>)>("CoreHaptics_212edf3d13b127f5", 3189964459301355, this, []); }
+  set resetHandler(value: (() => void)) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 3893884346296981, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var stoppedHandler: CHHapticEngine.StoppedHandler { get set }
    * @availability iOS 13.0+
    */
-  get stoppedHandler(): $SDK5 { return callSDK<$SDK5>("CoreHaptics_0e503aef608672fa", 2053724392062677, this, []); }
-  set stoppedHandler(value: ((arg0: CHHapticEngine_StoppedReason) => void)) { callSDK<void>("CoreHaptics_0e503aef608672fa", 1683488348012475, this, [value], [{"callback":{"out":[]}}]); }
+  get stoppedHandler(): $SDK5 { return callSDK<$SDK5>("CoreHaptics_212edf3d13b127f5", 2053724392062677, this, []); }
+  set stoppedHandler(value: ((arg0: CHHapticEngine_StoppedReason) => void)) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 1683488348012475, this, [value], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CHHapticEngine": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAutoShutdownEnabled": true; "currentTime": true; "isMutedForAudio": true; "isMutedForHaptics": true; "playsAudioOnly": true; "playsHapticsOnly": true };
 }
@@ -313,7 +313,7 @@ export type CHHapticEngine_FinishedAction = "stopEngine" | "leaveEngineRunning";
 
 export const CHHapticEngine_FinishedAction = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CHHapticEngine_FinishedAction) | null { return callSDK<(CHHapticEngine_FinishedAction) | null>("CoreHaptics_0e503aef608672fa", 847832387525214, undefined, [rawValue]); }
+  init(rawValue: number): (CHHapticEngine_FinishedAction) | null { return callSDK<(CHHapticEngine_FinishedAction) | null>("CoreHaptics_212edf3d13b127f5", 847832387525214, undefined, [rawValue]); }
 };
 
 /** typealias FinishedHandler = ((any Error)?) -> CHHapticEngine.FinishedAction */
@@ -330,7 +330,7 @@ export type CHHapticEngine_StoppedReason = "audioSessionInterrupt" | "applicatio
 
 export const CHHapticEngine_StoppedReason = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CHHapticEngine_StoppedReason) | null { return callSDK<(CHHapticEngine_StoppedReason) | null>("CoreHaptics_0e503aef608672fa", 485380769546603, undefined, [rawValue]); }
+  init(rawValue: number): (CHHapticEngine_StoppedReason) | null { return callSDK<(CHHapticEngine_StoppedReason) | null>("CoreHaptics_212edf3d13b127f5", 485380769546603, undefined, [rawValue]); }
 };
 
 /**
@@ -342,127 +342,127 @@ export class CHHapticError extends SDKHandle {
    * static var memoryError: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get memoryError(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 4428602613251022, undefined, []); }
+  static get memoryError(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 4428602613251022, undefined, []); }
   /**
    * static var unknownError: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get unknownError(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 4083956655914047, undefined, []); }
+  static get unknownError(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 4083956655914047, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 13.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CoreHaptics_0e503aef608672fa", 2591736248595911, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CoreHaptics_212edf3d13b127f5", 2591736248595911, undefined, []); }
   /**
    * static var invalidTime: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidTime(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 1990996124239327, undefined, []); }
+  static get invalidTime(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 1990996124239327, undefined, []); }
   /**
    * static var fileNotFound: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get fileNotFound(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 1378267520667579, undefined, []); }
+  static get fileNotFound(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 1378267520667579, undefined, []); }
   /**
    * static var notSupported: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get notSupported(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 30318034048030, undefined, []); }
+  static get notSupported(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 30318034048030, undefined, []); }
   /**
    * static var badEventEntry: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get badEventEntry(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 2147871545932754, undefined, []); }
+  static get badEventEntry(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 2147871545932754, undefined, []); }
   /**
    * static var engineNotRunning: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get engineNotRunning(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 2135893526016890, undefined, []); }
+  static get engineNotRunning(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 2135893526016890, undefined, []); }
   /**
    * static var invalidEventTime: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidEventTime(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 2086097600342523, undefined, []); }
+  static get invalidEventTime(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 2086097600342523, undefined, []); }
   /**
    * static var invalidEventType: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidEventType(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 3160863506668659, undefined, []); }
+  static get invalidEventType(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 3160863506668659, undefined, []); }
   /**
    * static var serverInitFailed: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get serverInitFailed(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 4286607466107, undefined, []); }
+  static get serverInitFailed(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 4286607466107, undefined, []); }
   /**
    * static var badParameterEntry: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get badParameterEntry(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 3373394006832685, undefined, []); }
+  static get badParameterEntry(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 3373394006832685, undefined, []); }
   /**
    * static var insufficientPower: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get insufficientPower(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 268090713337889, undefined, []); }
+  static get insufficientPower(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 268090713337889, undefined, []); }
   /**
    * static var serverInterrupted: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get serverInterrupted(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 4144291301169570, undefined, []); }
+  static get serverInterrupted(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 4144291301169570, undefined, []); }
   /**
    * static var engineStartTimeout: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get engineStartTimeout(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 916841085923714, undefined, []); }
+  static get engineStartTimeout(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 916841085923714, undefined, []); }
   /**
    * static var invalidPatternData: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidPatternData(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 2741785407938424, undefined, []); }
+  static get invalidPatternData(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 2741785407938424, undefined, []); }
   /**
    * static var invalidAudioSession: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidAudioSession(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 1615830002114095, undefined, []); }
+  static get invalidAudioSession(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 1615830002114095, undefined, []); }
   /**
    * static var invalidAudioResource: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidAudioResource(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 330804121054963, undefined, []); }
+  static get invalidAudioResource(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 330804121054963, undefined, []); }
   /**
    * static var invalidEventDuration: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidEventDuration(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 2420632626442995, undefined, []); }
+  static get invalidEventDuration(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 2420632626442995, undefined, []); }
   /**
    * static var invalidParameterType: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidParameterType(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 490598477967806, undefined, []); }
+  static get invalidParameterType(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 490598477967806, undefined, []); }
   /**
    * static var invalidPatternPlayer: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidPatternPlayer(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 2845632108754817, undefined, []); }
+  static get invalidPatternPlayer(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 2845632108754817, undefined, []); }
   /**
    * static var resourceNotAvailable: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get resourceNotAvailable(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 867984749140990, undefined, []); }
+  static get resourceNotAvailable(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 867984749140990, undefined, []); }
   /**
    * static var operationNotPermitted: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get operationNotPermitted(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 113244236520265, undefined, []); }
+  static get operationNotPermitted(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 113244236520265, undefined, []); }
   /**
    * static var invalidEngineParameter: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidEngineParameter(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 1027823518634517, undefined, []); }
+  static get invalidEngineParameter(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 1027823518634517, undefined, []); }
   /**
    * static var invalidPatternDictionary: CHHapticError.Code { get }
    * @availability iOS 13.0+
    */
-  static get invalidPatternDictionary(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_0e503aef608672fa", 3585262225003497, undefined, []); }
+  static get invalidPatternDictionary(): CHHapticError_Code { return callSDK<CHHapticError_Code>("CoreHaptics_212edf3d13b127f5", 3585262225003497, undefined, []); }
   declare readonly $type: { "s:SC17CHHapticErrorCodeLeV": true };
 }
 
@@ -477,7 +477,7 @@ export const CHHapticError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (CHHapticError_Code) | null { return callSDK<(CHHapticError_Code) | null>("CoreHaptics_0e503aef608672fa", 612610918675766, undefined, [rawValue]); }
+  init(rawValue: number): (CHHapticError_Code) | null { return callSDK<(CHHapticError_Code) | null>("CoreHaptics_212edf3d13b127f5", 612610918675766, undefined, [rawValue]); }
 };
 
 /**
@@ -489,44 +489,44 @@ export class CHHapticEvent extends SDKHandle {
    * init(audioResourceID resID: CHHapticAudioResourceID, parameters eventParams: [CHHapticEventParameter], relativeTime time: TimeInterval)
    * @availability iOS 13.0+
    */
-  static initAudioResourceIDParametersRelativeTime(resID: number, eventParams: $SDK8, time: number): CHHapticEvent { return callSDK<CHHapticEvent>("CoreHaptics_0e503aef608672fa", 2244190140332617, undefined, [resID, eventParams, time]); }
+  static initAudioResourceIDParametersRelativeTime(resID: number, eventParams: $SDK8, time: number): CHHapticEvent { return callSDK<CHHapticEvent>("CoreHaptics_212edf3d13b127f5", 2244190140332617, undefined, [resID, eventParams, time]); }
   /**
    * init(audioResourceID resID: CHHapticAudioResourceID, parameters eventParams: [CHHapticEventParameter], relativeTime time: TimeInterval, duration: TimeInterval)
    * @availability iOS 13.0+
    */
-  static initAudioResourceIDParametersRelativeTimeDuration(resID: number, eventParams: $SDK8, time: number, duration: number): CHHapticEvent { return callSDK<CHHapticEvent>("CoreHaptics_0e503aef608672fa", 2923883463695483, undefined, [resID, eventParams, time, duration]); }
+  static initAudioResourceIDParametersRelativeTimeDuration(resID: number, eventParams: $SDK8, time: number, duration: number): CHHapticEvent { return callSDK<CHHapticEvent>("CoreHaptics_212edf3d13b127f5", 2923883463695483, undefined, [resID, eventParams, time, duration]); }
   /**
    * init(eventType type: CHHapticEvent.EventType, parameters eventParams: [CHHapticEventParameter], relativeTime time: TimeInterval)
    * @availability iOS 13.0+
    */
-  static initEventTypeParametersRelativeTime(type: CHHapticEvent_EventType, eventParams: $SDK8, time: number): CHHapticEvent { return callSDK<CHHapticEvent>("CoreHaptics_0e503aef608672fa", 1984153330489921, undefined, [type, eventParams, time]); }
+  static initEventTypeParametersRelativeTime(type: CHHapticEvent_EventType, eventParams: $SDK8, time: number): CHHapticEvent { return callSDK<CHHapticEvent>("CoreHaptics_212edf3d13b127f5", 1984153330489921, undefined, [type, eventParams, time]); }
   /**
    * init(eventType type: CHHapticEvent.EventType, parameters eventParams: [CHHapticEventParameter], relativeTime time: TimeInterval, duration: TimeInterval)
    * @availability iOS 13.0+
    */
-  static initEventTypeParametersRelativeTimeDuration(type: CHHapticEvent_EventType, eventParams: $SDK8, time: number, duration: number): CHHapticEvent { return callSDK<CHHapticEvent>("CoreHaptics_0e503aef608672fa", 2469503502357533, undefined, [type, eventParams, time, duration]); }
+  static initEventTypeParametersRelativeTimeDuration(type: CHHapticEvent_EventType, eventParams: $SDK8, time: number, duration: number): CHHapticEvent { return callSDK<CHHapticEvent>("CoreHaptics_212edf3d13b127f5", 2469503502357533, undefined, [type, eventParams, time, duration]); }
   /**
    * var duration: TimeInterval { get set }
    * @availability iOS 13.0+
    */
-  get duration(): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 3566716479316372, this, []); }
-  set duration(value: number) { callSDK<void>("CoreHaptics_0e503aef608672fa", 2447414787344177, this, [value]); }
+  get duration(): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 3566716479316372, this, []); }
+  set duration(value: number) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 2447414787344177, this, [value]); }
   /**
    * var eventParameters: [CHHapticEventParameter] { get }
    * @availability iOS 13.0+
    */
-  get eventParameters(): $SDK8 { return callSDK<$SDK8>("CoreHaptics_0e503aef608672fa", 3641513400344384, this, []); }
+  get eventParameters(): $SDK8 { return callSDK<$SDK8>("CoreHaptics_212edf3d13b127f5", 3641513400344384, this, []); }
   /**
    * var relativeTime: TimeInterval { get set }
    * @availability iOS 13.0+
    */
-  get relativeTime(): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 4413309070893235, this, []); }
-  set relativeTime(value: number) { callSDK<void>("CoreHaptics_0e503aef608672fa", 3141486977642016, this, [value]); }
+  get relativeTime(): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 4413309070893235, this, []); }
+  set relativeTime(value: number) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 3141486977642016, this, [value]); }
   /**
    * var type: CHHapticEvent.EventType { get }
    * @availability iOS 13.0+
    */
-  get type(): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_0e503aef608672fa", 2000623956648284, this, []); }
+  get type(): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_212edf3d13b127f5", 2000623956648284, this, []); }
   declare readonly $type: { "c:objc(cs)CHHapticEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "eventParameters": true; "relativeTime": true; "type": true };
 }
@@ -539,24 +539,24 @@ export const CHHapticEvent_EventType = {
    * static let audioContinuous: CHHapticEvent.EventType
    * @availability iOS 13.0+
    */
-  get audioContinuous(): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_0e503aef608672fa", 3727107852076525, undefined, []); },
+  get audioContinuous(): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_212edf3d13b127f5", 3727107852076525, undefined, []); },
   /**
    * static let audioCustom: CHHapticEvent.EventType
    * @availability iOS 13.0+
    */
-  get audioCustom(): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_0e503aef608672fa", 3545616615355268, undefined, []); },
+  get audioCustom(): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_212edf3d13b127f5", 3545616615355268, undefined, []); },
   /**
    * static let hapticContinuous: CHHapticEvent.EventType
    * @availability iOS 13.0+
    */
-  get hapticContinuous(): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_0e503aef608672fa", 3140615492713956, undefined, []); },
+  get hapticContinuous(): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_212edf3d13b127f5", 3140615492713956, undefined, []); },
   /**
    * static let hapticTransient: CHHapticEvent.EventType
    * @availability iOS 13.0+
    */
-  get hapticTransient(): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_0e503aef608672fa", 4421418574631173, undefined, []); },
+  get hapticTransient(): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_212edf3d13b127f5", 4421418574631173, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_0e503aef608672fa", 3041263598165956, undefined, [rawValue]); }
+  init(rawValue: string): CHHapticEvent_EventType { return callSDK<CHHapticEvent_EventType>("CoreHaptics_212edf3d13b127f5", 3041263598165956, undefined, [rawValue]); }
 };
 
 /** struct ParameterID */
@@ -567,54 +567,54 @@ export const CHHapticEvent_ParameterID = {
    * static let attackTime: CHHapticEvent.ParameterID
    * @availability iOS 13.0+
    */
-  get attackTime(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 1723874655036249, undefined, []); },
+  get attackTime(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 1723874655036249, undefined, []); },
   /**
    * static let audioBrightness: CHHapticEvent.ParameterID
    * @availability iOS 13.0+
    */
-  get audioBrightness(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 1164998388914942, undefined, []); },
+  get audioBrightness(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 1164998388914942, undefined, []); },
   /**
    * static let audioPan: CHHapticEvent.ParameterID
    * @availability iOS 13.0+
    */
-  get audioPan(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 712595432681530, undefined, []); },
+  get audioPan(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 712595432681530, undefined, []); },
   /**
    * static let audioPitch: CHHapticEvent.ParameterID
    * @availability iOS 13.0+
    */
-  get audioPitch(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 924320801196609, undefined, []); },
+  get audioPitch(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 924320801196609, undefined, []); },
   /**
    * static let audioVolume: CHHapticEvent.ParameterID
    * @availability iOS 13.0+
    */
-  get audioVolume(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 4171920772702107, undefined, []); },
+  get audioVolume(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 4171920772702107, undefined, []); },
   /**
    * static let decayTime: CHHapticEvent.ParameterID
    * @availability iOS 13.0+
    */
-  get decayTime(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 3144871969396559, undefined, []); },
+  get decayTime(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 3144871969396559, undefined, []); },
   /**
    * static let hapticIntensity: CHHapticEvent.ParameterID
    * @availability iOS 13.0+
    */
-  get hapticIntensity(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 3957318266406374, undefined, []); },
+  get hapticIntensity(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 3957318266406374, undefined, []); },
   /**
    * static let hapticSharpness: CHHapticEvent.ParameterID
    * @availability iOS 13.0+
    */
-  get hapticSharpness(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 80800358546683, undefined, []); },
+  get hapticSharpness(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 80800358546683, undefined, []); },
   /**
    * static let releaseTime: CHHapticEvent.ParameterID
    * @availability iOS 13.0+
    */
-  get releaseTime(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 1895726392081983, undefined, []); },
+  get releaseTime(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 1895726392081983, undefined, []); },
   /**
    * static let sustained: CHHapticEvent.ParameterID
    * @availability iOS 13.0+
    */
-  get sustained(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 3094450951395054, undefined, []); },
+  get sustained(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 3094450951395054, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 2603979293083514, undefined, [rawValue]); }
+  init(rawValue: string): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 2603979293083514, undefined, [rawValue]); }
 };
 
 /**
@@ -626,18 +626,18 @@ export class CHHapticEventParameter extends SDKHandle {
    * init(parameterID: CHHapticEvent.ParameterID, value: Float)
    * @availability iOS 13.0+
    */
-  static init(parameterID: CHHapticEvent_ParameterID, value: number): CHHapticEventParameter { return callSDK<CHHapticEventParameter>("CoreHaptics_0e503aef608672fa", 4379587706125409, undefined, [parameterID, value]); }
+  static init(parameterID: CHHapticEvent_ParameterID, value: number): CHHapticEventParameter { return callSDK<CHHapticEventParameter>("CoreHaptics_212edf3d13b127f5", 4379587706125409, undefined, [parameterID, value]); }
   /**
    * var parameterID: CHHapticEvent.ParameterID { get }
    * @availability iOS 13.0+
    */
-  get parameterID(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_0e503aef608672fa", 3384743297648158, this, []); }
+  get parameterID(): CHHapticEvent_ParameterID { return callSDK<CHHapticEvent_ParameterID>("CoreHaptics_212edf3d13b127f5", 3384743297648158, this, []); }
   /**
    * var value: Float { get set }
    * @availability iOS 13.0+
    */
-  get value(): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 826465509607557, this, []); }
-  set value(value: number) { callSDK<void>("CoreHaptics_0e503aef608672fa", 3415531748377844, this, [value]); }
+  get value(): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 826465509607557, this, []); }
+  set value(value: number) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 3415531748377844, this, [value]); }
   declare readonly $type: { "c:objc(cs)CHHapticEventParameter": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "parameterID": true; "value": true };
 }
@@ -653,14 +653,14 @@ export interface CHHapticParameterAttributes {
 /** class CHHapticParameterCurve */
 export class CHHapticParameterCurve extends SDKHandle {
   /** init(parameterID: CHHapticDynamicParameter.ID, controlPoints: [CHHapticParameterCurve.ControlPoint], relativeTime: TimeInterval) */
-  static init(parameterID: CHHapticDynamicParameter_ID, controlPoints: $SDK9, relativeTime: number): CHHapticParameterCurve { return callSDK<CHHapticParameterCurve>("CoreHaptics_0e503aef608672fa", 3734628354997478, undefined, [parameterID, controlPoints, relativeTime]); }
+  static init(parameterID: CHHapticDynamicParameter_ID, controlPoints: $SDK9, relativeTime: number): CHHapticParameterCurve { return callSDK<CHHapticParameterCurve>("CoreHaptics_212edf3d13b127f5", 3734628354997478, undefined, [parameterID, controlPoints, relativeTime]); }
   /** var controlPoints: [CHHapticParameterCurve.ControlPoint] { get } */
-  get controlPoints(): $SDK9 { return callSDK<$SDK9>("CoreHaptics_0e503aef608672fa", 3784686914118948, this, []); }
+  get controlPoints(): $SDK9 { return callSDK<$SDK9>("CoreHaptics_212edf3d13b127f5", 3784686914118948, this, []); }
   /** var parameterID: CHHapticDynamicParameter.ID { get } */
-  get parameterID(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_0e503aef608672fa", 3928110973447056, this, []); }
+  get parameterID(): CHHapticDynamicParameter_ID { return callSDK<CHHapticDynamicParameter_ID>("CoreHaptics_212edf3d13b127f5", 3928110973447056, this, []); }
   /** var relativeTime: TimeInterval { get set } */
-  get relativeTime(): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 149170487597477, this, []); }
-  set relativeTime(value: number) { callSDK<void>("CoreHaptics_0e503aef608672fa", 3993247306368324, this, [value]); }
+  get relativeTime(): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 149170487597477, this, []); }
+  set relativeTime(value: number) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 3993247306368324, this, [value]); }
   declare readonly $type: { "c:objc(cs)CHHapticParameterCurve": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "controlPoints": true; "parameterID": true; "relativeTime": true };
 }
@@ -674,19 +674,19 @@ export class CHHapticParameterCurve_ControlPoint extends SDKHandle {
    * init(relativeTime time: TimeInterval, value: Float)
    * @availability iOS 13.0+
    */
-  static init(time: number, value: number): CHHapticParameterCurve_ControlPoint { return callSDK<CHHapticParameterCurve_ControlPoint>("CoreHaptics_0e503aef608672fa", 2051712547747047, undefined, [time, value]); }
+  static init(time: number, value: number): CHHapticParameterCurve_ControlPoint { return callSDK<CHHapticParameterCurve_ControlPoint>("CoreHaptics_212edf3d13b127f5", 2051712547747047, undefined, [time, value]); }
   /**
    * var relativeTime: TimeInterval { get set }
    * @availability iOS 13.0+
    */
-  get relativeTime(): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 3280134623697168, this, []); }
-  set relativeTime(value: number) { callSDK<void>("CoreHaptics_0e503aef608672fa", 1372670341763448, this, [value]); }
+  get relativeTime(): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 3280134623697168, this, []); }
+  set relativeTime(value: number) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 1372670341763448, this, [value]); }
   /**
    * var value: Float { get set }
    * @availability iOS 13.0+
    */
-  get value(): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 2719413109757652, this, []); }
-  set value(value: number) { callSDK<void>("CoreHaptics_0e503aef608672fa", 2318982433527663, this, [value]); }
+  get value(): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 2719413109757652, this, []); }
+  set value(value: number) { callSDK<void>("CoreHaptics_212edf3d13b127f5", 2318982433527663, this, [value]); }
   declare readonly $type: { "c:objc(cs)CHHapticParameterCurveControlPoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "relativeTime": true; "value": true };
 }
@@ -700,32 +700,32 @@ export class CHHapticPattern extends SDKHandle {
    * func exportDictionary() throws -> [CHHapticPattern.Key : Any]
    * @availability iOS 13.0+
    */
-  exportDictionary(): $SDK10 { return callSDK<$SDK10>("CoreHaptics_0e503aef608672fa", 2637044058779714, this, []); }
+  exportDictionary(): $SDK10 { return callSDK<$SDK10>("CoreHaptics_212edf3d13b127f5", 2637044058779714, this, []); }
   /**
    * init(contentsOf ahapURL: URL) throws
    * @availability iOS 16.0+
    */
-  static initContentsOf(ahapURL: string): CHHapticPattern { return callSDK<CHHapticPattern>("CoreHaptics_0e503aef608672fa", 2964257459671362, undefined, [ahapURL]); }
+  static initContentsOf(ahapURL: string): CHHapticPattern { return callSDK<CHHapticPattern>("CoreHaptics_212edf3d13b127f5", 2964257459671362, undefined, [ahapURL]); }
   /**
    * init(dictionary patternDict: [CHHapticPattern.Key : Any]) throws
    * @availability iOS 13.0+
    */
-  static initDictionary(patternDict: $SDK10): CHHapticPattern { return callSDK<CHHapticPattern>("CoreHaptics_0e503aef608672fa", 2235813004783666, undefined, [patternDict]); }
+  static initDictionary(patternDict: $SDK10): CHHapticPattern { return callSDK<CHHapticPattern>("CoreHaptics_212edf3d13b127f5", 2235813004783666, undefined, [patternDict]); }
   /**
    * init(events: [CHHapticEvent], parameterCurves: [CHHapticParameterCurve]) throws
    * @availability iOS 13.0+
    */
-  static initEventsParameterCurves(events: Array<CHHapticEvent>, parameterCurves: Array<CHHapticParameterCurve>): CHHapticPattern { return callSDK<CHHapticPattern>("CoreHaptics_0e503aef608672fa", 1801779235272022, undefined, [events, parameterCurves]); }
+  static initEventsParameterCurves(events: Array<CHHapticEvent>, parameterCurves: Array<CHHapticParameterCurve>): CHHapticPattern { return callSDK<CHHapticPattern>("CoreHaptics_212edf3d13b127f5", 1801779235272022, undefined, [events, parameterCurves]); }
   /**
    * init(events: [CHHapticEvent], parameters: [CHHapticDynamicParameter]) throws
    * @availability iOS 13.0+
    */
-  static initEventsParameters(events: Array<CHHapticEvent>, parameters: $SDK0): CHHapticPattern { return callSDK<CHHapticPattern>("CoreHaptics_0e503aef608672fa", 147326729713132, undefined, [events, parameters]); }
+  static initEventsParameters(events: Array<CHHapticEvent>, parameters: $SDK0): CHHapticPattern { return callSDK<CHHapticPattern>("CoreHaptics_212edf3d13b127f5", 147326729713132, undefined, [events, parameters]); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 13.0+
    */
-  get duration(): number { return callSDK<number>("CoreHaptics_0e503aef608672fa", 1652187906443840, this, []); }
+  get duration(): number { return callSDK<number>("CoreHaptics_212edf3d13b127f5", 1652187906443840, this, []); }
   declare readonly $type: { "c:objc(cs)CHHapticPattern": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true };
 }
@@ -738,79 +738,79 @@ export const CHHapticPattern_Key = {
    * static let event: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get event(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 3292238067096062, undefined, []); },
+  get event(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 3292238067096062, undefined, []); },
   /**
    * static let eventDuration: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get eventDuration(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 2915912994362639, undefined, []); },
+  get eventDuration(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 2915912994362639, undefined, []); },
   /**
    * static let eventParameters: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get eventParameters(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 3209400124298935, undefined, []); },
+  get eventParameters(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 3209400124298935, undefined, []); },
   /**
    * static let eventType: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get eventType(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 75436402810379, undefined, []); },
+  get eventType(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 75436402810379, undefined, []); },
   /**
    * static let eventWaveformLoopEnabled: CHHapticPattern.Key
    * @availability iOS 16.0+
    */
-  get eventWaveformLoopEnabled(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 2308050258510587, undefined, []); },
+  get eventWaveformLoopEnabled(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 2308050258510587, undefined, []); },
   /**
    * static let eventWaveformPath: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get eventWaveformPath(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 1493236455152477, undefined, []); },
+  get eventWaveformPath(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 1493236455152477, undefined, []); },
   /**
    * static let eventWaveformUseVolumeEnvelope: CHHapticPattern.Key
    * @availability iOS 15.0+
    */
-  get eventWaveformUseVolumeEnvelope(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 3163201198330700, undefined, []); },
+  get eventWaveformUseVolumeEnvelope(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 3163201198330700, undefined, []); },
   /**
    * static let parameter: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get parameter(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 4190094632158372, undefined, []); },
+  get parameter(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 4190094632158372, undefined, []); },
   /**
    * static let parameterCurve: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get parameterCurve(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 3920695941007358, undefined, []); },
+  get parameterCurve(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 3920695941007358, undefined, []); },
   /**
    * static let parameterCurveControlPoints: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get parameterCurveControlPoints(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 2296244716669026, undefined, []); },
+  get parameterCurveControlPoints(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 2296244716669026, undefined, []); },
   /**
    * static let parameterID: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get parameterID(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 485225202389367, undefined, []); },
+  get parameterID(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 485225202389367, undefined, []); },
   /**
    * static let parameterValue: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get parameterValue(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 2619002703890669, undefined, []); },
+  get parameterValue(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 2619002703890669, undefined, []); },
   /**
    * static let pattern: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get pattern(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 970336458727513, undefined, []); },
+  get pattern(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 970336458727513, undefined, []); },
   /**
    * static let time: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get time(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 2351471812722093, undefined, []); },
+  get time(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 2351471812722093, undefined, []); },
   /**
    * static let version: CHHapticPattern.Key
    * @availability iOS 13.0+
    */
-  get version(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 1943935138410842, undefined, []); },
+  get version(): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 1943935138410842, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_0e503aef608672fa", 188273251735406, undefined, [rawValue]); }
+  init(rawValue: string): CHHapticPattern_Key { return callSDK<CHHapticPattern_Key>("CoreHaptics_212edf3d13b127f5", 188273251735406, undefined, [rawValue]); }
 };
 
 /**
@@ -849,29 +849,29 @@ export interface CHHapticPatternPlayer {
  * let CHHapticAudioResourceKeyLoopEnabled: String
  * @availability iOS 16.0+
  */
-export const CHHapticAudioResourceKeyLoopEnabled: string = callSDK<string>("CoreHaptics_0e503aef608672fa", 3157367813441071, undefined, []);
+export const CHHapticAudioResourceKeyLoopEnabled: string = callSDK<string>("CoreHaptics_212edf3d13b127f5", 3157367813441071, undefined, []);
 
 /**
  * let CHHapticAudioResourceKeyUseVolumeEnvelope: String
  * @availability iOS 15.0+
  */
-export const CHHapticAudioResourceKeyUseVolumeEnvelope: string = callSDK<string>("CoreHaptics_0e503aef608672fa", 3908310433390585, undefined, []);
+export const CHHapticAudioResourceKeyUseVolumeEnvelope: string = callSDK<string>("CoreHaptics_212edf3d13b127f5", 3908310433390585, undefined, []);
 
 /** let CoreHapticsErrorDomain: String */
-export const CoreHapticsErrorDomain: string = callSDK<string>("CoreHaptics_0e503aef608672fa", 2734388478529940, undefined, []);
+export const CoreHapticsErrorDomain: string = callSDK<string>("CoreHaptics_212edf3d13b127f5", 2734388478529940, undefined, []);
 
 /** var CHHapticTimeImmediate: TimeInterval { get } */
-export const CHHapticTimeImmediate: number = callSDK<number>("CoreHaptics_0e503aef608672fa", 3196802523044821, undefined, []);
+export const CHHapticTimeImmediate: number = callSDK<number>("CoreHaptics_212edf3d13b127f5", 3196802523044821, undefined, []);
 
 registerSDKProtocol("c:objc(pl)CHHapticAdvancedPatternPlayer", {"startAtTime":"start(atTime:)","stopAtTime":"stop(atTime:)","sendParametersAtTime":"sendParameters(_:atTime:)","scheduleParameterCurveAtTime":"scheduleParameterCurve(_:atTime:)","cancel":"cancel()","pauseAtTime":"pause(atTime:)","resumeAtTime":"resume(atTime:)","seekToOffset":"seek(toOffset:)"});
 registerSDKProtocol("c:objc(pl)CHHapticDeviceCapability", {"attributesForEventParameterEventType":"attributes(forEventParameter:eventType:)","attributesForDynamicParameter":"attributes(forDynamicParameter:)"});
-registerSDKClass("CHHapticDynamicParameter", CHHapticDynamicParameter, { module: "CoreHaptics_0e503aef608672fa", properties: {"parameterID":4074252043889870,"relativeTime":3139825840089551,"value":2340367146978628} });
-registerSDKClass("CHHapticEngine", CHHapticEngine, { module: "CoreHaptics_0e503aef608672fa", properties: {"isAutoShutdownEnabled":3674420511891809,"currentTime":942415640751691,"isMutedForAudio":1861949571561260,"isMutedForHaptics":2183274603222828,"playsAudioOnly":2147653979968576,"playsHapticsOnly":1795505931700295}, methods: {"makeAdvancedPlayer":{"id":3162856887202979},"makePlayer":{"id":1551500957906500},"playPatternFrom":{"id":491310902127741},"playPatternFrom83173":{"id":3468113947837825},"registerAudioResource":{"id":842061320599723},"start":{"id":4031226426624348},"startCompletionHandler":{"id":368939679319461,"hints":[{"callback":{"out":[]}}]},"stop":{"id":1263527532464175,"hints":[{"callback":{"out":[]}}]},"unregisterAudioResource":{"id":1230301231690515}} });
-registerSDKClass("CoreHaptics.CHHapticError", CHHapticError, { module: "CoreHaptics_0e503aef608672fa", properties: {} });
-registerSDKClass("CHHapticEvent", CHHapticEvent, { module: "CoreHaptics_0e503aef608672fa", properties: {"duration":3566716479316372,"eventParameters":3641513400344384,"relativeTime":4413309070893235,"type":2000623956648284} });
-registerSDKClass("CHHapticEventParameter", CHHapticEventParameter, { module: "CoreHaptics_0e503aef608672fa", properties: {"parameterID":3384743297648158,"value":826465509607557} });
+registerSDKClass("CHHapticDynamicParameter", CHHapticDynamicParameter, { module: "CoreHaptics_212edf3d13b127f5", properties: {"parameterID":4074252043889870,"relativeTime":3139825840089551,"value":2340367146978628} });
+registerSDKClass("CHHapticEngine", CHHapticEngine, { module: "CoreHaptics_212edf3d13b127f5", properties: {"isAutoShutdownEnabled":3674420511891809,"currentTime":942415640751691,"isMutedForAudio":1861949571561260,"isMutedForHaptics":2183274603222828,"playsAudioOnly":2147653979968576,"playsHapticsOnly":1795505931700295}, methods: {"makeAdvancedPlayer":{"id":3162856887202979},"makePlayer":{"id":1551500957906500},"playPatternFrom":{"id":491310902127741},"playPatternFrom83173":{"id":3468113947837825},"registerAudioResource":{"id":842061320599723},"start":{"id":4031226426624348},"startCompletionHandler":{"id":368939679319461,"hints":[{"callback":{"out":[]}}]},"stop":{"id":1263527532464175,"hints":[{"callback":{"out":[]}}]},"unregisterAudioResource":{"id":1230301231690515}} });
+registerSDKClass("CoreHaptics.CHHapticError", CHHapticError, { module: "CoreHaptics_212edf3d13b127f5", properties: {} });
+registerSDKClass("CHHapticEvent", CHHapticEvent, { module: "CoreHaptics_212edf3d13b127f5", properties: {"duration":3566716479316372,"eventParameters":3641513400344384,"relativeTime":4413309070893235,"type":2000623956648284} });
+registerSDKClass("CHHapticEventParameter", CHHapticEventParameter, { module: "CoreHaptics_212edf3d13b127f5", properties: {"parameterID":3384743297648158,"value":826465509607557} });
 registerSDKProtocol("c:objc(pl)CHHapticParameterAttributes", {});
-registerSDKClass("CHHapticParameterCurve", CHHapticParameterCurve, { module: "CoreHaptics_0e503aef608672fa", properties: {"controlPoints":3784686914118948,"parameterID":3928110973447056,"relativeTime":149170487597477} });
-registerSDKClass("CHHapticParameterCurveControlPoint", CHHapticParameterCurve_ControlPoint, { module: "CoreHaptics_0e503aef608672fa", properties: {"relativeTime":3280134623697168,"value":2719413109757652} });
-registerSDKClass("CHHapticPattern", CHHapticPattern, { module: "CoreHaptics_0e503aef608672fa", properties: {"duration":1652187906443840}, methods: {"exportDictionary":{"id":2637044058779714}} });
+registerSDKClass("CHHapticParameterCurve", CHHapticParameterCurve, { module: "CoreHaptics_212edf3d13b127f5", properties: {"controlPoints":3784686914118948,"parameterID":3928110973447056,"relativeTime":149170487597477} });
+registerSDKClass("CHHapticParameterCurveControlPoint", CHHapticParameterCurve_ControlPoint, { module: "CoreHaptics_212edf3d13b127f5", properties: {"relativeTime":3280134623697168,"value":2719413109757652} });
+registerSDKClass("CHHapticPattern", CHHapticPattern, { module: "CoreHaptics_212edf3d13b127f5", properties: {"duration":1652187906443840}, methods: {"exportDictionary":{"id":2637044058779714}} });
 registerSDKProtocol("c:objc(pl)CHHapticPatternPlayer", {"startAtTime":"start(atTime:)","stopAtTime":"stop(atTime:)","sendParametersAtTime":"sendParameters(_:atTime:)","scheduleParameterCurveAtTime":"scheduleParameterCurve(_:atTime:)","cancel":"cancel()"});

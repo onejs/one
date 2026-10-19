@@ -15,27 +15,27 @@ type $SDK4 = (_UniformTypeIdentifiers_UTType) | null;
  */
 export class QLFileThumbnailRequest extends SDKHandle {
   /** init() */
-  static init(): QLFileThumbnailRequest { return callSDK<QLFileThumbnailRequest>("QuickLookThumbnailing_0e503aef608672fa", 3251734086449126, undefined, []); }
+  static init(): QLFileThumbnailRequest { return callSDK<QLFileThumbnailRequest>("QuickLookThumbnailing_212edf3d13b127f5", 3251734086449126, undefined, []); }
   /**
    * var fileURL: URL { get }
    * @availability iOS 11.0+
    */
-  get fileURL(): string { return callSDK<string>("QuickLookThumbnailing_0e503aef608672fa", 1070248038489064, this, []); }
+  get fileURL(): string { return callSDK<string>("QuickLookThumbnailing_212edf3d13b127f5", 1070248038489064, this, []); }
   /**
    * var maximumSize: CGSize { get }
    * @availability iOS 11.0+
    */
-  get maximumSize(): $SDK0 { return callSDK<$SDK0>("QuickLookThumbnailing_0e503aef608672fa", 1627546259682093, this, []); }
+  get maximumSize(): $SDK0 { return callSDK<$SDK0>("QuickLookThumbnailing_212edf3d13b127f5", 1627546259682093, this, []); }
   /**
    * var minimumSize: CGSize { get }
    * @availability iOS 11.0+
    */
-  get minimumSize(): $SDK0 { return callSDK<$SDK0>("QuickLookThumbnailing_0e503aef608672fa", 943482815462362, this, []); }
+  get minimumSize(): $SDK0 { return callSDK<$SDK0>("QuickLookThumbnailing_212edf3d13b127f5", 943482815462362, this, []); }
   /**
    * var scale: CGFloat { get }
    * @availability iOS 11.0+
    */
-  get scale(): number { return callSDK<number>("QuickLookThumbnailing_0e503aef608672fa", 2675425850598563, this, []); }
+  get scale(): number { return callSDK<number>("QuickLookThumbnailing_212edf3d13b127f5", 2675425850598563, this, []); }
   declare readonly $type: { "c:objc(cs)QLFileThumbnailRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fileURL": true; "maximumSize": true; "minimumSize": true; "scale": true };
 }
@@ -49,37 +49,37 @@ export class QLThumbnailError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 13.0+
    */
-  static get errorDomain(): string { return callSDK<string>("QuickLookThumbnailing_0e503aef608672fa", 4150007404236316, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("QuickLookThumbnailing_212edf3d13b127f5", 4150007404236316, undefined, []); }
   /**
    * static var requestInvalid: QLThumbnailError.Code { get }
    * @availability iOS 13.0+
    */
-  static get requestInvalid(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_0e503aef608672fa", 4121554371080186, undefined, []); }
+  static get requestInvalid(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_212edf3d13b127f5", 4121554371080186, undefined, []); }
   /**
    * static var generationFailed: QLThumbnailError.Code { get }
    * @availability iOS 13.0+
    */
-  static get generationFailed(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_0e503aef608672fa", 1038659443163224, undefined, []); }
+  static get generationFailed(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_212edf3d13b127f5", 1038659443163224, undefined, []); }
   /**
    * static var noCloudThumbnail: QLThumbnailError.Code { get }
    * @availability iOS 13.0+
    */
-  static get noCloudThumbnail(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_0e503aef608672fa", 691559324917478, undefined, []); }
+  static get noCloudThumbnail(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_212edf3d13b127f5", 691559324917478, undefined, []); }
   /**
    * static var requestCancelled: QLThumbnailError.Code { get }
    * @availability iOS 13.0+
    */
-  static get requestCancelled(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_0e503aef608672fa", 2995328540948651, undefined, []); }
+  static get requestCancelled(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_212edf3d13b127f5", 2995328540948651, undefined, []); }
   /**
    * static var noCachedThumbnail: QLThumbnailError.Code { get }
    * @availability iOS 13.0+
    */
-  static get noCachedThumbnail(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_0e503aef608672fa", 497866368666357, undefined, []); }
+  static get noCachedThumbnail(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_212edf3d13b127f5", 497866368666357, undefined, []); }
   /**
    * static var savingToURLFailed: QLThumbnailError.Code { get }
    * @availability iOS 13.0+
    */
-  static get savingToURLFailed(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_0e503aef608672fa", 1962645607964121, undefined, []); }
+  static get savingToURLFailed(): QLThumbnailError_Code { return callSDK<QLThumbnailError_Code>("QuickLookThumbnailing_212edf3d13b127f5", 1962645607964121, undefined, []); }
   declare readonly $type: { "s:SC16QLThumbnailErrorLeV": true };
 }
 
@@ -94,7 +94,7 @@ export const QLThumbnailError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (QLThumbnailError_Code) | null { return callSDK<(QLThumbnailError_Code) | null>("QuickLookThumbnailing_0e503aef608672fa", 2766102234055721, undefined, [rawValue]); }
+  init(rawValue: number): (QLThumbnailError_Code) | null { return callSDK<(QLThumbnailError_Code) | null>("QuickLookThumbnailing_212edf3d13b127f5", 2766102234055721, undefined, [rawValue]); }
 };
 
 /**
@@ -106,35 +106,35 @@ export class QLThumbnailGenerator extends SDKHandle {
    * class var shared: QLThumbnailGenerator { get }
    * @availability iOS 13.0+
    */
-  static get shared(): QLThumbnailGenerator { return callSDK<QLThumbnailGenerator>("QuickLookThumbnailing_0e503aef608672fa", 1769490336075904, undefined, []); }
+  static get shared(): QLThumbnailGenerator { return callSDK<QLThumbnailGenerator>("QuickLookThumbnailing_212edf3d13b127f5", 1769490336075904, undefined, []); }
   /**
    * func cancel(_ request: QLThumbnailGenerator.Request)
    * @availability iOS 13.0+
    */
-  cancel(request: QLThumbnailGenerator_Request): void { return callSDK<void>("QuickLookThumbnailing_0e503aef608672fa", 2893381725571540, this, [request]); }
+  cancel(request: QLThumbnailGenerator_Request): void { return callSDK<void>("QuickLookThumbnailing_212edf3d13b127f5", 2893381725571540, this, [request]); }
   /**
    * func generateBestRepresentation(for request: QLThumbnailGenerator.Request) async throws -> QLThumbnailRepresentation
    * @availability iOS 13.0+
    */
-  generateBestRepresentation(request: QLThumbnailGenerator_Request, completionHandler: ((arg0: (QLThumbnailRepresentation) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("QuickLookThumbnailing_0e503aef608672fa", 2442161383125561, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
+  generateBestRepresentation(request: QLThumbnailGenerator_Request, completionHandler: ((arg0: (QLThumbnailRepresentation) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("QuickLookThumbnailing_212edf3d13b127f5", 2442161383125561, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func generateRepresentations(for request: QLThumbnailGenerator.Request, update updateHandler: ((QLThumbnailRepresentation?, QLThumbnailRepresentation.RepresentationType, (any Error)?) -> Void)? = nil)
    * @availability iOS 13.0+
    */
-  generateRepresentations(request: QLThumbnailGenerator_Request, updateHandler?: (((arg0: (QLThumbnailRepresentation) | null, arg1: QLThumbnailRepresentation_RepresentationType, arg2: (NativeError) | null) => void)) | null): void { return callSDK<void>("QuickLookThumbnailing_0e503aef608672fa", 2736259729281940, this, [request, updateHandler], [null,{"callback":{"out":[]}}]); }
+  generateRepresentations(request: QLThumbnailGenerator_Request, updateHandler?: (((arg0: (QLThumbnailRepresentation) | null, arg1: QLThumbnailRepresentation_RepresentationType, arg2: (NativeError) | null) => void)) | null): void { return callSDK<void>("QuickLookThumbnailing_212edf3d13b127f5", 2736259729281940, this, [request, updateHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): QLThumbnailGenerator { return callSDK<QLThumbnailGenerator>("QuickLookThumbnailing_0e503aef608672fa", 2157742549819710, undefined, []); }
+  static init(): QLThumbnailGenerator { return callSDK<QLThumbnailGenerator>("QuickLookThumbnailing_212edf3d13b127f5", 2157742549819710, undefined, []); }
   /**
    * func saveBestRepresentation(for request: QLThumbnailGenerator.Request, to fileURL: URL, as contentType: UTType) async throws
    * @availability iOS 13.0+
    */
-  saveBestRepresentationForToAsCompletion(request: QLThumbnailGenerator_Request, fileURL: string, contentType: _UniformTypeIdentifiers_UTType, completionHandler: $SDK3): void { return callSDK<void>("QuickLookThumbnailing_0e503aef608672fa", 4312167813917381, this, [request, fileURL, contentType, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  saveBestRepresentationForToAsCompletion(request: QLThumbnailGenerator_Request, fileURL: string, contentType: _UniformTypeIdentifiers_UTType, completionHandler: $SDK3): void { return callSDK<void>("QuickLookThumbnailing_212edf3d13b127f5", 4312167813917381, this, [request, fileURL, contentType, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func saveBestRepresentation(for request: QLThumbnailGenerator.Request, to fileURL: URL, contentType: String) async throws
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  saveBestRepresentationForToContentTypeCompletion(request: QLThumbnailGenerator_Request, fileURL: string, contentType: string, completionHandler: $SDK3): void { return callSDK<void>("QuickLookThumbnailing_0e503aef608672fa", 3764073550189379, this, [request, fileURL, contentType, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  saveBestRepresentationForToContentTypeCompletion(request: QLThumbnailGenerator_Request, fileURL: string, contentType: string, completionHandler: $SDK3): void { return callSDK<void>("QuickLookThumbnailing_212edf3d13b127f5", 3764073550189379, this, [request, fileURL, contentType, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)QLThumbnailGenerator": true; "c:objc(cs)NSObject": true };
 }
 
@@ -147,40 +147,40 @@ export class QLThumbnailGenerator_Request extends SDKHandle {
    * init(fileAt url: URL, size: CGSize, scale: CGFloat, representationTypes: QLThumbnailGenerator.Request.RepresentationTypes)
    * @availability iOS 13.0+
    */
-  static init(url: string, size: $SDK0, scale: number, representationTypes: QLThumbnailGenerator_Request_RepresentationTypes): QLThumbnailGenerator_Request { return callSDK<QLThumbnailGenerator_Request>("QuickLookThumbnailing_0e503aef608672fa", 3400523939884192, undefined, [url, size, scale, representationTypes]); }
+  static init(url: string, size: $SDK0, scale: number, representationTypes: QLThumbnailGenerator_Request_RepresentationTypes): QLThumbnailGenerator_Request { return callSDK<QLThumbnailGenerator_Request>("QuickLookThumbnailing_212edf3d13b127f5", 3400523939884192, undefined, [url, size, scale, representationTypes]); }
   /**
    * var contentType: UTType! { get set }
    * @availability iOS 14.0+
    */
-  get contentType(): $SDK4 { return callSDK<$SDK4>("QuickLookThumbnailing_0e503aef608672fa", 3719439923129916, this, []); }
-  set contentType(value: $SDK4) { callSDK<void>("QuickLookThumbnailing_0e503aef608672fa", 719195570352032, this, [value]); }
+  get contentType(): $SDK4 { return callSDK<$SDK4>("QuickLookThumbnailing_212edf3d13b127f5", 3719439923129916, this, []); }
+  set contentType(value: $SDK4) { callSDK<void>("QuickLookThumbnailing_212edf3d13b127f5", 719195570352032, this, [value]); }
   /**
    * var iconMode: Bool { get set }
    * @availability iOS 13.0+
    */
-  get iconMode(): boolean { return callSDK<boolean>("QuickLookThumbnailing_0e503aef608672fa", 3143971185786098, this, []); }
-  set iconMode(value: boolean) { callSDK<void>("QuickLookThumbnailing_0e503aef608672fa", 330940482318286, this, [value]); }
+  get iconMode(): boolean { return callSDK<boolean>("QuickLookThumbnailing_212edf3d13b127f5", 3143971185786098, this, []); }
+  set iconMode(value: boolean) { callSDK<void>("QuickLookThumbnailing_212edf3d13b127f5", 330940482318286, this, [value]); }
   /**
    * var minimumDimension: CGFloat { get set }
    * @availability iOS 13.0+
    */
-  get minimumDimension(): number { return callSDK<number>("QuickLookThumbnailing_0e503aef608672fa", 607679712170427, this, []); }
-  set minimumDimension(value: number) { callSDK<void>("QuickLookThumbnailing_0e503aef608672fa", 1295922167842281, this, [value]); }
+  get minimumDimension(): number { return callSDK<number>("QuickLookThumbnailing_212edf3d13b127f5", 607679712170427, this, []); }
+  set minimumDimension(value: number) { callSDK<void>("QuickLookThumbnailing_212edf3d13b127f5", 1295922167842281, this, [value]); }
   /**
    * var representationTypes: QLThumbnailGenerator.Request.RepresentationTypes { get }
    * @availability iOS 13.0+
    */
-  get representationTypes(): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_0e503aef608672fa", 2080218535115207, this, []); }
+  get representationTypes(): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_212edf3d13b127f5", 2080218535115207, this, []); }
   /**
    * var scale: CGFloat { get }
    * @availability iOS 13.0+
    */
-  get scale(): number { return callSDK<number>("QuickLookThumbnailing_0e503aef608672fa", 3209334260643449, this, []); }
+  get scale(): number { return callSDK<number>("QuickLookThumbnailing_212edf3d13b127f5", 3209334260643449, this, []); }
   /**
    * var size: CGSize { get }
    * @availability iOS 13.0+
    */
-  get size(): $SDK0 { return callSDK<$SDK0>("QuickLookThumbnailing_0e503aef608672fa", 228233960084344, this, []); }
+  get size(): $SDK0 { return callSDK<$SDK0>("QuickLookThumbnailing_212edf3d13b127f5", 228233960084344, this, []); }
   declare readonly $type: { "c:objc(cs)QLThumbnailGenerationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentType": true; "iconMode": true; "minimumDimension": true; "representationTypes": true; "scale": true; "size": true };
 }
@@ -196,27 +196,27 @@ export const QLThumbnailGenerator_Request_RepresentationTypes = {
    * static var all: QLThumbnailGenerator.Request.RepresentationTypes { get }
    * @availability iOS 13.0+
    */
-  get all(): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_0e503aef608672fa", 594087016174853, undefined, []); },
+  get all(): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_212edf3d13b127f5", 594087016174853, undefined, []); },
   /**
    * static var icon: QLThumbnailGenerator.Request.RepresentationTypes { get }
    * @availability iOS 13.0+
    */
-  get icon(): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_0e503aef608672fa", 4037676524043896, undefined, []); },
+  get icon(): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_212edf3d13b127f5", 4037676524043896, undefined, []); },
   /**
    * static var lowQualityThumbnail: QLThumbnailGenerator.Request.RepresentationTypes { get }
    * @availability iOS 13.0+
    */
-  get lowQualityThumbnail(): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_0e503aef608672fa", 2925758632062618, undefined, []); },
+  get lowQualityThumbnail(): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_212edf3d13b127f5", 2925758632062618, undefined, []); },
   /**
    * static var thumbnail: QLThumbnailGenerator.Request.RepresentationTypes { get }
    * @availability iOS 13.0+
    */
-  get thumbnail(): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_0e503aef608672fa", 3099493479524096, undefined, []); },
+  get thumbnail(): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_212edf3d13b127f5", 3099493479524096, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_0e503aef608672fa", 1192826242469430, undefined, [rawValue]); }
+  init(rawValue: number): QLThumbnailGenerator_Request_RepresentationTypes { return callSDK<QLThumbnailGenerator_Request_RepresentationTypes>("QuickLookThumbnailing_212edf3d13b127f5", 1192826242469430, undefined, [rawValue]); }
 };
 
 /**
@@ -225,12 +225,12 @@ export const QLThumbnailGenerator_Request_RepresentationTypes = {
  */
 export class QLThumbnailProvider extends SDKHandle {
   /** init() */
-  static init(): QLThumbnailProvider { return callSDK<QLThumbnailProvider>("QuickLookThumbnailing_0e503aef608672fa", 4116956366204753, undefined, []); }
+  static init(): QLThumbnailProvider { return callSDK<QLThumbnailProvider>("QuickLookThumbnailing_212edf3d13b127f5", 4116956366204753, undefined, []); }
   /**
    * func provideThumbnail(for request: QLFileThumbnailRequest, _ handler: @escaping (QLThumbnailReply?, (any Error)?) -> Void)
    * @availability iOS 11.0+
    */
-  provideThumbnail(request: QLFileThumbnailRequest, handler: ((arg0: (QLThumbnailReply) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("QuickLookThumbnailing_0e503aef608672fa", 4441520787000947, this, [request, handler], [null,{"callback":{"out":[]}}]); }
+  provideThumbnail(request: QLFileThumbnailRequest, handler: ((arg0: (QLThumbnailReply) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("QuickLookThumbnailing_212edf3d13b127f5", 4441520787000947, this, [request, handler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)QLThumbnailProvider": true; "c:objc(cs)NSObject": true };
 }
 
@@ -243,13 +243,13 @@ export class QLThumbnailReply extends SDKHandle {
    * convenience init(imageFileURL fileURL: URL)
    * @availability iOS 11.0+
    */
-  static init(fileURL: string): QLThumbnailReply { return callSDK<QLThumbnailReply>("QuickLookThumbnailing_0e503aef608672fa", 2187270824752170, undefined, [fileURL]); }
+  static init(fileURL: string): QLThumbnailReply { return callSDK<QLThumbnailReply>("QuickLookThumbnailing_212edf3d13b127f5", 2187270824752170, undefined, [fileURL]); }
   /**
    * var extensionBadge: String { get set }
    * @availability iOS 15.0+
    */
-  get extensionBadge(): string { return callSDK<string>("QuickLookThumbnailing_0e503aef608672fa", 971757387840120, this, []); }
-  set extensionBadge(value: string) { callSDK<void>("QuickLookThumbnailing_0e503aef608672fa", 2322916000703595, this, [value]); }
+  get extensionBadge(): string { return callSDK<string>("QuickLookThumbnailing_212edf3d13b127f5", 971757387840120, this, []); }
+  set extensionBadge(value: string) { callSDK<void>("QuickLookThumbnailing_212edf3d13b127f5", 2322916000703595, this, [value]); }
   declare readonly $type: { "c:objc(cs)QLThumbnailReply": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "extensionBadge": true };
 }
@@ -260,22 +260,22 @@ export class QLThumbnailReply extends SDKHandle {
  */
 export class QLThumbnailRepresentation extends SDKHandle {
   /** init() */
-  static init(): QLThumbnailRepresentation { return callSDK<QLThumbnailRepresentation>("QuickLookThumbnailing_0e503aef608672fa", 1505069659165542, undefined, []); }
+  static init(): QLThumbnailRepresentation { return callSDK<QLThumbnailRepresentation>("QuickLookThumbnailing_212edf3d13b127f5", 1505069659165542, undefined, []); }
   /**
    * var cgImage: CGImage { get }
    * @availability iOS 13.0+
    */
-  get cgImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("QuickLookThumbnailing_0e503aef608672fa", 4399083485267781, this, []); }
+  get cgImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("QuickLookThumbnailing_212edf3d13b127f5", 4399083485267781, this, []); }
   /**
    * var contentRect: CGRect { get }
    * @availability iOS 15.0+
    */
-  get contentRect(): { x: number; y: number; width: number; height: number } { return callSDK<{ x: number; y: number; width: number; height: number }>("QuickLookThumbnailing_0e503aef608672fa", 1857258991582316, this, []); }
+  get contentRect(): { x: number; y: number; width: number; height: number } { return callSDK<{ x: number; y: number; width: number; height: number }>("QuickLookThumbnailing_212edf3d13b127f5", 1857258991582316, this, []); }
   /**
    * var type: QLThumbnailRepresentation.RepresentationType { get }
    * @availability iOS 13.0+
    */
-  get type(): QLThumbnailRepresentation_RepresentationType { return callSDK<QLThumbnailRepresentation_RepresentationType>("QuickLookThumbnailing_0e503aef608672fa", 2613268750235029, this, []); }
+  get type(): QLThumbnailRepresentation_RepresentationType { return callSDK<QLThumbnailRepresentation_RepresentationType>("QuickLookThumbnailing_212edf3d13b127f5", 2613268750235029, this, []); }
   declare readonly $type: { "c:objc(cs)QLThumbnailRepresentation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cgImage": true; "contentRect": true; "type": true };
 }
@@ -291,19 +291,19 @@ export const QLThumbnailRepresentation_RepresentationType = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (QLThumbnailRepresentation_RepresentationType) | null { return callSDK<(QLThumbnailRepresentation_RepresentationType) | null>("QuickLookThumbnailing_0e503aef608672fa", 1207036261178343, undefined, [rawValue]); }
+  init(rawValue: number): (QLThumbnailRepresentation_RepresentationType) | null { return callSDK<(QLThumbnailRepresentation_RepresentationType) | null>("QuickLookThumbnailing_212edf3d13b127f5", 1207036261178343, undefined, [rawValue]); }
 };
 
 /**
  * let QLThumbnailErrorDomain: String
  * @availability iOS 13.0+
  */
-export const QLThumbnailErrorDomain: string = callSDK<string>("QuickLookThumbnailing_0e503aef608672fa", 4407651557044599, undefined, []);
+export const QLThumbnailErrorDomain: string = callSDK<string>("QuickLookThumbnailing_212edf3d13b127f5", 4407651557044599, undefined, []);
 
-registerSDKClass("QLFileThumbnailRequest", QLFileThumbnailRequest, { module: "QuickLookThumbnailing_0e503aef608672fa", properties: {"fileURL":1070248038489064,"maximumSize":1627546259682093,"minimumSize":943482815462362,"scale":2675425850598563} });
-registerSDKClass("QuickLookThumbnailing.QLThumbnailError", QLThumbnailError, { module: "QuickLookThumbnailing_0e503aef608672fa", properties: {} });
-registerSDKClass("QLThumbnailGenerator", QLThumbnailGenerator, { module: "QuickLookThumbnailing_0e503aef608672fa", properties: {}, methods: {"cancel":{"id":2893381725571540},"generateBestRepresentation":{"id":2442161383125561,"hints":[null,{"callback":{"out":[]}}]},"generateRepresentations":{"id":2736259729281940,"hints":[null,{"callback":{"out":[]}}]},"saveBestRepresentationForToAsCompletion":{"id":4312167813917381,"hints":[null,null,null,{"callback":{"out":[]}}]},"saveBestRepresentationForToContentTypeCompletion":{"id":3764073550189379,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
-registerSDKClass("QLThumbnailGenerationRequest", QLThumbnailGenerator_Request, { module: "QuickLookThumbnailing_0e503aef608672fa", properties: {"contentType":3719439923129916,"iconMode":3143971185786098,"minimumDimension":607679712170427,"representationTypes":2080218535115207,"scale":3209334260643449,"size":228233960084344} });
-registerSDKClass("QLThumbnailProvider", QLThumbnailProvider, { module: "QuickLookThumbnailing_0e503aef608672fa", properties: {}, methods: {"provideThumbnail":{"id":4441520787000947,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("QLThumbnailReply", QLThumbnailReply, { module: "QuickLookThumbnailing_0e503aef608672fa", properties: {"extensionBadge":971757387840120} });
-registerSDKClass("QLThumbnailRepresentation", QLThumbnailRepresentation, { module: "QuickLookThumbnailing_0e503aef608672fa", properties: {"cgImage":4399083485267781,"contentRect":1857258991582316,"type":2613268750235029} });
+registerSDKClass("QLFileThumbnailRequest", QLFileThumbnailRequest, { module: "QuickLookThumbnailing_212edf3d13b127f5", properties: {"fileURL":1070248038489064,"maximumSize":1627546259682093,"minimumSize":943482815462362,"scale":2675425850598563} });
+registerSDKClass("QuickLookThumbnailing.QLThumbnailError", QLThumbnailError, { module: "QuickLookThumbnailing_212edf3d13b127f5", properties: {} });
+registerSDKClass("QLThumbnailGenerator", QLThumbnailGenerator, { module: "QuickLookThumbnailing_212edf3d13b127f5", properties: {}, methods: {"cancel":{"id":2893381725571540},"generateBestRepresentation":{"id":2442161383125561,"hints":[null,{"callback":{"out":[]}}]},"generateRepresentations":{"id":2736259729281940,"hints":[null,{"callback":{"out":[]}}]},"saveBestRepresentationForToAsCompletion":{"id":4312167813917381,"hints":[null,null,null,{"callback":{"out":[]}}]},"saveBestRepresentationForToContentTypeCompletion":{"id":3764073550189379,"hints":[null,null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("QLThumbnailGenerationRequest", QLThumbnailGenerator_Request, { module: "QuickLookThumbnailing_212edf3d13b127f5", properties: {"contentType":3719439923129916,"iconMode":3143971185786098,"minimumDimension":607679712170427,"representationTypes":2080218535115207,"scale":3209334260643449,"size":228233960084344} });
+registerSDKClass("QLThumbnailProvider", QLThumbnailProvider, { module: "QuickLookThumbnailing_212edf3d13b127f5", properties: {}, methods: {"provideThumbnail":{"id":4441520787000947,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("QLThumbnailReply", QLThumbnailReply, { module: "QuickLookThumbnailing_212edf3d13b127f5", properties: {"extensionBadge":971757387840120} });
+registerSDKClass("QLThumbnailRepresentation", QLThumbnailRepresentation, { module: "QuickLookThumbnailing_212edf3d13b127f5", properties: {"cgImage":4399083485267781,"contentRect":1857258991582316,"type":2613268750235029} });

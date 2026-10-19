@@ -25,7 +25,7 @@ export type IdentityInfoCoreDataPropertiesSet = _Foundation_NSSet;
  */
 export class ILClassificationRequest extends SDKHandle {
   /** init() */
-  static init(): ILClassificationRequest { return callSDK<ILClassificationRequest>("IdentityLookup_0e503aef608672fa", 2838104425674033, undefined, []); }
+  static init(): ILClassificationRequest { return callSDK<ILClassificationRequest>("IdentityLookup_212edf3d13b127f5", 2838104425674033, undefined, []); }
   declare readonly $type: { "c:objc(cs)ILClassificationRequest": true; "c:objc(cs)NSObject": true };
 }
 
@@ -38,7 +38,7 @@ export class ILCallClassificationRequest extends ILClassificationRequest {
    * var callCommunications: [ILCallCommunication] { get }
    * @availability iOS 12.0+
    */
-  get callCommunications(): Array<ILCallCommunication> { return callSDK<Array<ILCallCommunication>>("IdentityLookup_0e503aef608672fa", 3953245234494977, this, []); }
+  get callCommunications(): Array<ILCallCommunication> { return callSDK<Array<ILCallCommunication>>("IdentityLookup_212edf3d13b127f5", 3953245234494977, this, []); }
   declare readonly $type: { "c:objc(cs)ILCallClassificationRequest": true; "c:objc(cs)ILClassificationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "callCommunications": true };
 }
@@ -52,12 +52,12 @@ export class ILCommunication extends SDKHandle {
    * var dateReceived: Date { get }
    * @availability iOS 12.0+
    */
-  get dateReceived(): globalThis.Date { return callSDK<globalThis.Date>("IdentityLookup_0e503aef608672fa", 105198300235162, this, []); }
+  get dateReceived(): globalThis.Date { return callSDK<globalThis.Date>("IdentityLookup_212edf3d13b127f5", 105198300235162, this, []); }
   /**
    * var sender: String? { get }
    * @availability iOS 12.0+
    */
-  get sender(): (string) | null { return callSDK<(string) | null>("IdentityLookup_0e503aef608672fa", 2655833777881371, this, []); }
+  get sender(): (string) | null { return callSDK<(string) | null>("IdentityLookup_212edf3d13b127f5", 2655833777881371, this, []); }
   declare readonly $type: { "c:objc(cs)ILCommunication": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateReceived": true; "sender": true };
 }
@@ -82,7 +82,7 @@ export const ILClassificationAction = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (ILClassificationAction) | null { return callSDK<(ILClassificationAction) | null>("IdentityLookup_0e503aef608672fa", 2348158266034483, undefined, [rawValue]); }
+  init(rawValue: number): (ILClassificationAction) | null { return callSDK<(ILClassificationAction) | null>("IdentityLookup_212edf3d13b127f5", 2348158266034483, undefined, [rawValue]); }
 };
 
 /**
@@ -94,24 +94,24 @@ export class ILClassificationResponse extends SDKHandle {
    * init(action: ILClassificationAction)
    * @availability iOS 12.0+
    */
-  static init(action: ILClassificationAction): ILClassificationResponse { return callSDK<ILClassificationResponse>("IdentityLookup_0e503aef608672fa", 2673493275247842, undefined, [action]); }
+  static init(action: ILClassificationAction): ILClassificationResponse { return callSDK<ILClassificationResponse>("IdentityLookup_212edf3d13b127f5", 2673493275247842, undefined, [action]); }
   /**
    * var action: ILClassificationAction { get }
    * @availability iOS 12.0+
    */
-  get action(): ILClassificationAction { return callSDK<ILClassificationAction>("IdentityLookup_0e503aef608672fa", 666403804345449, this, []); }
+  get action(): ILClassificationAction { return callSDK<ILClassificationAction>("IdentityLookup_212edf3d13b127f5", 666403804345449, this, []); }
   /**
    * var userInfo: [String : Any]? { get set }
    * @availability iOS 12.0+
    */
-  get userInfo(): $SDK1 { return callSDK<$SDK1>("IdentityLookup_0e503aef608672fa", 2288519166015165, this, []); }
-  set userInfo(value: $SDK1) { callSDK<void>("IdentityLookup_0e503aef608672fa", 963720379954790, this, [value]); }
+  get userInfo(): $SDK1 { return callSDK<$SDK1>("IdentityLookup_212edf3d13b127f5", 2288519166015165, this, []); }
+  set userInfo(value: $SDK1) { callSDK<void>("IdentityLookup_212edf3d13b127f5", 963720379954790, this, [value]); }
   /**
    * var userString: String? { get set }
    * @availability iOS 12.1+
    */
-  get userString(): (string) | null { return callSDK<(string) | null>("IdentityLookup_0e503aef608672fa", 92873818350861, this, []); }
-  set userString(value: (string) | null) { callSDK<void>("IdentityLookup_0e503aef608672fa", 2436585734032350, this, [value]); }
+  get userString(): (string) | null { return callSDK<(string) | null>("IdentityLookup_212edf3d13b127f5", 92873818350861, this, []); }
+  set userString(value: (string) | null) { callSDK<void>("IdentityLookup_212edf3d13b127f5", 2436585734032350, this, [value]); }
   declare readonly $type: { "c:objc(cs)ILClassificationResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "action": true; "userInfo": true; "userString": true };
 }
@@ -125,7 +125,7 @@ export class ILMessageClassificationRequest extends ILClassificationRequest {
    * var messageCommunications: [ILMessageCommunication] { get }
    * @availability iOS 12.0+
    */
-  get messageCommunications(): Array<ILMessageCommunication> { return callSDK<Array<ILMessageCommunication>>("IdentityLookup_0e503aef608672fa", 3371954152596587, this, []); }
+  get messageCommunications(): Array<ILMessageCommunication> { return callSDK<Array<ILMessageCommunication>>("IdentityLookup_212edf3d13b127f5", 3371954152596587, this, []); }
   declare readonly $type: { "c:objc(cs)ILMessageClassificationRequest": true; "c:objc(cs)ILClassificationRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "messageCommunications": true };
 }
@@ -139,7 +139,7 @@ export class ILMessageCommunication extends ILCommunication {
    * var messageBody: String? { get }
    * @availability iOS 12.0+
    */
-  get messageBody(): (string) | null { return callSDK<(string) | null>("IdentityLookup_0e503aef608672fa", 3320754424479918, this, []); }
+  get messageBody(): (string) | null { return callSDK<(string) | null>("IdentityLookup_212edf3d13b127f5", 3320754424479918, this, []); }
   declare readonly $type: { "c:objc(cs)ILMessageCommunication": true; "c:objc(cs)ILCommunication": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dateReceived": true; "sender": true; "messageBody": true };
 }
@@ -156,12 +156,12 @@ export const ILMessageFilterAction = {
    * @availability iOS 11.0+
    * @deprecated iOS 14.0
    */
-  get filter(): ILMessageFilterAction { return callSDK<ILMessageFilterAction>("IdentityLookup_0e503aef608672fa", 84790797730063, undefined, []); },
+  get filter(): ILMessageFilterAction { return callSDK<ILMessageFilterAction>("IdentityLookup_212edf3d13b127f5", 84790797730063, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (ILMessageFilterAction) | null { return callSDK<(ILMessageFilterAction) | null>("IdentityLookup_0e503aef608672fa", 3841651904917337, undefined, [rawValue]); }
+  init(rawValue: number): (ILMessageFilterAction) | null { return callSDK<(ILMessageFilterAction) | null>("IdentityLookup_212edf3d13b127f5", 3841651904917337, undefined, [rawValue]); }
 };
 
 /**
@@ -173,7 +173,7 @@ export interface ILMessageFilterCapabilitiesQueryHandling {
    * func handle(_ capabilitiesQueryRequest: ILMessageFilterCapabilitiesQueryRequest, context: ILMessageFilterExtensionContext) async -> ILMessageFilterCapabilitiesQueryResponse
    * @availability iOS 16.0+
    */
-  "handleContext"?: (arg0: ILMessageFilterCapabilitiesQueryRequest, arg1: ILMessageFilterExtensionContext) => ILMessageFilterCapabilitiesQueryResponse;
+  "handleContext"?: (arg0: ILMessageFilterCapabilitiesQueryRequest, arg1: ILMessageFilterExtensionContext) => Promise<ILMessageFilterCapabilitiesQueryResponse>;
 }
 
 /**
@@ -190,19 +190,19 @@ export class ILMessageFilterCapabilitiesQueryRequest extends SDKHandle {
  */
 export class ILMessageFilterCapabilitiesQueryResponse extends SDKHandle {
   /** init() */
-  static init(): ILMessageFilterCapabilitiesQueryResponse { return callSDK<ILMessageFilterCapabilitiesQueryResponse>("IdentityLookup_0e503aef608672fa", 2179260348098066, undefined, []); }
+  static init(): ILMessageFilterCapabilitiesQueryResponse { return callSDK<ILMessageFilterCapabilitiesQueryResponse>("IdentityLookup_212edf3d13b127f5", 2179260348098066, undefined, []); }
   /**
    * final var promotionalSubActions: [ILMessageFilterSubAction] { get set }
    * @availability iOS 16.0+
    */
-  get promotionalSubActions(): $SDK3 { return callSDK<$SDK3>("IdentityLookup_0e503aef608672fa", 3691390048164973, this, []); }
-  set promotionalSubActions(value: $SDK3) { callSDK<void>("IdentityLookup_0e503aef608672fa", 1981577442333856, this, [value]); }
+  get promotionalSubActions(): $SDK3 { return callSDK<$SDK3>("IdentityLookup_212edf3d13b127f5", 3691390048164973, this, []); }
+  set promotionalSubActions(value: $SDK3) { callSDK<void>("IdentityLookup_212edf3d13b127f5", 1981577442333856, this, [value]); }
   /**
    * @nonobjc final var transactionalSubActions: [ILMessageFilterSubAction] { get set }
    * @availability iOS 16.0+
    */
-  get transactionalSubActions(): $SDK3 { return callSDK<$SDK3>("IdentityLookup_0e503aef608672fa", 1856169898628426, this, []); }
-  set transactionalSubActions(value: $SDK3) { callSDK<void>("IdentityLookup_0e503aef608672fa", 3703645555829587, this, [value]); }
+  get transactionalSubActions(): $SDK3 { return callSDK<$SDK3>("IdentityLookup_212edf3d13b127f5", 1856169898628426, this, []); }
+  set transactionalSubActions(value: $SDK3) { callSDK<void>("IdentityLookup_212edf3d13b127f5", 3703645555829587, this, [value]); }
   declare readonly $type: { "c:objc(cs)ILMessageFilterCapabilitiesQueryResponse": true; "c:objc(cs)NSObject": true };
 }
 
@@ -215,32 +215,32 @@ export class ILMessageFilterError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 11.0+
    */
-  static get errorDomain(): string { return callSDK<string>("IdentityLookup_0e503aef608672fa", 4013062066443482, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("IdentityLookup_212edf3d13b127f5", 4013062066443482, undefined, []); }
   /**
    * static var invalidNetworkURL: ILMessageFilterError.Code { get }
    * @availability iOS 11.0+
    */
-  static get invalidNetworkURL(): ILMessageFilterError_Code { return callSDK<ILMessageFilterError_Code>("IdentityLookup_0e503aef608672fa", 1959833127278662, undefined, []); }
+  static get invalidNetworkURL(): ILMessageFilterError_Code { return callSDK<ILMessageFilterError_Code>("IdentityLookup_212edf3d13b127f5", 1959833127278662, undefined, []); }
   /**
    * static var networkRequestFailed: ILMessageFilterError.Code { get }
    * @availability iOS 11.0+
    */
-  static get networkRequestFailed(): ILMessageFilterError_Code { return callSDK<ILMessageFilterError_Code>("IdentityLookup_0e503aef608672fa", 2196366310165165, undefined, []); }
+  static get networkRequestFailed(): ILMessageFilterError_Code { return callSDK<ILMessageFilterError_Code>("IdentityLookup_212edf3d13b127f5", 2196366310165165, undefined, []); }
   /**
    * static var networkURLUnauthorized: ILMessageFilterError.Code { get }
    * @availability iOS 11.0+
    */
-  static get networkURLUnauthorized(): ILMessageFilterError_Code { return callSDK<ILMessageFilterError_Code>("IdentityLookup_0e503aef608672fa", 1455843674542969, undefined, []); }
+  static get networkURLUnauthorized(): ILMessageFilterError_Code { return callSDK<ILMessageFilterError_Code>("IdentityLookup_212edf3d13b127f5", 1455843674542969, undefined, []); }
   /**
    * static var redundantNetworkDeferral: ILMessageFilterError.Code { get }
    * @availability iOS 11.0+
    */
-  static get redundantNetworkDeferral(): ILMessageFilterError_Code { return callSDK<ILMessageFilterError_Code>("IdentityLookup_0e503aef608672fa", 531494648073606, undefined, []); }
+  static get redundantNetworkDeferral(): ILMessageFilterError_Code { return callSDK<ILMessageFilterError_Code>("IdentityLookup_212edf3d13b127f5", 531494648073606, undefined, []); }
   /**
    * static var system: ILMessageFilterError.Code { get }
    * @availability iOS 11.0+
    */
-  static get system(): ILMessageFilterError_Code { return callSDK<ILMessageFilterError_Code>("IdentityLookup_0e503aef608672fa", 812690291285439, undefined, []); }
+  static get system(): ILMessageFilterError_Code { return callSDK<ILMessageFilterError_Code>("IdentityLookup_212edf3d13b127f5", 812690291285439, undefined, []); }
   declare readonly $type: { "s:SC20ILMessageFilterErrorLeV": true };
 }
 
@@ -255,7 +255,7 @@ export const ILMessageFilterError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (ILMessageFilterError_Code) | null { return callSDK<(ILMessageFilterError_Code) | null>("IdentityLookup_0e503aef608672fa", 3816700953508359, undefined, [rawValue]); }
+  init(rawValue: number): (ILMessageFilterError_Code) | null { return callSDK<(ILMessageFilterError_Code) | null>("IdentityLookup_212edf3d13b127f5", 3816700953508359, undefined, [rawValue]); }
 };
 
 /**
@@ -264,7 +264,7 @@ export const ILMessageFilterError_Code = {
  */
 export class ILMessageFilterExtension extends SDKHandle {
   /** init() */
-  static init(): ILMessageFilterExtension { return callSDK<ILMessageFilterExtension>("IdentityLookup_0e503aef608672fa", 2220175083121621, undefined, []); }
+  static init(): ILMessageFilterExtension { return callSDK<ILMessageFilterExtension>("IdentityLookup_212edf3d13b127f5", 2220175083121621, undefined, []); }
   declare readonly $type: { "c:objc(cs)ILMessageFilterExtension": true; "c:objc(cs)NSObject": true };
 }
 
@@ -277,9 +277,9 @@ export class ILMessageFilterExtensionContext extends SDKHandle {
    * func deferQueryRequestToNetwork() async throws -> ILNetworkResponse
    * @availability iOS 11.0+
    */
-  deferQueryRequestToNetwork(completion: ((arg0: (ILNetworkResponse) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("IdentityLookup_0e503aef608672fa", 1591570637936184, this, [completion], [{"callback":{"out":[]}}]); }
+  deferQueryRequestToNetwork(completion: ((arg0: (ILNetworkResponse) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("IdentityLookup_212edf3d13b127f5", 1591570637936184, this, [completion], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): ILMessageFilterExtensionContext { return callSDK<ILMessageFilterExtensionContext>("IdentityLookup_0e503aef608672fa", 125448904948678, undefined, []); }
+  static init(): ILMessageFilterExtensionContext { return callSDK<ILMessageFilterExtensionContext>("IdentityLookup_212edf3d13b127f5", 125448904948678, undefined, []); }
   declare readonly $type: { "c:objc(cs)ILMessageFilterExtensionContext": true; "c:objc(cs)NSExtensionContext": true; "c:objc(cs)NSObject": true };
 }
 
@@ -292,7 +292,7 @@ export interface ILMessageFilterQueryHandling {
    * func handle(_ queryRequest: ILMessageFilterQueryRequest, context: ILMessageFilterExtensionContext) async -> ILMessageFilterQueryResponse
    * @availability iOS 11.0+
    */
-  "handleContext"?: (arg0: ILMessageFilterQueryRequest, arg1: ILMessageFilterExtensionContext) => ILMessageFilterQueryResponse;
+  "handleContext"?: (arg0: ILMessageFilterQueryRequest, arg1: ILMessageFilterExtensionContext) => Promise<ILMessageFilterQueryResponse>;
 }
 
 /**
@@ -304,17 +304,17 @@ export class ILMessageFilterQueryRequest extends SDKHandle {
    * var messageBody: String? { get }
    * @availability iOS 11.0+
    */
-  get messageBody(): (string) | null { return callSDK<(string) | null>("IdentityLookup_0e503aef608672fa", 2289628004417403, this, []); }
+  get messageBody(): (string) | null { return callSDK<(string) | null>("IdentityLookup_212edf3d13b127f5", 2289628004417403, this, []); }
   /**
    * var receiverISOCountryCode: String? { get }
    * @availability iOS 16.0+
    */
-  get receiverISOCountryCode(): (string) | null { return callSDK<(string) | null>("IdentityLookup_0e503aef608672fa", 644914828932087, this, []); }
+  get receiverISOCountryCode(): (string) | null { return callSDK<(string) | null>("IdentityLookup_212edf3d13b127f5", 644914828932087, this, []); }
   /**
    * var sender: String? { get }
    * @availability iOS 11.0+
    */
-  get sender(): (string) | null { return callSDK<(string) | null>("IdentityLookup_0e503aef608672fa", 3621820530307163, this, []); }
+  get sender(): (string) | null { return callSDK<(string) | null>("IdentityLookup_212edf3d13b127f5", 3621820530307163, this, []); }
   declare readonly $type: { "c:objc(cs)ILMessageFilterQueryRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "messageBody": true; "receiverISOCountryCode": true; "sender": true };
 }
@@ -325,19 +325,19 @@ export class ILMessageFilterQueryRequest extends SDKHandle {
  */
 export class ILMessageFilterQueryResponse extends SDKHandle {
   /** init() */
-  static init(): ILMessageFilterQueryResponse { return callSDK<ILMessageFilterQueryResponse>("IdentityLookup_0e503aef608672fa", 2502703314423831, undefined, []); }
+  static init(): ILMessageFilterQueryResponse { return callSDK<ILMessageFilterQueryResponse>("IdentityLookup_212edf3d13b127f5", 2502703314423831, undefined, []); }
   /**
    * var action: ILMessageFilterAction { get set }
    * @availability iOS 11.0+
    */
-  get action(): ILMessageFilterAction { return callSDK<ILMessageFilterAction>("IdentityLookup_0e503aef608672fa", 3023233842479872, this, []); }
-  set action(value: ILMessageFilterAction) { callSDK<void>("IdentityLookup_0e503aef608672fa", 2889131039512423, this, [value]); }
+  get action(): ILMessageFilterAction { return callSDK<ILMessageFilterAction>("IdentityLookup_212edf3d13b127f5", 3023233842479872, this, []); }
+  set action(value: ILMessageFilterAction) { callSDK<void>("IdentityLookup_212edf3d13b127f5", 2889131039512423, this, [value]); }
   /**
    * var subAction: ILMessageFilterSubAction { get set }
    * @availability iOS 16.0+
    */
-  get subAction(): ILMessageFilterSubAction { return callSDK<ILMessageFilterSubAction>("IdentityLookup_0e503aef608672fa", 3939695687465615, this, []); }
-  set subAction(value: ILMessageFilterSubAction) { callSDK<void>("IdentityLookup_0e503aef608672fa", 1806292479093107, this, [value]); }
+  get subAction(): ILMessageFilterSubAction { return callSDK<ILMessageFilterSubAction>("IdentityLookup_212edf3d13b127f5", 3939695687465615, this, []); }
+  set subAction(value: ILMessageFilterSubAction) { callSDK<void>("IdentityLookup_212edf3d13b127f5", 1806292479093107, this, [value]); }
   declare readonly $type: { "c:objc(cs)ILMessageFilterQueryResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "action": true; "subAction": true };
 }
@@ -353,7 +353,7 @@ export const ILMessageFilterSubAction = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (ILMessageFilterSubAction) | null { return callSDK<(ILMessageFilterSubAction) | null>("IdentityLookup_0e503aef608672fa", 863907444266573, undefined, [rawValue]); }
+  init(rawValue: number): (ILMessageFilterSubAction) | null { return callSDK<(ILMessageFilterSubAction) | null>("IdentityLookup_212edf3d13b127f5", 863907444266573, undefined, [rawValue]); }
 };
 
 /**
@@ -365,12 +365,12 @@ export class ILNetworkResponse extends SDKHandle {
    * var data: Data { get }
    * @availability iOS 11.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("IdentityLookup_0e503aef608672fa", 2270729053679041, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("IdentityLookup_212edf3d13b127f5", 2270729053679041, this, []); }
   /**
    * var urlResponse: HTTPURLResponse { get }
    * @availability iOS 11.0+
    */
-  get urlResponse(): _Foundation_HTTPURLResponse { return callSDK<_Foundation_HTTPURLResponse>("IdentityLookup_0e503aef608672fa", 2257233133145399, this, []); }
+  get urlResponse(): _Foundation_HTTPURLResponse { return callSDK<_Foundation_HTTPURLResponse>("IdentityLookup_212edf3d13b127f5", 2257233133145399, this, []); }
   declare readonly $type: { "c:objc(cs)ILNetworkResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "urlResponse": true };
 }
@@ -392,22 +392,22 @@ export class LiveCallerIDLookupExtensionContext extends SDKHandle {
    * init(serviceURL: URL, tokenIssuerURL: URL, userTierToken: Data)
    * @availability iOS 18.0+
    */
-  static init(serviceURL: string, tokenIssuerURL: string, userTierToken: ArrayBuffer): LiveCallerIDLookupExtensionContext { return callSDK<LiveCallerIDLookupExtensionContext>("IdentityLookup_0e503aef608672fa", 733463012581064, undefined, [serviceURL, tokenIssuerURL, userTierToken]); }
+  static init(serviceURL: string, tokenIssuerURL: string, userTierToken: ArrayBuffer): LiveCallerIDLookupExtensionContext { return callSDK<LiveCallerIDLookupExtensionContext>("IdentityLookup_212edf3d13b127f5", 733463012581064, undefined, [serviceURL, tokenIssuerURL, userTierToken]); }
   /**
    * let serviceURL: URL
    * @availability iOS 18.0+
    */
-  get serviceURL(): string { return callSDK<string>("IdentityLookup_0e503aef608672fa", 1354417324724096, this, []); }
+  get serviceURL(): string { return callSDK<string>("IdentityLookup_212edf3d13b127f5", 1354417324724096, this, []); }
   /**
    * let userTierToken: Data
    * @availability iOS 18.0+
    */
-  get userTierToken(): ArrayBuffer { return callSDK<ArrayBuffer>("IdentityLookup_0e503aef608672fa", 343597162343402, this, []); }
+  get userTierToken(): ArrayBuffer { return callSDK<ArrayBuffer>("IdentityLookup_212edf3d13b127f5", 343597162343402, this, []); }
   /**
    * let tokenIssuerURL: URL
    * @availability iOS 18.0+
    */
-  get tokenIssuerURL(): string { return callSDK<string>("IdentityLookup_0e503aef608672fa", 506975011603712, this, []); }
+  get tokenIssuerURL(): string { return callSDK<string>("IdentityLookup_212edf3d13b127f5", 506975011603712, this, []); }
   declare readonly $type: { "s:14IdentityLookup34LiveCallerIDLookupExtensionContextV": true };
 }
 
@@ -420,32 +420,32 @@ export class LiveCallerIDLookupManager extends SDKHandle {
    * func openSettings() async throws
    * @availability iOS 18.0+
    */
-  openSettings(): Promise<void> { return callSDKAsync<void>("IdentityLookup_0e503aef608672fa", 3629998110431706, this, []); }
+  openSettings(): Promise<void> { return callSDKAsync<void>("IdentityLookup_212edf3d13b127f5", 3629998110431706, this, []); }
   /**
    * func refreshPIRParameters(forExtensionWithIdentifier identifier: String) async throws
    * @availability iOS 18.0+
    */
-  refreshPIRParameters(identifier: string): Promise<void> { return callSDKAsync<void>("IdentityLookup_0e503aef608672fa", 776647017634433, this, [identifier]); }
+  refreshPIRParameters(identifier: string): Promise<void> { return callSDKAsync<void>("IdentityLookup_212edf3d13b127f5", 776647017634433, this, [identifier]); }
   /**
    * func refreshExtensionContext(forExtensionWithIdentifier identifier: String) async throws
    * @availability iOS 18.1+
    */
-  refreshExtensionContext(identifier: string): Promise<void> { return callSDKAsync<void>("IdentityLookup_0e503aef608672fa", 2623547376419071, this, [identifier]); }
+  refreshExtensionContext(identifier: string): Promise<void> { return callSDKAsync<void>("IdentityLookup_212edf3d13b127f5", 2623547376419071, this, [identifier]); }
   /**
    * func reset(forExtensionWithIdentifier identifier: String) async throws
    * @availability iOS 18.0+
    */
-  reset(identifier: string): Promise<void> { return callSDKAsync<void>("IdentityLookup_0e503aef608672fa", 2366619288696362, this, [identifier]); }
+  reset(identifier: string): Promise<void> { return callSDKAsync<void>("IdentityLookup_212edf3d13b127f5", 2366619288696362, this, [identifier]); }
   /**
    * static let shared: LiveCallerIDLookupManager
    * @availability iOS 18.0+
    */
-  static get shared(): LiveCallerIDLookupManager { return callSDK<LiveCallerIDLookupManager>("IdentityLookup_0e503aef608672fa", 160508284757814, undefined, []); }
+  static get shared(): LiveCallerIDLookupManager { return callSDK<LiveCallerIDLookupManager>("IdentityLookup_212edf3d13b127f5", 160508284757814, undefined, []); }
   /**
    * func status(forExtensionWithIdentifier identifier: String) -> CallLookupExtensionStatus
    * @availability iOS 18.0+
    */
-  status(identifier: string): CallLookupExtensionStatus { return callSDK<CallLookupExtensionStatus>("IdentityLookup_0e503aef608672fa", 205526265948893, this, [identifier]); }
+  status(identifier: string): CallLookupExtensionStatus { return callSDK<CallLookupExtensionStatus>("IdentityLookup_212edf3d13b127f5", 205526265948893, this, [identifier]); }
   declare readonly $type: { "s:14IdentityLookup25LiveCallerIDLookupManagerC": true };
 }
 
@@ -470,32 +470,32 @@ export type LiveLookupStoreFoundationFrameworkSet = _Foundation_NSSet;
  * let ILMessageFilterErrorDomain: String
  * @availability iOS 11.0+
  */
-export const ILMessageFilterErrorDomain: string = callSDK<string>("IdentityLookup_0e503aef608672fa", 2661248327554508, undefined, []);
+export const ILMessageFilterErrorDomain: string = callSDK<string>("IdentityLookup_212edf3d13b127f5", 2661248327554508, undefined, []);
 
 /**
  * let extensionPointName: String
  * @availability iOS 18.0+
  */
-export const extensionPointName: string = callSDK<string>("IdentityLookup_0e503aef608672fa", 4362105994158898, undefined, []);
+export const extensionPointName: string = callSDK<string>("IdentityLookup_212edf3d13b127f5", 4362105994158898, undefined, []);
 
-registerSDKClass("ILClassificationRequest", ILClassificationRequest, { module: "IdentityLookup_0e503aef608672fa", properties: {} });
-registerSDKClass("ILCallClassificationRequest", ILCallClassificationRequest, { module: "IdentityLookup_0e503aef608672fa", properties: {"callCommunications":3953245234494977} });
-registerSDKClass("ILCommunication", ILCommunication, { module: "IdentityLookup_0e503aef608672fa", properties: {"dateReceived":105198300235162,"sender":2655833777881371} });
-registerSDKClass("ILCallCommunication", ILCallCommunication, { module: "IdentityLookup_0e503aef608672fa", properties: {} });
-registerSDKClass("ILClassificationResponse", ILClassificationResponse, { module: "IdentityLookup_0e503aef608672fa", properties: {"action":666403804345449,"userInfo":2288519166015165,"userString":92873818350861} });
-registerSDKClass("ILMessageClassificationRequest", ILMessageClassificationRequest, { module: "IdentityLookup_0e503aef608672fa", properties: {"messageCommunications":3371954152596587} });
-registerSDKClass("ILMessageCommunication", ILMessageCommunication, { module: "IdentityLookup_0e503aef608672fa", properties: {"messageBody":3320754424479918} });
+registerSDKClass("ILClassificationRequest", ILClassificationRequest, { module: "IdentityLookup_212edf3d13b127f5", properties: {} });
+registerSDKClass("ILCallClassificationRequest", ILCallClassificationRequest, { module: "IdentityLookup_212edf3d13b127f5", properties: {"callCommunications":3953245234494977} });
+registerSDKClass("ILCommunication", ILCommunication, { module: "IdentityLookup_212edf3d13b127f5", properties: {"dateReceived":105198300235162,"sender":2655833777881371} });
+registerSDKClass("ILCallCommunication", ILCallCommunication, { module: "IdentityLookup_212edf3d13b127f5", properties: {} });
+registerSDKClass("ILClassificationResponse", ILClassificationResponse, { module: "IdentityLookup_212edf3d13b127f5", properties: {"action":666403804345449,"userInfo":2288519166015165,"userString":92873818350861} });
+registerSDKClass("ILMessageClassificationRequest", ILMessageClassificationRequest, { module: "IdentityLookup_212edf3d13b127f5", properties: {"messageCommunications":3371954152596587} });
+registerSDKClass("ILMessageCommunication", ILMessageCommunication, { module: "IdentityLookup_212edf3d13b127f5", properties: {"messageBody":3320754424479918} });
 registerSDKProtocol("c:objc(pl)ILMessageFilterCapabilitiesQueryHandling", {"handleContext":"handle(_:context:)"});
-registerSDKClass("ILMessageFilterCapabilitiesQueryRequest", ILMessageFilterCapabilitiesQueryRequest, { module: "IdentityLookup_0e503aef608672fa", properties: {} });
-registerSDKClass("ILMessageFilterCapabilitiesQueryResponse", ILMessageFilterCapabilitiesQueryResponse, { module: "IdentityLookup_0e503aef608672fa", properties: {} });
-registerSDKClass("IdentityLookup.ILMessageFilterError", ILMessageFilterError, { module: "IdentityLookup_0e503aef608672fa", properties: {} });
-registerSDKClass("ILMessageFilterExtension", ILMessageFilterExtension, { module: "IdentityLookup_0e503aef608672fa", properties: {} });
-registerSDKClass("ILMessageFilterExtensionContext", ILMessageFilterExtensionContext, { module: "IdentityLookup_0e503aef608672fa", properties: {}, methods: {"deferQueryRequestToNetwork":{"id":1591570637936184,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("ILMessageFilterCapabilitiesQueryRequest", ILMessageFilterCapabilitiesQueryRequest, { module: "IdentityLookup_212edf3d13b127f5", properties: {} });
+registerSDKClass("ILMessageFilterCapabilitiesQueryResponse", ILMessageFilterCapabilitiesQueryResponse, { module: "IdentityLookup_212edf3d13b127f5", properties: {} });
+registerSDKClass("IdentityLookup.ILMessageFilterError", ILMessageFilterError, { module: "IdentityLookup_212edf3d13b127f5", properties: {} });
+registerSDKClass("ILMessageFilterExtension", ILMessageFilterExtension, { module: "IdentityLookup_212edf3d13b127f5", properties: {} });
+registerSDKClass("ILMessageFilterExtensionContext", ILMessageFilterExtensionContext, { module: "IdentityLookup_212edf3d13b127f5", properties: {}, methods: {"deferQueryRequestToNetwork":{"id":1591570637936184,"hints":[{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)ILMessageFilterQueryHandling", {"handleContext":"handle(_:context:)"});
-registerSDKClass("ILMessageFilterQueryRequest", ILMessageFilterQueryRequest, { module: "IdentityLookup_0e503aef608672fa", properties: {"messageBody":2289628004417403,"receiverISOCountryCode":644914828932087,"sender":3621820530307163} });
-registerSDKClass("ILMessageFilterQueryResponse", ILMessageFilterQueryResponse, { module: "IdentityLookup_0e503aef608672fa", properties: {"action":3023233842479872,"subAction":3939695687465615} });
-registerSDKClass("ILNetworkResponse", ILNetworkResponse, { module: "IdentityLookup_0e503aef608672fa", properties: {"data":2270729053679041,"urlResponse":2257233133145399} });
+registerSDKClass("ILMessageFilterQueryRequest", ILMessageFilterQueryRequest, { module: "IdentityLookup_212edf3d13b127f5", properties: {"messageBody":2289628004417403,"receiverISOCountryCode":644914828932087,"sender":3621820530307163} });
+registerSDKClass("ILMessageFilterQueryResponse", ILMessageFilterQueryResponse, { module: "IdentityLookup_212edf3d13b127f5", properties: {"action":3023233842479872,"subAction":3939695687465615} });
+registerSDKClass("ILNetworkResponse", ILNetworkResponse, { module: "IdentityLookup_212edf3d13b127f5", properties: {"data":2270729053679041,"urlResponse":2257233133145399} });
 registerSDKProtocol("s:14IdentityLookup40LiveCallerIDLookupExtensionConfigurationP", {"acceptConnection":"accept(connection:)"});
-registerSDKClass("IdentityLookup.LiveCallerIDLookupExtensionContext", LiveCallerIDLookupExtensionContext, { module: "IdentityLookup_0e503aef608672fa", properties: {} });
-registerSDKClass("IdentityLookup.LiveCallerIDLookupManager", LiveCallerIDLookupManager, { module: "IdentityLookup_0e503aef608672fa", properties: {}, methods: {"openSettings":{"id":3629998110431706},"refreshPIRParameters":{"id":776647017634433},"refreshExtensionContext":{"id":2623547376419071},"reset":{"id":2366619288696362},"status":{"id":205526265948893}} });
+registerSDKClass("IdentityLookup.LiveCallerIDLookupExtensionContext", LiveCallerIDLookupExtensionContext, { module: "IdentityLookup_212edf3d13b127f5", properties: {} });
+registerSDKClass("IdentityLookup.LiveCallerIDLookupManager", LiveCallerIDLookupManager, { module: "IdentityLookup_212edf3d13b127f5", properties: {}, methods: {"openSettings":{"id":3629998110431706},"refreshPIRParameters":{"id":776647017634433},"refreshExtensionContext":{"id":2623547376419071},"reset":{"id":2366619288696362},"status":{"id":205526265948893}} });
 registerSDKProtocol("s:14IdentityLookup26LiveCallerIDLookupProtocolP", {"init":"init()"});
