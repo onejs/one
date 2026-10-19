@@ -132,7 +132,7 @@ function buildPhones(
   return values.map((value) => {
     const index = remaining.findIndex((item) => item.value.stringValue === value)
     if (index >= 0) return remaining.splice(index, 1)[0]
-    return CNLabeledValue.initLabelValue(
+    return CNLabeledValue.init(
       CNLabelPhoneNumberMain,
       CNPhoneNumber.initStringValue(value)
     )
@@ -149,7 +149,7 @@ function buildEmails(
     if (index >= 0) return remaining.splice(index, 1)[0]
     // the emitted table switches the value to NSString natively, so the raw
     // string crosses and bridges on the native side.
-    return CNLabeledValue.initLabelValue(CNLabelHome, value as unknown as NSString)
+    return CNLabeledValue.init(CNLabelHome, value as unknown as NSString)
   })
 }
 
@@ -189,7 +189,7 @@ function buildAddresses(
           item.label === value.label)
     )
     if (index >= 0) return remaining.splice(index, 1)[0]
-    return CNLabeledValue.initLabelValue(value.label ?? CNLabelHome, address)
+    return CNLabeledValue.init(value.label ?? CNLabelHome, address)
   })
 }
 
