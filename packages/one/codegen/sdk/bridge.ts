@@ -15,6 +15,7 @@ export type DeclarationInfo = {
   module: string
   path: string[]
   kind: string
+  superclass?: string
   // enum: case names, with whether any case carries a payload
   cases?: string[]
   payload?: boolean
@@ -149,6 +150,7 @@ export type IndexFacts = {
 export function collectFacts(graph: Graph): IndexFacts {
   const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [], conformances: [], properties: [], specializations: [] }
   const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
+  const parents = new Map(graph.relationships.filter((r) => r.kind === 'inheritsFrom').map((r) => [r.source, r.target]))
   for (const symbol of graph.symbols) {
     if (!TYPE_KINDS.has(symbol.kind.identifier)) continue
     facts.declarations.push({
@@ -156,6 +158,7 @@ export function collectFacts(graph: Graph): IndexFacts {
       module: graph.module,
       path: symbol.pathComponents,
       kind: symbol.kind.identifier.slice('swift.'.length),
+      superclass: parents.get(symbol.identifier.precise),
       genericParameters: symbol.swiftGenerics?.parameters?.map((p) => p.name),
       alias: symbol.kind.identifier === 'swift.typealias' ? aliasTarget(symbol) : undefined,
     })

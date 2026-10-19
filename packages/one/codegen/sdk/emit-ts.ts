@@ -411,17 +411,22 @@ class Facade {
     if (!info?.genericParameters?.includes(type.name) || !witnesses?.length) return undefined
     return type.name
   }
-  objcInit(e: E): { union: string } | undefined {
+  objcInit(e: E): { union: string; result: string } | undefined {
     if (e.kind !== 'init') return undefined
     const info = this.infos.get(cleanOwner(e.owner ?? ''))
     const witnesses = info && this.bridge.index.get(info.usr)?.objcWitnesses
     if (!info?.genericParameters?.length || !witnesses?.length) return undefined
     if (!e.params.some((p) => this.objcParam(e, this.concrete(e, p.type)))) return undefined
-    const union = witnesses.map((u) => {
+    const names = witnesses.map((u) => {
       const w = this.bridge.index.get(u)
       return w ? this.reference(w) : 'SDKHandle'
-    }).join(' | ')
-    return { union }
+    })
+    // the native switch constructs a concrete witness, whose copy operation
+    // can erase mutable subclasses. retain that witness in the returned type.
+    return {
+      union: names.join(' | '),
+      result: names.map((name) => `T extends ${name} ? ${name} : `).join('') + 'never',
+    }
   }
   result(e: E) {
     const concrete = e.returns ? this.concrete(e, e.returns) : undefined
@@ -438,7 +443,7 @@ class Facade {
           : this.infos.get(cleanOwner(e.owner ?? ''))
       const objc = this.objcInit(e)
       result = objc && info
-        ? `${this.reference(info)}<T>`
+        ? `${this.reference(info)}<${objc.result}>`
         : e.receiver
           ? this.type(e.receiver)
           : info
@@ -886,6 +891,20 @@ class Facade {
         (e) =>
           `  ${this.memberDoc(e).replace(/\n/g, '\n  ')}${this.signature(e)} { ${e.kind === 'set' && !e.main && !e.isAsync ? '' : 'return '}${this.invoke(e)}; }`
       )
+      // native handles have nominal types even when their public members match.
+      // retain ancestor identities across framework boundaries and ts overrides.
+      const identities = new Set<string>()
+      let ancestor: DeclarationInfo | undefined = info
+      while (ancestor && !identities.has(ancestor.usr)) {
+        identities.add(ancestor.usr)
+        const parent = ancestor.superclass && this.bridge.index.get(ancestor.superclass)
+        if (!parent) {
+          if (ancestor.superclass) identities.add(ancestor.superclass)
+          break
+        }
+        ancestor = parent
+      }
+      members.push(`  declare readonly $type: { ${[...identities].map((usr) => `${quote(usr)}: true`).join('; ')} };`)
       classMembers.set(info.usr, [
         ...inherited.filter(({ entry, name }) => !overridden.has(key(entry, name))),
         ...own.map((entry) => ({ entry, name: this.names.get(entry.key)! })),
