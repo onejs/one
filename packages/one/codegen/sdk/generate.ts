@@ -10,6 +10,7 @@ import { promisify } from 'node:util'
 import { Bridge, buildIndex, collectFacts } from './bridge'
 import { emitModule, MINIMUM_IOS, type ModuleOutput } from './emit'
 import { loadGraph, sdkModules, sdkPath, type Symbol } from './graph'
+import { checkInheritedInits } from './inherited-inits'
 
 const run = promisify(execFile)
 export const RUNTIME = resolve(import.meta.dirname, '../../ios/SDK/OneSDKRuntime.swift')
@@ -131,6 +132,7 @@ export async function generateModule(module: string, prepared: ReturnType<typeof
   const graph = loadGraph(module)
   if (!graph) return null
   const exclude = new Map<string, string>()
+  for (const [usr, reason] of checkInheritedInits(module, graph)) exclude.set(usr, reason)
   const file = join(out, `OneSDK_${module}.swift`)
   for (let pass = 0; ; pass++) {
     const output = emitModule(graph, prepared.bridge, prepared.symbols, exclude, { table })

@@ -32,6 +32,9 @@ export type Symbol = {
   }[]
   swiftGenerics?: { parameters?: { name: string }[]; constraints?: unknown[] }
   swiftExtension?: { extendedModule: string; constraints?: unknown[] }
+  // set by addInheritedInitializers for init() the graph omits; the checker
+  // uses it to tell synthesized initializers from declared legal ones
+  synthesizedInit?: true
 }
 
 export type Relationship = { kind: string; source: string; target: string; targetFallback?: string }
@@ -120,8 +123,9 @@ export function loadGraph(module: string): Graph | null {
 
 // an objective-c class inherits -init from NSObject, but a symbol graph lists
 // only the initializers a class declares, and lists none it marks unavailable.
-// each subclass that declares no init() gets one; the compiler rejects it where
-// the class makes init unavailable, and generation drops it with that reason.
+// each subclass that declares no init() gets one, marked synthesized so the
+// inherited-init checker can probe it; the compilers reject it where the class
+// makes init unavailable, and generation drops it with that reason.
 function addInheritedInitializers(graph: Graph) {
   const subclasses = new Set(graph.relationships.filter((r) => r.kind === 'inheritsFrom').map((r) => r.source))
   const declared = new Set(graph.symbols.filter((s) => s.kind.identifier === 'swift.init' && s.pathComponents.at(-1) === 'init()')
@@ -138,6 +142,7 @@ function addInheritedInitializers(graph: Graph) {
       accessLevel: owner.accessLevel,
       declarationFragments: [{ kind: 'keyword', spelling: 'init' }, { kind: 'text', spelling: '()' }],
       functionSignature: { parameters: [] },
+      synthesizedInit: true,
     })
     graph.relationships.push({ kind: 'memberOf', source: init, target: usr })
   }
