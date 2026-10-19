@@ -35,8 +35,8 @@ export interface TabContentProps {
     help?: string;
 }
 export interface TabProps extends TabContentProps {
-    id: string;
-    title: string;
+    value: string;
+    titleKey: string;
     systemImage?: SFSymbolName | '';
     image?: string;
     labelStyle?: SDKLabelStyle;
@@ -62,8 +62,8 @@ export interface TabSectionProps extends TabContentProps {
 }
 export interface TabsProps extends ViewProps {
     selection: string;
-    onSelectionChange: (id: string) => void;
-    onReselect?: (id: string) => void;
+    onSelectionChange: (value: string) => void;
+    onReselect?: (value: string) => void;
     revision?: number;
     tabViewStyle?: TabViewStyle;
     tabBarVisibility?: Visibility;
