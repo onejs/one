@@ -9,7 +9,15 @@ import {
   kCTFontNameAttribute,
 } from 'one/ios/CoreText'
 import { CFErrorGetCode, CFURL } from 'one/ios/CoreFoundation'
-import { NSArray, FileManager, NSData, NSURL, URLSession } from 'one/ios/Foundation'
+import {
+  NSArray,
+  FileManager,
+  HTTPURLResponse,
+  NSData,
+  NSString,
+  NSURL,
+  URLSession,
+} from 'one/ios/Foundation'
 import { SDKHandle } from 'one/ios-runtime'
 import type { HybridObject } from 'react-native-nitro-modules'
 import { Crypto } from '../crypto/index.native'
@@ -54,15 +62,23 @@ async function cachedFile(url: NSURL, name: string): Promise<NSURL> {
   if (!fileURL) throw failed('could not be downloaded')
   if (FileManager.default.fileExistsAtPath(fileURL.path ?? '')) return fileURL
   // async network i/o, as the swift's utility-queue dispatch did: a remote
-  // transfer must never block the js thread. status codes pass through
-  // unread like Data(contentsOf:) did; only transport failure rejects here.
-  let bytes: ArrayBuffer
+  // transfer must never block the js thread. unsuccessful http rejects like
+  // Data(contentsOf:)'s read error did; an error body is never cached.
+  let result: readonly [ArrayBuffer, unknown]
   try {
-    const result = await URLSession.shared.dataFrom(url.absoluteString ?? '')
-    bytes = result[0]
+    result = await URLSession.shared.dataFrom(url.absoluteString ?? '')
   } catch {
     throw failed('could not be downloaded')
   }
+  const response = result[1]
+  const status =
+    response instanceof HTTPURLResponse
+      ? response.statusCode
+      : response instanceof SDKHandle
+        ? new HTTPURLResponse(response.$handle).statusCode
+        : 0
+  if (status < 200 || status > 299) throw failed('could not be downloaded')
+  const bytes = result[0]
   if (bytes.byteLength === 0) throw failed('downloaded zero bytes')
   try {
     FileManager.default.createDirectoryAtWithIntermediateDirectoriesAttributes(
@@ -74,6 +90,15 @@ async function cachedFile(url: NSURL, name: string): Promise<NSURL> {
     throw failed('could not be downloaded')
   }
   return fileURL
+}
+
+// the name attribute arrives as a native string handle (CFTypeRef-out
+// preserves the class); description reads an NSString's own content.
+function stringValue(value: unknown): string | null {
+  if (typeof value === 'string') return value
+  if (value instanceof NSString) return value.description
+  if (value instanceof SDKHandle) return new NSString(value.$handle).description
+  return null
 }
 
 function providedNames(fileRef: CFURL): string[] {
@@ -90,8 +115,10 @@ function providedNames(fileRef: CFURL): string[] {
           ? new CTFontDescriptor(raw.$handle)
           : null
     if (!descriptor) continue
-    const value = CTFontDescriptorCopyAttribute(descriptor, kCTFontNameAttribute)
-    if (typeof value === 'string' && value !== '') names.push(value)
+    const name = stringValue(
+      CTFontDescriptorCopyAttribute(descriptor, kCTFontNameAttribute)
+    )
+    if (name !== null && name !== '') names.push(name)
   }
   return names
 }
