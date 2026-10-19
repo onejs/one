@@ -112,6 +112,23 @@ function containsFunction(type: SwiftType): boolean {
   return false
 }
 
+function usesObjcOpen(type: SwiftType, open: Set<string>): boolean {
+  switch (type.k) {
+    case 'named':
+      return (!type.args.length && open.has(type.name)) || type.args.some((a) => usesObjcOpen(a, open))
+    case 'optional': case 'array': case 'variadic': case 'inout': case 'metatype': case 'existential':
+      return usesObjcOpen(type.t, open)
+    case 'dictionary':
+      return usesObjcOpen(type.key, open) || usesObjcOpen(type.value, open)
+    case 'tuple':
+      return type.items.some((i) => usesObjcOpen(i.t, open))
+    case 'function':
+      return type.params.some((p) => usesObjcOpen(p.t, open)) || usesObjcOpen(type.result, open)
+    case 'composition':
+      return type.items.some((i) => usesObjcOpen(i, open))
+  }
+}
+
 // keep the native function typed until its arguments and result have crossed the wire.
 export function outputValue(type: SwiftType, value: string): string {
   if (!containsFunction(type)) return value
@@ -302,21 +319,30 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       continue
     }
     const generics = bridge.generics(symbol, ownerSymbol)
-    const unresolved = [...generics.params].filter((name) => !generics.resolved.has(name))
+    const unresolved = [...generics.params].filter((name) => !generics.resolved.has(name) && !generics.objcOpen.has(name))
     if (unresolved.length) {
       skipped.push({ usr, path, reason: `generic${ownerSymbol?.swiftGenerics?.parameters?.length ? ' owner' : ''}: no canonical witness for ${unresolved.join(', ')}` })
       continue
     }
+    // objective-c erases generics, so reads go through the first witness while
+    // typescript keeps the parameter generic
+    const objcErasure = [...generics.objcOpen].length && ownerInfo?.objcWitnesses?.length
+      ? bridge.index.get(ownerInfo.objcWitnesses[0])
+      : undefined
+    const swiftGenerics: Generics = objcErasure
+      ? { ...generics, resolved: new Map([...generics.resolved, ...[...generics.objcOpen].map((p): [string, SwiftType] =>
+        [p, { k: 'named', name: `${objcErasure.module}.${objcErasure.path.join('.')}`, usr: objcErasure.usr, args: [] }])]) }
+      : generics
     const specialization = generics.params.size ? Object.fromEntries(generics.resolved) : undefined
     const ownerParams = new Set((ownerSymbol?.swiftGenerics?.parameters ?? []).map((p) => p.name))
     // generic parameters bound where the entry runs stay open
     const replaceWith = (open: Set<string>) => (source: string) => {
-      const names = [...generics.resolved.keys()].filter((name) => !open.has(name))
+      const names = [...swiftGenerics.resolved.keys()].filter((name) => !open.has(name))
         .sort((a, b) => b.length - a.length)
       if (!names.length) return source
       const escaped = names.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
       return source.replace(new RegExp(`(?<![A-Za-z0-9_.])(?:${escaped.join('|')})(?![A-Za-z0-9_])`, 'g'),
-        (name) => typeText(bridge.substitute(generics.resolved.get(name)!, generics)))
+        (name) => typeText(bridge.substitute(swiftGenerics.resolved.get(name)!, swiftGenerics)))
     }
     const replaceTypes = replaceWith(new Set())
     const specializedOwner = (info: DeclarationInfo) => {
@@ -355,8 +381,11 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     // type, so one entry serves every specialization rather than only the
     // canonical witness. a member adding generic parameters or constraints
     // cannot, and one the compiler rejects there falls back to the witness.
+    // objective-c extensions cannot access generic parameters, so those use
+    // erasure instead.
     const ownerConstraints = ownerSymbol?.swiftGenerics?.constraints ?? []
     const openable = !!ownerUsr && !!ownerInfo && ownerParams.size > 0 && ownerInfo.kind !== 'protocol' && !isStatic && !main &&
+      !ownerUsr.startsWith('c:objc') &&
       [...generics.params].every((name) => ownerParams.has(name)) &&
       [...(symbol.swiftGenerics?.constraints ?? []), ...(symbol.swiftExtension?.constraints ?? [])]
         .every((c) => ownerConstraints.some((o) => JSON.stringify(o) === JSON.stringify(c))) &&
@@ -424,6 +453,91 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     const open = (kind === 'swift.method' || kind === 'swift.subscript') && opens(usr)
     const writeBack = open ? 'self = o' : 'c.setReceiver(o)'
     const parameters = symbol.functionSignature?.parameters ?? []
+    // an objective-c initializer over an open parameter switches on the value's
+    // witness; anything but a single direct value stays out for now
+    if (kind === 'swift.init' && [...generics.objcOpen].length && ownerInfo?.objcWitnesses?.length) {
+      const genericAt = parameters.flatMap((p, i) => {
+        try {
+          const t = parameterType(p.declarationFragments)
+          return t.k === 'named' && !t.args.length && generics.objcOpen.has(t.name) ? [i] : []
+        } catch { return [] }
+      })
+      if (genericAt.length === 1) {
+        const witnesses = ownerInfo.objcWitnesses.map((u) => bridge.index.get(u)).filter((i): i is DeclarationInfo => !!i)
+        if (witnesses.length === ownerInfo.objcWitnesses.length) {
+          const at = genericAt[0]
+          const defaults = parameterDefaults(symbol.declarationFragments ?? [])
+          const entryParams: Entry['params'] = []
+          const hoisted: string[] = []
+          const fixed: string[] = []
+          let simple = true
+          parameters.forEach((parameter, i) => {
+            const argLabel = labels[i] ?? '_'
+            const prefix = argLabel === '_' ? '' : `${label(argLabel)}: `
+            const name = parameter.internalName ?? parameter.name
+            if (i === at) {
+              entryParams.push({ label: argLabel, name, type: parameterType(parameter.declarationFragments), optional: false, hasDefault: false })
+              hoisted.push(`let v${i}: Any = try c.arg(${entryParams.length - 1})`)
+              return
+            }
+            // only plain values beside the switched one for now
+            let type: SwiftType
+            try {
+              type = bridge.functions(bridge.substitute(parameterType(parameter.declarationFragments), generics))
+            } catch { simple = false; return }
+            if (usesObjcOpen(type, generics.objcOpen) || type.k === 'function' || type.k === 'variadic' || type.k === 'inout' || outPointee(type)) { simple = false; return }
+            const defaultValue = defaults[i]
+            if (defaultValue?.startsWith('#') || !bridge.type(parameterType(parameter.declarationFragments), 'input', generics).ok) { simple = false; return }
+            const spelled = replaceTypes(swiftTypeText(parameterTypeFragments(parameter.declarationFragments)).replace(/^inout\s+/, ''))
+            for (const ref of typeUsrs(type)) {
+              const module = bridge.index.get(ref)?.module
+              if (module) imports.add(module)
+            }
+            entryParams.push({ label: argLabel, name, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined })
+            const value = defaultValue !== undefined
+              ? `try c.arg(${entryParams.length - 1}, or: ${replaceTypes(scoped(defaultValue))})`
+              : `try c.arg(${entryParams.length - 1})`
+            hoisted.push(`let a${i} = (${value} as ${spelled})`)
+            fixed.push(`${prefix}a${i}`)
+          })
+          if (simple) {
+            for (const w of witnesses) imports.add(w.module)
+            const qualified = (w: DeclarationInfo) => `${w.module}.${w.path.map(quote).join('.')}`
+            const ownerBase = `${ownerInfo.module}.${ownerInfo.path.map(quote).join('.')}`
+            const valueLabel = labels[at] ?? '_'
+            const valuePrefix = valueLabel === '_' ? '' : `${label(valueLabel)}: `
+            // fixed arguments keep declaration order around the switched value
+            const branchArgs = (w: string) => parameters.map((_, i) => {
+              if (i === at) return `${valuePrefix}x`
+              const fixedAt = fixed[parameters.slice(0, i).filter((_, j) => j !== at).length]
+              return fixedAt
+            }).join(', ')
+            const expected = witnesses.map((w) => w.path.join('.')).join(' | ')
+            const cases = witnesses.map((w) =>
+              `case let x as ${qualified(w)}: return c.out(${ownerBase}<${qualified(w)}>(${branchArgs(qualified(w))}))`).join('; ')
+            const body = [...hoisted, `switch v${at} { ${cases}; default: throw OneSDKError.badArgument(index: ${at}, expected: ${JSON.stringify(expected)}, got: String(describing: type(of: v${at}))) }`].join('; ')
+            push({
+              id: 0, key: usr, usr, owner, name: base, kind: 'init', isAsync: false, main, params: entryParams,
+              specialization, receiver, swift: guarded(availableFrom(usr, [...entryParams.map((p) => p.type), ...witnesses.map((w): SwiftType =>
+                ({ k: 'named', name: `${w.module}.${w.path.join('.')}`, usr: w.usr, args: [] }))]), body),
+            }, false)
+            continue
+          }
+        }
+        skipped.push({ usr, path, reason: 'objc generic init needs witnesses' })
+        continue
+      } else if (genericAt.length > 1) {
+        skipped.push({ usr, path, reason: 'objc generic init needs a single value' })
+        continue
+      }
+    }
+    // an objective-c method taking an open parameter would narrow it to the
+    // erasure witness; those need their own switch, still out
+    if ((kind === 'swift.method' || kind === 'swift.subscript') && [...generics.objcOpen].length &&
+      parameters.some((p) => { try { return usesObjcOpen(parameterType(p.declarationFragments), generics.objcOpen) } catch { return false } })) {
+      skipped.push({ usr, path, reason: 'objc generic method needs a witness switch' })
+      continue
+    }
     // a caller-named generic runs a local generic function with P open; one
     // the compiler rejects falls back to the canonical witness, which needs
     // the type parameter to have a default

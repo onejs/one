@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { Bridge, judge } from '../codegen/sdk/bridge'
-import type { Fragment, Symbol } from '../codegen/sdk/graph'
+import { emitModule } from '../codegen/sdk/emit'
+import type { Fragment, Graph, Symbol } from '../codegen/sdk/graph'
 
 vi.mock('../codegen/sdk/graph', async (importOriginal) => {
   const original = await importOriginal<typeof import('../codegen/sdk/graph')>()
@@ -115,6 +116,12 @@ const initSymbol = (): Symbol => ({
   ] },
 })
 
+const graphWith = (symbols: Symbol[]): Graph => ({
+  module: 'TestModule',
+  symbols: [ownerSymbol(), ...symbols],
+  relationships: symbols.map((s) => ({ kind: 'memberOf', source: s.identifier.precise, target: OWNER })),
+})
+
 describe('objc generic owners', () => {
   it('covers generic members with named witnesses', () => {
     const bridge = bridgeWithWitnesses()
@@ -122,5 +129,23 @@ describe('objc generic owners', () => {
     for (const symbol of [labelSymbol(), valueSymbol(), initSymbol()]) {
       expect(judge(bridge, symbol, owner)).toEqual({ covered: true })
     }
+  })
+
+  it('reads through the erasure witness', () => {
+    const bridge = bridgeWithWitnesses()
+    const output = emitModule(graphWith([labelSymbol(), valueSymbol()]), bridge, new Map())
+    expect(output.entries.map((e) => e.name).sort()).toEqual(['label', 'value'])
+    // the receiver is erased to the first witness; objective-c generics strip it
+    expect(output.swift).toContain('TestModule.TestLabeled<TestModule.TestA>')
+    expect(output.swift).not.toContain('oneSDKOpen_')
+  })
+
+  it('constructs through a witness switch', () => {
+    const bridge = bridgeWithWitnesses()
+    const output = emitModule(graphWith([initSymbol()]), bridge, new Map())
+    expect(output.entries).toHaveLength(1)
+    expect(output.swift).toContain('TestModule.TestA')
+    expect(output.swift).toContain('TestModule.TestB')
+    expect(output.swift).toContain('badArgument')
   })
 })
