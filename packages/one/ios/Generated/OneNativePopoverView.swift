@@ -16,10 +16,10 @@ private final class PopoverModel: ObservableObject {
   @Published var measuredHeight: CGFloat = 0
 
   func setMeasuredSize(_ size: CGSize) {
-    guard size.width.isFinite, size.height.isFinite, size.width >= 0, size.height >= 0,
-      abs(measuredWidth - size.width) >= 0.5 || abs(measuredHeight - size.height) >= 0.5 else { return }
-    measuredWidth = size.width
-    measuredHeight = size.height
+    guard size.width.isFinite, size.height.isFinite, size.width >= 0, size.height >= 0 else { return }
+    // zero is unset, so crossing it always applies; positive changes under half a point do not
+    if (measuredWidth == 0) != (size.width == 0) || abs(measuredWidth - size.width) >= 0.5 { measuredWidth = size.width }
+    if (measuredHeight == 0) != (size.height == 0) || abs(measuredHeight - size.height) >= 0.5 { measuredHeight = size.height }
   }
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?

@@ -87,7 +87,9 @@ final class OneNativeSheetModel: ObservableObject {
   }
 
   func setMeasuredHeight(_ height: CGFloat) {
-    guard height.isFinite, height >= 0, abs(measuredHeight - height) >= 0.5 else { return }
+    // zero is unset, so crossing it always applies; positive changes under half a point do not
+    guard height.isFinite, height >= 0,
+      (measuredHeight == 0) != (height == 0) || abs(measuredHeight - height) >= 0.5 else { return }
     measuredHeight = height
   }
 }
