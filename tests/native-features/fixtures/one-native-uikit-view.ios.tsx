@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 import { UICalendarSelectionSingleDate, UICalendarView } from 'one/ios/UIKit'
 
@@ -19,14 +19,25 @@ export default function OneNativeUIKitView() {
   const [composed, setComposed] = useState<UICalendarView | null>(null)
   const [standaloneDay, setStandaloneDay] = useState<number | null>(null)
   const [composedDay, setComposedDay] = useState<number | null>(null)
+  const [generation, setGeneration] = useState(0)
+  const [composedEventGeneration, setComposedEventGeneration] = useState<number | null>(null)
 
   useEffect(() => {
-    makeCalendar(setStandaloneDay).then(setStandalone)
-    makeCalendar(setComposedDay).then(setComposed)
-  }, [])
+    let active = true
+    makeCalendar(setStandaloneDay).then((calendar) => { if (active) setStandalone(calendar) })
+    makeCalendar((day) => {
+      setComposedDay(day)
+      setComposedEventGeneration(generation)
+    }).then((calendar) => { if (active) setComposed(calendar) })
+    return () => { active = false }
+  }, [generation])
 
   return (
     <View style={styles.screen}>
+      <Pressable testID="one-native-uikit-view-replace" style={styles.replace}
+        onPress={() => setGeneration((value) => value + 1)}>
+        <Text>{`Replace calendars (${generation})`}</Text>
+      </Pressable>
       <Text testID="one-native-uikit-view-standalone-day">
         Standalone day: {standaloneDay ?? 'none'}
       </Text>
@@ -39,6 +50,7 @@ export default function OneNativeUIKitView() {
       )}
       <Text testID="one-native-uikit-view-composed-day">
         Composed day: {composedDay ?? 'none'}
+        {composedEventGeneration === null ? '' : ` (generation ${composedEventGeneration})`}
       </Text>
       {composed && (
         <One.iOS.VStack style={styles.calendar}>
@@ -58,4 +70,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   calendar: { height: 330 },
+  replace: { position: 'absolute', top: 48, left: 16, padding: 8 },
 })
