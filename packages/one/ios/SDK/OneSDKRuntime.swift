@@ -389,6 +389,12 @@ public final class OneSDKCall {
     ["$ret": out(value), "$out": written.mapValues { out($0) }]
   }
 
+  // a declared class result with out parameters keeps its handle too; without
+  // this the Any? overload bridges CFArray and CFDictionary to plain values
+  public func outs<T: AnyObject>(_ value: T?, _ written: [String: Any?]) -> Any {
+    ["$ret": out(value), "$out": written.mapValues { out($0) }]
+  }
+
   func addHandle(_ box: OneSDKHandleBox) -> Any {
     box
   }
