@@ -59,7 +59,10 @@ function SheetContent({
   return (
     <View
       onLayout={handleLayout}
-      style={[styles.sheetContent, fitted && styles.fittedSheetContent]}
+      style={[
+        styles.sheetContent,
+        fitted && (tall ? styles.tallSheetContent : styles.fittedSheetContent),
+      ]}
     >
       <Text style={styles.sheetHeading}>Sheet Content</Text>
 
@@ -476,6 +479,10 @@ const styles = StyleSheet.create({
   fittedSheetContent: {
     flex: 0,
     height: 230,
+  },
+  tallSheetContent: {
+    flex: 0,
+    height: 430,
   },
   tallBlock: {
     height: 200,

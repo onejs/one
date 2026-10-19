@@ -1671,10 +1671,8 @@ function ExamplePopover() {
       isPresented={open}
       onIsPresentedChange={setOpen}
       presentationCompactAdaptation="popover"
-      contentWidth={260}
-      contentHeight={160}
       content={
-        <View style={{ flex: 1, padding: 12 }}>
+        <View style={{ width: 260, height: 160, padding: 12 }}>
           <Text>Popover body</Text>
           <Pressable onPress={() => setOpen(false)}>
             <Text>Close</Text>
@@ -1690,11 +1688,11 @@ function ExamplePopover() {
 
 `isPresented` and `onIsPresentedChange` use the same controlled protocol as the sheet,
 so a tap outside the popover reaches React as a change. SwiftUI sizes a popover from its
-content and a React Native subtree has no ideal size, so `contentWidth` and
-`contentHeight` are required. `arrowEdge` is an `Edge`; leaving it out takes SwiftUI's
-own placement. `presentationCompactAdaptation` is a `PresentationAdaptation`, and its
-default of `automatic` shows the body as a sheet on an iPhone; pass `popover` for a
-popover there.
+content. Give the content a fixed size and do not give it `flex: 1`; a flexible child
+fills the provisional popover and has no smaller size to fit. `arrowEdge` is an `Edge`;
+leaving it out takes SwiftUI's own placement. `presentationCompactAdaptation` is a
+`PresentationAdaptation`, and its default of `automatic` shows the body as a sheet on an
+iPhone; pass `popover` for a popover there.
 
 The trigger reports the height SwiftUI measured back to Yoga, exactly as `One.iOS.VStack`
 does, so never give a popover a height. A popover is a container, so it composes into a
