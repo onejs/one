@@ -399,34 +399,71 @@ if (!config.dependencies['react-native-nitro-modules']) {
       encoding: 'utf8',
       timeout: 180_000,
     })
-    expect(getInstalledPackageNames(join(appDir, 'node_modules'))).toContain('babel-preset-expo')
+    expect(
+      existsSync(join(appDir, 'node_modules', 'babel-preset-expo', 'package.json'))
+    ).toBe(true)
 
     // the installed package supplies real runtime facades. an app with no local
     // ios prebuild must bundle those same files, without fabricated SDK modules.
     expect(existsSync(join(appDir, 'node_modules/.one/ios'))).toBe(false)
     expect(existsSync(join(appDir, 'node_modules/one/ios-bindings/UIKit.ts'))).toBe(true)
 
+    // bundle dev and minified prod through one shared Metro server instead of
+    // two CLI builds: one file map, one warm worker farm, one teardown. two
+    // workers is the measured optimum; a host-sized farm collapses on worker
+    // contention. the script runs from a file: the same script via node
+    // --eval stalls Metro's worker farm (nested transform chunk echoes, no
+    // bundle written, ETIMEDOUT). the reporter drops worker-chunk echoes and
+    // keeps only phase lines.
+    writeFileSync(
+      join(appDir, 'metro-build.cjs'),
+      `const { loadConfig } = require('metro-config')
+const { runMetro } = require('metro')
+const output = require('metro/private/shared/output/bundle')
+const path = require('node:path')
+const started = Date.now()
+const stamp = () => '+' + ((Date.now() - started) / 1000).toFixed(1) + 's'
+async function build() {
+  const config = await loadConfig({ config: 'metro.config.cjs', maxWorkers: 2 })
+  config.reporter = {
+    update(event) {
+      if (event.type === 'initialize_done') console.log(stamp() + ' haste ready')
+      else if (event.type === 'bundle_build_started') console.log(stamp() + ' build started dev=' + event.bundleDetails?.dev)
+      else if (event.type === 'bundle_build_done') console.log(stamp() + ' build done')
+      else if (event.type === 'bundle_build_failed' || event.type === 'initialize_failed') console.log(stamp() + ' failed ' + event.type)
+    },
+  }
+  const server = await runMetro(config, { watch: false })
+  try {
+    for (const dev of [true, false]) {
+      const bundle = await output.build(server, {
+        entryFile: 'node_modules/one/metro-entry.js',
+        platform: 'ios',
+        dev,
+        minify: !dev,
+      })
+      await output.save(bundle, {
+        bundleOutput: path.join(process.cwd(), 'bundle.' + dev + '.js'),
+        dev,
+        platform: 'ios',
+      }, () => {})
+      console.log(stamp() + ' saved dev=' + dev + ' bytes=' + bundle.code.length)
+    }
+  } finally {
+    await server.end()
+  }
+}
+build().catch(error => { console.error(error); process.exitCode = 1 })
+`
+    )
+    execFileSync(process.execPath, ['metro-build.cjs'], {
+      cwd: appDir,
+      encoding: 'utf8',
+      timeout: 180_000,
+    })
     for (const dev of ['true', 'false']) {
-      const bundlePath = join(appDir, `bundle.${dev}.js`)
-      execFileSync(
-        join(appDir, 'node_modules/.bin/metro'),
-        [
-          'build',
-          'node_modules/one/metro-entry.js',
-          '--config',
-          'metro.config.cjs',
-          '--platform',
-          'ios',
-          '--dev',
-          dev,
-          '--minify',
-          dev === 'false' ? 'true' : 'false',
-          '--out',
-          bundlePath,
-        ],
-        { cwd: appDir, encoding: 'utf8', timeout: 180_000 }
-      )
-      expect(readFileSync(bundlePath).byteLength).toBeGreaterThan(1_000_000)
+      expect(readFileSync(join(appDir, `bundle.${dev}.js`)).byteLength)
+        .toBeGreaterThan(1_000_000)
     }
   })
 
