@@ -39,7 +39,7 @@ export class AVAudioSession extends SDKHandle {
    * func prepareRouteSelectionForPlayback() async -> (Bool, AVAudioSession.RouteSelection)
    * @availability iOS 13.0+
    */
-  prepareRouteSelectionForPlayback(completionHandler: ((arg0: boolean, arg1: AVAudioSession_RouteSelection) => void)): void { return callSDK<void>("AVKit_a956b86ef7a76a8e", 3949478983003566, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  prepareRouteSelectionForPlayback(completionHandler: ((arg0: boolean, arg1: AVAudioSession_RouteSelection) => void)): void { return callSDK<void>("AVKit_90ad0eb69cc6bf4a", 3949478983003566, this, [completionHandler], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)AVAudioSession": true; "c:objc(cs)NSObject": true };
 }
 
@@ -54,7 +54,7 @@ export const AVAudioSession_RouteSelection = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (AVAudioSession_RouteSelection) | null { return callSDK<(AVAudioSession_RouteSelection) | null>("AVKit_a956b86ef7a76a8e", 2579761504289168, undefined, [rawValue]); }
+  init(rawValue: number): (AVAudioSession_RouteSelection) | null { return callSDK<(AVAudioSession_RouteSelection) | null>("AVKit_90ad0eb69cc6bf4a", 2579761504289168, undefined, [rawValue]); }
 };
 
 /**
@@ -66,27 +66,27 @@ export class AVCaptureDeviceDescriptor extends SDKHandle {
    * var deviceType: AVCaptureDevice.DeviceType { get }
    * @availability iOS 27.1+
    */
-  get deviceType(): _AVFoundation_AVCaptureDevice_DeviceType { return callSDK<_AVFoundation_AVCaptureDevice_DeviceType>("AVKit_a956b86ef7a76a8e", 53002196716855, this, []); }
+  get deviceType(): _AVFoundation_AVCaptureDevice_DeviceType { return callSDK<_AVFoundation_AVCaptureDevice_DeviceType>("AVKit_90ad0eb69cc6bf4a", 53002196716855, this, []); }
   /**
    * var localizedName: String { get }
    * @availability iOS 27.1+
    */
-  get localizedName(): string { return callSDK<string>("AVKit_a956b86ef7a76a8e", 4025480738060135, this, []); }
+  get localizedName(): string { return callSDK<string>("AVKit_90ad0eb69cc6bf4a", 4025480738060135, this, []); }
   /**
    * var mediaTypes: Set<AVMediaType> { get }
    * @availability iOS 27.1+
    */
-  get mediaTypes(): Array<_AVFoundation_AVMediaType> { return callSDK<Array<_AVFoundation_AVMediaType>>("AVKit_a956b86ef7a76a8e", 1381627173203711, this, []); }
+  get mediaTypes(): Array<_AVFoundation_AVMediaType> { return callSDK<Array<_AVFoundation_AVMediaType>>("AVKit_90ad0eb69cc6bf4a", 1381627173203711, this, []); }
   /**
    * var position: AVCaptureDevice.Position { get }
    * @availability iOS 27.1+
    */
-  get position(): _AVFoundation_AVCaptureDevice_Position { return callSDK<_AVFoundation_AVCaptureDevice_Position>("AVKit_a956b86ef7a76a8e", 1010472246260435, this, []); }
+  get position(): _AVFoundation_AVCaptureDevice_Position { return callSDK<_AVFoundation_AVCaptureDevice_Position>("AVKit_90ad0eb69cc6bf4a", 1010472246260435, this, []); }
   /**
    * var uniqueID: String { get }
    * @availability iOS 27.1+
    */
-  get uniqueID(): string { return callSDK<string>("AVKit_a956b86ef7a76a8e", 1143187767848587, this, []); }
+  get uniqueID(): string { return callSDK<string>("AVKit_90ad0eb69cc6bf4a", 1143187767848587, this, []); }
   declare readonly $type: { "c:objc(cs)AVCaptureDeviceDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deviceType": true; "localizedName": true; "mediaTypes": true; "position": true; "uniqueID": true };
 }
@@ -100,12 +100,12 @@ export class AVCaptureDeviceDirectionCoordinator extends SDKHandle {
    * init(view: UIView, deviceTypes: [AVCaptureDevice.DeviceType], changeHandler: ((AVCaptureDeviceDirectionMap) -> Void)? = nil)
    * @availability iOS 27.1+
    */
-  static init(view: _UIKit_UIView, deviceTypes: Array<_AVFoundation_AVCaptureDevice_DeviceType>, changeHandler?: (((arg0: AVCaptureDeviceDirectionMap) => void)) | null): AVCaptureDeviceDirectionCoordinator { return callSDK<AVCaptureDeviceDirectionCoordinator>("AVKit_a956b86ef7a76a8e", 4149603380729748, undefined, [view, deviceTypes, changeHandler], [null,null,{"callback":{"out":[]}}]); }
+  static init(view: _UIKit_UIView, deviceTypes: Array<_AVFoundation_AVCaptureDevice_DeviceType>, changeHandler?: (((arg0: AVCaptureDeviceDirectionMap) => void)) | null): AVCaptureDeviceDirectionCoordinator { return callSDK<AVCaptureDeviceDirectionCoordinator>("AVKit_90ad0eb69cc6bf4a", 4149603380729748, undefined, [view, deviceTypes, changeHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var deviceDirections: AVCaptureDeviceDirectionMap { get }
    * @availability iOS 27.1+
    */
-  get deviceDirections(): AVCaptureDeviceDirectionMap { return callSDK<AVCaptureDeviceDirectionMap>("AVKit_a956b86ef7a76a8e", 2120986200890306, this, []); }
+  get deviceDirections(): AVCaptureDeviceDirectionMap { return callSDK<AVCaptureDeviceDirectionMap>("AVKit_90ad0eb69cc6bf4a", 2120986200890306, this, []); }
   declare readonly $type: { "c:objc(cs)AVCaptureDeviceDirectionCoordinator": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "deviceDirections": true };
 }
@@ -119,12 +119,12 @@ export class AVCaptureDeviceDirectionMap extends SDKHandle {
    * var backwardFacingDeviceDescriptors: [AVCaptureDeviceDescriptor] { get }
    * @availability iOS 27.1+
    */
-  get backwardFacingDeviceDescriptors(): $SDK4 { return callSDK<$SDK4>("AVKit_a956b86ef7a76a8e", 1958124249774750, this, []); }
+  get backwardFacingDeviceDescriptors(): $SDK4 { return callSDK<$SDK4>("AVKit_90ad0eb69cc6bf4a", 1958124249774750, this, []); }
   /**
    * var forwardFacingDeviceDescriptors: [AVCaptureDeviceDescriptor] { get }
    * @availability iOS 27.1+
    */
-  get forwardFacingDeviceDescriptors(): $SDK4 { return callSDK<$SDK4>("AVKit_a956b86ef7a76a8e", 773582098793918, this, []); }
+  get forwardFacingDeviceDescriptors(): $SDK4 { return callSDK<$SDK4>("AVKit_90ad0eb69cc6bf4a", 773582098793918, this, []); }
   declare readonly $type: { "c:objc(cs)AVCaptureDeviceDirectionMap": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backwardFacingDeviceDescriptors": true; "forwardFacingDeviceDescriptors": true };
 }
@@ -138,17 +138,17 @@ export class AVCaptureEvent extends SDKHandle {
    * func play(_ sound: AVCaptureEventSound) -> Bool
    * @availability iOS 26.0+
    */
-  play(sound: AVCaptureEventSound): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 2566975492569905, this, [sound]); }
+  play(sound: AVCaptureEventSound): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 2566975492569905, this, [sound]); }
   /**
    * var phase: AVCaptureEventPhase { get }
    * @availability iOS 17.2+
    */
-  get phase(): AVCaptureEventPhase { return callSDK<AVCaptureEventPhase>("AVKit_a956b86ef7a76a8e", 1260239896554157, this, []); }
+  get phase(): AVCaptureEventPhase { return callSDK<AVCaptureEventPhase>("AVKit_90ad0eb69cc6bf4a", 1260239896554157, this, []); }
   /**
    * var shouldPlaySound: Bool { get }
    * @availability iOS 26.0+
    */
-  get shouldPlaySound(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 2980158521868567, this, []); }
+  get shouldPlaySound(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 2980158521868567, this, []); }
   declare readonly $type: { "c:objc(cs)AVCaptureEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "phase": true; "shouldPlaySound": true };
 }
@@ -162,24 +162,24 @@ export class AVCaptureEventInteraction extends SDKHandle {
    * class var defaultCaptureSoundDisabled: Bool { get set }
    * @availability iOS 26.0+
    */
-  static get defaultCaptureSoundDisabled(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 4377106472749720, undefined, []); }
-  static setDefaultCaptureSoundDisabled(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 4379853894846429, undefined, [value]); }
+  static get defaultCaptureSoundDisabled(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 4377106472749720, undefined, []); }
+  static setDefaultCaptureSoundDisabled(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 4379853894846429, undefined, [value]); }
   /**
    * init(handler: @escaping (AVCaptureEvent) -> Void)
    * @availability iOS 17.2+
    */
-  static initHandler(handler: $SDK5): Promise<AVCaptureEventInteraction> { return callSDKAsync<AVCaptureEventInteraction>("AVKit_a956b86ef7a76a8e", 1639580974797972, undefined, [handler], [{"callback":{"out":[]}}]); }
+  static initHandler(handler: $SDK5): Promise<AVCaptureEventInteraction> { return callSDKAsync<AVCaptureEventInteraction>("AVKit_90ad0eb69cc6bf4a", 1639580974797972, undefined, [handler], [{"callback":{"out":[]}}]); }
   /**
    * init(primary primaryHandler: @escaping (AVCaptureEvent) -> Void, secondary secondaryHandler: @escaping (AVCaptureEvent) -> Void)
    * @availability iOS 17.2+
    */
-  static initPrimarySecondary(primaryHandler: $SDK5, secondaryHandler: $SDK5): Promise<AVCaptureEventInteraction> { return callSDKAsync<AVCaptureEventInteraction>("AVKit_a956b86ef7a76a8e", 1318462114433610, undefined, [primaryHandler, secondaryHandler], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static initPrimarySecondary(primaryHandler: $SDK5, secondaryHandler: $SDK5): Promise<AVCaptureEventInteraction> { return callSDKAsync<AVCaptureEventInteraction>("AVKit_90ad0eb69cc6bf4a", 1318462114433610, undefined, [primaryHandler, secondaryHandler], [{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 17.2+
    */
-  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 2650328878703501, this, []); }
-  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 2215484986298542, this, [value]); }
+  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 2650328878703501, this, []); }
+  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 2215484986298542, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVCaptureEventInteraction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -194,7 +194,7 @@ export const AVCaptureEventPhase = {
    * init?(rawValue: UInt)
    * @availability iOS 17.2+
    */
-  init(rawValue: number): (AVCaptureEventPhase) | null { return callSDK<(AVCaptureEventPhase) | null>("AVKit_a956b86ef7a76a8e", 3582302290145383, undefined, [rawValue]); }
+  init(rawValue: number): (AVCaptureEventPhase) | null { return callSDK<(AVCaptureEventPhase) | null>("AVKit_90ad0eb69cc6bf4a", 3582302290145383, undefined, [rawValue]); }
 };
 
 /**
@@ -206,22 +206,22 @@ export class AVCaptureEventSound extends SDKHandle {
    * class var beginVideoRecording: AVCaptureEventSound { get }
    * @availability iOS 26.0+
    */
-  static get beginVideoRecording(): AVCaptureEventSound { return callSDK<AVCaptureEventSound>("AVKit_a956b86ef7a76a8e", 2683333150999470, undefined, []); }
+  static get beginVideoRecording(): AVCaptureEventSound { return callSDK<AVCaptureEventSound>("AVKit_90ad0eb69cc6bf4a", 2683333150999470, undefined, []); }
   /**
    * class var cameraShutter: AVCaptureEventSound { get }
    * @availability iOS 26.0+
    */
-  static get cameraShutter(): AVCaptureEventSound { return callSDK<AVCaptureEventSound>("AVKit_a956b86ef7a76a8e", 546435766924414, undefined, []); }
+  static get cameraShutter(): AVCaptureEventSound { return callSDK<AVCaptureEventSound>("AVKit_90ad0eb69cc6bf4a", 546435766924414, undefined, []); }
   /**
    * class var endVideoRecording: AVCaptureEventSound { get }
    * @availability iOS 26.0+
    */
-  static get endVideoRecording(): AVCaptureEventSound { return callSDK<AVCaptureEventSound>("AVKit_a956b86ef7a76a8e", 2186251299500686, undefined, []); }
+  static get endVideoRecording(): AVCaptureEventSound { return callSDK<AVCaptureEventSound>("AVKit_90ad0eb69cc6bf4a", 2186251299500686, undefined, []); }
   /**
    * init(url: URL) throws
    * @availability iOS 26.0+
    */
-  static init(url: string): AVCaptureEventSound { return callSDK<AVCaptureEventSound>("AVKit_a956b86ef7a76a8e", 84075560044557, undefined, [url]); }
+  static init(url: string): AVCaptureEventSound { return callSDK<AVCaptureEventSound>("AVKit_90ad0eb69cc6bf4a", 84075560044557, undefined, [url]); }
   declare readonly $type: { "c:objc(cs)AVCaptureEventSound": true; "c:objc(cs)NSObject": true };
 }
 
@@ -236,7 +236,7 @@ export const AVDisplayDynamicRange = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (AVDisplayDynamicRange) | null { return callSDK<(AVDisplayDynamicRange) | null>("AVKit_a956b86ef7a76a8e", 319063389952944, undefined, [rawValue]); }
+  init(rawValue: number): (AVDisplayDynamicRange) | null { return callSDK<(AVDisplayDynamicRange) | null>("AVKit_90ad0eb69cc6bf4a", 319063389952944, undefined, [rawValue]); }
 };
 
 /**
@@ -248,39 +248,39 @@ export class AVInputPickerInteraction extends SDKHandle {
    * func dismiss()
    * @availability iOS 26.0+
    */
-  dismiss(): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 531968033811880, this, []); }
+  dismiss(): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 531968033811880, this, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): Promise<AVInputPickerInteraction> { return callSDKAsync<AVInputPickerInteraction>("AVKit_a956b86ef7a76a8e", 497159247768191, undefined, []); }
+  static init(): Promise<AVInputPickerInteraction> { return callSDKAsync<AVInputPickerInteraction>("AVKit_90ad0eb69cc6bf4a", 497159247768191, undefined, []); }
   /**
    * init(audioSession: AVAudioSession?)
    * @availability iOS 26.0+
    */
-  static initAudioSession(audioSession?: (_AVFAudio_AVAudioSession) | null): Promise<AVInputPickerInteraction> { return callSDKAsync<AVInputPickerInteraction>("AVKit_a956b86ef7a76a8e", 3161370921046891, undefined, [audioSession]); }
+  static initAudioSession(audioSession?: (_AVFAudio_AVAudioSession) | null): Promise<AVInputPickerInteraction> { return callSDKAsync<AVInputPickerInteraction>("AVKit_90ad0eb69cc6bf4a", 3161370921046891, undefined, [audioSession]); }
   /**
    * func present()
    * @availability iOS 26.0+
    */
-  present(): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 1836648942402571, this, []); }
+  present(): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 1836648942402571, this, []); }
   /**
    * var audioSession: AVAudioSession { get set }
    * @availability iOS 26.0+
    */
-  get audioSession(): Promise<_AVFAudio_AVAudioSession> { return callSDKAsync<_AVFAudio_AVAudioSession>("AVKit_a956b86ef7a76a8e", 2395080784295353, this, []); }
-  setAudioSession(value: _AVFAudio_AVAudioSession): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 656251691458476, this, [value]); }
+  get audioSession(): Promise<_AVFAudio_AVAudioSession> { return callSDKAsync<_AVFAudio_AVAudioSession>("AVKit_90ad0eb69cc6bf4a", 2395080784295353, this, []); }
+  setAudioSession(value: _AVFAudio_AVAudioSession): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 656251691458476, this, [value]); }
   /**
    * weak var delegate: (any AVInputPickerInteraction.Delegate)? { get set }
    * @availability iOS 26.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("AVKit_a956b86ef7a76a8e", 2762652744465837, this, []); }
-  setDelegate(value?: (Implements<AVInputPickerInteraction_Delegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 1575451138258136, this, [value], [{"protocol":"c:objc(pl)AVInputPickerInteractionDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("AVKit_90ad0eb69cc6bf4a", 2762652744465837, this, []); }
+  setDelegate(value?: (Implements<AVInputPickerInteraction_Delegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 1575451138258136, this, [value], [{"protocol":"c:objc(pl)AVInputPickerInteractionDelegate"}]); }
   /**
    * var isPresented: Bool { get }
    * @availability iOS 26.0+
    */
-  get isPresented(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 1547541959795146, this, []); }
+  get isPresented(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 1547541959795146, this, []); }
   declare readonly $type: { "c:objc(cs)AVInputPickerInteraction": true; "c:objc(cs)NSObject": true };
 }
 
@@ -317,12 +317,12 @@ export interface AVInputPickerInteraction_Delegate {
  */
 export class AVInterstitialTimeRange extends SDKHandle {
   /** init() */
-  static init(): AVInterstitialTimeRange { return callSDK<AVInterstitialTimeRange>("AVKit_a956b86ef7a76a8e", 3707963426136774, undefined, []); }
+  static init(): AVInterstitialTimeRange { return callSDK<AVInterstitialTimeRange>("AVKit_90ad0eb69cc6bf4a", 3707963426136774, undefined, []); }
   /**
    * var timeRange: CMTimeRange { get }
    * @availability iOS 16.0+
    */
-  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("AVKit_a956b86ef7a76a8e", 3378719824399671, this, []); }
+  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("AVKit_90ad0eb69cc6bf4a", 3378719824399671, this, []); }
   declare readonly $type: { "c:objc(cs)AVInterstitialTimeRange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "timeRange": true };
 }
@@ -336,17 +336,17 @@ export class AVKitError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 9.0+
    */
-  static get errorDomain(): string { return callSDK<string>("AVKit_a956b86ef7a76a8e", 28156737698670, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("AVKit_90ad0eb69cc6bf4a", 28156737698670, undefined, []); }
   /**
    * static var pictureInPictureStartFailed: AVKitError.Code { get }
    * @availability iOS 9.0+
    */
-  static get pictureInPictureStartFailed(): AVKitError_Code { return callSDK<AVKitError_Code>("AVKit_a956b86ef7a76a8e", 3324290640043651, undefined, []); }
+  static get pictureInPictureStartFailed(): AVKitError_Code { return callSDK<AVKitError_Code>("AVKit_90ad0eb69cc6bf4a", 3324290640043651, undefined, []); }
   /**
    * static var unknown: AVKitError.Code { get }
    * @availability iOS 9.0+
    */
-  static get unknown(): AVKitError_Code { return callSDK<AVKitError_Code>("AVKit_a956b86ef7a76a8e", 2074624876986826, undefined, []); }
+  static get unknown(): AVKitError_Code { return callSDK<AVKitError_Code>("AVKit_90ad0eb69cc6bf4a", 2074624876986826, undefined, []); }
   declare readonly $type: { "s:SC10AVKitErrorLeV": true };
 }
 
@@ -361,7 +361,7 @@ export const AVKitError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (AVKitError_Code) | null { return callSDK<(AVKitError_Code) | null>("AVKit_a956b86ef7a76a8e", 535407237839913, undefined, [rawValue]); }
+  init(rawValue: number): (AVKitError_Code) | null { return callSDK<(AVKitError_Code) | null>("AVKit_90ad0eb69cc6bf4a", 535407237839913, undefined, [rawValue]); }
 };
 
 /**
@@ -373,29 +373,29 @@ export class AVLegibleMediaOptionsMenuController extends SDKHandle {
    * init(player: AVPlayer?)
    * @availability iOS 26.4+
    */
-  static init(player?: $SDK8): AVLegibleMediaOptionsMenuController { return callSDK<AVLegibleMediaOptionsMenuController>("AVKit_a956b86ef7a76a8e", 2790875020914758, undefined, [player]); }
+  static init(player?: $SDK8): AVLegibleMediaOptionsMenuController { return callSDK<AVLegibleMediaOptionsMenuController>("AVKit_90ad0eb69cc6bf4a", 2790875020914758, undefined, [player]); }
   /**
    * func menu(contents: AVLegibleMediaOptionsMenuController.MenuContents = []) -> UIMenu?
    * @availability iOS 26.4+
    */
-  menu(contents?: AVLegibleMediaOptionsMenuController_MenuContents): (_UIKit_UIMenu) | null { return callSDK<(_UIKit_UIMenu) | null>("AVKit_a956b86ef7a76a8e", 2186571684432853, this, [contents]); }
+  menu(contents?: AVLegibleMediaOptionsMenuController_MenuContents): (_UIKit_UIMenu) | null { return callSDK<(_UIKit_UIMenu) | null>("AVKit_90ad0eb69cc6bf4a", 2186571684432853, this, [contents]); }
   /**
    * weak var delegate: (any AVLegibleMediaOptionsMenuController.Delegate)? { get set }
    * @availability iOS 26.4+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVKit_a956b86ef7a76a8e", 2262228036285512, this, []); }
-  set delegate(value: (Implements<AVLegibleMediaOptionsMenuController_Delegate> | SDKHandle) | null) { callSDK<void>("AVKit_a956b86ef7a76a8e", 1369860494789562, this, [value], [{"protocol":"c:objc(pl)AVLegibleMediaOptionsMenuControllerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVKit_90ad0eb69cc6bf4a", 2262228036285512, this, []); }
+  set delegate(value: (Implements<AVLegibleMediaOptionsMenuController_Delegate> | SDKHandle) | null) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 1369860494789562, this, [value], [{"protocol":"c:objc(pl)AVLegibleMediaOptionsMenuControllerDelegate"}]); }
   /**
    * var menuState: AVLegibleMediaOptionsMenuState { get }
    * @availability iOS 26.4+
    */
-  get menuState(): AVLegibleMediaOptionsMenuState { return callSDK<AVLegibleMediaOptionsMenuState>("AVKit_a956b86ef7a76a8e", 4221835629396817, this, []); }
+  get menuState(): AVLegibleMediaOptionsMenuState { return callSDK<AVLegibleMediaOptionsMenuState>("AVKit_90ad0eb69cc6bf4a", 4221835629396817, this, []); }
   /**
    * var player: AVPlayer { get set }
    * @availability iOS 26.4+
    */
-  get player(): _AVFoundation_AVPlayer { return callSDK<_AVFoundation_AVPlayer>("AVKit_a956b86ef7a76a8e", 3442965443884636, this, []); }
-  set player(value: _AVFoundation_AVPlayer) { callSDK<void>("AVKit_a956b86ef7a76a8e", 3279071758388672, this, [value]); }
+  get player(): _AVFoundation_AVPlayer { return callSDK<_AVFoundation_AVPlayer>("AVKit_90ad0eb69cc6bf4a", 3442965443884636, this, []); }
+  set player(value: _AVFoundation_AVPlayer) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 3279071758388672, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVLegibleMediaOptionsMenuController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "menuState": true; "player": true };
 }
@@ -433,22 +433,22 @@ export const AVLegibleMediaOptionsMenuController_MenuContents = {
    * static var all: AVLegibleMediaOptionsMenuController.MenuContents { get }
    * @availability iOS 26.4+
    */
-  get all(): AVLegibleMediaOptionsMenuController_MenuContents { return callSDK<AVLegibleMediaOptionsMenuController_MenuContents>("AVKit_a956b86ef7a76a8e", 260526653962393, undefined, []); },
+  get all(): AVLegibleMediaOptionsMenuController_MenuContents { return callSDK<AVLegibleMediaOptionsMenuController_MenuContents>("AVKit_90ad0eb69cc6bf4a", 260526653962393, undefined, []); },
   /**
    * static var captionAppearance: AVLegibleMediaOptionsMenuController.MenuContents { get }
    * @availability iOS 26.4+
    */
-  get captionAppearance(): AVLegibleMediaOptionsMenuController_MenuContents { return callSDK<AVLegibleMediaOptionsMenuController_MenuContents>("AVKit_a956b86ef7a76a8e", 3116112039422861, undefined, []); },
+  get captionAppearance(): AVLegibleMediaOptionsMenuController_MenuContents { return callSDK<AVLegibleMediaOptionsMenuController_MenuContents>("AVKit_90ad0eb69cc6bf4a", 3116112039422861, undefined, []); },
   /**
    * static var legible: AVLegibleMediaOptionsMenuController.MenuContents { get }
    * @availability iOS 26.4+
    */
-  get legible(): AVLegibleMediaOptionsMenuController_MenuContents { return callSDK<AVLegibleMediaOptionsMenuController_MenuContents>("AVKit_a956b86ef7a76a8e", 3553804630271877, undefined, []); },
+  get legible(): AVLegibleMediaOptionsMenuController_MenuContents { return callSDK<AVLegibleMediaOptionsMenuController_MenuContents>("AVKit_90ad0eb69cc6bf4a", 3553804630271877, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): AVLegibleMediaOptionsMenuController_MenuContents { return callSDK<AVLegibleMediaOptionsMenuController_MenuContents>("AVKit_a956b86ef7a76a8e", 600198297977772, undefined, [rawValue]); }
+  init(rawValue: number): AVLegibleMediaOptionsMenuController_MenuContents { return callSDK<AVLegibleMediaOptionsMenuController_MenuContents>("AVKit_90ad0eb69cc6bf4a", 600198297977772, undefined, [rawValue]); }
 };
 
 /**
@@ -462,7 +462,7 @@ export const AVLegibleMediaOptionsMenuController_StateChangeReason = {
    * init?(rawValue: Int)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): (AVLegibleMediaOptionsMenuController_StateChangeReason) | null { return callSDK<(AVLegibleMediaOptionsMenuController_StateChangeReason) | null>("AVKit_a956b86ef7a76a8e", 3641174073001454, undefined, [rawValue]); }
+  init(rawValue: number): (AVLegibleMediaOptionsMenuController_StateChangeReason) | null { return callSDK<(AVLegibleMediaOptionsMenuController_StateChangeReason) | null>("AVKit_90ad0eb69cc6bf4a", 3641174073001454, undefined, [rawValue]); }
 };
 
 /**
@@ -474,24 +474,24 @@ export class AVLegibleMediaOptionsMenuState extends SDKHandle {
    * var enabled: ObjCBool
    * @availability iOS 26.4+
    */
-  get enabled(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 4337018278333738, this, []); }
-  set enabled(value: boolean) { callSDK<void>("AVKit_a956b86ef7a76a8e", 2529096636969576, this, [value]); }
+  get enabled(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 4337018278333738, this, []); }
+  set enabled(value: boolean) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 2529096636969576, this, [value]); }
   /**
    * var reason: AVLegibleMediaOptionsMenuController.StateChangeReason
    * @availability iOS 26.4+
    */
-  get reason(): AVLegibleMediaOptionsMenuController_StateChangeReason { return callSDK<AVLegibleMediaOptionsMenuController_StateChangeReason>("AVKit_a956b86ef7a76a8e", 1547030586647929, this, []); }
-  set reason(value: AVLegibleMediaOptionsMenuController_StateChangeReason) { callSDK<void>("AVKit_a956b86ef7a76a8e", 2064939018448117, this, [value]); }
+  get reason(): AVLegibleMediaOptionsMenuController_StateChangeReason { return callSDK<AVLegibleMediaOptionsMenuController_StateChangeReason>("AVKit_90ad0eb69cc6bf4a", 1547030586647929, this, []); }
+  set reason(value: AVLegibleMediaOptionsMenuController_StateChangeReason) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 2064939018448117, this, [value]); }
   /**
    * init(enabled: ObjCBool, reason: AVLegibleMediaOptionsMenuController.StateChangeReason)
    * @availability iOS 26.4+
    */
-  static initEnabledReason(enabled: boolean, reason: AVLegibleMediaOptionsMenuController_StateChangeReason): AVLegibleMediaOptionsMenuState { return callSDK<AVLegibleMediaOptionsMenuState>("AVKit_a956b86ef7a76a8e", 3150643564756417, undefined, [enabled, reason]); }
+  static initEnabledReason(enabled: boolean, reason: AVLegibleMediaOptionsMenuController_StateChangeReason): AVLegibleMediaOptionsMenuState { return callSDK<AVLegibleMediaOptionsMenuState>("AVKit_90ad0eb69cc6bf4a", 3150643564756417, undefined, [enabled, reason]); }
   /**
    * init()
    * @availability iOS 26.4+
    */
-  static init(): AVLegibleMediaOptionsMenuState { return callSDK<AVLegibleMediaOptionsMenuState>("AVKit_a956b86ef7a76a8e", 711602069688721, undefined, []); }
+  static init(): AVLegibleMediaOptionsMenuState { return callSDK<AVLegibleMediaOptionsMenuState>("AVKit_90ad0eb69cc6bf4a", 711602069688721, undefined, []); }
   declare readonly $type: { "c:@S@AVLegibleMediaOptionsMenuState": true };
 }
 
@@ -504,96 +504,96 @@ export class AVPictureInPictureController extends SDKHandle {
    * class func isPictureInPictureSupported() -> Bool
    * @availability iOS 9.0+
    */
-  static isPictureInPictureSupported(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 3369933349218894, undefined, []); }
+  static isPictureInPictureSupported(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 3369933349218894, undefined, []); }
   /**
    * class func pictureInPictureButtonStartImage(compatibleWith traitCollection: UITraitCollection?) -> UIImage
    * @availability iOS 9.0+
    */
-  static pictureInPictureButtonStartImageCompatibleWith(traitCollection?: $SDK10): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("AVKit_a956b86ef7a76a8e", 3005336558200555, undefined, [traitCollection]); }
+  static pictureInPictureButtonStartImageCompatibleWith(traitCollection?: $SDK10): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("AVKit_90ad0eb69cc6bf4a", 3005336558200555, undefined, [traitCollection]); }
   /**
    * class func pictureInPictureButtonStopImage(compatibleWith traitCollection: UITraitCollection?) -> UIImage
    * @availability iOS 9.0+
    */
-  static pictureInPictureButtonStopImageCompatibleWith(traitCollection?: $SDK10): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("AVKit_a956b86ef7a76a8e", 1670370511760156, undefined, [traitCollection]); }
+  static pictureInPictureButtonStopImageCompatibleWith(traitCollection?: $SDK10): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("AVKit_90ad0eb69cc6bf4a", 1670370511760156, undefined, [traitCollection]); }
   /**
    * class var pictureInPictureButtonStartImage: UIImage { get }
    * @availability iOS 13.0+
    */
-  static get pictureInPictureButtonStartImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("AVKit_a956b86ef7a76a8e", 994449115793968, undefined, []); }
+  static get pictureInPictureButtonStartImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("AVKit_90ad0eb69cc6bf4a", 994449115793968, undefined, []); }
   /**
    * class var pictureInPictureButtonStopImage: UIImage { get }
    * @availability iOS 13.0+
    */
-  static get pictureInPictureButtonStopImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("AVKit_a956b86ef7a76a8e", 3692068014654178, undefined, []); }
+  static get pictureInPictureButtonStopImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("AVKit_90ad0eb69cc6bf4a", 3692068014654178, undefined, []); }
   /**
    * init(contentSource: AVPictureInPictureController.ContentSource)
    * @availability iOS 15.0+
    */
-  static initContentSource(contentSource: AVPictureInPictureController_ContentSource): AVPictureInPictureController { return callSDK<AVPictureInPictureController>("AVKit_a956b86ef7a76a8e", 2086431534592696, undefined, [contentSource]); }
+  static initContentSource(contentSource: AVPictureInPictureController_ContentSource): AVPictureInPictureController { return callSDK<AVPictureInPictureController>("AVKit_90ad0eb69cc6bf4a", 2086431534592696, undefined, [contentSource]); }
   /**
    * convenience init?(playerLayer: AVPlayerLayer)
    * @availability iOS 9.0+
    */
-  static initPlayerLayer(playerLayer: _AVFoundation_AVPlayerLayer): (AVPictureInPictureController) | null { return callSDK<(AVPictureInPictureController) | null>("AVKit_a956b86ef7a76a8e", 909708224353748, undefined, [playerLayer]); }
+  static initPlayerLayer(playerLayer: _AVFoundation_AVPlayerLayer): (AVPictureInPictureController) | null { return callSDK<(AVPictureInPictureController) | null>("AVKit_90ad0eb69cc6bf4a", 909708224353748, undefined, [playerLayer]); }
   /**
    * func invalidatePlaybackState()
    * @availability iOS 15.0+
    */
-  invalidatePlaybackState(): void { return callSDK<void>("AVKit_a956b86ef7a76a8e", 3339976922357662, this, []); }
+  invalidatePlaybackState(): void { return callSDK<void>("AVKit_90ad0eb69cc6bf4a", 3339976922357662, this, []); }
   /**
    * func startPictureInPicture()
    * @availability iOS 9.0+
    */
-  startPictureInPicture(): void { return callSDK<void>("AVKit_a956b86ef7a76a8e", 1895363507414980, this, []); }
+  startPictureInPicture(): void { return callSDK<void>("AVKit_90ad0eb69cc6bf4a", 1895363507414980, this, []); }
   /**
    * func stopPictureInPicture()
    * @availability iOS 9.0+
    */
-  stopPictureInPicture(): void { return callSDK<void>("AVKit_a956b86ef7a76a8e", 3798702065315834, this, []); }
+  stopPictureInPicture(): void { return callSDK<void>("AVKit_90ad0eb69cc6bf4a", 3798702065315834, this, []); }
   /**
    * var canStartPictureInPictureAutomaticallyFromInline: Bool { get set }
    * @availability iOS 14.2+
    */
-  get canStartPictureInPictureAutomaticallyFromInline(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 4008076171593419, this, []); }
-  set canStartPictureInPictureAutomaticallyFromInline(value: boolean) { callSDK<void>("AVKit_a956b86ef7a76a8e", 1449489431067090, this, [value]); }
+  get canStartPictureInPictureAutomaticallyFromInline(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 4008076171593419, this, []); }
+  set canStartPictureInPictureAutomaticallyFromInline(value: boolean) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 1449489431067090, this, [value]); }
   /**
    * var contentSource: AVPictureInPictureController.ContentSource? { get set }
    * @availability iOS 15.0+
    */
-  get contentSource(): $SDK11 { return callSDK<$SDK11>("AVKit_a956b86ef7a76a8e", 795806729375773, this, []); }
-  set contentSource(value: $SDK11) { callSDK<void>("AVKit_a956b86ef7a76a8e", 1087346971054697, this, [value]); }
+  get contentSource(): $SDK11 { return callSDK<$SDK11>("AVKit_90ad0eb69cc6bf4a", 795806729375773, this, []); }
+  set contentSource(value: $SDK11) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 1087346971054697, this, [value]); }
   /**
    * weak var delegate: (any AVPictureInPictureControllerDelegate)? { get set }
    * @availability iOS 9.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVKit_a956b86ef7a76a8e", 2463680042195538, this, []); }
-  set delegate(value: (Implements<AVPictureInPictureControllerDelegate> | SDKHandle) | null) { callSDK<void>("AVKit_a956b86ef7a76a8e", 978564254781622, this, [value], [{"protocol":"c:objc(pl)AVPictureInPictureControllerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVKit_90ad0eb69cc6bf4a", 2463680042195538, this, []); }
+  set delegate(value: (Implements<AVPictureInPictureControllerDelegate> | SDKHandle) | null) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 978564254781622, this, [value], [{"protocol":"c:objc(pl)AVPictureInPictureControllerDelegate"}]); }
   /**
    * var isPictureInPictureActive: Bool { get }
    * @availability iOS 9.0+
    */
-  get isPictureInPictureActive(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 2462091717613403, this, []); }
+  get isPictureInPictureActive(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 2462091717613403, this, []); }
   /**
    * var isPictureInPicturePossible: Bool { get }
    * @availability iOS 9.0+
    */
-  get isPictureInPicturePossible(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 1794186250989519, this, []); }
+  get isPictureInPicturePossible(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 1794186250989519, this, []); }
   /**
    * var isPictureInPictureSuspended: Bool { get }
    * @availability iOS 9.0+
    */
-  get isPictureInPictureSuspended(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 660087095340787, this, []); }
+  get isPictureInPictureSuspended(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 660087095340787, this, []); }
   /**
    * var playerLayer: AVPlayerLayer { get }
    * @availability iOS 9.0+
    */
-  get playerLayer(): _AVFoundation_AVPlayerLayer { return callSDK<_AVFoundation_AVPlayerLayer>("AVKit_a956b86ef7a76a8e", 3105421960923618, this, []); }
+  get playerLayer(): _AVFoundation_AVPlayerLayer { return callSDK<_AVFoundation_AVPlayerLayer>("AVKit_90ad0eb69cc6bf4a", 3105421960923618, this, []); }
   /**
    * var requiresLinearPlayback: Bool { get set }
    * @availability iOS 14.0+
    */
-  get requiresLinearPlayback(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 2361846773484908, this, []); }
-  set requiresLinearPlayback(value: boolean) { callSDK<void>("AVKit_a956b86ef7a76a8e", 397681974552648, this, [value]); }
+  get requiresLinearPlayback(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 2361846773484908, this, []); }
+  set requiresLinearPlayback(value: boolean) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 397681974552648, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVPictureInPictureController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "canStartPictureInPictureAutomaticallyFromInline": true; "contentSource": true; "delegate": true; "isPictureInPictureActive": true; "isPictureInPicturePossible": true; "isPictureInPictureSuspended": true; "playerLayer": true; "requiresLinearPlayback": true };
 }
@@ -607,42 +607,42 @@ export class AVPictureInPictureController_ContentSource extends SDKHandle {
    * init(activeVideoCallSourceView sourceView: UIView, contentViewController: AVPictureInPictureVideoCallViewController)
    * @availability iOS 15.0+
    */
-  static initActiveVideoCallSourceViewContentViewController(sourceView: _UIKit_UIView, contentViewController: AVPictureInPictureVideoCallViewController): AVPictureInPictureController_ContentSource { return callSDK<AVPictureInPictureController_ContentSource>("AVKit_a956b86ef7a76a8e", 3725497031622160, undefined, [sourceView, contentViewController]); }
+  static initActiveVideoCallSourceViewContentViewController(sourceView: _UIKit_UIView, contentViewController: AVPictureInPictureVideoCallViewController): AVPictureInPictureController_ContentSource { return callSDK<AVPictureInPictureController_ContentSource>("AVKit_90ad0eb69cc6bf4a", 3725497031622160, undefined, [sourceView, contentViewController]); }
   /**
    * init(playerLayer: AVPlayerLayer)
    * @availability iOS 15.0+
    */
-  static initPlayerLayer(playerLayer: _AVFoundation_AVPlayerLayer): AVPictureInPictureController_ContentSource { return callSDK<AVPictureInPictureController_ContentSource>("AVKit_a956b86ef7a76a8e", 1798620882225072, undefined, [playerLayer]); }
+  static initPlayerLayer(playerLayer: _AVFoundation_AVPlayerLayer): AVPictureInPictureController_ContentSource { return callSDK<AVPictureInPictureController_ContentSource>("AVKit_90ad0eb69cc6bf4a", 1798620882225072, undefined, [playerLayer]); }
   /**
    * init(sampleBufferDisplayLayer: AVSampleBufferDisplayLayer, playbackDelegate: any AVPictureInPictureSampleBufferPlaybackDelegate)
    * @availability iOS 15.0+
    */
-  static initSampleBufferDisplayLayerPlaybackDelegate(sampleBufferDisplayLayer: _AVFoundation_AVSampleBufferDisplayLayer, playbackDelegate: SDKHandle): AVPictureInPictureController_ContentSource { return callSDK<AVPictureInPictureController_ContentSource>("AVKit_a956b86ef7a76a8e", 1272006880894184, undefined, [sampleBufferDisplayLayer, playbackDelegate]); }
+  static initSampleBufferDisplayLayerPlaybackDelegate(sampleBufferDisplayLayer: _AVFoundation_AVSampleBufferDisplayLayer, playbackDelegate: SDKHandle): AVPictureInPictureController_ContentSource { return callSDK<AVPictureInPictureController_ContentSource>("AVKit_90ad0eb69cc6bf4a", 1272006880894184, undefined, [sampleBufferDisplayLayer, playbackDelegate]); }
   /**
    * var activeVideoCallContentViewController: AVPictureInPictureVideoCallViewController { get }
    * @availability iOS 15.0+
    */
-  get activeVideoCallContentViewController(): AVPictureInPictureVideoCallViewController { return callSDK<AVPictureInPictureVideoCallViewController>("AVKit_a956b86ef7a76a8e", 2855956866484375, this, []); }
+  get activeVideoCallContentViewController(): AVPictureInPictureVideoCallViewController { return callSDK<AVPictureInPictureVideoCallViewController>("AVKit_90ad0eb69cc6bf4a", 2855956866484375, this, []); }
   /**
    * weak var activeVideoCallSourceView: UIView? { get }
    * @availability iOS 15.0+
    */
-  get activeVideoCallSourceView(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("AVKit_a956b86ef7a76a8e", 2427230715126689, this, []); }
+  get activeVideoCallSourceView(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("AVKit_90ad0eb69cc6bf4a", 2427230715126689, this, []); }
   /**
    * var playerLayer: AVPlayerLayer? { get }
    * @availability iOS 15.0+
    */
-  get playerLayer(): (_AVFoundation_AVPlayerLayer) | null { return callSDK<(_AVFoundation_AVPlayerLayer) | null>("AVKit_a956b86ef7a76a8e", 2687798866961270, this, []); }
+  get playerLayer(): (_AVFoundation_AVPlayerLayer) | null { return callSDK<(_AVFoundation_AVPlayerLayer) | null>("AVKit_90ad0eb69cc6bf4a", 2687798866961270, this, []); }
   /**
    * var sampleBufferDisplayLayer: AVSampleBufferDisplayLayer? { get }
    * @availability iOS 15.0+
    */
-  get sampleBufferDisplayLayer(): (_AVFoundation_AVSampleBufferDisplayLayer) | null { return callSDK<(_AVFoundation_AVSampleBufferDisplayLayer) | null>("AVKit_a956b86ef7a76a8e", 830050548414376, this, []); }
+  get sampleBufferDisplayLayer(): (_AVFoundation_AVSampleBufferDisplayLayer) | null { return callSDK<(_AVFoundation_AVSampleBufferDisplayLayer) | null>("AVKit_90ad0eb69cc6bf4a", 830050548414376, this, []); }
   /**
    * weak var sampleBufferPlaybackDelegate: (any AVPictureInPictureSampleBufferPlaybackDelegate)? { get }
    * @availability iOS 15.0+
    */
-  get sampleBufferPlaybackDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVKit_a956b86ef7a76a8e", 255556309132019, this, []); }
+  get sampleBufferPlaybackDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVKit_90ad0eb69cc6bf4a", 255556309132019, this, []); }
   declare readonly $type: { "c:objc(cs)AVPictureInPictureControllerContentSource": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activeVideoCallContentViewController": true; "activeVideoCallSourceView": true; "playerLayer": true; "sampleBufferDisplayLayer": true; "sampleBufferPlaybackDelegate": true };
 }
@@ -717,7 +717,7 @@ export interface AVPictureInPictureSampleBufferPlaybackDelegate {
  */
 export class AVPictureInPictureVideoCallViewController extends SDKHandle {
   /** init() */
-  static init(): AVPictureInPictureVideoCallViewController { return callSDK<AVPictureInPictureVideoCallViewController>("AVKit_a956b86ef7a76a8e", 532147051786822, undefined, []); }
+  static init(): AVPictureInPictureVideoCallViewController { return callSDK<AVPictureInPictureVideoCallViewController>("AVKit_90ad0eb69cc6bf4a", 532147051786822, undefined, []); }
   declare readonly $type: { "c:objc(cs)AVPictureInPictureVideoCallViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -730,27 +730,27 @@ export class AVPlaybackSpeed extends SDKHandle {
    * class var systemDefaultSpeeds: [AVPlaybackSpeed] { get }
    * @availability iOS 16.0+
    */
-  static get systemDefaultSpeeds(): Array<AVPlaybackSpeed> { return callSDK<Array<AVPlaybackSpeed>>("AVKit_a956b86ef7a76a8e", 57379240408205, undefined, []); }
+  static get systemDefaultSpeeds(): Array<AVPlaybackSpeed> { return callSDK<Array<AVPlaybackSpeed>>("AVKit_90ad0eb69cc6bf4a", 57379240408205, undefined, []); }
   /**
    * init(rate: Float, localizedName: String)
    * @availability iOS 16.0+
    */
-  static init(rate: number, localizedName: string): AVPlaybackSpeed { return callSDK<AVPlaybackSpeed>("AVKit_a956b86ef7a76a8e", 2344838046543848, undefined, [rate, localizedName]); }
+  static init(rate: number, localizedName: string): AVPlaybackSpeed { return callSDK<AVPlaybackSpeed>("AVKit_90ad0eb69cc6bf4a", 2344838046543848, undefined, [rate, localizedName]); }
   /**
    * var localizedName: String { get }
    * @availability iOS 16.0+
    */
-  get localizedName(): string { return callSDK<string>("AVKit_a956b86ef7a76a8e", 433486929597734, this, []); }
+  get localizedName(): string { return callSDK<string>("AVKit_90ad0eb69cc6bf4a", 433486929597734, this, []); }
   /**
    * var localizedNumericName: String { get }
    * @availability iOS 16.0+
    */
-  get localizedNumericName(): string { return callSDK<string>("AVKit_a956b86ef7a76a8e", 3290420209694556, this, []); }
+  get localizedNumericName(): string { return callSDK<string>("AVKit_90ad0eb69cc6bf4a", 3290420209694556, this, []); }
   /**
    * var rate: Float { get }
    * @availability iOS 16.0+
    */
-  get rate(): number { return callSDK<number>("AVKit_a956b86ef7a76a8e", 645364242818887, this, []); }
+  get rate(): number { return callSDK<number>("AVKit_90ad0eb69cc6bf4a", 645364242818887, this, []); }
   declare readonly $type: { "c:objc(cs)AVPlaybackSpeed": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localizedName": true; "localizedNumericName": true; "rate": true };
 }
@@ -764,12 +764,12 @@ export class AVPlaybackUserInterfaceContentArtwork extends SDKHandle {
    * class func artwork(url: URL, contentType type: UTType, size: CGSize) -> AVPlaybackUserInterfaceContentURLArtwork
    * @availability iOS 27.0+
    */
-  static artwork(url: string, type: _UniformTypeIdentifiers_UTType, size: $SDK15): AVPlaybackUserInterfaceContentURLArtwork { return callSDK<AVPlaybackUserInterfaceContentURLArtwork>("AVKit_a956b86ef7a76a8e", 225856065272597, undefined, [url, type, size]); }
+  static artwork(url: string, type: _UniformTypeIdentifiers_UTType, size: $SDK15): AVPlaybackUserInterfaceContentURLArtwork { return callSDK<AVPlaybackUserInterfaceContentURLArtwork>("AVKit_90ad0eb69cc6bf4a", 225856065272597, undefined, [url, type, size]); }
   /**
    * var size: CGSize { get }
    * @availability iOS 27.0+
    */
-  get size(): $SDK15 { return callSDK<$SDK15>("AVKit_a956b86ef7a76a8e", 4234629577036879, this, []); }
+  get size(): $SDK15 { return callSDK<$SDK15>("AVKit_90ad0eb69cc6bf4a", 4234629577036879, this, []); }
   declare readonly $type: { "c:objc(cs)AVPlaybackUserInterfaceContentArtwork": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "size": true };
 }
@@ -783,31 +783,31 @@ export class AVPlaybackUserInterfaceContentMetadata extends SDKHandle {
    * init(videoProperties: AVPlaybackUserInterfaceContentMetadata.VideoProperties? = nil, title: String? = nil, subtitle: String? = nil, artworkRepresentations: [AVPlaybackUserInterfaceContentArtwork] = [])
    * @availability iOS 27.0+
    */
-  static init(videoProperties?: $SDK16, title?: (string) | null, subtitle?: (string) | null, artworkRepresentations?: $SDK17): AVPlaybackUserInterfaceContentMetadata { return callSDK<AVPlaybackUserInterfaceContentMetadata>("AVKit_a956b86ef7a76a8e", 684652305251555, undefined, [videoProperties, title, subtitle, artworkRepresentations]); }
+  static init(videoProperties?: $SDK16, title?: (string) | null, subtitle?: (string) | null, artworkRepresentations?: $SDK17): AVPlaybackUserInterfaceContentMetadata { return callSDK<AVPlaybackUserInterfaceContentMetadata>("AVKit_90ad0eb69cc6bf4a", 684652305251555, undefined, [videoProperties, title, subtitle, artworkRepresentations]); }
   /**
    * var videoProperties: AVPlaybackUserInterfaceContentMetadata.VideoProperties?
    * @availability iOS 27.0+
    */
-  get videoProperties(): $SDK16 { return callSDK<$SDK16>("AVKit_a956b86ef7a76a8e", 3773282358148268, this, []); }
-  set videoProperties(value: $SDK16) { callSDK<void>("AVKit_a956b86ef7a76a8e", 3240382275303443, this, [value]); }
+  get videoProperties(): $SDK16 { return callSDK<$SDK16>("AVKit_90ad0eb69cc6bf4a", 3773282358148268, this, []); }
+  set videoProperties(value: $SDK16) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 3240382275303443, this, [value]); }
   /**
    * var artworkRepresentations: [AVPlaybackUserInterfaceContentArtwork]
    * @availability iOS 27.0+
    */
-  get artworkRepresentations(): $SDK17 { return callSDK<$SDK17>("AVKit_a956b86ef7a76a8e", 103033169523320, this, []); }
-  set artworkRepresentations(value: $SDK17) { callSDK<void>("AVKit_a956b86ef7a76a8e", 4392045544285997, this, [value]); }
+  get artworkRepresentations(): $SDK17 { return callSDK<$SDK17>("AVKit_90ad0eb69cc6bf4a", 103033169523320, this, []); }
+  set artworkRepresentations(value: $SDK17) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 4392045544285997, this, [value]); }
   /**
    * var title: String?
    * @availability iOS 27.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("AVKit_a956b86ef7a76a8e", 2069879741495326, this, []); }
-  set title(value: (string) | null) { callSDK<void>("AVKit_a956b86ef7a76a8e", 2280151436708042, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("AVKit_90ad0eb69cc6bf4a", 2069879741495326, this, []); }
+  set title(value: (string) | null) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 2280151436708042, this, [value]); }
   /**
    * var subtitle: String?
    * @availability iOS 27.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("AVKit_a956b86ef7a76a8e", 591015263388840, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("AVKit_a956b86ef7a76a8e", 2145960561671198, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("AVKit_90ad0eb69cc6bf4a", 591015263388840, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 2145960561671198, this, [value]); }
   declare readonly $type: { "s:5AVKit38AVPlaybackUserInterfaceContentMetadataV": true };
 }
 
@@ -820,13 +820,13 @@ export class AVPlaybackUserInterfaceContentMetadata_VideoProperties extends SDKH
    * init(presentationSize: CGSize)
    * @availability iOS 27.0+
    */
-  static init(presentationSize: $SDK15): AVPlaybackUserInterfaceContentMetadata_VideoProperties { return callSDK<AVPlaybackUserInterfaceContentMetadata_VideoProperties>("AVKit_a956b86ef7a76a8e", 1059802964640676, undefined, [presentationSize]); }
+  static init(presentationSize: $SDK15): AVPlaybackUserInterfaceContentMetadata_VideoProperties { return callSDK<AVPlaybackUserInterfaceContentMetadata_VideoProperties>("AVKit_90ad0eb69cc6bf4a", 1059802964640676, undefined, [presentationSize]); }
   /**
    * var presentationSize: CGSize
    * @availability iOS 27.0+
    */
-  get presentationSize(): $SDK15 { return callSDK<$SDK15>("AVKit_a956b86ef7a76a8e", 2844620964390223, this, []); }
-  set presentationSize(value: $SDK15) { callSDK<void>("AVKit_a956b86ef7a76a8e", 412313502142876, this, [value]); }
+  get presentationSize(): $SDK15 { return callSDK<$SDK15>("AVKit_90ad0eb69cc6bf4a", 2844620964390223, this, []); }
+  set presentationSize(value: $SDK15) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 412313502142876, this, [value]); }
   declare readonly $type: { "s:5AVKit38AVPlaybackUserInterfaceContentMetadataV15VideoPropertiesV": true };
 }
 
@@ -839,12 +839,12 @@ export class AVPlaybackUserInterfaceContentURLArtwork extends AVPlaybackUserInte
    * var contentType: UTType { get }
    * @availability iOS 27.0+
    */
-  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("AVKit_a956b86ef7a76a8e", 2234130196222291, this, []); }
+  get contentType(): _UniformTypeIdentifiers_UTType { return callSDK<_UniformTypeIdentifiers_UTType>("AVKit_90ad0eb69cc6bf4a", 2234130196222291, this, []); }
   /**
    * var url: URL { get }
    * @availability iOS 27.0+
    */
-  get url(): string { return callSDK<string>("AVKit_a956b86ef7a76a8e", 514263701475859, this, []); }
+  get url(): string { return callSDK<string>("AVKit_90ad0eb69cc6bf4a", 514263701475859, this, []); }
   declare readonly $type: { "c:objc(cs)AVPlaybackUserInterfaceContentURLArtwork": true; "c:objc(cs)AVPlaybackUserInterfaceContentArtwork": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "size": true; "contentType": true; "url": true };
 }
@@ -878,27 +878,27 @@ export class AVPlaybackUserInterfaceMediaSelectionOption extends SDKHandle {
    * var displayName: String { get }
    * @availability iOS 27.0+
    */
-  get displayName(): string { return callSDK<string>("AVKit_a956b86ef7a76a8e", 3870021991875826, this, []); }
+  get displayName(): string { return callSDK<string>("AVKit_90ad0eb69cc6bf4a", 3870021991875826, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 27.0+
    */
-  get identifier(): string { return callSDK<string>("AVKit_a956b86ef7a76a8e", 1962253090566185, this, []); }
+  get identifier(): string { return callSDK<string>("AVKit_90ad0eb69cc6bf4a", 1962253090566185, this, []); }
   /**
    * var mediaCharacteristics: [AVMediaCharacteristic] { get }
    * @availability iOS 27.0+
    */
-  get mediaCharacteristics(): $SDK18 { return callSDK<$SDK18>("AVKit_a956b86ef7a76a8e", 780730340589600, this, []); }
+  get mediaCharacteristics(): $SDK18 { return callSDK<$SDK18>("AVKit_90ad0eb69cc6bf4a", 780730340589600, this, []); }
   /**
    * convenience init(displayName: String, identifier: String, language: Locale.Language? = nil, mediaCharacteristics: [AVMediaCharacteristic] = [])
    * @availability iOS 27.0+
    */
-  static init(displayName: string, identifier: string, language?: $SDK19, mediaCharacteristics?: $SDK18): AVPlaybackUserInterfaceMediaSelectionOption { return callSDK<AVPlaybackUserInterfaceMediaSelectionOption>("AVKit_a956b86ef7a76a8e", 2859850032484690, undefined, [displayName, identifier, language, mediaCharacteristics]); }
+  static init(displayName: string, identifier: string, language?: $SDK19, mediaCharacteristics?: $SDK18): AVPlaybackUserInterfaceMediaSelectionOption { return callSDK<AVPlaybackUserInterfaceMediaSelectionOption>("AVKit_90ad0eb69cc6bf4a", 2859850032484690, undefined, [displayName, identifier, language, mediaCharacteristics]); }
   /**
    * var language: Locale.Language? { get }
    * @availability iOS 27.0+
    */
-  get language(): $SDK19 { return callSDK<$SDK19>("AVKit_a956b86ef7a76a8e", 1361864061372499, this, []); }
+  get language(): $SDK19 { return callSDK<$SDK19>("AVKit_90ad0eb69cc6bf4a", 1361864061372499, this, []); }
   declare readonly $type: { "c:objc(cs)AVPlaybackUserInterfaceMediaSelectionOption": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "displayName": true; "identifier": true; "mediaCharacteristics": true };
 }
@@ -928,22 +928,22 @@ export class AVPlaybackUserInterfacePlaybackPosition extends SDKHandle {
    * init(position: CMTime, hostTime: CMTime, rate: Float)
    * @availability iOS 27.0+
    */
-  static init(position: _CoreMedia_CMTime, hostTime: _CoreMedia_CMTime, rate: number): AVPlaybackUserInterfacePlaybackPosition { return callSDK<AVPlaybackUserInterfacePlaybackPosition>("AVKit_a956b86ef7a76a8e", 3007698222224735, undefined, [position, hostTime, rate]); }
+  static init(position: _CoreMedia_CMTime, hostTime: _CoreMedia_CMTime, rate: number): AVPlaybackUserInterfacePlaybackPosition { return callSDK<AVPlaybackUserInterfacePlaybackPosition>("AVKit_90ad0eb69cc6bf4a", 3007698222224735, undefined, [position, hostTime, rate]); }
   /**
    * var hostTime: CMTime { get }
    * @availability iOS 27.0+
    */
-  get hostTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("AVKit_a956b86ef7a76a8e", 2443626184504528, this, []); }
+  get hostTime(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("AVKit_90ad0eb69cc6bf4a", 2443626184504528, this, []); }
   /**
    * var position: CMTime { get }
    * @availability iOS 27.0+
    */
-  get position(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("AVKit_a956b86ef7a76a8e", 1280774405434867, this, []); }
+  get position(): _CoreMedia_CMTime { return callSDK<_CoreMedia_CMTime>("AVKit_90ad0eb69cc6bf4a", 1280774405434867, this, []); }
   /**
    * var rate: Float { get }
    * @availability iOS 27.0+
    */
-  get rate(): number { return callSDK<number>("AVKit_a956b86ef7a76a8e", 1498495533483903, this, []); }
+  get rate(): number { return callSDK<number>("AVKit_90ad0eb69cc6bf4a", 1498495533483903, this, []); }
   declare readonly $type: { "c:objc(cs)AVPlaybackUserInterfacePlaybackPosition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hostTime": true; "position": true; "rate": true };
 }
@@ -959,7 +959,7 @@ export const AVPlaybackUserInterfacePlaybackState = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (AVPlaybackUserInterfacePlaybackState) | null { return callSDK<(AVPlaybackUserInterfacePlaybackState) | null>("AVKit_a956b86ef7a76a8e", 2394449544496092, undefined, [rawValue]); }
+  init(rawValue: number): (AVPlaybackUserInterfacePlaybackState) | null { return callSDK<(AVPlaybackUserInterfacePlaybackState) | null>("AVKit_90ad0eb69cc6bf4a", 2394449544496092, undefined, [rawValue]); }
 };
 
 /**
@@ -973,22 +973,22 @@ export const AVPlaybackUserInterfaceSeekCapabilities = {
    * static var scanBackward: AVPlaybackUserInterfaceSeekCapabilities { get }
    * @availability iOS 27.0+
    */
-  get scanBackward(): AVPlaybackUserInterfaceSeekCapabilities { return callSDK<AVPlaybackUserInterfaceSeekCapabilities>("AVKit_a956b86ef7a76a8e", 877942217526320, undefined, []); },
+  get scanBackward(): AVPlaybackUserInterfaceSeekCapabilities { return callSDK<AVPlaybackUserInterfaceSeekCapabilities>("AVKit_90ad0eb69cc6bf4a", 877942217526320, undefined, []); },
   /**
    * static var scanForward: AVPlaybackUserInterfaceSeekCapabilities { get }
    * @availability iOS 27.0+
    */
-  get scanForward(): AVPlaybackUserInterfaceSeekCapabilities { return callSDK<AVPlaybackUserInterfaceSeekCapabilities>("AVKit_a956b86ef7a76a8e", 1793363015369075, undefined, []); },
+  get scanForward(): AVPlaybackUserInterfaceSeekCapabilities { return callSDK<AVPlaybackUserInterfaceSeekCapabilities>("AVKit_90ad0eb69cc6bf4a", 1793363015369075, undefined, []); },
   /**
    * static var seek: AVPlaybackUserInterfaceSeekCapabilities { get }
    * @availability iOS 27.0+
    */
-  get seek(): AVPlaybackUserInterfaceSeekCapabilities { return callSDK<AVPlaybackUserInterfaceSeekCapabilities>("AVKit_a956b86ef7a76a8e", 2953905302313875, undefined, []); },
+  get seek(): AVPlaybackUserInterfaceSeekCapabilities { return callSDK<AVPlaybackUserInterfaceSeekCapabilities>("AVKit_90ad0eb69cc6bf4a", 2953905302313875, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): AVPlaybackUserInterfaceSeekCapabilities { return callSDK<AVPlaybackUserInterfaceSeekCapabilities>("AVKit_a956b86ef7a76a8e", 392868278082040, undefined, [rawValue]); }
+  init(rawValue: number): AVPlaybackUserInterfaceSeekCapabilities { return callSDK<AVPlaybackUserInterfaceSeekCapabilities>("AVKit_90ad0eb69cc6bf4a", 392868278082040, undefined, [rawValue]); }
 };
 
 /**
@@ -1012,32 +1012,32 @@ export class AVPlaybackUserInterfaceTimelineSegment extends SDKHandle {
    * init(timeRange: CMTimeRange, segmentType: AVPlaybackUserInterfaceTimelineSegmentType, marked: Bool, requiresLinearPlayback: Bool, identifier: String?)
    * @availability iOS 27.0+
    */
-  static init(timeRange: _CoreMedia_CMTimeRange, segmentType: AVPlaybackUserInterfaceTimelineSegmentType, marked: boolean, requiresLinearPlayback: boolean, identifier?: (string) | null): AVPlaybackUserInterfaceTimelineSegment { return callSDK<AVPlaybackUserInterfaceTimelineSegment>("AVKit_a956b86ef7a76a8e", 1897752568310554, undefined, [timeRange, segmentType, marked, requiresLinearPlayback, identifier]); }
+  static init(timeRange: _CoreMedia_CMTimeRange, segmentType: AVPlaybackUserInterfaceTimelineSegmentType, marked: boolean, requiresLinearPlayback: boolean, identifier?: (string) | null): AVPlaybackUserInterfaceTimelineSegment { return callSDK<AVPlaybackUserInterfaceTimelineSegment>("AVKit_90ad0eb69cc6bf4a", 1897752568310554, undefined, [timeRange, segmentType, marked, requiresLinearPlayback, identifier]); }
   /**
    * var identifier: String? { get }
    * @availability iOS 27.0+
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("AVKit_a956b86ef7a76a8e", 3265502897686870, this, []); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("AVKit_90ad0eb69cc6bf4a", 3265502897686870, this, []); }
   /**
    * var isMarked: Bool { get }
    * @availability iOS 27.0+
    */
-  get isMarked(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 398426889312230, this, []); }
+  get isMarked(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 398426889312230, this, []); }
   /**
    * var requiresLinearPlayback: Bool { get }
    * @availability iOS 27.0+
    */
-  get requiresLinearPlayback(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 1275470133830954, this, []); }
+  get requiresLinearPlayback(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 1275470133830954, this, []); }
   /**
    * var segmentType: AVPlaybackUserInterfaceTimelineSegmentType { get }
    * @availability iOS 27.0+
    */
-  get segmentType(): AVPlaybackUserInterfaceTimelineSegmentType { return callSDK<AVPlaybackUserInterfaceTimelineSegmentType>("AVKit_a956b86ef7a76a8e", 3336395104638589, this, []); }
+  get segmentType(): AVPlaybackUserInterfaceTimelineSegmentType { return callSDK<AVPlaybackUserInterfaceTimelineSegmentType>("AVKit_90ad0eb69cc6bf4a", 3336395104638589, this, []); }
   /**
    * var timeRange: CMTimeRange { get }
    * @availability iOS 27.0+
    */
-  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("AVKit_a956b86ef7a76a8e", 3935339266119642, this, []); }
+  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("AVKit_90ad0eb69cc6bf4a", 3935339266119642, this, []); }
   declare readonly $type: { "c:objc(cs)AVPlaybackUserInterfaceTimelineSegment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "isMarked": true; "requiresLinearPlayback": true; "segmentType": true; "timeRange": true };
 }
@@ -1053,7 +1053,7 @@ export const AVPlaybackUserInterfaceTimelineSegmentType = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (AVPlaybackUserInterfaceTimelineSegmentType) | null { return callSDK<(AVPlaybackUserInterfaceTimelineSegmentType) | null>("AVKit_a956b86ef7a76a8e", 82125558697097, undefined, [rawValue]); }
+  init(rawValue: number): (AVPlaybackUserInterfaceTimelineSegmentType) | null { return callSDK<(AVPlaybackUserInterfaceTimelineSegmentType) | null>("AVKit_90ad0eb69cc6bf4a", 82125558697097, undefined, [rawValue]); }
 };
 
 /**
@@ -1069,13 +1069,13 @@ export class AVPlayerItem extends SDKHandle {
    * var externalMetadata: [AVMetadataItem] { get set }
    * @availability iOS 12.2+
    */
-  get externalMetadata(): Promise<$SDK20> { return callSDKAsync<$SDK20>("AVKit_a956b86ef7a76a8e", 2481802751658025, this, []); }
-  setExternalMetadata(value: $SDK20): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 205849130986669, this, [value]); }
+  get externalMetadata(): Promise<$SDK20> { return callSDKAsync<$SDK20>("AVKit_90ad0eb69cc6bf4a", 2481802751658025, this, []); }
+  setExternalMetadata(value: $SDK20): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 205849130986669, this, [value]); }
   /**
    * var interstitialTimeRanges: [AVInterstitialTimeRange] { get }
    * @availability iOS 16.0+
    */
-  get interstitialTimeRanges(): Promise<Array<AVInterstitialTimeRange>> { return callSDKAsync<Array<AVInterstitialTimeRange>>("AVKit_a956b86ef7a76a8e", 2669169189799613, this, []); }
+  get interstitialTimeRanges(): Promise<Array<AVInterstitialTimeRange>> { return callSDKAsync<Array<AVInterstitialTimeRange>>("AVKit_90ad0eb69cc6bf4a", 2669169189799613, this, []); }
   declare readonly $type: { "c:objc(cs)AVPlayerItem": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1088,135 +1088,135 @@ export class AVPlayerViewController extends SDKHandle {
    * class var mediaCharacteristicsForSupportedCustomMediaSelectionSchemes: [AVMediaCharacteristic] { get }
    * @availability iOS 26.0+
    */
-  static get mediaCharacteristicsForSupportedCustomMediaSelectionSchemes(): Promise<$SDK18> { return callSDKAsync<$SDK18>("AVKit_a956b86ef7a76a8e", 1294943455013667, undefined, []); }
+  static get mediaCharacteristicsForSupportedCustomMediaSelectionSchemes(): Promise<$SDK18> { return callSDKAsync<$SDK18>("AVKit_90ad0eb69cc6bf4a", 1294943455013667, undefined, []); }
   /** init() */
-  static init(): Promise<AVPlayerViewController> { return callSDKAsync<AVPlayerViewController>("AVKit_a956b86ef7a76a8e", 1502381143230172, undefined, []); }
+  static init(): Promise<AVPlayerViewController> { return callSDKAsync<AVPlayerViewController>("AVKit_90ad0eb69cc6bf4a", 1502381143230172, undefined, []); }
   /**
    * func selectSpeed(_ speed: AVPlaybackSpeed)
    * @availability iOS 16.0+
    */
-  selectSpeed(speed: AVPlaybackSpeed): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 2902374491153670, this, [speed]); }
+  selectSpeed(speed: AVPlaybackSpeed): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 2902374491153670, this, [speed]); }
   /**
    * var allowsPictureInPicturePlayback: Bool { get set }
    * @availability iOS 9.0+
    */
-  get allowsPictureInPicturePlayback(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 3599306691657279, this, []); }
-  setAllowsPictureInPicturePlayback(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 1789201848797090, this, [value]); }
+  get allowsPictureInPicturePlayback(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 3599306691657279, this, []); }
+  setAllowsPictureInPicturePlayback(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 1789201848797090, this, [value]); }
   /**
    * var allowsVideoFrameAnalysis: Bool { get set }
    * @availability iOS 16.0+
    */
-  get allowsVideoFrameAnalysis(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 3107317136210537, this, []); }
-  setAllowsVideoFrameAnalysis(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 4379708018261842, this, [value]); }
+  get allowsVideoFrameAnalysis(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 3107317136210537, this, []); }
+  setAllowsVideoFrameAnalysis(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 4379708018261842, this, [value]); }
   /**
    * var canStartPictureInPictureAutomaticallyFromInline: Bool { get set }
    * @availability iOS 14.2+
    */
-  get canStartPictureInPictureAutomaticallyFromInline(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 1668074260115163, this, []); }
-  setCanStartPictureInPictureAutomaticallyFromInline(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 3520548798332787, this, [value]); }
+  get canStartPictureInPictureAutomaticallyFromInline(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 1668074260115163, this, []); }
+  setCanStartPictureInPictureAutomaticallyFromInline(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 3520548798332787, this, [value]); }
   /**
    * var contentOverlayView: UIView? { get }
    * @availability iOS 8.0+
    */
-  get contentOverlayView(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("AVKit_a956b86ef7a76a8e", 3141866202277077, this, []); }
+  get contentOverlayView(): Promise<(_UIKit_UIView) | null> { return callSDKAsync<(_UIKit_UIView) | null>("AVKit_90ad0eb69cc6bf4a", 3141866202277077, this, []); }
   /**
    * weak var delegate: (any AVPlayerViewControllerDelegate)? { get set }
    * @availability iOS 9.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("AVKit_a956b86ef7a76a8e", 4212146387648630, this, []); }
-  setDelegate(value?: (Implements<AVPlayerViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 2910914566308431, this, [value], [{"protocol":"c:objc(pl)AVPlayerViewControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("AVKit_90ad0eb69cc6bf4a", 4212146387648630, this, []); }
+  setDelegate(value?: (Implements<AVPlayerViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 2910914566308431, this, [value], [{"protocol":"c:objc(pl)AVPlayerViewControllerDelegate"}]); }
   /**
    * var entersFullScreenWhenPlaybackBegins: Bool { get set }
    * @availability iOS 11.0+
    */
-  get entersFullScreenWhenPlaybackBegins(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 4319403989464499, this, []); }
-  setEntersFullScreenWhenPlaybackBegins(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 173544371985985, this, [value]); }
+  get entersFullScreenWhenPlaybackBegins(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 4319403989464499, this, []); }
+  setEntersFullScreenWhenPlaybackBegins(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 173544371985985, this, [value]); }
   /**
    * var exitsFullScreenWhenPlaybackEnds: Bool { get set }
    * @availability iOS 11.0+
    */
-  get exitsFullScreenWhenPlaybackEnds(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 1668884208086815, this, []); }
-  setExitsFullScreenWhenPlaybackEnds(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 4212126610098261, this, [value]); }
+  get exitsFullScreenWhenPlaybackEnds(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 1668884208086815, this, []); }
+  setExitsFullScreenWhenPlaybackEnds(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 4212126610098261, this, [value]); }
   /**
    * var pixelBufferAttributes: [String : Any]? { get set }
    * @availability iOS 9.0+
    */
-  get pixelBufferAttributes(): Promise<$SDK23> { return callSDKAsync<$SDK23>("AVKit_a956b86ef7a76a8e", 1771295654993483, this, []); }
-  setPixelBufferAttributes(value?: $SDK23): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 4190493111080824, this, [value]); }
+  get pixelBufferAttributes(): Promise<$SDK23> { return callSDKAsync<$SDK23>("AVKit_90ad0eb69cc6bf4a", 1771295654993483, this, []); }
+  setPixelBufferAttributes(value?: $SDK23): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 4190493111080824, this, [value]); }
   /**
    * var player: AVPlayer? { get set }
    * @availability iOS 8.0+
    */
-  get player(): Promise<$SDK8> { return callSDKAsync<$SDK8>("AVKit_a956b86ef7a76a8e", 2672383152187856, this, []); }
-  setPlayer(value?: $SDK8): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 598560405401974, this, [value]); }
+  get player(): Promise<$SDK8> { return callSDKAsync<$SDK8>("AVKit_90ad0eb69cc6bf4a", 2672383152187856, this, []); }
+  setPlayer(value?: $SDK8): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 598560405401974, this, [value]); }
   /**
    * var preferredDisplayDynamicRange: AVDisplayDynamicRange { get set }
    * @availability iOS 26.0+
    */
-  get preferredDisplayDynamicRange(): Promise<AVDisplayDynamicRange> { return callSDKAsync<AVDisplayDynamicRange>("AVKit_a956b86ef7a76a8e", 1843360312502131, this, []); }
-  setPreferredDisplayDynamicRange(value: AVDisplayDynamicRange): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 1380239797160416, this, [value]); }
+  get preferredDisplayDynamicRange(): Promise<AVDisplayDynamicRange> { return callSDKAsync<AVDisplayDynamicRange>("AVKit_90ad0eb69cc6bf4a", 1843360312502131, this, []); }
+  setPreferredDisplayDynamicRange(value: AVDisplayDynamicRange): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 1380239797160416, this, [value]); }
   /**
    * var isReadyForDisplay: Bool { get }
    * @availability iOS 8.0+
    */
-  get isReadyForDisplay(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 440965682843211, this, []); }
+  get isReadyForDisplay(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 440965682843211, this, []); }
   /**
    * var requiresLinearPlayback: Bool { get set }
    * @availability iOS 11.0+
    */
-  get requiresLinearPlayback(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 2537923919251267, this, []); }
-  setRequiresLinearPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 1915824107894268, this, [value]); }
+  get requiresLinearPlayback(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 2537923919251267, this, []); }
+  setRequiresLinearPlayback(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 1915824107894268, this, [value]); }
   /**
    * var selectedSpeed: AVPlaybackSpeed? { get }
    * @availability iOS 16.0+
    */
-  get selectedSpeed(): Promise<(AVPlaybackSpeed) | null> { return callSDKAsync<(AVPlaybackSpeed) | null>("AVKit_a956b86ef7a76a8e", 1297383817901058, this, []); }
+  get selectedSpeed(): Promise<(AVPlaybackSpeed) | null> { return callSDKAsync<(AVPlaybackSpeed) | null>("AVKit_90ad0eb69cc6bf4a", 1297383817901058, this, []); }
   /**
    * var showsPlaybackControls: Bool { get set }
    * @availability iOS 8.0+
    */
-  get showsPlaybackControls(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 842526470876305, this, []); }
-  setShowsPlaybackControls(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 5218933604506, this, [value]); }
+  get showsPlaybackControls(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 842526470876305, this, []); }
+  setShowsPlaybackControls(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 5218933604506, this, [value]); }
   /**
    * var showsTimecodes: Bool { get set }
    * @availability iOS 13.0+
    */
-  get showsTimecodes(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 3882306005966758, this, []); }
-  setShowsTimecodes(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 2356238771601705, this, [value]); }
+  get showsTimecodes(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 3882306005966758, this, []); }
+  setShowsTimecodes(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 2356238771601705, this, [value]); }
   /**
    * var speeds: [AVPlaybackSpeed] { get set }
    * @availability iOS 16.0+
    */
-  get speeds(): Promise<Array<AVPlaybackSpeed>> { return callSDKAsync<Array<AVPlaybackSpeed>>("AVKit_a956b86ef7a76a8e", 1388565380533647, this, []); }
-  setSpeeds(value: Array<AVPlaybackSpeed>): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 3646580920745347, this, [value]); }
+  get speeds(): Promise<Array<AVPlaybackSpeed>> { return callSDKAsync<Array<AVPlaybackSpeed>>("AVKit_90ad0eb69cc6bf4a", 1388565380533647, this, []); }
+  setSpeeds(value: Array<AVPlaybackSpeed>): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 3646580920745347, this, [value]); }
   /**
    * var toggleLookupAction: UIAction { get }
    * @availability iOS 17.0+
    */
-  get toggleLookupAction(): Promise<_UIKit_UIAction> { return callSDKAsync<_UIKit_UIAction>("AVKit_a956b86ef7a76a8e", 466592671315525, this, []); }
+  get toggleLookupAction(): Promise<_UIKit_UIAction> { return callSDKAsync<_UIKit_UIAction>("AVKit_90ad0eb69cc6bf4a", 466592671315525, this, []); }
   /**
    * var updatesNowPlayingInfoCenter: Bool { get set }
    * @availability iOS 10.0+
    */
-  get updatesNowPlayingInfoCenter(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_a956b86ef7a76a8e", 2080252799928918, this, []); }
-  setUpdatesNowPlayingInfoCenter(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 2377947421194367, this, [value]); }
+  get updatesNowPlayingInfoCenter(): Promise<boolean> { return callSDKAsync<boolean>("AVKit_90ad0eb69cc6bf4a", 2080252799928918, this, []); }
+  setUpdatesNowPlayingInfoCenter(value: boolean): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 2377947421194367, this, [value]); }
   /**
    * var videoBounds: CGRect { get }
    * @availability iOS 8.0+
    */
-  get videoBounds(): Promise<{ x: number; y: number; width: number; height: number }> { return callSDKAsync<{ x: number; y: number; width: number; height: number }>("AVKit_a956b86ef7a76a8e", 589333779441593, this, []); }
+  get videoBounds(): Promise<{ x: number; y: number; width: number; height: number }> { return callSDKAsync<{ x: number; y: number; width: number; height: number }>("AVKit_90ad0eb69cc6bf4a", 589333779441593, this, []); }
   /**
    * var videoFrameAnalysisTypes: AVVideoFrameAnalysisType { get set }
    * @availability iOS 17.0+
    */
-  get videoFrameAnalysisTypes(): Promise<AVVideoFrameAnalysisType> { return callSDKAsync<AVVideoFrameAnalysisType>("AVKit_a956b86ef7a76a8e", 681588812052501, this, []); }
-  setVideoFrameAnalysisTypes(value: AVVideoFrameAnalysisType): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 3821194686918541, this, [value]); }
+  get videoFrameAnalysisTypes(): Promise<AVVideoFrameAnalysisType> { return callSDKAsync<AVVideoFrameAnalysisType>("AVKit_90ad0eb69cc6bf4a", 681588812052501, this, []); }
+  setVideoFrameAnalysisTypes(value: AVVideoFrameAnalysisType): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 3821194686918541, this, [value]); }
   /**
    * var videoGravity: AVLayerVideoGravity { get set }
    * @availability iOS 8.0+
    */
-  get videoGravity(): Promise<_AVFoundation_AVLayerVideoGravity> { return callSDKAsync<_AVFoundation_AVLayerVideoGravity>("AVKit_a956b86ef7a76a8e", 1635949612040200, this, []); }
-  setVideoGravity(value: _AVFoundation_AVLayerVideoGravity): Promise<void> { return callSDKAsync<void>("AVKit_a956b86ef7a76a8e", 3744638085193543, this, [value]); }
+  get videoGravity(): Promise<_AVFoundation_AVLayerVideoGravity> { return callSDKAsync<_AVFoundation_AVLayerVideoGravity>("AVKit_90ad0eb69cc6bf4a", 1635949612040200, this, []); }
+  setVideoGravity(value: _AVFoundation_AVLayerVideoGravity): Promise<void> { return callSDKAsync<void>("AVKit_90ad0eb69cc6bf4a", 3744638085193543, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVPlayerViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1278,31 +1278,31 @@ export interface AVPlayerViewControllerDelegate {
  */
 export class AVRoutePickerView extends SDKHandle {
   /** init() */
-  static init(): AVRoutePickerView { return callSDK<AVRoutePickerView>("AVKit_a956b86ef7a76a8e", 2029501004056496, undefined, []); }
+  static init(): AVRoutePickerView { return callSDK<AVRoutePickerView>("AVKit_90ad0eb69cc6bf4a", 2029501004056496, undefined, []); }
   /**
    * var activeTintColor: UIColor! { get set }
    * @availability iOS 11.0+
    */
-  get activeTintColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("AVKit_a956b86ef7a76a8e", 2559838351506589, this, []); }
-  set activeTintColor(value: (_UIKit_UIColor) | null) { callSDK<void>("AVKit_a956b86ef7a76a8e", 4494302935166720, this, [value]); }
+  get activeTintColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("AVKit_90ad0eb69cc6bf4a", 2559838351506589, this, []); }
+  set activeTintColor(value: (_UIKit_UIColor) | null) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 4494302935166720, this, [value]); }
   /**
    * var customRoutingController: AVCustomRoutingController? { get set }
    * @availability iOS 16.0+
    */
-  get customRoutingController(): $SDK26 { return callSDK<$SDK26>("AVKit_a956b86ef7a76a8e", 3283909812304163, this, []); }
-  set customRoutingController(value: $SDK26) { callSDK<void>("AVKit_a956b86ef7a76a8e", 873186938543768, this, [value]); }
+  get customRoutingController(): $SDK26 { return callSDK<$SDK26>("AVKit_90ad0eb69cc6bf4a", 3283909812304163, this, []); }
+  set customRoutingController(value: $SDK26) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 873186938543768, this, [value]); }
   /**
    * weak var delegate: (any AVRoutePickerViewDelegate)? { get set }
    * @availability iOS 11.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVKit_a956b86ef7a76a8e", 1507713656467797, this, []); }
-  set delegate(value: (Implements<AVRoutePickerViewDelegate> | SDKHandle) | null) { callSDK<void>("AVKit_a956b86ef7a76a8e", 3743028602486530, this, [value], [{"protocol":"c:objc(pl)AVRoutePickerViewDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AVKit_90ad0eb69cc6bf4a", 1507713656467797, this, []); }
+  set delegate(value: (Implements<AVRoutePickerViewDelegate> | SDKHandle) | null) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 3743028602486530, this, [value], [{"protocol":"c:objc(pl)AVRoutePickerViewDelegate"}]); }
   /**
    * var prioritizesVideoDevices: Bool { get set }
    * @availability iOS 13.0+
    */
-  get prioritizesVideoDevices(): boolean { return callSDK<boolean>("AVKit_a956b86ef7a76a8e", 1203395374496237, this, []); }
-  set prioritizesVideoDevices(value: boolean) { callSDK<void>("AVKit_a956b86ef7a76a8e", 3362664687978044, this, [value]); }
+  get prioritizesVideoDevices(): boolean { return callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 1203395374496237, this, []); }
+  set prioritizesVideoDevices(value: boolean) { callSDK<void>("AVKit_90ad0eb69cc6bf4a", 3362664687978044, this, [value]); }
   declare readonly $type: { "c:objc(cs)AVRoutePickerView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activeTintColor": true; "customRoutingController": true; "delegate": true; "prioritizesVideoDevices": true };
 }
@@ -1335,78 +1335,78 @@ export const AVVideoFrameAnalysisType = {
    * static var `default`: AVVideoFrameAnalysisType { get }
    * @availability iOS 17.0+
    */
-  get default(): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_a956b86ef7a76a8e", 360029083943805, undefined, []); },
+  get default(): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_90ad0eb69cc6bf4a", 360029083943805, undefined, []); },
   /**
    * static var machineReadableCode: AVVideoFrameAnalysisType { get }
    * @availability iOS 17.0+
    */
-  get machineReadableCode(): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_a956b86ef7a76a8e", 911844004025995, undefined, []); },
+  get machineReadableCode(): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_90ad0eb69cc6bf4a", 911844004025995, undefined, []); },
   /**
    * static var subject: AVVideoFrameAnalysisType { get }
    * @availability iOS 17.0+
    */
-  get subject(): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_a956b86ef7a76a8e", 1073963745363041, undefined, []); },
+  get subject(): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_90ad0eb69cc6bf4a", 1073963745363041, undefined, []); },
   /**
    * static var text: AVVideoFrameAnalysisType { get }
    * @availability iOS 17.0+
    */
-  get text(): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_a956b86ef7a76a8e", 1471702770198635, undefined, []); },
+  get text(): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_90ad0eb69cc6bf4a", 1471702770198635, undefined, []); },
   /**
    * static var visualSearch: AVVideoFrameAnalysisType { get }
    * @availability iOS 17.0+
    */
-  get visualSearch(): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_a956b86ef7a76a8e", 38557796502782, undefined, []); },
+  get visualSearch(): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_90ad0eb69cc6bf4a", 38557796502782, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_a956b86ef7a76a8e", 1441957923874719, undefined, [rawValue]); }
+  init(rawValue: number): AVVideoFrameAnalysisType { return callSDK<AVVideoFrameAnalysisType>("AVKit_90ad0eb69cc6bf4a", 1441957923874719, undefined, [rawValue]); }
 };
 
 /**
  * let AVKitErrorDomain: String
  * @availability iOS 9.0+
  */
-export const AVKitErrorDomain: string = callSDK<string>("AVKit_a956b86ef7a76a8e", 3778301610932233, undefined, []);
+export const AVKitErrorDomain: string = callSDK<string>("AVKit_90ad0eb69cc6bf4a", 3778301610932233, undefined, []);
 
 /** var PLATFORM_SUPPORTS_AVKITCORE: Bool { get } */
-export const PLATFORM_SUPPORTS_AVKITCORE: boolean = callSDK<boolean>("AVKit_a956b86ef7a76a8e", 2915115830653019, undefined, []);
+export const PLATFORM_SUPPORTS_AVKITCORE: boolean = callSDK<boolean>("AVKit_90ad0eb69cc6bf4a", 2915115830653019, undefined, []);
 
-registerSDKClass("AVAudioSession", AVAudioSession, { module: "AVKit_a956b86ef7a76a8e", properties: {}, methods: {"prepareRouteSelectionForPlayback":{"id":3949478983003566,"hints":[{"callback":{"out":[]}}]}} }, true);
-registerSDKClass("AVCaptureDeviceDescriptor", AVCaptureDeviceDescriptor, { module: "AVKit_a956b86ef7a76a8e", properties: {"deviceType":53002196716855,"localizedName":4025480738060135,"mediaTypes":1381627173203711,"position":1010472246260435,"uniqueID":1143187767848587} });
-registerSDKClass("AVCaptureDeviceDirectionCoordinator", AVCaptureDeviceDirectionCoordinator, { module: "AVKit_a956b86ef7a76a8e", properties: {"deviceDirections":2120986200890306} });
-registerSDKClass("AVCaptureDeviceDirectionMap", AVCaptureDeviceDirectionMap, { module: "AVKit_a956b86ef7a76a8e", properties: {"backwardFacingDeviceDescriptors":1958124249774750,"forwardFacingDeviceDescriptors":773582098793918} });
-registerSDKClass("AVCaptureEvent", AVCaptureEvent, { module: "AVKit_a956b86ef7a76a8e", properties: {"phase":1260239896554157,"shouldPlaySound":2980158521868567}, methods: {"play":{"id":2566975492569905}} });
-registerSDKClass("AVCaptureEventInteraction", AVCaptureEventInteraction, { module: "AVKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AVCaptureEventSound", AVCaptureEventSound, { module: "AVKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AVInputPickerInteraction", AVInputPickerInteraction, { module: "AVKit_a956b86ef7a76a8e", properties: {}, methods: {"dismiss":{"id":531968033811880},"present":{"id":1836648942402571}} });
+registerSDKClass("AVAudioSession", AVAudioSession, { module: "AVKit_90ad0eb69cc6bf4a", properties: {}, methods: {"prepareRouteSelectionForPlayback":{"id":3949478983003566,"hints":[{"callback":{"out":[]}}]}} }, true);
+registerSDKClass("AVCaptureDeviceDescriptor", AVCaptureDeviceDescriptor, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"deviceType":53002196716855,"localizedName":4025480738060135,"mediaTypes":1381627173203711,"position":1010472246260435,"uniqueID":1143187767848587} });
+registerSDKClass("AVCaptureDeviceDirectionCoordinator", AVCaptureDeviceDirectionCoordinator, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"deviceDirections":2120986200890306} });
+registerSDKClass("AVCaptureDeviceDirectionMap", AVCaptureDeviceDirectionMap, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"backwardFacingDeviceDescriptors":1958124249774750,"forwardFacingDeviceDescriptors":773582098793918} });
+registerSDKClass("AVCaptureEvent", AVCaptureEvent, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"phase":1260239896554157,"shouldPlaySound":2980158521868567}, methods: {"play":{"id":2566975492569905}} });
+registerSDKClass("AVCaptureEventInteraction", AVCaptureEventInteraction, { module: "AVKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AVCaptureEventSound", AVCaptureEventSound, { module: "AVKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AVInputPickerInteraction", AVInputPickerInteraction, { module: "AVKit_90ad0eb69cc6bf4a", properties: {}, methods: {"dismiss":{"id":531968033811880},"present":{"id":1836648942402571}} });
 registerSDKProtocol("c:objc(pl)AVInputPickerInteractionDelegate", {"inputPickerInteractionWillBeginPresenting":"inputPickerInteractionWillBeginPresenting(_:)","inputPickerInteractionDidEndPresenting":"inputPickerInteractionDidEndPresenting(_:)","inputPickerInteractionWillBeginDismissing":"inputPickerInteractionWillBeginDismissing(_:)","inputPickerInteractionDidEndDismissing":"inputPickerInteractionDidEndDismissing(_:)"});
-registerSDKClass("AVInterstitialTimeRange", AVInterstitialTimeRange, { module: "AVKit_a956b86ef7a76a8e", properties: {"timeRange":3378719824399671} });
-registerSDKClass("AVKit.AVKitError", AVKitError, { module: "AVKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AVLegibleMediaOptionsMenuController", AVLegibleMediaOptionsMenuController, { module: "AVKit_a956b86ef7a76a8e", properties: {"delegate":2262228036285512,"menuState":4221835629396817,"player":3442965443884636}, methods: {"menu":{"id":2186571684432853}} });
+registerSDKClass("AVInterstitialTimeRange", AVInterstitialTimeRange, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"timeRange":3378719824399671} });
+registerSDKClass("AVKit.AVKitError", AVKitError, { module: "AVKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AVLegibleMediaOptionsMenuController", AVLegibleMediaOptionsMenuController, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"delegate":2262228036285512,"menuState":4221835629396817,"player":3442965443884636}, methods: {"menu":{"id":2186571684432853}} });
 registerSDKProtocol("c:objc(pl)AVLegibleMediaOptionsMenuControllerDelegate", {"legibleMenuControllerDidChange":"legibleMenuController(_:didChange:)","legibleMenuControllerDidRequestCaptionPreviewForProfileID":"legibleMenuController(_:didRequestCaptionPreviewForProfileID:)","legibleMenuControllerDidRequestStoppingSubtitleCaptionPreview":"legibleMenuControllerDidRequestStoppingSubtitleCaptionPreview(_:)"});
-registerSDKClass("AVKit.AVLegibleMediaOptionsMenuState", AVLegibleMediaOptionsMenuState, { module: "AVKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AVPictureInPictureController", AVPictureInPictureController, { module: "AVKit_a956b86ef7a76a8e", properties: {"canStartPictureInPictureAutomaticallyFromInline":4008076171593419,"contentSource":795806729375773,"delegate":2463680042195538,"isPictureInPictureActive":2462091717613403,"isPictureInPicturePossible":1794186250989519,"isPictureInPictureSuspended":660087095340787,"playerLayer":3105421960923618,"requiresLinearPlayback":2361846773484908}, methods: {"invalidatePlaybackState":{"id":3339976922357662},"startPictureInPicture":{"id":1895363507414980},"stopPictureInPicture":{"id":3798702065315834}} });
-registerSDKClass("AVPictureInPictureControllerContentSource", AVPictureInPictureController_ContentSource, { module: "AVKit_a956b86ef7a76a8e", properties: {"activeVideoCallContentViewController":2855956866484375,"activeVideoCallSourceView":2427230715126689,"playerLayer":2687798866961270,"sampleBufferDisplayLayer":830050548414376,"sampleBufferPlaybackDelegate":255556309132019} });
+registerSDKClass("AVKit.AVLegibleMediaOptionsMenuState", AVLegibleMediaOptionsMenuState, { module: "AVKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AVPictureInPictureController", AVPictureInPictureController, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"canStartPictureInPictureAutomaticallyFromInline":4008076171593419,"contentSource":795806729375773,"delegate":2463680042195538,"isPictureInPictureActive":2462091717613403,"isPictureInPicturePossible":1794186250989519,"isPictureInPictureSuspended":660087095340787,"playerLayer":3105421960923618,"requiresLinearPlayback":2361846773484908}, methods: {"invalidatePlaybackState":{"id":3339976922357662},"startPictureInPicture":{"id":1895363507414980},"stopPictureInPicture":{"id":3798702065315834}} });
+registerSDKClass("AVPictureInPictureControllerContentSource", AVPictureInPictureController_ContentSource, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"activeVideoCallContentViewController":2855956866484375,"activeVideoCallSourceView":2427230715126689,"playerLayer":2687798866961270,"sampleBufferDisplayLayer":830050548414376,"sampleBufferPlaybackDelegate":255556309132019} });
 registerSDKProtocol("c:objc(pl)AVPictureInPictureControllerDelegate", {"pictureInPictureControllerWillStartPictureInPicture":"pictureInPictureControllerWillStartPictureInPicture(_:)","pictureInPictureControllerDidStartPictureInPicture":"pictureInPictureControllerDidStartPictureInPicture(_:)","pictureInPictureControllerFailedToStartPictureInPictureWithError":"pictureInPictureController(_:failedToStartPictureInPictureWithError:)","pictureInPictureControllerWillStopPictureInPicture":"pictureInPictureControllerWillStopPictureInPicture(_:)","pictureInPictureControllerDidStopPictureInPicture":"pictureInPictureControllerDidStopPictureInPicture(_:)"});
 registerSDKProtocol("c:objc(pl)AVPictureInPictureSampleBufferPlaybackDelegate", {"pictureInPictureControllerSetPlaying":"pictureInPictureController(_:setPlaying:)","pictureInPictureControllerTimeRangeForPlayback":"pictureInPictureControllerTimeRangeForPlayback(_:)","pictureInPictureControllerIsPlaybackPaused":"pictureInPictureControllerIsPlaybackPaused(_:)","pictureInPictureControllerDidTransitionToRenderSize":"pictureInPictureController(_:didTransitionToRenderSize:)","pictureInPictureControllerSkipByInterval":"pictureInPictureController(_:skipByInterval:)"});
-registerSDKClass("AVPictureInPictureVideoCallViewController", AVPictureInPictureVideoCallViewController, { module: "AVKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AVPlaybackSpeed", AVPlaybackSpeed, { module: "AVKit_a956b86ef7a76a8e", properties: {"localizedName":433486929597734,"localizedNumericName":3290420209694556,"rate":645364242818887} });
-registerSDKClass("AVPlaybackUserInterfaceContentArtwork", AVPlaybackUserInterfaceContentArtwork, { module: "AVKit_a956b86ef7a76a8e", properties: {"size":4234629577036879} });
-registerSDKClass("AVKit.AVPlaybackUserInterfaceContentMetadata", AVPlaybackUserInterfaceContentMetadata, { module: "AVKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AVKit.AVPlaybackUserInterfaceContentMetadata.VideoProperties", AVPlaybackUserInterfaceContentMetadata_VideoProperties, { module: "AVKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AVPlaybackUserInterfaceContentURLArtwork", AVPlaybackUserInterfaceContentURLArtwork, { module: "AVKit_a956b86ef7a76a8e", properties: {"contentType":2234130196222291,"url":514263701475859} });
+registerSDKClass("AVPictureInPictureVideoCallViewController", AVPictureInPictureVideoCallViewController, { module: "AVKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AVPlaybackSpeed", AVPlaybackSpeed, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"localizedName":433486929597734,"localizedNumericName":3290420209694556,"rate":645364242818887} });
+registerSDKClass("AVPlaybackUserInterfaceContentArtwork", AVPlaybackUserInterfaceContentArtwork, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"size":4234629577036879} });
+registerSDKClass("AVKit.AVPlaybackUserInterfaceContentMetadata", AVPlaybackUserInterfaceContentMetadata, { module: "AVKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AVKit.AVPlaybackUserInterfaceContentMetadata.VideoProperties", AVPlaybackUserInterfaceContentMetadata_VideoProperties, { module: "AVKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AVPlaybackUserInterfaceContentURLArtwork", AVPlaybackUserInterfaceContentURLArtwork, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"contentType":2234130196222291,"url":514263701475859} });
 registerSDKProtocol("s:5AVKit35AVPlaybackUserInterfaceControllableP", {"seekToTolerance":"seek(to:tolerance:)"});
 registerSDKProtocol("s:5AVKit49AVPlaybackUserInterfaceMediaSelectionControllableP", {});
-registerSDKClass("AVPlaybackUserInterfaceMediaSelectionOption", AVPlaybackUserInterfaceMediaSelectionOption, { module: "AVKit_a956b86ef7a76a8e", properties: {"displayName":3870021991875826,"identifier":1962253090566185,"mediaCharacteristics":780730340589600} });
+registerSDKClass("AVPlaybackUserInterfaceMediaSelectionOption", AVPlaybackUserInterfaceMediaSelectionOption, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"displayName":3870021991875826,"identifier":1962253090566185,"mediaCharacteristics":780730340589600} });
 registerSDKProtocol("s:5AVKit40AVPlaybackUserInterfaceMetadataProvidingP", {});
 registerSDKProtocol("s:5AVKit43AVPlaybackUserInterfacePlaybackControllableP", {});
-registerSDKClass("AVPlaybackUserInterfacePlaybackPosition", AVPlaybackUserInterfacePlaybackPosition, { module: "AVKit_a956b86ef7a76a8e", properties: {"hostTime":2443626184504528,"position":1280774405434867,"rate":1498495533483903} });
+registerSDKClass("AVPlaybackUserInterfacePlaybackPosition", AVPlaybackUserInterfacePlaybackPosition, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"hostTime":2443626184504528,"position":1280774405434867,"rate":1498495533483903} });
 registerSDKProtocol("s:5AVKit39AVPlaybackUserInterfaceTimeControllableP", {"seekToTolerance":"seek(to:tolerance:)"});
-registerSDKClass("AVPlaybackUserInterfaceTimelineSegment", AVPlaybackUserInterfaceTimelineSegment, { module: "AVKit_a956b86ef7a76a8e", properties: {"identifier":3265502897686870,"isMarked":398426889312230,"requiresLinearPlayback":1275470133830954,"segmentType":3336395104638589,"timeRange":3935339266119642} });
+registerSDKClass("AVPlaybackUserInterfaceTimelineSegment", AVPlaybackUserInterfaceTimelineSegment, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"identifier":3265502897686870,"isMarked":398426889312230,"requiresLinearPlayback":1275470133830954,"segmentType":3336395104638589,"timeRange":3935339266119642} });
 registerSDKProtocol("s:5AVKit41AVPlaybackUserInterfaceVolumeControllableP", {});
-registerSDKClass("AVPlayerItem", AVPlayerItem, { module: "AVKit_a956b86ef7a76a8e", properties: {} }, true);
-registerSDKClass("AVPlayerViewController", AVPlayerViewController, { module: "AVKit_a956b86ef7a76a8e", properties: {}, methods: {"selectSpeed":{"id":2902374491153670}} });
+registerSDKClass("AVPlayerItem", AVPlayerItem, { module: "AVKit_90ad0eb69cc6bf4a", properties: {} }, true);
+registerSDKClass("AVPlayerViewController", AVPlayerViewController, { module: "AVKit_90ad0eb69cc6bf4a", properties: {}, methods: {"selectSpeed":{"id":2902374491153670}} });
 registerSDKProtocol("c:objc(pl)AVPlayerViewControllerDelegate", {"playerViewControllerWillBeginFullScreenPresentationWithAnimationCoordinator":"playerViewController(_:willBeginFullScreenPresentationWithAnimationCoordinator:)","playerViewControllerWillEndFullScreenPresentationWithAnimationCoordinator":"playerViewController(_:willEndFullScreenPresentationWithAnimationCoordinator:)","playerViewControllerWillStartPictureInPicture":"playerViewControllerWillStartPictureInPicture(_:)","playerViewControllerDidStartPictureInPicture":"playerViewControllerDidStartPictureInPicture(_:)","playerViewControllerFailedToStartPictureInPictureWithError":"playerViewController(_:failedToStartPictureInPictureWithError:)","playerViewControllerWillStopPictureInPicture":"playerViewControllerWillStopPictureInPicture(_:)","playerViewControllerDidStopPictureInPicture":"playerViewControllerDidStopPictureInPicture(_:)","playerViewControllerWillPresent":"playerViewController(_:willPresent:)","playerViewControllerDidPresent":"playerViewController(_:didPresent:)"});
-registerSDKClass("AVRoutePickerView", AVRoutePickerView, { module: "AVKit_a956b86ef7a76a8e", properties: {"activeTintColor":2559838351506589,"customRoutingController":3283909812304163,"delegate":1507713656467797,"prioritizesVideoDevices":1203395374496237} });
+registerSDKClass("AVRoutePickerView", AVRoutePickerView, { module: "AVKit_90ad0eb69cc6bf4a", properties: {"activeTintColor":2559838351506589,"customRoutingController":3283909812304163,"delegate":1507713656467797,"prioritizesVideoDevices":1203395374496237} });
 registerSDKProtocol("c:objc(pl)AVRoutePickerViewDelegate", {"routePickerViewWillBeginPresentingRoutes":"routePickerViewWillBeginPresentingRoutes(_:)","routePickerViewDidEndPresentingRoutes":"routePickerViewDidEndPresentingRoutes(_:)"});

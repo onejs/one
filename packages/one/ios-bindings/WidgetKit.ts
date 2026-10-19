@@ -27,7 +27,7 @@ export class AccessoryWidgetBackground extends SDKHandle {
    * @MainActor @preconcurrency init()
    * @availability iOS 16.0+
    */
-  static init(): Promise<AccessoryWidgetBackground> { return callSDKAsync<AccessoryWidgetBackground>("WidgetKit_a956b86ef7a76a8e", 666920799311203, undefined, []); }
+  static init(): Promise<AccessoryWidgetBackground> { return callSDKAsync<AccessoryWidgetBackground>("WidgetKit_90ad0eb69cc6bf4a", 666920799311203, undefined, []); }
   declare readonly $type: { "s:9WidgetKit09AccessoryA10BackgroundV": true };
 }
 
@@ -62,17 +62,17 @@ export const ActivityFamily = {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  getDescription($self: ActivityFamily): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 515587899439185, $self, []); },
+  getDescription($self: ActivityFamily): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 515587899439185, $self, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (ActivityFamily) | null { return callSDK<(ActivityFamily) | null>("WidgetKit_a956b86ef7a76a8e", 37354159720164, undefined, [rawValue]); },
+  init(rawValue: number): (ActivityFamily) | null { return callSDK<(ActivityFamily) | null>("WidgetKit_90ad0eb69cc6bf4a", 37354159720164, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: ActivityFamily): number { return callSDK<number>("WidgetKit_a956b86ef7a76a8e", 1154939406834491, $self, []); }
+  getRawValue($self: ActivityFamily): number { return callSDK<number>("WidgetKit_90ad0eb69cc6bf4a", 1154939406834491, $self, []); }
 };
 
 /**
@@ -199,7 +199,7 @@ export class ContainerBackgroundPlacement extends SDKHandle {
    * static let widget: ContainerBackgroundPlacement
    * @availability iOS 17.0+
    */
-  static get widget(): _SwiftUI_ContainerBackgroundPlacement { return callSDK<_SwiftUI_ContainerBackgroundPlacement>("WidgetKit_a956b86ef7a76a8e", 153719103004648, undefined, []); }
+  static get widget(): _SwiftUI_ContainerBackgroundPlacement { return callSDK<_SwiftUI_ContainerBackgroundPlacement>("WidgetKit_90ad0eb69cc6bf4a", 153719103004648, undefined, []); }
   declare readonly $type: { "s:7SwiftUI28ContainerBackgroundPlacementV": true };
 }
 
@@ -212,22 +212,22 @@ export class ControlCenter extends SDKHandle {
    * func reloadControls(ofKind kind: String)
    * @availability iOS 18.0+
    */
-  reloadControls(kind: string): void { return callSDK<void>("WidgetKit_a956b86ef7a76a8e", 4195641992133543, this, [kind]); }
+  reloadControls(kind: string): void { return callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 4195641992133543, this, [kind]); }
   /**
    * func currentControls() async throws -> [ControlInfo]
    * @availability iOS 18.0+
    */
-  currentControls(): Promise<Array<ControlInfo>> { return callSDKAsync<Array<ControlInfo>>("WidgetKit_a956b86ef7a76a8e", 1098184609202215, this, []); }
+  currentControls(): Promise<Array<ControlInfo>> { return callSDKAsync<Array<ControlInfo>>("WidgetKit_90ad0eb69cc6bf4a", 1098184609202215, this, []); }
   /**
    * func reloadAllControls()
    * @availability iOS 18.0+
    */
-  reloadAllControls(): void { return callSDK<void>("WidgetKit_a956b86ef7a76a8e", 894444561852120, this, []); }
+  reloadAllControls(): void { return callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 894444561852120, this, []); }
   /**
    * static let shared: ControlCenter
    * @availability iOS 18.0+
    */
-  static get shared(): ControlCenter { return callSDK<ControlCenter>("WidgetKit_a956b86ef7a76a8e", 1061843463151427, undefined, []); }
+  static get shared(): ControlCenter { return callSDK<ControlCenter>("WidgetKit_90ad0eb69cc6bf4a", 1061843463151427, undefined, []); }
   declare readonly $type: { "s:9WidgetKit13ControlCenterC": true };
 }
 
@@ -240,18 +240,18 @@ export class ControlInfo extends SDKHandle {
    * var pushInfo: ControlPushInfo?
    * @availability iOS 18.0+
    */
-  get pushInfo(): (ControlPushInfo) | null { return callSDK<(ControlPushInfo) | null>("WidgetKit_a956b86ef7a76a8e", 395397083681361, this, []); }
-  set pushInfo(value: (ControlPushInfo) | null) { callSDK<void>("WidgetKit_a956b86ef7a76a8e", 845160235078174, this, [value]); }
+  get pushInfo(): (ControlPushInfo) | null { return callSDK<(ControlPushInfo) | null>("WidgetKit_90ad0eb69cc6bf4a", 395397083681361, this, []); }
+  set pushInfo(value: (ControlPushInfo) | null) { callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 845160235078174, this, [value]); }
   /**
    * var id: String { get }
    * @availability iOS 18.0+
    */
-  get id(): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 49905433153763, this, []); }
+  get id(): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 49905433153763, this, []); }
   /**
    * let kind: String
    * @availability iOS 18.0+
    */
-  get kind(): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 127035986870499, this, []); }
+  get kind(): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 127035986870499, this, []); }
   declare readonly $type: { "s:9WidgetKit11ControlInfoV": true };
 }
 
@@ -287,7 +287,7 @@ export class ControlPushInfo extends SDKHandle {
    * let token: Data
    * @availability iOS 18.0+
    */
-  get token(): ArrayBuffer { return callSDK<ArrayBuffer>("WidgetKit_a956b86ef7a76a8e", 3205431343571855, this, []); }
+  get token(): ArrayBuffer { return callSDK<ArrayBuffer>("WidgetKit_90ad0eb69cc6bf4a", 3205431343571855, this, []); }
   declare readonly $type: { "s:9WidgetKit15ControlPushInfoV": true };
 }
 
@@ -368,17 +368,17 @@ export class DynamicIsland extends SDKHandle {
    * func keylineTint(_ color: Color?) -> DynamicIsland
    * @availability iOS 16.1+
    */
-  keylineTint(color?: (_SwiftUICore_Color) | null): DynamicIsland { return callSDK<DynamicIsland>("WidgetKit_a956b86ef7a76a8e", 771097891949239, this, [color]); }
+  keylineTint(color?: (_SwiftUICore_Color) | null): DynamicIsland { return callSDK<DynamicIsland>("WidgetKit_90ad0eb69cc6bf4a", 771097891949239, this, [color]); }
   /**
    * func contentMargins(_ edges: Edge.Set = .all, _ length: Double, for mode: DynamicIslandMode) -> DynamicIsland
    * @availability iOS 16.1+
    */
-  contentMargins(edges: _SwiftUICore_Edge_Set, length: number, mode: DynamicIslandMode): DynamicIsland { return callSDK<DynamicIsland>("WidgetKit_a956b86ef7a76a8e", 4053496256892023, this, [edges, length, mode]); }
+  contentMargins(edges: _SwiftUICore_Edge_Set, length: number, mode: DynamicIslandMode): DynamicIsland { return callSDK<DynamicIsland>("WidgetKit_90ad0eb69cc6bf4a", 4053496256892023, this, [edges, length, mode]); }
   /**
    * func widgetURL(_ url: URL?) -> DynamicIsland
    * @availability iOS 16.1+
    */
-  widgetURL(url?: (string) | null): DynamicIsland { return callSDK<DynamicIsland>("WidgetKit_a956b86ef7a76a8e", 3406943589583645, this, [url]); }
+  widgetURL(url?: (string) | null): DynamicIsland { return callSDK<DynamicIsland>("WidgetKit_90ad0eb69cc6bf4a", 3406943589583645, this, [url]); }
   declare readonly $type: { "s:9WidgetKit13DynamicIslandV": true };
 }
 
@@ -407,7 +407,7 @@ export class DynamicIslandExpandedRegion<Content = unknown> extends SDKHandle {
    * func contentMargins(_ edges: Edge.Set = .all, _ length: Double) -> DynamicIslandExpandedRegion<Content>
    * @availability iOS 16.1+
    */
-  contentMargins(edges: _SwiftUICore_Edge_Set, length: number): DynamicIslandExpandedRegion<SDKHandle> { return callSDK<DynamicIslandExpandedRegion<SDKHandle>>("WidgetKit_a956b86ef7a76a8e", 3198919397768260, this, [edges, length]); }
+  contentMargins(edges: _SwiftUICore_Edge_Set, length: number): DynamicIslandExpandedRegion<SDKHandle> { return callSDK<DynamicIslandExpandedRegion<SDKHandle>>("WidgetKit_90ad0eb69cc6bf4a", 3198919397768260, this, [edges, length]); }
   declare readonly $type: { "s:9WidgetKit27DynamicIslandExpandedRegionV": true };
 }
 
@@ -420,22 +420,22 @@ export class DynamicIslandExpandedRegionPosition extends SDKHandle {
    * static let bottom: DynamicIslandExpandedRegionPosition
    * @availability iOS 16.1+
    */
-  static get bottom(): DynamicIslandExpandedRegionPosition { return callSDK<DynamicIslandExpandedRegionPosition>("WidgetKit_a956b86ef7a76a8e", 3443915990314573, undefined, []); }
+  static get bottom(): DynamicIslandExpandedRegionPosition { return callSDK<DynamicIslandExpandedRegionPosition>("WidgetKit_90ad0eb69cc6bf4a", 3443915990314573, undefined, []); }
   /**
    * static let center: DynamicIslandExpandedRegionPosition
    * @availability iOS 16.1+
    */
-  static get center(): DynamicIslandExpandedRegionPosition { return callSDK<DynamicIslandExpandedRegionPosition>("WidgetKit_a956b86ef7a76a8e", 350029228499423, undefined, []); }
+  static get center(): DynamicIslandExpandedRegionPosition { return callSDK<DynamicIslandExpandedRegionPosition>("WidgetKit_90ad0eb69cc6bf4a", 350029228499423, undefined, []); }
   /**
    * static let leading: DynamicIslandExpandedRegionPosition
    * @availability iOS 16.1+
    */
-  static get leading(): DynamicIslandExpandedRegionPosition { return callSDK<DynamicIslandExpandedRegionPosition>("WidgetKit_a956b86ef7a76a8e", 2467877570926340, undefined, []); }
+  static get leading(): DynamicIslandExpandedRegionPosition { return callSDK<DynamicIslandExpandedRegionPosition>("WidgetKit_90ad0eb69cc6bf4a", 2467877570926340, undefined, []); }
   /**
    * static let trailing: DynamicIslandExpandedRegionPosition
    * @availability iOS 16.1+
    */
-  static get trailing(): DynamicIslandExpandedRegionPosition { return callSDK<DynamicIslandExpandedRegionPosition>("WidgetKit_a956b86ef7a76a8e", 3810972274884077, undefined, []); }
+  static get trailing(): DynamicIslandExpandedRegionPosition { return callSDK<DynamicIslandExpandedRegionPosition>("WidgetKit_90ad0eb69cc6bf4a", 3810972274884077, undefined, []); }
   declare readonly $type: { "s:9WidgetKit35DynamicIslandExpandedRegionPositionV": true };
 }
 
@@ -448,12 +448,12 @@ export class DynamicIslandExpandedRegionVerticalPlacement extends SDKHandle {
    * static let belowIfTooWide: DynamicIslandExpandedRegionVerticalPlacement
    * @availability iOS 16.1+
    */
-  static get belowIfTooWide(): DynamicIslandExpandedRegionVerticalPlacement { return callSDK<DynamicIslandExpandedRegionVerticalPlacement>("WidgetKit_a956b86ef7a76a8e", 2433086176075458, undefined, []); }
+  static get belowIfTooWide(): DynamicIslandExpandedRegionVerticalPlacement { return callSDK<DynamicIslandExpandedRegionVerticalPlacement>("WidgetKit_90ad0eb69cc6bf4a", 2433086176075458, undefined, []); }
   /**
    * static let `default`: DynamicIslandExpandedRegionVerticalPlacement
    * @availability iOS 16.1+
    */
-  static get default(): DynamicIslandExpandedRegionVerticalPlacement { return callSDK<DynamicIslandExpandedRegionVerticalPlacement>("WidgetKit_a956b86ef7a76a8e", 2506139973117265, undefined, []); }
+  static get default(): DynamicIslandExpandedRegionVerticalPlacement { return callSDK<DynamicIslandExpandedRegionVerticalPlacement>("WidgetKit_90ad0eb69cc6bf4a", 2506139973117265, undefined, []); }
   declare readonly $type: { "s:9WidgetKit44DynamicIslandExpandedRegionVerticalPlacementV": true };
 }
 
@@ -466,22 +466,22 @@ export class DynamicIslandMode extends SDKHandle {
    * static let compactLeading: DynamicIslandMode
    * @availability iOS 16.1+
    */
-  static get compactLeading(): DynamicIslandMode { return callSDK<DynamicIslandMode>("WidgetKit_a956b86ef7a76a8e", 3446044352516208, undefined, []); }
+  static get compactLeading(): DynamicIslandMode { return callSDK<DynamicIslandMode>("WidgetKit_90ad0eb69cc6bf4a", 3446044352516208, undefined, []); }
   /**
    * static let compactTrailing: DynamicIslandMode
    * @availability iOS 16.1+
    */
-  static get compactTrailing(): DynamicIslandMode { return callSDK<DynamicIslandMode>("WidgetKit_a956b86ef7a76a8e", 1403849156786703, undefined, []); }
+  static get compactTrailing(): DynamicIslandMode { return callSDK<DynamicIslandMode>("WidgetKit_90ad0eb69cc6bf4a", 1403849156786703, undefined, []); }
   /**
    * static let minimal: DynamicIslandMode
    * @availability iOS 16.1+
    */
-  static get minimal(): DynamicIslandMode { return callSDK<DynamicIslandMode>("WidgetKit_a956b86ef7a76a8e", 1505522329770217, undefined, []); }
+  static get minimal(): DynamicIslandMode { return callSDK<DynamicIslandMode>("WidgetKit_90ad0eb69cc6bf4a", 1505522329770217, undefined, []); }
   /**
    * static let expanded: DynamicIslandMode
    * @availability iOS 16.1+
    */
-  static get expanded(): DynamicIslandMode { return callSDK<DynamicIslandMode>("WidgetKit_a956b86ef7a76a8e", 1887320871847107, undefined, []); }
+  static get expanded(): DynamicIslandMode { return callSDK<DynamicIslandMode>("WidgetKit_90ad0eb69cc6bf4a", 1887320871847107, undefined, []); }
   declare readonly $type: { "s:9WidgetKit17DynamicIslandModeV": true };
 }
 
@@ -490,64 +490,64 @@ export class EnvironmentValues extends SDKHandle {
    * var showsWidgetContainerBackground: Bool { get }
    * @availability iOS 15.0+
    */
-  get showsWidgetContainerBackground(): boolean { return callSDK<boolean>("WidgetKit_a956b86ef7a76a8e", 2669179887711020, this, []); }
+  get showsWidgetContainerBackground(): boolean { return callSDK<boolean>("WidgetKit_90ad0eb69cc6bf4a", 2669179887711020, this, []); }
   /**
    * var showsWidgetLabel: Bool { get set }
    * @availability iOS 16.0+
    */
-  get showsWidgetLabel(): boolean { return callSDK<boolean>("WidgetKit_a956b86ef7a76a8e", 1767629531015543, this, []); }
-  set showsWidgetLabel(value: boolean) { callSDK<void>("WidgetKit_a956b86ef7a76a8e", 1536207956025503, this, [value]); }
+  get showsWidgetLabel(): boolean { return callSDK<boolean>("WidgetKit_90ad0eb69cc6bf4a", 1767629531015543, this, []); }
+  set showsWidgetLabel(value: boolean) { callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 1536207956025503, this, [value]); }
   /**
    * var widgetFamily: WidgetFamily { get }
    * @availability iOS 14.0+
    */
-  get widgetFamily(): WidgetFamily { return callSDK<WidgetFamily>("WidgetKit_a956b86ef7a76a8e", 469566521099910, this, []); }
+  get widgetFamily(): WidgetFamily { return callSDK<WidgetFamily>("WidgetKit_90ad0eb69cc6bf4a", 469566521099910, this, []); }
   /**
    * var levelOfDetail: LevelOfDetail { get set }
    * @availability iOS 26.0+
    */
-  get levelOfDetail(): LevelOfDetail { return callSDK<LevelOfDetail>("WidgetKit_a956b86ef7a76a8e", 4138144374816550, this, []); }
-  set levelOfDetail(value: LevelOfDetail) { callSDK<void>("WidgetKit_a956b86ef7a76a8e", 743332745782113, this, [value]); }
+  get levelOfDetail(): LevelOfDetail { return callSDK<LevelOfDetail>("WidgetKit_90ad0eb69cc6bf4a", 4138144374816550, this, []); }
+  set levelOfDetail(value: LevelOfDetail) { callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 743332745782113, this, [value]); }
   /**
    * var activityFamily: ActivityFamily { get set }
    * @availability iOS 18.0+
    */
-  get activityFamily(): ActivityFamily { return callSDK<ActivityFamily>("WidgetKit_a956b86ef7a76a8e", 4465460298456730, this, []); }
-  set activityFamily(value: ActivityFamily) { callSDK<void>("WidgetKit_a956b86ef7a76a8e", 1965918104247314, this, [value]); }
+  get activityFamily(): ActivityFamily { return callSDK<ActivityFamily>("WidgetKit_90ad0eb69cc6bf4a", 4465460298456730, this, []); }
+  set activityFamily(value: ActivityFamily) { callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 1965918104247314, this, [value]); }
   /**
    * var widgetRenderingMode: WidgetRenderingMode { get set }
    * @availability iOS 16.0+
    */
-  get widgetRenderingMode(): WidgetRenderingMode { return callSDK<WidgetRenderingMode>("WidgetKit_a956b86ef7a76a8e", 178178733054097, this, []); }
-  set widgetRenderingMode(value: WidgetRenderingMode) { callSDK<void>("WidgetKit_a956b86ef7a76a8e", 1146956286144739, this, [value]); }
+  get widgetRenderingMode(): WidgetRenderingMode { return callSDK<WidgetRenderingMode>("WidgetKit_90ad0eb69cc6bf4a", 178178733054097, this, []); }
+  set widgetRenderingMode(value: WidgetRenderingMode) { callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 1146956286144739, this, [value]); }
   /**
    * @backDeployed(before: iOS 17.0)
   var isActivityFullscreen: Bool { get }
    * @availability iOS 16.1+
    */
-  get isActivityFullscreen(): boolean { return callSDK<boolean>("WidgetKit_a956b86ef7a76a8e", 1993948233037486, this, []); }
+  get isActivityFullscreen(): boolean { return callSDK<boolean>("WidgetKit_90ad0eb69cc6bf4a", 1993948233037486, this, []); }
   /**
    * var widgetContentMargins: EdgeInsets { get }
    * @availability iOS 17.0+
    */
-  get widgetContentMargins(): _SwiftUICore_EdgeInsets { return callSDK<_SwiftUICore_EdgeInsets>("WidgetKit_a956b86ef7a76a8e", 3119943263449916, this, []); }
+  get widgetContentMargins(): _SwiftUICore_EdgeInsets { return callSDK<_SwiftUICore_EdgeInsets>("WidgetKit_90ad0eb69cc6bf4a", 3119943263449916, this, []); }
   /**
    * var isActivityUpdateReduced: Bool { get set }
    * @availability iOS 18.0+
    */
-  get isActivityUpdateReduced(): boolean { return callSDK<boolean>("WidgetKit_a956b86ef7a76a8e", 353066002599494, this, []); }
-  set isActivityUpdateReduced(value: boolean) { callSDK<void>("WidgetKit_a956b86ef7a76a8e", 1790797511186508, this, [value]); }
+  get isActivityUpdateReduced(): boolean { return callSDK<boolean>("WidgetKit_90ad0eb69cc6bf4a", 353066002599494, this, []); }
+  set isActivityUpdateReduced(value: boolean) { callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 1790797511186508, this, [value]); }
   /**
    * var supportedActivityFamilies: Set<ActivityFamily> { get set }
    * @availability iOS 18.0+
    */
-  get supportedActivityFamilies(): Array<ActivityFamily> { return callSDK<Array<ActivityFamily>>("WidgetKit_a956b86ef7a76a8e", 1286132023237551, this, []); }
-  set supportedActivityFamilies(value: Array<ActivityFamily>) { callSDK<void>("WidgetKit_a956b86ef7a76a8e", 628257978456819, this, [value]); }
+  get supportedActivityFamilies(): Array<ActivityFamily> { return callSDK<Array<ActivityFamily>>("WidgetKit_90ad0eb69cc6bf4a", 1286132023237551, this, []); }
+  set supportedActivityFamilies(value: Array<ActivityFamily>) { callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 628257978456819, this, [value]); }
   /**
    * var isDynamicIslandLimitedInWidth: Bool { get }
    * @availability iOS 27.0+
    */
-  get isDynamicIslandLimitedInWidth(): boolean { return callSDK<boolean>("WidgetKit_a956b86ef7a76a8e", 2593577589360070, this, []); }
+  get isDynamicIslandLimitedInWidth(): boolean { return callSDK<boolean>("WidgetKit_90ad0eb69cc6bf4a", 2593577589360070, this, []); }
   declare readonly $type: { "s:7SwiftUI17EnvironmentValuesV": true };
 }
 
@@ -574,22 +574,22 @@ export class IntentRecommendation<T = unknown> extends SDKHandle {
    * init(intent: T, description: LocalizedStringResource)
    * @availability iOS 16.0+
    */
-  static initIntentDescription(intent: _Intents_INIntent, description: _Foundation_LocalizedStringResource): $SDK5 { return callSDK<$SDK5>("WidgetKit_a956b86ef7a76a8e", 3276009298843184, undefined, [intent, description]); }
+  static initIntentDescription(intent: _Intents_INIntent, description: _Foundation_LocalizedStringResource): $SDK5 { return callSDK<$SDK5>("WidgetKit_90ad0eb69cc6bf4a", 3276009298843184, undefined, [intent, description]); }
   /**
    * init(intent: T, description: LocalizedStringKey)
    * @availability iOS 16.0+
    */
-  static initIntentDescription61273(intent: _Intents_INIntent, description: _SwiftUICore_LocalizedStringKey): $SDK5 { return callSDK<$SDK5>("WidgetKit_a956b86ef7a76a8e", 3021586954576191, undefined, [intent, description]); }
+  static initIntentDescription61273(intent: _Intents_INIntent, description: _SwiftUICore_LocalizedStringKey): $SDK5 { return callSDK<$SDK5>("WidgetKit_90ad0eb69cc6bf4a", 3021586954576191, undefined, [intent, description]); }
   /**
    * init(intent: T, description: Text)
    * @availability iOS 16.0+
    */
-  static initIntentDescription4176(intent: _Intents_INIntent, description: _SwiftUICore_Text): $SDK5 { return callSDK<$SDK5>("WidgetKit_a956b86ef7a76a8e", 3949253240369276, undefined, [intent, description]); }
+  static initIntentDescription4176(intent: _Intents_INIntent, description: _SwiftUICore_Text): $SDK5 { return callSDK<$SDK5>("WidgetKit_90ad0eb69cc6bf4a", 3949253240369276, undefined, [intent, description]); }
   /**
    * init<S>(intent: T, description: S) where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initIntentDescription44801(intent: _Intents_INIntent, description: string): $SDK5 { return callSDK<$SDK5>("WidgetKit_a956b86ef7a76a8e", 3351703550547748, undefined, [intent, description]); }
+  static initIntentDescription44801(intent: _Intents_INIntent, description: string): $SDK5 { return callSDK<$SDK5>("WidgetKit_90ad0eb69cc6bf4a", 3351703550547748, undefined, [intent, description]); }
   declare readonly $type: { "s:9WidgetKit20IntentRecommendationV": true };
 }
 
@@ -640,12 +640,12 @@ export class LevelOfDetail extends SDKHandle {
    * static let simplified: LevelOfDetail
    * @availability iOS 26.0+
    */
-  static get simplified(): LevelOfDetail { return callSDK<LevelOfDetail>("WidgetKit_a956b86ef7a76a8e", 1778494649799774, undefined, []); }
+  static get simplified(): LevelOfDetail { return callSDK<LevelOfDetail>("WidgetKit_90ad0eb69cc6bf4a", 1778494649799774, undefined, []); }
   /**
    * static let `default`: LevelOfDetail
    * @availability iOS 26.0+
    */
-  static get default(): LevelOfDetail { return callSDK<LevelOfDetail>("WidgetKit_a956b86ef7a76a8e", 1632760997328322, undefined, []); }
+  static get default(): LevelOfDetail { return callSDK<LevelOfDetail>("WidgetKit_90ad0eb69cc6bf4a", 1632760997328322, undefined, []); }
   declare readonly $type: { "s:9WidgetKit13LevelOfDetailV": true };
 }
 
@@ -666,17 +666,17 @@ export class PreviewTimelineBuilder extends SDKHandle {
    * static func buildArray(_ components: [[any TimelineEntry]]) -> [any TimelineEntry]
    * @availability iOS 17.0+
    */
-  static buildArray(components: Array<Array<SDKHandle>>): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("WidgetKit_a956b86ef7a76a8e", 2726008775331213, undefined, [components]); }
+  static buildArray(components: Array<Array<SDKHandle>>): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("WidgetKit_90ad0eb69cc6bf4a", 2726008775331213, undefined, [components]); }
   /**
    * static func buildPartialBlock(accumulated: [any TimelineEntry], next: [any TimelineEntry]) -> [any TimelineEntry]
    * @availability iOS 17.0+
    */
-  static buildPartialBlockAccumulatedNext(accumulated: Array<SDKHandle>, next: Array<SDKHandle>): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("WidgetKit_a956b86ef7a76a8e", 1106877442476056, undefined, [accumulated, next]); }
+  static buildPartialBlockAccumulatedNext(accumulated: Array<SDKHandle>, next: Array<SDKHandle>): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("WidgetKit_90ad0eb69cc6bf4a", 1106877442476056, undefined, [accumulated, next]); }
   /**
    * static func buildPartialBlock(first: [any TimelineEntry]) -> [any TimelineEntry]
    * @availability iOS 17.0+
    */
-  static buildPartialBlockFirst(first: Array<SDKHandle>): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("WidgetKit_a956b86ef7a76a8e", 695872066134740, undefined, [first]); }
+  static buildPartialBlockFirst(first: Array<SDKHandle>): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("WidgetKit_90ad0eb69cc6bf4a", 695872066134740, undefined, [first]); }
   declare readonly $type: { "s:9WidgetKit22PreviewTimelineBuilderV": true };
 }
 
@@ -717,7 +717,7 @@ export class SupportedActivityFamiliesEnvironmentKey extends SDKHandle {
    * static var defaultValue: Set<ActivityFamily> { get }
    * @availability iOS 18.0+
    */
-  static get defaultValue(): Array<ActivityFamily> { return callSDK<Array<ActivityFamily>>("WidgetKit_a956b86ef7a76a8e", 1918499373466606, undefined, []); }
+  static get defaultValue(): Array<ActivityFamily> { return callSDK<Array<ActivityFamily>>("WidgetKit_90ad0eb69cc6bf4a", 1918499373466606, undefined, []); }
   declare readonly $type: { "s:9WidgetKit39SupportedActivityFamiliesEnvironmentKeyV": true };
 }
 
@@ -752,19 +752,19 @@ export class TimelineEntryRelevance extends SDKHandle {
    * init(score: Float, duration: TimeInterval = 0.0)
    * @availability iOS 14.0+
    */
-  static init(score: number, duration?: number): TimelineEntryRelevance { return callSDK<TimelineEntryRelevance>("WidgetKit_a956b86ef7a76a8e", 1209416184824051, undefined, [score, duration]); }
+  static init(score: number, duration?: number): TimelineEntryRelevance { return callSDK<TimelineEntryRelevance>("WidgetKit_90ad0eb69cc6bf4a", 1209416184824051, undefined, [score, duration]); }
   /**
    * var score: Float
    * @availability iOS 14.0+
    */
-  get score(): number { return callSDK<number>("WidgetKit_a956b86ef7a76a8e", 3047965624193884, this, []); }
-  set score(value: number) { callSDK<void>("WidgetKit_a956b86ef7a76a8e", 3588163012199994, this, [value]); }
+  get score(): number { return callSDK<number>("WidgetKit_90ad0eb69cc6bf4a", 3047965624193884, this, []); }
+  set score(value: number) { callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 3588163012199994, this, [value]); }
   /**
    * var duration: TimeInterval
    * @availability iOS 14.0+
    */
-  get duration(): number { return callSDK<number>("WidgetKit_a956b86ef7a76a8e", 2690305121383000, this, []); }
-  set duration(value: number) { callSDK<void>("WidgetKit_a956b86ef7a76a8e", 521636375421216, this, [value]); }
+  get duration(): number { return callSDK<number>("WidgetKit_90ad0eb69cc6bf4a", 2690305121383000, this, []); }
+  set duration(value: number) { callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 521636375421216, this, [value]); }
   declare readonly $type: { "s:9WidgetKit22TimelineEntryRelevanceV": true };
 }
 
@@ -810,22 +810,22 @@ export class TimelineProviderContext extends SDKHandle {
    * let displaySize: CGSize
    * @availability iOS 14.0+
    */
-  get displaySize(): { width: number; height: number } { return callSDK<{ width: number; height: number }>("WidgetKit_a956b86ef7a76a8e", 3770045062704725, this, []); }
+  get displaySize(): { width: number; height: number } { return callSDK<{ width: number; height: number }>("WidgetKit_90ad0eb69cc6bf4a", 3770045062704725, this, []); }
   /**
    * let environmentVariants: TimelineProviderContext.EnvironmentVariants
    * @availability iOS 14.0+
    */
-  get environmentVariants(): TimelineProviderContext_EnvironmentVariants { return callSDK<TimelineProviderContext_EnvironmentVariants>("WidgetKit_a956b86ef7a76a8e", 2644728262136961, this, []); }
+  get environmentVariants(): TimelineProviderContext_EnvironmentVariants { return callSDK<TimelineProviderContext_EnvironmentVariants>("WidgetKit_90ad0eb69cc6bf4a", 2644728262136961, this, []); }
   /**
    * let family: WidgetFamily
    * @availability iOS 14.0+
    */
-  get family(): WidgetFamily { return callSDK<WidgetFamily>("WidgetKit_a956b86ef7a76a8e", 1857461700241868, this, []); }
+  get family(): WidgetFamily { return callSDK<WidgetFamily>("WidgetKit_90ad0eb69cc6bf4a", 1857461700241868, this, []); }
   /**
    * let isPreview: Bool
    * @availability iOS 14.0+
    */
-  get isPreview(): boolean { return callSDK<boolean>("WidgetKit_a956b86ef7a76a8e", 3536984855829889, this, []); }
+  get isPreview(): boolean { return callSDK<boolean>("WidgetKit_90ad0eb69cc6bf4a", 3536984855829889, this, []); }
   declare readonly $type: { "s:9WidgetKit23TimelineProviderContextV": true };
 }
 
@@ -838,12 +838,12 @@ export class TimelineProviderContext_EnvironmentVariants extends SDKHandle {
    * subscript<T>(dynamicMember keyPath: WritableKeyPath<EnvironmentValues, T>) -> [T]? { get }
    * @availability iOS 14.0+
    */
-  subscriptDynamicMember(keyPath: SDKHandle): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("WidgetKit_a956b86ef7a76a8e", 3814773653586575, this, [keyPath]); }
+  subscriptDynamicMember(keyPath: SDKHandle): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("WidgetKit_90ad0eb69cc6bf4a", 3814773653586575, this, [keyPath]); }
   /**
    * subscript<T>(keyPath: WritableKeyPath<EnvironmentValues, T>) -> [T]? { get }
    * @availability iOS 14.0+
    */
-  subscript(keyPath: SDKHandle): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("WidgetKit_a956b86ef7a76a8e", 2561287998682427, this, [keyPath]); }
+  subscript(keyPath: SDKHandle): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("WidgetKit_90ad0eb69cc6bf4a", 2561287998682427, this, [keyPath]); }
   declare readonly $type: { "s:9WidgetKit23TimelineProviderContextV19EnvironmentVariantsV": true };
 }
 
@@ -856,17 +856,17 @@ export class TimelineReloadPolicy extends SDKHandle {
    * static func after(_ date: Date) -> TimelineReloadPolicy
    * @availability iOS 14.0+
    */
-  static after(date: globalThis.Date): TimelineReloadPolicy { return callSDK<TimelineReloadPolicy>("WidgetKit_a956b86ef7a76a8e", 1624466251257798, undefined, [date]); }
+  static after(date: globalThis.Date): TimelineReloadPolicy { return callSDK<TimelineReloadPolicy>("WidgetKit_90ad0eb69cc6bf4a", 1624466251257798, undefined, [date]); }
   /**
    * static let atEnd: TimelineReloadPolicy
    * @availability iOS 14.0+
    */
-  static get atEnd(): TimelineReloadPolicy { return callSDK<TimelineReloadPolicy>("WidgetKit_a956b86ef7a76a8e", 1861537335911394, undefined, []); }
+  static get atEnd(): TimelineReloadPolicy { return callSDK<TimelineReloadPolicy>("WidgetKit_90ad0eb69cc6bf4a", 1861537335911394, undefined, []); }
   /**
    * static let never: TimelineReloadPolicy
    * @availability iOS 14.0+
    */
-  static get never(): TimelineReloadPolicy { return callSDK<TimelineReloadPolicy>("WidgetKit_a956b86ef7a76a8e", 4021534119877000, undefined, []); }
+  static get never(): TimelineReloadPolicy { return callSDK<TimelineReloadPolicy>("WidgetKit_90ad0eb69cc6bf4a", 4021534119877000, undefined, []); }
   declare readonly $type: { "s:9WidgetKit20TimelineReloadPolicyV": true };
 }
 
@@ -879,22 +879,22 @@ export class WidgetAccentedRenderingMode extends SDKHandle {
    * static let desaturated: WidgetAccentedRenderingMode
    * @availability iOS 18.0+
    */
-  static get desaturated(): WidgetAccentedRenderingMode { return callSDK<WidgetAccentedRenderingMode>("WidgetKit_a956b86ef7a76a8e", 1277858652813551, undefined, []); }
+  static get desaturated(): WidgetAccentedRenderingMode { return callSDK<WidgetAccentedRenderingMode>("WidgetKit_90ad0eb69cc6bf4a", 1277858652813551, undefined, []); }
   /**
    * static let accentedDesaturated: WidgetAccentedRenderingMode
    * @availability iOS 18.0+
    */
-  static get accentedDesaturated(): WidgetAccentedRenderingMode { return callSDK<WidgetAccentedRenderingMode>("WidgetKit_a956b86ef7a76a8e", 2780795064940696, undefined, []); }
+  static get accentedDesaturated(): WidgetAccentedRenderingMode { return callSDK<WidgetAccentedRenderingMode>("WidgetKit_90ad0eb69cc6bf4a", 2780795064940696, undefined, []); }
   /**
    * static let accented: WidgetAccentedRenderingMode
    * @availability iOS 18.0+
    */
-  static get accented(): WidgetAccentedRenderingMode { return callSDK<WidgetAccentedRenderingMode>("WidgetKit_a956b86ef7a76a8e", 639626734509292, undefined, []); }
+  static get accented(): WidgetAccentedRenderingMode { return callSDK<WidgetAccentedRenderingMode>("WidgetKit_90ad0eb69cc6bf4a", 639626734509292, undefined, []); }
   /**
    * static let fullColor: WidgetAccentedRenderingMode
    * @availability iOS 18.0+
    */
-  static get fullColor(): WidgetAccentedRenderingMode { return callSDK<WidgetAccentedRenderingMode>("WidgetKit_a956b86ef7a76a8e", 1001038446937757, undefined, []); }
+  static get fullColor(): WidgetAccentedRenderingMode { return callSDK<WidgetAccentedRenderingMode>("WidgetKit_90ad0eb69cc6bf4a", 1001038446937757, undefined, []); }
   declare readonly $type: { "s:9WidgetKit0A21AccentedRenderingModeV": true };
 }
 
@@ -907,42 +907,42 @@ export class WidgetCenter extends SDKHandle {
    * var currentPushInfo: WidgetPushInfo? { get async }
    * @availability iOS 26.0+
    */
-  get currentPushInfo(): Promise<(WidgetPushInfo) | null> { return callSDKAsync<(WidgetPushInfo) | null>("WidgetKit_a956b86ef7a76a8e", 2756624589693049, this, []); }
+  get currentPushInfo(): Promise<(WidgetPushInfo) | null> { return callSDKAsync<(WidgetPushInfo) | null>("WidgetKit_90ad0eb69cc6bf4a", 2756624589693049, this, []); }
   /**
    * func reloadTimelines(ofKind kind: String)
    * @availability iOS 14.0+
    */
-  reloadTimelines(kind: string): void { return callSDK<void>("WidgetKit_a956b86ef7a76a8e", 2455916588422226, this, [kind]); }
+  reloadTimelines(kind: string): void { return callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 2455916588422226, this, [kind]); }
   /**
    * func reloadAllTimelines()
    * @availability iOS 14.0+
    */
-  reloadAllTimelines(): void { return callSDK<void>("WidgetKit_a956b86ef7a76a8e", 1958485636391702, this, []); }
+  reloadAllTimelines(): void { return callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 1958485636391702, this, []); }
   /**
    * func invalidateRelevance(ofKind kind: String)
    * @availability iOS 18.0+
    */
-  invalidateRelevance(kind: string): void { return callSDK<void>("WidgetKit_a956b86ef7a76a8e", 3685296358070000, this, [kind]); }
+  invalidateRelevance(kind: string): void { return callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 3685296358070000, this, [kind]); }
   /**
    * func currentConfigurations() async throws -> [WidgetInfo]
    * @availability iOS 18.0+
    */
-  currentConfigurations(): Promise<Array<WidgetInfo>> { return callSDKAsync<Array<WidgetInfo>>("WidgetKit_a956b86ef7a76a8e", 927851809939363, this, []); }
+  currentConfigurations(): Promise<Array<WidgetInfo>> { return callSDKAsync<Array<WidgetInfo>>("WidgetKit_90ad0eb69cc6bf4a", 927851809939363, this, []); }
   /**
    * @preconcurrency func getCurrentConfigurations(_ completion: @escaping @Sendable (Result<[WidgetInfo], any Error>) -> Void)
    * @availability iOS 14.0+
    */
-  getCurrentConfigurations(completion: ((arg0: SDKHandle) => void)): void { return callSDK<void>("WidgetKit_a956b86ef7a76a8e", 3183629376118228, this, [completion], [{"callback":{"out":[]}}]); }
+  getCurrentConfigurations(completion: ((arg0: SDKHandle) => void)): void { return callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 3183629376118228, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func invalidateConfigurationRecommendations()
    * @availability iOS 16.0+
    */
-  invalidateConfigurationRecommendations(): void { return callSDK<void>("WidgetKit_a956b86ef7a76a8e", 2907529664259058, this, []); }
+  invalidateConfigurationRecommendations(): void { return callSDK<void>("WidgetKit_90ad0eb69cc6bf4a", 2907529664259058, this, []); }
   /**
    * static let shared: WidgetCenter
    * @availability iOS 14.0+
    */
-  static get shared(): WidgetCenter { return callSDK<WidgetCenter>("WidgetKit_a956b86ef7a76a8e", 3739445473888981, undefined, []); }
+  static get shared(): WidgetCenter { return callSDK<WidgetCenter>("WidgetKit_90ad0eb69cc6bf4a", 3739445473888981, undefined, []); }
   declare readonly $type: { "s:9WidgetKit0A6CenterC": true };
 }
 
@@ -955,17 +955,17 @@ export class WidgetCenter_UserInfoKey extends SDKHandle {
    * static let activityID: String
    * @availability iOS 14.0+
    */
-  static get activityID(): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 3202760741035028, undefined, []); }
+  static get activityID(): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 3202760741035028, undefined, []); }
   /**
    * static let kind: String
    * @availability iOS 14.0+
    */
-  static get kind(): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 2959125744071096, undefined, []); }
+  static get kind(): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 2959125744071096, undefined, []); }
   /**
    * static let family: String
    * @availability iOS 14.0+
    */
-  static get family(): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 2436410788616888, undefined, []); }
+  static get family(): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 2436410788616888, undefined, []); }
   declare readonly $type: { "s:9WidgetKit0A6CenterC11UserInfoKeyV": true };
 }
 
@@ -980,22 +980,22 @@ export const WidgetFamily = {
    * var description: String { get }
    * @availability iOS 14.0+
    */
-  getDescription($self: WidgetFamily): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 151604424566116, $self, []); },
+  getDescription($self: WidgetFamily): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 151604424566116, $self, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  getDebugDescription($self: WidgetFamily): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 1784063073356425, $self, []); },
+  getDebugDescription($self: WidgetFamily): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 1784063073356425, $self, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (WidgetFamily) | null { return callSDK<(WidgetFamily) | null>("WidgetKit_a956b86ef7a76a8e", 2160702806434839, undefined, [rawValue]); },
+  init(rawValue: number): (WidgetFamily) | null { return callSDK<(WidgetFamily) | null>("WidgetKit_90ad0eb69cc6bf4a", 2160702806434839, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 14.0+
    */
-  getRawValue($self: WidgetFamily): number { return callSDK<number>("WidgetKit_a956b86ef7a76a8e", 4279652988185715, $self, []); }
+  getRawValue($self: WidgetFamily): number { return callSDK<number>("WidgetKit_90ad0eb69cc6bf4a", 4279652988185715, $self, []); }
 };
 
 /**
@@ -1013,27 +1013,27 @@ export class WidgetInfo extends SDKHandle {
    * let configuration: INIntent?
    * @availability iOS 14.0+
    */
-  get configuration(): (_Intents_INIntent) | null { return callSDK<(_Intents_INIntent) | null>("WidgetKit_a956b86ef7a76a8e", 2135688121903933, this, []); }
+  get configuration(): (_Intents_INIntent) | null { return callSDK<(_Intents_INIntent) | null>("WidgetKit_90ad0eb69cc6bf4a", 2135688121903933, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 14.0+
    */
-  get debugDescription(): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 3367408185126833, this, []); }
+  get debugDescription(): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 3367408185126833, this, []); }
   /**
    * var id: WidgetInfo { get }
    * @availability iOS 14.0+
    */
-  get id(): WidgetInfo { return callSDK<WidgetInfo>("WidgetKit_a956b86ef7a76a8e", 3564109217501724, this, []); }
+  get id(): WidgetInfo { return callSDK<WidgetInfo>("WidgetKit_90ad0eb69cc6bf4a", 3564109217501724, this, []); }
   /**
    * let kind: String
    * @availability iOS 14.0+
    */
-  get kind(): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 3249014554176351, this, []); }
+  get kind(): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 3249014554176351, this, []); }
   /**
    * let family: WidgetFamily
    * @availability iOS 14.0+
    */
-  get family(): WidgetFamily { return callSDK<WidgetFamily>("WidgetKit_a956b86ef7a76a8e", 3507110451130705, this, []); }
+  get family(): WidgetFamily { return callSDK<WidgetFamily>("WidgetKit_90ad0eb69cc6bf4a", 3507110451130705, this, []); }
   declare readonly $type: { "s:9WidgetKit0A4InfoV": true };
 }
 
@@ -1052,27 +1052,27 @@ export class WidgetLocation extends SDKHandle {
    * static let homeScreen: WidgetLocation
    * @availability iOS 17.0+
    */
-  static get homeScreen(): WidgetLocation { return callSDK<WidgetLocation>("WidgetKit_a956b86ef7a76a8e", 818414089276602, undefined, []); }
+  static get homeScreen(): WidgetLocation { return callSDK<WidgetLocation>("WidgetKit_90ad0eb69cc6bf4a", 818414089276602, undefined, []); }
   /**
    * static let lockScreen: WidgetLocation
    * @availability iOS 17.0+
    */
-  static get lockScreen(): WidgetLocation { return callSDK<WidgetLocation>("WidgetKit_a956b86ef7a76a8e", 1363425042776982, undefined, []); }
+  static get lockScreen(): WidgetLocation { return callSDK<WidgetLocation>("WidgetKit_90ad0eb69cc6bf4a", 1363425042776982, undefined, []); }
   /**
    * static let iPhoneWidgetsOnMac: WidgetLocation
    * @availability iOS 17.0+
    */
-  static get iPhoneWidgetsOnMac(): WidgetLocation { return callSDK<WidgetLocation>("WidgetKit_a956b86ef7a76a8e", 3087283777484429, undefined, []); }
+  static get iPhoneWidgetsOnMac(): WidgetLocation { return callSDK<WidgetLocation>("WidgetKit_90ad0eb69cc6bf4a", 3087283777484429, undefined, []); }
   /**
    * static let carPlay: WidgetLocation
    * @availability iOS 26.0+
    */
-  static get carPlay(): WidgetLocation { return callSDK<WidgetLocation>("WidgetKit_a956b86ef7a76a8e", 1454111278716022, undefined, []); }
+  static get carPlay(): WidgetLocation { return callSDK<WidgetLocation>("WidgetKit_90ad0eb69cc6bf4a", 1454111278716022, undefined, []); }
   /**
    * static let standBy: WidgetLocation
    * @availability iOS 17.0+
    */
-  static get standBy(): WidgetLocation { return callSDK<WidgetLocation>("WidgetKit_a956b86ef7a76a8e", 115630244182230, undefined, []); }
+  static get standBy(): WidgetLocation { return callSDK<WidgetLocation>("WidgetKit_90ad0eb69cc6bf4a", 115630244182230, undefined, []); }
   declare readonly $type: { "s:9WidgetKit0A8LocationV": true };
 }
 
@@ -1085,12 +1085,12 @@ export class WidgetMountingStyle extends SDKHandle {
    * static let elevated: WidgetMountingStyle
    * @availability iOS 26.0+
    */
-  static get elevated(): WidgetMountingStyle { return callSDK<WidgetMountingStyle>("WidgetKit_a956b86ef7a76a8e", 3814267616573878, undefined, []); }
+  static get elevated(): WidgetMountingStyle { return callSDK<WidgetMountingStyle>("WidgetKit_90ad0eb69cc6bf4a", 3814267616573878, undefined, []); }
   /**
    * static let recessed: WidgetMountingStyle
    * @availability iOS 26.0+
    */
-  static get recessed(): WidgetMountingStyle { return callSDK<WidgetMountingStyle>("WidgetKit_a956b86ef7a76a8e", 2158866084189817, undefined, []); }
+  static get recessed(): WidgetMountingStyle { return callSDK<WidgetMountingStyle>("WidgetKit_90ad0eb69cc6bf4a", 2158866084189817, undefined, []); }
   declare readonly $type: { "s:9WidgetKit0A13MountingStyleV": true };
 }
 
@@ -1103,7 +1103,7 @@ export class WidgetPreviewContext extends SDKHandle {
    * init(family: WidgetFamily)
    * @availability iOS 14.0+
    */
-  static init(family: WidgetFamily): WidgetPreviewContext { return callSDK<WidgetPreviewContext>("WidgetKit_a956b86ef7a76a8e", 2585871166348532, undefined, [family]); }
+  static init(family: WidgetFamily): WidgetPreviewContext { return callSDK<WidgetPreviewContext>("WidgetKit_90ad0eb69cc6bf4a", 2585871166348532, undefined, [family]); }
   declare readonly $type: { "s:9WidgetKit0A14PreviewContextV": true };
 }
 
@@ -1133,7 +1133,7 @@ export class WidgetPushInfo extends SDKHandle {
    * let token: Data
    * @availability iOS 26.0+
    */
-  get token(): ArrayBuffer { return callSDK<ArrayBuffer>("WidgetKit_a956b86ef7a76a8e", 1390704361514405, this, []); }
+  get token(): ArrayBuffer { return callSDK<ArrayBuffer>("WidgetKit_90ad0eb69cc6bf4a", 1390704361514405, this, []); }
   declare readonly $type: { "s:9WidgetKit0A8PushInfoV": true };
 }
 
@@ -1146,7 +1146,7 @@ export class WidgetRelevance<Configuration = unknown> extends SDKHandle {
    * init(_ attributes: [WidgetRelevanceAttribute<Configuration>])
    * @availability iOS 18.0+
    */
-  static init(attributes: Array<WidgetRelevanceAttribute<unknown>>): $SDK1 { return callSDK<$SDK1>("WidgetKit_a956b86ef7a76a8e", 3383371358802180, undefined, [attributes]); }
+  static init(attributes: Array<WidgetRelevanceAttribute<unknown>>): $SDK1 { return callSDK<$SDK1>("WidgetKit_90ad0eb69cc6bf4a", 3383371358802180, undefined, [attributes]); }
   declare readonly $type: { "s:9WidgetKit0A9RelevanceV": true };
 }
 
@@ -1159,22 +1159,22 @@ export class WidgetRelevanceAttribute<Configuration = unknown> extends SDKHandle
    * init(configuration: Configuration, group: WidgetRelevanceGroup)
    * @availability iOS 18.0+
    */
-  static initConfigurationGroup(configuration: _Intents_INIntent, group: WidgetRelevanceGroup): $SDK13 { return callSDK<$SDK13>("WidgetKit_a956b86ef7a76a8e", 3740727470972363, undefined, [configuration, group]); }
+  static initConfigurationGroup(configuration: _Intents_INIntent, group: WidgetRelevanceGroup): $SDK13 { return callSDK<$SDK13>("WidgetKit_90ad0eb69cc6bf4a", 3740727470972363, undefined, [configuration, group]); }
   /**
    * init(configuration: Configuration, context: RelevantContext)
    * @availability iOS 18.0+
    */
-  static initConfigurationContext(configuration: _Intents_INIntent, context: _RelevanceKit_RelevantContext): $SDK13 { return callSDK<$SDK13>("WidgetKit_a956b86ef7a76a8e", 1515964294252822, undefined, [configuration, context]); }
+  static initConfigurationContext(configuration: _Intents_INIntent, context: _RelevanceKit_RelevantContext): $SDK13 { return callSDK<$SDK13>("WidgetKit_90ad0eb69cc6bf4a", 1515964294252822, undefined, [configuration, context]); }
   /**
    * init(group: WidgetRelevanceGroup)
    * @availability iOS 18.0+
    */
-  static initGroup(group: WidgetRelevanceGroup): $SDK14 { return callSDK<$SDK14>("WidgetKit_a956b86ef7a76a8e", 3739223642011489, undefined, [group]); }
+  static initGroup(group: WidgetRelevanceGroup): $SDK14 { return callSDK<$SDK14>("WidgetKit_90ad0eb69cc6bf4a", 3739223642011489, undefined, [group]); }
   /**
    * init(context: RelevantContext)
    * @availability iOS 18.0+
    */
-  static initContext(context: _RelevanceKit_RelevantContext): $SDK14 { return callSDK<$SDK14>("WidgetKit_a956b86ef7a76a8e", 2344360322963522, undefined, [context]); }
+  static initContext(context: _RelevanceKit_RelevantContext): $SDK14 { return callSDK<$SDK14>("WidgetKit_90ad0eb69cc6bf4a", 2344360322963522, undefined, [context]); }
   declare readonly $type: { "s:9WidgetKit0A18RelevanceAttributeV": true };
 }
 
@@ -1187,17 +1187,17 @@ export class WidgetRelevanceGroup extends SDKHandle {
    * static func named(_ name: String) -> WidgetRelevanceGroup
    * @availability iOS 18.0+
    */
-  static named(name: string): WidgetRelevanceGroup { return callSDK<WidgetRelevanceGroup>("WidgetKit_a956b86ef7a76a8e", 2458252921913978, undefined, [name]); }
+  static named(name: string): WidgetRelevanceGroup { return callSDK<WidgetRelevanceGroup>("WidgetKit_90ad0eb69cc6bf4a", 2458252921913978, undefined, [name]); }
   /**
    * static let automatic: WidgetRelevanceGroup
    * @availability iOS 18.0+
    */
-  static get automatic(): WidgetRelevanceGroup { return callSDK<WidgetRelevanceGroup>("WidgetKit_a956b86ef7a76a8e", 249238835293434, undefined, []); }
+  static get automatic(): WidgetRelevanceGroup { return callSDK<WidgetRelevanceGroup>("WidgetKit_90ad0eb69cc6bf4a", 249238835293434, undefined, []); }
   /**
    * static let ungrouped: WidgetRelevanceGroup
    * @availability iOS 18.0+
    */
-  static get ungrouped(): WidgetRelevanceGroup { return callSDK<WidgetRelevanceGroup>("WidgetKit_a956b86ef7a76a8e", 3531085112591668, undefined, []); }
+  static get ungrouped(): WidgetRelevanceGroup { return callSDK<WidgetRelevanceGroup>("WidgetKit_90ad0eb69cc6bf4a", 3531085112591668, undefined, []); }
   declare readonly $type: { "s:9WidgetKit0A14RelevanceGroupV": true };
 }
 
@@ -1210,81 +1210,81 @@ export class WidgetRenderingMode extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("WidgetKit_a956b86ef7a76a8e", 3067355328919659, this, []); }
+  get description(): string { return callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 3067355328919659, this, []); }
   /**
    * static let vibrant: WidgetRenderingMode
    * @availability iOS 16.0+
    */
-  static get vibrant(): WidgetRenderingMode { return callSDK<WidgetRenderingMode>("WidgetKit_a956b86ef7a76a8e", 3952424408267115, undefined, []); }
+  static get vibrant(): WidgetRenderingMode { return callSDK<WidgetRenderingMode>("WidgetKit_90ad0eb69cc6bf4a", 3952424408267115, undefined, []); }
   /**
    * static let accented: WidgetRenderingMode
    * @availability iOS 16.0+
    */
-  static get accented(): WidgetRenderingMode { return callSDK<WidgetRenderingMode>("WidgetKit_a956b86ef7a76a8e", 149804944730062, undefined, []); }
+  static get accented(): WidgetRenderingMode { return callSDK<WidgetRenderingMode>("WidgetKit_90ad0eb69cc6bf4a", 149804944730062, undefined, []); }
   /**
    * static let fullColor: WidgetRenderingMode
    * @availability iOS 16.0+
    */
-  static get fullColor(): WidgetRenderingMode { return callSDK<WidgetRenderingMode>("WidgetKit_a956b86ef7a76a8e", 3663364850082689, undefined, []); }
+  static get fullColor(): WidgetRenderingMode { return callSDK<WidgetRenderingMode>("WidgetKit_90ad0eb69cc6bf4a", 3663364850082689, undefined, []); }
   declare readonly $type: { "s:9WidgetKit0A13RenderingModeV": true };
 }
 
 /** let NSUserActivityTypeLiveActivity: String */
-export const NSUserActivityTypeLiveActivity: string = callSDK<string>("WidgetKit_a956b86ef7a76a8e", 1638423402463102, undefined, []);
+export const NSUserActivityTypeLiveActivity: string = callSDK<string>("WidgetKit_90ad0eb69cc6bf4a", 1638423402463102, undefined, []);
 
-registerSDKClass("WidgetKit.AccessoryWidgetBackground", AccessoryWidgetBackground, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.ActivityConfiguration", ActivityConfiguration, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.ActivityPreviewViewKind", ActivityPreviewViewKind, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.ActivityViewContext", ActivityViewContext, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.AppIntentConfiguration", AppIntentConfiguration, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.AppIntentControlConfiguration", AppIntentControlConfiguration, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WidgetKit.AccessoryWidgetBackground", AccessoryWidgetBackground, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.ActivityConfiguration", ActivityConfiguration, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.ActivityPreviewViewKind", ActivityPreviewViewKind, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.ActivityViewContext", ActivityViewContext, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.AppIntentConfiguration", AppIntentConfiguration, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.AppIntentControlConfiguration", AppIntentControlConfiguration, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9WidgetKit29AppIntentControlValueProviderP", {"previewValueConfiguration":"previewValue(configuration:)","currentValueConfiguration":"currentValue(configuration:)"});
-registerSDKClass("WidgetKit.AppIntentRecommendation", AppIntentRecommendation, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WidgetKit.AppIntentRecommendation", AppIntentRecommendation, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9WidgetKit25AppIntentTimelineProviderP", {"recommendations":"recommendations()","placeholderIn":"placeholder(in:)","snapshotForIn":"snapshot(for:in:)","timelineForIn":"timeline(for:in:)","relevance":"relevance()"});
-registerSDKClass("SwiftUI.ContainerBackgroundPlacement", ContainerBackgroundPlacement, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} }, true);
-registerSDKClass("WidgetKit.ControlCenter", ControlCenter, { module: "WidgetKit_a956b86ef7a76a8e", properties: {}, methods: {"reloadControls":{"id":4195641992133543},"currentControls":{"id":1098184609202215},"reloadAllControls":{"id":894444561852120}} });
-registerSDKClass("WidgetKit.ControlInfo", ControlInfo, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("SwiftUI.ContainerBackgroundPlacement", ContainerBackgroundPlacement, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} }, true);
+registerSDKClass("WidgetKit.ControlCenter", ControlCenter, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {}, methods: {"reloadControls":{"id":4195641992133543},"currentControls":{"id":1098184609202215},"reloadAllControls":{"id":894444561852120}} });
+registerSDKClass("WidgetKit.ControlInfo", ControlInfo, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9WidgetKit18ControlPushHandlerP", {"init":"init()","pushTokensDidChangeControls":"pushTokensDidChange(controls:)"});
-registerSDKClass("WidgetKit.ControlPushInfo", ControlPushInfo, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WidgetKit.ControlPushInfo", ControlPushInfo, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9WidgetKit20ControlValueProviderP", {"currentValue":"currentValue()"});
-registerSDKClass("WidgetKit.ControlWidgetButton", ControlWidgetButton, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.ControlWidgetButtonDefaultActionLabel", ControlWidgetButtonDefaultActionLabel, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.ControlWidgetToggle", ControlWidgetToggle, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.ControlWidgetToggleDefaultLabel", ControlWidgetToggleDefaultLabel, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.DynamicIsland", DynamicIsland, { module: "WidgetKit_a956b86ef7a76a8e", properties: {}, methods: {"keylineTint":{"id":771097891949239},"contentMargins":{"id":4053496256892023},"widgetURL":{"id":3406943589583645}} });
-registerSDKClass("WidgetKit.DynamicIslandExpandedContent", DynamicIslandExpandedContent, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.DynamicIslandExpandedContentBuilder", DynamicIslandExpandedContentBuilder, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.DynamicIslandExpandedRegion", DynamicIslandExpandedRegion, { module: "WidgetKit_a956b86ef7a76a8e", properties: {}, methods: {"contentMargins":{"id":3198919397768260}} });
-registerSDKClass("WidgetKit.DynamicIslandExpandedRegionPosition", DynamicIslandExpandedRegionPosition, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.DynamicIslandExpandedRegionVerticalPlacement", DynamicIslandExpandedRegionVerticalPlacement, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.DynamicIslandMode", DynamicIslandMode, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SwiftUICore.EnvironmentValues", EnvironmentValues, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} }, true);
-registerSDKClass("WidgetKit.IntentConfiguration", IntentConfiguration, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.IntentRecommendation", IntentRecommendation, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WidgetKit.ControlWidgetButton", ControlWidgetButton, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.ControlWidgetButtonDefaultActionLabel", ControlWidgetButtonDefaultActionLabel, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.ControlWidgetToggle", ControlWidgetToggle, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.ControlWidgetToggleDefaultLabel", ControlWidgetToggleDefaultLabel, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.DynamicIsland", DynamicIsland, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {}, methods: {"keylineTint":{"id":771097891949239},"contentMargins":{"id":4053496256892023},"widgetURL":{"id":3406943589583645}} });
+registerSDKClass("WidgetKit.DynamicIslandExpandedContent", DynamicIslandExpandedContent, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.DynamicIslandExpandedContentBuilder", DynamicIslandExpandedContentBuilder, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.DynamicIslandExpandedRegion", DynamicIslandExpandedRegion, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {}, methods: {"contentMargins":{"id":3198919397768260}} });
+registerSDKClass("WidgetKit.DynamicIslandExpandedRegionPosition", DynamicIslandExpandedRegionPosition, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.DynamicIslandExpandedRegionVerticalPlacement", DynamicIslandExpandedRegionVerticalPlacement, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.DynamicIslandMode", DynamicIslandMode, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SwiftUICore.EnvironmentValues", EnvironmentValues, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} }, true);
+registerSDKClass("WidgetKit.IntentConfiguration", IntentConfiguration, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.IntentRecommendation", IntentRecommendation, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9WidgetKit22IntentTimelineProviderP", {"recommendations":"recommendations()","placeholderIn":"placeholder(in:)","getSnapshotForInCompletion":"getSnapshot(for:in:completion:)","getTimelineForInCompletion":"getTimeline(for:in:completion:)","relevance":"relevance()"});
-registerSDKClass("WidgetKit.LevelOfDetail", LevelOfDetail, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.PreviewActivityBuilder", PreviewActivityBuilder, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.PreviewTimelineBuilder", PreviewTimelineBuilder, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.StaticConfiguration", StaticConfiguration, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.StaticControlConfiguration", StaticControlConfiguration, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.SupportedActivityFamiliesEnvironmentKey", SupportedActivityFamiliesEnvironmentKey, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.Timeline", Timeline, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WidgetKit.LevelOfDetail", LevelOfDetail, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.PreviewActivityBuilder", PreviewActivityBuilder, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.PreviewTimelineBuilder", PreviewTimelineBuilder, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.StaticConfiguration", StaticConfiguration, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.StaticControlConfiguration", StaticControlConfiguration, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.SupportedActivityFamiliesEnvironmentKey", SupportedActivityFamiliesEnvironmentKey, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.Timeline", Timeline, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9WidgetKit13TimelineEntryP", {});
-registerSDKClass("WidgetKit.TimelineEntryRelevance", TimelineEntryRelevance, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WidgetKit.TimelineEntryRelevance", TimelineEntryRelevance, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9WidgetKit16TimelineProviderP", {"placeholderIn":"placeholder(in:)","getSnapshotInCompletion":"getSnapshot(in:completion:)","getTimelineInCompletion":"getTimeline(in:completion:)","relevance":"relevance()"});
-registerSDKClass("WidgetKit.TimelineProviderContext", TimelineProviderContext, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.TimelineProviderContext.EnvironmentVariants", TimelineProviderContext_EnvironmentVariants, { module: "WidgetKit_a956b86ef7a76a8e", properties: {}, methods: {"subscriptDynamicMember":{"id":3814773653586575},"subscript":{"id":2561287998682427}} });
-registerSDKClass("WidgetKit.TimelineReloadPolicy", TimelineReloadPolicy, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.WidgetAccentedRenderingMode", WidgetAccentedRenderingMode, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.WidgetCenter", WidgetCenter, { module: "WidgetKit_a956b86ef7a76a8e", properties: {}, methods: {"reloadTimelines":{"id":2455916588422226},"reloadAllTimelines":{"id":1958485636391702},"invalidateRelevance":{"id":3685296358070000},"currentConfigurations":{"id":927851809939363},"getCurrentConfigurations":{"id":3183629376118228,"hints":[{"callback":{"out":[]}}]},"invalidateConfigurationRecommendations":{"id":2907529664259058}} });
-registerSDKClass("WidgetKit.WidgetCenter.UserInfoKey", WidgetCenter_UserInfoKey, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.WidgetInfo", WidgetInfo, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.WidgetLocation", WidgetLocation, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.WidgetMountingStyle", WidgetMountingStyle, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.WidgetPreviewContext", WidgetPreviewContext, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WidgetKit.TimelineProviderContext", TimelineProviderContext, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.TimelineProviderContext.EnvironmentVariants", TimelineProviderContext_EnvironmentVariants, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {}, methods: {"subscriptDynamicMember":{"id":3814773653586575},"subscript":{"id":2561287998682427}} });
+registerSDKClass("WidgetKit.TimelineReloadPolicy", TimelineReloadPolicy, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.WidgetAccentedRenderingMode", WidgetAccentedRenderingMode, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.WidgetCenter", WidgetCenter, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {}, methods: {"reloadTimelines":{"id":2455916588422226},"reloadAllTimelines":{"id":1958485636391702},"invalidateRelevance":{"id":3685296358070000},"currentConfigurations":{"id":927851809939363},"getCurrentConfigurations":{"id":3183629376118228,"hints":[{"callback":{"out":[]}}]},"invalidateConfigurationRecommendations":{"id":2907529664259058}} });
+registerSDKClass("WidgetKit.WidgetCenter.UserInfoKey", WidgetCenter_UserInfoKey, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.WidgetInfo", WidgetInfo, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.WidgetLocation", WidgetLocation, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.WidgetMountingStyle", WidgetMountingStyle, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.WidgetPreviewContext", WidgetPreviewContext, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9WidgetKit0A11PushHandlerP", {"init":"init()","pushTokenDidChangeWidgets":"pushTokenDidChange(_:widgets:)"});
-registerSDKClass("WidgetKit.WidgetPushInfo", WidgetPushInfo, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.WidgetRelevance", WidgetRelevance, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.WidgetRelevanceAttribute", WidgetRelevanceAttribute, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.WidgetRelevanceGroup", WidgetRelevanceGroup, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WidgetKit.WidgetRenderingMode", WidgetRenderingMode, { module: "WidgetKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WidgetKit.WidgetPushInfo", WidgetPushInfo, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.WidgetRelevance", WidgetRelevance, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.WidgetRelevanceAttribute", WidgetRelevanceAttribute, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.WidgetRelevanceGroup", WidgetRelevanceGroup, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WidgetKit.WidgetRenderingMode", WidgetRenderingMode, { module: "WidgetKit_90ad0eb69cc6bf4a", properties: {} });

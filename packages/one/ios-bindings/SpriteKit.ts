@@ -42,147 +42,147 @@ type $SDK19 = (_CoreGraphics_CGPath) | null;
 /** @MainActor class SKNode */
 export class SKNode extends SDKHandle {
   /** convenience init?(fileNamed filename: String) */
-  static initFileNamed(filename: string): Promise<(SKNode) | null> { return callSDKAsync<(SKNode) | null>("SpriteKit_a956b86ef7a76a8e", 2217527604469715, undefined, [filename]); }
+  static initFileNamed(filename: string): Promise<(SKNode) | null> { return callSDKAsync<(SKNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 2217527604469715, undefined, [filename]); }
   /**
    * convenience init(fileNamed filename: String, securelyWithClasses classes: Set<AnyHashable>) throws
    * @availability iOS 12.0+
    */
-  static initFileNamedSecurelyWithClasses(filename: string, classes: Array<unknown>): Promise<SKNode> { return callSDKAsync<SKNode>("SpriteKit_a956b86ef7a76a8e", 2141457876175318, undefined, [filename, classes]); }
+  static initFileNamedSecurelyWithClasses(filename: string, classes: Array<unknown>): Promise<SKNode> { return callSDKAsync<SKNode>("SpriteKit_90ad0eb69cc6bf4a", 2141457876175318, undefined, [filename, classes]); }
   /** func action(forKey key: String) -> SKAction? */
-  action(key: string): Promise<(SKAction) | null> { return callSDKAsync<(SKAction) | null>("SpriteKit_a956b86ef7a76a8e", 2066664370573078, this, [key]); }
+  action(key: string): Promise<(SKAction) | null> { return callSDKAsync<(SKAction) | null>("SpriteKit_90ad0eb69cc6bf4a", 2066664370573078, this, [key]); }
   /** func addChild(_ node: SKNode) */
-  addChild(node: SKNode): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 3468140043511064, this, [node]); }
+  addChild(node: SKNode): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 3468140043511064, this, [node]); }
   /** func calculateAccumulatedFrame() -> CGRect */
-  calculateAccumulatedFrame(): Promise<$SDK0> { return callSDKAsync<$SDK0>("SpriteKit_a956b86ef7a76a8e", 1851378715855893, this, []); }
+  calculateAccumulatedFrame(): Promise<$SDK0> { return callSDKAsync<$SDK0>("SpriteKit_90ad0eb69cc6bf4a", 1851378715855893, this, []); }
   /** func childNode(withName name: String) -> SKNode? */
-  childNode(name: string): Promise<(SKNode) | null> { return callSDKAsync<(SKNode) | null>("SpriteKit_a956b86ef7a76a8e", 4254436084225389, this, [name]); }
+  childNode(name: string): Promise<(SKNode) | null> { return callSDKAsync<(SKNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 4254436084225389, this, [name]); }
   /** @MainActor func contains(_ p: CGPoint) -> Bool */
-  contains(p: $SDK1): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_a956b86ef7a76a8e", 3595632890814318, this, [p]); }
+  contains(p: $SDK1): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_90ad0eb69cc6bf4a", 3595632890814318, this, [p]); }
   /** func convert(_ point: CGPoint, from node: SKNode) -> CGPoint */
-  convertFrom(point: $SDK1, node: SKNode): Promise<$SDK1> { return callSDKAsync<$SDK1>("SpriteKit_a956b86ef7a76a8e", 110124023724432, this, [point, node]); }
+  convertFrom(point: $SDK1, node: SKNode): Promise<$SDK1> { return callSDKAsync<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 110124023724432, this, [point, node]); }
   /** func convert(_ point: CGPoint, to node: SKNode) -> CGPoint */
-  convertTo(point: $SDK1, node: SKNode): Promise<$SDK1> { return callSDKAsync<$SDK1>("SpriteKit_a956b86ef7a76a8e", 3258140750832953, this, [point, node]); }
+  convertTo(point: $SDK1, node: SKNode): Promise<$SDK1> { return callSDKAsync<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 3258140750832953, this, [point, node]); }
   /** func hasActions() -> Bool */
-  hasActions(): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_a956b86ef7a76a8e", 2656967818627531, this, []); }
+  hasActions(): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2656967818627531, this, []); }
   /** func inParentHierarchy(_ parent: SKNode) -> Bool */
-  inParentHierarchy(parent: SKNode): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_a956b86ef7a76a8e", 4183146121044986, this, [parent]); }
+  inParentHierarchy(parent: SKNode): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_90ad0eb69cc6bf4a", 4183146121044986, this, [parent]); }
   /** init() */
-  static init(): Promise<SKNode> { return callSDKAsync<SKNode>("SpriteKit_a956b86ef7a76a8e", 1969768740578738, undefined, []); }
+  static init(): Promise<SKNode> { return callSDKAsync<SKNode>("SpriteKit_90ad0eb69cc6bf4a", 1969768740578738, undefined, []); }
   /** init?(coder aDecoder: NSCoder) */
-  static initCoder(aDecoder: _Foundation_NSCoder): Promise<(SKNode) | null> { return callSDKAsync<(SKNode) | null>("SpriteKit_a956b86ef7a76a8e", 3992752426479868, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): Promise<(SKNode) | null> { return callSDKAsync<(SKNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 3992752426479868, undefined, [aDecoder]); }
   /** func insertChild(_ node: SKNode, at index: Int) */
-  insertChild(node: SKNode, index: number): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 3210596431313415, this, [node, index]); }
+  insertChild(node: SKNode, index: number): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 3210596431313415, this, [node, index]); }
   /** func intersects(_ node: SKNode) -> Bool */
-  intersects(node: SKNode): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_a956b86ef7a76a8e", 263034538602597, this, [node]); }
+  intersects(node: SKNode): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_90ad0eb69cc6bf4a", 263034538602597, this, [node]); }
   /** func isEqual(to node: SKNode) -> Bool */
-  isEqual(node: SKNode): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_a956b86ef7a76a8e", 2489154546733623, this, [node]); }
+  isEqual(node: SKNode): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2489154546733623, this, [node]); }
   /**
    * func move(toParent parent: SKNode)
    * @availability iOS 9.0+
    */
-  move(parent: SKNode): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 2915027333484797, this, [parent]); }
+  move(parent: SKNode): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 2915027333484797, this, [parent]); }
   /** func atPoint(_ p: CGPoint) -> SKNode */
-  atPoint(p: $SDK1): Promise<SKNode> { return callSDKAsync<SKNode>("SpriteKit_a956b86ef7a76a8e", 2800503596299450, this, [p]); }
+  atPoint(p: $SDK1): Promise<SKNode> { return callSDKAsync<SKNode>("SpriteKit_90ad0eb69cc6bf4a", 2800503596299450, this, [p]); }
   /** func nodes(at p: CGPoint) -> [SKNode] */
-  nodes(p: $SDK1): Promise<Array<SKNode>> { return callSDKAsync<Array<SKNode>>("SpriteKit_a956b86ef7a76a8e", 814419525705176, this, [p]); }
+  nodes(p: $SDK1): Promise<Array<SKNode>> { return callSDKAsync<Array<SKNode>>("SpriteKit_90ad0eb69cc6bf4a", 814419525705176, this, [p]); }
   /** subscript(name: String) -> [SKNode] { get } */
-  subscript(name: string): Promise<Array<SKNode>> { return callSDKAsync<Array<SKNode>>("SpriteKit_a956b86ef7a76a8e", 2909233275723286, this, [name]); }
+  subscript(name: string): Promise<Array<SKNode>> { return callSDKAsync<Array<SKNode>>("SpriteKit_90ad0eb69cc6bf4a", 2909233275723286, this, [name]); }
   /** func removeAction(forKey key: String) */
-  removeAction(key: string): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 1280716856240678, this, [key]); }
+  removeAction(key: string): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 1280716856240678, this, [key]); }
   /** func removeAllActions() */
-  removeAllActions(): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 3698460516333783, this, []); }
+  removeAllActions(): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 3698460516333783, this, []); }
   /** func removeAllChildren() */
-  removeAllChildren(): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 206368690186584, this, []); }
+  removeAllChildren(): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 206368690186584, this, []); }
   /** func removeChildren(in nodes: [SKNode]) */
-  removeChildren(nodes: Array<SKNode>): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 332756453185984, this, [nodes]); }
+  removeChildren(nodes: Array<SKNode>): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 332756453185984, this, [nodes]); }
   /** func removeFromParent() */
-  removeFromParent(): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 4414292644964277, this, []); }
+  removeFromParent(): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 4414292644964277, this, []); }
   /** func run(_ action: SKAction) */
-  run(action: SKAction): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 1606466628284592, this, [action]); }
+  run(action: SKAction): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 1606466628284592, this, [action]); }
   /** func run(_ action: SKAction) async */
-  runCompletion(action: SKAction, block: (() => void)): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 2910891439569655, this, [action, block], [null,{"callback":{"out":[]}}]); }
+  runCompletion(action: SKAction, block: (() => void)): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 2910891439569655, this, [action, block], [null,{"callback":{"out":[]}}]); }
   /** func run(_ action: SKAction, withKey key: String) */
-  runWithKey(action: SKAction, key: string): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 2390070195763088, this, [action, key]); }
+  runWithKey(action: SKAction, key: string): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 2390070195763088, this, [action, key]); }
   /** func setScale(_ scale: CGFloat) */
-  setScale(scale: number): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 4481512515280294, this, [scale]); }
+  setScale(scale: number): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 4481512515280294, this, [scale]); }
   /**
    * func setValue(_ value: SKAttributeValue, forAttribute key: String)
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  setValue(value: SKAttributeValue, key: string): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 3704517416530507, this, [value, key]); }
+  setValue(value: SKAttributeValue, key: string): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 3704517416530507, this, [value, key]); }
   /**
    * func value(forAttributeNamed key: String) -> SKAttributeValue?
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  value(key: string): Promise<$SDK2> { return callSDKAsync<$SDK2>("SpriteKit_a956b86ef7a76a8e", 3424369215901180, this, [key]); }
+  value(key: string): Promise<$SDK2> { return callSDKAsync<$SDK2>("SpriteKit_90ad0eb69cc6bf4a", 3424369215901180, this, [key]); }
   /** var alpha: CGFloat { get set } */
-  get alpha(): Promise<number> { return callSDKAsync<number>("SpriteKit_a956b86ef7a76a8e", 2135636669327113, this, []); }
-  setAlpha(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 472114795275344, this, [value]); }
+  get alpha(): Promise<number> { return callSDKAsync<number>("SpriteKit_90ad0eb69cc6bf4a", 2135636669327113, this, []); }
+  setAlpha(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 472114795275344, this, [value]); }
   /**
    * var attributeValues: [String : SKAttributeValue] { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  get attributeValues(): Promise<$SDK3> { return callSDKAsync<$SDK3>("SpriteKit_a956b86ef7a76a8e", 2943497446220289, this, []); }
-  setAttributeValues(value: $SDK3): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 2668038327733265, this, [value]); }
+  get attributeValues(): Promise<$SDK3> { return callSDKAsync<$SDK3>("SpriteKit_90ad0eb69cc6bf4a", 2943497446220289, this, []); }
+  setAttributeValues(value: $SDK3): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 2668038327733265, this, [value]); }
   /** var children: [SKNode] { get } */
-  get children(): Promise<Array<SKNode>> { return callSDKAsync<Array<SKNode>>("SpriteKit_a956b86ef7a76a8e", 70627470548328, this, []); }
+  get children(): Promise<Array<SKNode>> { return callSDKAsync<Array<SKNode>>("SpriteKit_90ad0eb69cc6bf4a", 70627470548328, this, []); }
   /** var constraints: [SKConstraint]? { get set } */
-  get constraints(): Promise<$SDK4> { return callSDKAsync<$SDK4>("SpriteKit_a956b86ef7a76a8e", 3921275790297222, this, []); }
-  setConstraints(value?: $SDK4): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 1188475363368012, this, [value]); }
+  get constraints(): Promise<$SDK4> { return callSDKAsync<$SDK4>("SpriteKit_90ad0eb69cc6bf4a", 3921275790297222, this, []); }
+  setConstraints(value?: $SDK4): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 1188475363368012, this, [value]); }
   /**
    * var focusBehavior: SKNodeFocusBehavior { get set }
    * @availability iOS 11.0+
    */
-  get focusBehavior(): Promise<SKNodeFocusBehavior> { return callSDKAsync<SKNodeFocusBehavior>("SpriteKit_a956b86ef7a76a8e", 2739969815647326, this, []); }
-  setFocusBehavior(value: SKNodeFocusBehavior): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 1015987152089927, this, [value]); }
+  get focusBehavior(): Promise<SKNodeFocusBehavior> { return callSDKAsync<SKNodeFocusBehavior>("SpriteKit_90ad0eb69cc6bf4a", 2739969815647326, this, []); }
+  setFocusBehavior(value: SKNodeFocusBehavior): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 1015987152089927, this, [value]); }
   /** var frame: CGRect { get } */
-  get frame(): Promise<$SDK0> { return callSDKAsync<$SDK0>("SpriteKit_a956b86ef7a76a8e", 1487937612714846, this, []); }
+  get frame(): Promise<$SDK0> { return callSDKAsync<$SDK0>("SpriteKit_90ad0eb69cc6bf4a", 1487937612714846, this, []); }
   /** var isHidden: Bool { get set } */
-  get isHidden(): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_a956b86ef7a76a8e", 1238364127405669, this, []); }
-  setIsHidden(value: boolean): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 3503718181970188, this, [value]); }
+  get isHidden(): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_90ad0eb69cc6bf4a", 1238364127405669, this, []); }
+  setIsHidden(value: boolean): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 3503718181970188, this, [value]); }
   /** var name: String? { get set } */
-  get name(): Promise<(string) | null> { return callSDKAsync<(string) | null>("SpriteKit_a956b86ef7a76a8e", 3003817456650157, this, []); }
-  setName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 2863620033029595, this, [value]); }
+  get name(): Promise<(string) | null> { return callSDKAsync<(string) | null>("SpriteKit_90ad0eb69cc6bf4a", 3003817456650157, this, []); }
+  setName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 2863620033029595, this, [value]); }
   /** var parent: SKNode? { get } */
-  get parent(): Promise<(SKNode) | null> { return callSDKAsync<(SKNode) | null>("SpriteKit_a956b86ef7a76a8e", 91261171913425, this, []); }
+  get parent(): Promise<(SKNode) | null> { return callSDKAsync<(SKNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 91261171913425, this, []); }
   /** var isPaused: Bool { get set } */
-  get isPaused(): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_a956b86ef7a76a8e", 4379955650350943, this, []); }
-  setIsPaused(value: boolean): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 2132958029991734, this, [value]); }
+  get isPaused(): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_90ad0eb69cc6bf4a", 4379955650350943, this, []); }
+  setIsPaused(value: boolean): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 2132958029991734, this, [value]); }
   /** var physicsBody: SKPhysicsBody? { get set } */
-  get physicsBody(): Promise<(SKPhysicsBody) | null> { return callSDKAsync<(SKPhysicsBody) | null>("SpriteKit_a956b86ef7a76a8e", 1126339852248520, this, []); }
-  setPhysicsBody(value?: (SKPhysicsBody) | null): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 2504028225246846, this, [value]); }
+  get physicsBody(): Promise<(SKPhysicsBody) | null> { return callSDKAsync<(SKPhysicsBody) | null>("SpriteKit_90ad0eb69cc6bf4a", 1126339852248520, this, []); }
+  setPhysicsBody(value?: (SKPhysicsBody) | null): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 2504028225246846, this, [value]); }
   /** var position: CGPoint { get set } */
-  get position(): Promise<$SDK1> { return callSDKAsync<$SDK1>("SpriteKit_a956b86ef7a76a8e", 2089311774853351, this, []); }
-  setPosition(value: $SDK1): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 1991491009728049, this, [value]); }
+  get position(): Promise<$SDK1> { return callSDKAsync<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 2089311774853351, this, []); }
+  setPosition(value: $SDK1): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 1991491009728049, this, [value]); }
   /** @NSCopying var reachConstraints: SKReachConstraints? { get set } */
-  get reachConstraints(): Promise<$SDK5> { return callSDKAsync<$SDK5>("SpriteKit_a956b86ef7a76a8e", 2866419400618904, this, []); }
-  setReachConstraints(value?: $SDK5): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 3993890907743368, this, [value]); }
+  get reachConstraints(): Promise<$SDK5> { return callSDKAsync<$SDK5>("SpriteKit_90ad0eb69cc6bf4a", 2866419400618904, this, []); }
+  setReachConstraints(value?: $SDK5): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 3993890907743368, this, [value]); }
   /** var scene: SKScene? { get } */
-  get scene(): Promise<(SKScene) | null> { return callSDKAsync<(SKScene) | null>("SpriteKit_a956b86ef7a76a8e", 2622563557371679, this, []); }
+  get scene(): Promise<(SKScene) | null> { return callSDKAsync<(SKScene) | null>("SpriteKit_90ad0eb69cc6bf4a", 2622563557371679, this, []); }
   /** var speed: CGFloat { get set } */
-  get speed(): Promise<number> { return callSDKAsync<number>("SpriteKit_a956b86ef7a76a8e", 476014028577787, this, []); }
-  setSpeed(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 63775430250806, this, [value]); }
+  get speed(): Promise<number> { return callSDKAsync<number>("SpriteKit_90ad0eb69cc6bf4a", 476014028577787, this, []); }
+  setSpeed(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 63775430250806, this, [value]); }
   /** var userData: NSMutableDictionary? { get set } */
-  get userData(): Promise<$SDK6> { return callSDKAsync<$SDK6>("SpriteKit_a956b86ef7a76a8e", 4038552974923561, this, []); }
-  setUserData(value?: $SDK6): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 810670453771394, this, [value]); }
+  get userData(): Promise<$SDK6> { return callSDKAsync<$SDK6>("SpriteKit_90ad0eb69cc6bf4a", 4038552974923561, this, []); }
+  setUserData(value?: $SDK6): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 810670453771394, this, [value]); }
   /** var isUserInteractionEnabled: Bool { get set } */
-  get isUserInteractionEnabled(): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_a956b86ef7a76a8e", 2275780949460367, this, []); }
-  setIsUserInteractionEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 1491028939899227, this, [value]); }
+  get isUserInteractionEnabled(): Promise<boolean> { return callSDKAsync<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2275780949460367, this, []); }
+  setIsUserInteractionEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 1491028939899227, this, [value]); }
   /** var xScale: CGFloat { get set } */
-  get xScale(): Promise<number> { return callSDKAsync<number>("SpriteKit_a956b86ef7a76a8e", 832491227508298, this, []); }
-  setXScale(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 1593614681931322, this, [value]); }
+  get xScale(): Promise<number> { return callSDKAsync<number>("SpriteKit_90ad0eb69cc6bf4a", 832491227508298, this, []); }
+  setXScale(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 1593614681931322, this, [value]); }
   /** var yScale: CGFloat { get set } */
-  get yScale(): Promise<number> { return callSDKAsync<number>("SpriteKit_a956b86ef7a76a8e", 2550418461063970, this, []); }
-  setYScale(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 1766000817332568, this, [value]); }
+  get yScale(): Promise<number> { return callSDKAsync<number>("SpriteKit_90ad0eb69cc6bf4a", 2550418461063970, this, []); }
+  setYScale(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 1766000817332568, this, [value]); }
   /** var zPosition: CGFloat { get set } */
-  get zPosition(): Promise<number> { return callSDKAsync<number>("SpriteKit_a956b86ef7a76a8e", 3875156277932030, this, []); }
-  setZPosition(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 1200510679087411, this, [value]); }
+  get zPosition(): Promise<number> { return callSDKAsync<number>("SpriteKit_90ad0eb69cc6bf4a", 3875156277932030, this, []); }
+  setZPosition(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 1200510679087411, this, [value]); }
   /** var zRotation: CGFloat { get set } */
-  get zRotation(): Promise<number> { return callSDKAsync<number>("SpriteKit_a956b86ef7a76a8e", 790566406825839, this, []); }
-  setZRotation(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_a956b86ef7a76a8e", 3738076127832691, this, [value]); }
+  get zRotation(): Promise<number> { return callSDKAsync<number>("SpriteKit_90ad0eb69cc6bf4a", 790566406825839, this, []); }
+  setZRotation(value: number): Promise<void> { return callSDKAsync<void>("SpriteKit_90ad0eb69cc6bf4a", 3738076127832691, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -195,52 +195,52 @@ export class SK3DNode extends (SKNode as unknown as Omit<typeof SKNode, "initCod
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 8.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (SK3DNode) | null { return callSDK<(SK3DNode) | null>("SpriteKit_a956b86ef7a76a8e", 2122918684044308, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (SK3DNode) | null { return callSDK<(SK3DNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 2122918684044308, undefined, [aDecoder]); }
   /**
    * init(viewportSize: CGSize)
    * @availability iOS 8.0+
    */
-  static initViewportSize(viewportSize: $SDK7): SK3DNode { return callSDK<SK3DNode>("SpriteKit_a956b86ef7a76a8e", 2592088780537346, undefined, [viewportSize]); }
+  static initViewportSize(viewportSize: $SDK7): SK3DNode { return callSDK<SK3DNode>("SpriteKit_90ad0eb69cc6bf4a", 2592088780537346, undefined, [viewportSize]); }
   /**
    * func projectPoint(_ point: vector_float3) -> vector_float3
    * @availability iOS 8.0+
    */
-  projectPoint(point: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 2826194684523789, this, [point]); }
+  projectPoint(point: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 2826194684523789, this, [point]); }
   /**
    * func unprojectPoint(_ point: vector_float3) -> vector_float3
    * @availability iOS 8.0+
    */
-  unprojectPoint(point: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 147624560256163, this, [point]); }
+  unprojectPoint(point: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 147624560256163, this, [point]); }
   /**
    * var autoenablesDefaultLighting: Bool { get set }
    * @availability iOS 8.0+
    */
-  get autoenablesDefaultLighting(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 331510590079506, this, []); }
-  set autoenablesDefaultLighting(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 809435114080762, this, [value]); }
+  get autoenablesDefaultLighting(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 331510590079506, this, []); }
+  set autoenablesDefaultLighting(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 809435114080762, this, [value]); }
   /**
    * var loops: Bool { get set }
    * @availability iOS 8.0+
    */
-  get loops(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2327107730019739, this, []); }
-  set loops(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2303163949168361, this, [value]); }
+  get loops(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2327107730019739, this, []); }
+  set loops(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2303163949168361, this, [value]); }
   /**
    * var isPlaying: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isPlaying(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 4426992679119402, this, []); }
-  set isPlaying(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3595478691642512, this, [value]); }
+  get isPlaying(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 4426992679119402, this, []); }
+  set isPlaying(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3595478691642512, this, [value]); }
   /**
    * var sceneTime: TimeInterval { get set }
    * @availability iOS 8.0+
    */
-  get sceneTime(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4276275014521598, this, []); }
-  set sceneTime(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 833601240148887, this, [value]); }
+  get sceneTime(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4276275014521598, this, []); }
+  set sceneTime(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 833601240148887, this, [value]); }
   /**
    * var viewportSize: CGSize { get set }
    * @availability iOS 8.0+
    */
-  get viewportSize(): $SDK7 { return callSDK<$SDK7>("SpriteKit_a956b86ef7a76a8e", 1140603894503416, this, []); }
-  set viewportSize(value: $SDK7) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3899600550999680, this, [value]); }
+  get viewportSize(): $SDK7 { return callSDK<$SDK7>("SpriteKit_90ad0eb69cc6bf4a", 1140603894503416, this, []); }
+  set viewportSize(value: $SDK7) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3899600550999680, this, [value]); }
   declare readonly $type: { "c:objc(cs)SK3DNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "autoenablesDefaultLighting": true; "loops": true; "isPlaying": true; "sceneTime": true; "viewportSize": true };
 }
@@ -251,351 +251,351 @@ export class SKAction extends SDKHandle {
    * init?(named name: String)
    * @availability iOS 9.0+
    */
-  static initNamed(name: string): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_a956b86ef7a76a8e", 4397831044860435, undefined, [name]); }
+  static initNamed(name: string): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_90ad0eb69cc6bf4a", 4397831044860435, undefined, [name]); }
   /**
    * init?(named name: String, duration: TimeInterval)
    * @availability iOS 9.0+
    */
-  static initNamedDuration(name: string, duration: number): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_a956b86ef7a76a8e", 3892231267109428, undefined, [name, duration]); }
+  static initNamedDuration(name: string, duration: number): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_90ad0eb69cc6bf4a", 3892231267109428, undefined, [name, duration]); }
   /**
    * init?(named name: String, from url: URL)
    * @availability iOS 9.0+
    */
-  static initNamedFrom(name: string, url: string): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_a956b86ef7a76a8e", 2415537957196927, undefined, [name, url]); }
+  static initNamedFrom(name: string, url: string): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_90ad0eb69cc6bf4a", 2415537957196927, undefined, [name, url]); }
   /**
    * init?(named name: String, from url: URL, duration: TimeInterval)
    * @availability iOS 9.0+
    */
-  static initNamedFromDuration(name: string, url: string, duration: number): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_a956b86ef7a76a8e", 3406663886714453, undefined, [name, url, duration]); }
+  static initNamedFromDuration(name: string, url: string, duration: number): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_90ad0eb69cc6bf4a", 3406663886714453, undefined, [name, url, duration]); }
   /**
    * class func animate(withNormalTextures textures: [SKTexture], timePerFrame sec: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static animateWithNormalTexturesTimePerFrame(textures: Array<SKTexture>, sec: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1408992562741760, undefined, [textures, sec]); }
+  static animateWithNormalTexturesTimePerFrame(textures: Array<SKTexture>, sec: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1408992562741760, undefined, [textures, sec]); }
   /**
    * class func animate(withNormalTextures textures: [SKTexture], timePerFrame sec: TimeInterval, resize: Bool, restore: Bool) -> SKAction
    * @availability iOS 9.0+
    */
-  static animateWithNormalTexturesTimePerFrameResizeRestore(textures: Array<SKTexture>, sec: number, resize: boolean, restore: boolean): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1788665279951658, undefined, [textures, sec, resize, restore]); }
+  static animateWithNormalTexturesTimePerFrameResizeRestore(textures: Array<SKTexture>, sec: number, resize: boolean, restore: boolean): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1788665279951658, undefined, [textures, sec, resize, restore]); }
   /** class func animate(with textures: [SKTexture], timePerFrame sec: TimeInterval) -> SKAction */
-  static animateWithTimePerFrame(textures: Array<SKTexture>, sec: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1245249547910160, undefined, [textures, sec]); }
+  static animateWithTimePerFrame(textures: Array<SKTexture>, sec: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1245249547910160, undefined, [textures, sec]); }
   /** class func animate(with textures: [SKTexture], timePerFrame sec: TimeInterval, resize: Bool, restore: Bool) -> SKAction */
-  static animateWithTimePerFrameResizeRestore(textures: Array<SKTexture>, sec: number, resize: boolean, restore: boolean): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3346969207448537, undefined, [textures, sec, resize, restore]); }
+  static animateWithTimePerFrameResizeRestore(textures: Array<SKTexture>, sec: number, resize: boolean, restore: boolean): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3346969207448537, undefined, [textures, sec, resize, restore]); }
   /**
    * class func animate(withWarps warps: [SKWarpGeometry], times: [NSNumber]) -> SKAction?
    * @availability iOS 10.0+
    */
-  static animateWithWarpsTimes(warps: Array<SKWarpGeometry>, times: $SDK8): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_a956b86ef7a76a8e", 953626961669053, undefined, [warps, times]); }
+  static animateWithWarpsTimes(warps: Array<SKWarpGeometry>, times: $SDK8): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_90ad0eb69cc6bf4a", 953626961669053, undefined, [warps, times]); }
   /**
    * class func animate(withWarps warps: [SKWarpGeometry], times: [NSNumber], restore: Bool) -> SKAction?
    * @availability iOS 10.0+
    */
-  static animateWithWarpsTimesRestore(warps: Array<SKWarpGeometry>, times: $SDK8, restore: boolean): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_a956b86ef7a76a8e", 16219892403852, undefined, [warps, times, restore]); }
+  static animateWithWarpsTimesRestore(warps: Array<SKWarpGeometry>, times: $SDK8, restore: boolean): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_90ad0eb69cc6bf4a", 16219892403852, undefined, [warps, times, restore]); }
   /**
    * class func applyAngularImpulse(_ impulse: CGFloat, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static applyAngularImpulse(impulse: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 79609148444264, undefined, [impulse, duration]); }
+  static applyAngularImpulse(impulse: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 79609148444264, undefined, [impulse, duration]); }
   /**
    * class func applyForce(_ force: CGVector, at point: CGPoint, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static applyForceAtDuration(force: $SDK9, point: $SDK1, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4404484882675947, undefined, [force, point, duration]); }
+  static applyForceAtDuration(force: $SDK9, point: $SDK1, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4404484882675947, undefined, [force, point, duration]); }
   /**
    * class func applyForce(_ force: CGVector, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static applyForceDuration(force: $SDK9, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3744600062467399, undefined, [force, duration]); }
+  static applyForceDuration(force: $SDK9, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3744600062467399, undefined, [force, duration]); }
   /**
    * class func applyImpulse(_ impulse: CGVector, at point: CGPoint, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static applyImpulseAtDuration(impulse: $SDK9, point: $SDK1, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3406416515920729, undefined, [impulse, point, duration]); }
+  static applyImpulseAtDuration(impulse: $SDK9, point: $SDK1, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3406416515920729, undefined, [impulse, point, duration]); }
   /**
    * class func applyImpulse(_ impulse: CGVector, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static applyImpulseDuration(impulse: $SDK9, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2102783068548430, undefined, [impulse, duration]); }
+  static applyImpulseDuration(impulse: $SDK9, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2102783068548430, undefined, [impulse, duration]); }
   /**
    * class func applyTorque(_ torque: CGFloat, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static applyTorque(torque: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1128134962983498, undefined, [torque, duration]); }
+  static applyTorque(torque: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1128134962983498, undefined, [torque, duration]); }
   /**
    * class func changeCharge(by v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeChargeByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1398947638506722, undefined, [v, duration]); }
+  static changeChargeByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1398947638506722, undefined, [v, duration]); }
   /**
    * class func changeCharge(to v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeChargeToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2983190388332631, undefined, [v, duration]); }
+  static changeChargeToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2983190388332631, undefined, [v, duration]); }
   /**
    * class func changeMass(by v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeMassByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2350500493167278, undefined, [v, duration]); }
+  static changeMassByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2350500493167278, undefined, [v, duration]); }
   /**
    * class func changeMass(to v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeMassToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 782644006214402, undefined, [v, duration]); }
+  static changeMassToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 782644006214402, undefined, [v, duration]); }
   /**
    * class func changeObstruction(by v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeObstructionByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2312258638210477, undefined, [v, duration]); }
+  static changeObstructionByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2312258638210477, undefined, [v, duration]); }
   /**
    * class func changeObstruction(to v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeObstructionToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2563148832062130, undefined, [v, duration]); }
+  static changeObstructionToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2563148832062130, undefined, [v, duration]); }
   /**
    * class func changeOcclusion(by v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeOcclusionByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4455454653351395, undefined, [v, duration]); }
+  static changeOcclusionByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4455454653351395, undefined, [v, duration]); }
   /**
    * class func changeOcclusion(to v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeOcclusionToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1743001937546348, undefined, [v, duration]); }
+  static changeOcclusionToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1743001937546348, undefined, [v, duration]); }
   /**
    * class func changePlaybackRate(by v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changePlaybackRateByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1487354396468631, undefined, [v, duration]); }
+  static changePlaybackRateByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1487354396468631, undefined, [v, duration]); }
   /**
    * class func changePlaybackRate(to v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changePlaybackRateToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2226004631635134, undefined, [v, duration]); }
+  static changePlaybackRateToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2226004631635134, undefined, [v, duration]); }
   /**
    * class func changeReverb(by v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeReverbByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3639868647323587, undefined, [v, duration]); }
+  static changeReverbByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3639868647323587, undefined, [v, duration]); }
   /**
    * class func changeReverb(to v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeReverbToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3770520820826029, undefined, [v, duration]); }
+  static changeReverbToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3770520820826029, undefined, [v, duration]); }
   /**
    * class func changeVolume(by v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeVolumeByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3847355064626361, undefined, [v, duration]); }
+  static changeVolumeByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3847355064626361, undefined, [v, duration]); }
   /**
    * class func changeVolume(to v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static changeVolumeToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3583840545625962, undefined, [v, duration]); }
+  static changeVolumeToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3583840545625962, undefined, [v, duration]); }
   /** class func colorize(with color: UIColor, colorBlendFactor: CGFloat, duration: TimeInterval) -> SKAction */
-  static colorizeWithColorBlendFactorDuration(color: _UIKit_UIColor, colorBlendFactor: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1494791218165512, undefined, [color, colorBlendFactor, duration]); }
+  static colorizeWithColorBlendFactorDuration(color: _UIKit_UIColor, colorBlendFactor: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1494791218165512, undefined, [color, colorBlendFactor, duration]); }
   /** class func colorize(withColorBlendFactor colorBlendFactor: CGFloat, duration sec: TimeInterval) -> SKAction */
-  static colorizeWithColorBlendFactorDuration96566(colorBlendFactor: number, sec: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1684593302762372, undefined, [colorBlendFactor, sec]); }
+  static colorizeWithColorBlendFactorDuration96566(colorBlendFactor: number, sec: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1684593302762372, undefined, [colorBlendFactor, sec]); }
   /** class func customAction(withDuration duration: TimeInterval, actionBlock block: @escaping (SKNode, CGFloat) -> Void) -> SKAction */
-  static customAction(duration: number, block: ((arg0: SKNode, arg1: number) => void)): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 600528162404727, undefined, [duration, block], [null,{"callback":{"out":[]}}]); }
+  static customAction(duration: number, block: ((arg0: SKNode, arg1: number) => void)): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 600528162404727, undefined, [duration, block], [null,{"callback":{"out":[]}}]); }
   /** class func fadeAlpha(by factor: CGFloat, duration: TimeInterval) -> SKAction */
-  static fadeAlphaByDuration(factor: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3075039667382254, undefined, [factor, duration]); }
+  static fadeAlphaByDuration(factor: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3075039667382254, undefined, [factor, duration]); }
   /** class func fadeAlpha(to alpha: CGFloat, duration: TimeInterval) -> SKAction */
-  static fadeAlphaToDuration(alpha: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3853590009768175, undefined, [alpha, duration]); }
+  static fadeAlphaToDuration(alpha: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3853590009768175, undefined, [alpha, duration]); }
   /** class func fadeIn(withDuration duration: TimeInterval) -> SKAction */
-  static fadeIn(duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3467010172726101, undefined, [duration]); }
+  static fadeIn(duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3467010172726101, undefined, [duration]); }
   /** class func fadeOut(withDuration duration: TimeInterval) -> SKAction */
-  static fadeOut(duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1842369501203101, undefined, [duration]); }
+  static fadeOut(duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1842369501203101, undefined, [duration]); }
   /**
    * class func falloff(by falloff: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 8.0+
    */
-  static falloffByDuration(falloff: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2517760177017858, undefined, [falloff, duration]); }
+  static falloffByDuration(falloff: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2517760177017858, undefined, [falloff, duration]); }
   /**
    * class func falloff(to falloff: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 8.0+
    */
-  static falloffToDuration(falloff: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1468893810271019, undefined, [falloff, duration]); }
+  static falloffToDuration(falloff: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1468893810271019, undefined, [falloff, duration]); }
   /** class func follow(_ path: CGPath, asOffset offset: Bool, orientToPath orient: Bool, duration: TimeInterval) -> SKAction */
-  static followAsOffsetOrientToPathDuration(path: _CoreGraphics_CGPath, offset: boolean, orient: boolean, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1922161078490573, undefined, [path, offset, orient, duration]); }
+  static followAsOffsetOrientToPathDuration(path: _CoreGraphics_CGPath, offset: boolean, orient: boolean, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1922161078490573, undefined, [path, offset, orient, duration]); }
   /** class func follow(_ path: CGPath, asOffset offset: Bool, orientToPath orient: Bool, speed: CGFloat) -> SKAction */
-  static followAsOffsetOrientToPathSpeed(path: _CoreGraphics_CGPath, offset: boolean, orient: boolean, speed: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4145468979042184, undefined, [path, offset, orient, speed]); }
+  static followAsOffsetOrientToPathSpeed(path: _CoreGraphics_CGPath, offset: boolean, orient: boolean, speed: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4145468979042184, undefined, [path, offset, orient, speed]); }
   /** class func follow(_ path: CGPath, duration: TimeInterval) -> SKAction */
-  static followDuration(path: _CoreGraphics_CGPath, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3996264419831946, undefined, [path, duration]); }
+  static followDuration(path: _CoreGraphics_CGPath, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3996264419831946, undefined, [path, duration]); }
   /** class func follow(_ path: CGPath, speed: CGFloat) -> SKAction */
-  static followSpeed(path: _CoreGraphics_CGPath, speed: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1195641762162266, undefined, [path, speed]); }
+  static followSpeed(path: _CoreGraphics_CGPath, speed: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1195641762162266, undefined, [path, speed]); }
   /** class func group(_ actions: [SKAction]) -> SKAction */
-  static group(actions: Array<SKAction>): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4267903830641366, undefined, [actions]); }
+  static group(actions: Array<SKAction>): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4267903830641366, undefined, [actions]); }
   /**
    * class func hide() -> SKAction
    * @availability iOS 8.0+
    */
-  static hide(): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2948806715915213, undefined, []); }
+  static hide(): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2948806715915213, undefined, []); }
   /** class func move(by delta: CGVector, duration: TimeInterval) -> SKAction */
-  static moveByDuration(delta: $SDK9, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 343181515681644, undefined, [delta, duration]); }
+  static moveByDuration(delta: $SDK9, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 343181515681644, undefined, [delta, duration]); }
   /** class func moveBy(x deltaX: CGFloat, y deltaY: CGFloat, duration: TimeInterval) -> SKAction */
-  static moveBy(deltaX: number, deltaY: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2165771564533816, undefined, [deltaX, deltaY, duration]); }
+  static moveBy(deltaX: number, deltaY: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2165771564533816, undefined, [deltaX, deltaY, duration]); }
   /** class func move(to location: CGPoint, duration: TimeInterval) -> SKAction */
-  static moveToDuration(location: $SDK1, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4092839230538190, undefined, [location, duration]); }
+  static moveToDuration(location: $SDK1, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4092839230538190, undefined, [location, duration]); }
   /** class func moveTo(x: CGFloat, duration: TimeInterval) -> SKAction */
-  static moveToXDuration(x: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1745786304380832, undefined, [x, duration]); }
+  static moveToXDuration(x: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1745786304380832, undefined, [x, duration]); }
   /** class func moveTo(y: CGFloat, duration: TimeInterval) -> SKAction */
-  static moveToYDuration(y: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3493960056009188, undefined, [y, duration]); }
+  static moveToYDuration(y: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3493960056009188, undefined, [y, duration]); }
   /**
    * class func pause() -> SKAction
    * @availability iOS 9.0+
    */
-  static pause(): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1974236448781984, undefined, []); }
+  static pause(): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1974236448781984, undefined, []); }
   /**
    * class func play() -> SKAction
    * @availability iOS 9.0+
    */
-  static play(): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3878271495575761, undefined, []); }
+  static play(): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3878271495575761, undefined, []); }
   /** class func playSoundFileNamed(_ soundFile: String, waitForCompletion wait: Bool) -> SKAction */
-  static playSoundFileNamed(soundFile: string, wait: boolean): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4283672933409232, undefined, [soundFile, wait]); }
+  static playSoundFileNamed(soundFile: string, wait: boolean): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4283672933409232, undefined, [soundFile, wait]); }
   /**
    * class func reach(to position: CGPoint, rootNode root: SKNode, duration: TimeInterval) -> SKAction
    * @availability iOS 8.0+
    */
-  static reachToRootNodeDuration(position: $SDK1, root: SKNode, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2838548648207107, undefined, [position, root, duration]); }
+  static reachToRootNodeDuration(position: $SDK1, root: SKNode, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2838548648207107, undefined, [position, root, duration]); }
   /**
    * class func reach(to position: CGPoint, rootNode root: SKNode, velocity: CGFloat) -> SKAction
    * @availability iOS 8.0+
    */
-  static reachToRootNodeVelocity(position: $SDK1, root: SKNode, velocity: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3477445244731546, undefined, [position, root, velocity]); }
+  static reachToRootNodeVelocity(position: $SDK1, root: SKNode, velocity: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3477445244731546, undefined, [position, root, velocity]); }
   /**
    * class func reach(to node: SKNode, rootNode root: SKNode, duration sec: TimeInterval) -> SKAction
    * @availability iOS 8.0+
    */
-  static reachToRootNodeDuration83424(node: SKNode, root: SKNode, sec: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3212481169554231, undefined, [node, root, sec]); }
+  static reachToRootNodeDuration83424(node: SKNode, root: SKNode, sec: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3212481169554231, undefined, [node, root, sec]); }
   /**
    * class func reach(to node: SKNode, rootNode root: SKNode, velocity: CGFloat) -> SKAction
    * @availability iOS 8.0+
    */
-  static reachToRootNodeVelocity73997(node: SKNode, root: SKNode, velocity: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 993310896417411, undefined, [node, root, velocity]); }
+  static reachToRootNodeVelocity73997(node: SKNode, root: SKNode, velocity: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 993310896417411, undefined, [node, root, velocity]); }
   /** class func removeFromParent() -> SKAction */
-  static removeFromParent(): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 311091557721358, undefined, []); }
+  static removeFromParent(): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 311091557721358, undefined, []); }
   /** class func `repeat`(_ action: SKAction, count: Int) -> SKAction */
-  static repeat(action: SKAction, count: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1124528070825852, undefined, [action, count]); }
+  static repeat(action: SKAction, count: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1124528070825852, undefined, [action, count]); }
   /** class func repeatForever(_ action: SKAction) -> SKAction */
-  static repeatForever(action: SKAction): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 794612066877940, undefined, [action]); }
+  static repeatForever(action: SKAction): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 794612066877940, undefined, [action]); }
   /** class func resize(byWidth width: CGFloat, height: CGFloat, duration: TimeInterval) -> SKAction */
-  static resizeByWidthHeightDuration(width: number, height: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3795977716733080, undefined, [width, height, duration]); }
+  static resizeByWidthHeightDuration(width: number, height: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3795977716733080, undefined, [width, height, duration]); }
   /** class func resize(toHeight height: CGFloat, duration: TimeInterval) -> SKAction */
-  static resizeToHeightDuration(height: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4133602803104705, undefined, [height, duration]); }
+  static resizeToHeightDuration(height: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4133602803104705, undefined, [height, duration]); }
   /** class func resize(toWidth width: CGFloat, duration: TimeInterval) -> SKAction */
-  static resizeToWidthDuration(width: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2946141757203611, undefined, [width, duration]); }
+  static resizeToWidthDuration(width: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2946141757203611, undefined, [width, duration]); }
   /** class func resize(toWidth width: CGFloat, height: CGFloat, duration: TimeInterval) -> SKAction */
-  static resizeToWidthHeightDuration(width: number, height: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3405195812077742, undefined, [width, height, duration]); }
+  static resizeToWidthHeightDuration(width: number, height: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3405195812077742, undefined, [width, height, duration]); }
   /** class func rotate(byAngle radians: CGFloat, duration: TimeInterval) -> SKAction */
-  static rotateByAngleDuration(radians: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 817501609583652, undefined, [radians, duration]); }
+  static rotateByAngleDuration(radians: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 817501609583652, undefined, [radians, duration]); }
   /** class func rotate(toAngle radians: CGFloat, duration: TimeInterval) -> SKAction */
-  static rotateToAngleDuration(radians: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4449717160879152, undefined, [radians, duration]); }
+  static rotateToAngleDuration(radians: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4449717160879152, undefined, [radians, duration]); }
   /** class func rotate(toAngle radians: CGFloat, duration: TimeInterval, shortestUnitArc: Bool) -> SKAction */
-  static rotateToAngleDurationShortestUnitArc(radians: number, duration: number, shortestUnitArc: boolean): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1631703415714066, undefined, [radians, duration, shortestUnitArc]); }
+  static rotateToAngleDurationShortestUnitArc(radians: number, duration: number, shortestUnitArc: boolean): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1631703415714066, undefined, [radians, duration, shortestUnitArc]); }
   /** class func run(_ action: SKAction, onChildWithName name: String) -> SKAction */
-  static runOnChildWithName(action: SKAction, name: string): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3034096532329414, undefined, [action, name]); }
+  static runOnChildWithName(action: SKAction, name: string): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3034096532329414, undefined, [action, name]); }
   /** class func run(_ block: @escaping () -> Void) -> SKAction */
-  static run(block: (() => void)): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1010702105207058, undefined, [block], [{"callback":{"out":[]}}]); }
+  static run(block: (() => void)): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1010702105207058, undefined, [block], [{"callback":{"out":[]}}]); }
   /** class func run(_ block: @escaping () -> Void, queue: dispatch_queue_t) -> SKAction */
-  static runQueue(block: (() => void), queue: _Dispatch_DispatchQueue): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3168880117879540, undefined, [block, queue], [{"callback":{"out":[]}},null]); }
+  static runQueue(block: (() => void), queue: _Dispatch_DispatchQueue): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3168880117879540, undefined, [block, queue], [{"callback":{"out":[]}},null]); }
   /** class func scale(by scale: CGFloat, duration: TimeInterval) -> SKAction */
-  static scaleByDuration(scale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2663296558330208, undefined, [scale, duration]); }
+  static scaleByDuration(scale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2663296558330208, undefined, [scale, duration]); }
   /** class func scale(to scale: CGFloat, duration: TimeInterval) -> SKAction */
-  static scaleToDuration(scale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3068508026787087, undefined, [scale, duration]); }
+  static scaleToDuration(scale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3068508026787087, undefined, [scale, duration]); }
   /**
    * class func scale(to size: CGSize, duration: TimeInterval) -> SKAction
    * @availability iOS 10.0+
    */
-  static scaleToDuration90142(size: $SDK7, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3883173550205795, undefined, [size, duration]); }
+  static scaleToDuration90142(size: $SDK7, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3883173550205795, undefined, [size, duration]); }
   /** class func scaleX(by xScale: CGFloat, y yScale: CGFloat, duration: TimeInterval) -> SKAction */
-  static scaleXByYDuration(xScale: number, yScale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4379201439950315, undefined, [xScale, yScale, duration]); }
+  static scaleXByYDuration(xScale: number, yScale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4379201439950315, undefined, [xScale, yScale, duration]); }
   /** class func scaleX(to scale: CGFloat, duration: TimeInterval) -> SKAction */
-  static scaleXToDuration(scale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4139956851287317, undefined, [scale, duration]); }
+  static scaleXToDuration(scale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4139956851287317, undefined, [scale, duration]); }
   /** class func scaleX(to xScale: CGFloat, y yScale: CGFloat, duration: TimeInterval) -> SKAction */
-  static scaleXToYDuration(xScale: number, yScale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 4499481372697347, undefined, [xScale, yScale, duration]); }
+  static scaleXToYDuration(xScale: number, yScale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 4499481372697347, undefined, [xScale, yScale, duration]); }
   /** class func scaleY(to scale: CGFloat, duration: TimeInterval) -> SKAction */
-  static scaleY(scale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1712812591495768, undefined, [scale, duration]); }
+  static scaleY(scale: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1712812591495768, undefined, [scale, duration]); }
   /** class func sequence(_ actions: [SKAction]) -> SKAction */
-  static sequence(actions: Array<SKAction>): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1847708191190838, undefined, [actions]); }
+  static sequence(actions: Array<SKAction>): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1847708191190838, undefined, [actions]); }
   /**
    * class func setNormalTexture(_ texture: SKTexture) -> SKAction
    * @availability iOS 9.0+
    */
-  static setNormalTexture(texture: SKTexture): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3519958000858485, undefined, [texture]); }
+  static setNormalTexture(texture: SKTexture): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3519958000858485, undefined, [texture]); }
   /**
    * class func setNormalTexture(_ texture: SKTexture, resize: Bool) -> SKAction
    * @availability iOS 9.0+
    */
-  static setNormalTextureResize(texture: SKTexture, resize: boolean): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3622844830133684, undefined, [texture, resize]); }
+  static setNormalTextureResize(texture: SKTexture, resize: boolean): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3622844830133684, undefined, [texture, resize]); }
   /**
    * class func setTexture(_ texture: SKTexture) -> SKAction
    * @availability iOS 7.1+
    */
-  static setTexture(texture: SKTexture): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 541859815214670, undefined, [texture]); }
+  static setTexture(texture: SKTexture): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 541859815214670, undefined, [texture]); }
   /**
    * class func setTexture(_ texture: SKTexture, resize: Bool) -> SKAction
    * @availability iOS 7.1+
    */
-  static setTextureResize(texture: SKTexture, resize: boolean): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1609242417566567, undefined, [texture, resize]); }
+  static setTextureResize(texture: SKTexture, resize: boolean): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1609242417566567, undefined, [texture, resize]); }
   /** class func speed(by speed: CGFloat, duration: TimeInterval) -> SKAction */
-  static speedByDuration(speed: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 2897190683510360, undefined, [speed, duration]); }
+  static speedByDuration(speed: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 2897190683510360, undefined, [speed, duration]); }
   /** class func speed(to speed: CGFloat, duration: TimeInterval) -> SKAction */
-  static speedToDuration(speed: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1804712194360701, undefined, [speed, duration]); }
+  static speedToDuration(speed: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1804712194360701, undefined, [speed, duration]); }
   /**
    * class func stereoPan(by v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static stereoPanByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3858483019402321, undefined, [v, duration]); }
+  static stereoPanByDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3858483019402321, undefined, [v, duration]); }
   /**
    * class func stereoPan(to v: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 9.0+
    */
-  static stereoPanToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1117722364670710, undefined, [v, duration]); }
+  static stereoPanToDuration(v: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1117722364670710, undefined, [v, duration]); }
   /**
    * class func stop() -> SKAction
    * @availability iOS 9.0+
    */
-  static stop(): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3903306762646793, undefined, []); }
+  static stop(): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3903306762646793, undefined, []); }
   /**
    * class func strength(by strength: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 8.0+
    */
-  static strengthByDuration(strength: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 1662364010470617, undefined, [strength, duration]); }
+  static strengthByDuration(strength: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 1662364010470617, undefined, [strength, duration]); }
   /**
    * class func strength(to strength: Float, duration: TimeInterval) -> SKAction
    * @availability iOS 8.0+
    */
-  static strengthToDuration(strength: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 312532663480261, undefined, [strength, duration]); }
+  static strengthToDuration(strength: number, duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 312532663480261, undefined, [strength, duration]); }
   /**
    * class func unhide() -> SKAction
    * @availability iOS 8.0+
    */
-  static unhide(): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3389078260729943, undefined, []); }
+  static unhide(): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3389078260729943, undefined, []); }
   /** class func wait(forDuration duration: TimeInterval) -> SKAction */
-  static waitForDuration(duration: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3722534234203322, undefined, [duration]); }
+  static waitForDuration(duration: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3722534234203322, undefined, [duration]); }
   /** class func wait(forDuration duration: TimeInterval, withRange durationRange: TimeInterval) -> SKAction */
-  static waitForDurationWithRange(duration: number, durationRange: number): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3699894392994243, undefined, [duration, durationRange]); }
+  static waitForDurationWithRange(duration: number, durationRange: number): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3699894392994243, undefined, [duration, durationRange]); }
   /**
    * class func warp(to warp: SKWarpGeometry, duration: TimeInterval) -> SKAction?
    * @availability iOS 10.0+
    */
-  static warp(warp: SKWarpGeometry, duration: number): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_a956b86ef7a76a8e", 1153704561872239, undefined, [warp, duration]); }
+  static warp(warp: SKWarpGeometry, duration: number): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_90ad0eb69cc6bf4a", 1153704561872239, undefined, [warp, duration]); }
   /** func reversed() -> SKAction */
-  reversed(): SKAction { return callSDK<SKAction>("SpriteKit_a956b86ef7a76a8e", 3598905034689924, this, []); }
+  reversed(): SKAction { return callSDK<SKAction>("SpriteKit_90ad0eb69cc6bf4a", 3598905034689924, this, []); }
   /** var duration: TimeInterval { get set } */
-  get duration(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4254226121062542, this, []); }
-  set duration(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1176020603480884, this, [value]); }
+  get duration(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4254226121062542, this, []); }
+  set duration(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1176020603480884, this, [value]); }
   /** var speed: CGFloat { get set } */
-  get speed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2293117086113429, this, []); }
-  set speed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1556391909613756, this, [value]); }
+  get speed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2293117086113429, this, []); }
+  set speed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1556391909613756, this, [value]); }
   /**
    * var timingFunction: SKActionTimingFunction { get set }
    * @availability iOS 8.0+
    */
-  get timingFunction(): $SDK11 { return callSDK<$SDK11>("SpriteKit_a956b86ef7a76a8e", 1446556610075990, this, []); }
+  get timingFunction(): $SDK11 { return callSDK<$SDK11>("SpriteKit_90ad0eb69cc6bf4a", 1446556610075990, this, []); }
   /** var timingMode: SKActionTimingMode { get set } */
-  get timingMode(): SKActionTimingMode { return callSDK<SKActionTimingMode>("SpriteKit_a956b86ef7a76a8e", 1490961954440716, this, []); }
-  set timingMode(value: SKActionTimingMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3282340737923087, this, [value]); }
+  get timingMode(): SKActionTimingMode { return callSDK<SKActionTimingMode>("SpriteKit_90ad0eb69cc6bf4a", 1490961954440716, this, []); }
+  set timingMode(value: SKActionTimingMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3282340737923087, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "speed": true; "timingMode": true };
 }
@@ -614,7 +614,7 @@ export const SKActionTimingMode = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (SKActionTimingMode) | null { return callSDK<(SKActionTimingMode) | null>("SpriteKit_a956b86ef7a76a8e", 82450823612189, undefined, [rawValue]); }
+  init(rawValue: number): (SKActionTimingMode) | null { return callSDK<(SKActionTimingMode) | null>("SpriteKit_90ad0eb69cc6bf4a", 82450823612189, undefined, [rawValue]); }
 };
 
 /**
@@ -626,17 +626,17 @@ export class SKAttribute extends SDKHandle {
    * init(name: String, type: SKAttributeType)
    * @availability iOS 9.0+
    */
-  static init(name: string, type: SKAttributeType): SKAttribute { return callSDK<SKAttribute>("SpriteKit_a956b86ef7a76a8e", 3143896666000421, undefined, [name, type]); }
+  static init(name: string, type: SKAttributeType): SKAttribute { return callSDK<SKAttribute>("SpriteKit_90ad0eb69cc6bf4a", 3143896666000421, undefined, [name, type]); }
   /**
    * var name: String { get }
    * @availability iOS 9.0+
    */
-  get name(): string { return callSDK<string>("SpriteKit_a956b86ef7a76a8e", 3946201240157759, this, []); }
+  get name(): string { return callSDK<string>("SpriteKit_90ad0eb69cc6bf4a", 3946201240157759, this, []); }
   /**
    * var type: SKAttributeType { get }
    * @availability iOS 9.0+
    */
-  get type(): SKAttributeType { return callSDK<SKAttributeType>("SpriteKit_a956b86ef7a76a8e", 1018108926464758, this, []); }
+  get type(): SKAttributeType { return callSDK<SKAttributeType>("SpriteKit_90ad0eb69cc6bf4a", 1018108926464758, this, []); }
   declare readonly $type: { "c:objc(cs)SKAttribute": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "type": true };
 }
@@ -652,7 +652,7 @@ export const SKAttributeType = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (SKAttributeType) | null { return callSDK<(SKAttributeType) | null>("SpriteKit_a956b86ef7a76a8e", 1503866734758810, undefined, [rawValue]); }
+  init(rawValue: number): (SKAttributeType) | null { return callSDK<(SKAttributeType) | null>("SpriteKit_90ad0eb69cc6bf4a", 1503866734758810, undefined, [rawValue]); }
 };
 
 /**
@@ -664,51 +664,51 @@ export class SKAttributeValue extends SDKHandle {
    * convenience init(float value: Float)
    * @availability iOS 9.0+
    */
-  static initFloat(value: number): SKAttributeValue { return callSDK<SKAttributeValue>("SpriteKit_a956b86ef7a76a8e", 976864208139448, undefined, [value]); }
+  static initFloat(value: number): SKAttributeValue { return callSDK<SKAttributeValue>("SpriteKit_90ad0eb69cc6bf4a", 976864208139448, undefined, [value]); }
   /**
    * convenience init(vectorFloat2 value: vector_float2)
    * @availability iOS 9.0+
    */
-  static initVectorFloat2(value: SDKHandle): SKAttributeValue { return callSDK<SKAttributeValue>("SpriteKit_a956b86ef7a76a8e", 3143405870888641, undefined, [value]); }
+  static initVectorFloat2(value: SDKHandle): SKAttributeValue { return callSDK<SKAttributeValue>("SpriteKit_90ad0eb69cc6bf4a", 3143405870888641, undefined, [value]); }
   /**
    * convenience init(vectorFloat3 value: vector_float3)
    * @availability iOS 9.0+
    */
-  static initVectorFloat3(value: SDKHandle): SKAttributeValue { return callSDK<SKAttributeValue>("SpriteKit_a956b86ef7a76a8e", 1779574674245011, undefined, [value]); }
+  static initVectorFloat3(value: SDKHandle): SKAttributeValue { return callSDK<SKAttributeValue>("SpriteKit_90ad0eb69cc6bf4a", 1779574674245011, undefined, [value]); }
   /**
    * convenience init(vectorFloat4 value: vector_float4)
    * @availability iOS 9.0+
    */
-  static initVectorFloat4(value: SDKHandle): SKAttributeValue { return callSDK<SKAttributeValue>("SpriteKit_a956b86ef7a76a8e", 2494816077661906, undefined, [value]); }
+  static initVectorFloat4(value: SDKHandle): SKAttributeValue { return callSDK<SKAttributeValue>("SpriteKit_90ad0eb69cc6bf4a", 2494816077661906, undefined, [value]); }
   /**
    * init()
    * @availability iOS 9.0+
    */
-  static init(): SKAttributeValue { return callSDK<SKAttributeValue>("SpriteKit_a956b86ef7a76a8e", 3830151815504036, undefined, []); }
+  static init(): SKAttributeValue { return callSDK<SKAttributeValue>("SpriteKit_90ad0eb69cc6bf4a", 3830151815504036, undefined, []); }
   /**
    * var floatValue: Float { get set }
    * @availability iOS 9.0+
    */
-  get floatValue(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3619831997828030, this, []); }
-  set floatValue(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3391000103854066, this, [value]); }
+  get floatValue(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3619831997828030, this, []); }
+  set floatValue(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3391000103854066, this, [value]); }
   /**
    * var vectorFloat2Value: vector_float2 { get set }
    * @availability iOS 9.0+
    */
-  get vectorFloat2Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 53690089476113, this, []); }
-  set vectorFloat2Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1662912053344332, this, [value]); }
+  get vectorFloat2Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 53690089476113, this, []); }
+  set vectorFloat2Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1662912053344332, this, [value]); }
   /**
    * var vectorFloat3Value: vector_float3 { get set }
    * @availability iOS 9.0+
    */
-  get vectorFloat3Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 3164080395082119, this, []); }
-  set vectorFloat3Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4101880776061887, this, [value]); }
+  get vectorFloat3Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 3164080395082119, this, []); }
+  set vectorFloat3Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4101880776061887, this, [value]); }
   /**
    * var vectorFloat4Value: vector_float4 { get set }
    * @availability iOS 9.0+
    */
-  get vectorFloat4Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 863671599382573, this, []); }
-  set vectorFloat4Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3950951890294525, this, [value]); }
+  get vectorFloat4Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 863671599382573, this, []); }
+  set vectorFloat4Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3950951890294525, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKAttributeValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "floatValue": true; "vectorFloat2Value": true; "vectorFloat3Value": true; "vectorFloat4Value": true };
 }
@@ -722,40 +722,40 @@ export class SKAudioNode extends (SKNode as unknown as Omit<typeof SKNode, "init
    * init(avAudioNode node: AVAudioNode?)
    * @availability iOS 9.0+
    */
-  static initAvAudioNode(node?: $SDK12): SKAudioNode { return callSDK<SKAudioNode>("SpriteKit_a956b86ef7a76a8e", 591139841846530, undefined, [node]); }
+  static initAvAudioNode(node?: $SDK12): SKAudioNode { return callSDK<SKAudioNode>("SpriteKit_90ad0eb69cc6bf4a", 591139841846530, undefined, [node]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 9.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (SKAudioNode) | null { return callSDK<(SKAudioNode) | null>("SpriteKit_a956b86ef7a76a8e", 1038166258156689, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (SKAudioNode) | null { return callSDK<(SKAudioNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 1038166258156689, undefined, [aDecoder]); }
   /**
    * convenience init(fileNamed name: String)
    * @availability iOS 9.0+
    */
-  static initFileNamed(name: string): SKAudioNode { return callSDK<SKAudioNode>("SpriteKit_a956b86ef7a76a8e", 3337836775574920, undefined, [name]); }
+  static initFileNamed(name: string): SKAudioNode { return callSDK<SKAudioNode>("SpriteKit_90ad0eb69cc6bf4a", 3337836775574920, undefined, [name]); }
   /**
    * convenience init(url: URL)
    * @availability iOS 9.0+
    */
-  static initUrl(url: string): SKAudioNode { return callSDK<SKAudioNode>("SpriteKit_a956b86ef7a76a8e", 967587654191852, undefined, [url]); }
+  static initUrl(url: string): SKAudioNode { return callSDK<SKAudioNode>("SpriteKit_90ad0eb69cc6bf4a", 967587654191852, undefined, [url]); }
   /**
    * var autoplayLooped: Bool { get set }
    * @availability iOS 9.0+
    */
-  get autoplayLooped(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 1200604820908964, this, []); }
-  set autoplayLooped(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2150309718633783, this, [value]); }
+  get autoplayLooped(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 1200604820908964, this, []); }
+  set autoplayLooped(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2150309718633783, this, [value]); }
   /**
    * var avAudioNode: AVAudioNode? { get set }
    * @availability iOS 9.0+
    */
-  get avAudioNode(): $SDK12 { return callSDK<$SDK12>("SpriteKit_a956b86ef7a76a8e", 730388838198797, this, []); }
-  set avAudioNode(value: $SDK12) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1581975861353209, this, [value]); }
+  get avAudioNode(): $SDK12 { return callSDK<$SDK12>("SpriteKit_90ad0eb69cc6bf4a", 730388838198797, this, []); }
+  set avAudioNode(value: $SDK12) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1581975861353209, this, [value]); }
   /**
    * var isPositional: Bool { get set }
    * @availability iOS 9.0+
    */
-  get isPositional(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 1432338682376841, this, []); }
-  set isPositional(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1219904217767416, this, [value]); }
+  get isPositional(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 1432338682376841, this, []); }
+  set isPositional(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1219904217767416, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKAudioNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "autoplayLooped": true; "avAudioNode": true; "isPositional": true };
 }
@@ -771,7 +771,7 @@ export const SKBlendMode = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (SKBlendMode) | null { return callSDK<(SKBlendMode) | null>("SpriteKit_a956b86ef7a76a8e", 900724375819415, undefined, [rawValue]); }
+  init(rawValue: number): (SKBlendMode) | null { return callSDK<(SKBlendMode) | null>("SpriteKit_90ad0eb69cc6bf4a", 900724375819415, undefined, [rawValue]); }
 };
 
 /**
@@ -783,14 +783,14 @@ export class SKCameraNode extends (SKNode as unknown as Omit<typeof SKNode, "ini
    * func containedNodeSet() -> Set<SKNode>
    * @availability iOS 9.0+
    */
-  containedNodeSet(): Array<SKNode> { return callSDK<Array<SKNode>>("SpriteKit_a956b86ef7a76a8e", 3619311215962106, this, []); }
+  containedNodeSet(): Array<SKNode> { return callSDK<Array<SKNode>>("SpriteKit_90ad0eb69cc6bf4a", 3619311215962106, this, []); }
   /**
    * func contains(_ node: SKNode) -> Bool
    * @availability iOS 9.0+
    */
-  contains(node: SKNode): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 991096678225654, this, [node]); }
+  contains(node: SKNode): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 991096678225654, this, [node]); }
   /** init() */
-  static init(): SKCameraNode { return callSDK<SKCameraNode>("SpriteKit_a956b86ef7a76a8e", 2704915019393322, undefined, []); }
+  static init(): SKCameraNode { return callSDK<SKCameraNode>("SpriteKit_90ad0eb69cc6bf4a", 2704915019393322, undefined, []); }
   declare readonly $type: { "c:objc(cs)SKCameraNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -806,66 +806,66 @@ export class SKConstraint extends SDKHandle {
    * class func distance(_ range: SKRange, to node: SKNode) -> Self
    * @availability iOS 8.0+
    */
-  static distanceTo(range: SKRange, node: SKNode): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 48605432666826, undefined, [range, node]); }
+  static distanceTo(range: SKRange, node: SKNode): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 48605432666826, undefined, [range, node]); }
   /**
    * class func distance(_ range: SKRange, to point: CGPoint) -> Self
    * @availability iOS 8.0+
    */
-  static distanceTo84365(range: SKRange, point: $SDK1): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 4018921581610316, undefined, [range, point]); }
+  static distanceTo84365(range: SKRange, point: $SDK1): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 4018921581610316, undefined, [range, point]); }
   /**
    * class func distance(_ range: SKRange, to point: CGPoint, in node: SKNode) -> Self
    * @availability iOS 8.0+
    */
-  static distanceToIn(range: SKRange, point: $SDK1, node: SKNode): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 1804687896300461, undefined, [range, point, node]); }
+  static distanceToIn(range: SKRange, point: $SDK1, node: SKNode): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 1804687896300461, undefined, [range, point, node]); }
   /**
    * class func orient(to node: SKNode, offset radians: SKRange) -> Self
    * @availability iOS 8.0+
    */
-  static orientToOffset(node: SKNode, radians: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 427000599392811, undefined, [node, radians]); }
+  static orientToOffset(node: SKNode, radians: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 427000599392811, undefined, [node, radians]); }
   /**
    * class func orient(to point: CGPoint, in node: SKNode, offset radians: SKRange) -> Self
    * @availability iOS 8.0+
    */
-  static orientToInOffset(point: $SDK1, node: SKNode, radians: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 2063990468875895, undefined, [point, node, radians]); }
+  static orientToInOffset(point: $SDK1, node: SKNode, radians: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 2063990468875895, undefined, [point, node, radians]); }
   /**
    * class func orient(to point: CGPoint, offset radians: SKRange) -> Self
    * @availability iOS 8.0+
    */
-  static orientToOffset32460(point: $SDK1, radians: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 3556133950023953, undefined, [point, radians]); }
+  static orientToOffset32460(point: $SDK1, radians: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 3556133950023953, undefined, [point, radians]); }
   /**
    * class func positionX(_ range: SKRange) -> Self
    * @availability iOS 8.0+
    */
-  static positionX(range: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 3854000549973281, undefined, [range]); }
+  static positionX(range: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 3854000549973281, undefined, [range]); }
   /**
    * class func positionX(_ xRange: SKRange, y yRange: SKRange) -> Self
    * @availability iOS 8.0+
    */
-  static positionXY(xRange: SKRange, yRange: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 1399315919972980, undefined, [xRange, yRange]); }
+  static positionXY(xRange: SKRange, yRange: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 1399315919972980, undefined, [xRange, yRange]); }
   /**
    * class func positionY(_ range: SKRange) -> Self
    * @availability iOS 8.0+
    */
-  static positionY(range: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 2709533210522224, undefined, [range]); }
+  static positionY(range: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 2709533210522224, undefined, [range]); }
   /**
    * class func zRotation(_ zRange: SKRange) -> Self
    * @availability iOS 8.0+
    */
-  static zRotation(zRange: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 3899061526998007, undefined, [zRange]); }
+  static zRotation(zRange: SKRange): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 3899061526998007, undefined, [zRange]); }
   /** init() */
-  static init(): SKConstraint { return callSDK<SKConstraint>("SpriteKit_a956b86ef7a76a8e", 3849891465103257, undefined, []); }
+  static init(): SKConstraint { return callSDK<SKConstraint>("SpriteKit_90ad0eb69cc6bf4a", 3849891465103257, undefined, []); }
   /**
    * var enabled: Bool { get set }
    * @availability iOS 8.0+
    */
-  get enabled(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 1531567433216854, this, []); }
-  set enabled(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1818984599125534, this, [value]); }
+  get enabled(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 1531567433216854, this, []); }
+  set enabled(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1818984599125534, this, [value]); }
   /**
    * var referenceNode: SKNode? { get set }
    * @availability iOS 8.0+
    */
-  get referenceNode(): (SKNode) | null { return callSDK<(SKNode) | null>("SpriteKit_a956b86ef7a76a8e", 362078094425644, this, []); }
-  set referenceNode(value: (SKNode) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2435124577105614, this, [value]); }
+  get referenceNode(): (SKNode) | null { return callSDK<(SKNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 362078094425644, this, []); }
+  set referenceNode(value: (SKNode) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2435124577105614, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "enabled": true; "referenceNode": true };
 }
@@ -873,10 +873,10 @@ export class SKConstraint extends SDKHandle {
 /** class SKCropNode */
 export class SKCropNode extends (SKNode as unknown as Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode)) {
   /** init() */
-  static init(): SKCropNode { return callSDK<SKCropNode>("SpriteKit_a956b86ef7a76a8e", 3833102117402205, undefined, []); }
+  static init(): SKCropNode { return callSDK<SKCropNode>("SpriteKit_90ad0eb69cc6bf4a", 3833102117402205, undefined, []); }
   /** var maskNode: SKNode? { get set } */
-  get maskNode(): (SKNode) | null { return callSDK<(SKNode) | null>("SpriteKit_a956b86ef7a76a8e", 164017503739012, this, []); }
-  set maskNode(value: (SKNode) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 903780462311897, this, [value]); }
+  get maskNode(): (SKNode) | null { return callSDK<(SKNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 164017503739012, this, []); }
+  set maskNode(value: (SKNode) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 903780462311897, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKCropNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "maskNode": true };
 }
@@ -884,41 +884,41 @@ export class SKCropNode extends (SKNode as unknown as Omit<typeof SKNode, "init"
 /** class SKEffectNode */
 export class SKEffectNode extends (SKNode as unknown as Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">)) {
   /** init() */
-  static init(): SKEffectNode { return callSDK<SKEffectNode>("SpriteKit_a956b86ef7a76a8e", 50885695210670, undefined, []); }
+  static init(): SKEffectNode { return callSDK<SKEffectNode>("SpriteKit_90ad0eb69cc6bf4a", 50885695210670, undefined, []); }
   /**
    * func setValue(_ value: SKAttributeValue, forAttribute key: String)
    * @availability iOS 10.0+
    */
-  setValue(value: SKAttributeValue, key: string): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1188226559413059, this, [value, key]); }
+  setValue(value: SKAttributeValue, key: string): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1188226559413059, this, [value, key]); }
   /**
    * func value(forAttributeNamed key: String) -> SKAttributeValue?
    * @availability iOS 10.0+
    */
-  value(key: string): $SDK2 { return callSDK<$SDK2>("SpriteKit_a956b86ef7a76a8e", 3442516033342501, this, [key]); }
+  value(key: string): $SDK2 { return callSDK<$SDK2>("SpriteKit_90ad0eb69cc6bf4a", 3442516033342501, this, [key]); }
   /**
    * var attributeValues: [String : SKAttributeValue] { get set }
    * @availability iOS 10.0+
    */
-  get attributeValues(): $SDK3 { return callSDK<$SDK3>("SpriteKit_a956b86ef7a76a8e", 2340250688480581, this, []); }
-  set attributeValues(value: $SDK3) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 522937418075838, this, [value]); }
+  get attributeValues(): $SDK3 { return callSDK<$SDK3>("SpriteKit_90ad0eb69cc6bf4a", 2340250688480581, this, []); }
+  set attributeValues(value: $SDK3) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 522937418075838, this, [value]); }
   /** var blendMode: SKBlendMode { get set } */
-  get blendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_a956b86ef7a76a8e", 2460712147928997, this, []); }
-  set blendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3780288985390424, this, [value]); }
+  get blendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_90ad0eb69cc6bf4a", 2460712147928997, this, []); }
+  set blendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3780288985390424, this, [value]); }
   /** var filter: CIFilter? { get set } */
-  get filter(): (_CoreImage_CIFilter) | null { return callSDK<(_CoreImage_CIFilter) | null>("SpriteKit_a956b86ef7a76a8e", 3723082517559032, this, []); }
-  set filter(value: (_CoreImage_CIFilter) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2120061560689114, this, [value]); }
+  get filter(): (_CoreImage_CIFilter) | null { return callSDK<(_CoreImage_CIFilter) | null>("SpriteKit_90ad0eb69cc6bf4a", 3723082517559032, this, []); }
+  set filter(value: (_CoreImage_CIFilter) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2120061560689114, this, [value]); }
   /** var shader: SKShader? { get set } */
-  get shader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_a956b86ef7a76a8e", 674919521648222, this, []); }
-  set shader(value: (SKShader) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 259593070890650, this, [value]); }
+  get shader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_90ad0eb69cc6bf4a", 674919521648222, this, []); }
+  set shader(value: (SKShader) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 259593070890650, this, [value]); }
   /** var shouldCenterFilter: Bool { get set } */
-  get shouldCenterFilter(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 507737752250312, this, []); }
-  set shouldCenterFilter(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2384729257264394, this, [value]); }
+  get shouldCenterFilter(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 507737752250312, this, []); }
+  set shouldCenterFilter(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2384729257264394, this, [value]); }
   /** var shouldEnableEffects: Bool { get set } */
-  get shouldEnableEffects(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 1120191371799910, this, []); }
-  set shouldEnableEffects(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2053082897623529, this, [value]); }
+  get shouldEnableEffects(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 1120191371799910, this, []); }
+  set shouldEnableEffects(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2053082897623529, this, [value]); }
   /** var shouldRasterize: Bool { get set } */
-  get shouldRasterize(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 3080493836831026, this, []); }
-  set shouldRasterize(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2032910080128796, this, [value]); }
+  get shouldRasterize(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 3080493836831026, this, []); }
+  set shouldRasterize(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2032910080128796, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKEffectNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributeValues": true; "blendMode": true; "filter": true; "shader": true; "shouldCenterFilter": true; "shouldEnableEffects": true; "shouldRasterize": true };
 }
@@ -926,182 +926,182 @@ export class SKEffectNode extends (SKNode as unknown as Omit<typeof SKNode, "ini
 /** class SKEmitterNode */
 export class SKEmitterNode extends (SKNode as unknown as Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">)) {
   /** func advanceSimulationTime(_ sec: TimeInterval) */
-  advanceSimulationTime(sec: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3447760590653749, this, [sec]); }
+  advanceSimulationTime(sec: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3447760590653749, this, [sec]); }
   /** init() */
-  static init(): SKEmitterNode { return callSDK<SKEmitterNode>("SpriteKit_a956b86ef7a76a8e", 566227904035616, undefined, []); }
+  static init(): SKEmitterNode { return callSDK<SKEmitterNode>("SpriteKit_90ad0eb69cc6bf4a", 566227904035616, undefined, []); }
   /** func resetSimulation() */
-  resetSimulation(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2191796724876986, this, []); }
+  resetSimulation(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2191796724876986, this, []); }
   /**
    * func setValue(_ value: SKAttributeValue, forAttribute key: String)
    * @availability iOS 10.0+
    */
-  setValue(value: SKAttributeValue, key: string): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2099350436636630, this, [value, key]); }
+  setValue(value: SKAttributeValue, key: string): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2099350436636630, this, [value, key]); }
   /**
    * func value(forAttributeNamed key: String) -> SKAttributeValue?
    * @availability iOS 10.0+
    */
-  value(key: string): $SDK2 { return callSDK<$SDK2>("SpriteKit_a956b86ef7a76a8e", 2776160976724458, this, [key]); }
+  value(key: string): $SDK2 { return callSDK<$SDK2>("SpriteKit_90ad0eb69cc6bf4a", 2776160976724458, this, [key]); }
   /**
    * var attributeValues: [String : SKAttributeValue] { get set }
    * @availability iOS 10.0+
    */
-  get attributeValues(): $SDK3 { return callSDK<$SDK3>("SpriteKit_a956b86ef7a76a8e", 458477166786772, this, []); }
-  set attributeValues(value: $SDK3) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1525420532642238, this, [value]); }
+  get attributeValues(): $SDK3 { return callSDK<$SDK3>("SpriteKit_90ad0eb69cc6bf4a", 458477166786772, this, []); }
+  set attributeValues(value: $SDK3) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1525420532642238, this, [value]); }
   /** var emissionAngle: CGFloat { get set } */
-  get emissionAngle(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1832443149472329, this, []); }
-  set emissionAngle(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3618154174455582, this, [value]); }
+  get emissionAngle(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1832443149472329, this, []); }
+  set emissionAngle(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3618154174455582, this, [value]); }
   /** var emissionAngleRange: CGFloat { get set } */
-  get emissionAngleRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1421497488469996, this, []); }
-  set emissionAngleRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 820917214869495, this, [value]); }
+  get emissionAngleRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1421497488469996, this, []); }
+  set emissionAngleRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 820917214869495, this, [value]); }
   /** var fieldBitMask: UInt32 { get set } */
-  get fieldBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 395076454928875, this, []); }
-  set fieldBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3590842328525789, this, [value]); }
+  get fieldBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 395076454928875, this, []); }
+  set fieldBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3590842328525789, this, [value]); }
   /** var numParticlesToEmit: Int { get set } */
-  get numParticlesToEmit(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4128705561522726, this, []); }
-  set numParticlesToEmit(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2642765367272960, this, [value]); }
+  get numParticlesToEmit(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4128705561522726, this, []); }
+  set numParticlesToEmit(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2642765367272960, this, [value]); }
   /** @NSCopying var particleAction: SKAction? { get set } */
-  get particleAction(): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_a956b86ef7a76a8e", 3037089859650316, this, []); }
-  set particleAction(value: (SKAction) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2770953272473017, this, [value]); }
+  get particleAction(): (SKAction) | null { return callSDK<(SKAction) | null>("SpriteKit_90ad0eb69cc6bf4a", 3037089859650316, this, []); }
+  set particleAction(value: (SKAction) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2770953272473017, this, [value]); }
   /** var particleAlpha: CGFloat { get set } */
-  get particleAlpha(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2187363186629578, this, []); }
-  set particleAlpha(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1341326326609623, this, [value]); }
+  get particleAlpha(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2187363186629578, this, []); }
+  set particleAlpha(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1341326326609623, this, [value]); }
   /** var particleAlphaRange: CGFloat { get set } */
-  get particleAlphaRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 31338251859058, this, []); }
-  set particleAlphaRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 730495035147949, this, [value]); }
+  get particleAlphaRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 31338251859058, this, []); }
+  set particleAlphaRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 730495035147949, this, [value]); }
   /** var particleAlphaSequence: SKKeyframeSequence? { get set } */
-  get particleAlphaSequence(): $SDK14 { return callSDK<$SDK14>("SpriteKit_a956b86ef7a76a8e", 1213321179643680, this, []); }
-  set particleAlphaSequence(value: $SDK14) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 584047484773565, this, [value]); }
+  get particleAlphaSequence(): $SDK14 { return callSDK<$SDK14>("SpriteKit_90ad0eb69cc6bf4a", 1213321179643680, this, []); }
+  set particleAlphaSequence(value: $SDK14) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 584047484773565, this, [value]); }
   /** var particleAlphaSpeed: CGFloat { get set } */
-  get particleAlphaSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2517296335187061, this, []); }
-  set particleAlphaSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2219771889593186, this, [value]); }
+  get particleAlphaSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2517296335187061, this, []); }
+  set particleAlphaSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2219771889593186, this, [value]); }
   /** var particleBirthRate: CGFloat { get set } */
-  get particleBirthRate(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1844012421741231, this, []); }
-  set particleBirthRate(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1903721448185766, this, [value]); }
+  get particleBirthRate(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1844012421741231, this, []); }
+  set particleBirthRate(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1903721448185766, this, [value]); }
   /** var particleBlendMode: SKBlendMode { get set } */
-  get particleBlendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_a956b86ef7a76a8e", 3832810840940083, this, []); }
-  set particleBlendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3490624565045405, this, [value]); }
+  get particleBlendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_90ad0eb69cc6bf4a", 3832810840940083, this, []); }
+  set particleBlendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3490624565045405, this, [value]); }
   /** var particleColor: UIColor { get set } */
-  get particleColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_a956b86ef7a76a8e", 3324879741492157, this, []); }
-  set particleColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3532000950534794, this, [value]); }
+  get particleColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_90ad0eb69cc6bf4a", 3324879741492157, this, []); }
+  set particleColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3532000950534794, this, [value]); }
   /** var particleColorAlphaRange: CGFloat { get set } */
-  get particleColorAlphaRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1055803655793081, this, []); }
-  set particleColorAlphaRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 865835873563061, this, [value]); }
+  get particleColorAlphaRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1055803655793081, this, []); }
+  set particleColorAlphaRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 865835873563061, this, [value]); }
   /** var particleColorAlphaSpeed: CGFloat { get set } */
-  get particleColorAlphaSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 161711790693378, this, []); }
-  set particleColorAlphaSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4245787439419932, this, [value]); }
+  get particleColorAlphaSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 161711790693378, this, []); }
+  set particleColorAlphaSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4245787439419932, this, [value]); }
   /** var particleColorBlendFactor: CGFloat { get set } */
-  get particleColorBlendFactor(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 695721714875728, this, []); }
-  set particleColorBlendFactor(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3619678018813765, this, [value]); }
+  get particleColorBlendFactor(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 695721714875728, this, []); }
+  set particleColorBlendFactor(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3619678018813765, this, [value]); }
   /** var particleColorBlendFactorRange: CGFloat { get set } */
-  get particleColorBlendFactorRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2805313935249114, this, []); }
-  set particleColorBlendFactorRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2281106205726946, this, [value]); }
+  get particleColorBlendFactorRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2805313935249114, this, []); }
+  set particleColorBlendFactorRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2281106205726946, this, [value]); }
   /** var particleColorBlendFactorSequence: SKKeyframeSequence? { get set } */
-  get particleColorBlendFactorSequence(): $SDK14 { return callSDK<$SDK14>("SpriteKit_a956b86ef7a76a8e", 3396401508279201, this, []); }
-  set particleColorBlendFactorSequence(value: $SDK14) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 626755426427973, this, [value]); }
+  get particleColorBlendFactorSequence(): $SDK14 { return callSDK<$SDK14>("SpriteKit_90ad0eb69cc6bf4a", 3396401508279201, this, []); }
+  set particleColorBlendFactorSequence(value: $SDK14) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 626755426427973, this, [value]); }
   /** var particleColorBlendFactorSpeed: CGFloat { get set } */
-  get particleColorBlendFactorSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2112666357045345, this, []); }
-  set particleColorBlendFactorSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3304533565651505, this, [value]); }
+  get particleColorBlendFactorSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2112666357045345, this, []); }
+  set particleColorBlendFactorSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3304533565651505, this, [value]); }
   /** var particleColorBlueRange: CGFloat { get set } */
-  get particleColorBlueRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 799280367500728, this, []); }
-  set particleColorBlueRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1089045357559137, this, [value]); }
+  get particleColorBlueRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 799280367500728, this, []); }
+  set particleColorBlueRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1089045357559137, this, [value]); }
   /** var particleColorBlueSpeed: CGFloat { get set } */
-  get particleColorBlueSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 747178551117280, this, []); }
-  set particleColorBlueSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1837659246940067, this, [value]); }
+  get particleColorBlueSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 747178551117280, this, []); }
+  set particleColorBlueSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1837659246940067, this, [value]); }
   /** var particleColorGreenRange: CGFloat { get set } */
-  get particleColorGreenRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3450532928295313, this, []); }
-  set particleColorGreenRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 663903632092928, this, [value]); }
+  get particleColorGreenRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3450532928295313, this, []); }
+  set particleColorGreenRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 663903632092928, this, [value]); }
   /** var particleColorGreenSpeed: CGFloat { get set } */
-  get particleColorGreenSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 453639829006777, this, []); }
-  set particleColorGreenSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2125251534094862, this, [value]); }
+  get particleColorGreenSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 453639829006777, this, []); }
+  set particleColorGreenSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2125251534094862, this, [value]); }
   /** var particleColorRedRange: CGFloat { get set } */
-  get particleColorRedRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4192946123464389, this, []); }
-  set particleColorRedRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1713283395790890, this, [value]); }
+  get particleColorRedRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4192946123464389, this, []); }
+  set particleColorRedRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1713283395790890, this, [value]); }
   /** var particleColorRedSpeed: CGFloat { get set } */
-  get particleColorRedSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4279910277319427, this, []); }
-  set particleColorRedSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4333309819268143, this, [value]); }
+  get particleColorRedSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4279910277319427, this, []); }
+  set particleColorRedSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4333309819268143, this, [value]); }
   /** var particleColorSequence: SKKeyframeSequence? { get set } */
-  get particleColorSequence(): $SDK14 { return callSDK<$SDK14>("SpriteKit_a956b86ef7a76a8e", 2019307458284934, this, []); }
-  set particleColorSequence(value: $SDK14) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3389052882568136, this, [value]); }
+  get particleColorSequence(): $SDK14 { return callSDK<$SDK14>("SpriteKit_90ad0eb69cc6bf4a", 2019307458284934, this, []); }
+  set particleColorSequence(value: $SDK14) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3389052882568136, this, [value]); }
   /** var particleLifetime: CGFloat { get set } */
-  get particleLifetime(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3163045550128730, this, []); }
-  set particleLifetime(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3419001778172399, this, [value]); }
+  get particleLifetime(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3163045550128730, this, []); }
+  set particleLifetime(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3419001778172399, this, [value]); }
   /** var particleLifetimeRange: CGFloat { get set } */
-  get particleLifetimeRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1817765314866990, this, []); }
-  set particleLifetimeRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4235589625316688, this, [value]); }
+  get particleLifetimeRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1817765314866990, this, []); }
+  set particleLifetimeRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4235589625316688, this, [value]); }
   /** var particlePosition: CGPoint { get set } */
-  get particlePosition(): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 955059366479214, this, []); }
-  set particlePosition(value: $SDK1) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1734968258466722, this, [value]); }
+  get particlePosition(): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 955059366479214, this, []); }
+  set particlePosition(value: $SDK1) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1734968258466722, this, [value]); }
   /** var particlePositionRange: CGVector { get set } */
-  get particlePositionRange(): $SDK9 { return callSDK<$SDK9>("SpriteKit_a956b86ef7a76a8e", 2947251745598397, this, []); }
-  set particlePositionRange(value: $SDK9) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2053654319459063, this, [value]); }
+  get particlePositionRange(): $SDK9 { return callSDK<$SDK9>("SpriteKit_90ad0eb69cc6bf4a", 2947251745598397, this, []); }
+  set particlePositionRange(value: $SDK9) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2053654319459063, this, [value]); }
   /**
    * var particleRenderOrder: SKParticleRenderOrder { get set }
    * @availability iOS 9.0+
    */
-  get particleRenderOrder(): SKParticleRenderOrder { return callSDK<SKParticleRenderOrder>("SpriteKit_a956b86ef7a76a8e", 2819497553880320, this, []); }
-  set particleRenderOrder(value: SKParticleRenderOrder) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1152726359884496, this, [value]); }
+  get particleRenderOrder(): SKParticleRenderOrder { return callSDK<SKParticleRenderOrder>("SpriteKit_90ad0eb69cc6bf4a", 2819497553880320, this, []); }
+  set particleRenderOrder(value: SKParticleRenderOrder) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1152726359884496, this, [value]); }
   /** var particleRotation: CGFloat { get set } */
-  get particleRotation(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2114484066736588, this, []); }
-  set particleRotation(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1081598283284612, this, [value]); }
+  get particleRotation(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2114484066736588, this, []); }
+  set particleRotation(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1081598283284612, this, [value]); }
   /** var particleRotationRange: CGFloat { get set } */
-  get particleRotationRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1387636172199148, this, []); }
-  set particleRotationRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3177248086599998, this, [value]); }
+  get particleRotationRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1387636172199148, this, []); }
+  set particleRotationRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3177248086599998, this, [value]); }
   /** var particleRotationSpeed: CGFloat { get set } */
-  get particleRotationSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4326819103570905, this, []); }
-  set particleRotationSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3511138520183152, this, [value]); }
+  get particleRotationSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4326819103570905, this, []); }
+  set particleRotationSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3511138520183152, this, [value]); }
   /** var particleScale: CGFloat { get set } */
-  get particleScale(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2751194666644383, this, []); }
-  set particleScale(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3340496046474778, this, [value]); }
+  get particleScale(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2751194666644383, this, []); }
+  set particleScale(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3340496046474778, this, [value]); }
   /** var particleScaleRange: CGFloat { get set } */
-  get particleScaleRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3332478476453305, this, []); }
-  set particleScaleRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3587271569501566, this, [value]); }
+  get particleScaleRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3332478476453305, this, []); }
+  set particleScaleRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3587271569501566, this, [value]); }
   /** var particleScaleSequence: SKKeyframeSequence? { get set } */
-  get particleScaleSequence(): $SDK14 { return callSDK<$SDK14>("SpriteKit_a956b86ef7a76a8e", 933946891587537, this, []); }
-  set particleScaleSequence(value: $SDK14) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 647320496182715, this, [value]); }
+  get particleScaleSequence(): $SDK14 { return callSDK<$SDK14>("SpriteKit_90ad0eb69cc6bf4a", 933946891587537, this, []); }
+  set particleScaleSequence(value: $SDK14) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 647320496182715, this, [value]); }
   /** var particleScaleSpeed: CGFloat { get set } */
-  get particleScaleSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3627955875145556, this, []); }
-  set particleScaleSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1348738031305591, this, [value]); }
+  get particleScaleSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3627955875145556, this, []); }
+  set particleScaleSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1348738031305591, this, [value]); }
   /** var particleSize: CGSize { get set } */
-  get particleSize(): $SDK7 { return callSDK<$SDK7>("SpriteKit_a956b86ef7a76a8e", 4100548730114991, this, []); }
-  set particleSize(value: $SDK7) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3908884885571497, this, [value]); }
+  get particleSize(): $SDK7 { return callSDK<$SDK7>("SpriteKit_90ad0eb69cc6bf4a", 4100548730114991, this, []); }
+  set particleSize(value: $SDK7) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3908884885571497, this, [value]); }
   /** var particleSpeed: CGFloat { get set } */
-  get particleSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 762442296667864, this, []); }
-  set particleSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3304180242310276, this, [value]); }
+  get particleSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 762442296667864, this, []); }
+  set particleSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3304180242310276, this, [value]); }
   /** var particleSpeedRange: CGFloat { get set } */
-  get particleSpeedRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2007041584986509, this, []); }
-  set particleSpeedRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1870644814730604, this, [value]); }
+  get particleSpeedRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2007041584986509, this, []); }
+  set particleSpeedRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1870644814730604, this, [value]); }
   /** var particleTexture: SKTexture? { get set } */
-  get particleTexture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_a956b86ef7a76a8e", 4000695521913934, this, []); }
-  set particleTexture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1532073089805388, this, [value]); }
+  get particleTexture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_90ad0eb69cc6bf4a", 4000695521913934, this, []); }
+  set particleTexture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1532073089805388, this, [value]); }
   /** var particleZPosition: CGFloat { get set } */
-  get particleZPosition(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1925802537129365, this, []); }
-  set particleZPosition(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 267704480763627, this, [value]); }
+  get particleZPosition(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1925802537129365, this, []); }
+  set particleZPosition(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 267704480763627, this, [value]); }
   /**
    * var particleZPositionRange: CGFloat { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  get particleZPositionRange(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 699160161425121, this, []); }
-  set particleZPositionRange(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3078119161324669, this, [value]); }
+  get particleZPositionRange(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 699160161425121, this, []); }
+  set particleZPositionRange(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3078119161324669, this, [value]); }
   /**
    * var particleZPositionSpeed: CGFloat { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  get particleZPositionSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 694836620037312, this, []); }
-  set particleZPositionSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 329085952060219, this, [value]); }
+  get particleZPositionSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 694836620037312, this, []); }
+  set particleZPositionSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 329085952060219, this, [value]); }
   /** var shader: SKShader? { get set } */
-  get shader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_a956b86ef7a76a8e", 2574779098365810, this, []); }
-  set shader(value: (SKShader) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3801018757991188, this, [value]); }
+  get shader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_90ad0eb69cc6bf4a", 2574779098365810, this, []); }
+  set shader(value: (SKShader) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3801018757991188, this, [value]); }
   /** weak var targetNode: SKNode? { get set } */
-  get targetNode(): (SKNode) | null { return callSDK<(SKNode) | null>("SpriteKit_a956b86ef7a76a8e", 1974460172624555, this, []); }
-  set targetNode(value: (SKNode) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2269185405471520, this, [value]); }
+  get targetNode(): (SKNode) | null { return callSDK<(SKNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 1974460172624555, this, []); }
+  set targetNode(value: (SKNode) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2269185405471520, this, [value]); }
   /** var xAcceleration: CGFloat { get set } */
-  get xAcceleration(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 83785311201241, this, []); }
-  set xAcceleration(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 627357602976724, this, [value]); }
+  get xAcceleration(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 83785311201241, this, []); }
+  set xAcceleration(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 627357602976724, this, [value]); }
   /** var yAcceleration: CGFloat { get set } */
-  get yAcceleration(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1763545319044989, this, []); }
-  set yAcceleration(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 765720865899975, this, [value]); }
+  get yAcceleration(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1763545319044989, this, []); }
+  set yAcceleration(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 765720865899975, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKEmitterNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributeValues": true; "emissionAngle": true; "emissionAngleRange": true; "fieldBitMask": true; "numParticlesToEmit": true; "particleAction": true; "particleAlpha": true; "particleAlphaRange": true; "particleAlphaSequence": true; "particleAlphaSpeed": true; "particleBirthRate": true; "particleBlendMode": true; "particleColor": true; "particleColorAlphaRange": true; "particleColorAlphaSpeed": true; "particleColorBlendFactor": true; "particleColorBlendFactorRange": true; "particleColorBlendFactorSequence": true; "particleColorBlendFactorSpeed": true; "particleColorBlueRange": true; "particleColorBlueSpeed": true; "particleColorGreenRange": true; "particleColorGreenSpeed": true; "particleColorRedRange": true; "particleColorRedSpeed": true; "particleColorSequence": true; "particleLifetime": true; "particleLifetimeRange": true; "particlePosition": true; "particlePositionRange": true; "particleRenderOrder": true; "particleRotation": true; "particleRotationRange": true; "particleRotationSpeed": true; "particleScale": true; "particleScaleRange": true; "particleScaleSequence": true; "particleScaleSpeed": true; "particleSize": true; "particleSpeed": true; "particleSpeedRange": true; "particleTexture": true; "particleZPosition": true; "particleZPositionRange": true; "particleZPositionSpeed": true; "shader": true; "targetNode": true; "xAcceleration": true; "yAcceleration": true };
 }
@@ -1118,125 +1118,125 @@ export class SKFieldNode extends (SKNode as unknown as Omit<typeof SKNode, "init
    * class func dragField() -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static dragField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 552370925187870, undefined, []); }
+  static dragField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 552370925187870, undefined, []); }
   /**
    * class func electricField() -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static electricField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 3792304004634814, undefined, []); }
+  static electricField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 3792304004634814, undefined, []); }
   /**
    * class func linearGravityField(withVector direction: vector_float3) -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static linearGravityField(direction: SDKHandle): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 3548585360521177, undefined, [direction]); }
+  static linearGravityField(direction: SDKHandle): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 3548585360521177, undefined, [direction]); }
   /**
    * class func magneticField() -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static magneticField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 1029952498812007, undefined, []); }
+  static magneticField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 1029952498812007, undefined, []); }
   /**
    * class func noiseField(withSmoothness smoothness: CGFloat, animationSpeed speed: CGFloat) -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static noiseField(smoothness: number, speed: number): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 3906488234674520, undefined, [smoothness, speed]); }
+  static noiseField(smoothness: number, speed: number): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 3906488234674520, undefined, [smoothness, speed]); }
   /**
    * class func radialGravityField() -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static radialGravityField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 1282627097418834, undefined, []); }
+  static radialGravityField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 1282627097418834, undefined, []); }
   /**
    * class func springField() -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static springField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 742768777413266, undefined, []); }
+  static springField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 742768777413266, undefined, []); }
   /**
    * class func turbulenceField(withSmoothness smoothness: CGFloat, animationSpeed speed: CGFloat) -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static turbulenceField(smoothness: number, speed: number): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 2999078103034511, undefined, [smoothness, speed]); }
+  static turbulenceField(smoothness: number, speed: number): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 2999078103034511, undefined, [smoothness, speed]); }
   /**
    * class func velocityField(with velocityTexture: SKTexture) -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static velocityFieldWith(velocityTexture: SKTexture): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 297734259366121, undefined, [velocityTexture]); }
+  static velocityFieldWith(velocityTexture: SKTexture): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 297734259366121, undefined, [velocityTexture]); }
   /**
    * class func velocityField(withVector direction: vector_float3) -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static velocityFieldWithVector(direction: SDKHandle): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 3582739585833018, undefined, [direction]); }
+  static velocityFieldWithVector(direction: SDKHandle): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 3582739585833018, undefined, [direction]); }
   /**
    * class func vortexField() -> SKFieldNode
    * @availability iOS 8.0+
    */
-  static vortexField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 3709426566333818, undefined, []); }
+  static vortexField(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 3709426566333818, undefined, []); }
   /** init() */
-  static init(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_a956b86ef7a76a8e", 2810401375533521, undefined, []); }
+  static init(): SKFieldNode { return callSDK<SKFieldNode>("SpriteKit_90ad0eb69cc6bf4a", 2810401375533521, undefined, []); }
   /**
    * var animationSpeed: Float { get set }
    * @availability iOS 8.0+
    */
-  get animationSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 775153891884650, this, []); }
-  set animationSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3400342046715698, this, [value]); }
+  get animationSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 775153891884650, this, []); }
+  set animationSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3400342046715698, this, [value]); }
   /**
    * var categoryBitMask: UInt32 { get set }
    * @availability iOS 8.0+
    */
-  get categoryBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3669979474741014, this, []); }
-  set categoryBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4328554087139815, this, [value]); }
+  get categoryBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3669979474741014, this, []); }
+  set categoryBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4328554087139815, this, [value]); }
   /**
    * var direction: vector_float3 { get set }
    * @availability iOS 8.0+
    */
-  get direction(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 1979034745072871, this, []); }
-  set direction(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3327415073293277, this, [value]); }
+  get direction(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 1979034745072871, this, []); }
+  set direction(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3327415073293277, this, [value]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 977129245294945, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 793888812239958, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 977129245294945, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 793888812239958, this, [value]); }
   /**
    * var isExclusive: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isExclusive(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2735625536620632, this, []); }
-  set isExclusive(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2190309932257745, this, [value]); }
+  get isExclusive(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2735625536620632, this, []); }
+  set isExclusive(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2190309932257745, this, [value]); }
   /**
    * var falloff: Float { get set }
    * @availability iOS 8.0+
    */
-  get falloff(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1584344648112089, this, []); }
-  set falloff(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1165696209660189, this, [value]); }
+  get falloff(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1584344648112089, this, []); }
+  set falloff(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1165696209660189, this, [value]); }
   /**
    * var minimumRadius: Float { get set }
    * @availability iOS 8.0+
    */
-  get minimumRadius(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3218790415792659, this, []); }
-  set minimumRadius(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2340862596121555, this, [value]); }
+  get minimumRadius(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3218790415792659, this, []); }
+  set minimumRadius(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2340862596121555, this, [value]); }
   /**
    * var region: SKRegion? { get set }
    * @availability iOS 8.0+
    */
-  get region(): (SKRegion) | null { return callSDK<(SKRegion) | null>("SpriteKit_a956b86ef7a76a8e", 3280151567888506, this, []); }
-  set region(value: (SKRegion) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1151886133340199, this, [value]); }
+  get region(): (SKRegion) | null { return callSDK<(SKRegion) | null>("SpriteKit_90ad0eb69cc6bf4a", 3280151567888506, this, []); }
+  set region(value: (SKRegion) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1151886133340199, this, [value]); }
   /**
    * var smoothness: Float { get set }
    * @availability iOS 8.0+
    */
-  get smoothness(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2606046873068528, this, []); }
-  set smoothness(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3229461293843196, this, [value]); }
+  get smoothness(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2606046873068528, this, []); }
+  set smoothness(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3229461293843196, this, [value]); }
   /**
    * var strength: Float { get set }
    * @availability iOS 8.0+
    */
-  get strength(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3718538136541227, this, []); }
-  set strength(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2217282258175430, this, [value]); }
+  get strength(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3718538136541227, this, []); }
+  set strength(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2217282258175430, this, [value]); }
   /**
    * var texture: SKTexture? { get set }
    * @availability iOS 8.0+
    */
-  get texture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_a956b86ef7a76a8e", 3010438776699942, this, []); }
-  set texture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2311028451160623, this, [value]); }
+  get texture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_90ad0eb69cc6bf4a", 3010438776699942, this, []); }
+  set texture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2311028451160623, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKFieldNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animationSpeed": true; "categoryBitMask": true; "direction": true; "isEnabled": true; "isExclusive": true; "falloff": true; "minimumRadius": true; "region": true; "smoothness": true; "strength": true; "texture": true };
 }
@@ -1246,43 +1246,43 @@ export type SKInterpolationMode = "linear" | "spline" | "step";
 
 export const SKInterpolationMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SKInterpolationMode) | null { return callSDK<(SKInterpolationMode) | null>("SpriteKit_a956b86ef7a76a8e", 2479648603437751, undefined, [rawValue]); }
+  init(rawValue: number): (SKInterpolationMode) | null { return callSDK<(SKInterpolationMode) | null>("SpriteKit_90ad0eb69cc6bf4a", 2479648603437751, undefined, [rawValue]); }
 };
 
 /** class SKKeyframeSequence */
 export class SKKeyframeSequence extends SDKHandle {
   /** func addKeyframeValue(_ value: Any, time: CGFloat) */
-  addKeyframeValue(value: unknown, time: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2968710646524800, this, [value, time]); }
+  addKeyframeValue(value: unknown, time: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2968710646524800, this, [value, time]); }
   /** func count() -> Int */
-  count(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2326440068828108, this, []); }
+  count(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2326440068828108, this, []); }
   /** func getKeyframeTime(for index: Int) -> CGFloat */
-  getKeyframeTime(index: number): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 490758079419886, this, [index]); }
+  getKeyframeTime(index: number): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 490758079419886, this, [index]); }
   /** func getKeyframeValue(for index: Int) -> Any */
-  getKeyframeValue(index: number): unknown { return callSDK<unknown>("SpriteKit_a956b86ef7a76a8e", 2662458019364221, this, [index]); }
+  getKeyframeValue(index: number): unknown { return callSDK<unknown>("SpriteKit_90ad0eb69cc6bf4a", 2662458019364221, this, [index]); }
   /** convenience init(capacity numItems: Int) */
-  static initCapacity(numItems: number): SKKeyframeSequence { return callSDK<SKKeyframeSequence>("SpriteKit_a956b86ef7a76a8e", 1918460608409148, undefined, [numItems]); }
+  static initCapacity(numItems: number): SKKeyframeSequence { return callSDK<SKKeyframeSequence>("SpriteKit_90ad0eb69cc6bf4a", 1918460608409148, undefined, [numItems]); }
   /** init?(coder aDecoder: NSCoder) */
-  static initCoder(aDecoder: _Foundation_NSCoder): (SKKeyframeSequence) | null { return callSDK<(SKKeyframeSequence) | null>("SpriteKit_a956b86ef7a76a8e", 984843480679023, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (SKKeyframeSequence) | null { return callSDK<(SKKeyframeSequence) | null>("SpriteKit_90ad0eb69cc6bf4a", 984843480679023, undefined, [aDecoder]); }
   /** init(keyframeValues values: [Any], times: [NSNumber]) */
-  static initKeyframeValuesTimes(values: Array<unknown>, times: $SDK8): SKKeyframeSequence { return callSDK<SKKeyframeSequence>("SpriteKit_a956b86ef7a76a8e", 753952727879953, undefined, [values, times]); }
+  static initKeyframeValuesTimes(values: Array<unknown>, times: $SDK8): SKKeyframeSequence { return callSDK<SKKeyframeSequence>("SpriteKit_90ad0eb69cc6bf4a", 753952727879953, undefined, [values, times]); }
   /** func removeKeyframe(at index: Int) */
-  removeKeyframe(index: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3996721185369313, this, [index]); }
+  removeKeyframe(index: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3996721185369313, this, [index]); }
   /** func removeLastKeyframe() */
-  removeLastKeyframe(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1288115819018598, this, []); }
+  removeLastKeyframe(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1288115819018598, this, []); }
   /** func sample(atTime time: CGFloat) -> Any? */
-  sample(time: number): (unknown) | null { return callSDK<(unknown) | null>("SpriteKit_a956b86ef7a76a8e", 3911341997306749, this, [time]); }
+  sample(time: number): (unknown) | null { return callSDK<(unknown) | null>("SpriteKit_90ad0eb69cc6bf4a", 3911341997306749, this, [time]); }
   /** func setKeyframeTime(_ time: CGFloat, for index: Int) */
-  setKeyframeTime(time: number, index: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 995497258663993, this, [time, index]); }
+  setKeyframeTime(time: number, index: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 995497258663993, this, [time, index]); }
   /** func setKeyframeValue(_ value: Any, for index: Int) */
-  setKeyframeValueFor(value: unknown, index: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2813713693434790, this, [value, index]); }
+  setKeyframeValueFor(value: unknown, index: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2813713693434790, this, [value, index]); }
   /** func setKeyframeValue(_ value: Any, time: CGFloat, for index: Int) */
-  setKeyframeValueTimeFor(value: unknown, time: number, index: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2350392495839497, this, [value, time, index]); }
+  setKeyframeValueTimeFor(value: unknown, time: number, index: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2350392495839497, this, [value, time, index]); }
   /** var interpolationMode: SKInterpolationMode { get set } */
-  get interpolationMode(): SKInterpolationMode { return callSDK<SKInterpolationMode>("SpriteKit_a956b86ef7a76a8e", 2429446834944573, this, []); }
-  set interpolationMode(value: SKInterpolationMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2085296055950950, this, [value]); }
+  get interpolationMode(): SKInterpolationMode { return callSDK<SKInterpolationMode>("SpriteKit_90ad0eb69cc6bf4a", 2429446834944573, this, []); }
+  set interpolationMode(value: SKInterpolationMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2085296055950950, this, [value]); }
   /** var repeatMode: SKRepeatMode { get set } */
-  get repeatMode(): SKRepeatMode { return callSDK<SKRepeatMode>("SpriteKit_a956b86ef7a76a8e", 779061897052346, this, []); }
-  set repeatMode(value: SKRepeatMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2431672863286117, this, [value]); }
+  get repeatMode(): SKRepeatMode { return callSDK<SKRepeatMode>("SpriteKit_90ad0eb69cc6bf4a", 779061897052346, this, []); }
+  set repeatMode(value: SKRepeatMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2431672863286117, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKKeyframeSequence": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "interpolationMode": true; "repeatMode": true };
 }
@@ -1298,7 +1298,7 @@ export const SKLabelHorizontalAlignmentMode = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (SKLabelHorizontalAlignmentMode) | null { return callSDK<(SKLabelHorizontalAlignmentMode) | null>("SpriteKit_a956b86ef7a76a8e", 848622744769404, undefined, [rawValue]); }
+  init(rawValue: number): (SKLabelHorizontalAlignmentMode) | null { return callSDK<(SKLabelHorizontalAlignmentMode) | null>("SpriteKit_90ad0eb69cc6bf4a", 848622744769404, undefined, [rawValue]); }
 };
 
 /** class SKLabelNode */
@@ -1307,62 +1307,62 @@ export class SKLabelNode extends SKNode {
    * convenience init(attributedText: NSAttributedString?)
    * @availability iOS 11.0+
    */
-  static initAttributedText(attributedText?: $SDK16): SKLabelNode { return callSDK<SKLabelNode>("SpriteKit_a956b86ef7a76a8e", 960134699519079, undefined, [attributedText]); }
+  static initAttributedText(attributedText?: $SDK16): SKLabelNode { return callSDK<SKLabelNode>("SpriteKit_90ad0eb69cc6bf4a", 960134699519079, undefined, [attributedText]); }
   /** convenience init(text: String?) */
-  static initText(text?: (string) | null): SKLabelNode { return callSDK<SKLabelNode>("SpriteKit_a956b86ef7a76a8e", 2862433969748633, undefined, [text]); }
+  static initText(text?: (string) | null): SKLabelNode { return callSDK<SKLabelNode>("SpriteKit_90ad0eb69cc6bf4a", 2862433969748633, undefined, [text]); }
   /** init(fontNamed fontName: String?) */
-  static initFontNamed(fontName?: (string) | null): SKLabelNode { return callSDK<SKLabelNode>("SpriteKit_a956b86ef7a76a8e", 3478218553166647, undefined, [fontName]); }
+  static initFontNamed(fontName?: (string) | null): SKLabelNode { return callSDK<SKLabelNode>("SpriteKit_90ad0eb69cc6bf4a", 3478218553166647, undefined, [fontName]); }
   /**
    * @NSCopying var attributedText: NSAttributedString? { get set }
    * @availability iOS 11.0+
    */
-  get attributedText(): $SDK16 { return callSDK<$SDK16>("SpriteKit_a956b86ef7a76a8e", 3243124548198976, this, []); }
-  set attributedText(value: $SDK16) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 662398636584357, this, [value]); }
+  get attributedText(): $SDK16 { return callSDK<$SDK16>("SpriteKit_90ad0eb69cc6bf4a", 3243124548198976, this, []); }
+  set attributedText(value: $SDK16) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 662398636584357, this, [value]); }
   /** var blendMode: SKBlendMode { get set } */
-  get blendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_a956b86ef7a76a8e", 1184063206642455, this, []); }
-  set blendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4235343517260167, this, [value]); }
+  get blendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_90ad0eb69cc6bf4a", 1184063206642455, this, []); }
+  set blendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4235343517260167, this, [value]); }
   /** var color: UIColor? { get set } */
-  get color(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("SpriteKit_a956b86ef7a76a8e", 3788607470358988, this, []); }
-  set color(value: (_UIKit_UIColor) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1378404702545645, this, [value]); }
+  get color(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("SpriteKit_90ad0eb69cc6bf4a", 3788607470358988, this, []); }
+  set color(value: (_UIKit_UIColor) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1378404702545645, this, [value]); }
   /** var colorBlendFactor: CGFloat { get set } */
-  get colorBlendFactor(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 700114254067624, this, []); }
-  set colorBlendFactor(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2490058564969234, this, [value]); }
+  get colorBlendFactor(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 700114254067624, this, []); }
+  set colorBlendFactor(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2490058564969234, this, [value]); }
   /** var fontColor: UIColor? { get set } */
-  get fontColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("SpriteKit_a956b86ef7a76a8e", 326884654999780, this, []); }
-  set fontColor(value: (_UIKit_UIColor) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4498744292817750, this, [value]); }
+  get fontColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("SpriteKit_90ad0eb69cc6bf4a", 326884654999780, this, []); }
+  set fontColor(value: (_UIKit_UIColor) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4498744292817750, this, [value]); }
   /** var fontName: String? { get set } */
-  get fontName(): (string) | null { return callSDK<(string) | null>("SpriteKit_a956b86ef7a76a8e", 3934345509351006, this, []); }
-  set fontName(value: (string) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3035366525820893, this, [value]); }
+  get fontName(): (string) | null { return callSDK<(string) | null>("SpriteKit_90ad0eb69cc6bf4a", 3934345509351006, this, []); }
+  set fontName(value: (string) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3035366525820893, this, [value]); }
   /** var fontSize: CGFloat { get set } */
-  get fontSize(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 775581147359449, this, []); }
-  set fontSize(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3600827077773796, this, [value]); }
+  get fontSize(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 775581147359449, this, []); }
+  set fontSize(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3600827077773796, this, [value]); }
   /** var horizontalAlignmentMode: SKLabelHorizontalAlignmentMode { get set } */
-  get horizontalAlignmentMode(): SKLabelHorizontalAlignmentMode { return callSDK<SKLabelHorizontalAlignmentMode>("SpriteKit_a956b86ef7a76a8e", 3237526912064758, this, []); }
-  set horizontalAlignmentMode(value: SKLabelHorizontalAlignmentMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4227697493116193, this, [value]); }
+  get horizontalAlignmentMode(): SKLabelHorizontalAlignmentMode { return callSDK<SKLabelHorizontalAlignmentMode>("SpriteKit_90ad0eb69cc6bf4a", 3237526912064758, this, []); }
+  set horizontalAlignmentMode(value: SKLabelHorizontalAlignmentMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4227697493116193, this, [value]); }
   /**
    * var lineBreakMode: NSLineBreakMode { get set }
    * @availability iOS 11.0+
    */
-  get lineBreakMode(): _UIKit_NSLineBreakMode { return callSDK<_UIKit_NSLineBreakMode>("SpriteKit_a956b86ef7a76a8e", 3969701186285055, this, []); }
-  set lineBreakMode(value: _UIKit_NSLineBreakMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3746183034636880, this, [value]); }
+  get lineBreakMode(): _UIKit_NSLineBreakMode { return callSDK<_UIKit_NSLineBreakMode>("SpriteKit_90ad0eb69cc6bf4a", 3969701186285055, this, []); }
+  set lineBreakMode(value: _UIKit_NSLineBreakMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3746183034636880, this, [value]); }
   /**
    * var numberOfLines: Int { get set }
    * @availability iOS 11.0+
    */
-  get numberOfLines(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3363074227976945, this, []); }
-  set numberOfLines(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3619456125249403, this, [value]); }
+  get numberOfLines(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3363074227976945, this, []); }
+  set numberOfLines(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3619456125249403, this, [value]); }
   /**
    * var preferredMaxLayoutWidth: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get preferredMaxLayoutWidth(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 563694061839855, this, []); }
-  set preferredMaxLayoutWidth(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2274370894574410, this, [value]); }
+  get preferredMaxLayoutWidth(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 563694061839855, this, []); }
+  set preferredMaxLayoutWidth(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2274370894574410, this, [value]); }
   /** var text: String? { get set } */
-  get text(): (string) | null { return callSDK<(string) | null>("SpriteKit_a956b86ef7a76a8e", 2335749570906371, this, []); }
-  set text(value: (string) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3212577706367602, this, [value]); }
+  get text(): (string) | null { return callSDK<(string) | null>("SpriteKit_90ad0eb69cc6bf4a", 2335749570906371, this, []); }
+  set text(value: (string) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3212577706367602, this, [value]); }
   /** var verticalAlignmentMode: SKLabelVerticalAlignmentMode { get set } */
-  get verticalAlignmentMode(): SKLabelVerticalAlignmentMode { return callSDK<SKLabelVerticalAlignmentMode>("SpriteKit_a956b86ef7a76a8e", 3770342673408854, this, []); }
-  set verticalAlignmentMode(value: SKLabelVerticalAlignmentMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3311253923023008, this, [value]); }
+  get verticalAlignmentMode(): SKLabelVerticalAlignmentMode { return callSDK<SKLabelVerticalAlignmentMode>("SpriteKit_90ad0eb69cc6bf4a", 3770342673408854, this, []); }
+  set verticalAlignmentMode(value: SKLabelVerticalAlignmentMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3311253923023008, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKLabelNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributedText": true; "blendMode": true; "color": true; "colorBlendFactor": true; "fontColor": true; "fontName": true; "fontSize": true; "horizontalAlignmentMode": true; "lineBreakMode": true; "numberOfLines": true; "preferredMaxLayoutWidth": true; "text": true; "verticalAlignmentMode": true };
 }
@@ -1378,7 +1378,7 @@ export const SKLabelVerticalAlignmentMode = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (SKLabelVerticalAlignmentMode) | null { return callSDK<(SKLabelVerticalAlignmentMode) | null>("SpriteKit_a956b86ef7a76a8e", 2637907371886126, undefined, [rawValue]); }
+  init(rawValue: number): (SKLabelVerticalAlignmentMode) | null { return callSDK<(SKLabelVerticalAlignmentMode) | null>("SpriteKit_90ad0eb69cc6bf4a", 2637907371886126, undefined, [rawValue]); }
 };
 
 /**
@@ -1387,43 +1387,43 @@ export const SKLabelVerticalAlignmentMode = {
  */
 export class SKLightNode extends (SKNode as unknown as Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode)) {
   /** init() */
-  static init(): SKLightNode { return callSDK<SKLightNode>("SpriteKit_a956b86ef7a76a8e", 1335702545484868, undefined, []); }
+  static init(): SKLightNode { return callSDK<SKLightNode>("SpriteKit_90ad0eb69cc6bf4a", 1335702545484868, undefined, []); }
   /**
    * var ambientColor: UIColor { get set }
    * @availability iOS 8.0+
    */
-  get ambientColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_a956b86ef7a76a8e", 1833399703133739, this, []); }
-  set ambientColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3746305644680244, this, [value]); }
+  get ambientColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_90ad0eb69cc6bf4a", 1833399703133739, this, []); }
+  set ambientColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3746305644680244, this, [value]); }
   /**
    * var categoryBitMask: UInt32 { get set }
    * @availability iOS 8.0+
    */
-  get categoryBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3188089280431529, this, []); }
-  set categoryBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 941802271382926, this, [value]); }
+  get categoryBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3188089280431529, this, []); }
+  set categoryBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 941802271382926, this, [value]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 8.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 1491073848830358, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 351498470898113, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 1491073848830358, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 351498470898113, this, [value]); }
   /**
    * var falloff: CGFloat { get set }
    * @availability iOS 8.0+
    */
-  get falloff(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1690193436397388, this, []); }
-  set falloff(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1653686209769853, this, [value]); }
+  get falloff(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1690193436397388, this, []); }
+  set falloff(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1653686209769853, this, [value]); }
   /**
    * var lightColor: UIColor { get set }
    * @availability iOS 8.0+
    */
-  get lightColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_a956b86ef7a76a8e", 2635826629637362, this, []); }
-  set lightColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1947983992878994, this, [value]); }
+  get lightColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_90ad0eb69cc6bf4a", 2635826629637362, this, []); }
+  set lightColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1947983992878994, this, [value]); }
   /**
    * var shadowColor: UIColor { get set }
    * @availability iOS 8.0+
    */
-  get shadowColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_a956b86ef7a76a8e", 3067558000852906, this, []); }
-  set shadowColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2714363482321397, this, [value]); }
+  get shadowColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_90ad0eb69cc6bf4a", 3067558000852906, this, []); }
+  set shadowColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2714363482321397, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKLightNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ambientColor": true; "categoryBitMask": true; "isEnabled": true; "falloff": true; "lightColor": true; "shadowColor": true };
 }
@@ -1431,62 +1431,62 @@ export class SKLightNode extends (SKNode as unknown as Omit<typeof SKNode, "init
 /** class SKTexture */
 export class SKTexture extends SDKHandle {
   /** class func preload(_ textures: [SKTexture]) async */
-  static preloadWithCompletionHandler(textures: Array<SKTexture>, completionHandler: (() => void)): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4000556409655821, undefined, [textures, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static preloadWithCompletionHandler(textures: Array<SKTexture>, completionHandler: (() => void)): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4000556409655821, undefined, [textures, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * convenience init(noiseWithSmoothness smoothness: CGFloat, size: CGSize, grayscale: Bool)
    * @availability iOS 8.0+
    */
-  static initNoiseWithSmoothnessSizeGrayscale(smoothness: number, size: $SDK7, grayscale: boolean): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 3363572502629577, undefined, [smoothness, size, grayscale]); }
+  static initNoiseWithSmoothnessSizeGrayscale(smoothness: number, size: $SDK7, grayscale: boolean): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 3363572502629577, undefined, [smoothness, size, grayscale]); }
   /**
    * convenience init(vectorNoiseWithSmoothness smoothness: CGFloat, size: CGSize)
    * @availability iOS 8.0+
    */
-  static initVectorNoiseWithSmoothnessSize(smoothness: number, size: $SDK7): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 4152181238981654, undefined, [smoothness, size]); }
+  static initVectorNoiseWithSmoothnessSize(smoothness: number, size: $SDK7): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 4152181238981654, undefined, [smoothness, size]); }
   /** convenience init(cgImage image: CGImage) */
-  static initCgImage(image: _CoreGraphics_CGImage): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 2603080164411296, undefined, [image]); }
+  static initCgImage(image: _CoreGraphics_CGImage): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 2603080164411296, undefined, [image]); }
   /** convenience init(data pixelData: Data, size: CGSize) */
-  static initDataSize(pixelData: ArrayBuffer, size: $SDK7): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 2462902203694419, undefined, [pixelData, size]); }
+  static initDataSize(pixelData: ArrayBuffer, size: $SDK7): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 2462902203694419, undefined, [pixelData, size]); }
   /** convenience init(data pixelData: Data, size: CGSize, flipped: Bool) */
-  static initDataSizeFlipped(pixelData: ArrayBuffer, size: $SDK7, flipped: boolean): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 1039968933710129, undefined, [pixelData, size, flipped]); }
+  static initDataSizeFlipped(pixelData: ArrayBuffer, size: $SDK7, flipped: boolean): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 1039968933710129, undefined, [pixelData, size, flipped]); }
   /** convenience init(data pixelData: Data, size: CGSize, rowLength: UInt32, alignment: UInt32) */
-  static initDataSizeRowLengthAlignment(pixelData: ArrayBuffer, size: $SDK7, rowLength: number, alignment: number): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 3002823179885172, undefined, [pixelData, size, rowLength, alignment]); }
+  static initDataSizeRowLengthAlignment(pixelData: ArrayBuffer, size: $SDK7, rowLength: number, alignment: number): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 3002823179885172, undefined, [pixelData, size, rowLength, alignment]); }
   /** convenience init(image: UIImage) */
-  static initImage(image: _UIKit_UIImage): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 3471758772562669, undefined, [image]); }
+  static initImage(image: _UIKit_UIImage): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 3471758772562669, undefined, [image]); }
   /** convenience init(imageNamed name: String) */
-  static initImageNamed(name: string): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 3293941894415104, undefined, [name]); }
+  static initImageNamed(name: string): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 3293941894415104, undefined, [name]); }
   /** convenience init(rect: CGRect, in texture: SKTexture) */
-  static initRectIn(rect: $SDK0, texture: SKTexture): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 2161205107383145, undefined, [rect, texture]); }
+  static initRectIn(rect: $SDK0, texture: SKTexture): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 2161205107383145, undefined, [rect, texture]); }
   /**
    * func cgImage() -> CGImage
    * @availability iOS 9.0+
    */
-  cgImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("SpriteKit_a956b86ef7a76a8e", 630464132302058, this, []); }
+  cgImage(): _CoreGraphics_CGImage { return callSDK<_CoreGraphics_CGImage>("SpriteKit_90ad0eb69cc6bf4a", 630464132302058, this, []); }
   /** func preload() async */
-  preloadCompletionHandler(completionHandler: (() => void)): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2522234193088624, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  preloadCompletionHandler(completionHandler: (() => void)): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2522234193088624, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** func size() -> CGSize */
-  size(): $SDK7 { return callSDK<$SDK7>("SpriteKit_a956b86ef7a76a8e", 482236871258265, this, []); }
+  size(): $SDK7 { return callSDK<$SDK7>("SpriteKit_90ad0eb69cc6bf4a", 482236871258265, this, []); }
   /** func applying(_ filter: CIFilter) -> Self */
-  applying(filter: _CoreImage_CIFilter): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 132893412040934, this, [filter]); }
+  applying(filter: _CoreImage_CIFilter): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 132893412040934, this, [filter]); }
   /**
    * func generatingNormalMap() -> Self
    * @availability iOS 8.0+
    */
-  generatingNormalMap(): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 3441938048679811, this, []); }
+  generatingNormalMap(): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 3441938048679811, this, []); }
   /**
    * func generatingNormalMap(withSmoothness smoothness: CGFloat, contrast: CGFloat) -> Self
    * @availability iOS 8.0+
    */
-  generatingNormalMapWithSmoothnessContrast(smoothness: number, contrast: number): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 1402082321531773, this, [smoothness, contrast]); }
+  generatingNormalMapWithSmoothnessContrast(smoothness: number, contrast: number): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 1402082321531773, this, [smoothness, contrast]); }
   /** func textureRect() -> CGRect */
-  textureRect(): $SDK0 { return callSDK<$SDK0>("SpriteKit_a956b86ef7a76a8e", 23710069138853, this, []); }
+  textureRect(): $SDK0 { return callSDK<$SDK0>("SpriteKit_90ad0eb69cc6bf4a", 23710069138853, this, []); }
   /** var filteringMode: SKTextureFilteringMode { get set } */
-  get filteringMode(): SKTextureFilteringMode { return callSDK<SKTextureFilteringMode>("SpriteKit_a956b86ef7a76a8e", 217218109470215, this, []); }
-  set filteringMode(value: SKTextureFilteringMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1360795069950210, this, [value]); }
+  get filteringMode(): SKTextureFilteringMode { return callSDK<SKTextureFilteringMode>("SpriteKit_90ad0eb69cc6bf4a", 217218109470215, this, []); }
+  set filteringMode(value: SKTextureFilteringMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1360795069950210, this, [value]); }
   /** var usesMipmaps: Bool { get set } */
-  get usesMipmaps(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 3895365635733263, this, []); }
-  set usesMipmaps(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4431790777721453, this, [value]); }
+  get usesMipmaps(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 3895365635733263, this, []); }
+  set usesMipmaps(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4431790777721453, this, [value]); }
   /** var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
-  get customPlaygroundQuickLook(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 4285212074129084, this, []); }
+  get customPlaygroundQuickLook(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 4285212074129084, this, []); }
   declare readonly $type: { "c:objc(cs)SKTexture": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "filteringMode": true; "usesMipmaps": true };
 }
@@ -1500,17 +1500,17 @@ export class SKMutableTexture extends SKTexture {
    * init(size: CGSize)
    * @availability iOS 8.0+
    */
-  static initSize(size: $SDK7): SKMutableTexture { return callSDK<SKMutableTexture>("SpriteKit_a956b86ef7a76a8e", 231976549555015, undefined, [size]); }
+  static initSize(size: $SDK7): SKMutableTexture { return callSDK<SKMutableTexture>("SpriteKit_90ad0eb69cc6bf4a", 231976549555015, undefined, [size]); }
   /**
    * init(size: CGSize, pixelFormat format: Int32)
    * @availability iOS 8.0+
    */
-  static initSizePixelFormat(size: $SDK7, format: number): SKMutableTexture { return callSDK<SKMutableTexture>("SpriteKit_a956b86ef7a76a8e", 1711686100803893, undefined, [size, format]); }
+  static initSizePixelFormat(size: $SDK7, format: number): SKMutableTexture { return callSDK<SKMutableTexture>("SpriteKit_90ad0eb69cc6bf4a", 1711686100803893, undefined, [size, format]); }
   /**
    * func modifyPixelData() async -> (UnsafeMutableRawPointer?, Int)
    * @availability iOS 8.0+
    */
-  modifyPixelData(block: ((arg0: (SDKHandle) | null, arg1: number) => void)): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2487102701487282, this, [block], [{"callback":{"out":[]}}]); }
+  modifyPixelData(block: ((arg0: (SDKHandle) | null, arg1: number) => void)): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2487102701487282, this, [block], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)SKMutableTexture": true; "c:objc(cs)SKTexture": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "filteringMode": true; "usesMipmaps": true };
 }
@@ -1526,7 +1526,7 @@ export const SKNodeFocusBehavior = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (SKNodeFocusBehavior) | null { return callSDK<(SKNodeFocusBehavior) | null>("SpriteKit_a956b86ef7a76a8e", 1616309930839413, undefined, [rawValue]); }
+  init(rawValue: number): (SKNodeFocusBehavior) | null { return callSDK<(SKNodeFocusBehavior) | null>("SpriteKit_90ad0eb69cc6bf4a", 1616309930839413, undefined, [rawValue]); }
 };
 
 /**
@@ -1540,127 +1540,127 @@ export const SKParticleRenderOrder = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (SKParticleRenderOrder) | null { return callSDK<(SKParticleRenderOrder) | null>("SpriteKit_a956b86ef7a76a8e", 4230823049446200, undefined, [rawValue]); }
+  init(rawValue: number): (SKParticleRenderOrder) | null { return callSDK<(SKParticleRenderOrder) | null>("SpriteKit_90ad0eb69cc6bf4a", 4230823049446200, undefined, [rawValue]); }
 };
 
 /** class SKPhysicsBody */
 export class SKPhysicsBody extends SDKHandle {
   /** init(bodies: [SKPhysicsBody]) */
-  static initBodies(bodies: Array<SKPhysicsBody>): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 3911316063701449, undefined, [bodies]); }
+  static initBodies(bodies: Array<SKPhysicsBody>): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 3911316063701449, undefined, [bodies]); }
   /** init(circleOfRadius r: CGFloat) */
-  static initCircleOfRadius(r: number): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 315585177973708, undefined, [r]); }
+  static initCircleOfRadius(r: number): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 315585177973708, undefined, [r]); }
   /** init(circleOfRadius r: CGFloat, center: CGPoint) */
-  static initCircleOfRadiusCenter(r: number, center: $SDK1): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 2854216938325337, undefined, [r, center]); }
+  static initCircleOfRadiusCenter(r: number, center: $SDK1): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 2854216938325337, undefined, [r, center]); }
   /** init(edgeChainFrom path: CGPath) */
-  static initEdgeChainFrom(path: _CoreGraphics_CGPath): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 1579075012340630, undefined, [path]); }
+  static initEdgeChainFrom(path: _CoreGraphics_CGPath): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 1579075012340630, undefined, [path]); }
   /** init(edgeFrom p1: CGPoint, to p2: CGPoint) */
-  static initEdgeFromTo(p1: $SDK1, p2: $SDK1): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 1866269322742323, undefined, [p1, p2]); }
+  static initEdgeFromTo(p1: $SDK1, p2: $SDK1): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 1866269322742323, undefined, [p1, p2]); }
   /** init(edgeLoopFrom path: CGPath) */
-  static initEdgeLoopFrom(path: _CoreGraphics_CGPath): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 4075379525143715, undefined, [path]); }
+  static initEdgeLoopFrom(path: _CoreGraphics_CGPath): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 4075379525143715, undefined, [path]); }
   /** init(edgeLoopFrom rect: CGRect) */
-  static initEdgeLoopFrom15402(rect: $SDK0): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 4196953698044544, undefined, [rect]); }
+  static initEdgeLoopFrom15402(rect: $SDK0): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 4196953698044544, undefined, [rect]); }
   /** init(polygonFrom path: CGPath) */
-  static initPolygonFrom(path: _CoreGraphics_CGPath): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 2678756196120990, undefined, [path]); }
+  static initPolygonFrom(path: _CoreGraphics_CGPath): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 2678756196120990, undefined, [path]); }
   /** init(rectangleOf s: CGSize) */
-  static initRectangleOf(s: $SDK7): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 2041637117914580, undefined, [s]); }
+  static initRectangleOf(s: $SDK7): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 2041637117914580, undefined, [s]); }
   /** init(rectangleOf s: CGSize, center: CGPoint) */
-  static initRectangleOfCenter(s: $SDK7, center: $SDK1): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 3809389023138518, undefined, [s, center]); }
+  static initRectangleOfCenter(s: $SDK7, center: $SDK1): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 3809389023138518, undefined, [s, center]); }
   /**
    * init(texture: SKTexture, alphaThreshold: Float, size: CGSize)
    * @availability iOS 8.0+
    */
-  static initTextureAlphaThresholdSize(texture: SKTexture, alphaThreshold: number, size: $SDK7): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 3633890988772965, undefined, [texture, alphaThreshold, size]); }
+  static initTextureAlphaThresholdSize(texture: SKTexture, alphaThreshold: number, size: $SDK7): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 3633890988772965, undefined, [texture, alphaThreshold, size]); }
   /**
    * init(texture: SKTexture, size: CGSize)
    * @availability iOS 8.0+
    */
-  static initTextureSize(texture: SKTexture, size: $SDK7): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 447655021156937, undefined, [texture, size]); }
+  static initTextureSize(texture: SKTexture, size: $SDK7): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 447655021156937, undefined, [texture, size]); }
   /** func allContactedBodies() -> [SKPhysicsBody] */
-  allContactedBodies(): Array<SKPhysicsBody> { return callSDK<Array<SKPhysicsBody>>("SpriteKit_a956b86ef7a76a8e", 3327250281569590, this, []); }
+  allContactedBodies(): Array<SKPhysicsBody> { return callSDK<Array<SKPhysicsBody>>("SpriteKit_90ad0eb69cc6bf4a", 3327250281569590, this, []); }
   /** func applyAngularImpulse(_ impulse: CGFloat) */
-  applyAngularImpulse(impulse: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2571471356661889, this, [impulse]); }
+  applyAngularImpulse(impulse: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2571471356661889, this, [impulse]); }
   /** func applyForce(_ force: CGVector) */
-  applyForce(force: $SDK9): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1413748511370583, this, [force]); }
+  applyForce(force: $SDK9): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1413748511370583, this, [force]); }
   /** func applyForce(_ force: CGVector, at point: CGPoint) */
-  applyForceAt(force: $SDK9, point: $SDK1): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2501761571283675, this, [force, point]); }
+  applyForceAt(force: $SDK9, point: $SDK1): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2501761571283675, this, [force, point]); }
   /** func applyImpulse(_ impulse: CGVector) */
-  applyImpulse(impulse: $SDK9): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2354648641409154, this, [impulse]); }
+  applyImpulse(impulse: $SDK9): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2354648641409154, this, [impulse]); }
   /** func applyImpulse(_ impulse: CGVector, at point: CGPoint) */
-  applyImpulseAt(impulse: $SDK9, point: $SDK1): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3470539655929772, this, [impulse, point]); }
+  applyImpulseAt(impulse: $SDK9, point: $SDK1): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3470539655929772, this, [impulse, point]); }
   /** func applyTorque(_ torque: CGFloat) */
-  applyTorque(torque: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4378895794963181, this, [torque]); }
+  applyTorque(torque: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4378895794963181, this, [torque]); }
   /** var affectedByGravity: Bool { get set } */
-  get affectedByGravity(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2493995362622718, this, []); }
-  set affectedByGravity(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3802345546934224, this, [value]); }
+  get affectedByGravity(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2493995362622718, this, []); }
+  set affectedByGravity(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3802345546934224, this, [value]); }
   /** var allowsRotation: Bool { get set } */
-  get allowsRotation(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 941579759257310, this, []); }
-  set allowsRotation(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3575674312554307, this, [value]); }
+  get allowsRotation(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 941579759257310, this, []); }
+  set allowsRotation(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3575674312554307, this, [value]); }
   /** var angularDamping: CGFloat { get set } */
-  get angularDamping(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 134495531597188, this, []); }
-  set angularDamping(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1989094315852334, this, [value]); }
+  get angularDamping(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 134495531597188, this, []); }
+  set angularDamping(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1989094315852334, this, [value]); }
   /** var angularVelocity: CGFloat { get set } */
-  get angularVelocity(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1677956104871373, this, []); }
-  set angularVelocity(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1995478645595206, this, [value]); }
+  get angularVelocity(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1677956104871373, this, []); }
+  set angularVelocity(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1995478645595206, this, [value]); }
   /** var area: CGFloat { get } */
-  get area(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4495267132961459, this, []); }
+  get area(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4495267132961459, this, []); }
   /** var categoryBitMask: UInt32 { get set } */
-  get categoryBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1761028085973675, this, []); }
-  set categoryBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 748753456092690, this, [value]); }
+  get categoryBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1761028085973675, this, []); }
+  set categoryBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 748753456092690, this, [value]); }
   /**
    * var charge: CGFloat { get set }
    * @availability iOS 8.0+
    */
-  get charge(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4000331104006831, this, []); }
-  set charge(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 44773758583678, this, [value]); }
+  get charge(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4000331104006831, this, []); }
+  set charge(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 44773758583678, this, [value]); }
   /** var collisionBitMask: UInt32 { get set } */
-  get collisionBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1468297333188894, this, []); }
-  set collisionBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1654250286120626, this, [value]); }
+  get collisionBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1468297333188894, this, []); }
+  set collisionBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1654250286120626, this, [value]); }
   /** var contactTestBitMask: UInt32 { get set } */
-  get contactTestBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 627620279281133, this, []); }
-  set contactTestBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1635339234709651, this, [value]); }
+  get contactTestBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 627620279281133, this, []); }
+  set contactTestBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1635339234709651, this, [value]); }
   /** var density: CGFloat { get set } */
-  get density(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3737722093214971, this, []); }
-  set density(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1398014445691982, this, [value]); }
+  get density(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3737722093214971, this, []); }
+  set density(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1398014445691982, this, [value]); }
   /** var isDynamic: Bool { get set } */
-  get isDynamic(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 907909334574976, this, []); }
-  set isDynamic(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1415390344675885, this, [value]); }
+  get isDynamic(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 907909334574976, this, []); }
+  set isDynamic(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1415390344675885, this, [value]); }
   /**
    * var fieldBitMask: UInt32 { get set }
    * @availability iOS 8.0+
    */
-  get fieldBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2827993101492527, this, []); }
-  set fieldBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 666123736260652, this, [value]); }
+  get fieldBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2827993101492527, this, []); }
+  set fieldBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 666123736260652, this, [value]); }
   /** var friction: CGFloat { get set } */
-  get friction(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2901965732656825, this, []); }
-  set friction(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2402458886562486, this, [value]); }
+  get friction(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2901965732656825, this, []); }
+  set friction(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2402458886562486, this, [value]); }
   /** var joints: [SKPhysicsJoint] { get } */
-  get joints(): Array<SKPhysicsJoint> { return callSDK<Array<SKPhysicsJoint>>("SpriteKit_a956b86ef7a76a8e", 3567532477547331, this, []); }
+  get joints(): Array<SKPhysicsJoint> { return callSDK<Array<SKPhysicsJoint>>("SpriteKit_90ad0eb69cc6bf4a", 3567532477547331, this, []); }
   /** var linearDamping: CGFloat { get set } */
-  get linearDamping(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2706293056963761, this, []); }
-  set linearDamping(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 469224135273169, this, [value]); }
+  get linearDamping(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2706293056963761, this, []); }
+  set linearDamping(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 469224135273169, this, [value]); }
   /** var mass: CGFloat { get set } */
-  get mass(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1723340112542632, this, []); }
-  set mass(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4003080605498718, this, [value]); }
+  get mass(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1723340112542632, this, []); }
+  set mass(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4003080605498718, this, [value]); }
   /** weak var node: SKNode? { get } */
-  get node(): (SKNode) | null { return callSDK<(SKNode) | null>("SpriteKit_a956b86ef7a76a8e", 4138841735677574, this, []); }
+  get node(): (SKNode) | null { return callSDK<(SKNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 4138841735677574, this, []); }
   /**
    * var pinned: Bool { get set }
    * @availability iOS 8.0+
    */
-  get pinned(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 454739245569728, this, []); }
-  set pinned(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 236918951962408, this, [value]); }
+  get pinned(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 454739245569728, this, []); }
+  set pinned(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 236918951962408, this, [value]); }
   /** var isResting: Bool { get set } */
-  get isResting(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 658896268031494, this, []); }
-  set isResting(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3853632153660609, this, [value]); }
+  get isResting(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 658896268031494, this, []); }
+  set isResting(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3853632153660609, this, [value]); }
   /** var restitution: CGFloat { get set } */
-  get restitution(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2500595737183049, this, []); }
-  set restitution(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2137417656098082, this, [value]); }
+  get restitution(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2500595737183049, this, []); }
+  set restitution(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2137417656098082, this, [value]); }
   /** var usesPreciseCollisionDetection: Bool { get set } */
-  get usesPreciseCollisionDetection(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2009388593261625, this, []); }
-  set usesPreciseCollisionDetection(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 591377022822915, this, [value]); }
+  get usesPreciseCollisionDetection(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2009388593261625, this, []); }
+  set usesPreciseCollisionDetection(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 591377022822915, this, [value]); }
   /** var velocity: CGVector { get set } */
-  get velocity(): $SDK9 { return callSDK<$SDK9>("SpriteKit_a956b86ef7a76a8e", 2210287118422154, this, []); }
-  set velocity(value: $SDK9) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4345824221012788, this, [value]); }
+  get velocity(): $SDK9 { return callSDK<$SDK9>("SpriteKit_90ad0eb69cc6bf4a", 2210287118422154, this, []); }
+  set velocity(value: $SDK9) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4345824221012788, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKPhysicsBody": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "affectedByGravity": true; "allowsRotation": true; "angularDamping": true; "angularVelocity": true; "area": true; "categoryBitMask": true; "charge": true; "collisionBitMask": true; "contactTestBitMask": true; "density": true; "isDynamic": true; "fieldBitMask": true; "friction": true; "joints": true; "linearDamping": true; "mass": true; "node": true; "pinned": true; "isResting": true; "restitution": true; "usesPreciseCollisionDetection": true; "velocity": true };
 }
@@ -1668,17 +1668,17 @@ export class SKPhysicsBody extends SDKHandle {
 /** class SKPhysicsContact */
 export class SKPhysicsContact extends SDKHandle {
   /** init() */
-  static init(): SKPhysicsContact { return callSDK<SKPhysicsContact>("SpriteKit_a956b86ef7a76a8e", 4050390175884610, undefined, []); }
+  static init(): SKPhysicsContact { return callSDK<SKPhysicsContact>("SpriteKit_90ad0eb69cc6bf4a", 4050390175884610, undefined, []); }
   /** var bodyA: SKPhysicsBody { get } */
-  get bodyA(): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 306938671974241, this, []); }
+  get bodyA(): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 306938671974241, this, []); }
   /** var bodyB: SKPhysicsBody { get } */
-  get bodyB(): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 3957166057335880, this, []); }
+  get bodyB(): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 3957166057335880, this, []); }
   /** var collisionImpulse: CGFloat { get } */
-  get collisionImpulse(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4476739356263284, this, []); }
+  get collisionImpulse(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4476739356263284, this, []); }
   /** var contactNormal: CGVector { get } */
-  get contactNormal(): $SDK9 { return callSDK<$SDK9>("SpriteKit_a956b86ef7a76a8e", 645531870962332, this, []); }
+  get contactNormal(): $SDK9 { return callSDK<$SDK9>("SpriteKit_90ad0eb69cc6bf4a", 645531870962332, this, []); }
   /** var contactPoint: CGPoint { get } */
-  get contactPoint(): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 1924056432559894, this, []); }
+  get contactPoint(): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 1924056432559894, this, []); }
   declare readonly $type: { "c:objc(cs)SKPhysicsContact": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bodyA": true; "bodyB": true; "collisionImpulse": true; "contactNormal": true; "contactPoint": true };
 }
@@ -1694,17 +1694,17 @@ export interface SKPhysicsContactDelegate {
 /** class SKPhysicsJoint */
 export class SKPhysicsJoint extends SDKHandle {
   /** init() */
-  static init(): SKPhysicsJoint { return callSDK<SKPhysicsJoint>("SpriteKit_a956b86ef7a76a8e", 3227366353896866, undefined, []); }
+  static init(): SKPhysicsJoint { return callSDK<SKPhysicsJoint>("SpriteKit_90ad0eb69cc6bf4a", 3227366353896866, undefined, []); }
   /** var bodyA: SKPhysicsBody { get set } */
-  get bodyA(): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 3339863027557020, this, []); }
-  set bodyA(value: SKPhysicsBody) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2233043372127412, this, [value]); }
+  get bodyA(): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 3339863027557020, this, []); }
+  set bodyA(value: SKPhysicsBody) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2233043372127412, this, [value]); }
   /** var bodyB: SKPhysicsBody { get set } */
-  get bodyB(): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_a956b86ef7a76a8e", 1168182993498900, this, []); }
-  set bodyB(value: SKPhysicsBody) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 313529727665698, this, [value]); }
+  get bodyB(): SKPhysicsBody { return callSDK<SKPhysicsBody>("SpriteKit_90ad0eb69cc6bf4a", 1168182993498900, this, []); }
+  set bodyB(value: SKPhysicsBody) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 313529727665698, this, [value]); }
   /** var reactionForce: CGVector { get } */
-  get reactionForce(): $SDK9 { return callSDK<$SDK9>("SpriteKit_a956b86ef7a76a8e", 2097324760210270, this, []); }
+  get reactionForce(): $SDK9 { return callSDK<$SDK9>("SpriteKit_90ad0eb69cc6bf4a", 2097324760210270, this, []); }
   /** var reactionTorque: CGFloat { get } */
-  get reactionTorque(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3596752828709313, this, []); }
+  get reactionTorque(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3596752828709313, this, []); }
   declare readonly $type: { "c:objc(cs)SKPhysicsJoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bodyA": true; "bodyB": true; "reactionForce": true; "reactionTorque": true };
 }
@@ -1712,9 +1712,9 @@ export class SKPhysicsJoint extends SDKHandle {
 /** class SKPhysicsJointFixed */
 export class SKPhysicsJointFixed extends (SKPhysicsJoint as unknown as Omit<typeof SKPhysicsJoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKPhysicsJoint)) {
   /** class func joint(withBodyA bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: CGPoint) -> SKPhysicsJointFixed */
-  static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: $SDK1): SKPhysicsJointFixed { return callSDK<SKPhysicsJointFixed>("SpriteKit_a956b86ef7a76a8e", 23516986343317, undefined, [bodyA, bodyB, anchor]); }
+  static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: $SDK1): SKPhysicsJointFixed { return callSDK<SKPhysicsJointFixed>("SpriteKit_90ad0eb69cc6bf4a", 23516986343317, undefined, [bodyA, bodyB, anchor]); }
   /** init() */
-  static init(): SKPhysicsJointFixed { return callSDK<SKPhysicsJointFixed>("SpriteKit_a956b86ef7a76a8e", 657625851379585, undefined, []); }
+  static init(): SKPhysicsJointFixed { return callSDK<SKPhysicsJointFixed>("SpriteKit_90ad0eb69cc6bf4a", 657625851379585, undefined, []); }
   declare readonly $type: { "c:objc(cs)SKPhysicsJointFixed": true; "c:objc(cs)SKPhysicsJoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bodyA": true; "bodyB": true; "reactionForce": true; "reactionTorque": true };
 }
@@ -1722,12 +1722,12 @@ export class SKPhysicsJointFixed extends (SKPhysicsJoint as unknown as Omit<type
 /** class SKPhysicsJointLimit */
 export class SKPhysicsJointLimit extends (SKPhysicsJoint as unknown as Omit<typeof SKPhysicsJoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKPhysicsJoint)) {
   /** class func joint(withBodyA bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchorA: CGPoint, anchorB: CGPoint) -> SKPhysicsJointLimit */
-  static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchorA: $SDK1, anchorB: $SDK1): SKPhysicsJointLimit { return callSDK<SKPhysicsJointLimit>("SpriteKit_a956b86ef7a76a8e", 1658086520385239, undefined, [bodyA, bodyB, anchorA, anchorB]); }
+  static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchorA: $SDK1, anchorB: $SDK1): SKPhysicsJointLimit { return callSDK<SKPhysicsJointLimit>("SpriteKit_90ad0eb69cc6bf4a", 1658086520385239, undefined, [bodyA, bodyB, anchorA, anchorB]); }
   /** init() */
-  static init(): SKPhysicsJointLimit { return callSDK<SKPhysicsJointLimit>("SpriteKit_a956b86ef7a76a8e", 3281677148399737, undefined, []); }
+  static init(): SKPhysicsJointLimit { return callSDK<SKPhysicsJointLimit>("SpriteKit_90ad0eb69cc6bf4a", 3281677148399737, undefined, []); }
   /** var maxLength: CGFloat { get set } */
-  get maxLength(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3475525711565265, this, []); }
-  set maxLength(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 544839365753858, this, [value]); }
+  get maxLength(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3475525711565265, this, []); }
+  set maxLength(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 544839365753858, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKPhysicsJointLimit": true; "c:objc(cs)SKPhysicsJoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bodyA": true; "bodyB": true; "reactionForce": true; "reactionTorque": true; "maxLength": true };
 }
@@ -1735,24 +1735,24 @@ export class SKPhysicsJointLimit extends (SKPhysicsJoint as unknown as Omit<type
 /** class SKPhysicsJointPin */
 export class SKPhysicsJointPin extends (SKPhysicsJoint as unknown as Omit<typeof SKPhysicsJoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKPhysicsJoint)) {
   /** class func joint(withBodyA bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: CGPoint) -> SKPhysicsJointPin */
-  static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: $SDK1): SKPhysicsJointPin { return callSDK<SKPhysicsJointPin>("SpriteKit_a956b86ef7a76a8e", 2467440193135034, undefined, [bodyA, bodyB, anchor]); }
+  static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: $SDK1): SKPhysicsJointPin { return callSDK<SKPhysicsJointPin>("SpriteKit_90ad0eb69cc6bf4a", 2467440193135034, undefined, [bodyA, bodyB, anchor]); }
   /** init() */
-  static init(): SKPhysicsJointPin { return callSDK<SKPhysicsJointPin>("SpriteKit_a956b86ef7a76a8e", 3923516421954120, undefined, []); }
+  static init(): SKPhysicsJointPin { return callSDK<SKPhysicsJointPin>("SpriteKit_90ad0eb69cc6bf4a", 3923516421954120, undefined, []); }
   /** var frictionTorque: CGFloat { get set } */
-  get frictionTorque(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4204485019155230, this, []); }
-  set frictionTorque(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3586894613784444, this, [value]); }
+  get frictionTorque(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4204485019155230, this, []); }
+  set frictionTorque(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3586894613784444, this, [value]); }
   /** var lowerAngleLimit: CGFloat { get set } */
-  get lowerAngleLimit(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 310145441098686, this, []); }
-  set lowerAngleLimit(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1014312642619922, this, [value]); }
+  get lowerAngleLimit(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 310145441098686, this, []); }
+  set lowerAngleLimit(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1014312642619922, this, [value]); }
   /** var rotationSpeed: CGFloat { get set } */
-  get rotationSpeed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4329011890898757, this, []); }
-  set rotationSpeed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3308790553286145, this, [value]); }
+  get rotationSpeed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4329011890898757, this, []); }
+  set rotationSpeed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3308790553286145, this, [value]); }
   /** var shouldEnableLimits: Bool { get set } */
-  get shouldEnableLimits(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2726074114989963, this, []); }
-  set shouldEnableLimits(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2169545070553665, this, [value]); }
+  get shouldEnableLimits(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2726074114989963, this, []); }
+  set shouldEnableLimits(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2169545070553665, this, [value]); }
   /** var upperAngleLimit: CGFloat { get set } */
-  get upperAngleLimit(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2311785509961007, this, []); }
-  set upperAngleLimit(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3049584284981821, this, [value]); }
+  get upperAngleLimit(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2311785509961007, this, []); }
+  set upperAngleLimit(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3049584284981821, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKPhysicsJointPin": true; "c:objc(cs)SKPhysicsJoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bodyA": true; "bodyB": true; "reactionForce": true; "reactionTorque": true; "frictionTorque": true; "lowerAngleLimit": true; "rotationSpeed": true; "shouldEnableLimits": true; "upperAngleLimit": true };
 }
@@ -1760,18 +1760,18 @@ export class SKPhysicsJointPin extends (SKPhysicsJoint as unknown as Omit<typeof
 /** class SKPhysicsJointSliding */
 export class SKPhysicsJointSliding extends (SKPhysicsJoint as unknown as Omit<typeof SKPhysicsJoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKPhysicsJoint)) {
   /** class func joint(withBodyA bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: CGPoint, axis: CGVector) -> SKPhysicsJointSliding */
-  static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: $SDK1, axis: $SDK9): SKPhysicsJointSliding { return callSDK<SKPhysicsJointSliding>("SpriteKit_a956b86ef7a76a8e", 3133718801272143, undefined, [bodyA, bodyB, anchor, axis]); }
+  static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: $SDK1, axis: $SDK9): SKPhysicsJointSliding { return callSDK<SKPhysicsJointSliding>("SpriteKit_90ad0eb69cc6bf4a", 3133718801272143, undefined, [bodyA, bodyB, anchor, axis]); }
   /** init() */
-  static init(): SKPhysicsJointSliding { return callSDK<SKPhysicsJointSliding>("SpriteKit_a956b86ef7a76a8e", 712327271613776, undefined, []); }
+  static init(): SKPhysicsJointSliding { return callSDK<SKPhysicsJointSliding>("SpriteKit_90ad0eb69cc6bf4a", 712327271613776, undefined, []); }
   /** var lowerDistanceLimit: CGFloat { get set } */
-  get lowerDistanceLimit(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1655187112413091, this, []); }
-  set lowerDistanceLimit(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3479980213824503, this, [value]); }
+  get lowerDistanceLimit(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1655187112413091, this, []); }
+  set lowerDistanceLimit(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3479980213824503, this, [value]); }
   /** var shouldEnableLimits: Bool { get set } */
-  get shouldEnableLimits(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 4121824163204776, this, []); }
-  set shouldEnableLimits(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 240134661844311, this, [value]); }
+  get shouldEnableLimits(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 4121824163204776, this, []); }
+  set shouldEnableLimits(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 240134661844311, this, [value]); }
   /** var upperDistanceLimit: CGFloat { get set } */
-  get upperDistanceLimit(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4008529786157952, this, []); }
-  set upperDistanceLimit(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1272029121429620, this, [value]); }
+  get upperDistanceLimit(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4008529786157952, this, []); }
+  set upperDistanceLimit(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1272029121429620, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKPhysicsJointSliding": true; "c:objc(cs)SKPhysicsJoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bodyA": true; "bodyB": true; "reactionForce": true; "reactionTorque": true; "lowerDistanceLimit": true; "shouldEnableLimits": true; "upperDistanceLimit": true };
 }
@@ -1779,15 +1779,15 @@ export class SKPhysicsJointSliding extends (SKPhysicsJoint as unknown as Omit<ty
 /** class SKPhysicsJointSpring */
 export class SKPhysicsJointSpring extends (SKPhysicsJoint as unknown as Omit<typeof SKPhysicsJoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKPhysicsJoint)) {
   /** class func joint(withBodyA bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchorA: CGPoint, anchorB: CGPoint) -> SKPhysicsJointSpring */
-  static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchorA: $SDK1, anchorB: $SDK1): SKPhysicsJointSpring { return callSDK<SKPhysicsJointSpring>("SpriteKit_a956b86ef7a76a8e", 285747790870637, undefined, [bodyA, bodyB, anchorA, anchorB]); }
+  static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchorA: $SDK1, anchorB: $SDK1): SKPhysicsJointSpring { return callSDK<SKPhysicsJointSpring>("SpriteKit_90ad0eb69cc6bf4a", 285747790870637, undefined, [bodyA, bodyB, anchorA, anchorB]); }
   /** init() */
-  static init(): SKPhysicsJointSpring { return callSDK<SKPhysicsJointSpring>("SpriteKit_a956b86ef7a76a8e", 3444279590195235, undefined, []); }
+  static init(): SKPhysicsJointSpring { return callSDK<SKPhysicsJointSpring>("SpriteKit_90ad0eb69cc6bf4a", 3444279590195235, undefined, []); }
   /** var damping: CGFloat { get set } */
-  get damping(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2334298210257948, this, []); }
-  set damping(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2479936764645777, this, [value]); }
+  get damping(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2334298210257948, this, []); }
+  set damping(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2479936764645777, this, [value]); }
   /** var frequency: CGFloat { get set } */
-  get frequency(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1675136801369673, this, []); }
-  set frequency(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2647651029055045, this, [value]); }
+  get frequency(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1675136801369673, this, []); }
+  set frequency(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2647651029055045, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKPhysicsJointSpring": true; "c:objc(cs)SKPhysicsJoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bodyA": true; "bodyB": true; "reactionForce": true; "reactionTorque": true; "damping": true; "frequency": true };
 }
@@ -1795,33 +1795,33 @@ export class SKPhysicsJointSpring extends (SKPhysicsJoint as unknown as Omit<typ
 /** class SKPhysicsWorld */
 export class SKPhysicsWorld extends SDKHandle {
   /** func add(_ joint: SKPhysicsJoint) */
-  add(joint: SKPhysicsJoint): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3828822010577301, this, [joint]); }
+  add(joint: SKPhysicsJoint): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3828822010577301, this, [joint]); }
   /** func body(alongRayStart start: CGPoint, end: CGPoint) -> SKPhysicsBody? */
-  bodyAlongRayStartEnd(start: $SDK1, end: $SDK1): (SKPhysicsBody) | null { return callSDK<(SKPhysicsBody) | null>("SpriteKit_a956b86ef7a76a8e", 4019964597022767, this, [start, end]); }
+  bodyAlongRayStartEnd(start: $SDK1, end: $SDK1): (SKPhysicsBody) | null { return callSDK<(SKPhysicsBody) | null>("SpriteKit_90ad0eb69cc6bf4a", 4019964597022767, this, [start, end]); }
   /** func body(at point: CGPoint) -> SKPhysicsBody? */
-  bodyAt(point: $SDK1): (SKPhysicsBody) | null { return callSDK<(SKPhysicsBody) | null>("SpriteKit_a956b86ef7a76a8e", 3595256753211706, this, [point]); }
+  bodyAt(point: $SDK1): (SKPhysicsBody) | null { return callSDK<(SKPhysicsBody) | null>("SpriteKit_90ad0eb69cc6bf4a", 3595256753211706, this, [point]); }
   /** func body(in rect: CGRect) -> SKPhysicsBody? */
-  bodyIn(rect: $SDK0): (SKPhysicsBody) | null { return callSDK<(SKPhysicsBody) | null>("SpriteKit_a956b86ef7a76a8e", 2338493974089144, this, [rect]); }
+  bodyIn(rect: $SDK0): (SKPhysicsBody) | null { return callSDK<(SKPhysicsBody) | null>("SpriteKit_90ad0eb69cc6bf4a", 2338493974089144, this, [rect]); }
   /** init() */
-  static init(): SKPhysicsWorld { return callSDK<SKPhysicsWorld>("SpriteKit_a956b86ef7a76a8e", 1226025451038471, undefined, []); }
+  static init(): SKPhysicsWorld { return callSDK<SKPhysicsWorld>("SpriteKit_90ad0eb69cc6bf4a", 1226025451038471, undefined, []); }
   /** func removeAllJoints() */
-  removeAllJoints(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3474816201051128, this, []); }
+  removeAllJoints(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3474816201051128, this, []); }
   /** func remove(_ joint: SKPhysicsJoint) */
-  remove(joint: SKPhysicsJoint): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3709795350163361, this, [joint]); }
+  remove(joint: SKPhysicsJoint): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3709795350163361, this, [joint]); }
   /**
    * func sampleFields(at position: vector_float3) -> vector_float3
    * @availability iOS 8.0+
    */
-  sampleFields(position: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 1212520593559870, this, [position]); }
+  sampleFields(position: SDKHandle): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 1212520593559870, this, [position]); }
   /** unowned(unsafe) var contactDelegate: (any SKPhysicsContactDelegate)? { get set } */
-  get contactDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SpriteKit_a956b86ef7a76a8e", 4037364612235261, this, []); }
-  set contactDelegate(value: (Implements<SKPhysicsContactDelegate> | SDKHandle) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3357765374338563, this, [value], [{"protocol":"c:objc(pl)SKPhysicsContactDelegate"}]); }
+  get contactDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SpriteKit_90ad0eb69cc6bf4a", 4037364612235261, this, []); }
+  set contactDelegate(value: (Implements<SKPhysicsContactDelegate> | SDKHandle) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3357765374338563, this, [value], [{"protocol":"c:objc(pl)SKPhysicsContactDelegate"}]); }
   /** var gravity: CGVector { get set } */
-  get gravity(): $SDK9 { return callSDK<$SDK9>("SpriteKit_a956b86ef7a76a8e", 1337277765949563, this, []); }
-  set gravity(value: $SDK9) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1317262233525065, this, [value]); }
+  get gravity(): $SDK9 { return callSDK<$SDK9>("SpriteKit_90ad0eb69cc6bf4a", 1337277765949563, this, []); }
+  set gravity(value: $SDK9) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1317262233525065, this, [value]); }
   /** var speed: CGFloat { get set } */
-  get speed(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2505010340208798, this, []); }
-  set speed(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1602660010327821, this, [value]); }
+  get speed(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2505010340208798, this, []); }
+  set speed(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1602660010327821, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKPhysicsWorld": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contactDelegate": true; "gravity": true; "speed": true };
 }
@@ -1835,44 +1835,44 @@ export class SKRange extends SDKHandle {
    * convenience init(constantValue value: CGFloat)
    * @availability iOS 8.0+
    */
-  static initConstantValue(value: number): SKRange { return callSDK<SKRange>("SpriteKit_a956b86ef7a76a8e", 2793878549292697, undefined, [value]); }
+  static initConstantValue(value: number): SKRange { return callSDK<SKRange>("SpriteKit_90ad0eb69cc6bf4a", 2793878549292697, undefined, [value]); }
   /**
    * convenience init(lowerLimit lower: CGFloat)
    * @availability iOS 8.0+
    */
-  static initLowerLimit(lower: number): SKRange { return callSDK<SKRange>("SpriteKit_a956b86ef7a76a8e", 2299839362495540, undefined, [lower]); }
+  static initLowerLimit(lower: number): SKRange { return callSDK<SKRange>("SpriteKit_90ad0eb69cc6bf4a", 2299839362495540, undefined, [lower]); }
   /**
    * class func withNoLimits() -> Self
    * @availability iOS 8.0+
    */
-  static withNoLimits(): SKRange { return callSDK<SKRange>("SpriteKit_a956b86ef7a76a8e", 2909701833691917, undefined, []); }
+  static withNoLimits(): SKRange { return callSDK<SKRange>("SpriteKit_90ad0eb69cc6bf4a", 2909701833691917, undefined, []); }
   /**
    * convenience init(upperLimit upper: CGFloat)
    * @availability iOS 8.0+
    */
-  static initUpperLimit(upper: number): SKRange { return callSDK<SKRange>("SpriteKit_a956b86ef7a76a8e", 335040825260489, undefined, [upper]); }
+  static initUpperLimit(upper: number): SKRange { return callSDK<SKRange>("SpriteKit_90ad0eb69cc6bf4a", 335040825260489, undefined, [upper]); }
   /**
    * convenience init(value: CGFloat, variance: CGFloat)
    * @availability iOS 8.0+
    */
-  static initValueVariance(value: number, variance: number): SKRange { return callSDK<SKRange>("SpriteKit_a956b86ef7a76a8e", 810722805072278, undefined, [value, variance]); }
+  static initValueVariance(value: number, variance: number): SKRange { return callSDK<SKRange>("SpriteKit_90ad0eb69cc6bf4a", 810722805072278, undefined, [value, variance]); }
   /**
    * init(lowerLimit lower: CGFloat, upperLimit upper: CGFloat)
    * @availability iOS 8.0+
    */
-  static initLowerLimitUpperLimit(lower: number, upper: number): SKRange { return callSDK<SKRange>("SpriteKit_a956b86ef7a76a8e", 2079366411628273, undefined, [lower, upper]); }
+  static initLowerLimitUpperLimit(lower: number, upper: number): SKRange { return callSDK<SKRange>("SpriteKit_90ad0eb69cc6bf4a", 2079366411628273, undefined, [lower, upper]); }
   /**
    * var lowerLimit: CGFloat { get set }
    * @availability iOS 8.0+
    */
-  get lowerLimit(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1699309293445831, this, []); }
-  set lowerLimit(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3444835990503287, this, [value]); }
+  get lowerLimit(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1699309293445831, this, []); }
+  set lowerLimit(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3444835990503287, this, [value]); }
   /**
    * var upperLimit: CGFloat { get set }
    * @availability iOS 8.0+
    */
-  get upperLimit(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1777201784829701, this, []); }
-  set upperLimit(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 873570013060416, this, [value]); }
+  get upperLimit(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1777201784829701, this, []); }
+  set upperLimit(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 873570013060416, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKRange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "lowerLimit": true; "upperLimit": true };
 }
@@ -1886,19 +1886,19 @@ export class SKReachConstraints extends SDKHandle {
    * init(lowerAngleLimit: CGFloat, upperAngleLimit: CGFloat)
    * @availability iOS 8.0+
    */
-  static init(lowerAngleLimit: number, upperAngleLimit: number): SKReachConstraints { return callSDK<SKReachConstraints>("SpriteKit_a956b86ef7a76a8e", 1333010681734968, undefined, [lowerAngleLimit, upperAngleLimit]); }
+  static init(lowerAngleLimit: number, upperAngleLimit: number): SKReachConstraints { return callSDK<SKReachConstraints>("SpriteKit_90ad0eb69cc6bf4a", 1333010681734968, undefined, [lowerAngleLimit, upperAngleLimit]); }
   /**
    * var lowerAngleLimit: CGFloat { get set }
    * @availability iOS 8.0+
    */
-  get lowerAngleLimit(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3174339080824190, this, []); }
-  set lowerAngleLimit(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 510960501421325, this, [value]); }
+  get lowerAngleLimit(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3174339080824190, this, []); }
+  set lowerAngleLimit(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 510960501421325, this, [value]); }
   /**
    * var upperAngleLimit: CGFloat { get set }
    * @availability iOS 8.0+
    */
-  get upperAngleLimit(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 947917504081416, this, []); }
-  set upperAngleLimit(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1002287377841469, this, [value]); }
+  get upperAngleLimit(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 947917504081416, this, []); }
+  set upperAngleLimit(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1002287377841469, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKReachConstraints": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "lowerAngleLimit": true; "upperAngleLimit": true };
 }
@@ -1912,37 +1912,37 @@ export class SKReferenceNode extends (SKNode as unknown as Omit<typeof SKNode, "
    * convenience init(fileNamed fileName: String)
    * @availability iOS 9.0+
    */
-  static initFileNamed(fileName: string): SKReferenceNode { return callSDK<SKReferenceNode>("SpriteKit_a956b86ef7a76a8e", 2617546905134387, undefined, [fileName]); }
+  static initFileNamed(fileName: string): SKReferenceNode { return callSDK<SKReferenceNode>("SpriteKit_90ad0eb69cc6bf4a", 2617546905134387, undefined, [fileName]); }
   /**
    * convenience init(url referenceURL: URL)
    * @availability iOS 9.0+
    */
-  static initUrl(referenceURL: string): SKReferenceNode { return callSDK<SKReferenceNode>("SpriteKit_a956b86ef7a76a8e", 1813767391818107, undefined, [referenceURL]); }
+  static initUrl(referenceURL: string): SKReferenceNode { return callSDK<SKReferenceNode>("SpriteKit_90ad0eb69cc6bf4a", 1813767391818107, undefined, [referenceURL]); }
   /**
    * func didLoad(_ node: SKNode?)
    * @availability iOS 9.0+
    */
-  didLoad(node?: (SKNode) | null): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1079920578333308, this, [node]); }
+  didLoad(node?: (SKNode) | null): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1079920578333308, this, [node]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 9.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (SKReferenceNode) | null { return callSDK<(SKReferenceNode) | null>("SpriteKit_a956b86ef7a76a8e", 2517168439817746, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (SKReferenceNode) | null { return callSDK<(SKReferenceNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 2517168439817746, undefined, [aDecoder]); }
   /**
    * init(fileNamed fileName: String?)
    * @availability iOS 9.0+
    */
-  static initFileNamed20498(fileName?: (string) | null): SKReferenceNode { return callSDK<SKReferenceNode>("SpriteKit_a956b86ef7a76a8e", 4493457170704187, undefined, [fileName]); }
+  static initFileNamed20498(fileName?: (string) | null): SKReferenceNode { return callSDK<SKReferenceNode>("SpriteKit_90ad0eb69cc6bf4a", 4493457170704187, undefined, [fileName]); }
   /**
    * init(url: URL?)
    * @availability iOS 9.0+
    */
-  static initUrl30004(url?: (string) | null): SKReferenceNode { return callSDK<SKReferenceNode>("SpriteKit_a956b86ef7a76a8e", 3832731526901229, undefined, [url]); }
+  static initUrl30004(url?: (string) | null): SKReferenceNode { return callSDK<SKReferenceNode>("SpriteKit_90ad0eb69cc6bf4a", 3832731526901229, undefined, [url]); }
   /**
    * func resolve()
    * @availability iOS 9.0+
    */
-  resolve(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3342908669028930, this, []); }
+  resolve(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3342908669028930, this, []); }
   declare readonly $type: { "c:objc(cs)SKReferenceNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1955,52 +1955,52 @@ export class SKRegion extends SDKHandle {
    * class func infinite() -> Self
    * @availability iOS 8.0+
    */
-  static infinite(): SKRegion { return callSDK<SKRegion>("SpriteKit_a956b86ef7a76a8e", 1465909138337600, undefined, []); }
+  static infinite(): SKRegion { return callSDK<SKRegion>("SpriteKit_90ad0eb69cc6bf4a", 1465909138337600, undefined, []); }
   /**
    * func contains(_ point: CGPoint) -> Bool
    * @availability iOS 8.0+
    */
-  contains(point: $SDK1): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 297132126165607, this, [point]); }
+  contains(point: $SDK1): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 297132126165607, this, [point]); }
   /**
    * init(path: CGPath)
    * @availability iOS 8.0+
    */
-  static initPath(path: _CoreGraphics_CGPath): SKRegion { return callSDK<SKRegion>("SpriteKit_a956b86ef7a76a8e", 2735937802207607, undefined, [path]); }
+  static initPath(path: _CoreGraphics_CGPath): SKRegion { return callSDK<SKRegion>("SpriteKit_90ad0eb69cc6bf4a", 2735937802207607, undefined, [path]); }
   /**
    * init(radius: Float)
    * @availability iOS 8.0+
    */
-  static initRadius(radius: number): SKRegion { return callSDK<SKRegion>("SpriteKit_a956b86ef7a76a8e", 4295000481945932, undefined, [radius]); }
+  static initRadius(radius: number): SKRegion { return callSDK<SKRegion>("SpriteKit_90ad0eb69cc6bf4a", 4295000481945932, undefined, [radius]); }
   /**
    * init(size: CGSize)
    * @availability iOS 8.0+
    */
-  static initSize(size: $SDK7): SKRegion { return callSDK<SKRegion>("SpriteKit_a956b86ef7a76a8e", 3450524647881678, undefined, [size]); }
+  static initSize(size: $SDK7): SKRegion { return callSDK<SKRegion>("SpriteKit_90ad0eb69cc6bf4a", 3450524647881678, undefined, [size]); }
   /**
    * func inverse() -> Self
    * @availability iOS 8.0+
    */
-  inverse(): SKRegion { return callSDK<SKRegion>("SpriteKit_a956b86ef7a76a8e", 4059814825278782, this, []); }
+  inverse(): SKRegion { return callSDK<SKRegion>("SpriteKit_90ad0eb69cc6bf4a", 4059814825278782, this, []); }
   /**
    * func byDifference(from region: SKRegion) -> Self
    * @availability iOS 8.0+
    */
-  byDifference(region: SKRegion): SKRegion { return callSDK<SKRegion>("SpriteKit_a956b86ef7a76a8e", 978825300240891, this, [region]); }
+  byDifference(region: SKRegion): SKRegion { return callSDK<SKRegion>("SpriteKit_90ad0eb69cc6bf4a", 978825300240891, this, [region]); }
   /**
    * func byIntersection(with region: SKRegion) -> Self
    * @availability iOS 8.0+
    */
-  byIntersection(region: SKRegion): SKRegion { return callSDK<SKRegion>("SpriteKit_a956b86ef7a76a8e", 2797500139454048, this, [region]); }
+  byIntersection(region: SKRegion): SKRegion { return callSDK<SKRegion>("SpriteKit_90ad0eb69cc6bf4a", 2797500139454048, this, [region]); }
   /**
    * func byUnion(with region: SKRegion) -> Self
    * @availability iOS 8.0+
    */
-  byUnion(region: SKRegion): SKRegion { return callSDK<SKRegion>("SpriteKit_a956b86ef7a76a8e", 312558859971283, this, [region]); }
+  byUnion(region: SKRegion): SKRegion { return callSDK<SKRegion>("SpriteKit_90ad0eb69cc6bf4a", 312558859971283, this, [region]); }
   /**
    * var path: CGPath? { get }
    * @availability iOS 8.0+
    */
-  get path(): $SDK19 { return callSDK<$SDK19>("SpriteKit_a956b86ef7a76a8e", 1998197630530392, this, []); }
+  get path(): $SDK19 { return callSDK<$SDK19>("SpriteKit_90ad0eb69cc6bf4a", 1998197630530392, this, []); }
   declare readonly $type: { "c:objc(cs)SKRegion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "path": true };
 }
@@ -2014,70 +2014,70 @@ export class SKRenderer extends SDKHandle {
    * init(device: any MTLDevice)
    * @availability iOS 11.0+
    */
-  static init(device: SDKHandle): SKRenderer { return callSDK<SKRenderer>("SpriteKit_a956b86ef7a76a8e", 682238688911267, undefined, [device]); }
+  static init(device: SDKHandle): SKRenderer { return callSDK<SKRenderer>("SpriteKit_90ad0eb69cc6bf4a", 682238688911267, undefined, [device]); }
   /**
    * func render(withViewport viewport: CGRect, commandBuffer: any MTLCommandBuffer, renderPassDescriptor: MTLRenderPassDescriptor)
    * @availability iOS 11.0+
    */
-  renderWithViewportCommandBufferRenderPassDescriptor(viewport: $SDK0, commandBuffer: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2839300069263895, this, [viewport, commandBuffer, renderPassDescriptor]); }
+  renderWithViewportCommandBufferRenderPassDescriptor(viewport: $SDK0, commandBuffer: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2839300069263895, this, [viewport, commandBuffer, renderPassDescriptor]); }
   /**
    * func render(withViewport viewport: CGRect, renderCommandEncoder: any MTLRenderCommandEncoder, renderPassDescriptor: MTLRenderPassDescriptor, commandQueue: any MTLCommandQueue)
    * @availability iOS 11.0+
    */
-  renderWithViewportRenderCommandEncoderRenderPassDescriptorCommandQueue(viewport: $SDK0, renderCommandEncoder: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor, commandQueue: SDKHandle): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4156136468760320, this, [viewport, renderCommandEncoder, renderPassDescriptor, commandQueue]); }
+  renderWithViewportRenderCommandEncoderRenderPassDescriptorCommandQueue(viewport: $SDK0, renderCommandEncoder: SDKHandle, renderPassDescriptor: _Metal_MTLRenderPassDescriptor, commandQueue: SDKHandle): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4156136468760320, this, [viewport, renderCommandEncoder, renderPassDescriptor, commandQueue]); }
   /**
    * func update(atTime currentTime: TimeInterval)
    * @availability iOS 11.0+
    */
-  update(currentTime: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2332299691898962, this, [currentTime]); }
+  update(currentTime: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2332299691898962, this, [currentTime]); }
   /**
    * var ignoresSiblingOrder: Bool { get set }
    * @availability iOS 11.0+
    */
-  get ignoresSiblingOrder(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2662207347059075, this, []); }
-  set ignoresSiblingOrder(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3980004184534094, this, [value]); }
+  get ignoresSiblingOrder(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2662207347059075, this, []); }
+  set ignoresSiblingOrder(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3980004184534094, this, [value]); }
   /**
    * var scene: SKScene? { get set }
    * @availability iOS 11.0+
    */
-  get scene(): (SKScene) | null { return callSDK<(SKScene) | null>("SpriteKit_a956b86ef7a76a8e", 477759256266363, this, []); }
-  set scene(value: (SKScene) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 240375471754078, this, [value]); }
+  get scene(): (SKScene) | null { return callSDK<(SKScene) | null>("SpriteKit_90ad0eb69cc6bf4a", 477759256266363, this, []); }
+  set scene(value: (SKScene) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 240375471754078, this, [value]); }
   /**
    * var shouldCullNonVisibleNodes: Bool { get set }
    * @availability iOS 11.0+
    */
-  get shouldCullNonVisibleNodes(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 3413081903624935, this, []); }
-  set shouldCullNonVisibleNodes(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1663453100267322, this, [value]); }
+  get shouldCullNonVisibleNodes(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 3413081903624935, this, []); }
+  set shouldCullNonVisibleNodes(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1663453100267322, this, [value]); }
   /**
    * var showsDrawCount: Bool { get set }
    * @availability iOS 11.0+
    */
-  get showsDrawCount(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2561788060882343, this, []); }
-  set showsDrawCount(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 524538815226675, this, [value]); }
+  get showsDrawCount(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2561788060882343, this, []); }
+  set showsDrawCount(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 524538815226675, this, [value]); }
   /**
    * var showsFields: Bool { get set }
    * @availability iOS 11.0+
    */
-  get showsFields(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2879187971523914, this, []); }
-  set showsFields(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 23175671698174, this, [value]); }
+  get showsFields(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2879187971523914, this, []); }
+  set showsFields(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 23175671698174, this, [value]); }
   /**
    * var showsNodeCount: Bool { get set }
    * @availability iOS 11.0+
    */
-  get showsNodeCount(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 906765898093772, this, []); }
-  set showsNodeCount(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 543465183061443, this, [value]); }
+  get showsNodeCount(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 906765898093772, this, []); }
+  set showsNodeCount(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 543465183061443, this, [value]); }
   /**
    * var showsPhysics: Bool { get set }
    * @availability iOS 11.0+
    */
-  get showsPhysics(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 3223252405479177, this, []); }
-  set showsPhysics(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2199453611082859, this, [value]); }
+  get showsPhysics(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 3223252405479177, this, []); }
+  set showsPhysics(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2199453611082859, this, [value]); }
   /**
    * var showsQuadCount: Bool { get set }
    * @availability iOS 11.0+
    */
-  get showsQuadCount(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 3075125105573614, this, []); }
-  set showsQuadCount(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2406290034516926, this, [value]); }
+  get showsQuadCount(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 3075125105573614, this, []); }
+  set showsQuadCount(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2406290034516926, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKRenderer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ignoresSiblingOrder": true; "scene": true; "shouldCullNonVisibleNodes": true; "showsDrawCount": true; "showsFields": true; "showsNodeCount": true; "showsPhysics": true; "showsQuadCount": true };
 }
@@ -2087,83 +2087,83 @@ export type SKRepeatMode = "clamp" | "loop";
 
 export const SKRepeatMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (SKRepeatMode) | null { return callSDK<(SKRepeatMode) | null>("SpriteKit_a956b86ef7a76a8e", 2085028572606087, undefined, [rawValue]); }
+  init(rawValue: number): (SKRepeatMode) | null { return callSDK<(SKRepeatMode) | null>("SpriteKit_90ad0eb69cc6bf4a", 2085028572606087, undefined, [rawValue]); }
 };
 
 /** class SKScene */
 export class SKScene extends (SKEffectNode as unknown as Omit<typeof SKEffectNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKEffectNode)) {
   /** func convertPoint(fromView point: CGPoint) -> CGPoint */
-  convertPointFromView(point: $SDK1): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 1145118479733252, this, [point]); }
+  convertPointFromView(point: $SDK1): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 1145118479733252, this, [point]); }
   /** func convertPoint(toView point: CGPoint) -> CGPoint */
-  convertPointToView(point: $SDK1): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 3388059905691291, this, [point]); }
+  convertPointToView(point: $SDK1): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 3388059905691291, this, [point]); }
   /**
    * func didApplyConstraints()
    * @availability iOS 8.0+
    */
-  didApplyConstraints(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3975109058114674, this, []); }
+  didApplyConstraints(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3975109058114674, this, []); }
   /** func didChangeSize(_ oldSize: CGSize) */
-  didChangeSize(oldSize: $SDK7): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3253787048716294, this, [oldSize]); }
+  didChangeSize(oldSize: $SDK7): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3253787048716294, this, [oldSize]); }
   /** func didEvaluateActions() */
-  didEvaluateActions(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3215713705646111, this, []); }
+  didEvaluateActions(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3215713705646111, this, []); }
   /**
    * func didFinishUpdate()
    * @availability iOS 8.0+
    */
-  didFinishUpdate(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3322041544584731, this, []); }
+  didFinishUpdate(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3322041544584731, this, []); }
   /** func didMove(to view: SKView) */
-  didMove(view: SKView): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 834639709683708, this, [view]); }
+  didMove(view: SKView): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 834639709683708, this, [view]); }
   /** func didSimulatePhysics() */
-  didSimulatePhysics(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4246593608939132, this, []); }
+  didSimulatePhysics(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4246593608939132, this, []); }
   /** init(size: CGSize) */
-  static init(size: $SDK7): SKScene { return callSDK<SKScene>("SpriteKit_a956b86ef7a76a8e", 2437247450244681, undefined, [size]); }
+  static init(size: $SDK7): SKScene { return callSDK<SKScene>("SpriteKit_90ad0eb69cc6bf4a", 2437247450244681, undefined, [size]); }
   /**
    * func sceneDidLoad()
    * @availability iOS 10.0+
    */
-  sceneDidLoad(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4491290792042471, this, []); }
+  sceneDidLoad(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4491290792042471, this, []); }
   /** func update(_ currentTime: TimeInterval) */
-  update(currentTime: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 988057089352800, this, [currentTime]); }
+  update(currentTime: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 988057089352800, this, [currentTime]); }
   /** func willMove(from view: SKView) */
-  willMove(view: SKView): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 588901513488224, this, [view]); }
+  willMove(view: SKView): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 588901513488224, this, [view]); }
   /** var anchorPoint: CGPoint { get set } */
-  get anchorPoint(): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 1575613480479631, this, []); }
-  set anchorPoint(value: $SDK1) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4139100106600090, this, [value]); }
+  get anchorPoint(): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 1575613480479631, this, []); }
+  set anchorPoint(value: $SDK1) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4139100106600090, this, [value]); }
   /**
    * var audioEngine: AVAudioEngine { get }
    * @availability iOS 9.0+
    */
-  get audioEngine(): _AVFAudio_AVAudioEngine { return callSDK<_AVFAudio_AVAudioEngine>("SpriteKit_a956b86ef7a76a8e", 1420487367681098, this, []); }
+  get audioEngine(): _AVFAudio_AVAudioEngine { return callSDK<_AVFAudio_AVAudioEngine>("SpriteKit_90ad0eb69cc6bf4a", 1420487367681098, this, []); }
   /** var backgroundColor: UIColor { get set } */
-  get backgroundColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_a956b86ef7a76a8e", 654202365127665, this, []); }
-  set backgroundColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2791612180449662, this, [value]); }
+  get backgroundColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_90ad0eb69cc6bf4a", 654202365127665, this, []); }
+  set backgroundColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2791612180449662, this, [value]); }
   /**
    * weak var camera: SKCameraNode? { get set }
    * @availability iOS 9.0+
    */
-  get camera(): (SKCameraNode) | null { return callSDK<(SKCameraNode) | null>("SpriteKit_a956b86ef7a76a8e", 27375220227381, this, []); }
-  set camera(value: (SKCameraNode) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1930497552852271, this, [value]); }
+  get camera(): (SKCameraNode) | null { return callSDK<(SKCameraNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 27375220227381, this, []); }
+  set camera(value: (SKCameraNode) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1930497552852271, this, [value]); }
   /**
    * weak var delegate: (any SKSceneDelegate)? { get set }
    * @availability iOS 8.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SpriteKit_a956b86ef7a76a8e", 3782113894341880, this, []); }
-  set delegate(value: (Implements<SKSceneDelegate> | SDKHandle) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1478543689846613, this, [value], [{"protocol":"c:objc(pl)SKSceneDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SpriteKit_90ad0eb69cc6bf4a", 3782113894341880, this, []); }
+  set delegate(value: (Implements<SKSceneDelegate> | SDKHandle) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1478543689846613, this, [value], [{"protocol":"c:objc(pl)SKSceneDelegate"}]); }
   /**
    * weak var listener: SKNode? { get set }
    * @availability iOS 9.0+
    */
-  get listener(): (SKNode) | null { return callSDK<(SKNode) | null>("SpriteKit_a956b86ef7a76a8e", 3129516158349727, this, []); }
-  set listener(value: (SKNode) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 56954795557636, this, [value]); }
+  get listener(): (SKNode) | null { return callSDK<(SKNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 3129516158349727, this, []); }
+  set listener(value: (SKNode) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 56954795557636, this, [value]); }
   /** var physicsWorld: SKPhysicsWorld { get } */
-  get physicsWorld(): SKPhysicsWorld { return callSDK<SKPhysicsWorld>("SpriteKit_a956b86ef7a76a8e", 2748350462188546, this, []); }
+  get physicsWorld(): SKPhysicsWorld { return callSDK<SKPhysicsWorld>("SpriteKit_90ad0eb69cc6bf4a", 2748350462188546, this, []); }
   /** var scaleMode: SKSceneScaleMode { get set } */
-  get scaleMode(): SKSceneScaleMode { return callSDK<SKSceneScaleMode>("SpriteKit_a956b86ef7a76a8e", 533478677714134, this, []); }
-  set scaleMode(value: SKSceneScaleMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2163501242214253, this, [value]); }
+  get scaleMode(): SKSceneScaleMode { return callSDK<SKSceneScaleMode>("SpriteKit_90ad0eb69cc6bf4a", 533478677714134, this, []); }
+  set scaleMode(value: SKSceneScaleMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2163501242214253, this, [value]); }
   /** var size: CGSize { get set } */
-  get size(): $SDK7 { return callSDK<$SDK7>("SpriteKit_a956b86ef7a76a8e", 4008996010603627, this, []); }
-  set size(value: $SDK7) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 720733174172378, this, [value]); }
+  get size(): $SDK7 { return callSDK<$SDK7>("SpriteKit_90ad0eb69cc6bf4a", 4008996010603627, this, []); }
+  set size(value: $SDK7) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 720733174172378, this, [value]); }
   /** weak var view: SKView? { get } */
-  get view(): (SKView) | null { return callSDK<(SKView) | null>("SpriteKit_a956b86ef7a76a8e", 1772191672083636, this, []); }
+  get view(): (SKView) | null { return callSDK<(SKView) | null>("SpriteKit_90ad0eb69cc6bf4a", 1772191672083636, this, []); }
   declare readonly $type: { "c:objc(cs)SKScene": true; "c:objc(cs)SKEffectNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributeValues": true; "blendMode": true; "filter": true; "shader": true; "shouldCenterFilter": true; "shouldEnableEffects": true; "shouldRasterize": true; "anchorPoint": true; "audioEngine": true; "backgroundColor": true; "camera": true; "delegate": true; "listener": true; "physicsWorld": true; "scaleMode": true; "size": true; "view": true };
 }
@@ -2211,7 +2211,7 @@ export const SKSceneScaleMode = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (SKSceneScaleMode) | null { return callSDK<(SKSceneScaleMode) | null>("SpriteKit_a956b86ef7a76a8e", 1637167512682930, undefined, [rawValue]); }
+  init(rawValue: number): (SKSceneScaleMode) | null { return callSDK<(SKSceneScaleMode) | null>("SpriteKit_90ad0eb69cc6bf4a", 1637167512682930, undefined, [rawValue]); }
 };
 
 /**
@@ -2223,50 +2223,50 @@ export class SKShader extends SDKHandle {
    * convenience init(fileNamed name: String)
    * @availability iOS 8.0+
    */
-  static initFileNamed(name: string): SKShader { return callSDK<SKShader>("SpriteKit_a956b86ef7a76a8e", 2654726471623304, undefined, [name]); }
+  static initFileNamed(name: string): SKShader { return callSDK<SKShader>("SpriteKit_90ad0eb69cc6bf4a", 2654726471623304, undefined, [name]); }
   /**
    * func addUniform(_ uniform: SKUniform)
    * @availability iOS 8.0+
    */
-  addUniform(uniform: SKUniform): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3550475259717569, this, [uniform]); }
+  addUniform(uniform: SKUniform): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3550475259717569, this, [uniform]); }
   /**
    * init(source: String)
    * @availability iOS 8.0+
    */
-  static initSource(source: string): SKShader { return callSDK<SKShader>("SpriteKit_a956b86ef7a76a8e", 771398693023952, undefined, [source]); }
+  static initSource(source: string): SKShader { return callSDK<SKShader>("SpriteKit_90ad0eb69cc6bf4a", 771398693023952, undefined, [source]); }
   /**
    * init(source: String, uniforms: [SKUniform])
    * @availability iOS 8.0+
    */
-  static initSourceUniforms(source: string, uniforms: Array<SKUniform>): SKShader { return callSDK<SKShader>("SpriteKit_a956b86ef7a76a8e", 2553174648404545, undefined, [source, uniforms]); }
+  static initSourceUniforms(source: string, uniforms: Array<SKUniform>): SKShader { return callSDK<SKShader>("SpriteKit_90ad0eb69cc6bf4a", 2553174648404545, undefined, [source, uniforms]); }
   /**
    * func removeUniformNamed(_ name: String)
    * @availability iOS 8.0+
    */
-  removeUniformNamed(name: string): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 918014204125400, this, [name]); }
+  removeUniformNamed(name: string): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 918014204125400, this, [name]); }
   /**
    * func uniformNamed(_ name: String) -> SKUniform?
    * @availability iOS 8.0+
    */
-  uniformNamed(name: string): (SKUniform) | null { return callSDK<(SKUniform) | null>("SpriteKit_a956b86ef7a76a8e", 1457766720089455, this, [name]); }
+  uniformNamed(name: string): (SKUniform) | null { return callSDK<(SKUniform) | null>("SpriteKit_90ad0eb69cc6bf4a", 1457766720089455, this, [name]); }
   /**
    * var attributes: [SKAttribute] { get set }
    * @availability iOS 9.0+
    */
-  get attributes(): Array<SKAttribute> { return callSDK<Array<SKAttribute>>("SpriteKit_a956b86ef7a76a8e", 3930379476455715, this, []); }
-  set attributes(value: Array<SKAttribute>) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2369215477283081, this, [value]); }
+  get attributes(): Array<SKAttribute> { return callSDK<Array<SKAttribute>>("SpriteKit_90ad0eb69cc6bf4a", 3930379476455715, this, []); }
+  set attributes(value: Array<SKAttribute>) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2369215477283081, this, [value]); }
   /**
    * var source: String? { get set }
    * @availability iOS 8.0+
    */
-  get source(): (string) | null { return callSDK<(string) | null>("SpriteKit_a956b86ef7a76a8e", 2705485564541778, this, []); }
-  set source(value: (string) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1088323287995674, this, [value]); }
+  get source(): (string) | null { return callSDK<(string) | null>("SpriteKit_90ad0eb69cc6bf4a", 2705485564541778, this, []); }
+  set source(value: (string) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1088323287995674, this, [value]); }
   /**
    * var uniforms: [SKUniform] { get set }
    * @availability iOS 8.0+
    */
-  get uniforms(): Array<SKUniform> { return callSDK<Array<SKUniform>>("SpriteKit_a956b86ef7a76a8e", 924238518714419, this, []); }
-  set uniforms(value: Array<SKUniform>) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 458270364260360, this, [value]); }
+  get uniforms(): Array<SKUniform> { return callSDK<Array<SKUniform>>("SpriteKit_90ad0eb69cc6bf4a", 924238518714419, this, []); }
+  set uniforms(value: Array<SKUniform>) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 458270364260360, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKShader": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributes": true; "source": true; "uniforms": true };
 }
@@ -2277,131 +2277,131 @@ export class SKShapeNode extends (SKNode as unknown as Omit<typeof SKNode, "prot
    * convenience init(circleOfRadius radius: CGFloat)
    * @availability iOS 8.0+
    */
-  static initCircleOfRadius(radius: number): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 3099324861741063, undefined, [radius]); }
+  static initCircleOfRadius(radius: number): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 3099324861741063, undefined, [radius]); }
   /**
    * convenience init(ellipseIn rect: CGRect)
    * @availability iOS 8.0+
    */
-  static initEllipseIn(rect: $SDK0): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 1997736012611004, undefined, [rect]); }
+  static initEllipseIn(rect: $SDK0): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 1997736012611004, undefined, [rect]); }
   /**
    * convenience init(ellipseOf size: CGSize)
    * @availability iOS 8.0+
    */
-  static initEllipseOf(size: $SDK7): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 2151485938083067, undefined, [size]); }
+  static initEllipseOf(size: $SDK7): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 2151485938083067, undefined, [size]); }
   /**
    * convenience init(path: CGPath)
    * @availability iOS 8.0+
    */
-  static initPath(path: _CoreGraphics_CGPath): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 713963036657365, undefined, [path]); }
+  static initPath(path: _CoreGraphics_CGPath): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 713963036657365, undefined, [path]); }
   /**
    * convenience init(path: CGPath, centered: Bool)
    * @availability iOS 8.0+
    */
-  static initPathCentered(path: _CoreGraphics_CGPath, centered: boolean): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 533200951968579, undefined, [path, centered]); }
+  static initPathCentered(path: _CoreGraphics_CGPath, centered: boolean): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 533200951968579, undefined, [path, centered]); }
   /**
    * convenience init(points: UnsafeMutablePointer<CGPoint>, count numPoints: Int)
    * @availability iOS 8.0+
    */
-  static initPointsCount(points: "animatableData" | SDKHandle, numPoints: number): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 4035177477365168, undefined, [points, numPoints]); }
+  static initPointsCount(points: "animatableData" | SDKHandle, numPoints: number): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 4035177477365168, undefined, [points, numPoints]); }
   /**
    * convenience init(rect: CGRect)
    * @availability iOS 8.0+
    */
-  static initRect(rect: $SDK0): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 950558456194431, undefined, [rect]); }
+  static initRect(rect: $SDK0): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 950558456194431, undefined, [rect]); }
   /**
    * convenience init(rect: CGRect, cornerRadius: CGFloat)
    * @availability iOS 8.0+
    */
-  static initRectCornerRadius(rect: $SDK0, cornerRadius: number): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 4151655434765000, undefined, [rect, cornerRadius]); }
+  static initRectCornerRadius(rect: $SDK0, cornerRadius: number): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 4151655434765000, undefined, [rect, cornerRadius]); }
   /**
    * convenience init(rectOf size: CGSize)
    * @availability iOS 8.0+
    */
-  static initRectOf(size: $SDK7): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 4080028908962589, undefined, [size]); }
+  static initRectOf(size: $SDK7): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 4080028908962589, undefined, [size]); }
   /**
    * convenience init(rectOf size: CGSize, cornerRadius: CGFloat)
    * @availability iOS 8.0+
    */
-  static initRectOfCornerRadius(size: $SDK7, cornerRadius: number): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 1175064847824937, undefined, [size, cornerRadius]); }
+  static initRectOfCornerRadius(size: $SDK7, cornerRadius: number): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 1175064847824937, undefined, [size, cornerRadius]); }
   /**
    * convenience init(splinePoints points: UnsafeMutablePointer<CGPoint>, count numPoints: Int)
    * @availability iOS 8.0+
    */
-  static initSplinePointsCount(points: "animatableData" | SDKHandle, numPoints: number): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_a956b86ef7a76a8e", 420663917030821, undefined, [points, numPoints]); }
+  static initSplinePointsCount(points: "animatableData" | SDKHandle, numPoints: number): SKShapeNode { return callSDK<SKShapeNode>("SpriteKit_90ad0eb69cc6bf4a", 420663917030821, undefined, [points, numPoints]); }
   /**
    * func setValue(_ value: SKAttributeValue, forAttribute key: String)
    * @availability iOS 10.0+
    */
-  setValue(value: SKAttributeValue, key: string): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4256637346385177, this, [value, key]); }
+  setValue(value: SKAttributeValue, key: string): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4256637346385177, this, [value, key]); }
   /**
    * func value(forAttributeNamed key: String) -> SKAttributeValue?
    * @availability iOS 10.0+
    */
-  value(key: string): $SDK2 { return callSDK<$SDK2>("SpriteKit_a956b86ef7a76a8e", 3256512614332707, this, [key]); }
+  value(key: string): $SDK2 { return callSDK<$SDK2>("SpriteKit_90ad0eb69cc6bf4a", 3256512614332707, this, [key]); }
   /** var isAntialiased: Bool { get set } */
-  get isAntialiased(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 806433633747628, this, []); }
-  set isAntialiased(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 456364725083613, this, [value]); }
+  get isAntialiased(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 806433633747628, this, []); }
+  set isAntialiased(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 456364725083613, this, [value]); }
   /**
    * var attributeValues: [String : SKAttributeValue] { get set }
    * @availability iOS 10.0+
    */
-  get attributeValues(): $SDK3 { return callSDK<$SDK3>("SpriteKit_a956b86ef7a76a8e", 3233388782263945, this, []); }
-  set attributeValues(value: $SDK3) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1434967580402960, this, [value]); }
+  get attributeValues(): $SDK3 { return callSDK<$SDK3>("SpriteKit_90ad0eb69cc6bf4a", 3233388782263945, this, []); }
+  set attributeValues(value: $SDK3) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1434967580402960, this, [value]); }
   /** var blendMode: SKBlendMode { get set } */
-  get blendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_a956b86ef7a76a8e", 1663915206437646, this, []); }
-  set blendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1136625219669398, this, [value]); }
+  get blendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_90ad0eb69cc6bf4a", 1663915206437646, this, []); }
+  set blendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1136625219669398, this, [value]); }
   /** var fillColor: UIColor { get set } */
-  get fillColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_a956b86ef7a76a8e", 2104179822817590, this, []); }
-  set fillColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 276468161446716, this, [value]); }
+  get fillColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_90ad0eb69cc6bf4a", 2104179822817590, this, []); }
+  set fillColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 276468161446716, this, [value]); }
   /**
    * var fillShader: SKShader? { get set }
    * @availability iOS 8.0+
    */
-  get fillShader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_a956b86ef7a76a8e", 1013289940637235, this, []); }
-  set fillShader(value: (SKShader) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4166086513928061, this, [value]); }
+  get fillShader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_90ad0eb69cc6bf4a", 1013289940637235, this, []); }
+  set fillShader(value: (SKShader) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4166086513928061, this, [value]); }
   /**
    * var fillTexture: SKTexture? { get set }
    * @availability iOS 8.0+
    */
-  get fillTexture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_a956b86ef7a76a8e", 2916353863358300, this, []); }
-  set fillTexture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3079990817840891, this, [value]); }
+  get fillTexture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_90ad0eb69cc6bf4a", 2916353863358300, this, []); }
+  set fillTexture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3079990817840891, this, [value]); }
   /** var glowWidth: CGFloat { get set } */
-  get glowWidth(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4475834113983192, this, []); }
-  set glowWidth(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3805027496740424, this, [value]); }
+  get glowWidth(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4475834113983192, this, []); }
+  set glowWidth(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3805027496740424, this, [value]); }
   /** var lineCap: CGLineCap { get set } */
-  get lineCap(): _CoreGraphics_CGLineCap { return callSDK<_CoreGraphics_CGLineCap>("SpriteKit_a956b86ef7a76a8e", 4488922285321580, this, []); }
-  set lineCap(value: _CoreGraphics_CGLineCap) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 44745369365883, this, [value]); }
+  get lineCap(): _CoreGraphics_CGLineCap { return callSDK<_CoreGraphics_CGLineCap>("SpriteKit_90ad0eb69cc6bf4a", 4488922285321580, this, []); }
+  set lineCap(value: _CoreGraphics_CGLineCap) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 44745369365883, this, [value]); }
   /** var lineJoin: CGLineJoin { get set } */
-  get lineJoin(): _CoreGraphics_CGLineJoin { return callSDK<_CoreGraphics_CGLineJoin>("SpriteKit_a956b86ef7a76a8e", 502428933063580, this, []); }
-  set lineJoin(value: _CoreGraphics_CGLineJoin) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2916619014737266, this, [value]); }
+  get lineJoin(): _CoreGraphics_CGLineJoin { return callSDK<_CoreGraphics_CGLineJoin>("SpriteKit_90ad0eb69cc6bf4a", 502428933063580, this, []); }
+  set lineJoin(value: _CoreGraphics_CGLineJoin) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2916619014737266, this, [value]); }
   /** var lineLength: CGFloat { get } */
-  get lineLength(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 541870248531010, this, []); }
+  get lineLength(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 541870248531010, this, []); }
   /** var lineWidth: CGFloat { get set } */
-  get lineWidth(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2402460730981476, this, []); }
-  set lineWidth(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3388362441295324, this, [value]); }
+  get lineWidth(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2402460730981476, this, []); }
+  set lineWidth(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3388362441295324, this, [value]); }
   /** var miterLimit: CGFloat { get set } */
-  get miterLimit(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2788512496759944, this, []); }
-  set miterLimit(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 432854422893813, this, [value]); }
+  get miterLimit(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2788512496759944, this, []); }
+  set miterLimit(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 432854422893813, this, [value]); }
   /** var path: CGPath? { get set } */
-  get path(): $SDK19 { return callSDK<$SDK19>("SpriteKit_a956b86ef7a76a8e", 1385854715054719, this, []); }
-  set path(value: $SDK19) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 174925548777187, this, [value]); }
+  get path(): $SDK19 { return callSDK<$SDK19>("SpriteKit_90ad0eb69cc6bf4a", 1385854715054719, this, []); }
+  set path(value: $SDK19) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 174925548777187, this, [value]); }
   /** var strokeColor: UIColor { get set } */
-  get strokeColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_a956b86ef7a76a8e", 64184651229982, this, []); }
-  set strokeColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3559716924404653, this, [value]); }
+  get strokeColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_90ad0eb69cc6bf4a", 64184651229982, this, []); }
+  set strokeColor(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3559716924404653, this, [value]); }
   /**
    * var strokeShader: SKShader? { get set }
    * @availability iOS 8.0+
    */
-  get strokeShader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_a956b86ef7a76a8e", 956666593160180, this, []); }
-  set strokeShader(value: (SKShader) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1304275030858173, this, [value]); }
+  get strokeShader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_90ad0eb69cc6bf4a", 956666593160180, this, []); }
+  set strokeShader(value: (SKShader) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1304275030858173, this, [value]); }
   /**
    * var strokeTexture: SKTexture? { get set }
    * @availability iOS 8.0+
    */
-  get strokeTexture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_a956b86ef7a76a8e", 1631638328182647, this, []); }
-  set strokeTexture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1283792891355208, this, [value]); }
+  get strokeTexture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_90ad0eb69cc6bf4a", 1631638328182647, this, []); }
+  set strokeTexture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1283792891355208, this, [value]); }
   /** @MainActor @preconcurrency var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
-  get customPlaygroundQuickLook(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 357545815924953, this, []); }
+  get customPlaygroundQuickLook(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 357545815924953, this, []); }
   declare readonly $type: { "c:objc(cs)SKShapeNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAntialiased": true; "attributeValues": true; "blendMode": true; "fillColor": true; "fillShader": true; "fillTexture": true; "glowWidth": true; "lineCap": true; "lineJoin": true; "lineLength": true; "lineWidth": true; "miterLimit": true; "path": true; "strokeColor": true; "strokeShader": true; "strokeTexture": true };
 }
@@ -2409,95 +2409,95 @@ export class SKShapeNode extends (SKNode as unknown as Omit<typeof SKNode, "prot
 /** class SKSpriteNode */
 export class SKSpriteNode extends (SKNode as unknown as Omit<typeof SKNode, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">)) {
   /** convenience init(imageNamed name: String, normalMapped generateNormalMap: Bool) */
-  static initImageNamedNormalMapped(name: string, generateNormalMap: boolean): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_a956b86ef7a76a8e", 3263811088726770, undefined, [name, generateNormalMap]); }
+  static initImageNamedNormalMapped(name: string, generateNormalMap: boolean): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_90ad0eb69cc6bf4a", 3263811088726770, undefined, [name, generateNormalMap]); }
   /** convenience init(texture: SKTexture?, normalMap: SKTexture?) */
-  static initTextureNormalMap(texture?: (SKTexture) | null, normalMap?: (SKTexture) | null): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_a956b86ef7a76a8e", 2399997136603694, undefined, [texture, normalMap]); }
+  static initTextureNormalMap(texture?: (SKTexture) | null, normalMap?: (SKTexture) | null): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_90ad0eb69cc6bf4a", 2399997136603694, undefined, [texture, normalMap]); }
   /** convenience init(texture: SKTexture?, size: CGSize) */
-  static initTextureSize(texture: (SKTexture) | null, size: $SDK7): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_a956b86ef7a76a8e", 3046656676531141, undefined, [texture, size]); }
+  static initTextureSize(texture: (SKTexture) | null, size: $SDK7): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_90ad0eb69cc6bf4a", 3046656676531141, undefined, [texture, size]); }
   /** init?(coder aDecoder: NSCoder) */
-  static initCoder(aDecoder: _Foundation_NSCoder): (SKSpriteNode) | null { return callSDK<(SKSpriteNode) | null>("SpriteKit_a956b86ef7a76a8e", 1662808025935171, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (SKSpriteNode) | null { return callSDK<(SKSpriteNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 1662808025935171, undefined, [aDecoder]); }
   /** convenience init(color: UIColor, size: CGSize) */
-  static initColorSize(color: _UIKit_UIColor, size: $SDK7): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_a956b86ef7a76a8e", 2382644763277811, undefined, [color, size]); }
+  static initColorSize(color: _UIKit_UIColor, size: $SDK7): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_90ad0eb69cc6bf4a", 2382644763277811, undefined, [color, size]); }
   /** convenience init(imageNamed name: String) */
-  static initImageNamed(name: string): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_a956b86ef7a76a8e", 261660905905588, undefined, [name]); }
+  static initImageNamed(name: string): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_90ad0eb69cc6bf4a", 261660905905588, undefined, [name]); }
   /** convenience init(texture: SKTexture?) */
-  static initTexture(texture?: (SKTexture) | null): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_a956b86ef7a76a8e", 3189919191449644, undefined, [texture]); }
+  static initTexture(texture?: (SKTexture) | null): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_90ad0eb69cc6bf4a", 3189919191449644, undefined, [texture]); }
   /** init(texture: SKTexture?, color: UIColor, size: CGSize) */
-  static initTextureColorSize(texture: (SKTexture) | null, color: _UIKit_UIColor, size: $SDK7): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_a956b86ef7a76a8e", 1048993027085806, undefined, [texture, color, size]); }
+  static initTextureColorSize(texture: (SKTexture) | null, color: _UIKit_UIColor, size: $SDK7): SKSpriteNode { return callSDK<SKSpriteNode>("SpriteKit_90ad0eb69cc6bf4a", 1048993027085806, undefined, [texture, color, size]); }
   /**
    * func scale(to size: CGSize)
    * @availability iOS 10.0+
    */
-  scale(size: $SDK7): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1651004738300619, this, [size]); }
+  scale(size: $SDK7): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1651004738300619, this, [size]); }
   /**
    * func setValue(_ value: SKAttributeValue, forAttribute key: String)
    * @availability iOS 10.0+
    */
-  setValue(value: SKAttributeValue, key: string): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3320296814973199, this, [value, key]); }
+  setValue(value: SKAttributeValue, key: string): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3320296814973199, this, [value, key]); }
   /**
    * func value(forAttributeNamed key: String) -> SKAttributeValue?
    * @availability iOS 10.0+
    */
-  value(key: string): $SDK2 { return callSDK<$SDK2>("SpriteKit_a956b86ef7a76a8e", 2579669680497125, this, [key]); }
+  value(key: string): $SDK2 { return callSDK<$SDK2>("SpriteKit_90ad0eb69cc6bf4a", 2579669680497125, this, [key]); }
   /** var anchorPoint: CGPoint { get set } */
-  get anchorPoint(): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 396048667130902, this, []); }
-  set anchorPoint(value: $SDK1) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3967821379789179, this, [value]); }
+  get anchorPoint(): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 396048667130902, this, []); }
+  set anchorPoint(value: $SDK1) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3967821379789179, this, [value]); }
   /**
    * var attributeValues: [String : SKAttributeValue] { get set }
    * @availability iOS 10.0+
    */
-  get attributeValues(): $SDK3 { return callSDK<$SDK3>("SpriteKit_a956b86ef7a76a8e", 3694982382741068, this, []); }
-  set attributeValues(value: $SDK3) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3292350435490132, this, [value]); }
+  get attributeValues(): $SDK3 { return callSDK<$SDK3>("SpriteKit_90ad0eb69cc6bf4a", 3694982382741068, this, []); }
+  set attributeValues(value: $SDK3) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3292350435490132, this, [value]); }
   /** var blendMode: SKBlendMode { get set } */
-  get blendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_a956b86ef7a76a8e", 3609300758443752, this, []); }
-  set blendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2322952415838589, this, [value]); }
+  get blendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_90ad0eb69cc6bf4a", 3609300758443752, this, []); }
+  set blendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2322952415838589, this, [value]); }
   /** var centerRect: CGRect { get set } */
-  get centerRect(): $SDK0 { return callSDK<$SDK0>("SpriteKit_a956b86ef7a76a8e", 4107845095380782, this, []); }
-  set centerRect(value: $SDK0) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2135029662947616, this, [value]); }
+  get centerRect(): $SDK0 { return callSDK<$SDK0>("SpriteKit_90ad0eb69cc6bf4a", 4107845095380782, this, []); }
+  set centerRect(value: $SDK0) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2135029662947616, this, [value]); }
   /** var color: UIColor { get set } */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_a956b86ef7a76a8e", 3446291510407097, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3106560437038661, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_90ad0eb69cc6bf4a", 3446291510407097, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3106560437038661, this, [value]); }
   /** var colorBlendFactor: CGFloat { get set } */
-  get colorBlendFactor(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1994787308610663, this, []); }
-  set colorBlendFactor(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 259504018042527, this, [value]); }
+  get colorBlendFactor(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1994787308610663, this, []); }
+  set colorBlendFactor(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 259504018042527, this, [value]); }
   /**
    * var lightingBitMask: UInt32 { get set }
    * @availability iOS 8.0+
    */
-  get lightingBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4386761335009167, this, []); }
-  set lightingBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3289585071967970, this, [value]); }
+  get lightingBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4386761335009167, this, []); }
+  set lightingBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3289585071967970, this, [value]); }
   /**
    * var normalTexture: SKTexture? { get set }
    * @availability iOS 8.0+
    */
-  get normalTexture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_a956b86ef7a76a8e", 1410902340929250, this, []); }
-  set normalTexture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2071368392522444, this, [value]); }
+  get normalTexture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_90ad0eb69cc6bf4a", 1410902340929250, this, []); }
+  set normalTexture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2071368392522444, this, [value]); }
   /**
    * var shader: SKShader? { get set }
    * @availability iOS 8.0+
    */
-  get shader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_a956b86ef7a76a8e", 4030994221899151, this, []); }
-  set shader(value: (SKShader) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2569774430942279, this, [value]); }
+  get shader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_90ad0eb69cc6bf4a", 4030994221899151, this, []); }
+  set shader(value: (SKShader) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2569774430942279, this, [value]); }
   /**
    * var shadowCastBitMask: UInt32 { get set }
    * @availability iOS 8.0+
    */
-  get shadowCastBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 776897045386708, this, []); }
-  set shadowCastBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1773186875788541, this, [value]); }
+  get shadowCastBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 776897045386708, this, []); }
+  set shadowCastBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1773186875788541, this, [value]); }
   /**
    * var shadowedBitMask: UInt32 { get set }
    * @availability iOS 8.0+
    */
-  get shadowedBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 62383529678127, this, []); }
-  set shadowedBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3783445658149439, this, [value]); }
+  get shadowedBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 62383529678127, this, []); }
+  set shadowedBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3783445658149439, this, [value]); }
   /** var size: CGSize { get set } */
-  get size(): $SDK7 { return callSDK<$SDK7>("SpriteKit_a956b86ef7a76a8e", 1588045712220845, this, []); }
-  set size(value: $SDK7) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4238439256177508, this, [value]); }
+  get size(): $SDK7 { return callSDK<$SDK7>("SpriteKit_90ad0eb69cc6bf4a", 1588045712220845, this, []); }
+  set size(value: $SDK7) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4238439256177508, this, [value]); }
   /** var texture: SKTexture? { get set } */
-  get texture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_a956b86ef7a76a8e", 3873033621327125, this, []); }
-  set texture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1460694575580041, this, [value]); }
+  get texture(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_90ad0eb69cc6bf4a", 3873033621327125, this, []); }
+  set texture(value: (SKTexture) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1460694575580041, this, [value]); }
   /** @MainActor @preconcurrency var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
-  get customPlaygroundQuickLook(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 4237176928560485, this, []); }
+  get customPlaygroundQuickLook(): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 4237176928560485, this, []); }
   declare readonly $type: { "c:objc(cs)SKSpriteNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchorPoint": true; "attributeValues": true; "blendMode": true; "centerRect": true; "color": true; "colorBlendFactor": true; "lightingBitMask": true; "normalTexture": true; "shader": true; "shadowCastBitMask": true; "shadowedBitMask": true; "size": true; "texture": true };
 }
@@ -2505,27 +2505,27 @@ export class SKSpriteNode extends (SKNode as unknown as Omit<typeof SKNode, "ini
 /** class SKTextureAtlas */
 export class SKTextureAtlas extends SDKHandle {
   /** convenience init(named name: String) */
-  static initNamed(name: string): SKTextureAtlas { return callSDK<SKTextureAtlas>("SpriteKit_a956b86ef7a76a8e", 2367731776416905, undefined, [name]); }
+  static initNamed(name: string): SKTextureAtlas { return callSDK<SKTextureAtlas>("SpriteKit_90ad0eb69cc6bf4a", 2367731776416905, undefined, [name]); }
   /**
    * convenience init(dictionary properties: [String : Any])
    * @availability iOS 8.0+
    */
-  static initDictionary(properties: Record<string, unknown>): SKTextureAtlas { return callSDK<SKTextureAtlas>("SpriteKit_a956b86ef7a76a8e", 4387009491415347, undefined, [properties]); }
+  static initDictionary(properties: Record<string, unknown>): SKTextureAtlas { return callSDK<SKTextureAtlas>("SpriteKit_90ad0eb69cc6bf4a", 4387009491415347, undefined, [properties]); }
   /** class func preloadTextureAtlases(_ textureAtlases: [SKTextureAtlas]) async */
-  static preloadTextureAtlases(textureAtlases: Array<SKTextureAtlas>, completionHandler: (() => void)): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2036848138090259, undefined, [textureAtlases, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static preloadTextureAtlases(textureAtlases: Array<SKTextureAtlas>, completionHandler: (() => void)): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2036848138090259, undefined, [textureAtlases, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func preloadTextureAtlasesNamed(_ atlasNames: [String]) async throws -> [SKTextureAtlas]
    * @availability iOS 9.0+
    */
-  static preloadTextureAtlasesNamed(atlasNames: Array<string>, completionHandler: ((arg0: (NativeError) | null, arg1: Array<SKTextureAtlas>) => void)): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1616400550047123, undefined, [atlasNames, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static preloadTextureAtlasesNamed(atlasNames: Array<string>, completionHandler: ((arg0: (NativeError) | null, arg1: Array<SKTextureAtlas>) => void)): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1616400550047123, undefined, [atlasNames, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** func preload() async */
-  preload(completionHandler: (() => void)): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4483608122026430, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  preload(completionHandler: (() => void)): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4483608122026430, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /** func textureNamed(_ name: String) -> SKTexture */
-  textureNamed(name: string): SKTexture { return callSDK<SKTexture>("SpriteKit_a956b86ef7a76a8e", 1967954599059178, this, [name]); }
+  textureNamed(name: string): SKTexture { return callSDK<SKTexture>("SpriteKit_90ad0eb69cc6bf4a", 1967954599059178, this, [name]); }
   /** var textureNames: [String] { get } */
-  get textureNames(): Array<string> { return callSDK<Array<string>>("SpriteKit_a956b86ef7a76a8e", 599593937557347, this, []); }
+  get textureNames(): Array<string> { return callSDK<Array<string>>("SpriteKit_90ad0eb69cc6bf4a", 599593937557347, this, []); }
   /** var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
-  get customPlaygroundQuickLook(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 588981708307225, this, []); }
+  get customPlaygroundQuickLook(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 588981708307225, this, []); }
   declare readonly $type: { "c:objc(cs)SKTextureAtlas": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "textureNames": true };
 }
@@ -2541,7 +2541,7 @@ export const SKTextureFilteringMode = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (SKTextureFilteringMode) | null { return callSDK<(SKTextureFilteringMode) | null>("SpriteKit_a956b86ef7a76a8e", 1351169230981426, undefined, [rawValue]); }
+  init(rawValue: number): (SKTextureFilteringMode) | null { return callSDK<(SKTextureFilteringMode) | null>("SpriteKit_90ad0eb69cc6bf4a", 1351169230981426, undefined, [rawValue]); }
 };
 
 /**
@@ -2555,182 +2555,182 @@ export const SKTileAdjacencyMask = {
    * static var adjacencyAll: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyAll(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 7646694785630, undefined, []); },
+  get adjacencyAll(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 7646694785630, undefined, []); },
   /**
    * static var adjacencyDown: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyDown(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3867119738600535, undefined, []); },
+  get adjacencyDown(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3867119738600535, undefined, []); },
   /**
    * static var adjacencyDownEdge: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyDownEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1767140004495301, undefined, []); },
+  get adjacencyDownEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1767140004495301, undefined, []); },
   /**
    * static var adjacencyLeft: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 2029162747016580, undefined, []); },
+  get adjacencyLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 2029162747016580, undefined, []); },
   /**
    * static var adjacencyLeftEdge: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyLeftEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3397159319592622, undefined, []); },
+  get adjacencyLeftEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3397159319592622, undefined, []); },
   /**
    * static var adjacencyLowerLeft: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyLowerLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 723689655396647, undefined, []); },
+  get adjacencyLowerLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 723689655396647, undefined, []); },
   /**
    * static var adjacencyLowerLeftCorner: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyLowerLeftCorner(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1643654465626398, undefined, []); },
+  get adjacencyLowerLeftCorner(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1643654465626398, undefined, []); },
   /**
    * static var adjacencyLowerLeftEdge: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyLowerLeftEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1123038735016632, undefined, []); },
+  get adjacencyLowerLeftEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1123038735016632, undefined, []); },
   /**
    * static var adjacencyLowerRight: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyLowerRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1198291348324078, undefined, []); },
+  get adjacencyLowerRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1198291348324078, undefined, []); },
   /**
    * static var adjacencyLowerRightCorner: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyLowerRightCorner(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3146268277767530, undefined, []); },
+  get adjacencyLowerRightCorner(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3146268277767530, undefined, []); },
   /**
    * static var adjacencyLowerRightEdge: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyLowerRightEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 612823892037445, undefined, []); },
+  get adjacencyLowerRightEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 612823892037445, undefined, []); },
   /**
    * static var adjacencyRight: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 2269408595373992, undefined, []); },
+  get adjacencyRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 2269408595373992, undefined, []); },
   /**
    * static var adjacencyRightEdge: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyRightEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 4052723420754690, undefined, []); },
+  get adjacencyRightEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 4052723420754690, undefined, []); },
   /**
    * static var adjacencyUp: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyUp(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1522438468204596, undefined, []); },
+  get adjacencyUp(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1522438468204596, undefined, []); },
   /**
    * static var adjacencyUpEdge: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyUpEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 4036896629725316, undefined, []); },
+  get adjacencyUpEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 4036896629725316, undefined, []); },
   /**
    * static var adjacencyUpperLeft: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyUpperLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1858004848864765, undefined, []); },
+  get adjacencyUpperLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1858004848864765, undefined, []); },
   /**
    * static var adjacencyUpperLeftCorner: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyUpperLeftCorner(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 518334986991439, undefined, []); },
+  get adjacencyUpperLeftCorner(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 518334986991439, undefined, []); },
   /**
    * static var adjacencyUpperLeftEdge: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyUpperLeftEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 4180945761422379, undefined, []); },
+  get adjacencyUpperLeftEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 4180945761422379, undefined, []); },
   /**
    * static var adjacencyUpperRight: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyUpperRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3373366178465925, undefined, []); },
+  get adjacencyUpperRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3373366178465925, undefined, []); },
   /**
    * static var adjacencyUpperRightCorner: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyUpperRightCorner(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3152352159901283, undefined, []); },
+  get adjacencyUpperRightCorner(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3152352159901283, undefined, []); },
   /**
    * static var adjacencyUpperRightEdge: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get adjacencyUpperRightEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1950935770035753, undefined, []); },
+  get adjacencyUpperRightEdge(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1950935770035753, undefined, []); },
   /**
    * static var hexFlatAdjacencyAll: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexFlatAdjacencyAll(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1210553181148291, undefined, []); },
+  get hexFlatAdjacencyAll(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1210553181148291, undefined, []); },
   /**
    * static var hexFlatAdjacencyDown: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexFlatAdjacencyDown(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 644877053813564, undefined, []); },
+  get hexFlatAdjacencyDown(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 644877053813564, undefined, []); },
   /**
    * static var hexFlatAdjacencyLowerLeft: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexFlatAdjacencyLowerLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 105331887450357, undefined, []); },
+  get hexFlatAdjacencyLowerLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 105331887450357, undefined, []); },
   /**
    * static var hexFlatAdjacencyLowerRight: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexFlatAdjacencyLowerRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3743947199694894, undefined, []); },
+  get hexFlatAdjacencyLowerRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3743947199694894, undefined, []); },
   /**
    * static var hexFlatAdjacencyUp: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexFlatAdjacencyUp(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 215329971454044, undefined, []); },
+  get hexFlatAdjacencyUp(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 215329971454044, undefined, []); },
   /**
    * static var hexFlatAdjacencyUpperLeft: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexFlatAdjacencyUpperLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1541138314116963, undefined, []); },
+  get hexFlatAdjacencyUpperLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1541138314116963, undefined, []); },
   /**
    * static var hexFlatAdjacencyUpperRight: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexFlatAdjacencyUpperRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3328793381596750, undefined, []); },
+  get hexFlatAdjacencyUpperRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3328793381596750, undefined, []); },
   /**
    * static var hexPointyAdjacencyAdd: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexPointyAdjacencyAdd(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3856790813864547, undefined, []); },
+  get hexPointyAdjacencyAdd(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3856790813864547, undefined, []); },
   /**
    * static var hexPointyAdjacencyLeft: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexPointyAdjacencyLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3047600489020632, undefined, []); },
+  get hexPointyAdjacencyLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3047600489020632, undefined, []); },
   /**
    * static var hexPointyAdjacencyLowerLeft: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexPointyAdjacencyLowerLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 749724160998944, undefined, []); },
+  get hexPointyAdjacencyLowerLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 749724160998944, undefined, []); },
   /**
    * static var hexPointyAdjacencyLowerRight: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexPointyAdjacencyLowerRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1196033920160294, undefined, []); },
+  get hexPointyAdjacencyLowerRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1196033920160294, undefined, []); },
   /**
    * static var hexPointyAdjacencyRight: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexPointyAdjacencyRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3454870098403267, undefined, []); },
+  get hexPointyAdjacencyRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3454870098403267, undefined, []); },
   /**
    * static var hexPointyAdjacencyUpperLeft: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexPointyAdjacencyUpperLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 1518821940746616, undefined, []); },
+  get hexPointyAdjacencyUpperLeft(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 1518821940746616, undefined, []); },
   /**
    * static var hexPointyAdjacencyUpperRight: SKTileAdjacencyMask { get }
    * @availability iOS 10.0+
    */
-  get hexPointyAdjacencyUpperRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 2551099879596043, undefined, []); },
+  get hexPointyAdjacencyUpperRight(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 2551099879596043, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 4293886108634192, undefined, [rawValue]); }
+  init(rawValue: number): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 4293886108634192, undefined, [rawValue]); }
 };
 
 /**
@@ -2742,87 +2742,87 @@ export class SKTileDefinition extends SDKHandle {
    * init(texture: SKTexture)
    * @availability iOS 10.0+
    */
-  static initTexture(texture: SKTexture): SKTileDefinition { return callSDK<SKTileDefinition>("SpriteKit_a956b86ef7a76a8e", 1714028997033672, undefined, [texture]); }
+  static initTexture(texture: SKTexture): SKTileDefinition { return callSDK<SKTileDefinition>("SpriteKit_90ad0eb69cc6bf4a", 1714028997033672, undefined, [texture]); }
   /**
    * init(texture: SKTexture, normalTexture: SKTexture, size: CGSize)
    * @availability iOS 10.0+
    */
-  static initTextureNormalTextureSize(texture: SKTexture, normalTexture: SKTexture, size: $SDK7): SKTileDefinition { return callSDK<SKTileDefinition>("SpriteKit_a956b86ef7a76a8e", 2178693651420395, undefined, [texture, normalTexture, size]); }
+  static initTextureNormalTextureSize(texture: SKTexture, normalTexture: SKTexture, size: $SDK7): SKTileDefinition { return callSDK<SKTileDefinition>("SpriteKit_90ad0eb69cc6bf4a", 2178693651420395, undefined, [texture, normalTexture, size]); }
   /**
    * init(texture: SKTexture, size: CGSize)
    * @availability iOS 10.0+
    */
-  static initTextureSize(texture: SKTexture, size: $SDK7): SKTileDefinition { return callSDK<SKTileDefinition>("SpriteKit_a956b86ef7a76a8e", 80380153200023, undefined, [texture, size]); }
+  static initTextureSize(texture: SKTexture, size: $SDK7): SKTileDefinition { return callSDK<SKTileDefinition>("SpriteKit_90ad0eb69cc6bf4a", 80380153200023, undefined, [texture, size]); }
   /**
    * init(textures: [SKTexture], normalTextures: [SKTexture], size: CGSize, timePerFrame: CGFloat)
    * @availability iOS 10.0+
    */
-  static initTexturesNormalTexturesSizeTimePerFrame(textures: Array<SKTexture>, normalTextures: Array<SKTexture>, size: $SDK7, timePerFrame: number): SKTileDefinition { return callSDK<SKTileDefinition>("SpriteKit_a956b86ef7a76a8e", 234203746394940, undefined, [textures, normalTextures, size, timePerFrame]); }
+  static initTexturesNormalTexturesSizeTimePerFrame(textures: Array<SKTexture>, normalTextures: Array<SKTexture>, size: $SDK7, timePerFrame: number): SKTileDefinition { return callSDK<SKTileDefinition>("SpriteKit_90ad0eb69cc6bf4a", 234203746394940, undefined, [textures, normalTextures, size, timePerFrame]); }
   /**
    * init(textures: [SKTexture], size: CGSize, timePerFrame: CGFloat)
    * @availability iOS 10.0+
    */
-  static initTexturesSizeTimePerFrame(textures: Array<SKTexture>, size: $SDK7, timePerFrame: number): SKTileDefinition { return callSDK<SKTileDefinition>("SpriteKit_a956b86ef7a76a8e", 1678733139457803, undefined, [textures, size, timePerFrame]); }
+  static initTexturesSizeTimePerFrame(textures: Array<SKTexture>, size: $SDK7, timePerFrame: number): SKTileDefinition { return callSDK<SKTileDefinition>("SpriteKit_90ad0eb69cc6bf4a", 1678733139457803, undefined, [textures, size, timePerFrame]); }
   /**
    * var flipHorizontally: Bool { get set }
    * @availability iOS 10.0+
    */
-  get flipHorizontally(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 3391667773295269, this, []); }
-  set flipHorizontally(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4439198865331593, this, [value]); }
+  get flipHorizontally(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 3391667773295269, this, []); }
+  set flipHorizontally(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4439198865331593, this, [value]); }
   /**
    * var flipVertically: Bool { get set }
    * @availability iOS 10.0+
    */
-  get flipVertically(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2738515725944740, this, []); }
-  set flipVertically(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3334222476214711, this, [value]); }
+  get flipVertically(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2738515725944740, this, []); }
+  set flipVertically(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3334222476214711, this, [value]); }
   /**
    * var name: String? { get set }
    * @availability iOS 10.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("SpriteKit_a956b86ef7a76a8e", 256085204667456, this, []); }
-  set name(value: (string) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1474148405863728, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("SpriteKit_90ad0eb69cc6bf4a", 256085204667456, this, []); }
+  set name(value: (string) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1474148405863728, this, [value]); }
   /**
    * var normalTextures: [SKTexture] { get set }
    * @availability iOS 10.0+
    */
-  get normalTextures(): Array<SKTexture> { return callSDK<Array<SKTexture>>("SpriteKit_a956b86ef7a76a8e", 2954098426899790, this, []); }
-  set normalTextures(value: Array<SKTexture>) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 978044788778676, this, [value]); }
+  get normalTextures(): Array<SKTexture> { return callSDK<Array<SKTexture>>("SpriteKit_90ad0eb69cc6bf4a", 2954098426899790, this, []); }
+  set normalTextures(value: Array<SKTexture>) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 978044788778676, this, [value]); }
   /**
    * var placementWeight: Int { get set }
    * @availability iOS 10.0+
    */
-  get placementWeight(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1879411156501513, this, []); }
-  set placementWeight(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 139955244449452, this, [value]); }
+  get placementWeight(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1879411156501513, this, []); }
+  set placementWeight(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 139955244449452, this, [value]); }
   /**
    * var rotation: SKTileDefinitionRotation { get set }
    * @availability iOS 10.0+
    */
-  get rotation(): SKTileDefinitionRotation { return callSDK<SKTileDefinitionRotation>("SpriteKit_a956b86ef7a76a8e", 529363490763131, this, []); }
-  set rotation(value: SKTileDefinitionRotation) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2119236559590169, this, [value]); }
+  get rotation(): SKTileDefinitionRotation { return callSDK<SKTileDefinitionRotation>("SpriteKit_90ad0eb69cc6bf4a", 529363490763131, this, []); }
+  set rotation(value: SKTileDefinitionRotation) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2119236559590169, this, [value]); }
   /**
    * var size: CGSize { get set }
    * @availability iOS 10.0+
    */
-  get size(): $SDK7 { return callSDK<$SDK7>("SpriteKit_a956b86ef7a76a8e", 2713700935873116, this, []); }
-  set size(value: $SDK7) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3684149943025186, this, [value]); }
+  get size(): $SDK7 { return callSDK<$SDK7>("SpriteKit_90ad0eb69cc6bf4a", 2713700935873116, this, []); }
+  set size(value: $SDK7) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3684149943025186, this, [value]); }
   /**
    * var textures: [SKTexture] { get set }
    * @availability iOS 10.0+
    */
-  get textures(): Array<SKTexture> { return callSDK<Array<SKTexture>>("SpriteKit_a956b86ef7a76a8e", 1190369911700301, this, []); }
-  set textures(value: Array<SKTexture>) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 116271516075153, this, [value]); }
+  get textures(): Array<SKTexture> { return callSDK<Array<SKTexture>>("SpriteKit_90ad0eb69cc6bf4a", 1190369911700301, this, []); }
+  set textures(value: Array<SKTexture>) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 116271516075153, this, [value]); }
   /**
    * var timePerFrame: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get timePerFrame(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3740188062662307, this, []); }
-  set timePerFrame(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4006241067715822, this, [value]); }
+  get timePerFrame(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3740188062662307, this, []); }
+  set timePerFrame(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4006241067715822, this, [value]); }
   /**
    * var userData: NSMutableDictionary? { get set }
    * @availability iOS 10.0+
    */
-  get userData(): $SDK6 { return callSDK<$SDK6>("SpriteKit_a956b86ef7a76a8e", 3595425058496140, this, []); }
-  set userData(value: $SDK6) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 68914672493463, this, [value]); }
+  get userData(): $SDK6 { return callSDK<$SDK6>("SpriteKit_90ad0eb69cc6bf4a", 3595425058496140, this, []); }
+  set userData(value: $SDK6) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 68914672493463, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKTileDefinition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "flipHorizontally": true; "flipVertically": true; "name": true; "normalTextures": true; "placementWeight": true; "rotation": true; "size": true; "textures": true; "timePerFrame": true; "userData": true };
 }
@@ -2838,7 +2838,7 @@ export const SKTileDefinitionRotation = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (SKTileDefinitionRotation) | null { return callSDK<(SKTileDefinitionRotation) | null>("SpriteKit_a956b86ef7a76a8e", 2558385640843991, undefined, [rawValue]); }
+  init(rawValue: number): (SKTileDefinitionRotation) | null { return callSDK<(SKTileDefinitionRotation) | null>("SpriteKit_90ad0eb69cc6bf4a", 2558385640843991, undefined, [rawValue]); }
 };
 
 /**
@@ -2850,29 +2850,29 @@ export class SKTileGroup extends SDKHandle {
    * class func empty() -> Self
    * @availability iOS 10.0+
    */
-  static empty(): SKTileGroup { return callSDK<SKTileGroup>("SpriteKit_a956b86ef7a76a8e", 559500839230788, undefined, []); }
+  static empty(): SKTileGroup { return callSDK<SKTileGroup>("SpriteKit_90ad0eb69cc6bf4a", 559500839230788, undefined, []); }
   /**
    * init(rules: [SKTileGroupRule])
    * @availability iOS 10.0+
    */
-  static initRules(rules: Array<SKTileGroupRule>): SKTileGroup { return callSDK<SKTileGroup>("SpriteKit_a956b86ef7a76a8e", 3287739442579672, undefined, [rules]); }
+  static initRules(rules: Array<SKTileGroupRule>): SKTileGroup { return callSDK<SKTileGroup>("SpriteKit_90ad0eb69cc6bf4a", 3287739442579672, undefined, [rules]); }
   /**
    * init(tileDefinition: SKTileDefinition)
    * @availability iOS 10.0+
    */
-  static initTileDefinition(tileDefinition: SKTileDefinition): SKTileGroup { return callSDK<SKTileGroup>("SpriteKit_a956b86ef7a76a8e", 3563923303306235, undefined, [tileDefinition]); }
+  static initTileDefinition(tileDefinition: SKTileDefinition): SKTileGroup { return callSDK<SKTileGroup>("SpriteKit_90ad0eb69cc6bf4a", 3563923303306235, undefined, [tileDefinition]); }
   /**
    * var name: String? { get set }
    * @availability iOS 10.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("SpriteKit_a956b86ef7a76a8e", 3215037438472150, this, []); }
-  set name(value: (string) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 91868994069270, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("SpriteKit_90ad0eb69cc6bf4a", 3215037438472150, this, []); }
+  set name(value: (string) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 91868994069270, this, [value]); }
   /**
    * var rules: [SKTileGroupRule] { get set }
    * @availability iOS 10.0+
    */
-  get rules(): Array<SKTileGroupRule> { return callSDK<Array<SKTileGroupRule>>("SpriteKit_a956b86ef7a76a8e", 2245833923056608, this, []); }
-  set rules(value: Array<SKTileGroupRule>) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 385206827399824, this, [value]); }
+  get rules(): Array<SKTileGroupRule> { return callSDK<Array<SKTileGroupRule>>("SpriteKit_90ad0eb69cc6bf4a", 2245833923056608, this, []); }
+  set rules(value: Array<SKTileGroupRule>) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 385206827399824, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKTileGroup": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "rules": true };
 }
@@ -2886,25 +2886,25 @@ export class SKTileGroupRule extends SDKHandle {
    * init(adjacency: SKTileAdjacencyMask, tileDefinitions: [SKTileDefinition])
    * @availability iOS 10.0+
    */
-  static init(adjacency: SKTileAdjacencyMask, tileDefinitions: Array<SKTileDefinition>): SKTileGroupRule { return callSDK<SKTileGroupRule>("SpriteKit_a956b86ef7a76a8e", 1076528790503916, undefined, [adjacency, tileDefinitions]); }
+  static init(adjacency: SKTileAdjacencyMask, tileDefinitions: Array<SKTileDefinition>): SKTileGroupRule { return callSDK<SKTileGroupRule>("SpriteKit_90ad0eb69cc6bf4a", 1076528790503916, undefined, [adjacency, tileDefinitions]); }
   /**
    * var adjacency: SKTileAdjacencyMask { get set }
    * @availability iOS 10.0+
    */
-  get adjacency(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_a956b86ef7a76a8e", 3307246677389756, this, []); }
-  set adjacency(value: SKTileAdjacencyMask) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 989517458033889, this, [value]); }
+  get adjacency(): SKTileAdjacencyMask { return callSDK<SKTileAdjacencyMask>("SpriteKit_90ad0eb69cc6bf4a", 3307246677389756, this, []); }
+  set adjacency(value: SKTileAdjacencyMask) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 989517458033889, this, [value]); }
   /**
    * var name: String? { get set }
    * @availability iOS 10.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("SpriteKit_a956b86ef7a76a8e", 3079729691251459, this, []); }
-  set name(value: (string) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 726667961275911, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("SpriteKit_90ad0eb69cc6bf4a", 3079729691251459, this, []); }
+  set name(value: (string) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 726667961275911, this, [value]); }
   /**
    * var tileDefinitions: [SKTileDefinition] { get set }
    * @availability iOS 10.0+
    */
-  get tileDefinitions(): Array<SKTileDefinition> { return callSDK<Array<SKTileDefinition>>("SpriteKit_a956b86ef7a76a8e", 1817785304139833, this, []); }
-  set tileDefinitions(value: Array<SKTileDefinition>) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2035302538388237, this, [value]); }
+  get tileDefinitions(): Array<SKTileDefinition> { return callSDK<Array<SKTileDefinition>>("SpriteKit_90ad0eb69cc6bf4a", 1817785304139833, this, []); }
+  set tileDefinitions(value: Array<SKTileDefinition>) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2035302538388237, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKTileGroupRule": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "adjacency": true; "name": true; "tileDefinitions": true };
 }
@@ -2918,144 +2918,144 @@ export class SKTileMapNode extends (SKNode as unknown as Omit<typeof SKNode, "pr
    * func centerOfTile(atColumn column: Int, row: Int) -> CGPoint
    * @availability iOS 10.0+
    */
-  centerOfTile(column: number, row: number): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 1011982018198649, this, [column, row]); }
+  centerOfTile(column: number, row: number): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 1011982018198649, this, [column, row]); }
   /**
    * func fill(with tileGroup: SKTileGroup?)
    * @availability iOS 10.0+
    */
-  fill(tileGroup?: (SKTileGroup) | null): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 494000049270342, this, [tileGroup]); }
+  fill(tileGroup?: (SKTileGroup) | null): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 494000049270342, this, [tileGroup]); }
   /**
    * init(tileSet: SKTileSet, columns: Int, rows: Int, tileSize: CGSize)
    * @availability iOS 10.0+
    */
-  static initTileSetColumnsRowsTileSize(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7): SKTileMapNode { return callSDK<SKTileMapNode>("SpriteKit_a956b86ef7a76a8e", 1584317816908624, undefined, [tileSet, columns, rows, tileSize]); }
+  static initTileSetColumnsRowsTileSize(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7): SKTileMapNode { return callSDK<SKTileMapNode>("SpriteKit_90ad0eb69cc6bf4a", 1584317816908624, undefined, [tileSet, columns, rows, tileSize]); }
   /**
    * init(tileSet: SKTileSet, columns: Int, rows: Int, tileSize: CGSize, fillWith tileGroup: SKTileGroup)
    * @availability iOS 10.0+
    */
-  static initTileSetColumnsRowsTileSizeFillWith(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7, tileGroup: SKTileGroup): SKTileMapNode { return callSDK<SKTileMapNode>("SpriteKit_a956b86ef7a76a8e", 3710370117756157, undefined, [tileSet, columns, rows, tileSize, tileGroup]); }
+  static initTileSetColumnsRowsTileSizeFillWith(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7, tileGroup: SKTileGroup): SKTileMapNode { return callSDK<SKTileMapNode>("SpriteKit_90ad0eb69cc6bf4a", 3710370117756157, undefined, [tileSet, columns, rows, tileSize, tileGroup]); }
   /**
    * init(tileSet: SKTileSet, columns: Int, rows: Int, tileSize: CGSize, tileGroupLayout: [SKTileGroup])
    * @availability iOS 10.0+
    */
-  static initTileSetColumnsRowsTileSizeTileGroupLayout(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7, tileGroupLayout: Array<SKTileGroup>): SKTileMapNode { return callSDK<SKTileMapNode>("SpriteKit_a956b86ef7a76a8e", 1588383693736895, undefined, [tileSet, columns, rows, tileSize, tileGroupLayout]); }
+  static initTileSetColumnsRowsTileSizeTileGroupLayout(tileSet: SKTileSet, columns: number, rows: number, tileSize: $SDK7, tileGroupLayout: Array<SKTileGroup>): SKTileMapNode { return callSDK<SKTileMapNode>("SpriteKit_90ad0eb69cc6bf4a", 1588383693736895, undefined, [tileSet, columns, rows, tileSize, tileGroupLayout]); }
   /**
    * func setTileGroup(_ tileGroup: SKTileGroup, andTileDefinition tileDefinition: SKTileDefinition, forColumn column: Int, row: Int)
    * @availability iOS 10.0+
    */
-  setTileGroupAndTileDefinitionForColumnRow(tileGroup: SKTileGroup, tileDefinition: SKTileDefinition, column: number, row: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 491280106358266, this, [tileGroup, tileDefinition, column, row]); }
+  setTileGroupAndTileDefinitionForColumnRow(tileGroup: SKTileGroup, tileDefinition: SKTileDefinition, column: number, row: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 491280106358266, this, [tileGroup, tileDefinition, column, row]); }
   /**
    * func setTileGroup(_ tileGroup: SKTileGroup?, forColumn column: Int, row: Int)
    * @availability iOS 10.0+
    */
-  setTileGroupForColumnRow(tileGroup: (SKTileGroup) | null, column: number, row: number): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3818536439460335, this, [tileGroup, column, row]); }
+  setTileGroupForColumnRow(tileGroup: (SKTileGroup) | null, column: number, row: number): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3818536439460335, this, [tileGroup, column, row]); }
   /**
    * func setValue(_ value: SKAttributeValue, forAttribute key: String)
    * @availability iOS 10.0+
    */
-  setValue(value: SKAttributeValue, key: string): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1538738498588894, this, [value, key]); }
+  setValue(value: SKAttributeValue, key: string): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1538738498588894, this, [value, key]); }
   /**
    * func tileColumnIndex(fromPosition position: CGPoint) -> Int
    * @availability iOS 10.0+
    */
-  tileColumnIndex(position: $SDK1): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 366320108737063, this, [position]); }
+  tileColumnIndex(position: $SDK1): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 366320108737063, this, [position]); }
   /**
    * func tileDefinition(atColumn column: Int, row: Int) -> SKTileDefinition?
    * @availability iOS 10.0+
    */
-  tileDefinition(column: number, row: number): (SKTileDefinition) | null { return callSDK<(SKTileDefinition) | null>("SpriteKit_a956b86ef7a76a8e", 3278762326034783, this, [column, row]); }
+  tileDefinition(column: number, row: number): (SKTileDefinition) | null { return callSDK<(SKTileDefinition) | null>("SpriteKit_90ad0eb69cc6bf4a", 3278762326034783, this, [column, row]); }
   /**
    * func tileGroup(atColumn column: Int, row: Int) -> SKTileGroup?
    * @availability iOS 10.0+
    */
-  tileGroup(column: number, row: number): (SKTileGroup) | null { return callSDK<(SKTileGroup) | null>("SpriteKit_a956b86ef7a76a8e", 863201034602011, this, [column, row]); }
+  tileGroup(column: number, row: number): (SKTileGroup) | null { return callSDK<(SKTileGroup) | null>("SpriteKit_90ad0eb69cc6bf4a", 863201034602011, this, [column, row]); }
   /**
    * func tileRowIndex(fromPosition position: CGPoint) -> Int
    * @availability iOS 10.0+
    */
-  tileRowIndex(position: $SDK1): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 429056677473672, this, [position]); }
+  tileRowIndex(position: $SDK1): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 429056677473672, this, [position]); }
   /**
    * func value(forAttributeNamed key: String) -> SKAttributeValue?
    * @availability iOS 10.0+
    */
-  value(key: string): $SDK2 { return callSDK<$SDK2>("SpriteKit_a956b86ef7a76a8e", 1964250268518668, this, [key]); }
+  value(key: string): $SDK2 { return callSDK<$SDK2>("SpriteKit_90ad0eb69cc6bf4a", 1964250268518668, this, [key]); }
   /**
    * var anchorPoint: CGPoint { get set }
    * @availability iOS 10.0+
    */
-  get anchorPoint(): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 1356489674254263, this, []); }
-  set anchorPoint(value: $SDK1) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 473780056248999, this, [value]); }
+  get anchorPoint(): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 1356489674254263, this, []); }
+  set anchorPoint(value: $SDK1) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 473780056248999, this, [value]); }
   /**
    * var attributeValues: [String : SKAttributeValue] { get set }
    * @availability iOS 10.0+
    */
-  get attributeValues(): $SDK3 { return callSDK<$SDK3>("SpriteKit_a956b86ef7a76a8e", 1195520712109399, this, []); }
-  set attributeValues(value: $SDK3) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4267196478425611, this, [value]); }
+  get attributeValues(): $SDK3 { return callSDK<$SDK3>("SpriteKit_90ad0eb69cc6bf4a", 1195520712109399, this, []); }
+  set attributeValues(value: $SDK3) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4267196478425611, this, [value]); }
   /**
    * var blendMode: SKBlendMode { get set }
    * @availability iOS 10.0+
    */
-  get blendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_a956b86ef7a76a8e", 2993366946798803, this, []); }
-  set blendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 219623673278178, this, [value]); }
+  get blendMode(): SKBlendMode { return callSDK<SKBlendMode>("SpriteKit_90ad0eb69cc6bf4a", 2993366946798803, this, []); }
+  set blendMode(value: SKBlendMode) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 219623673278178, this, [value]); }
   /**
    * var color: UIColor { get set }
    * @availability iOS 10.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_a956b86ef7a76a8e", 4331368850121059, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1314297421469819, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("SpriteKit_90ad0eb69cc6bf4a", 4331368850121059, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1314297421469819, this, [value]); }
   /**
    * var colorBlendFactor: CGFloat { get set }
    * @availability iOS 10.0+
    */
-  get colorBlendFactor(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2463937310053176, this, []); }
-  set colorBlendFactor(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1015231906079112, this, [value]); }
+  get colorBlendFactor(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2463937310053176, this, []); }
+  set colorBlendFactor(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1015231906079112, this, [value]); }
   /**
    * var enableAutomapping: Bool { get set }
    * @availability iOS 10.0+
    */
-  get enableAutomapping(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2406657623853788, this, []); }
-  set enableAutomapping(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 637963557886065, this, [value]); }
+  get enableAutomapping(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2406657623853788, this, []); }
+  set enableAutomapping(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 637963557886065, this, [value]); }
   /**
    * var lightingBitMask: UInt32 { get set }
    * @availability iOS 10.0+
    */
-  get lightingBitMask(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3115090291337223, this, []); }
-  set lightingBitMask(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2352137443277384, this, [value]); }
+  get lightingBitMask(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3115090291337223, this, []); }
+  set lightingBitMask(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2352137443277384, this, [value]); }
   /**
    * var mapSize: CGSize { get }
    * @availability iOS 10.0+
    */
-  get mapSize(): $SDK7 { return callSDK<$SDK7>("SpriteKit_a956b86ef7a76a8e", 4057518255322258, this, []); }
+  get mapSize(): $SDK7 { return callSDK<$SDK7>("SpriteKit_90ad0eb69cc6bf4a", 4057518255322258, this, []); }
   /**
    * var numberOfColumns: Int { get set }
    * @availability iOS 10.0+
    */
-  get numberOfColumns(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4366550257550348, this, []); }
-  set numberOfColumns(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2547671691613508, this, [value]); }
+  get numberOfColumns(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4366550257550348, this, []); }
+  set numberOfColumns(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2547671691613508, this, [value]); }
   /**
    * var numberOfRows: Int { get set }
    * @availability iOS 10.0+
    */
-  get numberOfRows(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3410643641693127, this, []); }
-  set numberOfRows(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3624530274591977, this, [value]); }
+  get numberOfRows(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3410643641693127, this, []); }
+  set numberOfRows(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3624530274591977, this, [value]); }
   /**
    * var shader: SKShader? { get set }
    * @availability iOS 10.0+
    */
-  get shader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_a956b86ef7a76a8e", 1243770992774071, this, []); }
-  set shader(value: (SKShader) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2087426264106720, this, [value]); }
+  get shader(): (SKShader) | null { return callSDK<(SKShader) | null>("SpriteKit_90ad0eb69cc6bf4a", 1243770992774071, this, []); }
+  set shader(value: (SKShader) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2087426264106720, this, [value]); }
   /**
    * var tileSet: SKTileSet { get set }
    * @availability iOS 10.0+
    */
-  get tileSet(): SKTileSet { return callSDK<SKTileSet>("SpriteKit_a956b86ef7a76a8e", 1366473852723096, this, []); }
-  set tileSet(value: SKTileSet) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2909603798670883, this, [value]); }
+  get tileSet(): SKTileSet { return callSDK<SKTileSet>("SpriteKit_90ad0eb69cc6bf4a", 1366473852723096, this, []); }
+  set tileSet(value: SKTileSet) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2909603798670883, this, [value]); }
   /**
    * var tileSize: CGSize { get set }
    * @availability iOS 10.0+
    */
-  get tileSize(): $SDK7 { return callSDK<$SDK7>("SpriteKit_a956b86ef7a76a8e", 1436741518081279, this, []); }
-  set tileSize(value: $SDK7) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1345439294665011, this, [value]); }
+  get tileSize(): $SDK7 { return callSDK<$SDK7>("SpriteKit_90ad0eb69cc6bf4a", 1436741518081279, this, []); }
+  set tileSize(value: $SDK7) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1345439294665011, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKTileMapNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchorPoint": true; "attributeValues": true; "blendMode": true; "color": true; "colorBlendFactor": true; "enableAutomapping": true; "lightingBitMask": true; "mapSize": true; "numberOfColumns": true; "numberOfRows": true; "shader": true; "tileSet": true; "tileSize": true };
 }
@@ -3069,47 +3069,47 @@ export class SKTileSet extends SDKHandle {
    * convenience init?(named name: String)
    * @availability iOS 10.0+
    */
-  static initNamed(name: string): (SKTileSet) | null { return callSDK<(SKTileSet) | null>("SpriteKit_a956b86ef7a76a8e", 2108918130049741, undefined, [name]); }
+  static initNamed(name: string): (SKTileSet) | null { return callSDK<(SKTileSet) | null>("SpriteKit_90ad0eb69cc6bf4a", 2108918130049741, undefined, [name]); }
   /**
    * init(tileGroups: [SKTileGroup])
    * @availability iOS 10.0+
    */
-  static initTileGroups(tileGroups: Array<SKTileGroup>): SKTileSet { return callSDK<SKTileSet>("SpriteKit_a956b86ef7a76a8e", 3790278322813384, undefined, [tileGroups]); }
+  static initTileGroups(tileGroups: Array<SKTileGroup>): SKTileSet { return callSDK<SKTileSet>("SpriteKit_90ad0eb69cc6bf4a", 3790278322813384, undefined, [tileGroups]); }
   /**
    * init(tileGroups: [SKTileGroup], tileSetType: SKTileSetType)
    * @availability iOS 10.0+
    */
-  static initTileGroupsTileSetType(tileGroups: Array<SKTileGroup>, tileSetType: SKTileSetType): SKTileSet { return callSDK<SKTileSet>("SpriteKit_a956b86ef7a76a8e", 3326394496095741, undefined, [tileGroups, tileSetType]); }
+  static initTileGroupsTileSetType(tileGroups: Array<SKTileGroup>, tileSetType: SKTileSetType): SKTileSet { return callSDK<SKTileSet>("SpriteKit_90ad0eb69cc6bf4a", 3326394496095741, undefined, [tileGroups, tileSetType]); }
   /**
    * var defaultTileGroup: SKTileGroup? { get set }
    * @availability iOS 10.0+
    */
-  get defaultTileGroup(): (SKTileGroup) | null { return callSDK<(SKTileGroup) | null>("SpriteKit_a956b86ef7a76a8e", 258136770002130, this, []); }
-  set defaultTileGroup(value: (SKTileGroup) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3078110246104474, this, [value]); }
+  get defaultTileGroup(): (SKTileGroup) | null { return callSDK<(SKTileGroup) | null>("SpriteKit_90ad0eb69cc6bf4a", 258136770002130, this, []); }
+  set defaultTileGroup(value: (SKTileGroup) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3078110246104474, this, [value]); }
   /**
    * var defaultTileSize: CGSize { get set }
    * @availability iOS 10.0+
    */
-  get defaultTileSize(): $SDK7 { return callSDK<$SDK7>("SpriteKit_a956b86ef7a76a8e", 1354048124261148, this, []); }
-  set defaultTileSize(value: $SDK7) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4273356034354312, this, [value]); }
+  get defaultTileSize(): $SDK7 { return callSDK<$SDK7>("SpriteKit_90ad0eb69cc6bf4a", 1354048124261148, this, []); }
+  set defaultTileSize(value: $SDK7) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4273356034354312, this, [value]); }
   /**
    * var name: String? { get set }
    * @availability iOS 10.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("SpriteKit_a956b86ef7a76a8e", 700849311307477, this, []); }
-  set name(value: (string) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 671240877770776, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("SpriteKit_90ad0eb69cc6bf4a", 700849311307477, this, []); }
+  set name(value: (string) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 671240877770776, this, [value]); }
   /**
    * var tileGroups: [SKTileGroup] { get set }
    * @availability iOS 10.0+
    */
-  get tileGroups(): Array<SKTileGroup> { return callSDK<Array<SKTileGroup>>("SpriteKit_a956b86ef7a76a8e", 4007535894245703, this, []); }
-  set tileGroups(value: Array<SKTileGroup>) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2817607823581690, this, [value]); }
+  get tileGroups(): Array<SKTileGroup> { return callSDK<Array<SKTileGroup>>("SpriteKit_90ad0eb69cc6bf4a", 4007535894245703, this, []); }
+  set tileGroups(value: Array<SKTileGroup>) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2817607823581690, this, [value]); }
   /**
    * var type: SKTileSetType { get set }
    * @availability iOS 10.0+
    */
-  get type(): SKTileSetType { return callSDK<SKTileSetType>("SpriteKit_a956b86ef7a76a8e", 1534915005715746, this, []); }
-  set type(value: SKTileSetType) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3139415249892340, this, [value]); }
+  get type(): SKTileSetType { return callSDK<SKTileSetType>("SpriteKit_90ad0eb69cc6bf4a", 1534915005715746, this, []); }
+  set type(value: SKTileSetType) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3139415249892340, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKTileSet": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "defaultTileGroup": true; "defaultTileSize": true; "name": true; "tileGroups": true; "type": true };
 }
@@ -3125,7 +3125,7 @@ export const SKTileSetType = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (SKTileSetType) | null { return callSDK<(SKTileSetType) | null>("SpriteKit_a956b86ef7a76a8e", 730229297014609, undefined, [rawValue]); }
+  init(rawValue: number): (SKTileSetType) | null { return callSDK<(SKTileSetType) | null>("SpriteKit_90ad0eb69cc6bf4a", 730229297014609, undefined, [rawValue]); }
 };
 
 /**
@@ -3137,46 +3137,46 @@ export class SKTransformNode extends (SKNode as unknown as Omit<typeof SKNode, "
    * func eulerAngles() -> vector_float3
    * @availability iOS 11.0+
    */
-  eulerAngles(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 736108248520938, this, []); }
+  eulerAngles(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 736108248520938, this, []); }
   /** init() */
-  static init(): SKTransformNode { return callSDK<SKTransformNode>("SpriteKit_a956b86ef7a76a8e", 1577532255488286, undefined, []); }
+  static init(): SKTransformNode { return callSDK<SKTransformNode>("SpriteKit_90ad0eb69cc6bf4a", 1577532255488286, undefined, []); }
   /**
    * func quaternion() -> simd_quatf
    * @availability iOS 11.0+
    */
-  quaternion(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 972407025763299, this, []); }
+  quaternion(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 972407025763299, this, []); }
   /**
    * func rotationMatrix() -> matrix_float3x3
    * @availability iOS 11.0+
    */
-  rotationMatrix(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 133085944752155, this, []); }
+  rotationMatrix(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 133085944752155, this, []); }
   /**
    * func setEulerAngles(_ euler: vector_float3)
    * @availability iOS 11.0+
    */
-  setEulerAngles(euler: SDKHandle): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2656203658661370, this, [euler]); }
+  setEulerAngles(euler: SDKHandle): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2656203658661370, this, [euler]); }
   /**
    * func setQuaternion(_ quaternion: simd_quatf)
    * @availability iOS 11.0+
    */
-  setQuaternion(quaternion: SDKHandle): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4181274722675370, this, [quaternion]); }
+  setQuaternion(quaternion: SDKHandle): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4181274722675370, this, [quaternion]); }
   /**
    * func setRotationMatrix(_ rotationMatrix: matrix_float3x3)
    * @availability iOS 11.0+
    */
-  setRotationMatrix(rotationMatrix: SDKHandle): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 295483635538762, this, [rotationMatrix]); }
+  setRotationMatrix(rotationMatrix: SDKHandle): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 295483635538762, this, [rotationMatrix]); }
   /**
    * var xRotation: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get xRotation(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4059904048601337, this, []); }
-  set xRotation(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2211510203266514, this, [value]); }
+  get xRotation(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4059904048601337, this, []); }
+  set xRotation(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2211510203266514, this, [value]); }
   /**
    * var yRotation: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get yRotation(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 566923647367036, this, []); }
-  set yRotation(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1885813858415843, this, [value]); }
+  get yRotation(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 566923647367036, this, []); }
+  set yRotation(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1885813858415843, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKTransformNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "xRotation": true; "yRotation": true };
 }
@@ -3184,39 +3184,39 @@ export class SKTransformNode extends (SKNode as unknown as Omit<typeof SKNode, "
 /** class SKTransition */
 export class SKTransition extends SDKHandle {
   /** class func crossFade(withDuration sec: TimeInterval) -> SKTransition */
-  static crossFade(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 2262057686631364, undefined, [sec]); }
+  static crossFade(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 2262057686631364, undefined, [sec]); }
   /** class func doorsCloseHorizontal(withDuration sec: TimeInterval) -> SKTransition */
-  static doorsCloseHorizontal(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 2904273987582117, undefined, [sec]); }
+  static doorsCloseHorizontal(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 2904273987582117, undefined, [sec]); }
   /** class func doorsCloseVertical(withDuration sec: TimeInterval) -> SKTransition */
-  static doorsCloseVertical(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 3387966107998748, undefined, [sec]); }
+  static doorsCloseVertical(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 3387966107998748, undefined, [sec]); }
   /** class func doorsOpenHorizontal(withDuration sec: TimeInterval) -> SKTransition */
-  static doorsOpenHorizontal(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 528379885023539, undefined, [sec]); }
+  static doorsOpenHorizontal(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 528379885023539, undefined, [sec]); }
   /** class func doorsOpenVertical(withDuration sec: TimeInterval) -> SKTransition */
-  static doorsOpenVertical(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 2525843286674172, undefined, [sec]); }
+  static doorsOpenVertical(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 2525843286674172, undefined, [sec]); }
   /** class func doorway(withDuration sec: TimeInterval) -> SKTransition */
-  static doorway(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 3631886129721117, undefined, [sec]); }
+  static doorway(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 3631886129721117, undefined, [sec]); }
   /** class func fade(with color: UIColor, duration sec: TimeInterval) -> SKTransition */
-  static fadeWithDuration(color: _UIKit_UIColor, sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 4465253198052040, undefined, [color, sec]); }
+  static fadeWithDuration(color: _UIKit_UIColor, sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 4465253198052040, undefined, [color, sec]); }
   /** class func fade(withDuration sec: TimeInterval) -> SKTransition */
-  static fadeWithDuration91727(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 1492499503750374, undefined, [sec]); }
+  static fadeWithDuration91727(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 1492499503750374, undefined, [sec]); }
   /** class func flipHorizontal(withDuration sec: TimeInterval) -> SKTransition */
-  static flipHorizontal(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 417792016331, undefined, [sec]); }
+  static flipHorizontal(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 417792016331, undefined, [sec]); }
   /** class func flipVertical(withDuration sec: TimeInterval) -> SKTransition */
-  static flipVertical(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 3061785501638748, undefined, [sec]); }
+  static flipVertical(sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 3061785501638748, undefined, [sec]); }
   /** class func moveIn(with direction: SKTransitionDirection, duration sec: TimeInterval) -> SKTransition */
-  static moveIn(direction: SKTransitionDirection, sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 875821453277492, undefined, [direction, sec]); }
+  static moveIn(direction: SKTransitionDirection, sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 875821453277492, undefined, [direction, sec]); }
   /** class func push(with direction: SKTransitionDirection, duration sec: TimeInterval) -> SKTransition */
-  static push(direction: SKTransitionDirection, sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 2682984856428356, undefined, [direction, sec]); }
+  static push(direction: SKTransitionDirection, sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 2682984856428356, undefined, [direction, sec]); }
   /** class func reveal(with direction: SKTransitionDirection, duration sec: TimeInterval) -> SKTransition */
-  static reveal(direction: SKTransitionDirection, sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 11518223014823, undefined, [direction, sec]); }
+  static reveal(direction: SKTransitionDirection, sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 11518223014823, undefined, [direction, sec]); }
   /** init(ciFilter filter: CIFilter, duration sec: TimeInterval) */
-  static init(filter: _CoreImage_CIFilter, sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_a956b86ef7a76a8e", 2975321334017040, undefined, [filter, sec]); }
+  static init(filter: _CoreImage_CIFilter, sec: number): SKTransition { return callSDK<SKTransition>("SpriteKit_90ad0eb69cc6bf4a", 2975321334017040, undefined, [filter, sec]); }
   /** var pausesIncomingScene: Bool { get set } */
-  get pausesIncomingScene(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 302605010083680, this, []); }
-  set pausesIncomingScene(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1534623771493548, this, [value]); }
+  get pausesIncomingScene(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 302605010083680, this, []); }
+  set pausesIncomingScene(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1534623771493548, this, [value]); }
   /** var pausesOutgoingScene: Bool { get set } */
-  get pausesOutgoingScene(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 4420097313055087, this, []); }
-  set pausesOutgoingScene(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1977503985998652, this, [value]); }
+  get pausesOutgoingScene(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 4420097313055087, this, []); }
+  set pausesOutgoingScene(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1977503985998652, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKTransition": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pausesIncomingScene": true; "pausesOutgoingScene": true };
 }
@@ -3232,7 +3232,7 @@ export const SKTransitionDirection = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (SKTransitionDirection) | null { return callSDK<(SKTransitionDirection) | null>("SpriteKit_a956b86ef7a76a8e", 3254859596388955, undefined, [rawValue]); }
+  init(rawValue: number): (SKTransitionDirection) | null { return callSDK<(SKTransitionDirection) | null>("SpriteKit_90ad0eb69cc6bf4a", 3254859596388955, undefined, [rawValue]); }
 };
 
 /**
@@ -3244,183 +3244,183 @@ export class SKUniform extends SDKHandle {
    * init(name: String)
    * @availability iOS 8.0+
    */
-  static initName(name: string): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 727338119315022, undefined, [name]); }
+  static initName(name: string): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 727338119315022, undefined, [name]); }
   /**
    * init(name: String, float value: Float)
    * @availability iOS 8.0+
    */
-  static initNameFloat(name: string, value: number): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 3688014624731841, undefined, [name, value]); }
+  static initNameFloat(name: string, value: number): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 3688014624731841, undefined, [name, value]); }
   /**
    * init(name: String, float value: GLKMatrix2)
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  static initNameFloat4990(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 688585490567736, undefined, [name, value]); }
+  static initNameFloat4990(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 688585490567736, undefined, [name, value]); }
   /**
    * init(name: String, float value: GLKMatrix3)
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  static initNameFloat75259(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 2838516843666974, undefined, [name, value]); }
+  static initNameFloat75259(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 2838516843666974, undefined, [name, value]); }
   /**
    * init(name: String, float value: GLKMatrix4)
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  static initNameFloat90728(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 119588280805505, undefined, [name, value]); }
+  static initNameFloat90728(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 119588280805505, undefined, [name, value]); }
   /**
    * init(name: String, float value: GLKVector2)
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  static initNameFloat49744(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 477126906349724, undefined, [name, value]); }
+  static initNameFloat49744(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 477126906349724, undefined, [name, value]); }
   /**
    * init(name: String, float value: GLKVector3)
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  static initNameFloat73029(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 4095966425242194, undefined, [name, value]); }
+  static initNameFloat73029(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 4095966425242194, undefined, [name, value]); }
   /**
    * init(name: String, float value: GLKVector4)
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  static initNameFloat64006(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 1185399707966956, undefined, [name, value]); }
+  static initNameFloat64006(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 1185399707966956, undefined, [name, value]); }
   /**
    * init(name: String, matrixFloat2x2 value: matrix_float2x2)
    * @availability iOS 10.0+
    */
-  static initNameMatrixFloat2x2(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 2954522546817188, undefined, [name, value]); }
+  static initNameMatrixFloat2x2(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 2954522546817188, undefined, [name, value]); }
   /**
    * init(name: String, matrixFloat3x3 value: matrix_float3x3)
    * @availability iOS 10.0+
    */
-  static initNameMatrixFloat3x3(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 1602615813529563, undefined, [name, value]); }
+  static initNameMatrixFloat3x3(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 1602615813529563, undefined, [name, value]); }
   /**
    * init(name: String, matrixFloat4x4 value: matrix_float4x4)
    * @availability iOS 10.0+
    */
-  static initNameMatrixFloat4x4(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 405205869343223, undefined, [name, value]); }
+  static initNameMatrixFloat4x4(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 405205869343223, undefined, [name, value]); }
   /**
    * init(name: String, texture: SKTexture?)
    * @availability iOS 8.0+
    */
-  static initNameTexture(name: string, texture?: (SKTexture) | null): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 2223143704961438, undefined, [name, texture]); }
+  static initNameTexture(name: string, texture?: (SKTexture) | null): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 2223143704961438, undefined, [name, texture]); }
   /**
    * init(name: String, vectorFloat2 value: vector_float2)
    * @availability iOS 10.0+
    */
-  static initNameVectorFloat2(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 2502599570544740, undefined, [name, value]); }
+  static initNameVectorFloat2(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 2502599570544740, undefined, [name, value]); }
   /**
    * init(name: String, vectorFloat3 value: vector_float3)
    * @availability iOS 10.0+
    */
-  static initNameVectorFloat3(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 3887395070716663, undefined, [name, value]); }
+  static initNameVectorFloat3(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 3887395070716663, undefined, [name, value]); }
   /**
    * init(name: String, vectorFloat4 value: vector_float4)
    * @availability iOS 10.0+
    */
-  static initNameVectorFloat4(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_a956b86ef7a76a8e", 3380663158640082, undefined, [name, value]); }
+  static initNameVectorFloat4(name: string, value: SDKHandle): SKUniform { return callSDK<SKUniform>("SpriteKit_90ad0eb69cc6bf4a", 3380663158640082, undefined, [name, value]); }
   /**
    * var floatMatrix2Value: GLKMatrix2 { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get floatMatrix2Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 934199443075438, this, []); }
-  set floatMatrix2Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3895900755457717, this, [value]); }
+  get floatMatrix2Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 934199443075438, this, []); }
+  set floatMatrix2Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3895900755457717, this, [value]); }
   /**
    * var floatMatrix3Value: GLKMatrix3 { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get floatMatrix3Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 2486686809620465, this, []); }
-  set floatMatrix3Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3950194032998314, this, [value]); }
+  get floatMatrix3Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 2486686809620465, this, []); }
+  set floatMatrix3Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3950194032998314, this, [value]); }
   /**
    * var floatMatrix4Value: GLKMatrix4 { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get floatMatrix4Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 4255594281899511, this, []); }
-  set floatMatrix4Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4042745035376360, this, [value]); }
+  get floatMatrix4Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 4255594281899511, this, []); }
+  set floatMatrix4Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4042745035376360, this, [value]); }
   /**
    * var floatValue: Float { get set }
    * @availability iOS 8.0+
    */
-  get floatValue(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2357451189526005, this, []); }
-  set floatValue(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 805379185917055, this, [value]); }
+  get floatValue(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2357451189526005, this, []); }
+  set floatValue(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 805379185917055, this, [value]); }
   /**
    * var floatVector2Value: GLKVector2 { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get floatVector2Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 3316613184528156, this, []); }
-  set floatVector2Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 794702808036426, this, [value]); }
+  get floatVector2Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 3316613184528156, this, []); }
+  set floatVector2Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 794702808036426, this, [value]); }
   /**
    * var floatVector3Value: GLKVector3 { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get floatVector3Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 1025820375334159, this, []); }
-  set floatVector3Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2220002655572032, this, [value]); }
+  get floatVector3Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 1025820375334159, this, []); }
+  set floatVector3Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2220002655572032, this, [value]); }
   /**
    * var floatVector4Value: GLKVector4 { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get floatVector4Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 2028259286935274, this, []); }
-  set floatVector4Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3774247922491135, this, [value]); }
+  get floatVector4Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 2028259286935274, this, []); }
+  set floatVector4Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3774247922491135, this, [value]); }
   /**
    * var matrixFloat2x2Value: matrix_float2x2 { get set }
    * @availability iOS 10.0+
    */
-  get matrixFloat2x2Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 1059796144556904, this, []); }
-  set matrixFloat2x2Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4316577465717291, this, [value]); }
+  get matrixFloat2x2Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 1059796144556904, this, []); }
+  set matrixFloat2x2Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4316577465717291, this, [value]); }
   /**
    * var matrixFloat3x3Value: matrix_float3x3 { get set }
    * @availability iOS 10.0+
    */
-  get matrixFloat3x3Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 3681051059349278, this, []); }
-  set matrixFloat3x3Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3050096927871216, this, [value]); }
+  get matrixFloat3x3Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 3681051059349278, this, []); }
+  set matrixFloat3x3Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3050096927871216, this, [value]); }
   /**
    * var matrixFloat4x4Value: matrix_float4x4 { get set }
    * @availability iOS 10.0+
    */
-  get matrixFloat4x4Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 3788424401301821, this, []); }
-  set matrixFloat4x4Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1075774128680338, this, [value]); }
+  get matrixFloat4x4Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 3788424401301821, this, []); }
+  set matrixFloat4x4Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1075774128680338, this, [value]); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("SpriteKit_a956b86ef7a76a8e", 2585554919547290, this, []); }
+  get name(): string { return callSDK<string>("SpriteKit_90ad0eb69cc6bf4a", 2585554919547290, this, []); }
   /**
    * var textureValue: SKTexture? { get set }
    * @availability iOS 8.0+
    */
-  get textureValue(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_a956b86ef7a76a8e", 3241987460422134, this, []); }
-  set textureValue(value: (SKTexture) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1384297425750531, this, [value]); }
+  get textureValue(): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_90ad0eb69cc6bf4a", 3241987460422134, this, []); }
+  set textureValue(value: (SKTexture) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1384297425750531, this, [value]); }
   /**
    * var uniformType: SKUniformType { get }
    * @availability iOS 8.0+
    */
-  get uniformType(): SKUniformType { return callSDK<SKUniformType>("SpriteKit_a956b86ef7a76a8e", 4188788735736322, this, []); }
+  get uniformType(): SKUniformType { return callSDK<SKUniformType>("SpriteKit_90ad0eb69cc6bf4a", 4188788735736322, this, []); }
   /**
    * var vectorFloat2Value: vector_float2 { get set }
    * @availability iOS 10.0+
    */
-  get vectorFloat2Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 1346353748225319, this, []); }
-  set vectorFloat2Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3901106801957879, this, [value]); }
+  get vectorFloat2Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 1346353748225319, this, []); }
+  set vectorFloat2Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3901106801957879, this, [value]); }
   /**
    * var vectorFloat3Value: vector_float3 { get set }
    * @availability iOS 10.0+
    */
-  get vectorFloat3Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 2132946422536864, this, []); }
-  set vectorFloat3Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3691599328097686, this, [value]); }
+  get vectorFloat3Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 2132946422536864, this, []); }
+  set vectorFloat3Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3691599328097686, this, [value]); }
   /**
    * var vectorFloat4Value: vector_float4 { get set }
    * @availability iOS 10.0+
    */
-  get vectorFloat4Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 3772413629206014, this, []); }
-  set vectorFloat4Value(value: SDKHandle) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3696712782572946, this, [value]); }
+  get vectorFloat4Value(): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 3772413629206014, this, []); }
+  set vectorFloat4Value(value: SDKHandle) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3696712782572946, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKUniform": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "floatMatrix2Value": true; "floatMatrix3Value": true; "floatMatrix4Value": true; "floatValue": true; "floatVector2Value": true; "floatVector3Value": true; "floatVector4Value": true; "matrixFloat2x2Value": true; "matrixFloat3x3Value": true; "matrixFloat4x4Value": true; "name": true; "textureValue": true; "uniformType": true; "vectorFloat2Value": true; "vectorFloat3Value": true; "vectorFloat4Value": true };
 }
@@ -3436,47 +3436,47 @@ export const SKUniformType = {
    * init?(rawValue: Int)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (SKUniformType) | null { return callSDK<(SKUniformType) | null>("SpriteKit_a956b86ef7a76a8e", 969712629692440, undefined, [rawValue]); }
+  init(rawValue: number): (SKUniformType) | null { return callSDK<(SKUniformType) | null>("SpriteKit_90ad0eb69cc6bf4a", 969712629692440, undefined, [rawValue]); }
 };
 
 /** class SKVideoNode */
 export class SKVideoNode extends (SKNode as unknown as Omit<typeof SKNode, "initFileNamed" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode)) {
   /** init(avPlayer player: AVPlayer) */
-  static initAvPlayer(player: _AVFoundation_AVPlayer): SKVideoNode { return callSDK<SKVideoNode>("SpriteKit_a956b86ef7a76a8e", 3216394104983810, undefined, [player]); }
+  static initAvPlayer(player: _AVFoundation_AVPlayer): SKVideoNode { return callSDK<SKVideoNode>("SpriteKit_90ad0eb69cc6bf4a", 3216394104983810, undefined, [player]); }
   /** init?(coder aDecoder: NSCoder) */
-  static initCoder(aDecoder: _Foundation_NSCoder): (SKVideoNode) | null { return callSDK<(SKVideoNode) | null>("SpriteKit_a956b86ef7a76a8e", 679098552630105, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (SKVideoNode) | null { return callSDK<(SKVideoNode) | null>("SpriteKit_90ad0eb69cc6bf4a", 679098552630105, undefined, [aDecoder]); }
   /**
    * init(fileNamed videoFile: String)
    * @availability iOS 8.0+
    */
-  static initFileNamed(videoFile: string): SKVideoNode { return callSDK<SKVideoNode>("SpriteKit_a956b86ef7a76a8e", 1018231003061463, undefined, [videoFile]); }
+  static initFileNamed(videoFile: string): SKVideoNode { return callSDK<SKVideoNode>("SpriteKit_90ad0eb69cc6bf4a", 1018231003061463, undefined, [videoFile]); }
   /**
    * init(url: URL)
    * @availability iOS 8.0+
    */
-  static initUrl(url: string): SKVideoNode { return callSDK<SKVideoNode>("SpriteKit_a956b86ef7a76a8e", 4456777157607205, undefined, [url]); }
+  static initUrl(url: string): SKVideoNode { return callSDK<SKVideoNode>("SpriteKit_90ad0eb69cc6bf4a", 4456777157607205, undefined, [url]); }
   /**
    * init(videoFileNamed videoFile: String)
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  static initVideoFileNamed(videoFile: string): SKVideoNode { return callSDK<SKVideoNode>("SpriteKit_a956b86ef7a76a8e", 2526211806787055, undefined, [videoFile]); }
+  static initVideoFileNamed(videoFile: string): SKVideoNode { return callSDK<SKVideoNode>("SpriteKit_90ad0eb69cc6bf4a", 2526211806787055, undefined, [videoFile]); }
   /**
    * init(videoURL url: URL)
    * @availability iOS 7.0+
    * @deprecated iOS 8.0
    */
-  static initVideoURL(url: string): SKVideoNode { return callSDK<SKVideoNode>("SpriteKit_a956b86ef7a76a8e", 2953710064167261, undefined, [url]); }
+  static initVideoURL(url: string): SKVideoNode { return callSDK<SKVideoNode>("SpriteKit_90ad0eb69cc6bf4a", 2953710064167261, undefined, [url]); }
   /** func pause() */
-  pause(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1356055877567637, this, []); }
+  pause(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1356055877567637, this, []); }
   /** func play() */
-  play(): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 968560073066788, this, []); }
+  play(): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 968560073066788, this, []); }
   /** var anchorPoint: CGPoint { get set } */
-  get anchorPoint(): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 3808434993211309, this, []); }
-  set anchorPoint(value: $SDK1) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2482349900253300, this, [value]); }
+  get anchorPoint(): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 3808434993211309, this, []); }
+  set anchorPoint(value: $SDK1) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2482349900253300, this, [value]); }
   /** var size: CGSize { get set } */
-  get size(): $SDK7 { return callSDK<$SDK7>("SpriteKit_a956b86ef7a76a8e", 3276089186043233, this, []); }
-  set size(value: $SDK7) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 615633022246396, this, [value]); }
+  get size(): $SDK7 { return callSDK<$SDK7>("SpriteKit_90ad0eb69cc6bf4a", 3276089186043233, this, []); }
+  set size(value: $SDK7) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 615633022246396, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKVideoNode": true; "c:objc(cs)SKNode": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anchorPoint": true; "size": true };
 }
@@ -3484,98 +3484,98 @@ export class SKVideoNode extends (SKNode as unknown as Omit<typeof SKNode, "init
 /** class SKView */
 export class SKView extends SDKHandle {
   /** func convert(_ point: CGPoint, from scene: SKScene) -> CGPoint */
-  convertFrom(point: $SDK1, scene: SKScene): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 2921624950781157, this, [point, scene]); }
+  convertFrom(point: $SDK1, scene: SKScene): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 2921624950781157, this, [point, scene]); }
   /** func convert(_ point: CGPoint, to scene: SKScene) -> CGPoint */
-  convertTo(point: $SDK1, scene: SKScene): $SDK1 { return callSDK<$SDK1>("SpriteKit_a956b86ef7a76a8e", 3466277105899191, this, [point, scene]); }
+  convertTo(point: $SDK1, scene: SKScene): $SDK1 { return callSDK<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 3466277105899191, this, [point, scene]); }
   /** init() */
-  static init(): SKView { return callSDK<SKView>("SpriteKit_a956b86ef7a76a8e", 4162222128347317, undefined, []); }
+  static init(): SKView { return callSDK<SKView>("SpriteKit_90ad0eb69cc6bf4a", 4162222128347317, undefined, []); }
   /** func presentScene(_ scene: SKScene?) */
-  presentScene(scene?: (SKScene) | null): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 174713434077629, this, [scene]); }
+  presentScene(scene?: (SKScene) | null): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 174713434077629, this, [scene]); }
   /** func presentScene(_ scene: SKScene, transition: SKTransition) */
-  presentSceneTransition(scene: SKScene, transition: SKTransition): void { return callSDK<void>("SpriteKit_a956b86ef7a76a8e", 4318495791871244, this, [scene, transition]); }
+  presentSceneTransition(scene: SKScene, transition: SKTransition): void { return callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 4318495791871244, this, [scene, transition]); }
   /** func texture(from node: SKNode) -> SKTexture? */
-  textureFrom(node: SKNode): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_a956b86ef7a76a8e", 3620024072364638, this, [node]); }
+  textureFrom(node: SKNode): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_90ad0eb69cc6bf4a", 3620024072364638, this, [node]); }
   /** func texture(from node: SKNode, crop: CGRect) -> SKTexture? */
-  textureFromCrop(node: SKNode, crop: $SDK0): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_a956b86ef7a76a8e", 4325072625704706, this, [node, crop]); }
+  textureFromCrop(node: SKNode, crop: $SDK0): (SKTexture) | null { return callSDK<(SKTexture) | null>("SpriteKit_90ad0eb69cc6bf4a", 4325072625704706, this, [node, crop]); }
   /**
    * var allowsTransparency: Bool { get set }
    * @availability iOS 8.0+
    */
-  get allowsTransparency(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 4474214468902483, this, []); }
-  set allowsTransparency(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2600231599580413, this, [value]); }
+  get allowsTransparency(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 4474214468902483, this, []); }
+  set allowsTransparency(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2600231599580413, this, [value]); }
   /** var isAsynchronous: Bool { get set } */
-  get isAsynchronous(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 440647587219322, this, []); }
-  set isAsynchronous(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 238752049371795, this, [value]); }
+  get isAsynchronous(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 440647587219322, this, []); }
+  set isAsynchronous(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 238752049371795, this, [value]); }
   /**
    * weak var delegate: (any SKViewDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SpriteKit_a956b86ef7a76a8e", 3227058299694015, this, []); }
-  set delegate(value: (Implements<SKViewDelegate> | SDKHandle) | null) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1657142825968530, this, [value], [{"protocol":"c:objc(pl)SKViewDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SpriteKit_90ad0eb69cc6bf4a", 3227058299694015, this, []); }
+  set delegate(value: (Implements<SKViewDelegate> | SDKHandle) | null) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1657142825968530, this, [value], [{"protocol":"c:objc(pl)SKViewDelegate"}]); }
   /** var disableDepthStencilBuffer: Bool { get set } */
-  get disableDepthStencilBuffer(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2254899206750053, this, []); }
-  set disableDepthStencilBuffer(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2954910360013551, this, [value]); }
+  get disableDepthStencilBuffer(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2254899206750053, this, []); }
+  set disableDepthStencilBuffer(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2954910360013551, this, [value]); }
   /**
    * var frameInterval: Int { get set }
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  get frameInterval(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 121556832734174, this, []); }
-  set frameInterval(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1466953070688430, this, [value]); }
+  get frameInterval(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 121556832734174, this, []); }
+  set frameInterval(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1466953070688430, this, [value]); }
   /** var ignoresSiblingOrder: Bool { get set } */
-  get ignoresSiblingOrder(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 806203346567771, this, []); }
-  set ignoresSiblingOrder(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 3324303371965384, this, [value]); }
+  get ignoresSiblingOrder(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 806203346567771, this, []); }
+  set ignoresSiblingOrder(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 3324303371965384, this, [value]); }
   /** var isPaused: Bool { get set } */
-  get isPaused(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 847651147548382, this, []); }
-  set isPaused(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2074264428419951, this, [value]); }
+  get isPaused(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 847651147548382, this, []); }
+  set isPaused(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2074264428419951, this, [value]); }
   /**
    * var preferredFrameRate: Float { get set }
    * @availability iOS 10.0+
    * @deprecated iOS 10.0
    */
-  get preferredFrameRate(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 1044328335522252, this, []); }
-  set preferredFrameRate(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1350118067566106, this, [value]); }
+  get preferredFrameRate(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 1044328335522252, this, []); }
+  set preferredFrameRate(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1350118067566106, this, [value]); }
   /**
    * var preferredFramesPerSecond: Int { get set }
    * @availability iOS 10.0+
    */
-  get preferredFramesPerSecond(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2560013151857807, this, []); }
-  set preferredFramesPerSecond(value: number) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 584608862505506, this, [value]); }
+  get preferredFramesPerSecond(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2560013151857807, this, []); }
+  set preferredFramesPerSecond(value: number) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 584608862505506, this, [value]); }
   /** var scene: SKScene? { get } */
-  get scene(): (SKScene) | null { return callSDK<(SKScene) | null>("SpriteKit_a956b86ef7a76a8e", 1540497147355904, this, []); }
+  get scene(): (SKScene) | null { return callSDK<(SKScene) | null>("SpriteKit_90ad0eb69cc6bf4a", 1540497147355904, this, []); }
   /**
    * var shouldCullNonVisibleNodes: Bool { get set }
    * @availability iOS 8.0+
    */
-  get shouldCullNonVisibleNodes(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 4368493640081607, this, []); }
-  set shouldCullNonVisibleNodes(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1848920718944328, this, [value]); }
+  get shouldCullNonVisibleNodes(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 4368493640081607, this, []); }
+  set shouldCullNonVisibleNodes(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1848920718944328, this, [value]); }
   /** var showsDrawCount: Bool { get set } */
-  get showsDrawCount(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2749249770144298, this, []); }
-  set showsDrawCount(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2668645589514806, this, [value]); }
+  get showsDrawCount(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2749249770144298, this, []); }
+  set showsDrawCount(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2668645589514806, this, [value]); }
   /** var showsFPS: Bool { get set } */
-  get showsFPS(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 1501583172238868, this, []); }
-  set showsFPS(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1769080971140136, this, [value]); }
+  get showsFPS(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 1501583172238868, this, []); }
+  set showsFPS(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1769080971140136, this, [value]); }
   /**
    * var showsFields: Bool { get set }
    * @availability iOS 8.0+
    */
-  get showsFields(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 3225898064142211, this, []); }
-  set showsFields(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1975271951516637, this, [value]); }
+  get showsFields(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 3225898064142211, this, []); }
+  set showsFields(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1975271951516637, this, [value]); }
   /** var showsNodeCount: Bool { get set } */
-  get showsNodeCount(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 1349260212610579, this, []); }
-  set showsNodeCount(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2495269102143520, this, [value]); }
+  get showsNodeCount(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 1349260212610579, this, []); }
+  set showsNodeCount(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2495269102143520, this, [value]); }
   /**
    * var showsPhysics: Bool { get set }
    * @availability iOS 8.0+
    */
-  get showsPhysics(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 2695522923721342, this, []); }
-  set showsPhysics(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 1699125971838271, this, [value]); }
+  get showsPhysics(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 2695522923721342, this, []); }
+  set showsPhysics(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 1699125971838271, this, [value]); }
   /**
    * var showsQuadCount: Bool { get set }
    * @availability iOS 8.0+
    */
-  get showsQuadCount(): boolean { return callSDK<boolean>("SpriteKit_a956b86ef7a76a8e", 1111675679980915, this, []); }
-  set showsQuadCount(value: boolean) { callSDK<void>("SpriteKit_a956b86ef7a76a8e", 2237742693472668, this, [value]); }
+  get showsQuadCount(): boolean { return callSDK<boolean>("SpriteKit_90ad0eb69cc6bf4a", 1111675679980915, this, []); }
+  set showsQuadCount(value: boolean) { callSDK<void>("SpriteKit_90ad0eb69cc6bf4a", 2237742693472668, this, [value]); }
   declare readonly $type: { "c:objc(cs)SKView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsTransparency": true; "isAsynchronous": true; "delegate": true; "disableDepthStencilBuffer": true; "frameInterval": true; "ignoresSiblingOrder": true; "isPaused": true; "preferredFrameRate": true; "preferredFramesPerSecond": true; "scene": true; "shouldCullNonVisibleNodes": true; "showsDrawCount": true; "showsFPS": true; "showsFields": true; "showsNodeCount": true; "showsPhysics": true; "showsQuadCount": true };
 }
@@ -3602,7 +3602,7 @@ export interface SKWarpable {
  */
 export class SKWarpGeometry extends SDKHandle {
   /** init() */
-  static init(): SKWarpGeometry { return callSDK<SKWarpGeometry>("SpriteKit_a956b86ef7a76a8e", 70470792785634, undefined, []); }
+  static init(): SKWarpGeometry { return callSDK<SKWarpGeometry>("SpriteKit_90ad0eb69cc6bf4a", 70470792785634, undefined, []); }
   declare readonly $type: { "c:objc(cs)SKWarpGeometry": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3615,123 +3615,123 @@ export class SKWarpGeometryGrid extends SKWarpGeometry {
    * convenience init(columns cols: Int, rows: Int)
    * @availability iOS 10.0+
    */
-  static initColumnsRows(cols: number, rows: number): SKWarpGeometryGrid { return callSDK<SKWarpGeometryGrid>("SpriteKit_a956b86ef7a76a8e", 3104410958221939, undefined, [cols, rows]); }
+  static initColumnsRows(cols: number, rows: number): SKWarpGeometryGrid { return callSDK<SKWarpGeometryGrid>("SpriteKit_90ad0eb69cc6bf4a", 3104410958221939, undefined, [cols, rows]); }
   /**
    * func destPosition(at index: Int) -> vector_float2
    * @availability iOS 10.0+
    */
-  destPosition(index: number): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 1108980410742263, this, [index]); }
+  destPosition(index: number): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 1108980410742263, this, [index]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (SKWarpGeometryGrid) | null { return callSDK<(SKWarpGeometryGrid) | null>("SpriteKit_a956b86ef7a76a8e", 2366065902191104, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (SKWarpGeometryGrid) | null { return callSDK<(SKWarpGeometryGrid) | null>("SpriteKit_90ad0eb69cc6bf4a", 2366065902191104, undefined, [aDecoder]); }
   /**
    * func sourcePosition(at index: Int) -> vector_float2
    * @availability iOS 10.0+
    */
-  sourcePosition(index: number): SDKHandle { return callSDK<SDKHandle>("SpriteKit_a956b86ef7a76a8e", 3030216105835302, this, [index]); }
+  sourcePosition(index: number): SDKHandle { return callSDK<SDKHandle>("SpriteKit_90ad0eb69cc6bf4a", 3030216105835302, this, [index]); }
   /**
    * var numberOfColumns: Int { get }
    * @availability iOS 10.0+
    */
-  get numberOfColumns(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3423676456409662, this, []); }
+  get numberOfColumns(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3423676456409662, this, []); }
   /**
    * var numberOfRows: Int { get }
    * @availability iOS 10.0+
    */
-  get numberOfRows(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 3155674113443274, this, []); }
+  get numberOfRows(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 3155674113443274, this, []); }
   /**
    * var vertexCount: Int { get }
    * @availability iOS 10.0+
    */
-  get vertexCount(): number { return callSDK<number>("SpriteKit_a956b86ef7a76a8e", 110770907698695, this, []); }
+  get vertexCount(): number { return callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 110770907698695, this, []); }
   /**
    * func replacingBySourcePositions(positions source: [SIMD2<Float>]) -> SKWarpGeometryGrid
    * @availability iOS 10.0+
    */
-  replacingBySourcePositions(source: Array<SDKHandle>): SKWarpGeometryGrid { return callSDK<SKWarpGeometryGrid>("SpriteKit_a956b86ef7a76a8e", 1032322097375703, this, [source]); }
+  replacingBySourcePositions(source: Array<SDKHandle>): SKWarpGeometryGrid { return callSDK<SKWarpGeometryGrid>("SpriteKit_90ad0eb69cc6bf4a", 1032322097375703, this, [source]); }
   /**
    * func replacingByDestinationPositions(positions destination: [SIMD2<Float>]) -> SKWarpGeometryGrid
    * @availability iOS 10.0+
    */
-  replacingByDestinationPositions(destination: Array<SDKHandle>): SKWarpGeometryGrid { return callSDK<SKWarpGeometryGrid>("SpriteKit_a956b86ef7a76a8e", 425814041879689, this, [destination]); }
+  replacingByDestinationPositions(destination: Array<SDKHandle>): SKWarpGeometryGrid { return callSDK<SKWarpGeometryGrid>("SpriteKit_90ad0eb69cc6bf4a", 425814041879689, this, [destination]); }
   /**
    * convenience init(columns: Int, rows: Int, sourcePositions: [SIMD2<Float>] = [SIMD2<Float>](), destinationPositions: [SIMD2<Float>] = [SIMD2<Float>]())
    * @availability iOS 10.0+
    */
-  static initColumnsRowsSourcePositionsDestinationPositions(columns: number, rows: number, sourcePositions?: Array<SDKHandle>, destinationPositions?: Array<SDKHandle>): SKWarpGeometryGrid { return callSDK<SKWarpGeometryGrid>("SpriteKit_a956b86ef7a76a8e", 2313853974058925, undefined, [columns, rows, sourcePositions, destinationPositions]); }
+  static initColumnsRowsSourcePositionsDestinationPositions(columns: number, rows: number, sourcePositions?: Array<SDKHandle>, destinationPositions?: Array<SDKHandle>): SKWarpGeometryGrid { return callSDK<SKWarpGeometryGrid>("SpriteKit_90ad0eb69cc6bf4a", 2313853974058925, undefined, [columns, rows, sourcePositions, destinationPositions]); }
   declare readonly $type: { "c:objc(cs)SKWarpGeometryGrid": true; "c:objc(cs)SKWarpGeometry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "numberOfColumns": true; "numberOfRows": true; "vertexCount": true };
 }
 
 export class UITouch extends SDKHandle {
   /** func location(in node: SKNode) -> CGPoint */
-  location(node: SKNode): Promise<$SDK1> { return callSDKAsync<$SDK1>("SpriteKit_a956b86ef7a76a8e", 1401575881807803, this, [node]); }
+  location(node: SKNode): Promise<$SDK1> { return callSDKAsync<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 1401575881807803, this, [node]); }
   /** func previousLocation(in node: SKNode) -> CGPoint */
-  previousLocation(node: SKNode): Promise<$SDK1> { return callSDKAsync<$SDK1>("SpriteKit_a956b86ef7a76a8e", 1401579588337050, this, [node]); }
+  previousLocation(node: SKNode): Promise<$SDK1> { return callSDKAsync<$SDK1>("SpriteKit_90ad0eb69cc6bf4a", 1401579588337050, this, [node]); }
   declare readonly $type: { "c:objc(cs)UITouch": true; "c:objc(cs)NSObject": true };
 }
 
 /** var PHYSICSKIT_MINUS_GL_IMPORTS: Int32 { get } */
-export const PHYSICSKIT_MINUS_GL_IMPORTS: number = callSDK<number>("SpriteKit_a956b86ef7a76a8e", 942841400044668, undefined, []);
+export const PHYSICSKIT_MINUS_GL_IMPORTS: number = callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 942841400044668, undefined, []);
 
 /** var SKVIEW_AVAILABLE: Int32 { get } */
-export const SKVIEW_AVAILABLE: number = callSDK<number>("SpriteKit_a956b86ef7a76a8e", 2773718141916643, undefined, []);
+export const SKVIEW_AVAILABLE: number = callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 2773718141916643, undefined, []);
 
 /** var SK_VERSION: Int32 { get } */
-export const SK_VERSION: number = callSDK<number>("SpriteKit_a956b86ef7a76a8e", 4228375792491185, undefined, []);
+export const SK_VERSION: number = callSDK<number>("SpriteKit_90ad0eb69cc6bf4a", 4228375792491185, undefined, []);
 
-registerSDKClass("SKNode", SKNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {}, methods: {"action":{"id":2066664370573078},"addChild":{"id":3468140043511064},"calculateAccumulatedFrame":{"id":1851378715855893},"childNode":{"id":4254436084225389},"contains":{"id":3595632890814318},"convertFrom":{"id":110124023724432},"convertTo":{"id":3258140750832953},"hasActions":{"id":2656967818627531},"inParentHierarchy":{"id":4183146121044986},"insertChild":{"id":3210596431313415},"intersects":{"id":263034538602597},"isEqual":{"id":2489154546733623},"move":{"id":2915027333484797},"atPoint":{"id":2800503596299450},"nodes":{"id":814419525705176},"subscript":{"id":2909233275723286},"removeAction":{"id":1280716856240678},"removeAllActions":{"id":3698460516333783},"removeAllChildren":{"id":206368690186584},"removeChildren":{"id":332756453185984},"removeFromParent":{"id":4414292644964277},"run":{"id":1606466628284592},"runCompletion":{"id":2910891439569655,"hints":[null,{"callback":{"out":[]}}]},"runWithKey":{"id":2390070195763088},"setScale":{"id":4481512515280294},"setValue":{"id":3704517416530507},"value":{"id":3424369215901180}} });
-registerSDKClass("SK3DNode", SK3DNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"autoenablesDefaultLighting":331510590079506,"loops":2327107730019739,"isPlaying":4426992679119402,"sceneTime":4276275014521598,"viewportSize":1140603894503416}, methods: {"projectPoint":{"id":2826194684523789},"unprojectPoint":{"id":147624560256163}} });
-registerSDKClass("SKAction", SKAction, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"duration":4254226121062542,"speed":2293117086113429,"timingMode":1490961954440716}, methods: {"reversed":{"id":3598905034689924}} });
-registerSDKClass("SKAttribute", SKAttribute, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"name":3946201240157759,"type":1018108926464758} });
-registerSDKClass("SKAttributeValue", SKAttributeValue, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"floatValue":3619831997828030,"vectorFloat2Value":53690089476113,"vectorFloat3Value":3164080395082119,"vectorFloat4Value":863671599382573} });
-registerSDKClass("SKAudioNode", SKAudioNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"autoplayLooped":1200604820908964,"avAudioNode":730388838198797,"isPositional":1432338682376841} });
-registerSDKClass("SKCameraNode", SKCameraNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {}, methods: {"containedNodeSet":{"id":3619311215962106},"contains":{"id":991096678225654}} });
-registerSDKClass("SKConstraint", SKConstraint, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"enabled":1531567433216854,"referenceNode":362078094425644} });
-registerSDKClass("SKCropNode", SKCropNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"maskNode":164017503739012} });
-registerSDKClass("SKEffectNode", SKEffectNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"attributeValues":2340250688480581,"blendMode":2460712147928997,"filter":3723082517559032,"shader":674919521648222,"shouldCenterFilter":507737752250312,"shouldEnableEffects":1120191371799910,"shouldRasterize":3080493836831026}, methods: {"setValue":{"id":1188226559413059},"value":{"id":3442516033342501}} });
-registerSDKClass("SKEmitterNode", SKEmitterNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"attributeValues":458477166786772,"emissionAngle":1832443149472329,"emissionAngleRange":1421497488469996,"fieldBitMask":395076454928875,"numParticlesToEmit":4128705561522726,"particleAction":3037089859650316,"particleAlpha":2187363186629578,"particleAlphaRange":31338251859058,"particleAlphaSequence":1213321179643680,"particleAlphaSpeed":2517296335187061,"particleBirthRate":1844012421741231,"particleBlendMode":3832810840940083,"particleColor":3324879741492157,"particleColorAlphaRange":1055803655793081,"particleColorAlphaSpeed":161711790693378,"particleColorBlendFactor":695721714875728,"particleColorBlendFactorRange":2805313935249114,"particleColorBlendFactorSequence":3396401508279201,"particleColorBlendFactorSpeed":2112666357045345,"particleColorBlueRange":799280367500728,"particleColorBlueSpeed":747178551117280,"particleColorGreenRange":3450532928295313,"particleColorGreenSpeed":453639829006777,"particleColorRedRange":4192946123464389,"particleColorRedSpeed":4279910277319427,"particleColorSequence":2019307458284934,"particleLifetime":3163045550128730,"particleLifetimeRange":1817765314866990,"particlePosition":955059366479214,"particlePositionRange":2947251745598397,"particleRenderOrder":2819497553880320,"particleRotation":2114484066736588,"particleRotationRange":1387636172199148,"particleRotationSpeed":4326819103570905,"particleScale":2751194666644383,"particleScaleRange":3332478476453305,"particleScaleSequence":933946891587537,"particleScaleSpeed":3627955875145556,"particleSize":4100548730114991,"particleSpeed":762442296667864,"particleSpeedRange":2007041584986509,"particleTexture":4000695521913934,"particleZPosition":1925802537129365,"particleZPositionRange":699160161425121,"particleZPositionSpeed":694836620037312,"shader":2574779098365810,"targetNode":1974460172624555,"xAcceleration":83785311201241,"yAcceleration":1763545319044989}, methods: {"advanceSimulationTime":{"id":3447760590653749},"resetSimulation":{"id":2191796724876986},"setValue":{"id":2099350436636630},"value":{"id":2776160976724458}} });
-registerSDKClass("SKFieldNode", SKFieldNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"animationSpeed":775153891884650,"categoryBitMask":3669979474741014,"direction":1979034745072871,"isEnabled":977129245294945,"isExclusive":2735625536620632,"falloff":1584344648112089,"minimumRadius":3218790415792659,"region":3280151567888506,"smoothness":2606046873068528,"strength":3718538136541227,"texture":3010438776699942} });
-registerSDKClass("SKKeyframeSequence", SKKeyframeSequence, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"interpolationMode":2429446834944573,"repeatMode":779061897052346}, methods: {"addKeyframeValue":{"id":2968710646524800},"count":{"id":2326440068828108},"getKeyframeTime":{"id":490758079419886},"getKeyframeValue":{"id":2662458019364221},"removeKeyframe":{"id":3996721185369313},"removeLastKeyframe":{"id":1288115819018598},"sample":{"id":3911341997306749},"setKeyframeTime":{"id":995497258663993},"setKeyframeValueFor":{"id":2813713693434790},"setKeyframeValueTimeFor":{"id":2350392495839497}} });
-registerSDKClass("SKLabelNode", SKLabelNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"attributedText":3243124548198976,"blendMode":1184063206642455,"color":3788607470358988,"colorBlendFactor":700114254067624,"fontColor":326884654999780,"fontName":3934345509351006,"fontSize":775581147359449,"horizontalAlignmentMode":3237526912064758,"lineBreakMode":3969701186285055,"numberOfLines":3363074227976945,"preferredMaxLayoutWidth":563694061839855,"text":2335749570906371,"verticalAlignmentMode":3770342673408854} });
-registerSDKClass("SKLightNode", SKLightNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"ambientColor":1833399703133739,"categoryBitMask":3188089280431529,"isEnabled":1491073848830358,"falloff":1690193436397388,"lightColor":2635826629637362,"shadowColor":3067558000852906} });
-registerSDKClass("SKTexture", SKTexture, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"filteringMode":217218109470215,"usesMipmaps":3895365635733263}, methods: {"cgImage":{"id":630464132302058},"preloadCompletionHandler":{"id":2522234193088624,"hints":[{"callback":{"out":[]}}]},"size":{"id":482236871258265},"applying":{"id":132893412040934},"generatingNormalMap":{"id":3441938048679811},"generatingNormalMapWithSmoothnessContrast":{"id":1402082321531773},"textureRect":{"id":23710069138853}} });
-registerSDKClass("SKMutableTexture", SKMutableTexture, { module: "SpriteKit_a956b86ef7a76a8e", properties: {}, methods: {"modifyPixelData":{"id":2487102701487282,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("SKPhysicsBody", SKPhysicsBody, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"affectedByGravity":2493995362622718,"allowsRotation":941579759257310,"angularDamping":134495531597188,"angularVelocity":1677956104871373,"area":4495267132961459,"categoryBitMask":1761028085973675,"charge":4000331104006831,"collisionBitMask":1468297333188894,"contactTestBitMask":627620279281133,"density":3737722093214971,"isDynamic":907909334574976,"fieldBitMask":2827993101492527,"friction":2901965732656825,"joints":3567532477547331,"linearDamping":2706293056963761,"mass":1723340112542632,"node":4138841735677574,"pinned":454739245569728,"isResting":658896268031494,"restitution":2500595737183049,"usesPreciseCollisionDetection":2009388593261625,"velocity":2210287118422154}, methods: {"allContactedBodies":{"id":3327250281569590},"applyAngularImpulse":{"id":2571471356661889},"applyForce":{"id":1413748511370583},"applyForceAt":{"id":2501761571283675},"applyImpulse":{"id":2354648641409154},"applyImpulseAt":{"id":3470539655929772},"applyTorque":{"id":4378895794963181}} });
-registerSDKClass("SKPhysicsContact", SKPhysicsContact, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"bodyA":306938671974241,"bodyB":3957166057335880,"collisionImpulse":4476739356263284,"contactNormal":645531870962332,"contactPoint":1924056432559894} });
+registerSDKClass("SKNode", SKNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {}, methods: {"action":{"id":2066664370573078},"addChild":{"id":3468140043511064},"calculateAccumulatedFrame":{"id":1851378715855893},"childNode":{"id":4254436084225389},"contains":{"id":3595632890814318},"convertFrom":{"id":110124023724432},"convertTo":{"id":3258140750832953},"hasActions":{"id":2656967818627531},"inParentHierarchy":{"id":4183146121044986},"insertChild":{"id":3210596431313415},"intersects":{"id":263034538602597},"isEqual":{"id":2489154546733623},"move":{"id":2915027333484797},"atPoint":{"id":2800503596299450},"nodes":{"id":814419525705176},"subscript":{"id":2909233275723286},"removeAction":{"id":1280716856240678},"removeAllActions":{"id":3698460516333783},"removeAllChildren":{"id":206368690186584},"removeChildren":{"id":332756453185984},"removeFromParent":{"id":4414292644964277},"run":{"id":1606466628284592},"runCompletion":{"id":2910891439569655,"hints":[null,{"callback":{"out":[]}}]},"runWithKey":{"id":2390070195763088},"setScale":{"id":4481512515280294},"setValue":{"id":3704517416530507},"value":{"id":3424369215901180}} });
+registerSDKClass("SK3DNode", SK3DNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"autoenablesDefaultLighting":331510590079506,"loops":2327107730019739,"isPlaying":4426992679119402,"sceneTime":4276275014521598,"viewportSize":1140603894503416}, methods: {"projectPoint":{"id":2826194684523789},"unprojectPoint":{"id":147624560256163}} });
+registerSDKClass("SKAction", SKAction, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"duration":4254226121062542,"speed":2293117086113429,"timingMode":1490961954440716}, methods: {"reversed":{"id":3598905034689924}} });
+registerSDKClass("SKAttribute", SKAttribute, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"name":3946201240157759,"type":1018108926464758} });
+registerSDKClass("SKAttributeValue", SKAttributeValue, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"floatValue":3619831997828030,"vectorFloat2Value":53690089476113,"vectorFloat3Value":3164080395082119,"vectorFloat4Value":863671599382573} });
+registerSDKClass("SKAudioNode", SKAudioNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"autoplayLooped":1200604820908964,"avAudioNode":730388838198797,"isPositional":1432338682376841} });
+registerSDKClass("SKCameraNode", SKCameraNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {}, methods: {"containedNodeSet":{"id":3619311215962106},"contains":{"id":991096678225654}} });
+registerSDKClass("SKConstraint", SKConstraint, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"enabled":1531567433216854,"referenceNode":362078094425644} });
+registerSDKClass("SKCropNode", SKCropNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"maskNode":164017503739012} });
+registerSDKClass("SKEffectNode", SKEffectNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"attributeValues":2340250688480581,"blendMode":2460712147928997,"filter":3723082517559032,"shader":674919521648222,"shouldCenterFilter":507737752250312,"shouldEnableEffects":1120191371799910,"shouldRasterize":3080493836831026}, methods: {"setValue":{"id":1188226559413059},"value":{"id":3442516033342501}} });
+registerSDKClass("SKEmitterNode", SKEmitterNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"attributeValues":458477166786772,"emissionAngle":1832443149472329,"emissionAngleRange":1421497488469996,"fieldBitMask":395076454928875,"numParticlesToEmit":4128705561522726,"particleAction":3037089859650316,"particleAlpha":2187363186629578,"particleAlphaRange":31338251859058,"particleAlphaSequence":1213321179643680,"particleAlphaSpeed":2517296335187061,"particleBirthRate":1844012421741231,"particleBlendMode":3832810840940083,"particleColor":3324879741492157,"particleColorAlphaRange":1055803655793081,"particleColorAlphaSpeed":161711790693378,"particleColorBlendFactor":695721714875728,"particleColorBlendFactorRange":2805313935249114,"particleColorBlendFactorSequence":3396401508279201,"particleColorBlendFactorSpeed":2112666357045345,"particleColorBlueRange":799280367500728,"particleColorBlueSpeed":747178551117280,"particleColorGreenRange":3450532928295313,"particleColorGreenSpeed":453639829006777,"particleColorRedRange":4192946123464389,"particleColorRedSpeed":4279910277319427,"particleColorSequence":2019307458284934,"particleLifetime":3163045550128730,"particleLifetimeRange":1817765314866990,"particlePosition":955059366479214,"particlePositionRange":2947251745598397,"particleRenderOrder":2819497553880320,"particleRotation":2114484066736588,"particleRotationRange":1387636172199148,"particleRotationSpeed":4326819103570905,"particleScale":2751194666644383,"particleScaleRange":3332478476453305,"particleScaleSequence":933946891587537,"particleScaleSpeed":3627955875145556,"particleSize":4100548730114991,"particleSpeed":762442296667864,"particleSpeedRange":2007041584986509,"particleTexture":4000695521913934,"particleZPosition":1925802537129365,"particleZPositionRange":699160161425121,"particleZPositionSpeed":694836620037312,"shader":2574779098365810,"targetNode":1974460172624555,"xAcceleration":83785311201241,"yAcceleration":1763545319044989}, methods: {"advanceSimulationTime":{"id":3447760590653749},"resetSimulation":{"id":2191796724876986},"setValue":{"id":2099350436636630},"value":{"id":2776160976724458}} });
+registerSDKClass("SKFieldNode", SKFieldNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"animationSpeed":775153891884650,"categoryBitMask":3669979474741014,"direction":1979034745072871,"isEnabled":977129245294945,"isExclusive":2735625536620632,"falloff":1584344648112089,"minimumRadius":3218790415792659,"region":3280151567888506,"smoothness":2606046873068528,"strength":3718538136541227,"texture":3010438776699942} });
+registerSDKClass("SKKeyframeSequence", SKKeyframeSequence, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"interpolationMode":2429446834944573,"repeatMode":779061897052346}, methods: {"addKeyframeValue":{"id":2968710646524800},"count":{"id":2326440068828108},"getKeyframeTime":{"id":490758079419886},"getKeyframeValue":{"id":2662458019364221},"removeKeyframe":{"id":3996721185369313},"removeLastKeyframe":{"id":1288115819018598},"sample":{"id":3911341997306749},"setKeyframeTime":{"id":995497258663993},"setKeyframeValueFor":{"id":2813713693434790},"setKeyframeValueTimeFor":{"id":2350392495839497}} });
+registerSDKClass("SKLabelNode", SKLabelNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"attributedText":3243124548198976,"blendMode":1184063206642455,"color":3788607470358988,"colorBlendFactor":700114254067624,"fontColor":326884654999780,"fontName":3934345509351006,"fontSize":775581147359449,"horizontalAlignmentMode":3237526912064758,"lineBreakMode":3969701186285055,"numberOfLines":3363074227976945,"preferredMaxLayoutWidth":563694061839855,"text":2335749570906371,"verticalAlignmentMode":3770342673408854} });
+registerSDKClass("SKLightNode", SKLightNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"ambientColor":1833399703133739,"categoryBitMask":3188089280431529,"isEnabled":1491073848830358,"falloff":1690193436397388,"lightColor":2635826629637362,"shadowColor":3067558000852906} });
+registerSDKClass("SKTexture", SKTexture, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"filteringMode":217218109470215,"usesMipmaps":3895365635733263}, methods: {"cgImage":{"id":630464132302058},"preloadCompletionHandler":{"id":2522234193088624,"hints":[{"callback":{"out":[]}}]},"size":{"id":482236871258265},"applying":{"id":132893412040934},"generatingNormalMap":{"id":3441938048679811},"generatingNormalMapWithSmoothnessContrast":{"id":1402082321531773},"textureRect":{"id":23710069138853}} });
+registerSDKClass("SKMutableTexture", SKMutableTexture, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {}, methods: {"modifyPixelData":{"id":2487102701487282,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("SKPhysicsBody", SKPhysicsBody, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"affectedByGravity":2493995362622718,"allowsRotation":941579759257310,"angularDamping":134495531597188,"angularVelocity":1677956104871373,"area":4495267132961459,"categoryBitMask":1761028085973675,"charge":4000331104006831,"collisionBitMask":1468297333188894,"contactTestBitMask":627620279281133,"density":3737722093214971,"isDynamic":907909334574976,"fieldBitMask":2827993101492527,"friction":2901965732656825,"joints":3567532477547331,"linearDamping":2706293056963761,"mass":1723340112542632,"node":4138841735677574,"pinned":454739245569728,"isResting":658896268031494,"restitution":2500595737183049,"usesPreciseCollisionDetection":2009388593261625,"velocity":2210287118422154}, methods: {"allContactedBodies":{"id":3327250281569590},"applyAngularImpulse":{"id":2571471356661889},"applyForce":{"id":1413748511370583},"applyForceAt":{"id":2501761571283675},"applyImpulse":{"id":2354648641409154},"applyImpulseAt":{"id":3470539655929772},"applyTorque":{"id":4378895794963181}} });
+registerSDKClass("SKPhysicsContact", SKPhysicsContact, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"bodyA":306938671974241,"bodyB":3957166057335880,"collisionImpulse":4476739356263284,"contactNormal":645531870962332,"contactPoint":1924056432559894} });
 registerSDKProtocol("c:objc(pl)SKPhysicsContactDelegate", {"didBegin":"didBegin(_:)","didEnd":"didEnd(_:)"});
-registerSDKClass("SKPhysicsJoint", SKPhysicsJoint, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"bodyA":3339863027557020,"bodyB":1168182993498900,"reactionForce":2097324760210270,"reactionTorque":3596752828709313} });
-registerSDKClass("SKPhysicsJointFixed", SKPhysicsJointFixed, { module: "SpriteKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SKPhysicsJointLimit", SKPhysicsJointLimit, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"maxLength":3475525711565265} });
-registerSDKClass("SKPhysicsJointPin", SKPhysicsJointPin, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"frictionTorque":4204485019155230,"lowerAngleLimit":310145441098686,"rotationSpeed":4329011890898757,"shouldEnableLimits":2726074114989963,"upperAngleLimit":2311785509961007} });
-registerSDKClass("SKPhysicsJointSliding", SKPhysicsJointSliding, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"lowerDistanceLimit":1655187112413091,"shouldEnableLimits":4121824163204776,"upperDistanceLimit":4008529786157952} });
-registerSDKClass("SKPhysicsJointSpring", SKPhysicsJointSpring, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"damping":2334298210257948,"frequency":1675136801369673} });
-registerSDKClass("SKPhysicsWorld", SKPhysicsWorld, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"contactDelegate":4037364612235261,"gravity":1337277765949563,"speed":2505010340208798}, methods: {"add":{"id":3828822010577301},"bodyAlongRayStartEnd":{"id":4019964597022767},"bodyAt":{"id":3595256753211706},"bodyIn":{"id":2338493974089144},"removeAllJoints":{"id":3474816201051128},"remove":{"id":3709795350163361},"sampleFields":{"id":1212520593559870}} });
-registerSDKClass("SKRange", SKRange, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"lowerLimit":1699309293445831,"upperLimit":1777201784829701} });
-registerSDKClass("SKReachConstraints", SKReachConstraints, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"lowerAngleLimit":3174339080824190,"upperAngleLimit":947917504081416} });
-registerSDKClass("SKReferenceNode", SKReferenceNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {}, methods: {"didLoad":{"id":1079920578333308},"resolve":{"id":3342908669028930}} });
-registerSDKClass("SKRegion", SKRegion, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"path":1998197630530392}, methods: {"contains":{"id":297132126165607},"inverse":{"id":4059814825278782},"byDifference":{"id":978825300240891},"byIntersection":{"id":2797500139454048},"byUnion":{"id":312558859971283}} });
-registerSDKClass("SKRenderer", SKRenderer, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"ignoresSiblingOrder":2662207347059075,"scene":477759256266363,"shouldCullNonVisibleNodes":3413081903624935,"showsDrawCount":2561788060882343,"showsFields":2879187971523914,"showsNodeCount":906765898093772,"showsPhysics":3223252405479177,"showsQuadCount":3075125105573614}, methods: {"renderWithViewportCommandBufferRenderPassDescriptor":{"id":2839300069263895},"renderWithViewportRenderCommandEncoderRenderPassDescriptorCommandQueue":{"id":4156136468760320},"update":{"id":2332299691898962}} });
-registerSDKClass("SKScene", SKScene, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"anchorPoint":1575613480479631,"audioEngine":1420487367681098,"backgroundColor":654202365127665,"camera":27375220227381,"delegate":3782113894341880,"listener":3129516158349727,"physicsWorld":2748350462188546,"scaleMode":533478677714134,"size":4008996010603627,"view":1772191672083636}, methods: {"convertPointFromView":{"id":1145118479733252},"convertPointToView":{"id":3388059905691291},"didApplyConstraints":{"id":3975109058114674},"didChangeSize":{"id":3253787048716294},"didEvaluateActions":{"id":3215713705646111},"didFinishUpdate":{"id":3322041544584731},"didMove":{"id":834639709683708},"didSimulatePhysics":{"id":4246593608939132},"sceneDidLoad":{"id":4491290792042471},"update":{"id":988057089352800},"willMove":{"id":588901513488224}} });
+registerSDKClass("SKPhysicsJoint", SKPhysicsJoint, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"bodyA":3339863027557020,"bodyB":1168182993498900,"reactionForce":2097324760210270,"reactionTorque":3596752828709313} });
+registerSDKClass("SKPhysicsJointFixed", SKPhysicsJointFixed, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SKPhysicsJointLimit", SKPhysicsJointLimit, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"maxLength":3475525711565265} });
+registerSDKClass("SKPhysicsJointPin", SKPhysicsJointPin, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"frictionTorque":4204485019155230,"lowerAngleLimit":310145441098686,"rotationSpeed":4329011890898757,"shouldEnableLimits":2726074114989963,"upperAngleLimit":2311785509961007} });
+registerSDKClass("SKPhysicsJointSliding", SKPhysicsJointSliding, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"lowerDistanceLimit":1655187112413091,"shouldEnableLimits":4121824163204776,"upperDistanceLimit":4008529786157952} });
+registerSDKClass("SKPhysicsJointSpring", SKPhysicsJointSpring, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"damping":2334298210257948,"frequency":1675136801369673} });
+registerSDKClass("SKPhysicsWorld", SKPhysicsWorld, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"contactDelegate":4037364612235261,"gravity":1337277765949563,"speed":2505010340208798}, methods: {"add":{"id":3828822010577301},"bodyAlongRayStartEnd":{"id":4019964597022767},"bodyAt":{"id":3595256753211706},"bodyIn":{"id":2338493974089144},"removeAllJoints":{"id":3474816201051128},"remove":{"id":3709795350163361},"sampleFields":{"id":1212520593559870}} });
+registerSDKClass("SKRange", SKRange, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"lowerLimit":1699309293445831,"upperLimit":1777201784829701} });
+registerSDKClass("SKReachConstraints", SKReachConstraints, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"lowerAngleLimit":3174339080824190,"upperAngleLimit":947917504081416} });
+registerSDKClass("SKReferenceNode", SKReferenceNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {}, methods: {"didLoad":{"id":1079920578333308},"resolve":{"id":3342908669028930}} });
+registerSDKClass("SKRegion", SKRegion, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"path":1998197630530392}, methods: {"contains":{"id":297132126165607},"inverse":{"id":4059814825278782},"byDifference":{"id":978825300240891},"byIntersection":{"id":2797500139454048},"byUnion":{"id":312558859971283}} });
+registerSDKClass("SKRenderer", SKRenderer, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"ignoresSiblingOrder":2662207347059075,"scene":477759256266363,"shouldCullNonVisibleNodes":3413081903624935,"showsDrawCount":2561788060882343,"showsFields":2879187971523914,"showsNodeCount":906765898093772,"showsPhysics":3223252405479177,"showsQuadCount":3075125105573614}, methods: {"renderWithViewportCommandBufferRenderPassDescriptor":{"id":2839300069263895},"renderWithViewportRenderCommandEncoderRenderPassDescriptorCommandQueue":{"id":4156136468760320},"update":{"id":2332299691898962}} });
+registerSDKClass("SKScene", SKScene, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"anchorPoint":1575613480479631,"audioEngine":1420487367681098,"backgroundColor":654202365127665,"camera":27375220227381,"delegate":3782113894341880,"listener":3129516158349727,"physicsWorld":2748350462188546,"scaleMode":533478677714134,"size":4008996010603627,"view":1772191672083636}, methods: {"convertPointFromView":{"id":1145118479733252},"convertPointToView":{"id":3388059905691291},"didApplyConstraints":{"id":3975109058114674},"didChangeSize":{"id":3253787048716294},"didEvaluateActions":{"id":3215713705646111},"didFinishUpdate":{"id":3322041544584731},"didMove":{"id":834639709683708},"didSimulatePhysics":{"id":4246593608939132},"sceneDidLoad":{"id":4491290792042471},"update":{"id":988057089352800},"willMove":{"id":588901513488224}} });
 registerSDKProtocol("c:objc(pl)SKSceneDelegate", {"updateFor":"update(_:for:)","didEvaluateActionsFor":"didEvaluateActions(for:)","didSimulatePhysicsFor":"didSimulatePhysics(for:)","didApplyConstraintsFor":"didApplyConstraints(for:)","didFinishUpdateFor":"didFinishUpdate(for:)"});
-registerSDKClass("SKShader", SKShader, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"attributes":3930379476455715,"source":2705485564541778,"uniforms":924238518714419}, methods: {"addUniform":{"id":3550475259717569},"removeUniformNamed":{"id":918014204125400},"uniformNamed":{"id":1457766720089455}} });
-registerSDKClass("SKShapeNode", SKShapeNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"isAntialiased":806433633747628,"attributeValues":3233388782263945,"blendMode":1663915206437646,"fillColor":2104179822817590,"fillShader":1013289940637235,"fillTexture":2916353863358300,"glowWidth":4475834113983192,"lineCap":4488922285321580,"lineJoin":502428933063580,"lineLength":541870248531010,"lineWidth":2402460730981476,"miterLimit":2788512496759944,"path":1385854715054719,"strokeColor":64184651229982,"strokeShader":956666593160180,"strokeTexture":1631638328182647}, methods: {"setValue":{"id":4256637346385177},"value":{"id":3256512614332707}} });
-registerSDKClass("SKSpriteNode", SKSpriteNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"anchorPoint":396048667130902,"attributeValues":3694982382741068,"blendMode":3609300758443752,"centerRect":4107845095380782,"color":3446291510407097,"colorBlendFactor":1994787308610663,"lightingBitMask":4386761335009167,"normalTexture":1410902340929250,"shader":4030994221899151,"shadowCastBitMask":776897045386708,"shadowedBitMask":62383529678127,"size":1588045712220845,"texture":3873033621327125}, methods: {"scale":{"id":1651004738300619},"setValue":{"id":3320296814973199},"value":{"id":2579669680497125}} });
-registerSDKClass("SKTextureAtlas", SKTextureAtlas, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"textureNames":599593937557347}, methods: {"preload":{"id":4483608122026430,"hints":[{"callback":{"out":[]}}]},"textureNamed":{"id":1967954599059178}} });
-registerSDKClass("SKTileDefinition", SKTileDefinition, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"flipHorizontally":3391667773295269,"flipVertically":2738515725944740,"name":256085204667456,"normalTextures":2954098426899790,"placementWeight":1879411156501513,"rotation":529363490763131,"size":2713700935873116,"textures":1190369911700301,"timePerFrame":3740188062662307,"userData":3595425058496140} });
-registerSDKClass("SKTileGroup", SKTileGroup, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"name":3215037438472150,"rules":2245833923056608} });
-registerSDKClass("SKTileGroupRule", SKTileGroupRule, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"adjacency":3307246677389756,"name":3079729691251459,"tileDefinitions":1817785304139833} });
-registerSDKClass("SKTileMapNode", SKTileMapNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"anchorPoint":1356489674254263,"attributeValues":1195520712109399,"blendMode":2993366946798803,"color":4331368850121059,"colorBlendFactor":2463937310053176,"enableAutomapping":2406657623853788,"lightingBitMask":3115090291337223,"mapSize":4057518255322258,"numberOfColumns":4366550257550348,"numberOfRows":3410643641693127,"shader":1243770992774071,"tileSet":1366473852723096,"tileSize":1436741518081279}, methods: {"centerOfTile":{"id":1011982018198649},"fill":{"id":494000049270342},"setTileGroupAndTileDefinitionForColumnRow":{"id":491280106358266},"setTileGroupForColumnRow":{"id":3818536439460335},"setValue":{"id":1538738498588894},"tileColumnIndex":{"id":366320108737063},"tileDefinition":{"id":3278762326034783},"tileGroup":{"id":863201034602011},"tileRowIndex":{"id":429056677473672},"value":{"id":1964250268518668}} });
-registerSDKClass("SKTileSet", SKTileSet, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"defaultTileGroup":258136770002130,"defaultTileSize":1354048124261148,"name":700849311307477,"tileGroups":4007535894245703,"type":1534915005715746} });
-registerSDKClass("SKTransformNode", SKTransformNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"xRotation":4059904048601337,"yRotation":566923647367036}, methods: {"eulerAngles":{"id":736108248520938},"quaternion":{"id":972407025763299},"rotationMatrix":{"id":133085944752155},"setEulerAngles":{"id":2656203658661370},"setQuaternion":{"id":4181274722675370},"setRotationMatrix":{"id":295483635538762}} });
-registerSDKClass("SKTransition", SKTransition, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"pausesIncomingScene":302605010083680,"pausesOutgoingScene":4420097313055087} });
-registerSDKClass("SKUniform", SKUniform, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"floatMatrix2Value":934199443075438,"floatMatrix3Value":2486686809620465,"floatMatrix4Value":4255594281899511,"floatValue":2357451189526005,"floatVector2Value":3316613184528156,"floatVector3Value":1025820375334159,"floatVector4Value":2028259286935274,"matrixFloat2x2Value":1059796144556904,"matrixFloat3x3Value":3681051059349278,"matrixFloat4x4Value":3788424401301821,"name":2585554919547290,"textureValue":3241987460422134,"uniformType":4188788735736322,"vectorFloat2Value":1346353748225319,"vectorFloat3Value":2132946422536864,"vectorFloat4Value":3772413629206014} });
-registerSDKClass("SKVideoNode", SKVideoNode, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"anchorPoint":3808434993211309,"size":3276089186043233}, methods: {"pause":{"id":1356055877567637},"play":{"id":968560073066788}} });
-registerSDKClass("SKView", SKView, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"allowsTransparency":4474214468902483,"isAsynchronous":440647587219322,"delegate":3227058299694015,"disableDepthStencilBuffer":2254899206750053,"frameInterval":121556832734174,"ignoresSiblingOrder":806203346567771,"isPaused":847651147548382,"preferredFrameRate":1044328335522252,"preferredFramesPerSecond":2560013151857807,"scene":1540497147355904,"shouldCullNonVisibleNodes":4368493640081607,"showsDrawCount":2749249770144298,"showsFPS":1501583172238868,"showsFields":3225898064142211,"showsNodeCount":1349260212610579,"showsPhysics":2695522923721342,"showsQuadCount":1111675679980915}, methods: {"convertFrom":{"id":2921624950781157},"convertTo":{"id":3466277105899191},"presentScene":{"id":174713434077629},"presentSceneTransition":{"id":4318495791871244},"textureFrom":{"id":3620024072364638},"textureFromCrop":{"id":4325072625704706}} });
+registerSDKClass("SKShader", SKShader, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"attributes":3930379476455715,"source":2705485564541778,"uniforms":924238518714419}, methods: {"addUniform":{"id":3550475259717569},"removeUniformNamed":{"id":918014204125400},"uniformNamed":{"id":1457766720089455}} });
+registerSDKClass("SKShapeNode", SKShapeNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"isAntialiased":806433633747628,"attributeValues":3233388782263945,"blendMode":1663915206437646,"fillColor":2104179822817590,"fillShader":1013289940637235,"fillTexture":2916353863358300,"glowWidth":4475834113983192,"lineCap":4488922285321580,"lineJoin":502428933063580,"lineLength":541870248531010,"lineWidth":2402460730981476,"miterLimit":2788512496759944,"path":1385854715054719,"strokeColor":64184651229982,"strokeShader":956666593160180,"strokeTexture":1631638328182647}, methods: {"setValue":{"id":4256637346385177},"value":{"id":3256512614332707}} });
+registerSDKClass("SKSpriteNode", SKSpriteNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"anchorPoint":396048667130902,"attributeValues":3694982382741068,"blendMode":3609300758443752,"centerRect":4107845095380782,"color":3446291510407097,"colorBlendFactor":1994787308610663,"lightingBitMask":4386761335009167,"normalTexture":1410902340929250,"shader":4030994221899151,"shadowCastBitMask":776897045386708,"shadowedBitMask":62383529678127,"size":1588045712220845,"texture":3873033621327125}, methods: {"scale":{"id":1651004738300619},"setValue":{"id":3320296814973199},"value":{"id":2579669680497125}} });
+registerSDKClass("SKTextureAtlas", SKTextureAtlas, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"textureNames":599593937557347}, methods: {"preload":{"id":4483608122026430,"hints":[{"callback":{"out":[]}}]},"textureNamed":{"id":1967954599059178}} });
+registerSDKClass("SKTileDefinition", SKTileDefinition, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"flipHorizontally":3391667773295269,"flipVertically":2738515725944740,"name":256085204667456,"normalTextures":2954098426899790,"placementWeight":1879411156501513,"rotation":529363490763131,"size":2713700935873116,"textures":1190369911700301,"timePerFrame":3740188062662307,"userData":3595425058496140} });
+registerSDKClass("SKTileGroup", SKTileGroup, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"name":3215037438472150,"rules":2245833923056608} });
+registerSDKClass("SKTileGroupRule", SKTileGroupRule, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"adjacency":3307246677389756,"name":3079729691251459,"tileDefinitions":1817785304139833} });
+registerSDKClass("SKTileMapNode", SKTileMapNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"anchorPoint":1356489674254263,"attributeValues":1195520712109399,"blendMode":2993366946798803,"color":4331368850121059,"colorBlendFactor":2463937310053176,"enableAutomapping":2406657623853788,"lightingBitMask":3115090291337223,"mapSize":4057518255322258,"numberOfColumns":4366550257550348,"numberOfRows":3410643641693127,"shader":1243770992774071,"tileSet":1366473852723096,"tileSize":1436741518081279}, methods: {"centerOfTile":{"id":1011982018198649},"fill":{"id":494000049270342},"setTileGroupAndTileDefinitionForColumnRow":{"id":491280106358266},"setTileGroupForColumnRow":{"id":3818536439460335},"setValue":{"id":1538738498588894},"tileColumnIndex":{"id":366320108737063},"tileDefinition":{"id":3278762326034783},"tileGroup":{"id":863201034602011},"tileRowIndex":{"id":429056677473672},"value":{"id":1964250268518668}} });
+registerSDKClass("SKTileSet", SKTileSet, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"defaultTileGroup":258136770002130,"defaultTileSize":1354048124261148,"name":700849311307477,"tileGroups":4007535894245703,"type":1534915005715746} });
+registerSDKClass("SKTransformNode", SKTransformNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"xRotation":4059904048601337,"yRotation":566923647367036}, methods: {"eulerAngles":{"id":736108248520938},"quaternion":{"id":972407025763299},"rotationMatrix":{"id":133085944752155},"setEulerAngles":{"id":2656203658661370},"setQuaternion":{"id":4181274722675370},"setRotationMatrix":{"id":295483635538762}} });
+registerSDKClass("SKTransition", SKTransition, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"pausesIncomingScene":302605010083680,"pausesOutgoingScene":4420097313055087} });
+registerSDKClass("SKUniform", SKUniform, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"floatMatrix2Value":934199443075438,"floatMatrix3Value":2486686809620465,"floatMatrix4Value":4255594281899511,"floatValue":2357451189526005,"floatVector2Value":3316613184528156,"floatVector3Value":1025820375334159,"floatVector4Value":2028259286935274,"matrixFloat2x2Value":1059796144556904,"matrixFloat3x3Value":3681051059349278,"matrixFloat4x4Value":3788424401301821,"name":2585554919547290,"textureValue":3241987460422134,"uniformType":4188788735736322,"vectorFloat2Value":1346353748225319,"vectorFloat3Value":2132946422536864,"vectorFloat4Value":3772413629206014} });
+registerSDKClass("SKVideoNode", SKVideoNode, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"anchorPoint":3808434993211309,"size":3276089186043233}, methods: {"pause":{"id":1356055877567637},"play":{"id":968560073066788}} });
+registerSDKClass("SKView", SKView, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"allowsTransparency":4474214468902483,"isAsynchronous":440647587219322,"delegate":3227058299694015,"disableDepthStencilBuffer":2254899206750053,"frameInterval":121556832734174,"ignoresSiblingOrder":806203346567771,"isPaused":847651147548382,"preferredFrameRate":1044328335522252,"preferredFramesPerSecond":2560013151857807,"scene":1540497147355904,"shouldCullNonVisibleNodes":4368493640081607,"showsDrawCount":2749249770144298,"showsFPS":1501583172238868,"showsFields":3225898064142211,"showsNodeCount":1349260212610579,"showsPhysics":2695522923721342,"showsQuadCount":1111675679980915}, methods: {"convertFrom":{"id":2921624950781157},"convertTo":{"id":3466277105899191},"presentScene":{"id":174713434077629},"presentSceneTransition":{"id":4318495791871244},"textureFrom":{"id":3620024072364638},"textureFromCrop":{"id":4325072625704706}} });
 registerSDKProtocol("c:objc(pl)SKViewDelegate", {});
 registerSDKProtocol("c:objc(pl)SKWarpable", {});
-registerSDKClass("SKWarpGeometry", SKWarpGeometry, { module: "SpriteKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SKWarpGeometryGrid", SKWarpGeometryGrid, { module: "SpriteKit_a956b86ef7a76a8e", properties: {"numberOfColumns":3423676456409662,"numberOfRows":3155674113443274,"vertexCount":110770907698695}, methods: {"destPosition":{"id":1108980410742263},"sourcePosition":{"id":3030216105835302},"replacingBySourcePositions":{"id":1032322097375703},"replacingByDestinationPositions":{"id":425814041879689}} });
-registerSDKClass("UITouch", UITouch, { module: "SpriteKit_a956b86ef7a76a8e", properties: {}, methods: {"location":{"id":1401575881807803},"previousLocation":{"id":1401579588337050}} }, true);
+registerSDKClass("SKWarpGeometry", SKWarpGeometry, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SKWarpGeometryGrid", SKWarpGeometryGrid, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {"numberOfColumns":3423676456409662,"numberOfRows":3155674113443274,"vertexCount":110770907698695}, methods: {"destPosition":{"id":1108980410742263},"sourcePosition":{"id":3030216105835302},"replacingBySourcePositions":{"id":1032322097375703},"replacingByDestinationPositions":{"id":425814041879689}} });
+registerSDKClass("UITouch", UITouch, { module: "SpriteKit_90ad0eb69cc6bf4a", properties: {}, methods: {"location":{"id":1401575881807803},"previousLocation":{"id":1401579588337050}} }, true);

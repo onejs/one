@@ -13,13 +13,13 @@ export const MessageComposeResult = {
    * init?(rawValue: Int)
    * @availability iOS 4.0+
    */
-  init(rawValue: number): (MessageComposeResult) | null { return callSDK<(MessageComposeResult) | null>("MessageUI_a956b86ef7a76a8e", 1191055006315751, undefined, [rawValue]); }
+  init(rawValue: number): (MessageComposeResult) | null { return callSDK<(MessageComposeResult) | null>("MessageUI_90ad0eb69cc6bf4a", 1191055006315751, undefined, [rawValue]); }
 };
 
 /** class MFComposeAssistantViewController */
 export class MFComposeAssistantViewController extends SDKHandle {
   /** init(delegate: any MFComposeAssistantViewControllerDelegate) */
-  static init(delegate: Implements<MFComposeAssistantViewControllerDelegate> | SDKHandle): MFComposeAssistantViewController { return callSDK<MFComposeAssistantViewController>("MessageUI_a956b86ef7a76a8e", 2625003436327394, undefined, [delegate], [{"protocol":"c:objc(pl)MFComposeAssistantViewControllerDelegate"}]); }
+  static init(delegate: Implements<MFComposeAssistantViewControllerDelegate> | SDKHandle): MFComposeAssistantViewController { return callSDK<MFComposeAssistantViewController>("MessageUI_90ad0eb69cc6bf4a", 2625003436327394, undefined, [delegate], [{"protocol":"c:objc(pl)MFComposeAssistantViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)MFComposeAssistantViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -34,7 +34,7 @@ export type MFMailComposeControllerDeferredAction = "none" | "adjustInsertionPoi
 
 export const MFMailComposeControllerDeferredAction = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (MFMailComposeControllerDeferredAction) | null { return callSDK<(MFMailComposeControllerDeferredAction) | null>("MessageUI_a956b86ef7a76a8e", 600272269937071, undefined, [rawValue]); }
+  init(rawValue: number): (MFMailComposeControllerDeferredAction) | null { return callSDK<(MFMailComposeControllerDeferredAction) | null>("MessageUI_90ad0eb69cc6bf4a", 600272269937071, undefined, [rawValue]); }
 };
 
 /**
@@ -46,17 +46,17 @@ export class MFMailComposeError extends SDKHandle {
    * static var saveFailed: MFMailComposeError.Code { get }
    * @availability iOS 3.0+
    */
-  static get saveFailed(): MFMailComposeError_Code { return callSDK<MFMailComposeError_Code>("MessageUI_a956b86ef7a76a8e", 2853183477500210, undefined, []); }
+  static get saveFailed(): MFMailComposeError_Code { return callSDK<MFMailComposeError_Code>("MessageUI_90ad0eb69cc6bf4a", 2853183477500210, undefined, []); }
   /**
    * static var sendFailed: MFMailComposeError.Code { get }
    * @availability iOS 3.0+
    */
-  static get sendFailed(): MFMailComposeError_Code { return callSDK<MFMailComposeError_Code>("MessageUI_a956b86ef7a76a8e", 2481532961533738, undefined, []); }
+  static get sendFailed(): MFMailComposeError_Code { return callSDK<MFMailComposeError_Code>("MessageUI_90ad0eb69cc6bf4a", 2481532961533738, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 3.0+
    */
-  static get errorDomain(): string { return callSDK<string>("MessageUI_a956b86ef7a76a8e", 1184012507879968, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("MessageUI_90ad0eb69cc6bf4a", 1184012507879968, undefined, []); }
   declare readonly $type: { "s:SC22MFMailComposeErrorCodeLeV": true };
 }
 
@@ -71,7 +71,7 @@ export const MFMailComposeError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MFMailComposeError_Code) | null { return callSDK<(MFMailComposeError_Code) | null>("MessageUI_a956b86ef7a76a8e", 461502975698351, undefined, [rawValue]); }
+  init(rawValue: number): (MFMailComposeError_Code) | null { return callSDK<(MFMailComposeError_Code) | null>("MessageUI_90ad0eb69cc6bf4a", 461502975698351, undefined, [rawValue]); }
 };
 
 /**
@@ -85,7 +85,7 @@ export const MFMailComposeResult = {
    * init?(rawValue: Int)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (MFMailComposeResult) | null { return callSDK<(MFMailComposeResult) | null>("MessageUI_a956b86ef7a76a8e", 1615196566941454, undefined, [rawValue]); }
+  init(rawValue: number): (MFMailComposeResult) | null { return callSDK<(MFMailComposeResult) | null>("MessageUI_90ad0eb69cc6bf4a", 1615196566941454, undefined, [rawValue]); }
 };
 
 /**
@@ -97,55 +97,55 @@ export class MFMailComposeViewController extends SDKHandle {
    * class func canSendMail() -> Bool
    * @availability iOS 3.0+
    */
-  static canSendMail(): Promise<boolean> { return callSDKAsync<boolean>("MessageUI_a956b86ef7a76a8e", 3908373184191508, undefined, []); }
+  static canSendMail(): Promise<boolean> { return callSDKAsync<boolean>("MessageUI_90ad0eb69cc6bf4a", 3908373184191508, undefined, []); }
   /**
    * func addAttachmentData(_ attachment: Data, mimeType: String, fileName filename: String)
    * @availability iOS 3.0+
    */
-  addAttachmentData(attachment: ArrayBuffer, mimeType: string, filename: string): Promise<void> { return callSDKAsync<void>("MessageUI_a956b86ef7a76a8e", 2516080526768578, this, [attachment, mimeType, filename]); }
+  addAttachmentData(attachment: ArrayBuffer, mimeType: string, filename: string): Promise<void> { return callSDKAsync<void>("MessageUI_90ad0eb69cc6bf4a", 2516080526768578, this, [attachment, mimeType, filename]); }
   /** init() */
-  static init(): Promise<MFMailComposeViewController> { return callSDKAsync<MFMailComposeViewController>("MessageUI_a956b86ef7a76a8e", 601703838764237, undefined, []); }
+  static init(): Promise<MFMailComposeViewController> { return callSDKAsync<MFMailComposeViewController>("MessageUI_90ad0eb69cc6bf4a", 601703838764237, undefined, []); }
   /**
    * func insertCollaborationItemProvider(_ itemProvider: NSItemProvider) async -> Bool
    * @availability iOS 18.4+
    */
-  insertCollaborationItemProvider(itemProvider: _Foundation_NSItemProvider, completionHandler: ((arg0: boolean) => void)): Promise<void> { return callSDKAsync<void>("MessageUI_a956b86ef7a76a8e", 322216953294324, this, [itemProvider, completionHandler], [null,{"callback":{"out":[]}}]); }
+  insertCollaborationItemProvider(itemProvider: _Foundation_NSItemProvider, completionHandler: ((arg0: boolean) => void)): Promise<void> { return callSDKAsync<void>("MessageUI_90ad0eb69cc6bf4a", 322216953294324, this, [itemProvider, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func setBccRecipients(_ bccRecipients: [String]?)
    * @availability iOS 3.0+
    */
-  setBccRecipients(bccRecipients?: (Array<string>) | null): Promise<void> { return callSDKAsync<void>("MessageUI_a956b86ef7a76a8e", 2663852102445783, this, [bccRecipients]); }
+  setBccRecipients(bccRecipients?: (Array<string>) | null): Promise<void> { return callSDKAsync<void>("MessageUI_90ad0eb69cc6bf4a", 2663852102445783, this, [bccRecipients]); }
   /**
    * func setCcRecipients(_ ccRecipients: [String]?)
    * @availability iOS 3.0+
    */
-  setCcRecipients(ccRecipients?: (Array<string>) | null): Promise<void> { return callSDKAsync<void>("MessageUI_a956b86ef7a76a8e", 2733228056857719, this, [ccRecipients]); }
+  setCcRecipients(ccRecipients?: (Array<string>) | null): Promise<void> { return callSDKAsync<void>("MessageUI_90ad0eb69cc6bf4a", 2733228056857719, this, [ccRecipients]); }
   /**
    * func setMessageBody(_ body: String, isHTML: Bool)
    * @availability iOS 3.0+
    */
-  setMessageBody(body: string, isHTML: boolean): Promise<void> { return callSDKAsync<void>("MessageUI_a956b86ef7a76a8e", 525241158404415, this, [body, isHTML]); }
+  setMessageBody(body: string, isHTML: boolean): Promise<void> { return callSDKAsync<void>("MessageUI_90ad0eb69cc6bf4a", 525241158404415, this, [body, isHTML]); }
   /**
    * func setPreferredSendingEmailAddress(_ emailAddress: String)
    * @availability iOS 11.0+
    */
-  setPreferredSendingEmailAddress(emailAddress: string): Promise<void> { return callSDKAsync<void>("MessageUI_a956b86ef7a76a8e", 3917095598972699, this, [emailAddress]); }
+  setPreferredSendingEmailAddress(emailAddress: string): Promise<void> { return callSDKAsync<void>("MessageUI_90ad0eb69cc6bf4a", 3917095598972699, this, [emailAddress]); }
   /**
    * func setSubject(_ subject: String)
    * @availability iOS 3.0+
    */
-  setSubject(subject: string): Promise<void> { return callSDKAsync<void>("MessageUI_a956b86ef7a76a8e", 1250569133566769, this, [subject]); }
+  setSubject(subject: string): Promise<void> { return callSDKAsync<void>("MessageUI_90ad0eb69cc6bf4a", 1250569133566769, this, [subject]); }
   /**
    * func setToRecipients(_ toRecipients: [String]?)
    * @availability iOS 3.0+
    */
-  setToRecipients(toRecipients?: (Array<string>) | null): Promise<void> { return callSDKAsync<void>("MessageUI_a956b86ef7a76a8e", 820451655753334, this, [toRecipients]); }
+  setToRecipients(toRecipients?: (Array<string>) | null): Promise<void> { return callSDKAsync<void>("MessageUI_90ad0eb69cc6bf4a", 820451655753334, this, [toRecipients]); }
   /**
    * weak var mailComposeDelegate: (any MFMailComposeViewControllerDelegate)? { get set }
    * @availability iOS 3.0+
    */
-  get mailComposeDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MessageUI_a956b86ef7a76a8e", 4323994447126629, this, []); }
-  setMailComposeDelegate(value?: (Implements<MFMailComposeViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MessageUI_a956b86ef7a76a8e", 4080764173241101, this, [value], [{"protocol":"c:objc(pl)MFMailComposeViewControllerDelegate"}]); }
+  get mailComposeDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("MessageUI_90ad0eb69cc6bf4a", 4323994447126629, this, []); }
+  setMailComposeDelegate(value?: (Implements<MFMailComposeViewControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("MessageUI_90ad0eb69cc6bf4a", 4080764173241101, this, [value], [{"protocol":"c:objc(pl)MFMailComposeViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)MFMailComposeViewController": true; "c:objc(cs)UINavigationController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
 }
 
@@ -161,17 +161,17 @@ export interface MFMailComposeViewControllerDelegate {
 /** class MFMailDraft */
 export class MFMailDraft extends SDKHandle {
   /** init(subject: String, body: NSAttributedString, from: String, to: [String], cc: [String]) */
-  static init(subject: string, body: _Foundation_NSAttributedString, from: string, to: Array<string>, cc: Array<string>): MFMailDraft { return callSDK<MFMailDraft>("MessageUI_a956b86ef7a76a8e", 2455091745456620, undefined, [subject, body, from, to, cc]); }
+  static init(subject: string, body: _Foundation_NSAttributedString, from: string, to: Array<string>, cc: Array<string>): MFMailDraft { return callSDK<MFMailDraft>("MessageUI_90ad0eb69cc6bf4a", 2455091745456620, undefined, [subject, body, from, to, cc]); }
   /** var body: NSAttributedString { get } */
-  get body(): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("MessageUI_a956b86ef7a76a8e", 2671590327162916, this, []); }
+  get body(): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("MessageUI_90ad0eb69cc6bf4a", 2671590327162916, this, []); }
   /** var cc: [String] { get } */
-  get cc(): Array<string> { return callSDK<Array<string>>("MessageUI_a956b86ef7a76a8e", 149607336788980, this, []); }
+  get cc(): Array<string> { return callSDK<Array<string>>("MessageUI_90ad0eb69cc6bf4a", 149607336788980, this, []); }
   /** var from: String? { get } */
-  get from(): (string) | null { return callSDK<(string) | null>("MessageUI_a956b86ef7a76a8e", 4394953232615026, this, []); }
+  get from(): (string) | null { return callSDK<(string) | null>("MessageUI_90ad0eb69cc6bf4a", 4394953232615026, this, []); }
   /** var subject: String { get } */
-  get subject(): string { return callSDK<string>("MessageUI_a956b86ef7a76a8e", 3007045614655344, this, []); }
+  get subject(): string { return callSDK<string>("MessageUI_90ad0eb69cc6bf4a", 3007045614655344, this, []); }
   /** var to: [String] { get } */
-  get to(): Array<string> { return callSDK<Array<string>>("MessageUI_a956b86ef7a76a8e", 1754328815778744, this, []); }
+  get to(): Array<string> { return callSDK<Array<string>>("MessageUI_90ad0eb69cc6bf4a", 1754328815778744, this, []); }
   declare readonly $type: { "c:objc(cs)MFMailDraft": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "body": true; "cc": true; "from": true; "subject": true; "to": true };
 }
@@ -185,73 +185,73 @@ export class MFMessageComposeViewController extends SDKHandle {
    * class func canSendAttachments() -> Bool
    * @availability iOS 7.0+
    */
-  static canSendAttachments(): boolean { return callSDK<boolean>("MessageUI_a956b86ef7a76a8e", 1342427827054223, undefined, []); }
+  static canSendAttachments(): boolean { return callSDK<boolean>("MessageUI_90ad0eb69cc6bf4a", 1342427827054223, undefined, []); }
   /**
    * class func canSendSubject() -> Bool
    * @availability iOS 7.0+
    */
-  static canSendSubject(): boolean { return callSDK<boolean>("MessageUI_a956b86ef7a76a8e", 47852690145986, undefined, []); }
+  static canSendSubject(): boolean { return callSDK<boolean>("MessageUI_90ad0eb69cc6bf4a", 47852690145986, undefined, []); }
   /**
    * class func canSendText() -> Bool
    * @availability iOS 4.0+
    */
-  static canSendText(): boolean { return callSDK<boolean>("MessageUI_a956b86ef7a76a8e", 2192414787387459, undefined, []); }
+  static canSendText(): boolean { return callSDK<boolean>("MessageUI_90ad0eb69cc6bf4a", 2192414787387459, undefined, []); }
   /**
    * class func isSupportedAttachmentUTI(_ uti: String) -> Bool
    * @availability iOS 7.0+
    */
-  static isSupportedAttachmentUTI(uti: string): boolean { return callSDK<boolean>("MessageUI_a956b86ef7a76a8e", 1006789552009300, undefined, [uti]); }
+  static isSupportedAttachmentUTI(uti: string): boolean { return callSDK<boolean>("MessageUI_90ad0eb69cc6bf4a", 1006789552009300, undefined, [uti]); }
   /**
    * func addAttachmentData(_ attachmentData: Data, typeIdentifier uti: String, filename: String) -> Bool
    * @availability iOS 7.0+
    */
-  addAttachmentData(attachmentData: ArrayBuffer, uti: string, filename: string): boolean { return callSDK<boolean>("MessageUI_a956b86ef7a76a8e", 4471596026211722, this, [attachmentData, uti, filename]); }
+  addAttachmentData(attachmentData: ArrayBuffer, uti: string, filename: string): boolean { return callSDK<boolean>("MessageUI_90ad0eb69cc6bf4a", 4471596026211722, this, [attachmentData, uti, filename]); }
   /**
    * func addAttachmentURL(_ attachmentURL: URL, withAlternateFilename alternateFilename: String?) -> Bool
    * @availability iOS 7.0+
    */
-  addAttachmentURL(attachmentURL: string, alternateFilename?: (string) | null): boolean { return callSDK<boolean>("MessageUI_a956b86ef7a76a8e", 2506741268417795, this, [attachmentURL, alternateFilename]); }
+  addAttachmentURL(attachmentURL: string, alternateFilename?: (string) | null): boolean { return callSDK<boolean>("MessageUI_90ad0eb69cc6bf4a", 2506741268417795, this, [attachmentURL, alternateFilename]); }
   /**
    * func disableUserAttachments()
    * @availability iOS 7.0+
    */
-  disableUserAttachments(): void { return callSDK<void>("MessageUI_a956b86ef7a76a8e", 3252275232840240, this, []); }
+  disableUserAttachments(): void { return callSDK<void>("MessageUI_90ad0eb69cc6bf4a", 3252275232840240, this, []); }
   /** init() */
-  static init(): MFMessageComposeViewController { return callSDK<MFMessageComposeViewController>("MessageUI_a956b86ef7a76a8e", 949312664356274, undefined, []); }
+  static init(): MFMessageComposeViewController { return callSDK<MFMessageComposeViewController>("MessageUI_90ad0eb69cc6bf4a", 949312664356274, undefined, []); }
   /**
    * func insertCollaborationItemProvider(_ itemProvider: NSItemProvider) -> Bool
    * @availability iOS 16.0+
    */
-  insertCollaborationItemProvider(itemProvider: _Foundation_NSItemProvider): boolean { return callSDK<boolean>("MessageUI_a956b86ef7a76a8e", 3119611615437296, this, [itemProvider]); }
+  insertCollaborationItemProvider(itemProvider: _Foundation_NSItemProvider): boolean { return callSDK<boolean>("MessageUI_90ad0eb69cc6bf4a", 3119611615437296, this, [itemProvider]); }
   /**
    * var attachments: [[AnyHashable : Any]]? { get }
    * @availability iOS 7.0+
    */
-  get attachments(): (Array<NativeMap<unknown, unknown>>) | null { return callSDK<(Array<NativeMap<unknown, unknown>>) | null>("MessageUI_a956b86ef7a76a8e", 3689614299940729, this, []); }
+  get attachments(): (Array<NativeMap<unknown, unknown>>) | null { return callSDK<(Array<NativeMap<unknown, unknown>>) | null>("MessageUI_90ad0eb69cc6bf4a", 3689614299940729, this, []); }
   /**
    * var body: String? { get set }
    * @availability iOS 4.0+
    */
-  get body(): (string) | null { return callSDK<(string) | null>("MessageUI_a956b86ef7a76a8e", 4322442501047116, this, []); }
-  set body(value: (string) | null) { callSDK<void>("MessageUI_a956b86ef7a76a8e", 1936704160446581, this, [value]); }
+  get body(): (string) | null { return callSDK<(string) | null>("MessageUI_90ad0eb69cc6bf4a", 4322442501047116, this, []); }
+  set body(value: (string) | null) { callSDK<void>("MessageUI_90ad0eb69cc6bf4a", 1936704160446581, this, [value]); }
   /**
    * weak var messageComposeDelegate: (any MFMessageComposeViewControllerDelegate)? { get set }
    * @availability iOS 4.0+
    */
-  get messageComposeDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MessageUI_a956b86ef7a76a8e", 1255659648261330, this, []); }
-  set messageComposeDelegate(value: (Implements<MFMessageComposeViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("MessageUI_a956b86ef7a76a8e", 992186755727392, this, [value], [{"protocol":"c:objc(pl)MFMessageComposeViewControllerDelegate"}]); }
+  get messageComposeDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MessageUI_90ad0eb69cc6bf4a", 1255659648261330, this, []); }
+  set messageComposeDelegate(value: (Implements<MFMessageComposeViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("MessageUI_90ad0eb69cc6bf4a", 992186755727392, this, [value], [{"protocol":"c:objc(pl)MFMessageComposeViewControllerDelegate"}]); }
   /**
    * var recipients: [String]? { get set }
    * @availability iOS 4.0+
    */
-  get recipients(): (Array<string>) | null { return callSDK<(Array<string>) | null>("MessageUI_a956b86ef7a76a8e", 2760659410321270, this, []); }
-  set recipients(value: (Array<string>) | null) { callSDK<void>("MessageUI_a956b86ef7a76a8e", 528891255399554, this, [value]); }
+  get recipients(): (Array<string>) | null { return callSDK<(Array<string>) | null>("MessageUI_90ad0eb69cc6bf4a", 2760659410321270, this, []); }
+  set recipients(value: (Array<string>) | null) { callSDK<void>("MessageUI_90ad0eb69cc6bf4a", 528891255399554, this, [value]); }
   /**
    * var subject: String? { get set }
    * @availability iOS 7.0+
    */
-  get subject(): (string) | null { return callSDK<(string) | null>("MessageUI_a956b86ef7a76a8e", 111445401829894, this, []); }
-  set subject(value: (string) | null) { callSDK<void>("MessageUI_a956b86ef7a76a8e", 2116399479729603, this, [value]); }
+  get subject(): (string) | null { return callSDK<(string) | null>("MessageUI_90ad0eb69cc6bf4a", 111445401829894, this, []); }
+  set subject(value: (string) | null) { callSDK<void>("MessageUI_90ad0eb69cc6bf4a", 2116399479729603, this, [value]); }
   declare readonly $type: { "c:objc(cs)MFMessageComposeViewController": true; "c:objc(cs)UINavigationController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attachments": true; "body": true; "messageComposeDelegate": true; "recipients": true; "subject": true };
 }
@@ -265,28 +265,28 @@ export class MFMessageComposeViewController_TextMessageAvailabilityDidChangeMess
    * static func makeMessage(_ notification: Notification) -> MFMessageComposeViewController.TextMessageAvailabilityDidChangeMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): (MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage) | null { return callSDK<(MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage) | null>("MessageUI_a956b86ef7a76a8e", 463405284952686, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): (MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage) | null { return callSDK<(MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage) | null>("MessageUI_90ad0eb69cc6bf4a", 463405284952686, undefined, [notification]); }
   /**
    * init(canSendText: Bool)
    * @availability iOS 27.0+
    */
-  static init(canSendText: boolean): MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage { return callSDK<MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage>("MessageUI_a956b86ef7a76a8e", 3835044826501891, undefined, [canSendText]); }
+  static init(canSendText: boolean): MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage { return callSDK<MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage>("MessageUI_90ad0eb69cc6bf4a", 3835044826501891, undefined, [canSendText]); }
   /**
    * var canSendText: Bool
    * @availability iOS 27.0+
    */
-  get canSendText(): boolean { return callSDK<boolean>("MessageUI_a956b86ef7a76a8e", 961885757953050, this, []); }
-  set canSendText(value: boolean) { callSDK<void>("MessageUI_a956b86ef7a76a8e", 2147907096918464, this, [value]); }
+  get canSendText(): boolean { return callSDK<boolean>("MessageUI_90ad0eb69cc6bf4a", 961885757953050, this, []); }
+  set canSendText(value: boolean) { callSDK<void>("MessageUI_90ad0eb69cc6bf4a", 2147907096918464, this, [value]); }
   /**
    * static func makeNotification(_ message: MFMessageComposeViewController.TextMessageAvailabilityDidChangeMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("MessageUI_a956b86ef7a76a8e", 2852113834444120, undefined, [message]); }
+  static makeNotification(message: MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("MessageUI_90ad0eb69cc6bf4a", 2852113834444120, undefined, [message]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MessageUI_a956b86ef7a76a8e", 1316758156044901, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MessageUI_90ad0eb69cc6bf4a", 1316758156044901, undefined, []); }
   declare readonly $type: { "s:So30MFMessageComposeViewControllerC9MessageUIE04Texte21AvailabilityDidChangeE0V": true };
 }
 
@@ -312,7 +312,7 @@ export const NSNotification_Name = {
    * static let MFMessageComposeViewControllerTextMessageAvailabilityDidChange: NSNotification.Name
    * @availability iOS 5.0+
    */
-  get MFMessageComposeViewControllerTextMessageAvailabilityDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MessageUI_a956b86ef7a76a8e", 4204315619973892, undefined, []); }
+  get MFMessageComposeViewControllerTextMessageAvailabilityDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("MessageUI_90ad0eb69cc6bf4a", 4204315619973892, undefined, []); }
 };
 
 /** class WritingAssistant */
@@ -324,27 +324,27 @@ export class WritingAssistant extends SDKHandle {
  * let MFMailComposeErrorDomain: String
  * @availability iOS 3.0+
  */
-export const MFMailComposeErrorDomain: string = callSDK<string>("MessageUI_a956b86ef7a76a8e", 2806738103441096, undefined, []);
+export const MFMailComposeErrorDomain: string = callSDK<string>("MessageUI_90ad0eb69cc6bf4a", 2806738103441096, undefined, []);
 
 /** let MFMessageComposeViewControllerAttachmentAlternateFilename: String */
-export const MFMessageComposeViewControllerAttachmentAlternateFilename: string = callSDK<string>("MessageUI_a956b86ef7a76a8e", 3393915916072457, undefined, []);
+export const MFMessageComposeViewControllerAttachmentAlternateFilename: string = callSDK<string>("MessageUI_90ad0eb69cc6bf4a", 3393915916072457, undefined, []);
 
 /** let MFMessageComposeViewControllerAttachmentURL: String */
-export const MFMessageComposeViewControllerAttachmentURL: string = callSDK<string>("MessageUI_a956b86ef7a76a8e", 4269528286027882, undefined, []);
+export const MFMessageComposeViewControllerAttachmentURL: string = callSDK<string>("MessageUI_90ad0eb69cc6bf4a", 4269528286027882, undefined, []);
 
 /**
  * let MFMessageComposeViewControllerTextMessageAvailabilityKey: String
  * @availability iOS 5.0+
  */
-export const MFMessageComposeViewControllerTextMessageAvailabilityKey: string = callSDK<string>("MessageUI_a956b86ef7a76a8e", 252225702916698, undefined, []);
+export const MFMessageComposeViewControllerTextMessageAvailabilityKey: string = callSDK<string>("MessageUI_90ad0eb69cc6bf4a", 252225702916698, undefined, []);
 
-registerSDKClass("MFComposeAssistantViewController", MFComposeAssistantViewController, { module: "MessageUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MFComposeAssistantViewController", MFComposeAssistantViewController, { module: "MessageUI_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("c:objc(pl)MFComposeAssistantViewControllerDelegate", {"composeAssistantViewControllerDidComposeDraft":"composeAssistantViewController(_:didComposeDraft:)"});
-registerSDKClass("MessageUI.MFMailComposeError", MFMailComposeError, { module: "MessageUI_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("MFMailComposeViewController", MFMailComposeViewController, { module: "MessageUI_a956b86ef7a76a8e", properties: {}, methods: {"addAttachmentData":{"id":2516080526768578},"insertCollaborationItemProvider":{"id":322216953294324,"hints":[null,{"callback":{"out":[]}}]},"setBccRecipients":{"id":2663852102445783},"setCcRecipients":{"id":2733228056857719},"setMessageBody":{"id":525241158404415},"setPreferredSendingEmailAddress":{"id":3917095598972699},"setSubject":{"id":1250569133566769},"setToRecipients":{"id":820451655753334}} });
+registerSDKClass("MessageUI.MFMailComposeError", MFMailComposeError, { module: "MessageUI_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("MFMailComposeViewController", MFMailComposeViewController, { module: "MessageUI_90ad0eb69cc6bf4a", properties: {}, methods: {"addAttachmentData":{"id":2516080526768578},"insertCollaborationItemProvider":{"id":322216953294324,"hints":[null,{"callback":{"out":[]}}]},"setBccRecipients":{"id":2663852102445783},"setCcRecipients":{"id":2733228056857719},"setMessageBody":{"id":525241158404415},"setPreferredSendingEmailAddress":{"id":3917095598972699},"setSubject":{"id":1250569133566769},"setToRecipients":{"id":820451655753334}} });
 registerSDKProtocol("c:objc(pl)MFMailComposeViewControllerDelegate", {"mailComposeControllerDidFinishWithError":"mailComposeController(_:didFinishWith:error:)"});
-registerSDKClass("MFMailDraft", MFMailDraft, { module: "MessageUI_a956b86ef7a76a8e", properties: {"body":2671590327162916,"cc":149607336788980,"from":4394953232615026,"subject":3007045614655344,"to":1754328815778744} });
-registerSDKClass("MFMessageComposeViewController", MFMessageComposeViewController, { module: "MessageUI_a956b86ef7a76a8e", properties: {"attachments":3689614299940729,"body":4322442501047116,"messageComposeDelegate":1255659648261330,"recipients":2760659410321270,"subject":111445401829894}, methods: {"addAttachmentData":{"id":4471596026211722},"addAttachmentURL":{"id":2506741268417795},"disableUserAttachments":{"id":3252275232840240},"insertCollaborationItemProvider":{"id":3119611615437296}} });
-registerSDKClass("MessageUI.MFMessageComposeViewController.TextMessageAvailabilityDidChangeMessage", MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage, { module: "MessageUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MFMailDraft", MFMailDraft, { module: "MessageUI_90ad0eb69cc6bf4a", properties: {"body":2671590327162916,"cc":149607336788980,"from":4394953232615026,"subject":3007045614655344,"to":1754328815778744} });
+registerSDKClass("MFMessageComposeViewController", MFMessageComposeViewController, { module: "MessageUI_90ad0eb69cc6bf4a", properties: {"attachments":3689614299940729,"body":4322442501047116,"messageComposeDelegate":1255659648261330,"recipients":2760659410321270,"subject":111445401829894}, methods: {"addAttachmentData":{"id":4471596026211722},"addAttachmentURL":{"id":2506741268417795},"disableUserAttachments":{"id":3252275232840240},"insertCollaborationItemProvider":{"id":3119611615437296}} });
+registerSDKClass("MessageUI.MFMessageComposeViewController.TextMessageAvailabilityDidChangeMessage", MFMessageComposeViewController_TextMessageAvailabilityDidChangeMessage, { module: "MessageUI_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("c:objc(pl)MFMessageComposeViewControllerDelegate", {"messageComposeViewControllerDidFinishWith":"messageComposeViewController(_:didFinishWith:)"});
-registerSDKClass("MessageUI.WritingAssistant", WritingAssistant, { module: "MessageUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("MessageUI.WritingAssistant", WritingAssistant, { module: "MessageUI_90ad0eb69cc6bf4a", properties: {} });

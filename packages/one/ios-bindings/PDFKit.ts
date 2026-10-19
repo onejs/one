@@ -30,117 +30,117 @@ export const NSNotification_Name = {
    * static let PDFDocumentDidBeginFind: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFDocumentDidBeginFind(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 3036707804137461, undefined, []); },
+  get PDFDocumentDidBeginFind(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 3036707804137461, undefined, []); },
   /**
    * static let PDFDocumentDidBeginPageFind: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFDocumentDidBeginPageFind(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 3134654049564041, undefined, []); },
+  get PDFDocumentDidBeginPageFind(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 3134654049564041, undefined, []); },
   /**
    * static let PDFDocumentDidBeginPageWrite: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFDocumentDidBeginPageWrite(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 2722344333633704, undefined, []); },
+  get PDFDocumentDidBeginPageWrite(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 2722344333633704, undefined, []); },
   /**
    * static let PDFDocumentDidBeginWrite: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFDocumentDidBeginWrite(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 3827960062160067, undefined, []); },
+  get PDFDocumentDidBeginWrite(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 3827960062160067, undefined, []); },
   /**
    * static let PDFDocumentDidEndFind: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFDocumentDidEndFind(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 1449381939170517, undefined, []); },
+  get PDFDocumentDidEndFind(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 1449381939170517, undefined, []); },
   /**
    * static let PDFDocumentDidEndPageFind: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFDocumentDidEndPageFind(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 3902029447693624, undefined, []); },
+  get PDFDocumentDidEndPageFind(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 3902029447693624, undefined, []); },
   /**
    * static let PDFDocumentDidEndPageWrite: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFDocumentDidEndPageWrite(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 3385058561186661, undefined, []); },
+  get PDFDocumentDidEndPageWrite(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 3385058561186661, undefined, []); },
   /**
    * static let PDFDocumentDidEndWrite: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFDocumentDidEndWrite(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 115805838988732, undefined, []); },
+  get PDFDocumentDidEndWrite(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 115805838988732, undefined, []); },
   /**
    * static let PDFDocumentDidFindMatch: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFDocumentDidFindMatch(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 1692458571140787, undefined, []); },
+  get PDFDocumentDidFindMatch(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 1692458571140787, undefined, []); },
   /**
    * static let PDFDocumentDidUnlock: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFDocumentDidUnlock(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 3796791339669059, undefined, []); },
+  get PDFDocumentDidUnlock(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 3796791339669059, undefined, []); },
   /**
    * static let PDFThumbnailViewDocumentEdited: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFThumbnailViewDocumentEdited(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 1150373755984928, undefined, []); },
+  get PDFThumbnailViewDocumentEdited(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 1150373755984928, undefined, []); },
   /**
    * static let PDFViewAnnotationHit: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewAnnotationHit(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 2969251311301259, undefined, []); },
+  get PDFViewAnnotationHit(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 2969251311301259, undefined, []); },
   /**
    * static let PDFViewAnnotationWillHit: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewAnnotationWillHit(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 1973009736606217, undefined, []); },
+  get PDFViewAnnotationWillHit(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 1973009736606217, undefined, []); },
   /**
    * static let PDFViewChangedHistory: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewChangedHistory(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 1543693086295766, undefined, []); },
+  get PDFViewChangedHistory(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 1543693086295766, undefined, []); },
   /**
    * static let PDFViewCopyPermission: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewCopyPermission(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 2598587708910761, undefined, []); },
+  get PDFViewCopyPermission(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 2598587708910761, undefined, []); },
   /**
    * static let PDFViewDisplayBoxChanged: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewDisplayBoxChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 4087253947059643, undefined, []); },
+  get PDFViewDisplayBoxChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 4087253947059643, undefined, []); },
   /**
    * static let PDFViewDisplayModeChanged: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewDisplayModeChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 1756253327577987, undefined, []); },
+  get PDFViewDisplayModeChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 1756253327577987, undefined, []); },
   /**
    * static let PDFViewDocumentChanged: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewDocumentChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 1512665014434558, undefined, []); },
+  get PDFViewDocumentChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 1512665014434558, undefined, []); },
   /**
    * static let PDFViewPageChanged: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewPageChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 2930579062255606, undefined, []); },
+  get PDFViewPageChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 2930579062255606, undefined, []); },
   /**
    * static let PDFViewPrintPermission: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewPrintPermission(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 3200705335864343, undefined, []); },
+  get PDFViewPrintPermission(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 3200705335864343, undefined, []); },
   /**
    * static let PDFViewScaleChanged: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewScaleChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 2558836875253956, undefined, []); },
+  get PDFViewScaleChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 2558836875253956, undefined, []); },
   /**
    * static let PDFViewSelectionChanged: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewSelectionChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 604068789242320, undefined, []); },
+  get PDFViewSelectionChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 604068789242320, undefined, []); },
   /**
    * static let PDFViewVisiblePagesChanged: NSNotification.Name
    * @availability iOS 11.0+
    */
-  get PDFViewVisiblePagesChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_a956b86ef7a76a8e", 115034145449267, undefined, []); }
+  get PDFViewVisiblePagesChanged(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("PDFKit_90ad0eb69cc6bf4a", 115034145449267, undefined, []); }
 };
 
 /** enum PDFAccessPermissions */
@@ -148,7 +148,7 @@ export type PDFAccessPermissions = "allowsLowQualityPrinting" | "allowsHighQuali
 
 export const PDFAccessPermissions = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (PDFAccessPermissions) | null { return callSDK<(PDFAccessPermissions) | null>("PDFKit_a956b86ef7a76a8e", 1240526555797357, undefined, [rawValue]); }
+  init(rawValue: number): (PDFAccessPermissions) | null { return callSDK<(PDFAccessPermissions) | null>("PDFKit_90ad0eb69cc6bf4a", 1240526555797357, undefined, [rawValue]); }
 };
 
 /**
@@ -157,12 +157,12 @@ export const PDFAccessPermissions = {
  */
 export class PDFAction extends SDKHandle {
   /** init() */
-  static init(): PDFAction { return callSDK<PDFAction>("PDFKit_a956b86ef7a76a8e", 970072643507110, undefined, []); }
+  static init(): PDFAction { return callSDK<PDFAction>("PDFKit_90ad0eb69cc6bf4a", 970072643507110, undefined, []); }
   /**
    * var type: String { get }
    * @availability iOS 11.0+
    */
-  get type(): string { return callSDK<string>("PDFKit_a956b86ef7a76a8e", 1844044104500583, this, []); }
+  get type(): string { return callSDK<string>("PDFKit_90ad0eb69cc6bf4a", 1844044104500583, this, []); }
   declare readonly $type: { "c:objc(cs)PDFAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "type": true };
 }
@@ -176,13 +176,13 @@ export class PDFActionGoTo extends (PDFAction as unknown as Omit<typeof PDFActio
    * init(destination: PDFDestination)
    * @availability iOS 11.0+
    */
-  static init(destination: PDFDestination): PDFActionGoTo { return callSDK<PDFActionGoTo>("PDFKit_a956b86ef7a76a8e", 2118715216306001, undefined, [destination]); }
+  static init(destination: PDFDestination): PDFActionGoTo { return callSDK<PDFActionGoTo>("PDFKit_90ad0eb69cc6bf4a", 2118715216306001, undefined, [destination]); }
   /**
    * var destination: PDFDestination { get set }
    * @availability iOS 11.0+
    */
-  get destination(): PDFDestination { return callSDK<PDFDestination>("PDFKit_a956b86ef7a76a8e", 3527159347498160, this, []); }
-  set destination(value: PDFDestination) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1165088621639265, this, [value]); }
+  get destination(): PDFDestination { return callSDK<PDFDestination>("PDFKit_90ad0eb69cc6bf4a", 3527159347498160, this, []); }
+  set destination(value: PDFDestination) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1165088621639265, this, [value]); }
   declare readonly $type: { "c:objc(cs)PDFActionGoTo": true; "c:objc(cs)PDFAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "type": true; "destination": true };
 }
@@ -196,13 +196,13 @@ export class PDFActionNamed extends (PDFAction as unknown as Omit<typeof PDFActi
    * init(name: PDFActionNamedName)
    * @availability iOS 11.0+
    */
-  static init(name: PDFActionNamedName): PDFActionNamed { return callSDK<PDFActionNamed>("PDFKit_a956b86ef7a76a8e", 1361799839193718, undefined, [name]); }
+  static init(name: PDFActionNamedName): PDFActionNamed { return callSDK<PDFActionNamed>("PDFKit_90ad0eb69cc6bf4a", 1361799839193718, undefined, [name]); }
   /**
    * var name: PDFActionNamedName { get set }
    * @availability iOS 11.0+
    */
-  get name(): PDFActionNamedName { return callSDK<PDFActionNamedName>("PDFKit_a956b86ef7a76a8e", 1398773092846854, this, []); }
-  set name(value: PDFActionNamedName) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2264564547238865, this, [value]); }
+  get name(): PDFActionNamedName { return callSDK<PDFActionNamedName>("PDFKit_90ad0eb69cc6bf4a", 1398773092846854, this, []); }
+  set name(value: PDFActionNamedName) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2264564547238865, this, [value]); }
   declare readonly $type: { "c:objc(cs)PDFActionNamed": true; "c:objc(cs)PDFAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "type": true; "name": true };
 }
@@ -218,7 +218,7 @@ export const PDFActionNamedName = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PDFActionNamedName) | null { return callSDK<(PDFActionNamedName) | null>("PDFKit_a956b86ef7a76a8e", 2834078731761775, undefined, [rawValue]); }
+  init(rawValue: number): (PDFActionNamedName) | null { return callSDK<(PDFActionNamedName) | null>("PDFKit_90ad0eb69cc6bf4a", 2834078731761775, undefined, [rawValue]); }
 };
 
 /**
@@ -230,25 +230,25 @@ export class PDFActionRemoteGoTo extends (PDFAction as unknown as Omit<typeof PD
    * init(pageIndex: Int, at point: CGPoint, fileURL url: URL)
    * @availability iOS 11.0+
    */
-  static init(pageIndex: number, point: $SDK0, url: string): PDFActionRemoteGoTo { return callSDK<PDFActionRemoteGoTo>("PDFKit_a956b86ef7a76a8e", 309773840798001, undefined, [pageIndex, point, url]); }
+  static init(pageIndex: number, point: $SDK0, url: string): PDFActionRemoteGoTo { return callSDK<PDFActionRemoteGoTo>("PDFKit_90ad0eb69cc6bf4a", 309773840798001, undefined, [pageIndex, point, url]); }
   /**
    * var url: URL { get set }
    * @availability iOS 11.0+
    */
-  get url(): string { return callSDK<string>("PDFKit_a956b86ef7a76a8e", 4089213300543055, this, []); }
-  set url(value: string) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 643752600593180, this, [value]); }
+  get url(): string { return callSDK<string>("PDFKit_90ad0eb69cc6bf4a", 4089213300543055, this, []); }
+  set url(value: string) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 643752600593180, this, [value]); }
   /**
    * var pageIndex: Int { get set }
    * @availability iOS 11.0+
    */
-  get pageIndex(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 3534428464519773, this, []); }
-  set pageIndex(value: number) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3180352870471253, this, [value]); }
+  get pageIndex(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 3534428464519773, this, []); }
+  set pageIndex(value: number) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3180352870471253, this, [value]); }
   /**
    * var point: CGPoint { get set }
    * @availability iOS 11.0+
    */
-  get point(): $SDK0 { return callSDK<$SDK0>("PDFKit_a956b86ef7a76a8e", 278096048779637, this, []); }
-  set point(value: $SDK0) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2420575423266126, this, [value]); }
+  get point(): $SDK0 { return callSDK<$SDK0>("PDFKit_90ad0eb69cc6bf4a", 278096048779637, this, []); }
+  set point(value: $SDK0) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2420575423266126, this, [value]); }
   declare readonly $type: { "c:objc(cs)PDFActionRemoteGoTo": true; "c:objc(cs)PDFAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "type": true; "url": true; "pageIndex": true; "point": true };
 }
@@ -262,19 +262,19 @@ export class PDFActionResetForm extends (PDFAction as unknown as Omit<typeof PDF
    * init()
    * @availability iOS 11.0+
    */
-  static init(): PDFActionResetForm { return callSDK<PDFActionResetForm>("PDFKit_a956b86ef7a76a8e", 2062736809582280, undefined, []); }
+  static init(): PDFActionResetForm { return callSDK<PDFActionResetForm>("PDFKit_90ad0eb69cc6bf4a", 2062736809582280, undefined, []); }
   /**
    * var fields: [String]? { get set }
    * @availability iOS 11.0+
    */
-  get fields(): (Array<string>) | null { return callSDK<(Array<string>) | null>("PDFKit_a956b86ef7a76a8e", 509454743247110, this, []); }
-  set fields(value: (Array<string>) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 4155788323874026, this, [value]); }
+  get fields(): (Array<string>) | null { return callSDK<(Array<string>) | null>("PDFKit_90ad0eb69cc6bf4a", 509454743247110, this, []); }
+  set fields(value: (Array<string>) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 4155788323874026, this, [value]); }
   /**
    * var fieldsIncludedAreCleared: Bool { get set }
    * @availability iOS 11.0+
    */
-  get fieldsIncludedAreCleared(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 680098964370362, this, []); }
-  set fieldsIncludedAreCleared(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3670717879016669, this, [value]); }
+  get fieldsIncludedAreCleared(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 680098964370362, this, []); }
+  set fieldsIncludedAreCleared(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3670717879016669, this, [value]); }
   declare readonly $type: { "c:objc(cs)PDFActionResetForm": true; "c:objc(cs)PDFAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "type": true; "fields": true; "fieldsIncludedAreCleared": true };
 }
@@ -288,13 +288,13 @@ export class PDFActionURL extends (PDFAction as unknown as Omit<typeof PDFAction
    * init(url: URL)
    * @availability iOS 11.0+
    */
-  static init(url: string): PDFActionURL { return callSDK<PDFActionURL>("PDFKit_a956b86ef7a76a8e", 4450394431361236, undefined, [url]); }
+  static init(url: string): PDFActionURL { return callSDK<PDFActionURL>("PDFKit_90ad0eb69cc6bf4a", 4450394431361236, undefined, [url]); }
   /**
    * var url: URL? { get set }
    * @availability iOS 11.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 3403931708057611, this, []); }
-  set url(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1213375591909179, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 3403931708057611, this, []); }
+  set url(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1213375591909179, this, [value]); }
   declare readonly $type: { "c:objc(cs)PDFActionURL": true; "c:objc(cs)PDFAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "type": true; "url": true };
 }
@@ -305,241 +305,241 @@ export class PDFActionURL extends (PDFAction as unknown as Omit<typeof PDFAction
  */
 export class PDFAnnotation extends SDKHandle {
   /** class func lineStyle(fromName name: String) -> PDFLineStyle */
-  static lineStyle(name: string): PDFLineStyle { return callSDK<PDFLineStyle>("PDFKit_a956b86ef7a76a8e", 3219318270216901, undefined, [name]); }
+  static lineStyle(name: string): PDFLineStyle { return callSDK<PDFLineStyle>("PDFKit_90ad0eb69cc6bf4a", 3219318270216901, undefined, [name]); }
   /** class func name(for style: PDFLineStyle) -> String */
-  static nameValue(style: PDFLineStyle): string { return callSDK<string>("PDFKit_a956b86ef7a76a8e", 2374642272652043, undefined, [style]); }
+  static nameValue(style: PDFLineStyle): string { return callSDK<string>("PDFKit_90ad0eb69cc6bf4a", 2374642272652043, undefined, [style]); }
   /** func add(_ path: UIBezierPath) */
-  add(path: _UIKit_UIBezierPath): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2051965853463172, this, [path]); }
+  add(path: _UIKit_UIBezierPath): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2051965853463172, this, [path]); }
   /**
    * func draw(with box: PDFDisplayBox, in context: CGContext)
    * @availability iOS 11.0+
    */
-  draw(box: PDFDisplayBox, context: _CoreGraphics_CGContext): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2365288784376046, this, [box, context]); }
+  draw(box: PDFDisplayBox, context: _CoreGraphics_CGContext): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2365288784376046, this, [box, context]); }
   /**
    * init(bounds: CGRect, forType annotationType: PDFAnnotationSubtype, withProperties properties: [AnyHashable : Any]?)
    * @availability iOS 11.0+
    */
-  static init(bounds: $SDK1, annotationType: PDFAnnotationSubtype, properties?: $SDK2): PDFAnnotation { return callSDK<PDFAnnotation>("PDFKit_a956b86ef7a76a8e", 4469574825231920, undefined, [bounds, annotationType, properties]); }
+  static init(bounds: $SDK1, annotationType: PDFAnnotationSubtype, properties?: $SDK2): PDFAnnotation { return callSDK<PDFAnnotation>("PDFKit_90ad0eb69cc6bf4a", 4469574825231920, undefined, [bounds, annotationType, properties]); }
   /** func remove(_ path: UIBezierPath) */
-  remove(path: _UIKit_UIBezierPath): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 853915791482606, this, [path]); }
+  remove(path: _UIKit_UIBezierPath): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 853915791482606, this, [path]); }
   /**
    * func removeValue(forAnnotationKey key: PDFAnnotationKey)
    * @availability iOS 11.0+
    */
-  removeValue(key: PDFAnnotationKey): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3832364007175008, this, [key]); }
+  removeValue(key: PDFAnnotationKey): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3832364007175008, this, [key]); }
   /**
    * func setBoolean(_ value: Bool, forAnnotationKey key: PDFAnnotationKey) -> Bool
    * @availability iOS 11.0+
    */
-  setBoolean(value: boolean, key: PDFAnnotationKey): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3654232032329716, this, [value, key]); }
+  setBoolean(value: boolean, key: PDFAnnotationKey): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3654232032329716, this, [value, key]); }
   /**
    * func setRect(_ value: CGRect, forAnnotationKey key: PDFAnnotationKey) -> Bool
    * @availability iOS 11.0+
    */
-  setRect(value: $SDK1, key: PDFAnnotationKey): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 1690392296359541, this, [value, key]); }
+  setRect(value: $SDK1, key: PDFAnnotationKey): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 1690392296359541, this, [value, key]); }
   /**
    * func setValue(_ value: Any, forAnnotationKey key: PDFAnnotationKey) -> Bool
    * @availability iOS 11.0+
    */
-  setValue(value: unknown, key: PDFAnnotationKey): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 187642604152243, this, [value, key]); }
+  setValue(value: unknown, key: PDFAnnotationKey): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 187642604152243, this, [value, key]); }
   /**
    * func value(forAnnotationKey key: PDFAnnotationKey) -> Any?
    * @availability iOS 11.0+
    */
-  value(key: PDFAnnotationKey): (unknown) | null { return callSDK<(unknown) | null>("PDFKit_a956b86ef7a76a8e", 1718339029678063, this, [key]); }
+  value(key: PDFAnnotationKey): (unknown) | null { return callSDK<(unknown) | null>("PDFKit_90ad0eb69cc6bf4a", 1718339029678063, this, [key]); }
   /** var url: URL? { get set } */
-  get url(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 2429775951358970, this, []); }
-  set url(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1644071758621523, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 2429775951358970, this, []); }
+  set url(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1644071758621523, this, [value]); }
   /**
    * var action: PDFAction? { get set }
    * @availability iOS 11.0+
    */
-  get action(): (PDFAction) | null { return callSDK<(PDFAction) | null>("PDFKit_a956b86ef7a76a8e", 4209334585646097, this, []); }
-  set action(value: (PDFAction) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1629079988794476, this, [value]); }
+  get action(): (PDFAction) | null { return callSDK<(PDFAction) | null>("PDFKit_90ad0eb69cc6bf4a", 4209334585646097, this, []); }
+  set action(value: (PDFAction) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1629079988794476, this, [value]); }
   /** var isActivatableTextField: Bool { get } */
-  get isActivatableTextField(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 1212957100646482, this, []); }
+  get isActivatableTextField(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 1212957100646482, this, []); }
   /** var alignment: NSTextAlignment { get set } */
-  get alignment(): _UIKit_NSTextAlignment { return callSDK<_UIKit_NSTextAlignment>("PDFKit_a956b86ef7a76a8e", 1990491733797771, this, []); }
-  set alignment(value: _UIKit_NSTextAlignment) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 628089377967759, this, [value]); }
+  get alignment(): _UIKit_NSTextAlignment { return callSDK<_UIKit_NSTextAlignment>("PDFKit_90ad0eb69cc6bf4a", 1990491733797771, this, []); }
+  set alignment(value: _UIKit_NSTextAlignment) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 628089377967759, this, [value]); }
   /** var allowsToggleToOff: Bool { get set } */
-  get allowsToggleToOff(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 4161607205755856, this, []); }
-  set allowsToggleToOff(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2263926785621400, this, [value]); }
+  get allowsToggleToOff(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 4161607205755856, this, []); }
+  set allowsToggleToOff(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2263926785621400, this, [value]); }
   /**
    * var annotationKeyValues: [AnyHashable : Any] { get }
    * @availability iOS 11.0+
    */
-  get annotationKeyValues(): $SDK3 { return callSDK<$SDK3>("PDFKit_a956b86ef7a76a8e", 4040628558334853, this, []); }
+  get annotationKeyValues(): $SDK3 { return callSDK<$SDK3>("PDFKit_90ad0eb69cc6bf4a", 4040628558334853, this, []); }
   /** @NSCopying var backgroundColor: UIColor? { get set } */
-  get backgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_a956b86ef7a76a8e", 1793183940593648, this, []); }
-  set backgroundColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 830705106604878, this, [value]); }
+  get backgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_90ad0eb69cc6bf4a", 1793183940593648, this, []); }
+  set backgroundColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 830705106604878, this, [value]); }
   /**
    * var border: PDFBorder? { get set }
    * @availability iOS 11.0+
    */
-  get border(): (PDFBorder) | null { return callSDK<(PDFBorder) | null>("PDFKit_a956b86ef7a76a8e", 4372495940673782, this, []); }
-  set border(value: (PDFBorder) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2071106702333473, this, [value]); }
+  get border(): (PDFBorder) | null { return callSDK<(PDFBorder) | null>("PDFKit_90ad0eb69cc6bf4a", 4372495940673782, this, []); }
+  set border(value: (PDFBorder) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2071106702333473, this, [value]); }
   /**
    * var bounds: CGRect { get set }
    * @availability iOS 11.0+
    */
-  get bounds(): $SDK1 { return callSDK<$SDK1>("PDFKit_a956b86ef7a76a8e", 301527339842344, this, []); }
-  set bounds(value: $SDK1) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 4182586875083266, this, [value]); }
+  get bounds(): $SDK1 { return callSDK<$SDK1>("PDFKit_90ad0eb69cc6bf4a", 301527339842344, this, []); }
+  set bounds(value: $SDK1) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 4182586875083266, this, [value]); }
   /** var buttonWidgetState: PDFWidgetCellState { get set } */
-  get buttonWidgetState(): PDFWidgetCellState { return callSDK<PDFWidgetCellState>("PDFKit_a956b86ef7a76a8e", 3106609722634560, this, []); }
-  set buttonWidgetState(value: PDFWidgetCellState) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3133654259422423, this, [value]); }
+  get buttonWidgetState(): PDFWidgetCellState { return callSDK<PDFWidgetCellState>("PDFKit_90ad0eb69cc6bf4a", 3106609722634560, this, []); }
+  set buttonWidgetState(value: PDFWidgetCellState) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3133654259422423, this, [value]); }
   /** var buttonWidgetStateString: String { get set } */
-  get buttonWidgetStateString(): string { return callSDK<string>("PDFKit_a956b86ef7a76a8e", 2915529864493896, this, []); }
-  set buttonWidgetStateString(value: string) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2290740003638252, this, [value]); }
+  get buttonWidgetStateString(): string { return callSDK<string>("PDFKit_90ad0eb69cc6bf4a", 2915529864493896, this, []); }
+  set buttonWidgetStateString(value: string) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2290740003638252, this, [value]); }
   /** var caption: String? { get set } */
-  get caption(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 2166307766636806, this, []); }
-  set caption(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 866762302700438, this, [value]); }
+  get caption(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 2166307766636806, this, []); }
+  set caption(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 866762302700438, this, [value]); }
   /** var choices: [String]? { get set } */
-  get choices(): (Array<string>) | null { return callSDK<(Array<string>) | null>("PDFKit_a956b86ef7a76a8e", 1071685290995213, this, []); }
-  set choices(value: (Array<string>) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3523998694780467, this, [value]); }
+  get choices(): (Array<string>) | null { return callSDK<(Array<string>) | null>("PDFKit_90ad0eb69cc6bf4a", 1071685290995213, this, []); }
+  set choices(value: (Array<string>) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3523998694780467, this, [value]); }
   /**
    * @NSCopying var color: UIColor { get set }
    * @availability iOS 11.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PDFKit_a956b86ef7a76a8e", 245521895936706, this, []); }
-  set color(value: _UIKit_UIColor) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3822876139031073, this, [value]); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PDFKit_90ad0eb69cc6bf4a", 245521895936706, this, []); }
+  set color(value: _UIKit_UIColor) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3822876139031073, this, [value]); }
   /** var hasComb: Bool { get set } */
-  get hasComb(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 2853086982568762, this, []); }
-  set hasComb(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2334744100838789, this, [value]); }
+  get hasComb(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 2853086982568762, this, []); }
+  set hasComb(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2334744100838789, this, [value]); }
   /**
    * var contents: String? { get set }
    * @availability iOS 11.0+
    */
-  get contents(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 3385555610775941, this, []); }
-  set contents(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1579697579270086, this, [value]); }
+  get contents(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 3385555610775941, this, []); }
+  set contents(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1579697579270086, this, [value]); }
   /** var destination: PDFDestination? { get set } */
-  get destination(): (PDFDestination) | null { return callSDK<(PDFDestination) | null>("PDFKit_a956b86ef7a76a8e", 2362011583849457, this, []); }
-  set destination(value: (PDFDestination) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2430768205249380, this, [value]); }
+  get destination(): (PDFDestination) | null { return callSDK<(PDFDestination) | null>("PDFKit_90ad0eb69cc6bf4a", 2362011583849457, this, []); }
+  set destination(value: (PDFDestination) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2430768205249380, this, [value]); }
   /** var endLineStyle: PDFLineStyle { get set } */
-  get endLineStyle(): PDFLineStyle { return callSDK<PDFLineStyle>("PDFKit_a956b86ef7a76a8e", 200144446779428, this, []); }
-  set endLineStyle(value: PDFLineStyle) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 261508292900910, this, [value]); }
+  get endLineStyle(): PDFLineStyle { return callSDK<PDFLineStyle>("PDFKit_90ad0eb69cc6bf4a", 200144446779428, this, []); }
+  set endLineStyle(value: PDFLineStyle) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 261508292900910, this, [value]); }
   /** var endPoint: CGPoint { get set } */
-  get endPoint(): $SDK0 { return callSDK<$SDK0>("PDFKit_a956b86ef7a76a8e", 666503464381727, this, []); }
-  set endPoint(value: $SDK0) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1524555151682754, this, [value]); }
+  get endPoint(): $SDK0 { return callSDK<$SDK0>("PDFKit_90ad0eb69cc6bf4a", 666503464381727, this, []); }
+  set endPoint(value: $SDK0) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1524555151682754, this, [value]); }
   /** var fieldName: String? { get set } */
-  get fieldName(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 254020654496066, this, []); }
-  set fieldName(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2191736365641770, this, [value]); }
+  get fieldName(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 254020654496066, this, []); }
+  set fieldName(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2191736365641770, this, [value]); }
   /** @NSCopying var font: UIFont? { get set } */
-  get font(): (_UIKit_UIFont) | null { return callSDK<(_UIKit_UIFont) | null>("PDFKit_a956b86ef7a76a8e", 476555619380079, this, []); }
-  set font(value: (_UIKit_UIFont) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 4471027902371338, this, [value]); }
+  get font(): (_UIKit_UIFont) | null { return callSDK<(_UIKit_UIFont) | null>("PDFKit_90ad0eb69cc6bf4a", 476555619380079, this, []); }
+  set font(value: (_UIKit_UIFont) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 4471027902371338, this, [value]); }
   /** @NSCopying var fontColor: UIColor? { get set } */
-  get fontColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_a956b86ef7a76a8e", 3065465366129450, this, []); }
-  set fontColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1573077626631631, this, [value]); }
+  get fontColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_90ad0eb69cc6bf4a", 3065465366129450, this, []); }
+  set fontColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1573077626631631, this, [value]); }
   /**
    * var hasAppearanceStream: Bool { get }
    * @availability iOS 11.0+
    */
-  get hasAppearanceStream(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 1713653359890479, this, []); }
+  get hasAppearanceStream(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 1713653359890479, this, []); }
   /**
    * var isHighlighted: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isHighlighted(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 825272127537032, this, []); }
-  set isHighlighted(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1766890835253211, this, [value]); }
+  get isHighlighted(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 825272127537032, this, []); }
+  set isHighlighted(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1766890835253211, this, [value]); }
   /** var iconType: PDFTextAnnotationIconType { get set } */
-  get iconType(): PDFTextAnnotationIconType { return callSDK<PDFTextAnnotationIconType>("PDFKit_a956b86ef7a76a8e", 3349375368061932, this, []); }
-  set iconType(value: PDFTextAnnotationIconType) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 39375724720962, this, [value]); }
+  get iconType(): PDFTextAnnotationIconType { return callSDK<PDFTextAnnotationIconType>("PDFKit_90ad0eb69cc6bf4a", 3349375368061932, this, []); }
+  set iconType(value: PDFTextAnnotationIconType) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 39375724720962, this, [value]); }
   /** @NSCopying var interiorColor: UIColor? { get set } */
-  get interiorColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_a956b86ef7a76a8e", 2655068811397878, this, []); }
-  set interiorColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3503439276241491, this, [value]); }
+  get interiorColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_90ad0eb69cc6bf4a", 2655068811397878, this, []); }
+  set interiorColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3503439276241491, this, [value]); }
   /** var isPasswordField: Bool { get } */
-  get isPasswordField(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 4276003958991135, this, []); }
+  get isPasswordField(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 4276003958991135, this, []); }
   /** var isListChoice: Bool { get set } */
-  get isListChoice(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3651587616168681, this, []); }
-  set isListChoice(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3025895772327082, this, [value]); }
+  get isListChoice(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3651587616168681, this, []); }
+  set isListChoice(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3025895772327082, this, [value]); }
   /** var markupType: PDFMarkupType { get set } */
-  get markupType(): PDFMarkupType { return callSDK<PDFMarkupType>("PDFKit_a956b86ef7a76a8e", 4159305394660511, this, []); }
-  set markupType(value: PDFMarkupType) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2496112413815864, this, [value]); }
+  get markupType(): PDFMarkupType { return callSDK<PDFMarkupType>("PDFKit_90ad0eb69cc6bf4a", 4159305394660511, this, []); }
+  set markupType(value: PDFMarkupType) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2496112413815864, this, [value]); }
   /** var maximumLength: Int { get set } */
-  get maximumLength(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 4051154340430434, this, []); }
-  set maximumLength(value: number) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 733868369390280, this, [value]); }
+  get maximumLength(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 4051154340430434, this, []); }
+  set maximumLength(value: number) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 733868369390280, this, [value]); }
   /**
    * var modificationDate: Date? { get set }
    * @availability iOS 11.0+
    */
-  get modificationDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("PDFKit_a956b86ef7a76a8e", 830506885821304, this, []); }
-  set modificationDate(value: (globalThis.Date) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 539040782426163, this, [value]); }
+  get modificationDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("PDFKit_90ad0eb69cc6bf4a", 830506885821304, this, []); }
+  set modificationDate(value: (globalThis.Date) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 539040782426163, this, [value]); }
   /** var isMultiline: Bool { get set } */
-  get isMultiline(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 1225522796798446, this, []); }
-  set isMultiline(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2178151273494847, this, [value]); }
+  get isMultiline(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 1225522796798446, this, []); }
+  set isMultiline(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2178151273494847, this, [value]); }
   /** var isOpen: Bool { get set } */
-  get isOpen(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 4338237044127542, this, []); }
-  set isOpen(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2764672676636450, this, [value]); }
+  get isOpen(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 4338237044127542, this, []); }
+  set isOpen(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2764672676636450, this, [value]); }
   /**
    * weak var page: PDFPage? { get set }
    * @availability iOS 11.0+
    */
-  get page(): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_a956b86ef7a76a8e", 3638787294525048, this, []); }
-  set page(value: (PDFPage) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2573582564729531, this, [value]); }
+  get page(): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_90ad0eb69cc6bf4a", 3638787294525048, this, []); }
+  set page(value: (PDFPage) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2573582564729531, this, [value]); }
   /** var paths: [UIBezierPath]? { get } */
-  get paths(): (Array<_UIKit_UIBezierPath>) | null { return callSDK<(Array<_UIKit_UIBezierPath>) | null>("PDFKit_a956b86ef7a76a8e", 1209085122547070, this, []); }
+  get paths(): (Array<_UIKit_UIBezierPath>) | null { return callSDK<(Array<_UIKit_UIBezierPath>) | null>("PDFKit_90ad0eb69cc6bf4a", 1209085122547070, this, []); }
   /**
    * var popup: PDFAnnotation? { get set }
    * @availability iOS 11.0+
    */
-  get popup(): (PDFAnnotation) | null { return callSDK<(PDFAnnotation) | null>("PDFKit_a956b86ef7a76a8e", 4500130675709216, this, []); }
-  set popup(value: (PDFAnnotation) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1234849489234921, this, [value]); }
+  get popup(): (PDFAnnotation) | null { return callSDK<(PDFAnnotation) | null>("PDFKit_90ad0eb69cc6bf4a", 4500130675709216, this, []); }
+  set popup(value: (PDFAnnotation) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1234849489234921, this, [value]); }
   /** var quadrilateralPoints: [NSValue]? { get set } */
-  get quadrilateralPoints(): $SDK6 { return callSDK<$SDK6>("PDFKit_a956b86ef7a76a8e", 3440913548442776, this, []); }
-  set quadrilateralPoints(value: $SDK6) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1067612887125790, this, [value]); }
+  get quadrilateralPoints(): $SDK6 { return callSDK<$SDK6>("PDFKit_90ad0eb69cc6bf4a", 3440913548442776, this, []); }
+  set quadrilateralPoints(value: $SDK6) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1067612887125790, this, [value]); }
   /** var radiosInUnison: Bool { get set } */
-  get radiosInUnison(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3282216898330850, this, []); }
-  set radiosInUnison(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2553243426947686, this, [value]); }
+  get radiosInUnison(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3282216898330850, this, []); }
+  set radiosInUnison(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2553243426947686, this, [value]); }
   /** var isReadOnly: Bool { get set } */
-  get isReadOnly(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3244847595828223, this, []); }
-  set isReadOnly(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 900345913996436, this, [value]); }
+  get isReadOnly(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3244847595828223, this, []); }
+  set isReadOnly(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 900345913996436, this, [value]); }
   /**
    * var shouldDisplay: Bool { get set }
    * @availability iOS 11.0+
    */
-  get shouldDisplay(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 224087576583070, this, []); }
-  set shouldDisplay(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 600373458231050, this, [value]); }
+  get shouldDisplay(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 224087576583070, this, []); }
+  set shouldDisplay(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 600373458231050, this, [value]); }
   /**
    * var shouldPrint: Bool { get set }
    * @availability iOS 11.0+
    */
-  get shouldPrint(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 1554985022914139, this, []); }
-  set shouldPrint(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2437473692625500, this, [value]); }
+  get shouldPrint(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 1554985022914139, this, []); }
+  set shouldPrint(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2437473692625500, this, [value]); }
   /** var stampName: String? { get set } */
-  get stampName(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 4009435710698484, this, []); }
-  set stampName(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3120831133445392, this, [value]); }
+  get stampName(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 4009435710698484, this, []); }
+  set stampName(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3120831133445392, this, [value]); }
   /** var startLineStyle: PDFLineStyle { get set } */
-  get startLineStyle(): PDFLineStyle { return callSDK<PDFLineStyle>("PDFKit_a956b86ef7a76a8e", 2024337739036426, this, []); }
-  set startLineStyle(value: PDFLineStyle) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1511435981012830, this, [value]); }
+  get startLineStyle(): PDFLineStyle { return callSDK<PDFLineStyle>("PDFKit_90ad0eb69cc6bf4a", 2024337739036426, this, []); }
+  set startLineStyle(value: PDFLineStyle) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1511435981012830, this, [value]); }
   /** var startPoint: CGPoint { get set } */
-  get startPoint(): $SDK0 { return callSDK<$SDK0>("PDFKit_a956b86ef7a76a8e", 2320468528615474, this, []); }
-  set startPoint(value: $SDK0) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 4129911201317068, this, [value]); }
+  get startPoint(): $SDK0 { return callSDK<$SDK0>("PDFKit_90ad0eb69cc6bf4a", 2320468528615474, this, []); }
+  set startPoint(value: $SDK0) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 4129911201317068, this, [value]); }
   /**
    * var type: String? { get set }
    * @availability iOS 11.0+
    */
-  get type(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 1003446637005156, this, []); }
-  set type(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2238220636079112, this, [value]); }
+  get type(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 1003446637005156, this, []); }
+  set type(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2238220636079112, this, [value]); }
   /**
    * var userName: String? { get set }
    * @availability iOS 11.0+
    */
-  get userName(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 759668844306911, this, []); }
-  set userName(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3918527499243599, this, [value]); }
+  get userName(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 759668844306911, this, []); }
+  set userName(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3918527499243599, this, [value]); }
   /** var values: [String]? { get set } */
-  get values(): (Array<string>) | null { return callSDK<(Array<string>) | null>("PDFKit_a956b86ef7a76a8e", 2335095558980673, this, []); }
-  set values(value: (Array<string>) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 315824450103209, this, [value]); }
+  get values(): (Array<string>) | null { return callSDK<(Array<string>) | null>("PDFKit_90ad0eb69cc6bf4a", 2335095558980673, this, []); }
+  set values(value: (Array<string>) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 315824450103209, this, [value]); }
   /** var widgetControlType: PDFWidgetControlType { get set } */
-  get widgetControlType(): PDFWidgetControlType { return callSDK<PDFWidgetControlType>("PDFKit_a956b86ef7a76a8e", 3086183068291177, this, []); }
-  set widgetControlType(value: PDFWidgetControlType) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2916202726494355, this, [value]); }
+  get widgetControlType(): PDFWidgetControlType { return callSDK<PDFWidgetControlType>("PDFKit_90ad0eb69cc6bf4a", 3086183068291177, this, []); }
+  set widgetControlType(value: PDFWidgetControlType) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2916202726494355, this, [value]); }
   /** var widgetDefaultStringValue: String? { get set } */
-  get widgetDefaultStringValue(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 1648433390037151, this, []); }
-  set widgetDefaultStringValue(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2098224959721085, this, [value]); }
+  get widgetDefaultStringValue(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 1648433390037151, this, []); }
+  set widgetDefaultStringValue(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2098224959721085, this, [value]); }
   /** var widgetFieldType: PDFAnnotationWidgetSubtype { get set } */
-  get widgetFieldType(): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_a956b86ef7a76a8e", 1047552796559482, this, []); }
-  set widgetFieldType(value: PDFAnnotationWidgetSubtype) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 261952067353218, this, [value]); }
+  get widgetFieldType(): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_90ad0eb69cc6bf4a", 1047552796559482, this, []); }
+  set widgetFieldType(value: PDFAnnotationWidgetSubtype) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 261952067353218, this, [value]); }
   /** var widgetStringValue: String? { get set } */
-  get widgetStringValue(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 2207268183729746, this, []); }
-  set widgetStringValue(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2203915357672692, this, [value]); }
+  get widgetStringValue(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 2207268183729746, this, []); }
+  set widgetStringValue(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2203915357672692, this, [value]); }
   declare readonly $type: { "c:objc(cs)PDFAnnotation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "action": true; "isActivatableTextField": true; "alignment": true; "allowsToggleToOff": true; "annotationKeyValues": true; "backgroundColor": true; "border": true; "bounds": true; "buttonWidgetState": true; "buttonWidgetStateString": true; "caption": true; "choices": true; "color": true; "hasComb": true; "contents": true; "destination": true; "endLineStyle": true; "endPoint": true; "fieldName": true; "font": true; "fontColor": true; "hasAppearanceStream": true; "isHighlighted": true; "iconType": true; "interiorColor": true; "isPasswordField": true; "isListChoice": true; "markupType": true; "maximumLength": true; "modificationDate": true; "isMultiline": true; "isOpen": true; "page": true; "paths": true; "popup": true; "quadrilateralPoints": true; "radiosInUnison": true; "isReadOnly": true; "shouldDisplay": true; "shouldPrint": true; "stampName": true; "startLineStyle": true; "startPoint": true; "type": true; "userName": true; "values": true; "widgetControlType": true; "widgetDefaultStringValue": true; "widgetFieldType": true; "widgetStringValue": true };
 }
@@ -552,24 +552,24 @@ export const PDFAnnotationHighlightingMode = {
    * static let invert: PDFAnnotationHighlightingMode
    * @availability iOS 11.0+
    */
-  get invert(): PDFAnnotationHighlightingMode { return callSDK<PDFAnnotationHighlightingMode>("PDFKit_a956b86ef7a76a8e", 574124278857614, undefined, []); },
+  get invert(): PDFAnnotationHighlightingMode { return callSDK<PDFAnnotationHighlightingMode>("PDFKit_90ad0eb69cc6bf4a", 574124278857614, undefined, []); },
   /**
    * static let none: PDFAnnotationHighlightingMode
    * @availability iOS 11.0+
    */
-  get none(): PDFAnnotationHighlightingMode { return callSDK<PDFAnnotationHighlightingMode>("PDFKit_a956b86ef7a76a8e", 730439760955842, undefined, []); },
+  get none(): PDFAnnotationHighlightingMode { return callSDK<PDFAnnotationHighlightingMode>("PDFKit_90ad0eb69cc6bf4a", 730439760955842, undefined, []); },
   /**
    * static let outline: PDFAnnotationHighlightingMode
    * @availability iOS 11.0+
    */
-  get outline(): PDFAnnotationHighlightingMode { return callSDK<PDFAnnotationHighlightingMode>("PDFKit_a956b86ef7a76a8e", 909792308275885, undefined, []); },
+  get outline(): PDFAnnotationHighlightingMode { return callSDK<PDFAnnotationHighlightingMode>("PDFKit_90ad0eb69cc6bf4a", 909792308275885, undefined, []); },
   /**
    * static let push: PDFAnnotationHighlightingMode
    * @availability iOS 11.0+
    */
-  get push(): PDFAnnotationHighlightingMode { return callSDK<PDFAnnotationHighlightingMode>("PDFKit_a956b86ef7a76a8e", 630401099707579, undefined, []); },
+  get push(): PDFAnnotationHighlightingMode { return callSDK<PDFAnnotationHighlightingMode>("PDFKit_90ad0eb69cc6bf4a", 630401099707579, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFAnnotationHighlightingMode { return callSDK<PDFAnnotationHighlightingMode>("PDFKit_a956b86ef7a76a8e", 881909835562722, undefined, [rawValue]); }
+  init(rawValue: string): PDFAnnotationHighlightingMode { return callSDK<PDFAnnotationHighlightingMode>("PDFKit_90ad0eb69cc6bf4a", 881909835562722, undefined, [rawValue]); }
 };
 
 /** struct PDFAnnotationKey */
@@ -580,214 +580,214 @@ export const PDFAnnotationKey = {
    * static let action: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get action(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1798368745387327, undefined, []); },
+  get action(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1798368745387327, undefined, []); },
   /**
    * static let additionalActions: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get additionalActions(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1898827240945557, undefined, []); },
+  get additionalActions(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1898827240945557, undefined, []); },
   /**
    * static let appearanceDictionary: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get appearanceDictionary(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 2324028467018561, undefined, []); },
+  get appearanceDictionary(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 2324028467018561, undefined, []); },
   /**
    * static let appearanceState: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get appearanceState(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 2797878620001738, undefined, []); },
+  get appearanceState(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 2797878620001738, undefined, []); },
   /**
    * static let border: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get border(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 3878691351343535, undefined, []); },
+  get border(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 3878691351343535, undefined, []); },
   /**
    * static let borderStyle: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get borderStyle(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1085064417993768, undefined, []); },
+  get borderStyle(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1085064417993768, undefined, []); },
   /**
    * static let color: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get color(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 4344292450823976, undefined, []); },
+  get color(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 4344292450823976, undefined, []); },
   /**
    * static let contents: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get contents(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 2778676696596383, undefined, []); },
+  get contents(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 2778676696596383, undefined, []); },
   /**
    * static let date: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get date(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1141043128998118, undefined, []); },
+  get date(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1141043128998118, undefined, []); },
   /**
    * static let defaultAppearance: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get defaultAppearance(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 927590726957117, undefined, []); },
+  get defaultAppearance(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 927590726957117, undefined, []); },
   /**
    * static let destination: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get destination(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 898236222990102, undefined, []); },
+  get destination(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 898236222990102, undefined, []); },
   /**
    * static let flags: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get flags(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1476539012219935, undefined, []); },
+  get flags(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1476539012219935, undefined, []); },
   /**
    * static let highlightingMode: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get highlightingMode(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1600259615250192, undefined, []); },
+  get highlightingMode(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1600259615250192, undefined, []); },
   /**
    * static let iconName: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get iconName(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1928159131900195, undefined, []); },
+  get iconName(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1928159131900195, undefined, []); },
   /**
    * static let inklist: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get inklist(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 3547543701869377, undefined, []); },
+  get inklist(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 3547543701869377, undefined, []); },
   /**
    * static let interiorColor: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get interiorColor(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 821407767146483, undefined, []); },
+  get interiorColor(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 821407767146483, undefined, []); },
   /**
    * static let lineEndingStyles: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get lineEndingStyles(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 721017270638978, undefined, []); },
+  get lineEndingStyles(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 721017270638978, undefined, []); },
   /**
    * static let linePoints: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get linePoints(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 3065482834274841, undefined, []); },
+  get linePoints(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 3065482834274841, undefined, []); },
   /**
    * static let name: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get nameValue(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1763036821027829, undefined, []); },
+  get nameValue(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1763036821027829, undefined, []); },
   /**
    * static let open: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get open(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 3765793008488995, undefined, []); },
+  get open(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 3765793008488995, undefined, []); },
   /**
    * static let page: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get page(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 452868774281638, undefined, []); },
+  get page(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 452868774281638, undefined, []); },
   /**
    * static let parent: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get parent(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 2082799083257809, undefined, []); },
+  get parent(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 2082799083257809, undefined, []); },
   /**
    * static let popup: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get popup(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 3077455682843367, undefined, []); },
+  get popup(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 3077455682843367, undefined, []); },
   /**
    * static let quadPoints: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get quadPoints(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 2434141163557249, undefined, []); },
+  get quadPoints(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 2434141163557249, undefined, []); },
   /**
    * static let quadding: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get quadding(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 873776591784977, undefined, []); },
+  get quadding(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 873776591784977, undefined, []); },
   /**
    * static let rect: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get rect(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 2934998919270583, undefined, []); },
+  get rect(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 2934998919270583, undefined, []); },
   /**
    * static let subtype: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get subtype(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 436649022894210, undefined, []); },
+  get subtype(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 436649022894210, undefined, []); },
   /**
    * static let textLabel: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get textLabel(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 4365851517416870, undefined, []); },
+  get textLabel(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 4365851517416870, undefined, []); },
   /**
    * static let widgetAppearanceDictionary: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetAppearanceDictionary(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 2699922765878598, undefined, []); },
+  get widgetAppearanceDictionary(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 2699922765878598, undefined, []); },
   /**
    * static let widgetBackgroundColor: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetBackgroundColor(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 4139349086378105, undefined, []); },
+  get widgetBackgroundColor(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 4139349086378105, undefined, []); },
   /**
    * static let widgetBorderColor: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetBorderColor(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 2713458090236006, undefined, []); },
+  get widgetBorderColor(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 2713458090236006, undefined, []); },
   /**
    * static let widgetCaption: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetCaption(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1565367110904792, undefined, []); },
+  get widgetCaption(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1565367110904792, undefined, []); },
   /**
    * static let widgetDefaultValue: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetDefaultValue(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 3044212437166720, undefined, []); },
+  get widgetDefaultValue(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 3044212437166720, undefined, []); },
   /**
    * static let widgetDownCaption: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetDownCaption(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 4117350333305722, undefined, []); },
+  get widgetDownCaption(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 4117350333305722, undefined, []); },
   /**
    * static let widgetFieldFlags: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetFieldFlags(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1962374017655896, undefined, []); },
+  get widgetFieldFlags(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1962374017655896, undefined, []); },
   /**
    * static let widgetFieldType: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetFieldType(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 2198804778817854, undefined, []); },
+  get widgetFieldType(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 2198804778817854, undefined, []); },
   /**
    * static let widgetMaxLen: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetMaxLen(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 3841204613528428, undefined, []); },
+  get widgetMaxLen(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 3841204613528428, undefined, []); },
   /**
    * static let widgetOptions: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetOptions(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 630981785470364, undefined, []); },
+  get widgetOptions(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 630981785470364, undefined, []); },
   /**
    * static let widgetRolloverCaption: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetRolloverCaption(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 4225604069059030, undefined, []); },
+  get widgetRolloverCaption(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 4225604069059030, undefined, []); },
   /**
    * static let widgetRotation: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetRotation(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 259225266351563, undefined, []); },
+  get widgetRotation(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 259225266351563, undefined, []); },
   /**
    * static let widgetTextLabelUI: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetTextLabelUI(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1715390649385764, undefined, []); },
+  get widgetTextLabelUI(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1715390649385764, undefined, []); },
   /**
    * static let widgetValue: PDFAnnotationKey
    * @availability iOS 11.0+
    */
-  get widgetValue(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 589579170778872, undefined, []); },
+  get widgetValue(): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 589579170778872, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_a956b86ef7a76a8e", 1579108345794079, undefined, [rawValue]); }
+  init(rawValue: string): PDFAnnotationKey { return callSDK<PDFAnnotationKey>("PDFKit_90ad0eb69cc6bf4a", 1579108345794079, undefined, [rawValue]); }
 };
 
 /** struct PDFAnnotationLineEndingStyle */
@@ -798,34 +798,34 @@ export const PDFAnnotationLineEndingStyle = {
    * static let circle: PDFAnnotationLineEndingStyle
    * @availability iOS 11.0+
    */
-  get circle(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_a956b86ef7a76a8e", 3017764647304528, undefined, []); },
+  get circle(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_90ad0eb69cc6bf4a", 3017764647304528, undefined, []); },
   /**
    * static let closedArrow: PDFAnnotationLineEndingStyle
    * @availability iOS 11.0+
    */
-  get closedArrow(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_a956b86ef7a76a8e", 2244067329570745, undefined, []); },
+  get closedArrow(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_90ad0eb69cc6bf4a", 2244067329570745, undefined, []); },
   /**
    * static let diamond: PDFAnnotationLineEndingStyle
    * @availability iOS 11.0+
    */
-  get diamond(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_a956b86ef7a76a8e", 1597282178504973, undefined, []); },
+  get diamond(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_90ad0eb69cc6bf4a", 1597282178504973, undefined, []); },
   /**
    * static let none: PDFAnnotationLineEndingStyle
    * @availability iOS 11.0+
    */
-  get none(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_a956b86ef7a76a8e", 1738448380384507, undefined, []); },
+  get none(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_90ad0eb69cc6bf4a", 1738448380384507, undefined, []); },
   /**
    * static let openArrow: PDFAnnotationLineEndingStyle
    * @availability iOS 11.0+
    */
-  get openArrow(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_a956b86ef7a76a8e", 2557958075598744, undefined, []); },
+  get openArrow(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_90ad0eb69cc6bf4a", 2557958075598744, undefined, []); },
   /**
    * static let square: PDFAnnotationLineEndingStyle
    * @availability iOS 11.0+
    */
-  get square(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_a956b86ef7a76a8e", 1319929316414194, undefined, []); },
+  get square(): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_90ad0eb69cc6bf4a", 1319929316414194, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_a956b86ef7a76a8e", 1904717513039926, undefined, [rawValue]); }
+  init(rawValue: string): PDFAnnotationLineEndingStyle { return callSDK<PDFAnnotationLineEndingStyle>("PDFKit_90ad0eb69cc6bf4a", 1904717513039926, undefined, [rawValue]); }
 };
 
 /** struct PDFAnnotationSubtype */
@@ -836,69 +836,69 @@ export const PDFAnnotationSubtype = {
    * static let circle: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get circle(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 745562174903032, undefined, []); },
+  get circle(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 745562174903032, undefined, []); },
   /**
    * static let freeText: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get freeText(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 4378141926763532, undefined, []); },
+  get freeText(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 4378141926763532, undefined, []); },
   /**
    * static let highlight: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get highlight(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 1847241391001716, undefined, []); },
+  get highlight(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 1847241391001716, undefined, []); },
   /**
    * static let ink: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get ink(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 1154425090113586, undefined, []); },
+  get ink(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 1154425090113586, undefined, []); },
   /**
    * static let line: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get line(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 974343227350273, undefined, []); },
+  get line(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 974343227350273, undefined, []); },
   /**
    * static let link: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get link(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 3794635842408474, undefined, []); },
+  get link(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 3794635842408474, undefined, []); },
   /**
    * static let popup: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get popup(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 2544844427083938, undefined, []); },
+  get popup(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 2544844427083938, undefined, []); },
   /**
    * static let square: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get square(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 2672044660641546, undefined, []); },
+  get square(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 2672044660641546, undefined, []); },
   /**
    * static let stamp: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get stamp(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 24004562375031, undefined, []); },
+  get stamp(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 24004562375031, undefined, []); },
   /**
    * static let strikeOut: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get strikeOut(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 4267267277489351, undefined, []); },
+  get strikeOut(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 4267267277489351, undefined, []); },
   /**
    * static let text: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get text(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 4438072713030543, undefined, []); },
+  get text(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 4438072713030543, undefined, []); },
   /**
    * static let underline: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get underline(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 400508471234124, undefined, []); },
+  get underline(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 400508471234124, undefined, []); },
   /**
    * static let widget: PDFAnnotationSubtype
    * @availability iOS 11.0+
    */
-  get widget(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 1074667462964217, undefined, []); },
+  get widget(): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 1074667462964217, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_a956b86ef7a76a8e", 3781971380509665, undefined, [rawValue]); }
+  init(rawValue: string): PDFAnnotationSubtype { return callSDK<PDFAnnotationSubtype>("PDFKit_90ad0eb69cc6bf4a", 3781971380509665, undefined, [rawValue]); }
 };
 
 /** struct PDFAnnotationTextIconType */
@@ -909,39 +909,39 @@ export const PDFAnnotationTextIconType = {
    * static let comment: PDFAnnotationTextIconType
    * @availability iOS 11.0+
    */
-  get comment(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_a956b86ef7a76a8e", 883219766528019, undefined, []); },
+  get comment(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_90ad0eb69cc6bf4a", 883219766528019, undefined, []); },
   /**
    * static let help: PDFAnnotationTextIconType
    * @availability iOS 11.0+
    */
-  get help(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_a956b86ef7a76a8e", 2002188827699743, undefined, []); },
+  get help(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_90ad0eb69cc6bf4a", 2002188827699743, undefined, []); },
   /**
    * static let insert: PDFAnnotationTextIconType
    * @availability iOS 11.0+
    */
-  get insert(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_a956b86ef7a76a8e", 575775362935094, undefined, []); },
+  get insert(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_90ad0eb69cc6bf4a", 575775362935094, undefined, []); },
   /**
    * static let key: PDFAnnotationTextIconType
    * @availability iOS 11.0+
    */
-  get key(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_a956b86ef7a76a8e", 283048472766942, undefined, []); },
+  get key(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_90ad0eb69cc6bf4a", 283048472766942, undefined, []); },
   /**
    * static let newParagraph: PDFAnnotationTextIconType
    * @availability iOS 11.0+
    */
-  get newParagraph(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_a956b86ef7a76a8e", 1169942049345745, undefined, []); },
+  get newParagraph(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_90ad0eb69cc6bf4a", 1169942049345745, undefined, []); },
   /**
    * static let note: PDFAnnotationTextIconType
    * @availability iOS 11.0+
    */
-  get note(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_a956b86ef7a76a8e", 3184035851211482, undefined, []); },
+  get note(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_90ad0eb69cc6bf4a", 3184035851211482, undefined, []); },
   /**
    * static let paragraph: PDFAnnotationTextIconType
    * @availability iOS 11.0+
    */
-  get paragraph(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_a956b86ef7a76a8e", 2588148981781807, undefined, []); },
+  get paragraph(): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_90ad0eb69cc6bf4a", 2588148981781807, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_a956b86ef7a76a8e", 3467279845973335, undefined, [rawValue]); }
+  init(rawValue: string): PDFAnnotationTextIconType { return callSDK<PDFAnnotationTextIconType>("PDFKit_90ad0eb69cc6bf4a", 3467279845973335, undefined, [rawValue]); }
 };
 
 /** struct PDFAnnotationWidgetSubtype */
@@ -952,24 +952,24 @@ export const PDFAnnotationWidgetSubtype = {
    * static let button: PDFAnnotationWidgetSubtype
    * @availability iOS 11.0+
    */
-  get button(): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_a956b86ef7a76a8e", 3143614911015308, undefined, []); },
+  get button(): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_90ad0eb69cc6bf4a", 3143614911015308, undefined, []); },
   /**
    * static let choice: PDFAnnotationWidgetSubtype
    * @availability iOS 11.0+
    */
-  get choice(): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_a956b86ef7a76a8e", 3509723995286928, undefined, []); },
+  get choice(): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_90ad0eb69cc6bf4a", 3509723995286928, undefined, []); },
   /**
    * static let signature: PDFAnnotationWidgetSubtype
    * @availability iOS 11.0+
    */
-  get signature(): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_a956b86ef7a76a8e", 3894476230069261, undefined, []); },
+  get signature(): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_90ad0eb69cc6bf4a", 3894476230069261, undefined, []); },
   /**
    * static let text: PDFAnnotationWidgetSubtype
    * @availability iOS 11.0+
    */
-  get text(): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_a956b86ef7a76a8e", 3838813306373579, undefined, []); },
+  get text(): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_90ad0eb69cc6bf4a", 3838813306373579, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_a956b86ef7a76a8e", 3186179384247943, undefined, [rawValue]); }
+  init(rawValue: string): PDFAnnotationWidgetSubtype { return callSDK<PDFAnnotationWidgetSubtype>("PDFKit_90ad0eb69cc6bf4a", 3186179384247943, undefined, [rawValue]); }
 };
 
 /**
@@ -978,54 +978,54 @@ export const PDFAnnotationWidgetSubtype = {
  */
 export class PDFAppearanceCharacteristics extends SDKHandle {
   /** init() */
-  static init(): PDFAppearanceCharacteristics { return callSDK<PDFAppearanceCharacteristics>("PDFKit_a956b86ef7a76a8e", 778198409322503, undefined, []); }
+  static init(): PDFAppearanceCharacteristics { return callSDK<PDFAppearanceCharacteristics>("PDFKit_90ad0eb69cc6bf4a", 778198409322503, undefined, []); }
   /**
    * var appearanceCharacteristicsKeyValues: [AnyHashable : Any] { get }
    * @availability iOS 11.0+
    */
-  get appearanceCharacteristicsKeyValues(): $SDK3 { return callSDK<$SDK3>("PDFKit_a956b86ef7a76a8e", 2594808397021502, this, []); }
+  get appearanceCharacteristicsKeyValues(): $SDK3 { return callSDK<$SDK3>("PDFKit_90ad0eb69cc6bf4a", 2594808397021502, this, []); }
   /**
    * @NSCopying var backgroundColor: UIColor? { get set }
    * @availability iOS 11.0+
    */
-  get backgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_a956b86ef7a76a8e", 3249522013225787, this, []); }
-  set backgroundColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3906604754483133, this, [value]); }
+  get backgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_90ad0eb69cc6bf4a", 3249522013225787, this, []); }
+  set backgroundColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3906604754483133, this, [value]); }
   /**
    * @NSCopying var borderColor: UIColor? { get set }
    * @availability iOS 11.0+
    */
-  get borderColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_a956b86ef7a76a8e", 2856792079958322, this, []); }
-  set borderColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 4385054349338507, this, [value]); }
+  get borderColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_90ad0eb69cc6bf4a", 2856792079958322, this, []); }
+  set borderColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 4385054349338507, this, [value]); }
   /**
    * var caption: String? { get set }
    * @availability iOS 11.0+
    */
-  get caption(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 1340594958728709, this, []); }
-  set caption(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 4488815110312730, this, [value]); }
+  get caption(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 1340594958728709, this, []); }
+  set caption(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 4488815110312730, this, [value]); }
   /**
    * var controlType: PDFWidgetControlType { get set }
    * @availability iOS 11.0+
    */
-  get controlType(): PDFWidgetControlType { return callSDK<PDFWidgetControlType>("PDFKit_a956b86ef7a76a8e", 4213838473245358, this, []); }
-  set controlType(value: PDFWidgetControlType) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 16885552732421, this, [value]); }
+  get controlType(): PDFWidgetControlType { return callSDK<PDFWidgetControlType>("PDFKit_90ad0eb69cc6bf4a", 4213838473245358, this, []); }
+  set controlType(value: PDFWidgetControlType) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 16885552732421, this, [value]); }
   /**
    * var downCaption: String? { get set }
    * @availability iOS 11.0+
    */
-  get downCaption(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 3851280176566255, this, []); }
-  set downCaption(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 517485387745587, this, [value]); }
+  get downCaption(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 3851280176566255, this, []); }
+  set downCaption(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 517485387745587, this, [value]); }
   /**
    * var rolloverCaption: String? { get set }
    * @availability iOS 11.0+
    */
-  get rolloverCaption(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 816385317574565, this, []); }
-  set rolloverCaption(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3787529921913355, this, [value]); }
+  get rolloverCaption(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 816385317574565, this, []); }
+  set rolloverCaption(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3787529921913355, this, [value]); }
   /**
    * var rotation: Int { get set }
    * @availability iOS 11.0+
    */
-  get rotation(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 1817648005116508, this, []); }
-  set rotation(value: number) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1960460668716451, this, [value]); }
+  get rotation(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 1817648005116508, this, []); }
+  set rotation(value: number) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1960460668716451, this, [value]); }
   declare readonly $type: { "c:objc(cs)PDFAppearanceCharacteristics": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "appearanceCharacteristicsKeyValues": true; "backgroundColor": true; "borderColor": true; "caption": true; "controlType": true; "downCaption": true; "rolloverCaption": true; "rotation": true };
 }
@@ -1038,34 +1038,34 @@ export const PDFAppearanceCharacteristicsKey = {
    * static let backgroundColor: PDFAppearanceCharacteristicsKey
    * @availability iOS 11.0+
    */
-  get backgroundColor(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_a956b86ef7a76a8e", 4398770685577421, undefined, []); },
+  get backgroundColor(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_90ad0eb69cc6bf4a", 4398770685577421, undefined, []); },
   /**
    * static let borderColor: PDFAppearanceCharacteristicsKey
    * @availability iOS 11.0+
    */
-  get borderColor(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_a956b86ef7a76a8e", 2698506076360071, undefined, []); },
+  get borderColor(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_90ad0eb69cc6bf4a", 2698506076360071, undefined, []); },
   /**
    * static let caption: PDFAppearanceCharacteristicsKey
    * @availability iOS 11.0+
    */
-  get caption(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_a956b86ef7a76a8e", 1165415819540641, undefined, []); },
+  get caption(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_90ad0eb69cc6bf4a", 1165415819540641, undefined, []); },
   /**
    * static let downCaption: PDFAppearanceCharacteristicsKey
    * @availability iOS 11.0+
    */
-  get downCaption(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_a956b86ef7a76a8e", 3115135358897864, undefined, []); },
+  get downCaption(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_90ad0eb69cc6bf4a", 3115135358897864, undefined, []); },
   /**
    * static let rolloverCaption: PDFAppearanceCharacteristicsKey
    * @availability iOS 11.0+
    */
-  get rolloverCaption(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_a956b86ef7a76a8e", 2315804231033633, undefined, []); },
+  get rolloverCaption(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_90ad0eb69cc6bf4a", 2315804231033633, undefined, []); },
   /**
    * static let rotation: PDFAppearanceCharacteristicsKey
    * @availability iOS 11.0+
    */
-  get rotation(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_a956b86ef7a76a8e", 3859628243789870, undefined, []); },
+  get rotation(): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_90ad0eb69cc6bf4a", 3859628243789870, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_a956b86ef7a76a8e", 3673574865601379, undefined, [rawValue]); }
+  init(rawValue: string): PDFAppearanceCharacteristicsKey { return callSDK<PDFAppearanceCharacteristicsKey>("PDFKit_90ad0eb69cc6bf4a", 3673574865601379, undefined, [rawValue]); }
 };
 
 /**
@@ -1079,57 +1079,57 @@ export const PDFAreaOfInterest = {
    * static var annotationArea: PDFAreaOfInterest { get }
    * @availability iOS 11.0+
    */
-  get annotationArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 1393867952474641, undefined, []); },
+  get annotationArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 1393867952474641, undefined, []); },
   /**
    * static var anyArea: PDFAreaOfInterest { get }
    * @availability iOS 11.0+
    */
-  get anyArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 4017096038601652, undefined, []); },
+  get anyArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 4017096038601652, undefined, []); },
   /**
    * static var controlArea: PDFAreaOfInterest { get }
    * @availability iOS 11.0+
    */
-  get controlArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 1617215677177452, undefined, []); },
+  get controlArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 1617215677177452, undefined, []); },
   /**
    * static var iconArea: PDFAreaOfInterest { get }
    * @availability iOS 11.0+
    */
-  get iconArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 4334568233781526, undefined, []); },
+  get iconArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 4334568233781526, undefined, []); },
   /**
    * static var imageArea: PDFAreaOfInterest { get }
    * @availability iOS 11.0+
    */
-  get imageArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 4314814523499819, undefined, []); },
+  get imageArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 4314814523499819, undefined, []); },
   /**
    * static var linkArea: PDFAreaOfInterest { get }
    * @availability iOS 11.0+
    */
-  get linkArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 3141460941667767, undefined, []); },
+  get linkArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 3141460941667767, undefined, []); },
   /**
    * static var pageArea: PDFAreaOfInterest { get }
    * @availability iOS 11.0+
    */
-  get pageArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 632303621030484, undefined, []); },
+  get pageArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 632303621030484, undefined, []); },
   /**
    * static var popupArea: PDFAreaOfInterest { get }
    * @availability iOS 11.0+
    */
-  get popupArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 2587596495792277, undefined, []); },
+  get popupArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 2587596495792277, undefined, []); },
   /**
    * static var textArea: PDFAreaOfInterest { get }
    * @availability iOS 11.0+
    */
-  get textArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 2420287940439028, undefined, []); },
+  get textArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 2420287940439028, undefined, []); },
   /**
    * static var textFieldArea: PDFAreaOfInterest { get }
    * @availability iOS 11.0+
    */
-  get textFieldArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 3311247639185435, undefined, []); },
+  get textFieldArea(): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 3311247639185435, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 2900478657629216, undefined, [rawValue]); }
+  init(rawValue: number): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 2900478657629216, undefined, [rawValue]); }
 };
 
 /**
@@ -1141,32 +1141,32 @@ export class PDFBorder extends SDKHandle {
    * func draw(in rect: CGRect)
    * @availability iOS 11.0+
    */
-  draw(rect: $SDK1): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2587166900728723, this, [rect]); }
+  draw(rect: $SDK1): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2587166900728723, this, [rect]); }
   /** init() */
-  static init(): PDFBorder { return callSDK<PDFBorder>("PDFKit_a956b86ef7a76a8e", 2819052024990189, undefined, []); }
+  static init(): PDFBorder { return callSDK<PDFBorder>("PDFKit_90ad0eb69cc6bf4a", 2819052024990189, undefined, []); }
   /**
    * var borderKeyValues: [AnyHashable : Any] { get }
    * @availability iOS 11.0+
    */
-  get borderKeyValues(): $SDK3 { return callSDK<$SDK3>("PDFKit_a956b86ef7a76a8e", 447534261603124, this, []); }
+  get borderKeyValues(): $SDK3 { return callSDK<$SDK3>("PDFKit_90ad0eb69cc6bf4a", 447534261603124, this, []); }
   /**
    * var dashPattern: [Any]? { get set }
    * @availability iOS 11.0+
    */
-  get dashPattern(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("PDFKit_a956b86ef7a76a8e", 3556868823191196, this, []); }
-  set dashPattern(value: (Array<unknown>) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 4481408284791320, this, [value]); }
+  get dashPattern(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("PDFKit_90ad0eb69cc6bf4a", 3556868823191196, this, []); }
+  set dashPattern(value: (Array<unknown>) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 4481408284791320, this, [value]); }
   /**
    * var lineWidth: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get lineWidth(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 2767457279304356, this, []); }
-  set lineWidth(value: number) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 4223174343011634, this, [value]); }
+  get lineWidth(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 2767457279304356, this, []); }
+  set lineWidth(value: number) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 4223174343011634, this, [value]); }
   /**
    * var style: PDFBorderStyle { get set }
    * @availability iOS 11.0+
    */
-  get style(): PDFBorderStyle { return callSDK<PDFBorderStyle>("PDFKit_a956b86ef7a76a8e", 1665076869807895, this, []); }
-  set style(value: PDFBorderStyle) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3497362685757340, this, [value]); }
+  get style(): PDFBorderStyle { return callSDK<PDFBorderStyle>("PDFKit_90ad0eb69cc6bf4a", 1665076869807895, this, []); }
+  set style(value: PDFBorderStyle) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3497362685757340, this, [value]); }
   declare readonly $type: { "c:objc(cs)PDFBorder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "borderKeyValues": true; "dashPattern": true; "lineWidth": true; "style": true };
 }
@@ -1179,19 +1179,19 @@ export const PDFBorderKey = {
    * static let dashPattern: PDFBorderKey
    * @availability iOS 11.0+
    */
-  get dashPattern(): PDFBorderKey { return callSDK<PDFBorderKey>("PDFKit_a956b86ef7a76a8e", 1109424277591239, undefined, []); },
+  get dashPattern(): PDFBorderKey { return callSDK<PDFBorderKey>("PDFKit_90ad0eb69cc6bf4a", 1109424277591239, undefined, []); },
   /**
    * static let lineWidth: PDFBorderKey
    * @availability iOS 11.0+
    */
-  get lineWidth(): PDFBorderKey { return callSDK<PDFBorderKey>("PDFKit_a956b86ef7a76a8e", 1958460874421741, undefined, []); },
+  get lineWidth(): PDFBorderKey { return callSDK<PDFBorderKey>("PDFKit_90ad0eb69cc6bf4a", 1958460874421741, undefined, []); },
   /**
    * static let style: PDFBorderKey
    * @availability iOS 11.0+
    */
-  get style(): PDFBorderKey { return callSDK<PDFBorderKey>("PDFKit_a956b86ef7a76a8e", 3555172934670182, undefined, []); },
+  get style(): PDFBorderKey { return callSDK<PDFBorderKey>("PDFKit_90ad0eb69cc6bf4a", 3555172934670182, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFBorderKey { return callSDK<PDFBorderKey>("PDFKit_a956b86ef7a76a8e", 218009853791283, undefined, [rawValue]); }
+  init(rawValue: string): PDFBorderKey { return callSDK<PDFBorderKey>("PDFKit_90ad0eb69cc6bf4a", 218009853791283, undefined, [rawValue]); }
 };
 
 /**
@@ -1205,7 +1205,7 @@ export const PDFBorderStyle = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PDFBorderStyle) | null { return callSDK<(PDFBorderStyle) | null>("PDFKit_a956b86ef7a76a8e", 4296370549749300, undefined, [rawValue]); }
+  init(rawValue: number): (PDFBorderStyle) | null { return callSDK<(PDFBorderStyle) | null>("PDFKit_90ad0eb69cc6bf4a", 4296370549749300, undefined, [rawValue]); }
 };
 
 /**
@@ -1217,28 +1217,28 @@ export class PDFDestination extends SDKHandle {
    * func compare(_ destination: PDFDestination) -> ComparisonResult
    * @availability iOS 11.0+
    */
-  compare(destination: PDFDestination): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("PDFKit_a956b86ef7a76a8e", 3472764153494070, this, [destination]); }
+  compare(destination: PDFDestination): _Foundation_ComparisonResult { return callSDK<_Foundation_ComparisonResult>("PDFKit_90ad0eb69cc6bf4a", 3472764153494070, this, [destination]); }
   /**
    * init(page: PDFPage, at point: CGPoint)
    * @availability iOS 11.0+
    */
-  static init(page: PDFPage, point: $SDK0): PDFDestination { return callSDK<PDFDestination>("PDFKit_a956b86ef7a76a8e", 2727579632368313, undefined, [page, point]); }
+  static init(page: PDFPage, point: $SDK0): PDFDestination { return callSDK<PDFDestination>("PDFKit_90ad0eb69cc6bf4a", 2727579632368313, undefined, [page, point]); }
   /**
    * weak var page: PDFPage? { get }
    * @availability iOS 11.0+
    */
-  get page(): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_a956b86ef7a76a8e", 1161273072716360, this, []); }
+  get page(): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_90ad0eb69cc6bf4a", 1161273072716360, this, []); }
   /**
    * var point: CGPoint { get }
    * @availability iOS 11.0+
    */
-  get point(): $SDK0 { return callSDK<$SDK0>("PDFKit_a956b86ef7a76a8e", 4476037016311364, this, []); }
+  get point(): $SDK0 { return callSDK<$SDK0>("PDFKit_90ad0eb69cc6bf4a", 4476037016311364, this, []); }
   /**
    * var zoom: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get zoom(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 4376336301094613, this, []); }
-  set zoom(value: number) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2277316435315347, this, [value]); }
+  get zoom(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 4376336301094613, this, []); }
+  set zoom(value: number) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2277316435315347, this, [value]); }
   declare readonly $type: { "c:objc(cs)PDFDestination": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "page": true; "point": true; "zoom": true };
 }
@@ -1254,7 +1254,7 @@ export const PDFDisplayBox = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PDFDisplayBox) | null { return callSDK<(PDFDisplayBox) | null>("PDFKit_a956b86ef7a76a8e", 2082109157978556, undefined, [rawValue]); }
+  init(rawValue: number): (PDFDisplayBox) | null { return callSDK<(PDFDisplayBox) | null>("PDFKit_90ad0eb69cc6bf4a", 2082109157978556, undefined, [rawValue]); }
 };
 
 /**
@@ -1268,7 +1268,7 @@ export const PDFDisplayDirection = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PDFDisplayDirection) | null { return callSDK<(PDFDisplayDirection) | null>("PDFKit_a956b86ef7a76a8e", 1685133321748558, undefined, [rawValue]); }
+  init(rawValue: number): (PDFDisplayDirection) | null { return callSDK<(PDFDisplayDirection) | null>("PDFKit_90ad0eb69cc6bf4a", 1685133321748558, undefined, [rawValue]); }
 };
 
 /**
@@ -1282,7 +1282,7 @@ export const PDFDisplayMode = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PDFDisplayMode) | null { return callSDK<(PDFDisplayMode) | null>("PDFKit_a956b86ef7a76a8e", 1389773634959141, undefined, [rawValue]); }
+  init(rawValue: number): (PDFDisplayMode) | null { return callSDK<(PDFDisplayMode) | null>("PDFKit_90ad0eb69cc6bf4a", 1389773634959141, undefined, [rawValue]); }
 };
 
 /**
@@ -1294,240 +1294,240 @@ export class PDFDocument extends SDKHandle {
    * func beginFindString(_ string: String, withOptions options: NSString.CompareOptions = [])
    * @availability iOS 11.0+
    */
-  beginFindString(string: string, options?: _Foundation_NSString_CompareOptions): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3115268817527025, this, [string, options]); }
+  beginFindString(string: string, options?: _Foundation_NSString_CompareOptions): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3115268817527025, this, [string, options]); }
   /**
    * func beginFindStrings(_ strings: [String], withOptions options: NSString.CompareOptions = [])
    * @availability iOS 11.0+
    */
-  beginFindStrings(strings: Array<string>, options?: _Foundation_NSString_CompareOptions): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1549764948524632, this, [strings, options]); }
+  beginFindStrings(strings: Array<string>, options?: _Foundation_NSString_CompareOptions): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1549764948524632, this, [strings, options]); }
   /**
    * func cancelFindString()
    * @availability iOS 11.0+
    */
-  cancelFindString(): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2579698010354647, this, []); }
+  cancelFindString(): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2579698010354647, this, []); }
   /**
    * func dataRepresentation() -> Data?
    * @availability iOS 11.0+
    */
-  dataRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PDFKit_a956b86ef7a76a8e", 91566611523257, this, []); }
+  dataRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PDFKit_90ad0eb69cc6bf4a", 91566611523257, this, []); }
   /**
    * func dataRepresentation(options: [AnyHashable : Any] = [:]) -> Data?
    * @availability iOS 11.0+
    */
-  dataRepresentationOptions(options?: $SDK3): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PDFKit_a956b86ef7a76a8e", 4365608761671940, this, [options]); }
+  dataRepresentationOptions(options?: $SDK3): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PDFKit_90ad0eb69cc6bf4a", 4365608761671940, this, [options]); }
   /**
    * func exchangePage(at indexA: Int, withPageAt indexB: Int)
    * @availability iOS 11.0+
    */
-  exchangePage(indexA: number, indexB: number): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3048902784088572, this, [indexA, indexB]); }
+  exchangePage(indexA: number, indexB: number): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3048902784088572, this, [indexA, indexB]); }
   /**
    * func findString(_ string: String, fromSelection selection: PDFSelection?, withOptions options: NSString.CompareOptions = []) -> PDFSelection?
    * @availability iOS 11.0+
    */
-  findStringFromSelectionWithOptions(string: string, selection?: (PDFSelection) | null, options?: _Foundation_NSString_CompareOptions): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 1286588492770727, this, [string, selection, options]); }
+  findStringFromSelectionWithOptions(string: string, selection?: (PDFSelection) | null, options?: _Foundation_NSString_CompareOptions): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 1286588492770727, this, [string, selection, options]); }
   /**
    * func findString(_ string: String, withOptions options: NSString.CompareOptions = []) -> [PDFSelection]
    * @availability iOS 11.0+
    */
-  findStringWithOptions(string: string, options?: _Foundation_NSString_CompareOptions): Array<PDFSelection> { return callSDK<Array<PDFSelection>>("PDFKit_a956b86ef7a76a8e", 1990039990487835, this, [string, options]); }
+  findStringWithOptions(string: string, options?: _Foundation_NSString_CompareOptions): Array<PDFSelection> { return callSDK<Array<PDFSelection>>("PDFKit_90ad0eb69cc6bf4a", 1990039990487835, this, [string, options]); }
   /**
    * func index(for page: PDFPage) -> Int
    * @availability iOS 11.0+
    */
-  index(page: PDFPage): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 1596144380826199, this, [page]); }
+  index(page: PDFPage): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 1596144380826199, this, [page]); }
   /**
    * init()
    * @availability iOS 11.0+
    */
-  static init(): PDFDocument { return callSDK<PDFDocument>("PDFKit_a956b86ef7a76a8e", 3019741824983550, undefined, []); }
+  static init(): PDFDocument { return callSDK<PDFDocument>("PDFKit_90ad0eb69cc6bf4a", 3019741824983550, undefined, []); }
   /**
    * init?(data: Data)
    * @availability iOS 11.0+
    */
-  static initData(data: ArrayBuffer): (PDFDocument) | null { return callSDK<(PDFDocument) | null>("PDFKit_a956b86ef7a76a8e", 326948475038748, undefined, [data]); }
+  static initData(data: ArrayBuffer): (PDFDocument) | null { return callSDK<(PDFDocument) | null>("PDFKit_90ad0eb69cc6bf4a", 326948475038748, undefined, [data]); }
   /**
    * init?(url: URL)
    * @availability iOS 11.0+
    */
-  static initUrl(url: string): (PDFDocument) | null { return callSDK<(PDFDocument) | null>("PDFKit_a956b86ef7a76a8e", 1192279242892654, undefined, [url]); }
+  static initUrl(url: string): (PDFDocument) | null { return callSDK<(PDFDocument) | null>("PDFKit_90ad0eb69cc6bf4a", 1192279242892654, undefined, [url]); }
   /**
    * func insert(_ page: PDFPage, at index: Int)
    * @availability iOS 11.0+
    */
-  insert(page: PDFPage, index: number): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1458137620956655, this, [page, index]); }
+  insert(page: PDFPage, index: number): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1458137620956655, this, [page, index]); }
   /**
    * func outlineItem(for selection: PDFSelection) -> PDFOutline?
    * @availability iOS 11.0+
    */
-  outlineItem(selection: PDFSelection): (PDFOutline) | null { return callSDK<(PDFOutline) | null>("PDFKit_a956b86ef7a76a8e", 4080506682873701, this, [selection]); }
+  outlineItem(selection: PDFSelection): (PDFOutline) | null { return callSDK<(PDFOutline) | null>("PDFKit_90ad0eb69cc6bf4a", 4080506682873701, this, [selection]); }
   /**
    * func page(at index: Int) -> PDFPage?
    * @availability iOS 11.0+
    */
-  page(index: number): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_a956b86ef7a76a8e", 1799824826397140, this, [index]); }
+  page(index: number): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_90ad0eb69cc6bf4a", 1799824826397140, this, [index]); }
   /**
    * func removePage(at index: Int)
    * @availability iOS 11.0+
    */
-  removePage(index: number): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3642643337480815, this, [index]); }
+  removePage(index: number): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3642643337480815, this, [index]); }
   /**
    * func selection(from startPage: PDFPage, atCharacterIndex startCharacter: Int, to endPage: PDFPage, atCharacterIndex endCharacter: Int) -> PDFSelection?
    * @availability iOS 11.0+
    */
-  selectionFromAtCharacterIndexToAtCharacterIndex(startPage: PDFPage, startCharacter: number, endPage: PDFPage, endCharacter: number): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 2987055038472325, this, [startPage, startCharacter, endPage, endCharacter]); }
+  selectionFromAtCharacterIndexToAtCharacterIndex(startPage: PDFPage, startCharacter: number, endPage: PDFPage, endCharacter: number): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 2987055038472325, this, [startPage, startCharacter, endPage, endCharacter]); }
   /**
    * func selection(from startPage: PDFPage, at startPoint: CGPoint, to endPage: PDFPage, at endPoint: CGPoint) -> PDFSelection?
    * @availability iOS 11.0+
    */
-  selectionFromAtToAt(startPage: PDFPage, startPoint: $SDK0, endPage: PDFPage, endPoint: $SDK0): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 3873977625268384, this, [startPage, startPoint, endPage, endPoint]); }
+  selectionFromAtToAt(startPage: PDFPage, startPoint: $SDK0, endPage: PDFPage, endPoint: $SDK0): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 3873977625268384, this, [startPage, startPoint, endPage, endPoint]); }
   /**
    * func selection(from startPage: PDFPage, at startPoint: CGPoint, to endPage: PDFPage, at endPoint: CGPoint, with granularity: PDFSelectionGranularity) -> PDFSelection?
    * @availability iOS 18.0+
    */
-  selectionFromAtToAtWith(startPage: PDFPage, startPoint: $SDK0, endPage: PDFPage, endPoint: $SDK0, granularity: PDFSelectionGranularity): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 2378925534020115, this, [startPage, startPoint, endPage, endPoint, granularity]); }
+  selectionFromAtToAtWith(startPage: PDFPage, startPoint: $SDK0, endPage: PDFPage, endPoint: $SDK0, granularity: PDFSelectionGranularity): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 2378925534020115, this, [startPage, startPoint, endPage, endPoint, granularity]); }
   /**
    * func unlock(withPassword password: String) -> Bool
    * @availability iOS 11.0+
    */
-  unlock(password: string): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 2371664026294021, this, [password]); }
+  unlock(password: string): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 2371664026294021, this, [password]); }
   /**
    * func write(toFile path: String) -> Bool
    * @availability iOS 11.0+
    */
-  writeToFile(path: string): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 4172900124996136, this, [path]); }
+  writeToFile(path: string): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 4172900124996136, this, [path]); }
   /**
    * func write(toFile path: String, withOptions options: [PDFDocumentWriteOption : Any]? = nil) -> Bool
    * @availability iOS 11.0+
    */
-  writeToFileWithOptions(path: string, options?: $SDK7): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3146010292160908, this, [path, options]); }
+  writeToFileWithOptions(path: string, options?: $SDK7): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3146010292160908, this, [path, options]); }
   /**
    * func write(to url: URL) -> Bool
    * @availability iOS 11.0+
    */
-  writeTo(url: string): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 1969455424955591, this, [url]); }
+  writeTo(url: string): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 1969455424955591, this, [url]); }
   /**
    * func write(to url: URL, withOptions options: [PDFDocumentWriteOption : Any]? = nil) -> Bool
    * @availability iOS 11.0+
    */
-  writeToWithOptions(url: string, options?: $SDK7): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 1144470063322804, this, [url, options]); }
+  writeToWithOptions(url: string, options?: $SDK7): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 1144470063322804, this, [url, options]); }
   /**
    * var accessPermissions: PDFAccessPermissions { get }
    * @availability iOS 11.0+
    */
-  get accessPermissions(): PDFAccessPermissions { return callSDK<PDFAccessPermissions>("PDFKit_a956b86ef7a76a8e", 3923994422197985, this, []); }
+  get accessPermissions(): PDFAccessPermissions { return callSDK<PDFAccessPermissions>("PDFKit_90ad0eb69cc6bf4a", 3923994422197985, this, []); }
   /**
    * var allowsCommenting: Bool { get }
    * @availability iOS 11.0+
    */
-  get allowsCommenting(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 4326973372094403, this, []); }
+  get allowsCommenting(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 4326973372094403, this, []); }
   /**
    * var allowsContentAccessibility: Bool { get }
    * @availability iOS 11.0+
    */
-  get allowsContentAccessibility(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 628889035565464, this, []); }
+  get allowsContentAccessibility(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 628889035565464, this, []); }
   /**
    * var allowsCopying: Bool { get }
    * @availability iOS 11.0+
    */
-  get allowsCopying(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 764736980400418, this, []); }
+  get allowsCopying(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 764736980400418, this, []); }
   /**
    * var allowsDocumentAssembly: Bool { get }
    * @availability iOS 11.0+
    */
-  get allowsDocumentAssembly(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 976031407683092, this, []); }
+  get allowsDocumentAssembly(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 976031407683092, this, []); }
   /**
    * var allowsDocumentChanges: Bool { get }
    * @availability iOS 11.0+
    */
-  get allowsDocumentChanges(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 454188854638428, this, []); }
+  get allowsDocumentChanges(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 454188854638428, this, []); }
   /**
    * var allowsFormFieldEntry: Bool { get }
    * @availability iOS 11.0+
    */
-  get allowsFormFieldEntry(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 2889325209622862, this, []); }
+  get allowsFormFieldEntry(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 2889325209622862, this, []); }
   /**
    * var allowsPrinting: Bool { get }
    * @availability iOS 11.0+
    */
-  get allowsPrinting(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3472194483672602, this, []); }
+  get allowsPrinting(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3472194483672602, this, []); }
   /**
    * weak var delegate: (any PDFDocumentDelegate)? { get set }
    * @availability iOS 11.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PDFKit_a956b86ef7a76a8e", 954108641987528, this, []); }
-  set delegate(value: (Implements<PDFDocumentDelegate> | SDKHandle) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2645459311073119, this, [value], [{"protocol":"c:objc(pl)PDFDocumentDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PDFKit_90ad0eb69cc6bf4a", 954108641987528, this, []); }
+  set delegate(value: (Implements<PDFDocumentDelegate> | SDKHandle) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2645459311073119, this, [value], [{"protocol":"c:objc(pl)PDFDocumentDelegate"}]); }
   /**
    * var documentAttributes: [AnyHashable : Any]? { get set }
    * @availability iOS 11.0+
    */
-  get documentAttributes(): $SDK2 { return callSDK<$SDK2>("PDFKit_a956b86ef7a76a8e", 1832984400452171, this, []); }
-  set documentAttributes(value: $SDK2) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 404366250959380, this, [value]); }
+  get documentAttributes(): $SDK2 { return callSDK<$SDK2>("PDFKit_90ad0eb69cc6bf4a", 1832984400452171, this, []); }
+  set documentAttributes(value: $SDK2) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 404366250959380, this, [value]); }
   /**
    * var documentRef: CGPDFDocument? { get }
    * @availability iOS 11.0+
    */
-  get documentRef(): (_CoreGraphics_CGPDFDocument) | null { return callSDK<(_CoreGraphics_CGPDFDocument) | null>("PDFKit_a956b86ef7a76a8e", 3702682210125526, this, []); }
+  get documentRef(): (_CoreGraphics_CGPDFDocument) | null { return callSDK<(_CoreGraphics_CGPDFDocument) | null>("PDFKit_90ad0eb69cc6bf4a", 3702682210125526, this, []); }
   /**
    * var documentURL: URL? { get }
    * @availability iOS 11.0+
    */
-  get documentURL(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 2894305705816064, this, []); }
+  get documentURL(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 2894305705816064, this, []); }
   /**
    * var isEncrypted: Bool { get }
    * @availability iOS 11.0+
    */
-  get isEncrypted(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3733076400993997, this, []); }
+  get isEncrypted(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3733076400993997, this, []); }
   /**
    * var isFinding: Bool { get }
    * @availability iOS 11.0+
    */
-  get isFinding(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3245105750262475, this, []); }
+  get isFinding(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3245105750262475, this, []); }
   /**
    * var isLocked: Bool { get }
    * @availability iOS 11.0+
    */
-  get isLocked(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 502318312521961, this, []); }
+  get isLocked(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 502318312521961, this, []); }
   /**
    * var majorVersion: Int { get }
    * @availability iOS 11.0+
    */
-  get majorVersion(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 4206550407659793, this, []); }
+  get majorVersion(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 4206550407659793, this, []); }
   /**
    * var minorVersion: Int { get }
    * @availability iOS 11.0+
    */
-  get minorVersion(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 415008520051154, this, []); }
+  get minorVersion(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 415008520051154, this, []); }
   /**
    * var outlineRoot: PDFOutline? { get set }
    * @availability iOS 11.0+
    */
-  get outlineRoot(): (PDFOutline) | null { return callSDK<(PDFOutline) | null>("PDFKit_a956b86ef7a76a8e", 2949236441872092, this, []); }
-  set outlineRoot(value: (PDFOutline) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2258286049693739, this, [value]); }
+  get outlineRoot(): (PDFOutline) | null { return callSDK<(PDFOutline) | null>("PDFKit_90ad0eb69cc6bf4a", 2949236441872092, this, []); }
+  set outlineRoot(value: (PDFOutline) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2258286049693739, this, [value]); }
   /**
    * var pageClass: AnyClass { get }
    * @availability iOS 11.0+
    */
-  get pageClass(): string { return callSDK<string>("PDFKit_a956b86ef7a76a8e", 694302332901784, this, []); }
+  get pageClass(): string { return callSDK<string>("PDFKit_90ad0eb69cc6bf4a", 694302332901784, this, []); }
   /**
    * var pageCount: Int { get }
    * @availability iOS 11.0+
    */
-  get pageCount(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 2146750302599247, this, []); }
+  get pageCount(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 2146750302599247, this, []); }
   /**
    * var permissionsStatus: PDFDocumentPermissions { get }
    * @availability iOS 11.0+
    */
-  get permissionsStatus(): PDFDocumentPermissions { return callSDK<PDFDocumentPermissions>("PDFKit_a956b86ef7a76a8e", 2372983974393630, this, []); }
+  get permissionsStatus(): PDFDocumentPermissions { return callSDK<PDFDocumentPermissions>("PDFKit_90ad0eb69cc6bf4a", 2372983974393630, this, []); }
   /**
    * var selectionForEntireDocument: PDFSelection? { get }
    * @availability iOS 11.0+
    */
-  get selectionForEntireDocument(): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 220792189984678, this, []); }
+  get selectionForEntireDocument(): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 220792189984678, this, []); }
   /**
    * var string: String? { get }
    * @availability iOS 11.0+
    */
-  get string(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 2114144060265438, this, []); }
+  get string(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 2114144060265438, this, []); }
   declare readonly $type: { "c:objc(cs)PDFDocument": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessPermissions": true; "allowsCommenting": true; "allowsContentAccessibility": true; "allowsCopying": true; "allowsDocumentAssembly": true; "allowsDocumentChanges": true; "allowsFormFieldEntry": true; "allowsPrinting": true; "delegate": true; "documentAttributes": true; "documentRef": true; "documentURL": true; "isEncrypted": true; "isFinding": true; "isLocked": true; "majorVersion": true; "minorVersion": true; "outlineRoot": true; "pageClass": true; "pageCount": true; "permissionsStatus": true; "selectionForEntireDocument": true; "string": true };
 }
@@ -1540,44 +1540,44 @@ export const PDFDocumentAttribute = {
    * static let authorAttribute: PDFDocumentAttribute
    * @availability iOS 11.0+
    */
-  get authorAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_a956b86ef7a76a8e", 3554794475401205, undefined, []); },
+  get authorAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_90ad0eb69cc6bf4a", 3554794475401205, undefined, []); },
   /**
    * static let creationDateAttribute: PDFDocumentAttribute
    * @availability iOS 11.0+
    */
-  get creationDateAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_a956b86ef7a76a8e", 3693222309728716, undefined, []); },
+  get creationDateAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_90ad0eb69cc6bf4a", 3693222309728716, undefined, []); },
   /**
    * static let creatorAttribute: PDFDocumentAttribute
    * @availability iOS 11.0+
    */
-  get creatorAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_a956b86ef7a76a8e", 2310517733292668, undefined, []); },
+  get creatorAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_90ad0eb69cc6bf4a", 2310517733292668, undefined, []); },
   /**
    * static let keywordsAttribute: PDFDocumentAttribute
    * @availability iOS 11.0+
    */
-  get keywordsAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_a956b86ef7a76a8e", 3488427657299192, undefined, []); },
+  get keywordsAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_90ad0eb69cc6bf4a", 3488427657299192, undefined, []); },
   /**
    * static let modificationDateAttribute: PDFDocumentAttribute
    * @availability iOS 11.0+
    */
-  get modificationDateAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_a956b86ef7a76a8e", 3723996268585795, undefined, []); },
+  get modificationDateAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_90ad0eb69cc6bf4a", 3723996268585795, undefined, []); },
   /**
    * static let producerAttribute: PDFDocumentAttribute
    * @availability iOS 11.0+
    */
-  get producerAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_a956b86ef7a76a8e", 1079039340299183, undefined, []); },
+  get producerAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_90ad0eb69cc6bf4a", 1079039340299183, undefined, []); },
   /**
    * static let subjectAttribute: PDFDocumentAttribute
    * @availability iOS 11.0+
    */
-  get subjectAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_a956b86ef7a76a8e", 963817535485576, undefined, []); },
+  get subjectAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_90ad0eb69cc6bf4a", 963817535485576, undefined, []); },
   /**
    * static let titleAttribute: PDFDocumentAttribute
    * @availability iOS 11.0+
    */
-  get titleAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_a956b86ef7a76a8e", 2293253955223232, undefined, []); },
+  get titleAttribute(): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_90ad0eb69cc6bf4a", 2293253955223232, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_a956b86ef7a76a8e", 3426173778784479, undefined, [rawValue]); }
+  init(rawValue: string): PDFDocumentAttribute { return callSDK<PDFDocumentAttribute>("PDFKit_90ad0eb69cc6bf4a", 3426173778784479, undefined, [rawValue]); }
 };
 
 /** protocol PDFDocumentDelegate : NSObjectProtocol */
@@ -1630,7 +1630,7 @@ export const PDFDocumentPermissions = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PDFDocumentPermissions) | null { return callSDK<(PDFDocumentPermissions) | null>("PDFKit_a956b86ef7a76a8e", 1379188048008603, undefined, [rawValue]); }
+  init(rawValue: number): (PDFDocumentPermissions) | null { return callSDK<(PDFDocumentPermissions) | null>("PDFKit_90ad0eb69cc6bf4a", 1379188048008603, undefined, [rawValue]); }
 };
 
 /** struct PDFDocumentWriteOption */
@@ -1641,39 +1641,39 @@ export const PDFDocumentWriteOption = {
    * static let accessPermissionsOption: PDFDocumentWriteOption
    * @availability iOS 15.0+
    */
-  get accessPermissionsOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_a956b86ef7a76a8e", 1184719679123593, undefined, []); },
+  get accessPermissionsOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_90ad0eb69cc6bf4a", 1184719679123593, undefined, []); },
   /**
    * static let burnInAnnotationsOption: PDFDocumentWriteOption
    * @availability iOS 16.0+
    */
-  get burnInAnnotationsOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_a956b86ef7a76a8e", 3283922372043713, undefined, []); },
+  get burnInAnnotationsOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_90ad0eb69cc6bf4a", 3283922372043713, undefined, []); },
   /**
    * static let optimizeImagesForScreenOption: PDFDocumentWriteOption
    * @availability iOS 16.4+
    */
-  get optimizeImagesForScreenOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_a956b86ef7a76a8e", 2811230937791542, undefined, []); },
+  get optimizeImagesForScreenOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_90ad0eb69cc6bf4a", 2811230937791542, undefined, []); },
   /**
    * static let ownerPasswordOption: PDFDocumentWriteOption
    * @availability iOS 11.0+
    */
-  get ownerPasswordOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_a956b86ef7a76a8e", 725277328320335, undefined, []); },
+  get ownerPasswordOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_90ad0eb69cc6bf4a", 725277328320335, undefined, []); },
   /**
    * static let saveImagesAsJPEGOption: PDFDocumentWriteOption
    * @availability iOS 16.4+
    */
-  get saveImagesAsJPEGOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_a956b86ef7a76a8e", 3941954882245418, undefined, []); },
+  get saveImagesAsJPEGOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_90ad0eb69cc6bf4a", 3941954882245418, undefined, []); },
   /**
    * static let saveTextFromOCROption: PDFDocumentWriteOption
    * @availability iOS 16.0+
    */
-  get saveTextFromOCROption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_a956b86ef7a76a8e", 3767014300101222, undefined, []); },
+  get saveTextFromOCROption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_90ad0eb69cc6bf4a", 3767014300101222, undefined, []); },
   /**
    * static let userPasswordOption: PDFDocumentWriteOption
    * @availability iOS 11.0+
    */
-  get userPasswordOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_a956b86ef7a76a8e", 4375111598964000, undefined, []); },
+  get userPasswordOption(): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_90ad0eb69cc6bf4a", 4375111598964000, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_a956b86ef7a76a8e", 2070662730334280, undefined, [rawValue]); }
+  init(rawValue: string): PDFDocumentWriteOption { return callSDK<PDFDocumentWriteOption>("PDFKit_90ad0eb69cc6bf4a", 2070662730334280, undefined, [rawValue]); }
 };
 
 /**
@@ -1687,7 +1687,7 @@ export const PDFInterpolationQuality = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PDFInterpolationQuality) | null { return callSDK<(PDFInterpolationQuality) | null>("PDFKit_a956b86ef7a76a8e", 1721546742998411, undefined, [rawValue]); }
+  init(rawValue: number): (PDFInterpolationQuality) | null { return callSDK<(PDFInterpolationQuality) | null>("PDFKit_90ad0eb69cc6bf4a", 1721546742998411, undefined, [rawValue]); }
 };
 
 /** enum PDFLineStyle */
@@ -1695,7 +1695,7 @@ export type PDFLineStyle = "none" | "square" | "circle" | "diamond" | "openArrow
 
 export const PDFLineStyle = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PDFLineStyle) | null { return callSDK<(PDFLineStyle) | null>("PDFKit_a956b86ef7a76a8e", 2690263248565008, undefined, [rawValue]); }
+  init(rawValue: number): (PDFLineStyle) | null { return callSDK<(PDFLineStyle) | null>("PDFKit_90ad0eb69cc6bf4a", 2690263248565008, undefined, [rawValue]); }
 };
 
 /** enum PDFMarkupType */
@@ -1703,7 +1703,7 @@ export type PDFMarkupType = "highlight" | "strikeOut" | "underline" | "redact";
 
 export const PDFMarkupType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PDFMarkupType) | null { return callSDK<(PDFMarkupType) | null>("PDFKit_a956b86ef7a76a8e", 2544456646554952, undefined, [rawValue]); }
+  init(rawValue: number): (PDFMarkupType) | null { return callSDK<(PDFMarkupType) | null>("PDFKit_90ad0eb69cc6bf4a", 2544456646554952, undefined, [rawValue]); }
 };
 
 /**
@@ -1715,66 +1715,66 @@ export class PDFOutline extends SDKHandle {
    * func child(at index: Int) -> PDFOutline?
    * @availability iOS 11.0+
    */
-  child(index: number): (PDFOutline) | null { return callSDK<(PDFOutline) | null>("PDFKit_a956b86ef7a76a8e", 1580416863237142, this, [index]); }
+  child(index: number): (PDFOutline) | null { return callSDK<(PDFOutline) | null>("PDFKit_90ad0eb69cc6bf4a", 1580416863237142, this, [index]); }
   /**
    * init()
    * @availability iOS 11.0+
    */
-  static init(): PDFOutline { return callSDK<PDFOutline>("PDFKit_a956b86ef7a76a8e", 3523408964204302, undefined, []); }
+  static init(): PDFOutline { return callSDK<PDFOutline>("PDFKit_90ad0eb69cc6bf4a", 3523408964204302, undefined, []); }
   /**
    * func insertChild(_ child: PDFOutline, at index: Int)
    * @availability iOS 11.0+
    */
-  insertChild(child: PDFOutline, index: number): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 761464473842877, this, [child, index]); }
+  insertChild(child: PDFOutline, index: number): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 761464473842877, this, [child, index]); }
   /**
    * func removeFromParent()
    * @availability iOS 11.0+
    */
-  removeFromParent(): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3262254917307238, this, []); }
+  removeFromParent(): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3262254917307238, this, []); }
   /**
    * var action: PDFAction? { get set }
    * @availability iOS 11.0+
    */
-  get action(): (PDFAction) | null { return callSDK<(PDFAction) | null>("PDFKit_a956b86ef7a76a8e", 2029549258082979, this, []); }
-  set action(value: (PDFAction) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2928257757370497, this, [value]); }
+  get action(): (PDFAction) | null { return callSDK<(PDFAction) | null>("PDFKit_90ad0eb69cc6bf4a", 2029549258082979, this, []); }
+  set action(value: (PDFAction) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2928257757370497, this, [value]); }
   /**
    * var destination: PDFDestination? { get set }
    * @availability iOS 11.0+
    */
-  get destination(): (PDFDestination) | null { return callSDK<(PDFDestination) | null>("PDFKit_a956b86ef7a76a8e", 1176452584441251, this, []); }
-  set destination(value: (PDFDestination) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3560015302240918, this, [value]); }
+  get destination(): (PDFDestination) | null { return callSDK<(PDFDestination) | null>("PDFKit_90ad0eb69cc6bf4a", 1176452584441251, this, []); }
+  set destination(value: (PDFDestination) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3560015302240918, this, [value]); }
   /**
    * weak var document: PDFDocument? { get }
    * @availability iOS 11.0+
    */
-  get document(): (PDFDocument) | null { return callSDK<(PDFDocument) | null>("PDFKit_a956b86ef7a76a8e", 4028750890267950, this, []); }
+  get document(): (PDFDocument) | null { return callSDK<(PDFDocument) | null>("PDFKit_90ad0eb69cc6bf4a", 4028750890267950, this, []); }
   /**
    * var index: Int { get }
    * @availability iOS 11.0+
    */
-  get index(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 3101619313679568, this, []); }
+  get index(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 3101619313679568, this, []); }
   /**
    * var isOpen: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isOpen(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 4386152159923780, this, []); }
-  set isOpen(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1184555026253743, this, [value]); }
+  get isOpen(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 4386152159923780, this, []); }
+  set isOpen(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1184555026253743, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 11.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 2162406800087196, this, []); }
-  set label(value: (string) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1193576188525807, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 2162406800087196, this, []); }
+  set label(value: (string) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1193576188525807, this, [value]); }
   /**
    * var numberOfChildren: Int { get }
    * @availability iOS 11.0+
    */
-  get numberOfChildren(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 27027830545733, this, []); }
+  get numberOfChildren(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 27027830545733, this, []); }
   /**
    * var parent: PDFOutline? { get }
    * @availability iOS 11.0+
    */
-  get parent(): (PDFOutline) | null { return callSDK<(PDFOutline) | null>("PDFKit_a956b86ef7a76a8e", 1942531890910102, this, []); }
+  get parent(): (PDFOutline) | null { return callSDK<(PDFOutline) | null>("PDFKit_90ad0eb69cc6bf4a", 1942531890910102, this, []); }
   declare readonly $type: { "c:objc(cs)PDFOutline": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "action": true; "destination": true; "document": true; "index": true; "isOpen": true; "label": true; "numberOfChildren": true; "parent": true };
 }
@@ -1788,149 +1788,149 @@ export class PDFPage extends SDKHandle {
    * func addAnnotation(_ annotation: PDFAnnotation)
    * @availability iOS 11.0+
    */
-  addAnnotation(annotation: PDFAnnotation): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 4360160230121777, this, [annotation]); }
+  addAnnotation(annotation: PDFAnnotation): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 4360160230121777, this, [annotation]); }
   /**
    * func annotation(at point: CGPoint) -> PDFAnnotation?
    * @availability iOS 11.0+
    */
-  annotation(point: $SDK0): (PDFAnnotation) | null { return callSDK<(PDFAnnotation) | null>("PDFKit_a956b86ef7a76a8e", 1922327546540916, this, [point]); }
+  annotation(point: $SDK0): (PDFAnnotation) | null { return callSDK<(PDFAnnotation) | null>("PDFKit_90ad0eb69cc6bf4a", 1922327546540916, this, [point]); }
   /**
    * func bounds(for box: PDFDisplayBox) -> CGRect
    * @availability iOS 11.0+
    */
-  bounds(box: PDFDisplayBox): $SDK1 { return callSDK<$SDK1>("PDFKit_a956b86ef7a76a8e", 1970792180670121, this, [box]); }
+  bounds(box: PDFDisplayBox): $SDK1 { return callSDK<$SDK1>("PDFKit_90ad0eb69cc6bf4a", 1970792180670121, this, [box]); }
   /**
    * func characterBounds(at index: Int) -> CGRect
    * @availability iOS 11.0+
    */
-  characterBounds(index: number): $SDK1 { return callSDK<$SDK1>("PDFKit_a956b86ef7a76a8e", 4102388496817529, this, [index]); }
+  characterBounds(index: number): $SDK1 { return callSDK<$SDK1>("PDFKit_90ad0eb69cc6bf4a", 4102388496817529, this, [index]); }
   /**
    * func characterIndex(at point: CGPoint) -> Int
    * @availability iOS 11.0+
    */
-  characterIndex(point: $SDK0): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 4405029872739714, this, [point]); }
+  characterIndex(point: $SDK0): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 4405029872739714, this, [point]); }
   /**
    * func draw(with box: PDFDisplayBox, to context: CGContext)
    * @availability iOS 11.0+
    */
-  draw(box: PDFDisplayBox, context: _CoreGraphics_CGContext): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1593398386491446, this, [box, context]); }
+  draw(box: PDFDisplayBox, context: _CoreGraphics_CGContext): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1593398386491446, this, [box, context]); }
   /**
    * init()
    * @availability iOS 11.0+
    */
-  static init(): PDFPage { return callSDK<PDFPage>("PDFKit_a956b86ef7a76a8e", 1301131384286561, undefined, []); }
+  static init(): PDFPage { return callSDK<PDFPage>("PDFKit_90ad0eb69cc6bf4a", 1301131384286561, undefined, []); }
   /**
    * convenience init?(image: UIImage)
    * @availability iOS 11.0+
    */
-  static initImage(image: _UIKit_UIImage): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_a956b86ef7a76a8e", 2852037090127153, undefined, [image]); }
+  static initImage(image: _UIKit_UIImage): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_90ad0eb69cc6bf4a", 2852037090127153, undefined, [image]); }
   /**
    * init?(image: UIImage, options: [PDFPage.ImageInitializationOption : Any] = [:])
    * @availability iOS 16.0+
    */
-  static initImageOptions(image: _UIKit_UIImage, options?: NativeMap<PDFPage_ImageInitializationOption, unknown>): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_a956b86ef7a76a8e", 3736895000389053, undefined, [image, options]); }
+  static initImageOptions(image: _UIKit_UIImage, options?: NativeMap<PDFPage_ImageInitializationOption, unknown>): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_90ad0eb69cc6bf4a", 3736895000389053, undefined, [image, options]); }
   /**
    * func removeAnnotation(_ annotation: PDFAnnotation)
    * @availability iOS 11.0+
    */
-  removeAnnotation(annotation: PDFAnnotation): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 13015169020911, this, [annotation]); }
+  removeAnnotation(annotation: PDFAnnotation): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 13015169020911, this, [annotation]); }
   /**
    * func selectionForLine(at point: CGPoint) -> PDFSelection?
    * @availability iOS 11.0+
    */
-  selectionForLine(point: $SDK0): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 2975836680268201, this, [point]); }
+  selectionForLine(point: $SDK0): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 2975836680268201, this, [point]); }
   /**
    * func selection(for range: NSRange) -> PDFSelection?
    * @availability iOS 11.0+
    */
-  selectionFor(range: SDKHandle): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 757789625708501, this, [range]); }
+  selectionFor(range: SDKHandle): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 757789625708501, this, [range]); }
   /**
    * func selection(for rect: CGRect) -> PDFSelection?
    * @availability iOS 11.0+
    */
-  selectionFor81500(rect: $SDK1): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 325416147202062, this, [rect]); }
+  selectionFor81500(rect: $SDK1): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 325416147202062, this, [rect]); }
   /**
    * func selectionForWord(at point: CGPoint) -> PDFSelection?
    * @availability iOS 11.0+
    */
-  selectionForWord(point: $SDK0): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 3802607881231537, this, [point]); }
+  selectionForWord(point: $SDK0): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 3802607881231537, this, [point]); }
   /**
    * func selection(from startPoint: CGPoint, to endPoint: CGPoint) -> PDFSelection?
    * @availability iOS 11.0+
    */
-  selectionFromTo(startPoint: $SDK0, endPoint: $SDK0): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 4000263119851312, this, [startPoint, endPoint]); }
+  selectionFromTo(startPoint: $SDK0, endPoint: $SDK0): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 4000263119851312, this, [startPoint, endPoint]); }
   /**
    * func setBounds(_ bounds: CGRect, for box: PDFDisplayBox)
    * @availability iOS 11.0+
    */
-  setBounds(bounds: $SDK1, box: PDFDisplayBox): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3964622621199444, this, [bounds, box]); }
+  setBounds(bounds: $SDK1, box: PDFDisplayBox): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3964622621199444, this, [bounds, box]); }
   /**
    * func thumbnail(of size: CGSize, for box: PDFDisplayBox) -> UIImage
    * @availability iOS 11.0+
    */
-  thumbnail(size: $SDK11, box: PDFDisplayBox): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("PDFKit_a956b86ef7a76a8e", 923885759007182, this, [size, box]); }
+  thumbnail(size: $SDK11, box: PDFDisplayBox): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("PDFKit_90ad0eb69cc6bf4a", 923885759007182, this, [size, box]); }
   /**
    * func transform(_ context: CGContext, for box: PDFDisplayBox)
    * @availability iOS 11.0+
    */
-  transformFor(context: _CoreGraphics_CGContext, box: PDFDisplayBox): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1668079362599681, this, [context, box]); }
+  transformFor(context: _CoreGraphics_CGContext, box: PDFDisplayBox): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1668079362599681, this, [context, box]); }
   /**
    * func transform(for box: PDFDisplayBox) -> CGAffineTransform
    * @availability iOS 11.0+
    */
-  transformFor40611(box: PDFDisplayBox): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("PDFKit_a956b86ef7a76a8e", 23147688978815, this, [box]); }
+  transformFor40611(box: PDFDisplayBox): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("PDFKit_90ad0eb69cc6bf4a", 23147688978815, this, [box]); }
   /**
    * var annotations: [PDFAnnotation] { get }
    * @availability iOS 11.0+
    */
-  get annotations(): Array<PDFAnnotation> { return callSDK<Array<PDFAnnotation>>("PDFKit_a956b86ef7a76a8e", 4107001965316148, this, []); }
+  get annotations(): Array<PDFAnnotation> { return callSDK<Array<PDFAnnotation>>("PDFKit_90ad0eb69cc6bf4a", 4107001965316148, this, []); }
   /**
    * var attributedString: NSAttributedString? { get }
    * @availability iOS 11.0+
    */
-  get attributedString(): $SDK12 { return callSDK<$SDK12>("PDFKit_a956b86ef7a76a8e", 1858739679172558, this, []); }
+  get attributedString(): $SDK12 { return callSDK<$SDK12>("PDFKit_90ad0eb69cc6bf4a", 1858739679172558, this, []); }
   /**
    * var dataRepresentation: Data? { get }
    * @availability iOS 11.0+
    */
-  get dataRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PDFKit_a956b86ef7a76a8e", 2356976272483704, this, []); }
+  get dataRepresentation(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PDFKit_90ad0eb69cc6bf4a", 2356976272483704, this, []); }
   /**
    * var displaysAnnotations: Bool { get set }
    * @availability iOS 11.0+
    */
-  get displaysAnnotations(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 1685176840237235, this, []); }
-  set displaysAnnotations(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1959425358620607, this, [value]); }
+  get displaysAnnotations(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 1685176840237235, this, []); }
+  set displaysAnnotations(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1959425358620607, this, [value]); }
   /**
    * weak var document: PDFDocument? { get }
    * @availability iOS 11.0+
    */
-  get document(): (PDFDocument) | null { return callSDK<(PDFDocument) | null>("PDFKit_a956b86ef7a76a8e", 1977584121342428, this, []); }
+  get document(): (PDFDocument) | null { return callSDK<(PDFDocument) | null>("PDFKit_90ad0eb69cc6bf4a", 1977584121342428, this, []); }
   /**
    * var label: String? { get }
    * @availability iOS 11.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 3359232078399607, this, []); }
+  get label(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 3359232078399607, this, []); }
   /**
    * var numberOfCharacters: Int { get }
    * @availability iOS 11.0+
    */
-  get numberOfCharacters(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 4031493335429375, this, []); }
+  get numberOfCharacters(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 4031493335429375, this, []); }
   /**
    * var pageRef: CGPDFPage? { get }
    * @availability iOS 11.0+
    */
-  get pageRef(): (_CoreGraphics_CGPDFPage) | null { return callSDK<(_CoreGraphics_CGPDFPage) | null>("PDFKit_a956b86ef7a76a8e", 4347689613335406, this, []); }
+  get pageRef(): (_CoreGraphics_CGPDFPage) | null { return callSDK<(_CoreGraphics_CGPDFPage) | null>("PDFKit_90ad0eb69cc6bf4a", 4347689613335406, this, []); }
   /**
    * var rotation: Int { get set }
    * @availability iOS 11.0+
    */
-  get rotation(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 2853652643153142, this, []); }
-  set rotation(value: number) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1747458315378648, this, [value]); }
+  get rotation(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 2853652643153142, this, []); }
+  set rotation(value: number) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1747458315378648, this, [value]); }
   /**
    * var string: String? { get }
    * @availability iOS 11.0+
    */
-  get string(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 1748579407264279, this, []); }
+  get string(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 1748579407264279, this, []); }
   declare readonly $type: { "c:objc(cs)PDFPage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "annotations": true; "attributedString": true; "dataRepresentation": true; "displaysAnnotations": true; "document": true; "label": true; "numberOfCharacters": true; "pageRef": true; "rotation": true; "string": true };
 }
@@ -1943,24 +1943,24 @@ export const PDFPage_ImageInitializationOption = {
    * static let compressionQuality: PDFPage.ImageInitializationOption
    * @availability iOS 16.0+
    */
-  get compressionQuality(): PDFPage_ImageInitializationOption { return callSDK<PDFPage_ImageInitializationOption>("PDFKit_a956b86ef7a76a8e", 727383927531647, undefined, []); },
+  get compressionQuality(): PDFPage_ImageInitializationOption { return callSDK<PDFPage_ImageInitializationOption>("PDFKit_90ad0eb69cc6bf4a", 727383927531647, undefined, []); },
   /**
    * static let mediaBox: PDFPage.ImageInitializationOption
    * @availability iOS 16.0+
    */
-  get mediaBox(): PDFPage_ImageInitializationOption { return callSDK<PDFPage_ImageInitializationOption>("PDFKit_a956b86ef7a76a8e", 4077385965900080, undefined, []); },
+  get mediaBox(): PDFPage_ImageInitializationOption { return callSDK<PDFPage_ImageInitializationOption>("PDFKit_90ad0eb69cc6bf4a", 4077385965900080, undefined, []); },
   /**
    * static let rotation: PDFPage.ImageInitializationOption
    * @availability iOS 16.0+
    */
-  get rotation(): PDFPage_ImageInitializationOption { return callSDK<PDFPage_ImageInitializationOption>("PDFKit_a956b86ef7a76a8e", 2650124958855818, undefined, []); },
+  get rotation(): PDFPage_ImageInitializationOption { return callSDK<PDFPage_ImageInitializationOption>("PDFKit_90ad0eb69cc6bf4a", 2650124958855818, undefined, []); },
   /**
    * static let upscaleIfSmaller: PDFPage.ImageInitializationOption
    * @availability iOS 16.0+
    */
-  get upscaleIfSmaller(): PDFPage_ImageInitializationOption { return callSDK<PDFPage_ImageInitializationOption>("PDFKit_a956b86ef7a76a8e", 2263529377201697, undefined, []); },
+  get upscaleIfSmaller(): PDFPage_ImageInitializationOption { return callSDK<PDFPage_ImageInitializationOption>("PDFKit_90ad0eb69cc6bf4a", 2263529377201697, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PDFPage_ImageInitializationOption { return callSDK<PDFPage_ImageInitializationOption>("PDFKit_a956b86ef7a76a8e", 1751234234457642, undefined, [rawValue]); }
+  init(rawValue: string): PDFPage_ImageInitializationOption { return callSDK<PDFPage_ImageInitializationOption>("PDFKit_90ad0eb69cc6bf4a", 1751234234457642, undefined, [rawValue]); }
 };
 
 /**
@@ -1994,83 +1994,83 @@ export class PDFSelection extends SDKHandle {
    * func add(_ selection: PDFSelection)
    * @availability iOS 11.0+
    */
-  add(selection: PDFSelection): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 449652109190667, this, [selection]); }
+  add(selection: PDFSelection): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 449652109190667, this, [selection]); }
   /**
    * func add(_ selections: [PDFSelection])
    * @availability iOS 11.0+
    */
-  add83020(selections: Array<PDFSelection>): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 136653816789306, this, [selections]); }
+  add83020(selections: Array<PDFSelection>): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 136653816789306, this, [selections]); }
   /**
    * func bounds(for page: PDFPage) -> CGRect
    * @availability iOS 11.0+
    */
-  bounds(page: PDFPage): $SDK1 { return callSDK<$SDK1>("PDFKit_a956b86ef7a76a8e", 3245371599948149, this, [page]); }
+  bounds(page: PDFPage): $SDK1 { return callSDK<$SDK1>("PDFKit_90ad0eb69cc6bf4a", 3245371599948149, this, [page]); }
   /**
    * func draw(for page: PDFPage, active: Bool)
    * @availability iOS 11.0+
    */
-  drawForActive(page: PDFPage, active: boolean): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2961746509588035, this, [page, active]); }
+  drawForActive(page: PDFPage, active: boolean): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2961746509588035, this, [page, active]); }
   /**
    * func draw(for page: PDFPage, with box: PDFDisplayBox, active: Bool)
    * @availability iOS 11.0+
    */
-  drawForWithActive(page: PDFPage, box: PDFDisplayBox, active: boolean): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1163330645949847, this, [page, box, active]); }
+  drawForWithActive(page: PDFPage, box: PDFDisplayBox, active: boolean): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1163330645949847, this, [page, box, active]); }
   /**
    * func extend(atEnd succeed: Int)
    * @availability iOS 11.0+
    */
-  extendAtEnd(succeed: number): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3558704261353219, this, [succeed]); }
+  extendAtEnd(succeed: number): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3558704261353219, this, [succeed]); }
   /**
    * func extend(atStart precede: Int)
    * @availability iOS 11.0+
    */
-  extendAtStart(precede: number): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1401244619164505, this, [precede]); }
+  extendAtStart(precede: number): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1401244619164505, this, [precede]); }
   /**
    * func extendForLineBoundaries()
    * @availability iOS 11.0+
    */
-  extendForLineBoundaries(): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3532831166055876, this, []); }
+  extendForLineBoundaries(): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3532831166055876, this, []); }
   /**
    * init(document: PDFDocument)
    * @availability iOS 11.0+
    */
-  static init(document: PDFDocument): PDFSelection { return callSDK<PDFSelection>("PDFKit_a956b86ef7a76a8e", 148671831344477, undefined, [document]); }
+  static init(document: PDFDocument): PDFSelection { return callSDK<PDFSelection>("PDFKit_90ad0eb69cc6bf4a", 148671831344477, undefined, [document]); }
   /**
    * func numberOfTextRanges(on page: PDFPage) -> Int
    * @availability iOS 11.0+
    */
-  numberOfTextRanges(page: PDFPage): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 2701429558917563, this, [page]); }
+  numberOfTextRanges(page: PDFPage): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 2701429558917563, this, [page]); }
   /**
    * func range(at index: Int, on page: PDFPage) -> NSRange
    * @availability iOS 11.0+
    */
-  range(index: number, page: PDFPage): SDKHandle { return callSDK<SDKHandle>("PDFKit_a956b86ef7a76a8e", 1199419162708570, this, [index, page]); }
+  range(index: number, page: PDFPage): SDKHandle { return callSDK<SDKHandle>("PDFKit_90ad0eb69cc6bf4a", 1199419162708570, this, [index, page]); }
   /**
    * func selectionsByLine() -> [PDFSelection]
    * @availability iOS 11.0+
    */
-  selectionsByLine(): Array<PDFSelection> { return callSDK<Array<PDFSelection>>("PDFKit_a956b86ef7a76a8e", 410026168972531, this, []); }
+  selectionsByLine(): Array<PDFSelection> { return callSDK<Array<PDFSelection>>("PDFKit_90ad0eb69cc6bf4a", 410026168972531, this, []); }
   /**
    * var attributedString: NSAttributedString? { get }
    * @availability iOS 11.0+
    */
-  get attributedString(): $SDK12 { return callSDK<$SDK12>("PDFKit_a956b86ef7a76a8e", 1984840593258666, this, []); }
+  get attributedString(): $SDK12 { return callSDK<$SDK12>("PDFKit_90ad0eb69cc6bf4a", 1984840593258666, this, []); }
   /**
    * @NSCopying var color: UIColor? { get set }
    * @availability iOS 11.0+
    */
-  get color(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_a956b86ef7a76a8e", 4239562421255835, this, []); }
-  set color(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3105867437797662, this, [value]); }
+  get color(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_90ad0eb69cc6bf4a", 4239562421255835, this, []); }
+  set color(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3105867437797662, this, [value]); }
   /**
    * var pages: [PDFPage] { get }
    * @availability iOS 11.0+
    */
-  get pages(): Array<PDFPage> { return callSDK<Array<PDFPage>>("PDFKit_a956b86ef7a76a8e", 2335871133715888, this, []); }
+  get pages(): Array<PDFPage> { return callSDK<Array<PDFPage>>("PDFKit_90ad0eb69cc6bf4a", 2335871133715888, this, []); }
   /**
    * var string: String? { get }
    * @availability iOS 11.0+
    */
-  get string(): (string) | null { return callSDK<(string) | null>("PDFKit_a956b86ef7a76a8e", 3253226150901807, this, []); }
+  get string(): (string) | null { return callSDK<(string) | null>("PDFKit_90ad0eb69cc6bf4a", 3253226150901807, this, []); }
   declare readonly $type: { "c:objc(cs)PDFSelection": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributedString": true; "color": true; "pages": true; "string": true };
 }
@@ -2086,7 +2086,7 @@ export const PDFSelectionGranularity = {
    * init?(rawValue: UInt)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (PDFSelectionGranularity) | null { return callSDK<(PDFSelectionGranularity) | null>("PDFKit_a956b86ef7a76a8e", 1287670809941232, undefined, [rawValue]); }
+  init(rawValue: number): (PDFSelectionGranularity) | null { return callSDK<(PDFSelectionGranularity) | null>("PDFKit_90ad0eb69cc6bf4a", 1287670809941232, undefined, [rawValue]); }
 };
 
 /** enum PDFTextAnnotationIconType */
@@ -2094,7 +2094,7 @@ export type PDFTextAnnotationIconType = "comment" | "key" | "note" | "help" | "n
 
 export const PDFTextAnnotationIconType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PDFTextAnnotationIconType) | null { return callSDK<(PDFTextAnnotationIconType) | null>("PDFKit_a956b86ef7a76a8e", 243860908669227, undefined, [rawValue]); }
+  init(rawValue: number): (PDFTextAnnotationIconType) | null { return callSDK<(PDFTextAnnotationIconType) | null>("PDFKit_90ad0eb69cc6bf4a", 243860908669227, undefined, [rawValue]); }
 };
 
 /**
@@ -2108,7 +2108,7 @@ export const PDFThumbnailLayoutMode = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (PDFThumbnailLayoutMode) | null { return callSDK<(PDFThumbnailLayoutMode) | null>("PDFKit_a956b86ef7a76a8e", 991344024182304, undefined, [rawValue]); }
+  init(rawValue: number): (PDFThumbnailLayoutMode) | null { return callSDK<(PDFThumbnailLayoutMode) | null>("PDFKit_90ad0eb69cc6bf4a", 991344024182304, undefined, [rawValue]); }
 };
 
 /**
@@ -2117,42 +2117,42 @@ export const PDFThumbnailLayoutMode = {
  */
 export class PDFThumbnailView extends SDKHandle {
   /** init() */
-  static init(): PDFThumbnailView { return callSDK<PDFThumbnailView>("PDFKit_a956b86ef7a76a8e", 4227045490462681, undefined, []); }
+  static init(): PDFThumbnailView { return callSDK<PDFThumbnailView>("PDFKit_90ad0eb69cc6bf4a", 4227045490462681, undefined, []); }
   /**
    * weak var pdfView: PDFView? { get set }
    * @availability iOS 11.0+
    */
-  get pdfView(): (PDFView) | null { return callSDK<(PDFView) | null>("PDFKit_a956b86ef7a76a8e", 3499721529053946, this, []); }
-  set pdfView(value: (PDFView) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1323384811259755, this, [value]); }
+  get pdfView(): (PDFView) | null { return callSDK<(PDFView) | null>("PDFKit_90ad0eb69cc6bf4a", 3499721529053946, this, []); }
+  set pdfView(value: (PDFView) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1323384811259755, this, [value]); }
   /**
    * @NSCopying var backgroundColor: UIColor? { get set }
    * @availability iOS 11.0+
    */
-  get backgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_a956b86ef7a76a8e", 1080080930175709, this, []); }
-  set backgroundColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2875056030002833, this, [value]); }
+  get backgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("PDFKit_90ad0eb69cc6bf4a", 1080080930175709, this, []); }
+  set backgroundColor(value: (_UIKit_UIColor) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2875056030002833, this, [value]); }
   /**
    * var contentInset: UIEdgeInsets { get set }
    * @availability iOS 11.0+
    */
-  get contentInset(): $SDK14 { return callSDK<$SDK14>("PDFKit_a956b86ef7a76a8e", 3130358094118697, this, []); }
-  set contentInset(value: $SDK14) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 379431588028481, this, [value]); }
+  get contentInset(): $SDK14 { return callSDK<$SDK14>("PDFKit_90ad0eb69cc6bf4a", 3130358094118697, this, []); }
+  set contentInset(value: $SDK14) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 379431588028481, this, [value]); }
   /**
    * var layoutMode: PDFThumbnailLayoutMode { get set }
    * @availability iOS 11.0+
    */
-  get layoutMode(): PDFThumbnailLayoutMode { return callSDK<PDFThumbnailLayoutMode>("PDFKit_a956b86ef7a76a8e", 2818369085220052, this, []); }
-  set layoutMode(value: PDFThumbnailLayoutMode) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3623586953600268, this, [value]); }
+  get layoutMode(): PDFThumbnailLayoutMode { return callSDK<PDFThumbnailLayoutMode>("PDFKit_90ad0eb69cc6bf4a", 2818369085220052, this, []); }
+  set layoutMode(value: PDFThumbnailLayoutMode) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3623586953600268, this, [value]); }
   /**
    * var selectedPages: [PDFPage]? { get }
    * @availability iOS 11.0+
    */
-  get selectedPages(): (Array<PDFPage>) | null { return callSDK<(Array<PDFPage>) | null>("PDFKit_a956b86ef7a76a8e", 457548459977082, this, []); }
+  get selectedPages(): (Array<PDFPage>) | null { return callSDK<(Array<PDFPage>) | null>("PDFKit_90ad0eb69cc6bf4a", 457548459977082, this, []); }
   /**
    * var thumbnailSize: CGSize { get set }
    * @availability iOS 11.0+
    */
-  get thumbnailSize(): $SDK11 { return callSDK<$SDK11>("PDFKit_a956b86ef7a76a8e", 1980110214896048, this, []); }
-  set thumbnailSize(value: $SDK11) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2423086641507997, this, [value]); }
+  get thumbnailSize(): $SDK11 { return callSDK<$SDK11>("PDFKit_90ad0eb69cc6bf4a", 1980110214896048, this, []); }
+  set thumbnailSize(value: $SDK11) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2423086641507997, this, [value]); }
   declare readonly $type: { "c:objc(cs)PDFThumbnailView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pdfView": true; "backgroundColor": true; "contentInset": true; "layoutMode": true; "selectedPages": true; "thumbnailSize": true };
 }
@@ -2166,367 +2166,367 @@ export class PDFView extends SDKHandle {
    * func annotationsChanged(on page: PDFPage)
    * @availability iOS 11.0+
    */
-  annotationsChanged(page: PDFPage): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2865980491720233, this, [page]); }
+  annotationsChanged(page: PDFPage): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2865980491720233, this, [page]); }
   /**
    * func areaOfInterest(forMouse event: UIEvent) -> PDFAreaOfInterest
    * @availability iOS 11.0+
    */
-  areaOfInterestForMouse(event: _UIKit_UIEvent): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 4231856615590228, this, [event]); }
+  areaOfInterestForMouse(event: _UIKit_UIEvent): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 4231856615590228, this, [event]); }
   /**
    * func areaOfInterest(for cursorLocation: CGPoint) -> PDFAreaOfInterest
    * @availability iOS 11.0+
    */
-  areaOfInterestFor(cursorLocation: $SDK0): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_a956b86ef7a76a8e", 1953208435127550, this, [cursorLocation]); }
+  areaOfInterestFor(cursorLocation: $SDK0): PDFAreaOfInterest { return callSDK<PDFAreaOfInterest>("PDFKit_90ad0eb69cc6bf4a", 1953208435127550, this, [cursorLocation]); }
   /**
    * func clearSelection()
    * @availability iOS 11.0+
    */
-  clearSelection(): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 466983156345735, this, []); }
+  clearSelection(): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 466983156345735, this, []); }
   /**
    * func convert(_ point: CGPoint, from page: PDFPage) -> CGPoint
    * @availability iOS 11.0+
    */
-  convertFrom(point: $SDK0, page: PDFPage): $SDK0 { return callSDK<$SDK0>("PDFKit_a956b86ef7a76a8e", 2371865515611980, this, [point, page]); }
+  convertFrom(point: $SDK0, page: PDFPage): $SDK0 { return callSDK<$SDK0>("PDFKit_90ad0eb69cc6bf4a", 2371865515611980, this, [point, page]); }
   /**
    * func convert(_ point: CGPoint, to page: PDFPage) -> CGPoint
    * @availability iOS 11.0+
    */
-  convertTo(point: $SDK0, page: PDFPage): $SDK0 { return callSDK<$SDK0>("PDFKit_a956b86ef7a76a8e", 1278235577267012, this, [point, page]); }
+  convertTo(point: $SDK0, page: PDFPage): $SDK0 { return callSDK<$SDK0>("PDFKit_90ad0eb69cc6bf4a", 1278235577267012, this, [point, page]); }
   /**
    * func convert(_ rect: CGRect, from page: PDFPage) -> CGRect
    * @availability iOS 11.0+
    */
-  convertFrom86829(rect: $SDK1, page: PDFPage): $SDK1 { return callSDK<$SDK1>("PDFKit_a956b86ef7a76a8e", 2536920462255752, this, [rect, page]); }
+  convertFrom86829(rect: $SDK1, page: PDFPage): $SDK1 { return callSDK<$SDK1>("PDFKit_90ad0eb69cc6bf4a", 2536920462255752, this, [rect, page]); }
   /**
    * func convert(_ rect: CGRect, to page: PDFPage) -> CGRect
    * @availability iOS 11.0+
    */
-  convertTo23162(rect: $SDK1, page: PDFPage): $SDK1 { return callSDK<$SDK1>("PDFKit_a956b86ef7a76a8e", 3526242046606413, this, [rect, page]); }
+  convertTo23162(rect: $SDK1, page: PDFPage): $SDK1 { return callSDK<$SDK1>("PDFKit_90ad0eb69cc6bf4a", 3526242046606413, this, [rect, page]); }
   /**
    * @IBAction func copy(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  copy(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2423310755402341, this, [sender]); }
+  copy(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2423310755402341, this, [sender]); }
   /**
    * func draw(_ page: PDFPage, to context: CGContext)
    * @availability iOS 11.0+
    */
-  draw(page: PDFPage, context: _CoreGraphics_CGContext): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3451594345978701, this, [page, context]); }
+  draw(page: PDFPage, context: _CoreGraphics_CGContext): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3451594345978701, this, [page, context]); }
   /**
    * func drawPagePost(_ page: PDFPage, to context: CGContext)
    * @availability iOS 11.0+
    */
-  drawPagePost(page: PDFPage, context: _CoreGraphics_CGContext): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 649551816484706, this, [page, context]); }
+  drawPagePost(page: PDFPage, context: _CoreGraphics_CGContext): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 649551816484706, this, [page, context]); }
   /**
    * @IBAction func goBack(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  goBack(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 865336536921289, this, [sender]); }
+  goBack(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 865336536921289, this, [sender]); }
   /**
    * @IBAction func goForward(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  goForward(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2791063222383259, this, [sender]); }
+  goForward(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2791063222383259, this, [sender]); }
   /**
    * func go(to destination: PDFDestination)
    * @availability iOS 11.0+
    */
-  goTo(destination: PDFDestination): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2997058470371472, this, [destination]); }
+  goTo(destination: PDFDestination): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2997058470371472, this, [destination]); }
   /**
    * @IBAction func goToFirstPage(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  goToFirstPage(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 147997521436018, this, [sender]); }
+  goToFirstPage(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 147997521436018, this, [sender]); }
   /**
    * @IBAction func goToLastPage(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  goToLastPage(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3074579030248972, this, [sender]); }
+  goToLastPage(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3074579030248972, this, [sender]); }
   /**
    * @IBAction func goToNextPage(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  goToNextPage(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 396903998992121, this, [sender]); }
+  goToNextPage(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 396903998992121, this, [sender]); }
   /**
    * func go(to page: PDFPage)
    * @availability iOS 11.0+
    */
-  goTo50003(page: PDFPage): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2013399312400178, this, [page]); }
+  goTo50003(page: PDFPage): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2013399312400178, this, [page]); }
   /**
    * @IBAction func goToPreviousPage(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  goToPreviousPage(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1436617729536270, this, [sender]); }
+  goToPreviousPage(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1436617729536270, this, [sender]); }
   /**
    * func go(to rect: CGRect, on page: PDFPage)
    * @availability iOS 11.0+
    */
-  goToOn(rect: $SDK1, page: PDFPage): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1633850807005446, this, [rect, page]); }
+  goToOn(rect: $SDK1, page: PDFPage): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1633850807005446, this, [rect, page]); }
   /**
    * func go(to selection: PDFSelection)
    * @availability iOS 11.0+
    */
-  goTo16108(selection: PDFSelection): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2751689841569746, this, [selection]); }
+  goTo16108(selection: PDFSelection): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2751689841569746, this, [selection]); }
   /** init() */
-  static init(): PDFView { return callSDK<PDFView>("PDFKit_a956b86ef7a76a8e", 1606814380033657, undefined, []); }
+  static init(): PDFView { return callSDK<PDFView>("PDFKit_90ad0eb69cc6bf4a", 1606814380033657, undefined, []); }
   /**
    * func layoutDocumentView()
    * @availability iOS 11.0+
    */
-  layoutDocumentView(): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1459498273518900, this, []); }
+  layoutDocumentView(): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1459498273518900, this, []); }
   /**
    * func page(for point: CGPoint, nearest: Bool) -> PDFPage?
    * @availability iOS 11.0+
    */
-  page(point: $SDK0, nearest: boolean): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_a956b86ef7a76a8e", 3182700084814840, this, [point, nearest]); }
+  page(point: $SDK0, nearest: boolean): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_90ad0eb69cc6bf4a", 3182700084814840, this, [point, nearest]); }
   /**
    * func perform(_ action: PDFAction)
    * @availability iOS 11.0+
    */
-  perform(action: PDFAction): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2496770038811810, this, [action]); }
+  perform(action: PDFAction): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2496770038811810, this, [action]); }
   /**
    * func rowSize(for page: PDFPage) -> CGSize
    * @availability iOS 11.0+
    */
-  rowSize(page: PDFPage): $SDK11 { return callSDK<$SDK11>("PDFKit_a956b86ef7a76a8e", 3469782269218762, this, [page]); }
+  rowSize(page: PDFPage): $SDK11 { return callSDK<$SDK11>("PDFKit_90ad0eb69cc6bf4a", 3469782269218762, this, [page]); }
   /**
    * @IBAction func scrollSelectionToVisible(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  scrollSelectionToVisible(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3815102950133650, this, [sender]); }
+  scrollSelectionToVisible(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3815102950133650, this, [sender]); }
   /**
    * @IBAction func selectAll(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  selectAll(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1910357021319029, this, [sender]); }
+  selectAll(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1910357021319029, this, [sender]); }
   /**
    * func setCurrentSelection(_ selection: PDFSelection?, animate: Bool)
    * @availability iOS 11.0+
    */
-  setCurrentSelection(selection: (PDFSelection) | null, animate: boolean): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 4085952202798815, this, [selection, animate]); }
+  setCurrentSelection(selection: (PDFSelection) | null, animate: boolean): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 4085952202798815, this, [selection, animate]); }
   /**
    * func usePageViewController(_ enable: Bool, withViewOptions viewOptions: [AnyHashable : Any]? = nil)
    * @availability iOS 11.0+
    */
-  usePageViewController(enable: boolean, viewOptions?: $SDK2): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 2546158542605305, this, [enable, viewOptions]); }
+  usePageViewController(enable: boolean, viewOptions?: $SDK2): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2546158542605305, this, [enable, viewOptions]); }
   /**
    * @IBAction func zoomIn(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  zoomIn(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 3048349685383408, this, [sender]); }
+  zoomIn(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3048349685383408, this, [sender]); }
   /**
    * @IBAction func zoomOut(_ sender: Any?)
    * @availability iOS 11.0+
    */
-  zoomOut(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_a956b86ef7a76a8e", 1487522952857928, this, [sender]); }
+  zoomOut(sender?: (unknown) | null): void { return callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1487522952857928, this, [sender]); }
   /**
    * var autoScales: Bool { get set }
    * @availability iOS 11.0+
    */
-  get autoScales(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 2320164899953287, this, []); }
-  set autoScales(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2136823816588184, this, [value]); }
+  get autoScales(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 2320164899953287, this, []); }
+  set autoScales(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2136823816588184, this, [value]); }
   /**
    * var backgroundColor: UIColor { get set }
    * @availability iOS 11.0+
    */
-  get backgroundColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PDFKit_a956b86ef7a76a8e", 2736013195468360, this, []); }
-  set backgroundColor(value: _UIKit_UIColor) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1312829700550097, this, [value]); }
+  get backgroundColor(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("PDFKit_90ad0eb69cc6bf4a", 2736013195468360, this, []); }
+  set backgroundColor(value: _UIKit_UIColor) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1312829700550097, this, [value]); }
   /**
    * var canGoBack: Bool { get }
    * @availability iOS 11.0+
    */
-  get canGoBack(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3978959896175099, this, []); }
+  get canGoBack(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3978959896175099, this, []); }
   /**
    * var canGoForward: Bool { get }
    * @availability iOS 11.0+
    */
-  get canGoForward(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 2162733893833529, this, []); }
+  get canGoForward(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 2162733893833529, this, []); }
   /**
    * var canGoToFirstPage: Bool { get }
    * @availability iOS 11.0+
    */
-  get canGoToFirstPage(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 1136210018541247, this, []); }
+  get canGoToFirstPage(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 1136210018541247, this, []); }
   /**
    * var canGoToLastPage: Bool { get }
    * @availability iOS 11.0+
    */
-  get canGoToLastPage(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 120147861299657, this, []); }
+  get canGoToLastPage(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 120147861299657, this, []); }
   /**
    * var canGoToNextPage: Bool { get }
    * @availability iOS 11.0+
    */
-  get canGoToNextPage(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3748133388589593, this, []); }
+  get canGoToNextPage(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3748133388589593, this, []); }
   /**
    * var canGoToPreviousPage: Bool { get }
    * @availability iOS 11.0+
    */
-  get canGoToPreviousPage(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 953356761323538, this, []); }
+  get canGoToPreviousPage(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 953356761323538, this, []); }
   /**
    * var canZoomIn: Bool { get }
    * @availability iOS 11.0+
    */
-  get canZoomIn(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 971098568563165, this, []); }
+  get canZoomIn(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 971098568563165, this, []); }
   /**
    * var canZoomOut: Bool { get }
    * @availability iOS 11.0+
    */
-  get canZoomOut(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 2388307694458453, this, []); }
+  get canZoomOut(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 2388307694458453, this, []); }
   /**
    * var currentDestination: PDFDestination? { get }
    * @availability iOS 11.0+
    */
-  get currentDestination(): (PDFDestination) | null { return callSDK<(PDFDestination) | null>("PDFKit_a956b86ef7a76a8e", 3951481625963799, this, []); }
+  get currentDestination(): (PDFDestination) | null { return callSDK<(PDFDestination) | null>("PDFKit_90ad0eb69cc6bf4a", 3951481625963799, this, []); }
   /**
    * var currentPage: PDFPage? { get }
    * @availability iOS 11.0+
    */
-  get currentPage(): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_a956b86ef7a76a8e", 3356349563353269, this, []); }
+  get currentPage(): (PDFPage) | null { return callSDK<(PDFPage) | null>("PDFKit_90ad0eb69cc6bf4a", 3356349563353269, this, []); }
   /**
    * var currentSelection: PDFSelection? { get set }
    * @availability iOS 11.0+
    */
-  get currentSelection(): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_a956b86ef7a76a8e", 677935615408901, this, []); }
-  set currentSelection(value: (PDFSelection) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2465181589509864, this, [value]); }
+  get currentSelection(): (PDFSelection) | null { return callSDK<(PDFSelection) | null>("PDFKit_90ad0eb69cc6bf4a", 677935615408901, this, []); }
+  set currentSelection(value: (PDFSelection) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2465181589509864, this, [value]); }
   /**
    * weak var delegate: (any PDFViewDelegate)? { get set }
    * @availability iOS 11.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PDFKit_a956b86ef7a76a8e", 3332695543007367, this, []); }
-  set delegate(value: (Implements<PDFViewDelegate> | SDKHandle) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3677402676223425, this, [value], [{"protocol":"c:objc(pl)PDFViewDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PDFKit_90ad0eb69cc6bf4a", 3332695543007367, this, []); }
+  set delegate(value: (Implements<PDFViewDelegate> | SDKHandle) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3677402676223425, this, [value], [{"protocol":"c:objc(pl)PDFViewDelegate"}]); }
   /**
    * var displayBox: PDFDisplayBox { get set }
    * @availability iOS 11.0+
    */
-  get displayBox(): PDFDisplayBox { return callSDK<PDFDisplayBox>("PDFKit_a956b86ef7a76a8e", 3267861651592210, this, []); }
-  set displayBox(value: PDFDisplayBox) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1592420854210132, this, [value]); }
+  get displayBox(): PDFDisplayBox { return callSDK<PDFDisplayBox>("PDFKit_90ad0eb69cc6bf4a", 3267861651592210, this, []); }
+  set displayBox(value: PDFDisplayBox) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1592420854210132, this, [value]); }
   /**
    * var displayDirection: PDFDisplayDirection { get set }
    * @availability iOS 11.0+
    */
-  get displayDirection(): PDFDisplayDirection { return callSDK<PDFDisplayDirection>("PDFKit_a956b86ef7a76a8e", 160113259025744, this, []); }
-  set displayDirection(value: PDFDisplayDirection) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1411020189947252, this, [value]); }
+  get displayDirection(): PDFDisplayDirection { return callSDK<PDFDisplayDirection>("PDFKit_90ad0eb69cc6bf4a", 160113259025744, this, []); }
+  set displayDirection(value: PDFDisplayDirection) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1411020189947252, this, [value]); }
   /**
    * var displayMode: PDFDisplayMode { get set }
    * @availability iOS 11.0+
    */
-  get displayMode(): PDFDisplayMode { return callSDK<PDFDisplayMode>("PDFKit_a956b86ef7a76a8e", 3257409686957800, this, []); }
-  set displayMode(value: PDFDisplayMode) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3978259630924176, this, [value]); }
+  get displayMode(): PDFDisplayMode { return callSDK<PDFDisplayMode>("PDFKit_90ad0eb69cc6bf4a", 3257409686957800, this, []); }
+  set displayMode(value: PDFDisplayMode) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3978259630924176, this, [value]); }
   /**
    * var displaysAsBook: Bool { get set }
    * @availability iOS 11.0+
    */
-  get displaysAsBook(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 4020547974566211, this, []); }
-  set displaysAsBook(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3737920607140586, this, [value]); }
+  get displaysAsBook(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 4020547974566211, this, []); }
+  set displaysAsBook(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3737920607140586, this, [value]); }
   /**
    * var displaysPageBreaks: Bool { get set }
    * @availability iOS 11.0+
    */
-  get displaysPageBreaks(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 421500641144981, this, []); }
-  set displaysPageBreaks(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3952150051904883, this, [value]); }
+  get displaysPageBreaks(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 421500641144981, this, []); }
+  set displaysPageBreaks(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3952150051904883, this, [value]); }
   /**
    * var displaysRTL: Bool { get set }
    * @availability iOS 11.0+
    */
-  get displaysRTL(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 795215554275019, this, []); }
-  set displaysRTL(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 953170062274603, this, [value]); }
+  get displaysRTL(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 795215554275019, this, []); }
+  set displaysRTL(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 953170062274603, this, [value]); }
   /**
    * var document: PDFDocument? { get set }
    * @availability iOS 11.0+
    */
-  get document(): (PDFDocument) | null { return callSDK<(PDFDocument) | null>("PDFKit_a956b86ef7a76a8e", 802158459656966, this, []); }
-  set document(value: (PDFDocument) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2591409361408905, this, [value]); }
+  get document(): (PDFDocument) | null { return callSDK<(PDFDocument) | null>("PDFKit_90ad0eb69cc6bf4a", 802158459656966, this, []); }
+  set document(value: (PDFDocument) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2591409361408905, this, [value]); }
   /**
    * var documentView: UIView? { get }
    * @availability iOS 11.0+
    */
-  get documentView(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("PDFKit_a956b86ef7a76a8e", 1516815014997990, this, []); }
+  get documentView(): (_UIKit_UIView) | null { return callSDK<(_UIKit_UIView) | null>("PDFKit_90ad0eb69cc6bf4a", 1516815014997990, this, []); }
   /**
    * var enableDataDetectors: Bool { get set }
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get enableDataDetectors(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 303288029316885, this, []); }
-  set enableDataDetectors(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 625127503119161, this, [value]); }
+  get enableDataDetectors(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 303288029316885, this, []); }
+  set enableDataDetectors(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 625127503119161, this, [value]); }
   /**
    * var findInteraction: UIFindInteraction { get }
    * @availability iOS 16.0+
    */
-  get findInteraction(): _UIKit_UIFindInteraction { return callSDK<_UIKit_UIFindInteraction>("PDFKit_a956b86ef7a76a8e", 3616352967301080, this, []); }
+  get findInteraction(): _UIKit_UIFindInteraction { return callSDK<_UIKit_UIFindInteraction>("PDFKit_90ad0eb69cc6bf4a", 3616352967301080, this, []); }
   /**
    * var isFindInteractionEnabled: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isFindInteractionEnabled(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 694700464516324, this, []); }
-  set isFindInteractionEnabled(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 614925137423516, this, [value]); }
+  get isFindInteractionEnabled(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 694700464516324, this, []); }
+  set isFindInteractionEnabled(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 614925137423516, this, [value]); }
   /**
    * var highlightedSelections: [PDFSelection]? { get set }
    * @availability iOS 11.0+
    */
-  get highlightedSelections(): (Array<PDFSelection>) | null { return callSDK<(Array<PDFSelection>) | null>("PDFKit_a956b86ef7a76a8e", 1424836033568947, this, []); }
-  set highlightedSelections(value: (Array<PDFSelection>) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3299381274723964, this, [value]); }
+  get highlightedSelections(): (Array<PDFSelection>) | null { return callSDK<(Array<PDFSelection>) | null>("PDFKit_90ad0eb69cc6bf4a", 1424836033568947, this, []); }
+  set highlightedSelections(value: (Array<PDFSelection>) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3299381274723964, this, [value]); }
   /**
    * var isInMarkupMode: Bool { get set }
    * @availability iOS 16.0+
    */
-  get isInMarkupMode(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3249491697653493, this, []); }
-  set isInMarkupMode(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1334485068140088, this, [value]); }
+  get isInMarkupMode(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3249491697653493, this, []); }
+  set isInMarkupMode(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1334485068140088, this, [value]); }
   /**
    * var interpolationQuality: PDFInterpolationQuality { get set }
    * @availability iOS 11.0+
    */
-  get interpolationQuality(): PDFInterpolationQuality { return callSDK<PDFInterpolationQuality>("PDFKit_a956b86ef7a76a8e", 2970616876908721, this, []); }
-  set interpolationQuality(value: PDFInterpolationQuality) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2191132992643434, this, [value]); }
+  get interpolationQuality(): PDFInterpolationQuality { return callSDK<PDFInterpolationQuality>("PDFKit_90ad0eb69cc6bf4a", 2970616876908721, this, []); }
+  set interpolationQuality(value: PDFInterpolationQuality) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2191132992643434, this, [value]); }
   /**
    * var isUsingPageViewController: Bool { get }
    * @availability iOS 11.0+
    */
-  get isUsingPageViewController(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 4007805550675985, this, []); }
+  get isUsingPageViewController(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 4007805550675985, this, []); }
   /**
    * var maxScaleFactor: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get maxScaleFactor(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 3400003072472617, this, []); }
-  set maxScaleFactor(value: number) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3542967917590108, this, [value]); }
+  get maxScaleFactor(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 3400003072472617, this, []); }
+  set maxScaleFactor(value: number) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3542967917590108, this, [value]); }
   /**
    * var minScaleFactor: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get minScaleFactor(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 4436522255377035, this, []); }
-  set minScaleFactor(value: number) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 3020863229820815, this, [value]); }
+  get minScaleFactor(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 4436522255377035, this, []); }
+  set minScaleFactor(value: number) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 3020863229820815, this, [value]); }
   /**
    * var pageBreakMargins: UIEdgeInsets { get set }
    * @availability iOS 11.0+
    */
-  get pageBreakMargins(): $SDK14 { return callSDK<$SDK14>("PDFKit_a956b86ef7a76a8e", 2248145880045103, this, []); }
-  set pageBreakMargins(value: $SDK14) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 2752755961324344, this, [value]); }
+  get pageBreakMargins(): $SDK14 { return callSDK<$SDK14>("PDFKit_90ad0eb69cc6bf4a", 2248145880045103, this, []); }
+  set pageBreakMargins(value: $SDK14) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 2752755961324344, this, [value]); }
   /**
    * weak var pageOverlayViewProvider: (any PDFPageOverlayViewProvider)? { get set }
    * @availability iOS 16.0+
    */
-  get pageOverlayViewProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PDFKit_a956b86ef7a76a8e", 3968497531206586, this, []); }
-  set pageOverlayViewProvider(value: (SDKHandle) | null) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 1953462852730647, this, [value]); }
+  get pageOverlayViewProvider(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PDFKit_90ad0eb69cc6bf4a", 3968497531206586, this, []); }
+  set pageOverlayViewProvider(value: (SDKHandle) | null) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 1953462852730647, this, [value]); }
   /**
    * var pageShadowsEnabled: Bool { get set }
    * @availability iOS 12.0+
    */
-  get pageShadowsEnabled(): boolean { return callSDK<boolean>("PDFKit_a956b86ef7a76a8e", 3216412518210226, this, []); }
-  set pageShadowsEnabled(value: boolean) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 594358460935365, this, [value]); }
+  get pageShadowsEnabled(): boolean { return callSDK<boolean>("PDFKit_90ad0eb69cc6bf4a", 3216412518210226, this, []); }
+  set pageShadowsEnabled(value: boolean) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 594358460935365, this, [value]); }
   /**
    * var scaleFactor: CGFloat { get set }
    * @availability iOS 11.0+
    */
-  get scaleFactor(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 1628024606425804, this, []); }
-  set scaleFactor(value: number) { callSDK<void>("PDFKit_a956b86ef7a76a8e", 605916178371594, this, [value]); }
+  get scaleFactor(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 1628024606425804, this, []); }
+  set scaleFactor(value: number) { callSDK<void>("PDFKit_90ad0eb69cc6bf4a", 605916178371594, this, [value]); }
   /**
    * var scaleFactorForSizeToFit: CGFloat { get }
    * @availability iOS 11.0+
    */
-  get scaleFactorForSizeToFit(): number { return callSDK<number>("PDFKit_a956b86ef7a76a8e", 2774069884355036, this, []); }
+  get scaleFactorForSizeToFit(): number { return callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 2774069884355036, this, []); }
   /**
    * var visiblePages: [PDFPage] { get }
    * @availability iOS 11.0+
    */
-  get visiblePages(): Array<PDFPage> { return callSDK<Array<PDFPage>>("PDFKit_a956b86ef7a76a8e", 480780599369977, this, []); }
+  get visiblePages(): Array<PDFPage> { return callSDK<Array<PDFPage>>("PDFKit_90ad0eb69cc6bf4a", 480780599369977, this, []); }
   declare readonly $type: { "c:objc(cs)PDFView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "autoScales": true; "backgroundColor": true; "canGoBack": true; "canGoForward": true; "canGoToFirstPage": true; "canGoToLastPage": true; "canGoToNextPage": true; "canGoToPreviousPage": true; "canZoomIn": true; "canZoomOut": true; "currentDestination": true; "currentPage": true; "currentSelection": true; "delegate": true; "displayBox": true; "displayDirection": true; "displayMode": true; "displaysAsBook": true; "displaysPageBreaks": true; "displaysRTL": true; "document": true; "documentView": true; "enableDataDetectors": true; "findInteraction": true; "isFindInteractionEnabled": true; "highlightedSelections": true; "isInMarkupMode": true; "interpolationQuality": true; "isUsingPageViewController": true; "maxScaleFactor": true; "minScaleFactor": true; "pageBreakMargins": true; "pageOverlayViewProvider": true; "pageShadowsEnabled": true; "scaleFactor": true; "scaleFactorForSizeToFit": true; "visiblePages": true };
 }
@@ -2560,7 +2560,7 @@ export type PDFWidgetCellState = "mixedState" | "offState" | "onState";
 
 export const PDFWidgetCellState = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PDFWidgetCellState) | null { return callSDK<(PDFWidgetCellState) | null>("PDFKit_a956b86ef7a76a8e", 367109573170321, undefined, [rawValue]); }
+  init(rawValue: number): (PDFWidgetCellState) | null { return callSDK<(PDFWidgetCellState) | null>("PDFKit_90ad0eb69cc6bf4a", 367109573170321, undefined, [rawValue]); }
 };
 
 /** enum PDFWidgetControlType */
@@ -2568,43 +2568,43 @@ export type PDFWidgetControlType = "unknownControl" | "pushButtonControl" | "rad
 
 export const PDFWidgetControlType = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (PDFWidgetControlType) | null { return callSDK<(PDFWidgetControlType) | null>("PDFKit_a956b86ef7a76a8e", 4341148973123496, undefined, [rawValue]); }
+  init(rawValue: number): (PDFWidgetControlType) | null { return callSDK<(PDFWidgetControlType) | null>("PDFKit_90ad0eb69cc6bf4a", 4341148973123496, undefined, [rawValue]); }
 };
 
 /**
  * let PDFDocumentFoundSelectionKey: String
  * @availability iOS 15.0+
  */
-export const PDFDocumentFoundSelectionKey: string = callSDK<string>("PDFKit_a956b86ef7a76a8e", 1268340795001011, undefined, []);
+export const PDFDocumentFoundSelectionKey: string = callSDK<string>("PDFKit_90ad0eb69cc6bf4a", 1268340795001011, undefined, []);
 
 /**
  * let PDFDocumentPageIndexKey: String
  * @availability iOS 15.0+
  */
-export const PDFDocumentPageIndexKey: string = callSDK<string>("PDFKit_a956b86ef7a76a8e", 2819916439436103, undefined, []);
+export const PDFDocumentPageIndexKey: string = callSDK<string>("PDFKit_90ad0eb69cc6bf4a", 2819916439436103, undefined, []);
 
 /**
  * let kPDFDestinationUnspecifiedValue: CGFloat
  * @availability iOS 11.0+
  */
-export const kPDFDestinationUnspecifiedValue: number = callSDK<number>("PDFKit_a956b86ef7a76a8e", 4173019942000558, undefined, []);
+export const kPDFDestinationUnspecifiedValue: number = callSDK<number>("PDFKit_90ad0eb69cc6bf4a", 4173019942000558, undefined, []);
 
-registerSDKClass("PDFAction", PDFAction, { module: "PDFKit_a956b86ef7a76a8e", properties: {"type":1844044104500583} });
-registerSDKClass("PDFActionGoTo", PDFActionGoTo, { module: "PDFKit_a956b86ef7a76a8e", properties: {"destination":3527159347498160} });
-registerSDKClass("PDFActionNamed", PDFActionNamed, { module: "PDFKit_a956b86ef7a76a8e", properties: {"name":1398773092846854} });
-registerSDKClass("PDFActionRemoteGoTo", PDFActionRemoteGoTo, { module: "PDFKit_a956b86ef7a76a8e", properties: {"url":4089213300543055,"pageIndex":3534428464519773,"point":278096048779637} });
-registerSDKClass("PDFActionResetForm", PDFActionResetForm, { module: "PDFKit_a956b86ef7a76a8e", properties: {"fields":509454743247110,"fieldsIncludedAreCleared":680098964370362} });
-registerSDKClass("PDFActionURL", PDFActionURL, { module: "PDFKit_a956b86ef7a76a8e", properties: {"url":3403931708057611} });
-registerSDKClass("PDFAnnotation", PDFAnnotation, { module: "PDFKit_a956b86ef7a76a8e", properties: {"url":2429775951358970,"action":4209334585646097,"isActivatableTextField":1212957100646482,"alignment":1990491733797771,"allowsToggleToOff":4161607205755856,"annotationKeyValues":4040628558334853,"backgroundColor":1793183940593648,"border":4372495940673782,"bounds":301527339842344,"buttonWidgetState":3106609722634560,"buttonWidgetStateString":2915529864493896,"caption":2166307766636806,"choices":1071685290995213,"color":245521895936706,"hasComb":2853086982568762,"contents":3385555610775941,"destination":2362011583849457,"endLineStyle":200144446779428,"endPoint":666503464381727,"fieldName":254020654496066,"font":476555619380079,"fontColor":3065465366129450,"hasAppearanceStream":1713653359890479,"isHighlighted":825272127537032,"iconType":3349375368061932,"interiorColor":2655068811397878,"isPasswordField":4276003958991135,"isListChoice":3651587616168681,"markupType":4159305394660511,"maximumLength":4051154340430434,"modificationDate":830506885821304,"isMultiline":1225522796798446,"isOpen":4338237044127542,"page":3638787294525048,"paths":1209085122547070,"popup":4500130675709216,"quadrilateralPoints":3440913548442776,"radiosInUnison":3282216898330850,"isReadOnly":3244847595828223,"shouldDisplay":224087576583070,"shouldPrint":1554985022914139,"stampName":4009435710698484,"startLineStyle":2024337739036426,"startPoint":2320468528615474,"type":1003446637005156,"userName":759668844306911,"values":2335095558980673,"widgetControlType":3086183068291177,"widgetDefaultStringValue":1648433390037151,"widgetFieldType":1047552796559482,"widgetStringValue":2207268183729746}, methods: {"add":{"id":2051965853463172},"draw":{"id":2365288784376046},"remove":{"id":853915791482606},"removeValue":{"id":3832364007175008},"setBoolean":{"id":3654232032329716},"setRect":{"id":1690392296359541},"setValue":{"id":187642604152243},"value":{"id":1718339029678063}} });
-registerSDKClass("PDFAppearanceCharacteristics", PDFAppearanceCharacteristics, { module: "PDFKit_a956b86ef7a76a8e", properties: {"appearanceCharacteristicsKeyValues":2594808397021502,"backgroundColor":3249522013225787,"borderColor":2856792079958322,"caption":1340594958728709,"controlType":4213838473245358,"downCaption":3851280176566255,"rolloverCaption":816385317574565,"rotation":1817648005116508} });
-registerSDKClass("PDFBorder", PDFBorder, { module: "PDFKit_a956b86ef7a76a8e", properties: {"borderKeyValues":447534261603124,"dashPattern":3556868823191196,"lineWidth":2767457279304356,"style":1665076869807895}, methods: {"draw":{"id":2587166900728723}} });
-registerSDKClass("PDFDestination", PDFDestination, { module: "PDFKit_a956b86ef7a76a8e", properties: {"page":1161273072716360,"point":4476037016311364,"zoom":4376336301094613}, methods: {"compare":{"id":3472764153494070}} });
-registerSDKClass("PDFDocument", PDFDocument, { module: "PDFKit_a956b86ef7a76a8e", properties: {"accessPermissions":3923994422197985,"allowsCommenting":4326973372094403,"allowsContentAccessibility":628889035565464,"allowsCopying":764736980400418,"allowsDocumentAssembly":976031407683092,"allowsDocumentChanges":454188854638428,"allowsFormFieldEntry":2889325209622862,"allowsPrinting":3472194483672602,"delegate":954108641987528,"documentAttributes":1832984400452171,"documentRef":3702682210125526,"documentURL":2894305705816064,"isEncrypted":3733076400993997,"isFinding":3245105750262475,"isLocked":502318312521961,"majorVersion":4206550407659793,"minorVersion":415008520051154,"outlineRoot":2949236441872092,"pageClass":694302332901784,"pageCount":2146750302599247,"permissionsStatus":2372983974393630,"selectionForEntireDocument":220792189984678,"string":2114144060265438}, methods: {"beginFindString":{"id":3115268817527025},"beginFindStrings":{"id":1549764948524632},"cancelFindString":{"id":2579698010354647},"dataRepresentation":{"id":91566611523257},"dataRepresentationOptions":{"id":4365608761671940},"exchangePage":{"id":3048902784088572},"findStringFromSelectionWithOptions":{"id":1286588492770727},"findStringWithOptions":{"id":1990039990487835},"index":{"id":1596144380826199},"insert":{"id":1458137620956655},"outlineItem":{"id":4080506682873701},"page":{"id":1799824826397140},"removePage":{"id":3642643337480815},"selectionFromAtCharacterIndexToAtCharacterIndex":{"id":2987055038472325},"selectionFromAtToAt":{"id":3873977625268384},"selectionFromAtToAtWith":{"id":2378925534020115},"unlock":{"id":2371664026294021},"writeToFile":{"id":4172900124996136},"writeToFileWithOptions":{"id":3146010292160908},"writeTo":{"id":1969455424955591},"writeToWithOptions":{"id":1144470063322804}} });
+registerSDKClass("PDFAction", PDFAction, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"type":1844044104500583} });
+registerSDKClass("PDFActionGoTo", PDFActionGoTo, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"destination":3527159347498160} });
+registerSDKClass("PDFActionNamed", PDFActionNamed, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"name":1398773092846854} });
+registerSDKClass("PDFActionRemoteGoTo", PDFActionRemoteGoTo, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"url":4089213300543055,"pageIndex":3534428464519773,"point":278096048779637} });
+registerSDKClass("PDFActionResetForm", PDFActionResetForm, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"fields":509454743247110,"fieldsIncludedAreCleared":680098964370362} });
+registerSDKClass("PDFActionURL", PDFActionURL, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"url":3403931708057611} });
+registerSDKClass("PDFAnnotation", PDFAnnotation, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"url":2429775951358970,"action":4209334585646097,"isActivatableTextField":1212957100646482,"alignment":1990491733797771,"allowsToggleToOff":4161607205755856,"annotationKeyValues":4040628558334853,"backgroundColor":1793183940593648,"border":4372495940673782,"bounds":301527339842344,"buttonWidgetState":3106609722634560,"buttonWidgetStateString":2915529864493896,"caption":2166307766636806,"choices":1071685290995213,"color":245521895936706,"hasComb":2853086982568762,"contents":3385555610775941,"destination":2362011583849457,"endLineStyle":200144446779428,"endPoint":666503464381727,"fieldName":254020654496066,"font":476555619380079,"fontColor":3065465366129450,"hasAppearanceStream":1713653359890479,"isHighlighted":825272127537032,"iconType":3349375368061932,"interiorColor":2655068811397878,"isPasswordField":4276003958991135,"isListChoice":3651587616168681,"markupType":4159305394660511,"maximumLength":4051154340430434,"modificationDate":830506885821304,"isMultiline":1225522796798446,"isOpen":4338237044127542,"page":3638787294525048,"paths":1209085122547070,"popup":4500130675709216,"quadrilateralPoints":3440913548442776,"radiosInUnison":3282216898330850,"isReadOnly":3244847595828223,"shouldDisplay":224087576583070,"shouldPrint":1554985022914139,"stampName":4009435710698484,"startLineStyle":2024337739036426,"startPoint":2320468528615474,"type":1003446637005156,"userName":759668844306911,"values":2335095558980673,"widgetControlType":3086183068291177,"widgetDefaultStringValue":1648433390037151,"widgetFieldType":1047552796559482,"widgetStringValue":2207268183729746}, methods: {"add":{"id":2051965853463172},"draw":{"id":2365288784376046},"remove":{"id":853915791482606},"removeValue":{"id":3832364007175008},"setBoolean":{"id":3654232032329716},"setRect":{"id":1690392296359541},"setValue":{"id":187642604152243},"value":{"id":1718339029678063}} });
+registerSDKClass("PDFAppearanceCharacteristics", PDFAppearanceCharacteristics, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"appearanceCharacteristicsKeyValues":2594808397021502,"backgroundColor":3249522013225787,"borderColor":2856792079958322,"caption":1340594958728709,"controlType":4213838473245358,"downCaption":3851280176566255,"rolloverCaption":816385317574565,"rotation":1817648005116508} });
+registerSDKClass("PDFBorder", PDFBorder, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"borderKeyValues":447534261603124,"dashPattern":3556868823191196,"lineWidth":2767457279304356,"style":1665076869807895}, methods: {"draw":{"id":2587166900728723}} });
+registerSDKClass("PDFDestination", PDFDestination, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"page":1161273072716360,"point":4476037016311364,"zoom":4376336301094613}, methods: {"compare":{"id":3472764153494070}} });
+registerSDKClass("PDFDocument", PDFDocument, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"accessPermissions":3923994422197985,"allowsCommenting":4326973372094403,"allowsContentAccessibility":628889035565464,"allowsCopying":764736980400418,"allowsDocumentAssembly":976031407683092,"allowsDocumentChanges":454188854638428,"allowsFormFieldEntry":2889325209622862,"allowsPrinting":3472194483672602,"delegate":954108641987528,"documentAttributes":1832984400452171,"documentRef":3702682210125526,"documentURL":2894305705816064,"isEncrypted":3733076400993997,"isFinding":3245105750262475,"isLocked":502318312521961,"majorVersion":4206550407659793,"minorVersion":415008520051154,"outlineRoot":2949236441872092,"pageClass":694302332901784,"pageCount":2146750302599247,"permissionsStatus":2372983974393630,"selectionForEntireDocument":220792189984678,"string":2114144060265438}, methods: {"beginFindString":{"id":3115268817527025},"beginFindStrings":{"id":1549764948524632},"cancelFindString":{"id":2579698010354647},"dataRepresentation":{"id":91566611523257},"dataRepresentationOptions":{"id":4365608761671940},"exchangePage":{"id":3048902784088572},"findStringFromSelectionWithOptions":{"id":1286588492770727},"findStringWithOptions":{"id":1990039990487835},"index":{"id":1596144380826199},"insert":{"id":1458137620956655},"outlineItem":{"id":4080506682873701},"page":{"id":1799824826397140},"removePage":{"id":3642643337480815},"selectionFromAtCharacterIndexToAtCharacterIndex":{"id":2987055038472325},"selectionFromAtToAt":{"id":3873977625268384},"selectionFromAtToAtWith":{"id":2378925534020115},"unlock":{"id":2371664026294021},"writeToFile":{"id":4172900124996136},"writeToFileWithOptions":{"id":3146010292160908},"writeTo":{"id":1969455424955591},"writeToWithOptions":{"id":1144470063322804}} });
 registerSDKProtocol("c:objc(pl)PDFDocumentDelegate", {"documentDidUnlock":"documentDidUnlock(_:)","documentDidBeginDocumentFind":"documentDidBeginDocumentFind(_:)","documentDidEndDocumentFind":"documentDidEndDocumentFind(_:)","documentDidBeginPageFind":"documentDidBeginPageFind(_:)","documentDidEndPageFind":"documentDidEndPageFind(_:)","documentDidFindMatch":"documentDidFindMatch(_:)","didMatchString":"didMatchString(_:)"});
-registerSDKClass("PDFOutline", PDFOutline, { module: "PDFKit_a956b86ef7a76a8e", properties: {"action":2029549258082979,"destination":1176452584441251,"document":4028750890267950,"index":3101619313679568,"isOpen":4386152159923780,"label":2162406800087196,"numberOfChildren":27027830545733,"parent":1942531890910102}, methods: {"child":{"id":1580416863237142},"insertChild":{"id":761464473842877},"removeFromParent":{"id":3262254917307238}} });
-registerSDKClass("PDFPage", PDFPage, { module: "PDFKit_a956b86ef7a76a8e", properties: {"annotations":4107001965316148,"attributedString":1858739679172558,"dataRepresentation":2356976272483704,"displaysAnnotations":1685176840237235,"document":1977584121342428,"label":3359232078399607,"numberOfCharacters":4031493335429375,"pageRef":4347689613335406,"rotation":2853652643153142,"string":1748579407264279}, methods: {"addAnnotation":{"id":4360160230121777},"annotation":{"id":1922327546540916},"bounds":{"id":1970792180670121},"characterBounds":{"id":4102388496817529},"characterIndex":{"id":4405029872739714},"draw":{"id":1593398386491446},"removeAnnotation":{"id":13015169020911},"selectionForLine":{"id":2975836680268201},"selectionFor":{"id":757789625708501},"selectionFor81500":{"id":325416147202062},"selectionForWord":{"id":3802607881231537},"selectionFromTo":{"id":4000263119851312},"setBounds":{"id":3964622621199444},"thumbnail":{"id":923885759007182},"transformFor":{"id":1668079362599681},"transformFor40611":{"id":23147688978815}} });
+registerSDKClass("PDFOutline", PDFOutline, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"action":2029549258082979,"destination":1176452584441251,"document":4028750890267950,"index":3101619313679568,"isOpen":4386152159923780,"label":2162406800087196,"numberOfChildren":27027830545733,"parent":1942531890910102}, methods: {"child":{"id":1580416863237142},"insertChild":{"id":761464473842877},"removeFromParent":{"id":3262254917307238}} });
+registerSDKClass("PDFPage", PDFPage, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"annotations":4107001965316148,"attributedString":1858739679172558,"dataRepresentation":2356976272483704,"displaysAnnotations":1685176840237235,"document":1977584121342428,"label":3359232078399607,"numberOfCharacters":4031493335429375,"pageRef":4347689613335406,"rotation":2853652643153142,"string":1748579407264279}, methods: {"addAnnotation":{"id":4360160230121777},"annotation":{"id":1922327546540916},"bounds":{"id":1970792180670121},"characterBounds":{"id":4102388496817529},"characterIndex":{"id":4405029872739714},"draw":{"id":1593398386491446},"removeAnnotation":{"id":13015169020911},"selectionForLine":{"id":2975836680268201},"selectionFor":{"id":757789625708501},"selectionFor81500":{"id":325416147202062},"selectionForWord":{"id":3802607881231537},"selectionFromTo":{"id":4000263119851312},"setBounds":{"id":3964622621199444},"thumbnail":{"id":923885759007182},"transformFor":{"id":1668079362599681},"transformFor40611":{"id":23147688978815}} });
 registerSDKProtocol("c:objc(pl)PDFPageOverlayViewProvider", {"pdfViewOverlayViewFor":"pdfView(_:overlayViewFor:)","pdfViewWillDisplayOverlayViewFor":"pdfView(_:willDisplayOverlayView:for:)","pdfViewWillEndDisplayingOverlayViewFor":"pdfView(_:willEndDisplayingOverlayView:for:)"});
-registerSDKClass("PDFSelection", PDFSelection, { module: "PDFKit_a956b86ef7a76a8e", properties: {"attributedString":1984840593258666,"color":4239562421255835,"pages":2335871133715888,"string":3253226150901807}, methods: {"add":{"id":449652109190667},"add83020":{"id":136653816789306},"bounds":{"id":3245371599948149},"drawForActive":{"id":2961746509588035},"drawForWithActive":{"id":1163330645949847},"extendAtEnd":{"id":3558704261353219},"extendAtStart":{"id":1401244619164505},"extendForLineBoundaries":{"id":3532831166055876},"numberOfTextRanges":{"id":2701429558917563},"range":{"id":1199419162708570},"selectionsByLine":{"id":410026168972531}} });
-registerSDKClass("PDFThumbnailView", PDFThumbnailView, { module: "PDFKit_a956b86ef7a76a8e", properties: {"pdfView":3499721529053946,"backgroundColor":1080080930175709,"contentInset":3130358094118697,"layoutMode":2818369085220052,"selectedPages":457548459977082,"thumbnailSize":1980110214896048} });
-registerSDKClass("PDFView", PDFView, { module: "PDFKit_a956b86ef7a76a8e", properties: {"autoScales":2320164899953287,"backgroundColor":2736013195468360,"canGoBack":3978959896175099,"canGoForward":2162733893833529,"canGoToFirstPage":1136210018541247,"canGoToLastPage":120147861299657,"canGoToNextPage":3748133388589593,"canGoToPreviousPage":953356761323538,"canZoomIn":971098568563165,"canZoomOut":2388307694458453,"currentDestination":3951481625963799,"currentPage":3356349563353269,"currentSelection":677935615408901,"delegate":3332695543007367,"displayBox":3267861651592210,"displayDirection":160113259025744,"displayMode":3257409686957800,"displaysAsBook":4020547974566211,"displaysPageBreaks":421500641144981,"displaysRTL":795215554275019,"document":802158459656966,"documentView":1516815014997990,"enableDataDetectors":303288029316885,"findInteraction":3616352967301080,"isFindInteractionEnabled":694700464516324,"highlightedSelections":1424836033568947,"isInMarkupMode":3249491697653493,"interpolationQuality":2970616876908721,"isUsingPageViewController":4007805550675985,"maxScaleFactor":3400003072472617,"minScaleFactor":4436522255377035,"pageBreakMargins":2248145880045103,"pageOverlayViewProvider":3968497531206586,"pageShadowsEnabled":3216412518210226,"scaleFactor":1628024606425804,"scaleFactorForSizeToFit":2774069884355036,"visiblePages":480780599369977}, methods: {"annotationsChanged":{"id":2865980491720233},"areaOfInterestForMouse":{"id":4231856615590228},"areaOfInterestFor":{"id":1953208435127550},"clearSelection":{"id":466983156345735},"convertFrom":{"id":2371865515611980},"convertTo":{"id":1278235577267012},"convertFrom86829":{"id":2536920462255752},"convertTo23162":{"id":3526242046606413},"copy":{"id":2423310755402341},"draw":{"id":3451594345978701},"drawPagePost":{"id":649551816484706},"goBack":{"id":865336536921289},"goForward":{"id":2791063222383259},"goTo":{"id":2997058470371472},"goToFirstPage":{"id":147997521436018},"goToLastPage":{"id":3074579030248972},"goToNextPage":{"id":396903998992121},"goTo50003":{"id":2013399312400178},"goToPreviousPage":{"id":1436617729536270},"goToOn":{"id":1633850807005446},"goTo16108":{"id":2751689841569746},"layoutDocumentView":{"id":1459498273518900},"page":{"id":3182700084814840},"perform":{"id":2496770038811810},"rowSize":{"id":3469782269218762},"scrollSelectionToVisible":{"id":3815102950133650},"selectAll":{"id":1910357021319029},"setCurrentSelection":{"id":4085952202798815},"usePageViewController":{"id":2546158542605305},"zoomIn":{"id":3048349685383408},"zoomOut":{"id":1487522952857928}} });
+registerSDKClass("PDFSelection", PDFSelection, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"attributedString":1984840593258666,"color":4239562421255835,"pages":2335871133715888,"string":3253226150901807}, methods: {"add":{"id":449652109190667},"add83020":{"id":136653816789306},"bounds":{"id":3245371599948149},"drawForActive":{"id":2961746509588035},"drawForWithActive":{"id":1163330645949847},"extendAtEnd":{"id":3558704261353219},"extendAtStart":{"id":1401244619164505},"extendForLineBoundaries":{"id":3532831166055876},"numberOfTextRanges":{"id":2701429558917563},"range":{"id":1199419162708570},"selectionsByLine":{"id":410026168972531}} });
+registerSDKClass("PDFThumbnailView", PDFThumbnailView, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"pdfView":3499721529053946,"backgroundColor":1080080930175709,"contentInset":3130358094118697,"layoutMode":2818369085220052,"selectedPages":457548459977082,"thumbnailSize":1980110214896048} });
+registerSDKClass("PDFView", PDFView, { module: "PDFKit_90ad0eb69cc6bf4a", properties: {"autoScales":2320164899953287,"backgroundColor":2736013195468360,"canGoBack":3978959896175099,"canGoForward":2162733893833529,"canGoToFirstPage":1136210018541247,"canGoToLastPage":120147861299657,"canGoToNextPage":3748133388589593,"canGoToPreviousPage":953356761323538,"canZoomIn":971098568563165,"canZoomOut":2388307694458453,"currentDestination":3951481625963799,"currentPage":3356349563353269,"currentSelection":677935615408901,"delegate":3332695543007367,"displayBox":3267861651592210,"displayDirection":160113259025744,"displayMode":3257409686957800,"displaysAsBook":4020547974566211,"displaysPageBreaks":421500641144981,"displaysRTL":795215554275019,"document":802158459656966,"documentView":1516815014997990,"enableDataDetectors":303288029316885,"findInteraction":3616352967301080,"isFindInteractionEnabled":694700464516324,"highlightedSelections":1424836033568947,"isInMarkupMode":3249491697653493,"interpolationQuality":2970616876908721,"isUsingPageViewController":4007805550675985,"maxScaleFactor":3400003072472617,"minScaleFactor":4436522255377035,"pageBreakMargins":2248145880045103,"pageOverlayViewProvider":3968497531206586,"pageShadowsEnabled":3216412518210226,"scaleFactor":1628024606425804,"scaleFactorForSizeToFit":2774069884355036,"visiblePages":480780599369977}, methods: {"annotationsChanged":{"id":2865980491720233},"areaOfInterestForMouse":{"id":4231856615590228},"areaOfInterestFor":{"id":1953208435127550},"clearSelection":{"id":466983156345735},"convertFrom":{"id":2371865515611980},"convertTo":{"id":1278235577267012},"convertFrom86829":{"id":2536920462255752},"convertTo23162":{"id":3526242046606413},"copy":{"id":2423310755402341},"draw":{"id":3451594345978701},"drawPagePost":{"id":649551816484706},"goBack":{"id":865336536921289},"goForward":{"id":2791063222383259},"goTo":{"id":2997058470371472},"goToFirstPage":{"id":147997521436018},"goToLastPage":{"id":3074579030248972},"goToNextPage":{"id":396903998992121},"goTo50003":{"id":2013399312400178},"goToPreviousPage":{"id":1436617729536270},"goToOn":{"id":1633850807005446},"goTo16108":{"id":2751689841569746},"layoutDocumentView":{"id":1459498273518900},"page":{"id":3182700084814840},"perform":{"id":2496770038811810},"rowSize":{"id":3469782269218762},"scrollSelectionToVisible":{"id":3815102950133650},"selectAll":{"id":1910357021319029},"setCurrentSelection":{"id":4085952202798815},"usePageViewController":{"id":2546158542605305},"zoomIn":{"id":3048349685383408},"zoomOut":{"id":1487522952857928}} });
 registerSDKProtocol("c:objc(pl)PDFViewDelegate", {"pdfViewWillClickOnLinkWith":"pdfViewWillClick(onLink:with:)","pdfViewPerformFind":"pdfViewPerformFind(_:)","pdfViewPerformGoToPage":"pdfViewPerformGo(toPage:)","pdfViewOpenPDFForRemoteGoToAction":"pdfViewOpenPDF(_:forRemoteGoToAction:)"});

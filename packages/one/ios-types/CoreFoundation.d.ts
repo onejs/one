@@ -4815,8 +4815,6 @@ export declare const kCFAllocatorMallocZone: (CFAllocator) | null;
 export declare const kCFAllocatorNull: (CFAllocator) | null;
 /** let kCFAllocatorSystemDefault: CFAllocator! */
 export declare const kCFAllocatorSystemDefault: (CFAllocator) | null;
-/** let kCFAllocatorUseContext: CFAllocator! */
-export declare const kCFAllocatorUseContext: (CFAllocator) | null;
 /** let kCFBooleanFalse: CFBoolean! */
 export declare const kCFBooleanFalse: (CFBoolean) | null;
 /** let kCFBooleanTrue: CFBoolean! */

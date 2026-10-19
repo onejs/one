@@ -33,19 +33,19 @@ export type SCDynamicStoreCallBack = ((arg0: SCDynamicStore, arg1: _CoreFoundati
 /** struct SCDynamicStoreContext */
 export class SCDynamicStoreContext extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer) -> Unmanaged<CFString>)? */
-  get copyDescription(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_a956b86ef7a76a8e", 4413182179484181, this, []); }
+  get copyDescription(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_90ad0eb69cc6bf4a", 4413182179484181, this, []); }
   /** var info: UnsafeMutableRawPointer? */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SystemConfiguration_a956b86ef7a76a8e", 1260103432531139, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("SystemConfiguration_a956b86ef7a76a8e", 2557663946107501, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SystemConfiguration_90ad0eb69cc6bf4a", 1260103432531139, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("SystemConfiguration_90ad0eb69cc6bf4a", 2557663946107501, this, [value]); }
   /** var release: ((UnsafeRawPointer) -> Void)? */
-  get release(): $SDK2 { return callSDK<$SDK2>("SystemConfiguration_a956b86ef7a76a8e", 930413699136711, this, []); }
+  get release(): $SDK2 { return callSDK<$SDK2>("SystemConfiguration_90ad0eb69cc6bf4a", 930413699136711, this, []); }
   /** var retain: ((UnsafeRawPointer) -> UnsafeRawPointer)? */
-  get retain(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_a956b86ef7a76a8e", 2413665034553062, this, []); }
+  get retain(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_90ad0eb69cc6bf4a", 2413665034553062, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 3635076309850913, this, []); }
-  set version(value: number) { callSDK<void>("SystemConfiguration_a956b86ef7a76a8e", 2106749434592872, this, [value]); }
+  get version(): number { return callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 3635076309850913, this, []); }
+  set version(value: number) { callSDK<void>("SystemConfiguration_90ad0eb69cc6bf4a", 2106749434592872, this, [value]); }
   /** init() */
-  static init(): SCDynamicStoreContext { return callSDK<SCDynamicStoreContext>("SystemConfiguration_a956b86ef7a76a8e", 338999774931423, undefined, []); }
+  static init(): SCDynamicStoreContext { return callSDK<SCDynamicStoreContext>("SystemConfiguration_90ad0eb69cc6bf4a", 338999774931423, undefined, []); }
   declare readonly $type: { "c:@SA@SCDynamicStoreContext": true };
 }
 
@@ -60,19 +60,19 @@ export type SCNetworkConnectionCallBack = ((arg0: SCNetworkConnection, arg1: SCN
 /** struct SCNetworkConnectionContext */
 export class SCNetworkConnectionContext extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer) -> Unmanaged<CFString>)? */
-  get copyDescription(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_a956b86ef7a76a8e", 1143725350135853, this, []); }
+  get copyDescription(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_90ad0eb69cc6bf4a", 1143725350135853, this, []); }
   /** var info: UnsafeMutableRawPointer? */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SystemConfiguration_a956b86ef7a76a8e", 3062647425276607, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("SystemConfiguration_a956b86ef7a76a8e", 3678332981788074, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SystemConfiguration_90ad0eb69cc6bf4a", 3062647425276607, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("SystemConfiguration_90ad0eb69cc6bf4a", 3678332981788074, this, [value]); }
   /** var release: ((UnsafeRawPointer) -> Void)? */
-  get release(): $SDK2 { return callSDK<$SDK2>("SystemConfiguration_a956b86ef7a76a8e", 3250670233200784, this, []); }
+  get release(): $SDK2 { return callSDK<$SDK2>("SystemConfiguration_90ad0eb69cc6bf4a", 3250670233200784, this, []); }
   /** var retain: ((UnsafeRawPointer) -> UnsafeRawPointer)? */
-  get retain(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_a956b86ef7a76a8e", 784895408306790, this, []); }
+  get retain(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_90ad0eb69cc6bf4a", 784895408306790, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 3579381024346551, this, []); }
-  set version(value: number) { callSDK<void>("SystemConfiguration_a956b86ef7a76a8e", 2235687418915347, this, [value]); }
+  get version(): number { return callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 3579381024346551, this, []); }
+  set version(value: number) { callSDK<void>("SystemConfiguration_90ad0eb69cc6bf4a", 2235687418915347, this, [value]); }
   /** init() */
-  static init(): SCNetworkConnectionContext { return callSDK<SCNetworkConnectionContext>("SystemConfiguration_a956b86ef7a76a8e", 4072154816956908, undefined, []); }
+  static init(): SCNetworkConnectionContext { return callSDK<SCNetworkConnectionContext>("SystemConfiguration_90ad0eb69cc6bf4a", 4072154816956908, undefined, []); }
   declare readonly $type: { "c:@SA@SCNetworkConnectionContext": true };
 }
 
@@ -84,7 +84,7 @@ export type SCNetworkConnectionPPPStatus = "disconnected" | "initializing" | "co
 
 export const SCNetworkConnectionPPPStatus = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (SCNetworkConnectionPPPStatus) | null { return callSDK<(SCNetworkConnectionPPPStatus) | null>("SystemConfiguration_a956b86ef7a76a8e", 1380199837674351, undefined, [rawValue]); }
+  init(rawValue: number): (SCNetworkConnectionPPPStatus) | null { return callSDK<(SCNetworkConnectionPPPStatus) | null>("SystemConfiguration_90ad0eb69cc6bf4a", 1380199837674351, undefined, [rawValue]); }
 };
 
 /** enum SCNetworkConnectionStatus */
@@ -92,7 +92,7 @@ export type SCNetworkConnectionStatus = "invalid" | "disconnected" | "connecting
 
 export const SCNetworkConnectionStatus = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (SCNetworkConnectionStatus) | null { return callSDK<(SCNetworkConnectionStatus) | null>("SystemConfiguration_a956b86ef7a76a8e", 4281681104411226, undefined, [rawValue]); }
+  init(rawValue: number): (SCNetworkConnectionStatus) | null { return callSDK<(SCNetworkConnectionStatus) | null>("SystemConfiguration_90ad0eb69cc6bf4a", 4281681104411226, undefined, [rawValue]); }
 };
 
 /** class SCNetworkInterface */
@@ -116,19 +116,19 @@ export type SCNetworkReachabilityCallBack = ((arg0: SCNetworkReachability, arg1:
 /** struct SCNetworkReachabilityContext */
 export class SCNetworkReachabilityContext extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer) -> Unmanaged<CFString>)? */
-  get copyDescription(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_a956b86ef7a76a8e", 686512090492564, this, []); }
+  get copyDescription(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_90ad0eb69cc6bf4a", 686512090492564, this, []); }
   /** var info: UnsafeMutableRawPointer? */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SystemConfiguration_a956b86ef7a76a8e", 3067184940702155, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("SystemConfiguration_a956b86ef7a76a8e", 2103758257639916, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SystemConfiguration_90ad0eb69cc6bf4a", 3067184940702155, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("SystemConfiguration_90ad0eb69cc6bf4a", 2103758257639916, this, [value]); }
   /** var release: ((UnsafeRawPointer) -> Void)? */
-  get release(): $SDK2 { return callSDK<$SDK2>("SystemConfiguration_a956b86ef7a76a8e", 825183565388449, this, []); }
+  get release(): $SDK2 { return callSDK<$SDK2>("SystemConfiguration_90ad0eb69cc6bf4a", 825183565388449, this, []); }
   /** var retain: ((UnsafeRawPointer) -> UnsafeRawPointer)? */
-  get retain(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_a956b86ef7a76a8e", 1395582541845133, this, []); }
+  get retain(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_90ad0eb69cc6bf4a", 1395582541845133, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 4488416870989404, this, []); }
-  set version(value: number) { callSDK<void>("SystemConfiguration_a956b86ef7a76a8e", 2635475958090814, this, [value]); }
+  get version(): number { return callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 4488416870989404, this, []); }
+  set version(value: number) { callSDK<void>("SystemConfiguration_90ad0eb69cc6bf4a", 2635475958090814, this, [value]); }
   /** init() */
-  static init(): SCNetworkReachabilityContext { return callSDK<SCNetworkReachabilityContext>("SystemConfiguration_a956b86ef7a76a8e", 332192108102163, undefined, []); }
+  static init(): SCNetworkReachabilityContext { return callSDK<SCNetworkReachabilityContext>("SystemConfiguration_90ad0eb69cc6bf4a", 332192108102163, undefined, []); }
   declare readonly $type: { "c:@SA@SCNetworkReachabilityContext": true };
 }
 
@@ -137,33 +137,33 @@ export type SCNetworkReachabilityFlags = Array<"transientConnection" | "reachabl
 
 export const SCNetworkReachabilityFlags = {
   /** static var connectionAutomatic: SCNetworkReachabilityFlags { get } */
-  get connectionAutomatic(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 959788342305739, undefined, []); },
+  get connectionAutomatic(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 959788342305739, undefined, []); },
   /**
    * static var connectionOnDemand: SCNetworkReachabilityFlags { get }
    * @availability iOS 3.0+
    */
-  get connectionOnDemand(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 3140593297803557, undefined, []); },
+  get connectionOnDemand(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 3140593297803557, undefined, []); },
   /** static var connectionOnTraffic: SCNetworkReachabilityFlags { get } */
-  get connectionOnTraffic(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 1440726308011371, undefined, []); },
+  get connectionOnTraffic(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 1440726308011371, undefined, []); },
   /** static var connectionRequired: SCNetworkReachabilityFlags { get } */
-  get connectionRequired(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 173284410188743, undefined, []); },
+  get connectionRequired(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 173284410188743, undefined, []); },
   /** static var interventionRequired: SCNetworkReachabilityFlags { get } */
-  get interventionRequired(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 909277869215379, undefined, []); },
+  get interventionRequired(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 909277869215379, undefined, []); },
   /** static var isDirect: SCNetworkReachabilityFlags { get } */
-  get isDirect(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 872325327040580, undefined, []); },
+  get isDirect(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 872325327040580, undefined, []); },
   /** static var isLocalAddress: SCNetworkReachabilityFlags { get } */
-  get isLocalAddress(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 2771028948444630, undefined, []); },
+  get isLocalAddress(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 2771028948444630, undefined, []); },
   /**
    * static var isWWAN: SCNetworkReachabilityFlags { get }
    * @availability iOS 2.0+
    */
-  get isWWAN(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 3946504657791715, undefined, []); },
+  get isWWAN(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 3946504657791715, undefined, []); },
   /** static var reachable: SCNetworkReachabilityFlags { get } */
-  get reachable(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 364391855776550, undefined, []); },
+  get reachable(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 364391855776550, undefined, []); },
   /** static var transientConnection: SCNetworkReachabilityFlags { get } */
-  get transientConnection(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 1181914853878392, undefined, []); },
+  get transientConnection(): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 1181914853878392, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_a956b86ef7a76a8e", 230946503699344, undefined, [rawValue]); }
+  init(rawValue: number): SCNetworkReachabilityFlags { return callSDK<SCNetworkReachabilityFlags>("SystemConfiguration_90ad0eb69cc6bf4a", 230946503699344, undefined, [rawValue]); }
 };
 
 /** class SCNetworkService */
@@ -187,19 +187,19 @@ export type SCPreferencesCallBack = ((arg0: SCPreferences, arg1: SCPreferencesNo
 /** struct SCPreferencesContext */
 export class SCPreferencesContext extends SDKHandle {
   /** var copyDescription: ((UnsafeRawPointer) -> Unmanaged<CFString>)? */
-  get copyDescription(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_a956b86ef7a76a8e", 2332915931364517, this, []); }
+  get copyDescription(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_90ad0eb69cc6bf4a", 2332915931364517, this, []); }
   /** var info: UnsafeMutableRawPointer? */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SystemConfiguration_a956b86ef7a76a8e", 3302667273178237, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("SystemConfiguration_a956b86ef7a76a8e", 158262681574623, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SystemConfiguration_90ad0eb69cc6bf4a", 3302667273178237, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("SystemConfiguration_90ad0eb69cc6bf4a", 158262681574623, this, [value]); }
   /** var release: ((UnsafeRawPointer) -> Void)? */
-  get release(): $SDK2 { return callSDK<$SDK2>("SystemConfiguration_a956b86ef7a76a8e", 4098946156982513, this, []); }
+  get release(): $SDK2 { return callSDK<$SDK2>("SystemConfiguration_90ad0eb69cc6bf4a", 4098946156982513, this, []); }
   /** var retain: ((UnsafeRawPointer) -> UnsafeRawPointer)? */
-  get retain(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_a956b86ef7a76a8e", 4367600471070701, this, []); }
+  get retain(): $SDK1 { return callSDK<$SDK1>("SystemConfiguration_90ad0eb69cc6bf4a", 4367600471070701, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 2257809989649134, this, []); }
-  set version(value: number) { callSDK<void>("SystemConfiguration_a956b86ef7a76a8e", 2162796191190180, this, [value]); }
+  get version(): number { return callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 2257809989649134, this, []); }
+  set version(value: number) { callSDK<void>("SystemConfiguration_90ad0eb69cc6bf4a", 2162796191190180, this, [value]); }
   /** init() */
-  static init(): SCPreferencesContext { return callSDK<SCPreferencesContext>("SystemConfiguration_a956b86ef7a76a8e", 1746248611959735, undefined, []); }
+  static init(): SCPreferencesContext { return callSDK<SCPreferencesContext>("SystemConfiguration_90ad0eb69cc6bf4a", 1746248611959735, undefined, []); }
   declare readonly $type: { "c:@SA@SCPreferencesContext": true };
 }
 
@@ -208,7 +208,7 @@ export type SCPreferencesNotification = Array<number>;
 
 export const SCPreferencesNotification = {
   /** init(rawValue: UInt32) */
-  init(rawValue: number): SCPreferencesNotification { return callSDK<SCPreferencesNotification>("SystemConfiguration_a956b86ef7a76a8e", 3509066048188623, undefined, [rawValue]); }
+  init(rawValue: number): SCPreferencesNotification { return callSDK<SCPreferencesNotification>("SystemConfiguration_90ad0eb69cc6bf4a", 3509066048188623, undefined, [rawValue]); }
 };
 
 /** typealias SCVLANInterface = SCNetworkInterface */
@@ -218,199 +218,199 @@ export type SCVLANInterface = SCNetworkInterface;
  * func SCCopyLastError() -> CFError
  * @availability iOS 2.0+
  */
-export function SCCopyLastError(): _CoreFoundation_CFError { return callSDK<_CoreFoundation_CFError>("SystemConfiguration_a956b86ef7a76a8e", 2008320204467073, undefined, []); }
+export function SCCopyLastError(): _CoreFoundation_CFError { return callSDK<_CoreFoundation_CFError>("SystemConfiguration_90ad0eb69cc6bf4a", 2008320204467073, undefined, []); }
 
 /**
  * func SCError() -> Int32
  * @availability iOS 2.0+
  */
-export function SCError(): number { return callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 290781154317128, undefined, []); }
+export function SCError(): number { return callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 290781154317128, undefined, []); }
 
 /**
  * func SCErrorString(_ status: Int32) -> UnsafePointer<CChar>
  * @availability iOS 2.0+
  */
-export function SCErrorString(status: number): SDKHandle { return callSDK<SDKHandle>("SystemConfiguration_a956b86ef7a76a8e", 3939421466158603, undefined, [status]); }
+export function SCErrorString(status: number): SDKHandle { return callSDK<SDKHandle>("SystemConfiguration_90ad0eb69cc6bf4a", 3939421466158603, undefined, [status]); }
 
 /**
  * func SCNetworkReachabilityCreateWithAddress(_ allocator: CFAllocator?, _ address: UnsafePointer<sockaddr>) -> SCNetworkReachability?
  * @availability iOS 2.0+
  * @deprecated iOS 17.4
  */
-export function SCNetworkReachabilityCreateWithAddress(allocator: $SDK7, address: SDKHandle): $SDK6 { return callSDK<$SDK6>("SystemConfiguration_a956b86ef7a76a8e", 1157921970702400, undefined, [allocator, address]); }
+export function SCNetworkReachabilityCreateWithAddress(allocator: $SDK7, address: SDKHandle): $SDK6 { return callSDK<$SDK6>("SystemConfiguration_90ad0eb69cc6bf4a", 1157921970702400, undefined, [allocator, address]); }
 
 /**
  * func SCNetworkReachabilityCreateWithAddressPair(_ allocator: CFAllocator?, _ localAddress: UnsafePointer<sockaddr>?, _ remoteAddress: UnsafePointer<sockaddr>?) -> SCNetworkReachability?
  * @availability iOS 2.0+
  * @deprecated iOS 17.4
  */
-export function SCNetworkReachabilityCreateWithAddressPair(allocator?: $SDK7, localAddress?: (SDKHandle) | null, remoteAddress?: (SDKHandle) | null): $SDK6 { return callSDK<$SDK6>("SystemConfiguration_a956b86ef7a76a8e", 3287419042163423, undefined, [allocator, localAddress, remoteAddress]); }
+export function SCNetworkReachabilityCreateWithAddressPair(allocator?: $SDK7, localAddress?: (SDKHandle) | null, remoteAddress?: (SDKHandle) | null): $SDK6 { return callSDK<$SDK6>("SystemConfiguration_90ad0eb69cc6bf4a", 3287419042163423, undefined, [allocator, localAddress, remoteAddress]); }
 
 /**
  * func SCNetworkReachabilityCreateWithName(_ allocator: CFAllocator?, _ nodename: UnsafePointer<CChar>) -> SCNetworkReachability?
  * @availability iOS 2.0+
  * @deprecated iOS 17.4
  */
-export function SCNetworkReachabilityCreateWithName(allocator: $SDK7, nodename: SDKHandle): $SDK6 { return callSDK<$SDK6>("SystemConfiguration_a956b86ef7a76a8e", 2376393861412511, undefined, [allocator, nodename]); }
+export function SCNetworkReachabilityCreateWithName(allocator: $SDK7, nodename: SDKHandle): $SDK6 { return callSDK<$SDK6>("SystemConfiguration_90ad0eb69cc6bf4a", 2376393861412511, undefined, [allocator, nodename]); }
 
 /**
  * func SCNetworkReachabilityGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  * @deprecated iOS 17.4
  */
-export function SCNetworkReachabilityGetTypeID(): number { return callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 1406282629529906, undefined, []); }
+export function SCNetworkReachabilityGetTypeID(): number { return callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 1406282629529906, undefined, []); }
 
 /**
  * func SCNetworkReachabilityScheduleWithRunLoop(_ target: SCNetworkReachability, _ runLoop: CFRunLoop, _ runLoopMode: CFString) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 17.4
  */
-export function SCNetworkReachabilityScheduleWithRunLoop(target: SCNetworkReachability, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): boolean { return callSDK<boolean>("SystemConfiguration_a956b86ef7a76a8e", 3692501387964674, undefined, [target, runLoop, runLoopMode]); }
+export function SCNetworkReachabilityScheduleWithRunLoop(target: SCNetworkReachability, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): boolean { return callSDK<boolean>("SystemConfiguration_90ad0eb69cc6bf4a", 3692501387964674, undefined, [target, runLoop, runLoopMode]); }
 
 /**
  * func SCNetworkReachabilitySetDispatchQueue(_ target: SCNetworkReachability, _ queue: dispatch_queue_t?) -> Bool
  * @availability iOS 4.0+
  * @deprecated iOS 17.4
  */
-export function SCNetworkReachabilitySetDispatchQueue(target: SCNetworkReachability, queue?: (_Dispatch_DispatchQueue) | null): boolean { return callSDK<boolean>("SystemConfiguration_a956b86ef7a76a8e", 3863971818493154, undefined, [target, queue]); }
+export function SCNetworkReachabilitySetDispatchQueue(target: SCNetworkReachability, queue?: (_Dispatch_DispatchQueue) | null): boolean { return callSDK<boolean>("SystemConfiguration_90ad0eb69cc6bf4a", 3863971818493154, undefined, [target, queue]); }
 
 /**
  * func SCNetworkReachabilityUnscheduleFromRunLoop(_ target: SCNetworkReachability, _ runLoop: CFRunLoop, _ runLoopMode: CFString) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 17.4
  */
-export function SCNetworkReachabilityUnscheduleFromRunLoop(target: SCNetworkReachability, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): boolean { return callSDK<boolean>("SystemConfiguration_a956b86ef7a76a8e", 658971230420270, undefined, [target, runLoop, runLoopMode]); }
+export function SCNetworkReachabilityUnscheduleFromRunLoop(target: SCNetworkReachability, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): boolean { return callSDK<boolean>("SystemConfiguration_90ad0eb69cc6bf4a", 658971230420270, undefined, [target, runLoop, runLoopMode]); }
 
 /** var kSCBondStatusLinkInvalid: Int { get } */
-export const kSCBondStatusLinkInvalid: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 3447294969254882, undefined, []);
+export const kSCBondStatusLinkInvalid: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 3447294969254882, undefined, []);
 
 /** var kSCBondStatusNoPartner: Int { get } */
-export const kSCBondStatusNoPartner: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 1196192866636536, undefined, []);
+export const kSCBondStatusNoPartner: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 1196192866636536, undefined, []);
 
 /** var kSCBondStatusNotInActiveGroup: Int { get } */
-export const kSCBondStatusNotInActiveGroup: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 121343788022807, undefined, []);
+export const kSCBondStatusNotInActiveGroup: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 121343788022807, undefined, []);
 
 /** var kSCBondStatusOK: Int { get } */
-export const kSCBondStatusOK: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 3290146779695276, undefined, []);
+export const kSCBondStatusOK: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 3290146779695276, undefined, []);
 
 /** var kSCBondStatusUnknown: Int { get } */
-export const kSCBondStatusUnknown: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 2799546314799111, undefined, []);
+export const kSCBondStatusUnknown: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 2799546314799111, undefined, []);
 
 /** var kSCNetworkFlagsConnectionAutomatic: Int { get } */
-export const kSCNetworkFlagsConnectionAutomatic: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 3345429851396134, undefined, []);
+export const kSCNetworkFlagsConnectionAutomatic: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 3345429851396134, undefined, []);
 
 /** var kSCNetworkFlagsConnectionRequired: Int { get } */
-export const kSCNetworkFlagsConnectionRequired: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 2358160435341405, undefined, []);
+export const kSCNetworkFlagsConnectionRequired: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 2358160435341405, undefined, []);
 
 /** var kSCNetworkFlagsInterventionRequired: Int { get } */
-export const kSCNetworkFlagsInterventionRequired: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 484249602550005, undefined, []);
+export const kSCNetworkFlagsInterventionRequired: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 484249602550005, undefined, []);
 
 /** var kSCNetworkFlagsIsDirect: Int { get } */
-export const kSCNetworkFlagsIsDirect: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 4314848195733154, undefined, []);
+export const kSCNetworkFlagsIsDirect: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 4314848195733154, undefined, []);
 
 /** var kSCNetworkFlagsIsLocalAddress: Int { get } */
-export const kSCNetworkFlagsIsLocalAddress: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 2560284124173827, undefined, []);
+export const kSCNetworkFlagsIsLocalAddress: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 2560284124173827, undefined, []);
 
 /** var kSCNetworkFlagsReachable: Int { get } */
-export const kSCNetworkFlagsReachable: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 3662556333791901, undefined, []);
+export const kSCNetworkFlagsReachable: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 3662556333791901, undefined, []);
 
 /** var kSCNetworkFlagsTransientConnection: Int { get } */
-export const kSCNetworkFlagsTransientConnection: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 1046433595281035, undefined, []);
+export const kSCNetworkFlagsTransientConnection: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 1046433595281035, undefined, []);
 
 /** var kSCStatusAccessError: Int { get } */
-export const kSCStatusAccessError: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 646978626622985, undefined, []);
+export const kSCStatusAccessError: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 646978626622985, undefined, []);
 
 /** var kSCStatusFailed: Int { get } */
-export const kSCStatusFailed: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 1401366245379085, undefined, []);
+export const kSCStatusFailed: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 1401366245379085, undefined, []);
 
 /** var kSCStatusInvalidArgument: Int { get } */
-export const kSCStatusInvalidArgument: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 4184716432534881, undefined, []);
+export const kSCStatusInvalidArgument: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 4184716432534881, undefined, []);
 
 /** var kSCStatusKeyExists: Int { get } */
-export const kSCStatusKeyExists: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 945163176054121, undefined, []);
+export const kSCStatusKeyExists: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 945163176054121, undefined, []);
 
 /** var kSCStatusLocked: Int { get } */
-export const kSCStatusLocked: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 2555946007660307, undefined, []);
+export const kSCStatusLocked: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 2555946007660307, undefined, []);
 
 /** var kSCStatusMaxLink: Int { get } */
-export const kSCStatusMaxLink: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 544584755332135, undefined, []);
+export const kSCStatusMaxLink: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 544584755332135, undefined, []);
 
 /** var kSCStatusNeedLock: Int { get } */
-export const kSCStatusNeedLock: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 935447313163040, undefined, []);
+export const kSCStatusNeedLock: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 935447313163040, undefined, []);
 
 /** var kSCStatusNoConfigFile: Int { get } */
-export const kSCStatusNoConfigFile: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 1673676253862328, undefined, []);
+export const kSCStatusNoConfigFile: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 1673676253862328, undefined, []);
 
 /** var kSCStatusNoKey: Int { get } */
-export const kSCStatusNoKey: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 3177304840231302, undefined, []);
+export const kSCStatusNoKey: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 3177304840231302, undefined, []);
 
 /** var kSCStatusNoLink: Int { get } */
-export const kSCStatusNoLink: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 3498737847475601, undefined, []);
+export const kSCStatusNoLink: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 3498737847475601, undefined, []);
 
 /** var kSCStatusNoPrefsSession: Int { get } */
-export const kSCStatusNoPrefsSession: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 4473949921992521, undefined, []);
+export const kSCStatusNoPrefsSession: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 4473949921992521, undefined, []);
 
 /** var kSCStatusNoStoreServer: Int { get } */
-export const kSCStatusNoStoreServer: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 1484316395012737, undefined, []);
+export const kSCStatusNoStoreServer: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 1484316395012737, undefined, []);
 
 /** var kSCStatusNoStoreSession: Int { get } */
-export const kSCStatusNoStoreSession: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 2137343102979542, undefined, []);
+export const kSCStatusNoStoreSession: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 2137343102979542, undefined, []);
 
 /** var kSCStatusNotifierActive: Int { get } */
-export const kSCStatusNotifierActive: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 1233560142812412, undefined, []);
+export const kSCStatusNotifierActive: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 1233560142812412, undefined, []);
 
 /** var kSCStatusOK: Int { get } */
-export const kSCStatusOK: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 545048540677144, undefined, []);
+export const kSCStatusOK: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 545048540677144, undefined, []);
 
 /** var kSCStatusPrefsBusy: Int { get } */
-export const kSCStatusPrefsBusy: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 3794817278166156, undefined, []);
+export const kSCStatusPrefsBusy: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 3794817278166156, undefined, []);
 
 /** var kSCStatusReachabilityUnknown: Int { get } */
-export const kSCStatusReachabilityUnknown: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 1481272870489354, undefined, []);
+export const kSCStatusReachabilityUnknown: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 1481272870489354, undefined, []);
 
 /** var kSCStatusStale: Int { get } */
-export const kSCStatusStale: number = callSDK<number>("SystemConfiguration_a956b86ef7a76a8e", 10522787315628, undefined, []);
+export const kSCStatusStale: number = callSDK<number>("SystemConfiguration_90ad0eb69cc6bf4a", 10522787315628, undefined, []);
 
 /**
  * let kCFErrorDomainSystemConfiguration: CFString
  * @availability iOS 2.0+
  */
-export const kCFErrorDomainSystemConfiguration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("SystemConfiguration_a956b86ef7a76a8e", 3960454896568802, undefined, []);
+export const kCFErrorDomainSystemConfiguration: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("SystemConfiguration_90ad0eb69cc6bf4a", 3960454896568802, undefined, []);
 
 /** var kSCNetworkConnectionBytesIn: String { get } */
-export const kSCNetworkConnectionBytesIn: string = callSDK<string>("SystemConfiguration_a956b86ef7a76a8e", 2628017247839064, undefined, []);
+export const kSCNetworkConnectionBytesIn: string = callSDK<string>("SystemConfiguration_90ad0eb69cc6bf4a", 2628017247839064, undefined, []);
 
 /** var kSCNetworkConnectionBytesOut: String { get } */
-export const kSCNetworkConnectionBytesOut: string = callSDK<string>("SystemConfiguration_a956b86ef7a76a8e", 2438879203523672, undefined, []);
+export const kSCNetworkConnectionBytesOut: string = callSDK<string>("SystemConfiguration_90ad0eb69cc6bf4a", 2438879203523672, undefined, []);
 
 /** var kSCNetworkConnectionErrorsIn: String { get } */
-export const kSCNetworkConnectionErrorsIn: string = callSDK<string>("SystemConfiguration_a956b86ef7a76a8e", 3327401955418497, undefined, []);
+export const kSCNetworkConnectionErrorsIn: string = callSDK<string>("SystemConfiguration_90ad0eb69cc6bf4a", 3327401955418497, undefined, []);
 
 /** var kSCNetworkConnectionErrorsOut: String { get } */
-export const kSCNetworkConnectionErrorsOut: string = callSDK<string>("SystemConfiguration_a956b86ef7a76a8e", 1744913950745329, undefined, []);
+export const kSCNetworkConnectionErrorsOut: string = callSDK<string>("SystemConfiguration_90ad0eb69cc6bf4a", 1744913950745329, undefined, []);
 
 /** var kSCNetworkConnectionPacketsIn: String { get } */
-export const kSCNetworkConnectionPacketsIn: string = callSDK<string>("SystemConfiguration_a956b86ef7a76a8e", 3793482315024478, undefined, []);
+export const kSCNetworkConnectionPacketsIn: string = callSDK<string>("SystemConfiguration_90ad0eb69cc6bf4a", 3793482315024478, undefined, []);
 
 /** var kSCNetworkConnectionPacketsOut: String { get } */
-export const kSCNetworkConnectionPacketsOut: string = callSDK<string>("SystemConfiguration_a956b86ef7a76a8e", 51119859456589, undefined, []);
+export const kSCNetworkConnectionPacketsOut: string = callSDK<string>("SystemConfiguration_90ad0eb69cc6bf4a", 51119859456589, undefined, []);
 
 /** var kSCNetworkConnectionSelectionOptionOnDemandHostName: String { get } */
-export const kSCNetworkConnectionSelectionOptionOnDemandHostName: string = callSDK<string>("SystemConfiguration_a956b86ef7a76a8e", 243966812323184, undefined, []);
+export const kSCNetworkConnectionSelectionOptionOnDemandHostName: string = callSDK<string>("SystemConfiguration_90ad0eb69cc6bf4a", 243966812323184, undefined, []);
 
 /** var kSCNetworkConnectionSelectionOptionOnDemandRetry: String { get } */
-export const kSCNetworkConnectionSelectionOptionOnDemandRetry: string = callSDK<string>("SystemConfiguration_a956b86ef7a76a8e", 4268948569148047, undefined, []);
+export const kSCNetworkConnectionSelectionOptionOnDemandRetry: string = callSDK<string>("SystemConfiguration_90ad0eb69cc6bf4a", 4268948569148047, undefined, []);
 
-registerSDKClass("SystemConfiguration.SCBondStatus", SCBondStatus, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCDynamicStore", SCDynamicStore, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCDynamicStoreContext", SCDynamicStoreContext, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCNetworkConnection", SCNetworkConnection, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCNetworkConnectionContext", SCNetworkConnectionContext, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCNetworkInterface", SCNetworkInterface, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCNetworkProtocol", SCNetworkProtocol, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCNetworkReachability", SCNetworkReachability, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCNetworkReachabilityContext", SCNetworkReachabilityContext, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCNetworkService", SCNetworkService, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCNetworkSet", SCNetworkSet, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCPreferences", SCPreferences, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("SystemConfiguration.SCPreferencesContext", SCPreferencesContext, { module: "SystemConfiguration_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("SystemConfiguration.SCBondStatus", SCBondStatus, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCDynamicStore", SCDynamicStore, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCDynamicStoreContext", SCDynamicStoreContext, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCNetworkConnection", SCNetworkConnection, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCNetworkConnectionContext", SCNetworkConnectionContext, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCNetworkInterface", SCNetworkInterface, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCNetworkProtocol", SCNetworkProtocol, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCNetworkReachability", SCNetworkReachability, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCNetworkReachabilityContext", SCNetworkReachabilityContext, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCNetworkService", SCNetworkService, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCNetworkSet", SCNetworkSet, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCPreferences", SCPreferences, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("SystemConfiguration.SCPreferencesContext", SCPreferencesContext, { module: "SystemConfiguration_90ad0eb69cc6bf4a", properties: {} });

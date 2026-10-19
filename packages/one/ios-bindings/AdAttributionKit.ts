@@ -17,7 +17,7 @@ export const AdAttributionKitError = {
    * var description: String { get }
    * @availability iOS 17.4+
    */
-  getDescription($self: AdAttributionKitError): string { return callSDK<string>("AdAttributionKit_a956b86ef7a76a8e", 2754982050532844, $self, []); }
+  getDescription($self: AdAttributionKitError): string { return callSDK<string>("AdAttributionKit_90ad0eb69cc6bf4a", 2754982050532844, $self, []); }
 };
 
 /**
@@ -29,82 +29,82 @@ export class AppImpression extends SDKHandle {
    * init(compactJWS: String) async throws
    * @availability iOS 17.4+
    */
-  static init(compactJWS: string): Promise<AppImpression> { return callSDKAsync<AppImpression>("AdAttributionKit_a956b86ef7a76a8e", 1862839243201381, undefined, [compactJWS]); }
+  static init(compactJWS: string): Promise<AppImpression> { return callSDKAsync<AppImpression>("AdAttributionKit_90ad0eb69cc6bf4a", 1862839243201381, undefined, [compactJWS]); }
   /**
    * func handleView() async throws
    * @availability iOS 26.2+
    */
-  handleView(): Promise<void> { return callSDKAsync<void>("AdAttributionKit_a956b86ef7a76a8e", 1926854522800334, this, []); }
+  handleView(): Promise<void> { return callSDKAsync<void>("AdAttributionKit_90ad0eb69cc6bf4a", 1926854522800334, this, []); }
   /**
    * var adNetworkID: String { get }
    * @availability iOS 17.4+
    */
-  get adNetworkID(): string { return callSDK<string>("AdAttributionKit_a956b86ef7a76a8e", 2016096426998904, this, []); }
+  get adNetworkID(): string { return callSDK<string>("AdAttributionKit_90ad0eb69cc6bf4a", 2016096426998904, this, []); }
   /**
    * static var isSupported: Bool { get }
    * @availability iOS 18.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("AdAttributionKit_a956b86ef7a76a8e", 607461738710968, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("AdAttributionKit_90ad0eb69cc6bf4a", 607461738710968, undefined, []); }
   /**
    * var publisherItemID: UInt64 { get }
    * @availability iOS 17.4+
    */
-  get publisherItemID(): number { return callSDK<number>("AdAttributionKit_a956b86ef7a76a8e", 3704887520614916, this, []); }
+  get publisherItemID(): number { return callSDK<number>("AdAttributionKit_90ad0eb69cc6bf4a", 3704887520614916, this, []); }
   /**
    * var advertisedItemID: UInt64 { get }
    * @availability iOS 17.4+
    */
-  get advertisedItemID(): number { return callSDK<number>("AdAttributionKit_a956b86ef7a76a8e", 4483420706180058, this, []); }
+  get advertisedItemID(): number { return callSDK<number>("AdAttributionKit_90ad0eb69cc6bf4a", 4483420706180058, this, []); }
   /**
    * var eligibleForReengagement: Bool { get }
    * @availability iOS 18.0+
    */
-  get eligibleForReengagement(): boolean { return callSDK<boolean>("AdAttributionKit_a956b86ef7a76a8e", 3313768963411459, this, []); }
+  get eligibleForReengagement(): boolean { return callSDK<boolean>("AdAttributionKit_90ad0eb69cc6bf4a", 3313768963411459, this, []); }
   /**
    * var compactJWSRepresentation: String { get }
    * @availability iOS 17.4+
    */
-  get compactJWSRepresentation(): string { return callSDK<string>("AdAttributionKit_a956b86ef7a76a8e", 977080206855662, this, []); }
+  get compactJWSRepresentation(): string { return callSDK<string>("AdAttributionKit_90ad0eb69cc6bf4a", 977080206855662, this, []); }
   /**
    * var id: UUID { get }
    * @availability iOS 17.4+
    */
-  get id(): string { return callSDK<string>("AdAttributionKit_a956b86ef7a76a8e", 5905945742190, this, []); }
+  get id(): string { return callSDK<string>("AdAttributionKit_90ad0eb69cc6bf4a", 5905945742190, this, []); }
   /**
    * var keyID: String { get }
    * @availability iOS 17.4+
    */
-  get keyID(): string { return callSDK<string>("AdAttributionKit_a956b86ef7a76a8e", 481012695900427, this, []); }
+  get keyID(): string { return callSDK<string>("AdAttributionKit_90ad0eb69cc6bf4a", 481012695900427, this, []); }
   /**
    * func endView() async throws
    * @availability iOS 17.4+
    */
-  endView(): Promise<void> { return callSDKAsync<void>("AdAttributionKit_a956b86ef7a76a8e", 90907602343706, this, []); }
+  endView(): Promise<void> { return callSDKAsync<void>("AdAttributionKit_90ad0eb69cc6bf4a", 90907602343706, this, []); }
   /**
    * var sourceID: Int { get }
    * @availability iOS 17.4+
    */
-  get sourceID(): number { return callSDK<number>("AdAttributionKit_a956b86ef7a76a8e", 3828792225776781, this, []); }
+  get sourceID(): number { return callSDK<number>("AdAttributionKit_90ad0eb69cc6bf4a", 3828792225776781, this, []); }
   /**
    * func beginView() async throws
    * @availability iOS 17.4+
    */
-  beginView(): Promise<void> { return callSDKAsync<void>("AdAttributionKit_a956b86ef7a76a8e", 3082986410992087, this, []); }
+  beginView(): Promise<void> { return callSDKAsync<void>("AdAttributionKit_90ad0eb69cc6bf4a", 3082986410992087, this, []); }
   /**
    * func handleTap(reengagementURL: URL) async throws
    * @availability iOS 18.0+
    */
-  handleTapReengagementURL(reengagementURL: string): Promise<void> { return callSDKAsync<void>("AdAttributionKit_a956b86ef7a76a8e", 2465752829565590, this, [reengagementURL]); }
+  handleTapReengagementURL(reengagementURL: string): Promise<void> { return callSDKAsync<void>("AdAttributionKit_90ad0eb69cc6bf4a", 2465752829565590, this, [reengagementURL]); }
   /**
    * func handleTap() async throws
    * @availability iOS 17.4+
    */
-  handleTap(): Promise<void> { return callSDKAsync<void>("AdAttributionKit_a956b86ef7a76a8e", 2886141678805604, this, []); }
+  handleTap(): Promise<void> { return callSDKAsync<void>("AdAttributionKit_90ad0eb69cc6bf4a", 2886141678805604, this, []); }
   /**
    * var timestamp: Date { get }
    * @availability iOS 17.4+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("AdAttributionKit_a956b86ef7a76a8e", 1649752818138148, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("AdAttributionKit_90ad0eb69cc6bf4a", 1649752818138148, this, []); }
   declare readonly $type: { "s:16AdAttributionKit13AppImpressionV": true };
 }
 
@@ -125,12 +125,12 @@ export const CoarseConversionValue = {
    * init?(rawValue: String)
    * @availability iOS 17.4+
    */
-  init(rawValue: string): (CoarseConversionValue) | null { return callSDK<(CoarseConversionValue) | null>("AdAttributionKit_a956b86ef7a76a8e", 4085096167485757, undefined, [rawValue]); },
+  init(rawValue: string): (CoarseConversionValue) | null { return callSDK<(CoarseConversionValue) | null>("AdAttributionKit_90ad0eb69cc6bf4a", 4085096167485757, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.4+
    */
-  getRawValue($self: CoarseConversionValue): string { return callSDK<string>("AdAttributionKit_a956b86ef7a76a8e", 609260185533744, $self, []); }
+  getRawValue($self: CoarseConversionValue): string { return callSDK<string>("AdAttributionKit_90ad0eb69cc6bf4a", 609260185533744, $self, []); }
 };
 
 /**
@@ -148,27 +148,27 @@ export class Postback extends SDKHandle {
    * static var isSupported: Bool { get }
    * @availability iOS 18.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("AdAttributionKit_a956b86ef7a76a8e", 3049557357225298, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("AdAttributionKit_90ad0eb69cc6bf4a", 3049557357225298, undefined, []); }
   /**
    * static func updateConversionValue(_ fineConversionValue: Int, lockPostback: Bool) async throws
    * @availability iOS 17.4+
    */
-  static updateConversionValueLockPostback(fineConversionValue: number, lockPostback: boolean): Promise<void> { return callSDKAsync<void>("AdAttributionKit_a956b86ef7a76a8e", 1506495137253655, undefined, [fineConversionValue, lockPostback]); }
+  static updateConversionValueLockPostback(fineConversionValue: number, lockPostback: boolean): Promise<void> { return callSDKAsync<void>("AdAttributionKit_90ad0eb69cc6bf4a", 1506495137253655, undefined, [fineConversionValue, lockPostback]); }
   /**
    * static func updateConversionValue(_ fineConversionValue: Int, coarseConversionValue: CoarseConversionValue, lockPostback: Bool) async throws
    * @availability iOS 17.4+
    */
-  static updateConversionValueCoarseConversionValueLockPostback(fineConversionValue: number, coarseConversionValue: CoarseConversionValue, lockPostback: boolean): Promise<void> { return callSDKAsync<void>("AdAttributionKit_a956b86ef7a76a8e", 520116422962405, undefined, [fineConversionValue, coarseConversionValue, lockPostback]); }
+  static updateConversionValueCoarseConversionValueLockPostback(fineConversionValue: number, coarseConversionValue: CoarseConversionValue, lockPostback: boolean): Promise<void> { return callSDKAsync<void>("AdAttributionKit_90ad0eb69cc6bf4a", 520116422962405, undefined, [fineConversionValue, coarseConversionValue, lockPostback]); }
   /**
    * static func updateConversionValue(_ postbackUpdate: PostbackUpdate) async throws
    * @availability iOS 18.0+
    */
-  static updateConversionValue(postbackUpdate: PostbackUpdate): Promise<void> { return callSDKAsync<void>("AdAttributionKit_a956b86ef7a76a8e", 1785828956654265, undefined, [postbackUpdate]); }
+  static updateConversionValue(postbackUpdate: PostbackUpdate): Promise<void> { return callSDKAsync<void>("AdAttributionKit_90ad0eb69cc6bf4a", 1785828956654265, undefined, [postbackUpdate]); }
   /**
    * static var reengagementOpenURLParameter: String { get }
    * @availability iOS 18.0+
    */
-  static get reengagementOpenURLParameter(): string { return callSDK<string>("AdAttributionKit_a956b86ef7a76a8e", 3571562877369395, undefined, []); }
+  static get reengagementOpenURLParameter(): string { return callSDK<string>("AdAttributionKit_90ad0eb69cc6bf4a", 3571562877369395, undefined, []); }
   declare readonly $type: { "s:16AdAttributionKit8PostbackV": true };
 }
 
@@ -181,37 +181,37 @@ export class PostbackUpdate extends SDKHandle {
    * let lockPostback: Bool
    * @availability iOS 18.0+
    */
-  get lockPostback(): boolean { return callSDK<boolean>("AdAttributionKit_a956b86ef7a76a8e", 4178529097768268, this, []); }
+  get lockPostback(): boolean { return callSDK<boolean>("AdAttributionKit_90ad0eb69cc6bf4a", 4178529097768268, this, []); }
   /**
    * let conversionTag: String?
    * @availability iOS 18.4+
    */
-  get conversionTag(): (string) | null { return callSDK<(string) | null>("AdAttributionKit_a956b86ef7a76a8e", 948356094101239, this, []); }
+  get conversionTag(): (string) | null { return callSDK<(string) | null>("AdAttributionKit_90ad0eb69cc6bf4a", 948356094101239, this, []); }
   /**
    * let conversionTypes: [PostbackUpdate.ConversionType]?
    * @availability iOS 18.0+
    */
-  get conversionTypes(): $SDK0 { return callSDK<$SDK0>("AdAttributionKit_a956b86ef7a76a8e", 303319756527198, this, []); }
+  get conversionTypes(): $SDK0 { return callSDK<$SDK0>("AdAttributionKit_90ad0eb69cc6bf4a", 303319756527198, this, []); }
   /**
    * init(fineConversionValue: Int, lockPostback: Bool, coarseConversionValue: CoarseConversionValue? = nil, conversionTypes: [PostbackUpdate.ConversionType]? = nil)
    * @availability iOS 18.0+
    */
-  static initFineConversionValueLockPostbackCoarseConversionValueConversionTypes(fineConversionValue: number, lockPostback: boolean, coarseConversionValue?: $SDK1, conversionTypes?: $SDK0): PostbackUpdate { return callSDK<PostbackUpdate>("AdAttributionKit_a956b86ef7a76a8e", 2551925819981573, undefined, [fineConversionValue, lockPostback, coarseConversionValue, conversionTypes]); }
+  static initFineConversionValueLockPostbackCoarseConversionValueConversionTypes(fineConversionValue: number, lockPostback: boolean, coarseConversionValue?: $SDK1, conversionTypes?: $SDK0): PostbackUpdate { return callSDK<PostbackUpdate>("AdAttributionKit_90ad0eb69cc6bf4a", 2551925819981573, undefined, [fineConversionValue, lockPostback, coarseConversionValue, conversionTypes]); }
   /**
    * init(fineConversionValue: Int, lockPostback: Bool, conversionTag: String, coarseConversionValue: CoarseConversionValue? = nil, conversionTypes: [PostbackUpdate.ConversionType]? = nil)
    * @availability iOS 18.4+
    */
-  static initFineConversionValueLockPostbackConversionTagCoarseConversionValueConversionTypes(fineConversionValue: number, lockPostback: boolean, conversionTag: string, coarseConversionValue?: $SDK1, conversionTypes?: $SDK0): PostbackUpdate { return callSDK<PostbackUpdate>("AdAttributionKit_a956b86ef7a76a8e", 2411153654499368, undefined, [fineConversionValue, lockPostback, conversionTag, coarseConversionValue, conversionTypes]); }
+  static initFineConversionValueLockPostbackConversionTagCoarseConversionValueConversionTypes(fineConversionValue: number, lockPostback: boolean, conversionTag: string, coarseConversionValue?: $SDK1, conversionTypes?: $SDK0): PostbackUpdate { return callSDK<PostbackUpdate>("AdAttributionKit_90ad0eb69cc6bf4a", 2411153654499368, undefined, [fineConversionValue, lockPostback, conversionTag, coarseConversionValue, conversionTypes]); }
   /**
    * let fineConversionValue: Int
    * @availability iOS 18.0+
    */
-  get fineConversionValue(): number { return callSDK<number>("AdAttributionKit_a956b86ef7a76a8e", 458185526394654, this, []); }
+  get fineConversionValue(): number { return callSDK<number>("AdAttributionKit_90ad0eb69cc6bf4a", 458185526394654, this, []); }
   /**
    * let coarseConversionValue: CoarseConversionValue?
    * @availability iOS 18.0+
    */
-  get coarseConversionValue(): $SDK1 { return callSDK<$SDK1>("AdAttributionKit_a956b86ef7a76a8e", 3318037700149114, this, []); }
+  get coarseConversionValue(): $SDK1 { return callSDK<$SDK1>("AdAttributionKit_90ad0eb69cc6bf4a", 3318037700149114, this, []); }
   declare readonly $type: { "s:16AdAttributionKit14PostbackUpdateV": true };
 }
 
@@ -226,12 +226,12 @@ export const PostbackUpdate_ConversionType = {
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): (PostbackUpdate_ConversionType) | null { return callSDK<(PostbackUpdate_ConversionType) | null>("AdAttributionKit_a956b86ef7a76a8e", 89559877701244, undefined, [rawValue]); },
+  init(rawValue: string): (PostbackUpdate_ConversionType) | null { return callSDK<(PostbackUpdate_ConversionType) | null>("AdAttributionKit_90ad0eb69cc6bf4a", 89559877701244, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: PostbackUpdate_ConversionType): string { return callSDK<string>("AdAttributionKit_a956b86ef7a76a8e", 2274567544472793, $self, []); }
+  getRawValue($self: PostbackUpdate_ConversionType): string { return callSDK<string>("AdAttributionKit_90ad0eb69cc6bf4a", 2274567544472793, $self, []); }
 };
 
 /**
@@ -240,6 +240,6 @@ export const PostbackUpdate_ConversionType = {
  */
 export type PostbackUpdate_ConversionType_RawValue = string;
 
-registerSDKClass("AdAttributionKit.AppImpression", AppImpression, { module: "AdAttributionKit_a956b86ef7a76a8e", properties: {}, methods: {"handleView":{"id":1926854522800334},"endView":{"id":90907602343706},"beginView":{"id":3082986410992087},"handleTapReengagementURL":{"id":2465752829565590},"handleTap":{"id":2886141678805604}} });
-registerSDKClass("AdAttributionKit.Postback", Postback, { module: "AdAttributionKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AdAttributionKit.PostbackUpdate", PostbackUpdate, { module: "AdAttributionKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AdAttributionKit.AppImpression", AppImpression, { module: "AdAttributionKit_90ad0eb69cc6bf4a", properties: {}, methods: {"handleView":{"id":1926854522800334},"endView":{"id":90907602343706},"beginView":{"id":3082986410992087},"handleTapReengagementURL":{"id":2465752829565590},"handleTap":{"id":2886141678805604}} });
+registerSDKClass("AdAttributionKit.Postback", Postback, { module: "AdAttributionKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AdAttributionKit.PostbackUpdate", PostbackUpdate, { module: "AdAttributionKit_90ad0eb69cc6bf4a", properties: {} });

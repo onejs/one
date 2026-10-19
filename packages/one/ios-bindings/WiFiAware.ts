@@ -16,12 +16,12 @@ export class NWEndpoint extends SDKHandle {
    * func wifiAware(port: NWEndpoint.Port) -> WAEndpoint?
    * @availability iOS 26.4+
    */
-  wifiAwarePort(port: _Network_NWEndpoint_Port): (WAEndpoint) | null { return callSDK<(WAEndpoint) | null>("WiFiAware_a956b86ef7a76a8e", 665144825842223, this, [port]); }
+  wifiAwarePort(port: _Network_NWEndpoint_Port): (WAEndpoint) | null { return callSDK<(WAEndpoint) | null>("WiFiAware_90ad0eb69cc6bf4a", 665144825842223, this, [port]); }
   /**
    * var wifiAware: WAEndpoint? { get }
    * @availability iOS 26.4+
    */
-  get wifiAware(): (WAEndpoint) | null { return callSDK<(WAEndpoint) | null>("WiFiAware_a956b86ef7a76a8e", 1025437787193554, this, []); }
+  get wifiAware(): (WAEndpoint) | null { return callSDK<(WAEndpoint) | null>("WiFiAware_90ad0eb69cc6bf4a", 1025437787193554, this, []); }
   declare readonly $type: { "s:7Network10NWEndpointO": true };
 }
 
@@ -30,7 +30,7 @@ export class NWError extends SDKHandle {
    * var wifiAware: WAError? { get }
    * @availability iOS 26.0+
    */
-  get wifiAware(): (WAError) | null { return callSDK<(WAError) | null>("WiFiAware_a956b86ef7a76a8e", 2029329158738639, this, []); }
+  get wifiAware(): (WAError) | null { return callSDK<(WAError) | null>("WiFiAware_90ad0eb69cc6bf4a", 2029329158738639, this, []); }
   declare readonly $type: { "s:7Network7NWErrorO": true };
 }
 
@@ -39,13 +39,13 @@ export class NWParameters extends SDKHandle {
    * final var wifiAware: WAParameters { get set }
    * @availability iOS 26.0+
    */
-  get wifiAware(): WAParameters { return callSDK<WAParameters>("WiFiAware_a956b86ef7a76a8e", 2748858801978259, this, []); }
-  set wifiAware(value: WAParameters) { callSDK<void>("WiFiAware_a956b86ef7a76a8e", 2510345281472863, this, [value]); }
+  get wifiAware(): WAParameters { return callSDK<WAParameters>("WiFiAware_90ad0eb69cc6bf4a", 2748858801978259, this, []); }
+  set wifiAware(value: WAParameters) { callSDK<void>("WiFiAware_90ad0eb69cc6bf4a", 2510345281472863, this, [value]); }
   /**
    * final func wifiAware(_ configurator: (inout WAParameters) -> Void) -> Self
    * @availability iOS 26.0+
    */
-  wifiAware7940(configurator: ((arg0: WAParameters) => void)): _Network_NWParameters { return callSDK<_Network_NWParameters>("WiFiAware_a956b86ef7a76a8e", 1685175516690277, this, [configurator], [{"callback":{"out":[]}}]); }
+  wifiAware7940(configurator: ((arg0: WAParameters) => void)): _Network_NWParameters { return callSDK<_Network_NWParameters>("WiFiAware_90ad0eb69cc6bf4a", 1685175516690277, this, [configurator], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:7Network12NWParametersC": true };
 }
 
@@ -54,7 +54,7 @@ export class NWPath extends SDKHandle {
    * var wifiAware: WAPath? { get async throws }
    * @availability iOS 26.0+
    */
-  get wifiAware(): Promise<(WAPath) | null> { return callSDKAsync<(WAPath) | null>("WiFiAware_a956b86ef7a76a8e", 1136462650838807, this, []); }
+  get wifiAware(): Promise<(WAPath) | null> { return callSDKAsync<(WAPath) | null>("WiFiAware_90ad0eb69cc6bf4a", 1136462650838807, this, []); }
   declare readonly $type: { "s:7Network6NWPathV": true };
 }
 
@@ -69,7 +69,7 @@ export const WAAccessCategory = {
    * nonisolated static var allCases: [WAAccessCategory] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): Array<WAAccessCategory> { return callSDK<Array<WAAccessCategory>>("WiFiAware_a956b86ef7a76a8e", 4324434529306434, undefined, []); }
+  get allCases(): Array<WAAccessCategory> { return callSDK<Array<WAAccessCategory>>("WiFiAware_90ad0eb69cc6bf4a", 4324434529306434, undefined, []); }
 };
 
 /**
@@ -87,22 +87,22 @@ export class WACapabilities extends SDKHandle {
    * static var supportedFeatures: Set<WACapabilities.Feature> { get }
    * @availability iOS 26.0+
    */
-  static get supportedFeatures(): $SDK1 { return callSDK<$SDK1>("WiFiAware_a956b86ef7a76a8e", 1487611176158951, undefined, []); }
+  static get supportedFeatures(): $SDK1 { return callSDK<$SDK1>("WiFiAware_90ad0eb69cc6bf4a", 1487611176158951, undefined, []); }
   /**
    * static var maximumConnectableDevices: Int { get }
    * @availability iOS 26.0+
    */
-  static get maximumConnectableDevices(): number { return callSDK<number>("WiFiAware_a956b86ef7a76a8e", 3674772179746525, undefined, []); }
+  static get maximumConnectableDevices(): number { return callSDK<number>("WiFiAware_90ad0eb69cc6bf4a", 3674772179746525, undefined, []); }
   /**
    * static var maximumPublishableServices: Int { get }
    * @availability iOS 26.0+
    */
-  static get maximumPublishableServices(): number { return callSDK<number>("WiFiAware_a956b86ef7a76a8e", 2102529547214413, undefined, []); }
+  static get maximumPublishableServices(): number { return callSDK<number>("WiFiAware_90ad0eb69cc6bf4a", 2102529547214413, undefined, []); }
   /**
    * static var maximumSubscribableServices: Int { get }
    * @availability iOS 26.0+
    */
-  static get maximumSubscribableServices(): number { return callSDK<number>("WiFiAware_a956b86ef7a76a8e", 2712313348233429, undefined, []); }
+  static get maximumSubscribableServices(): number { return callSDK<number>("WiFiAware_90ad0eb69cc6bf4a", 2712313348233429, undefined, []); }
   declare readonly $type: { "s:9WiFiAware14WACapabilitiesV": true };
 }
 
@@ -117,7 +117,7 @@ export const WACapabilities_Feature = {
    * nonisolated static var allCases: [WACapabilities.Feature] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): $SDK1 { return callSDK<$SDK1>("WiFiAware_a956b86ef7a76a8e", 1045811598721827, undefined, []); }
+  get allCases(): $SDK1 { return callSDK<$SDK1>("WiFiAware_90ad0eb69cc6bf4a", 1045811598721827, undefined, []); }
 };
 
 /**
@@ -143,27 +143,27 @@ export class WAEndpoint extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 1551137807560775, this, []); }
+  get description(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 1551137807560775, this, []); }
   /**
    * var publishedService: WAPublishableService? { get }
    * @availability iOS 26.0+
    */
-  get publishedService(): (WAPublishableService) | null { return callSDK<(WAPublishableService) | null>("WiFiAware_a956b86ef7a76a8e", 2624859544380052, this, []); }
+  get publishedService(): (WAPublishableService) | null { return callSDK<(WAPublishableService) | null>("WiFiAware_90ad0eb69cc6bf4a", 2624859544380052, this, []); }
   /**
    * var subscribedService: WASubscribableService? { get }
    * @availability iOS 26.0+
    */
-  get subscribedService(): (WASubscribableService) | null { return callSDK<(WASubscribableService) | null>("WiFiAware_a956b86ef7a76a8e", 3621278379554117, this, []); }
+  get subscribedService(): (WASubscribableService) | null { return callSDK<(WASubscribableService) | null>("WiFiAware_90ad0eb69cc6bf4a", 3621278379554117, this, []); }
   /**
    * let performanceForecast: [WAPerformanceMode : WAPerformanceForecast]
    * @availability iOS 27.0+
    */
-  get performanceForecast(): NativeMap<WAPerformanceMode, WAPerformanceForecast> { return callSDK<NativeMap<WAPerformanceMode, WAPerformanceForecast>>("WiFiAware_a956b86ef7a76a8e", 4004947077326059, this, []); }
+  get performanceForecast(): NativeMap<WAPerformanceMode, WAPerformanceForecast> { return callSDK<NativeMap<WAPerformanceMode, WAPerformanceForecast>>("WiFiAware_90ad0eb69cc6bf4a", 4004947077326059, this, []); }
   /**
    * let device: WAPairedDevice
    * @availability iOS 26.0+
    */
-  get device(): WAPairedDevice { return callSDK<WAPairedDevice>("WiFiAware_a956b86ef7a76a8e", 3042266946039615, this, []); }
+  get device(): WAPairedDevice { return callSDK<WAPairedDevice>("WiFiAware_90ad0eb69cc6bf4a", 3042266946039615, this, []); }
   declare readonly $type: { "s:9WiFiAware10WAEndpointV": true };
 }
 
@@ -304,32 +304,32 @@ export class WAPairedDevice extends SDKHandle {
    * static func allDevices(matching: Predicate<WAPairedDevice>) -> WAPairedDevice.DevicesSequence
    * @availability iOS 26.0+
    */
-  static allDevicesMatching(matching: $SDK5): WAPairedDevice_DevicesSequence { return callSDK<WAPairedDevice_DevicesSequence>("WiFiAware_a956b86ef7a76a8e", 2062372268153987, undefined, [matching]); }
+  static allDevicesMatching(matching: $SDK5): WAPairedDevice_DevicesSequence { return callSDK<WAPairedDevice_DevicesSequence>("WiFiAware_90ad0eb69cc6bf4a", 2062372268153987, undefined, [matching]); }
   /**
    * static var allDevices: WAPairedDevice.DevicesSequence { get }
    * @availability iOS 26.0+
    */
-  static get allDevices(): WAPairedDevice_DevicesSequence { return callSDK<WAPairedDevice_DevicesSequence>("WiFiAware_a956b86ef7a76a8e", 1732280377321150, undefined, []); }
+  static get allDevices(): WAPairedDevice_DevicesSequence { return callSDK<WAPairedDevice_DevicesSequence>("WiFiAware_90ad0eb69cc6bf4a", 1732280377321150, undefined, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 1756093852313505, this, []); }
+  get description(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 1756093852313505, this, []); }
   /**
    * let pairingInfo: WAPairedDevice.PairingInfo?
    * @availability iOS 26.0+
    */
-  get pairingInfo(): (WAPairedDevice_PairingInfo) | null { return callSDK<(WAPairedDevice_PairingInfo) | null>("WiFiAware_a956b86ef7a76a8e", 2393506664566112, this, []); }
+  get pairingInfo(): (WAPairedDevice_PairingInfo) | null { return callSDK<(WAPairedDevice_PairingInfo) | null>("WiFiAware_90ad0eb69cc6bf4a", 2393506664566112, this, []); }
   /**
    * let id: WAPairedDevice.ID
    * @availability iOS 26.0+
    */
-  get id(): number { return callSDK<number>("WiFiAware_a956b86ef7a76a8e", 3367578522446720, this, []); }
+  get id(): number { return callSDK<number>("WiFiAware_90ad0eb69cc6bf4a", 3367578522446720, this, []); }
   /**
    * let name: String?
    * @availability iOS 26.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("WiFiAware_a956b86ef7a76a8e", 2894979859386152, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("WiFiAware_90ad0eb69cc6bf4a", 2894979859386152, this, []); }
   declare readonly $type: { "s:9WiFiAware14WAPairedDeviceV": true };
 }
 
@@ -348,12 +348,12 @@ export class WAPairedDevice_DevicesSequence extends SDKHandle {
    * func makeAsyncIterator() -> WAPairedDevice.DevicesSequence.AsyncIterator
    * @availability iOS 26.0+
    */
-  makeAsyncIterator(): WAPairedDevice_DevicesSequence_AsyncIterator { return callSDK<WAPairedDevice_DevicesSequence_AsyncIterator>("WiFiAware_a956b86ef7a76a8e", 1266030002744779, this, []); }
+  makeAsyncIterator(): WAPairedDevice_DevicesSequence_AsyncIterator { return callSDK<WAPairedDevice_DevicesSequence_AsyncIterator>("WiFiAware_90ad0eb69cc6bf4a", 1266030002744779, this, []); }
   /**
    * func current() async throws -> WAPairedDevice.DevicesSequence.Element?
    * @availability iOS 26.0+
    */
-  current(): Promise<$SDK8> { return callSDKAsync<$SDK8>("WiFiAware_a956b86ef7a76a8e", 1288954836770341, this, []); }
+  current(): Promise<$SDK8> { return callSDKAsync<$SDK8>("WiFiAware_90ad0eb69cc6bf4a", 1288954836770341, this, []); }
   declare readonly $type: { "s:9WiFiAware14WAPairedDeviceV15DevicesSequenceV": true };
   declare readonly $element: $SDK7;
 }
@@ -367,7 +367,7 @@ export class WAPairedDevice_DevicesSequence_AsyncIterator extends SDKHandle {
    * func next() async throws -> WAPairedDevice.DevicesSequence.AsyncIterator.Element?
    * @availability iOS 26.0+
    */
-  next(): Promise<$SDK8> { return callSDKAsync<$SDK8>("WiFiAware_a956b86ef7a76a8e", 2905088638101557, this, []); }
+  next(): Promise<$SDK8> { return callSDKAsync<$SDK8>("WiFiAware_90ad0eb69cc6bf4a", 2905088638101557, this, []); }
   declare readonly $type: { "s:9WiFiAware14WAPairedDeviceV15DevicesSequenceV13AsyncIteratorC": true };
 }
 
@@ -404,22 +404,22 @@ export class WAPairedDevice_PairingInfo extends SDKHandle {
    * let vendorName: String
    * @availability iOS 26.0+
    */
-  get vendorName(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 1805772323717339, this, []); }
+  get vendorName(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 1805772323717339, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 939336825523452, this, []); }
+  get description(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 939336825523452, this, []); }
   /**
    * let pairingName: String
    * @availability iOS 26.0+
    */
-  get pairingName(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 2455288482709802, this, []); }
+  get pairingName(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 2455288482709802, this, []); }
   /**
    * let modelName: String
    * @availability iOS 26.0+
    */
-  get modelName(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 4321333784564117, this, []); }
+  get modelName(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 4321333784564117, this, []); }
   declare readonly $type: { "s:9WiFiAware14WAPairedDeviceV11PairingInfoV": true };
 }
 
@@ -432,23 +432,23 @@ export class WAParameters extends SDKHandle {
    * var performanceMode: WAPerformanceMode
    * @availability iOS 26.0+
    */
-  get performanceMode(): WAPerformanceMode { return callSDK<WAPerformanceMode>("WiFiAware_a956b86ef7a76a8e", 4086095244848413, this, []); }
-  set performanceMode(value: WAPerformanceMode) { callSDK<void>("WiFiAware_a956b86ef7a76a8e", 3128201919821041, this, [value]); }
+  get performanceMode(): WAPerformanceMode { return callSDK<WAPerformanceMode>("WiFiAware_90ad0eb69cc6bf4a", 4086095244848413, this, []); }
+  set performanceMode(value: WAPerformanceMode) { callSDK<void>("WiFiAware_90ad0eb69cc6bf4a", 3128201919821041, this, [value]); }
   /**
    * init(performanceMode: WAPerformanceMode = .bulk)
    * @availability iOS 26.0+
    */
-  static init(performanceMode?: WAPerformanceMode): WAParameters { return callSDK<WAParameters>("WiFiAware_a956b86ef7a76a8e", 2029080206709, undefined, [performanceMode]); }
+  static init(performanceMode?: WAPerformanceMode): WAParameters { return callSDK<WAParameters>("WiFiAware_90ad0eb69cc6bf4a", 2029080206709, undefined, [performanceMode]); }
   /**
    * static let defaults: WAParameters
    * @availability iOS 26.0+
    */
-  static get defaults(): WAParameters { return callSDK<WAParameters>("WiFiAware_a956b86ef7a76a8e", 2442215532527311, undefined, []); }
+  static get defaults(): WAParameters { return callSDK<WAParameters>("WiFiAware_90ad0eb69cc6bf4a", 2442215532527311, undefined, []); }
   /**
    * static let realtime: WAParameters
    * @availability iOS 26.0+
    */
-  static get realtime(): WAParameters { return callSDK<WAParameters>("WiFiAware_a956b86ef7a76a8e", 2311749079203875, undefined, []); }
+  static get realtime(): WAParameters { return callSDK<WAParameters>("WiFiAware_90ad0eb69cc6bf4a", 2311749079203875, undefined, []); }
   declare readonly $type: { "s:9WiFiAware12WAParametersV": true };
 }
 
@@ -461,17 +461,17 @@ export class WAPath extends SDKHandle {
    * let performance: WAPerformanceReport
    * @availability iOS 26.0+
    */
-  get performance(): WAPerformanceReport { return callSDK<WAPerformanceReport>("WiFiAware_a956b86ef7a76a8e", 2287835076770116, this, []); }
+  get performance(): WAPerformanceReport { return callSDK<WAPerformanceReport>("WiFiAware_90ad0eb69cc6bf4a", 2287835076770116, this, []); }
   /**
    * let durationActive: Duration
    * @availability iOS 26.0+
    */
-  get durationActive(): SDKHandle { return callSDK<SDKHandle>("WiFiAware_a956b86ef7a76a8e", 2597747470173512, this, []); }
+  get durationActive(): SDKHandle { return callSDK<SDKHandle>("WiFiAware_90ad0eb69cc6bf4a", 2597747470173512, this, []); }
   /**
    * let endpoint: WAEndpoint
    * @availability iOS 26.0+
    */
-  get endpoint(): WAEndpoint { return callSDK<WAEndpoint>("WiFiAware_a956b86ef7a76a8e", 2650630717779651, this, []); }
+  get endpoint(): WAEndpoint { return callSDK<WAEndpoint>("WiFiAware_90ad0eb69cc6bf4a", 2650630717779651, this, []); }
   declare readonly $type: { "s:9WiFiAware6WAPathV": true };
 }
 
@@ -484,42 +484,42 @@ export class WAPerformanceForecast extends SDKHandle {
    * let localTimestamp: ContinuousClock.Instant
    * @availability iOS 27.0+
    */
-  get localTimestamp(): SDKHandle { return callSDK<SDKHandle>("WiFiAware_a956b86ef7a76a8e", 2883580678141980, this, []); }
+  get localTimestamp(): SDKHandle { return callSDK<SDKHandle>("WiFiAware_90ad0eb69cc6bf4a", 2883580678141980, this, []); }
   /**
    * let signalStrength: Double?
    * @availability iOS 27.0+
    */
-  get signalStrength(): (number) | null { return callSDK<(number) | null>("WiFiAware_a956b86ef7a76a8e", 3377927762012739, this, []); }
+  get signalStrength(): (number) | null { return callSDK<(number) | null>("WiFiAware_90ad0eb69cc6bf4a", 3377927762012739, this, []); }
   /**
    * let localThroughputCeiling: Double?
    * @availability iOS 27.0+
    */
-  get localThroughputCeiling(): (number) | null { return callSDK<(number) | null>("WiFiAware_a956b86ef7a76a8e", 691946823439233, this, []); }
+  get localThroughputCeiling(): (number) | null { return callSDK<(number) | null>("WiFiAware_90ad0eb69cc6bf4a", 691946823439233, this, []); }
   /**
    * let localThroughputCapacity: Double?
    * @availability iOS 27.0+
    */
-  get localThroughputCapacity(): (number) | null { return callSDK<(number) | null>("WiFiAware_a956b86ef7a76a8e", 3134919583259369, this, []); }
+  get localThroughputCapacity(): (number) | null { return callSDK<(number) | null>("WiFiAware_90ad0eb69cc6bf4a", 3134919583259369, this, []); }
   /**
    * let localThroughputCapacityRatio: Double?
    * @availability iOS 27.0+
    */
-  get localThroughputCapacityRatio(): (number) | null { return callSDK<(number) | null>("WiFiAware_a956b86ef7a76a8e", 2181436908839105, this, []); }
+  get localThroughputCapacityRatio(): (number) | null { return callSDK<(number) | null>("WiFiAware_90ad0eb69cc6bf4a", 2181436908839105, this, []); }
   /**
    * let unavailabilityLatencyCeiling: Duration?
    * @availability iOS 27.0+
    */
-  get unavailabilityLatencyCeiling(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("WiFiAware_a956b86ef7a76a8e", 4369884646005368, this, []); }
+  get unavailabilityLatencyCeiling(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("WiFiAware_90ad0eb69cc6bf4a", 4369884646005368, this, []); }
   /**
    * let localInfrastructureThroughputCapacityRatio: Double?
    * @availability iOS 27.0+
    */
-  get localInfrastructureThroughputCapacityRatio(): (number) | null { return callSDK<(number) | null>("WiFiAware_a956b86ef7a76a8e", 2638137623991817, this, []); }
+  get localInfrastructureThroughputCapacityRatio(): (number) | null { return callSDK<(number) | null>("WiFiAware_90ad0eb69cc6bf4a", 2638137623991817, this, []); }
   /**
    * let timestamp: Date
    * @availability iOS 27.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("WiFiAware_a956b86ef7a76a8e", 2350984444440057, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("WiFiAware_90ad0eb69cc6bf4a", 2350984444440057, this, []); }
   declare readonly $type: { "s:9WiFiAware21WAPerformanceForecastV": true };
 }
 
@@ -534,7 +534,7 @@ export const WAPerformanceMode = {
    * nonisolated static var allCases: [WAPerformanceMode] { get }
    * @availability iOS 26.0+
    */
-  get allCases(): Array<WAPerformanceMode> { return callSDK<Array<WAPerformanceMode>>("WiFiAware_a956b86ef7a76a8e", 2693110814981457, undefined, []); }
+  get allCases(): Array<WAPerformanceMode> { return callSDK<Array<WAPerformanceMode>>("WiFiAware_90ad0eb69cc6bf4a", 2693110814981457, undefined, []); }
 };
 
 /**
@@ -552,37 +552,37 @@ export class WAPerformanceReport extends SDKHandle {
    * let localTimestamp: ContinuousClock.Instant
    * @availability iOS 26.0+
    */
-  get localTimestamp(): SDKHandle { return callSDK<SDKHandle>("WiFiAware_a956b86ef7a76a8e", 245247433049723, this, []); }
+  get localTimestamp(): SDKHandle { return callSDK<SDKHandle>("WiFiAware_90ad0eb69cc6bf4a", 245247433049723, this, []); }
   /**
    * let signalStrength: Double?
    * @availability iOS 26.0+
    */
-  get signalStrength(): (number) | null { return callSDK<(number) | null>("WiFiAware_a956b86ef7a76a8e", 994170640292273, this, []); }
+  get signalStrength(): (number) | null { return callSDK<(number) | null>("WiFiAware_90ad0eb69cc6bf4a", 994170640292273, this, []); }
   /**
    * let transmitLatency: [WAAccessCategory : WAPerformanceReport.TransmitLatencyMetrics]
    * @availability iOS 26.0+
    */
-  get transmitLatency(): NativeMap<WAAccessCategory, WAPerformanceReport_TransmitLatencyMetrics> { return callSDK<NativeMap<WAAccessCategory, WAPerformanceReport_TransmitLatencyMetrics>>("WiFiAware_a956b86ef7a76a8e", 2195444642157698, this, []); }
+  get transmitLatency(): NativeMap<WAAccessCategory, WAPerformanceReport_TransmitLatencyMetrics> { return callSDK<NativeMap<WAAccessCategory, WAPerformanceReport_TransmitLatencyMetrics>>("WiFiAware_90ad0eb69cc6bf4a", 2195444642157698, this, []); }
   /**
    * let throughputCeiling: Double?
    * @availability iOS 26.0+
    */
-  get throughputCeiling(): (number) | null { return callSDK<(number) | null>("WiFiAware_a956b86ef7a76a8e", 1643313325454143, this, []); }
+  get throughputCeiling(): (number) | null { return callSDK<(number) | null>("WiFiAware_90ad0eb69cc6bf4a", 1643313325454143, this, []); }
   /**
    * let throughputCapacity: Double?
    * @availability iOS 26.0+
    */
-  get throughputCapacity(): (number) | null { return callSDK<(number) | null>("WiFiAware_a956b86ef7a76a8e", 2428972985537175, this, []); }
+  get throughputCapacity(): (number) | null { return callSDK<(number) | null>("WiFiAware_90ad0eb69cc6bf4a", 2428972985537175, this, []); }
   /**
    * var throughputCapacityRatio: Double? { get }
    * @availability iOS 26.0+
    */
-  get throughputCapacityRatio(): (number) | null { return callSDK<(number) | null>("WiFiAware_a956b86ef7a76a8e", 2614237833503114, this, []); }
+  get throughputCapacityRatio(): (number) | null { return callSDK<(number) | null>("WiFiAware_90ad0eb69cc6bf4a", 2614237833503114, this, []); }
   /**
    * let timestamp: Date
    * @availability iOS 26.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("WiFiAware_a956b86ef7a76a8e", 2882566302732209, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("WiFiAware_90ad0eb69cc6bf4a", 2882566302732209, this, []); }
   declare readonly $type: { "s:9WiFiAware19WAPerformanceReportV": true };
 }
 
@@ -595,12 +595,12 @@ export class WAPerformanceReport_TransmitLatencyMetrics extends SDKHandle {
    * let accessCategory: WAAccessCategory
    * @availability iOS 26.0+
    */
-  get accessCategory(): WAAccessCategory { return callSDK<WAAccessCategory>("WiFiAware_a956b86ef7a76a8e", 3647692612861584, this, []); }
+  get accessCategory(): WAAccessCategory { return callSDK<WAAccessCategory>("WiFiAware_90ad0eb69cc6bf4a", 3647692612861584, this, []); }
   /**
    * let average: Duration?
    * @availability iOS 26.0+
    */
-  get average(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("WiFiAware_a956b86ef7a76a8e", 4057493439931825, this, []); }
+  get average(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("WiFiAware_90ad0eb69cc6bf4a", 4057493439931825, this, []); }
   declare readonly $type: { "s:9WiFiAware19WAPerformanceReportV22TransmitLatencyMetricsV": true };
 }
 
@@ -613,22 +613,22 @@ export class WAPublishableService extends SDKHandle {
    * static var allServices: [WAPublishableService.ID : WAPublishableService] { get }
    * @availability iOS 26.0+
    */
-  static get allServices(): Record<string, WAPublishableService> { return callSDK<Record<string, WAPublishableService>>("WiFiAware_a956b86ef7a76a8e", 1519542638804900, undefined, []); }
+  static get allServices(): Record<string, WAPublishableService> { return callSDK<Record<string, WAPublishableService>>("WiFiAware_90ad0eb69cc6bf4a", 1519542638804900, undefined, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 181915002449871, this, []); }
+  get description(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 181915002449871, this, []); }
   /**
    * var id: WAPublishableService.ID { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 2358178548788500, this, []); }
+  get id(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 2358178548788500, this, []); }
   /**
    * let name: String
    * @availability iOS 26.0+
    */
-  get name(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 2697923888881547, this, []); }
+  get name(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 2697923888881547, this, []); }
   declare readonly $type: { "s:9WiFiAware20WAPublishableServiceV": true };
 }
 
@@ -647,17 +647,17 @@ export class WAPublisherListener extends SDKHandle {
    * func configureParameters(_ parameters: NWParameters)
    * @availability iOS 26.0+
    */
-  configureParameters(parameters: _Network_NWParameters): void { return callSDK<void>("WiFiAware_a956b86ef7a76a8e", 3475708689348251, this, [parameters]); }
+  configureParameters(parameters: _Network_NWParameters): void { return callSDK<void>("WiFiAware_90ad0eb69cc6bf4a", 3475708689348251, this, [parameters]); }
   /**
    * var isApplicationService: Bool { get }
    * @availability iOS 26.0+
    */
-  get isApplicationService(): boolean { return callSDK<boolean>("WiFiAware_a956b86ef7a76a8e", 858753387604078, this, []); }
+  get isApplicationService(): boolean { return callSDK<boolean>("WiFiAware_90ad0eb69cc6bf4a", 858753387604078, this, []); }
   /**
    * var service: NWListener.Service { get }
    * @availability iOS 26.0+
    */
-  get service(): _Network_NWListener_Service { return callSDK<_Network_NWListener_Service>("WiFiAware_a956b86ef7a76a8e", 3810740266589693, this, []); }
+  get service(): _Network_NWListener_Service { return callSDK<_Network_NWListener_Service>("WiFiAware_90ad0eb69cc6bf4a", 3810740266589693, this, []); }
   declare readonly $type: { "s:9WiFiAware19WAPublisherListenerV": true };
 }
 
@@ -670,12 +670,12 @@ export class WAPublisherListener_Action extends SDKHandle {
    * static func connecting(to myPublishingService: WAPublishableService, from pairedDevices: WAPublisherListener.Devices, datapath wifiAware: WAPublisherListener.DatapathParameters? = nil) -> WAPublisherListener.Action
    * @availability iOS 26.0+
    */
-  static connecting(myPublishingService: WAPublishableService, pairedDevices: WAPublisherListener_Devices, wifiAware?: (WAPublisherListener_DatapathParameters) | null): WAPublisherListener_Action { return callSDK<WAPublisherListener_Action>("WiFiAware_a956b86ef7a76a8e", 3669845435730248, undefined, [myPublishingService, pairedDevices, wifiAware]); }
+  static connecting(myPublishingService: WAPublishableService, pairedDevices: WAPublisherListener_Devices, wifiAware?: (WAPublisherListener_DatapathParameters) | null): WAPublisherListener_Action { return callSDK<WAPublisherListener_Action>("WiFiAware_90ad0eb69cc6bf4a", 3669845435730248, undefined, [myPublishingService, pairedDevices, wifiAware]); }
   /**
    * static func addingConnections(from pairedDevices: WAPublisherListener.Devices) -> WAPublisherListener.Action
    * @availability iOS 26.4+
    */
-  static addingConnections(pairedDevices: WAPublisherListener_Devices): WAPublisherListener_Action { return callSDK<WAPublisherListener_Action>("WiFiAware_a956b86ef7a76a8e", 2890231644784193, undefined, [pairedDevices]); }
+  static addingConnections(pairedDevices: WAPublisherListener_Devices): WAPublisherListener_Action { return callSDK<WAPublisherListener_Action>("WiFiAware_90ad0eb69cc6bf4a", 2890231644784193, undefined, [pairedDevices]); }
   declare readonly $type: { "s:9WiFiAware19WAPublisherListenerV6ActionV": true };
 }
 
@@ -688,12 +688,12 @@ export class WAPublisherListener_DatapathParameters extends SDKHandle {
    * static let defaults: WAPublisherListener.DatapathParameters
    * @availability iOS 26.0+
    */
-  static get defaults(): WAPublisherListener_DatapathParameters { return callSDK<WAPublisherListener_DatapathParameters>("WiFiAware_a956b86ef7a76a8e", 4163878572317402, undefined, []); }
+  static get defaults(): WAPublisherListener_DatapathParameters { return callSDK<WAPublisherListener_DatapathParameters>("WiFiAware_90ad0eb69cc6bf4a", 4163878572317402, undefined, []); }
   /**
    * static let realtime: WAPublisherListener.DatapathParameters
    * @availability iOS 26.0+
    */
-  static get realtime(): WAPublisherListener_DatapathParameters { return callSDK<WAPublisherListener_DatapathParameters>("WiFiAware_a956b86ef7a76a8e", 3361221006133294, undefined, []); }
+  static get realtime(): WAPublisherListener_DatapathParameters { return callSDK<WAPublisherListener_DatapathParameters>("WiFiAware_90ad0eb69cc6bf4a", 3361221006133294, undefined, []); }
   declare readonly $type: { "s:9WiFiAware19WAPublisherListenerV18DatapathParametersV": true };
 }
 
@@ -706,22 +706,22 @@ export class WAPublisherListener_Devices extends SDKHandle {
    * static let userSpecifiedDevices: WAPublisherListener.Devices
    * @availability iOS 26.0+
    */
-  static get userSpecifiedDevices(): WAPublisherListener_Devices { return callSDK<WAPublisherListener_Devices>("WiFiAware_a956b86ef7a76a8e", 917718045793722, undefined, []); }
+  static get userSpecifiedDevices(): WAPublisherListener_Devices { return callSDK<WAPublisherListener_Devices>("WiFiAware_90ad0eb69cc6bf4a", 917718045793722, undefined, []); }
   /**
    * static let allPairedDevices: WAPublisherListener.Devices
    * @availability iOS 26.0+
    */
-  static get allPairedDevices(): WAPublisherListener_Devices { return callSDK<WAPublisherListener_Devices>("WiFiAware_a956b86ef7a76a8e", 2483569674515570, undefined, []); }
+  static get allPairedDevices(): WAPublisherListener_Devices { return callSDK<WAPublisherListener_Devices>("WiFiAware_90ad0eb69cc6bf4a", 2483569674515570, undefined, []); }
   /**
    * static func matching(_ pairedDevicesFilter: Predicate<WAPairedDevice>) -> WAPublisherListener.Devices
    * @availability iOS 26.0+
    */
-  static matching(pairedDevicesFilter: $SDK5): WAPublisherListener_Devices { return callSDK<WAPublisherListener_Devices>("WiFiAware_a956b86ef7a76a8e", 1552151839461360, undefined, [pairedDevicesFilter]); }
+  static matching(pairedDevicesFilter: $SDK5): WAPublisherListener_Devices { return callSDK<WAPublisherListener_Devices>("WiFiAware_90ad0eb69cc6bf4a", 1552151839461360, undefined, [pairedDevicesFilter]); }
   /**
    * static func selected(_ pairedDevices: WAPairedDevice.Devices) -> WAPublisherListener.Devices
    * @availability iOS 26.0+
    */
-  static selected(pairedDevices: $SDK7): WAPublisherListener_Devices { return callSDK<WAPublisherListener_Devices>("WiFiAware_a956b86ef7a76a8e", 2080132769316743, undefined, [pairedDevices]); }
+  static selected(pairedDevices: $SDK7): WAPublisherListener_Devices { return callSDK<WAPublisherListener_Devices>("WiFiAware_90ad0eb69cc6bf4a", 2080132769316743, undefined, [pairedDevices]); }
   declare readonly $type: { "s:9WiFiAware19WAPublisherListenerV7DevicesV": true };
 }
 
@@ -742,12 +742,12 @@ export class WASharedSecret extends SDKHandle {
    * let derivation: WASharedSecret.DerivationMethod
    * @availability iOS 26.4+
    */
-  get derivation(): WASharedSecret_DerivationMethod { return callSDK<WASharedSecret_DerivationMethod>("WiFiAware_a956b86ef7a76a8e", 648266829182560, this, []); }
+  get derivation(): WASharedSecret_DerivationMethod { return callSDK<WASharedSecret_DerivationMethod>("WiFiAware_90ad0eb69cc6bf4a", 648266829182560, this, []); }
   /**
    * let data: Data
    * @availability iOS 26.4+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("WiFiAware_a956b86ef7a76a8e", 2759590645229815, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("WiFiAware_90ad0eb69cc6bf4a", 2759590645229815, this, []); }
   declare readonly $type: { "s:9WiFiAware14WASharedSecretV": true };
 }
 
@@ -760,17 +760,17 @@ export class WASharedSecret_Context extends SDKHandle {
    * static let bundleID: WASharedSecret.Context
    * @availability iOS 26.4+
    */
-  static get bundleID(): WASharedSecret_Context { return callSDK<WASharedSecret_Context>("WiFiAware_a956b86ef7a76a8e", 3264709126263320, undefined, []); }
+  static get bundleID(): WASharedSecret_Context { return callSDK<WASharedSecret_Context>("WiFiAware_90ad0eb69cc6bf4a", 3264709126263320, undefined, []); }
   /**
    * init?(_ data: Data)
    * @availability iOS 26.4+
    */
-  static init(data: ArrayBuffer): (WASharedSecret_Context) | null { return callSDK<(WASharedSecret_Context) | null>("WiFiAware_a956b86ef7a76a8e", 2462593171515678, undefined, [data]); }
+  static init(data: ArrayBuffer): (WASharedSecret_Context) | null { return callSDK<(WASharedSecret_Context) | null>("WiFiAware_90ad0eb69cc6bf4a", 2462593171515678, undefined, [data]); }
   /**
    * init?(_ string: String)
    * @availability iOS 26.4+
    */
-  static init37833(string: string): (WASharedSecret_Context) | null { return callSDK<(WASharedSecret_Context) | null>("WiFiAware_a956b86ef7a76a8e", 2358216004201682, undefined, [string]); }
+  static init37833(string: string): (WASharedSecret_Context) | null { return callSDK<(WASharedSecret_Context) | null>("WiFiAware_90ad0eb69cc6bf4a", 2358216004201682, undefined, [string]); }
   declare readonly $type: { "s:9WiFiAware14WASharedSecretV7ContextV": true };
 }
 
@@ -783,7 +783,7 @@ export class WASharedSecret_DerivationMethod extends SDKHandle {
    * static let kdfHash256: WASharedSecret.DerivationMethod
    * @availability iOS 26.4+
    */
-  static get kdfHash256(): WASharedSecret_DerivationMethod { return callSDK<WASharedSecret_DerivationMethod>("WiFiAware_a956b86ef7a76a8e", 2720885268738189, undefined, []); }
+  static get kdfHash256(): WASharedSecret_DerivationMethod { return callSDK<WASharedSecret_DerivationMethod>("WiFiAware_90ad0eb69cc6bf4a", 2720885268738189, undefined, []); }
   declare readonly $type: { "s:9WiFiAware14WASharedSecretV16DerivationMethodV": true };
 }
 
@@ -796,22 +796,22 @@ export class WASharedSecret_ProtocolName extends SDKHandle {
    * static let tlsPSK: WASharedSecret.ProtocolName
    * @availability iOS 26.4+
    */
-  static get tlsPSK(): WASharedSecret_ProtocolName { return callSDK<WASharedSecret_ProtocolName>("WiFiAware_a956b86ef7a76a8e", 2588510618842819, undefined, []); }
+  static get tlsPSK(): WASharedSecret_ProtocolName { return callSDK<WASharedSecret_ProtocolName>("WiFiAware_90ad0eb69cc6bf4a", 2588510618842819, undefined, []); }
   /**
    * static let ipsecPSK: WASharedSecret.ProtocolName
    * @availability iOS 26.4+
    */
-  static get ipsecPSK(): WASharedSecret_ProtocolName { return callSDK<WASharedSecret_ProtocolName>("WiFiAware_a956b86ef7a76a8e", 3555159714908830, undefined, []); }
+  static get ipsecPSK(): WASharedSecret_ProtocolName { return callSDK<WASharedSecret_ProtocolName>("WiFiAware_90ad0eb69cc6bf4a", 3555159714908830, undefined, []); }
   /**
    * init?(_ data: Data)
    * @availability iOS 26.4+
    */
-  static init(data: ArrayBuffer): (WASharedSecret_ProtocolName) | null { return callSDK<(WASharedSecret_ProtocolName) | null>("WiFiAware_a956b86ef7a76a8e", 3469316904210988, undefined, [data]); }
+  static init(data: ArrayBuffer): (WASharedSecret_ProtocolName) | null { return callSDK<(WASharedSecret_ProtocolName) | null>("WiFiAware_90ad0eb69cc6bf4a", 3469316904210988, undefined, [data]); }
   /**
    * init?(_ string: String)
    * @availability iOS 26.4+
    */
-  static init33821(string: string): (WASharedSecret_ProtocolName) | null { return callSDK<(WASharedSecret_ProtocolName) | null>("WiFiAware_a956b86ef7a76a8e", 4121254755249366, undefined, [string]); }
+  static init33821(string: string): (WASharedSecret_ProtocolName) | null { return callSDK<(WASharedSecret_ProtocolName) | null>("WiFiAware_90ad0eb69cc6bf4a", 4121254755249366, undefined, [string]); }
   declare readonly $type: { "s:9WiFiAware14WASharedSecretV12ProtocolNameV": true };
 }
 
@@ -824,22 +824,22 @@ export class WASubscribableService extends SDKHandle {
    * static var allServices: [WASubscribableService.ID : WASubscribableService] { get }
    * @availability iOS 26.0+
    */
-  static get allServices(): Record<string, WASubscribableService> { return callSDK<Record<string, WASubscribableService>>("WiFiAware_a956b86ef7a76a8e", 667881305695494, undefined, []); }
+  static get allServices(): Record<string, WASubscribableService> { return callSDK<Record<string, WASubscribableService>>("WiFiAware_90ad0eb69cc6bf4a", 667881305695494, undefined, []); }
   /**
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  get description(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 478964658377812, this, []); }
+  get description(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 478964658377812, this, []); }
   /**
    * var id: WASubscribableService.ID { get }
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 3752618863477996, this, []); }
+  get id(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 3752618863477996, this, []); }
   /**
    * let name: String
    * @availability iOS 26.0+
    */
-  get name(): string { return callSDK<string>("WiFiAware_a956b86ef7a76a8e", 455816798499277, this, []); }
+  get name(): string { return callSDK<string>("WiFiAware_90ad0eb69cc6bf4a", 455816798499277, this, []); }
   declare readonly $type: { "s:9WiFiAware21WASubscribableServiceV": true };
 }
 
@@ -858,17 +858,17 @@ export class WASubscriberBrowser extends SDKHandle {
    * func makeEndpoint(from browseResult: NWBrowser.Result) throws -> WASubscriberBrowser.Endpoint?
    * @availability iOS 26.0+
    */
-  makeEndpoint(browseResult: _Network_NWBrowser_Result): (WAEndpoint) | null { return callSDK<(WAEndpoint) | null>("WiFiAware_a956b86ef7a76a8e", 246413266561544, this, [browseResult]); }
+  makeEndpoint(browseResult: _Network_NWBrowser_Result): (WAEndpoint) | null { return callSDK<(WAEndpoint) | null>("WiFiAware_90ad0eb69cc6bf4a", 246413266561544, this, [browseResult]); }
   /**
    * func makeDescriptor() -> NWBrowser.Descriptor
    * @availability iOS 26.0+
    */
-  makeDescriptor(): _Network_NWBrowser_Descriptor { return callSDK<_Network_NWBrowser_Descriptor>("WiFiAware_a956b86ef7a76a8e", 701219196416272, this, []); }
+  makeDescriptor(): _Network_NWBrowser_Descriptor { return callSDK<_Network_NWBrowser_Descriptor>("WiFiAware_90ad0eb69cc6bf4a", 701219196416272, this, []); }
   /**
    * func configureParameters(_ parameters: NWParameters?) -> NWParameters
    * @availability iOS 26.0+
    */
-  configureParameters(parameters?: (_Network_NWParameters) | null): _Network_NWParameters { return callSDK<_Network_NWParameters>("WiFiAware_a956b86ef7a76a8e", 149504436370507, this, [parameters]); }
+  configureParameters(parameters?: (_Network_NWParameters) | null): _Network_NWParameters { return callSDK<_Network_NWParameters>("WiFiAware_90ad0eb69cc6bf4a", 149504436370507, this, [parameters]); }
   declare readonly $type: { "s:9WiFiAware19WASubscriberBrowserV": true };
 }
 
@@ -881,7 +881,7 @@ export class WASubscriberBrowser_Action extends SDKHandle {
    * static func connecting(to pairedDevices: WASubscriberBrowser.Devices, from mySubscribingService: WASubscribableService) -> WASubscriberBrowser.Action
    * @availability iOS 26.0+
    */
-  static connecting(pairedDevices: WASubscriberBrowser_Devices, mySubscribingService: WASubscribableService): WASubscriberBrowser_Action { return callSDK<WASubscriberBrowser_Action>("WiFiAware_a956b86ef7a76a8e", 4217892634893866, undefined, [pairedDevices, mySubscribingService]); }
+  static connecting(pairedDevices: WASubscriberBrowser_Devices, mySubscribingService: WASubscribableService): WASubscriberBrowser_Action { return callSDK<WASubscriberBrowser_Action>("WiFiAware_90ad0eb69cc6bf4a", 4217892634893866, undefined, [pairedDevices, mySubscribingService]); }
   declare readonly $type: { "s:9WiFiAware19WASubscriberBrowserV6ActionV": true };
 }
 
@@ -894,22 +894,22 @@ export class WASubscriberBrowser_Devices extends SDKHandle {
    * static let userSpecifiedDevices: WASubscriberBrowser.Devices
    * @availability iOS 26.0+
    */
-  static get userSpecifiedDevices(): WASubscriberBrowser_Devices { return callSDK<WASubscriberBrowser_Devices>("WiFiAware_a956b86ef7a76a8e", 3320602076774589, undefined, []); }
+  static get userSpecifiedDevices(): WASubscriberBrowser_Devices { return callSDK<WASubscriberBrowser_Devices>("WiFiAware_90ad0eb69cc6bf4a", 3320602076774589, undefined, []); }
   /**
    * static let allPairedDevices: WASubscriberBrowser.Devices
    * @availability iOS 26.0+
    */
-  static get allPairedDevices(): WASubscriberBrowser_Devices { return callSDK<WASubscriberBrowser_Devices>("WiFiAware_a956b86ef7a76a8e", 1884416109019663, undefined, []); }
+  static get allPairedDevices(): WASubscriberBrowser_Devices { return callSDK<WASubscriberBrowser_Devices>("WiFiAware_90ad0eb69cc6bf4a", 1884416109019663, undefined, []); }
   /**
    * static func matching(_ pairedDevicesFilter: Predicate<WAPairedDevice>) -> WASubscriberBrowser.Devices
    * @availability iOS 26.0+
    */
-  static matching(pairedDevicesFilter: $SDK5): WASubscriberBrowser_Devices { return callSDK<WASubscriberBrowser_Devices>("WiFiAware_a956b86ef7a76a8e", 3895946851139349, undefined, [pairedDevicesFilter]); }
+  static matching(pairedDevicesFilter: $SDK5): WASubscriberBrowser_Devices { return callSDK<WASubscriberBrowser_Devices>("WiFiAware_90ad0eb69cc6bf4a", 3895946851139349, undefined, [pairedDevicesFilter]); }
   /**
    * static func selected(_ pairedDevices: WAPairedDevice.Devices) -> WASubscriberBrowser.Devices
    * @availability iOS 26.0+
    */
-  static selected(pairedDevices: $SDK7): WASubscriberBrowser_Devices { return callSDK<WASubscriberBrowser_Devices>("WiFiAware_a956b86ef7a76a8e", 1261983327748227, undefined, [pairedDevices]); }
+  static selected(pairedDevices: $SDK7): WASubscriberBrowser_Devices { return callSDK<WASubscriberBrowser_Devices>("WiFiAware_90ad0eb69cc6bf4a", 1261983327748227, undefined, [pairedDevices]); }
   declare readonly $type: { "s:9WiFiAware19WASubscriberBrowserV7DevicesV": true };
 }
 
@@ -919,49 +919,49 @@ export class WASubscriberBrowser_Devices extends SDKHandle {
  */
 export type WASubscriberBrowser_Endpoint = WAEndpoint;
 
-registerSDKClass("Network.NWEndpoint", NWEndpoint, { module: "WiFiAware_a956b86ef7a76a8e", properties: {}, methods: {"wifiAwarePort":{"id":665144825842223}} }, true);
-registerSDKClass("Network.NWError", NWError, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} }, true);
-registerSDKClass("Network.NWParameters", NWParameters, { module: "WiFiAware_a956b86ef7a76a8e", properties: {}, methods: {"wifiAware7940":{"id":1685175516690277,"hints":[{"callback":{"out":[]}}]}} }, true);
-registerSDKClass("Network.NWPath", NWPath, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} }, true);
-registerSDKClass("WiFiAware.WACapabilities", WACapabilities, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAConnection", WAConnection, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAEndpoint", WAEndpoint, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError", WAError, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.ConnectionFailedDetails", WAError_ConnectionFailedDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.ConnectionIdleTimeoutDetails", WAError_ConnectionIdleTimeoutDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.ConnectionTerminatedDetails", WAError_ConnectionTerminatedDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.DeviceInvalidDetails", WAError_DeviceInvalidDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.DeviceNoLongerAvailableDetails", WAError_DeviceNoLongerAvailableDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.EntitlementMissingDetails", WAError_EntitlementMissingDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.ErrorDetails", WAError_ErrorDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.NoPairedDevicesDetails", WAError_NoPairedDevicesDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.NoRadioResourcesDetails", WAError_NoRadioResourcesDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.PublisherTimeoutDetails", WAError_PublisherTimeoutDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.ServiceAlreadyPublishingDetails", WAError_ServiceAlreadyPublishingDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.ServiceAlreadySubscribingDetails", WAError_ServiceAlreadySubscribingDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.ServiceNotDeclaredDetails", WAError_ServiceNotDeclaredDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.SubscriberTimeoutDetails", WAError_SubscriberTimeoutDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAError.WiFiAwareUnsupportedDetails", WAError_WiFiAwareUnsupportedDetails, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAPairedDevice", WAPairedDevice, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAPairedDevice.DevicesSequence", WAPairedDevice_DevicesSequence, { module: "WiFiAware_a956b86ef7a76a8e", properties: {}, methods: {"makeAsyncIterator":{"id":1266030002744779},"current":{"id":1288954836770341}} });
-registerSDKClass("WiFiAware.WAPairedDevice.DevicesSequence.AsyncIterator", WAPairedDevice_DevicesSequence_AsyncIterator, { module: "WiFiAware_a956b86ef7a76a8e", properties: {}, methods: {"next":{"id":2905088638101557}} });
-registerSDKClass("WiFiAware.WAPairedDevice.PairingInfo", WAPairedDevice_PairingInfo, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAParameters", WAParameters, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAPath", WAPath, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAPerformanceForecast", WAPerformanceForecast, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAPerformanceReport", WAPerformanceReport, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAPerformanceReport.TransmitLatencyMetrics", WAPerformanceReport_TransmitLatencyMetrics, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAPublishableService", WAPublishableService, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAPublisherListener", WAPublisherListener, { module: "WiFiAware_a956b86ef7a76a8e", properties: {}, methods: {"configureParameters":{"id":3475708689348251}} });
-registerSDKClass("WiFiAware.WAPublisherListener.Action", WAPublisherListener_Action, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAPublisherListener.DatapathParameters", WAPublisherListener_DatapathParameters, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WAPublisherListener.Devices", WAPublisherListener_Devices, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("Network.NWEndpoint", NWEndpoint, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {}, methods: {"wifiAwarePort":{"id":665144825842223}} }, true);
+registerSDKClass("Network.NWError", NWError, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} }, true);
+registerSDKClass("Network.NWParameters", NWParameters, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {}, methods: {"wifiAware7940":{"id":1685175516690277,"hints":[{"callback":{"out":[]}}]}} }, true);
+registerSDKClass("Network.NWPath", NWPath, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} }, true);
+registerSDKClass("WiFiAware.WACapabilities", WACapabilities, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAConnection", WAConnection, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAEndpoint", WAEndpoint, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError", WAError, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.ConnectionFailedDetails", WAError_ConnectionFailedDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.ConnectionIdleTimeoutDetails", WAError_ConnectionIdleTimeoutDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.ConnectionTerminatedDetails", WAError_ConnectionTerminatedDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.DeviceInvalidDetails", WAError_DeviceInvalidDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.DeviceNoLongerAvailableDetails", WAError_DeviceNoLongerAvailableDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.EntitlementMissingDetails", WAError_EntitlementMissingDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.ErrorDetails", WAError_ErrorDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.NoPairedDevicesDetails", WAError_NoPairedDevicesDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.NoRadioResourcesDetails", WAError_NoRadioResourcesDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.PublisherTimeoutDetails", WAError_PublisherTimeoutDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.ServiceAlreadyPublishingDetails", WAError_ServiceAlreadyPublishingDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.ServiceAlreadySubscribingDetails", WAError_ServiceAlreadySubscribingDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.ServiceNotDeclaredDetails", WAError_ServiceNotDeclaredDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.SubscriberTimeoutDetails", WAError_SubscriberTimeoutDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAError.WiFiAwareUnsupportedDetails", WAError_WiFiAwareUnsupportedDetails, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAPairedDevice", WAPairedDevice, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAPairedDevice.DevicesSequence", WAPairedDevice_DevicesSequence, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {}, methods: {"makeAsyncIterator":{"id":1266030002744779},"current":{"id":1288954836770341}} });
+registerSDKClass("WiFiAware.WAPairedDevice.DevicesSequence.AsyncIterator", WAPairedDevice_DevicesSequence_AsyncIterator, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {}, methods: {"next":{"id":2905088638101557}} });
+registerSDKClass("WiFiAware.WAPairedDevice.PairingInfo", WAPairedDevice_PairingInfo, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAParameters", WAParameters, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAPath", WAPath, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAPerformanceForecast", WAPerformanceForecast, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAPerformanceReport", WAPerformanceReport, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAPerformanceReport.TransmitLatencyMetrics", WAPerformanceReport_TransmitLatencyMetrics, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAPublishableService", WAPublishableService, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAPublisherListener", WAPublisherListener, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {}, methods: {"configureParameters":{"id":3475708689348251}} });
+registerSDKClass("WiFiAware.WAPublisherListener.Action", WAPublisherListener_Action, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAPublisherListener.DatapathParameters", WAPublisherListener_DatapathParameters, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WAPublisherListener.Devices", WAPublisherListener_Devices, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9WiFiAware9WAServiceP", {});
-registerSDKClass("WiFiAware.WASharedSecret", WASharedSecret, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WASharedSecret.Context", WASharedSecret_Context, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WASharedSecret.DerivationMethod", WASharedSecret_DerivationMethod, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WASharedSecret.ProtocolName", WASharedSecret_ProtocolName, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WASubscribableService", WASubscribableService, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WASubscriberBrowser", WASubscriberBrowser, { module: "WiFiAware_a956b86ef7a76a8e", properties: {}, methods: {"makeEndpoint":{"id":246413266561544},"makeDescriptor":{"id":701219196416272},"configureParameters":{"id":149504436370507}} });
-registerSDKClass("WiFiAware.WASubscriberBrowser.Action", WASubscriberBrowser_Action, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("WiFiAware.WASubscriberBrowser.Devices", WASubscriberBrowser_Devices, { module: "WiFiAware_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("WiFiAware.WASharedSecret", WASharedSecret, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WASharedSecret.Context", WASharedSecret_Context, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WASharedSecret.DerivationMethod", WASharedSecret_DerivationMethod, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WASharedSecret.ProtocolName", WASharedSecret_ProtocolName, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WASubscribableService", WASubscribableService, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WASubscriberBrowser", WASubscriberBrowser, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {}, methods: {"makeEndpoint":{"id":246413266561544},"makeDescriptor":{"id":701219196416272},"configureParameters":{"id":149504436370507}} });
+registerSDKClass("WiFiAware.WASubscriberBrowser.Action", WASubscriberBrowser_Action, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("WiFiAware.WASubscriberBrowser.Devices", WASubscriberBrowser_Devices, { module: "WiFiAware_90ad0eb69cc6bf4a", properties: {} });

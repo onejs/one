@@ -13,35 +13,35 @@ type $SDK3 = (_Foundation_NSPredicate) | null;
  */
 export class ABNewPersonViewController extends SDKHandle {
   /** init() */
-  static init(): ABNewPersonViewController { return callSDK<ABNewPersonViewController>("AddressBookUI_a956b86ef7a76a8e", 3503607589945405, undefined, []); }
+  static init(): ABNewPersonViewController { return callSDK<ABNewPersonViewController>("AddressBookUI_90ad0eb69cc6bf4a", 3503607589945405, undefined, []); }
   /**
    * var addressBook: ABAddressBook? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get addressBook(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_a956b86ef7a76a8e", 3152216806245404, this, []); }
-  set addressBook(value: (unknown) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 2941845090178556, this, [value]); }
+  get addressBook(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_90ad0eb69cc6bf4a", 3152216806245404, this, []); }
+  set addressBook(value: (unknown) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 2941845090178556, this, [value]); }
   /**
    * var displayedPerson: ABRecord? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get displayedPerson(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_a956b86ef7a76a8e", 788111390959704, this, []); }
-  set displayedPerson(value: (unknown) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 3080929043303662, this, [value]); }
+  get displayedPerson(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_90ad0eb69cc6bf4a", 788111390959704, this, []); }
+  set displayedPerson(value: (unknown) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 3080929043303662, this, [value]); }
   /**
    * unowned(unsafe) var newPersonViewDelegate: (any ABNewPersonViewControllerDelegate)? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get newPersonViewDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AddressBookUI_a956b86ef7a76a8e", 3816700312965077, this, []); }
-  set newPersonViewDelegate(value: (Implements<ABNewPersonViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 3880763749205153, this, [value], [{"protocol":"c:objc(pl)ABNewPersonViewControllerDelegate"}]); }
+  get newPersonViewDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AddressBookUI_90ad0eb69cc6bf4a", 3816700312965077, this, []); }
+  set newPersonViewDelegate(value: (Implements<ABNewPersonViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 3880763749205153, this, [value], [{"protocol":"c:objc(pl)ABNewPersonViewControllerDelegate"}]); }
   /**
    * var parentGroup: ABRecord? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get parentGroup(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_a956b86ef7a76a8e", 3683191312039400, this, []); }
-  set parentGroup(value: (unknown) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 4041565518187382, this, [value]); }
+  get parentGroup(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_90ad0eb69cc6bf4a", 3683191312039400, this, []); }
+  set parentGroup(value: (unknown) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 4041565518187382, this, [value]); }
   declare readonly $type: { "c:objc(cs)ABNewPersonViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addressBook": true; "displayedPerson": true; "newPersonViewDelegate": true; "parentGroup": true };
 }
@@ -62,49 +62,49 @@ export interface ABNewPersonViewControllerDelegate {
  */
 export class ABPeoplePickerNavigationController extends SDKHandle {
   /** init() */
-  static init(): ABPeoplePickerNavigationController { return callSDK<ABPeoplePickerNavigationController>("AddressBookUI_a956b86ef7a76a8e", 53783262143919, undefined, []); }
+  static init(): ABPeoplePickerNavigationController { return callSDK<ABPeoplePickerNavigationController>("AddressBookUI_90ad0eb69cc6bf4a", 53783262143919, undefined, []); }
   /**
    * var addressBook: ABAddressBook? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get addressBook(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_a956b86ef7a76a8e", 1504267086143326, this, []); }
-  set addressBook(value: (unknown) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 1297903628853287, this, [value]); }
+  get addressBook(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_90ad0eb69cc6bf4a", 1504267086143326, this, []); }
+  set addressBook(value: (unknown) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 1297903628853287, this, [value]); }
   /**
    * var displayedProperties: [NSNumber]? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get displayedProperties(): $SDK1 { return callSDK<$SDK1>("AddressBookUI_a956b86ef7a76a8e", 900279963615722, this, []); }
-  set displayedProperties(value: $SDK1) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 3850828837986480, this, [value]); }
+  get displayedProperties(): $SDK1 { return callSDK<$SDK1>("AddressBookUI_90ad0eb69cc6bf4a", 900279963615722, this, []); }
+  set displayedProperties(value: $SDK1) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 3850828837986480, this, [value]); }
   /**
    * unowned(unsafe) var peoplePickerDelegate: (any ABPeoplePickerNavigationControllerDelegate)? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get peoplePickerDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AddressBookUI_a956b86ef7a76a8e", 1410060875861478, this, []); }
-  set peoplePickerDelegate(value: (Implements<ABPeoplePickerNavigationControllerDelegate> | SDKHandle) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 929956854522604, this, [value], [{"protocol":"c:objc(pl)ABPeoplePickerNavigationControllerDelegate"}]); }
+  get peoplePickerDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AddressBookUI_90ad0eb69cc6bf4a", 1410060875861478, this, []); }
+  set peoplePickerDelegate(value: (Implements<ABPeoplePickerNavigationControllerDelegate> | SDKHandle) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 929956854522604, this, [value], [{"protocol":"c:objc(pl)ABPeoplePickerNavigationControllerDelegate"}]); }
   /**
    * @NSCopying var predicateForEnablingPerson: NSPredicate? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get predicateForEnablingPerson(): $SDK3 { return callSDK<$SDK3>("AddressBookUI_a956b86ef7a76a8e", 4136908373736884, this, []); }
-  set predicateForEnablingPerson(value: $SDK3) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 4403918716804932, this, [value]); }
+  get predicateForEnablingPerson(): $SDK3 { return callSDK<$SDK3>("AddressBookUI_90ad0eb69cc6bf4a", 4136908373736884, this, []); }
+  set predicateForEnablingPerson(value: $SDK3) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 4403918716804932, this, [value]); }
   /**
    * @NSCopying var predicateForSelectionOfPerson: NSPredicate? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get predicateForSelectionOfPerson(): $SDK3 { return callSDK<$SDK3>("AddressBookUI_a956b86ef7a76a8e", 4438377830484521, this, []); }
-  set predicateForSelectionOfPerson(value: $SDK3) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 669250754427683, this, [value]); }
+  get predicateForSelectionOfPerson(): $SDK3 { return callSDK<$SDK3>("AddressBookUI_90ad0eb69cc6bf4a", 4438377830484521, this, []); }
+  set predicateForSelectionOfPerson(value: $SDK3) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 669250754427683, this, [value]); }
   /**
    * @NSCopying var predicateForSelectionOfProperty: NSPredicate? { get set }
    * @availability iOS 8.0+
    * @deprecated iOS 9.0
    */
-  get predicateForSelectionOfProperty(): $SDK3 { return callSDK<$SDK3>("AddressBookUI_a956b86ef7a76a8e", 165626462754682, this, []); }
-  set predicateForSelectionOfProperty(value: $SDK3) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 3723208212325082, this, [value]); }
+  get predicateForSelectionOfProperty(): $SDK3 { return callSDK<$SDK3>("AddressBookUI_90ad0eb69cc6bf4a", 165626462754682, this, []); }
+  set predicateForSelectionOfProperty(value: $SDK3) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 3723208212325082, this, [value]); }
   declare readonly $type: { "c:objc(cs)ABPeoplePickerNavigationController": true; "c:objc(cs)UINavigationController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addressBook": true; "displayedProperties": true; "peoplePickerDelegate": true; "predicateForEnablingPerson": true; "predicateForSelectionOfPerson": true; "predicateForSelectionOfProperty": true };
 }
@@ -135,62 +135,62 @@ export interface ABPeoplePickerNavigationControllerDelegate {
  */
 export class ABPersonViewController extends SDKHandle {
   /** init() */
-  static init(): ABPersonViewController { return callSDK<ABPersonViewController>("AddressBookUI_a956b86ef7a76a8e", 1353638628743265, undefined, []); }
+  static init(): ABPersonViewController { return callSDK<ABPersonViewController>("AddressBookUI_90ad0eb69cc6bf4a", 1353638628743265, undefined, []); }
   /**
    * func setHighlightedItemForProperty(_ property: ABPropertyID, withIdentifier identifier: ABMultiValueIdentifier)
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  setHighlightedItemForProperty(property: number, identifier: number): void { return callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 2683957974065229, this, [property, identifier]); }
+  setHighlightedItemForProperty(property: number, identifier: number): void { return callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 2683957974065229, this, [property, identifier]); }
   /**
    * var addressBook: ABAddressBook? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get addressBook(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_a956b86ef7a76a8e", 2598647489095843, this, []); }
-  set addressBook(value: (unknown) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 1276172389661070, this, [value]); }
+  get addressBook(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_90ad0eb69cc6bf4a", 2598647489095843, this, []); }
+  set addressBook(value: (unknown) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 1276172389661070, this, [value]); }
   /**
    * var allowsActions: Bool { get set }
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get allowsActions(): boolean { return callSDK<boolean>("AddressBookUI_a956b86ef7a76a8e", 3100938607605613, this, []); }
-  set allowsActions(value: boolean) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 3022531264323160, this, [value]); }
+  get allowsActions(): boolean { return callSDK<boolean>("AddressBookUI_90ad0eb69cc6bf4a", 3100938607605613, this, []); }
+  set allowsActions(value: boolean) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 3022531264323160, this, [value]); }
   /**
    * var allowsEditing: Bool { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get allowsEditing(): boolean { return callSDK<boolean>("AddressBookUI_a956b86ef7a76a8e", 1968523635861639, this, []); }
-  set allowsEditing(value: boolean) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 1515370134957533, this, [value]); }
+  get allowsEditing(): boolean { return callSDK<boolean>("AddressBookUI_90ad0eb69cc6bf4a", 1968523635861639, this, []); }
+  set allowsEditing(value: boolean) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 1515370134957533, this, [value]); }
   /**
    * var displayedPerson: ABRecord { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get displayedPerson(): unknown { return callSDK<unknown>("AddressBookUI_a956b86ef7a76a8e", 1260431061129883, this, []); }
-  set displayedPerson(value: unknown) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 3675775063642160, this, [value]); }
+  get displayedPerson(): unknown { return callSDK<unknown>("AddressBookUI_90ad0eb69cc6bf4a", 1260431061129883, this, []); }
+  set displayedPerson(value: unknown) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 3675775063642160, this, [value]); }
   /**
    * var displayedProperties: [NSNumber]? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get displayedProperties(): $SDK1 { return callSDK<$SDK1>("AddressBookUI_a956b86ef7a76a8e", 3631558730594731, this, []); }
-  set displayedProperties(value: $SDK1) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 86483490938543, this, [value]); }
+  get displayedProperties(): $SDK1 { return callSDK<$SDK1>("AddressBookUI_90ad0eb69cc6bf4a", 3631558730594731, this, []); }
+  set displayedProperties(value: $SDK1) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 86483490938543, this, [value]); }
   /**
    * unowned(unsafe) var personViewDelegate: (any ABPersonViewControllerDelegate)? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get personViewDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AddressBookUI_a956b86ef7a76a8e", 1333632791386858, this, []); }
-  set personViewDelegate(value: (SDKHandle) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 2349965198864456, this, [value]); }
+  get personViewDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AddressBookUI_90ad0eb69cc6bf4a", 1333632791386858, this, []); }
+  set personViewDelegate(value: (SDKHandle) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 2349965198864456, this, [value]); }
   /**
    * var shouldShowLinkedPeople: Bool { get set }
    * @availability iOS 4.0+
    * @deprecated iOS 9.0
    */
-  get shouldShowLinkedPeople(): boolean { return callSDK<boolean>("AddressBookUI_a956b86ef7a76a8e", 246470314299976, this, []); }
-  set shouldShowLinkedPeople(value: boolean) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 2651230096001424, this, [value]); }
+  get shouldShowLinkedPeople(): boolean { return callSDK<boolean>("AddressBookUI_90ad0eb69cc6bf4a", 246470314299976, this, []); }
+  set shouldShowLinkedPeople(value: boolean) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 2651230096001424, this, [value]); }
   declare readonly $type: { "c:objc(cs)ABPersonViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addressBook": true; "allowsActions": true; "allowsEditing": true; "displayedPerson": true; "displayedProperties": true; "personViewDelegate": true; "shouldShowLinkedPeople": true };
 }
@@ -211,56 +211,56 @@ export interface ABPersonViewControllerDelegate {
  */
 export class ABUnknownPersonViewController extends SDKHandle {
   /** init() */
-  static init(): ABUnknownPersonViewController { return callSDK<ABUnknownPersonViewController>("AddressBookUI_a956b86ef7a76a8e", 1621959733335850, undefined, []); }
+  static init(): ABUnknownPersonViewController { return callSDK<ABUnknownPersonViewController>("AddressBookUI_90ad0eb69cc6bf4a", 1621959733335850, undefined, []); }
   /**
    * var addressBook: ABAddressBook? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get addressBook(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_a956b86ef7a76a8e", 2280979997429694, this, []); }
-  set addressBook(value: (unknown) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 2582659035443871, this, [value]); }
+  get addressBook(): (unknown) | null { return callSDK<(unknown) | null>("AddressBookUI_90ad0eb69cc6bf4a", 2280979997429694, this, []); }
+  set addressBook(value: (unknown) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 2582659035443871, this, [value]); }
   /**
    * var allowsActions: Bool { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get allowsActions(): boolean { return callSDK<boolean>("AddressBookUI_a956b86ef7a76a8e", 2908696907756309, this, []); }
-  set allowsActions(value: boolean) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 3801625093865452, this, [value]); }
+  get allowsActions(): boolean { return callSDK<boolean>("AddressBookUI_90ad0eb69cc6bf4a", 2908696907756309, this, []); }
+  set allowsActions(value: boolean) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 3801625093865452, this, [value]); }
   /**
    * var allowsAddingToAddressBook: Bool { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get allowsAddingToAddressBook(): boolean { return callSDK<boolean>("AddressBookUI_a956b86ef7a76a8e", 3423717563410627, this, []); }
-  set allowsAddingToAddressBook(value: boolean) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 2973183917786544, this, [value]); }
+  get allowsAddingToAddressBook(): boolean { return callSDK<boolean>("AddressBookUI_90ad0eb69cc6bf4a", 3423717563410627, this, []); }
+  set allowsAddingToAddressBook(value: boolean) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 2973183917786544, this, [value]); }
   /**
    * var alternateName: String? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get alternateName(): (string) | null { return callSDK<(string) | null>("AddressBookUI_a956b86ef7a76a8e", 2377369403066124, this, []); }
-  set alternateName(value: (string) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 1769638782175689, this, [value]); }
+  get alternateName(): (string) | null { return callSDK<(string) | null>("AddressBookUI_90ad0eb69cc6bf4a", 2377369403066124, this, []); }
+  set alternateName(value: (string) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 1769638782175689, this, [value]); }
   /**
    * var displayedPerson: ABRecord { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get displayedPerson(): unknown { return callSDK<unknown>("AddressBookUI_a956b86ef7a76a8e", 635210394038145, this, []); }
-  set displayedPerson(value: unknown) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 2557258191102583, this, [value]); }
+  get displayedPerson(): unknown { return callSDK<unknown>("AddressBookUI_90ad0eb69cc6bf4a", 635210394038145, this, []); }
+  set displayedPerson(value: unknown) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 2557258191102583, this, [value]); }
   /**
    * var message: String? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get message(): (string) | null { return callSDK<(string) | null>("AddressBookUI_a956b86ef7a76a8e", 687285205770453, this, []); }
-  set message(value: (string) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 2934425298887374, this, [value]); }
+  get message(): (string) | null { return callSDK<(string) | null>("AddressBookUI_90ad0eb69cc6bf4a", 687285205770453, this, []); }
+  set message(value: (string) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 2934425298887374, this, [value]); }
   /**
    * unowned(unsafe) var unknownPersonViewDelegate: (any ABUnknownPersonViewControllerDelegate)? { get set }
    * @availability iOS 2.0+
    * @deprecated iOS 9.0
    */
-  get unknownPersonViewDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AddressBookUI_a956b86ef7a76a8e", 2176232052918413, this, []); }
-  set unknownPersonViewDelegate(value: (Implements<ABUnknownPersonViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("AddressBookUI_a956b86ef7a76a8e", 2237655626056363, this, [value], [{"protocol":"c:objc(pl)ABUnknownPersonViewControllerDelegate"}]); }
+  get unknownPersonViewDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("AddressBookUI_90ad0eb69cc6bf4a", 2176232052918413, this, []); }
+  set unknownPersonViewDelegate(value: (Implements<ABUnknownPersonViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("AddressBookUI_90ad0eb69cc6bf4a", 2237655626056363, this, [value], [{"protocol":"c:objc(pl)ABUnknownPersonViewControllerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)ABUnknownPersonViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "addressBook": true; "allowsActions": true; "allowsAddingToAddressBook": true; "alternateName": true; "displayedPerson": true; "message": true; "unknownPersonViewDelegate": true };
 }
@@ -279,151 +279,151 @@ export interface ABUnknownPersonViewControllerDelegate {
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function ABCreateStringWithAddressDictionary(address: NativeMap<unknown, unknown>, addCountryName: boolean): string { return callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 1738460909923484, undefined, [address, addCountryName]); }
+export function ABCreateStringWithAddressDictionary(address: NativeMap<unknown, unknown>, addCountryName: boolean): string { return callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 1738460909923484, undefined, [address, addCountryName]); }
 
 /**
  * let ABPersonBirthdayProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonBirthdayProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 669690615802084, undefined, []);
+export const ABPersonBirthdayProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 669690615802084, undefined, []);
 
 /**
  * let ABPersonDatesProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonDatesProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 2788605679230919, undefined, []);
+export const ABPersonDatesProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 2788605679230919, undefined, []);
 
 /**
  * let ABPersonDepartmentNameProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonDepartmentNameProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 2114014019513758, undefined, []);
+export const ABPersonDepartmentNameProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 2114014019513758, undefined, []);
 
 /**
  * let ABPersonEmailAddressesProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonEmailAddressesProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 1412591677930027, undefined, []);
+export const ABPersonEmailAddressesProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 1412591677930027, undefined, []);
 
 /**
  * let ABPersonFamilyNameProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonFamilyNameProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 2449380973267474, undefined, []);
+export const ABPersonFamilyNameProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 2449380973267474, undefined, []);
 
 /**
  * let ABPersonGivenNameProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonGivenNameProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 4122038068436449, undefined, []);
+export const ABPersonGivenNameProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 4122038068436449, undefined, []);
 
 /**
  * let ABPersonInstantMessageAddressesProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonInstantMessageAddressesProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 2135603051814600, undefined, []);
+export const ABPersonInstantMessageAddressesProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 2135603051814600, undefined, []);
 
 /**
  * let ABPersonJobTitleProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonJobTitleProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 1177350510733602, undefined, []);
+export const ABPersonJobTitleProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 1177350510733602, undefined, []);
 
 /**
  * let ABPersonMiddleNameProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonMiddleNameProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 3319605732309255, undefined, []);
+export const ABPersonMiddleNameProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 3319605732309255, undefined, []);
 
 /**
  * let ABPersonNamePrefixProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonNamePrefixProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 4063083945186231, undefined, []);
+export const ABPersonNamePrefixProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 4063083945186231, undefined, []);
 
 /**
  * let ABPersonNameSuffixProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonNameSuffixProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 184793673468848, undefined, []);
+export const ABPersonNameSuffixProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 184793673468848, undefined, []);
 
 /**
  * let ABPersonNicknameProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonNicknameProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 3856040653276724, undefined, []);
+export const ABPersonNicknameProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 3856040653276724, undefined, []);
 
 /**
  * let ABPersonNoteProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonNoteProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 619199851397547, undefined, []);
+export const ABPersonNoteProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 619199851397547, undefined, []);
 
 /**
  * let ABPersonOrganizationNameProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonOrganizationNameProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 1751486507387041, undefined, []);
+export const ABPersonOrganizationNameProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 1751486507387041, undefined, []);
 
 /**
  * let ABPersonPhoneNumbersProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonPhoneNumbersProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 3553276454634152, undefined, []);
+export const ABPersonPhoneNumbersProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 3553276454634152, undefined, []);
 
 /**
  * let ABPersonPhoneticFamilyNameProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonPhoneticFamilyNameProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 1991753568767276, undefined, []);
+export const ABPersonPhoneticFamilyNameProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 1991753568767276, undefined, []);
 
 /**
  * let ABPersonPhoneticGivenNameProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonPhoneticGivenNameProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 2533205302958007, undefined, []);
+export const ABPersonPhoneticGivenNameProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 2533205302958007, undefined, []);
 
 /**
  * let ABPersonPhoneticMiddleNameProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonPhoneticMiddleNameProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 4213050586355363, undefined, []);
+export const ABPersonPhoneticMiddleNameProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 4213050586355363, undefined, []);
 
 /**
  * let ABPersonPostalAddressesProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonPostalAddressesProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 1252393014594587, undefined, []);
+export const ABPersonPostalAddressesProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 1252393014594587, undefined, []);
 
 /**
  * let ABPersonPreviousFamilyNameProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonPreviousFamilyNameProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 3919468542682598, undefined, []);
+export const ABPersonPreviousFamilyNameProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 3919468542682598, undefined, []);
 
 /**
  * let ABPersonRelatedNamesProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonRelatedNamesProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 799094872174923, undefined, []);
+export const ABPersonRelatedNamesProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 799094872174923, undefined, []);
 
 /**
  * let ABPersonSocialProfilesProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonSocialProfilesProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 2373461533850202, undefined, []);
+export const ABPersonSocialProfilesProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 2373461533850202, undefined, []);
 
 /**
  * let ABPersonUrlAddressesProperty: String
  * @availability iOS 8.0+
  */
-export const ABPersonUrlAddressesProperty: string = callSDK<string>("AddressBookUI_a956b86ef7a76a8e", 1460891039261962, undefined, []);
+export const ABPersonUrlAddressesProperty: string = callSDK<string>("AddressBookUI_90ad0eb69cc6bf4a", 1460891039261962, undefined, []);
 
-registerSDKClass("ABNewPersonViewController", ABNewPersonViewController, { module: "AddressBookUI_a956b86ef7a76a8e", properties: {"addressBook":3152216806245404,"displayedPerson":788111390959704,"newPersonViewDelegate":3816700312965077,"parentGroup":3683191312039400} });
+registerSDKClass("ABNewPersonViewController", ABNewPersonViewController, { module: "AddressBookUI_90ad0eb69cc6bf4a", properties: {"addressBook":3152216806245404,"displayedPerson":788111390959704,"newPersonViewDelegate":3816700312965077,"parentGroup":3683191312039400} });
 registerSDKProtocol("c:objc(pl)ABNewPersonViewControllerDelegate", {"newPersonViewControllerDidCompleteWithNewPerson":"newPersonViewController(_:didCompleteWithNewPerson:)"});
-registerSDKClass("ABPeoplePickerNavigationController", ABPeoplePickerNavigationController, { module: "AddressBookUI_a956b86ef7a76a8e", properties: {"addressBook":1504267086143326,"displayedProperties":900279963615722,"peoplePickerDelegate":1410060875861478,"predicateForEnablingPerson":4136908373736884,"predicateForSelectionOfPerson":4438377830484521,"predicateForSelectionOfProperty":165626462754682} });
+registerSDKClass("ABPeoplePickerNavigationController", ABPeoplePickerNavigationController, { module: "AddressBookUI_90ad0eb69cc6bf4a", properties: {"addressBook":1504267086143326,"displayedProperties":900279963615722,"peoplePickerDelegate":1410060875861478,"predicateForEnablingPerson":4136908373736884,"predicateForSelectionOfPerson":4438377830484521,"predicateForSelectionOfProperty":165626462754682} });
 registerSDKProtocol("c:objc(pl)ABPeoplePickerNavigationControllerDelegate", {"peoplePickerNavigationControllerDidSelectPerson":"peoplePickerNavigationController(_:didSelectPerson:)","peoplePickerNavigationControllerDidSelectPersonPropertyIdentifier":"peoplePickerNavigationController(_:didSelectPerson:property:identifier:)","peoplePickerNavigationControllerDidCancel":"peoplePickerNavigationControllerDidCancel(_:)"});
-registerSDKClass("ABPersonViewController", ABPersonViewController, { module: "AddressBookUI_a956b86ef7a76a8e", properties: {"addressBook":2598647489095843,"allowsActions":3100938607605613,"allowsEditing":1968523635861639,"displayedPerson":1260431061129883,"displayedProperties":3631558730594731,"personViewDelegate":1333632791386858,"shouldShowLinkedPeople":246470314299976}, methods: {"setHighlightedItemForProperty":{"id":2683957974065229}} });
+registerSDKClass("ABPersonViewController", ABPersonViewController, { module: "AddressBookUI_90ad0eb69cc6bf4a", properties: {"addressBook":2598647489095843,"allowsActions":3100938607605613,"allowsEditing":1968523635861639,"displayedPerson":1260431061129883,"displayedProperties":3631558730594731,"personViewDelegate":1333632791386858,"shouldShowLinkedPeople":246470314299976}, methods: {"setHighlightedItemForProperty":{"id":2683957974065229}} });
 registerSDKProtocol("c:objc(pl)ABPersonViewControllerDelegate", {"personViewControllerShouldPerformDefaultActionForPersonPropertyIdentifier":"personViewController(_:shouldPerformDefaultActionForPerson:property:identifier:)"});
-registerSDKClass("ABUnknownPersonViewController", ABUnknownPersonViewController, { module: "AddressBookUI_a956b86ef7a76a8e", properties: {"addressBook":2280979997429694,"allowsActions":2908696907756309,"allowsAddingToAddressBook":3423717563410627,"alternateName":2377369403066124,"displayedPerson":635210394038145,"message":687285205770453,"unknownPersonViewDelegate":2176232052918413} });
+registerSDKClass("ABUnknownPersonViewController", ABUnknownPersonViewController, { module: "AddressBookUI_90ad0eb69cc6bf4a", properties: {"addressBook":2280979997429694,"allowsActions":2908696907756309,"allowsAddingToAddressBook":3423717563410627,"alternateName":2377369403066124,"displayedPerson":635210394038145,"message":687285205770453,"unknownPersonViewDelegate":2176232052918413} });
 registerSDKProtocol("c:objc(pl)ABUnknownPersonViewControllerDelegate", {"unknownPersonViewControllerDidResolveToPerson":"unknownPersonViewController(_:didResolveToPerson:)"});

@@ -25,37 +25,37 @@ export class IdentityDocumentPresentmentError extends SDKHandle {
    * static let notEntitled: IdentityDocumentPresentmentError.Code
    * @availability iOS 26.0+
    */
-  static get notEntitled(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_a956b86ef7a76a8e", 1523218040274109, undefined, []); }
+  static get notEntitled(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1523218040274109, undefined, []); }
   /**
    * static let invalidRequest: IdentityDocumentPresentmentError.Code
    * @availability iOS 26.0+
    */
-  static get invalidRequest(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_a956b86ef7a76a8e", 1380555203681818, undefined, []); }
+  static get invalidRequest(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1380555203681818, undefined, []); }
   /**
    * let debugDescription: String
    * @availability iOS 26.0+
    */
-  get debugDescription(): string { return callSDK<string>("IdentityDocumentServices_a956b86ef7a76a8e", 1989112718704988, this, []); }
+  get debugDescription(): string { return callSDK<string>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1989112718704988, this, []); }
   /**
    * static let requestInProgress: IdentityDocumentPresentmentError.Code
    * @availability iOS 26.0+
    */
-  static get requestInProgress(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_a956b86ef7a76a8e", 1541430189056127, undefined, []); }
+  static get requestInProgress(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1541430189056127, undefined, []); }
   /**
    * let code: IdentityDocumentPresentmentError.Code
    * @availability iOS 26.0+
    */
-  get code(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_a956b86ef7a76a8e", 3297097489647449, this, []); }
+  get code(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3297097489647449, this, []); }
   /**
    * static let unknown: IdentityDocumentPresentmentError.Code
    * @availability iOS 26.0+
    */
-  static get unknown(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_a956b86ef7a76a8e", 1561449020316808, undefined, []); }
+  static get unknown(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1561449020316808, undefined, []); }
   /**
    * static let cancelled: IdentityDocumentPresentmentError.Code
    * @availability iOS 26.0+
    */
-  static get cancelled(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_a956b86ef7a76a8e", 4301289074047284, undefined, []); }
+  static get cancelled(): IdentityDocumentPresentmentError_Code { return callSDK<IdentityDocumentPresentmentError_Code>("IdentityDocumentServices_90ad0eb69cc6bf4a", 4301289074047284, undefined, []); }
   declare readonly $type: { "s:24IdentityDocumentServices0aB16PresentmentErrorV": true };
 }
 
@@ -70,12 +70,12 @@ export const IdentityDocumentPresentmentError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (IdentityDocumentPresentmentError_Code) | null { return callSDK<(IdentityDocumentPresentmentError_Code) | null>("IdentityDocumentServices_a956b86ef7a76a8e", 3439529339208769, undefined, [rawValue]); },
+  init(rawValue: number): (IdentityDocumentPresentmentError_Code) | null { return callSDK<(IdentityDocumentPresentmentError_Code) | null>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3439529339208769, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 26.0+
    */
-  getRawValue($self: IdentityDocumentPresentmentError_Code): number { return callSDK<number>("IdentityDocumentServices_a956b86ef7a76a8e", 598609974613087, $self, []); }
+  getRawValue($self: IdentityDocumentPresentmentError_Code): number { return callSDK<number>("IdentityDocumentServices_90ad0eb69cc6bf4a", 598609974613087, $self, []); }
 };
 
 /**
@@ -93,32 +93,32 @@ export class IdentityDocumentProviderRegistrationStore extends SDKHandle {
    * func addRegistration(_ registration: some IdentityDocumentRegistration) async throws
    * @availability iOS 26.0+
    */
-  addRegistration(registration: SDKHandle): Promise<void> { return callSDKAsync<void>("IdentityDocumentServices_a956b86ef7a76a8e", 1595073775077267, this, [registration]); }
+  addRegistration(registration: SDKHandle): Promise<void> { return callSDKAsync<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1595073775077267, this, [registration]); }
   /**
    * func removeRegistration(forDocumentIdentifier documentIdentifier: String) async throws
    * @availability iOS 26.0+
    */
-  removeRegistration(documentIdentifier: string): Promise<void> { return callSDKAsync<void>("IdentityDocumentServices_a956b86ef7a76a8e", 2204537604382902, this, [documentIdentifier]); }
+  removeRegistration(documentIdentifier: string): Promise<void> { return callSDKAsync<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2204537604382902, this, [documentIdentifier]); }
   /**
    * var registrations: [any IdentityDocumentRegistration] { get async throws }
    * @availability iOS 26.0+
    */
-  get registrations(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("IdentityDocumentServices_a956b86ef7a76a8e", 1263594142811921, this, []); }
+  get registrations(): Promise<Array<SDKHandle>> { return callSDKAsync<Array<SDKHandle>>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1263594142811921, this, []); }
   /**
    * nonisolated final var unownedExecutor: UnownedSerialExecutor { get }
    * @availability iOS 26.0+
    */
-  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("IdentityDocumentServices_a956b86ef7a76a8e", 4328091816078612, this, []); }
+  get unownedExecutor(): SDKHandle { return callSDK<SDKHandle>("IdentityDocumentServices_90ad0eb69cc6bf4a", 4328091816078612, this, []); }
   /**
    * var status: IdentityDocumentProviderRegistrationStore.Status { get async }
    * @availability iOS 26.0+
    */
-  get status(): Promise<IdentityDocumentProviderRegistrationStore_Status> { return callSDKAsync<IdentityDocumentProviderRegistrationStore_Status>("IdentityDocumentServices_a956b86ef7a76a8e", 1882379264618164, this, []); }
+  get status(): Promise<IdentityDocumentProviderRegistrationStore_Status> { return callSDKAsync<IdentityDocumentProviderRegistrationStore_Status>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1882379264618164, this, []); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): IdentityDocumentProviderRegistrationStore { return callSDK<IdentityDocumentProviderRegistrationStore>("IdentityDocumentServices_a956b86ef7a76a8e", 3206913303378731, undefined, []); }
+  static init(): IdentityDocumentProviderRegistrationStore { return callSDK<IdentityDocumentProviderRegistrationStore>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3206913303378731, undefined, []); }
   declare readonly $type: { "s:24IdentityDocumentServices0aB25ProviderRegistrationStoreC": true };
 }
 
@@ -151,19 +151,19 @@ export class IdentityDocumentWebPresentmentRawRequest extends SDKHandle {
    * var requestData: Data
    * @availability iOS 26.0+
    */
-  get requestData(): ArrayBuffer { return callSDK<ArrayBuffer>("IdentityDocumentServices_a956b86ef7a76a8e", 446028439901737, this, []); }
-  set requestData(value: ArrayBuffer) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 2350035659938169, this, [value]); }
+  get requestData(): ArrayBuffer { return callSDK<ArrayBuffer>("IdentityDocumentServices_90ad0eb69cc6bf4a", 446028439901737, this, []); }
+  set requestData(value: ArrayBuffer) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2350035659938169, this, [value]); }
   /**
    * init(requestType: IdentityDocumentWebPresentmentRawRequest.RequestType, requestData: Data)
    * @availability iOS 26.0+
    */
-  static init(requestType: IdentityDocumentWebPresentmentRawRequest_RequestType, requestData: ArrayBuffer): IdentityDocumentWebPresentmentRawRequest { return callSDK<IdentityDocumentWebPresentmentRawRequest>("IdentityDocumentServices_a956b86ef7a76a8e", 1499740715618408, undefined, [requestType, requestData]); }
+  static init(requestType: IdentityDocumentWebPresentmentRawRequest_RequestType, requestData: ArrayBuffer): IdentityDocumentWebPresentmentRawRequest { return callSDK<IdentityDocumentWebPresentmentRawRequest>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1499740715618408, undefined, [requestType, requestData]); }
   /**
    * var requestType: IdentityDocumentWebPresentmentRawRequest.RequestType
    * @availability iOS 26.0+
    */
-  get requestType(): IdentityDocumentWebPresentmentRawRequest_RequestType { return callSDK<IdentityDocumentWebPresentmentRawRequest_RequestType>("IdentityDocumentServices_a956b86ef7a76a8e", 571337926535788, this, []); }
-  set requestType(value: IdentityDocumentWebPresentmentRawRequest_RequestType) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 791056520670778, this, [value]); }
+  get requestType(): IdentityDocumentWebPresentmentRawRequest_RequestType { return callSDK<IdentityDocumentWebPresentmentRawRequest_RequestType>("IdentityDocumentServices_90ad0eb69cc6bf4a", 571337926535788, this, []); }
+  set requestType(value: IdentityDocumentWebPresentmentRawRequest_RequestType) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 791056520670778, this, [value]); }
   declare readonly $type: { "s:24IdentityDocumentServices0aB24WebPresentmentRawRequestV": true };
 }
 
@@ -182,12 +182,12 @@ export class IdentityDocumentWebPresentmentRawRequestValidator extends SDKHandle
    * func validateISO18013MobileDocumentRequest(_ requestData: Data, origin: URL) throws -> ISO18013MobileDocumentRequest
    * @availability iOS 26.0+
    */
-  validateISO18013MobileDocumentRequest(requestData: ArrayBuffer, origin: string): ISO18013MobileDocumentRequest { return callSDK<ISO18013MobileDocumentRequest>("IdentityDocumentServices_a956b86ef7a76a8e", 3277975573472822, this, [requestData, origin]); }
+  validateISO18013MobileDocumentRequest(requestData: ArrayBuffer, origin: string): ISO18013MobileDocumentRequest { return callSDK<ISO18013MobileDocumentRequest>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3277975573472822, this, [requestData, origin]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): IdentityDocumentWebPresentmentRawRequestValidator { return callSDK<IdentityDocumentWebPresentmentRawRequestValidator>("IdentityDocumentServices_a956b86ef7a76a8e", 2696050629101672, undefined, []); }
+  static init(): IdentityDocumentWebPresentmentRawRequestValidator { return callSDK<IdentityDocumentWebPresentmentRawRequestValidator>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2696050629101672, undefined, []); }
   declare readonly $type: { "s:24IdentityDocumentServices0aB33WebPresentmentRawRequestValidatorV": true };
 }
 
@@ -216,19 +216,19 @@ export class ISO18013MobileDocumentRequest extends SDKHandle {
    * init(presentmentRequests: [ISO18013MobileDocumentRequest.PresentmentRequest], requestAuthentications: [ISO18013MobileDocumentRequest.RequestAuthentication])
    * @availability iOS 26.0+
    */
-  static init(presentmentRequests: $SDK0, requestAuthentications: $SDK1): ISO18013MobileDocumentRequest { return callSDK<ISO18013MobileDocumentRequest>("IdentityDocumentServices_a956b86ef7a76a8e", 3564925240150099, undefined, [presentmentRequests, requestAuthentications]); }
+  static init(presentmentRequests: $SDK0, requestAuthentications: $SDK1): ISO18013MobileDocumentRequest { return callSDK<ISO18013MobileDocumentRequest>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3564925240150099, undefined, [presentmentRequests, requestAuthentications]); }
   /**
    * var presentmentRequests: [ISO18013MobileDocumentRequest.PresentmentRequest]
    * @availability iOS 26.0+
    */
-  get presentmentRequests(): $SDK0 { return callSDK<$SDK0>("IdentityDocumentServices_a956b86ef7a76a8e", 1036849352966743, this, []); }
-  set presentmentRequests(value: $SDK0) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 3985728133659311, this, [value]); }
+  get presentmentRequests(): $SDK0 { return callSDK<$SDK0>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1036849352966743, this, []); }
+  set presentmentRequests(value: $SDK0) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3985728133659311, this, [value]); }
   /**
    * var requestAuthentications: [ISO18013MobileDocumentRequest.RequestAuthentication]
    * @availability iOS 26.0+
    */
-  get requestAuthentications(): $SDK1 { return callSDK<$SDK1>("IdentityDocumentServices_a956b86ef7a76a8e", 2644482171990747, this, []); }
-  set requestAuthentications(value: $SDK1) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 1675537403413037, this, [value]); }
+  get requestAuthentications(): $SDK1 { return callSDK<$SDK1>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2644482171990747, this, []); }
+  set requestAuthentications(value: $SDK1) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1675537403413037, this, [value]); }
   declare readonly $type: { "s:24IdentityDocumentServices014ISO18013MobileB7RequestV": true };
 }
 
@@ -241,30 +241,30 @@ export class ISO18013MobileDocumentRequest_DocumentRequest extends SDKHandle {
    * var namespaces: [String : [String : ISO18013MobileDocumentRequest.ElementInfo]]
    * @availability iOS 26.0+
    */
-  get namespaces(): $SDK2 { return callSDK<$SDK2>("IdentityDocumentServices_a956b86ef7a76a8e", 1874442199204288, this, []); }
-  set namespaces(value: $SDK2) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 2487168457421816, this, [value]); }
+  get namespaces(): $SDK2 { return callSDK<$SDK2>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1874442199204288, this, []); }
+  set namespaces(value: $SDK2) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2487168457421816, this, [value]); }
   /**
    * init(documentType: String, namespaces: [String : [String : ISO18013MobileDocumentRequest.ElementInfo]], issuerKeyIdentifiers: [Data])
    * @availability iOS 27.0+
    */
-  static initDocumentTypeNamespacesIssuerKeyIdentifiers(documentType: string, namespaces: $SDK2, issuerKeyIdentifiers: Array<ArrayBuffer>): ISO18013MobileDocumentRequest_DocumentRequest { return callSDK<ISO18013MobileDocumentRequest_DocumentRequest>("IdentityDocumentServices_a956b86ef7a76a8e", 3375009088539316, undefined, [documentType, namespaces, issuerKeyIdentifiers]); }
+  static initDocumentTypeNamespacesIssuerKeyIdentifiers(documentType: string, namespaces: $SDK2, issuerKeyIdentifiers: Array<ArrayBuffer>): ISO18013MobileDocumentRequest_DocumentRequest { return callSDK<ISO18013MobileDocumentRequest_DocumentRequest>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3375009088539316, undefined, [documentType, namespaces, issuerKeyIdentifiers]); }
   /**
    * init(documentType: String, namespaces: [String : [String : ISO18013MobileDocumentRequest.ElementInfo]])
    * @availability iOS 26.0+
    */
-  static initDocumentTypeNamespaces(documentType: string, namespaces: $SDK2): ISO18013MobileDocumentRequest_DocumentRequest { return callSDK<ISO18013MobileDocumentRequest_DocumentRequest>("IdentityDocumentServices_a956b86ef7a76a8e", 1883239517724182, undefined, [documentType, namespaces]); }
+  static initDocumentTypeNamespaces(documentType: string, namespaces: $SDK2): ISO18013MobileDocumentRequest_DocumentRequest { return callSDK<ISO18013MobileDocumentRequest_DocumentRequest>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1883239517724182, undefined, [documentType, namespaces]); }
   /**
    * var documentType: String
    * @availability iOS 26.0+
    */
-  get documentType(): string { return callSDK<string>("IdentityDocumentServices_a956b86ef7a76a8e", 1076436750673596, this, []); }
-  set documentType(value: string) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 3645576283337256, this, [value]); }
+  get documentType(): string { return callSDK<string>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1076436750673596, this, []); }
+  set documentType(value: string) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3645576283337256, this, [value]); }
   /**
    * var issuerKeyIdentifiers: [Data]
    * @availability iOS 27.0+
    */
-  get issuerKeyIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("IdentityDocumentServices_a956b86ef7a76a8e", 2281345526864097, this, []); }
-  set issuerKeyIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 1693542157587360, this, [value]); }
+  get issuerKeyIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2281345526864097, this, []); }
+  set issuerKeyIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1693542157587360, this, [value]); }
   declare readonly $type: { "s:24IdentityDocumentServices014ISO18013MobileB7RequestV0bF0V": true };
 }
 
@@ -277,13 +277,13 @@ export class ISO18013MobileDocumentRequest_DocumentRequestSet extends SDKHandle 
    * init(requests: [ISO18013MobileDocumentRequest.DocumentRequest])
    * @availability iOS 26.0+
    */
-  static init(requests: $SDK3): ISO18013MobileDocumentRequest_DocumentRequestSet { return callSDK<ISO18013MobileDocumentRequest_DocumentRequestSet>("IdentityDocumentServices_a956b86ef7a76a8e", 4226291408031534, undefined, [requests]); }
+  static init(requests: $SDK3): ISO18013MobileDocumentRequest_DocumentRequestSet { return callSDK<ISO18013MobileDocumentRequest_DocumentRequestSet>("IdentityDocumentServices_90ad0eb69cc6bf4a", 4226291408031534, undefined, [requests]); }
   /**
    * var requests: [ISO18013MobileDocumentRequest.DocumentRequest]
    * @availability iOS 26.0+
    */
-  get requests(): $SDK3 { return callSDK<$SDK3>("IdentityDocumentServices_a956b86ef7a76a8e", 2135866716803135, this, []); }
-  set requests(value: $SDK3) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 633609800847759, this, [value]); }
+  get requests(): $SDK3 { return callSDK<$SDK3>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2135866716803135, this, []); }
+  set requests(value: $SDK3) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 633609800847759, this, [value]); }
   declare readonly $type: { "s:24IdentityDocumentServices014ISO18013MobileB7RequestV0bF3SetV": true };
 }
 
@@ -296,13 +296,13 @@ export class ISO18013MobileDocumentRequest_ElementInfo extends SDKHandle {
    * init(isRetaining: Bool)
    * @availability iOS 26.0+
    */
-  static init(isRetaining: boolean): ISO18013MobileDocumentRequest_ElementInfo { return callSDK<ISO18013MobileDocumentRequest_ElementInfo>("IdentityDocumentServices_a956b86ef7a76a8e", 2068485510270723, undefined, [isRetaining]); }
+  static init(isRetaining: boolean): ISO18013MobileDocumentRequest_ElementInfo { return callSDK<ISO18013MobileDocumentRequest_ElementInfo>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2068485510270723, undefined, [isRetaining]); }
   /**
    * var isRetaining: Bool
    * @availability iOS 26.0+
    */
-  get isRetaining(): boolean { return callSDK<boolean>("IdentityDocumentServices_a956b86ef7a76a8e", 952895936944497, this, []); }
-  set isRetaining(value: boolean) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 4111941052042054, this, [value]); }
+  get isRetaining(): boolean { return callSDK<boolean>("IdentityDocumentServices_90ad0eb69cc6bf4a", 952895936944497, this, []); }
+  set isRetaining(value: boolean) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 4111941052042054, this, [value]); }
   declare readonly $type: { "s:24IdentityDocumentServices014ISO18013MobileB7RequestV11ElementInfoV": true };
 }
 
@@ -315,19 +315,19 @@ export class ISO18013MobileDocumentRequest_PresentmentRequest extends SDKHandle 
    * init(documentRequestSets: [ISO18013MobileDocumentRequest.DocumentRequestSet], isMandatory: Bool)
    * @availability iOS 26.0+
    */
-  static init(documentRequestSets: $SDK4, isMandatory: boolean): ISO18013MobileDocumentRequest_PresentmentRequest { return callSDK<ISO18013MobileDocumentRequest_PresentmentRequest>("IdentityDocumentServices_a956b86ef7a76a8e", 2851762289832501, undefined, [documentRequestSets, isMandatory]); }
+  static init(documentRequestSets: $SDK4, isMandatory: boolean): ISO18013MobileDocumentRequest_PresentmentRequest { return callSDK<ISO18013MobileDocumentRequest_PresentmentRequest>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2851762289832501, undefined, [documentRequestSets, isMandatory]); }
   /**
    * var documentRequestSets: [ISO18013MobileDocumentRequest.DocumentRequestSet]
    * @availability iOS 26.0+
    */
-  get documentRequestSets(): $SDK4 { return callSDK<$SDK4>("IdentityDocumentServices_a956b86ef7a76a8e", 2435513559372126, this, []); }
-  set documentRequestSets(value: $SDK4) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 15793873875649, this, [value]); }
+  get documentRequestSets(): $SDK4 { return callSDK<$SDK4>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2435513559372126, this, []); }
+  set documentRequestSets(value: $SDK4) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 15793873875649, this, [value]); }
   /**
    * var isMandatory: Bool
    * @availability iOS 26.0+
    */
-  get isMandatory(): boolean { return callSDK<boolean>("IdentityDocumentServices_a956b86ef7a76a8e", 3025148988571911, this, []); }
-  set isMandatory(value: boolean) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 793830342626167, this, [value]); }
+  get isMandatory(): boolean { return callSDK<boolean>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3025148988571911, this, []); }
+  set isMandatory(value: boolean) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 793830342626167, this, [value]); }
   declare readonly $type: { "s:24IdentityDocumentServices014ISO18013MobileB7RequestV011PresentmentF0V": true };
 }
 
@@ -340,13 +340,13 @@ export class ISO18013MobileDocumentRequest_RequestAuthentication extends SDKHand
    * init(authenticationCertificateChain: [SecCertificate])
    * @availability iOS 26.0+
    */
-  static init(authenticationCertificateChain: $SDK5): ISO18013MobileDocumentRequest_RequestAuthentication { return callSDK<ISO18013MobileDocumentRequest_RequestAuthentication>("IdentityDocumentServices_a956b86ef7a76a8e", 39800792162172, undefined, [authenticationCertificateChain]); }
+  static init(authenticationCertificateChain: $SDK5): ISO18013MobileDocumentRequest_RequestAuthentication { return callSDK<ISO18013MobileDocumentRequest_RequestAuthentication>("IdentityDocumentServices_90ad0eb69cc6bf4a", 39800792162172, undefined, [authenticationCertificateChain]); }
   /**
    * var authenticationCertificateChain: [SecCertificate] { get set }
    * @availability iOS 26.0+
    */
-  get authenticationCertificateChain(): $SDK5 { return callSDK<$SDK5>("IdentityDocumentServices_a956b86ef7a76a8e", 58167424034678, this, []); }
-  set authenticationCertificateChain(value: $SDK5) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 2490694617977964, this, [value]); }
+  get authenticationCertificateChain(): $SDK5 { return callSDK<$SDK5>("IdentityDocumentServices_90ad0eb69cc6bf4a", 58167424034678, this, []); }
+  set authenticationCertificateChain(value: $SDK5) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2490694617977964, this, [value]); }
   declare readonly $type: { "s:24IdentityDocumentServices014ISO18013MobileB7RequestV0F14AuthenticationV": true };
 }
 
@@ -359,12 +359,12 @@ export class ISO18013MobileDocumentResponse extends SDKHandle {
    * let responseData: Data
    * @availability iOS 26.0+
    */
-  get responseData(): ArrayBuffer { return callSDK<ArrayBuffer>("IdentityDocumentServices_a956b86ef7a76a8e", 258496363725550, this, []); }
+  get responseData(): ArrayBuffer { return callSDK<ArrayBuffer>("IdentityDocumentServices_90ad0eb69cc6bf4a", 258496363725550, this, []); }
   /**
    * init(responseData: Data)
    * @availability iOS 26.0+
    */
-  static init(responseData: ArrayBuffer): ISO18013MobileDocumentResponse { return callSDK<ISO18013MobileDocumentResponse>("IdentityDocumentServices_a956b86ef7a76a8e", 1703131945931939, undefined, [responseData]); }
+  static init(responseData: ArrayBuffer): ISO18013MobileDocumentResponse { return callSDK<ISO18013MobileDocumentResponse>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1703131945931939, undefined, [responseData]); }
   declare readonly $type: { "s:24IdentityDocumentServices014ISO18013MobileB8ResponseV": true };
 }
 
@@ -377,57 +377,57 @@ export class MobileDocumentRegistration extends SDKHandle {
    * init(mobileDocumentType: String, supportedIssuerKeyIdentifiers: [Data], supportedAuthorityKeyIdentifiers: [Data], documentIdentifier: String = UUID().uuidString, invalidationDate: Date? = nil)
    * @availability iOS 27.0+
    */
-  static initMobileDocumentTypeSupportedIssuerKeyIdentifiersSupportedAuthorityKeyIdentifiersDocumentIdentifierInvalidationDate(mobileDocumentType: string, supportedIssuerKeyIdentifiers: Array<ArrayBuffer>, supportedAuthorityKeyIdentifiers: Array<ArrayBuffer>, documentIdentifier?: string, invalidationDate?: $SDK6): MobileDocumentRegistration { return callSDK<MobileDocumentRegistration>("IdentityDocumentServices_a956b86ef7a76a8e", 1014798216220037, undefined, [mobileDocumentType, supportedIssuerKeyIdentifiers, supportedAuthorityKeyIdentifiers, documentIdentifier, invalidationDate]); }
+  static initMobileDocumentTypeSupportedIssuerKeyIdentifiersSupportedAuthorityKeyIdentifiersDocumentIdentifierInvalidationDate(mobileDocumentType: string, supportedIssuerKeyIdentifiers: Array<ArrayBuffer>, supportedAuthorityKeyIdentifiers: Array<ArrayBuffer>, documentIdentifier?: string, invalidationDate?: $SDK6): MobileDocumentRegistration { return callSDK<MobileDocumentRegistration>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1014798216220037, undefined, [mobileDocumentType, supportedIssuerKeyIdentifiers, supportedAuthorityKeyIdentifiers, documentIdentifier, invalidationDate]); }
   /**
    * init(mobileDocumentType: String, supportedAuthorityKeyIdentifiers: [Data], documentIdentifier: String = UUID().uuidString, invalidationDate: Date? = nil)
    * @availability iOS 26.0+
    */
-  static initMobileDocumentTypeSupportedAuthorityKeyIdentifiersDocumentIdentifierInvalidationDate(mobileDocumentType: string, supportedAuthorityKeyIdentifiers: Array<ArrayBuffer>, documentIdentifier?: string, invalidationDate?: $SDK6): MobileDocumentRegistration { return callSDK<MobileDocumentRegistration>("IdentityDocumentServices_a956b86ef7a76a8e", 4373469390958124, undefined, [mobileDocumentType, supportedAuthorityKeyIdentifiers, documentIdentifier, invalidationDate]); }
+  static initMobileDocumentTypeSupportedAuthorityKeyIdentifiersDocumentIdentifierInvalidationDate(mobileDocumentType: string, supportedAuthorityKeyIdentifiers: Array<ArrayBuffer>, documentIdentifier?: string, invalidationDate?: $SDK6): MobileDocumentRegistration { return callSDK<MobileDocumentRegistration>("IdentityDocumentServices_90ad0eb69cc6bf4a", 4373469390958124, undefined, [mobileDocumentType, supportedAuthorityKeyIdentifiers, documentIdentifier, invalidationDate]); }
   /**
    * var mobileDocumentType: String
    * @availability iOS 26.0+
    */
-  get mobileDocumentType(): string { return callSDK<string>("IdentityDocumentServices_a956b86ef7a76a8e", 2304607236498382, this, []); }
-  set mobileDocumentType(value: string) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 275611035405057, this, [value]); }
+  get mobileDocumentType(): string { return callSDK<string>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2304607236498382, this, []); }
+  set mobileDocumentType(value: string) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 275611035405057, this, [value]); }
   /**
    * var invalidationDate: Date?
    * @availability iOS 26.0+
    */
-  get invalidationDate(): $SDK6 { return callSDK<$SDK6>("IdentityDocumentServices_a956b86ef7a76a8e", 1585579687279545, this, []); }
-  set invalidationDate(value: $SDK6) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 2690985973777018, this, [value]); }
+  get invalidationDate(): $SDK6 { return callSDK<$SDK6>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1585579687279545, this, []); }
+  set invalidationDate(value: $SDK6) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 2690985973777018, this, [value]); }
   /**
    * var documentIdentifier: String
    * @availability iOS 26.0+
    */
-  get documentIdentifier(): string { return callSDK<string>("IdentityDocumentServices_a956b86ef7a76a8e", 4155520296665067, this, []); }
-  set documentIdentifier(value: string) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 296851857133909, this, [value]); }
+  get documentIdentifier(): string { return callSDK<string>("IdentityDocumentServices_90ad0eb69cc6bf4a", 4155520296665067, this, []); }
+  set documentIdentifier(value: string) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 296851857133909, this, [value]); }
   /**
    * var supportedIssuerKeyIdentifiers: [Data]
    * @availability iOS 27.0+
    */
-  get supportedIssuerKeyIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("IdentityDocumentServices_a956b86ef7a76a8e", 3195836189396476, this, []); }
-  set supportedIssuerKeyIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 4280367772352089, this, [value]); }
+  get supportedIssuerKeyIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3195836189396476, this, []); }
+  set supportedIssuerKeyIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 4280367772352089, this, [value]); }
   /**
    * var supportedAuthorityKeyIdentifiers: [Data]
    * @availability iOS 26.0+
    */
-  get supportedAuthorityKeyIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("IdentityDocumentServices_a956b86ef7a76a8e", 1475550030000413, this, []); }
-  set supportedAuthorityKeyIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("IdentityDocumentServices_a956b86ef7a76a8e", 3827803516678406, this, [value]); }
+  get supportedAuthorityKeyIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("IdentityDocumentServices_90ad0eb69cc6bf4a", 1475550030000413, this, []); }
+  set supportedAuthorityKeyIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("IdentityDocumentServices_90ad0eb69cc6bf4a", 3827803516678406, this, [value]); }
   declare readonly $type: { "s:24IdentityDocumentServices06MobileB12RegistrationV": true };
 }
 
-registerSDKClass("IdentityDocumentServices.IdentityDocumentPresentmentError", IdentityDocumentPresentmentError, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("IdentityDocumentServices.IdentityDocumentProviderRegistrationStore", IdentityDocumentProviderRegistrationStore, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {}, methods: {"addRegistration":{"id":1595073775077267},"removeRegistration":{"id":2204537604382902}} });
+registerSDKClass("IdentityDocumentServices.IdentityDocumentPresentmentError", IdentityDocumentPresentmentError, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("IdentityDocumentServices.IdentityDocumentProviderRegistrationStore", IdentityDocumentProviderRegistrationStore, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {}, methods: {"addRegistration":{"id":1595073775077267},"removeRegistration":{"id":2204537604382902}} });
 registerSDKProtocol("s:24IdentityDocumentServices0aB12RegistrationP", {});
-registerSDKClass("IdentityDocumentServices.IdentityDocumentWebPresentmentRawRequest", IdentityDocumentWebPresentmentRawRequest, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("IdentityDocumentServices.IdentityDocumentWebPresentmentRawRequestValidator", IdentityDocumentWebPresentmentRawRequestValidator, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {}, methods: {"validateISO18013MobileDocumentRequest":{"id":3277975573472822}} });
+registerSDKClass("IdentityDocumentServices.IdentityDocumentWebPresentmentRawRequest", IdentityDocumentWebPresentmentRawRequest, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("IdentityDocumentServices.IdentityDocumentWebPresentmentRawRequestValidator", IdentityDocumentWebPresentmentRawRequestValidator, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {}, methods: {"validateISO18013MobileDocumentRequest":{"id":3277975573472822}} });
 registerSDKProtocol("s:24IdentityDocumentServices0aB21WebPresentmentRequestP", {});
 registerSDKProtocol("s:24IdentityDocumentServices0aB22WebPresentmentResponseP", {});
-registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest", ISO18013MobileDocumentRequest, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest.DocumentRequest", ISO18013MobileDocumentRequest_DocumentRequest, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest.DocumentRequestSet", ISO18013MobileDocumentRequest_DocumentRequestSet, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest.ElementInfo", ISO18013MobileDocumentRequest_ElementInfo, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest.PresentmentRequest", ISO18013MobileDocumentRequest_PresentmentRequest, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest.RequestAuthentication", ISO18013MobileDocumentRequest_RequestAuthentication, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentResponse", ISO18013MobileDocumentResponse, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("IdentityDocumentServices.MobileDocumentRegistration", MobileDocumentRegistration, { module: "IdentityDocumentServices_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest", ISO18013MobileDocumentRequest, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest.DocumentRequest", ISO18013MobileDocumentRequest_DocumentRequest, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest.DocumentRequestSet", ISO18013MobileDocumentRequest_DocumentRequestSet, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest.ElementInfo", ISO18013MobileDocumentRequest_ElementInfo, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest.PresentmentRequest", ISO18013MobileDocumentRequest_PresentmentRequest, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentRequest.RequestAuthentication", ISO18013MobileDocumentRequest_RequestAuthentication, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("IdentityDocumentServices.ISO18013MobileDocumentResponse", ISO18013MobileDocumentResponse, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("IdentityDocumentServices.MobileDocumentRegistration", MobileDocumentRegistration, { module: "IdentityDocumentServices_90ad0eb69cc6bf4a", properties: {} });

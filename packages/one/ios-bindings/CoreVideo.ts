@@ -43,12 +43,12 @@ export class CGRect extends SDKHandle {
    * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CGRect?
    * @availability iOS 27.0+
    */
-  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): ({ x: number; y: number; width: number; height: number }) | null { return callSDK<({ x: number; y: number; width: number; height: number }) | null>("CoreVideo_a956b86ef7a76a8e", 1240630532983376, undefined, [repr]); }
+  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): ({ x: number; y: number; width: number; height: number }) | null { return callSDK<({ x: number; y: number; width: number; height: number }) | null>("CoreVideo_90ad0eb69cc6bf4a", 1240630532983376, undefined, [repr]); }
   /**
    * var rawAttachmentValueRepresentation: CVAttachmentRawValue { get }
    * @availability iOS 27.0+
    */
-  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_a956b86ef7a76a8e", 2967988550421422, this, []); }
+  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_90ad0eb69cc6bf4a", 2967988550421422, this, []); }
   declare readonly $type: { "c:@S@CGRect": true };
 }
 
@@ -57,17 +57,17 @@ export class CGSize extends SDKHandle {
    * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CGSize?
    * @availability iOS 27.0+
    */
-  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): ({ width: number; height: number }) | null { return callSDK<({ width: number; height: number }) | null>("CoreVideo_a956b86ef7a76a8e", 3551892018967912, undefined, [repr]); }
+  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): ({ width: number; height: number }) | null { return callSDK<({ width: number; height: number }) | null>("CoreVideo_90ad0eb69cc6bf4a", 3551892018967912, undefined, [repr]); }
   /**
    * var rawAttachmentValueRepresentation: CVAttachmentRawValue { get }
    * @availability iOS 27.0+
    */
-  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_a956b86ef7a76a8e", 2250621679731591, this, []); }
+  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_90ad0eb69cc6bf4a", 2250621679731591, this, []); }
   /**
    * init(_ size: CVImageSize)
    * @availability iOS 26.0+
    */
-  static init(size: CVImageSize): $SDK2 { return callSDK<$SDK2>("CoreVideo_a956b86ef7a76a8e", 2532232805017464, undefined, [size]); }
+  static init(size: CVImageSize): $SDK2 { return callSDK<$SDK2>("CoreVideo_90ad0eb69cc6bf4a", 2532232805017464, undefined, [size]); }
   declare readonly $type: { "c:@S@CGSize": true };
 }
 
@@ -174,7 +174,7 @@ export type CVAttachmentMode = "shouldNotPropagate" | "shouldPropagate";
 
 export const CVAttachmentMode = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CVAttachmentMode) | null { return callSDK<(CVAttachmentMode) | null>("CoreVideo_a956b86ef7a76a8e", 2902594799017211, undefined, [rawValue]); }
+  init(rawValue: number): (CVAttachmentMode) | null { return callSDK<(CVAttachmentMode) | null>("CoreVideo_90ad0eb69cc6bf4a", 2902594799017211, undefined, [rawValue]); }
 };
 
 /**
@@ -194,7 +194,7 @@ export class CVAttachmentModePreferenceShouldNotPropagate extends SDKHandle {
    * static var preferredMode: CVAttachmentMode { get }
    * @availability iOS 27.0+
    */
-  static get preferredMode(): CVAttachmentMode { return callSDK<CVAttachmentMode>("CoreVideo_a956b86ef7a76a8e", 2621919400473899, undefined, []); }
+  static get preferredMode(): CVAttachmentMode { return callSDK<CVAttachmentMode>("CoreVideo_90ad0eb69cc6bf4a", 2621919400473899, undefined, []); }
   declare readonly $type: { "s:9CoreVideo44CVAttachmentModePreferenceShouldNotPropagateO": true };
 }
 
@@ -207,7 +207,7 @@ export class CVAttachmentModePreferenceShouldPropagate extends SDKHandle {
    * static var preferredMode: CVAttachmentMode { get }
    * @availability iOS 27.0+
    */
-  static get preferredMode(): CVAttachmentMode { return callSDK<CVAttachmentMode>("CoreVideo_a956b86ef7a76a8e", 1914716073755696, undefined, []); }
+  static get preferredMode(): CVAttachmentMode { return callSDK<CVAttachmentMode>("CoreVideo_90ad0eb69cc6bf4a", 1914716073755696, undefined, []); }
   declare readonly $type: { "s:9CoreVideo41CVAttachmentModePreferenceShouldPropagateO": true };
 }
 
@@ -220,12 +220,12 @@ export class CVAttachmentRawValue extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_a956b86ef7a76a8e", 1440723685069185, undefined, []); }
+  static init(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_90ad0eb69cc6bf4a", 1440723685069185, undefined, []); }
   /**
    * subscript<Value>(key: String, as type: Value.Type = Value.self) -> Value? where Value : CVAttachmentValueRepresentable { get set }
    * @availability iOS 27.0+
    */
-  subscript(key: string, type?: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): (unknown) | null { return callSDK<(unknown) | null>("CoreVideo_a956b86ef7a76a8e", 3869363057555059, this, [key, type]); }
+  subscript(key: string, type?: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): (unknown) | null { return callSDK<(unknown) | null>("CoreVideo_90ad0eb69cc6bf4a", 3869363057555059, this, [key, type]); }
   declare readonly $type: { "s:9CoreVideo20CVAttachmentRawValueV": true };
 }
 
@@ -267,73 +267,73 @@ export class CVBuffer_Attributes extends SDKHandle {
    * init(rawAttributes: [String : any Sendable])
    * @availability iOS 26.0+
    */
-  static initRawAttributes(rawAttributes: $SDK6): CVBuffer_Attributes { return callSDK<CVBuffer_Attributes>("CoreVideo_a956b86ef7a76a8e", 4382919541335979, undefined, [rawAttributes]); }
+  static initRawAttributes(rawAttributes: $SDK6): CVBuffer_Attributes { return callSDK<CVBuffer_Attributes>("CoreVideo_90ad0eb69cc6bf4a", 4382919541335979, undefined, [rawAttributes]); }
   /**
    * var rawAttributes: [String : any Sendable] { get }
    * @availability iOS 26.0+
    */
-  get rawAttributes(): $SDK6 { return callSDK<$SDK6>("CoreVideo_a956b86ef7a76a8e", 3577490922427424, this, []); }
+  get rawAttributes(): $SDK6 { return callSDK<$SDK6>("CoreVideo_90ad0eb69cc6bf4a", 3577490922427424, this, []); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVImageSize>) -> CVImageSize? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember(keyPath: SDKHandle): (CVImageSize) | null { return callSDK<(CVImageSize) | null>("CoreVideo_a956b86ef7a76a8e", 1733478549803756, this, [keyPath]); }
+  subscriptDynamicMember(keyPath: SDKHandle): (CVImageSize) | null { return callSDK<(CVImageSize) | null>("CoreVideo_90ad0eb69cc6bf4a", 1733478549803756, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVPixelFormatType>) -> CVPixelFormatType? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember69989(keyPath: SDKHandle): (CVPixelFormatType) | null { return callSDK<(CVPixelFormatType) | null>("CoreVideo_a956b86ef7a76a8e", 2412107907622026, this, [keyPath]); }
+  subscriptDynamicMember69989(keyPath: SDKHandle): (CVPixelFormatType) | null { return callSDK<(CVPixelFormatType) | null>("CoreVideo_90ad0eb69cc6bf4a", 2412107907622026, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVPixelBufferPadding?>) -> CVPixelBufferPadding? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember32426(keyPath: SDKHandle): $SDK8 { return callSDK<$SDK8>("CoreVideo_a956b86ef7a76a8e", 2767492699764797, this, [keyPath]); }
+  subscriptDynamicMember32426(keyPath: SDKHandle): $SDK8 { return callSDK<$SDK8>("CoreVideo_90ad0eb69cc6bf4a", 2767492699764797, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVPixelFormatDescription.Compatibility>) -> CVPixelFormatDescription.Compatibility { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember55683(keyPath: SDKHandle): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_a956b86ef7a76a8e", 1989152223384261, this, [keyPath]); }
+  subscriptDynamicMember55683(keyPath: SDKHandle): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_90ad0eb69cc6bf4a", 1989152223384261, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVPixelFormatDescription?>) -> CVPixelFormatDescription? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember51874(keyPath: SDKHandle): $SDK9 { return callSDK<$SDK9>("CoreVideo_a956b86ef7a76a8e", 598472474355438, this, [keyPath]); }
+  subscriptDynamicMember51874(keyPath: SDKHandle): $SDK9 { return callSDK<$SDK9>("CoreVideo_90ad0eb69cc6bf4a", 598472474355438, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, CVBuffer.CreationAttributes.Backing>) -> CVBuffer.CreationAttributes.Backing { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember9180(keyPath: SDKHandle): CVBuffer_CreationAttributes_Backing { return callSDK<CVBuffer_CreationAttributes_Backing>("CoreVideo_a956b86ef7a76a8e", 2260548886154887, this, [keyPath]); }
+  subscriptDynamicMember9180(keyPath: SDKHandle): CVBuffer_CreationAttributes_Backing { return callSDK<CVBuffer_CreationAttributes_Backing>("CoreVideo_90ad0eb69cc6bf4a", 2260548886154887, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, Bool>) -> Bool? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember67348(keyPath: SDKHandle): (boolean) | null { return callSDK<(boolean) | null>("CoreVideo_a956b86ef7a76a8e", 526412734150881, this, [keyPath]); }
+  subscriptDynamicMember67348(keyPath: SDKHandle): (boolean) | null { return callSDK<(boolean) | null>("CoreVideo_90ad0eb69cc6bf4a", 526412734150881, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVBuffer.CreationAttributes, Int?>) -> Int? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember66626(keyPath: SDKHandle): (number) | null { return callSDK<(number) | null>("CoreVideo_a956b86ef7a76a8e", 2794798039764681, this, [keyPath]); }
+  subscriptDynamicMember66626(keyPath: SDKHandle): (number) | null { return callSDK<(number) | null>("CoreVideo_90ad0eb69cc6bf4a", 2794798039764681, this, [keyPath]); }
   /**
    * init(pixelFormatTypes: [CVPixelFormatType]? = nil, size: CVImageSize? = nil, compatibility: CVPixelFormatDescription.Compatibility = [], bytesPerRowAlignment: Int? = nil, planeAlignment: Int? = nil, extendedPixels: CVPixelBufferPadding? = nil)
    * @availability iOS 26.0+
    */
-  static initPixelFormatTypesSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixels(pixelFormatTypes?: $SDK10, size?: (CVImageSize) | null, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8): CVBuffer_Attributes { return callSDK<CVBuffer_Attributes>("CoreVideo_a956b86ef7a76a8e", 243973196872915, undefined, [pixelFormatTypes, size, compatibility, bytesPerRowAlignment, planeAlignment, extendedPixels]); }
+  static initPixelFormatTypesSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixels(pixelFormatTypes?: $SDK10, size?: (CVImageSize) | null, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8): CVBuffer_Attributes { return callSDK<CVBuffer_Attributes>("CoreVideo_90ad0eb69cc6bf4a", 243973196872915, undefined, [pixelFormatTypes, size, compatibility, bytesPerRowAlignment, planeAlignment, extendedPixels]); }
   /**
    * var pixelFormatTypes: [CVPixelFormatType]? { get set }
    * @availability iOS 26.0+
    */
-  get pixelFormatTypes(): $SDK10 { return callSDK<$SDK10>("CoreVideo_a956b86ef7a76a8e", 4250440827020666, this, []); }
-  set pixelFormatTypes(value: $SDK10) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2589169190338002, this, [value]); }
+  get pixelFormatTypes(): $SDK10 { return callSDK<$SDK10>("CoreVideo_90ad0eb69cc6bf4a", 4250440827020666, this, []); }
+  set pixelFormatTypes(value: $SDK10) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2589169190338002, this, [value]); }
   /**
    * init?(merging values: [CVBuffer.Attributes])
    * @availability iOS 26.0+
    */
-  static initMerging(values: Array<CVBuffer_Attributes>): (CVBuffer_Attributes) | null { return callSDK<(CVBuffer_Attributes) | null>("CoreVideo_a956b86ef7a76a8e", 561626517132163, undefined, [values]); }
+  static initMerging(values: Array<CVBuffer_Attributes>): (CVBuffer_Attributes) | null { return callSDK<(CVBuffer_Attributes) | null>("CoreVideo_90ad0eb69cc6bf4a", 561626517132163, undefined, [values]); }
   /**
    * init(_ attributes: CVBuffer.CreationAttributes)
    * @availability iOS 26.0+
    */
-  static init(attributes: CVBuffer_CreationAttributes): CVBuffer_Attributes { return callSDK<CVBuffer_Attributes>("CoreVideo_a956b86ef7a76a8e", 4021410607945924, undefined, [attributes]); }
+  static init(attributes: CVBuffer_CreationAttributes): CVBuffer_Attributes { return callSDK<CVBuffer_Attributes>("CoreVideo_90ad0eb69cc6bf4a", 4021410607945924, undefined, [attributes]); }
   declare readonly $type: { "s:So11CVBufferRefa9CoreVideoE10AttributesV": true };
 }
 
@@ -346,54 +346,54 @@ export class CVBuffer_CreationAttributes extends SDKHandle {
    * var compatibility: CVPixelFormatDescription.Compatibility
    * @availability iOS 26.0+
    */
-  get compatibility(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_a956b86ef7a76a8e", 2714081056548300, this, []); }
-  set compatibility(value: CVPixelFormatDescription_Compatibility) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1542250039058658, this, [value]); }
+  get compatibility(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_90ad0eb69cc6bf4a", 2714081056548300, this, []); }
+  set compatibility(value: CVPixelFormatDescription_Compatibility) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1542250039058658, this, [value]); }
   /**
    * var extendedPixels: CVPixelBufferPadding?
    * @availability iOS 26.0+
    */
-  get extendedPixels(): $SDK8 { return callSDK<$SDK8>("CoreVideo_a956b86ef7a76a8e", 1819078846025221, this, []); }
-  set extendedPixels(value: $SDK8) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1642876077300778, this, [value]); }
+  get extendedPixels(): $SDK8 { return callSDK<$SDK8>("CoreVideo_90ad0eb69cc6bf4a", 1819078846025221, this, []); }
+  set extendedPixels(value: $SDK8) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1642876077300778, this, [value]); }
   /**
    * var planeAlignment: Int?
    * @availability iOS 26.0+
    */
-  get planeAlignment(): (number) | null { return callSDK<(number) | null>("CoreVideo_a956b86ef7a76a8e", 4013885348875048, this, []); }
-  set planeAlignment(value: (number) | null) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1174486973552412, this, [value]); }
+  get planeAlignment(): (number) | null { return callSDK<(number) | null>("CoreVideo_90ad0eb69cc6bf4a", 4013885348875048, this, []); }
+  set planeAlignment(value: (number) | null) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1174486973552412, this, [value]); }
   /**
    * init(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility: CVPixelFormatDescription.Compatibility = [], bytesPerRowAlignment: Int? = nil, planeAlignment: Int? = nil, extendedPixels: CVPixelBufferPadding? = nil)
    * @availability iOS 26.0+
    */
-  static initPixelFormatTypeSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixels(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8): CVBuffer_CreationAttributes { return callSDK<CVBuffer_CreationAttributes>("CoreVideo_a956b86ef7a76a8e", 1447669367324554, undefined, [pixelFormatType, size, compatibility, bytesPerRowAlignment, planeAlignment, extendedPixels]); }
+  static initPixelFormatTypeSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixels(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8): CVBuffer_CreationAttributes { return callSDK<CVBuffer_CreationAttributes>("CoreVideo_90ad0eb69cc6bf4a", 1447669367324554, undefined, [pixelFormatType, size, compatibility, bytesPerRowAlignment, planeAlignment, extendedPixels]); }
   /**
    * var pixelFormatType: CVPixelFormatType
    * @availability iOS 26.0+
    */
-  get pixelFormatType(): CVPixelFormatType { return callSDK<CVPixelFormatType>("CoreVideo_a956b86ef7a76a8e", 2421532151201165, this, []); }
-  set pixelFormatType(value: CVPixelFormatType) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 676316790112539, this, [value]); }
+  get pixelFormatType(): CVPixelFormatType { return callSDK<CVPixelFormatType>("CoreVideo_90ad0eb69cc6bf4a", 2421532151201165, this, []); }
+  set pixelFormatType(value: CVPixelFormatType) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 676316790112539, this, [value]); }
   /**
    * var bytesPerRowAlignment: Int?
    * @availability iOS 26.0+
    */
-  get bytesPerRowAlignment(): (number) | null { return callSDK<(number) | null>("CoreVideo_a956b86ef7a76a8e", 4369507962167384, this, []); }
-  set bytesPerRowAlignment(value: (number) | null) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3073754946078858, this, [value]); }
+  get bytesPerRowAlignment(): (number) | null { return callSDK<(number) | null>("CoreVideo_90ad0eb69cc6bf4a", 4369507962167384, this, []); }
+  set bytesPerRowAlignment(value: (number) | null) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3073754946078858, this, [value]); }
   /**
    * var size: CVImageSize
    * @availability iOS 26.0+
    */
-  get size(): CVImageSize { return callSDK<CVImageSize>("CoreVideo_a956b86ef7a76a8e", 4253787028673727, this, []); }
-  set size(value: CVImageSize) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2346471682512660, this, [value]); }
+  get size(): CVImageSize { return callSDK<CVImageSize>("CoreVideo_90ad0eb69cc6bf4a", 4253787028673727, this, []); }
+  set size(value: CVImageSize) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2346471682512660, this, [value]); }
   /**
    * var backing: CVBuffer.CreationAttributes.Backing
    * @availability iOS 26.0+
    */
-  get backing(): CVBuffer_CreationAttributes_Backing { return callSDK<CVBuffer_CreationAttributes_Backing>("CoreVideo_a956b86ef7a76a8e", 411623673073419, this, []); }
-  set backing(value: CVBuffer_CreationAttributes_Backing) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 818540131591069, this, [value]); }
+  get backing(): CVBuffer_CreationAttributes_Backing { return callSDK<CVBuffer_CreationAttributes_Backing>("CoreVideo_90ad0eb69cc6bf4a", 411623673073419, this, []); }
+  set backing(value: CVBuffer_CreationAttributes_Backing) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 818540131591069, this, [value]); }
   /**
    * init?(_ attributes: CVBuffer.Attributes)
    * @availability iOS 26.0+
    */
-  static init(attributes: CVBuffer_Attributes): (CVBuffer_CreationAttributes) | null { return callSDK<(CVBuffer_CreationAttributes) | null>("CoreVideo_a956b86ef7a76a8e", 198696834100775, undefined, [attributes]); }
+  static init(attributes: CVBuffer_Attributes): (CVBuffer_CreationAttributes) | null { return callSDK<(CVBuffer_CreationAttributes) | null>("CoreVideo_90ad0eb69cc6bf4a", 198696834100775, undefined, [attributes]); }
   declare readonly $type: { "s:So11CVBufferRefa9CoreVideoE18CreationAttributesV": true };
 }
 
@@ -455,88 +455,88 @@ export const CVError = {
    * var description: String { get }
    * @availability iOS 26.0+
    */
-  getDescription($self: CVError): string { return callSDK<string>("CoreVideo_a956b86ef7a76a8e", 615859497308427, $self, []); },
+  getDescription($self: CVError): string { return callSDK<string>("CoreVideo_90ad0eb69cc6bf4a", 615859497308427, $self, []); },
   /**
    * static let invalidSize: CVError
    * @availability iOS 26.0+
    */
-  get invalidSize(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 3361809387872599, undefined, []); },
+  get invalidSize(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 3361809387872599, undefined, []); },
   /**
    * static let unsupported: CVError
    * @availability iOS 26.0+
    */
-  get unsupported(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 2823665634102537, undefined, []); },
+  get unsupported(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 2823665634102537, undefined, []); },
   /**
    * static let internalError: CVError
    * @availability iOS 26.0+
    */
-  get internalError(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 3554459997963653, undefined, []); },
+  get internalError(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 3554459997963653, undefined, []); },
   /**
    * static let invalidArgument: CVError
    * @availability iOS 26.0+
    */
-  get invalidArgument(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 444204021878996, undefined, []); },
+  get invalidArgument(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 444204021878996, undefined, []); },
   /**
    * static let allocationFailed: CVError
    * @availability iOS 26.0+
    */
-  get allocationFailed(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 1909835330671771, undefined, []); },
+  get allocationFailed(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 1909835330671771, undefined, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 26.0+
    */
-  getErrorDescription($self: CVError): (string) | null { return callSDK<(string) | null>("CoreVideo_a956b86ef7a76a8e", 3734004576544479, $self, []); },
+  getErrorDescription($self: CVError): (string) | null { return callSDK<(string) | null>("CoreVideo_90ad0eb69cc6bf4a", 3734004576544479, $self, []); },
   /**
    * static let invalidPixelFormat: CVError
    * @availability iOS 26.0+
    */
-  get invalidPixelFormat(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 1236312985094332, undefined, []); },
+  get invalidPixelFormat(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 1236312985094332, undefined, []); },
   /**
    * static let poolAllocationFailed: CVError
    * @availability iOS 26.0+
    */
-  get poolAllocationFailed(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 459547561473899, undefined, []); },
+  get poolAllocationFailed(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 459547561473899, undefined, []); },
   /**
    * static let invalidPoolAttributes: CVError
    * @availability iOS 26.0+
    */
-  get invalidPoolAttributes(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 914465606220076, undefined, []); },
+  get invalidPoolAttributes(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 914465606220076, undefined, []); },
   /**
    * static let invalidPixelBufferAttributes: CVError
    * @availability iOS 26.0+
    */
-  get invalidPixelBufferAttributes(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 3038450692844170, undefined, []); },
+  get invalidPixelBufferAttributes(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 3038450692844170, undefined, []); },
   /**
    * static let pixelBufferNotMetalCompatible: CVError
    * @availability iOS 26.0+
    */
-  get pixelBufferNotMetalCompatible(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 1632812074376191, undefined, []); },
+  get pixelBufferNotMetalCompatible(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 1632812074376191, undefined, []); },
   /**
    * static let wouldExceedAllocationThreshold: CVError
    * @availability iOS 26.0+
    */
-  get wouldExceedAllocationThreshold(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 607402291724060, undefined, []); },
+  get wouldExceedAllocationThreshold(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 607402291724060, undefined, []); },
   /**
    * static func check(_ status: CVReturn) throws(CVError)
    * @availability iOS 26.0+
    */
-  check(status: number): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1827900073382016, undefined, [status]); },
+  check(status: number): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1827900073382016, undefined, [status]); },
   /**
    * static let retry: CVError
    * @availability iOS 26.0+
    */
-  get retry(): CVError { return callSDK<CVError>("CoreVideo_a956b86ef7a76a8e", 1854392466897424, undefined, []); },
+  get retry(): CVError { return callSDK<CVError>("CoreVideo_90ad0eb69cc6bf4a", 1854392466897424, undefined, []); },
   /**
    * init?(rawValue: CVReturn)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (CVError) | null { return callSDK<(CVError) | null>("CoreVideo_a956b86ef7a76a8e", 2946040239116454, undefined, [rawValue]); },
+  init(rawValue: number): (CVError) | null { return callSDK<(CVError) | null>("CoreVideo_90ad0eb69cc6bf4a", 2946040239116454, undefined, [rawValue]); },
   /**
    * var rawValue: CVReturn
    * @availability iOS 26.0+
    */
-  getRawValue($self: CVError): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3150901062151597, $self, []); },
-  setRawValue($self: CVError, value: number): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2426537971131458, $self, [value]); }
+  getRawValue($self: CVError): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3150901062151597, $self, []); },
+  setRawValue($self: CVError, value: number): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2426537971131458, $self, [value]); }
 };
 
 /**
@@ -551,15 +551,15 @@ export type CVFillExtendedPixelsCallBack = ((arg0: CVBuffer, arg1: (SDKHandle) |
 /** struct CVFillExtendedPixelsCallBackData */
 export class CVFillExtendedPixelsCallBackData extends SDKHandle {
   /** var fillCallBack: CVFillExtendedPixelsCallBack? */
-  get fillCallBack(): (((arg0: CVBuffer, arg1: (SDKHandle) | null) => Promise<boolean>)) | null { return callSDK<(((arg0: CVBuffer, arg1: (SDKHandle) | null) => Promise<boolean>)) | null>("CoreVideo_a956b86ef7a76a8e", 3133167918960833, this, []); }
+  get fillCallBack(): (((arg0: CVBuffer, arg1: (SDKHandle) | null) => Promise<boolean>)) | null { return callSDK<(((arg0: CVBuffer, arg1: (SDKHandle) | null) => Promise<boolean>)) | null>("CoreVideo_90ad0eb69cc6bf4a", 3133167918960833, this, []); }
   /** var refCon: UnsafeMutableRawPointer? */
-  get refCon(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_a956b86ef7a76a8e", 291857576750714, this, []); }
-  set refCon(value: (SDKHandle) | null) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2695526930255321, this, [value]); }
+  get refCon(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_90ad0eb69cc6bf4a", 291857576750714, this, []); }
+  set refCon(value: (SDKHandle) | null) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2695526930255321, this, [value]); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4407506479996540, this, []); }
-  set version(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2174336274969793, this, [value]); }
+  get version(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4407506479996540, this, []); }
+  set version(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2174336274969793, this, [value]); }
   /** init() */
-  static init(): CVFillExtendedPixelsCallBackData { return callSDK<CVFillExtendedPixelsCallBackData>("CoreVideo_a956b86ef7a76a8e", 109349122790602, undefined, []); }
+  static init(): CVFillExtendedPixelsCallBackData { return callSDK<CVFillExtendedPixelsCallBackData>("CoreVideo_90ad0eb69cc6bf4a", 109349122790602, undefined, []); }
   declare readonly $type: { "c:@SA@CVFillExtendedPixelsCallBackData": true };
 }
 
@@ -574,12 +574,12 @@ export const CVImageAlphaChannelMode = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (CVImageAlphaChannelMode) | null { return callSDK<(CVImageAlphaChannelMode) | null>("CoreVideo_a956b86ef7a76a8e", 2019054344641634, undefined, [rawValue]); },
+  init(rawValue: string): (CVImageAlphaChannelMode) | null { return callSDK<(CVImageAlphaChannelMode) | null>("CoreVideo_90ad0eb69cc6bf4a", 2019054344641634, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVImageAlphaChannelMode): string { return callSDK<string>("CoreVideo_a956b86ef7a76a8e", 1416352223860205, $self, []); }
+  getRawValue($self: CVImageAlphaChannelMode): string { return callSDK<string>("CoreVideo_90ad0eb69cc6bf4a", 1416352223860205, $self, []); }
 };
 
 /**
@@ -626,29 +626,29 @@ export class CVImageChromaField extends SDKHandle {
    * var subsampling: CVImageChromaField.ChromaSubsampling
    * @availability iOS 27.0+
    */
-  get subsampling(): CVImageChromaField_ChromaSubsampling { return callSDK<CVImageChromaField_ChromaSubsampling>("CoreVideo_a956b86ef7a76a8e", 4417599598256397, this, []); }
-  set subsampling(value: CVImageChromaField_ChromaSubsampling) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 659750405844688, this, [value]); }
+  get subsampling(): CVImageChromaField_ChromaSubsampling { return callSDK<CVImageChromaField_ChromaSubsampling>("CoreVideo_90ad0eb69cc6bf4a", 4417599598256397, this, []); }
+  set subsampling(value: CVImageChromaField_ChromaSubsampling) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 659750405844688, this, [value]); }
   /**
    * init(fieldLocation: CVImageChromaField.FieldLocation, subsampling: CVImageChromaField.ChromaSubsampling)
    * @availability iOS 27.0+
    */
-  static init(fieldLocation: CVImageChromaField_FieldLocation, subsampling: CVImageChromaField_ChromaSubsampling): CVImageChromaField { return callSDK<CVImageChromaField>("CoreVideo_a956b86ef7a76a8e", 2059678329448630, undefined, [fieldLocation, subsampling]); }
+  static init(fieldLocation: CVImageChromaField_FieldLocation, subsampling: CVImageChromaField_ChromaSubsampling): CVImageChromaField { return callSDK<CVImageChromaField>("CoreVideo_90ad0eb69cc6bf4a", 2059678329448630, undefined, [fieldLocation, subsampling]); }
   /**
    * var fieldLocation: CVImageChromaField.FieldLocation
    * @availability iOS 27.0+
    */
-  get fieldLocation(): CVImageChromaField_FieldLocation { return callSDK<CVImageChromaField_FieldLocation>("CoreVideo_a956b86ef7a76a8e", 1031222544871274, this, []); }
-  set fieldLocation(value: CVImageChromaField_FieldLocation) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4104322410716227, this, [value]); }
+  get fieldLocation(): CVImageChromaField_FieldLocation { return callSDK<CVImageChromaField_FieldLocation>("CoreVideo_90ad0eb69cc6bf4a", 1031222544871274, this, []); }
+  set fieldLocation(value: CVImageChromaField_FieldLocation) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4104322410716227, this, [value]); }
   /**
    * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CVImageChromaField?
    * @availability iOS 27.0+
    */
-  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImageChromaField) | null { return callSDK<(CVImageChromaField) | null>("CoreVideo_a956b86ef7a76a8e", 3607501735661164, undefined, [repr]); }
+  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImageChromaField) | null { return callSDK<(CVImageChromaField) | null>("CoreVideo_90ad0eb69cc6bf4a", 3607501735661164, undefined, [repr]); }
   /**
    * var rawAttachmentValueRepresentation: CVAttachmentRawValue { get }
    * @availability iOS 27.0+
    */
-  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_a956b86ef7a76a8e", 1867585355806693, this, []); }
+  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_90ad0eb69cc6bf4a", 1867585355806693, this, []); }
   declare readonly $type: { "s:9CoreVideo18CVImageChromaFieldV": true };
 }
 
@@ -663,12 +663,12 @@ export const CVImageChromaField_ChromaSubsampling = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (CVImageChromaField_ChromaSubsampling) | null { return callSDK<(CVImageChromaField_ChromaSubsampling) | null>("CoreVideo_a956b86ef7a76a8e", 928750130468016, undefined, [rawValue]); },
+  init(rawValue: string): (CVImageChromaField_ChromaSubsampling) | null { return callSDK<(CVImageChromaField_ChromaSubsampling) | null>("CoreVideo_90ad0eb69cc6bf4a", 928750130468016, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVImageChromaField_ChromaSubsampling): string { return callSDK<string>("CoreVideo_a956b86ef7a76a8e", 1215877506975311, $self, []); }
+  getRawValue($self: CVImageChromaField_ChromaSubsampling): string { return callSDK<string>("CoreVideo_90ad0eb69cc6bf4a", 1215877506975311, $self, []); }
 };
 
 /**
@@ -686,12 +686,12 @@ export class CVImageChromaField_FieldLocation extends SDKHandle {
    * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CVImageChromaField.FieldLocation?
    * @availability iOS 27.0+
    */
-  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImageChromaField_FieldLocation) | null { return callSDK<(CVImageChromaField_FieldLocation) | null>("CoreVideo_a956b86ef7a76a8e", 1091019252533928, undefined, [repr]); }
+  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImageChromaField_FieldLocation) | null { return callSDK<(CVImageChromaField_FieldLocation) | null>("CoreVideo_90ad0eb69cc6bf4a", 1091019252533928, undefined, [repr]); }
   /**
    * var rawAttachmentValueRepresentation: CVAttachmentRawValue { get }
    * @availability iOS 27.0+
    */
-  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_a956b86ef7a76a8e", 2091854809171570, this, []); }
+  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_90ad0eb69cc6bf4a", 2091854809171570, this, []); }
   declare readonly $type: { "s:9CoreVideo18CVImageChromaFieldV0E8LocationO": true };
 }
 
@@ -706,12 +706,12 @@ export const CVImageChromaField_SampleLocation = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (CVImageChromaField_SampleLocation) | null { return callSDK<(CVImageChromaField_SampleLocation) | null>("CoreVideo_a956b86ef7a76a8e", 3565181042886399, undefined, [rawValue]); },
+  init(rawValue: string): (CVImageChromaField_SampleLocation) | null { return callSDK<(CVImageChromaField_SampleLocation) | null>("CoreVideo_90ad0eb69cc6bf4a", 3565181042886399, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVImageChromaField_SampleLocation): string { return callSDK<string>("CoreVideo_a956b86ef7a76a8e", 4013488681407289, $self, []); }
+  getRawValue($self: CVImageChromaField_SampleLocation): string { return callSDK<string>("CoreVideo_90ad0eb69cc6bf4a", 4013488681407289, $self, []); }
 };
 
 /**
@@ -729,41 +729,41 @@ export class CVImageCleanAperture extends SDKHandle {
    * var verticalOffset: Float
    * @availability iOS 27.0+
    */
-  get verticalOffset(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3306117987621326, this, []); }
-  set verticalOffset(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3392461605196397, this, [value]); }
+  get verticalOffset(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3306117987621326, this, []); }
+  set verticalOffset(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3392461605196397, this, [value]); }
   /**
    * var horizontalOffset: Float
    * @availability iOS 27.0+
    */
-  get horizontalOffset(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4113469585138924, this, []); }
-  set horizontalOffset(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1418783462071555, this, [value]); }
+  get horizontalOffset(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4113469585138924, this, []); }
+  set horizontalOffset(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1418783462071555, this, [value]); }
   /**
    * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CVImageCleanAperture?
    * @availability iOS 27.0+
    */
-  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImageCleanAperture) | null { return callSDK<(CVImageCleanAperture) | null>("CoreVideo_a956b86ef7a76a8e", 1593071219068415, undefined, [repr]); }
+  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImageCleanAperture) | null { return callSDK<(CVImageCleanAperture) | null>("CoreVideo_90ad0eb69cc6bf4a", 1593071219068415, undefined, [repr]); }
   /**
    * var rawAttachmentValueRepresentation: CVAttachmentRawValue { get }
    * @availability iOS 27.0+
    */
-  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_a956b86ef7a76a8e", 2150428483144005, this, []); }
+  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_90ad0eb69cc6bf4a", 2150428483144005, this, []); }
   /**
    * init(width: Float, height: Float, horizontalOffset: Float, verticalOffset: Float)
    * @availability iOS 27.0+
    */
-  static init(width: number, height: number, horizontalOffset: number, verticalOffset: number): CVImageCleanAperture { return callSDK<CVImageCleanAperture>("CoreVideo_a956b86ef7a76a8e", 2850683768626447, undefined, [width, height, horizontalOffset, verticalOffset]); }
+  static init(width: number, height: number, horizontalOffset: number, verticalOffset: number): CVImageCleanAperture { return callSDK<CVImageCleanAperture>("CoreVideo_90ad0eb69cc6bf4a", 2850683768626447, undefined, [width, height, horizontalOffset, verticalOffset]); }
   /**
    * var width: Float
    * @availability iOS 27.0+
    */
-  get width(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 833888799274426, this, []); }
-  set width(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4167330018144411, this, [value]); }
+  get width(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 833888799274426, this, []); }
+  set width(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4167330018144411, this, [value]); }
   /**
    * var height: Float
    * @availability iOS 27.0+
    */
-  get height(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4407573753357410, this, []); }
-  set height(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 290964961889601, this, [value]); }
+  get height(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4407573753357410, this, []); }
+  set height(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 290964961889601, this, [value]); }
   declare readonly $type: { "s:9CoreVideo20CVImageCleanApertureV": true };
 }
 
@@ -778,12 +778,12 @@ export const CVImageColorPrimaries = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (CVImageColorPrimaries) | null { return callSDK<(CVImageColorPrimaries) | null>("CoreVideo_a956b86ef7a76a8e", 4382548104419911, undefined, [rawValue]); },
+  init(rawValue: string): (CVImageColorPrimaries) | null { return callSDK<(CVImageColorPrimaries) | null>("CoreVideo_90ad0eb69cc6bf4a", 4382548104419911, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVImageColorPrimaries): string { return callSDK<string>("CoreVideo_a956b86ef7a76a8e", 248284223417228, $self, []); }
+  getRawValue($self: CVImageColorPrimaries): string { return callSDK<string>("CoreVideo_90ad0eb69cc6bf4a", 248284223417228, $self, []); }
 };
 
 /**
@@ -801,53 +801,53 @@ export class CVImageDisplayMaskRectangle extends SDKHandle {
    * var referenceRasterWidth: UInt16
    * @availability iOS 27.0+
    */
-  get referenceRasterWidth(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3008853242963982, this, []); }
-  set referenceRasterWidth(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1817290482318560, this, [value]); }
+  get referenceRasterWidth(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3008853242963982, this, []); }
+  set referenceRasterWidth(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1817290482318560, this, [value]); }
   /**
    * var referenceRasterHeight: UInt16
    * @availability iOS 27.0+
    */
-  get referenceRasterHeight(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2180625114112995, this, []); }
-  set referenceRasterHeight(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1553385884524, this, [value]); }
+  get referenceRasterHeight(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2180625114112995, this, []); }
+  set referenceRasterHeight(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1553385884524, this, [value]); }
   /**
    * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CVImageDisplayMaskRectangle?
    * @availability iOS 27.0+
    */
-  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImageDisplayMaskRectangle) | null { return callSDK<(CVImageDisplayMaskRectangle) | null>("CoreVideo_a956b86ef7a76a8e", 3564449401472608, undefined, [repr]); }
+  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImageDisplayMaskRectangle) | null { return callSDK<(CVImageDisplayMaskRectangle) | null>("CoreVideo_90ad0eb69cc6bf4a", 3564449401472608, undefined, [repr]); }
   /**
    * var rawAttachmentValueRepresentation: CVAttachmentRawValue { get }
    * @availability iOS 27.0+
    */
-  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_a956b86ef7a76a8e", 2682381592348764, this, []); }
+  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_90ad0eb69cc6bf4a", 2682381592348764, this, []); }
   /**
    * var top: UInt16
    * @availability iOS 27.0+
    */
-  get top(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1303615388371202, this, []); }
-  set top(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4390472792007754, this, [value]); }
+  get top(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1303615388371202, this, []); }
+  set top(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4390472792007754, this, [value]); }
   /**
    * init(left: UInt16, top: UInt16, width: UInt16, height: UInt16, referenceRasterWidth: UInt16, referenceRasterHeight: UInt16)
    * @availability iOS 27.0+
    */
-  static init(left: number, top: number, width: number, height: number, referenceRasterWidth: number, referenceRasterHeight: number): CVImageDisplayMaskRectangle { return callSDK<CVImageDisplayMaskRectangle>("CoreVideo_a956b86ef7a76a8e", 2180889549647252, undefined, [left, top, width, height, referenceRasterWidth, referenceRasterHeight]); }
+  static init(left: number, top: number, width: number, height: number, referenceRasterWidth: number, referenceRasterHeight: number): CVImageDisplayMaskRectangle { return callSDK<CVImageDisplayMaskRectangle>("CoreVideo_90ad0eb69cc6bf4a", 2180889549647252, undefined, [left, top, width, height, referenceRasterWidth, referenceRasterHeight]); }
   /**
    * var left: UInt16
    * @availability iOS 27.0+
    */
-  get left(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3242770785440396, this, []); }
-  set left(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2969574375259155, this, [value]); }
+  get left(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3242770785440396, this, []); }
+  set left(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2969574375259155, this, [value]); }
   /**
    * var width: UInt16
    * @availability iOS 27.0+
    */
-  get width(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2137839164282386, this, []); }
-  set width(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1899324847888239, this, [value]); }
+  get width(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2137839164282386, this, []); }
+  set width(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1899324847888239, this, [value]); }
   /**
    * var height: UInt16
    * @availability iOS 27.0+
    */
-  get height(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3917928520041150, this, []); }
-  set height(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2051429483900077, this, [value]); }
+  get height(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3917928520041150, this, []); }
+  set height(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2051429483900077, this, [value]); }
   declare readonly $type: { "s:9CoreVideo27CVImageDisplayMaskRectangleV": true };
 }
 
@@ -862,12 +862,12 @@ export const CVImageFieldDetail = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (CVImageFieldDetail) | null { return callSDK<(CVImageFieldDetail) | null>("CoreVideo_a956b86ef7a76a8e", 3091433640172014, undefined, [rawValue]); },
+  init(rawValue: string): (CVImageFieldDetail) | null { return callSDK<(CVImageFieldDetail) | null>("CoreVideo_90ad0eb69cc6bf4a", 3091433640172014, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVImageFieldDetail): string { return callSDK<string>("CoreVideo_a956b86ef7a76a8e", 2610038332153017, $self, []); }
+  getRawValue($self: CVImageFieldDetail): string { return callSDK<string>("CoreVideo_90ad0eb69cc6bf4a", 2610038332153017, $self, []); }
 };
 
 /**
@@ -887,12 +887,12 @@ export const CVImageLogTransferFunction = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (CVImageLogTransferFunction) | null { return callSDK<(CVImageLogTransferFunction) | null>("CoreVideo_a956b86ef7a76a8e", 3264222052527690, undefined, [rawValue]); },
+  init(rawValue: string): (CVImageLogTransferFunction) | null { return callSDK<(CVImageLogTransferFunction) | null>("CoreVideo_90ad0eb69cc6bf4a", 3264222052527690, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVImageLogTransferFunction): string { return callSDK<string>("CoreVideo_a956b86ef7a76a8e", 2263013976836526, $self, []); }
+  getRawValue($self: CVImageLogTransferFunction): string { return callSDK<string>("CoreVideo_90ad0eb69cc6bf4a", 2263013976836526, $self, []); }
 };
 
 /**
@@ -910,29 +910,29 @@ export class CVImagePixelAspectRatio extends SDKHandle {
    * var verticalSpacing: Float
    * @availability iOS 27.0+
    */
-  get verticalSpacing(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1870512448482179, this, []); }
-  set verticalSpacing(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4277019057032569, this, [value]); }
+  get verticalSpacing(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1870512448482179, this, []); }
+  set verticalSpacing(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4277019057032569, this, [value]); }
   /**
    * init(horizontalSpacing: Float, verticalSpacing: Float)
    * @availability iOS 27.0+
    */
-  static init(horizontalSpacing: number, verticalSpacing: number): CVImagePixelAspectRatio { return callSDK<CVImagePixelAspectRatio>("CoreVideo_a956b86ef7a76a8e", 1889775446328566, undefined, [horizontalSpacing, verticalSpacing]); }
+  static init(horizontalSpacing: number, verticalSpacing: number): CVImagePixelAspectRatio { return callSDK<CVImagePixelAspectRatio>("CoreVideo_90ad0eb69cc6bf4a", 1889775446328566, undefined, [horizontalSpacing, verticalSpacing]); }
   /**
    * var horizontalSpacing: Float
    * @availability iOS 27.0+
    */
-  get horizontalSpacing(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1018393567338921, this, []); }
-  set horizontalSpacing(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1449713084779036, this, [value]); }
+  get horizontalSpacing(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1018393567338921, this, []); }
+  set horizontalSpacing(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1449713084779036, this, [value]); }
   /**
    * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CVImagePixelAspectRatio?
    * @availability iOS 27.0+
    */
-  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImagePixelAspectRatio) | null { return callSDK<(CVImagePixelAspectRatio) | null>("CoreVideo_a956b86ef7a76a8e", 1111946066514523, undefined, [repr]); }
+  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImagePixelAspectRatio) | null { return callSDK<(CVImagePixelAspectRatio) | null>("CoreVideo_90ad0eb69cc6bf4a", 1111946066514523, undefined, [repr]); }
   /**
    * var rawAttachmentValueRepresentation: CVAttachmentRawValue { get }
    * @availability iOS 27.0+
    */
-  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_a956b86ef7a76a8e", 2024298112974012, this, []); }
+  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_90ad0eb69cc6bf4a", 2024298112974012, this, []); }
   declare readonly $type: { "s:9CoreVideo23CVImagePixelAspectRatioV": true };
 }
 
@@ -945,29 +945,29 @@ export class CVImageSize extends SDKHandle {
    * static let zero: CVImageSize
    * @availability iOS 26.0+
    */
-  static get zero(): CVImageSize { return callSDK<CVImageSize>("CoreVideo_a956b86ef7a76a8e", 2315607595844995, undefined, []); }
+  static get zero(): CVImageSize { return callSDK<CVImageSize>("CoreVideo_90ad0eb69cc6bf4a", 2315607595844995, undefined, []); }
   /**
    * init(width: Int, height: Int)
    * @availability iOS 26.0+
    */
-  static initWidthHeight(width: number, height: number): CVImageSize { return callSDK<CVImageSize>("CoreVideo_a956b86ef7a76a8e", 613309153990499, undefined, [width, height]); }
+  static initWidthHeight(width: number, height: number): CVImageSize { return callSDK<CVImageSize>("CoreVideo_90ad0eb69cc6bf4a", 613309153990499, undefined, [width, height]); }
   /**
    * var width: Int
    * @availability iOS 26.0+
    */
-  get width(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3495683768098344, this, []); }
-  set width(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 665015821166041, this, [value]); }
+  get width(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3495683768098344, this, []); }
+  set width(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 665015821166041, this, [value]); }
   /**
    * var height: Int
    * @availability iOS 26.0+
    */
-  get height(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1089216699829242, this, []); }
-  set height(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4013358125195269, this, [value]); }
+  get height(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1089216699829242, this, []); }
+  set height(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4013358125195269, this, [value]); }
   /**
    * init(_ size: CGSize, rounded rule: FloatingPointRoundingRule = .down)
    * @availability iOS 26.0+
    */
-  static initRounded(size: $SDK2, rule?: SDKHandle): CVImageSize { return callSDK<CVImageSize>("CoreVideo_a956b86ef7a76a8e", 4059727939575588, undefined, [size, rule]); }
+  static initRounded(size: $SDK2, rule?: SDKHandle): CVImageSize { return callSDK<CVImageSize>("CoreVideo_90ad0eb69cc6bf4a", 4059727939575588, undefined, [size, rule]); }
   declare readonly $type: { "s:9CoreVideo11CVImageSizeV": true };
 }
 
@@ -980,35 +980,35 @@ export class CVImageStereoDisplayMaskRectangle extends SDKHandle {
    * init(maskRectangle: CVImageDisplayMaskRectangle, leftEdgePoints: [CVImageStereoDisplayMaskRectangle.EdgePoint], rightEdgePoints: [CVImageStereoDisplayMaskRectangle.EdgePoint])
    * @availability iOS 27.0+
    */
-  static init(maskRectangle: CVImageDisplayMaskRectangle, leftEdgePoints: $SDK20, rightEdgePoints: $SDK20): CVImageStereoDisplayMaskRectangle { return callSDK<CVImageStereoDisplayMaskRectangle>("CoreVideo_a956b86ef7a76a8e", 201695468260965, undefined, [maskRectangle, leftEdgePoints, rightEdgePoints]); }
+  static init(maskRectangle: CVImageDisplayMaskRectangle, leftEdgePoints: $SDK20, rightEdgePoints: $SDK20): CVImageStereoDisplayMaskRectangle { return callSDK<CVImageStereoDisplayMaskRectangle>("CoreVideo_90ad0eb69cc6bf4a", 201695468260965, undefined, [maskRectangle, leftEdgePoints, rightEdgePoints]); }
   /**
    * var maskRectangle: CVImageDisplayMaskRectangle
    * @availability iOS 27.0+
    */
-  get maskRectangle(): CVImageDisplayMaskRectangle { return callSDK<CVImageDisplayMaskRectangle>("CoreVideo_a956b86ef7a76a8e", 4441127038966148, this, []); }
-  set maskRectangle(value: CVImageDisplayMaskRectangle) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3494259865169285, this, [value]); }
+  get maskRectangle(): CVImageDisplayMaskRectangle { return callSDK<CVImageDisplayMaskRectangle>("CoreVideo_90ad0eb69cc6bf4a", 4441127038966148, this, []); }
+  set maskRectangle(value: CVImageDisplayMaskRectangle) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3494259865169285, this, [value]); }
   /**
    * var leftEdgePoints: [CVImageStereoDisplayMaskRectangle.EdgePoint]
    * @availability iOS 27.0+
    */
-  get leftEdgePoints(): $SDK20 { return callSDK<$SDK20>("CoreVideo_a956b86ef7a76a8e", 2919510755397063, this, []); }
-  set leftEdgePoints(value: $SDK20) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2245424006630835, this, [value]); }
+  get leftEdgePoints(): $SDK20 { return callSDK<$SDK20>("CoreVideo_90ad0eb69cc6bf4a", 2919510755397063, this, []); }
+  set leftEdgePoints(value: $SDK20) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2245424006630835, this, [value]); }
   /**
    * var rightEdgePoints: [CVImageStereoDisplayMaskRectangle.EdgePoint]
    * @availability iOS 27.0+
    */
-  get rightEdgePoints(): $SDK20 { return callSDK<$SDK20>("CoreVideo_a956b86ef7a76a8e", 3759560904341904, this, []); }
-  set rightEdgePoints(value: $SDK20) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3781117829487045, this, [value]); }
+  get rightEdgePoints(): $SDK20 { return callSDK<$SDK20>("CoreVideo_90ad0eb69cc6bf4a", 3759560904341904, this, []); }
+  set rightEdgePoints(value: $SDK20) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3781117829487045, this, [value]); }
   /**
    * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CVImageStereoDisplayMaskRectangle?
    * @availability iOS 27.0+
    */
-  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImageStereoDisplayMaskRectangle) | null { return callSDK<(CVImageStereoDisplayMaskRectangle) | null>("CoreVideo_a956b86ef7a76a8e", 3129489112060506, undefined, [repr]); }
+  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVImageStereoDisplayMaskRectangle) | null { return callSDK<(CVImageStereoDisplayMaskRectangle) | null>("CoreVideo_90ad0eb69cc6bf4a", 3129489112060506, undefined, [repr]); }
   /**
    * var rawAttachmentValueRepresentation: CVAttachmentRawValue { get }
    * @availability iOS 27.0+
    */
-  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_a956b86ef7a76a8e", 788256106100933, this, []); }
+  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_90ad0eb69cc6bf4a", 788256106100933, this, []); }
   declare readonly $type: { "s:9CoreVideo33CVImageStereoDisplayMaskRectangleV": true };
 }
 
@@ -1021,19 +1021,19 @@ export class CVImageStereoDisplayMaskRectangle_EdgePoint extends SDKHandle {
    * init(x: UInt16, y: UInt16)
    * @availability iOS 27.0+
    */
-  static init(x: number, y: number): CVImageStereoDisplayMaskRectangle_EdgePoint { return callSDK<CVImageStereoDisplayMaskRectangle_EdgePoint>("CoreVideo_a956b86ef7a76a8e", 706344007048572, undefined, [x, y]); }
+  static init(x: number, y: number): CVImageStereoDisplayMaskRectangle_EdgePoint { return callSDK<CVImageStereoDisplayMaskRectangle_EdgePoint>("CoreVideo_90ad0eb69cc6bf4a", 706344007048572, undefined, [x, y]); }
   /**
    * var x: UInt16
    * @availability iOS 27.0+
    */
-  get x(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1770371479824715, this, []); }
-  set x(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1802781850999070, this, [value]); }
+  get x(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1770371479824715, this, []); }
+  set x(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1802781850999070, this, [value]); }
   /**
    * var y: UInt16
    * @availability iOS 27.0+
    */
-  get y(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 200081500447810, this, []); }
-  set y(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 853807234522785, this, [value]); }
+  get y(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 200081500447810, this, []); }
+  set y(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 853807234522785, this, [value]); }
   declare readonly $type: { "s:9CoreVideo33CVImageStereoDisplayMaskRectangleV9EdgePointV": true };
 }
 
@@ -1048,12 +1048,12 @@ export const CVImageTransferFunction = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (CVImageTransferFunction) | null { return callSDK<(CVImageTransferFunction) | null>("CoreVideo_a956b86ef7a76a8e", 4147075873786767, undefined, [rawValue]); },
+  init(rawValue: string): (CVImageTransferFunction) | null { return callSDK<(CVImageTransferFunction) | null>("CoreVideo_90ad0eb69cc6bf4a", 4147075873786767, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVImageTransferFunction): string { return callSDK<string>("CoreVideo_a956b86ef7a76a8e", 4016688203814103, $self, []); }
+  getRawValue($self: CVImageTransferFunction): string { return callSDK<string>("CoreVideo_90ad0eb69cc6bf4a", 4016688203814103, $self, []); }
 };
 
 /**
@@ -1073,12 +1073,12 @@ export const CVImageYCbCrMatrix = {
    * init?(rawValue: String)
    * @availability iOS 27.0+
    */
-  init(rawValue: string): (CVImageYCbCrMatrix) | null { return callSDK<(CVImageYCbCrMatrix) | null>("CoreVideo_a956b86ef7a76a8e", 4353844091662548, undefined, [rawValue]); },
+  init(rawValue: string): (CVImageYCbCrMatrix) | null { return callSDK<(CVImageYCbCrMatrix) | null>("CoreVideo_90ad0eb69cc6bf4a", 4353844091662548, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVImageYCbCrMatrix): string { return callSDK<string>("CoreVideo_a956b86ef7a76a8e", 756735178602776, $self, []); }
+  getRawValue($self: CVImageYCbCrMatrix): string { return callSDK<string>("CoreVideo_90ad0eb69cc6bf4a", 756735178602776, $self, []); }
 };
 
 /**
@@ -1132,22 +1132,22 @@ export class CVMutablePixelBuffer_Pool extends SDKHandle {
    * init(pixelBufferAttributes attributes: CVPixelBufferCreationAttributes, configuration: CVMutablePixelBuffer.Pool.Configuration = .init()) throws
    * @availability iOS 26.0+
    */
-  static initPixelBufferAttributesConfiguration(attributes: CVPixelBufferCreationAttributes, configuration?: CVMutablePixelBuffer_Pool_Configuration): CVMutablePixelBuffer_Pool { return callSDK<CVMutablePixelBuffer_Pool>("CoreVideo_a956b86ef7a76a8e", 1893291829387154, undefined, [attributes, configuration]); }
+  static initPixelBufferAttributesConfiguration(attributes: CVPixelBufferCreationAttributes, configuration?: CVMutablePixelBuffer_Pool_Configuration): CVMutablePixelBuffer_Pool { return callSDK<CVMutablePixelBuffer_Pool>("CoreVideo_90ad0eb69cc6bf4a", 1893291829387154, undefined, [attributes, configuration]); }
   /**
    * final var pixelBufferAttributes: CVPixelBufferCreationAttributes { get }
    * @availability iOS 26.0+
    */
-  get pixelBufferAttributes(): CVPixelBufferCreationAttributes { return callSDK<CVPixelBufferCreationAttributes>("CoreVideo_a956b86ef7a76a8e", 520728541574745, this, []); }
+  get pixelBufferAttributes(): CVPixelBufferCreationAttributes { return callSDK<CVPixelBufferCreationAttributes>("CoreVideo_90ad0eb69cc6bf4a", 520728541574745, this, []); }
   /**
    * init(unsafePool: sending CVPixelBufferPool)
    * @availability iOS 26.0+
    */
-  static initUnsafePool(unsafePool: CVPixelBufferPool): CVMutablePixelBuffer_Pool { return callSDK<CVMutablePixelBuffer_Pool>("CoreVideo_a956b86ef7a76a8e", 4251045828174072, undefined, [unsafePool]); }
+  static initUnsafePool(unsafePool: CVPixelBufferPool): CVMutablePixelBuffer_Pool { return callSDK<CVMutablePixelBuffer_Pool>("CoreVideo_90ad0eb69cc6bf4a", 4251045828174072, undefined, [unsafePool]); }
   /**
    * final func flush(agedOutOnly: Bool = true)
    * @availability iOS 26.0+
    */
-  flush(agedOutOnly?: boolean): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 258754511460321, this, [agedOutOnly]); }
+  flush(agedOutOnly?: boolean): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 258754511460321, this, [agedOutOnly]); }
   declare readonly $type: { "s:9CoreVideo20CVMutablePixelBufferV4PoolC": true };
 }
 
@@ -1160,13 +1160,13 @@ export class CVMutablePixelBuffer_Pool_AllocationAttributes extends SDKHandle {
    * init(allocationThreshold: Int? = nil)
    * @availability iOS 26.0+
    */
-  static init(allocationThreshold?: (number) | null): CVMutablePixelBuffer_Pool_AllocationAttributes { return callSDK<CVMutablePixelBuffer_Pool_AllocationAttributes>("CoreVideo_a956b86ef7a76a8e", 3406910301279432, undefined, [allocationThreshold]); }
+  static init(allocationThreshold?: (number) | null): CVMutablePixelBuffer_Pool_AllocationAttributes { return callSDK<CVMutablePixelBuffer_Pool_AllocationAttributes>("CoreVideo_90ad0eb69cc6bf4a", 3406910301279432, undefined, [allocationThreshold]); }
   /**
    * var allocationThreshold: Int?
    * @availability iOS 26.0+
    */
-  get allocationThreshold(): (number) | null { return callSDK<(number) | null>("CoreVideo_a956b86ef7a76a8e", 4255865834579295, this, []); }
-  set allocationThreshold(value: (number) | null) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3090595193243084, this, [value]); }
+  get allocationThreshold(): (number) | null { return callSDK<(number) | null>("CoreVideo_90ad0eb69cc6bf4a", 4255865834579295, this, []); }
+  set allocationThreshold(value: (number) | null) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3090595193243084, this, [value]); }
   declare readonly $type: { "s:9CoreVideo20CVMutablePixelBufferV4PoolC20AllocationAttributesV": true };
 }
 
@@ -1179,19 +1179,19 @@ export class CVMutablePixelBuffer_Pool_Configuration extends SDKHandle {
    * var minimumBufferCount: Int
    * @availability iOS 26.0+
    */
-  get minimumBufferCount(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3079345043770534, this, []); }
-  set minimumBufferCount(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 509065703186824, this, [value]); }
+  get minimumBufferCount(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3079345043770534, this, []); }
+  set minimumBufferCount(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 509065703186824, this, [value]); }
   /**
    * init(ageOutDuration: TimeInterval = 1, minimumBufferCount: Int = 0)
    * @availability iOS 26.0+
    */
-  static init(ageOutDuration?: number, minimumBufferCount?: number): CVMutablePixelBuffer_Pool_Configuration { return callSDK<CVMutablePixelBuffer_Pool_Configuration>("CoreVideo_a956b86ef7a76a8e", 1750798501604000, undefined, [ageOutDuration, minimumBufferCount]); }
+  static init(ageOutDuration?: number, minimumBufferCount?: number): CVMutablePixelBuffer_Pool_Configuration { return callSDK<CVMutablePixelBuffer_Pool_Configuration>("CoreVideo_90ad0eb69cc6bf4a", 1750798501604000, undefined, [ageOutDuration, minimumBufferCount]); }
   /**
    * var ageOutDuration: TimeInterval
    * @availability iOS 26.0+
    */
-  get ageOutDuration(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4494758933355841, this, []); }
-  set ageOutDuration(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1946608091536015, this, [value]); }
+  get ageOutDuration(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4494758933355841, this, []); }
+  set ageOutDuration(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1946608091536015, this, [value]); }
   declare readonly $type: { "s:9CoreVideo20CVMutablePixelBufferV4PoolC13ConfigurationV": true };
 }
 
@@ -1218,12 +1218,12 @@ export class CVPixelBufferAttachmentKeyDefinitions extends SDKHandle {
    * static let proResRawMetadata: CVAttachmentCompositeKeyDefinition<CVPixelBufferAttachmentKeyDefinitions.ShouldPropagate, CVProResRawMetadata>
    * @availability iOS 27.0+
    */
-  static get proResRawMetadata(): CVAttachmentCompositeKeyDefinition<CVAttachmentModePreferenceShouldPropagate, CVProResRawMetadata> { return callSDK<CVAttachmentCompositeKeyDefinition<CVAttachmentModePreferenceShouldPropagate, CVProResRawMetadata>>("CoreVideo_a956b86ef7a76a8e", 1240747433483166, undefined, []); }
+  static get proResRawMetadata(): CVAttachmentCompositeKeyDefinition<CVAttachmentModePreferenceShouldPropagate, CVProResRawMetadata> { return callSDK<CVAttachmentCompositeKeyDefinition<CVAttachmentModePreferenceShouldPropagate, CVProResRawMetadata>>("CoreVideo_90ad0eb69cc6bf4a", 1240747433483166, undefined, []); }
   /**
    * static let senselArrayPattern: CVAttachmentKeyDefinition<CVPixelBufferAttachmentKeyDefinitions.ShouldNotPropagate, CVSenselArrayPattern>
    * @availability iOS 27.0+
    */
-  static get senselArrayPattern(): CVAttachmentKeyDefinition<CVAttachmentModePreferenceShouldNotPropagate, CVSenselArrayPattern> { return callSDK<CVAttachmentKeyDefinition<CVAttachmentModePreferenceShouldNotPropagate, CVSenselArrayPattern>>("CoreVideo_a956b86ef7a76a8e", 2872730397712360, undefined, []); }
+  static get senselArrayPattern(): CVAttachmentKeyDefinition<CVAttachmentModePreferenceShouldNotPropagate, CVSenselArrayPattern> { return callSDK<CVAttachmentKeyDefinition<CVAttachmentModePreferenceShouldNotPropagate, CVSenselArrayPattern>>("CoreVideo_90ad0eb69cc6bf4a", 2872730397712360, undefined, []); }
   declare readonly $type: { "s:9CoreVideo37CVPixelBufferAttachmentKeyDefinitionsO": true };
 }
 
@@ -1236,79 +1236,79 @@ export class CVPixelBufferAttributes extends SDKHandle {
    * init(rawAttributes: [String : any Sendable])
    * @availability iOS 26.0+
    */
-  static initRawAttributes(rawAttributes: $SDK6): CVPixelBufferAttributes { return callSDK<CVPixelBufferAttributes>("CoreVideo_a956b86ef7a76a8e", 1832577482657501, undefined, [rawAttributes]); }
+  static initRawAttributes(rawAttributes: $SDK6): CVPixelBufferAttributes { return callSDK<CVPixelBufferAttributes>("CoreVideo_90ad0eb69cc6bf4a", 1832577482657501, undefined, [rawAttributes]); }
   /**
    * var rawAttributes: [String : any Sendable] { get }
    * @availability iOS 26.0+
    */
-  get rawAttributes(): $SDK6 { return callSDK<$SDK6>("CoreVideo_a956b86ef7a76a8e", 140380318072529, this, []); }
+  get rawAttributes(): $SDK6 { return callSDK<$SDK6>("CoreVideo_90ad0eb69cc6bf4a", 140380318072529, this, []); }
   /**
    * var attachments: CVAttachmentContainer<CVPixelBufferAttachmentKeyDefinitions>? { get set }
    * @availability iOS 27.0+
    */
-  get attachments(): $SDK25 { return callSDK<$SDK25>("CoreVideo_a956b86ef7a76a8e", 1497770889781976, this, []); }
-  set attachments(value: $SDK25) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1763710285099692, this, [value]); }
+  get attachments(): $SDK25 { return callSDK<$SDK25>("CoreVideo_90ad0eb69cc6bf4a", 1497770889781976, this, []); }
+  set attachments(value: $SDK25) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1763710285099692, this, [value]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVPixelFormatType>) -> CVPixelFormatType? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember(keyPath: SDKHandle): (CVPixelFormatType) | null { return callSDK<(CVPixelFormatType) | null>("CoreVideo_a956b86ef7a76a8e", 258610116373800, this, [keyPath]); }
+  subscriptDynamicMember(keyPath: SDKHandle): (CVPixelFormatType) | null { return callSDK<(CVPixelFormatType) | null>("CoreVideo_90ad0eb69cc6bf4a", 258610116373800, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVPixelFormatDescription.Compatibility>) -> CVPixelFormatDescription.Compatibility { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember56834(keyPath: SDKHandle): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_a956b86ef7a76a8e", 3955221558814934, this, [keyPath]); }
+  subscriptDynamicMember56834(keyPath: SDKHandle): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_90ad0eb69cc6bf4a", 3955221558814934, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVPixelFormatDescription?>) -> CVPixelFormatDescription? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember27911(keyPath: SDKHandle): $SDK9 { return callSDK<$SDK9>("CoreVideo_a956b86ef7a76a8e", 720406168742543, this, [keyPath]); }
+  subscriptDynamicMember27911(keyPath: SDKHandle): $SDK9 { return callSDK<$SDK9>("CoreVideo_90ad0eb69cc6bf4a", 720406168742543, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVPixelBufferPadding?>) -> CVPixelBufferPadding? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember91426(keyPath: SDKHandle): $SDK8 { return callSDK<$SDK8>("CoreVideo_a956b86ef7a76a8e", 4293259142004048, this, [keyPath]); }
+  subscriptDynamicMember91426(keyPath: SDKHandle): $SDK8 { return callSDK<$SDK8>("CoreVideo_90ad0eb69cc6bf4a", 4293259142004048, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVPixelBufferCreationAttributes.Backing>) -> CVPixelBufferCreationAttributes.Backing { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember74861(keyPath: SDKHandle): CVPixelBufferCreationAttributes_Backing { return callSDK<CVPixelBufferCreationAttributes_Backing>("CoreVideo_a956b86ef7a76a8e", 3773288874635439, this, [keyPath]); }
+  subscriptDynamicMember74861(keyPath: SDKHandle): CVPixelBufferCreationAttributes_Backing { return callSDK<CVPixelBufferCreationAttributes_Backing>("CoreVideo_90ad0eb69cc6bf4a", 3773288874635439, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, CVImageSize>) -> CVImageSize? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember22177(keyPath: SDKHandle): (CVImageSize) | null { return callSDK<(CVImageSize) | null>("CoreVideo_a956b86ef7a76a8e", 620085948860386, this, [keyPath]); }
+  subscriptDynamicMember22177(keyPath: SDKHandle): (CVImageSize) | null { return callSDK<(CVImageSize) | null>("CoreVideo_90ad0eb69cc6bf4a", 620085948860386, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, Bool>) -> Bool? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember90849(keyPath: SDKHandle): (boolean) | null { return callSDK<(boolean) | null>("CoreVideo_a956b86ef7a76a8e", 4481646051919871, this, [keyPath]); }
+  subscriptDynamicMember90849(keyPath: SDKHandle): (boolean) | null { return callSDK<(boolean) | null>("CoreVideo_90ad0eb69cc6bf4a", 4481646051919871, this, [keyPath]); }
   /**
    * subscript(dynamicMember keyPath: WritableKeyPath<CVPixelBufferCreationAttributes, Int?>) -> Int? { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember61709(keyPath: SDKHandle): (number) | null { return callSDK<(number) | null>("CoreVideo_a956b86ef7a76a8e", 2546470256461270, this, [keyPath]); }
+  subscriptDynamicMember61709(keyPath: SDKHandle): (number) | null { return callSDK<(number) | null>("CoreVideo_90ad0eb69cc6bf4a", 2546470256461270, this, [keyPath]); }
   /**
    * init(pixelFormatTypes: [CVPixelFormatType]? = nil, size: CVImageSize? = nil, compatibility: CVPixelFormatDescription.Compatibility = [], bytesPerRowAlignment: Int? = nil, planeAlignment: Int? = nil, extendedPixels: CVPixelBufferPadding? = nil)
    * @availability iOS 26.0+
    */
-  static initPixelFormatTypesSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixels(pixelFormatTypes?: $SDK10, size?: (CVImageSize) | null, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8): CVPixelBufferAttributes { return callSDK<CVPixelBufferAttributes>("CoreVideo_a956b86ef7a76a8e", 3567543341893754, undefined, [pixelFormatTypes, size, compatibility, bytesPerRowAlignment, planeAlignment, extendedPixels]); }
+  static initPixelFormatTypesSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixels(pixelFormatTypes?: $SDK10, size?: (CVImageSize) | null, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8): CVPixelBufferAttributes { return callSDK<CVPixelBufferAttributes>("CoreVideo_90ad0eb69cc6bf4a", 3567543341893754, undefined, [pixelFormatTypes, size, compatibility, bytesPerRowAlignment, planeAlignment, extendedPixels]); }
   /**
    * var pixelFormatTypes: [CVPixelFormatType]? { get set }
    * @availability iOS 26.0+
    */
-  get pixelFormatTypes(): $SDK10 { return callSDK<$SDK10>("CoreVideo_a956b86ef7a76a8e", 2278961171933213, this, []); }
-  set pixelFormatTypes(value: $SDK10) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 414417485329704, this, [value]); }
+  get pixelFormatTypes(): $SDK10 { return callSDK<$SDK10>("CoreVideo_90ad0eb69cc6bf4a", 2278961171933213, this, []); }
+  set pixelFormatTypes(value: $SDK10) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 414417485329704, this, [value]); }
   /**
    * init?(merging values: [CVPixelBufferAttributes])
    * @availability iOS 26.0+
    */
-  static initMerging(values: Array<CVPixelBufferAttributes>): (CVPixelBufferAttributes) | null { return callSDK<(CVPixelBufferAttributes) | null>("CoreVideo_a956b86ef7a76a8e", 1108204314672242, undefined, [values]); }
+  static initMerging(values: Array<CVPixelBufferAttributes>): (CVPixelBufferAttributes) | null { return callSDK<(CVPixelBufferAttributes) | null>("CoreVideo_90ad0eb69cc6bf4a", 1108204314672242, undefined, [values]); }
   /**
    * init(_ attributes: CVPixelBufferCreationAttributes)
    * @availability iOS 26.0+
    */
-  static init(attributes: CVPixelBufferCreationAttributes): CVPixelBufferAttributes { return callSDK<CVPixelBufferAttributes>("CoreVideo_a956b86ef7a76a8e", 187925929042404, undefined, [attributes]); }
+  static init(attributes: CVPixelBufferCreationAttributes): CVPixelBufferAttributes { return callSDK<CVPixelBufferAttributes>("CoreVideo_90ad0eb69cc6bf4a", 187925929042404, undefined, [attributes]); }
   declare readonly $type: { "s:9CoreVideo23CVPixelBufferAttributesV": true };
 }
 
@@ -1321,65 +1321,65 @@ export class CVPixelBufferCreationAttributes extends SDKHandle {
    * var attachments: CVAttachmentContainer<CVPixelBufferAttachmentKeyDefinitions>?
    * @availability iOS 27.0+
    */
-  get attachments(): $SDK25 { return callSDK<$SDK25>("CoreVideo_a956b86ef7a76a8e", 1953372125876310, this, []); }
-  set attachments(value: $SDK25) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1617942259300952, this, [value]); }
+  get attachments(): $SDK25 { return callSDK<$SDK25>("CoreVideo_90ad0eb69cc6bf4a", 1953372125876310, this, []); }
+  set attachments(value: $SDK25) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1617942259300952, this, [value]); }
   /**
    * var compatibility: CVPixelFormatDescription.Compatibility
    * @availability iOS 26.0+
    */
-  get compatibility(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_a956b86ef7a76a8e", 3380785031610911, this, []); }
-  set compatibility(value: CVPixelFormatDescription_Compatibility) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1317903310623772, this, [value]); }
+  get compatibility(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_90ad0eb69cc6bf4a", 3380785031610911, this, []); }
+  set compatibility(value: CVPixelFormatDescription_Compatibility) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1317903310623772, this, [value]); }
   /**
    * var extendedPixels: CVPixelBufferPadding?
    * @availability iOS 26.0+
    */
-  get extendedPixels(): $SDK8 { return callSDK<$SDK8>("CoreVideo_a956b86ef7a76a8e", 3520485210945808, this, []); }
-  set extendedPixels(value: $SDK8) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2653050828648136, this, [value]); }
+  get extendedPixels(): $SDK8 { return callSDK<$SDK8>("CoreVideo_90ad0eb69cc6bf4a", 3520485210945808, this, []); }
+  set extendedPixels(value: $SDK8) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2653050828648136, this, [value]); }
   /**
    * var planeAlignment: Int?
    * @availability iOS 26.0+
    */
-  get planeAlignment(): (number) | null { return callSDK<(number) | null>("CoreVideo_a956b86ef7a76a8e", 3348644610772875, this, []); }
-  set planeAlignment(value: (number) | null) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 865155077773866, this, [value]); }
+  get planeAlignment(): (number) | null { return callSDK<(number) | null>("CoreVideo_90ad0eb69cc6bf4a", 3348644610772875, this, []); }
+  set planeAlignment(value: (number) | null) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 865155077773866, this, [value]); }
   /**
    * init(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility: CVPixelFormatDescription.Compatibility = [], bytesPerRowAlignment: Int? = nil, planeAlignment: Int? = nil, extendedPixels: CVPixelBufferPadding? = nil, attachments: CVAttachmentContainer<CVPixelBufferAttachmentKeyDefinitions>? = nil)
    * @availability iOS 27.0+
    */
-  static initPixelFormatTypeSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixelsAttachments(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8, attachments?: $SDK25): CVPixelBufferCreationAttributes { return callSDK<CVPixelBufferCreationAttributes>("CoreVideo_a956b86ef7a76a8e", 4096525843379263, undefined, [pixelFormatType, size, compatibility, bytesPerRowAlignment, planeAlignment, extendedPixels, attachments]); }
+  static initPixelFormatTypeSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixelsAttachments(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8, attachments?: $SDK25): CVPixelBufferCreationAttributes { return callSDK<CVPixelBufferCreationAttributes>("CoreVideo_90ad0eb69cc6bf4a", 4096525843379263, undefined, [pixelFormatType, size, compatibility, bytesPerRowAlignment, planeAlignment, extendedPixels, attachments]); }
   /**
    * init(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility: CVPixelFormatDescription.Compatibility = [], bytesPerRowAlignment: Int? = nil, planeAlignment: Int? = nil, extendedPixels: CVPixelBufferPadding? = nil)
    * @availability iOS 26.0+
    */
-  static initPixelFormatTypeSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixels(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8): CVPixelBufferCreationAttributes { return callSDK<CVPixelBufferCreationAttributes>("CoreVideo_a956b86ef7a76a8e", 4365284758098092, undefined, [pixelFormatType, size, compatibility, bytesPerRowAlignment, planeAlignment, extendedPixels]); }
+  static initPixelFormatTypeSizeCompatibilityBytesPerRowAlignmentPlaneAlignmentExtendedPixels(pixelFormatType: CVPixelFormatType, size: CVImageSize, compatibility?: CVPixelFormatDescription_Compatibility, bytesPerRowAlignment?: (number) | null, planeAlignment?: (number) | null, extendedPixels?: $SDK8): CVPixelBufferCreationAttributes { return callSDK<CVPixelBufferCreationAttributes>("CoreVideo_90ad0eb69cc6bf4a", 4365284758098092, undefined, [pixelFormatType, size, compatibility, bytesPerRowAlignment, planeAlignment, extendedPixels]); }
   /**
    * var pixelFormatType: CVPixelFormatType
    * @availability iOS 26.0+
    */
-  get pixelFormatType(): CVPixelFormatType { return callSDK<CVPixelFormatType>("CoreVideo_a956b86ef7a76a8e", 1720787055160014, this, []); }
-  set pixelFormatType(value: CVPixelFormatType) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1654404346223744, this, [value]); }
+  get pixelFormatType(): CVPixelFormatType { return callSDK<CVPixelFormatType>("CoreVideo_90ad0eb69cc6bf4a", 1720787055160014, this, []); }
+  set pixelFormatType(value: CVPixelFormatType) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1654404346223744, this, [value]); }
   /**
    * var bytesPerRowAlignment: Int?
    * @availability iOS 26.0+
    */
-  get bytesPerRowAlignment(): (number) | null { return callSDK<(number) | null>("CoreVideo_a956b86ef7a76a8e", 3393048995170019, this, []); }
-  set bytesPerRowAlignment(value: (number) | null) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1304978601291022, this, [value]); }
+  get bytesPerRowAlignment(): (number) | null { return callSDK<(number) | null>("CoreVideo_90ad0eb69cc6bf4a", 3393048995170019, this, []); }
+  set bytesPerRowAlignment(value: (number) | null) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1304978601291022, this, [value]); }
   /**
    * var size: CVImageSize
    * @availability iOS 26.0+
    */
-  get size(): CVImageSize { return callSDK<CVImageSize>("CoreVideo_a956b86ef7a76a8e", 4259584779675319, this, []); }
-  set size(value: CVImageSize) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2855298017842158, this, [value]); }
+  get size(): CVImageSize { return callSDK<CVImageSize>("CoreVideo_90ad0eb69cc6bf4a", 4259584779675319, this, []); }
+  set size(value: CVImageSize) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2855298017842158, this, [value]); }
   /**
    * var backing: CVPixelBufferCreationAttributes.Backing
    * @availability iOS 26.0+
    */
-  get backing(): CVPixelBufferCreationAttributes_Backing { return callSDK<CVPixelBufferCreationAttributes_Backing>("CoreVideo_a956b86ef7a76a8e", 67641967286206, this, []); }
-  set backing(value: CVPixelBufferCreationAttributes_Backing) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1300336074163030, this, [value]); }
+  get backing(): CVPixelBufferCreationAttributes_Backing { return callSDK<CVPixelBufferCreationAttributes_Backing>("CoreVideo_90ad0eb69cc6bf4a", 67641967286206, this, []); }
+  set backing(value: CVPixelBufferCreationAttributes_Backing) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1300336074163030, this, [value]); }
   /**
    * init?(_ attributes: CVPixelBufferAttributes)
    * @availability iOS 26.0+
    */
-  static init(attributes: CVPixelBufferAttributes): (CVPixelBufferCreationAttributes) | null { return callSDK<(CVPixelBufferCreationAttributes) | null>("CoreVideo_a956b86ef7a76a8e", 4309429434709412, undefined, [attributes]); }
+  static init(attributes: CVPixelBufferAttributes): (CVPixelBufferCreationAttributes) | null { return callSDK<(CVPixelBufferCreationAttributes) | null>("CoreVideo_90ad0eb69cc6bf4a", 4309429434709412, undefined, [attributes]); }
   declare readonly $type: { "s:9CoreVideo31CVPixelBufferCreationAttributesV": true };
 }
 
@@ -1396,9 +1396,9 @@ export type CVPixelBufferLockFlags = Array<"readOnly">;
 
 export const CVPixelBufferLockFlags = {
   /** static var readOnly: CVPixelBufferLockFlags { get } */
-  get readOnly(): CVPixelBufferLockFlags { return callSDK<CVPixelBufferLockFlags>("CoreVideo_a956b86ef7a76a8e", 865651751394925, undefined, []); },
+  get readOnly(): CVPixelBufferLockFlags { return callSDK<CVPixelBufferLockFlags>("CoreVideo_90ad0eb69cc6bf4a", 865651751394925, undefined, []); },
   /** init(rawValue: CVOptionFlags) */
-  init(rawValue: number): CVPixelBufferLockFlags { return callSDK<CVPixelBufferLockFlags>("CoreVideo_a956b86ef7a76a8e", 673657081622933, undefined, [rawValue]); }
+  init(rawValue: number): CVPixelBufferLockFlags { return callSDK<CVPixelBufferLockFlags>("CoreVideo_90ad0eb69cc6bf4a", 673657081622933, undefined, [rawValue]); }
 };
 
 /**
@@ -1410,36 +1410,36 @@ export class CVPixelBufferPadding extends SDKHandle {
    * var top: Int
    * @availability iOS 26.0+
    */
-  get top(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1531300040262824, this, []); }
-  set top(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 659026708297256, this, [value]); }
+  get top(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1531300040262824, this, []); }
+  set top(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 659026708297256, this, [value]); }
   /**
    * init(left: Int = 0, right: Int = 0, top: Int = 0, bottom: Int = 0)
    * @availability iOS 26.0+
    */
-  static init(left?: number, right?: number, top?: number, bottom?: number): CVPixelBufferPadding { return callSDK<CVPixelBufferPadding>("CoreVideo_a956b86ef7a76a8e", 1558063649682405, undefined, [left, right, top, bottom]); }
+  static init(left?: number, right?: number, top?: number, bottom?: number): CVPixelBufferPadding { return callSDK<CVPixelBufferPadding>("CoreVideo_90ad0eb69cc6bf4a", 1558063649682405, undefined, [left, right, top, bottom]); }
   /**
    * var left: Int
    * @availability iOS 26.0+
    */
-  get left(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 126804265594864, this, []); }
-  set left(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4216192890673096, this, [value]); }
+  get left(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 126804265594864, this, []); }
+  set left(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4216192890673096, this, [value]); }
   /**
    * static let zero: CVPixelBufferPadding
    * @availability iOS 26.0+
    */
-  static get zero(): CVPixelBufferPadding { return callSDK<CVPixelBufferPadding>("CoreVideo_a956b86ef7a76a8e", 2670313616524448, undefined, []); }
+  static get zero(): CVPixelBufferPadding { return callSDK<CVPixelBufferPadding>("CoreVideo_90ad0eb69cc6bf4a", 2670313616524448, undefined, []); }
   /**
    * var right: Int
    * @availability iOS 26.0+
    */
-  get right(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2687653657573380, this, []); }
-  set right(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2517578363525850, this, [value]); }
+  get right(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2687653657573380, this, []); }
+  set right(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2517578363525850, this, [value]); }
   /**
    * var bottom: Int
    * @availability iOS 26.0+
    */
-  get bottom(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2151638127930812, this, []); }
-  set bottom(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1618748583465423, this, [value]); }
+  get bottom(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2151638127930812, this, []); }
+  set bottom(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1618748583465423, this, [value]); }
   declare readonly $type: { "s:9CoreVideo20CVPixelBufferPaddingV": true };
 }
 
@@ -1452,19 +1452,19 @@ export class CVPixelBufferPlaneProperties extends SDKHandle {
    * var bytesPerRow: Int
    * @availability iOS 26.0+
    */
-  get bytesPerRow(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3341042742015764, this, []); }
-  set bytesPerRow(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2366426613818204, this, [value]); }
+  get bytesPerRow(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3341042742015764, this, []); }
+  set bytesPerRow(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2366426613818204, this, [value]); }
   /**
    * init(size: CVImageSize, bytesPerRow: Int)
    * @availability iOS 26.0+
    */
-  static init(size: CVImageSize, bytesPerRow: number): CVPixelBufferPlaneProperties { return callSDK<CVPixelBufferPlaneProperties>("CoreVideo_a956b86ef7a76a8e", 1454795017356844, undefined, [size, bytesPerRow]); }
+  static init(size: CVImageSize, bytesPerRow: number): CVPixelBufferPlaneProperties { return callSDK<CVPixelBufferPlaneProperties>("CoreVideo_90ad0eb69cc6bf4a", 1454795017356844, undefined, [size, bytesPerRow]); }
   /**
    * var size: CVImageSize
    * @availability iOS 26.0+
    */
-  get size(): CVImageSize { return callSDK<CVImageSize>("CoreVideo_a956b86ef7a76a8e", 1631122073150058, this, []); }
-  set size(value: CVImageSize) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 506460384359171, this, [value]); }
+  get size(): CVImageSize { return callSDK<CVImageSize>("CoreVideo_90ad0eb69cc6bf4a", 1631122073150058, this, []); }
+  set size(value: CVImageSize) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 506460384359171, this, [value]); }
   declare readonly $type: { "s:9CoreVideo28CVPixelBufferPlanePropertiesV": true };
 }
 
@@ -1478,9 +1478,9 @@ export type CVPixelBufferPoolFlushFlags = Array<"excessBuffers">;
 
 export const CVPixelBufferPoolFlushFlags = {
   /** static var excessBuffers: CVPixelBufferPoolFlushFlags { get } */
-  get excessBuffers(): CVPixelBufferPoolFlushFlags { return callSDK<CVPixelBufferPoolFlushFlags>("CoreVideo_a956b86ef7a76a8e", 1685895074230232, undefined, []); },
+  get excessBuffers(): CVPixelBufferPoolFlushFlags { return callSDK<CVPixelBufferPoolFlushFlags>("CoreVideo_90ad0eb69cc6bf4a", 1685895074230232, undefined, []); },
   /** init(rawValue: CVOptionFlags) */
-  init(rawValue: number): CVPixelBufferPoolFlushFlags { return callSDK<CVPixelBufferPoolFlushFlags>("CoreVideo_a956b86ef7a76a8e", 2574354930074151, undefined, [rawValue]); }
+  init(rawValue: number): CVPixelBufferPoolFlushFlags { return callSDK<CVPixelBufferPoolFlushFlags>("CoreVideo_90ad0eb69cc6bf4a", 2574354930074151, undefined, [rawValue]); }
 };
 
 /** typealias CVPixelBufferReleaseBytesCallback = (UnsafeMutableRawPointer?, UnsafeRawPointer?) -> Void */
@@ -1516,37 +1516,37 @@ export class CVPixelFormatDescription extends SDKHandle {
    * init(pixelFormatType: CVPixelFormatType, name: String, components: CVPixelFormatDescription.Components, componentRange: CVPixelFormatDescription.ComponentRange? = nil, planeConfiguration: CVPixelFormatDescription.PlaneConfiguration)
    * @availability iOS 26.0+
    */
-  static init(pixelFormatType: CVPixelFormatType, name: string, components: CVPixelFormatDescription_Components, componentRange: $SDK29, planeConfiguration: CVPixelFormatDescription_PlaneConfiguration): CVPixelFormatDescription { return callSDK<CVPixelFormatDescription>("CoreVideo_a956b86ef7a76a8e", 2808178213241457, undefined, [pixelFormatType, name, components, componentRange, planeConfiguration]); }
+  static init(pixelFormatType: CVPixelFormatType, name: string, components: CVPixelFormatDescription_Components, componentRange: $SDK29, planeConfiguration: CVPixelFormatDescription_PlaneConfiguration): CVPixelFormatDescription { return callSDK<CVPixelFormatDescription>("CoreVideo_90ad0eb69cc6bf4a", 2808178213241457, undefined, [pixelFormatType, name, components, componentRange, planeConfiguration]); }
   /**
    * var pixelFormatType: CVPixelFormatType
    * @availability iOS 26.0+
    */
-  get pixelFormatType(): CVPixelFormatType { return callSDK<CVPixelFormatType>("CoreVideo_a956b86ef7a76a8e", 1296881643202193, this, []); }
-  set pixelFormatType(value: CVPixelFormatType) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4059978677557552, this, [value]); }
+  get pixelFormatType(): CVPixelFormatType { return callSDK<CVPixelFormatType>("CoreVideo_90ad0eb69cc6bf4a", 1296881643202193, this, []); }
+  set pixelFormatType(value: CVPixelFormatType) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4059978677557552, this, [value]); }
   /**
    * var components: CVPixelFormatDescription.Components
    * @availability iOS 26.0+
    */
-  get components(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_a956b86ef7a76a8e", 3057582927287475, this, []); }
-  set components(value: CVPixelFormatDescription_Components) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1779901829521204, this, [value]); }
+  get components(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_90ad0eb69cc6bf4a", 3057582927287475, this, []); }
+  set components(value: CVPixelFormatDescription_Components) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1779901829521204, this, [value]); }
   /**
    * var componentRange: CVPixelFormatDescription.ComponentRange?
    * @availability iOS 26.0+
    */
-  get componentRange(): $SDK29 { return callSDK<$SDK29>("CoreVideo_a956b86ef7a76a8e", 2808028319477794, this, []); }
-  set componentRange(value: $SDK29) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3879505671867182, this, [value]); }
+  get componentRange(): $SDK29 { return callSDK<$SDK29>("CoreVideo_90ad0eb69cc6bf4a", 2808028319477794, this, []); }
+  set componentRange(value: $SDK29) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3879505671867182, this, [value]); }
   /**
    * var planeConfiguration: CVPixelFormatDescription.PlaneConfiguration
    * @availability iOS 26.0+
    */
-  get planeConfiguration(): CVPixelFormatDescription_PlaneConfiguration { return callSDK<CVPixelFormatDescription_PlaneConfiguration>("CoreVideo_a956b86ef7a76a8e", 2617284041353408, this, []); }
-  set planeConfiguration(value: CVPixelFormatDescription_PlaneConfiguration) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1539048626309177, this, [value]); }
+  get planeConfiguration(): CVPixelFormatDescription_PlaneConfiguration { return callSDK<CVPixelFormatDescription_PlaneConfiguration>("CoreVideo_90ad0eb69cc6bf4a", 2617284041353408, this, []); }
+  set planeConfiguration(value: CVPixelFormatDescription_PlaneConfiguration) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1539048626309177, this, [value]); }
   /**
    * var name: String
    * @availability iOS 26.0+
    */
-  get name(): string { return callSDK<string>("CoreVideo_a956b86ef7a76a8e", 2715324280110837, this, []); }
-  set name(value: string) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2117056431398442, this, [value]); }
+  get name(): string { return callSDK<string>("CoreVideo_90ad0eb69cc6bf4a", 2715324280110837, this, []); }
+  set name(value: string) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2117056431398442, this, [value]); }
   declare readonly $type: { "s:9CoreVideo24CVPixelFormatDescriptionV": true };
 }
 
@@ -1561,33 +1561,33 @@ export const CVPixelFormatDescription_Compatibility = {
    * static let ioSurfaceCoreAnimation: CVPixelFormatDescription.Compatibility
    * @availability iOS 26.0+
    */
-  get ioSurfaceCoreAnimation(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_a956b86ef7a76a8e", 3256405243072711, undefined, []); },
+  get ioSurfaceCoreAnimation(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_90ad0eb69cc6bf4a", 3256405243072711, undefined, []); },
   /**
    * static let metalTexture: CVPixelFormatDescription.Compatibility
    * @availability iOS 26.0+
    */
-  get metalTexture(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_a956b86ef7a76a8e", 293051580195493, undefined, []); },
+  get metalTexture(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_90ad0eb69cc6bf4a", 293051580195493, undefined, []); },
   /**
    * static let cgBitmapContext: CVPixelFormatDescription.Compatibility
    * @availability iOS 26.0+
    */
-  get cgBitmapContext(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_a956b86ef7a76a8e", 2206979328701302, undefined, []); },
+  get cgBitmapContext(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_90ad0eb69cc6bf4a", 2206979328701302, undefined, []); },
   /**
    * static let cgImage: CVPixelFormatDescription.Compatibility
    * @availability iOS 26.0+
    */
-  get cgImage(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_a956b86ef7a76a8e", 4400317254726812, undefined, []); },
+  get cgImage(): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_90ad0eb69cc6bf4a", 4400317254726812, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_a956b86ef7a76a8e", 4235140851734759, undefined, [rawValue]); },
+  init(rawValue: number): CVPixelFormatDescription_Compatibility { return callSDK<CVPixelFormatDescription_Compatibility>("CoreVideo_90ad0eb69cc6bf4a", 4235140851734759, undefined, [rawValue]); },
   /**
    * var rawValue: Int
    * @availability iOS 26.0+
    */
-  getRawValue($self: CVPixelFormatDescription_Compatibility): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1816700566773279, $self, []); },
-  setRawValue($self: CVPixelFormatDescription_Compatibility, value: number): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2935523647113145, $self, [value]); }
+  getRawValue($self: CVPixelFormatDescription_Compatibility): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1816700566773279, $self, []); },
+  setRawValue($self: CVPixelFormatDescription_Compatibility, value: number): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2935523647113145, $self, [value]); }
 };
 
 /**
@@ -1625,38 +1625,38 @@ export const CVPixelFormatDescription_Components = {
    * static let senselArray: CVPixelFormatDescription.Components
    * @availability iOS 26.0+
    */
-  get senselArray(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_a956b86ef7a76a8e", 2290029299271447, undefined, []); },
+  get senselArray(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_90ad0eb69cc6bf4a", 2290029299271447, undefined, []); },
   /**
    * static let rgb: CVPixelFormatDescription.Components
    * @availability iOS 26.0+
    */
-  get rgb(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_a956b86ef7a76a8e", 1925903889168345, undefined, []); },
+  get rgb(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_90ad0eb69cc6bf4a", 1925903889168345, undefined, []); },
   /**
    * static let alpha: CVPixelFormatDescription.Components
    * @availability iOS 26.0+
    */
-  get alpha(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_a956b86ef7a76a8e", 4007597808443846, undefined, []); },
+  get alpha(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_90ad0eb69cc6bf4a", 4007597808443846, undefined, []); },
   /**
    * static let yCbCr: CVPixelFormatDescription.Components
    * @availability iOS 26.0+
    */
-  get yCbCr(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_a956b86ef7a76a8e", 1852419956213071, undefined, []); },
+  get yCbCr(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_90ad0eb69cc6bf4a", 1852419956213071, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_a956b86ef7a76a8e", 3229123119616074, undefined, [rawValue]); },
+  init(rawValue: number): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_90ad0eb69cc6bf4a", 3229123119616074, undefined, [rawValue]); },
   /**
    * var rawValue: Int
    * @availability iOS 26.0+
    */
-  getRawValue($self: CVPixelFormatDescription_Components): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1288681587590138, $self, []); },
-  setRawValue($self: CVPixelFormatDescription_Components, value: number): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 345828728976495, $self, [value]); },
+  getRawValue($self: CVPixelFormatDescription_Components): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1288681587590138, $self, []); },
+  setRawValue($self: CVPixelFormatDescription_Components, value: number): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 345828728976495, $self, [value]); },
   /**
    * static let grayscale: CVPixelFormatDescription.Components
    * @availability iOS 26.0+
    */
-  get grayscale(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_a956b86ef7a76a8e", 66306209762555, undefined, []); }
+  get grayscale(): CVPixelFormatDescription_Components { return callSDK<CVPixelFormatDescription_Components>("CoreVideo_90ad0eb69cc6bf4a", 66306209762555, undefined, []); }
 };
 
 /**
@@ -1686,19 +1686,19 @@ export class CVPixelFormatDescription_Dimensions extends SDKHandle {
    * init(horizontal: Int, vertical: Int)
    * @availability iOS 26.0+
    */
-  static init(horizontal: number, vertical: number): CVPixelFormatDescription_Dimensions { return callSDK<CVPixelFormatDescription_Dimensions>("CoreVideo_a956b86ef7a76a8e", 2549003906416389, undefined, [horizontal, vertical]); }
+  static init(horizontal: number, vertical: number): CVPixelFormatDescription_Dimensions { return callSDK<CVPixelFormatDescription_Dimensions>("CoreVideo_90ad0eb69cc6bf4a", 2549003906416389, undefined, [horizontal, vertical]); }
   /**
    * var horizontal: Int
    * @availability iOS 26.0+
    */
-  get horizontal(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 627310096695208, this, []); }
-  set horizontal(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 766393998637809, this, [value]); }
+  get horizontal(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 627310096695208, this, []); }
+  set horizontal(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 766393998637809, this, [value]); }
   /**
    * var vertical: Int
    * @availability iOS 26.0+
    */
-  get vertical(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2783001448304354, this, []); }
-  set vertical(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3997622857180717, this, [value]); }
+  get vertical(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2783001448304354, this, []); }
+  set vertical(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3997622857180717, this, [value]); }
   declare readonly $type: { "s:9CoreVideo24CVPixelFormatDescriptionV10DimensionsV": true };
 }
 
@@ -1711,44 +1711,44 @@ export class CVPixelFormatDescription_PixelLayout extends SDKHandle {
    * var blackBlock: Data?
    * @availability iOS 26.0+
    */
-  get blackBlock(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreVideo_a956b86ef7a76a8e", 64134464415468, this, []); }
-  set blackBlock(value: (ArrayBuffer) | null) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 674718854665353, this, [value]); }
+  get blackBlock(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreVideo_90ad0eb69cc6bf4a", 64134464415468, this, []); }
+  set blackBlock(value: (ArrayBuffer) | null) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 674718854665353, this, [value]); }
   /**
    * var subsampling: CVPixelFormatDescription.Dimensions
    * @availability iOS 26.0+
    */
-  get subsampling(): CVPixelFormatDescription_Dimensions { return callSDK<CVPixelFormatDescription_Dimensions>("CoreVideo_a956b86ef7a76a8e", 1292441071439436, this, []); }
-  set subsampling(value: CVPixelFormatDescription_Dimensions) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3624476365406339, this, [value]); }
+  get subsampling(): CVPixelFormatDescription_Dimensions { return callSDK<CVPixelFormatDescription_Dimensions>("CoreVideo_90ad0eb69cc6bf4a", 1292441071439436, this, []); }
+  set subsampling(value: CVPixelFormatDescription_Dimensions) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3624476365406339, this, [value]); }
   /**
    * var bitsPerBlock: Int
    * @availability iOS 26.0+
    */
-  get bitsPerBlock(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3209717431305, this, []); }
-  set bitsPerBlock(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1162043271101239, this, [value]); }
+  get bitsPerBlock(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3209717431305, this, []); }
+  set bitsPerBlock(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1162043271101239, this, [value]); }
   /**
    * var cgBitmapInfo: CGBitmapInfo?
    * @availability iOS 26.0+
    */
-  get cgBitmapInfo(): $SDK30 { return callSDK<$SDK30>("CoreVideo_a956b86ef7a76a8e", 320839275753124, this, []); }
-  set cgBitmapInfo(value: $SDK30) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3846570340619099, this, [value]); }
+  get cgBitmapInfo(): $SDK30 { return callSDK<$SDK30>("CoreVideo_90ad0eb69cc6bf4a", 320839275753124, this, []); }
+  set cgBitmapInfo(value: $SDK30) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3846570340619099, this, [value]); }
   /**
    * var blockAlignment: CVPixelFormatDescription.Dimensions
    * @availability iOS 26.0+
    */
-  get blockAlignment(): CVPixelFormatDescription_Dimensions { return callSDK<CVPixelFormatDescription_Dimensions>("CoreVideo_a956b86ef7a76a8e", 4419541862047549, this, []); }
-  set blockAlignment(value: CVPixelFormatDescription_Dimensions) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3631146286798771, this, [value]); }
+  get blockAlignment(): CVPixelFormatDescription_Dimensions { return callSDK<CVPixelFormatDescription_Dimensions>("CoreVideo_90ad0eb69cc6bf4a", 4419541862047549, this, []); }
+  set blockAlignment(value: CVPixelFormatDescription_Dimensions) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3631146286798771, this, [value]); }
   /**
    * var bitsPerComponent: Int?
    * @availability iOS 26.0+
    */
-  get bitsPerComponent(): (number) | null { return callSDK<(number) | null>("CoreVideo_a956b86ef7a76a8e", 3035925843142776, this, []); }
-  set bitsPerComponent(value: (number) | null) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2810002210293534, this, [value]); }
+  get bitsPerComponent(): (number) | null { return callSDK<(number) | null>("CoreVideo_90ad0eb69cc6bf4a", 3035925843142776, this, []); }
+  set bitsPerComponent(value: (number) | null) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2810002210293534, this, [value]); }
   /**
    * var blockSize: CVImageSize
    * @availability iOS 26.0+
    */
-  get blockSize(): CVImageSize { return callSDK<CVImageSize>("CoreVideo_a956b86ef7a76a8e", 1753210450074529, this, []); }
-  set blockSize(value: CVImageSize) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2725489130292786, this, [value]); }
+  get blockSize(): CVImageSize { return callSDK<CVImageSize>("CoreVideo_90ad0eb69cc6bf4a", 1753210450074529, this, []); }
+  set blockSize(value: CVImageSize) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2725489130292786, this, [value]); }
   declare readonly $type: { "s:9CoreVideo24CVPixelFormatDescriptionV11PixelLayoutV": true };
 }
 
@@ -1769,22 +1769,22 @@ export class CVPixelFormatDescription_Registry extends SDKHandle {
    * final var formatDescriptions: [CVPixelFormatDescription] { get }
    * @availability iOS 26.0+
    */
-  get formatDescriptions(): Array<CVPixelFormatDescription> { return callSDK<Array<CVPixelFormatDescription>>("CoreVideo_a956b86ef7a76a8e", 1461476390439751, this, []); }
+  get formatDescriptions(): Array<CVPixelFormatDescription> { return callSDK<Array<CVPixelFormatDescription>>("CoreVideo_90ad0eb69cc6bf4a", 1461476390439751, this, []); }
   /**
    * static let shared: CVPixelFormatDescription.Registry
    * @availability iOS 26.0+
    */
-  static get shared(): CVPixelFormatDescription_Registry { return callSDK<CVPixelFormatDescription_Registry>("CoreVideo_a956b86ef7a76a8e", 3648511724559267, undefined, []); }
+  static get shared(): CVPixelFormatDescription_Registry { return callSDK<CVPixelFormatDescription_Registry>("CoreVideo_90ad0eb69cc6bf4a", 3648511724559267, undefined, []); }
   /**
    * final func register(_ formatDescription: CVPixelFormatDescription)
    * @availability iOS 26.0+
    */
-  register(formatDescription: CVPixelFormatDescription): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1618045314359244, this, [formatDescription]); }
+  register(formatDescription: CVPixelFormatDescription): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1618045314359244, this, [formatDescription]); }
   /**
    * final subscript(pixelFormatType: CVPixelFormatType) -> CVPixelFormatDescription? { get }
    * @availability iOS 26.0+
    */
-  subscript(pixelFormatType: CVPixelFormatType): $SDK9 { return callSDK<$SDK9>("CoreVideo_a956b86ef7a76a8e", 1508738042804327, this, [pixelFormatType]); }
+  subscript(pixelFormatType: CVPixelFormatType): $SDK9 { return callSDK<$SDK9>("CoreVideo_90ad0eb69cc6bf4a", 1508738042804327, this, [pixelFormatType]); }
   declare readonly $type: { "s:9CoreVideo24CVPixelFormatDescriptionV8RegistryC": true };
 }
 
@@ -1799,18 +1799,18 @@ export const CVPixelFormatType = {
    * var isCompressionAvailable: Bool { get }
    * @availability iOS 26.0+
    */
-  getIsCompressionAvailable($self: CVPixelFormatType): boolean { return callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 3687671542249079, $self, []); },
+  getIsCompressionAvailable($self: CVPixelFormatType): boolean { return callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 3687671542249079, $self, []); },
   /**
    * init(rawValue: OSType)
    * @availability iOS 26.0+
    */
-  init(rawValue: SDKHandle): CVPixelFormatType { return callSDK<CVPixelFormatType>("CoreVideo_a956b86ef7a76a8e", 2667923306425401, undefined, [rawValue]); },
+  init(rawValue: SDKHandle): CVPixelFormatType { return callSDK<CVPixelFormatType>("CoreVideo_90ad0eb69cc6bf4a", 2667923306425401, undefined, [rawValue]); },
   /**
    * var rawValue: OSType
    * @availability iOS 26.0+
    */
-  getRawValue($self: CVPixelFormatType): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2019174131108680, $self, []); },
-  setRawValue($self: CVPixelFormatType, value: SDKHandle): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2542610396462778, $self, [value]); }
+  getRawValue($self: CVPixelFormatType): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2019174131108680, $self, []); },
+  setRawValue($self: CVPixelFormatType, value: SDKHandle): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2542610396462778, $self, [value]); }
 };
 
 /**
@@ -1822,60 +1822,60 @@ export type CVPixelFormatType_RawValue = SDKHandle;
 /** struct CVPlanarComponentInfo */
 export class CVPlanarComponentInfo extends SDKHandle {
   /** var offset: Int32 */
-  get offset(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1004210500563811, this, []); }
-  set offset(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3557842811214626, this, [value]); }
+  get offset(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1004210500563811, this, []); }
+  set offset(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3557842811214626, this, [value]); }
   /** var rowBytes: UInt32 */
-  get rowBytes(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 993615168447774, this, []); }
-  set rowBytes(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4308916608759762, this, [value]); }
+  get rowBytes(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 993615168447774, this, []); }
+  set rowBytes(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4308916608759762, this, [value]); }
   /** init(offset: Int32, rowBytes: UInt32) */
-  static initOffsetRowBytes(offset: number, rowBytes: number): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_a956b86ef7a76a8e", 3692960795707403, undefined, [offset, rowBytes]); }
+  static initOffsetRowBytes(offset: number, rowBytes: number): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_90ad0eb69cc6bf4a", 3692960795707403, undefined, [offset, rowBytes]); }
   /** init() */
-  static init(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_a956b86ef7a76a8e", 116037496665869, undefined, []); }
+  static init(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_90ad0eb69cc6bf4a", 116037496665869, undefined, []); }
   declare readonly $type: { "c:@S@CVPlanarComponentInfo": true };
 }
 
 /** struct CVPlanarPixelBufferInfo */
 export class CVPlanarPixelBufferInfo extends SDKHandle {
   /** var componentInfo: CVPlanarComponentInfo */
-  get componentInfo(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_a956b86ef7a76a8e", 3258555453012733, this, []); }
-  set componentInfo(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2415985791871815, this, [value]); }
+  get componentInfo(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_90ad0eb69cc6bf4a", 3258555453012733, this, []); }
+  set componentInfo(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2415985791871815, this, [value]); }
   /** init(componentInfo: CVPlanarComponentInfo) */
-  static initComponentInfo(componentInfo: CVPlanarComponentInfo): CVPlanarPixelBufferInfo { return callSDK<CVPlanarPixelBufferInfo>("CoreVideo_a956b86ef7a76a8e", 2002793576279441, undefined, [componentInfo]); }
+  static initComponentInfo(componentInfo: CVPlanarComponentInfo): CVPlanarPixelBufferInfo { return callSDK<CVPlanarPixelBufferInfo>("CoreVideo_90ad0eb69cc6bf4a", 2002793576279441, undefined, [componentInfo]); }
   /** init() */
-  static init(): CVPlanarPixelBufferInfo { return callSDK<CVPlanarPixelBufferInfo>("CoreVideo_a956b86ef7a76a8e", 3012309651876832, undefined, []); }
+  static init(): CVPlanarPixelBufferInfo { return callSDK<CVPlanarPixelBufferInfo>("CoreVideo_90ad0eb69cc6bf4a", 3012309651876832, undefined, []); }
   declare readonly $type: { "c:@S@CVPlanarPixelBufferInfo": true };
 }
 
 /** struct CVPlanarPixelBufferInfo_YCbCrBiPlanar */
 export class CVPlanarPixelBufferInfo_YCbCrBiPlanar extends SDKHandle {
   /** var componentInfoCbCr: CVPlanarComponentInfo */
-  get componentInfoCbCr(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_a956b86ef7a76a8e", 3330574430173947, this, []); }
-  set componentInfoCbCr(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 252137192326638, this, [value]); }
+  get componentInfoCbCr(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_90ad0eb69cc6bf4a", 3330574430173947, this, []); }
+  set componentInfoCbCr(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 252137192326638, this, [value]); }
   /** var componentInfoY: CVPlanarComponentInfo */
-  get componentInfoY(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_a956b86ef7a76a8e", 2098158211398675, this, []); }
-  set componentInfoY(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4039101522545794, this, [value]); }
+  get componentInfoY(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_90ad0eb69cc6bf4a", 2098158211398675, this, []); }
+  set componentInfoY(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4039101522545794, this, [value]); }
   /** init(componentInfoY: CVPlanarComponentInfo, componentInfoCbCr: CVPlanarComponentInfo) */
-  static initComponentInfoYComponentInfoCbCr(componentInfoY: CVPlanarComponentInfo, componentInfoCbCr: CVPlanarComponentInfo): CVPlanarPixelBufferInfo_YCbCrBiPlanar { return callSDK<CVPlanarPixelBufferInfo_YCbCrBiPlanar>("CoreVideo_a956b86ef7a76a8e", 3111951024854145, undefined, [componentInfoY, componentInfoCbCr]); }
+  static initComponentInfoYComponentInfoCbCr(componentInfoY: CVPlanarComponentInfo, componentInfoCbCr: CVPlanarComponentInfo): CVPlanarPixelBufferInfo_YCbCrBiPlanar { return callSDK<CVPlanarPixelBufferInfo_YCbCrBiPlanar>("CoreVideo_90ad0eb69cc6bf4a", 3111951024854145, undefined, [componentInfoY, componentInfoCbCr]); }
   /** init() */
-  static init(): CVPlanarPixelBufferInfo_YCbCrBiPlanar { return callSDK<CVPlanarPixelBufferInfo_YCbCrBiPlanar>("CoreVideo_a956b86ef7a76a8e", 44271649650793, undefined, []); }
+  static init(): CVPlanarPixelBufferInfo_YCbCrBiPlanar { return callSDK<CVPlanarPixelBufferInfo_YCbCrBiPlanar>("CoreVideo_90ad0eb69cc6bf4a", 44271649650793, undefined, []); }
   declare readonly $type: { "c:@S@CVPlanarPixelBufferInfo_YCbCrBiPlanar": true };
 }
 
 /** struct CVPlanarPixelBufferInfo_YCbCrPlanar */
 export class CVPlanarPixelBufferInfo_YCbCrPlanar extends SDKHandle {
   /** var componentInfoCb: CVPlanarComponentInfo */
-  get componentInfoCb(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_a956b86ef7a76a8e", 3654067329110446, this, []); }
-  set componentInfoCb(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4379952308600444, this, [value]); }
+  get componentInfoCb(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_90ad0eb69cc6bf4a", 3654067329110446, this, []); }
+  set componentInfoCb(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4379952308600444, this, [value]); }
   /** var componentInfoCr: CVPlanarComponentInfo */
-  get componentInfoCr(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_a956b86ef7a76a8e", 2629017109472860, this, []); }
-  set componentInfoCr(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2093100306450513, this, [value]); }
+  get componentInfoCr(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_90ad0eb69cc6bf4a", 2629017109472860, this, []); }
+  set componentInfoCr(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2093100306450513, this, [value]); }
   /** var componentInfoY: CVPlanarComponentInfo */
-  get componentInfoY(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_a956b86ef7a76a8e", 1564374267295318, this, []); }
-  set componentInfoY(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 597467003183212, this, [value]); }
+  get componentInfoY(): CVPlanarComponentInfo { return callSDK<CVPlanarComponentInfo>("CoreVideo_90ad0eb69cc6bf4a", 1564374267295318, this, []); }
+  set componentInfoY(value: CVPlanarComponentInfo) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 597467003183212, this, [value]); }
   /** init(componentInfoY: CVPlanarComponentInfo, componentInfoCb: CVPlanarComponentInfo, componentInfoCr: CVPlanarComponentInfo) */
-  static initComponentInfoYComponentInfoCbComponentInfoCr(componentInfoY: CVPlanarComponentInfo, componentInfoCb: CVPlanarComponentInfo, componentInfoCr: CVPlanarComponentInfo): CVPlanarPixelBufferInfo_YCbCrPlanar { return callSDK<CVPlanarPixelBufferInfo_YCbCrPlanar>("CoreVideo_a956b86ef7a76a8e", 2888113313083336, undefined, [componentInfoY, componentInfoCb, componentInfoCr]); }
+  static initComponentInfoYComponentInfoCbComponentInfoCr(componentInfoY: CVPlanarComponentInfo, componentInfoCb: CVPlanarComponentInfo, componentInfoCr: CVPlanarComponentInfo): CVPlanarPixelBufferInfo_YCbCrPlanar { return callSDK<CVPlanarPixelBufferInfo_YCbCrPlanar>("CoreVideo_90ad0eb69cc6bf4a", 2888113313083336, undefined, [componentInfoY, componentInfoCb, componentInfoCr]); }
   /** init() */
-  static init(): CVPlanarPixelBufferInfo_YCbCrPlanar { return callSDK<CVPlanarPixelBufferInfo_YCbCrPlanar>("CoreVideo_a956b86ef7a76a8e", 4465082075139203, undefined, []); }
+  static init(): CVPlanarPixelBufferInfo_YCbCrPlanar { return callSDK<CVPlanarPixelBufferInfo_YCbCrPlanar>("CoreVideo_90ad0eb69cc6bf4a", 4465082075139203, undefined, []); }
   declare readonly $type: { "c:@S@CVPlanarPixelBufferInfo_YCbCrPlanar": true };
 }
 
@@ -1888,77 +1888,77 @@ export class CVProResRawMetadata extends SDKHandle {
    * static func makeFromRawAttachmentValue(_ repr: CVAttachmentRawValue) -> CVProResRawMetadata?
    * @availability iOS 27.0+
    */
-  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVProResRawMetadata) | null { return callSDK<(CVProResRawMetadata) | null>("CoreVideo_a956b86ef7a76a8e", 2378328217489833, undefined, [repr]); }
+  static makeFromRawAttachmentValue(repr: CVAttachmentRawValue): (CVProResRawMetadata) | null { return callSDK<(CVProResRawMetadata) | null>("CoreVideo_90ad0eb69cc6bf4a", 2378328217489833, undefined, [repr]); }
   /**
    * var blackLevel: Int32
    * @availability iOS 27.0+
    */
-  get blackLevel(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2925761392214121, this, []); }
-  set blackLevel(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2039365563701423, this, [value]); }
+  get blackLevel(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2925761392214121, this, []); }
+  set blackLevel(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2039365563701423, this, [value]); }
   /**
    * var extensions: Data?
    * @availability iOS 27.0+
    */
-  get extensions(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreVideo_a956b86ef7a76a8e", 3669840140653786, this, []); }
-  set extensions(value: (ArrayBuffer) | null) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2830635340435662, this, [value]); }
+  get extensions(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreVideo_90ad0eb69cc6bf4a", 3669840140653786, this, []); }
+  set extensions(value: (ArrayBuffer) | null) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2830635340435662, this, [value]); }
   /**
    * var gainFactor: Float32
    * @availability iOS 27.0+
    */
-  get gainFactor(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 415992395782102, this, []); }
-  set gainFactor(value: SDKHandle) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2882817358307771, this, [value]); }
+  get gainFactor(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 415992395782102, this, []); }
+  set gainFactor(value: SDKHandle) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2882817358307771, this, [value]); }
   /**
    * var whiteLevel: Int32
    * @availability iOS 27.0+
    */
-  get whiteLevel(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 486378566214808, this, []); }
-  set whiteLevel(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3503812379604591, this, [value]); }
+  get whiteLevel(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 486378566214808, this, []); }
+  set whiteLevel(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3503812379604591, this, [value]); }
   /**
    * var colorMatrix: InlineArray<9, Float32>
    * @availability iOS 27.0+
    */
-  get colorMatrix(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3526722335508947, this, []); }
-  set colorMatrix(value: SDKHandle) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 257351118003696, this, [value]); }
+  get colorMatrix(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3526722335508947, this, []); }
+  set colorMatrix(value: SDKHandle) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 257351118003696, this, [value]); }
   /**
    * var recommendedCrop: CVProResRawMetadata.RecommendedCrop
    * @availability iOS 27.0+
    */
-  get recommendedCrop(): CVProResRawMetadata_RecommendedCrop { return callSDK<CVProResRawMetadata_RecommendedCrop>("CoreVideo_a956b86ef7a76a8e", 3024047092316695, this, []); }
-  set recommendedCrop(value: CVProResRawMetadata_RecommendedCrop) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3988960975542757, this, [value]); }
+  get recommendedCrop(): CVProResRawMetadata_RecommendedCrop { return callSDK<CVProResRawMetadata_RecommendedCrop>("CoreVideo_90ad0eb69cc6bf4a", 3024047092316695, this, []); }
+  set recommendedCrop(value: CVProResRawMetadata_RecommendedCrop) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3988960975542757, this, [value]); }
   /**
    * var whiteBalanceCCT: Float32?
    * @availability iOS 27.0+
    */
-  get whiteBalanceCCT(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_a956b86ef7a76a8e", 2323551087733190, this, []); }
-  set whiteBalanceCCT(value: (SDKHandle) | null) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 684717643826761, this, [value]); }
+  get whiteBalanceCCT(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_90ad0eb69cc6bf4a", 2323551087733190, this, []); }
+  set whiteBalanceCCT(value: (SDKHandle) | null) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 684717643826761, this, [value]); }
   /**
    * init(senselSitingOffsets: CVSenselSitingOffsets = .zero, blackLevel: Int32, whiteLevel: Int32, whiteBalanceCCT: Float32? = nil, whiteBalanceRedFactor: Float32, whiteBalanceBlueFactor: Float32, colorMatrix: InlineArray<9, Float32>, gainFactor: Float32, recommendedCrop: CVProResRawMetadata.RecommendedCrop = .zero, extensions: Data? = nil)
    * @availability iOS 27.0+
    */
-  static init(senselSitingOffsets: CVSenselSitingOffsets, blackLevel: number, whiteLevel: number, whiteBalanceCCT: (SDKHandle) | null, whiteBalanceRedFactor: SDKHandle, whiteBalanceBlueFactor: SDKHandle, colorMatrix: SDKHandle, gainFactor: SDKHandle, recommendedCrop?: CVProResRawMetadata_RecommendedCrop, extensions?: (ArrayBuffer) | null): CVProResRawMetadata { return callSDK<CVProResRawMetadata>("CoreVideo_a956b86ef7a76a8e", 1863247656109839, undefined, [senselSitingOffsets, blackLevel, whiteLevel, whiteBalanceCCT, whiteBalanceRedFactor, whiteBalanceBlueFactor, colorMatrix, gainFactor, recommendedCrop, extensions]); }
+  static init(senselSitingOffsets: CVSenselSitingOffsets, blackLevel: number, whiteLevel: number, whiteBalanceCCT: (SDKHandle) | null, whiteBalanceRedFactor: SDKHandle, whiteBalanceBlueFactor: SDKHandle, colorMatrix: SDKHandle, gainFactor: SDKHandle, recommendedCrop?: CVProResRawMetadata_RecommendedCrop, extensions?: (ArrayBuffer) | null): CVProResRawMetadata { return callSDK<CVProResRawMetadata>("CoreVideo_90ad0eb69cc6bf4a", 1863247656109839, undefined, [senselSitingOffsets, blackLevel, whiteLevel, whiteBalanceCCT, whiteBalanceRedFactor, whiteBalanceBlueFactor, colorMatrix, gainFactor, recommendedCrop, extensions]); }
   /**
    * var senselSitingOffsets: CVSenselSitingOffsets
    * @availability iOS 27.0+
    */
-  get senselSitingOffsets(): CVSenselSitingOffsets { return callSDK<CVSenselSitingOffsets>("CoreVideo_a956b86ef7a76a8e", 1436743694592633, this, []); }
-  set senselSitingOffsets(value: CVSenselSitingOffsets) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4001566508822052, this, [value]); }
+  get senselSitingOffsets(): CVSenselSitingOffsets { return callSDK<CVSenselSitingOffsets>("CoreVideo_90ad0eb69cc6bf4a", 1436743694592633, this, []); }
+  set senselSitingOffsets(value: CVSenselSitingOffsets) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4001566508822052, this, [value]); }
   /**
    * var whiteBalanceRedFactor: Float32
    * @availability iOS 27.0+
    */
-  get whiteBalanceRedFactor(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1087779869755234, this, []); }
-  set whiteBalanceRedFactor(value: SDKHandle) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4134559600434487, this, [value]); }
+  get whiteBalanceRedFactor(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1087779869755234, this, []); }
+  set whiteBalanceRedFactor(value: SDKHandle) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4134559600434487, this, [value]); }
   /**
    * var whiteBalanceBlueFactor: Float32
    * @availability iOS 27.0+
    */
-  get whiteBalanceBlueFactor(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 4093309668543633, this, []); }
-  set whiteBalanceBlueFactor(value: SDKHandle) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 943855463578536, this, [value]); }
+  get whiteBalanceBlueFactor(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 4093309668543633, this, []); }
+  set whiteBalanceBlueFactor(value: SDKHandle) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 943855463578536, this, [value]); }
   /**
    * var rawAttachmentValueRepresentation: CVAttachmentRawValue { get }
    * @availability iOS 27.0+
    */
-  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_a956b86ef7a76a8e", 4482577954974622, this, []); }
+  get rawAttachmentValueRepresentation(): CVAttachmentRawValue { return callSDK<CVAttachmentRawValue>("CoreVideo_90ad0eb69cc6bf4a", 4482577954974622, this, []); }
   declare readonly $type: { "s:9CoreVideo19CVProResRawMetadataV": true };
 }
 
@@ -1973,46 +1973,46 @@ export const CVProResRawMetadata_RecommendedCrop = {
    * var rowsOfPixelsToDiscardAtTop: Float32
    * @availability iOS 27.0+
    */
-  getRowsOfPixelsToDiscardAtTop($self: CVProResRawMetadata_RecommendedCrop): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 792131010505506, $self, []); },
-  setRowsOfPixelsToDiscardAtTop($self: CVProResRawMetadata_RecommendedCrop, value: SDKHandle): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1935858673871070, $self, [value]); },
+  getRowsOfPixelsToDiscardAtTop($self: CVProResRawMetadata_RecommendedCrop): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 792131010505506, $self, []); },
+  setRowsOfPixelsToDiscardAtTop($self: CVProResRawMetadata_RecommendedCrop, value: SDKHandle): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1935858673871070, $self, [value]); },
   /**
    * var pixelsToDiscardAtEndOfEachRow: Float32
    * @availability iOS 27.0+
    */
-  getPixelsToDiscardAtEndOfEachRow($self: CVProResRawMetadata_RecommendedCrop): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3132513547016319, $self, []); },
-  setPixelsToDiscardAtEndOfEachRow($self: CVProResRawMetadata_RecommendedCrop, value: SDKHandle): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3518192727880345, $self, [value]); },
+  getPixelsToDiscardAtEndOfEachRow($self: CVProResRawMetadata_RecommendedCrop): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3132513547016319, $self, []); },
+  setPixelsToDiscardAtEndOfEachRow($self: CVProResRawMetadata_RecommendedCrop, value: SDKHandle): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3518192727880345, $self, [value]); },
   /**
    * var rowsOfPixelsToDiscardAtBottom: Float32
    * @availability iOS 27.0+
    */
-  getRowsOfPixelsToDiscardAtBottom($self: CVProResRawMetadata_RecommendedCrop): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 401323563010900, $self, []); },
-  setRowsOfPixelsToDiscardAtBottom($self: CVProResRawMetadata_RecommendedCrop, value: SDKHandle): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2404080038877639, $self, [value]); },
+  getRowsOfPixelsToDiscardAtBottom($self: CVProResRawMetadata_RecommendedCrop): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 401323563010900, $self, []); },
+  setRowsOfPixelsToDiscardAtBottom($self: CVProResRawMetadata_RecommendedCrop, value: SDKHandle): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2404080038877639, $self, [value]); },
   /**
    * init(pixelsToDiscardAtStartOfEachRow: Float32, pixelsToDiscardAtEndOfEachRow: Float32, rowsOfPixelsToDiscardAtTop: Float32, rowsOfPixelsToDiscardAtBottom: Float32)
    * @availability iOS 27.0+
    */
-  initPixelsToDiscardAtStartOfEachRowPixelsToDiscardAtEndOfEachRowRowsOfPixelsToDiscardAtTopRowsOfPixelsToDiscardAtBottom(pixelsToDiscardAtStartOfEachRow: SDKHandle, pixelsToDiscardAtEndOfEachRow: SDKHandle, rowsOfPixelsToDiscardAtTop: SDKHandle, rowsOfPixelsToDiscardAtBottom: SDKHandle): CVProResRawMetadata_RecommendedCrop { return callSDK<CVProResRawMetadata_RecommendedCrop>("CoreVideo_a956b86ef7a76a8e", 1967510443243205, undefined, [pixelsToDiscardAtStartOfEachRow, pixelsToDiscardAtEndOfEachRow, rowsOfPixelsToDiscardAtTop, rowsOfPixelsToDiscardAtBottom]); },
+  initPixelsToDiscardAtStartOfEachRowPixelsToDiscardAtEndOfEachRowRowsOfPixelsToDiscardAtTopRowsOfPixelsToDiscardAtBottom(pixelsToDiscardAtStartOfEachRow: SDKHandle, pixelsToDiscardAtEndOfEachRow: SDKHandle, rowsOfPixelsToDiscardAtTop: SDKHandle, rowsOfPixelsToDiscardAtBottom: SDKHandle): CVProResRawMetadata_RecommendedCrop { return callSDK<CVProResRawMetadata_RecommendedCrop>("CoreVideo_90ad0eb69cc6bf4a", 1967510443243205, undefined, [pixelsToDiscardAtStartOfEachRow, pixelsToDiscardAtEndOfEachRow, rowsOfPixelsToDiscardAtTop, rowsOfPixelsToDiscardAtBottom]); },
   /**
    * var pixelsToDiscardAtStartOfEachRow: Float32
    * @availability iOS 27.0+
    */
-  getPixelsToDiscardAtStartOfEachRow($self: CVProResRawMetadata_RecommendedCrop): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 4488148768957264, $self, []); },
-  setPixelsToDiscardAtStartOfEachRow($self: CVProResRawMetadata_RecommendedCrop, value: SDKHandle): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2615282685471669, $self, [value]); },
+  getPixelsToDiscardAtStartOfEachRow($self: CVProResRawMetadata_RecommendedCrop): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 4488148768957264, $self, []); },
+  setPixelsToDiscardAtStartOfEachRow($self: CVProResRawMetadata_RecommendedCrop, value: SDKHandle): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2615282685471669, $self, [value]); },
   /**
    * static let zero: CVProResRawMetadata.RecommendedCrop
    * @availability iOS 27.0+
    */
-  get zero(): CVProResRawMetadata_RecommendedCrop { return callSDK<CVProResRawMetadata_RecommendedCrop>("CoreVideo_a956b86ef7a76a8e", 2239633353076092, undefined, []); },
+  get zero(): CVProResRawMetadata_RecommendedCrop { return callSDK<CVProResRawMetadata_RecommendedCrop>("CoreVideo_90ad0eb69cc6bf4a", 2239633353076092, undefined, []); },
   /**
    * var rawValue: Data { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVProResRawMetadata_RecommendedCrop): ArrayBuffer { return callSDK<ArrayBuffer>("CoreVideo_a956b86ef7a76a8e", 2337715297024430, $self, []); },
+  getRawValue($self: CVProResRawMetadata_RecommendedCrop): ArrayBuffer { return callSDK<ArrayBuffer>("CoreVideo_90ad0eb69cc6bf4a", 2337715297024430, $self, []); },
   /**
    * init?(rawValue: Data)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: ArrayBuffer): (CVProResRawMetadata_RecommendedCrop) | null { return callSDK<(CVProResRawMetadata_RecommendedCrop) | null>("CoreVideo_a956b86ef7a76a8e", 75399373602234, undefined, [rawValue]); }
+  initRawValue(rawValue: ArrayBuffer): (CVProResRawMetadata_RecommendedCrop) | null { return callSDK<(CVProResRawMetadata_RecommendedCrop) | null>("CoreVideo_90ad0eb69cc6bf4a", 75399373602234, undefined, [rawValue]); }
 };
 
 /**
@@ -2030,17 +2030,17 @@ export class CVReadOnlyPixelBuffer extends SDKHandle {
    * final func withUnsafeBuffer<R>(_ body: (CVPixelBuffer) throws -> sending R) rethrows -> sending R where R : ~Copyable
    * @availability iOS 26.0+
    */
-  withUnsafeBuffer(body: ((arg0: CVBuffer) => unknown)): unknown { return callSDK<unknown>("CoreVideo_a956b86ef7a76a8e", 1848946411433937, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBuffer(body: ((arg0: CVBuffer) => unknown)): unknown { return callSDK<unknown>("CoreVideo_90ad0eb69cc6bf4a", 1848946411433937, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * final func withUnsafeBuffer<R>(_ body: (CVPixelBuffer) throws -> sending R) rethrows -> sending R
    * @availability iOS 26.0+
    */
-  withUnsafeBuffer39343(body: ((arg0: CVBuffer) => unknown)): unknown { return callSDK<unknown>("CoreVideo_a956b86ef7a76a8e", 2533916907231753, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBuffer39343(body: ((arg0: CVBuffer) => unknown)): unknown { return callSDK<unknown>("CoreVideo_90ad0eb69cc6bf4a", 2533916907231753, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * init(unsafeBuffer: sending CVPixelBuffer)
    * @availability iOS 26.0+
    */
-  static init(unsafeBuffer: CVBuffer): CVReadOnlyPixelBuffer { return callSDK<CVReadOnlyPixelBuffer>("CoreVideo_a956b86ef7a76a8e", 746920109671340, undefined, [unsafeBuffer]); }
+  static init(unsafeBuffer: CVBuffer): CVReadOnlyPixelBuffer { return callSDK<CVReadOnlyPixelBuffer>("CoreVideo_90ad0eb69cc6bf4a", 746920109671340, undefined, [unsafeBuffer]); }
   declare readonly $type: { "s:9CoreVideo21CVReadOnlyPixelBufferC": true };
 }
 
@@ -2070,12 +2070,12 @@ export const CVSenselArrayPattern = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (CVSenselArrayPattern) | null { return callSDK<(CVSenselArrayPattern) | null>("CoreVideo_a956b86ef7a76a8e", 2904725489282018, undefined, [rawValue]); },
+  init(rawValue: number): (CVSenselArrayPattern) | null { return callSDK<(CVSenselArrayPattern) | null>("CoreVideo_90ad0eb69cc6bf4a", 2904725489282018, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVSenselArrayPattern): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2722656131917509, $self, []); }
+  getRawValue($self: CVSenselArrayPattern): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2722656131917509, $self, []); }
 };
 
 /**
@@ -2095,46 +2095,46 @@ export const CVSenselSitingOffsets = {
    * init(red: CVSenselSitingOffsets.Offset, green: CVSenselSitingOffsets.Offset, blue: CVSenselSitingOffsets.Offset, alpha: CVSenselSitingOffsets.Offset)
    * @availability iOS 27.0+
    */
-  initRedGreenBlueAlpha(red: CVSenselSitingOffsets_Offset, green: CVSenselSitingOffsets_Offset, blue: CVSenselSitingOffsets_Offset, alpha: CVSenselSitingOffsets_Offset): CVSenselSitingOffsets { return callSDK<CVSenselSitingOffsets>("CoreVideo_a956b86ef7a76a8e", 3228021235030562, undefined, [red, green, blue, alpha]); },
+  initRedGreenBlueAlpha(red: CVSenselSitingOffsets_Offset, green: CVSenselSitingOffsets_Offset, blue: CVSenselSitingOffsets_Offset, alpha: CVSenselSitingOffsets_Offset): CVSenselSitingOffsets { return callSDK<CVSenselSitingOffsets>("CoreVideo_90ad0eb69cc6bf4a", 3228021235030562, undefined, [red, green, blue, alpha]); },
   /**
    * var red: CVSenselSitingOffsets.Offset
    * @availability iOS 27.0+
    */
-  getRed($self: CVSenselSitingOffsets): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_a956b86ef7a76a8e", 3367810236827407, $self, []); },
-  setRed($self: CVSenselSitingOffsets, value: CVSenselSitingOffsets_Offset): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2639950992025860, $self, [value]); },
+  getRed($self: CVSenselSitingOffsets): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_90ad0eb69cc6bf4a", 3367810236827407, $self, []); },
+  setRed($self: CVSenselSitingOffsets, value: CVSenselSitingOffsets_Offset): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2639950992025860, $self, [value]); },
   /**
    * var blue: CVSenselSitingOffsets.Offset
    * @availability iOS 27.0+
    */
-  getBlue($self: CVSenselSitingOffsets): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_a956b86ef7a76a8e", 4385800471003083, $self, []); },
-  setBlue($self: CVSenselSitingOffsets, value: CVSenselSitingOffsets_Offset): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 142059317937278, $self, [value]); },
+  getBlue($self: CVSenselSitingOffsets): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_90ad0eb69cc6bf4a", 4385800471003083, $self, []); },
+  setBlue($self: CVSenselSitingOffsets, value: CVSenselSitingOffsets_Offset): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 142059317937278, $self, [value]); },
   /**
    * static let zero: CVSenselSitingOffsets
    * @availability iOS 27.0+
    */
-  get zero(): CVSenselSitingOffsets { return callSDK<CVSenselSitingOffsets>("CoreVideo_a956b86ef7a76a8e", 3686539516441317, undefined, []); },
+  get zero(): CVSenselSitingOffsets { return callSDK<CVSenselSitingOffsets>("CoreVideo_90ad0eb69cc6bf4a", 3686539516441317, undefined, []); },
   /**
    * var alpha: CVSenselSitingOffsets.Offset
    * @availability iOS 27.0+
    */
-  getAlpha($self: CVSenselSitingOffsets): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_a956b86ef7a76a8e", 3273339431143661, $self, []); },
-  setAlpha($self: CVSenselSitingOffsets, value: CVSenselSitingOffsets_Offset): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1658283538218632, $self, [value]); },
+  getAlpha($self: CVSenselSitingOffsets): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_90ad0eb69cc6bf4a", 3273339431143661, $self, []); },
+  setAlpha($self: CVSenselSitingOffsets, value: CVSenselSitingOffsets_Offset): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1658283538218632, $self, [value]); },
   /**
    * var green: CVSenselSitingOffsets.Offset
    * @availability iOS 27.0+
    */
-  getGreen($self: CVSenselSitingOffsets): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_a956b86ef7a76a8e", 3628935765435679, $self, []); },
-  setGreen($self: CVSenselSitingOffsets, value: CVSenselSitingOffsets_Offset): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1919709803916441, $self, [value]); },
+  getGreen($self: CVSenselSitingOffsets): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_90ad0eb69cc6bf4a", 3628935765435679, $self, []); },
+  setGreen($self: CVSenselSitingOffsets, value: CVSenselSitingOffsets_Offset): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1919709803916441, $self, [value]); },
   /**
    * var rawValue: Data { get }
    * @availability iOS 27.0+
    */
-  getRawValue($self: CVSenselSitingOffsets): ArrayBuffer { return callSDK<ArrayBuffer>("CoreVideo_a956b86ef7a76a8e", 2514037641471861, $self, []); },
+  getRawValue($self: CVSenselSitingOffsets): ArrayBuffer { return callSDK<ArrayBuffer>("CoreVideo_90ad0eb69cc6bf4a", 2514037641471861, $self, []); },
   /**
    * init?(rawValue: Data)
    * @availability iOS 27.0+
    */
-  initRawValue(rawValue: ArrayBuffer): (CVSenselSitingOffsets) | null { return callSDK<(CVSenselSitingOffsets) | null>("CoreVideo_a956b86ef7a76a8e", 1953067615574133, undefined, [rawValue]); }
+  initRawValue(rawValue: ArrayBuffer): (CVSenselSitingOffsets) | null { return callSDK<(CVSenselSitingOffsets) | null>("CoreVideo_90ad0eb69cc6bf4a", 1953067615574133, undefined, [rawValue]); }
 };
 
 /**
@@ -2146,24 +2146,24 @@ export class CVSenselSitingOffsets_Offset extends SDKHandle {
    * init(horizontal: Float32, vertical: Float32)
    * @availability iOS 27.0+
    */
-  static init(horizontal: SDKHandle, vertical: SDKHandle): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_a956b86ef7a76a8e", 326802285340943, undefined, [horizontal, vertical]); }
+  static init(horizontal: SDKHandle, vertical: SDKHandle): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_90ad0eb69cc6bf4a", 326802285340943, undefined, [horizontal, vertical]); }
   /**
    * var horizontal: Float32
    * @availability iOS 27.0+
    */
-  get horizontal(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1818886322448493, this, []); }
-  set horizontal(value: SDKHandle) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3723527274358045, this, [value]); }
+  get horizontal(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1818886322448493, this, []); }
+  set horizontal(value: SDKHandle) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3723527274358045, this, [value]); }
   /**
    * static let zero: CVSenselSitingOffsets.Offset
    * @availability iOS 27.0+
    */
-  static get zero(): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_a956b86ef7a76a8e", 1593763526394275, undefined, []); }
+  static get zero(): CVSenselSitingOffsets_Offset { return callSDK<CVSenselSitingOffsets_Offset>("CoreVideo_90ad0eb69cc6bf4a", 1593763526394275, undefined, []); }
   /**
    * var vertical: Float32
    * @availability iOS 27.0+
    */
-  get vertical(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 508752433068920, this, []); }
-  set vertical(value: SDKHandle) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1859364281396004, this, [value]); }
+  get vertical(): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 508752433068920, this, []); }
+  set vertical(value: SDKHandle) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1859364281396004, this, [value]); }
   declare readonly $type: { "s:9CoreVideo21CVSenselSitingOffsetsV6OffsetV": true };
 }
 
@@ -2176,56 +2176,56 @@ export type CVSenselSitingOffsets_RawValue = ArrayBuffer;
 /** struct CVSMPTETime */
 export class CVSMPTETime extends SDKHandle {
   /** var counter: UInt32 */
-  get counter(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3149523902075341, this, []); }
-  set counter(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1582261771383916, this, [value]); }
+  get counter(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3149523902075341, this, []); }
+  set counter(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1582261771383916, this, [value]); }
   /** var flags: UInt32 */
-  get flags(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1089932301714622, this, []); }
-  set flags(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1334021563255118, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1089932301714622, this, []); }
+  set flags(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1334021563255118, this, [value]); }
   /** var frames: Int16 */
-  get frames(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1993738667559987, this, []); }
-  set frames(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4239881588472682, this, [value]); }
+  get frames(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1993738667559987, this, []); }
+  set frames(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4239881588472682, this, [value]); }
   /** var hours: Int16 */
-  get hours(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3311767765219190, this, []); }
-  set hours(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1655238984956761, this, [value]); }
+  get hours(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3311767765219190, this, []); }
+  set hours(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1655238984956761, this, [value]); }
   /** var minutes: Int16 */
-  get minutes(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1028565935389357, this, []); }
-  set minutes(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1206068134943478, this, [value]); }
+  get minutes(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1028565935389357, this, []); }
+  set minutes(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1206068134943478, this, [value]); }
   /** var seconds: Int16 */
-  get seconds(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 51636443435851, this, []); }
-  set seconds(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2451239938987948, this, [value]); }
+  get seconds(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 51636443435851, this, []); }
+  set seconds(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2451239938987948, this, [value]); }
   /** var subframeDivisor: Int16 */
-  get subframeDivisor(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 176252861395551, this, []); }
-  set subframeDivisor(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3557454898873628, this, [value]); }
+  get subframeDivisor(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 176252861395551, this, []); }
+  set subframeDivisor(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3557454898873628, this, [value]); }
   /** var subframes: Int16 */
-  get subframes(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2625838949701526, this, []); }
-  set subframes(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3068073109420276, this, [value]); }
+  get subframes(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2625838949701526, this, []); }
+  set subframes(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3068073109420276, this, [value]); }
   /** var type: UInt32 */
-  get type(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4090471960599721, this, []); }
-  set type(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2850261847600704, this, [value]); }
+  get type(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4090471960599721, this, []); }
+  set type(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2850261847600704, this, [value]); }
   /**
    * @backDeployed(before: macOS 26.0, iOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   var flagOptions: CVSMPTETimeFlags { get set }
    * @availability iOS 4.0+
    */
-  get flagOptions(): CVSMPTETimeFlags { return callSDK<CVSMPTETimeFlags>("CoreVideo_a956b86ef7a76a8e", 202688414488613, this, []); }
-  set flagOptions(value: CVSMPTETimeFlags) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3622258547365019, this, [value]); }
+  get flagOptions(): CVSMPTETimeFlags { return callSDK<CVSMPTETimeFlags>("CoreVideo_90ad0eb69cc6bf4a", 202688414488613, this, []); }
+  set flagOptions(value: CVSMPTETimeFlags) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3622258547365019, this, [value]); }
   /**
    * @backDeployed(before: macOS 26.0, iOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   var typeOptions: CVSMPTETimeType { get set }
    * @availability iOS 4.0+
    */
-  get typeOptions(): CVSMPTETimeType { return callSDK<CVSMPTETimeType>("CoreVideo_a956b86ef7a76a8e", 1086897931897156, this, []); }
-  set typeOptions(value: CVSMPTETimeType) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2040954549835160, this, [value]); }
+  get typeOptions(): CVSMPTETimeType { return callSDK<CVSMPTETimeType>("CoreVideo_90ad0eb69cc6bf4a", 1086897931897156, this, []); }
+  set typeOptions(value: CVSMPTETimeType) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2040954549835160, this, [value]); }
   /**
    * @backDeployed(before: macOS 26.0, iOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   init(subframes: Int16, subframeDivisor: Int16, counter: UInt32, type: CVSMPTETimeType, flags: CVSMPTETimeFlags = .valid, hours: Int16, minutes: Int16, seconds: Int16, frames: Int16)
    * @availability iOS 4.0+
    */
-  static initSubframesSubframeDivisorCounterTypeFlagsHoursMinutesSecondsFrames(subframes: number, subframeDivisor: number, counter: number, type: CVSMPTETimeType, flags: CVSMPTETimeFlags, hours: number, minutes: number, seconds: number, frames: number): CVSMPTETime { return callSDK<CVSMPTETime>("CoreVideo_a956b86ef7a76a8e", 986567602472031, undefined, [subframes, subframeDivisor, counter, type, flags, hours, minutes, seconds, frames]); }
+  static initSubframesSubframeDivisorCounterTypeFlagsHoursMinutesSecondsFrames(subframes: number, subframeDivisor: number, counter: number, type: CVSMPTETimeType, flags: CVSMPTETimeFlags, hours: number, minutes: number, seconds: number, frames: number): CVSMPTETime { return callSDK<CVSMPTETime>("CoreVideo_90ad0eb69cc6bf4a", 986567602472031, undefined, [subframes, subframeDivisor, counter, type, flags, hours, minutes, seconds, frames]); }
   /** init(subframes: Int16, subframeDivisor: Int16, counter: UInt32, type: UInt32, flags: UInt32, hours: Int16, minutes: Int16, seconds: Int16, frames: Int16) */
-  static initSubframesSubframeDivisorCounterTypeFlagsHoursMinutesSecondsFrames38671(subframes: number, subframeDivisor: number, counter: number, type: number, flags: number, hours: number, minutes: number, seconds: number, frames: number): CVSMPTETime { return callSDK<CVSMPTETime>("CoreVideo_a956b86ef7a76a8e", 3826841729323776, undefined, [subframes, subframeDivisor, counter, type, flags, hours, minutes, seconds, frames]); }
+  static initSubframesSubframeDivisorCounterTypeFlagsHoursMinutesSecondsFrames38671(subframes: number, subframeDivisor: number, counter: number, type: number, flags: number, hours: number, minutes: number, seconds: number, frames: number): CVSMPTETime { return callSDK<CVSMPTETime>("CoreVideo_90ad0eb69cc6bf4a", 3826841729323776, undefined, [subframes, subframeDivisor, counter, type, flags, hours, minutes, seconds, frames]); }
   /** init() */
-  static init(): CVSMPTETime { return callSDK<CVSMPTETime>("CoreVideo_a956b86ef7a76a8e", 1676459321587420, undefined, []); }
+  static init(): CVSMPTETime { return callSDK<CVSMPTETime>("CoreVideo_90ad0eb69cc6bf4a", 1676459321587420, undefined, []); }
   declare readonly $type: { "c:@S@CVSMPTETime": true };
 }
 
@@ -2234,11 +2234,11 @@ export type CVSMPTETimeFlags = Array<"valid" | "running">;
 
 export const CVSMPTETimeFlags = {
   /** static var running: CVSMPTETimeFlags { get } */
-  get running(): CVSMPTETimeFlags { return callSDK<CVSMPTETimeFlags>("CoreVideo_a956b86ef7a76a8e", 1422572476383733, undefined, []); },
+  get running(): CVSMPTETimeFlags { return callSDK<CVSMPTETimeFlags>("CoreVideo_90ad0eb69cc6bf4a", 1422572476383733, undefined, []); },
   /** static var valid: CVSMPTETimeFlags { get } */
-  get valid(): CVSMPTETimeFlags { return callSDK<CVSMPTETimeFlags>("CoreVideo_a956b86ef7a76a8e", 2414050050811855, undefined, []); },
+  get valid(): CVSMPTETimeFlags { return callSDK<CVSMPTETimeFlags>("CoreVideo_90ad0eb69cc6bf4a", 2414050050811855, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): CVSMPTETimeFlags { return callSDK<CVSMPTETimeFlags>("CoreVideo_a956b86ef7a76a8e", 1939167310114293, undefined, [rawValue]); }
+  init(rawValue: number): CVSMPTETimeFlags { return callSDK<CVSMPTETimeFlags>("CoreVideo_90ad0eb69cc6bf4a", 1939167310114293, undefined, [rawValue]); }
 };
 
 /** enum CVSMPTETimeType */
@@ -2246,49 +2246,49 @@ export type CVSMPTETimeType = "type24" | "type25" | "type30Drop" | "type30" | "t
 
 export const CVSMPTETimeType = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CVSMPTETimeType) | null { return callSDK<(CVSMPTETimeType) | null>("CoreVideo_a956b86ef7a76a8e", 3173620636936984, undefined, [rawValue]); }
+  init(rawValue: number): (CVSMPTETimeType) | null { return callSDK<(CVSMPTETimeType) | null>("CoreVideo_90ad0eb69cc6bf4a", 3173620636936984, undefined, [rawValue]); }
 };
 
 /** struct CVTime */
 export class CVTime extends SDKHandle {
   /** var flags: Int32 */
-  get flags(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4476996448470215, this, []); }
-  set flags(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2396791026286823, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4476996448470215, this, []); }
+  set flags(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2396791026286823, this, [value]); }
   /** var timeScale: Int32 */
-  get timeScale(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1299992518069707, this, []); }
-  set timeScale(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2774855672889967, this, [value]); }
+  get timeScale(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1299992518069707, this, []); }
+  set timeScale(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2774855672889967, this, [value]); }
   /** var timeValue: Int64 */
-  get timeValue(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1846903398200755, this, []); }
-  set timeValue(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1875830203273112, this, [value]); }
+  get timeValue(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1846903398200755, this, []); }
+  set timeValue(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1875830203273112, this, [value]); }
   /**
    * @backDeployed(before: macOS 26.0, iOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   static var indefinite: CVTime { get }
    * @availability iOS 4.0+
    */
-  static get indefinite(): CVTime { return callSDK<CVTime>("CoreVideo_a956b86ef7a76a8e", 2239200457287420, undefined, []); }
+  static get indefinite(): CVTime { return callSDK<CVTime>("CoreVideo_90ad0eb69cc6bf4a", 2239200457287420, undefined, []); }
   /**
    * @backDeployed(before: macOS 26.0, iOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   var flagOptions: CVTimeFlags { get set }
    * @availability iOS 4.0+
    */
-  get flagOptions(): CVTimeFlags { return callSDK<CVTimeFlags>("CoreVideo_a956b86ef7a76a8e", 3387416227087805, this, []); }
-  set flagOptions(value: CVTimeFlags) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 233057887697624, this, [value]); }
+  get flagOptions(): CVTimeFlags { return callSDK<CVTimeFlags>("CoreVideo_90ad0eb69cc6bf4a", 3387416227087805, this, []); }
+  set flagOptions(value: CVTimeFlags) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 233057887697624, this, [value]); }
   /**
    * @backDeployed(before: macOS 26.0, iOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   static var zero: CVTime { get }
    * @availability iOS 4.0+
    */
-  static get zero(): CVTime { return callSDK<CVTime>("CoreVideo_a956b86ef7a76a8e", 381940965946014, undefined, []); }
+  static get zero(): CVTime { return callSDK<CVTime>("CoreVideo_90ad0eb69cc6bf4a", 381940965946014, undefined, []); }
   /**
    * @backDeployed(before: macOS 26.0, iOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   init(timeValue: Int64, timeScale: Int32)
    * @availability iOS 4.0+
    */
-  static initTimeValueTimeScale(timeValue: number, timeScale: number): CVTime { return callSDK<CVTime>("CoreVideo_a956b86ef7a76a8e", 1658788684427100, undefined, [timeValue, timeScale]); }
+  static initTimeValueTimeScale(timeValue: number, timeScale: number): CVTime { return callSDK<CVTime>("CoreVideo_90ad0eb69cc6bf4a", 1658788684427100, undefined, [timeValue, timeScale]); }
   /** init(timeValue: Int64, timeScale: Int32, flags: Int32) */
-  static initTimeValueTimeScaleFlags(timeValue: number, timeScale: number, flags: number): CVTime { return callSDK<CVTime>("CoreVideo_a956b86ef7a76a8e", 4345625941469973, undefined, [timeValue, timeScale, flags]); }
+  static initTimeValueTimeScaleFlags(timeValue: number, timeScale: number, flags: number): CVTime { return callSDK<CVTime>("CoreVideo_90ad0eb69cc6bf4a", 4345625941469973, undefined, [timeValue, timeScale, flags]); }
   /** init() */
-  static init(): CVTime { return callSDK<CVTime>("CoreVideo_a956b86ef7a76a8e", 1879637120185654, undefined, []); }
+  static init(): CVTime { return callSDK<CVTime>("CoreVideo_90ad0eb69cc6bf4a", 1879637120185654, undefined, []); }
   declare readonly $type: { "c:@SA@CVTime": true };
 }
 
@@ -2297,57 +2297,57 @@ export type CVTimeFlags = Array<"isIndefinite">;
 
 export const CVTimeFlags = {
   /** static var isIndefinite: CVTimeFlags { get } */
-  get isIndefinite(): CVTimeFlags { return callSDK<CVTimeFlags>("CoreVideo_a956b86ef7a76a8e", 2714970416933747, undefined, []); },
+  get isIndefinite(): CVTimeFlags { return callSDK<CVTimeFlags>("CoreVideo_90ad0eb69cc6bf4a", 2714970416933747, undefined, []); },
   /** init(rawValue: Int32) */
-  init(rawValue: number): CVTimeFlags { return callSDK<CVTimeFlags>("CoreVideo_a956b86ef7a76a8e", 1372980731278249, undefined, [rawValue]); }
+  init(rawValue: number): CVTimeFlags { return callSDK<CVTimeFlags>("CoreVideo_90ad0eb69cc6bf4a", 1372980731278249, undefined, [rawValue]); }
 };
 
 /** struct CVTimeStamp */
 export class CVTimeStamp extends SDKHandle {
   /** var flags: UInt64 */
-  get flags(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3585577478510055, this, []); }
-  set flags(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 647836856314136, this, [value]); }
+  get flags(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3585577478510055, this, []); }
+  set flags(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 647836856314136, this, [value]); }
   /** var hostTime: UInt64 */
-  get hostTime(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 681064470710311, this, []); }
-  set hostTime(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4500449364020076, this, [value]); }
+  get hostTime(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 681064470710311, this, []); }
+  set hostTime(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4500449364020076, this, [value]); }
   /** var rateScalar: Double */
-  get rateScalar(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 143195777728940, this, []); }
-  set rateScalar(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3879698620572237, this, [value]); }
+  get rateScalar(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 143195777728940, this, []); }
+  set rateScalar(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3879698620572237, this, [value]); }
   /** var reserved: UInt64 */
-  get reserved(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2030514750433980, this, []); }
-  set reserved(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3398954796668735, this, [value]); }
+  get reserved(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2030514750433980, this, []); }
+  set reserved(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3398954796668735, this, [value]); }
   /** var smpteTime: CVSMPTETime */
-  get smpteTime(): CVSMPTETime { return callSDK<CVSMPTETime>("CoreVideo_a956b86ef7a76a8e", 515358471068909, this, []); }
-  set smpteTime(value: CVSMPTETime) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1103809484731624, this, [value]); }
+  get smpteTime(): CVSMPTETime { return callSDK<CVSMPTETime>("CoreVideo_90ad0eb69cc6bf4a", 515358471068909, this, []); }
+  set smpteTime(value: CVSMPTETime) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1103809484731624, this, [value]); }
   /** var version: UInt32 */
-  get version(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3985946992330073, this, []); }
-  set version(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2538230033639218, this, [value]); }
+  get version(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3985946992330073, this, []); }
+  set version(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2538230033639218, this, [value]); }
   /** var videoRefreshPeriod: Int64 */
-  get videoRefreshPeriod(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1348208544977037, this, []); }
-  set videoRefreshPeriod(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2302909799456036, this, [value]); }
+  get videoRefreshPeriod(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1348208544977037, this, []); }
+  set videoRefreshPeriod(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2302909799456036, this, [value]); }
   /** var videoTime: Int64 */
-  get videoTime(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 920277350290139, this, []); }
-  set videoTime(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3578865424114064, this, [value]); }
+  get videoTime(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 920277350290139, this, []); }
+  set videoTime(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3578865424114064, this, [value]); }
   /** var videoTimeScale: Int32 */
-  get videoTimeScale(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 616836984765393, this, []); }
-  set videoTimeScale(value: number) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 462627272845812, this, [value]); }
+  get videoTimeScale(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 616836984765393, this, []); }
+  set videoTimeScale(value: number) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 462627272845812, this, [value]); }
   /** init(version: UInt32, videoTimeScale: Int32, videoTime: Int64, hostTime: UInt64, rateScalar: Double, videoRefreshPeriod: Int64, smpteTime: CVSMPTETime, flags: UInt64, reserved: UInt64) */
-  static initVersionVideoTimeScaleVideoTimeHostTimeRateScalarVideoRefreshPeriodSmpteTimeFlagsReserved(version: number, videoTimeScale: number, videoTime: number, hostTime: number, rateScalar: number, videoRefreshPeriod: number, smpteTime: CVSMPTETime, flags: number, reserved: number): CVTimeStamp { return callSDK<CVTimeStamp>("CoreVideo_a956b86ef7a76a8e", 1292230101689763, undefined, [version, videoTimeScale, videoTime, hostTime, rateScalar, videoRefreshPeriod, smpteTime, flags, reserved]); }
+  static initVersionVideoTimeScaleVideoTimeHostTimeRateScalarVideoRefreshPeriodSmpteTimeFlagsReserved(version: number, videoTimeScale: number, videoTime: number, hostTime: number, rateScalar: number, videoRefreshPeriod: number, smpteTime: CVSMPTETime, flags: number, reserved: number): CVTimeStamp { return callSDK<CVTimeStamp>("CoreVideo_90ad0eb69cc6bf4a", 1292230101689763, undefined, [version, videoTimeScale, videoTime, hostTime, rateScalar, videoRefreshPeriod, smpteTime, flags, reserved]); }
   /**
    * @backDeployed(before: macOS 26.0, iOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   var flagOptions: CVTimeStampFlags { get set }
    * @availability iOS 4.0+
    */
-  get flagOptions(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 1638409387359681, this, []); }
-  set flagOptions(value: CVTimeStampFlags) { callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1094297920995620, this, [value]); }
+  get flagOptions(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 1638409387359681, this, []); }
+  set flagOptions(value: CVTimeStampFlags) { callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1094297920995620, this, [value]); }
   /**
    * @backDeployed(before: macOS 26.0, iOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0)
   init(videoTime: CVTime? = nil, hostTime: UInt64? = nil, rateScaler: Double? = nil, videoRefreshPeriod: Int64? = nil, smpteTime: CVSMPTETime? = nil, topField: Bool = false, bottomField: Bool = false)
    * @availability iOS 4.0+
    */
-  static initVideoTimeHostTimeRateScalerVideoRefreshPeriodSmpteTimeTopFieldBottomField(videoTime?: (CVTime) | null, hostTime?: (number) | null, rateScaler?: (number) | null, videoRefreshPeriod?: (number) | null, smpteTime?: (CVSMPTETime) | null, topField?: boolean, bottomField?: boolean): CVTimeStamp { return callSDK<CVTimeStamp>("CoreVideo_a956b86ef7a76a8e", 3987128372148890, undefined, [videoTime, hostTime, rateScaler, videoRefreshPeriod, smpteTime, topField, bottomField]); }
+  static initVideoTimeHostTimeRateScalerVideoRefreshPeriodSmpteTimeTopFieldBottomField(videoTime?: (CVTime) | null, hostTime?: (number) | null, rateScaler?: (number) | null, videoRefreshPeriod?: (number) | null, smpteTime?: (CVSMPTETime) | null, topField?: boolean, bottomField?: boolean): CVTimeStamp { return callSDK<CVTimeStamp>("CoreVideo_90ad0eb69cc6bf4a", 3987128372148890, undefined, [videoTime, hostTime, rateScaler, videoRefreshPeriod, smpteTime, topField, bottomField]); }
   /** init() */
-  static init(): CVTimeStamp { return callSDK<CVTimeStamp>("CoreVideo_a956b86ef7a76a8e", 1647760048445071, undefined, []); }
+  static init(): CVTimeStamp { return callSDK<CVTimeStamp>("CoreVideo_90ad0eb69cc6bf4a", 1647760048445071, undefined, []); }
   declare readonly $type: { "c:@SA@CVTimeStamp": true };
 }
 
@@ -2356,1961 +2356,1961 @@ export type CVTimeStampFlags = Array<"videoTimeValid" | "hostTimeValid" | "smpte
 
 export const CVTimeStampFlags = {
   /** static var bottomField: CVTimeStampFlags { get } */
-  get bottomField(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 912923478819720, undefined, []); },
+  get bottomField(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 912923478819720, undefined, []); },
   /** static var hostTimeValid: CVTimeStampFlags { get } */
-  get hostTimeValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 3590768073250905, undefined, []); },
+  get hostTimeValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 3590768073250905, undefined, []); },
   /** static var isInterlaced: CVTimeStampFlags { get } */
-  get isInterlaced(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 1778151026515798, undefined, []); },
+  get isInterlaced(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 1778151026515798, undefined, []); },
   /** static var rateScalarValid: CVTimeStampFlags { get } */
-  get rateScalarValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 3401183665749771, undefined, []); },
+  get rateScalarValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 3401183665749771, undefined, []); },
   /** static var smpteTimeValid: CVTimeStampFlags { get } */
-  get smpteTimeValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 2768786992715898, undefined, []); },
+  get smpteTimeValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 2768786992715898, undefined, []); },
   /** static var topField: CVTimeStampFlags { get } */
-  get topField(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 164341849509529, undefined, []); },
+  get topField(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 164341849509529, undefined, []); },
   /** static var videoHostTimeValid: CVTimeStampFlags { get } */
-  get videoHostTimeValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 2142193082780776, undefined, []); },
+  get videoHostTimeValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 2142193082780776, undefined, []); },
   /** static var videoRefreshPeriodValid: CVTimeStampFlags { get } */
-  get videoRefreshPeriodValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 3615709724761840, undefined, []); },
+  get videoRefreshPeriodValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 3615709724761840, undefined, []); },
   /** static var videoTimeValid: CVTimeStampFlags { get } */
-  get videoTimeValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 4477366971473544, undefined, []); },
+  get videoTimeValid(): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 4477366971473544, undefined, []); },
   /** init(rawValue: UInt64) */
-  init(rawValue: number): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_a956b86ef7a76a8e", 2116092435406087, undefined, [rawValue]); }
+  init(rawValue: number): CVTimeStampFlags { return callSDK<CVTimeStampFlags>("CoreVideo_90ad0eb69cc6bf4a", 2116092435406087, undefined, [rawValue]); }
 };
 
 /**
  * func CVBufferCopyAttachment(_ buffer: CVBuffer, _ key: CFString, _ attachmentMode: UnsafeMutablePointer<CVAttachmentMode>?) -> CFTypeRef?
  * @availability iOS 15.0+
  */
-export function CVBufferCopyAttachment(buffer: CVBuffer, key: _CoreFoundation_CFString, attachmentMode?: (SDKHandle) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreVideo_a956b86ef7a76a8e", 2498861272428946, undefined, [buffer, key, attachmentMode]); }
+export function CVBufferCopyAttachment(buffer: CVBuffer, key: _CoreFoundation_CFString, attachmentMode?: (SDKHandle) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreVideo_90ad0eb69cc6bf4a", 2498861272428946, undefined, [buffer, key, attachmentMode]); }
 
 /**
  * func CVBufferCopyAttachments(_ buffer: CVBuffer, _ attachmentMode: CVAttachmentMode) -> CFDictionary?
  * @availability iOS 15.0+
  */
-export function CVBufferCopyAttachments(buffer: CVBuffer, attachmentMode: CVAttachmentMode): $SDK34 { return callSDK<$SDK34>("CoreVideo_a956b86ef7a76a8e", 4416031501594688, undefined, [buffer, attachmentMode]); }
+export function CVBufferCopyAttachments(buffer: CVBuffer, attachmentMode: CVAttachmentMode): $SDK34 { return callSDK<$SDK34>("CoreVideo_90ad0eb69cc6bf4a", 4416031501594688, undefined, [buffer, attachmentMode]); }
 
 /**
  * func CVBufferGetAttachment(_ buffer: CVBuffer, _ key: CFString, _ attachmentMode: UnsafeMutablePointer<CVAttachmentMode>?) -> Unmanaged<CFTypeRef>?
  * @availability iOS 4.0+
  * @deprecated iOS 15.0
  */
-export function CVBufferGetAttachment(buffer: CVBuffer, key: _CoreFoundation_CFString, attachmentMode?: (SDKHandle) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreVideo_a956b86ef7a76a8e", 1859881998107631, undefined, [buffer, key, attachmentMode]); }
+export function CVBufferGetAttachment(buffer: CVBuffer, key: _CoreFoundation_CFString, attachmentMode?: (SDKHandle) | null): (unknown) | null { return callSDK<(unknown) | null>("CoreVideo_90ad0eb69cc6bf4a", 1859881998107631, undefined, [buffer, key, attachmentMode]); }
 
 /**
  * func CVBufferGetAttachments(_ buffer: CVBuffer, _ attachmentMode: CVAttachmentMode) -> CFDictionary?
  * @availability iOS 4.0+
  * @deprecated iOS 15.0
  */
-export function CVBufferGetAttachments(buffer: CVBuffer, attachmentMode: CVAttachmentMode): $SDK34 { return callSDK<$SDK34>("CoreVideo_a956b86ef7a76a8e", 1335466647200406, undefined, [buffer, attachmentMode]); }
+export function CVBufferGetAttachments(buffer: CVBuffer, attachmentMode: CVAttachmentMode): $SDK34 { return callSDK<$SDK34>("CoreVideo_90ad0eb69cc6bf4a", 1335466647200406, undefined, [buffer, attachmentMode]); }
 
 /**
  * func CVBufferHasAttachment(_ buffer: CVBuffer, _ key: CFString) -> Bool
  * @availability iOS 15.0+
  */
-export function CVBufferHasAttachment(buffer: CVBuffer, key: _CoreFoundation_CFString): boolean { return callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 3890682782745982, undefined, [buffer, key]); }
+export function CVBufferHasAttachment(buffer: CVBuffer, key: _CoreFoundation_CFString): boolean { return callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 3890682782745982, undefined, [buffer, key]); }
 
 /**
  * func CVBufferPropagateAttachments(_ sourceBuffer: CVBuffer, _ destinationBuffer: CVBuffer)
  * @availability iOS 4.0+
  */
-export function CVBufferPropagateAttachments(sourceBuffer: CVBuffer, destinationBuffer: CVBuffer): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1654004215965900, undefined, [sourceBuffer, destinationBuffer]); }
+export function CVBufferPropagateAttachments(sourceBuffer: CVBuffer, destinationBuffer: CVBuffer): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1654004215965900, undefined, [sourceBuffer, destinationBuffer]); }
 
 /**
  * func CVBufferRemoveAllAttachments(_ buffer: CVBuffer)
  * @availability iOS 4.0+
  */
-export function CVBufferRemoveAllAttachments(buffer: CVBuffer): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1599757363810398, undefined, [buffer]); }
+export function CVBufferRemoveAllAttachments(buffer: CVBuffer): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1599757363810398, undefined, [buffer]); }
 
 /**
  * func CVBufferRemoveAttachment(_ buffer: CVBuffer, _ key: CFString)
  * @availability iOS 4.0+
  */
-export function CVBufferRemoveAttachment(buffer: CVBuffer, key: _CoreFoundation_CFString): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3919724037120144, undefined, [buffer, key]); }
+export function CVBufferRemoveAttachment(buffer: CVBuffer, key: _CoreFoundation_CFString): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3919724037120144, undefined, [buffer, key]); }
 
 /**
  * func CVBufferSetAttachment(_ buffer: CVBuffer, _ key: CFString, _ value: CFTypeRef, _ attachmentMode: CVAttachmentMode)
  * @availability iOS 4.0+
  */
-export function CVBufferSetAttachment(buffer: CVBuffer, key: _CoreFoundation_CFString, value: unknown, attachmentMode: CVAttachmentMode): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1597905949946827, undefined, [buffer, key, value, attachmentMode]); }
+export function CVBufferSetAttachment(buffer: CVBuffer, key: _CoreFoundation_CFString, value: unknown, attachmentMode: CVAttachmentMode): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1597905949946827, undefined, [buffer, key, value, attachmentMode]); }
 
 /**
  * func CVBufferSetAttachments(_ buffer: CVBuffer, _ theAttachments: CFDictionary, _ attachmentMode: CVAttachmentMode)
  * @availability iOS 4.0+
  */
-export function CVBufferSetAttachments(buffer: CVBuffer, theAttachments: _CoreFoundation_CFDictionary, attachmentMode: CVAttachmentMode): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1141300877878136, undefined, [buffer, theAttachments, attachmentMode]); }
+export function CVBufferSetAttachments(buffer: CVBuffer, theAttachments: _CoreFoundation_CFDictionary, attachmentMode: CVAttachmentMode): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1141300877878136, undefined, [buffer, theAttachments, attachmentMode]); }
 
 /**
  * func CVColorPrimariesGetIntegerCodePointForString(_ colorPrimariesString: CFString?) -> Int32
  * @availability iOS 11.0+
  */
-export function CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString?: $SDK35): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4357687822936287, undefined, [colorPrimariesString]); }
+export function CVColorPrimariesGetIntegerCodePointForString(colorPrimariesString?: $SDK35): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4357687822936287, undefined, [colorPrimariesString]); }
 
 /**
  * func CVColorPrimariesGetStringForIntegerCodePoint(_ colorPrimariesCodePoint: Int32) -> Unmanaged<CFString>?
  * @availability iOS 11.0+
  */
-export function CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint: number): $SDK35 { return callSDK<$SDK35>("CoreVideo_a956b86ef7a76a8e", 2133098853934641, undefined, [colorPrimariesCodePoint]); }
+export function CVColorPrimariesGetStringForIntegerCodePoint(colorPrimariesCodePoint: number): $SDK35 { return callSDK<$SDK35>("CoreVideo_90ad0eb69cc6bf4a", 2133098853934641, undefined, [colorPrimariesCodePoint]); }
 
 /**
  * func CVImageBufferCreateColorSpaceFromAttachments(_ attachments: CFDictionary) -> Unmanaged<CGColorSpace>?
  * @availability iOS 10.0+
  */
-export function CVImageBufferCreateColorSpaceFromAttachments(attachments: _CoreFoundation_CFDictionary): $SDK36 { return callSDK<$SDK36>("CoreVideo_a956b86ef7a76a8e", 878266710444237, undefined, [attachments]); }
+export function CVImageBufferCreateColorSpaceFromAttachments(attachments: _CoreFoundation_CFDictionary): $SDK36 { return callSDK<$SDK36>("CoreVideo_90ad0eb69cc6bf4a", 878266710444237, undefined, [attachments]); }
 
 /**
  * func CVImageBufferGetCleanRect(_ imageBuffer: CVImageBuffer) -> CGRect
  * @availability iOS 4.0+
  */
-export function CVImageBufferGetCleanRect(imageBuffer: CVBuffer): { x: number; y: number; width: number; height: number } { return callSDK<{ x: number; y: number; width: number; height: number }>("CoreVideo_a956b86ef7a76a8e", 726551217344472, undefined, [imageBuffer]); }
+export function CVImageBufferGetCleanRect(imageBuffer: CVBuffer): { x: number; y: number; width: number; height: number } { return callSDK<{ x: number; y: number; width: number; height: number }>("CoreVideo_90ad0eb69cc6bf4a", 726551217344472, undefined, [imageBuffer]); }
 
 /**
  * func CVImageBufferGetColorSpace(_ imageBuffer: CVImageBuffer) -> Unmanaged<CGColorSpace>?
  * @availability iOS 4.0+
  */
-export function CVImageBufferGetColorSpace(imageBuffer: CVBuffer): $SDK36 { return callSDK<$SDK36>("CoreVideo_a956b86ef7a76a8e", 2701254089475605, undefined, [imageBuffer]); }
+export function CVImageBufferGetColorSpace(imageBuffer: CVBuffer): $SDK36 { return callSDK<$SDK36>("CoreVideo_90ad0eb69cc6bf4a", 2701254089475605, undefined, [imageBuffer]); }
 
 /**
  * func CVImageBufferGetDisplaySize(_ imageBuffer: CVImageBuffer) -> CGSize
  * @availability iOS 4.0+
  */
-export function CVImageBufferGetDisplaySize(imageBuffer: CVBuffer): $SDK2 { return callSDK<$SDK2>("CoreVideo_a956b86ef7a76a8e", 2336818099946547, undefined, [imageBuffer]); }
+export function CVImageBufferGetDisplaySize(imageBuffer: CVBuffer): $SDK2 { return callSDK<$SDK2>("CoreVideo_90ad0eb69cc6bf4a", 2336818099946547, undefined, [imageBuffer]); }
 
 /**
  * func CVImageBufferGetEncodedSize(_ imageBuffer: CVImageBuffer) -> CGSize
  * @availability iOS 4.0+
  */
-export function CVImageBufferGetEncodedSize(imageBuffer: CVBuffer): $SDK2 { return callSDK<$SDK2>("CoreVideo_a956b86ef7a76a8e", 4171841330332245, undefined, [imageBuffer]); }
+export function CVImageBufferGetEncodedSize(imageBuffer: CVBuffer): $SDK2 { return callSDK<$SDK2>("CoreVideo_90ad0eb69cc6bf4a", 4171841330332245, undefined, [imageBuffer]); }
 
 /**
  * func CVImageBufferIsFlipped(_ imageBuffer: CVImageBuffer) -> Bool
  * @availability iOS 4.0+
  */
-export function CVImageBufferIsFlipped(imageBuffer: CVBuffer): boolean { return callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 2921957442144326, undefined, [imageBuffer]); }
+export function CVImageBufferIsFlipped(imageBuffer: CVBuffer): boolean { return callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 2921957442144326, undefined, [imageBuffer]); }
 
 /**
  * func CVIsCompressedPixelFormatAvailable(_ pixelFormatType: OSType) -> Bool
  * @availability iOS 15.0+
  */
-export function CVIsCompressedPixelFormatAvailable(pixelFormatType: SDKHandle): boolean { return callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 3163104771596277, undefined, [pixelFormatType]); }
+export function CVIsCompressedPixelFormatAvailable(pixelFormatType: SDKHandle): boolean { return callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 3163104771596277, undefined, [pixelFormatType]); }
 
 /**
  * func CVMetalBufferCacheCreate(_ allocator: CFAllocator?, _ cacheAttributes: CFDictionary?, _ metalDevice: any MTLDevice, _ cacheOut: UnsafeMutablePointer<CVMetalBufferCache?>) -> CVReturn
  * @availability iOS 18.0+
  */
-export function CVMetalBufferCacheCreate(allocator: $SDK39, cacheAttributes: $SDK34, metalDevice: SDKHandle): { $ret: number; $out: { "cacheOut": (CVMetalBufferCache) | null } } { return callSDK<{ $ret: number; $out: { "cacheOut": (CVMetalBufferCache) | null } }>("CoreVideo_a956b86ef7a76a8e", 1192084729756902, undefined, [allocator, cacheAttributes, metalDevice, null]); }
+export function CVMetalBufferCacheCreate(allocator: $SDK39, cacheAttributes: $SDK34, metalDevice: SDKHandle): { $ret: number; $out: { "cacheOut": (CVMetalBufferCache) | null } } { return callSDK<{ $ret: number; $out: { "cacheOut": (CVMetalBufferCache) | null } }>("CoreVideo_90ad0eb69cc6bf4a", 1192084729756902, undefined, [allocator, cacheAttributes, metalDevice, null]); }
 
 /**
  * func CVMetalBufferCacheCreateBufferFromImage(_ allocator: CFAllocator?, _ bufferCache: CVMetalBufferCache, _ imageBuffer: CVImageBuffer, _ bufferOut: UnsafeMutablePointer<CVMetalBuffer?>) -> CVReturn
  * @availability iOS 18.0+
  */
-export function CVMetalBufferCacheCreateBufferFromImage(allocator: $SDK39, bufferCache: CVMetalBufferCache, imageBuffer: CVBuffer): { $ret: number; $out: { "bufferOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "bufferOut": (CVBuffer) | null } }>("CoreVideo_a956b86ef7a76a8e", 4455100124941530, undefined, [allocator, bufferCache, imageBuffer, null]); }
+export function CVMetalBufferCacheCreateBufferFromImage(allocator: $SDK39, bufferCache: CVMetalBufferCache, imageBuffer: CVBuffer): { $ret: number; $out: { "bufferOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "bufferOut": (CVBuffer) | null } }>("CoreVideo_90ad0eb69cc6bf4a", 4455100124941530, undefined, [allocator, bufferCache, imageBuffer, null]); }
 
 /**
  * func CVMetalBufferCacheFlush(_ bufferCache: CVMetalBufferCache, _ options: CVOptionFlags)
  * @availability iOS 18.0+
  */
-export function CVMetalBufferCacheFlush(bufferCache: CVMetalBufferCache, options: number): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2329451911596676, undefined, [bufferCache, options]); }
+export function CVMetalBufferCacheFlush(bufferCache: CVMetalBufferCache, options: number): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2329451911596676, undefined, [bufferCache, options]); }
 
 /**
  * func CVMetalBufferCacheGetTypeID() -> CFTypeID
  * @availability iOS 18.0+
  */
-export function CVMetalBufferCacheGetTypeID(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 872853553530368, undefined, []); }
+export function CVMetalBufferCacheGetTypeID(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 872853553530368, undefined, []); }
 
 /**
  * func CVMetalBufferGetBuffer(_ buffer: CVMetalBuffer) -> (any MTLBuffer)?
  * @availability iOS 18.0+
  */
-export function CVMetalBufferGetBuffer(buffer: CVBuffer): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_a956b86ef7a76a8e", 3529543975501335, undefined, [buffer]); }
+export function CVMetalBufferGetBuffer(buffer: CVBuffer): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_90ad0eb69cc6bf4a", 3529543975501335, undefined, [buffer]); }
 
 /**
  * func CVMetalBufferGetTypeID() -> CFTypeID
  * @availability iOS 18.0+
  */
-export function CVMetalBufferGetTypeID(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2905036593081364, undefined, []); }
+export function CVMetalBufferGetTypeID(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2905036593081364, undefined, []); }
 
 /**
  * func CVMetalTextureCacheCreate(_ allocator: CFAllocator?, _ cacheAttributes: CFDictionary?, _ metalDevice: any MTLDevice, _ textureAttributes: CFDictionary?, _ cacheOut: UnsafeMutablePointer<CVMetalTextureCache?>) -> CVReturn
  * @availability iOS 8.0+
  */
-export function CVMetalTextureCacheCreate(allocator: $SDK39, cacheAttributes: $SDK34, metalDevice: SDKHandle, textureAttributes?: $SDK34): { $ret: number; $out: { "cacheOut": (CVMetalTextureCache) | null } } { return callSDK<{ $ret: number; $out: { "cacheOut": (CVMetalTextureCache) | null } }>("CoreVideo_a956b86ef7a76a8e", 3100292856725460, undefined, [allocator, cacheAttributes, metalDevice, textureAttributes, null]); }
+export function CVMetalTextureCacheCreate(allocator: $SDK39, cacheAttributes: $SDK34, metalDevice: SDKHandle, textureAttributes?: $SDK34): { $ret: number; $out: { "cacheOut": (CVMetalTextureCache) | null } } { return callSDK<{ $ret: number; $out: { "cacheOut": (CVMetalTextureCache) | null } }>("CoreVideo_90ad0eb69cc6bf4a", 3100292856725460, undefined, [allocator, cacheAttributes, metalDevice, textureAttributes, null]); }
 
 /**
  * func CVMetalTextureCacheCreateTextureFromImage(_ allocator: CFAllocator?, _ textureCache: CVMetalTextureCache, _ sourceImage: CVImageBuffer, _ textureAttributes: CFDictionary?, _ pixelFormat: MTLPixelFormat, _ width: Int, _ height: Int, _ planeIndex: Int, _ textureOut: UnsafeMutablePointer<CVMetalTexture?>) -> CVReturn
  * @availability iOS 8.0+
  */
-export function CVMetalTextureCacheCreateTextureFromImage(allocator: $SDK39, textureCache: CVMetalTextureCache, sourceImage: CVBuffer, textureAttributes: $SDK34, pixelFormat: _Metal_MTLPixelFormat, width: number, height: number, planeIndex: number): { $ret: number; $out: { "textureOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "textureOut": (CVBuffer) | null } }>("CoreVideo_a956b86ef7a76a8e", 972799586684558, undefined, [allocator, textureCache, sourceImage, textureAttributes, pixelFormat, width, height, planeIndex, null]); }
+export function CVMetalTextureCacheCreateTextureFromImage(allocator: $SDK39, textureCache: CVMetalTextureCache, sourceImage: CVBuffer, textureAttributes: $SDK34, pixelFormat: _Metal_MTLPixelFormat, width: number, height: number, planeIndex: number): { $ret: number; $out: { "textureOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "textureOut": (CVBuffer) | null } }>("CoreVideo_90ad0eb69cc6bf4a", 972799586684558, undefined, [allocator, textureCache, sourceImage, textureAttributes, pixelFormat, width, height, planeIndex, null]); }
 
 /**
  * func CVMetalTextureCacheFlush(_ textureCache: CVMetalTextureCache, _ options: CVOptionFlags)
  * @availability iOS 8.0+
  */
-export function CVMetalTextureCacheFlush(textureCache: CVMetalTextureCache, options: number): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1117624122539710, undefined, [textureCache, options]); }
+export function CVMetalTextureCacheFlush(textureCache: CVMetalTextureCache, options: number): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1117624122539710, undefined, [textureCache, options]); }
 
 /**
  * func CVMetalTextureCacheGetTypeID() -> CFTypeID
  * @availability iOS 8.0+
  */
-export function CVMetalTextureCacheGetTypeID(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4296670569630755, undefined, []); }
+export function CVMetalTextureCacheGetTypeID(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4296670569630755, undefined, []); }
 
 /**
  * func CVMetalTextureGetCleanTexCoords(_ image: CVMetalTexture, _ lowerLeft: UnsafeMutablePointer<Float>, _ lowerRight: UnsafeMutablePointer<Float>, _ upperRight: UnsafeMutablePointer<Float>, _ upperLeft: UnsafeMutablePointer<Float>)
  * @availability iOS 8.0+
  */
-export function CVMetalTextureGetCleanTexCoords(image: CVBuffer, lowerLeft: SDKHandle, lowerRight: SDKHandle, upperRight: SDKHandle, upperLeft: SDKHandle): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2017487465120861, undefined, [image, lowerLeft, lowerRight, upperRight, upperLeft]); }
+export function CVMetalTextureGetCleanTexCoords(image: CVBuffer, lowerLeft: SDKHandle, lowerRight: SDKHandle, upperRight: SDKHandle, upperLeft: SDKHandle): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2017487465120861, undefined, [image, lowerLeft, lowerRight, upperRight, upperLeft]); }
 
 /**
  * func CVMetalTextureGetTexture(_ image: CVMetalTexture) -> (any MTLTexture)?
  * @availability iOS 8.0+
  */
-export function CVMetalTextureGetTexture(image: CVBuffer): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_a956b86ef7a76a8e", 4000326510898407, undefined, [image]); }
+export function CVMetalTextureGetTexture(image: CVBuffer): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_90ad0eb69cc6bf4a", 4000326510898407, undefined, [image]); }
 
 /**
  * func CVMetalTextureGetTypeID() -> CFTypeID
  * @availability iOS 8.0+
  */
-export function CVMetalTextureGetTypeID(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 219887681752028, undefined, []); }
+export function CVMetalTextureGetTypeID(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 219887681752028, undefined, []); }
 
 /**
  * func CVMetalTextureIsFlipped(_ image: CVMetalTexture) -> Bool
  * @availability iOS 8.0+
  */
-export function CVMetalTextureIsFlipped(image: CVBuffer): boolean { return callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 2819186780215990, undefined, [image]); }
+export function CVMetalTextureIsFlipped(image: CVBuffer): boolean { return callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 2819186780215990, undefined, [image]); }
 
 /**
  * func CVOpenGLESTextureCacheCreate(_ allocator: CFAllocator?, _ cacheAttributes: CFDictionary?, _ eaglContext: CVEAGLContext, _ textureAttributes: CFDictionary?, _ cacheOut: UnsafeMutablePointer<CVOpenGLESTextureCache?>) -> CVReturn
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export function CVOpenGLESTextureCacheCreate(allocator: $SDK39, cacheAttributes: $SDK34, eaglContext: _OpenGLES_EAGLContext, textureAttributes?: $SDK34): { $ret: number; $out: { "cacheOut": (CVOpenGLESTextureCache) | null } } { return callSDK<{ $ret: number; $out: { "cacheOut": (CVOpenGLESTextureCache) | null } }>("CoreVideo_a956b86ef7a76a8e", 2704391776119371, undefined, [allocator, cacheAttributes, eaglContext, textureAttributes, null]); }
+export function CVOpenGLESTextureCacheCreate(allocator: $SDK39, cacheAttributes: $SDK34, eaglContext: _OpenGLES_EAGLContext, textureAttributes?: $SDK34): { $ret: number; $out: { "cacheOut": (CVOpenGLESTextureCache) | null } } { return callSDK<{ $ret: number; $out: { "cacheOut": (CVOpenGLESTextureCache) | null } }>("CoreVideo_90ad0eb69cc6bf4a", 2704391776119371, undefined, [allocator, cacheAttributes, eaglContext, textureAttributes, null]); }
 
 /**
  * func CVOpenGLESTextureCacheCreateTextureFromImage(_ allocator: CFAllocator?, _ textureCache: CVOpenGLESTextureCache, _ sourceImage: CVImageBuffer, _ textureAttributes: CFDictionary?, _ target: GLenum, _ internalFormat: GLint, _ width: GLsizei, _ height: GLsizei, _ format: GLenum, _ type: GLenum, _ planeIndex: Int, _ textureOut: UnsafeMutablePointer<CVOpenGLESTexture?>) -> CVReturn
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export function CVOpenGLESTextureCacheCreateTextureFromImage(allocator: $SDK39, textureCache: CVOpenGLESTextureCache, sourceImage: CVBuffer, textureAttributes: $SDK34, target: number, internalFormat: number, width: number, height: number, format: number, type: number, planeIndex: number): { $ret: number; $out: { "textureOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "textureOut": (CVBuffer) | null } }>("CoreVideo_a956b86ef7a76a8e", 2627279881541208, undefined, [allocator, textureCache, sourceImage, textureAttributes, target, internalFormat, width, height, format, type, planeIndex, null]); }
+export function CVOpenGLESTextureCacheCreateTextureFromImage(allocator: $SDK39, textureCache: CVOpenGLESTextureCache, sourceImage: CVBuffer, textureAttributes: $SDK34, target: number, internalFormat: number, width: number, height: number, format: number, type: number, planeIndex: number): { $ret: number; $out: { "textureOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "textureOut": (CVBuffer) | null } }>("CoreVideo_90ad0eb69cc6bf4a", 2627279881541208, undefined, [allocator, textureCache, sourceImage, textureAttributes, target, internalFormat, width, height, format, type, planeIndex, null]); }
 
 /**
  * func CVOpenGLESTextureCacheFlush(_ textureCache: CVOpenGLESTextureCache, _ options: CVOptionFlags)
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export function CVOpenGLESTextureCacheFlush(textureCache: CVOpenGLESTextureCache, options: number): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 1744323181252382, undefined, [textureCache, options]); }
+export function CVOpenGLESTextureCacheFlush(textureCache: CVOpenGLESTextureCache, options: number): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 1744323181252382, undefined, [textureCache, options]); }
 
 /**
  * func CVOpenGLESTextureCacheGetTypeID() -> CFTypeID
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export function CVOpenGLESTextureCacheGetTypeID(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2085339604832944, undefined, []); }
+export function CVOpenGLESTextureCacheGetTypeID(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2085339604832944, undefined, []); }
 
 /**
  * func CVOpenGLESTextureGetCleanTexCoords(_ image: CVOpenGLESTexture, _ lowerLeft: UnsafeMutablePointer<GLfloat>, _ lowerRight: UnsafeMutablePointer<GLfloat>, _ upperRight: UnsafeMutablePointer<GLfloat>, _ upperLeft: UnsafeMutablePointer<GLfloat>)
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export function CVOpenGLESTextureGetCleanTexCoords(image: CVBuffer, lowerLeft: SDKHandle, lowerRight: SDKHandle, upperRight: SDKHandle, upperLeft: SDKHandle): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3017634012151721, undefined, [image, lowerLeft, lowerRight, upperRight, upperLeft]); }
+export function CVOpenGLESTextureGetCleanTexCoords(image: CVBuffer, lowerLeft: SDKHandle, lowerRight: SDKHandle, upperRight: SDKHandle, upperLeft: SDKHandle): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3017634012151721, undefined, [image, lowerLeft, lowerRight, upperRight, upperLeft]); }
 
 /**
  * func CVOpenGLESTextureGetName(_ image: CVOpenGLESTexture) -> GLuint
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export function CVOpenGLESTextureGetName(image: CVBuffer): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2947937111499617, undefined, [image]); }
+export function CVOpenGLESTextureGetName(image: CVBuffer): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2947937111499617, undefined, [image]); }
 
 /**
  * func CVOpenGLESTextureGetTarget(_ image: CVOpenGLESTexture) -> GLenum
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export function CVOpenGLESTextureGetTarget(image: CVBuffer): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3762123262240941, undefined, [image]); }
+export function CVOpenGLESTextureGetTarget(image: CVBuffer): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3762123262240941, undefined, [image]); }
 
 /**
  * func CVOpenGLESTextureGetTypeID() -> CFTypeID
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export function CVOpenGLESTextureGetTypeID(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1249261008671624, undefined, []); }
+export function CVOpenGLESTextureGetTypeID(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1249261008671624, undefined, []); }
 
 /**
  * func CVOpenGLESTextureIsFlipped(_ image: CVOpenGLESTexture) -> Bool
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export function CVOpenGLESTextureIsFlipped(image: CVBuffer): boolean { return callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 1212112696236179, undefined, [image]); }
+export function CVOpenGLESTextureIsFlipped(image: CVBuffer): boolean { return callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 1212112696236179, undefined, [image]); }
 
 /**
  * func CVPixelBufferCopyCreationAttributes(_ pixelBuffer: CVPixelBuffer) -> CFDictionary
  * @availability iOS 15.0+
  */
-export function CVPixelBufferCopyCreationAttributes(pixelBuffer: CVBuffer): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreVideo_a956b86ef7a76a8e", 450365399873926, undefined, [pixelBuffer]); }
+export function CVPixelBufferCopyCreationAttributes(pixelBuffer: CVBuffer): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreVideo_90ad0eb69cc6bf4a", 450365399873926, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferCreate(_ allocator: CFAllocator?, _ width: Int, _ height: Int, _ pixelFormatType: OSType, _ pixelBufferAttributes: CFDictionary?, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
  * @availability iOS 4.0+
  */
-export function CVPixelBufferCreate(allocator: $SDK39, width: number, height: number, pixelFormatType: SDKHandle, pixelBufferAttributes?: $SDK34): { $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } }>("CoreVideo_a956b86ef7a76a8e", 3127255162492630, undefined, [allocator, width, height, pixelFormatType, pixelBufferAttributes, null]); }
+export function CVPixelBufferCreate(allocator: $SDK39, width: number, height: number, pixelFormatType: SDKHandle, pixelBufferAttributes?: $SDK34): { $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } }>("CoreVideo_90ad0eb69cc6bf4a", 3127255162492630, undefined, [allocator, width, height, pixelFormatType, pixelBufferAttributes, null]); }
 
 /**
  * func CVPixelBufferCreateResolvedAttributesDictionary(_ allocator: CFAllocator?, _ attributes: CFArray?, _ resolvedDictionaryOut: UnsafeMutablePointer<CFDictionary?>) -> CVReturn
  * @availability iOS 4.0+
  */
-export function CVPixelBufferCreateResolvedAttributesDictionary(allocator?: $SDK39, attributes?: $SDK42): { $ret: number; $out: { "resolvedDictionaryOut": $SDK34 } } { return callSDK<{ $ret: number; $out: { "resolvedDictionaryOut": $SDK34 } }>("CoreVideo_a956b86ef7a76a8e", 2438174041459827, undefined, [allocator, attributes, null]); }
+export function CVPixelBufferCreateResolvedAttributesDictionary(allocator?: $SDK39, attributes?: $SDK42): { $ret: number; $out: { "resolvedDictionaryOut": $SDK34 } } { return callSDK<{ $ret: number; $out: { "resolvedDictionaryOut": $SDK34 } }>("CoreVideo_90ad0eb69cc6bf4a", 2438174041459827, undefined, [allocator, attributes, null]); }
 
 /**
  * func CVPixelBufferFillExtendedPixels(_ pixelBuffer: CVPixelBuffer) -> CVReturn
  * @availability iOS 4.0+
  */
-export function CVPixelBufferFillExtendedPixels(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3028465455031441, undefined, [pixelBuffer]); }
+export function CVPixelBufferFillExtendedPixels(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3028465455031441, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferGetBaseAddress(_ pixelBuffer: CVPixelBuffer) -> UnsafeMutableRawPointer?
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetBaseAddress(pixelBuffer: CVBuffer): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_a956b86ef7a76a8e", 4085665845212039, undefined, [pixelBuffer]); }
+export function CVPixelBufferGetBaseAddress(pixelBuffer: CVBuffer): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_90ad0eb69cc6bf4a", 4085665845212039, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferGetBaseAddressOfPlane(_ pixelBuffer: CVPixelBuffer, _ planeIndex: Int) -> UnsafeMutableRawPointer?
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetBaseAddressOfPlane(pixelBuffer: CVBuffer, planeIndex: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_a956b86ef7a76a8e", 2916937843318026, undefined, [pixelBuffer, planeIndex]); }
+export function CVPixelBufferGetBaseAddressOfPlane(pixelBuffer: CVBuffer, planeIndex: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreVideo_90ad0eb69cc6bf4a", 2916937843318026, undefined, [pixelBuffer, planeIndex]); }
 
 /**
  * func CVPixelBufferGetBytesPerRow(_ pixelBuffer: CVPixelBuffer) -> Int
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetBytesPerRow(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2081248397205347, undefined, [pixelBuffer]); }
+export function CVPixelBufferGetBytesPerRow(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2081248397205347, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferGetBytesPerRowOfPlane(_ pixelBuffer: CVPixelBuffer, _ planeIndex: Int) -> Int
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer: CVBuffer, planeIndex: number): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2209371716849743, undefined, [pixelBuffer, planeIndex]); }
+export function CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer: CVBuffer, planeIndex: number): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2209371716849743, undefined, [pixelBuffer, planeIndex]); }
 
 /**
  * func CVPixelBufferGetDataSize(_ pixelBuffer: CVPixelBuffer) -> Int
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetDataSize(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1637602666852765, undefined, [pixelBuffer]); }
+export function CVPixelBufferGetDataSize(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1637602666852765, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferGetExtendedPixels(_ pixelBuffer: CVPixelBuffer, _ extraColumnsOnLeft: UnsafeMutablePointer<Int>?, _ extraColumnsOnRight: UnsafeMutablePointer<Int>?, _ extraRowsOnTop: UnsafeMutablePointer<Int>?, _ extraRowsOnBottom: UnsafeMutablePointer<Int>?)
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetExtendedPixels(pixelBuffer: CVBuffer, extraColumnsOnLeft?: (SDKHandle) | null, extraColumnsOnRight?: (SDKHandle) | null, extraRowsOnTop?: (SDKHandle) | null, extraRowsOnBottom?: (SDKHandle) | null): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 2855445083931361, undefined, [pixelBuffer, extraColumnsOnLeft, extraColumnsOnRight, extraRowsOnTop, extraRowsOnBottom]); }
+export function CVPixelBufferGetExtendedPixels(pixelBuffer: CVBuffer, extraColumnsOnLeft?: (SDKHandle) | null, extraColumnsOnRight?: (SDKHandle) | null, extraRowsOnTop?: (SDKHandle) | null, extraRowsOnBottom?: (SDKHandle) | null): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 2855445083931361, undefined, [pixelBuffer, extraColumnsOnLeft, extraColumnsOnRight, extraRowsOnTop, extraRowsOnBottom]); }
 
 /**
  * func CVPixelBufferGetHeight(_ pixelBuffer: CVPixelBuffer) -> Int
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetHeight(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 410214058391726, undefined, [pixelBuffer]); }
+export function CVPixelBufferGetHeight(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 410214058391726, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferGetHeightOfPlane(_ pixelBuffer: CVPixelBuffer, _ planeIndex: Int) -> Int
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetHeightOfPlane(pixelBuffer: CVBuffer, planeIndex: number): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3470360298938353, undefined, [pixelBuffer, planeIndex]); }
+export function CVPixelBufferGetHeightOfPlane(pixelBuffer: CVBuffer, planeIndex: number): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3470360298938353, undefined, [pixelBuffer, planeIndex]); }
 
 /**
  * func CVPixelBufferGetIOSurface(_ pixelBuffer: CVPixelBuffer?) -> Unmanaged<IOSurfaceRef>?
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetIOSurface(pixelBuffer?: (CVBuffer) | null): (_IOSurface_IOSurfaceRef) | null { return callSDK<(_IOSurface_IOSurfaceRef) | null>("CoreVideo_a956b86ef7a76a8e", 2625643338733787, undefined, [pixelBuffer]); }
+export function CVPixelBufferGetIOSurface(pixelBuffer?: (CVBuffer) | null): (_IOSurface_IOSurfaceRef) | null { return callSDK<(_IOSurface_IOSurfaceRef) | null>("CoreVideo_90ad0eb69cc6bf4a", 2625643338733787, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferGetPixelFormatType(_ pixelBuffer: CVPixelBuffer) -> OSType
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetPixelFormatType(pixelBuffer: CVBuffer): SDKHandle { return callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3092850865950295, undefined, [pixelBuffer]); }
+export function CVPixelBufferGetPixelFormatType(pixelBuffer: CVBuffer): SDKHandle { return callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3092850865950295, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferGetPlaneCount(_ pixelBuffer: CVPixelBuffer) -> Int
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetPlaneCount(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2423986277918838, undefined, [pixelBuffer]); }
+export function CVPixelBufferGetPlaneCount(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2423986277918838, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferGetTypeID() -> CFTypeID
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetTypeID(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3751182291870716, undefined, []); }
+export function CVPixelBufferGetTypeID(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3751182291870716, undefined, []); }
 
 /**
  * func CVPixelBufferGetWidth(_ pixelBuffer: CVPixelBuffer) -> Int
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetWidth(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1750363902065033, undefined, [pixelBuffer]); }
+export function CVPixelBufferGetWidth(pixelBuffer: CVBuffer): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1750363902065033, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferGetWidthOfPlane(_ pixelBuffer: CVPixelBuffer, _ planeIndex: Int) -> Int
  * @availability iOS 4.0+
  */
-export function CVPixelBufferGetWidthOfPlane(pixelBuffer: CVBuffer, planeIndex: number): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 279601698750554, undefined, [pixelBuffer, planeIndex]); }
+export function CVPixelBufferGetWidthOfPlane(pixelBuffer: CVBuffer, planeIndex: number): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 279601698750554, undefined, [pixelBuffer, planeIndex]); }
 
 /**
  * func CVPixelBufferIsCompatibleWithAttributes(_ pixelBuffer: CVPixelBuffer, _ attributes: CFDictionary?) -> Bool
  * @availability iOS 4.0+
  */
-export function CVPixelBufferIsCompatibleWithAttributes(pixelBuffer: CVBuffer, attributes?: $SDK34): boolean { return callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 1680147735064702, undefined, [pixelBuffer, attributes]); }
+export function CVPixelBufferIsCompatibleWithAttributes(pixelBuffer: CVBuffer, attributes?: $SDK34): boolean { return callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 1680147735064702, undefined, [pixelBuffer, attributes]); }
 
 /**
  * func CVPixelBufferIsPlanar(_ pixelBuffer: CVPixelBuffer) -> Bool
  * @availability iOS 4.0+
  */
-export function CVPixelBufferIsPlanar(pixelBuffer: CVBuffer): boolean { return callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 3888679628556542, undefined, [pixelBuffer]); }
+export function CVPixelBufferIsPlanar(pixelBuffer: CVBuffer): boolean { return callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 3888679628556542, undefined, [pixelBuffer]); }
 
 /**
  * func CVPixelBufferLockBaseAddress(_ pixelBuffer: CVPixelBuffer, _ lockFlags: CVPixelBufferLockFlags) -> CVReturn
  * @availability iOS 4.0+
  */
-export function CVPixelBufferLockBaseAddress(pixelBuffer: CVBuffer, lockFlags: CVPixelBufferLockFlags): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4045790729342814, undefined, [pixelBuffer, lockFlags]); }
+export function CVPixelBufferLockBaseAddress(pixelBuffer: CVBuffer, lockFlags: CVPixelBufferLockFlags): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4045790729342814, undefined, [pixelBuffer, lockFlags]); }
 
 /**
  * func CVPixelBufferPoolCreate(_ allocator: CFAllocator?, _ poolAttributes: CFDictionary?, _ pixelBufferAttributes: CFDictionary?, _ poolOut: UnsafeMutablePointer<CVPixelBufferPool?>) -> CVReturn
  * @availability iOS 4.0+
  */
-export function CVPixelBufferPoolCreate(allocator?: $SDK39, poolAttributes?: $SDK34, pixelBufferAttributes?: $SDK34): { $ret: number; $out: { "poolOut": (CVPixelBufferPool) | null } } { return callSDK<{ $ret: number; $out: { "poolOut": (CVPixelBufferPool) | null } }>("CoreVideo_a956b86ef7a76a8e", 2583894718592988, undefined, [allocator, poolAttributes, pixelBufferAttributes, null]); }
+export function CVPixelBufferPoolCreate(allocator?: $SDK39, poolAttributes?: $SDK34, pixelBufferAttributes?: $SDK34): { $ret: number; $out: { "poolOut": (CVPixelBufferPool) | null } } { return callSDK<{ $ret: number; $out: { "poolOut": (CVPixelBufferPool) | null } }>("CoreVideo_90ad0eb69cc6bf4a", 2583894718592988, undefined, [allocator, poolAttributes, pixelBufferAttributes, null]); }
 
 /**
  * func CVPixelBufferPoolCreatePixelBuffer(_ allocator: CFAllocator?, _ pixelBufferPool: CVPixelBufferPool, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
  * @availability iOS 4.0+
  */
-export function CVPixelBufferPoolCreatePixelBuffer(allocator: $SDK39, pixelBufferPool: CVPixelBufferPool): { $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } }>("CoreVideo_a956b86ef7a76a8e", 858383329771711, undefined, [allocator, pixelBufferPool, null]); }
+export function CVPixelBufferPoolCreatePixelBuffer(allocator: $SDK39, pixelBufferPool: CVPixelBufferPool): { $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } }>("CoreVideo_90ad0eb69cc6bf4a", 858383329771711, undefined, [allocator, pixelBufferPool, null]); }
 
 /**
  * func CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(_ allocator: CFAllocator?, _ pixelBufferPool: CVPixelBufferPool, _ auxAttributes: CFDictionary?, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
  * @availability iOS 4.0+
  */
-export function CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(allocator: $SDK39, pixelBufferPool: CVPixelBufferPool, auxAttributes?: $SDK34): { $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } }>("CoreVideo_a956b86ef7a76a8e", 4028884079384171, undefined, [allocator, pixelBufferPool, auxAttributes, null]); }
+export function CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(allocator: $SDK39, pixelBufferPool: CVPixelBufferPool, auxAttributes?: $SDK34): { $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } } { return callSDK<{ $ret: number; $out: { "pixelBufferOut": (CVBuffer) | null } }>("CoreVideo_90ad0eb69cc6bf4a", 4028884079384171, undefined, [allocator, pixelBufferPool, auxAttributes, null]); }
 
 /** func CVPixelBufferPoolFlush(_ pool: CVPixelBufferPool, _ options: CVPixelBufferPoolFlushFlags) */
-export function CVPixelBufferPoolFlush(pool: CVPixelBufferPool, options: CVPixelBufferPoolFlushFlags): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 4177870466760496, undefined, [pool, options]); }
+export function CVPixelBufferPoolFlush(pool: CVPixelBufferPool, options: CVPixelBufferPoolFlushFlags): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 4177870466760496, undefined, [pool, options]); }
 
 /**
  * func CVPixelBufferPoolGetAttributes(_ pool: CVPixelBufferPool) -> CFDictionary?
  * @availability iOS 4.0+
  */
-export function CVPixelBufferPoolGetAttributes(pool: CVPixelBufferPool): $SDK34 { return callSDK<$SDK34>("CoreVideo_a956b86ef7a76a8e", 404611864701729, undefined, [pool]); }
+export function CVPixelBufferPoolGetAttributes(pool: CVPixelBufferPool): $SDK34 { return callSDK<$SDK34>("CoreVideo_90ad0eb69cc6bf4a", 404611864701729, undefined, [pool]); }
 
 /**
  * func CVPixelBufferPoolGetPixelBufferAttributes(_ pool: CVPixelBufferPool) -> CFDictionary?
  * @availability iOS 4.0+
  */
-export function CVPixelBufferPoolGetPixelBufferAttributes(pool: CVPixelBufferPool): $SDK34 { return callSDK<$SDK34>("CoreVideo_a956b86ef7a76a8e", 2929728967227675, undefined, [pool]); }
+export function CVPixelBufferPoolGetPixelBufferAttributes(pool: CVPixelBufferPool): $SDK34 { return callSDK<$SDK34>("CoreVideo_90ad0eb69cc6bf4a", 2929728967227675, undefined, [pool]); }
 
 /**
  * func CVPixelBufferPoolGetTypeID() -> CFTypeID
  * @availability iOS 4.0+
  */
-export function CVPixelBufferPoolGetTypeID(): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1156323388483215, undefined, []); }
+export function CVPixelBufferPoolGetTypeID(): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1156323388483215, undefined, []); }
 
 /**
  * func CVPixelBufferUnlockBaseAddress(_ pixelBuffer: CVPixelBuffer, _ unlockFlags: CVPixelBufferLockFlags) -> CVReturn
  * @availability iOS 4.0+
  */
-export function CVPixelBufferUnlockBaseAddress(pixelBuffer: CVBuffer, unlockFlags: CVPixelBufferLockFlags): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2575473854008541, undefined, [pixelBuffer, unlockFlags]); }
+export function CVPixelBufferUnlockBaseAddress(pixelBuffer: CVBuffer, unlockFlags: CVPixelBufferLockFlags): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2575473854008541, undefined, [pixelBuffer, unlockFlags]); }
 
 /**
  * func CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(_ allocator: CFAllocator?) -> CFArray?
  * @availability iOS 4.0+
  */
-export function CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(allocator?: $SDK39): $SDK42 { return callSDK<$SDK42>("CoreVideo_a956b86ef7a76a8e", 2067878180901998, undefined, [allocator]); }
+export function CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(allocator?: $SDK39): $SDK42 { return callSDK<$SDK42>("CoreVideo_90ad0eb69cc6bf4a", 2067878180901998, undefined, [allocator]); }
 
 /**
  * func CVPixelFormatDescriptionCreateWithPixelFormatType(_ allocator: CFAllocator?, _ pixelFormat: OSType) -> CFDictionary?
  * @availability iOS 4.0+
  */
-export function CVPixelFormatDescriptionCreateWithPixelFormatType(allocator: $SDK39, pixelFormat: SDKHandle): $SDK34 { return callSDK<$SDK34>("CoreVideo_a956b86ef7a76a8e", 3159894252934155, undefined, [allocator, pixelFormat]); }
+export function CVPixelFormatDescriptionCreateWithPixelFormatType(allocator: $SDK39, pixelFormat: SDKHandle): $SDK34 { return callSDK<$SDK34>("CoreVideo_90ad0eb69cc6bf4a", 3159894252934155, undefined, [allocator, pixelFormat]); }
 
 /**
  * func CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(_ description: CFDictionary, _ pixelFormat: OSType)
  * @availability iOS 4.0+
  */
-export function CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(description: _CoreFoundation_CFDictionary, pixelFormat: SDKHandle): void { return callSDK<void>("CoreVideo_a956b86ef7a76a8e", 3358713727446648, undefined, [description, pixelFormat]); }
+export function CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(description: _CoreFoundation_CFDictionary, pixelFormat: SDKHandle): void { return callSDK<void>("CoreVideo_90ad0eb69cc6bf4a", 3358713727446648, undefined, [description, pixelFormat]); }
 
 /**
  * func CVPixelFormatTypeCopyFourCharCodeString(_ pixelFormat: OSType) -> CFString
  * @availability iOS 26.0+
  */
-export function CVPixelFormatTypeCopyFourCharCodeString(pixelFormat: SDKHandle): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2730777264637712, undefined, [pixelFormat]); }
+export function CVPixelFormatTypeCopyFourCharCodeString(pixelFormat: SDKHandle): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2730777264637712, undefined, [pixelFormat]); }
 
 /**
  * func CVTransferFunctionGetIntegerCodePointForString(_ transferFunctionString: CFString?) -> Int32
  * @availability iOS 11.0+
  */
-export function CVTransferFunctionGetIntegerCodePointForString(transferFunctionString?: $SDK35): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1224198796908191, undefined, [transferFunctionString]); }
+export function CVTransferFunctionGetIntegerCodePointForString(transferFunctionString?: $SDK35): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1224198796908191, undefined, [transferFunctionString]); }
 
 /**
  * func CVTransferFunctionGetStringForIntegerCodePoint(_ transferFunctionCodePoint: Int32) -> Unmanaged<CFString>?
  * @availability iOS 11.0+
  */
-export function CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint: number): $SDK35 { return callSDK<$SDK35>("CoreVideo_a956b86ef7a76a8e", 2777207377486036, undefined, [transferFunctionCodePoint]); }
+export function CVTransferFunctionGetStringForIntegerCodePoint(transferFunctionCodePoint: number): $SDK35 { return callSDK<$SDK35>("CoreVideo_90ad0eb69cc6bf4a", 2777207377486036, undefined, [transferFunctionCodePoint]); }
 
 /**
  * func CVYCbCrMatrixGetIntegerCodePointForString(_ yCbCrMatrixString: CFString?) -> Int32
  * @availability iOS 11.0+
  */
-export function CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString?: $SDK35): number { return callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2030809933732368, undefined, [yCbCrMatrixString]); }
+export function CVYCbCrMatrixGetIntegerCodePointForString(yCbCrMatrixString?: $SDK35): number { return callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2030809933732368, undefined, [yCbCrMatrixString]); }
 
 /**
  * func CVYCbCrMatrixGetStringForIntegerCodePoint(_ yCbCrMatrixCodePoint: Int32) -> Unmanaged<CFString>?
  * @availability iOS 11.0+
  */
-export function CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint: number): $SDK35 { return callSDK<$SDK35>("CoreVideo_a956b86ef7a76a8e", 2457512183744941, undefined, [yCbCrMatrixCodePoint]); }
+export function CVYCbCrMatrixGetStringForIntegerCodePoint(yCbCrMatrixCodePoint: number): $SDK35 { return callSDK<$SDK35>("CoreVideo_90ad0eb69cc6bf4a", 2457512183744941, undefined, [yCbCrMatrixCodePoint]); }
 
 /** var kCVPixelFormatType_128RGBAFloat: OSType { get } */
-export const kCVPixelFormatType_128RGBAFloat: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2429952740438924, undefined, []);
+export const kCVPixelFormatType_128RGBAFloat: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2429952740438924, undefined, []);
 
 /** var kCVPixelFormatType_14Bayer_BGGR: OSType { get } */
-export const kCVPixelFormatType_14Bayer_BGGR: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3808519495308473, undefined, []);
+export const kCVPixelFormatType_14Bayer_BGGR: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3808519495308473, undefined, []);
 
 /** var kCVPixelFormatType_14Bayer_GBRG: OSType { get } */
-export const kCVPixelFormatType_14Bayer_GBRG: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1967261376036133, undefined, []);
+export const kCVPixelFormatType_14Bayer_GBRG: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1967261376036133, undefined, []);
 
 /** var kCVPixelFormatType_14Bayer_GRBG: OSType { get } */
-export const kCVPixelFormatType_14Bayer_GRBG: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1206006339492642, undefined, []);
+export const kCVPixelFormatType_14Bayer_GRBG: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1206006339492642, undefined, []);
 
 /** var kCVPixelFormatType_14Bayer_RGGB: OSType { get } */
-export const kCVPixelFormatType_14Bayer_RGGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 25344830673550, undefined, []);
+export const kCVPixelFormatType_14Bayer_RGGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 25344830673550, undefined, []);
 
 /** var kCVPixelFormatType_16BE555: OSType { get } */
-export const kCVPixelFormatType_16BE555: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 710217142230559, undefined, []);
+export const kCVPixelFormatType_16BE555: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 710217142230559, undefined, []);
 
 /** var kCVPixelFormatType_16BE565: OSType { get } */
-export const kCVPixelFormatType_16BE565: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1669045678203707, undefined, []);
+export const kCVPixelFormatType_16BE565: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1669045678203707, undefined, []);
 
 /** var kCVPixelFormatType_16Gray: OSType { get } */
-export const kCVPixelFormatType_16Gray: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 990404376102233, undefined, []);
+export const kCVPixelFormatType_16Gray: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 990404376102233, undefined, []);
 
 /** var kCVPixelFormatType_16LE5551: OSType { get } */
-export const kCVPixelFormatType_16LE5551: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 686481654725305, undefined, []);
+export const kCVPixelFormatType_16LE5551: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 686481654725305, undefined, []);
 
 /** var kCVPixelFormatType_16LE555: OSType { get } */
-export const kCVPixelFormatType_16LE555: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1920978908720409, undefined, []);
+export const kCVPixelFormatType_16LE555: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1920978908720409, undefined, []);
 
 /** var kCVPixelFormatType_16LE565: OSType { get } */
-export const kCVPixelFormatType_16LE565: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3729461871947117, undefined, []);
+export const kCVPixelFormatType_16LE565: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3729461871947117, undefined, []);
 
 /** var kCVPixelFormatType_16VersatileBayer: OSType { get } */
-export const kCVPixelFormatType_16VersatileBayer: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1886607208371521, undefined, []);
+export const kCVPixelFormatType_16VersatileBayer: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1886607208371521, undefined, []);
 
 /** var kCVPixelFormatType_1IndexedGray_WhiteIsZero: OSType { get } */
-export const kCVPixelFormatType_1IndexedGray_WhiteIsZero: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2528752630632772, undefined, []);
+export const kCVPixelFormatType_1IndexedGray_WhiteIsZero: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2528752630632772, undefined, []);
 
 /** var kCVPixelFormatType_1Monochrome: OSType { get } */
-export const kCVPixelFormatType_1Monochrome: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3549138245481206, undefined, []);
+export const kCVPixelFormatType_1Monochrome: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3549138245481206, undefined, []);
 
 /** var kCVPixelFormatType_24BGR: OSType { get } */
-export const kCVPixelFormatType_24BGR: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 4432046129550296, undefined, []);
+export const kCVPixelFormatType_24BGR: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 4432046129550296, undefined, []);
 
 /** var kCVPixelFormatType_24RGB: OSType { get } */
-export const kCVPixelFormatType_24RGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1174346892207647, undefined, []);
+export const kCVPixelFormatType_24RGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1174346892207647, undefined, []);
 
 /** var kCVPixelFormatType_2Indexed: OSType { get } */
-export const kCVPixelFormatType_2Indexed: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 38725001931486, undefined, []);
+export const kCVPixelFormatType_2Indexed: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 38725001931486, undefined, []);
 
 /** var kCVPixelFormatType_2IndexedGray_WhiteIsZero: OSType { get } */
-export const kCVPixelFormatType_2IndexedGray_WhiteIsZero: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1206900467200653, undefined, []);
+export const kCVPixelFormatType_2IndexedGray_WhiteIsZero: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1206900467200653, undefined, []);
 
 /** var kCVPixelFormatType_30RGB: OSType { get } */
-export const kCVPixelFormatType_30RGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 174434536534840, undefined, []);
+export const kCVPixelFormatType_30RGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 174434536534840, undefined, []);
 
 /** var kCVPixelFormatType_30RGBLEPackedWideGamut: OSType { get } */
-export const kCVPixelFormatType_30RGBLEPackedWideGamut: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1329197609691876, undefined, []);
+export const kCVPixelFormatType_30RGBLEPackedWideGamut: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1329197609691876, undefined, []);
 
 /** var kCVPixelFormatType_30RGBLE_8A_BiPlanar: OSType { get } */
-export const kCVPixelFormatType_30RGBLE_8A_BiPlanar: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3038613232228263, undefined, []);
+export const kCVPixelFormatType_30RGBLE_8A_BiPlanar: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3038613232228263, undefined, []);
 
 /** var kCVPixelFormatType_30RGB_r210: OSType { get } */
-export const kCVPixelFormatType_30RGB_r210: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1223215235378305, undefined, []);
+export const kCVPixelFormatType_30RGB_r210: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1223215235378305, undefined, []);
 
 /** var kCVPixelFormatType_32ABGR: OSType { get } */
-export const kCVPixelFormatType_32ABGR: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2783186002586144, undefined, []);
+export const kCVPixelFormatType_32ABGR: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2783186002586144, undefined, []);
 
 /** var kCVPixelFormatType_32ARGB: OSType { get } */
-export const kCVPixelFormatType_32ARGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 4204883673793577, undefined, []);
+export const kCVPixelFormatType_32ARGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 4204883673793577, undefined, []);
 
 /** var kCVPixelFormatType_32AlphaGray: OSType { get } */
-export const kCVPixelFormatType_32AlphaGray: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1665935665739438, undefined, []);
+export const kCVPixelFormatType_32AlphaGray: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1665935665739438, undefined, []);
 
 /** var kCVPixelFormatType_32BGRA: OSType { get } */
-export const kCVPixelFormatType_32BGRA: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 4290364681873883, undefined, []);
+export const kCVPixelFormatType_32BGRA: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 4290364681873883, undefined, []);
 
 /** var kCVPixelFormatType_32RGBA: OSType { get } */
-export const kCVPixelFormatType_32RGBA: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2675139308473263, undefined, []);
+export const kCVPixelFormatType_32RGBA: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2675139308473263, undefined, []);
 
 /** var kCVPixelFormatType_40ARGBLEWideGamut: OSType { get } */
-export const kCVPixelFormatType_40ARGBLEWideGamut: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2205945149768030, undefined, []);
+export const kCVPixelFormatType_40ARGBLEWideGamut: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2205945149768030, undefined, []);
 
 /** var kCVPixelFormatType_40ARGBLEWideGamutPremultiplied: OSType { get } */
-export const kCVPixelFormatType_40ARGBLEWideGamutPremultiplied: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 901561681135593, undefined, []);
+export const kCVPixelFormatType_40ARGBLEWideGamutPremultiplied: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 901561681135593, undefined, []);
 
 /** var kCVPixelFormatType_420YpCbCr10BiPlanarFullRange: OSType { get } */
-export const kCVPixelFormatType_420YpCbCr10BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1313378128728606, undefined, []);
+export const kCVPixelFormatType_420YpCbCr10BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1313378128728606, undefined, []);
 
 /** var kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3112440226006721, undefined, []);
+export const kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3112440226006721, undefined, []);
 
 /** var kCVPixelFormatType_420YpCbCr8BiPlanarFullRange: OSType { get } */
-export const kCVPixelFormatType_420YpCbCr8BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1898101886621063, undefined, []);
+export const kCVPixelFormatType_420YpCbCr8BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1898101886621063, undefined, []);
 
 /** var kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2557903019256156, undefined, []);
+export const kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2557903019256156, undefined, []);
 
 /** var kCVPixelFormatType_420YpCbCr8Planar: OSType { get } */
-export const kCVPixelFormatType_420YpCbCr8Planar: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3407466420194702, undefined, []);
+export const kCVPixelFormatType_420YpCbCr8Planar: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3407466420194702, undefined, []);
 
 /** var kCVPixelFormatType_420YpCbCr8PlanarFullRange: OSType { get } */
-export const kCVPixelFormatType_420YpCbCr8PlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2534884349981963, undefined, []);
+export const kCVPixelFormatType_420YpCbCr8PlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2534884349981963, undefined, []);
 
 /** var kCVPixelFormatType_420YpCbCr8VideoRange_8A_TriPlanar: OSType { get } */
-export const kCVPixelFormatType_420YpCbCr8VideoRange_8A_TriPlanar: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3510376920749475, undefined, []);
+export const kCVPixelFormatType_420YpCbCr8VideoRange_8A_TriPlanar: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3510376920749475, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr10: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr10: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 84031384310921, undefined, []);
+export const kCVPixelFormatType_422YpCbCr10: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 84031384310921, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr10BiPlanarFullRange: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr10BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2407223855258927, undefined, []);
+export const kCVPixelFormatType_422YpCbCr10BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2407223855258927, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1906736932891027, undefined, []);
+export const kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1906736932891027, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr16: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr16: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 995289954042491, undefined, []);
+export const kCVPixelFormatType_422YpCbCr16: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 995289954042491, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr16BiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr16BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 43301046466547, undefined, []);
+export const kCVPixelFormatType_422YpCbCr16BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 43301046466547, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr8: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr8: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 414933845347117, undefined, []);
+export const kCVPixelFormatType_422YpCbCr8: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 414933845347117, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr8BiPlanarFullRange: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr8BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 104924365730951, undefined, []);
+export const kCVPixelFormatType_422YpCbCr8BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 104924365730951, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr8BiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr8BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1061097682244542, undefined, []);
+export const kCVPixelFormatType_422YpCbCr8BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1061097682244542, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr8FullRange: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr8FullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1906027612632920, undefined, []);
+export const kCVPixelFormatType_422YpCbCr8FullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1906027612632920, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr8_yuvs: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr8_yuvs: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 338155086105275, undefined, []);
+export const kCVPixelFormatType_422YpCbCr8_yuvs: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 338155086105275, undefined, []);
 
 /** var kCVPixelFormatType_422YpCbCr_4A_8BiPlanar: OSType { get } */
-export const kCVPixelFormatType_422YpCbCr_4A_8BiPlanar: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 173096791038837, undefined, []);
+export const kCVPixelFormatType_422YpCbCr_4A_8BiPlanar: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 173096791038837, undefined, []);
 
 /** var kCVPixelFormatType_4444AYpCbCr16: OSType { get } */
-export const kCVPixelFormatType_4444AYpCbCr16: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 511508940375412, undefined, []);
+export const kCVPixelFormatType_4444AYpCbCr16: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 511508940375412, undefined, []);
 
 /** var kCVPixelFormatType_4444AYpCbCr8: OSType { get } */
-export const kCVPixelFormatType_4444AYpCbCr8: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 4222881175294025, undefined, []);
+export const kCVPixelFormatType_4444AYpCbCr8: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 4222881175294025, undefined, []);
 
 /** var kCVPixelFormatType_4444AYpCbCrFloat: OSType { get } */
-export const kCVPixelFormatType_4444AYpCbCrFloat: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 119661782865928, undefined, []);
+export const kCVPixelFormatType_4444AYpCbCrFloat: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 119661782865928, undefined, []);
 
 /** var kCVPixelFormatType_4444YpCbCrA8: OSType { get } */
-export const kCVPixelFormatType_4444YpCbCrA8: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 346597665966667, undefined, []);
+export const kCVPixelFormatType_4444YpCbCrA8: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 346597665966667, undefined, []);
 
 /** var kCVPixelFormatType_4444YpCbCrA8R: OSType { get } */
-export const kCVPixelFormatType_4444YpCbCrA8R: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1799966040756692, undefined, []);
+export const kCVPixelFormatType_4444YpCbCrA8R: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1799966040756692, undefined, []);
 
 /** var kCVPixelFormatType_444YpCbCr10: OSType { get } */
-export const kCVPixelFormatType_444YpCbCr10: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2918448378733291, undefined, []);
+export const kCVPixelFormatType_444YpCbCr10: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2918448378733291, undefined, []);
 
 /** var kCVPixelFormatType_444YpCbCr10BiPlanarFullRange: OSType { get } */
-export const kCVPixelFormatType_444YpCbCr10BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 4270775767044339, undefined, []);
+export const kCVPixelFormatType_444YpCbCr10BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 4270775767044339, undefined, []);
 
 /** var kCVPixelFormatType_444YpCbCr10BiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_444YpCbCr10BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 608355625270451, undefined, []);
+export const kCVPixelFormatType_444YpCbCr10BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 608355625270451, undefined, []);
 
 /** var kCVPixelFormatType_444YpCbCr16BiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_444YpCbCr16BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1302398213747374, undefined, []);
+export const kCVPixelFormatType_444YpCbCr16BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1302398213747374, undefined, []);
 
 /** var kCVPixelFormatType_444YpCbCr16VideoRange_16A_TriPlanar: OSType { get } */
-export const kCVPixelFormatType_444YpCbCr16VideoRange_16A_TriPlanar: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 873523253141891, undefined, []);
+export const kCVPixelFormatType_444YpCbCr16VideoRange_16A_TriPlanar: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 873523253141891, undefined, []);
 
 /** var kCVPixelFormatType_444YpCbCr8: OSType { get } */
-export const kCVPixelFormatType_444YpCbCr8: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3181501526123537, undefined, []);
+export const kCVPixelFormatType_444YpCbCr8: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3181501526123537, undefined, []);
 
 /** var kCVPixelFormatType_444YpCbCr8BiPlanarFullRange: OSType { get } */
-export const kCVPixelFormatType_444YpCbCr8BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1848809632146604, undefined, []);
+export const kCVPixelFormatType_444YpCbCr8BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1848809632146604, undefined, []);
 
 /** var kCVPixelFormatType_444YpCbCr8BiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_444YpCbCr8BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3955621992049585, undefined, []);
+export const kCVPixelFormatType_444YpCbCr8BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3955621992049585, undefined, []);
 
 /** var kCVPixelFormatType_48RGB: OSType { get } */
-export const kCVPixelFormatType_48RGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3493516890579519, undefined, []);
+export const kCVPixelFormatType_48RGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3493516890579519, undefined, []);
 
 /** var kCVPixelFormatType_4Indexed: OSType { get } */
-export const kCVPixelFormatType_4Indexed: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 633786218856935, undefined, []);
+export const kCVPixelFormatType_4Indexed: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 633786218856935, undefined, []);
 
 /** var kCVPixelFormatType_4IndexedGray_WhiteIsZero: OSType { get } */
-export const kCVPixelFormatType_4IndexedGray_WhiteIsZero: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 788955331878066, undefined, []);
+export const kCVPixelFormatType_4IndexedGray_WhiteIsZero: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 788955331878066, undefined, []);
 
 /** var kCVPixelFormatType_64ARGB: OSType { get } */
-export const kCVPixelFormatType_64ARGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2758629362660581, undefined, []);
+export const kCVPixelFormatType_64ARGB: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2758629362660581, undefined, []);
 
 /** var kCVPixelFormatType_64RGBAHalf: OSType { get } */
-export const kCVPixelFormatType_64RGBAHalf: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1807185211075348, undefined, []);
+export const kCVPixelFormatType_64RGBAHalf: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1807185211075348, undefined, []);
 
 /** var kCVPixelFormatType_64RGBALE: OSType { get } */
-export const kCVPixelFormatType_64RGBALE: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3347430640449258, undefined, []);
+export const kCVPixelFormatType_64RGBALE: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3347430640449258, undefined, []);
 
 /** var kCVPixelFormatType_64RGBA_DownscaledProResRAW: OSType { get } */
-export const kCVPixelFormatType_64RGBA_DownscaledProResRAW: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3660035086993384, undefined, []);
+export const kCVPixelFormatType_64RGBA_DownscaledProResRAW: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3660035086993384, undefined, []);
 
 /** var kCVPixelFormatType_8Indexed: OSType { get } */
-export const kCVPixelFormatType_8Indexed: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1277259913221383, undefined, []);
+export const kCVPixelFormatType_8Indexed: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1277259913221383, undefined, []);
 
 /** var kCVPixelFormatType_8IndexedGray_WhiteIsZero: OSType { get } */
-export const kCVPixelFormatType_8IndexedGray_WhiteIsZero: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3803382859935650, undefined, []);
+export const kCVPixelFormatType_8IndexedGray_WhiteIsZero: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3803382859935650, undefined, []);
 
 /** var kCVPixelFormatType_96VersatileBayerPacked12: OSType { get } */
-export const kCVPixelFormatType_96VersatileBayerPacked12: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 4380039336647152, undefined, []);
+export const kCVPixelFormatType_96VersatileBayerPacked12: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 4380039336647152, undefined, []);
 
 /** var kCVPixelFormatType_ARGB2101010LEPacked: OSType { get } */
-export const kCVPixelFormatType_ARGB2101010LEPacked: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3665145906842941, undefined, []);
+export const kCVPixelFormatType_ARGB2101010LEPacked: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3665145906842941, undefined, []);
 
 /** var kCVPixelFormatType_DepthFloat16: OSType { get } */
-export const kCVPixelFormatType_DepthFloat16: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1693758103268645, undefined, []);
+export const kCVPixelFormatType_DepthFloat16: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1693758103268645, undefined, []);
 
 /** var kCVPixelFormatType_DepthFloat32: OSType { get } */
-export const kCVPixelFormatType_DepthFloat32: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1694436602149003, undefined, []);
+export const kCVPixelFormatType_DepthFloat32: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1694436602149003, undefined, []);
 
 /** var kCVPixelFormatType_DisparityFloat16: OSType { get } */
-export const kCVPixelFormatType_DisparityFloat16: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1829749182660783, undefined, []);
+export const kCVPixelFormatType_DisparityFloat16: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1829749182660783, undefined, []);
 
 /** var kCVPixelFormatType_DisparityFloat32: OSType { get } */
-export const kCVPixelFormatType_DisparityFloat32: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1094661597422456, undefined, []);
+export const kCVPixelFormatType_DisparityFloat32: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1094661597422456, undefined, []);
 
 /** var kCVPixelFormatType_OneComponent10: OSType { get } */
-export const kCVPixelFormatType_OneComponent10: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3835512229083680, undefined, []);
+export const kCVPixelFormatType_OneComponent10: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3835512229083680, undefined, []);
 
 /** var kCVPixelFormatType_OneComponent12: OSType { get } */
-export const kCVPixelFormatType_OneComponent12: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2023713202519926, undefined, []);
+export const kCVPixelFormatType_OneComponent12: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2023713202519926, undefined, []);
 
 /** var kCVPixelFormatType_OneComponent16: OSType { get } */
-export const kCVPixelFormatType_OneComponent16: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 659398257631915, undefined, []);
+export const kCVPixelFormatType_OneComponent16: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 659398257631915, undefined, []);
 
 /** var kCVPixelFormatType_OneComponent16Half: OSType { get } */
-export const kCVPixelFormatType_OneComponent16Half: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2185940558511004, undefined, []);
+export const kCVPixelFormatType_OneComponent16Half: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2185940558511004, undefined, []);
 
 /** var kCVPixelFormatType_OneComponent32Float: OSType { get } */
-export const kCVPixelFormatType_OneComponent32Float: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2784083481783237, undefined, []);
+export const kCVPixelFormatType_OneComponent32Float: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2784083481783237, undefined, []);
 
 /** var kCVPixelFormatType_OneComponent8: OSType { get } */
-export const kCVPixelFormatType_OneComponent8: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 4355218317348941, undefined, []);
+export const kCVPixelFormatType_OneComponent8: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 4355218317348941, undefined, []);
 
 /** var kCVPixelFormatType_TwoComponent16: OSType { get } */
-export const kCVPixelFormatType_TwoComponent16: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 664613012607640, undefined, []);
+export const kCVPixelFormatType_TwoComponent16: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 664613012607640, undefined, []);
 
 /** var kCVPixelFormatType_TwoComponent16Half: OSType { get } */
-export const kCVPixelFormatType_TwoComponent16Half: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1859808203005372, undefined, []);
+export const kCVPixelFormatType_TwoComponent16Half: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1859808203005372, undefined, []);
 
 /** var kCVPixelFormatType_TwoComponent32Float: OSType { get } */
-export const kCVPixelFormatType_TwoComponent32Float: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3156015852494540, undefined, []);
+export const kCVPixelFormatType_TwoComponent32Float: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3156015852494540, undefined, []);
 
 /** var kCVPixelFormatType_TwoComponent8: OSType { get } */
-export const kCVPixelFormatType_TwoComponent8: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1813148090801073, undefined, []);
+export const kCVPixelFormatType_TwoComponent8: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1813148090801073, undefined, []);
 
 /** var kCVPixelFormatType_Lossless_30RGBLEPackedWideGamut: OSType { get } */
-export const kCVPixelFormatType_Lossless_30RGBLEPackedWideGamut: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3701951479661092, undefined, []);
+export const kCVPixelFormatType_Lossless_30RGBLEPackedWideGamut: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3701951479661092, undefined, []);
 
 /** var kCVPixelFormatType_Lossless_30RGBLE_8A_BiPlanar: OSType { get } */
-export const kCVPixelFormatType_Lossless_30RGBLE_8A_BiPlanar: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1223426016138654, undefined, []);
+export const kCVPixelFormatType_Lossless_30RGBLE_8A_BiPlanar: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1223426016138654, undefined, []);
 
 /** var kCVPixelFormatType_Lossless_32BGRA: OSType { get } */
-export const kCVPixelFormatType_Lossless_32BGRA: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3530750219128411, undefined, []);
+export const kCVPixelFormatType_Lossless_32BGRA: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3530750219128411, undefined, []);
 
 /** var kCVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarFullRange: OSType { get } */
-export const kCVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1979873446491764, undefined, []);
+export const kCVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1979873446491764, undefined, []);
 
 /** var kCVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3466823431861136, undefined, []);
+export const kCVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3466823431861136, undefined, []);
 
 /** var kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarFullRange: OSType { get } */
-export const kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 178950141570504, undefined, []);
+export const kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 178950141570504, undefined, []);
 
 /** var kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2921472526904568, undefined, []);
+export const kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2921472526904568, undefined, []);
 
 /** var kCVPixelFormatType_Lossless_422YpCbCr10PackedBiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_Lossless_422YpCbCr10PackedBiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2779715073300329, undefined, []);
+export const kCVPixelFormatType_Lossless_422YpCbCr10PackedBiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2779715073300329, undefined, []);
 
 /** var kCVPixelFormatType_Lossless_64RGBAHalf: OSType { get } */
-export const kCVPixelFormatType_Lossless_64RGBAHalf: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3789819654856352, undefined, []);
+export const kCVPixelFormatType_Lossless_64RGBAHalf: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3789819654856352, undefined, []);
 
 /** var kCVPixelFormatType_Lossy_32BGRA: OSType { get } */
-export const kCVPixelFormatType_Lossy_32BGRA: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3136665733851878, undefined, []);
+export const kCVPixelFormatType_Lossy_32BGRA: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3136665733851878, undefined, []);
 
 /** var kCVPixelFormatType_Lossy_420YpCbCr10PackedBiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_Lossy_420YpCbCr10PackedBiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2331096510462711, undefined, []);
+export const kCVPixelFormatType_Lossy_420YpCbCr10PackedBiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2331096510462711, undefined, []);
 
 /** var kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarFullRange: OSType { get } */
-export const kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 3948580389106029, undefined, []);
+export const kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarFullRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 3948580389106029, undefined, []);
 
 /** var kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 1000975860717687, undefined, []);
+export const kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 1000975860717687, undefined, []);
 
 /** var kCVPixelFormatType_Lossy_422YpCbCr10PackedBiPlanarVideoRange: OSType { get } */
-export const kCVPixelFormatType_Lossy_422YpCbCr10PackedBiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_a956b86ef7a76a8e", 2736024521481414, undefined, []);
+export const kCVPixelFormatType_Lossy_422YpCbCr10PackedBiPlanarVideoRange: SDKHandle = callSDK<SDKHandle>("CoreVideo_90ad0eb69cc6bf4a", 2736024521481414, undefined, []);
 
 /** var kCVReturnAllocationFailed: CVReturn { get } */
-export const kCVReturnAllocationFailed: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4151765412863356, undefined, []);
+export const kCVReturnAllocationFailed: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4151765412863356, undefined, []);
 
 /** var kCVReturnDisplayLinkAlreadyRunning: CVReturn { get } */
-export const kCVReturnDisplayLinkAlreadyRunning: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3437757715746252, undefined, []);
+export const kCVReturnDisplayLinkAlreadyRunning: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3437757715746252, undefined, []);
 
 /** var kCVReturnDisplayLinkCallbacksNotSet: CVReturn { get } */
-export const kCVReturnDisplayLinkCallbacksNotSet: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2085570713747053, undefined, []);
+export const kCVReturnDisplayLinkCallbacksNotSet: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2085570713747053, undefined, []);
 
 /** var kCVReturnDisplayLinkNotRunning: CVReturn { get } */
-export const kCVReturnDisplayLinkNotRunning: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2492070504154728, undefined, []);
+export const kCVReturnDisplayLinkNotRunning: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2492070504154728, undefined, []);
 
 /** var kCVReturnError: CVReturn { get } */
-export const kCVReturnError: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 785614646258506, undefined, []);
+export const kCVReturnError: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 785614646258506, undefined, []);
 
 /** var kCVReturnFirst: CVReturn { get } */
-export const kCVReturnFirst: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3008799228106832, undefined, []);
+export const kCVReturnFirst: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3008799228106832, undefined, []);
 
 /** var kCVReturnInvalidArgument: CVReturn { get } */
-export const kCVReturnInvalidArgument: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1627371737006290, undefined, []);
+export const kCVReturnInvalidArgument: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1627371737006290, undefined, []);
 
 /** var kCVReturnInvalidDisplay: CVReturn { get } */
-export const kCVReturnInvalidDisplay: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3805881609122792, undefined, []);
+export const kCVReturnInvalidDisplay: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3805881609122792, undefined, []);
 
 /** var kCVReturnInvalidPixelBufferAttributes: CVReturn { get } */
-export const kCVReturnInvalidPixelBufferAttributes: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 333320464941028, undefined, []);
+export const kCVReturnInvalidPixelBufferAttributes: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 333320464941028, undefined, []);
 
 /** var kCVReturnInvalidPixelFormat: CVReturn { get } */
-export const kCVReturnInvalidPixelFormat: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3432161917193872, undefined, []);
+export const kCVReturnInvalidPixelFormat: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3432161917193872, undefined, []);
 
 /** var kCVReturnInvalidPoolAttributes: CVReturn { get } */
-export const kCVReturnInvalidPoolAttributes: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1653787327607891, undefined, []);
+export const kCVReturnInvalidPoolAttributes: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1653787327607891, undefined, []);
 
 /** var kCVReturnInvalidSize: CVReturn { get } */
-export const kCVReturnInvalidSize: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 715411190428419, undefined, []);
+export const kCVReturnInvalidSize: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 715411190428419, undefined, []);
 
 /** var kCVReturnLast: CVReturn { get } */
-export const kCVReturnLast: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1634025830952422, undefined, []);
+export const kCVReturnLast: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1634025830952422, undefined, []);
 
 /** var kCVReturnPixelBufferNotMetalCompatible: CVReturn { get } */
-export const kCVReturnPixelBufferNotMetalCompatible: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1192082924762863, undefined, []);
+export const kCVReturnPixelBufferNotMetalCompatible: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1192082924762863, undefined, []);
 
 /** var kCVReturnPixelBufferNotOpenGLCompatible: CVReturn { get } */
-export const kCVReturnPixelBufferNotOpenGLCompatible: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3282345428320834, undefined, []);
+export const kCVReturnPixelBufferNotOpenGLCompatible: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3282345428320834, undefined, []);
 
 /** var kCVReturnPoolAllocationFailed: CVReturn { get } */
-export const kCVReturnPoolAllocationFailed: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2440976164518617, undefined, []);
+export const kCVReturnPoolAllocationFailed: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2440976164518617, undefined, []);
 
 /** var kCVReturnRetry: CVReturn { get } */
-export const kCVReturnRetry: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 4403776221968818, undefined, []);
+export const kCVReturnRetry: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 4403776221968818, undefined, []);
 
 /** var kCVReturnSuccess: CVReturn { get } */
-export const kCVReturnSuccess: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1903070996964675, undefined, []);
+export const kCVReturnSuccess: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1903070996964675, undefined, []);
 
 /** var kCVReturnUnsupported: CVReturn { get } */
-export const kCVReturnUnsupported: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 1859515903493756, undefined, []);
+export const kCVReturnUnsupported: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 1859515903493756, undefined, []);
 
 /** var kCVReturnWouldExceedAllocationThreshold: CVReturn { get } */
-export const kCVReturnWouldExceedAllocationThreshold: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3944461492102319, undefined, []);
+export const kCVReturnWouldExceedAllocationThreshold: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3944461492102319, undefined, []);
 
 /** var kCVVersatileBayer_BayerPattern_BGGR: Int { get } */
-export const kCVVersatileBayer_BayerPattern_BGGR: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3273048671932711, undefined, []);
+export const kCVVersatileBayer_BayerPattern_BGGR: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3273048671932711, undefined, []);
 
 /** var kCVVersatileBayer_BayerPattern_GBRG: Int { get } */
-export const kCVVersatileBayer_BayerPattern_GBRG: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 615890323069724, undefined, []);
+export const kCVVersatileBayer_BayerPattern_GBRG: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 615890323069724, undefined, []);
 
 /** var kCVVersatileBayer_BayerPattern_GRBG: Int { get } */
-export const kCVVersatileBayer_BayerPattern_GRBG: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 785409306900619, undefined, []);
+export const kCVVersatileBayer_BayerPattern_GRBG: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 785409306900619, undefined, []);
 
 /** var kCVVersatileBayer_BayerPattern_RGGB: Int { get } */
-export const kCVVersatileBayer_BayerPattern_RGGB: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 2095771144014536, undefined, []);
+export const kCVVersatileBayer_BayerPattern_RGGB: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 2095771144014536, undefined, []);
 
 /**
  * let kCVBufferMovieTimeKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVBufferMovieTimeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 458790046235830, undefined, []);
+export const kCVBufferMovieTimeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 458790046235830, undefined, []);
 
 /**
  * let kCVBufferNonPropagatedAttachmentsKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVBufferNonPropagatedAttachmentsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 316460516472558, undefined, []);
+export const kCVBufferNonPropagatedAttachmentsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 316460516472558, undefined, []);
 
 /**
  * let kCVBufferPropagatedAttachmentsKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVBufferPropagatedAttachmentsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1540550009200247, undefined, []);
+export const kCVBufferPropagatedAttachmentsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1540550009200247, undefined, []);
 
 /**
  * let kCVBufferTimeScaleKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVBufferTimeScaleKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 498248412777336, undefined, []);
+export const kCVBufferTimeScaleKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 498248412777336, undefined, []);
 
 /**
  * let kCVBufferTimeValueKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVBufferTimeValueKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3407424519106562, undefined, []);
+export const kCVBufferTimeValueKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3407424519106562, undefined, []);
 
 /**
  * let kCVImageBufferAlphaChannelIsOpaque: CFString
  * @availability iOS 8.0+
  */
-export const kCVImageBufferAlphaChannelIsOpaque: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3308977573859101, undefined, []);
+export const kCVImageBufferAlphaChannelIsOpaque: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3308977573859101, undefined, []);
 
 /**
  * let kCVImageBufferAlphaChannelModeKey: CFString
  * @availability iOS 13.0+
  */
-export const kCVImageBufferAlphaChannelModeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2288780011794034, undefined, []);
+export const kCVImageBufferAlphaChannelModeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2288780011794034, undefined, []);
 
 /**
  * let kCVImageBufferAlphaChannelMode_PremultipliedAlpha: CFString
  * @availability iOS 13.0+
  */
-export const kCVImageBufferAlphaChannelMode_PremultipliedAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2426357568683173, undefined, []);
+export const kCVImageBufferAlphaChannelMode_PremultipliedAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2426357568683173, undefined, []);
 
 /**
  * let kCVImageBufferAlphaChannelMode_StraightAlpha: CFString
  * @availability iOS 13.0+
  */
-export const kCVImageBufferAlphaChannelMode_StraightAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 749952430094200, undefined, []);
+export const kCVImageBufferAlphaChannelMode_StraightAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 749952430094200, undefined, []);
 
 /**
  * let kCVImageBufferAmbientViewingEnvironmentKey: CFString
  * @availability iOS 15.0+
  */
-export const kCVImageBufferAmbientViewingEnvironmentKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 990151526969839, undefined, []);
+export const kCVImageBufferAmbientViewingEnvironmentKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 990151526969839, undefined, []);
 
 /**
  * let kCVImageBufferCGColorSpaceKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferCGColorSpaceKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1857876784459770, undefined, []);
+export const kCVImageBufferCGColorSpaceKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1857876784459770, undefined, []);
 
 /**
  * let kCVImageBufferChromaLocationBottomFieldKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaLocationBottomFieldKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1250607351834216, undefined, []);
+export const kCVImageBufferChromaLocationBottomFieldKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1250607351834216, undefined, []);
 
 /**
  * let kCVImageBufferChromaLocationTopFieldKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaLocationTopFieldKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2433611561024410, undefined, []);
+export const kCVImageBufferChromaLocationTopFieldKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2433611561024410, undefined, []);
 
 /**
  * let kCVImageBufferChromaLocation_Bottom: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaLocation_Bottom: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2102857011784101, undefined, []);
+export const kCVImageBufferChromaLocation_Bottom: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2102857011784101, undefined, []);
 
 /**
  * let kCVImageBufferChromaLocation_BottomLeft: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaLocation_BottomLeft: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3272029617269334, undefined, []);
+export const kCVImageBufferChromaLocation_BottomLeft: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3272029617269334, undefined, []);
 
 /**
  * let kCVImageBufferChromaLocation_Center: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaLocation_Center: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2397683844672191, undefined, []);
+export const kCVImageBufferChromaLocation_Center: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2397683844672191, undefined, []);
 
 /**
  * let kCVImageBufferChromaLocation_DV420: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaLocation_DV420: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3132430841949172, undefined, []);
+export const kCVImageBufferChromaLocation_DV420: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3132430841949172, undefined, []);
 
 /**
  * let kCVImageBufferChromaLocation_Left: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaLocation_Left: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1588102446126242, undefined, []);
+export const kCVImageBufferChromaLocation_Left: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1588102446126242, undefined, []);
 
 /**
  * let kCVImageBufferChromaLocation_Top: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaLocation_Top: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2966227405246778, undefined, []);
+export const kCVImageBufferChromaLocation_Top: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2966227405246778, undefined, []);
 
 /**
  * let kCVImageBufferChromaLocation_TopLeft: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaLocation_TopLeft: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 455449826823075, undefined, []);
+export const kCVImageBufferChromaLocation_TopLeft: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 455449826823075, undefined, []);
 
 /**
  * let kCVImageBufferChromaSubsamplingKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaSubsamplingKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3427884319297344, undefined, []);
+export const kCVImageBufferChromaSubsamplingKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3427884319297344, undefined, []);
 
 /**
  * let kCVImageBufferChromaSubsampling_411: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaSubsampling_411: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1109909758815645, undefined, []);
+export const kCVImageBufferChromaSubsampling_411: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1109909758815645, undefined, []);
 
 /**
  * let kCVImageBufferChromaSubsampling_420: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaSubsampling_420: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 134754779366474, undefined, []);
+export const kCVImageBufferChromaSubsampling_420: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 134754779366474, undefined, []);
 
 /**
  * let kCVImageBufferChromaSubsampling_422: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferChromaSubsampling_422: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 594076323997430, undefined, []);
+export const kCVImageBufferChromaSubsampling_422: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 594076323997430, undefined, []);
 
 /**
  * let kCVImageBufferCleanApertureHeightKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferCleanApertureHeightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3571535953131324, undefined, []);
+export const kCVImageBufferCleanApertureHeightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3571535953131324, undefined, []);
 
 /**
  * let kCVImageBufferCleanApertureHorizontalOffsetKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferCleanApertureHorizontalOffsetKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3096548750998179, undefined, []);
+export const kCVImageBufferCleanApertureHorizontalOffsetKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3096548750998179, undefined, []);
 
 /**
  * let kCVImageBufferCleanApertureKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferCleanApertureKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 708626085161046, undefined, []);
+export const kCVImageBufferCleanApertureKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 708626085161046, undefined, []);
 
 /**
  * let kCVImageBufferCleanApertureVerticalOffsetKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferCleanApertureVerticalOffsetKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3432682715628694, undefined, []);
+export const kCVImageBufferCleanApertureVerticalOffsetKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3432682715628694, undefined, []);
 
 /**
  * let kCVImageBufferCleanApertureWidthKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferCleanApertureWidthKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3914088083342430, undefined, []);
+export const kCVImageBufferCleanApertureWidthKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3914088083342430, undefined, []);
 
 /**
  * let kCVImageBufferColorPrimariesKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferColorPrimariesKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1916150825596507, undefined, []);
+export const kCVImageBufferColorPrimariesKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1916150825596507, undefined, []);
 
 /**
  * let kCVImageBufferColorPrimaries_DCI_P3: CFString
  * @availability iOS 9.0+
  */
-export const kCVImageBufferColorPrimaries_DCI_P3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1297114663735732, undefined, []);
+export const kCVImageBufferColorPrimaries_DCI_P3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1297114663735732, undefined, []);
 
 /**
  * let kCVImageBufferColorPrimaries_EBU_3213: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferColorPrimaries_EBU_3213: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 531976714115140, undefined, []);
+export const kCVImageBufferColorPrimaries_EBU_3213: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 531976714115140, undefined, []);
 
 /**
  * let kCVImageBufferColorPrimaries_ITU_R_2020: CFString
  * @availability iOS 9.0+
  */
-export const kCVImageBufferColorPrimaries_ITU_R_2020: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1410559141993175, undefined, []);
+export const kCVImageBufferColorPrimaries_ITU_R_2020: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1410559141993175, undefined, []);
 
 /**
  * let kCVImageBufferColorPrimaries_ITU_R_709_2: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferColorPrimaries_ITU_R_709_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 320922306739478, undefined, []);
+export const kCVImageBufferColorPrimaries_ITU_R_709_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 320922306739478, undefined, []);
 
 /**
  * let kCVImageBufferColorPrimaries_P22: CFString
  * @availability iOS 6.0+
  */
-export const kCVImageBufferColorPrimaries_P22: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2455323421392416, undefined, []);
+export const kCVImageBufferColorPrimaries_P22: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2455323421392416, undefined, []);
 
 /**
  * let kCVImageBufferColorPrimaries_P3_D65: CFString
  * @availability iOS 9.0+
  */
-export const kCVImageBufferColorPrimaries_P3_D65: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1830429286959478, undefined, []);
+export const kCVImageBufferColorPrimaries_P3_D65: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1830429286959478, undefined, []);
 
 /**
  * let kCVImageBufferColorPrimaries_SMPTE_C: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferColorPrimaries_SMPTE_C: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4305646741602970, undefined, []);
+export const kCVImageBufferColorPrimaries_SMPTE_C: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4305646741602970, undefined, []);
 
 /**
  * let kCVImageBufferContentLightLevelInfoKey: CFString
  * @availability iOS 11.0+
  */
-export const kCVImageBufferContentLightLevelInfoKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4177248802894961, undefined, []);
+export const kCVImageBufferContentLightLevelInfoKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4177248802894961, undefined, []);
 
 /**
  * let kCVImageBufferDisplayDimensionsKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferDisplayDimensionsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3480081437178429, undefined, []);
+export const kCVImageBufferDisplayDimensionsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3480081437178429, undefined, []);
 
 /**
  * let kCVImageBufferDisplayHeightKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferDisplayHeightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2957306121599822, undefined, []);
+export const kCVImageBufferDisplayHeightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2957306121599822, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangleKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangleKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1221806954804214, undefined, []);
+export const kCVImageBufferDisplayMaskRectangleKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1221806954804214, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangleStereoLeftKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangleStereoLeftKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2540856288635195, undefined, []);
+export const kCVImageBufferDisplayMaskRectangleStereoLeftKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2540856288635195, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangleStereoRightKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangleStereoRightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2074617600084826, undefined, []);
+export const kCVImageBufferDisplayMaskRectangleStereoRightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2074617600084826, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4220230164954818, undefined, []);
+export const kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4220230164954818, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangle_RectangleHeightKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangle_RectangleHeightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 837804604738384, undefined, []);
+export const kCVImageBufferDisplayMaskRectangle_RectangleHeightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 837804604738384, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangle_RectangleLeftKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangle_RectangleLeftKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1512928625047666, undefined, []);
+export const kCVImageBufferDisplayMaskRectangle_RectangleLeftKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1512928625047666, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangle_RectangleTopKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangle_RectangleTopKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1308982524609252, undefined, []);
+export const kCVImageBufferDisplayMaskRectangle_RectangleTopKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1308982524609252, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangle_RectangleWidthKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangle_RectangleWidthKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2359560047818692, undefined, []);
+export const kCVImageBufferDisplayMaskRectangle_RectangleWidthKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2359560047818692, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 595620454525763, undefined, []);
+export const kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 595620454525763, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4424937142939099, undefined, []);
+export const kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4424937142939099, undefined, []);
 
 /**
  * let kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1699505212434935, undefined, []);
+export const kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1699505212434935, undefined, []);
 
 /**
  * let kCVImageBufferDisplayWidthKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferDisplayWidthKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1704978743113149, undefined, []);
+export const kCVImageBufferDisplayWidthKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1704978743113149, undefined, []);
 
 /**
  * let kCVImageBufferFieldCountKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferFieldCountKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3812701633220375, undefined, []);
+export const kCVImageBufferFieldCountKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3812701633220375, undefined, []);
 
 /**
  * let kCVImageBufferFieldDetailKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferFieldDetailKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1026229457507310, undefined, []);
+export const kCVImageBufferFieldDetailKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1026229457507310, undefined, []);
 
 /**
  * let kCVImageBufferFieldDetailSpatialFirstLineEarly: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferFieldDetailSpatialFirstLineEarly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 611293524784649, undefined, []);
+export const kCVImageBufferFieldDetailSpatialFirstLineEarly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 611293524784649, undefined, []);
 
 /**
  * let kCVImageBufferFieldDetailSpatialFirstLineLate: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferFieldDetailSpatialFirstLineLate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2597763681924821, undefined, []);
+export const kCVImageBufferFieldDetailSpatialFirstLineLate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2597763681924821, undefined, []);
 
 /**
  * let kCVImageBufferFieldDetailTemporalBottomFirst: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferFieldDetailTemporalBottomFirst: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3250408830866210, undefined, []);
+export const kCVImageBufferFieldDetailTemporalBottomFirst: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3250408830866210, undefined, []);
 
 /**
  * let kCVImageBufferFieldDetailTemporalTopFirst: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferFieldDetailTemporalTopFirst: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 475644799509440, undefined, []);
+export const kCVImageBufferFieldDetailTemporalTopFirst: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 475644799509440, undefined, []);
 
 /**
  * let kCVImageBufferGammaLevelKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferGammaLevelKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1972233493593030, undefined, []);
+export const kCVImageBufferGammaLevelKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1972233493593030, undefined, []);
 
 /**
  * let kCVImageBufferHorizontalDisparityAdjustmentKey: CFString
  * @availability iOS 17.0+
  */
-export const kCVImageBufferHorizontalDisparityAdjustmentKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2636355062753822, undefined, []);
+export const kCVImageBufferHorizontalDisparityAdjustmentKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2636355062753822, undefined, []);
 
 /**
  * let kCVImageBufferICCProfileKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferICCProfileKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3648527150726274, undefined, []);
+export const kCVImageBufferICCProfileKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3648527150726274, undefined, []);
 
 /**
  * let kCVImageBufferLogTransferFunctionKey: CFString
  * @availability iOS 17.2+
  */
-export const kCVImageBufferLogTransferFunctionKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4067836571027905, undefined, []);
+export const kCVImageBufferLogTransferFunctionKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4067836571027905, undefined, []);
 
 /**
  * let kCVImageBufferLogTransferFunction_AppleLog2: CFString
  * @availability iOS 26.0+
  */
-export const kCVImageBufferLogTransferFunction_AppleLog2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1247467620307113, undefined, []);
+export const kCVImageBufferLogTransferFunction_AppleLog2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1247467620307113, undefined, []);
 
 /**
  * let kCVImageBufferLogTransferFunction_AppleLog: CFString
  * @availability iOS 17.2+
  */
-export const kCVImageBufferLogTransferFunction_AppleLog: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3141844023874819, undefined, []);
+export const kCVImageBufferLogTransferFunction_AppleLog: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3141844023874819, undefined, []);
 
 /**
  * let kCVImageBufferMasteringDisplayColorVolumeKey: CFString
  * @availability iOS 11.0+
  */
-export const kCVImageBufferMasteringDisplayColorVolumeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4112888880424011, undefined, []);
+export const kCVImageBufferMasteringDisplayColorVolumeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4112888880424011, undefined, []);
 
 /**
  * let kCVImageBufferPixelAspectRatioHorizontalSpacingKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferPixelAspectRatioHorizontalSpacingKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2873349284785363, undefined, []);
+export const kCVImageBufferPixelAspectRatioHorizontalSpacingKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2873349284785363, undefined, []);
 
 /**
  * let kCVImageBufferPixelAspectRatioKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferPixelAspectRatioKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1762080714580085, undefined, []);
+export const kCVImageBufferPixelAspectRatioKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1762080714580085, undefined, []);
 
 /**
  * let kCVImageBufferPixelAspectRatioVerticalSpacingKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferPixelAspectRatioVerticalSpacingKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 884814283053503, undefined, []);
+export const kCVImageBufferPixelAspectRatioVerticalSpacingKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 884814283053503, undefined, []);
 
 /**
  * let kCVImageBufferPreferredCleanApertureKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferPreferredCleanApertureKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3363358773858191, undefined, []);
+export const kCVImageBufferPreferredCleanApertureKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3363358773858191, undefined, []);
 
 /**
  * let kCVImageBufferRegionOfInterestKey: CFString
  * @availability iOS 15.0+
  */
-export const kCVImageBufferRegionOfInterestKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 622274793650997, undefined, []);
+export const kCVImageBufferRegionOfInterestKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 622274793650997, undefined, []);
 
 /**
  * let kCVImageBufferSceneIlluminationKey: CFString
  * @availability iOS 18.0+
  */
-export const kCVImageBufferSceneIlluminationKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2366901654658844, undefined, []);
+export const kCVImageBufferSceneIlluminationKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2366901654658844, undefined, []);
 
 /**
  * let kCVImageBufferTransferFunctionKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferTransferFunctionKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3536159747089619, undefined, []);
+export const kCVImageBufferTransferFunctionKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3536159747089619, undefined, []);
 
 /**
  * let kCVImageBufferTransferFunction_ITU_R_2020: CFString
  * @availability iOS 9.0+
  */
-export const kCVImageBufferTransferFunction_ITU_R_2020: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2737897930259560, undefined, []);
+export const kCVImageBufferTransferFunction_ITU_R_2020: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2737897930259560, undefined, []);
 
 /**
  * let kCVImageBufferTransferFunction_ITU_R_2100_HLG: CFString
  * @availability iOS 11.0+
  */
-export const kCVImageBufferTransferFunction_ITU_R_2100_HLG: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3488764002944701, undefined, []);
+export const kCVImageBufferTransferFunction_ITU_R_2100_HLG: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3488764002944701, undefined, []);
 
 /**
  * let kCVImageBufferTransferFunction_ITU_R_709_2: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferTransferFunction_ITU_R_709_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4276178836568260, undefined, []);
+export const kCVImageBufferTransferFunction_ITU_R_709_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4276178836568260, undefined, []);
 
 /**
  * let kCVImageBufferTransferFunction_Linear: CFString
  * @availability iOS 12.0+
  */
-export const kCVImageBufferTransferFunction_Linear: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3625252266988388, undefined, []);
+export const kCVImageBufferTransferFunction_Linear: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3625252266988388, undefined, []);
 
 /**
  * let kCVImageBufferTransferFunction_SMPTE_240M_1995: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferTransferFunction_SMPTE_240M_1995: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2210289780663559, undefined, []);
+export const kCVImageBufferTransferFunction_SMPTE_240M_1995: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2210289780663559, undefined, []);
 
 /**
  * let kCVImageBufferTransferFunction_SMPTE_ST_2084_PQ: CFString
  * @availability iOS 11.0+
  */
-export const kCVImageBufferTransferFunction_SMPTE_ST_2084_PQ: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3677788904635930, undefined, []);
+export const kCVImageBufferTransferFunction_SMPTE_ST_2084_PQ: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3677788904635930, undefined, []);
 
 /**
  * let kCVImageBufferTransferFunction_SMPTE_ST_428_1: CFString
  * @availability iOS 10.0+
  */
-export const kCVImageBufferTransferFunction_SMPTE_ST_428_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 301137892394929, undefined, []);
+export const kCVImageBufferTransferFunction_SMPTE_ST_428_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 301137892394929, undefined, []);
 
 /**
  * let kCVImageBufferTransferFunction_UseGamma: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferTransferFunction_UseGamma: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3864131135800302, undefined, []);
+export const kCVImageBufferTransferFunction_UseGamma: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3864131135800302, undefined, []);
 
 /**
  * let kCVImageBufferTransferFunction_sRGB: CFString
  * @availability iOS 11.0+
  */
-export const kCVImageBufferTransferFunction_sRGB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3814007985634274, undefined, []);
+export const kCVImageBufferTransferFunction_sRGB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3814007985634274, undefined, []);
 
 /**
  * let kCVImageBufferYCbCrMatrixKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferYCbCrMatrixKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3540339330319470, undefined, []);
+export const kCVImageBufferYCbCrMatrixKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3540339330319470, undefined, []);
 
 /**
  * let kCVImageBufferYCbCrMatrix_DCI_P3: CFString
  * @availability iOS 9.0+
  * @deprecated iOS 14.0
  */
-export const kCVImageBufferYCbCrMatrix_DCI_P3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1328013794564941, undefined, []);
+export const kCVImageBufferYCbCrMatrix_DCI_P3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1328013794564941, undefined, []);
 
 /**
  * let kCVImageBufferYCbCrMatrix_ITU_R_2020: CFString
  * @availability iOS 9.0+
  */
-export const kCVImageBufferYCbCrMatrix_ITU_R_2020: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1731769974951114, undefined, []);
+export const kCVImageBufferYCbCrMatrix_ITU_R_2020: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1731769974951114, undefined, []);
 
 /**
  * let kCVImageBufferYCbCrMatrix_ITU_R_601_4: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferYCbCrMatrix_ITU_R_601_4: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 832426189175810, undefined, []);
+export const kCVImageBufferYCbCrMatrix_ITU_R_601_4: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 832426189175810, undefined, []);
 
 /**
  * let kCVImageBufferYCbCrMatrix_ITU_R_709_2: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferYCbCrMatrix_ITU_R_709_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1568179979818206, undefined, []);
+export const kCVImageBufferYCbCrMatrix_ITU_R_709_2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1568179979818206, undefined, []);
 
 /**
  * let kCVImageBufferYCbCrMatrix_P3_D65: CFString
  * @availability iOS 9.0+
  * @deprecated iOS 14.0
  */
-export const kCVImageBufferYCbCrMatrix_P3_D65: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3867925152745233, undefined, []);
+export const kCVImageBufferYCbCrMatrix_P3_D65: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3867925152745233, undefined, []);
 
 /**
  * let kCVImageBufferYCbCrMatrix_SMPTE_240M_1995: CFString
  * @availability iOS 4.0+
  */
-export const kCVImageBufferYCbCrMatrix_SMPTE_240M_1995: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1751526196663996, undefined, []);
+export const kCVImageBufferYCbCrMatrix_SMPTE_240M_1995: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1751526196663996, undefined, []);
 
 /** let kCVIndefiniteTime: CVTime */
-export const kCVIndefiniteTime: CVTime = callSDK<CVTime>("CoreVideo_a956b86ef7a76a8e", 3519807957533813, undefined, []);
+export const kCVIndefiniteTime: CVTime = callSDK<CVTime>("CoreVideo_90ad0eb69cc6bf4a", 3519807957533813, undefined, []);
 
 /**
  * let kCVMetalBufferCacheMaximumBufferAgeKey: CFString
  * @availability iOS 18.0+
  */
-export const kCVMetalBufferCacheMaximumBufferAgeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2827469539193647, undefined, []);
+export const kCVMetalBufferCacheMaximumBufferAgeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2827469539193647, undefined, []);
 
 /**
  * let kCVMetalTextureCacheMaximumTextureAgeKey: CFString
  * @availability iOS 8.0+
  */
-export const kCVMetalTextureCacheMaximumTextureAgeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4383988465539598, undefined, []);
+export const kCVMetalTextureCacheMaximumTextureAgeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4383988465539598, undefined, []);
 
 /**
  * let kCVMetalTextureStorageMode: CFString
  * @availability iOS 13.0+
  */
-export const kCVMetalTextureStorageMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1611584643165208, undefined, []);
+export const kCVMetalTextureStorageMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1611584643165208, undefined, []);
 
 /**
  * let kCVMetalTextureUsage: CFString
  * @availability iOS 11.0+
  */
-export const kCVMetalTextureUsage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 179151712786231, undefined, []);
+export const kCVMetalTextureUsage: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 179151712786231, undefined, []);
 
 /**
  * let kCVOpenGLESTextureCacheMaximumTextureAgeKey: CFString
  * @availability iOS 5.0+
  * @deprecated iOS 12.0
  */
-export const kCVOpenGLESTextureCacheMaximumTextureAgeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2282189134730736, undefined, []);
+export const kCVOpenGLESTextureCacheMaximumTextureAgeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2282189134730736, undefined, []);
 
 /**
  * let kCVPixelBufferBytesPerRowAlignmentKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferBytesPerRowAlignmentKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3549084260384134, undefined, []);
+export const kCVPixelBufferBytesPerRowAlignmentKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3549084260384134, undefined, []);
 
 /**
  * let kCVPixelBufferCGBitmapContextCompatibilityKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferCGBitmapContextCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2082159524470134, undefined, []);
+export const kCVPixelBufferCGBitmapContextCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2082159524470134, undefined, []);
 
 /**
  * let kCVPixelBufferCGImageCompatibilityKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferCGImageCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1169685846497468, undefined, []);
+export const kCVPixelBufferCGImageCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1169685846497468, undefined, []);
 
 /**
  * let kCVPixelBufferExtendedPixelsBottomKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferExtendedPixelsBottomKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1871261985985485, undefined, []);
+export const kCVPixelBufferExtendedPixelsBottomKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1871261985985485, undefined, []);
 
 /**
  * let kCVPixelBufferExtendedPixelsLeftKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferExtendedPixelsLeftKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3094121713398103, undefined, []);
+export const kCVPixelBufferExtendedPixelsLeftKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3094121713398103, undefined, []);
 
 /**
  * let kCVPixelBufferExtendedPixelsRightKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferExtendedPixelsRightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 917062980670812, undefined, []);
+export const kCVPixelBufferExtendedPixelsRightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 917062980670812, undefined, []);
 
 /**
  * let kCVPixelBufferExtendedPixelsTopKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferExtendedPixelsTopKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 125856440719772, undefined, []);
+export const kCVPixelBufferExtendedPixelsTopKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 125856440719772, undefined, []);
 
 /**
  * let kCVPixelBufferHeightKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferHeightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 756666242618004, undefined, []);
+export const kCVPixelBufferHeightKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 756666242618004, undefined, []);
 
 /**
  * let kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1514569158732348, undefined, []);
+export const kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1514569158732348, undefined, []);
 
 /**
  * let kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey: CFString
  * @availability iOS 5.0+
  */
-export const kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 789396229457857, undefined, []);
+export const kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 789396229457857, undefined, []);
 
 /**
  * let kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey: CFString
  * @availability iOS 5.0+
  */
-export const kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3178252001999266, undefined, []);
+export const kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3178252001999266, undefined, []);
 
 /**
  * let kCVPixelBufferIOSurfacePropertiesKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferIOSurfacePropertiesKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2226477437389239, undefined, []);
+export const kCVPixelBufferIOSurfacePropertiesKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2226477437389239, undefined, []);
 
 /**
  * let kCVPixelBufferIOSurfacePurgeableKey: CFString
  * @availability iOS 15.0+
  */
-export const kCVPixelBufferIOSurfacePurgeableKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2471763704157626, undefined, []);
+export const kCVPixelBufferIOSurfacePurgeableKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2471763704157626, undefined, []);
 
 /**
  * let kCVPixelBufferMemoryAllocatorKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferMemoryAllocatorKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1493581283942098, undefined, []);
+export const kCVPixelBufferMemoryAllocatorKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1493581283942098, undefined, []);
 
 /**
  * let kCVPixelBufferMetalCompatibilityKey: CFString
  * @availability iOS 8.0+
  */
-export const kCVPixelBufferMetalCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 700312569735688, undefined, []);
+export const kCVPixelBufferMetalCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 700312569735688, undefined, []);
 
 /**
  * let kCVPixelBufferOpenGLCompatibilityKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferOpenGLCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 866698340066983, undefined, []);
+export const kCVPixelBufferOpenGLCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 866698340066983, undefined, []);
 
 /**
  * let kCVPixelBufferOpenGLESCompatibilityKey: CFString
  * @availability iOS 6.0+
  */
-export const kCVPixelBufferOpenGLESCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3188099515460072, undefined, []);
+export const kCVPixelBufferOpenGLESCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3188099515460072, undefined, []);
 
 /**
  * let kCVPixelBufferOpenGLESTextureCacheCompatibilityKey: CFString
  * @availability iOS 9.0+
  */
-export const kCVPixelBufferOpenGLESTextureCacheCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1243883801749739, undefined, []);
+export const kCVPixelBufferOpenGLESTextureCacheCompatibilityKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1243883801749739, undefined, []);
 
 /**
  * let kCVPixelBufferPixelFormatTypeKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferPixelFormatTypeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1129855937070560, undefined, []);
+export const kCVPixelBufferPixelFormatTypeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1129855937070560, undefined, []);
 
 /**
  * let kCVPixelBufferPlaneAlignmentKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferPlaneAlignmentKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4209758297018414, undefined, []);
+export const kCVPixelBufferPlaneAlignmentKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4209758297018414, undefined, []);
 
 /**
  * let kCVPixelBufferPoolAllocationThresholdKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferPoolAllocationThresholdKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2452242583964983, undefined, []);
+export const kCVPixelBufferPoolAllocationThresholdKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2452242583964983, undefined, []);
 
 /**
  * let kCVPixelBufferPoolFreeBufferNotification: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferPoolFreeBufferNotification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 221872123458473, undefined, []);
+export const kCVPixelBufferPoolFreeBufferNotification: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 221872123458473, undefined, []);
 
 /**
  * let kCVPixelBufferPoolMaximumBufferAgeKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferPoolMaximumBufferAgeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3520319565873429, undefined, []);
+export const kCVPixelBufferPoolMaximumBufferAgeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3520319565873429, undefined, []);
 
 /**
  * let kCVPixelBufferPoolMinimumBufferCountKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferPoolMinimumBufferCountKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4473656928393804, undefined, []);
+export const kCVPixelBufferPoolMinimumBufferCountKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4473656928393804, undefined, []);
 
 /**
  * let kCVPixelBufferProResRAWKey_BlackLevel: CFString
  * @availability iOS 14.0+
  */
-export const kCVPixelBufferProResRAWKey_BlackLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 608680874662937, undefined, []);
+export const kCVPixelBufferProResRAWKey_BlackLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 608680874662937, undefined, []);
 
 /**
  * let kCVPixelBufferProResRAWKey_ColorMatrix: CFString
  * @availability iOS 14.0+
  */
-export const kCVPixelBufferProResRAWKey_ColorMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1688742370442403, undefined, []);
+export const kCVPixelBufferProResRAWKey_ColorMatrix: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1688742370442403, undefined, []);
 
 /**
  * let kCVPixelBufferProResRAWKey_GainFactor: CFString
  * @availability iOS 14.0+
  */
-export const kCVPixelBufferProResRAWKey_GainFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1148596262619683, undefined, []);
+export const kCVPixelBufferProResRAWKey_GainFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1148596262619683, undefined, []);
 
 /**
  * let kCVPixelBufferProResRAWKey_MetadataExtension: CFString
  * @availability iOS 15.0+
  */
-export const kCVPixelBufferProResRAWKey_MetadataExtension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 337309987427833, undefined, []);
+export const kCVPixelBufferProResRAWKey_MetadataExtension: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 337309987427833, undefined, []);
 
 /**
  * let kCVPixelBufferProResRAWKey_RecommendedCrop: CFString
  * @availability iOS 14.0+
  */
-export const kCVPixelBufferProResRAWKey_RecommendedCrop: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1586711810941381, undefined, []);
+export const kCVPixelBufferProResRAWKey_RecommendedCrop: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1586711810941381, undefined, []);
 
 /**
  * let kCVPixelBufferProResRAWKey_SenselSitingOffsets: CFString
  * @availability iOS 14.0+
  */
-export const kCVPixelBufferProResRAWKey_SenselSitingOffsets: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3192835646309435, undefined, []);
+export const kCVPixelBufferProResRAWKey_SenselSitingOffsets: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3192835646309435, undefined, []);
 
 /**
  * let kCVPixelBufferProResRAWKey_WhiteBalanceBlueFactor: CFString
  * @availability iOS 14.0+
  */
-export const kCVPixelBufferProResRAWKey_WhiteBalanceBlueFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2656866583925438, undefined, []);
+export const kCVPixelBufferProResRAWKey_WhiteBalanceBlueFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2656866583925438, undefined, []);
 
 /**
  * let kCVPixelBufferProResRAWKey_WhiteBalanceCCT: CFString
  * @availability iOS 14.0+
  */
-export const kCVPixelBufferProResRAWKey_WhiteBalanceCCT: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1055116205162881, undefined, []);
+export const kCVPixelBufferProResRAWKey_WhiteBalanceCCT: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1055116205162881, undefined, []);
 
 /**
  * let kCVPixelBufferProResRAWKey_WhiteBalanceRedFactor: CFString
  * @availability iOS 14.0+
  */
-export const kCVPixelBufferProResRAWKey_WhiteBalanceRedFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4271379935165344, undefined, []);
+export const kCVPixelBufferProResRAWKey_WhiteBalanceRedFactor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4271379935165344, undefined, []);
 
 /**
  * let kCVPixelBufferProResRAWKey_WhiteLevel: CFString
  * @availability iOS 14.0+
  */
-export const kCVPixelBufferProResRAWKey_WhiteLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2346015915371474, undefined, []);
+export const kCVPixelBufferProResRAWKey_WhiteLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2346015915371474, undefined, []);
 
 /**
  * let kCVPixelBufferVersatileBayerKey_BayerPattern: CFString
  * @availability iOS 14.0+
  */
-export const kCVPixelBufferVersatileBayerKey_BayerPattern: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4115617723104045, undefined, []);
+export const kCVPixelBufferVersatileBayerKey_BayerPattern: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4115617723104045, undefined, []);
 
 /**
  * let kCVPixelBufferWidthKey: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelBufferWidthKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2235716176966983, undefined, []);
+export const kCVPixelBufferWidthKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2235716176966983, undefined, []);
 
 /**
  * let kCVPixelFormatBitsPerBlock: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatBitsPerBlock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3771332809385077, undefined, []);
+export const kCVPixelFormatBitsPerBlock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3771332809385077, undefined, []);
 
 /**
  * let kCVPixelFormatBitsPerComponent: CFString
  * @availability iOS 18.0+
  */
-export const kCVPixelFormatBitsPerComponent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3502945054089787, undefined, []);
+export const kCVPixelFormatBitsPerComponent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3502945054089787, undefined, []);
 
 /**
  * let kCVPixelFormatBlackBlock: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatBlackBlock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4188272335745430, undefined, []);
+export const kCVPixelFormatBlackBlock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4188272335745430, undefined, []);
 
 /**
  * let kCVPixelFormatBlockHeight: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatBlockHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3040578381810976, undefined, []);
+export const kCVPixelFormatBlockHeight: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3040578381810976, undefined, []);
 
 /**
  * let kCVPixelFormatBlockHorizontalAlignment: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatBlockHorizontalAlignment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 101373622190850, undefined, []);
+export const kCVPixelFormatBlockHorizontalAlignment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 101373622190850, undefined, []);
 
 /**
  * let kCVPixelFormatBlockVerticalAlignment: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatBlockVerticalAlignment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2674974450021202, undefined, []);
+export const kCVPixelFormatBlockVerticalAlignment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2674974450021202, undefined, []);
 
 /**
  * let kCVPixelFormatBlockWidth: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatBlockWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2762329252727217, undefined, []);
+export const kCVPixelFormatBlockWidth: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2762329252727217, undefined, []);
 
 /**
  * let kCVPixelFormatCGBitmapContextCompatibility: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatCGBitmapContextCompatibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2555623557535620, undefined, []);
+export const kCVPixelFormatCGBitmapContextCompatibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2555623557535620, undefined, []);
 
 /**
  * let kCVPixelFormatCGBitmapInfo: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatCGBitmapInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3418653036799732, undefined, []);
+export const kCVPixelFormatCGBitmapInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3418653036799732, undefined, []);
 
 /**
  * let kCVPixelFormatCGImageCompatibility: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatCGImageCompatibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2199615160460171, undefined, []);
+export const kCVPixelFormatCGImageCompatibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2199615160460171, undefined, []);
 
 /**
  * let kCVPixelFormatCodecType: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatCodecType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4191355984497332, undefined, []);
+export const kCVPixelFormatCodecType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4191355984497332, undefined, []);
 
 /**
  * let kCVPixelFormatComponentRange: CFString
  * @availability iOS 9.0+
  */
-export const kCVPixelFormatComponentRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3289642759746075, undefined, []);
+export const kCVPixelFormatComponentRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3289642759746075, undefined, []);
 
 /**
  * let kCVPixelFormatComponentRange_FullRange: CFString
  * @availability iOS 9.0+
  */
-export const kCVPixelFormatComponentRange_FullRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1611415674918318, undefined, []);
+export const kCVPixelFormatComponentRange_FullRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1611415674918318, undefined, []);
 
 /**
  * let kCVPixelFormatComponentRange_VideoRange: CFString
  * @availability iOS 9.0+
  */
-export const kCVPixelFormatComponentRange_VideoRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3428088926447473, undefined, []);
+export const kCVPixelFormatComponentRange_VideoRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3428088926447473, undefined, []);
 
 /**
  * let kCVPixelFormatComponentRange_WideRange: CFString
  * @availability iOS 9.0+
  */
-export const kCVPixelFormatComponentRange_WideRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1708123327356870, undefined, []);
+export const kCVPixelFormatComponentRange_WideRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1708123327356870, undefined, []);
 
 /**
  * let kCVPixelFormatConstant: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatConstant: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 898848276211086, undefined, []);
+export const kCVPixelFormatConstant: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 898848276211086, undefined, []);
 
 /**
  * let kCVPixelFormatContainsAlpha: CFString
  * @availability iOS 4.3+
  */
-export const kCVPixelFormatContainsAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2612093188809524, undefined, []);
+export const kCVPixelFormatContainsAlpha: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2612093188809524, undefined, []);
 
 /**
  * let kCVPixelFormatContainsGrayscale: CFString
  * @availability iOS 12.0+
  */
-export const kCVPixelFormatContainsGrayscale: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1705132720376836, undefined, []);
+export const kCVPixelFormatContainsGrayscale: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1705132720376836, undefined, []);
 
 /**
  * let kCVPixelFormatContainsRGB: CFString
  * @availability iOS 8.0+
  */
-export const kCVPixelFormatContainsRGB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2372720313822883, undefined, []);
+export const kCVPixelFormatContainsRGB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2372720313822883, undefined, []);
 
 /**
  * let kCVPixelFormatContainsSenselArray: CFString
  * @availability iOS 16.0+
  */
-export const kCVPixelFormatContainsSenselArray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3150996664628542, undefined, []);
+export const kCVPixelFormatContainsSenselArray: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3150996664628542, undefined, []);
 
 /**
  * let kCVPixelFormatContainsYCbCr: CFString
  * @availability iOS 8.0+
  */
-export const kCVPixelFormatContainsYCbCr: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1075316342247504, undefined, []);
+export const kCVPixelFormatContainsYCbCr: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1075316342247504, undefined, []);
 
 /**
  * let kCVPixelFormatFillExtendedPixelsCallback: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatFillExtendedPixelsCallback: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3230058301700992, undefined, []);
+export const kCVPixelFormatFillExtendedPixelsCallback: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3230058301700992, undefined, []);
 
 /**
  * let kCVPixelFormatFourCC: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatFourCC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1394246066244063, undefined, []);
+export const kCVPixelFormatFourCC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1394246066244063, undefined, []);
 
 /**
  * let kCVPixelFormatHorizontalSubsampling: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatHorizontalSubsampling: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2119783932099516, undefined, []);
+export const kCVPixelFormatHorizontalSubsampling: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2119783932099516, undefined, []);
 
 /**
  * let kCVPixelFormatName: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 479998146712379, undefined, []);
+export const kCVPixelFormatName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 479998146712379, undefined, []);
 
 /**
  * let kCVPixelFormatOpenGLCompatibility: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatOpenGLCompatibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3085133913352558, undefined, []);
+export const kCVPixelFormatOpenGLCompatibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3085133913352558, undefined, []);
 
 /**
  * let kCVPixelFormatOpenGLESCompatibility: CFString
  * @availability iOS 5.0+
  */
-export const kCVPixelFormatOpenGLESCompatibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2045947014652744, undefined, []);
+export const kCVPixelFormatOpenGLESCompatibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2045947014652744, undefined, []);
 
 /**
  * let kCVPixelFormatOpenGLFormat: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatOpenGLFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3842323672191428, undefined, []);
+export const kCVPixelFormatOpenGLFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3842323672191428, undefined, []);
 
 /**
  * let kCVPixelFormatOpenGLInternalFormat: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatOpenGLInternalFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 495369757539822, undefined, []);
+export const kCVPixelFormatOpenGLInternalFormat: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 495369757539822, undefined, []);
 
 /**
  * let kCVPixelFormatOpenGLType: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatOpenGLType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 3729204689341155, undefined, []);
+export const kCVPixelFormatOpenGLType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 3729204689341155, undefined, []);
 
 /**
  * let kCVPixelFormatPlanes: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatPlanes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 4072108822076345, undefined, []);
+export const kCVPixelFormatPlanes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 4072108822076345, undefined, []);
 
 /**
  * let kCVPixelFormatQDCompatibility: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatQDCompatibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 1633660804872316, undefined, []);
+export const kCVPixelFormatQDCompatibility: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 1633660804872316, undefined, []);
 
 /**
  * let kCVPixelFormatVerticalSubsampling: CFString
  * @availability iOS 4.0+
  */
-export const kCVPixelFormatVerticalSubsampling: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_a956b86ef7a76a8e", 2667219430235139, undefined, []);
+export const kCVPixelFormatVerticalSubsampling: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreVideo_90ad0eb69cc6bf4a", 2667219430235139, undefined, []);
 
 /** let kCVZeroTime: CVTime */
-export const kCVZeroTime: CVTime = callSDK<CVTime>("CoreVideo_a956b86ef7a76a8e", 1199072171637848, undefined, []);
+export const kCVZeroTime: CVTime = callSDK<CVTime>("CoreVideo_90ad0eb69cc6bf4a", 1199072171637848, undefined, []);
 
 /** var COREVIDEO_DECLARE_NULLABILITY: Bool { get } */
-export const COREVIDEO_DECLARE_NULLABILITY: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 1629676531052836, undefined, []);
+export const COREVIDEO_DECLARE_NULLABILITY: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 1629676531052836, undefined, []);
 
 /** var COREVIDEO_FALSE: Bool { get } */
-export const COREVIDEO_FALSE: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 2462025058047580, undefined, []);
+export const COREVIDEO_FALSE: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 2462025058047580, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_COLORSPACE: Bool { get } */
-export const COREVIDEO_SUPPORTS_COLORSPACE: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 3045471468561828, undefined, []);
+export const COREVIDEO_SUPPORTS_COLORSPACE: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 3045471468561828, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_DIRECT3D: Bool { get } */
-export const COREVIDEO_SUPPORTS_DIRECT3D: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 751371286870925, undefined, []);
+export const COREVIDEO_SUPPORTS_DIRECT3D: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 751371286870925, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_DISPLAYLINK: Bool { get } */
-export const COREVIDEO_SUPPORTS_DISPLAYLINK: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 2794369121226016, undefined, []);
+export const COREVIDEO_SUPPORTS_DISPLAYLINK: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 2794369121226016, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_GLES_TEX_IMAGE_IOSURFACE: Bool { get } */
-export const COREVIDEO_SUPPORTS_GLES_TEX_IMAGE_IOSURFACE: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 107749124323773, undefined, []);
+export const COREVIDEO_SUPPORTS_GLES_TEX_IMAGE_IOSURFACE: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 107749124323773, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_IOSURFACE: Bool { get } */
-export const COREVIDEO_SUPPORTS_IOSURFACE: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 2844513384974642, undefined, []);
+export const COREVIDEO_SUPPORTS_IOSURFACE: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 2844513384974642, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_IOSURFACE_PREFETCH: Bool { get } */
-export const COREVIDEO_SUPPORTS_IOSURFACE_PREFETCH: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 1193105569445202, undefined, []);
+export const COREVIDEO_SUPPORTS_IOSURFACE_PREFETCH: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 1193105569445202, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_METAL: Bool { get } */
-export const COREVIDEO_SUPPORTS_METAL: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 1941402973564145, undefined, []);
+export const COREVIDEO_SUPPORTS_METAL: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 1941402973564145, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_OPENGL: Bool { get } */
-export const COREVIDEO_SUPPORTS_OPENGL: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 1098936213456716, undefined, []);
+export const COREVIDEO_SUPPORTS_OPENGL: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 1098936213456716, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_OPENGLES: Bool { get } */
-export const COREVIDEO_SUPPORTS_OPENGLES: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 2631912408597224, undefined, []);
+export const COREVIDEO_SUPPORTS_OPENGLES: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 2631912408597224, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_PERMANENT_ALLOCATOR: Bool { get } */
-export const COREVIDEO_SUPPORTS_PERMANENT_ALLOCATOR: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 336619519831709, undefined, []);
+export const COREVIDEO_SUPPORTS_PERMANENT_ALLOCATOR: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 336619519831709, undefined, []);
 
 /** var COREVIDEO_SUPPORTS_PREFETCH: Bool { get } */
-export const COREVIDEO_SUPPORTS_PREFETCH: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 4145489752887663, undefined, []);
+export const COREVIDEO_SUPPORTS_PREFETCH: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 4145489752887663, undefined, []);
 
 /** var COREVIDEO_TRUE: Bool { get } */
-export const COREVIDEO_TRUE: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 3372028991049804, undefined, []);
+export const COREVIDEO_TRUE: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 3372028991049804, undefined, []);
 
 /** var COREVIDEO_USE_DERIVED_ENUMS_FOR_CONSTANTS: Bool { get } */
-export const COREVIDEO_USE_DERIVED_ENUMS_FOR_CONSTANTS: boolean = callSDK<boolean>("CoreVideo_a956b86ef7a76a8e", 4056067531935162, undefined, []);
+export const COREVIDEO_USE_DERIVED_ENUMS_FOR_CONSTANTS: boolean = callSDK<boolean>("CoreVideo_90ad0eb69cc6bf4a", 4056067531935162, undefined, []);
 
 /** var COREVIDEO_USE_EAGLCONTEXT_CLASS_IN_API: Int32 { get } */
-export const COREVIDEO_USE_EAGLCONTEXT_CLASS_IN_API: number = callSDK<number>("CoreVideo_a956b86ef7a76a8e", 3016006912506581, undefined, []);
+export const COREVIDEO_USE_EAGLCONTEXT_CLASS_IN_API: number = callSDK<number>("CoreVideo_90ad0eb69cc6bf4a", 3016006912506581, undefined, []);
 
-registerSDKClass("CoreFoundation.CGRect", CGRect, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} }, true);
-registerSDKClass("CoreFoundation.CGSize", CGSize, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} }, true);
-registerSDKClass("CoreVideo.CVAttachmentAccess", CVAttachmentAccess, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVAttachmentCompositeKeyDefinition", CVAttachmentCompositeKeyDefinition, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVAttachmentContainer", CVAttachmentContainer, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("CoreFoundation.CGRect", CGRect, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} }, true);
+registerSDKClass("CoreFoundation.CGSize", CGSize, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} }, true);
+registerSDKClass("CoreVideo.CVAttachmentAccess", CVAttachmentAccess, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVAttachmentCompositeKeyDefinition", CVAttachmentCompositeKeyDefinition, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVAttachmentContainer", CVAttachmentContainer, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9CoreVideo26CVAttachmentKeyDefinitionsP", {});
 registerSDKProtocol("s:9CoreVideo26CVAttachmentModePreferenceP", {});
-registerSDKClass("CoreVideo.CVAttachmentModePreferenceShouldNotPropagate", CVAttachmentModePreferenceShouldNotPropagate, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVAttachmentModePreferenceShouldPropagate", CVAttachmentModePreferenceShouldPropagate, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVAttachmentRawValue", CVAttachmentRawValue, { module: "CoreVideo_a956b86ef7a76a8e", properties: {}, methods: {"subscript":{"id":3869363057555059}} });
+registerSDKClass("CoreVideo.CVAttachmentModePreferenceShouldNotPropagate", CVAttachmentModePreferenceShouldNotPropagate, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVAttachmentModePreferenceShouldPropagate", CVAttachmentModePreferenceShouldPropagate, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVAttachmentRawValue", CVAttachmentRawValue, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {}, methods: {"subscript":{"id":3869363057555059}} });
 registerSDKProtocol("s:9CoreVideo30CVAttachmentValueRepresentableP", {"makeFromRawAttachmentValue":"makeFromRawAttachmentValue(_:)"});
-registerSDKClass("CoreVideo.CVBuffer", CVBuffer, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVBuffer.Attributes", CVBuffer_Attributes, { module: "CoreVideo_a956b86ef7a76a8e", properties: {}, methods: {"subscriptDynamicMember":{"id":1733478549803756},"subscriptDynamicMember69989":{"id":2412107907622026},"subscriptDynamicMember32426":{"id":2767492699764797},"subscriptDynamicMember55683":{"id":1989152223384261},"subscriptDynamicMember51874":{"id":598472474355438},"subscriptDynamicMember9180":{"id":2260548886154887},"subscriptDynamicMember67348":{"id":526412734150881},"subscriptDynamicMember66626":{"id":2794798039764681}} });
-registerSDKClass("CoreVideo.CVBuffer.CreationAttributes", CVBuffer_CreationAttributes, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVBuffer.CreationAttributes.Backing", CVBuffer_CreationAttributes_Backing, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("CoreVideo.CVBuffer", CVBuffer, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVBuffer.Attributes", CVBuffer_Attributes, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {}, methods: {"subscriptDynamicMember":{"id":1733478549803756},"subscriptDynamicMember69989":{"id":2412107907622026},"subscriptDynamicMember32426":{"id":2767492699764797},"subscriptDynamicMember55683":{"id":1989152223384261},"subscriptDynamicMember51874":{"id":598472474355438},"subscriptDynamicMember9180":{"id":2260548886154887},"subscriptDynamicMember67348":{"id":526412734150881},"subscriptDynamicMember66626":{"id":2794798039764681}} });
+registerSDKClass("CoreVideo.CVBuffer.CreationAttributes", CVBuffer_CreationAttributes, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVBuffer.CreationAttributes.Backing", CVBuffer_CreationAttributes_Backing, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9CoreVideo21CVBufferRepresentableP", {"withUnsafeBuffer":"withUnsafeBuffer(_:)"});
-registerSDKClass("CoreVideo.CVFillExtendedPixelsCallBackData", CVFillExtendedPixelsCallBackData, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("CoreVideo.CVFillExtendedPixelsCallBackData", CVFillExtendedPixelsCallBackData, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9CoreVideo37CVImageBufferAttachmentKeyDefinitionsP", {});
 registerSDKProtocol("s:9CoreVideo26CVImageBufferRepresentableP", {"withUnsafeBuffer":"withUnsafeBuffer(_:)"});
-registerSDKClass("CoreVideo.CVImageChromaField", CVImageChromaField, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVImageChromaField.FieldLocation", CVImageChromaField_FieldLocation, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVImageCleanAperture", CVImageCleanAperture, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVImageDisplayMaskRectangle", CVImageDisplayMaskRectangle, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVImagePixelAspectRatio", CVImagePixelAspectRatio, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVImageSize", CVImageSize, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVImageStereoDisplayMaskRectangle", CVImageStereoDisplayMaskRectangle, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVImageStereoDisplayMaskRectangle.EdgePoint", CVImageStereoDisplayMaskRectangle_EdgePoint, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVMetalBufferCache", CVMetalBufferCache, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVMetalTextureCache", CVMetalTextureCache, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVMutablePixelBuffer", CVMutablePixelBuffer, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVMutablePixelBuffer.Pool", CVMutablePixelBuffer_Pool, { module: "CoreVideo_a956b86ef7a76a8e", properties: {}, methods: {"flush":{"id":258754511460321}} });
-registerSDKClass("CoreVideo.CVMutablePixelBuffer.Pool.AllocationAttributes", CVMutablePixelBuffer_Pool_AllocationAttributes, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVMutablePixelBuffer.Pool.Configuration", CVMutablePixelBuffer_Pool_Configuration, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVOpenGLESTextureCache", CVOpenGLESTextureCache, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPixelBufferAttachmentKeyDefinitions", CVPixelBufferAttachmentKeyDefinitions, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPixelBufferAttributes", CVPixelBufferAttributes, { module: "CoreVideo_a956b86ef7a76a8e", properties: {}, methods: {"subscriptDynamicMember":{"id":258610116373800},"subscriptDynamicMember56834":{"id":3955221558814934},"subscriptDynamicMember27911":{"id":720406168742543},"subscriptDynamicMember91426":{"id":4293259142004048},"subscriptDynamicMember74861":{"id":3773288874635439},"subscriptDynamicMember22177":{"id":620085948860386},"subscriptDynamicMember90849":{"id":4481646051919871},"subscriptDynamicMember61709":{"id":2546470256461270}} });
-registerSDKClass("CoreVideo.CVPixelBufferCreationAttributes", CVPixelBufferCreationAttributes, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPixelBufferCreationAttributes.Backing", CVPixelBufferCreationAttributes_Backing, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPixelBufferPadding", CVPixelBufferPadding, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPixelBufferPlaneProperties", CVPixelBufferPlaneProperties, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPixelBufferPool", CVPixelBufferPool, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("CoreVideo.CVImageChromaField", CVImageChromaField, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVImageChromaField.FieldLocation", CVImageChromaField_FieldLocation, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVImageCleanAperture", CVImageCleanAperture, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVImageDisplayMaskRectangle", CVImageDisplayMaskRectangle, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVImagePixelAspectRatio", CVImagePixelAspectRatio, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVImageSize", CVImageSize, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVImageStereoDisplayMaskRectangle", CVImageStereoDisplayMaskRectangle, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVImageStereoDisplayMaskRectangle.EdgePoint", CVImageStereoDisplayMaskRectangle_EdgePoint, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVMetalBufferCache", CVMetalBufferCache, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVMetalTextureCache", CVMetalTextureCache, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVMutablePixelBuffer", CVMutablePixelBuffer, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVMutablePixelBuffer.Pool", CVMutablePixelBuffer_Pool, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {}, methods: {"flush":{"id":258754511460321}} });
+registerSDKClass("CoreVideo.CVMutablePixelBuffer.Pool.AllocationAttributes", CVMutablePixelBuffer_Pool_AllocationAttributes, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVMutablePixelBuffer.Pool.Configuration", CVMutablePixelBuffer_Pool_Configuration, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVOpenGLESTextureCache", CVOpenGLESTextureCache, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPixelBufferAttachmentKeyDefinitions", CVPixelBufferAttachmentKeyDefinitions, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPixelBufferAttributes", CVPixelBufferAttributes, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {}, methods: {"subscriptDynamicMember":{"id":258610116373800},"subscriptDynamicMember56834":{"id":3955221558814934},"subscriptDynamicMember27911":{"id":720406168742543},"subscriptDynamicMember91426":{"id":4293259142004048},"subscriptDynamicMember74861":{"id":3773288874635439},"subscriptDynamicMember22177":{"id":620085948860386},"subscriptDynamicMember90849":{"id":4481646051919871},"subscriptDynamicMember61709":{"id":2546470256461270}} });
+registerSDKClass("CoreVideo.CVPixelBufferCreationAttributes", CVPixelBufferCreationAttributes, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPixelBufferCreationAttributes.Backing", CVPixelBufferCreationAttributes_Backing, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPixelBufferPadding", CVPixelBufferPadding, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPixelBufferPlaneProperties", CVPixelBufferPlaneProperties, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPixelBufferPool", CVPixelBufferPool, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:9CoreVideo26CVPixelBufferRepresentableP", {"withUnsafeBuffer":"withUnsafeBuffer(_:)"});
-registerSDKClass("CoreVideo.CVPixelFormatDescription", CVPixelFormatDescription, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPixelFormatDescription.Dimensions", CVPixelFormatDescription_Dimensions, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPixelFormatDescription.PixelLayout", CVPixelFormatDescription_PixelLayout, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPixelFormatDescription.PlaneConfiguration", CVPixelFormatDescription_PlaneConfiguration, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPixelFormatDescription.Registry", CVPixelFormatDescription_Registry, { module: "CoreVideo_a956b86ef7a76a8e", properties: {}, methods: {"register":{"id":1618045314359244},"subscript":{"id":1508738042804327}} });
-registerSDKClass("CoreVideo.CVPlanarComponentInfo", CVPlanarComponentInfo, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPlanarPixelBufferInfo", CVPlanarPixelBufferInfo, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPlanarPixelBufferInfo_YCbCrBiPlanar", CVPlanarPixelBufferInfo_YCbCrBiPlanar, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVPlanarPixelBufferInfo_YCbCrPlanar", CVPlanarPixelBufferInfo_YCbCrPlanar, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVProResRawMetadata", CVProResRawMetadata, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVReadOnlyPixelBuffer", CVReadOnlyPixelBuffer, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVSenselSitingOffsets.Offset", CVSenselSitingOffsets_Offset, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVSMPTETime", CVSMPTETime, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVTime", CVTime, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("CoreVideo.CVTimeStamp", CVTimeStamp, { module: "CoreVideo_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("CoreVideo.CVPixelFormatDescription", CVPixelFormatDescription, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPixelFormatDescription.Dimensions", CVPixelFormatDescription_Dimensions, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPixelFormatDescription.PixelLayout", CVPixelFormatDescription_PixelLayout, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPixelFormatDescription.PlaneConfiguration", CVPixelFormatDescription_PlaneConfiguration, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPixelFormatDescription.Registry", CVPixelFormatDescription_Registry, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {}, methods: {"register":{"id":1618045314359244},"subscript":{"id":1508738042804327}} });
+registerSDKClass("CoreVideo.CVPlanarComponentInfo", CVPlanarComponentInfo, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPlanarPixelBufferInfo", CVPlanarPixelBufferInfo, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPlanarPixelBufferInfo_YCbCrBiPlanar", CVPlanarPixelBufferInfo_YCbCrBiPlanar, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVPlanarPixelBufferInfo_YCbCrPlanar", CVPlanarPixelBufferInfo_YCbCrPlanar, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVProResRawMetadata", CVProResRawMetadata, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVReadOnlyPixelBuffer", CVReadOnlyPixelBuffer, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVSenselSitingOffsets.Offset", CVSenselSitingOffsets_Offset, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVSMPTETime", CVSMPTETime, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVTime", CVTime, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("CoreVideo.CVTimeStamp", CVTimeStamp, { module: "CoreVideo_90ad0eb69cc6bf4a", properties: {} });

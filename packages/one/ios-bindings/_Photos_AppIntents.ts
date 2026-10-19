@@ -10,22 +10,22 @@ export class PHAsset extends SDKHandle {
    * static var persistentIdentifier: String { get }
    * @availability iOS 27.0+
    */
-  static get persistentIdentifier(): string { return callSDK<string>("_Photos_AppIntents_a956b86ef7a76a8e", 3096416759947196, undefined, []); }
+  static get persistentIdentifier(): string { return callSDK<string>("_Photos_AppIntents_90ad0eb69cc6bf4a", 3096416759947196, undefined, []); }
   /**
    * var displayRepresentation: DisplayRepresentation { get }
    * @availability iOS 27.0+
    */
-  get displayRepresentation(): _AppIntents_DisplayRepresentation { return callSDK<_AppIntents_DisplayRepresentation>("_Photos_AppIntents_a956b86ef7a76a8e", 4003986472926766, this, []); }
+  get displayRepresentation(): _AppIntents_DisplayRepresentation { return callSDK<_AppIntents_DisplayRepresentation>("_Photos_AppIntents_90ad0eb69cc6bf4a", 4003986472926766, this, []); }
   /**
    * static let typeDisplayRepresentation: TypeDisplayRepresentation
    * @availability iOS 27.0+
    */
-  static get typeDisplayRepresentation(): _AppIntents_TypeDisplayRepresentation { return callSDK<_AppIntents_TypeDisplayRepresentation>("_Photos_AppIntents_a956b86ef7a76a8e", 845646699790158, undefined, []); }
+  static get typeDisplayRepresentation(): _AppIntents_TypeDisplayRepresentation { return callSDK<_AppIntents_TypeDisplayRepresentation>("_Photos_AppIntents_90ad0eb69cc6bf4a", 845646699790158, undefined, []); }
   /**
    * static let defaultResolverSpecification: EmptyResolverSpecification<PHAsset>
    * @availability iOS 27.0+
    */
-  static get defaultResolverSpecification(): $SDK0 { return callSDK<$SDK0>("_Photos_AppIntents_a956b86ef7a76a8e", 3320691828845264, undefined, []); }
+  static get defaultResolverSpecification(): $SDK0 { return callSDK<$SDK0>("_Photos_AppIntents_90ad0eb69cc6bf4a", 3320691828845264, undefined, []); }
   declare readonly $type: { "c:objc(cs)PHAsset": true; "c:objc(cs)PHObject": true; "c:objc(cs)NSObject": true };
 }
 
@@ -47,4 +47,4 @@ export type PHAsset_UnwrappedType = _Photos_PHAsset;
  */
 export type PHAsset_ValueType = _Photos_PHAsset;
 
-registerSDKClass("PHAsset", PHAsset, { module: "_Photos_AppIntents_a956b86ef7a76a8e", properties: {} }, true);
+registerSDKClass("PHAsset", PHAsset, { module: "_Photos_AppIntents_90ad0eb69cc6bf4a", properties: {} }, true);

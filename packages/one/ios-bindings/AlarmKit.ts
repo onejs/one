@@ -20,26 +20,26 @@ export class Alarm extends SDKHandle {
    * var countdownDuration: Alarm.CountdownDuration?
    * @availability iOS 26.0+
    */
-  get countdownDuration(): $SDK0 { return callSDK<$SDK0>("AlarmKit_a956b86ef7a76a8e", 3733236918902222, this, []); }
-  set countdownDuration(value: $SDK0) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 1763895560879645, this, [value]); }
+  get countdownDuration(): $SDK0 { return callSDK<$SDK0>("AlarmKit_90ad0eb69cc6bf4a", 3733236918902222, this, []); }
+  set countdownDuration(value: $SDK0) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 1763895560879645, this, [value]); }
   /**
    * var id: UUID
    * @availability iOS 26.0+
    */
-  get id(): string { return callSDK<string>("AlarmKit_a956b86ef7a76a8e", 704198903184116, this, []); }
-  set id(value: string) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 771719509638190, this, [value]); }
+  get id(): string { return callSDK<string>("AlarmKit_90ad0eb69cc6bf4a", 704198903184116, this, []); }
+  set id(value: string) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 771719509638190, this, [value]); }
   /**
    * var state: Alarm.State
    * @availability iOS 26.0+
    */
-  get state(): Alarm_State { return callSDK<Alarm_State>("AlarmKit_a956b86ef7a76a8e", 4105497827981444, this, []); }
-  set state(value: Alarm_State) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 922502186896382, this, [value]); }
+  get state(): Alarm_State { return callSDK<Alarm_State>("AlarmKit_90ad0eb69cc6bf4a", 4105497827981444, this, []); }
+  set state(value: Alarm_State) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 922502186896382, this, [value]); }
   /**
    * var schedule: Alarm.Schedule?
    * @availability iOS 26.0+
    */
-  get schedule(): (Alarm_Schedule) | null { return callSDK<(Alarm_Schedule) | null>("AlarmKit_a956b86ef7a76a8e", 2801096408035717, this, []); }
-  set schedule(value: (Alarm_Schedule) | null) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 3483025825612880, this, [value]); }
+  get schedule(): (Alarm_Schedule) | null { return callSDK<(Alarm_Schedule) | null>("AlarmKit_90ad0eb69cc6bf4a", 2801096408035717, this, []); }
+  set schedule(value: (Alarm_Schedule) | null) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 3483025825612880, this, [value]); }
   declare readonly $type: { "s:8AlarmKit0A0V": true };
 }
 
@@ -52,19 +52,19 @@ export class Alarm_CountdownDuration extends SDKHandle {
    * init(preAlert: TimeInterval?, postAlert: TimeInterval?)
    * @availability iOS 26.0+
    */
-  static init(preAlert?: (number) | null, postAlert?: (number) | null): Alarm_CountdownDuration { return callSDK<Alarm_CountdownDuration>("AlarmKit_a956b86ef7a76a8e", 2330657295777629, undefined, [preAlert, postAlert]); }
+  static init(preAlert?: (number) | null, postAlert?: (number) | null): Alarm_CountdownDuration { return callSDK<Alarm_CountdownDuration>("AlarmKit_90ad0eb69cc6bf4a", 2330657295777629, undefined, [preAlert, postAlert]); }
   /**
    * var preAlert: TimeInterval?
    * @availability iOS 26.0+
    */
-  get preAlert(): (number) | null { return callSDK<(number) | null>("AlarmKit_a956b86ef7a76a8e", 2373936692383244, this, []); }
-  set preAlert(value: (number) | null) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2259679673881521, this, [value]); }
+  get preAlert(): (number) | null { return callSDK<(number) | null>("AlarmKit_90ad0eb69cc6bf4a", 2373936692383244, this, []); }
+  set preAlert(value: (number) | null) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2259679673881521, this, [value]); }
   /**
    * var postAlert: TimeInterval?
    * @availability iOS 26.0+
    */
-  get postAlert(): (number) | null { return callSDK<(number) | null>("AlarmKit_a956b86ef7a76a8e", 3235045111933632, this, []); }
-  set postAlert(value: (number) | null) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 1495512252175854, this, [value]); }
+  get postAlert(): (number) | null { return callSDK<(number) | null>("AlarmKit_90ad0eb69cc6bf4a", 3235045111933632, this, []); }
+  set postAlert(value: (number) | null) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 1495512252175854, this, [value]); }
   declare readonly $type: { "s:8AlarmKit0A0V17CountdownDurationV": true };
 }
 
@@ -91,19 +91,19 @@ export class Alarm_Schedule_Relative extends SDKHandle {
    * init(time: Alarm.Schedule.Relative.Time, repeats: Alarm.Schedule.Relative.Recurrence = .never)
    * @availability iOS 26.0+
    */
-  static init(time: Alarm_Schedule_Relative_Time, repeats?: Alarm_Schedule_Relative_Recurrence): Alarm_Schedule_Relative { return callSDK<Alarm_Schedule_Relative>("AlarmKit_a956b86ef7a76a8e", 1439388464462347, undefined, [time, repeats]); }
+  static init(time: Alarm_Schedule_Relative_Time, repeats?: Alarm_Schedule_Relative_Recurrence): Alarm_Schedule_Relative { return callSDK<Alarm_Schedule_Relative>("AlarmKit_90ad0eb69cc6bf4a", 1439388464462347, undefined, [time, repeats]); }
   /**
    * var time: Alarm.Schedule.Relative.Time
    * @availability iOS 26.0+
    */
-  get time(): Alarm_Schedule_Relative_Time { return callSDK<Alarm_Schedule_Relative_Time>("AlarmKit_a956b86ef7a76a8e", 3911366618172435, this, []); }
-  set time(value: Alarm_Schedule_Relative_Time) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2688986055049279, this, [value]); }
+  get time(): Alarm_Schedule_Relative_Time { return callSDK<Alarm_Schedule_Relative_Time>("AlarmKit_90ad0eb69cc6bf4a", 3911366618172435, this, []); }
+  set time(value: Alarm_Schedule_Relative_Time) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2688986055049279, this, [value]); }
   /**
    * var repeats: Alarm.Schedule.Relative.Recurrence
    * @availability iOS 26.0+
    */
-  get repeats(): Alarm_Schedule_Relative_Recurrence { return callSDK<Alarm_Schedule_Relative_Recurrence>("AlarmKit_a956b86ef7a76a8e", 2300419317298009, this, []); }
-  set repeats(value: Alarm_Schedule_Relative_Recurrence) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 1570879395876925, this, [value]); }
+  get repeats(): Alarm_Schedule_Relative_Recurrence { return callSDK<Alarm_Schedule_Relative_Recurrence>("AlarmKit_90ad0eb69cc6bf4a", 2300419317298009, this, []); }
+  set repeats(value: Alarm_Schedule_Relative_Recurrence) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 1570879395876925, this, [value]); }
   declare readonly $type: { "s:8AlarmKit0A0V8ScheduleO8RelativeV": true };
 }
 
@@ -124,19 +124,19 @@ export class Alarm_Schedule_Relative_Time extends SDKHandle {
    * init(hour: Int, minute: Int)
    * @availability iOS 26.0+
    */
-  static init(hour: number, minute: number): Alarm_Schedule_Relative_Time { return callSDK<Alarm_Schedule_Relative_Time>("AlarmKit_a956b86ef7a76a8e", 2486078333282639, undefined, [hour, minute]); }
+  static init(hour: number, minute: number): Alarm_Schedule_Relative_Time { return callSDK<Alarm_Schedule_Relative_Time>("AlarmKit_90ad0eb69cc6bf4a", 2486078333282639, undefined, [hour, minute]); }
   /**
    * var hour: Int
    * @availability iOS 26.0+
    */
-  get hour(): number { return callSDK<number>("AlarmKit_a956b86ef7a76a8e", 2569126479220221, this, []); }
-  set hour(value: number) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2813231424077403, this, [value]); }
+  get hour(): number { return callSDK<number>("AlarmKit_90ad0eb69cc6bf4a", 2569126479220221, this, []); }
+  set hour(value: number) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2813231424077403, this, [value]); }
   /**
    * var minute: Int
    * @availability iOS 26.0+
    */
-  get minute(): number { return callSDK<number>("AlarmKit_a956b86ef7a76a8e", 1061306403896737, this, []); }
-  set minute(value: number) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 4252169982189645, this, [value]); }
+  get minute(): number { return callSDK<number>("AlarmKit_90ad0eb69cc6bf4a", 1061306403896737, this, []); }
+  set minute(value: number) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 4252169982189645, this, [value]); }
   declare readonly $type: { "s:8AlarmKit0A0V8ScheduleO8RelativeV4TimeV": true };
 }
 
@@ -169,25 +169,25 @@ export class AlarmButton extends SDKHandle {
    * var systemImageName: String
    * @availability iOS 26.0+
    */
-  get systemImageName(): string { return callSDK<string>("AlarmKit_a956b86ef7a76a8e", 330944018199139, this, []); }
-  set systemImageName(value: string) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2932785459880007, this, [value]); }
+  get systemImageName(): string { return callSDK<string>("AlarmKit_90ad0eb69cc6bf4a", 330944018199139, this, []); }
+  set systemImageName(value: string) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2932785459880007, this, [value]); }
   /**
    * init(text: LocalizedStringResource, textColor: Color, systemImageName: String)
    * @availability iOS 26.0+
    */
-  static init(text: _Foundation_LocalizedStringResource, textColor: _SwiftUICore_Color, systemImageName: string): AlarmButton { return callSDK<AlarmButton>("AlarmKit_a956b86ef7a76a8e", 3496111682395207, undefined, [text, textColor, systemImageName]); }
+  static init(text: _Foundation_LocalizedStringResource, textColor: _SwiftUICore_Color, systemImageName: string): AlarmButton { return callSDK<AlarmButton>("AlarmKit_90ad0eb69cc6bf4a", 3496111682395207, undefined, [text, textColor, systemImageName]); }
   /**
    * var text: LocalizedStringResource
    * @availability iOS 26.0+
    */
-  get text(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AlarmKit_a956b86ef7a76a8e", 827147928802788, this, []); }
-  set text(value: _Foundation_LocalizedStringResource) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 3686753697145354, this, [value]); }
+  get text(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AlarmKit_90ad0eb69cc6bf4a", 827147928802788, this, []); }
+  set text(value: _Foundation_LocalizedStringResource) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 3686753697145354, this, [value]); }
   /**
    * var textColor: Color
    * @availability iOS 26.0+
    */
-  get textColor(): _SwiftUICore_Color { return callSDK<_SwiftUICore_Color>("AlarmKit_a956b86ef7a76a8e", 1033702922586119, this, []); }
-  set textColor(value: _SwiftUICore_Color) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2928355924666748, this, [value]); }
+  get textColor(): _SwiftUICore_Color { return callSDK<_SwiftUICore_Color>("AlarmKit_90ad0eb69cc6bf4a", 1033702922586119, this, []); }
+  set textColor(value: _SwiftUICore_Color) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2928355924666748, this, [value]); }
   declare readonly $type: { "s:8AlarmKit0A6ButtonV": true };
 }
 
@@ -200,57 +200,57 @@ export class AlarmManager extends SDKHandle {
    * var alarmUpdates: some AsyncSequence<Array<Alarm>, Never> { get }
    * @availability iOS 26.0+
    */
-  get alarmUpdates(): SDKHandle { return callSDK<SDKHandle>("AlarmKit_a956b86ef7a76a8e", 1701659617030804, this, []); }
+  get alarmUpdates(): SDKHandle { return callSDK<SDKHandle>("AlarmKit_90ad0eb69cc6bf4a", 1701659617030804, this, []); }
   /**
    * var authorizationState: AlarmManager.AuthorizationState { get }
    * @availability iOS 26.0+
    */
-  get authorizationState(): AlarmManager_AuthorizationState { return callSDK<AlarmManager_AuthorizationState>("AlarmKit_a956b86ef7a76a8e", 1262226130848, this, []); }
+  get authorizationState(): AlarmManager_AuthorizationState { return callSDK<AlarmManager_AuthorizationState>("AlarmKit_90ad0eb69cc6bf4a", 1262226130848, this, []); }
   /**
    * var authorizationUpdates: some AsyncSequence<AlarmManager.AuthorizationState, Never> { get }
    * @availability iOS 26.0+
    */
-  get authorizationUpdates(): SDKHandle { return callSDK<SDKHandle>("AlarmKit_a956b86ef7a76a8e", 4236897288675104, this, []); }
+  get authorizationUpdates(): SDKHandle { return callSDK<SDKHandle>("AlarmKit_90ad0eb69cc6bf4a", 4236897288675104, this, []); }
   /**
    * func requestAuthorization() async throws -> AlarmManager.AuthorizationState
    * @availability iOS 26.0+
    */
-  requestAuthorization(): Promise<AlarmManager_AuthorizationState> { return callSDKAsync<AlarmManager_AuthorizationState>("AlarmKit_a956b86ef7a76a8e", 2035546181227676, this, []); }
+  requestAuthorization(): Promise<AlarmManager_AuthorizationState> { return callSDKAsync<AlarmManager_AuthorizationState>("AlarmKit_90ad0eb69cc6bf4a", 2035546181227676, this, []); }
   /**
    * func stop(id: Alarm.ID) throws
    * @availability iOS 26.0+
    */
-  stop(id: string): void { return callSDK<void>("AlarmKit_a956b86ef7a76a8e", 202195202470066, this, [id]); }
+  stop(id: string): void { return callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 202195202470066, this, [id]); }
   /**
    * func pause(id: Alarm.ID) throws
    * @availability iOS 26.0+
    */
-  pause(id: string): void { return callSDK<void>("AlarmKit_a956b86ef7a76a8e", 9845060256450, this, [id]); }
+  pause(id: string): void { return callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 9845060256450, this, [id]); }
   /**
    * var alarms: [Alarm] { get throws }
    * @availability iOS 26.0+
    */
-  get alarms(): Array<Alarm> { return callSDK<Array<Alarm>>("AlarmKit_a956b86ef7a76a8e", 925087284895834, this, []); }
+  get alarms(): Array<Alarm> { return callSDK<Array<Alarm>>("AlarmKit_90ad0eb69cc6bf4a", 925087284895834, this, []); }
   /**
    * func cancel(id: Alarm.ID) throws
    * @availability iOS 26.0+
    */
-  cancel(id: string): void { return callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2790195669414162, this, [id]); }
+  cancel(id: string): void { return callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2790195669414162, this, [id]); }
   /**
    * func resume(id: Alarm.ID) throws
    * @availability iOS 26.0+
    */
-  resume(id: string): void { return callSDK<void>("AlarmKit_a956b86ef7a76a8e", 1691259524052237, this, [id]); }
+  resume(id: string): void { return callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 1691259524052237, this, [id]); }
   /**
    * static let shared: AlarmManager
    * @availability iOS 26.0+
    */
-  static get shared(): AlarmManager { return callSDK<AlarmManager>("AlarmKit_a956b86ef7a76a8e", 499525892758419, undefined, []); }
+  static get shared(): AlarmManager { return callSDK<AlarmManager>("AlarmKit_90ad0eb69cc6bf4a", 499525892758419, undefined, []); }
   /**
    * func countdown(id: Alarm.ID) throws
    * @availability iOS 26.0+
    */
-  countdown(id: string): void { return callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2749275693207034, this, [id]); }
+  countdown(id: string): void { return callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2749275693207034, this, [id]); }
   declare readonly $type: { "s:8AlarmKit0A7ManagerC": true };
 }
 
@@ -263,7 +263,7 @@ export class AlarmManager_AlarmAuthorizationStateUpdates extends SDKHandle {
    * func makeAsyncIterator() -> AlarmManager.AlarmAuthorizationStateUpdates.Iterator
    * @availability iOS 26.0+
    */
-  makeAsyncIterator(): AlarmManager_AlarmAuthorizationStateUpdates_Iterator { return callSDK<AlarmManager_AlarmAuthorizationStateUpdates_Iterator>("AlarmKit_a956b86ef7a76a8e", 1615422599163626, this, []); }
+  makeAsyncIterator(): AlarmManager_AlarmAuthorizationStateUpdates_Iterator { return callSDK<AlarmManager_AlarmAuthorizationStateUpdates_Iterator>("AlarmKit_90ad0eb69cc6bf4a", 1615422599163626, this, []); }
   declare readonly $type: { "s:8AlarmKit0A7ManagerC0A25AuthorizationStateUpdatesV": true };
   declare readonly $element: AlarmManager_AuthorizationState;
 }
@@ -289,7 +289,7 @@ export class AlarmManager_AlarmAuthorizationStateUpdates_Iterator extends SDKHan
    * mutating func next() async -> AlarmManager.AuthorizationState?
    * @availability iOS 26.0+
    */
-  next(): Promise<(AlarmManager_AuthorizationState) | null> { return callSDKAsync<(AlarmManager_AuthorizationState) | null>("AlarmKit_a956b86ef7a76a8e", 3421624960475494, this, []); }
+  next(): Promise<(AlarmManager_AuthorizationState) | null> { return callSDKAsync<(AlarmManager_AuthorizationState) | null>("AlarmKit_90ad0eb69cc6bf4a", 3421624960475494, this, []); }
   declare readonly $type: { "s:8AlarmKit0A7ManagerC0A25AuthorizationStateUpdatesV8IteratorV": true };
 }
 
@@ -322,7 +322,7 @@ export class AlarmManager_AlarmUpdates extends SDKHandle {
    * func makeAsyncIterator() -> AlarmManager.AlarmUpdates.Iterator
    * @availability iOS 26.0+
    */
-  makeAsyncIterator(): AlarmManager_AlarmUpdates_Iterator { return callSDK<AlarmManager_AlarmUpdates_Iterator>("AlarmKit_a956b86ef7a76a8e", 4320433424308921, this, []); }
+  makeAsyncIterator(): AlarmManager_AlarmUpdates_Iterator { return callSDK<AlarmManager_AlarmUpdates_Iterator>("AlarmKit_90ad0eb69cc6bf4a", 4320433424308921, this, []); }
   declare readonly $type: { "s:8AlarmKit0A7ManagerC0A7UpdatesV": true };
   declare readonly $element: Array<Alarm>;
 }
@@ -348,7 +348,7 @@ export class AlarmManager_AlarmUpdates_Iterator extends SDKHandle {
    * mutating func next() async -> AlarmManager.AlarmUpdates.Element?
    * @availability iOS 26.0+
    */
-  next(): Promise<(Array<Alarm>) | null> { return callSDKAsync<(Array<Alarm>) | null>("AlarmKit_a956b86ef7a76a8e", 988119812756173, this, []); }
+  next(): Promise<(Array<Alarm>) | null> { return callSDKAsync<(Array<Alarm>) | null>("AlarmKit_90ad0eb69cc6bf4a", 988119812756173, this, []); }
   declare readonly $type: { "s:8AlarmKit0A7ManagerC0A7UpdatesV8IteratorV": true };
 }
 
@@ -381,25 +381,25 @@ export class AlarmPresentation extends SDKHandle {
    * init(alert: AlarmPresentation.Alert, countdown: AlarmPresentation.Countdown? = nil, paused: AlarmPresentation.Paused? = nil)
    * @availability iOS 26.0+
    */
-  static init(alert: AlarmPresentation_Alert, countdown?: $SDK2, paused?: $SDK3): AlarmPresentation { return callSDK<AlarmPresentation>("AlarmKit_a956b86ef7a76a8e", 2974486755652452, undefined, [alert, countdown, paused]); }
+  static init(alert: AlarmPresentation_Alert, countdown?: $SDK2, paused?: $SDK3): AlarmPresentation { return callSDK<AlarmPresentation>("AlarmKit_90ad0eb69cc6bf4a", 2974486755652452, undefined, [alert, countdown, paused]); }
   /**
    * var alert: AlarmPresentation.Alert
    * @availability iOS 26.0+
    */
-  get alert(): AlarmPresentation_Alert { return callSDK<AlarmPresentation_Alert>("AlarmKit_a956b86ef7a76a8e", 647526682640228, this, []); }
-  set alert(value: AlarmPresentation_Alert) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 1987035755595382, this, [value]); }
+  get alert(): AlarmPresentation_Alert { return callSDK<AlarmPresentation_Alert>("AlarmKit_90ad0eb69cc6bf4a", 647526682640228, this, []); }
+  set alert(value: AlarmPresentation_Alert) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 1987035755595382, this, [value]); }
   /**
    * var paused: AlarmPresentation.Paused?
    * @availability iOS 26.0+
    */
-  get paused(): $SDK3 { return callSDK<$SDK3>("AlarmKit_a956b86ef7a76a8e", 2400702562503054, this, []); }
-  set paused(value: $SDK3) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 1251706894650601, this, [value]); }
+  get paused(): $SDK3 { return callSDK<$SDK3>("AlarmKit_90ad0eb69cc6bf4a", 2400702562503054, this, []); }
+  set paused(value: $SDK3) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 1251706894650601, this, [value]); }
   /**
    * var countdown: AlarmPresentation.Countdown?
    * @availability iOS 26.0+
    */
-  get countdown(): $SDK2 { return callSDK<$SDK2>("AlarmKit_a956b86ef7a76a8e", 1561476561576263, this, []); }
-  set countdown(value: $SDK2) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 4308865455348535, this, [value]); }
+  get countdown(): $SDK2 { return callSDK<$SDK2>("AlarmKit_90ad0eb69cc6bf4a", 1561476561576263, this, []); }
+  set countdown(value: $SDK2) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 4308865455348535, this, [value]); }
   declare readonly $type: { "s:8AlarmKit0A12PresentationV": true };
 }
 
@@ -412,37 +412,37 @@ export class AlarmPresentation_Alert extends SDKHandle {
    * var stopButton: AlarmButton { get set }
    * @availability iOS 26.0+
    */
-  get stopButton(): AlarmButton { return callSDK<AlarmButton>("AlarmKit_a956b86ef7a76a8e", 156698187644622, this, []); }
-  set stopButton(value: AlarmButton) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 3229485447900233, this, [value]); }
+  get stopButton(): AlarmButton { return callSDK<AlarmButton>("AlarmKit_90ad0eb69cc6bf4a", 156698187644622, this, []); }
+  set stopButton(value: AlarmButton) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 3229485447900233, this, [value]); }
   /**
    * var secondaryButton: AlarmButton?
    * @availability iOS 26.0+
    */
-  get secondaryButton(): (AlarmButton) | null { return callSDK<(AlarmButton) | null>("AlarmKit_a956b86ef7a76a8e", 483087024173285, this, []); }
-  set secondaryButton(value: (AlarmButton) | null) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2977550354856046, this, [value]); }
+  get secondaryButton(): (AlarmButton) | null { return callSDK<(AlarmButton) | null>("AlarmKit_90ad0eb69cc6bf4a", 483087024173285, this, []); }
+  set secondaryButton(value: (AlarmButton) | null) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2977550354856046, this, [value]); }
   /**
    * var secondaryButtonBehavior: AlarmPresentation.Alert.SecondaryButtonBehavior?
    * @availability iOS 26.0+
    */
-  get secondaryButtonBehavior(): $SDK4 { return callSDK<$SDK4>("AlarmKit_a956b86ef7a76a8e", 2031663077303701, this, []); }
-  set secondaryButtonBehavior(value: $SDK4) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 4476720287780389, this, [value]); }
+  get secondaryButtonBehavior(): $SDK4 { return callSDK<$SDK4>("AlarmKit_90ad0eb69cc6bf4a", 2031663077303701, this, []); }
+  set secondaryButtonBehavior(value: $SDK4) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 4476720287780389, this, [value]); }
   /**
    * var title: LocalizedStringResource
    * @availability iOS 26.0+
    */
-  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AlarmKit_a956b86ef7a76a8e", 3473623157386219, this, []); }
-  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 303549457526075, this, [value]); }
+  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AlarmKit_90ad0eb69cc6bf4a", 3473623157386219, this, []); }
+  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 303549457526075, this, [value]); }
   /**
    * init(title: LocalizedStringResource, stopButton: AlarmButton, secondaryButton: AlarmButton? = nil, secondaryButtonBehavior: AlarmPresentation.Alert.SecondaryButtonBehavior? = nil)
    * @availability iOS 26.0+
    * @deprecated iOS 26.1
    */
-  static initTitleStopButtonSecondaryButtonSecondaryButtonBehavior(title: _Foundation_LocalizedStringResource, stopButton: AlarmButton, secondaryButton?: (AlarmButton) | null, secondaryButtonBehavior?: $SDK4): AlarmPresentation_Alert { return callSDK<AlarmPresentation_Alert>("AlarmKit_a956b86ef7a76a8e", 16726652003350, undefined, [title, stopButton, secondaryButton, secondaryButtonBehavior]); }
+  static initTitleStopButtonSecondaryButtonSecondaryButtonBehavior(title: _Foundation_LocalizedStringResource, stopButton: AlarmButton, secondaryButton?: (AlarmButton) | null, secondaryButtonBehavior?: $SDK4): AlarmPresentation_Alert { return callSDK<AlarmPresentation_Alert>("AlarmKit_90ad0eb69cc6bf4a", 16726652003350, undefined, [title, stopButton, secondaryButton, secondaryButtonBehavior]); }
   /**
    * init(title: LocalizedStringResource, secondaryButton: AlarmButton? = nil, secondaryButtonBehavior: AlarmPresentation.Alert.SecondaryButtonBehavior? = nil)
    * @availability iOS 26.1+
    */
-  static initTitleSecondaryButtonSecondaryButtonBehavior(title: _Foundation_LocalizedStringResource, secondaryButton?: (AlarmButton) | null, secondaryButtonBehavior?: $SDK4): AlarmPresentation_Alert { return callSDK<AlarmPresentation_Alert>("AlarmKit_a956b86ef7a76a8e", 620850056156504, undefined, [title, secondaryButton, secondaryButtonBehavior]); }
+  static initTitleSecondaryButtonSecondaryButtonBehavior(title: _Foundation_LocalizedStringResource, secondaryButton?: (AlarmButton) | null, secondaryButtonBehavior?: $SDK4): AlarmPresentation_Alert { return callSDK<AlarmPresentation_Alert>("AlarmKit_90ad0eb69cc6bf4a", 620850056156504, undefined, [title, secondaryButton, secondaryButtonBehavior]); }
   declare readonly $type: { "s:8AlarmKit0A12PresentationV5AlertV": true };
 }
 
@@ -461,19 +461,19 @@ export class AlarmPresentation_Countdown extends SDKHandle {
    * var pauseButton: AlarmButton?
    * @availability iOS 26.0+
    */
-  get pauseButton(): (AlarmButton) | null { return callSDK<(AlarmButton) | null>("AlarmKit_a956b86ef7a76a8e", 956457748187943, this, []); }
-  set pauseButton(value: (AlarmButton) | null) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2094718686385085, this, [value]); }
+  get pauseButton(): (AlarmButton) | null { return callSDK<(AlarmButton) | null>("AlarmKit_90ad0eb69cc6bf4a", 956457748187943, this, []); }
+  set pauseButton(value: (AlarmButton) | null) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2094718686385085, this, [value]); }
   /**
    * var title: LocalizedStringResource
    * @availability iOS 26.0+
    */
-  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AlarmKit_a956b86ef7a76a8e", 949899368491263, this, []); }
-  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 1350477376459306, this, [value]); }
+  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AlarmKit_90ad0eb69cc6bf4a", 949899368491263, this, []); }
+  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 1350477376459306, this, [value]); }
   /**
    * init(title: LocalizedStringResource, pauseButton: AlarmButton? = nil)
    * @availability iOS 26.0+
    */
-  static init(title: _Foundation_LocalizedStringResource, pauseButton?: (AlarmButton) | null): AlarmPresentation_Countdown { return callSDK<AlarmPresentation_Countdown>("AlarmKit_a956b86ef7a76a8e", 2531677574870895, undefined, [title, pauseButton]); }
+  static init(title: _Foundation_LocalizedStringResource, pauseButton?: (AlarmButton) | null): AlarmPresentation_Countdown { return callSDK<AlarmPresentation_Countdown>("AlarmKit_90ad0eb69cc6bf4a", 2531677574870895, undefined, [title, pauseButton]); }
   declare readonly $type: { "s:8AlarmKit0A12PresentationV9CountdownV": true };
 }
 
@@ -486,19 +486,19 @@ export class AlarmPresentation_Paused extends SDKHandle {
    * var resumeButton: AlarmButton
    * @availability iOS 26.0+
    */
-  get resumeButton(): AlarmButton { return callSDK<AlarmButton>("AlarmKit_a956b86ef7a76a8e", 292577484102424, this, []); }
-  set resumeButton(value: AlarmButton) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 601902668696967, this, [value]); }
+  get resumeButton(): AlarmButton { return callSDK<AlarmButton>("AlarmKit_90ad0eb69cc6bf4a", 292577484102424, this, []); }
+  set resumeButton(value: AlarmButton) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 601902668696967, this, [value]); }
   /**
    * var title: LocalizedStringResource
    * @availability iOS 26.0+
    */
-  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AlarmKit_a956b86ef7a76a8e", 2939038759916634, this, []); }
-  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2217537658814485, this, [value]); }
+  get title(): _Foundation_LocalizedStringResource { return callSDK<_Foundation_LocalizedStringResource>("AlarmKit_90ad0eb69cc6bf4a", 2939038759916634, this, []); }
+  set title(value: _Foundation_LocalizedStringResource) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2217537658814485, this, [value]); }
   /**
    * init(title: LocalizedStringResource, resumeButton: AlarmButton)
    * @availability iOS 26.0+
    */
-  static init(title: _Foundation_LocalizedStringResource, resumeButton: AlarmButton): AlarmPresentation_Paused { return callSDK<AlarmPresentation_Paused>("AlarmKit_a956b86ef7a76a8e", 3860867353182499, undefined, [title, resumeButton]); }
+  static init(title: _Foundation_LocalizedStringResource, resumeButton: AlarmButton): AlarmPresentation_Paused { return callSDK<AlarmPresentation_Paused>("AlarmKit_90ad0eb69cc6bf4a", 3860867353182499, undefined, [title, resumeButton]); }
   declare readonly $type: { "s:8AlarmKit0A12PresentationV6PausedV": true };
 }
 
@@ -511,19 +511,19 @@ export class AlarmPresentationState extends SDKHandle {
    * var mode: AlarmPresentationState.Mode
    * @availability iOS 26.0+
    */
-  get mode(): AlarmPresentationState_Mode { return callSDK<AlarmPresentationState_Mode>("AlarmKit_a956b86ef7a76a8e", 935680738865907, this, []); }
-  set mode(value: AlarmPresentationState_Mode) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 128690356252587, this, [value]); }
+  get mode(): AlarmPresentationState_Mode { return callSDK<AlarmPresentationState_Mode>("AlarmKit_90ad0eb69cc6bf4a", 935680738865907, this, []); }
+  set mode(value: AlarmPresentationState_Mode) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 128690356252587, this, [value]); }
   /**
    * var alarmID: Alarm.ID
    * @availability iOS 26.0+
    */
-  get alarmID(): string { return callSDK<string>("AlarmKit_a956b86ef7a76a8e", 177303503273076, this, []); }
-  set alarmID(value: string) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 1589539321287510, this, [value]); }
+  get alarmID(): string { return callSDK<string>("AlarmKit_90ad0eb69cc6bf4a", 177303503273076, this, []); }
+  set alarmID(value: string) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 1589539321287510, this, [value]); }
   /**
    * init(alarmID: Alarm.ID, mode: AlarmPresentationState.Mode)
    * @availability iOS 26.0+
    */
-  static init(alarmID: string, mode: AlarmPresentationState_Mode): AlarmPresentationState { return callSDK<AlarmPresentationState>("AlarmKit_a956b86ef7a76a8e", 2189686819606846, undefined, [alarmID, mode]); }
+  static init(alarmID: string, mode: AlarmPresentationState_Mode): AlarmPresentationState { return callSDK<AlarmPresentationState>("AlarmKit_90ad0eb69cc6bf4a", 2189686819606846, undefined, [alarmID, mode]); }
   declare readonly $type: { "s:8AlarmKit0A17PresentationStateV": true };
 }
 
@@ -544,13 +544,13 @@ export class AlarmPresentationState_Mode_Alert extends SDKHandle {
    * var time: Alarm.Schedule.Relative.Time
    * @availability iOS 26.0+
    */
-  get time(): Alarm_Schedule_Relative_Time { return callSDK<Alarm_Schedule_Relative_Time>("AlarmKit_a956b86ef7a76a8e", 4230628459654976, this, []); }
-  set time(value: Alarm_Schedule_Relative_Time) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 2745235878036634, this, [value]); }
+  get time(): Alarm_Schedule_Relative_Time { return callSDK<Alarm_Schedule_Relative_Time>("AlarmKit_90ad0eb69cc6bf4a", 4230628459654976, this, []); }
+  set time(value: Alarm_Schedule_Relative_Time) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 2745235878036634, this, [value]); }
   /**
    * init(time: Alarm.Schedule.Relative.Time)
    * @availability iOS 26.0+
    */
-  static init(time: Alarm_Schedule_Relative_Time): AlarmPresentationState_Mode_Alert { return callSDK<AlarmPresentationState_Mode_Alert>("AlarmKit_a956b86ef7a76a8e", 1163521079285526, undefined, [time]); }
+  static init(time: Alarm_Schedule_Relative_Time): AlarmPresentationState_Mode_Alert { return callSDK<AlarmPresentationState_Mode_Alert>("AlarmKit_90ad0eb69cc6bf4a", 1163521079285526, undefined, [time]); }
   declare readonly $type: { "s:8AlarmKit0A17PresentationStateV4ModeO5AlertV": true };
 }
 
@@ -563,31 +563,31 @@ export class AlarmPresentationState_Mode_Countdown extends SDKHandle {
    * init(totalCountdownDuration: TimeInterval, previouslyElapsedDuration: TimeInterval, startDate: Date, fireDate: Date)
    * @availability iOS 26.0+
    */
-  static init(totalCountdownDuration: number, previouslyElapsedDuration: number, startDate: globalThis.Date, fireDate: globalThis.Date): AlarmPresentationState_Mode_Countdown { return callSDK<AlarmPresentationState_Mode_Countdown>("AlarmKit_a956b86ef7a76a8e", 2078287148332915, undefined, [totalCountdownDuration, previouslyElapsedDuration, startDate, fireDate]); }
+  static init(totalCountdownDuration: number, previouslyElapsedDuration: number, startDate: globalThis.Date, fireDate: globalThis.Date): AlarmPresentationState_Mode_Countdown { return callSDK<AlarmPresentationState_Mode_Countdown>("AlarmKit_90ad0eb69cc6bf4a", 2078287148332915, undefined, [totalCountdownDuration, previouslyElapsedDuration, startDate, fireDate]); }
   /**
    * var totalCountdownDuration: TimeInterval
    * @availability iOS 26.0+
    */
-  get totalCountdownDuration(): number { return callSDK<number>("AlarmKit_a956b86ef7a76a8e", 1898062209891915, this, []); }
-  set totalCountdownDuration(value: number) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 1006032938750036, this, [value]); }
+  get totalCountdownDuration(): number { return callSDK<number>("AlarmKit_90ad0eb69cc6bf4a", 1898062209891915, this, []); }
+  set totalCountdownDuration(value: number) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 1006032938750036, this, [value]); }
   /**
    * var previouslyElapsedDuration: TimeInterval
    * @availability iOS 26.0+
    */
-  get previouslyElapsedDuration(): number { return callSDK<number>("AlarmKit_a956b86ef7a76a8e", 86205688069629, this, []); }
-  set previouslyElapsedDuration(value: number) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 3764146196537488, this, [value]); }
+  get previouslyElapsedDuration(): number { return callSDK<number>("AlarmKit_90ad0eb69cc6bf4a", 86205688069629, this, []); }
+  set previouslyElapsedDuration(value: number) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 3764146196537488, this, [value]); }
   /**
    * var fireDate: Date
    * @availability iOS 26.0+
    */
-  get fireDate(): globalThis.Date { return callSDK<globalThis.Date>("AlarmKit_a956b86ef7a76a8e", 3507996619910932, this, []); }
-  set fireDate(value: globalThis.Date) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 1272519519951322, this, [value]); }
+  get fireDate(): globalThis.Date { return callSDK<globalThis.Date>("AlarmKit_90ad0eb69cc6bf4a", 3507996619910932, this, []); }
+  set fireDate(value: globalThis.Date) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 1272519519951322, this, [value]); }
   /**
    * var startDate: Date
    * @availability iOS 26.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("AlarmKit_a956b86ef7a76a8e", 3281461156769750, this, []); }
-  set startDate(value: globalThis.Date) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 3163101063428711, this, [value]); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("AlarmKit_90ad0eb69cc6bf4a", 3281461156769750, this, []); }
+  set startDate(value: globalThis.Date) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 3163101063428711, this, [value]); }
   declare readonly $type: { "s:8AlarmKit0A17PresentationStateV4ModeO9CountdownV": true };
 }
 
@@ -600,43 +600,43 @@ export class AlarmPresentationState_Mode_Paused extends SDKHandle {
    * init(totalCountdownDuration: TimeInterval, previouslyElapsedDuration: TimeInterval)
    * @availability iOS 26.0+
    */
-  static init(totalCountdownDuration: number, previouslyElapsedDuration: number): AlarmPresentationState_Mode_Paused { return callSDK<AlarmPresentationState_Mode_Paused>("AlarmKit_a956b86ef7a76a8e", 3372478943168283, undefined, [totalCountdownDuration, previouslyElapsedDuration]); }
+  static init(totalCountdownDuration: number, previouslyElapsedDuration: number): AlarmPresentationState_Mode_Paused { return callSDK<AlarmPresentationState_Mode_Paused>("AlarmKit_90ad0eb69cc6bf4a", 3372478943168283, undefined, [totalCountdownDuration, previouslyElapsedDuration]); }
   /**
    * var totalCountdownDuration: TimeInterval
    * @availability iOS 26.0+
    */
-  get totalCountdownDuration(): number { return callSDK<number>("AlarmKit_a956b86ef7a76a8e", 3784837044421043, this, []); }
-  set totalCountdownDuration(value: number) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 392716807638449, this, [value]); }
+  get totalCountdownDuration(): number { return callSDK<number>("AlarmKit_90ad0eb69cc6bf4a", 3784837044421043, this, []); }
+  set totalCountdownDuration(value: number) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 392716807638449, this, [value]); }
   /**
    * var previouslyElapsedDuration: TimeInterval
    * @availability iOS 26.0+
    */
-  get previouslyElapsedDuration(): number { return callSDK<number>("AlarmKit_a956b86ef7a76a8e", 2510650887538635, this, []); }
-  set previouslyElapsedDuration(value: number) { callSDK<void>("AlarmKit_a956b86ef7a76a8e", 551503085825849, this, [value]); }
+  get previouslyElapsedDuration(): number { return callSDK<number>("AlarmKit_90ad0eb69cc6bf4a", 2510650887538635, this, []); }
+  set previouslyElapsedDuration(value: number) { callSDK<void>("AlarmKit_90ad0eb69cc6bf4a", 551503085825849, this, [value]); }
   declare readonly $type: { "s:8AlarmKit0A17PresentationStateV4ModeO6PausedV": true };
 }
 
-registerSDKClass("AlarmKit.Alarm", Alarm, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.Alarm.CountdownDuration", Alarm_CountdownDuration, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.Alarm.Schedule", Alarm_Schedule, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.Alarm.Schedule.Relative", Alarm_Schedule_Relative, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.Alarm.Schedule.Relative.Recurrence", Alarm_Schedule_Relative_Recurrence, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.Alarm.Schedule.Relative.Time", Alarm_Schedule_Relative_Time, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmAttributes", AlarmAttributes, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmButton", AlarmButton, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmManager", AlarmManager, { module: "AlarmKit_a956b86ef7a76a8e", properties: {}, methods: {"requestAuthorization":{"id":2035546181227676},"stop":{"id":202195202470066},"pause":{"id":9845060256450},"cancel":{"id":2790195669414162},"resume":{"id":1691259524052237},"countdown":{"id":2749275693207034}} });
-registerSDKClass("AlarmKit.AlarmManager.AlarmAuthorizationStateUpdates", AlarmManager_AlarmAuthorizationStateUpdates, { module: "AlarmKit_a956b86ef7a76a8e", properties: {}, methods: {"makeAsyncIterator":{"id":1615422599163626}} });
-registerSDKClass("AlarmKit.AlarmManager.AlarmAuthorizationStateUpdates.Iterator", AlarmManager_AlarmAuthorizationStateUpdates_Iterator, { module: "AlarmKit_a956b86ef7a76a8e", properties: {}, methods: {"next":{"id":3421624960475494}} });
-registerSDKClass("AlarmKit.AlarmManager.AlarmConfiguration", AlarmManager_AlarmConfiguration, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmManager.AlarmUpdates", AlarmManager_AlarmUpdates, { module: "AlarmKit_a956b86ef7a76a8e", properties: {}, methods: {"makeAsyncIterator":{"id":4320433424308921}} });
-registerSDKClass("AlarmKit.AlarmManager.AlarmUpdates.Iterator", AlarmManager_AlarmUpdates_Iterator, { module: "AlarmKit_a956b86ef7a76a8e", properties: {}, methods: {"next":{"id":988119812756173}} });
+registerSDKClass("AlarmKit.Alarm", Alarm, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.Alarm.CountdownDuration", Alarm_CountdownDuration, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.Alarm.Schedule", Alarm_Schedule, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.Alarm.Schedule.Relative", Alarm_Schedule_Relative, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.Alarm.Schedule.Relative.Recurrence", Alarm_Schedule_Relative_Recurrence, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.Alarm.Schedule.Relative.Time", Alarm_Schedule_Relative_Time, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmAttributes", AlarmAttributes, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmButton", AlarmButton, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmManager", AlarmManager, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {}, methods: {"requestAuthorization":{"id":2035546181227676},"stop":{"id":202195202470066},"pause":{"id":9845060256450},"cancel":{"id":2790195669414162},"resume":{"id":1691259524052237},"countdown":{"id":2749275693207034}} });
+registerSDKClass("AlarmKit.AlarmManager.AlarmAuthorizationStateUpdates", AlarmManager_AlarmAuthorizationStateUpdates, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {}, methods: {"makeAsyncIterator":{"id":1615422599163626}} });
+registerSDKClass("AlarmKit.AlarmManager.AlarmAuthorizationStateUpdates.Iterator", AlarmManager_AlarmAuthorizationStateUpdates_Iterator, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {}, methods: {"next":{"id":3421624960475494}} });
+registerSDKClass("AlarmKit.AlarmManager.AlarmConfiguration", AlarmManager_AlarmConfiguration, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmManager.AlarmUpdates", AlarmManager_AlarmUpdates, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {}, methods: {"makeAsyncIterator":{"id":4320433424308921}} });
+registerSDKClass("AlarmKit.AlarmManager.AlarmUpdates.Iterator", AlarmManager_AlarmUpdates_Iterator, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {}, methods: {"next":{"id":988119812756173}} });
 registerSDKProtocol("s:8AlarmKit0A8MetadataP", {});
-registerSDKClass("AlarmKit.AlarmPresentation", AlarmPresentation, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmPresentation.Alert", AlarmPresentation_Alert, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmPresentation.Countdown", AlarmPresentation_Countdown, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmPresentation.Paused", AlarmPresentation_Paused, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmPresentationState", AlarmPresentationState, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmPresentationState.Mode", AlarmPresentationState_Mode, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmPresentationState.Mode.Alert", AlarmPresentationState_Mode_Alert, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmPresentationState.Mode.Countdown", AlarmPresentationState_Mode_Countdown, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("AlarmKit.AlarmPresentationState.Mode.Paused", AlarmPresentationState_Mode_Paused, { module: "AlarmKit_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("AlarmKit.AlarmPresentation", AlarmPresentation, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmPresentation.Alert", AlarmPresentation_Alert, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmPresentation.Countdown", AlarmPresentation_Countdown, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmPresentation.Paused", AlarmPresentation_Paused, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmPresentationState", AlarmPresentationState, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmPresentationState.Mode", AlarmPresentationState_Mode, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmPresentationState.Mode.Alert", AlarmPresentationState_Mode_Alert, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmPresentationState.Mode.Countdown", AlarmPresentationState_Mode_Countdown, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("AlarmKit.AlarmPresentationState.Mode.Paused", AlarmPresentationState_Mode_Paused, { module: "AlarmKit_90ad0eb69cc6bf4a", properties: {} });

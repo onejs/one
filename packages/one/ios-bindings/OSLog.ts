@@ -134,15 +134,15 @@ export class OSLogStore extends SDKHandle {
  */
 export type OSLogStore_Scope = "currentProcessIdentifier";
 
-registerSDKClass("OSLogEntry", OSLogEntry, { module: "OSLog_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("OSLogEntryActivity", OSLogEntryActivity, { module: "OSLog_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("OSLogEntryBoundary", OSLogEntryBoundary, { module: "OSLog_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("OSLogEntry", OSLogEntry, { module: "OSLog_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("OSLogEntryActivity", OSLogEntryActivity, { module: "OSLog_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("OSLogEntryBoundary", OSLogEntryBoundary, { module: "OSLog_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("c:objc(pl)OSLogEntryFromProcess", {});
-registerSDKClass("OSLogEntryLog", OSLogEntryLog, { module: "OSLog_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("OSLogEntrySignpost", OSLogEntrySignpost, { module: "OSLog_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("OSLogEntryLog", OSLogEntryLog, { module: "OSLog_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("OSLogEntrySignpost", OSLogEntrySignpost, { module: "OSLog_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("c:objc(pl)OSLogEntryWithPayload", {});
-registerSDKClass("OSLogEnumerator", OSLogEnumerator, { module: "OSLog_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("OSLogMessageComponent", OSLogMessageComponent, { module: "OSLog_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("OSLog.OSLogMessageComponent.Argument", OSLogMessageComponent_Argument, { module: "OSLog_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("OSLogPosition", OSLogPosition, { module: "OSLog_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("OSLogStore", OSLogStore, { module: "OSLog_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("OSLogEnumerator", OSLogEnumerator, { module: "OSLog_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("OSLogMessageComponent", OSLogMessageComponent, { module: "OSLog_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("OSLog.OSLogMessageComponent.Argument", OSLogMessageComponent_Argument, { module: "OSLog_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("OSLogPosition", OSLogPosition, { module: "OSLog_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("OSLogStore", OSLogStore, { module: "OSLog_90ad0eb69cc6bf4a", properties: {} });

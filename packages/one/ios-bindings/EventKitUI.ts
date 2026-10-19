@@ -12,23 +12,23 @@ type $SDK4 = (_EventKit_EKEventStore) | null;
 /** class EKCalendarChooser */
 export class EKCalendarChooser extends SDKHandle {
   /** init(selectionStyle style: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, entityType: EKEntityType, eventStore: EKEventStore) */
-  static initSelectionStyleDisplayStyleEntityTypeEventStore(style: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, entityType: _EventKit_EKEntityType, eventStore: _EventKit_EKEventStore): EKCalendarChooser { return callSDK<EKCalendarChooser>("EventKitUI_a956b86ef7a76a8e", 2669519855939633, undefined, [style, displayStyle, entityType, eventStore]); }
+  static initSelectionStyleDisplayStyleEntityTypeEventStore(style: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, entityType: _EventKit_EKEntityType, eventStore: _EventKit_EKEventStore): EKCalendarChooser { return callSDK<EKCalendarChooser>("EventKitUI_90ad0eb69cc6bf4a", 2669519855939633, undefined, [style, displayStyle, entityType, eventStore]); }
   /** init(selectionStyle: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, eventStore: EKEventStore) */
-  static initSelectionStyleDisplayStyleEventStore(selectionStyle: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, eventStore: _EventKit_EKEventStore): EKCalendarChooser { return callSDK<EKCalendarChooser>("EventKitUI_a956b86ef7a76a8e", 4105600481830124, undefined, [selectionStyle, displayStyle, eventStore]); }
+  static initSelectionStyleDisplayStyleEventStore(selectionStyle: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, eventStore: _EventKit_EKEventStore): EKCalendarChooser { return callSDK<EKCalendarChooser>("EventKitUI_90ad0eb69cc6bf4a", 4105600481830124, undefined, [selectionStyle, displayStyle, eventStore]); }
   /** weak var delegate: (any EKCalendarChooserDelegate)? { get set } */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("EventKitUI_a956b86ef7a76a8e", 3497579009597504, this, []); }
-  set delegate(value: (Implements<EKCalendarChooserDelegate> | SDKHandle) | null) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 4070052900564547, this, [value], [{"protocol":"c:objc(pl)EKCalendarChooserDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("EventKitUI_90ad0eb69cc6bf4a", 3497579009597504, this, []); }
+  set delegate(value: (Implements<EKCalendarChooserDelegate> | SDKHandle) | null) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 4070052900564547, this, [value], [{"protocol":"c:objc(pl)EKCalendarChooserDelegate"}]); }
   /** var selectedCalendars: Set<EKCalendar> { get set } */
-  get selectedCalendars(): $SDK1 { return callSDK<$SDK1>("EventKitUI_a956b86ef7a76a8e", 4041081017188953, this, []); }
-  set selectedCalendars(value: $SDK1) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 902433218868999, this, [value]); }
+  get selectedCalendars(): $SDK1 { return callSDK<$SDK1>("EventKitUI_90ad0eb69cc6bf4a", 4041081017188953, this, []); }
+  set selectedCalendars(value: $SDK1) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 902433218868999, this, [value]); }
   /** var selectionStyle: EKCalendarChooserSelectionStyle { get } */
-  get selectionStyle(): EKCalendarChooserSelectionStyle { return callSDK<EKCalendarChooserSelectionStyle>("EventKitUI_a956b86ef7a76a8e", 4480584196819017, this, []); }
+  get selectionStyle(): EKCalendarChooserSelectionStyle { return callSDK<EKCalendarChooserSelectionStyle>("EventKitUI_90ad0eb69cc6bf4a", 4480584196819017, this, []); }
   /** var showsCancelButton: Bool { get set } */
-  get showsCancelButton(): boolean { return callSDK<boolean>("EventKitUI_a956b86ef7a76a8e", 1571329786786827, this, []); }
-  set showsCancelButton(value: boolean) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 335461203823495, this, [value]); }
+  get showsCancelButton(): boolean { return callSDK<boolean>("EventKitUI_90ad0eb69cc6bf4a", 1571329786786827, this, []); }
+  set showsCancelButton(value: boolean) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 335461203823495, this, [value]); }
   /** var showsDoneButton: Bool { get set } */
-  get showsDoneButton(): boolean { return callSDK<boolean>("EventKitUI_a956b86ef7a76a8e", 2758514212509267, this, []); }
-  set showsDoneButton(value: boolean) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 3832861614660976, this, [value]); }
+  get showsDoneButton(): boolean { return callSDK<boolean>("EventKitUI_90ad0eb69cc6bf4a", 2758514212509267, this, []); }
+  set showsDoneButton(value: boolean) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 3832861614660976, this, [value]); }
   declare readonly $type: { "c:objc(cs)EKCalendarChooser": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "selectedCalendars": true; "selectionStyle": true; "showsCancelButton": true; "showsDoneButton": true };
 }
@@ -48,7 +48,7 @@ export type EKCalendarChooserDisplayStyle = "allCalendars" | "writableCalendarsO
 
 export const EKCalendarChooserDisplayStyle = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKCalendarChooserDisplayStyle) | null { return callSDK<(EKCalendarChooserDisplayStyle) | null>("EventKitUI_a956b86ef7a76a8e", 1111562502856160, undefined, [rawValue]); }
+  init(rawValue: number): (EKCalendarChooserDisplayStyle) | null { return callSDK<(EKCalendarChooserDisplayStyle) | null>("EventKitUI_90ad0eb69cc6bf4a", 1111562502856160, undefined, [rawValue]); }
 };
 
 /** enum EKCalendarChooserSelectionStyle */
@@ -56,7 +56,7 @@ export type EKCalendarChooserSelectionStyle = "single" | "multiple";
 
 export const EKCalendarChooserSelectionStyle = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKCalendarChooserSelectionStyle) | null { return callSDK<(EKCalendarChooserSelectionStyle) | null>("EventKitUI_a956b86ef7a76a8e", 2630233072737189, undefined, [rawValue]); }
+  init(rawValue: number): (EKCalendarChooserSelectionStyle) | null { return callSDK<(EKCalendarChooserSelectionStyle) | null>("EventKitUI_90ad0eb69cc6bf4a", 2630233072737189, undefined, [rawValue]); }
 };
 
 /** enum EKEventEditViewAction */
@@ -64,9 +64,9 @@ export type EKEventEditViewAction = "canceled" | "saved" | "deleted";
 
 export const EKEventEditViewAction = {
   /** static var cancelled: EKEventEditViewAction { get } */
-  get cancelled(): EKEventEditViewAction { return callSDK<EKEventEditViewAction>("EventKitUI_a956b86ef7a76a8e", 1354956325257383, undefined, []); },
+  get cancelled(): EKEventEditViewAction { return callSDK<EKEventEditViewAction>("EventKitUI_90ad0eb69cc6bf4a", 1354956325257383, undefined, []); },
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKEventEditViewAction) | null { return callSDK<(EKEventEditViewAction) | null>("EventKitUI_a956b86ef7a76a8e", 255800425185973, undefined, [rawValue]); }
+  init(rawValue: number): (EKEventEditViewAction) | null { return callSDK<(EKEventEditViewAction) | null>("EventKitUI_90ad0eb69cc6bf4a", 255800425185973, undefined, [rawValue]); }
 };
 
 /**
@@ -78,27 +78,27 @@ export class EKEventEditViewController extends SDKHandle {
    * func cancelEditing()
    * @availability iOS 4.0+
    */
-  cancelEditing(): void { return callSDK<void>("EventKitUI_a956b86ef7a76a8e", 2840570619534132, this, []); }
+  cancelEditing(): void { return callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 2840570619534132, this, []); }
   /** init() */
-  static init(): EKEventEditViewController { return callSDK<EKEventEditViewController>("EventKitUI_a956b86ef7a76a8e", 3618617028184587, undefined, []); }
+  static init(): EKEventEditViewController { return callSDK<EKEventEditViewController>("EventKitUI_90ad0eb69cc6bf4a", 3618617028184587, undefined, []); }
   /**
    * weak var editViewDelegate: (any EKEventEditViewDelegate)? { get set }
    * @availability iOS 4.0+
    */
-  get editViewDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("EventKitUI_a956b86ef7a76a8e", 3080370761444357, this, []); }
-  set editViewDelegate(value: (Implements<EKEventEditViewDelegate> | SDKHandle) | null) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 125212327023493, this, [value], [{"protocol":"c:objc(pl)EKEventEditViewDelegate"}]); }
+  get editViewDelegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("EventKitUI_90ad0eb69cc6bf4a", 3080370761444357, this, []); }
+  set editViewDelegate(value: (Implements<EKEventEditViewDelegate> | SDKHandle) | null) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 125212327023493, this, [value], [{"protocol":"c:objc(pl)EKEventEditViewDelegate"}]); }
   /**
    * var event: EKEvent? { get set }
    * @availability iOS 4.0+
    */
-  get event(): $SDK3 { return callSDK<$SDK3>("EventKitUI_a956b86ef7a76a8e", 201274749371725, this, []); }
-  set event(value: $SDK3) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 1810786346082100, this, [value]); }
+  get event(): $SDK3 { return callSDK<$SDK3>("EventKitUI_90ad0eb69cc6bf4a", 201274749371725, this, []); }
+  set event(value: $SDK3) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 1810786346082100, this, [value]); }
   /**
    * var eventStore: EKEventStore! { get set }
    * @availability iOS 4.0+
    */
-  get eventStore(): $SDK4 { return callSDK<$SDK4>("EventKitUI_a956b86ef7a76a8e", 3569814900027981, this, []); }
-  set eventStore(value: $SDK4) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 1300062274508420, this, [value]); }
+  get eventStore(): $SDK4 { return callSDK<$SDK4>("EventKitUI_90ad0eb69cc6bf4a", 3569814900027981, this, []); }
+  set eventStore(value: $SDK4) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 1300062274508420, this, [value]); }
   declare readonly $type: { "c:objc(cs)EKEventEditViewController": true; "c:objc(cs)UINavigationController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "editViewDelegate": true; "event": true; "eventStore": true };
 }
@@ -117,7 +117,7 @@ export type EKEventViewAction = "done" | "responded" | "deleted";
 
 export const EKEventViewAction = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EKEventViewAction) | null { return callSDK<(EKEventViewAction) | null>("EventKitUI_a956b86ef7a76a8e", 2325687357490938, undefined, [rawValue]); }
+  init(rawValue: number): (EKEventViewAction) | null { return callSDK<(EKEventViewAction) | null>("EventKitUI_90ad0eb69cc6bf4a", 2325687357490938, undefined, [rawValue]); }
 };
 
 /**
@@ -126,31 +126,31 @@ export const EKEventViewAction = {
  */
 export class EKEventViewController extends SDKHandle {
   /** init() */
-  static init(): EKEventViewController { return callSDK<EKEventViewController>("EventKitUI_a956b86ef7a76a8e", 1400364011216539, undefined, []); }
+  static init(): EKEventViewController { return callSDK<EKEventViewController>("EventKitUI_90ad0eb69cc6bf4a", 1400364011216539, undefined, []); }
   /**
    * var allowsCalendarPreview: Bool { get set }
    * @availability iOS 4.0+
    */
-  get allowsCalendarPreview(): boolean { return callSDK<boolean>("EventKitUI_a956b86ef7a76a8e", 2324082928015750, this, []); }
-  set allowsCalendarPreview(value: boolean) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 3316213965351293, this, [value]); }
+  get allowsCalendarPreview(): boolean { return callSDK<boolean>("EventKitUI_90ad0eb69cc6bf4a", 2324082928015750, this, []); }
+  set allowsCalendarPreview(value: boolean) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 3316213965351293, this, [value]); }
   /**
    * var allowsEditing: Bool { get set }
    * @availability iOS 4.0+
    */
-  get allowsEditing(): boolean { return callSDK<boolean>("EventKitUI_a956b86ef7a76a8e", 772447723993588, this, []); }
-  set allowsEditing(value: boolean) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 1166909977051223, this, [value]); }
+  get allowsEditing(): boolean { return callSDK<boolean>("EventKitUI_90ad0eb69cc6bf4a", 772447723993588, this, []); }
+  set allowsEditing(value: boolean) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 1166909977051223, this, [value]); }
   /**
    * weak var delegate: (any EKEventViewDelegate)? { get set }
    * @availability iOS 4.2+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("EventKitUI_a956b86ef7a76a8e", 2810342675694653, this, []); }
-  set delegate(value: (Implements<EKEventViewDelegate> | SDKHandle) | null) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 3319754955153461, this, [value], [{"protocol":"c:objc(pl)EKEventViewDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("EventKitUI_90ad0eb69cc6bf4a", 2810342675694653, this, []); }
+  set delegate(value: (Implements<EKEventViewDelegate> | SDKHandle) | null) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 3319754955153461, this, [value], [{"protocol":"c:objc(pl)EKEventViewDelegate"}]); }
   /**
    * var event: EKEvent! { get set }
    * @availability iOS 4.0+
    */
-  get event(): $SDK3 { return callSDK<$SDK3>("EventKitUI_a956b86ef7a76a8e", 2165213028976248, this, []); }
-  set event(value: $SDK3) { callSDK<void>("EventKitUI_a956b86ef7a76a8e", 442974839671327, this, [value]); }
+  get event(): $SDK3 { return callSDK<$SDK3>("EventKitUI_90ad0eb69cc6bf4a", 2165213028976248, this, []); }
+  set event(value: $SDK3) { callSDK<void>("EventKitUI_90ad0eb69cc6bf4a", 442974839671327, this, [value]); }
   declare readonly $type: { "c:objc(cs)EKEventViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsCalendarPreview": true; "allowsEditing": true; "delegate": true; "event": true };
 }
@@ -165,17 +165,17 @@ export interface EKEventViewDelegate {
 }
 
 /** func EventKitUIBundle() -> Bundle! */
-export function EventKitUIBundle(): (_Foundation_Bundle) | null { return callSDK<(_Foundation_Bundle) | null>("EventKitUI_a956b86ef7a76a8e", 4097291509516731, undefined, []); }
+export function EventKitUIBundle(): (_Foundation_Bundle) | null { return callSDK<(_Foundation_Bundle) | null>("EventKitUI_90ad0eb69cc6bf4a", 4097291509516731, undefined, []); }
 
 /** var EKUI_IS_IOS: Int32 { get } */
-export const EKUI_IS_IOS: number = callSDK<number>("EventKitUI_a956b86ef7a76a8e", 2739090074572557, undefined, []);
+export const EKUI_IS_IOS: number = callSDK<number>("EventKitUI_90ad0eb69cc6bf4a", 2739090074572557, undefined, []);
 
 /** var EKUI_IS_SIMULATOR: Int32 { get } */
-export const EKUI_IS_SIMULATOR: number = callSDK<number>("EventKitUI_a956b86ef7a76a8e", 624719008503031, undefined, []);
+export const EKUI_IS_SIMULATOR: number = callSDK<number>("EventKitUI_90ad0eb69cc6bf4a", 624719008503031, undefined, []);
 
-registerSDKClass("EKCalendarChooser", EKCalendarChooser, { module: "EventKitUI_a956b86ef7a76a8e", properties: {"delegate":3497579009597504,"selectedCalendars":4041081017188953,"selectionStyle":4480584196819017,"showsCancelButton":1571329786786827,"showsDoneButton":2758514212509267} });
+registerSDKClass("EKCalendarChooser", EKCalendarChooser, { module: "EventKitUI_90ad0eb69cc6bf4a", properties: {"delegate":3497579009597504,"selectedCalendars":4041081017188953,"selectionStyle":4480584196819017,"showsCancelButton":1571329786786827,"showsDoneButton":2758514212509267} });
 registerSDKProtocol("c:objc(pl)EKCalendarChooserDelegate", {"calendarChooserSelectionDidChange":"calendarChooserSelectionDidChange(_:)","calendarChooserDidFinish":"calendarChooserDidFinish(_:)","calendarChooserDidCancel":"calendarChooserDidCancel(_:)"});
-registerSDKClass("EKEventEditViewController", EKEventEditViewController, { module: "EventKitUI_a956b86ef7a76a8e", properties: {"editViewDelegate":3080370761444357,"event":201274749371725,"eventStore":3569814900027981}, methods: {"cancelEditing":{"id":2840570619534132}} });
+registerSDKClass("EKEventEditViewController", EKEventEditViewController, { module: "EventKitUI_90ad0eb69cc6bf4a", properties: {"editViewDelegate":3080370761444357,"event":201274749371725,"eventStore":3569814900027981}, methods: {"cancelEditing":{"id":2840570619534132}} });
 registerSDKProtocol("c:objc(pl)EKEventEditViewDelegate", {"eventEditViewControllerDidCompleteWith":"eventEditViewController(_:didCompleteWith:)"});
-registerSDKClass("EKEventViewController", EKEventViewController, { module: "EventKitUI_a956b86ef7a76a8e", properties: {"allowsCalendarPreview":2324082928015750,"allowsEditing":772447723993588,"delegate":2810342675694653,"event":2165213028976248} });
+registerSDKClass("EKEventViewController", EKEventViewController, { module: "EventKitUI_90ad0eb69cc6bf4a", properties: {"allowsCalendarPreview":2324082928015750,"allowsEditing":772447723993588,"delegate":2810342675694653,"event":2165213028976248} });
 registerSDKProtocol("c:objc(pl)EKEventViewDelegate", {"eventViewControllerDidCompleteWith":"eventViewController(_:didCompleteWith:)"});

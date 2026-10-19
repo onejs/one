@@ -30,5 +30,5 @@ export class DevicePicker<Label = unknown, Fallback = unknown> extends SDKHandle
  */
 export type DevicePicker_Body<Label = unknown, Fallback = unknown> = SDKHandle;
 
-registerSDKClass("_DeviceDiscoveryUI_SwiftUI.DevicePairingView", DevicePairingView, { module: "_DeviceDiscoveryUI_SwiftUI_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("_DeviceDiscoveryUI_SwiftUI.DevicePicker", DevicePicker, { module: "_DeviceDiscoveryUI_SwiftUI_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("_DeviceDiscoveryUI_SwiftUI.DevicePairingView", DevicePairingView, { module: "_DeviceDiscoveryUI_SwiftUI_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("_DeviceDiscoveryUI_SwiftUI.DevicePicker", DevicePicker, { module: "_DeviceDiscoveryUI_SwiftUI_90ad0eb69cc6bf4a", properties: {} });

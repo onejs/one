@@ -74,22 +74,22 @@ export class CustomerEngagement_Address extends SDKHandle {
    * let emailAddress: String?
    * @availability iOS 27.0+
    */
-  get emailAddress(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 1552313488930141, this, []); }
+  get emailAddress(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 1552313488930141, this, []); }
   /**
    * let postalAddress: CNPostalAddress
    * @availability iOS 27.0+
    */
-  get postalAddress(): _Contacts_CNPostalAddress { return callSDK<_Contacts_CNPostalAddress>("ProximityReader_a956b86ef7a76a8e", 942886837422917, this, []); }
+  get postalAddress(): _Contacts_CNPostalAddress { return callSDK<_Contacts_CNPostalAddress>("ProximityReader_90ad0eb69cc6bf4a", 942886837422917, this, []); }
   /**
    * let phoneNumber: CNPhoneNumber?
    * @availability iOS 27.0+
    */
-  get phoneNumber(): $SDK0 { return callSDK<$SDK0>("ProximityReader_a956b86ef7a76a8e", 1984423707781854, this, []); }
+  get phoneNumber(): $SDK0 { return callSDK<$SDK0>("ProximityReader_90ad0eb69cc6bf4a", 1984423707781854, this, []); }
   /**
    * let name: PersonNameComponents
    * @availability iOS 27.0+
    */
-  get name(): _Foundation_PersonNameComponents { return callSDK<_Foundation_PersonNameComponents>("ProximityReader_a956b86ef7a76a8e", 1024703456330702, this, []); }
+  get name(): _Foundation_PersonNameComponents { return callSDK<_Foundation_PersonNameComponents>("ProximityReader_90ad0eb69cc6bf4a", 1024703456330702, this, []); }
   declare readonly $type: { "s:15ProximityReader18CustomerEngagementO7AddressV": true };
 }
 
@@ -102,22 +102,22 @@ export class CustomerEngagement_CustomerInfo extends SDKHandle {
    * let phoneNumber: CNPhoneNumber?
    * @availability iOS 27.0+
    */
-  get phoneNumber(): $SDK0 { return callSDK<$SDK0>("ProximityReader_a956b86ef7a76a8e", 37435985908052, this, []); }
+  get phoneNumber(): $SDK0 { return callSDK<$SDK0>("ProximityReader_90ad0eb69cc6bf4a", 37435985908052, this, []); }
   /**
    * let emailAddress: String?
    * @availability iOS 27.0+
    */
-  get emailAddress(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 370350633546433, this, []); }
+  get emailAddress(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 370350633546433, this, []); }
   /**
    * let barcodeMessage: String?
    * @availability iOS 27.0+
    */
-  get barcodeMessage(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 1061366571610580, this, []); }
+  get barcodeMessage(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 1061366571610580, this, []); }
   /**
    * let customerVASData: Data?
    * @availability iOS 27.0+
    */
-  get customerVASData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_a956b86ef7a76a8e", 3264850111750988, this, []); }
+  get customerVASData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_90ad0eb69cc6bf4a", 3264850111750988, this, []); }
   declare readonly $type: { "s:15ProximityReader18CustomerEngagementO0C4InfoV": true };
 }
 
@@ -130,17 +130,17 @@ export class CustomerEngagement_ShoppingCart extends SDKHandle {
    * init(items: [CustomerEngagement.ShoppingCart.Item], summary: CustomerEngagement.ShoppingCart.Summary)
    * @availability iOS 27.0+
    */
-  static init(items: $SDK1, summary: CustomerEngagement_ShoppingCart_Summary): CustomerEngagement_ShoppingCart { return callSDK<CustomerEngagement_ShoppingCart>("ProximityReader_a956b86ef7a76a8e", 3646218755131913, undefined, [items, summary]); }
+  static init(items: $SDK1, summary: CustomerEngagement_ShoppingCart_Summary): CustomerEngagement_ShoppingCart { return callSDK<CustomerEngagement_ShoppingCart>("ProximityReader_90ad0eb69cc6bf4a", 3646218755131913, undefined, [items, summary]); }
   /**
    * let items: [CustomerEngagement.ShoppingCart.Item]
    * @availability iOS 27.0+
    */
-  get items(): $SDK1 { return callSDK<$SDK1>("ProximityReader_a956b86ef7a76a8e", 1233134604651324, this, []); }
+  get items(): $SDK1 { return callSDK<$SDK1>("ProximityReader_90ad0eb69cc6bf4a", 1233134604651324, this, []); }
   /**
    * let summary: CustomerEngagement.ShoppingCart.Summary
    * @availability iOS 27.0+
    */
-  get summary(): CustomerEngagement_ShoppingCart_Summary { return callSDK<CustomerEngagement_ShoppingCart_Summary>("ProximityReader_a956b86ef7a76a8e", 885857459222389, this, []); }
+  get summary(): CustomerEngagement_ShoppingCart_Summary { return callSDK<CustomerEngagement_ShoppingCart_Summary>("ProximityReader_90ad0eb69cc6bf4a", 885857459222389, this, []); }
   declare readonly $type: { "s:15ProximityReader18CustomerEngagementO12ShoppingCartV": true };
 }
 
@@ -153,48 +153,48 @@ export class CustomerEngagement_ShoppingCart_Item extends SDKHandle {
    * var totalPrice: Decimal
    * @availability iOS 27.0+
    */
-  get totalPrice(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("ProximityReader_a956b86ef7a76a8e", 2742756001966306, this, []); }
-  set totalPrice(value: _Foundation_Decimal) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3618096578491428, this, [value]); }
+  get totalPrice(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("ProximityReader_90ad0eb69cc6bf4a", 2742756001966306, this, []); }
+  set totalPrice(value: _Foundation_Decimal) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3618096578491428, this, [value]); }
   /**
    * var descriptions: [String]
    * @availability iOS 27.0+
    */
-  get descriptions(): Array<string> { return callSDK<Array<string>>("ProximityReader_a956b86ef7a76a8e", 3523172799367628, this, []); }
-  set descriptions(value: Array<string>) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2108382002316382, this, [value]); }
+  get descriptions(): Array<string> { return callSDK<Array<string>>("ProximityReader_90ad0eb69cc6bf4a", 3523172799367628, this, []); }
+  set descriptions(value: Array<string>) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2108382002316382, this, [value]); }
   /**
    * var totalAdjustedPrice: Decimal?
    * @availability iOS 27.0+
    */
-  get totalAdjustedPrice(): $SDK2 { return callSDK<$SDK2>("ProximityReader_a956b86ef7a76a8e", 2466678186717702, this, []); }
-  set totalAdjustedPrice(value: $SDK2) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2837666755975507, this, [value]); }
+  get totalAdjustedPrice(): $SDK2 { return callSDK<$SDK2>("ProximityReader_90ad0eb69cc6bf4a", 2466678186717702, this, []); }
+  set totalAdjustedPrice(value: $SDK2) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2837666755975507, this, [value]); }
   /**
    * init(id: String = UUID().uuidString, name: String, quantity: Int = 1, totalPrice: Decimal, totalAdjustedPrice: Decimal? = nil, descriptions: [String] = [], details: [String] = [])
    * @availability iOS 27.0+
    */
-  static init(id: string, name: string, quantity: number, totalPrice: _Foundation_Decimal, totalAdjustedPrice?: $SDK2, descriptions?: Array<string>, details?: Array<string>): CustomerEngagement_ShoppingCart_Item { return callSDK<CustomerEngagement_ShoppingCart_Item>("ProximityReader_a956b86ef7a76a8e", 2988745625052664, undefined, [id, name, quantity, totalPrice, totalAdjustedPrice, descriptions, details]); }
+  static init(id: string, name: string, quantity: number, totalPrice: _Foundation_Decimal, totalAdjustedPrice?: $SDK2, descriptions?: Array<string>, details?: Array<string>): CustomerEngagement_ShoppingCart_Item { return callSDK<CustomerEngagement_ShoppingCart_Item>("ProximityReader_90ad0eb69cc6bf4a", 2988745625052664, undefined, [id, name, quantity, totalPrice, totalAdjustedPrice, descriptions, details]); }
   /**
    * let id: String
    * @availability iOS 27.0+
    */
-  get id(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1180243416945205, this, []); }
+  get id(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1180243416945205, this, []); }
   /**
    * var name: String
    * @availability iOS 27.0+
    */
-  get name(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 3027991414190615, this, []); }
-  set name(value: string) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2513955864415414, this, [value]); }
+  get name(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 3027991414190615, this, []); }
+  set name(value: string) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2513955864415414, this, [value]); }
   /**
    * var details: [String]
    * @availability iOS 27.0+
    */
-  get details(): Array<string> { return callSDK<Array<string>>("ProximityReader_a956b86ef7a76a8e", 1745563552242414, this, []); }
-  set details(value: Array<string>) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 4326802931793513, this, [value]); }
+  get details(): Array<string> { return callSDK<Array<string>>("ProximityReader_90ad0eb69cc6bf4a", 1745563552242414, this, []); }
+  set details(value: Array<string>) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 4326802931793513, this, [value]); }
   /**
    * var quantity: Int
    * @availability iOS 27.0+
    */
-  get quantity(): number { return callSDK<number>("ProximityReader_a956b86ef7a76a8e", 3811734738557639, this, []); }
-  set quantity(value: number) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1905837139540178, this, [value]); }
+  get quantity(): number { return callSDK<number>("ProximityReader_90ad0eb69cc6bf4a", 3811734738557639, this, []); }
+  set quantity(value: number) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1905837139540178, this, [value]); }
   declare readonly $type: { "s:15ProximityReader18CustomerEngagementO12ShoppingCartV4ItemV": true };
 }
 
@@ -207,22 +207,22 @@ export class CustomerEngagement_ShoppingCart_Summary extends SDKHandle {
    * init(summaryLines: [CustomerEngagement.ShoppingCart.Summary.LineItem], footer: String? = nil, total: Decimal)
    * @availability iOS 27.0+
    */
-  static init(summaryLines: $SDK3, footer: (string) | null, total: _Foundation_Decimal): CustomerEngagement_ShoppingCart_Summary { return callSDK<CustomerEngagement_ShoppingCart_Summary>("ProximityReader_a956b86ef7a76a8e", 3757896776547377, undefined, [summaryLines, footer, total]); }
+  static init(summaryLines: $SDK3, footer: (string) | null, total: _Foundation_Decimal): CustomerEngagement_ShoppingCart_Summary { return callSDK<CustomerEngagement_ShoppingCart_Summary>("ProximityReader_90ad0eb69cc6bf4a", 3757896776547377, undefined, [summaryLines, footer, total]); }
   /**
    * let summaryLines: [CustomerEngagement.ShoppingCart.Summary.LineItem]
    * @availability iOS 27.0+
    */
-  get summaryLines(): $SDK3 { return callSDK<$SDK3>("ProximityReader_a956b86ef7a76a8e", 2582599336205063, this, []); }
+  get summaryLines(): $SDK3 { return callSDK<$SDK3>("ProximityReader_90ad0eb69cc6bf4a", 2582599336205063, this, []); }
   /**
    * let total: Decimal
    * @availability iOS 27.0+
    */
-  get total(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("ProximityReader_a956b86ef7a76a8e", 3898807383134103, this, []); }
+  get total(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("ProximityReader_90ad0eb69cc6bf4a", 3898807383134103, this, []); }
   /**
    * let footer: String?
    * @availability iOS 27.0+
    */
-  get footer(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 4250793357110882, this, []); }
+  get footer(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 4250793357110882, this, []); }
   declare readonly $type: { "s:15ProximityReader18CustomerEngagementO12ShoppingCartV7SummaryV": true };
 }
 
@@ -235,22 +235,22 @@ export class CustomerEngagement_ShoppingCart_Summary_LineItem extends SDKHandle 
    * init(label: String, value: String)
    * @availability iOS 27.0+
    */
-  static initLabelValue(label: string, value: string): CustomerEngagement_ShoppingCart_Summary_LineItem { return callSDK<CustomerEngagement_ShoppingCart_Summary_LineItem>("ProximityReader_a956b86ef7a76a8e", 473131479934826, undefined, [label, value]); }
+  static initLabelValue(label: string, value: string): CustomerEngagement_ShoppingCart_Summary_LineItem { return callSDK<CustomerEngagement_ShoppingCart_Summary_LineItem>("ProximityReader_90ad0eb69cc6bf4a", 473131479934826, undefined, [label, value]); }
   /**
    * init(label: String, value: Decimal)
    * @availability iOS 27.0+
    */
-  static initLabelValue76028(label: string, value: _Foundation_Decimal): CustomerEngagement_ShoppingCart_Summary_LineItem { return callSDK<CustomerEngagement_ShoppingCart_Summary_LineItem>("ProximityReader_a956b86ef7a76a8e", 1544820047839489, undefined, [label, value]); }
+  static initLabelValue76028(label: string, value: _Foundation_Decimal): CustomerEngagement_ShoppingCart_Summary_LineItem { return callSDK<CustomerEngagement_ShoppingCart_Summary_LineItem>("ProximityReader_90ad0eb69cc6bf4a", 1544820047839489, undefined, [label, value]); }
   /**
    * let label: String
    * @availability iOS 27.0+
    */
-  get label(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2666175668479514, this, []); }
+  get label(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2666175668479514, this, []); }
   /**
    * let value: CustomerEngagement.ShoppingCart.Summary.LineItem.Value
    * @availability iOS 27.0+
    */
-  get value(): CustomerEngagement_ShoppingCart_Summary_LineItem_Value { return callSDK<CustomerEngagement_ShoppingCart_Summary_LineItem_Value>("ProximityReader_a956b86ef7a76a8e", 1990305756818585, this, []); }
+  get value(): CustomerEngagement_ShoppingCart_Summary_LineItem_Value { return callSDK<CustomerEngagement_ShoppingCart_Summary_LineItem_Value>("ProximityReader_90ad0eb69cc6bf4a", 1990305756818585, this, []); }
   declare readonly $type: { "s:15ProximityReader18CustomerEngagementO12ShoppingCartV7SummaryV8LineItemV": true };
 }
 
@@ -279,27 +279,27 @@ export class CustomerEngagement_SignUp extends SDKHandle {
    * let phoneNumber: CNPhoneNumber?
    * @availability iOS 27.0+
    */
-  get phoneNumber(): $SDK0 { return callSDK<$SDK0>("ProximityReader_a956b86ef7a76a8e", 2668560700677856, this, []); }
+  get phoneNumber(): $SDK0 { return callSDK<$SDK0>("ProximityReader_90ad0eb69cc6bf4a", 2668560700677856, this, []); }
   /**
    * let emailAddress: String?
    * @availability iOS 27.0+
    */
-  get emailAddress(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 3753864984513107, this, []); }
+  get emailAddress(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 3753864984513107, this, []); }
   /**
    * let smsOptInSelection: Bool
    * @availability iOS 27.0+
    */
-  get smsOptInSelection(): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 3917162663782045, this, []); }
+  get smsOptInSelection(): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 3917162663782045, this, []); }
   /**
    * let emailOptInSelection: Bool
    * @availability iOS 27.0+
    */
-  get emailOptInSelection(): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 467964368301549, this, []); }
+  get emailOptInSelection(): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 467964368301549, this, []); }
   /**
    * let name: PersonNameComponents?
    * @availability iOS 27.0+
    */
-  get name(): $SDK4 { return callSDK<$SDK4>("ProximityReader_a956b86ef7a76a8e", 450255356126859, this, []); }
+  get name(): $SDK4 { return callSDK<$SDK4>("ProximityReader_90ad0eb69cc6bf4a", 450255356126859, this, []); }
   declare readonly $type: { "s:15ProximityReader18CustomerEngagementO6SignUpV": true };
 }
 
@@ -318,7 +318,7 @@ export class CustomerEngagement_Token extends SDKHandle {
    * init(using token: PaymentCardReader.Token)
    * @availability iOS 27.0+
    */
-  static init(token: PaymentCardReader_Token): CustomerEngagement_Token { return callSDK<CustomerEngagement_Token>("ProximityReader_a956b86ef7a76a8e", 2033449460023348, undefined, [token]); }
+  static init(token: PaymentCardReader_Token): CustomerEngagement_Token { return callSDK<CustomerEngagement_Token>("ProximityReader_90ad0eb69cc6bf4a", 2033449460023348, undefined, [token]); }
   declare readonly $type: { "s:15ProximityReader18CustomerEngagementO5TokenV": true };
 }
 
@@ -331,72 +331,72 @@ export class CustomerEngagementSession extends SDKHandle {
    * final func requestCustomerInfo(for purpose: CustomerEngagementSession.Purpose? = nil, fields: [CustomerEngagementSession.Field], message: String? = nil) async throws -> CustomerEngagement.CustomerInfo
    * @availability iOS 27.0+
    */
-  requestCustomerInfo(purpose: $SDK5, fields: $SDK6, message?: (string) | null): Promise<CustomerEngagement_CustomerInfo> { return callSDKAsync<CustomerEngagement_CustomerInfo>("ProximityReader_a956b86ef7a76a8e", 1833588155638204, this, [purpose, fields, message]); }
+  requestCustomerInfo(purpose: $SDK5, fields: $SDK6, message?: (string) | null): Promise<CustomerEngagement_CustomerInfo> { return callSDKAsync<CustomerEngagement_CustomerInfo>("ProximityReader_90ad0eb69cc6bf4a", 1833588155638204, this, [purpose, fields, message]); }
   /**
    * final func updateStatus(_ status: CustomerEngagement.Status) async throws
    * @availability iOS 27.0+
    */
-  updateStatus(status: CustomerEngagement_Status): Promise<void> { return callSDKAsync<void>("ProximityReader_a956b86ef7a76a8e", 2320778113584225, this, [status]); }
+  updateStatus(status: CustomerEngagement_Status): Promise<void> { return callSDKAsync<void>("ProximityReader_90ad0eb69cc6bf4a", 2320778113584225, this, [status]); }
   /**
    * init(configuration: CustomerEngagementSession.Configuration)
    * @availability iOS 27.0+
    */
-  static init(configuration: CustomerEngagementSession_Configuration): CustomerEngagementSession { return callSDK<CustomerEngagementSession>("ProximityReader_a956b86ef7a76a8e", 156947272672069, undefined, [configuration]); }
+  static init(configuration: CustomerEngagementSession_Configuration): CustomerEngagementSession { return callSDK<CustomerEngagementSession>("ProximityReader_90ad0eb69cc6bf4a", 156947272672069, undefined, [configuration]); }
   /**
    * final let configuration: CustomerEngagementSession.Configuration
    * @availability iOS 27.0+
    */
-  get configuration(): CustomerEngagementSession_Configuration { return callSDK<CustomerEngagementSession_Configuration>("ProximityReader_a956b86ef7a76a8e", 3491797434512049, this, []); }
+  get configuration(): CustomerEngagementSession_Configuration { return callSDK<CustomerEngagementSession_Configuration>("ProximityReader_90ad0eb69cc6bf4a", 3491797434512049, this, []); }
   /**
    * final func requestSignup(for purpose: CustomerEngagementSession.Purpose = .membership, fields: [CustomerEngagementSession.Field], message: String? = nil, emailConsent: CustomerEngagementSession.ConsentOption = .hidden, smsConsent: CustomerEngagementSession.ConsentOption = .hidden, termsAndConditions: String? = nil) async throws -> CustomerEngagement.SignUp
    * @availability iOS 27.0+
    */
-  requestSignup(purpose: CustomerEngagementSession_Purpose, fields: $SDK6, message?: (string) | null, emailConsent?: CustomerEngagementSession_ConsentOption, smsConsent?: CustomerEngagementSession_ConsentOption, termsAndConditions?: (string) | null): Promise<CustomerEngagement_SignUp> { return callSDKAsync<CustomerEngagement_SignUp>("ProximityReader_a956b86ef7a76a8e", 4162872217091429, this, [purpose, fields, message, emailConsent, smsConsent, termsAndConditions]); }
+  requestSignup(purpose: CustomerEngagementSession_Purpose, fields: $SDK6, message?: (string) | null, emailConsent?: CustomerEngagementSession_ConsentOption, smsConsent?: CustomerEngagementSession_ConsentOption, termsAndConditions?: (string) | null): Promise<CustomerEngagement_SignUp> { return callSDKAsync<CustomerEngagement_SignUp>("ProximityReader_90ad0eb69cc6bf4a", 4162872217091429, this, [purpose, fields, message, emailConsent, smsConsent, termsAndConditions]); }
   /**
    * final func requestAddress(for purpose: CustomerEngagementSession.Purpose? = nil, fields: [CustomerEngagementSession.Field], message: String? = nil) async throws -> CustomerEngagement.Address
    * @availability iOS 27.0+
    */
-  requestAddress(purpose: $SDK5, fields: $SDK6, message?: (string) | null): Promise<CustomerEngagement_Address> { return callSDKAsync<CustomerEngagement_Address>("ProximityReader_a956b86ef7a76a8e", 3046648279970431, this, [purpose, fields, message]); }
+  requestAddress(purpose: $SDK5, fields: $SDK6, message?: (string) | null): Promise<CustomerEngagement_Address> { return callSDKAsync<CustomerEngagement_Address>("ProximityReader_90ad0eb69cc6bf4a", 3046648279970431, this, [purpose, fields, message]); }
   /**
    * final func requestPayment(for shoppingCartToken: CustomerEngagement.ShoppingCartToken, using paymentRequest: PKPaymentRequest, delegate: any PKPaymentAuthorizationControllerDelegate) async throws -> Bool
    * @availability iOS 27.0+
    */
-  requestPayment(shoppingCartToken: CustomerEngagement_ShoppingCartToken, paymentRequest: _PassKit_PKPaymentRequest, delegate: Implements<_PassKit_PKPaymentAuthorizationControllerDelegate> | SDKHandle): Promise<boolean> { return callSDKAsync<boolean>("ProximityReader_a956b86ef7a76a8e", 3232258803173942, this, [shoppingCartToken, paymentRequest, delegate], [null,null,{"protocol":"c:objc(pl)PKPaymentAuthorizationControllerDelegate"}]); }
+  requestPayment(shoppingCartToken: CustomerEngagement_ShoppingCartToken, paymentRequest: _PassKit_PKPaymentRequest, delegate: Implements<_PassKit_PKPaymentAuthorizationControllerDelegate> | SDKHandle): Promise<boolean> { return callSDKAsync<boolean>("ProximityReader_90ad0eb69cc6bf4a", 3232258803173942, this, [shoppingCartToken, paymentRequest, delegate], [null,null,{"protocol":"c:objc(pl)PKPaymentAuthorizationControllerDelegate"}]); }
   /**
    * final func updateShoppingCart(_ shoppingCart: CustomerEngagement.ShoppingCart) async throws -> CustomerEngagement.ShoppingCartToken
    * @availability iOS 27.0+
    */
-  updateShoppingCart(shoppingCart: CustomerEngagement_ShoppingCart): Promise<CustomerEngagement_ShoppingCartToken> { return callSDKAsync<CustomerEngagement_ShoppingCartToken>("ProximityReader_a956b86ef7a76a8e", 3223793723425389, this, [shoppingCart]); }
+  updateShoppingCart(shoppingCart: CustomerEngagement_ShoppingCart): Promise<CustomerEngagement_ShoppingCartToken> { return callSDKAsync<CustomerEngagement_ShoppingCartToken>("ProximityReader_90ad0eb69cc6bf4a", 3223793723425389, this, [shoppingCart]); }
   /**
    * final var customerConfiguration: CustomerEngagementSession.CustomerConfiguration? { get }
    * @availability iOS 27.0+
    */
-  get customerConfiguration(): (CustomerEngagementSession_CustomerConfiguration) | null { return callSDK<(CustomerEngagementSession_CustomerConfiguration) | null>("ProximityReader_a956b86ef7a76a8e", 220925642971628, this, []); }
+  get customerConfiguration(): (CustomerEngagementSession_CustomerConfiguration) | null { return callSDK<(CustomerEngagementSession_CustomerConfiguration) | null>("ProximityReader_90ad0eb69cc6bf4a", 220925642971628, this, []); }
   /**
    * final func open(using token: CustomerEngagement.Token? = nil) async throws
    * @availability iOS 27.0+
    */
-  open(token?: (CustomerEngagement_Token) | null): Promise<void> { return callSDKAsync<void>("ProximityReader_a956b86ef7a76a8e", 432645616734156, this, [token]); }
+  open(token?: (CustomerEngagement_Token) | null): Promise<void> { return callSDKAsync<void>("ProximityReader_90ad0eb69cc6bf4a", 432645616734156, this, [token]); }
   /**
    * final func close() async throws
    * @availability iOS 27.0+
    */
-  close(): Promise<void> { return callSDKAsync<void>("ProximityReader_a956b86ef7a76a8e", 4207303737999748, this, []); }
+  close(): Promise<void> { return callSDKAsync<void>("ProximityReader_90ad0eb69cc6bf4a", 4207303737999748, this, []); }
   /**
    * final let token: CustomerEngagementSession.Token
    * @availability iOS 27.0+
    */
-  get token(): CustomerEngagementSession_Token { return callSDK<CustomerEngagementSession_Token>("ProximityReader_a956b86ef7a76a8e", 1633049459797711, this, []); }
+  get token(): CustomerEngagementSession_Token { return callSDK<CustomerEngagementSession_Token>("ProximityReader_90ad0eb69cc6bf4a", 1633049459797711, this, []); }
   /**
    * final let events: any AsyncSequence<CustomerEngagementSession.Event, Never>
    * @availability iOS 27.0+
    */
-  get events(): SDKHandle { return callSDK<SDKHandle>("ProximityReader_a956b86ef7a76a8e", 149069130285161, this, []); }
+  get events(): SDKHandle { return callSDK<SDKHandle>("ProximityReader_90ad0eb69cc6bf4a", 149069130285161, this, []); }
   /**
    * final func addPass(_ pass: Data) async throws -> Bool
    * @availability iOS 27.0+
    */
-  addPass(pass: ArrayBuffer): Promise<boolean> { return callSDKAsync<boolean>("ProximityReader_a956b86ef7a76a8e", 1798285779201745, this, [pass]); }
+  addPass(pass: ArrayBuffer): Promise<boolean> { return callSDKAsync<boolean>("ProximityReader_90ad0eb69cc6bf4a", 1798285779201745, this, [pass]); }
   declare readonly $type: { "s:15ProximityReader25CustomerEngagementSessionC": true };
 }
 
@@ -409,49 +409,49 @@ export class CustomerEngagementSession_Configuration extends SDKHandle {
    * var deviceName: String?
    * @availability iOS 27.0+
    */
-  get deviceName(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 1601105371331556, this, []); }
-  set deviceName(value: (string) | null) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2360434052231035, this, [value]); }
+  get deviceName(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 1601105371331556, this, []); }
+  set deviceName(value: (string) | null) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2360434052231035, this, [value]); }
   /**
    * var websiteURL: URL?
    * @availability iOS 27.0+
    */
-  get websiteURL(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 3607070344603477, this, []); }
-  set websiteURL(value: (string) | null) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2578314242874725, this, [value]); }
+  get websiteURL(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 3607070344603477, this, []); }
+  set websiteURL(value: (string) | null) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2578314242874725, this, [value]); }
   /**
    * var privacyPolicyURL: URL
    * @availability iOS 27.0+
    */
-  get privacyPolicyURL(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 397625349158150, this, []); }
-  set privacyPolicyURL(value: string) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1012926863864636, this, [value]); }
+  get privacyPolicyURL(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 397625349158150, this, []); }
+  set privacyPolicyURL(value: string) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1012926863864636, this, [value]); }
   /**
    * var passTypeIdentifiers: [String]
    * @availability iOS 27.0+
    */
-  get passTypeIdentifiers(): Array<string> { return callSDK<Array<string>>("ProximityReader_a956b86ef7a76a8e", 715356548292989, this, []); }
-  set passTypeIdentifiers(value: Array<string>) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1550119937641698, this, [value]); }
+  get passTypeIdentifiers(): Array<string> { return callSDK<Array<string>>("ProximityReader_90ad0eb69cc6bf4a", 715356548292989, this, []); }
+  set passTypeIdentifiers(value: Array<string>) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1550119937641698, this, [value]); }
   /**
    * var region: Locale.Region
    * @availability iOS 27.0+
    */
-  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("ProximityReader_a956b86ef7a76a8e", 1223582209202962, this, []); }
-  set region(value: _Foundation_Locale_Region) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3140658939907365, this, [value]); }
+  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("ProximityReader_90ad0eb69cc6bf4a", 1223582209202962, this, []); }
+  set region(value: _Foundation_Locale_Region) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3140658939907365, this, [value]); }
   /**
    * var currency: Locale.Currency
    * @availability iOS 27.0+
    */
-  get currency(): _Foundation_Locale_Currency { return callSDK<_Foundation_Locale_Currency>("ProximityReader_a956b86ef7a76a8e", 872889219196183, this, []); }
-  set currency(value: _Foundation_Locale_Currency) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 520168069507441, this, [value]); }
+  get currency(): _Foundation_Locale_Currency { return callSDK<_Foundation_Locale_Currency>("ProximityReader_90ad0eb69cc6bf4a", 872889219196183, this, []); }
+  set currency(value: _Foundation_Locale_Currency) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 520168069507441, this, [value]); }
   /**
    * init(currency: Locale.Currency, region: Locale.Region, privacyPolicyURL: URL, websiteURL: URL? = nil, storeName: String? = nil, deviceName: String? = nil, passTypeIdentifiers: [String] = [])
    * @availability iOS 27.0+
    */
-  static init(currency: _Foundation_Locale_Currency, region: _Foundation_Locale_Region, privacyPolicyURL: string, websiteURL?: (string) | null, storeName?: (string) | null, deviceName?: (string) | null, passTypeIdentifiers?: Array<string>): CustomerEngagementSession_Configuration { return callSDK<CustomerEngagementSession_Configuration>("ProximityReader_a956b86ef7a76a8e", 365704187887373, undefined, [currency, region, privacyPolicyURL, websiteURL, storeName, deviceName, passTypeIdentifiers]); }
+  static init(currency: _Foundation_Locale_Currency, region: _Foundation_Locale_Region, privacyPolicyURL: string, websiteURL?: (string) | null, storeName?: (string) | null, deviceName?: (string) | null, passTypeIdentifiers?: Array<string>): CustomerEngagementSession_Configuration { return callSDK<CustomerEngagementSession_Configuration>("ProximityReader_90ad0eb69cc6bf4a", 365704187887373, undefined, [currency, region, privacyPolicyURL, websiteURL, storeName, deviceName, passTypeIdentifiers]); }
   /**
    * var storeName: String?
    * @availability iOS 27.0+
    */
-  get storeName(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 2720458651801251, this, []); }
-  set storeName(value: (string) | null) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3374106458425654, this, [value]); }
+  get storeName(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 2720458651801251, this, []); }
+  set storeName(value: (string) | null) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3374106458425654, this, [value]); }
   declare readonly $type: { "s:15ProximityReader25CustomerEngagementSessionC13ConfigurationV": true };
 }
 
@@ -470,22 +470,22 @@ export class CustomerEngagementSession_CustomerConfiguration extends SDKHandle {
    * let clientType: CustomerEngagementSession.PeerClientType
    * @availability iOS 27.0+
    */
-  get clientType(): CustomerEngagementSession_PeerClientType { return callSDK<CustomerEngagementSession_PeerClientType>("ProximityReader_a956b86ef7a76a8e", 2787230957695667, this, []); }
+  get clientType(): CustomerEngagementSession_PeerClientType { return callSDK<CustomerEngagementSession_PeerClientType>("ProximityReader_90ad0eb69cc6bf4a", 2787230957695667, this, []); }
   /**
    * let sessionToken: CustomerEngagementSession.Token?
    * @availability iOS 27.0+
    */
-  get sessionToken(): (CustomerEngagementSession_Token) | null { return callSDK<(CustomerEngagementSession_Token) | null>("ProximityReader_a956b86ef7a76a8e", 758337479840795, this, []); }
+  get sessionToken(): (CustomerEngagementSession_Token) | null { return callSDK<(CustomerEngagementSession_Token) | null>("ProximityReader_90ad0eb69cc6bf4a", 758337479840795, this, []); }
   /**
    * let locale: Locale
    * @availability iOS 27.0+
    */
-  get locale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("ProximityReader_a956b86ef7a76a8e", 116699896379093, this, []); }
+  get locale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("ProximityReader_90ad0eb69cc6bf4a", 116699896379093, this, []); }
   /**
    * let version: String
    * @availability iOS 27.0+
    */
-  get version(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1646764549162621, this, []); }
+  get version(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1646764549162621, this, []); }
   declare readonly $type: { "s:15ProximityReader25CustomerEngagementSessionC0C13ConfigurationV": true };
 }
 
@@ -536,12 +536,12 @@ export class MobileDocumentAnyOfDataRequest extends SDKHandle {
    * mutating func addRequest(_ request: any MobileDocumentDataRequest)
    * @availability iOS 26.0+
    */
-  addRequest(request: SDKHandle): void { return callSDK<void>("ProximityReader_a956b86ef7a76a8e", 4041922150639328, this, [request]); }
+  addRequest(request: SDKHandle): void { return callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 4041922150639328, this, [request]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): MobileDocumentAnyOfDataRequest { return callSDK<MobileDocumentAnyOfDataRequest>("ProximityReader_a956b86ef7a76a8e", 1315703423964314, undefined, []); }
+  static init(): MobileDocumentAnyOfDataRequest { return callSDK<MobileDocumentAnyOfDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 1315703423964314, undefined, []); }
   declare readonly $type: { "s:15ProximityReader30MobileDocumentAnyOfDataRequestV": true };
 }
 
@@ -554,7 +554,7 @@ export class MobileDocumentAnyOfDataRequest_Response extends SDKHandle {
    * var documentResponse: any MobileDocumentDataResponse { get }
    * @availability iOS 26.0+
    */
-  get documentResponse(): SDKHandle { return callSDK<SDKHandle>("ProximityReader_a956b86ef7a76a8e", 740925789058147, this, []); }
+  get documentResponse(): SDKHandle { return callSDK<SDKHandle>("ProximityReader_90ad0eb69cc6bf4a", 740925789058147, this, []); }
   declare readonly $type: { "s:15ProximityReader30MobileDocumentAnyOfDataRequestV8ResponseV": true };
 }
 
@@ -567,12 +567,12 @@ export class MobileDocumentAnyOfRawDataRequest extends SDKHandle {
    * mutating func addRequest(_ request: any MobileDocumentRawDataRequest)
    * @availability iOS 26.0+
    */
-  addRequest(request: SDKHandle): void { return callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1593302854909658, this, [request]); }
+  addRequest(request: SDKHandle): void { return callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1593302854909658, this, [request]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): MobileDocumentAnyOfRawDataRequest { return callSDK<MobileDocumentAnyOfRawDataRequest>("ProximityReader_a956b86ef7a76a8e", 1065179828034423, undefined, []); }
+  static init(): MobileDocumentAnyOfRawDataRequest { return callSDK<MobileDocumentAnyOfRawDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 1065179828034423, undefined, []); }
   declare readonly $type: { "s:15ProximityReader33MobileDocumentAnyOfRawDataRequestV": true };
 }
 
@@ -585,17 +585,17 @@ export class MobileDocumentAnyOfRawDataRequest_Response extends SDKHandle {
    * let responseData: Data
    * @availability iOS 26.0+
    */
-  get responseData(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 1098236381004758, this, []); }
+  get responseData(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 1098236381004758, this, []); }
   /**
    * let ephemeralReaderKey: Data
    * @availability iOS 26.4+
    */
-  get ephemeralReaderKey(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 2949629682467, this, []); }
+  get ephemeralReaderKey(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 2949629682467, this, []); }
   /**
    * let sessionTranscript: Data
    * @availability iOS 26.0+
    */
-  get sessionTranscript(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 1275467874366203, this, []); }
+  get sessionTranscript(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 1275467874366203, this, []); }
   declare readonly $type: { "s:15ProximityReader33MobileDocumentAnyOfRawDataRequestV8ResponseV": true };
 }
 
@@ -624,19 +624,19 @@ export class MobileDocumentDisplayRequest extends SDKHandle {
    * var options: MobileDocumentDisplayRequest.Options
    * @availability iOS 26.0+
    */
-  get options(): MobileDocumentDisplayRequest_Options { return callSDK<MobileDocumentDisplayRequest_Options>("ProximityReader_a956b86ef7a76a8e", 557924064538595, this, []); }
-  set options(value: MobileDocumentDisplayRequest_Options) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1882954889306897, this, [value]); }
+  get options(): MobileDocumentDisplayRequest_Options { return callSDK<MobileDocumentDisplayRequest_Options>("ProximityReader_90ad0eb69cc6bf4a", 557924064538595, this, []); }
+  set options(value: MobileDocumentDisplayRequest_Options) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1882954889306897, this, [value]); }
   /**
    * init(elements: [MobileDocumentDisplayRequest.Element] = [], options: MobileDocumentDisplayRequest.Options = .init())
    * @availability iOS 26.0+
    */
-  static init(elements?: $SDK11, options?: MobileDocumentDisplayRequest_Options): MobileDocumentDisplayRequest { return callSDK<MobileDocumentDisplayRequest>("ProximityReader_a956b86ef7a76a8e", 2426252542949273, undefined, [elements, options]); }
+  static init(elements?: $SDK11, options?: MobileDocumentDisplayRequest_Options): MobileDocumentDisplayRequest { return callSDK<MobileDocumentDisplayRequest>("ProximityReader_90ad0eb69cc6bf4a", 2426252542949273, undefined, [elements, options]); }
   /**
    * var elements: [MobileDocumentDisplayRequest.Element]
    * @availability iOS 26.0+
    */
-  get elements(): $SDK11 { return callSDK<$SDK11>("ProximityReader_a956b86ef7a76a8e", 591540276536023, this, []); }
-  set elements(value: $SDK11) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3102038600488148, this, [value]); }
+  get elements(): $SDK11 { return callSDK<$SDK11>("ProximityReader_90ad0eb69cc6bf4a", 591540276536023, this, []); }
+  set elements(value: $SDK11) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3102038600488148, this, [value]); }
   declare readonly $type: { "s:15ProximityReader28MobileDocumentDisplayRequestV": true };
 }
 
@@ -649,27 +649,27 @@ export class MobileDocumentDisplayRequest_Element extends SDKHandle {
    * static func ageAtLeast(_ age: Int) -> MobileDocumentDisplayRequest.Element
    * @availability iOS 26.0+
    */
-  static ageAtLeast(age: number): MobileDocumentDisplayRequest_Element { return callSDK<MobileDocumentDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1166571678649364, undefined, [age]); }
+  static ageAtLeast(age: number): MobileDocumentDisplayRequest_Element { return callSDK<MobileDocumentDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1166571678649364, undefined, [age]); }
   /**
    * static let familyName: MobileDocumentDisplayRequest.Element
    * @availability iOS 26.0+
    */
-  static get familyName(): MobileDocumentDisplayRequest_Element { return callSDK<MobileDocumentDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1843362373107675, undefined, []); }
+  static get familyName(): MobileDocumentDisplayRequest_Element { return callSDK<MobileDocumentDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1843362373107675, undefined, []); }
   /**
    * static let age: MobileDocumentDisplayRequest.Element
    * @availability iOS 26.0+
    */
-  static get age(): MobileDocumentDisplayRequest_Element { return callSDK<MobileDocumentDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1741045029455027, undefined, []); }
+  static get age(): MobileDocumentDisplayRequest_Element { return callSDK<MobileDocumentDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1741045029455027, undefined, []); }
   /**
    * static let name: MobileDocumentDisplayRequest.Element
    * @availability iOS 27.0+
    */
-  static get nameValue(): MobileDocumentDisplayRequest_Element { return callSDK<MobileDocumentDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 405113820280423, undefined, []); }
+  static get nameValue(): MobileDocumentDisplayRequest_Element { return callSDK<MobileDocumentDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 405113820280423, undefined, []); }
   /**
    * static let givenName: MobileDocumentDisplayRequest.Element
    * @availability iOS 26.0+
    */
-  static get givenName(): MobileDocumentDisplayRequest_Element { return callSDK<MobileDocumentDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 715532234625650, undefined, []); }
+  static get givenName(): MobileDocumentDisplayRequest_Element { return callSDK<MobileDocumentDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 715532234625650, undefined, []); }
   declare readonly $type: { "s:15ProximityReader28MobileDocumentDisplayRequestV7ElementV": true };
 }
 
@@ -682,19 +682,19 @@ export class MobileDocumentDisplayRequest_Options extends SDKHandle {
    * init(allowedDocumentTypes: [MobileDocumentDisplayRequest.Options.DocumentType] = [], validationMode: MobileDocumentDisplayRequest.Options.ValidationMode = .check)
    * @availability iOS 26.0+
    */
-  static init(allowedDocumentTypes?: $SDK12, validationMode?: MobileDocumentDisplayRequest_Options_ValidationMode): MobileDocumentDisplayRequest_Options { return callSDK<MobileDocumentDisplayRequest_Options>("ProximityReader_a956b86ef7a76a8e", 3973075115262542, undefined, [allowedDocumentTypes, validationMode]); }
+  static init(allowedDocumentTypes?: $SDK12, validationMode?: MobileDocumentDisplayRequest_Options_ValidationMode): MobileDocumentDisplayRequest_Options { return callSDK<MobileDocumentDisplayRequest_Options>("ProximityReader_90ad0eb69cc6bf4a", 3973075115262542, undefined, [allowedDocumentTypes, validationMode]); }
   /**
    * var allowedDocumentTypes: [MobileDocumentDisplayRequest.Options.DocumentType]
    * @availability iOS 26.0+
    */
-  get allowedDocumentTypes(): $SDK12 { return callSDK<$SDK12>("ProximityReader_a956b86ef7a76a8e", 2646197796408151, this, []); }
-  set allowedDocumentTypes(value: $SDK12) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1289601435465424, this, [value]); }
+  get allowedDocumentTypes(): $SDK12 { return callSDK<$SDK12>("ProximityReader_90ad0eb69cc6bf4a", 2646197796408151, this, []); }
+  set allowedDocumentTypes(value: $SDK12) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1289601435465424, this, [value]); }
   /**
    * var validationMode: MobileDocumentDisplayRequest.Options.ValidationMode
    * @availability iOS 26.0+
    */
-  get validationMode(): MobileDocumentDisplayRequest_Options_ValidationMode { return callSDK<MobileDocumentDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 2731313610105795, this, []); }
-  set validationMode(value: MobileDocumentDisplayRequest_Options_ValidationMode) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 773460366393050, this, [value]); }
+  get validationMode(): MobileDocumentDisplayRequest_Options_ValidationMode { return callSDK<MobileDocumentDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 2731313610105795, this, []); }
+  set validationMode(value: MobileDocumentDisplayRequest_Options_ValidationMode) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 773460366393050, this, [value]); }
   declare readonly $type: { "s:15ProximityReader28MobileDocumentDisplayRequestV7OptionsV": true };
 }
 
@@ -707,17 +707,17 @@ export class MobileDocumentDisplayRequest_Options_DocumentType extends SDKHandle
    * static let driversLicense: MobileDocumentDisplayRequest.Options.DocumentType
    * @availability iOS 26.0+
    */
-  static get driversLicense(): MobileDocumentDisplayRequest_Options_DocumentType { return callSDK<MobileDocumentDisplayRequest_Options_DocumentType>("ProximityReader_a956b86ef7a76a8e", 1936649292022525, undefined, []); }
+  static get driversLicense(): MobileDocumentDisplayRequest_Options_DocumentType { return callSDK<MobileDocumentDisplayRequest_Options_DocumentType>("ProximityReader_90ad0eb69cc6bf4a", 1936649292022525, undefined, []); }
   /**
    * static func nationalIDCard(region: Locale.Region) -> MobileDocumentDisplayRequest.Options.DocumentType
    * @availability iOS 26.0+
    */
-  static nationalIDCard(region: _Foundation_Locale_Region): MobileDocumentDisplayRequest_Options_DocumentType { return callSDK<MobileDocumentDisplayRequest_Options_DocumentType>("ProximityReader_a956b86ef7a76a8e", 364320257330533, undefined, [region]); }
+  static nationalIDCard(region: _Foundation_Locale_Region): MobileDocumentDisplayRequest_Options_DocumentType { return callSDK<MobileDocumentDisplayRequest_Options_DocumentType>("ProximityReader_90ad0eb69cc6bf4a", 364320257330533, undefined, [region]); }
   /**
    * static let photoID: MobileDocumentDisplayRequest.Options.DocumentType
    * @availability iOS 26.0+
    */
-  static get photoID(): MobileDocumentDisplayRequest_Options_DocumentType { return callSDK<MobileDocumentDisplayRequest_Options_DocumentType>("ProximityReader_a956b86ef7a76a8e", 3848169442645852, undefined, []); }
+  static get photoID(): MobileDocumentDisplayRequest_Options_DocumentType { return callSDK<MobileDocumentDisplayRequest_Options_DocumentType>("ProximityReader_90ad0eb69cc6bf4a", 3848169442645852, undefined, []); }
   declare readonly $type: { "s:15ProximityReader28MobileDocumentDisplayRequestV7OptionsV0D4TypeV": true };
 }
 
@@ -730,17 +730,17 @@ export class MobileDocumentDisplayRequest_Options_ValidationMode extends SDKHand
    * static let checkMultiple: MobileDocumentDisplayRequest.Options.ValidationMode
    * @availability iOS 26.0+
    */
-  static get checkMultiple(): MobileDocumentDisplayRequest_Options_ValidationMode { return callSDK<MobileDocumentDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 3616025366982424, undefined, []); }
+  static get checkMultiple(): MobileDocumentDisplayRequest_Options_ValidationMode { return callSDK<MobileDocumentDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 3616025366982424, undefined, []); }
   /**
    * static let check: MobileDocumentDisplayRequest.Options.ValidationMode
    * @availability iOS 26.0+
    */
-  static get check(): MobileDocumentDisplayRequest_Options_ValidationMode { return callSDK<MobileDocumentDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 1993864201309854, undefined, []); }
+  static get check(): MobileDocumentDisplayRequest_Options_ValidationMode { return callSDK<MobileDocumentDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 1993864201309854, undefined, []); }
   /**
    * static let confirm: MobileDocumentDisplayRequest.Options.ValidationMode
    * @availability iOS 26.0+
    */
-  static get confirm(): MobileDocumentDisplayRequest_Options_ValidationMode { return callSDK<MobileDocumentDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 1769294533542874, undefined, []); }
+  static get confirm(): MobileDocumentDisplayRequest_Options_ValidationMode { return callSDK<MobileDocumentDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 1769294533542874, undefined, []); }
   declare readonly $type: { "s:15ProximityReader28MobileDocumentDisplayRequestV7OptionsV14ValidationModeV": true };
 }
 
@@ -753,7 +753,7 @@ export class MobileDocumentDisplayRequest_Response extends SDKHandle {
    * let validationOutcome: MobileDocumentDisplayRequest.Response.ValidationOutcome
    * @availability iOS 26.0+
    */
-  get validationOutcome(): MobileDocumentDisplayRequest_Response_ValidationOutcome { return callSDK<MobileDocumentDisplayRequest_Response_ValidationOutcome>("ProximityReader_a956b86ef7a76a8e", 2150851784514031, this, []); }
+  get validationOutcome(): MobileDocumentDisplayRequest_Response_ValidationOutcome { return callSDK<MobileDocumentDisplayRequest_Response_ValidationOutcome>("ProximityReader_90ad0eb69cc6bf4a", 2150851784514031, this, []); }
   declare readonly $type: { "s:15ProximityReader28MobileDocumentDisplayRequestV8ResponseV": true };
 }
 
@@ -772,12 +772,12 @@ export class MobileDocumentHolderName extends SDKHandle {
    * let components: PersonNameComponents
    * @availability iOS 27.0+
    */
-  get components(): _Foundation_PersonNameComponents { return callSDK<_Foundation_PersonNameComponents>("ProximityReader_a956b86ef7a76a8e", 3290397761999772, this, []); }
+  get components(): _Foundation_PersonNameComponents { return callSDK<_Foundation_PersonNameComponents>("ProximityReader_90ad0eb69cc6bf4a", 3290397761999772, this, []); }
   /**
    * let name: String
    * @availability iOS 27.0+
    */
-  get name(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2301224282899740, this, []); }
+  get name(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2301224282899740, this, []); }
   declare readonly $type: { "s:15ProximityReader24MobileDocumentHolderNameV": true };
 }
 
@@ -798,22 +798,22 @@ export class MobileDocumentReader extends SDKHandle {
    * static var isSupported: Bool { get }
    * @availability iOS 17.0+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 439546295184682, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 439546295184682, undefined, []); }
   /**
    * final var configuration: MobileDocumentReader.Configuration { get async throws }
    * @availability iOS 17.0+
    */
-  get configuration(): Promise<MobileDocumentReader_Configuration> { return callSDKAsync<MobileDocumentReader_Configuration>("ProximityReader_a956b86ef7a76a8e", 2238150590399433, this, []); }
+  get configuration(): Promise<MobileDocumentReader_Configuration> { return callSDKAsync<MobileDocumentReader_Configuration>("ProximityReader_90ad0eb69cc6bf4a", 2238150590399433, this, []); }
   /**
    * final func prepare(using token: MobileDocumentReader.Token? = nil) async throws -> MobileDocumentReaderSession
    * @availability iOS 17.0+
    */
-  prepare(token?: (MobileDocumentReader_Token) | null): Promise<MobileDocumentReaderSession> { return callSDKAsync<MobileDocumentReaderSession>("ProximityReader_a956b86ef7a76a8e", 3656097607051905, this, [token]); }
+  prepare(token?: (MobileDocumentReader_Token) | null): Promise<MobileDocumentReaderSession> { return callSDKAsync<MobileDocumentReaderSession>("ProximityReader_90ad0eb69cc6bf4a", 3656097607051905, this, [token]); }
   /**
    * init()
    * @availability iOS 17.0+
    */
-  static init(): MobileDocumentReader { return callSDK<MobileDocumentReader>("ProximityReader_a956b86ef7a76a8e", 2029163544815017, undefined, []); }
+  static init(): MobileDocumentReader { return callSDK<MobileDocumentReader>("ProximityReader_90ad0eb69cc6bf4a", 2029163544815017, undefined, []); }
   declare readonly $type: { "s:15ProximityReader014MobileDocumentB0C": true };
 }
 
@@ -826,7 +826,7 @@ export class MobileDocumentReader_Configuration extends SDKHandle {
    * let readerInstanceIdentifier: String
    * @availability iOS 17.0+
    */
-  get readerInstanceIdentifier(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1483655415010997, this, []); }
+  get readerInstanceIdentifier(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1483655415010997, this, []); }
   declare readonly $type: { "s:15ProximityReader014MobileDocumentB0C13ConfigurationV": true };
 }
 
@@ -839,12 +839,12 @@ export class MobileDocumentReader_Token extends SDKHandle {
    * let tokenString: String
    * @availability iOS 17.0+
    */
-  get tokenString(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 361405751163658, this, []); }
+  get tokenString(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 361405751163658, this, []); }
   /**
    * init(_ tokenString: String)
    * @availability iOS 17.0+
    */
-  static init(tokenString: string): MobileDocumentReader_Token { return callSDK<MobileDocumentReader_Token>("ProximityReader_a956b86ef7a76a8e", 3178408226034779, undefined, [tokenString]); }
+  static init(tokenString: string): MobileDocumentReader_Token { return callSDK<MobileDocumentReader_Token>("ProximityReader_90ad0eb69cc6bf4a", 3178408226034779, undefined, [tokenString]); }
   declare readonly $type: { "s:15ProximityReader014MobileDocumentB0C5TokenV": true };
 }
 
@@ -859,7 +859,7 @@ export const MobileDocumentReaderError = {
    * var errorDescription: String? { get }
    * @availability iOS 17.0+
    */
-  getErrorDescription($self: MobileDocumentReaderError): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 4059004383691399, $self, []); }
+  getErrorDescription($self: MobileDocumentReaderError): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 4059004383691399, $self, []); }
 };
 
 /**
@@ -887,19 +887,19 @@ export class MobileDriversLicenseDataRequest extends SDKHandle {
    * init(retainedElements: [MobileDriversLicenseDataRequest.Element] = [], nonRetainedElements: [MobileDriversLicenseDataRequest.Element] = [])
    * @availability iOS 17.0+
    */
-  static init(retainedElements?: $SDK14, nonRetainedElements?: $SDK14): MobileDriversLicenseDataRequest { return callSDK<MobileDriversLicenseDataRequest>("ProximityReader_a956b86ef7a76a8e", 3194659045513192, undefined, [retainedElements, nonRetainedElements]); }
+  static init(retainedElements?: $SDK14, nonRetainedElements?: $SDK14): MobileDriversLicenseDataRequest { return callSDK<MobileDriversLicenseDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 3194659045513192, undefined, [retainedElements, nonRetainedElements]); }
   /**
    * var retainedElements: [MobileDriversLicenseDataRequest.Element]
    * @availability iOS 17.0+
    */
-  get retainedElements(): $SDK14 { return callSDK<$SDK14>("ProximityReader_a956b86ef7a76a8e", 317309057058738, this, []); }
-  set retainedElements(value: $SDK14) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2484184871076337, this, [value]); }
+  get retainedElements(): $SDK14 { return callSDK<$SDK14>("ProximityReader_90ad0eb69cc6bf4a", 317309057058738, this, []); }
+  set retainedElements(value: $SDK14) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2484184871076337, this, [value]); }
   /**
    * var nonRetainedElements: [MobileDriversLicenseDataRequest.Element]
    * @availability iOS 17.0+
    */
-  get nonRetainedElements(): $SDK14 { return callSDK<$SDK14>("ProximityReader_a956b86ef7a76a8e", 1298476773995091, this, []); }
-  set nonRetainedElements(value: $SDK14) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1528707368104372, this, [value]); }
+  get nonRetainedElements(): $SDK14 { return callSDK<$SDK14>("ProximityReader_90ad0eb69cc6bf4a", 1298476773995091, this, []); }
+  set nonRetainedElements(value: $SDK14) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1528707368104372, this, [value]); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV": true };
 }
 
@@ -912,122 +912,122 @@ export class MobileDriversLicenseDataRequest_Element extends SDKHandle {
    * static func ageAtLeast(_ age: Int) -> MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static ageAtLeast(age: number): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2847255360478948, undefined, [age]); }
+  static ageAtLeast(age: number): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2847255360478948, undefined, [age]); }
   /**
    * static let familyName: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get familyName(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2305879850351023, undefined, []); }
+  static get familyName(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2305879850351023, undefined, []); }
   /**
    * static let dateOfBirth: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get dateOfBirth(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2594059650022510, undefined, []); }
+  static get dateOfBirth(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2594059650022510, undefined, []); }
   /**
    * static let nationality: MobileDriversLicenseDataRequest.Element
    * @availability iOS 26.4+
    */
-  static get nationality(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1848260780048930, undefined, []); }
+  static get nationality(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1848260780048930, undefined, []); }
   /**
    * static let placeOfBirth: MobileDriversLicenseDataRequest.Element
    * @availability iOS 26.4+
    */
-  static get placeOfBirth(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4089625011454144, undefined, []); }
+  static get placeOfBirth(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4089625011454144, undefined, []); }
   /**
    * static let veteranStatus: MobileDriversLicenseDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get veteranStatus(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 847450438388243, undefined, []); }
+  static get veteranStatus(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 847450438388243, undefined, []); }
   /**
    * static let documentNumber: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get documentNumber(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3410418471006357, undefined, []); }
+  static get documentNumber(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3410418471006357, undefined, []); }
   /**
    * static let issuingAuthority: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get issuingAuthority(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1231637362119951, undefined, []); }
+  static get issuingAuthority(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1231637362119951, undefined, []); }
   /**
    * static let organDonorStatus: MobileDriversLicenseDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get organDonorStatus(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4214348229283033, undefined, []); }
+  static get organDonorStatus(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4214348229283033, undefined, []); }
   /**
    * static let documentIssueDate: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get documentIssueDate(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1971337730850958, undefined, []); }
+  static get documentIssueDate(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1971337730850958, undefined, []); }
   /**
    * static let drivingPrivileges: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get drivingPrivileges(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2425230323191459, undefined, []); }
+  static get drivingPrivileges(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2425230323191459, undefined, []); }
   /**
    * static let signatureUsualMark: MobileDriversLicenseDataRequest.Element
    * @availability iOS 26.4+
    */
-  static get signatureUsualMark(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1317991884604761, undefined, []); }
+  static get signatureUsualMark(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1317991884604761, undefined, []); }
   /**
    * static let documentExpirationDate: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get documentExpirationDate(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3106796688342699, undefined, []); }
+  static get documentExpirationDate(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3106796688342699, undefined, []); }
   /**
    * static let documentDHSComplianceStatus: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.2+
    */
-  static get documentDHSComplianceStatus(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 885664710098103, undefined, []); }
+  static get documentDHSComplianceStatus(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 885664710098103, undefined, []); }
   /**
    * static let age: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get age(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 808661475706752, undefined, []); }
+  static get age(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 808661475706752, undefined, []); }
   /**
    * static let sex: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.2+
    */
-  static get sex(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4447258482216037, undefined, []); }
+  static get sex(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4447258482216037, undefined, []); }
   /**
    * static let name: MobileDriversLicenseDataRequest.Element
    * @availability iOS 27.0+
    */
-  static get nameValue(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4167218411843394, undefined, []); }
+  static get nameValue(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4167218411843394, undefined, []); }
   /**
    * static let height: MobileDriversLicenseDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get height(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1303788393776908, undefined, []); }
+  static get height(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1303788393776908, undefined, []); }
   /**
    * static let weight: MobileDriversLicenseDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get weight(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3704103568442920, undefined, []); }
+  static get weight(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3704103568442920, undefined, []); }
   /**
    * static let address: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get address(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2044728002494881, undefined, []); }
+  static get address(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2044728002494881, undefined, []); }
   /**
    * static let eyeColor: MobileDriversLicenseDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get eyeColor(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2188173589265530, undefined, []); }
+  static get eyeColor(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2188173589265530, undefined, []); }
   /**
    * static let portrait: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get portrait(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 430920752632298, undefined, []); }
+  static get portrait(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 430920752632298, undefined, []); }
   /**
    * static let givenName: MobileDriversLicenseDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get givenName(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3519052507363150, undefined, []); }
+  static get givenName(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3519052507363150, undefined, []); }
   /**
    * static let hairColor: MobileDriversLicenseDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get hairColor(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3257687734365781, undefined, []); }
+  static get hairColor(): MobileDriversLicenseDataRequest_Element { return callSDK<MobileDriversLicenseDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3257687734365781, undefined, []); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV7ElementV": true };
 }
 
@@ -1040,7 +1040,7 @@ export class MobileDriversLicenseDataRequest_Response extends SDKHandle {
    * let documentElements: MobileDriversLicenseDataRequest.Response.DocumentElements
    * @availability iOS 17.0+
    */
-  get documentElements(): MobileDriversLicenseDataRequest_Response_DocumentElements { return callSDK<MobileDriversLicenseDataRequest_Response_DocumentElements>("ProximityReader_a956b86ef7a76a8e", 3827335898387698, this, []); }
+  get documentElements(): MobileDriversLicenseDataRequest_Response_DocumentElements { return callSDK<MobileDriversLicenseDataRequest_Response_DocumentElements>("ProximityReader_90ad0eb69cc6bf4a", 3827335898387698, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV": true };
 }
 
@@ -1053,122 +1053,122 @@ export class MobileDriversLicenseDataRequest_Response_DocumentElements extends S
    * let ageAtLeastElements: [Int : Bool]
    * @availability iOS 17.0+
    */
-  get ageAtLeastElements(): Record<number, boolean> { return callSDK<Record<number, boolean>>("ProximityReader_a956b86ef7a76a8e", 3885667475215814, this, []); }
+  get ageAtLeastElements(): Record<number, boolean> { return callSDK<Record<number, boolean>>("ProximityReader_90ad0eb69cc6bf4a", 3885667475215814, this, []); }
   /**
    * let signatureUsualMarkData: Data?
    * @availability iOS 26.4+
    */
-  get signatureUsualMarkData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_a956b86ef7a76a8e", 2854634837615373, this, []); }
+  get signatureUsualMarkData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_90ad0eb69cc6bf4a", 2854634837615373, this, []); }
   /**
    * let portraitData: Data?
    * @availability iOS 17.0+
    */
-  get portraitData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_a956b86ef7a76a8e", 2610312396362867, this, []); }
+  get portraitData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_90ad0eb69cc6bf4a", 2610312396362867, this, []); }
   /**
    * let dateOfBirth: DateComponents?
    * @availability iOS 17.0+
    */
-  get dateOfBirth(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 2085803472570943, this, []); }
+  get dateOfBirth(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 2085803472570943, this, []); }
   /**
    * let nationality: String?
    * @availability iOS 26.4+
    */
-  get nationality(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 14831307346808, this, []); }
+  get nationality(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 14831307346808, this, []); }
   /**
    * let isOrganDonor: Bool?
    * @availability iOS 26.0+
    */
-  get isOrganDonor(): (boolean) | null { return callSDK<(boolean) | null>("ProximityReader_a956b86ef7a76a8e", 1708693455885170, this, []); }
+  get isOrganDonor(): (boolean) | null { return callSDK<(boolean) | null>("ProximityReader_90ad0eb69cc6bf4a", 1708693455885170, this, []); }
   /**
    * let placeOfBirth: String?
    * @availability iOS 26.4+
    */
-  get placeOfBirth(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 2452630060094107, this, []); }
+  get placeOfBirth(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 2452630060094107, this, []); }
   /**
    * let documentNumber: String?
    * @availability iOS 17.0+
    */
-  get documentNumber(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 745660097916203, this, []); }
+  get documentNumber(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 745660097916203, this, []); }
   /**
    * var nameComponents: PersonNameComponents? { get }
    * @availability iOS 17.0+
    */
-  get nameComponents(): $SDK4 { return callSDK<$SDK4>("ProximityReader_a956b86ef7a76a8e", 1299203659614402, this, []); }
+  get nameComponents(): $SDK4 { return callSDK<$SDK4>("ProximityReader_90ad0eb69cc6bf4a", 1299203659614402, this, []); }
   /**
    * let issuingAuthority: MobileDriversLicenseDataRequest.Response.DocumentElements.IssuingAuthority?
    * @availability iOS 17.0+
    */
-  get issuingAuthority(): (MobileDriversLicenseDataRequest_Response_DocumentElements_IssuingAuthority) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_IssuingAuthority) | null>("ProximityReader_a956b86ef7a76a8e", 2163183559413959, this, []); }
+  get issuingAuthority(): (MobileDriversLicenseDataRequest_Response_DocumentElements_IssuingAuthority) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_IssuingAuthority) | null>("ProximityReader_90ad0eb69cc6bf4a", 2163183559413959, this, []); }
   /**
    * let documentIssueDate: DateComponents?
    * @availability iOS 17.0+
    */
-  get documentIssueDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 3456557643264591, this, []); }
+  get documentIssueDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 3456557643264591, this, []); }
   /**
    * let drivingPrivileges: [MobileDriversLicenseDataRequest.Response.DocumentElements.DrivingPrivilege]
    * @availability iOS 17.0+
    */
-  get drivingPrivileges(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege> { return callSDK<Array<MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege>>("ProximityReader_a956b86ef7a76a8e", 3684127760759522, this, []); }
+  get drivingPrivileges(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege> { return callSDK<Array<MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege>>("ProximityReader_90ad0eb69cc6bf4a", 3684127760759522, this, []); }
   /**
    * let aamvaDrivingPrivileges: [MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege]
    * @availability iOS 17.0+
    */
-  get aamvaDrivingPrivileges(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege> { return callSDK<Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege>>("ProximityReader_a956b86ef7a76a8e", 1070069895176146, this, []); }
+  get aamvaDrivingPrivileges(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege> { return callSDK<Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege>>("ProximityReader_90ad0eb69cc6bf4a", 1070069895176146, this, []); }
   /**
    * let documentExpirationDate: DateComponents?
    * @availability iOS 17.0+
    */
-  get documentExpirationDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 3161160555039895, this, []); }
+  get documentExpirationDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 3161160555039895, this, []); }
   /**
    * let documentDHSComplianceStatus: MobileDriversLicenseDataRequest.Response.DocumentElements.DHSComplianceStatus?
    * @availability iOS 17.2+
    */
-  get documentDHSComplianceStatus(): (MobileDriversLicenseDataRequest_Response_DocumentElements_DHSComplianceStatus) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_DHSComplianceStatus) | null>("ProximityReader_a956b86ef7a76a8e", 784302242602054, this, []); }
+  get documentDHSComplianceStatus(): (MobileDriversLicenseDataRequest_Response_DocumentElements_DHSComplianceStatus) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_DHSComplianceStatus) | null>("ProximityReader_90ad0eb69cc6bf4a", 784302242602054, this, []); }
   /**
    * let age: Int?
    * @availability iOS 17.0+
    */
-  get age(): (number) | null { return callSDK<(number) | null>("ProximityReader_a956b86ef7a76a8e", 2096470960398475, this, []); }
+  get age(): (number) | null { return callSDK<(number) | null>("ProximityReader_90ad0eb69cc6bf4a", 2096470960398475, this, []); }
   /**
    * let sex: MobileDriversLicenseDataRequest.Response.DocumentElements.Sex?
    * @availability iOS 17.2+
    */
-  get sex(): (MobileDriversLicenseDataRequest_Response_DocumentElements_Sex) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_Sex) | null>("ProximityReader_a956b86ef7a76a8e", 4308276090713900, this, []); }
+  get sex(): (MobileDriversLicenseDataRequest_Response_DocumentElements_Sex) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_Sex) | null>("ProximityReader_90ad0eb69cc6bf4a", 4308276090713900, this, []); }
   /**
    * let name: MobileDocumentHolderName?
    * @availability iOS 27.0+
    */
-  get name(): $SDK21 { return callSDK<$SDK21>("ProximityReader_a956b86ef7a76a8e", 3977831441963689, this, []); }
+  get name(): $SDK21 { return callSDK<$SDK21>("ProximityReader_90ad0eb69cc6bf4a", 3977831441963689, this, []); }
   /**
    * let height: Measurement<UnitLength>?
    * @availability iOS 26.0+
    */
-  get height(): (_Foundation_Measurement<_Foundation_UnitLength>) | null { return callSDK<(_Foundation_Measurement<_Foundation_UnitLength>) | null>("ProximityReader_a956b86ef7a76a8e", 2569341649327561, this, []); }
+  get height(): (_Foundation_Measurement<_Foundation_UnitLength>) | null { return callSDK<(_Foundation_Measurement<_Foundation_UnitLength>) | null>("ProximityReader_90ad0eb69cc6bf4a", 2569341649327561, this, []); }
   /**
    * let weight: Measurement<UnitMass>?
    * @availability iOS 26.0+
    */
-  get weight(): (_Foundation_Measurement<_Foundation_UnitMass>) | null { return callSDK<(_Foundation_Measurement<_Foundation_UnitMass>) | null>("ProximityReader_a956b86ef7a76a8e", 2818132753678337, this, []); }
+  get weight(): (_Foundation_Measurement<_Foundation_UnitMass>) | null { return callSDK<(_Foundation_Measurement<_Foundation_UnitMass>) | null>("ProximityReader_90ad0eb69cc6bf4a", 2818132753678337, this, []); }
   /**
    * var address: CNPostalAddress? { get }
    * @availability iOS 17.0+
    */
-  get address(): $SDK24 { return callSDK<$SDK24>("ProximityReader_a956b86ef7a76a8e", 4218093331609387, this, []); }
+  get address(): $SDK24 { return callSDK<$SDK24>("ProximityReader_90ad0eb69cc6bf4a", 4218093331609387, this, []); }
   /**
    * let eyeColor: MobileDriversLicenseDataRequest.Response.DocumentElements.EyeColor?
    * @availability iOS 26.0+
    */
-  get eyeColor(): (MobileDriversLicenseDataRequest_Response_DocumentElements_EyeColor) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_EyeColor) | null>("ProximityReader_a956b86ef7a76a8e", 3976378649674110, this, []); }
+  get eyeColor(): (MobileDriversLicenseDataRequest_Response_DocumentElements_EyeColor) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_EyeColor) | null>("ProximityReader_90ad0eb69cc6bf4a", 3976378649674110, this, []); }
   /**
    * let hairColor: MobileDriversLicenseDataRequest.Response.DocumentElements.HairColor?
    * @availability iOS 26.0+
    */
-  get hairColor(): (MobileDriversLicenseDataRequest_Response_DocumentElements_HairColor) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_HairColor) | null>("ProximityReader_a956b86ef7a76a8e", 895726381605712, this, []); }
+  get hairColor(): (MobileDriversLicenseDataRequest_Response_DocumentElements_HairColor) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_HairColor) | null>("ProximityReader_90ad0eb69cc6bf4a", 895726381605712, this, []); }
   /**
    * let isVeteran: Bool?
    * @availability iOS 26.0+
    */
-  get isVeteran(): (boolean) | null { return callSDK<(boolean) | null>("ProximityReader_a956b86ef7a76a8e", 3646169564251916, this, []); }
+  get isVeteran(): (boolean) | null { return callSDK<(boolean) | null>("ProximityReader_90ad0eb69cc6bf4a", 3646169564251916, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV": true };
 }
 
@@ -1181,17 +1181,17 @@ export class MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADriv
    * let vehicleClass: MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege.VehicleClass?
    * @availability iOS 17.0+
    */
-  get vehicleClass(): (MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleClass) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleClass) | null>("ProximityReader_a956b86ef7a76a8e", 3995763857791560, this, []); }
+  get vehicleClass(): (MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleClass) | null { return callSDK<(MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleClass) | null>("ProximityReader_90ad0eb69cc6bf4a", 3995763857791560, this, []); }
   /**
    * let vehicleEndorsements: [MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege.VehicleEndorsement]
    * @availability iOS 17.0+
    */
-  get vehicleEndorsements(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleEndorsement> { return callSDK<Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleEndorsement>>("ProximityReader_a956b86ef7a76a8e", 2972982466499685, this, []); }
+  get vehicleEndorsements(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleEndorsement> { return callSDK<Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleEndorsement>>("ProximityReader_90ad0eb69cc6bf4a", 2972982466499685, this, []); }
   /**
    * let vehicleRestrictions: [MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege.VehicleRestriction]
    * @availability iOS 17.0+
    */
-  get vehicleRestrictions(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleRestriction> { return callSDK<Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleRestriction>>("ProximityReader_a956b86ef7a76a8e", 3632877022181284, this, []); }
+  get vehicleRestrictions(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleRestriction> { return callSDK<Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleRestriction>>("ProximityReader_90ad0eb69cc6bf4a", 3632877022181284, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV21AAMVADrivingPrivilegeV": true };
 }
 
@@ -1204,22 +1204,22 @@ export class MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADriv
    * let description: String
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2359721594313578, this, []); }
+  get description(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2359721594313578, this, []); }
   /**
    * let expirationDate: DateComponents?
    * @availability iOS 17.0+
    */
-  get expirationDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 3676707350422287, this, []); }
+  get expirationDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 3676707350422287, this, []); }
   /**
    * let code: String
    * @availability iOS 17.0+
    */
-  get code(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2248314980919189, this, []); }
+  get code(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2248314980919189, this, []); }
   /**
    * let issueDate: DateComponents?
    * @availability iOS 17.0+
    */
-  get issueDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 729676380656081, this, []); }
+  get issueDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 729676380656081, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV21AAMVADrivingPrivilegeV12VehicleClassV": true };
 }
 
@@ -1232,12 +1232,12 @@ export class MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADriv
    * let description: String
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2826469741794214, this, []); }
+  get description(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2826469741794214, this, []); }
   /**
    * let code: String?
    * @availability iOS 17.0+
    */
-  get code(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 4296450387412486, this, []); }
+  get code(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 4296450387412486, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV21AAMVADrivingPrivilegeV18VehicleEndorsementV": true };
 }
 
@@ -1250,12 +1250,12 @@ export class MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADriv
    * let description: String
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2658176227314319, this, []); }
+  get description(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2658176227314319, this, []); }
   /**
    * let code: String?
    * @availability iOS 17.0+
    */
-  get code(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 154607776505176, this, []); }
+  get code(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 154607776505176, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV21AAMVADrivingPrivilegeV18VehicleRestrictionV": true };
 }
 
@@ -1274,22 +1274,22 @@ export class MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPr
    * let expirationDate: DateComponents?
    * @availability iOS 17.0+
    */
-  get expirationDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 3336570832333956, this, []); }
+  get expirationDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 3336570832333956, this, []); }
   /**
    * let vehicleCategoryCode: String
    * @availability iOS 17.0+
    */
-  get vehicleCategoryCode(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2201150992601621, this, []); }
+  get vehicleCategoryCode(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2201150992601621, this, []); }
   /**
    * let codes: [MobileDriversLicenseDataRequest.Response.DocumentElements.DrivingPrivilege.Code]
    * @availability iOS 17.0+
    */
-  get codes(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege_Code> { return callSDK<Array<MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege_Code>>("ProximityReader_a956b86ef7a76a8e", 579280210282634, this, []); }
+  get codes(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege_Code> { return callSDK<Array<MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege_Code>>("ProximityReader_90ad0eb69cc6bf4a", 579280210282634, this, []); }
   /**
    * let issueDate: DateComponents?
    * @availability iOS 17.0+
    */
-  get issueDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 3368898874890435, this, []); }
+  get issueDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 3368898874890435, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV16DrivingPrivilegeV": true };
 }
 
@@ -1302,17 +1302,17 @@ export class MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPr
    * let code: String
    * @availability iOS 17.0+
    */
-  get code(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 4427573925737756, this, []); }
+  get code(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 4427573925737756, this, []); }
   /**
    * let sign: String?
    * @availability iOS 17.0+
    */
-  get sign(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 4152568642151372, this, []); }
+  get sign(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 4152568642151372, this, []); }
   /**
    * let value: String?
    * @availability iOS 17.0+
    */
-  get value(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 3169870726550130, this, []); }
+  get value(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 3169870726550130, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV16DrivingPrivilegeV4CodeV": true };
 }
 
@@ -1337,17 +1337,17 @@ export class MobileDriversLicenseDataRequest_Response_DocumentElements_IssuingAu
    * let jurisdiction: String?
    * @availability iOS 17.0+
    */
-  get jurisdiction(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 331797966626074, this, []); }
+  get jurisdiction(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 331797966626074, this, []); }
   /**
    * let isoCountryCode: String?
    * @availability iOS 17.0+
    */
-  get isoCountryCode(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 3109920485937194, this, []); }
+  get isoCountryCode(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 3109920485937194, this, []); }
   /**
    * let name: String?
    * @availability iOS 17.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 330993223550638, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 330993223550638, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV16IssuingAuthorityV": true };
 }
 
@@ -1362,7 +1362,7 @@ export const MobileDriversLicenseDataRequest_Response_DocumentElements_Sex = {
    * var localizedName: String { get }
    * @availability iOS 17.2+
    */
-  getLocalizedName($self: MobileDriversLicenseDataRequest_Response_DocumentElements_Sex): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1072801285519718, $self, []); }
+  getLocalizedName($self: MobileDriversLicenseDataRequest_Response_DocumentElements_Sex): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1072801285519718, $self, []); }
 };
 
 /**
@@ -1374,19 +1374,19 @@ export class MobileDriversLicenseDisplayRequest extends SDKHandle {
    * var options: MobileDriversLicenseDisplayRequest.Options
    * @availability iOS 17.0+
    */
-  get options(): MobileDriversLicenseDisplayRequest_Options { return callSDK<MobileDriversLicenseDisplayRequest_Options>("ProximityReader_a956b86ef7a76a8e", 4144741448680581, this, []); }
-  set options(value: MobileDriversLicenseDisplayRequest_Options) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2823727327760085, this, [value]); }
+  get options(): MobileDriversLicenseDisplayRequest_Options { return callSDK<MobileDriversLicenseDisplayRequest_Options>("ProximityReader_90ad0eb69cc6bf4a", 4144741448680581, this, []); }
+  set options(value: MobileDriversLicenseDisplayRequest_Options) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2823727327760085, this, [value]); }
   /**
    * init(elements: [MobileDriversLicenseDisplayRequest.Element] = [], options: MobileDriversLicenseDisplayRequest.Options = .init())
    * @availability iOS 17.0+
    */
-  static init(elements?: $SDK31, options?: MobileDriversLicenseDisplayRequest_Options): MobileDriversLicenseDisplayRequest { return callSDK<MobileDriversLicenseDisplayRequest>("ProximityReader_a956b86ef7a76a8e", 2024374898587216, undefined, [elements, options]); }
+  static init(elements?: $SDK31, options?: MobileDriversLicenseDisplayRequest_Options): MobileDriversLicenseDisplayRequest { return callSDK<MobileDriversLicenseDisplayRequest>("ProximityReader_90ad0eb69cc6bf4a", 2024374898587216, undefined, [elements, options]); }
   /**
    * var elements: [MobileDriversLicenseDisplayRequest.Element]
    * @availability iOS 17.0+
    */
-  get elements(): $SDK31 { return callSDK<$SDK31>("ProximityReader_a956b86ef7a76a8e", 2279715012216670, this, []); }
-  set elements(value: $SDK31) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2378025291186704, this, [value]); }
+  get elements(): $SDK31 { return callSDK<$SDK31>("ProximityReader_90ad0eb69cc6bf4a", 2279715012216670, this, []); }
+  set elements(value: $SDK31) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2378025291186704, this, [value]); }
   declare readonly $type: { "s:15ProximityReader34MobileDriversLicenseDisplayRequestV": true };
 }
 
@@ -1399,27 +1399,27 @@ export class MobileDriversLicenseDisplayRequest_Element extends SDKHandle {
    * static func ageAtLeast(_ age: Int) -> MobileDriversLicenseDisplayRequest.Element
    * @availability iOS 17.0+
    */
-  static ageAtLeast(age: number): MobileDriversLicenseDisplayRequest_Element { return callSDK<MobileDriversLicenseDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1797191761263511, undefined, [age]); }
+  static ageAtLeast(age: number): MobileDriversLicenseDisplayRequest_Element { return callSDK<MobileDriversLicenseDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1797191761263511, undefined, [age]); }
   /**
    * static let familyName: MobileDriversLicenseDisplayRequest.Element
    * @availability iOS 17.0+
    */
-  static get familyName(): MobileDriversLicenseDisplayRequest_Element { return callSDK<MobileDriversLicenseDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2798754324415125, undefined, []); }
+  static get familyName(): MobileDriversLicenseDisplayRequest_Element { return callSDK<MobileDriversLicenseDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2798754324415125, undefined, []); }
   /**
    * static let age: MobileDriversLicenseDisplayRequest.Element
    * @availability iOS 17.0+
    */
-  static get age(): MobileDriversLicenseDisplayRequest_Element { return callSDK<MobileDriversLicenseDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3720086190835690, undefined, []); }
+  static get age(): MobileDriversLicenseDisplayRequest_Element { return callSDK<MobileDriversLicenseDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3720086190835690, undefined, []); }
   /**
    * static let name: MobileDriversLicenseDisplayRequest.Element
    * @availability iOS 27.0+
    */
-  static get nameValue(): MobileDriversLicenseDisplayRequest_Element { return callSDK<MobileDriversLicenseDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3488207330314029, undefined, []); }
+  static get nameValue(): MobileDriversLicenseDisplayRequest_Element { return callSDK<MobileDriversLicenseDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3488207330314029, undefined, []); }
   /**
    * static let givenName: MobileDriversLicenseDisplayRequest.Element
    * @availability iOS 17.0+
    */
-  static get givenName(): MobileDriversLicenseDisplayRequest_Element { return callSDK<MobileDriversLicenseDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3448130303436620, undefined, []); }
+  static get givenName(): MobileDriversLicenseDisplayRequest_Element { return callSDK<MobileDriversLicenseDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3448130303436620, undefined, []); }
   declare readonly $type: { "s:15ProximityReader34MobileDriversLicenseDisplayRequestV7ElementV": true };
 }
 
@@ -1432,13 +1432,13 @@ export class MobileDriversLicenseDisplayRequest_Options extends SDKHandle {
    * init(validationMode: MobileDriversLicenseDisplayRequest.Options.ValidationMode = .check)
    * @availability iOS 17.0+
    */
-  static init(validationMode?: MobileDriversLicenseDisplayRequest_Options_ValidationMode): MobileDriversLicenseDisplayRequest_Options { return callSDK<MobileDriversLicenseDisplayRequest_Options>("ProximityReader_a956b86ef7a76a8e", 1659467483059144, undefined, [validationMode]); }
+  static init(validationMode?: MobileDriversLicenseDisplayRequest_Options_ValidationMode): MobileDriversLicenseDisplayRequest_Options { return callSDK<MobileDriversLicenseDisplayRequest_Options>("ProximityReader_90ad0eb69cc6bf4a", 1659467483059144, undefined, [validationMode]); }
   /**
    * var validationMode: MobileDriversLicenseDisplayRequest.Options.ValidationMode
    * @availability iOS 17.0+
    */
-  get validationMode(): MobileDriversLicenseDisplayRequest_Options_ValidationMode { return callSDK<MobileDriversLicenseDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 341013542506476, this, []); }
-  set validationMode(value: MobileDriversLicenseDisplayRequest_Options_ValidationMode) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3231050297350768, this, [value]); }
+  get validationMode(): MobileDriversLicenseDisplayRequest_Options_ValidationMode { return callSDK<MobileDriversLicenseDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 341013542506476, this, []); }
+  set validationMode(value: MobileDriversLicenseDisplayRequest_Options_ValidationMode) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3231050297350768, this, [value]); }
   declare readonly $type: { "s:15ProximityReader34MobileDriversLicenseDisplayRequestV7OptionsV": true };
 }
 
@@ -1451,17 +1451,17 @@ export class MobileDriversLicenseDisplayRequest_Options_ValidationMode extends S
    * static let checkMultiple: MobileDriversLicenseDisplayRequest.Options.ValidationMode
    * @availability iOS 17.0+
    */
-  static get checkMultiple(): MobileDriversLicenseDisplayRequest_Options_ValidationMode { return callSDK<MobileDriversLicenseDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 1179959793009090, undefined, []); }
+  static get checkMultiple(): MobileDriversLicenseDisplayRequest_Options_ValidationMode { return callSDK<MobileDriversLicenseDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 1179959793009090, undefined, []); }
   /**
    * static let check: MobileDriversLicenseDisplayRequest.Options.ValidationMode
    * @availability iOS 17.0+
    */
-  static get check(): MobileDriversLicenseDisplayRequest_Options_ValidationMode { return callSDK<MobileDriversLicenseDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 2427863463812110, undefined, []); }
+  static get check(): MobileDriversLicenseDisplayRequest_Options_ValidationMode { return callSDK<MobileDriversLicenseDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 2427863463812110, undefined, []); }
   /**
    * static let confirm: MobileDriversLicenseDisplayRequest.Options.ValidationMode
    * @availability iOS 17.0+
    */
-  static get confirm(): MobileDriversLicenseDisplayRequest_Options_ValidationMode { return callSDK<MobileDriversLicenseDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 2319180010867687, undefined, []); }
+  static get confirm(): MobileDriversLicenseDisplayRequest_Options_ValidationMode { return callSDK<MobileDriversLicenseDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 2319180010867687, undefined, []); }
   declare readonly $type: { "s:15ProximityReader34MobileDriversLicenseDisplayRequestV7OptionsV14ValidationModeV": true };
 }
 
@@ -1474,7 +1474,7 @@ export class MobileDriversLicenseDisplayRequest_Response extends SDKHandle {
    * let validationOutcome: MobileDriversLicenseDisplayRequest.Response.ValidationOutcome
    * @availability iOS 17.0+
    */
-  get validationOutcome(): MobileDriversLicenseDisplayRequest_Response_ValidationOutcome { return callSDK<MobileDriversLicenseDisplayRequest_Response_ValidationOutcome>("ProximityReader_a956b86ef7a76a8e", 1877358638972058, this, []); }
+  get validationOutcome(): MobileDriversLicenseDisplayRequest_Response_ValidationOutcome { return callSDK<MobileDriversLicenseDisplayRequest_Response_ValidationOutcome>("ProximityReader_90ad0eb69cc6bf4a", 1877358638972058, this, []); }
   declare readonly $type: { "s:15ProximityReader34MobileDriversLicenseDisplayRequestV8ResponseV": true };
 }
 
@@ -1493,30 +1493,30 @@ export class MobileDriversLicenseRawDataRequest extends SDKHandle {
    * init(retainedElements: [MobileDriversLicenseRawDataRequest.Element] = [], nonRetainedElements: [MobileDriversLicenseRawDataRequest.Element] = [], issuerIdentifiers: [Data] = [])
    * @availability iOS 27.0+
    */
-  static initRetainedElementsNonRetainedElementsIssuerIdentifiers(retainedElements?: $SDK32, nonRetainedElements?: $SDK32, issuerIdentifiers?: Array<ArrayBuffer>): MobileDriversLicenseRawDataRequest { return callSDK<MobileDriversLicenseRawDataRequest>("ProximityReader_a956b86ef7a76a8e", 737483095102476, undefined, [retainedElements, nonRetainedElements, issuerIdentifiers]); }
+  static initRetainedElementsNonRetainedElementsIssuerIdentifiers(retainedElements?: $SDK32, nonRetainedElements?: $SDK32, issuerIdentifiers?: Array<ArrayBuffer>): MobileDriversLicenseRawDataRequest { return callSDK<MobileDriversLicenseRawDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 737483095102476, undefined, [retainedElements, nonRetainedElements, issuerIdentifiers]); }
   /**
    * init(retainedElements: [MobileDriversLicenseRawDataRequest.Element] = [], nonRetainedElements: [MobileDriversLicenseRawDataRequest.Element] = [])
    * @availability iOS 17.0+
    */
-  static initRetainedElementsNonRetainedElements(retainedElements?: $SDK32, nonRetainedElements?: $SDK32): MobileDriversLicenseRawDataRequest { return callSDK<MobileDriversLicenseRawDataRequest>("ProximityReader_a956b86ef7a76a8e", 3504191624116785, undefined, [retainedElements, nonRetainedElements]); }
+  static initRetainedElementsNonRetainedElements(retainedElements?: $SDK32, nonRetainedElements?: $SDK32): MobileDriversLicenseRawDataRequest { return callSDK<MobileDriversLicenseRawDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 3504191624116785, undefined, [retainedElements, nonRetainedElements]); }
   /**
    * var retainedElements: [MobileDriversLicenseRawDataRequest.Element]
    * @availability iOS 17.0+
    */
-  get retainedElements(): $SDK32 { return callSDK<$SDK32>("ProximityReader_a956b86ef7a76a8e", 2252476449273567, this, []); }
-  set retainedElements(value: $SDK32) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1486466862489640, this, [value]); }
+  get retainedElements(): $SDK32 { return callSDK<$SDK32>("ProximityReader_90ad0eb69cc6bf4a", 2252476449273567, this, []); }
+  set retainedElements(value: $SDK32) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1486466862489640, this, [value]); }
   /**
    * var issuerIdentifiers: [Data]
    * @availability iOS 27.0+
    */
-  get issuerIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("ProximityReader_a956b86ef7a76a8e", 652006926511285, this, []); }
-  set issuerIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3818980050761195, this, [value]); }
+  get issuerIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("ProximityReader_90ad0eb69cc6bf4a", 652006926511285, this, []); }
+  set issuerIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3818980050761195, this, [value]); }
   /**
    * var nonRetainedElements: [MobileDriversLicenseRawDataRequest.Element]
    * @availability iOS 17.0+
    */
-  get nonRetainedElements(): $SDK32 { return callSDK<$SDK32>("ProximityReader_a956b86ef7a76a8e", 1457480870530276, this, []); }
-  set nonRetainedElements(value: $SDK32) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 797081438871142, this, [value]); }
+  get nonRetainedElements(): $SDK32 { return callSDK<$SDK32>("ProximityReader_90ad0eb69cc6bf4a", 1457480870530276, this, []); }
+  set nonRetainedElements(value: $SDK32) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 797081438871142, this, [value]); }
   declare readonly $type: { "s:15ProximityReader34MobileDriversLicenseRawDataRequestV": true };
 }
 
@@ -1529,127 +1529,127 @@ export class MobileDriversLicenseRawDataRequest_Element extends SDKHandle {
    * static func ageAtLeast(_ age: Int) -> MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static ageAtLeast(age: number): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3271054384547469, undefined, [age]); }
+  static ageAtLeast(age: number): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3271054384547469, undefined, [age]); }
   /**
    * static let familyName: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get familyName(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2110100801907771, undefined, []); }
+  static get familyName(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2110100801907771, undefined, []); }
   /**
    * static let dateOfBirth: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get dateOfBirth(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4421308554435277, undefined, []); }
+  static get dateOfBirth(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4421308554435277, undefined, []); }
   /**
    * static let nationality: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 26.4+
    */
-  static get nationality(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1870404294850249, undefined, []); }
+  static get nationality(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1870404294850249, undefined, []); }
   /**
    * static let placeOfBirth: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 26.4+
    */
-  static get placeOfBirth(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3596871950726576, undefined, []); }
+  static get placeOfBirth(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3596871950726576, undefined, []); }
   /**
    * static let veteranStatus: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get veteranStatus(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3034710584233606, undefined, []); }
+  static get veteranStatus(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3034710584233606, undefined, []); }
   /**
    * static let documentNumber: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get documentNumber(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1745800130377009, undefined, []); }
+  static get documentNumber(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1745800130377009, undefined, []); }
   /**
    * static let issuingAuthority: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get issuingAuthority(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2754167798855315, undefined, []); }
+  static get issuingAuthority(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2754167798855315, undefined, []); }
   /**
    * static let organDonorStatus: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get organDonorStatus(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3892458994203647, undefined, []); }
+  static get organDonorStatus(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3892458994203647, undefined, []); }
   /**
    * static let documentIssueDate: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get documentIssueDate(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1213373178220042, undefined, []); }
+  static get documentIssueDate(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1213373178220042, undefined, []); }
   /**
    * static let drivingPrivileges: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get drivingPrivileges(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 921005574974712, undefined, []); }
+  static get drivingPrivileges(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 921005574974712, undefined, []); }
   /**
    * static let signatureUsualMark: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 26.4+
    */
-  static get signatureUsualMark(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1987799421601417, undefined, []); }
+  static get signatureUsualMark(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1987799421601417, undefined, []); }
   /**
    * static let documentExpirationDate: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get documentExpirationDate(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1833948291294739, undefined, []); }
+  static get documentExpirationDate(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1833948291294739, undefined, []); }
   /**
    * static let dhsTemporaryLawfulStatus: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 26.4+
    */
-  static get dhsTemporaryLawfulStatus(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 344793519492445, undefined, []); }
+  static get dhsTemporaryLawfulStatus(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 344793519492445, undefined, []); }
   /**
    * static let documentDHSComplianceStatus: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.2+
    */
-  static get documentDHSComplianceStatus(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2097566810636842, undefined, []); }
+  static get documentDHSComplianceStatus(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2097566810636842, undefined, []); }
   /**
    * static let age: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get age(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 653005450975653, undefined, []); }
+  static get age(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 653005450975653, undefined, []); }
   /**
    * static let sex: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.2+
    */
-  static get sex(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4370942168194374, undefined, []); }
+  static get sex(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4370942168194374, undefined, []); }
   /**
    * static let name: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 27.0+
    */
-  static get nameValue(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1391891113832022, undefined, []); }
+  static get nameValue(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1391891113832022, undefined, []); }
   /**
    * static let height: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get height(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 817563959143493, undefined, []); }
+  static get height(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 817563959143493, undefined, []); }
   /**
    * static let weight: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get weight(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2718342718602189, undefined, []); }
+  static get weight(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2718342718602189, undefined, []); }
   /**
    * static let address: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get address(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4142956755490895, undefined, []); }
+  static get address(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4142956755490895, undefined, []); }
   /**
    * static let eyeColor: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get eyeColor(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 142949961453608, undefined, []); }
+  static get eyeColor(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 142949961453608, undefined, []); }
   /**
    * static let portrait: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get portrait(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1158174381180455, undefined, []); }
+  static get portrait(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1158174381180455, undefined, []); }
   /**
    * static let givenName: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 17.0+
    */
-  static get givenName(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4258956879271186, undefined, []); }
+  static get givenName(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4258956879271186, undefined, []); }
   /**
    * static let hairColor: MobileDriversLicenseRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get hairColor(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1672237903811423, undefined, []); }
+  static get hairColor(): MobileDriversLicenseRawDataRequest_Element { return callSDK<MobileDriversLicenseRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1672237903811423, undefined, []); }
   declare readonly $type: { "s:15ProximityReader34MobileDriversLicenseRawDataRequestV7ElementV": true };
 }
 
@@ -1662,17 +1662,17 @@ export class MobileDriversLicenseRawDataRequest_Response extends SDKHandle {
    * let responseData: Data
    * @availability iOS 17.0+
    */
-  get responseData(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 604994896139375, this, []); }
+  get responseData(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 604994896139375, this, []); }
   /**
    * let ephemeralReaderKey: Data
    * @availability iOS 26.4+
    */
-  get ephemeralReaderKey(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 4077434626864850, this, []); }
+  get ephemeralReaderKey(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 4077434626864850, this, []); }
   /**
    * let sessionTranscript: Data
    * @availability iOS 17.0+
    */
-  get sessionTranscript(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 231519168693329, this, []); }
+  get sessionTranscript(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 231519168693329, this, []); }
   declare readonly $type: { "s:15ProximityReader34MobileDriversLicenseRawDataRequestV8ResponseV": true };
 }
 
@@ -1685,30 +1685,30 @@ export class MobileNationalIDCardDataRequest extends SDKHandle {
    * var retainedElements: [MobileNationalIDCardDataRequest.Element]
    * @availability iOS 18.0+
    */
-  get retainedElements(): $SDK33 { return callSDK<$SDK33>("ProximityReader_a956b86ef7a76a8e", 4487066969354639, this, []); }
-  set retainedElements(value: $SDK33) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 324869622520434, this, [value]); }
+  get retainedElements(): $SDK33 { return callSDK<$SDK33>("ProximityReader_90ad0eb69cc6bf4a", 4487066969354639, this, []); }
+  set retainedElements(value: $SDK33) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 324869622520434, this, [value]); }
   /**
    * static func isSupportedRegion(_ region: Locale.Region) -> Bool
    * @availability iOS 18.0+
    */
-  static isSupportedRegion(region: _Foundation_Locale_Region): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 4238062342400869, undefined, [region]); }
+  static isSupportedRegion(region: _Foundation_Locale_Region): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 4238062342400869, undefined, [region]); }
   /**
    * var nonRetainedElements: [MobileNationalIDCardDataRequest.Element]
    * @availability iOS 18.0+
    */
-  get nonRetainedElements(): $SDK33 { return callSDK<$SDK33>("ProximityReader_a956b86ef7a76a8e", 960610860564644, this, []); }
-  set nonRetainedElements(value: $SDK33) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2233636195373763, this, [value]); }
+  get nonRetainedElements(): $SDK33 { return callSDK<$SDK33>("ProximityReader_90ad0eb69cc6bf4a", 960610860564644, this, []); }
+  set nonRetainedElements(value: $SDK33) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2233636195373763, this, [value]); }
   /**
    * var region: Locale.Region
    * @availability iOS 18.0+
    */
-  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("ProximityReader_a956b86ef7a76a8e", 2414492523974474, this, []); }
-  set region(value: _Foundation_Locale_Region) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 389134196474421, this, [value]); }
+  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("ProximityReader_90ad0eb69cc6bf4a", 2414492523974474, this, []); }
+  set region(value: _Foundation_Locale_Region) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 389134196474421, this, [value]); }
   /**
    * init(region: Locale.Region, retainedElements: [MobileNationalIDCardDataRequest.Element] = [], nonRetainedElements: [MobileNationalIDCardDataRequest.Element] = [])
    * @availability iOS 18.0+
    */
-  static init(region: _Foundation_Locale_Region, retainedElements?: $SDK33, nonRetainedElements?: $SDK33): MobileNationalIDCardDataRequest { return callSDK<MobileNationalIDCardDataRequest>("ProximityReader_a956b86ef7a76a8e", 1468516600607334, undefined, [region, retainedElements, nonRetainedElements]); }
+  static init(region: _Foundation_Locale_Region, retainedElements?: $SDK33, nonRetainedElements?: $SDK33): MobileNationalIDCardDataRequest { return callSDK<MobileNationalIDCardDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 1468516600607334, undefined, [region, retainedElements, nonRetainedElements]); }
   declare readonly $type: { "s:15ProximityReader31MobileNationalIDCardDataRequestV": true };
 }
 
@@ -1721,47 +1721,47 @@ export class MobileNationalIDCardDataRequest_Element extends SDKHandle {
    * static func ageAtLeast(_ age: Int) -> MobileNationalIDCardDataRequest.Element
    * @availability iOS 18.0+
    */
-  static ageAtLeast(age: number): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2273566173334260, undefined, [age]); }
+  static ageAtLeast(age: number): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2273566173334260, undefined, [age]); }
   /**
    * static let familyName: MobileNationalIDCardDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get familyName(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4031061723635759, undefined, []); }
+  static get familyName(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4031061723635759, undefined, []); }
   /**
    * static let dateOfBirth: MobileNationalIDCardDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get dateOfBirth(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1038381492018803, undefined, []); }
+  static get dateOfBirth(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1038381492018803, undefined, []); }
   /**
    * static let documentNumber: MobileNationalIDCardDataRequest.Element
    * @availability iOS 18.4+
    */
-  static get documentNumber(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1763154896925743, undefined, []); }
+  static get documentNumber(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1763154896925743, undefined, []); }
   /**
    * static let age: MobileNationalIDCardDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get age(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1512088410385541, undefined, []); }
+  static get age(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1512088410385541, undefined, []); }
   /**
    * static let sex: MobileNationalIDCardDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get sex(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1966387996958353, undefined, []); }
+  static get sex(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1966387996958353, undefined, []); }
   /**
    * static let name: MobileNationalIDCardDataRequest.Element
    * @availability iOS 27.0+
    */
-  static get nameValue(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4236438547639932, undefined, []); }
+  static get nameValue(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4236438547639932, undefined, []); }
   /**
    * static let portrait: MobileNationalIDCardDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get portrait(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 835968953939609, undefined, []); }
+  static get portrait(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 835968953939609, undefined, []); }
   /**
    * static let givenName: MobileNationalIDCardDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get givenName(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3850106077366915, undefined, []); }
+  static get givenName(): MobileNationalIDCardDataRequest_Element { return callSDK<MobileNationalIDCardDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3850106077366915, undefined, []); }
   declare readonly $type: { "s:15ProximityReader31MobileNationalIDCardDataRequestV7ElementV": true };
 }
 
@@ -1774,12 +1774,12 @@ export class MobileNationalIDCardDataRequest_Response extends SDKHandle {
    * let documentElements: MobileNationalIDCardDataRequest.Response.DocumentElements
    * @availability iOS 18.0+
    */
-  get documentElements(): MobileNationalIDCardDataRequest_Response_DocumentElements { return callSDK<MobileNationalIDCardDataRequest_Response_DocumentElements>("ProximityReader_a956b86ef7a76a8e", 98518405521540, this, []); }
+  get documentElements(): MobileNationalIDCardDataRequest_Response_DocumentElements { return callSDK<MobileNationalIDCardDataRequest_Response_DocumentElements>("ProximityReader_90ad0eb69cc6bf4a", 98518405521540, this, []); }
   /**
    * let region: Locale.Region
    * @availability iOS 26.0+
    */
-  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("ProximityReader_a956b86ef7a76a8e", 771190922357183, this, []); }
+  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("ProximityReader_90ad0eb69cc6bf4a", 771190922357183, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileNationalIDCardDataRequestV8ResponseV": true };
 }
 
@@ -1792,42 +1792,42 @@ export class MobileNationalIDCardDataRequest_Response_DocumentElements extends S
    * let ageAtLeastElements: [Int : Bool]
    * @availability iOS 18.0+
    */
-  get ageAtLeastElements(): Record<number, boolean> { return callSDK<Record<number, boolean>>("ProximityReader_a956b86ef7a76a8e", 2574326153589795, this, []); }
+  get ageAtLeastElements(): Record<number, boolean> { return callSDK<Record<number, boolean>>("ProximityReader_90ad0eb69cc6bf4a", 2574326153589795, this, []); }
   /**
    * let portraitData: Data?
    * @availability iOS 18.0+
    */
-  get portraitData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_a956b86ef7a76a8e", 4140520949089186, this, []); }
+  get portraitData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_90ad0eb69cc6bf4a", 4140520949089186, this, []); }
   /**
    * let dateOfBirth: DateComponents?
    * @availability iOS 18.0+
    */
-  get dateOfBirth(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 2679137733114597, this, []); }
+  get dateOfBirth(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 2679137733114597, this, []); }
   /**
    * let documentNumber: String?
    * @availability iOS 18.4+
    */
-  get documentNumber(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 3713817837628084, this, []); }
+  get documentNumber(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 3713817837628084, this, []); }
   /**
    * var nameComponents: PersonNameComponents? { get }
    * @availability iOS 18.0+
    */
-  get nameComponents(): $SDK4 { return callSDK<$SDK4>("ProximityReader_a956b86ef7a76a8e", 397796483401558, this, []); }
+  get nameComponents(): $SDK4 { return callSDK<$SDK4>("ProximityReader_90ad0eb69cc6bf4a", 397796483401558, this, []); }
   /**
    * let age: Int?
    * @availability iOS 18.0+
    */
-  get age(): (number) | null { return callSDK<(number) | null>("ProximityReader_a956b86ef7a76a8e", 125025711391555, this, []); }
+  get age(): (number) | null { return callSDK<(number) | null>("ProximityReader_90ad0eb69cc6bf4a", 125025711391555, this, []); }
   /**
    * let sex: MobileNationalIDCardDataRequest.Response.DocumentElements.Sex?
    * @availability iOS 18.0+
    */
-  get sex(): (MobileNationalIDCardDataRequest_Response_DocumentElements_Sex) | null { return callSDK<(MobileNationalIDCardDataRequest_Response_DocumentElements_Sex) | null>("ProximityReader_a956b86ef7a76a8e", 786122373367596, this, []); }
+  get sex(): (MobileNationalIDCardDataRequest_Response_DocumentElements_Sex) | null { return callSDK<(MobileNationalIDCardDataRequest_Response_DocumentElements_Sex) | null>("ProximityReader_90ad0eb69cc6bf4a", 786122373367596, this, []); }
   /**
    * let name: MobileDocumentHolderName?
    * @availability iOS 27.0+
    */
-  get name(): $SDK21 { return callSDK<$SDK21>("ProximityReader_a956b86ef7a76a8e", 824278832321875, this, []); }
+  get name(): $SDK21 { return callSDK<$SDK21>("ProximityReader_90ad0eb69cc6bf4a", 824278832321875, this, []); }
   declare readonly $type: { "s:15ProximityReader31MobileNationalIDCardDataRequestV8ResponseV16DocumentElementsV": true };
 }
 
@@ -1842,7 +1842,7 @@ export const MobileNationalIDCardDataRequest_Response_DocumentElements_Sex = {
    * var localizedName: String { get }
    * @availability iOS 18.0+
    */
-  getLocalizedName($self: MobileNationalIDCardDataRequest_Response_DocumentElements_Sex): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2861635323968299, $self, []); }
+  getLocalizedName($self: MobileNationalIDCardDataRequest_Response_DocumentElements_Sex): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2861635323968299, $self, []); }
 };
 
 /**
@@ -1854,30 +1854,30 @@ export class MobileNationalIDCardDisplayRequest extends SDKHandle {
    * static func isSupportedRegion(_ region: Locale.Region) -> Bool
    * @availability iOS 18.0+
    */
-  static isSupportedRegion(region: _Foundation_Locale_Region): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 564893697264781, undefined, [region]); }
+  static isSupportedRegion(region: _Foundation_Locale_Region): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 564893697264781, undefined, [region]); }
   /**
    * var region: Locale.Region
    * @availability iOS 18.0+
    */
-  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("ProximityReader_a956b86ef7a76a8e", 4196502726334404, this, []); }
-  set region(value: _Foundation_Locale_Region) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3889745860864090, this, [value]); }
+  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("ProximityReader_90ad0eb69cc6bf4a", 4196502726334404, this, []); }
+  set region(value: _Foundation_Locale_Region) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3889745860864090, this, [value]); }
   /**
    * init(region: Locale.Region, elements: [MobileNationalIDCardDisplayRequest.Element] = [], options: MobileNationalIDCardDisplayRequest.Options = .init())
    * @availability iOS 18.0+
    */
-  static init(region: _Foundation_Locale_Region, elements?: $SDK35, options?: MobileNationalIDCardDisplayRequest_Options): MobileNationalIDCardDisplayRequest { return callSDK<MobileNationalIDCardDisplayRequest>("ProximityReader_a956b86ef7a76a8e", 3019618914357013, undefined, [region, elements, options]); }
+  static init(region: _Foundation_Locale_Region, elements?: $SDK35, options?: MobileNationalIDCardDisplayRequest_Options): MobileNationalIDCardDisplayRequest { return callSDK<MobileNationalIDCardDisplayRequest>("ProximityReader_90ad0eb69cc6bf4a", 3019618914357013, undefined, [region, elements, options]); }
   /**
    * var options: MobileNationalIDCardDisplayRequest.Options
    * @availability iOS 18.0+
    */
-  get options(): MobileNationalIDCardDisplayRequest_Options { return callSDK<MobileNationalIDCardDisplayRequest_Options>("ProximityReader_a956b86ef7a76a8e", 1151993979171429, this, []); }
-  set options(value: MobileNationalIDCardDisplayRequest_Options) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2996608579849565, this, [value]); }
+  get options(): MobileNationalIDCardDisplayRequest_Options { return callSDK<MobileNationalIDCardDisplayRequest_Options>("ProximityReader_90ad0eb69cc6bf4a", 1151993979171429, this, []); }
+  set options(value: MobileNationalIDCardDisplayRequest_Options) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2996608579849565, this, [value]); }
   /**
    * var elements: [MobileNationalIDCardDisplayRequest.Element]
    * @availability iOS 18.0+
    */
-  get elements(): $SDK35 { return callSDK<$SDK35>("ProximityReader_a956b86ef7a76a8e", 2516578112470069, this, []); }
-  set elements(value: $SDK35) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 157382994044830, this, [value]); }
+  get elements(): $SDK35 { return callSDK<$SDK35>("ProximityReader_90ad0eb69cc6bf4a", 2516578112470069, this, []); }
+  set elements(value: $SDK35) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 157382994044830, this, [value]); }
   declare readonly $type: { "s:15ProximityReader34MobileNationalIDCardDisplayRequestV": true };
 }
 
@@ -1890,27 +1890,27 @@ export class MobileNationalIDCardDisplayRequest_Element extends SDKHandle {
    * static func ageAtLeast(_ age: Int) -> MobileNationalIDCardDisplayRequest.Element
    * @availability iOS 18.0+
    */
-  static ageAtLeast(age: number): MobileNationalIDCardDisplayRequest_Element { return callSDK<MobileNationalIDCardDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4368301562598070, undefined, [age]); }
+  static ageAtLeast(age: number): MobileNationalIDCardDisplayRequest_Element { return callSDK<MobileNationalIDCardDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4368301562598070, undefined, [age]); }
   /**
    * static let familyName: MobileNationalIDCardDisplayRequest.Element
    * @availability iOS 18.0+
    */
-  static get familyName(): MobileNationalIDCardDisplayRequest_Element { return callSDK<MobileNationalIDCardDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2731466303528307, undefined, []); }
+  static get familyName(): MobileNationalIDCardDisplayRequest_Element { return callSDK<MobileNationalIDCardDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2731466303528307, undefined, []); }
   /**
    * static let age: MobileNationalIDCardDisplayRequest.Element
    * @availability iOS 18.0+
    */
-  static get age(): MobileNationalIDCardDisplayRequest_Element { return callSDK<MobileNationalIDCardDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2942831153822120, undefined, []); }
+  static get age(): MobileNationalIDCardDisplayRequest_Element { return callSDK<MobileNationalIDCardDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2942831153822120, undefined, []); }
   /**
    * static let name: MobileNationalIDCardDisplayRequest.Element
    * @availability iOS 27.0+
    */
-  static get nameValue(): MobileNationalIDCardDisplayRequest_Element { return callSDK<MobileNationalIDCardDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 690240535092741, undefined, []); }
+  static get nameValue(): MobileNationalIDCardDisplayRequest_Element { return callSDK<MobileNationalIDCardDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 690240535092741, undefined, []); }
   /**
    * static let givenName: MobileNationalIDCardDisplayRequest.Element
    * @availability iOS 18.0+
    */
-  static get givenName(): MobileNationalIDCardDisplayRequest_Element { return callSDK<MobileNationalIDCardDisplayRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2375897657511698, undefined, []); }
+  static get givenName(): MobileNationalIDCardDisplayRequest_Element { return callSDK<MobileNationalIDCardDisplayRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2375897657511698, undefined, []); }
   declare readonly $type: { "s:15ProximityReader34MobileNationalIDCardDisplayRequestV7ElementV": true };
 }
 
@@ -1923,13 +1923,13 @@ export class MobileNationalIDCardDisplayRequest_Options extends SDKHandle {
    * init(validationMode: MobileNationalIDCardDisplayRequest.Options.ValidationMode = .check)
    * @availability iOS 18.0+
    */
-  static init(validationMode?: MobileNationalIDCardDisplayRequest_Options_ValidationMode): MobileNationalIDCardDisplayRequest_Options { return callSDK<MobileNationalIDCardDisplayRequest_Options>("ProximityReader_a956b86ef7a76a8e", 2965997532240368, undefined, [validationMode]); }
+  static init(validationMode?: MobileNationalIDCardDisplayRequest_Options_ValidationMode): MobileNationalIDCardDisplayRequest_Options { return callSDK<MobileNationalIDCardDisplayRequest_Options>("ProximityReader_90ad0eb69cc6bf4a", 2965997532240368, undefined, [validationMode]); }
   /**
    * var validationMode: MobileNationalIDCardDisplayRequest.Options.ValidationMode
    * @availability iOS 18.0+
    */
-  get validationMode(): MobileNationalIDCardDisplayRequest_Options_ValidationMode { return callSDK<MobileNationalIDCardDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 1441823696851435, this, []); }
-  set validationMode(value: MobileNationalIDCardDisplayRequest_Options_ValidationMode) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2446145618972210, this, [value]); }
+  get validationMode(): MobileNationalIDCardDisplayRequest_Options_ValidationMode { return callSDK<MobileNationalIDCardDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 1441823696851435, this, []); }
+  set validationMode(value: MobileNationalIDCardDisplayRequest_Options_ValidationMode) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2446145618972210, this, [value]); }
   declare readonly $type: { "s:15ProximityReader34MobileNationalIDCardDisplayRequestV7OptionsV": true };
 }
 
@@ -1942,17 +1942,17 @@ export class MobileNationalIDCardDisplayRequest_Options_ValidationMode extends S
    * static let checkMultiple: MobileNationalIDCardDisplayRequest.Options.ValidationMode
    * @availability iOS 18.0+
    */
-  static get checkMultiple(): MobileNationalIDCardDisplayRequest_Options_ValidationMode { return callSDK<MobileNationalIDCardDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 872529519690401, undefined, []); }
+  static get checkMultiple(): MobileNationalIDCardDisplayRequest_Options_ValidationMode { return callSDK<MobileNationalIDCardDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 872529519690401, undefined, []); }
   /**
    * static let check: MobileNationalIDCardDisplayRequest.Options.ValidationMode
    * @availability iOS 18.0+
    */
-  static get check(): MobileNationalIDCardDisplayRequest_Options_ValidationMode { return callSDK<MobileNationalIDCardDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 1209404818031105, undefined, []); }
+  static get check(): MobileNationalIDCardDisplayRequest_Options_ValidationMode { return callSDK<MobileNationalIDCardDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 1209404818031105, undefined, []); }
   /**
    * static let confirm: MobileNationalIDCardDisplayRequest.Options.ValidationMode
    * @availability iOS 18.0+
    */
-  static get confirm(): MobileNationalIDCardDisplayRequest_Options_ValidationMode { return callSDK<MobileNationalIDCardDisplayRequest_Options_ValidationMode>("ProximityReader_a956b86ef7a76a8e", 1648104508564392, undefined, []); }
+  static get confirm(): MobileNationalIDCardDisplayRequest_Options_ValidationMode { return callSDK<MobileNationalIDCardDisplayRequest_Options_ValidationMode>("ProximityReader_90ad0eb69cc6bf4a", 1648104508564392, undefined, []); }
   declare readonly $type: { "s:15ProximityReader34MobileNationalIDCardDisplayRequestV7OptionsV14ValidationModeV": true };
 }
 
@@ -1965,7 +1965,7 @@ export class MobileNationalIDCardDisplayRequest_Response extends SDKHandle {
    * let validationOutcome: MobileNationalIDCardDisplayRequest.Response.ValidationOutcome
    * @availability iOS 18.0+
    */
-  get validationOutcome(): MobileNationalIDCardDisplayRequest_Response_ValidationOutcome { return callSDK<MobileNationalIDCardDisplayRequest_Response_ValidationOutcome>("ProximityReader_a956b86ef7a76a8e", 3915023343881419, this, []); }
+  get validationOutcome(): MobileNationalIDCardDisplayRequest_Response_ValidationOutcome { return callSDK<MobileNationalIDCardDisplayRequest_Response_ValidationOutcome>("ProximityReader_90ad0eb69cc6bf4a", 3915023343881419, this, []); }
   declare readonly $type: { "s:15ProximityReader34MobileNationalIDCardDisplayRequestV8ResponseV": true };
 }
 
@@ -1984,41 +1984,41 @@ export class MobileNationalIDCardRawDataRequest extends SDKHandle {
    * var retainedElements: [MobileNationalIDCardRawDataRequest.Element]
    * @availability iOS 18.0+
    */
-  get retainedElements(): $SDK36 { return callSDK<$SDK36>("ProximityReader_a956b86ef7a76a8e", 2727138444991943, this, []); }
-  set retainedElements(value: $SDK36) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 816597421580480, this, [value]); }
+  get retainedElements(): $SDK36 { return callSDK<$SDK36>("ProximityReader_90ad0eb69cc6bf4a", 2727138444991943, this, []); }
+  set retainedElements(value: $SDK36) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 816597421580480, this, [value]); }
   /**
    * static func isSupportedRegion(_ region: Locale.Region) -> Bool
    * @availability iOS 18.0+
    */
-  static isSupportedRegion(region: _Foundation_Locale_Region): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 665466943461754, undefined, [region]); }
+  static isSupportedRegion(region: _Foundation_Locale_Region): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 665466943461754, undefined, [region]); }
   /**
    * var issuerIdentifiers: [Data]
    * @availability iOS 27.0+
    */
-  get issuerIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("ProximityReader_a956b86ef7a76a8e", 232313210149119, this, []); }
-  set issuerIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2355724336442002, this, [value]); }
+  get issuerIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("ProximityReader_90ad0eb69cc6bf4a", 232313210149119, this, []); }
+  set issuerIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2355724336442002, this, [value]); }
   /**
    * var nonRetainedElements: [MobileNationalIDCardRawDataRequest.Element]
    * @availability iOS 18.0+
    */
-  get nonRetainedElements(): $SDK36 { return callSDK<$SDK36>("ProximityReader_a956b86ef7a76a8e", 2359668172660967, this, []); }
-  set nonRetainedElements(value: $SDK36) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3419856799759470, this, [value]); }
+  get nonRetainedElements(): $SDK36 { return callSDK<$SDK36>("ProximityReader_90ad0eb69cc6bf4a", 2359668172660967, this, []); }
+  set nonRetainedElements(value: $SDK36) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3419856799759470, this, [value]); }
   /**
    * var region: Locale.Region
    * @availability iOS 18.0+
    */
-  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("ProximityReader_a956b86ef7a76a8e", 4428434207007640, this, []); }
-  set region(value: _Foundation_Locale_Region) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 511081887444535, this, [value]); }
+  get region(): _Foundation_Locale_Region { return callSDK<_Foundation_Locale_Region>("ProximityReader_90ad0eb69cc6bf4a", 4428434207007640, this, []); }
+  set region(value: _Foundation_Locale_Region) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 511081887444535, this, [value]); }
   /**
    * init(region: Locale.Region, retainedElements: [MobileNationalIDCardRawDataRequest.Element] = [], nonRetainedElements: [MobileNationalIDCardRawDataRequest.Element] = [], issuerIdentifiers: [Data] = [])
    * @availability iOS 27.0+
    */
-  static initRegionRetainedElementsNonRetainedElementsIssuerIdentifiers(region: _Foundation_Locale_Region, retainedElements?: $SDK36, nonRetainedElements?: $SDK36, issuerIdentifiers?: Array<ArrayBuffer>): MobileNationalIDCardRawDataRequest { return callSDK<MobileNationalIDCardRawDataRequest>("ProximityReader_a956b86ef7a76a8e", 2940984701353269, undefined, [region, retainedElements, nonRetainedElements, issuerIdentifiers]); }
+  static initRegionRetainedElementsNonRetainedElementsIssuerIdentifiers(region: _Foundation_Locale_Region, retainedElements?: $SDK36, nonRetainedElements?: $SDK36, issuerIdentifiers?: Array<ArrayBuffer>): MobileNationalIDCardRawDataRequest { return callSDK<MobileNationalIDCardRawDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 2940984701353269, undefined, [region, retainedElements, nonRetainedElements, issuerIdentifiers]); }
   /**
    * init(region: Locale.Region, retainedElements: [MobileNationalIDCardRawDataRequest.Element] = [], nonRetainedElements: [MobileNationalIDCardRawDataRequest.Element] = [])
    * @availability iOS 18.0+
    */
-  static initRegionRetainedElementsNonRetainedElements(region: _Foundation_Locale_Region, retainedElements?: $SDK36, nonRetainedElements?: $SDK36): MobileNationalIDCardRawDataRequest { return callSDK<MobileNationalIDCardRawDataRequest>("ProximityReader_a956b86ef7a76a8e", 459627972620338, undefined, [region, retainedElements, nonRetainedElements]); }
+  static initRegionRetainedElementsNonRetainedElements(region: _Foundation_Locale_Region, retainedElements?: $SDK36, nonRetainedElements?: $SDK36): MobileNationalIDCardRawDataRequest { return callSDK<MobileNationalIDCardRawDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 459627972620338, undefined, [region, retainedElements, nonRetainedElements]); }
   declare readonly $type: { "s:15ProximityReader34MobileNationalIDCardRawDataRequestV": true };
 }
 
@@ -2031,52 +2031,52 @@ export class MobileNationalIDCardRawDataRequest_Element extends SDKHandle {
    * static func ageAtLeast(_ age: Int) -> MobileNationalIDCardRawDataRequest.Element
    * @availability iOS 18.0+
    */
-  static ageAtLeast(age: number): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1607857245060245, undefined, [age]); }
+  static ageAtLeast(age: number): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1607857245060245, undefined, [age]); }
   /**
    * static let familyName: MobileNationalIDCardRawDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get familyName(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 490964053056565, undefined, []); }
+  static get familyName(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 490964053056565, undefined, []); }
   /**
    * static let dateOfBirth: MobileNationalIDCardRawDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get dateOfBirth(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1439941622600136, undefined, []); }
+  static get dateOfBirth(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1439941622600136, undefined, []); }
   /**
    * static let documentNumber: MobileNationalIDCardRawDataRequest.Element
    * @availability iOS 18.4+
    */
-  static get documentNumber(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3085870173556500, undefined, []); }
+  static get documentNumber(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3085870173556500, undefined, []); }
   /**
    * static let age: MobileNationalIDCardRawDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get age(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3559045572492478, undefined, []); }
+  static get age(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3559045572492478, undefined, []); }
   /**
    * static let sex: MobileNationalIDCardRawDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get sex(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2075244771048496, undefined, []); }
+  static get sex(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2075244771048496, undefined, []); }
   /**
    * static let name: MobileNationalIDCardRawDataRequest.Element
    * @availability iOS 27.0+
    */
-  static get nameValue(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3232491841163044, undefined, []); }
+  static get nameValue(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3232491841163044, undefined, []); }
   /**
    * static let address: MobileNationalIDCardRawDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get address(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1675109362832576, undefined, []); }
+  static get address(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1675109362832576, undefined, []); }
   /**
    * static let portrait: MobileNationalIDCardRawDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get portrait(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3379673405231532, undefined, []); }
+  static get portrait(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3379673405231532, undefined, []); }
   /**
    * static let givenName: MobileNationalIDCardRawDataRequest.Element
    * @availability iOS 18.0+
    */
-  static get givenName(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2365269474784245, undefined, []); }
+  static get givenName(): MobileNationalIDCardRawDataRequest_Element { return callSDK<MobileNationalIDCardRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2365269474784245, undefined, []); }
   declare readonly $type: { "s:15ProximityReader34MobileNationalIDCardRawDataRequestV7ElementV": true };
 }
 
@@ -2089,17 +2089,17 @@ export class MobileNationalIDCardRawDataRequest_Response extends SDKHandle {
    * let responseData: Data
    * @availability iOS 18.0+
    */
-  get responseData(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 279333368872834, this, []); }
+  get responseData(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 279333368872834, this, []); }
   /**
    * let ephemeralReaderKey: Data
    * @availability iOS 26.4+
    */
-  get ephemeralReaderKey(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 2188727187250297, this, []); }
+  get ephemeralReaderKey(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 2188727187250297, this, []); }
   /**
    * let sessionTranscript: Data
    * @availability iOS 18.0+
    */
-  get sessionTranscript(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 764342640296526, this, []); }
+  get sessionTranscript(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 764342640296526, this, []); }
   declare readonly $type: { "s:15ProximityReader34MobileNationalIDCardRawDataRequestV8ResponseV": true };
 }
 
@@ -2112,19 +2112,19 @@ export class MobilePhotoIDDataRequest extends SDKHandle {
    * init(retainedElements: [MobilePhotoIDDataRequest.Element] = [], nonRetainedElements: [MobilePhotoIDDataRequest.Element] = [])
    * @availability iOS 26.0+
    */
-  static init(retainedElements?: $SDK37, nonRetainedElements?: $SDK37): MobilePhotoIDDataRequest { return callSDK<MobilePhotoIDDataRequest>("ProximityReader_a956b86ef7a76a8e", 4324477623337260, undefined, [retainedElements, nonRetainedElements]); }
+  static init(retainedElements?: $SDK37, nonRetainedElements?: $SDK37): MobilePhotoIDDataRequest { return callSDK<MobilePhotoIDDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 4324477623337260, undefined, [retainedElements, nonRetainedElements]); }
   /**
    * var retainedElements: [MobilePhotoIDDataRequest.Element]
    * @availability iOS 26.0+
    */
-  get retainedElements(): $SDK37 { return callSDK<$SDK37>("ProximityReader_a956b86ef7a76a8e", 589011682914660, this, []); }
-  set retainedElements(value: $SDK37) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3165553187522398, this, [value]); }
+  get retainedElements(): $SDK37 { return callSDK<$SDK37>("ProximityReader_90ad0eb69cc6bf4a", 589011682914660, this, []); }
+  set retainedElements(value: $SDK37) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3165553187522398, this, [value]); }
   /**
    * var nonRetainedElements: [MobilePhotoIDDataRequest.Element]
    * @availability iOS 26.0+
    */
-  get nonRetainedElements(): $SDK37 { return callSDK<$SDK37>("ProximityReader_a956b86ef7a76a8e", 3150824824891526, this, []); }
-  set nonRetainedElements(value: $SDK37) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2524173775650918, this, [value]); }
+  get nonRetainedElements(): $SDK37 { return callSDK<$SDK37>("ProximityReader_90ad0eb69cc6bf4a", 3150824824891526, this, []); }
+  set nonRetainedElements(value: $SDK37) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2524173775650918, this, [value]); }
   declare readonly $type: { "s:15ProximityReader24MobilePhotoIDDataRequestV": true };
 }
 
@@ -2137,67 +2137,67 @@ export class MobilePhotoIDDataRequest_Element extends SDKHandle {
    * static func ageAtLeast(_ age: Int) -> MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static ageAtLeast(age: number): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1677900486791581, undefined, [age]); }
+  static ageAtLeast(age: number): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1677900486791581, undefined, [age]); }
   /**
    * static let familyName: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get familyName(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 569685278328871, undefined, []); }
+  static get familyName(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 569685278328871, undefined, []); }
   /**
    * static let dateOfBirth: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get dateOfBirth(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2496942130448021, undefined, []); }
+  static get dateOfBirth(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2496942130448021, undefined, []); }
   /**
    * static let documentNumber: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get documentNumber(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2197443218859313, undefined, []); }
+  static get documentNumber(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2197443218859313, undefined, []); }
   /**
    * static let issuingAuthority: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get issuingAuthority(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1825243263814570, undefined, []); }
+  static get issuingAuthority(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1825243263814570, undefined, []); }
   /**
    * static let documentIssueDate: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get documentIssueDate(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 245322454458518, undefined, []); }
+  static get documentIssueDate(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 245322454458518, undefined, []); }
   /**
    * static let documentExpirationDate: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get documentExpirationDate(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2499440608462862, undefined, []); }
+  static get documentExpirationDate(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2499440608462862, undefined, []); }
   /**
    * static let age: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get age(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1893647675771126, undefined, []); }
+  static get age(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1893647675771126, undefined, []); }
   /**
    * static let sex: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get sex(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 225272573794054, undefined, []); }
+  static get sex(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 225272573794054, undefined, []); }
   /**
    * static let name: MobilePhotoIDDataRequest.Element
    * @availability iOS 27.0+
    */
-  static get nameValue(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1557165791598788, undefined, []); }
+  static get nameValue(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1557165791598788, undefined, []); }
   /**
    * static let address: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get address(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 965945173207963, undefined, []); }
+  static get address(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 965945173207963, undefined, []); }
   /**
    * static let portrait: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get portrait(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2948023849055471, undefined, []); }
+  static get portrait(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2948023849055471, undefined, []); }
   /**
    * static let givenName: MobilePhotoIDDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get givenName(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2473497515194295, undefined, []); }
+  static get givenName(): MobilePhotoIDDataRequest_Element { return callSDK<MobilePhotoIDDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2473497515194295, undefined, []); }
   declare readonly $type: { "s:15ProximityReader24MobilePhotoIDDataRequestV7ElementV": true };
 }
 
@@ -2210,7 +2210,7 @@ export class MobilePhotoIDDataRequest_Response extends SDKHandle {
    * let documentElements: MobilePhotoIDDataRequest.Response.DocumentElements
    * @availability iOS 26.0+
    */
-  get documentElements(): MobilePhotoIDDataRequest_Response_DocumentElements { return callSDK<MobilePhotoIDDataRequest_Response_DocumentElements>("ProximityReader_a956b86ef7a76a8e", 4132425597681384, this, []); }
+  get documentElements(): MobilePhotoIDDataRequest_Response_DocumentElements { return callSDK<MobilePhotoIDDataRequest_Response_DocumentElements>("ProximityReader_90ad0eb69cc6bf4a", 4132425597681384, this, []); }
   declare readonly $type: { "s:15ProximityReader24MobilePhotoIDDataRequestV8ResponseV": true };
 }
 
@@ -2223,62 +2223,62 @@ export class MobilePhotoIDDataRequest_Response_DocumentElements extends SDKHandl
    * let ageAtLeastElements: [Int : Bool]
    * @availability iOS 26.0+
    */
-  get ageAtLeastElements(): Record<number, boolean> { return callSDK<Record<number, boolean>>("ProximityReader_a956b86ef7a76a8e", 2967531082749460, this, []); }
+  get ageAtLeastElements(): Record<number, boolean> { return callSDK<Record<number, boolean>>("ProximityReader_90ad0eb69cc6bf4a", 2967531082749460, this, []); }
   /**
    * let dateOfBirth: DateComponents?
    * @availability iOS 26.0+
    */
-  get dateOfBirth(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 3654247495169403, this, []); }
+  get dateOfBirth(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 3654247495169403, this, []); }
   /**
    * let portraitData: Data?
    * @availability iOS 26.0+
    */
-  get portraitData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_a956b86ef7a76a8e", 1801783042526885, this, []); }
+  get portraitData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_90ad0eb69cc6bf4a", 1801783042526885, this, []); }
   /**
    * let documentNumber: String?
    * @availability iOS 26.0+
    */
-  get documentNumber(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 412727637912213, this, []); }
+  get documentNumber(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 412727637912213, this, []); }
   /**
    * var nameComponents: PersonNameComponents? { get }
    * @availability iOS 26.0+
    */
-  get nameComponents(): $SDK4 { return callSDK<$SDK4>("ProximityReader_a956b86ef7a76a8e", 728699903699295, this, []); }
+  get nameComponents(): $SDK4 { return callSDK<$SDK4>("ProximityReader_90ad0eb69cc6bf4a", 728699903699295, this, []); }
   /**
    * let issuingAuthority: MobilePhotoIDDataRequest.Response.DocumentElements.IssuingAuthority?
    * @availability iOS 26.0+
    */
-  get issuingAuthority(): (MobilePhotoIDDataRequest_Response_DocumentElements_IssuingAuthority) | null { return callSDK<(MobilePhotoIDDataRequest_Response_DocumentElements_IssuingAuthority) | null>("ProximityReader_a956b86ef7a76a8e", 1703493586722245, this, []); }
+  get issuingAuthority(): (MobilePhotoIDDataRequest_Response_DocumentElements_IssuingAuthority) | null { return callSDK<(MobilePhotoIDDataRequest_Response_DocumentElements_IssuingAuthority) | null>("ProximityReader_90ad0eb69cc6bf4a", 1703493586722245, this, []); }
   /**
    * let documentIssueDate: DateComponents?
    * @availability iOS 26.0+
    */
-  get documentIssueDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 2358482220582763, this, []); }
+  get documentIssueDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 2358482220582763, this, []); }
   /**
    * let documentExpirationDate: DateComponents?
    * @availability iOS 26.0+
    */
-  get documentExpirationDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_a956b86ef7a76a8e", 2199641440126324, this, []); }
+  get documentExpirationDate(): $SDK15 { return callSDK<$SDK15>("ProximityReader_90ad0eb69cc6bf4a", 2199641440126324, this, []); }
   /**
    * let age: Int?
    * @availability iOS 26.0+
    */
-  get age(): (number) | null { return callSDK<(number) | null>("ProximityReader_a956b86ef7a76a8e", 196534134217551, this, []); }
+  get age(): (number) | null { return callSDK<(number) | null>("ProximityReader_90ad0eb69cc6bf4a", 196534134217551, this, []); }
   /**
    * let sex: MobilePhotoIDDataRequest.Response.DocumentElements.Sex?
    * @availability iOS 26.0+
    */
-  get sex(): (MobilePhotoIDDataRequest_Response_DocumentElements_Sex) | null { return callSDK<(MobilePhotoIDDataRequest_Response_DocumentElements_Sex) | null>("ProximityReader_a956b86ef7a76a8e", 3513303734002175, this, []); }
+  get sex(): (MobilePhotoIDDataRequest_Response_DocumentElements_Sex) | null { return callSDK<(MobilePhotoIDDataRequest_Response_DocumentElements_Sex) | null>("ProximityReader_90ad0eb69cc6bf4a", 3513303734002175, this, []); }
   /**
    * let name: MobileDocumentHolderName?
    * @availability iOS 27.0+
    */
-  get name(): $SDK21 { return callSDK<$SDK21>("ProximityReader_a956b86ef7a76a8e", 642543568392458, this, []); }
+  get name(): $SDK21 { return callSDK<$SDK21>("ProximityReader_90ad0eb69cc6bf4a", 642543568392458, this, []); }
   /**
    * var address: CNPostalAddress? { get }
    * @availability iOS 26.0+
    */
-  get address(): $SDK24 { return callSDK<$SDK24>("ProximityReader_a956b86ef7a76a8e", 1035311790830788, this, []); }
+  get address(): $SDK24 { return callSDK<$SDK24>("ProximityReader_90ad0eb69cc6bf4a", 1035311790830788, this, []); }
   declare readonly $type: { "s:15ProximityReader24MobilePhotoIDDataRequestV8ResponseV16DocumentElementsV": true };
 }
 
@@ -2291,17 +2291,17 @@ export class MobilePhotoIDDataRequest_Response_DocumentElements_IssuingAuthority
    * let jurisdiction: String?
    * @availability iOS 26.0+
    */
-  get jurisdiction(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 4454286697253448, this, []); }
+  get jurisdiction(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 4454286697253448, this, []); }
   /**
    * let isoCountryCode: String?
    * @availability iOS 26.0+
    */
-  get isoCountryCode(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 3012064510867479, this, []); }
+  get isoCountryCode(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 3012064510867479, this, []); }
   /**
    * let name: String?
    * @availability iOS 26.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 1172053235312736, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 1172053235312736, this, []); }
   declare readonly $type: { "s:15ProximityReader24MobilePhotoIDDataRequestV8ResponseV16DocumentElementsV16IssuingAuthorityV": true };
 }
 
@@ -2316,7 +2316,7 @@ export const MobilePhotoIDDataRequest_Response_DocumentElements_Sex = {
    * var localizedName: String { get }
    * @availability iOS 26.0+
    */
-  getLocalizedName($self: MobilePhotoIDDataRequest_Response_DocumentElements_Sex): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2932165252667895, $self, []); }
+  getLocalizedName($self: MobilePhotoIDDataRequest_Response_DocumentElements_Sex): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2932165252667895, $self, []); }
 };
 
 /**
@@ -2328,30 +2328,30 @@ export class MobilePhotoIDRawDataRequest extends SDKHandle {
    * init(retainedElements: [MobilePhotoIDRawDataRequest.Element] = [], nonRetainedElements: [MobilePhotoIDRawDataRequest.Element] = [], issuerIdentifiers: [Data] = [])
    * @availability iOS 27.0+
    */
-  static initRetainedElementsNonRetainedElementsIssuerIdentifiers(retainedElements?: $SDK40, nonRetainedElements?: $SDK40, issuerIdentifiers?: Array<ArrayBuffer>): MobilePhotoIDRawDataRequest { return callSDK<MobilePhotoIDRawDataRequest>("ProximityReader_a956b86ef7a76a8e", 977142312275286, undefined, [retainedElements, nonRetainedElements, issuerIdentifiers]); }
+  static initRetainedElementsNonRetainedElementsIssuerIdentifiers(retainedElements?: $SDK40, nonRetainedElements?: $SDK40, issuerIdentifiers?: Array<ArrayBuffer>): MobilePhotoIDRawDataRequest { return callSDK<MobilePhotoIDRawDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 977142312275286, undefined, [retainedElements, nonRetainedElements, issuerIdentifiers]); }
   /**
    * init(retainedElements: [MobilePhotoIDRawDataRequest.Element] = [], nonRetainedElements: [MobilePhotoIDRawDataRequest.Element] = [])
    * @availability iOS 26.0+
    */
-  static initRetainedElementsNonRetainedElements(retainedElements?: $SDK40, nonRetainedElements?: $SDK40): MobilePhotoIDRawDataRequest { return callSDK<MobilePhotoIDRawDataRequest>("ProximityReader_a956b86ef7a76a8e", 181958121341698, undefined, [retainedElements, nonRetainedElements]); }
+  static initRetainedElementsNonRetainedElements(retainedElements?: $SDK40, nonRetainedElements?: $SDK40): MobilePhotoIDRawDataRequest { return callSDK<MobilePhotoIDRawDataRequest>("ProximityReader_90ad0eb69cc6bf4a", 181958121341698, undefined, [retainedElements, nonRetainedElements]); }
   /**
    * var retainedElements: [MobilePhotoIDRawDataRequest.Element]
    * @availability iOS 26.0+
    */
-  get retainedElements(): $SDK40 { return callSDK<$SDK40>("ProximityReader_a956b86ef7a76a8e", 2107517984077532, this, []); }
-  set retainedElements(value: $SDK40) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1294746270265033, this, [value]); }
+  get retainedElements(): $SDK40 { return callSDK<$SDK40>("ProximityReader_90ad0eb69cc6bf4a", 2107517984077532, this, []); }
+  set retainedElements(value: $SDK40) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1294746270265033, this, [value]); }
   /**
    * var issuerIdentifiers: [Data]
    * @availability iOS 27.0+
    */
-  get issuerIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("ProximityReader_a956b86ef7a76a8e", 4417166628516100, this, []); }
-  set issuerIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 4480163662573954, this, [value]); }
+  get issuerIdentifiers(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("ProximityReader_90ad0eb69cc6bf4a", 4417166628516100, this, []); }
+  set issuerIdentifiers(value: Array<ArrayBuffer>) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 4480163662573954, this, [value]); }
   /**
    * var nonRetainedElements: [MobilePhotoIDRawDataRequest.Element]
    * @availability iOS 26.0+
    */
-  get nonRetainedElements(): $SDK40 { return callSDK<$SDK40>("ProximityReader_a956b86ef7a76a8e", 2853201681280576, this, []); }
-  set nonRetainedElements(value: $SDK40) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 637110225240522, this, [value]); }
+  get nonRetainedElements(): $SDK40 { return callSDK<$SDK40>("ProximityReader_90ad0eb69cc6bf4a", 2853201681280576, this, []); }
+  set nonRetainedElements(value: $SDK40) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 637110225240522, this, [value]); }
   declare readonly $type: { "s:15ProximityReader27MobilePhotoIDRawDataRequestV": true };
 }
 
@@ -2364,67 +2364,67 @@ export class MobilePhotoIDRawDataRequest_Element extends SDKHandle {
    * static func ageAtLeast(_ age: Int) -> MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static ageAtLeast(age: number): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1636833583294443, undefined, [age]); }
+  static ageAtLeast(age: number): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1636833583294443, undefined, [age]); }
   /**
    * static let familyName: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get familyName(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 44979831823808, undefined, []); }
+  static get familyName(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 44979831823808, undefined, []); }
   /**
    * static let dateOfBirth: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get dateOfBirth(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1191666005669916, undefined, []); }
+  static get dateOfBirth(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1191666005669916, undefined, []); }
   /**
    * static let documentNumber: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get documentNumber(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3214737081906680, undefined, []); }
+  static get documentNumber(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3214737081906680, undefined, []); }
   /**
    * static let issuingAuthority: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get issuingAuthority(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 2971507937420189, undefined, []); }
+  static get issuingAuthority(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 2971507937420189, undefined, []); }
   /**
    * static let documentIssueDate: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get documentIssueDate(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3048850644937250, undefined, []); }
+  static get documentIssueDate(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3048850644937250, undefined, []); }
   /**
    * static let documentExpirationDate: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get documentExpirationDate(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 4011913288170193, undefined, []); }
+  static get documentExpirationDate(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 4011913288170193, undefined, []); }
   /**
    * static let age: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get age(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 522685096445382, undefined, []); }
+  static get age(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 522685096445382, undefined, []); }
   /**
    * static let sex: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get sex(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 1727356605927526, undefined, []); }
+  static get sex(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 1727356605927526, undefined, []); }
   /**
    * static let name: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 27.0+
    */
-  static get nameValue(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 731922314588293, undefined, []); }
+  static get nameValue(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 731922314588293, undefined, []); }
   /**
    * static let address: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get address(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 3126502511153621, undefined, []); }
+  static get address(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 3126502511153621, undefined, []); }
   /**
    * static let portrait: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get portrait(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 403120541065210, undefined, []); }
+  static get portrait(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 403120541065210, undefined, []); }
   /**
    * static let givenName: MobilePhotoIDRawDataRequest.Element
    * @availability iOS 26.0+
    */
-  static get givenName(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_a956b86ef7a76a8e", 853507643170465, undefined, []); }
+  static get givenName(): MobilePhotoIDRawDataRequest_Element { return callSDK<MobilePhotoIDRawDataRequest_Element>("ProximityReader_90ad0eb69cc6bf4a", 853507643170465, undefined, []); }
   declare readonly $type: { "s:15ProximityReader27MobilePhotoIDRawDataRequestV7ElementV": true };
 }
 
@@ -2437,17 +2437,17 @@ export class MobilePhotoIDRawDataRequest_Response extends SDKHandle {
    * let responseData: Data
    * @availability iOS 26.0+
    */
-  get responseData(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 196215587215241, this, []); }
+  get responseData(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 196215587215241, this, []); }
   /**
    * let ephemeralReaderKey: Data
    * @availability iOS 26.4+
    */
-  get ephemeralReaderKey(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 4116730984137082, this, []); }
+  get ephemeralReaderKey(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 4116730984137082, this, []); }
   /**
    * let sessionTranscript: Data
    * @availability iOS 26.0+
    */
-  get sessionTranscript(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_a956b86ef7a76a8e", 775700566187092, this, []); }
+  get sessionTranscript(): ArrayBuffer { return callSDK<ArrayBuffer>("ProximityReader_90ad0eb69cc6bf4a", 775700566187092, this, []); }
   declare readonly $type: { "s:15ProximityReader27MobilePhotoIDRawDataRequestV8ResponseV": true };
 }
 
@@ -2460,69 +2460,69 @@ export class PaymentCardReader extends SDKHandle {
    * func fetchPaymentCardReaderStore() throws -> PaymentCardReaderStore
    * @availability iOS 18.4+
    */
-  fetchPaymentCardReaderStore(): PaymentCardReaderStore { return callSDK<PaymentCardReaderStore>("ProximityReader_a956b86ef7a76a8e", 3412808807764615, this, []); }
+  fetchPaymentCardReaderStore(): PaymentCardReaderStore { return callSDK<PaymentCardReaderStore>("ProximityReader_90ad0eb69cc6bf4a", 3412808807764615, this, []); }
   /**
    * static let isSupported: Bool
    * @availability iOS 15.4+
    */
-  static get isSupported(): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 1865123603878826, undefined, []); }
+  static get isSupported(): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 1865123603878826, undefined, []); }
   /**
    * func linkAccount(using token: PaymentCardReader.Token) async throws
    * @availability iOS 15.4+
    */
-  linkAccount(token: PaymentCardReader_Token): Promise<void> { return callSDKAsync<void>("ProximityReader_a956b86ef7a76a8e", 642549233497489, this, [token]); }
+  linkAccount(token: PaymentCardReader_Token): Promise<void> { return callSDKAsync<void>("ProximityReader_90ad0eb69cc6bf4a", 642549233497489, this, [token]); }
   /**
    * func relinkAccount(using token: PaymentCardReader.Token) async throws
    * @availability iOS 16.1+
    */
-  relinkAccount(token: PaymentCardReader_Token): Promise<void> { return callSDKAsync<void>("ProximityReader_a956b86ef7a76a8e", 614180987425138, this, [token]); }
+  relinkAccount(token: PaymentCardReader_Token): Promise<void> { return callSDKAsync<void>("ProximityReader_90ad0eb69cc6bf4a", 614180987425138, this, [token]); }
   /**
    * func isAccountLinked(using token: PaymentCardReader.Token) async throws -> Bool
    * @availability iOS 16.4+
    */
-  isAccountLinked(token: PaymentCardReader_Token): Promise<boolean> { return callSDKAsync<boolean>("ProximityReader_a956b86ef7a76a8e", 1994452083685880, this, [token]); }
+  isAccountLinked(token: PaymentCardReader_Token): Promise<boolean> { return callSDKAsync<boolean>("ProximityReader_90ad0eb69cc6bf4a", 1994452083685880, this, [token]); }
   /**
    * var readerIdentifier: String { get async throws }
    * @availability iOS 15.4+
    */
-  get readerIdentifier(): Promise<string> { return callSDKAsync<string>("ProximityReader_a956b86ef7a76a8e", 1156873895340486, this, []); }
+  get readerIdentifier(): Promise<string> { return callSDKAsync<string>("ProximityReader_90ad0eb69cc6bf4a", 1156873895340486, this, []); }
   /**
    * func prepareStoreAndForward() async throws -> StoreAndForwardPaymentCardReaderSession
    * @availability iOS 18.4+
    */
-  prepareStoreAndForward(): Promise<StoreAndForwardPaymentCardReaderSession> { return callSDKAsync<StoreAndForwardPaymentCardReaderSession>("ProximityReader_a956b86ef7a76a8e", 3865841887439376, this, []); }
+  prepareStoreAndForward(): Promise<StoreAndForwardPaymentCardReaderSession> { return callSDKAsync<StoreAndForwardPaymentCardReaderSession>("ProximityReader_90ad0eb69cc6bf4a", 3865841887439376, this, []); }
   /**
    * final let id: String
    * @availability iOS 15.4+
    * @deprecated iOS 16.0
    */
-  get id(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 3580957609763583, this, []); }
+  get id(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 3580957609763583, this, []); }
   /**
    * final let events: AsyncStream<PaymentCardReader.Event>
    * @availability iOS 16.0+
    */
-  get events(): SDKSequence<PaymentCardReader_Event> { return callSDK<SDKSequence<PaymentCardReader_Event>>("ProximityReader_a956b86ef7a76a8e", 3428272098176308, this, []); }
+  get events(): SDKSequence<PaymentCardReader_Event> { return callSDK<SDKSequence<PaymentCardReader_Event>>("ProximityReader_90ad0eb69cc6bf4a", 3428272098176308, this, []); }
   /**
    * init(options: PaymentCardReader.Options = .init())
    * @availability iOS 15.4+
    */
-  static init(options?: PaymentCardReader_Options): PaymentCardReader { return callSDK<PaymentCardReader>("ProximityReader_a956b86ef7a76a8e", 2007310389109973, undefined, [options]); }
+  static init(options?: PaymentCardReader_Options): PaymentCardReader { return callSDK<PaymentCardReader>("ProximityReader_90ad0eb69cc6bf4a", 2007310389109973, undefined, [options]); }
   /**
    * final let options: PaymentCardReader.Options
    * @availability iOS 18.0+
    */
-  get options(): PaymentCardReader_Options { return callSDK<PaymentCardReader_Options>("ProximityReader_a956b86ef7a76a8e", 1974388730746295, this, []); }
+  get options(): PaymentCardReader_Options { return callSDK<PaymentCardReader_Options>("ProximityReader_90ad0eb69cc6bf4a", 1974388730746295, this, []); }
   /**
    * func prepare(using token: PaymentCardReader.Token, updateHandler: ((PaymentCardReader.UpdateEvent) -> Void)?) async throws -> PaymentCardReaderSession
    * @availability iOS 15.4+
    * @deprecated iOS 16.0
    */
-  prepareUsingUpdateHandler(token: PaymentCardReader_Token, updateHandler?: (((arg0: PaymentCardReader_UpdateEvent) => void)) | null): Promise<PaymentCardReaderSession> { return callSDKAsync<PaymentCardReaderSession>("ProximityReader_a956b86ef7a76a8e", 930442496285862, this, [token, updateHandler], [null,{"callback":{"out":[]}}]); }
+  prepareUsingUpdateHandler(token: PaymentCardReader_Token, updateHandler?: (((arg0: PaymentCardReader_UpdateEvent) => void)) | null): Promise<PaymentCardReaderSession> { return callSDKAsync<PaymentCardReaderSession>("ProximityReader_90ad0eb69cc6bf4a", 930442496285862, this, [token, updateHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func prepare(using token: PaymentCardReader.Token) async throws -> PaymentCardReaderSession
    * @availability iOS 16.0+
    */
-  prepareUsing(token: PaymentCardReader_Token): Promise<PaymentCardReaderSession> { return callSDKAsync<PaymentCardReaderSession>("ProximityReader_a956b86ef7a76a8e", 1097617906398035, this, [token]); }
+  prepareUsing(token: PaymentCardReader_Token): Promise<PaymentCardReaderSession> { return callSDKAsync<PaymentCardReaderSession>("ProximityReader_90ad0eb69cc6bf4a", 1097617906398035, this, [token]); }
   declare readonly $type: { "s:15ProximityReader011PaymentCardB0C": true };
 }
 
@@ -2535,7 +2535,7 @@ export class PaymentCardReader_Event extends SDKHandle {
    * var name: String { get }
    * @availability iOS 16.0+
    */
-  get name(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 3897393558945003, this, []); }
+  get name(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 3897393558945003, this, []); }
   declare readonly $type: { "s:15ProximityReader011PaymentCardB0C5EventO": true };
 }
 
@@ -2549,31 +2549,31 @@ export class PaymentCardReader_Options extends SDKHandle {
    * @availability iOS 15.4+
    * @deprecated iOS 18.0
    */
-  static initVasMerchants(vasMerchants?: $SDK43): PaymentCardReader_Options { return callSDK<PaymentCardReader_Options>("ProximityReader_a956b86ef7a76a8e", 1639789000372360, undefined, [vasMerchants]); }
+  static initVasMerchants(vasMerchants?: $SDK43): PaymentCardReader_Options { return callSDK<PaymentCardReader_Options>("ProximityReader_90ad0eb69cc6bf4a", 1639789000372360, undefined, [vasMerchants]); }
   /**
    * var vasMerchants: [VASRequest.Merchant]
    * @availability iOS 15.4+
    * @deprecated iOS 18.0
    */
-  get vasMerchants(): $SDK43 { return callSDK<$SDK43>("ProximityReader_a956b86ef7a76a8e", 15116173468908, this, []); }
-  set vasMerchants(value: $SDK43) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3384874121018835, this, [value]); }
+  get vasMerchants(): $SDK43 { return callSDK<$SDK43>("ProximityReader_90ad0eb69cc6bf4a", 15116173468908, this, []); }
+  set vasMerchants(value: $SDK43) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3384874121018835, this, [value]); }
   /**
    * var includeErrorInReadResult: Bool
    * @availability iOS 16.4+
    */
-  get includeErrorInReadResult(): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 3606377259816005, this, []); }
-  set includeErrorInReadResult(value: boolean) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 642618482619205, this, [value]); }
+  get includeErrorInReadResult(): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 3606377259816005, this, []); }
+  set includeErrorInReadResult(value: boolean) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 642618482619205, this, [value]); }
   /**
    * var returnReadResultImmediately: Bool
    * @availability iOS 16.4+
    */
-  get returnReadResultImmediately(): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 1842666453898279, this, []); }
-  set returnReadResultImmediately(value: boolean) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1654466909551521, this, [value]); }
+  get returnReadResultImmediately(): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 1842666453898279, this, []); }
+  set returnReadResultImmediately(value: boolean) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1654466909551521, this, [value]); }
   /**
    * init()
    * @availability iOS 18.0+
    */
-  static init(): PaymentCardReader_Options { return callSDK<PaymentCardReader_Options>("ProximityReader_a956b86ef7a76a8e", 1590230538374394, undefined, []); }
+  static init(): PaymentCardReader_Options { return callSDK<PaymentCardReader_Options>("ProximityReader_90ad0eb69cc6bf4a", 1590230538374394, undefined, []); }
   declare readonly $type: { "s:15ProximityReader011PaymentCardB0C7OptionsV": true };
 }
 
@@ -2588,12 +2588,12 @@ export const PaymentCardReader_Token = {
    * init(rawValue: String)
    * @availability iOS 15.4+
    */
-  init(rawValue: string): PaymentCardReader_Token { return callSDK<PaymentCardReader_Token>("ProximityReader_a956b86ef7a76a8e", 784795587593800, undefined, [rawValue]); },
+  init(rawValue: string): PaymentCardReader_Token { return callSDK<PaymentCardReader_Token>("ProximityReader_90ad0eb69cc6bf4a", 784795587593800, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 15.4+
    */
-  getRawValue($self: PaymentCardReader_Token): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 3883659240998367, $self, []); }
+  getRawValue($self: PaymentCardReader_Token): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 3883659240998367, $self, []); }
 };
 
 /**
@@ -2613,7 +2613,7 @@ export class PaymentCardReader_UpdateEvent extends SDKHandle {
    * @availability iOS 15.4+
    * @deprecated iOS 16.0
    */
-  get name(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2607157181426090, this, []); }
+  get name(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2607157181426090, this, []); }
   declare readonly $type: { "s:15ProximityReader011PaymentCardB0C11UpdateEventO": true };
 }
 
@@ -2626,12 +2626,12 @@ export class PaymentCardReaderError extends SDKHandle {
    * var errorDescription: String { get }
    * @availability iOS 15.4+
    */
-  get errorDescription(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 284542725264638, this, []); }
+  get errorDescription(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 284542725264638, this, []); }
   /**
    * var errorName: String { get }
    * @availability iOS 15.4+
    */
-  get errorName(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2141959147510980, this, []); }
+  get errorName(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2141959147510980, this, []); }
   declare readonly $type: { "s:15ProximityReader011PaymentCardB5ErrorO": true };
 }
 
@@ -2645,66 +2645,66 @@ export class PaymentCardReaderSession extends SDKHandle {
    * @availability iOS 15.4+
    * @deprecated iOS 16.0
    */
-  readPaymentCardVasRequestStopOnVASResultEventHandler(request: PaymentCardTransactionRequest, vasRequest: VASRequest, stopOnVASResult: boolean, eventHandler?: $SDK45): Promise<$SDK44> { return callSDKAsync<$SDK44>("ProximityReader_a956b86ef7a76a8e", 1576027116619778, this, [request, vasRequest, stopOnVASResult, eventHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  readPaymentCardVasRequestStopOnVASResultEventHandler(request: PaymentCardTransactionRequest, vasRequest: VASRequest, stopOnVASResult: boolean, eventHandler?: $SDK45): Promise<$SDK44> { return callSDKAsync<$SDK44>("ProximityReader_90ad0eb69cc6bf4a", 1576027116619778, this, [request, vasRequest, stopOnVASResult, eventHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func readPaymentCard(_ request: PaymentCardTransactionRequest, vasRequest: VASRequest, stopOnVASResult: Bool) async throws -> (PaymentCardReadResult?, VASReadResult?)
    * @availability iOS 16.0+
    */
-  readPaymentCardVasRequestStopOnVASResult(request: PaymentCardTransactionRequest, vasRequest: VASRequest, stopOnVASResult: boolean): Promise<$SDK44> { return callSDKAsync<$SDK44>("ProximityReader_a956b86ef7a76a8e", 629551685142324, this, [request, vasRequest, stopOnVASResult]); }
+  readPaymentCardVasRequestStopOnVASResult(request: PaymentCardTransactionRequest, vasRequest: VASRequest, stopOnVASResult: boolean): Promise<$SDK44> { return callSDKAsync<$SDK44>("ProximityReader_90ad0eb69cc6bf4a", 629551685142324, this, [request, vasRequest, stopOnVASResult]); }
   /**
    * func readPaymentCard(_ request: PaymentCardTransactionRequest, eventHandler: ((PaymentCardReaderSession.Event) -> Void)? = nil) async throws -> PaymentCardReadResult
    * @availability iOS 15.4+
    * @deprecated iOS 16.0
    */
-  readPaymentCardEventHandler(request: PaymentCardTransactionRequest, eventHandler?: $SDK45): Promise<PaymentCardReadResult> { return callSDKAsync<PaymentCardReadResult>("ProximityReader_a956b86ef7a76a8e", 1248597668380765, this, [request, eventHandler], [null,{"callback":{"out":[]}}]); }
+  readPaymentCardEventHandler(request: PaymentCardTransactionRequest, eventHandler?: $SDK45): Promise<PaymentCardReadResult> { return callSDKAsync<PaymentCardReadResult>("ProximityReader_90ad0eb69cc6bf4a", 1248597668380765, this, [request, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func readPaymentCard(_ request: PaymentCardVerificationRequest, eventHandler: ((PaymentCardReaderSession.Event) -> Void)? = nil) async throws -> PaymentCardReadResult
    * @availability iOS 15.4+
    * @deprecated iOS 16.0
    */
-  readPaymentCardEventHandler79723(request: PaymentCardVerificationRequest, eventHandler?: $SDK45): Promise<PaymentCardReadResult> { return callSDKAsync<PaymentCardReadResult>("ProximityReader_a956b86ef7a76a8e", 2955072062867823, this, [request, eventHandler], [null,{"callback":{"out":[]}}]); }
+  readPaymentCardEventHandler79723(request: PaymentCardVerificationRequest, eventHandler?: $SDK45): Promise<PaymentCardReadResult> { return callSDKAsync<PaymentCardReadResult>("ProximityReader_90ad0eb69cc6bf4a", 2955072062867823, this, [request, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func readPaymentCard(_ request: PaymentCardTransactionRequest) async throws -> PaymentCardReadResult
    * @availability iOS 16.0+
    */
-  readPaymentCard(request: PaymentCardTransactionRequest): Promise<PaymentCardReadResult> { return callSDKAsync<PaymentCardReadResult>("ProximityReader_a956b86ef7a76a8e", 213062609027339, this, [request]); }
+  readPaymentCard(request: PaymentCardTransactionRequest): Promise<PaymentCardReadResult> { return callSDKAsync<PaymentCardReadResult>("ProximityReader_90ad0eb69cc6bf4a", 213062609027339, this, [request]); }
   /**
    * func readPaymentCard(_ request: PaymentCardVerificationRequest) async throws -> PaymentCardReadResult
    * @availability iOS 16.0+
    */
-  readPaymentCard78689(request: PaymentCardVerificationRequest): Promise<PaymentCardReadResult> { return callSDKAsync<PaymentCardReadResult>("ProximityReader_a956b86ef7a76a8e", 1155465807065494, this, [request]); }
+  readPaymentCard78689(request: PaymentCardVerificationRequest): Promise<PaymentCardReadResult> { return callSDKAsync<PaymentCardReadResult>("ProximityReader_90ad0eb69cc6bf4a", 1155465807065494, this, [request]); }
   /**
    * func cancelRead() async throws -> Bool
    * @availability iOS 15.4+
    */
-  cancelRead(): Promise<boolean> { return callSDKAsync<boolean>("ProximityReader_a956b86ef7a76a8e", 3366426422835192, this, []); }
+  cancelRead(): Promise<boolean> { return callSDKAsync<boolean>("ProximityReader_90ad0eb69cc6bf4a", 3366426422835192, this, []); }
   /**
    * func capturePIN(using token: PaymentCardReaderSession.PINToken, cardReaderTransactionID: String) async throws -> PaymentCardReadResult
    * @availability iOS 16.0+
    */
-  capturePIN(token: PaymentCardReaderSession_PINToken, cardReaderTransactionID: string): Promise<PaymentCardReadResult> { return callSDKAsync<PaymentCardReadResult>("ProximityReader_a956b86ef7a76a8e", 1635554293806558, this, [token, cardReaderTransactionID]); }
+  capturePIN(token: PaymentCardReaderSession_PINToken, cardReaderTransactionID: string): Promise<PaymentCardReadResult> { return callSDKAsync<PaymentCardReadResult>("ProximityReader_90ad0eb69cc6bf4a", 1635554293806558, this, [token, cardReaderTransactionID]); }
   /**
    * final let id: String
    * @availability iOS 15.4+
    * @deprecated iOS 16.0
    */
-  get id(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2671564005806518, this, []); }
+  get id(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2671564005806518, this, []); }
   /**
    * final let currentOSVersionDeprecationDate: Date?
    * @availability iOS 18.4+
    */
-  get currentOSVersionDeprecationDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("ProximityReader_a956b86ef7a76a8e", 2262600104562022, this, []); }
+  get currentOSVersionDeprecationDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("ProximityReader_90ad0eb69cc6bf4a", 2262600104562022, this, []); }
   /**
    * func readVAS(_ request: VASRequest, eventHandler: ((PaymentCardReaderSession.Event) -> Void)? = nil) async throws -> VASReadResult
    * @availability iOS 15.4+
    * @deprecated iOS 16.0
    */
-  readVASEventHandler(request: VASRequest, eventHandler?: $SDK45): Promise<VASReadResult> { return callSDKAsync<VASReadResult>("ProximityReader_a956b86ef7a76a8e", 2356440566155821, this, [request, eventHandler], [null,{"callback":{"out":[]}}]); }
+  readVASEventHandler(request: VASRequest, eventHandler?: $SDK45): Promise<VASReadResult> { return callSDKAsync<VASReadResult>("ProximityReader_90ad0eb69cc6bf4a", 2356440566155821, this, [request, eventHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func readVAS(_ request: VASRequest) async throws -> VASReadResult
    * @availability iOS 16.0+
    */
-  readVAS(request: VASRequest): Promise<VASReadResult> { return callSDKAsync<VASReadResult>("ProximityReader_a956b86ef7a76a8e", 434430243801298, this, [request]); }
+  readVAS(request: VASRequest): Promise<VASReadResult> { return callSDKAsync<VASReadResult>("ProximityReader_90ad0eb69cc6bf4a", 434430243801298, this, [request]); }
   declare readonly $type: { "s:15ProximityReader011PaymentCardB7SessionC": true };
 }
 
@@ -2721,7 +2721,7 @@ export const PaymentCardReaderSession_Event = {
    * @availability iOS 15.4+
    * @deprecated iOS 16.0
    */
-  getName($self: PaymentCardReaderSession_Event): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1484353862467292, $self, []); }
+  getName($self: PaymentCardReaderSession_Event): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1484353862467292, $self, []); }
 };
 
 /**
@@ -2735,12 +2735,12 @@ export const PaymentCardReaderSession_PINToken = {
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): PaymentCardReaderSession_PINToken { return callSDK<PaymentCardReaderSession_PINToken>("ProximityReader_a956b86ef7a76a8e", 3244887257287812, undefined, [rawValue]); },
+  init(rawValue: string): PaymentCardReaderSession_PINToken { return callSDK<PaymentCardReaderSession_PINToken>("ProximityReader_90ad0eb69cc6bf4a", 3244887257287812, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 16.0+
    */
-  getRawValue($self: PaymentCardReaderSession_PINToken): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 3910498151411292, $self, []); }
+  getRawValue($self: PaymentCardReaderSession_PINToken): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 3910498151411292, $self, []); }
 };
 
 /**
@@ -2758,12 +2758,12 @@ export class PaymentCardReaderSession_ReadError extends SDKHandle {
    * var errorDescription: String { get }
    * @availability iOS 15.4+
    */
-  get errorDescription(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1504880889998438, this, []); }
+  get errorDescription(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1504880889998438, this, []); }
   /**
    * var errorName: String { get }
    * @availability iOS 15.4+
    */
-  get errorName(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2918640172944486, this, []); }
+  get errorName(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2918640172944486, this, []); }
   declare readonly $type: { "s:15ProximityReader011PaymentCardB7SessionC9ReadErrorO": true };
 }
 
@@ -2776,22 +2776,22 @@ export class PaymentCardReaderStore extends SDKHandle {
    * func fetchStoredPaymentCardReadResultBatch(size: Int = 0) async throws -> StoreAndForwardBatch
    * @availability iOS 18.4+
    */
-  fetchStoredPaymentCardReadResultBatch(size?: number): Promise<StoreAndForwardBatch> { return callSDKAsync<StoreAndForwardBatch>("ProximityReader_a956b86ef7a76a8e", 807530723942567, this, [size]); }
+  fetchStoredPaymentCardReadResultBatch(size?: number): Promise<StoreAndForwardBatch> { return callSDKAsync<StoreAndForwardBatch>("ProximityReader_90ad0eb69cc6bf4a", 807530723942567, this, [size]); }
   /**
    * func fetchStoredPaymentCardReadResultCount() async throws -> Int
    * @availability iOS 18.4+
    */
-  fetchStoredPaymentCardReadResultCount(): Promise<number> { return callSDKAsync<number>("ProximityReader_a956b86ef7a76a8e", 3687652026481827, this, []); }
+  fetchStoredPaymentCardReadResultCount(): Promise<number> { return callSDKAsync<number>("ProximityReader_90ad0eb69cc6bf4a", 3687652026481827, this, []); }
   /**
    * func resolveBatch(batchDeletionToken: StoreAndForwardBatchDeletionToken) async throws -> Int
    * @availability iOS 18.4+
    */
-  resolveBatch(batchDeletionToken: StoreAndForwardBatchDeletionToken): Promise<number> { return callSDKAsync<number>("ProximityReader_a956b86ef7a76a8e", 752578635376725, this, [batchDeletionToken]); }
+  resolveBatch(batchDeletionToken: StoreAndForwardBatchDeletionToken): Promise<number> { return callSDKAsync<number>("ProximityReader_90ad0eb69cc6bf4a", 752578635376725, this, [batchDeletionToken]); }
   /**
    * func resetBatchState() async throws
    * @availability iOS 18.4+
    */
-  resetBatchState(): Promise<void> { return callSDKAsync<void>("ProximityReader_a956b86ef7a76a8e", 4031554681422582, this, []); }
+  resetBatchState(): Promise<void> { return callSDKAsync<void>("ProximityReader_90ad0eb69cc6bf4a", 4031554681422582, this, []); }
   declare readonly $type: { "s:15ProximityReader011PaymentCardB5StoreV": true };
 }
 
@@ -2812,47 +2812,47 @@ export class PaymentCardReadResult extends SDKHandle {
    * let generalCardData: String?
    * @availability iOS 15.4+
    */
-  get generalCardData(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 1655761658304991, this, []); }
+  get generalCardData(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 1655761658304991, this, []); }
   /**
    * let paymentCardData: String?
    * @availability iOS 15.4+
    */
-  get paymentCardData(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 937650294562352, this, []); }
+  get paymentCardData(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 937650294562352, this, []); }
   /**
    * let pinBypassed: Bool
    * @availability iOS 17.0+
    */
-  get pinBypassed(): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 3010625544730712, this, []); }
+  get pinBypassed(): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 3010625544730712, this, []); }
   /**
    * let isPINFallback: Bool
    * @availability iOS 17.0+
    */
-  get isPINFallback(): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 4264943592163268, this, []); }
+  get isPINFallback(): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 4264943592163268, this, []); }
   /**
    * let cardEffectiveState: PaymentCardReadResult.CardEffectiveState?
    * @availability iOS 18.4+
    */
-  get cardEffectiveState(): (PaymentCardReadResult_CardEffectiveState) | null { return callSDK<(PaymentCardReadResult_CardEffectiveState) | null>("ProximityReader_a956b86ef7a76a8e", 3387917653362087, this, []); }
+  get cardEffectiveState(): (PaymentCardReadResult_CardEffectiveState) | null { return callSDK<(PaymentCardReadResult_CardEffectiveState) | null>("ProximityReader_90ad0eb69cc6bf4a", 3387917653362087, this, []); }
   /**
    * let cardExpirationState: PaymentCardReadResult.CardExpirationState?
    * @availability iOS 18.4+
    */
-  get cardExpirationState(): (PaymentCardReadResult_CardExpirationState) | null { return callSDK<(PaymentCardReadResult_CardExpirationState) | null>("ProximityReader_a956b86ef7a76a8e", 2749302880417753, this, []); }
+  get cardExpirationState(): (PaymentCardReadResult_CardExpirationState) | null { return callSDK<(PaymentCardReadResult_CardExpirationState) | null>("ProximityReader_90ad0eb69cc6bf4a", 2749302880417753, this, []); }
   /**
    * let applicationTypeIdentifier: String?
    * @availability iOS 18.0+
    */
-  get applicationTypeIdentifier(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 2342368180197777, this, []); }
+  get applicationTypeIdentifier(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 2342368180197777, this, []); }
   /**
    * let id: String
    * @availability iOS 15.4+
    */
-  get id(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2967820015482343, this, []); }
+  get id(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2967820015482343, this, []); }
   /**
    * let outcome: PaymentCardReadResult.ReadOutcome
    * @availability iOS 16.4+
    */
-  get outcome(): PaymentCardReadResult_ReadOutcome { return callSDK<PaymentCardReadResult_ReadOutcome>("ProximityReader_a956b86ef7a76a8e", 1495307989262369, this, []); }
+  get outcome(): PaymentCardReadResult_ReadOutcome { return callSDK<PaymentCardReadResult_ReadOutcome>("ProximityReader_90ad0eb69cc6bf4a", 1495307989262369, this, []); }
   declare readonly $type: { "s:15ProximityReader21PaymentCardReadResultV": true };
 }
 
@@ -2889,46 +2889,46 @@ export class PaymentCardTransactionRequest extends SDKHandle {
    * let currencyCode: String
    * @availability iOS 15.4+
    */
-  get currencyCode(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1601106043146473, this, []); }
+  get currencyCode(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1601106043146473, this, []); }
   /**
    * var preferredAIDList: [Data]
    * @availability iOS 16.4+
    */
-  get preferredAIDList(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("ProximityReader_a956b86ef7a76a8e", 747664187900764, this, []); }
-  set preferredAIDList(value: Array<ArrayBuffer>) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 4414670433600959, this, [value]); }
+  get preferredAIDList(): Array<ArrayBuffer> { return callSDK<Array<ArrayBuffer>>("ProximityReader_90ad0eb69cc6bf4a", 747664187900764, this, []); }
+  set preferredAIDList(value: Array<ArrayBuffer>) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 4414670433600959, this, [value]); }
   /**
    * var useISOCurrencySymbol: Bool
    * @availability iOS 26.0+
    */
-  get useISOCurrencySymbol(): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 2644765722703493, this, []); }
-  set useISOCurrencySymbol(value: boolean) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 126388337727387, this, [value]); }
+  get useISOCurrencySymbol(): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 2644765722703493, this, []); }
+  set useISOCurrencySymbol(value: boolean) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 126388337727387, this, [value]); }
   /**
    * var userInterfaceLanguage: Locale.Language?
    * @availability iOS 17.0+
    */
-  get userInterfaceLanguage(): $SDK49 { return callSDK<$SDK49>("ProximityReader_a956b86ef7a76a8e", 2341312007664818, this, []); }
-  set userInterfaceLanguage(value: $SDK49) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 3732667400149093, this, [value]); }
+  get userInterfaceLanguage(): $SDK49 { return callSDK<$SDK49>("ProximityReader_90ad0eb69cc6bf4a", 2341312007664818, this, []); }
+  set userInterfaceLanguage(value: $SDK49) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 3732667400149093, this, [value]); }
   /**
    * var transactionDescription: PaymentCardTransactionRequest.TransactionAmountDescription?
    * @availability iOS 18.0+
    */
-  get transactionDescription(): $SDK50 { return callSDK<$SDK50>("ProximityReader_a956b86ef7a76a8e", 2117610935934313, this, []); }
-  set transactionDescription(value: $SDK50) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 822719662050804, this, [value]); }
+  get transactionDescription(): $SDK50 { return callSDK<$SDK50>("ProximityReader_90ad0eb69cc6bf4a", 2117610935934313, this, []); }
+  set transactionDescription(value: $SDK50) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 822719662050804, this, [value]); }
   /**
    * let type: PaymentCardTransactionRequest.TransactionType
    * @availability iOS 15.4+
    */
-  get type(): PaymentCardTransactionRequest_TransactionType { return callSDK<PaymentCardTransactionRequest_TransactionType>("ProximityReader_a956b86ef7a76a8e", 501478071225707, this, []); }
+  get type(): PaymentCardTransactionRequest_TransactionType { return callSDK<PaymentCardTransactionRequest_TransactionType>("ProximityReader_90ad0eb69cc6bf4a", 501478071225707, this, []); }
   /**
    * init(amount: Decimal, currencyCode: String, for type: PaymentCardTransactionRequest.TransactionType = .purchase)
    * @availability iOS 15.4+
    */
-  static init(amount: _Foundation_Decimal, currencyCode: string, type?: PaymentCardTransactionRequest_TransactionType): PaymentCardTransactionRequest { return callSDK<PaymentCardTransactionRequest>("ProximityReader_a956b86ef7a76a8e", 2855396977439969, undefined, [amount, currencyCode, type]); }
+  static init(amount: _Foundation_Decimal, currencyCode: string, type?: PaymentCardTransactionRequest_TransactionType): PaymentCardTransactionRequest { return callSDK<PaymentCardTransactionRequest>("ProximityReader_90ad0eb69cc6bf4a", 2855396977439969, undefined, [amount, currencyCode, type]); }
   /**
    * let amount: Decimal
    * @availability iOS 15.4+
    */
-  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("ProximityReader_a956b86ef7a76a8e", 216700952987683, this, []); }
+  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("ProximityReader_90ad0eb69cc6bf4a", 216700952987683, this, []); }
   declare readonly $type: { "s:15ProximityReader29PaymentCardTransactionRequestV": true };
 }
 
@@ -2961,23 +2961,23 @@ export class PaymentCardVerificationRequest extends SDKHandle {
    * init(currencyCode: String, for reason: PaymentCardVerificationRequest.Reason = .other)
    * @availability iOS 15.4+
    */
-  static init(currencyCode: string, reason?: PaymentCardVerificationRequest_Reason): PaymentCardVerificationRequest { return callSDK<PaymentCardVerificationRequest>("ProximityReader_a956b86ef7a76a8e", 3633022393731116, undefined, [currencyCode, reason]); }
+  static init(currencyCode: string, reason?: PaymentCardVerificationRequest_Reason): PaymentCardVerificationRequest { return callSDK<PaymentCardVerificationRequest>("ProximityReader_90ad0eb69cc6bf4a", 3633022393731116, undefined, [currencyCode, reason]); }
   /**
    * let currencyCode: String
    * @availability iOS 15.4+
    */
-  get currencyCode(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2245189686716236, this, []); }
+  get currencyCode(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2245189686716236, this, []); }
   /**
    * let verificationReason: PaymentCardVerificationRequest.Reason
    * @availability iOS 15.4+
    */
-  get verificationReason(): PaymentCardVerificationRequest_Reason { return callSDK<PaymentCardVerificationRequest_Reason>("ProximityReader_a956b86ef7a76a8e", 3134350643621985, this, []); }
+  get verificationReason(): PaymentCardVerificationRequest_Reason { return callSDK<PaymentCardVerificationRequest_Reason>("ProximityReader_90ad0eb69cc6bf4a", 3134350643621985, this, []); }
   /**
    * var userInterfaceLanguage: Locale.Language?
    * @availability iOS 17.0+
    */
-  get userInterfaceLanguage(): $SDK49 { return callSDK<$SDK49>("ProximityReader_a956b86ef7a76a8e", 2564836295285334, this, []); }
-  set userInterfaceLanguage(value: $SDK49) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 1665024240157481, this, [value]); }
+  get userInterfaceLanguage(): $SDK49 { return callSDK<$SDK49>("ProximityReader_90ad0eb69cc6bf4a", 2564836295285334, this, []); }
+  set userInterfaceLanguage(value: $SDK49) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 1665024240157481, this, [value]); }
   declare readonly $type: { "s:15ProximityReader30PaymentCardVerificationRequestV": true };
 }
 
@@ -2996,22 +2996,22 @@ export class ProximityReaderDiscovery extends SDKHandle {
    * final var contentList: [ProximityReaderDiscovery.Content] { get async throws }
    * @availability iOS 18.0+
    */
-  get contentList(): Promise<Array<ProximityReaderDiscovery_Content>> { return callSDKAsync<Array<ProximityReaderDiscovery_Content>>("ProximityReader_a956b86ef7a76a8e", 4166434024614313, this, []); }
+  get contentList(): Promise<Array<ProximityReaderDiscovery_Content>> { return callSDKAsync<Array<ProximityReaderDiscovery_Content>>("ProximityReader_90ad0eb69cc6bf4a", 4166434024614313, this, []); }
   /**
    * final func presentContent(_ content: ProximityReaderDiscovery.Content, from viewController: UIViewController) async throws
    * @availability iOS 18.0+
    */
-  presentContent(content: ProximityReaderDiscovery_Content, viewController: _UIKit_UIViewController): Promise<void> { return callSDKAsync<void>("ProximityReader_a956b86ef7a76a8e", 807891844745486, this, [content, viewController]); }
+  presentContent(content: ProximityReaderDiscovery_Content, viewController: _UIKit_UIViewController): Promise<void> { return callSDKAsync<void>("ProximityReader_90ad0eb69cc6bf4a", 807891844745486, this, [content, viewController]); }
   /**
    * final func content(for topic: ProximityReaderDiscovery.Topic) async throws -> ProximityReaderDiscovery.Content
    * @availability iOS 18.0+
    */
-  content(topic: ProximityReaderDiscovery_Topic): Promise<ProximityReaderDiscovery_Content> { return callSDKAsync<ProximityReaderDiscovery_Content>("ProximityReader_a956b86ef7a76a8e", 1749137223064011, this, [topic]); }
+  content(topic: ProximityReaderDiscovery_Topic): Promise<ProximityReaderDiscovery_Content> { return callSDKAsync<ProximityReaderDiscovery_Content>("ProximityReader_90ad0eb69cc6bf4a", 1749137223064011, this, [topic]); }
   /**
    * init()
    * @availability iOS 18.0+
    */
-  static init(): ProximityReaderDiscovery { return callSDK<ProximityReaderDiscovery>("ProximityReader_a956b86ef7a76a8e", 113745928258043, undefined, []); }
+  static init(): ProximityReaderDiscovery { return callSDK<ProximityReaderDiscovery>("ProximityReader_90ad0eb69cc6bf4a", 113745928258043, undefined, []); }
   declare readonly $type: { "s:15ProximityReader0aB9DiscoveryC": true };
 }
 
@@ -3024,12 +3024,12 @@ export class ProximityReaderDiscovery_Content extends SDKHandle {
    * let description: String
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 3765215092506975, this, []); }
+  get description(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 3765215092506975, this, []); }
   /**
    * let id: String
    * @availability iOS 18.0+
    */
-  get id(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 3952676543071021, this, []); }
+  get id(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 3952676543071021, this, []); }
   declare readonly $type: { "s:15ProximityReader0aB9DiscoveryC7ContentV": true };
 }
 
@@ -3068,32 +3068,32 @@ export class StoreAndForwardBatch extends SDKHandle {
    * let leafCertificate: String
    * @availability iOS 18.4+
    */
-  get leafCertificate(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2432560919755304, this, []); }
+  get leafCertificate(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2432560919755304, this, []); }
   /**
    * let intermediateCertificate: [String]
    * @availability iOS 18.4+
    */
-  get intermediateCertificate(): Array<string> { return callSDK<Array<string>>("ProximityReader_a956b86ef7a76a8e", 2257312775736846, this, []); }
+  get intermediateCertificate(): Array<string> { return callSDK<Array<string>>("ProximityReader_90ad0eb69cc6bf4a", 2257312775736846, this, []); }
   /**
    * let id: String
    * @availability iOS 18.4+
    */
-  get id(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1683584302586262, this, []); }
+  get id(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1683584302586262, this, []); }
   /**
    * let count: Int
    * @availability iOS 18.4+
    */
-  get count(): number { return callSDK<number>("ProximityReader_a956b86ef7a76a8e", 4382655479770551, this, []); }
+  get count(): number { return callSDK<number>("ProximityReader_90ad0eb69cc6bf4a", 4382655479770551, this, []); }
   /**
    * let payments: [StoreAndForwardBatch.StoredPaymentCardReadResult]
    * @availability iOS 18.4+
    */
-  get payments(): Array<StoreAndForwardBatch_StoredPaymentCardReadResult> { return callSDK<Array<StoreAndForwardBatch_StoredPaymentCardReadResult>>("ProximityReader_a956b86ef7a76a8e", 2619350223663688, this, []); }
+  get payments(): Array<StoreAndForwardBatch_StoredPaymentCardReadResult> { return callSDK<Array<StoreAndForwardBatch_StoredPaymentCardReadResult>>("ProximityReader_90ad0eb69cc6bf4a", 2619350223663688, this, []); }
   /**
    * let signature: String
    * @availability iOS 18.4+
    */
-  get signature(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1801592806429911, this, []); }
+  get signature(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1801592806429911, this, []); }
   declare readonly $type: { "s:15ProximityReader20StoreAndForwardBatchV": true };
 }
 
@@ -3112,22 +3112,22 @@ export class StoreAndForwardBatch_StoredPaymentCardReadResult extends SDKHandle 
    * let generalCardData: String
    * @availability iOS 18.4+
    */
-  get generalCardData(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 65469761101736, this, []); }
+  get generalCardData(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 65469761101736, this, []); }
   /**
    * let paymentCardData: String
    * @availability iOS 18.4+
    */
-  get paymentCardData(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2372460076981565, this, []); }
+  get paymentCardData(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2372460076981565, this, []); }
   /**
    * let id: String
    * @availability iOS 18.4+
    */
-  get id(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1321555677443322, this, []); }
+  get id(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1321555677443322, this, []); }
   /**
    * let signature: String
    * @availability iOS 18.4+
    */
-  get signature(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 3371171465638416, this, []); }
+  get signature(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 3371171465638416, this, []); }
   declare readonly $type: { "s:15ProximityReader20StoreAndForwardBatchV27StoredPaymentCardReadResultV": true };
 }
 
@@ -3148,12 +3148,12 @@ export const StoreAndForwardBatchDeletionToken = {
    * init(rawValue: String)
    * @availability iOS 18.4+
    */
-  init(rawValue: string): StoreAndForwardBatchDeletionToken { return callSDK<StoreAndForwardBatchDeletionToken>("ProximityReader_a956b86ef7a76a8e", 2070516685237229, undefined, [rawValue]); },
+  init(rawValue: string): StoreAndForwardBatchDeletionToken { return callSDK<StoreAndForwardBatchDeletionToken>("ProximityReader_90ad0eb69cc6bf4a", 2070516685237229, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 18.4+
    */
-  getRawValue($self: StoreAndForwardBatchDeletionToken): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 4275098110064853, $self, []); }
+  getRawValue($self: StoreAndForwardBatchDeletionToken): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 4275098110064853, $self, []); }
 };
 
 /**
@@ -3171,12 +3171,12 @@ export class StoreAndForwardPaymentCardReaderSession extends PaymentCardReaderSe
    * func status() async throws -> StoreAndForwardStatus
    * @availability iOS 18.4+
    */
-  status(): Promise<StoreAndForwardStatus> { return callSDKAsync<StoreAndForwardStatus>("ProximityReader_a956b86ef7a76a8e", 867428069014015, this, []); }
+  status(): Promise<StoreAndForwardStatus> { return callSDKAsync<StoreAndForwardStatus>("ProximityReader_90ad0eb69cc6bf4a", 867428069014015, this, []); }
   /**
    * func decline() async throws
    * @availability iOS 18.4+
    */
-  decline(): Promise<void> { return callSDKAsync<void>("ProximityReader_a956b86ef7a76a8e", 2526072094589084, this, []); }
+  decline(): Promise<void> { return callSDKAsync<void>("ProximityReader_90ad0eb69cc6bf4a", 2526072094589084, this, []); }
   declare readonly $type: { "s:15ProximityReader026StoreAndForwardPaymentCardB7SessionC": true; "s:15ProximityReader011PaymentCardB7SessionC": true };
 }
 
@@ -3189,12 +3189,12 @@ export class StoreAndForwardStatus extends SDKHandle {
    * let expiration: Date
    * @availability iOS 18.4+
    */
-  get expiration(): globalThis.Date { return callSDK<globalThis.Date>("ProximityReader_a956b86ef7a76a8e", 2383869375667925, this, []); }
+  get expiration(): globalThis.Date { return callSDK<globalThis.Date>("ProximityReader_90ad0eb69cc6bf4a", 2383869375667925, this, []); }
   /**
    * let readCount: Int
    * @availability iOS 18.4+
    */
-  get readCount(): number { return callSDK<number>("ProximityReader_a956b86ef7a76a8e", 1068950029571405, this, []); }
+  get readCount(): number { return callSDK<number>("ProximityReader_90ad0eb69cc6bf4a", 1068950029571405, this, []); }
   declare readonly $type: { "s:15ProximityReader21StoreAndForwardStatusV": true };
 }
 
@@ -3208,17 +3208,17 @@ export class VASReadResult extends SDKHandle {
    * @availability iOS 15.4+
    * @deprecated iOS 16.0
    */
-  static init(id: string, entries: $SDK53): VASReadResult { return callSDK<VASReadResult>("ProximityReader_a956b86ef7a76a8e", 1045625300075287, undefined, [id, entries]); }
+  static init(id: string, entries: $SDK53): VASReadResult { return callSDK<VASReadResult>("ProximityReader_90ad0eb69cc6bf4a", 1045625300075287, undefined, [id, entries]); }
   /**
    * let id: String
    * @availability iOS 15.4+
    */
-  get id(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 174380953432951, this, []); }
+  get id(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 174380953432951, this, []); }
   /**
    * let entries: [VASReadResult.ReadEntry]
    * @availability iOS 15.4+
    */
-  get entries(): $SDK53 { return callSDK<$SDK53>("ProximityReader_a956b86ef7a76a8e", 309353281223308, this, []); }
+  get entries(): $SDK53 { return callSDK<$SDK53>("ProximityReader_90ad0eb69cc6bf4a", 309353281223308, this, []); }
   declare readonly $type: { "s:15ProximityReader13VASReadResultV": true };
 }
 
@@ -3237,17 +3237,17 @@ export class VASReadResult_ReadEntry extends SDKHandle {
    * let customerVASData: Data?
    * @availability iOS 15.4+
    */
-  get customerVASData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_a956b86ef7a76a8e", 1417074681357002, this, []); }
+  get customerVASData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("ProximityReader_90ad0eb69cc6bf4a", 1417074681357002, this, []); }
   /**
    * let id: String
    * @availability iOS 15.4+
    */
-  get id(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 2281940263616798, this, []); }
+  get id(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 2281940263616798, this, []); }
   /**
    * let status: VASReadResult.ReadEntry.Status
    * @availability iOS 15.4+
    */
-  get status(): VASReadResult_ReadEntry_Status { return callSDK<VASReadResult_ReadEntry_Status>("ProximityReader_a956b86ef7a76a8e", 564222570806563, this, []); }
+  get status(): VASReadResult_ReadEntry_Status { return callSDK<VASReadResult_ReadEntry_Status>("ProximityReader_90ad0eb69cc6bf4a", 564222570806563, this, []); }
   declare readonly $type: { "s:15ProximityReader13VASReadResultV9ReadEntryV": true };
 }
 
@@ -3268,12 +3268,12 @@ export const VASReadResult_ReadEntry_Status = {
    * init?(rawValue: Int)
    * @availability iOS 15.4+
    */
-  init(rawValue: number): (VASReadResult_ReadEntry_Status) | null { return callSDK<(VASReadResult_ReadEntry_Status) | null>("ProximityReader_a956b86ef7a76a8e", 2743857486729073, undefined, [rawValue]); },
+  init(rawValue: number): (VASReadResult_ReadEntry_Status) | null { return callSDK<(VASReadResult_ReadEntry_Status) | null>("ProximityReader_90ad0eb69cc6bf4a", 2743857486729073, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 15.4+
    */
-  getRawValue($self: VASReadResult_ReadEntry_Status): number { return callSDK<number>("ProximityReader_a956b86ef7a76a8e", 2947791067187574, $self, []); }
+  getRawValue($self: VASReadResult_ReadEntry_Status): number { return callSDK<number>("ProximityReader_90ad0eb69cc6bf4a", 2947791067187574, $self, []); }
 };
 
 /**
@@ -3291,23 +3291,23 @@ export class VASRequest extends SDKHandle {
    * init(vasMerchants: [VASRequest.Merchant] = [], localizedVASType: String = "")
    * @availability iOS 15.4+
    */
-  static init(vasMerchants?: $SDK43, localizedVASType?: string): VASRequest { return callSDK<VASRequest>("ProximityReader_a956b86ef7a76a8e", 848558933250682, undefined, [vasMerchants, localizedVASType]); }
+  static init(vasMerchants?: $SDK43, localizedVASType?: string): VASRequest { return callSDK<VASRequest>("ProximityReader_90ad0eb69cc6bf4a", 848558933250682, undefined, [vasMerchants, localizedVASType]); }
   /**
    * final let vasMerchants: [VASRequest.Merchant]
    * @availability iOS 15.4+
    */
-  get vasMerchants(): $SDK43 { return callSDK<$SDK43>("ProximityReader_a956b86ef7a76a8e", 989882126086857, this, []); }
+  get vasMerchants(): $SDK43 { return callSDK<$SDK43>("ProximityReader_90ad0eb69cc6bf4a", 989882126086857, this, []); }
   /**
    * final let localizedVASType: String
    * @availability iOS 15.4+
    */
-  get localizedVASType(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 1181468491712099, this, []); }
+  get localizedVASType(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 1181468491712099, this, []); }
   /**
    * var userInterfaceLanguage: Locale.Language?
    * @availability iOS 17.0+
    */
-  get userInterfaceLanguage(): $SDK49 { return callSDK<$SDK49>("ProximityReader_a956b86ef7a76a8e", 3524631758997102, this, []); }
-  set userInterfaceLanguage(value: $SDK49) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 2025277516676372, this, [value]); }
+  get userInterfaceLanguage(): $SDK49 { return callSDK<$SDK49>("ProximityReader_90ad0eb69cc6bf4a", 3524631758997102, this, []); }
+  set userInterfaceLanguage(value: $SDK49) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 2025277516676372, this, [value]); }
   declare readonly $type: { "s:15ProximityReader10VASRequestC": true };
 }
 
@@ -3320,35 +3320,35 @@ export class VASRequest_Merchant extends SDKHandle {
    * var localizedName: String
    * @availability iOS 15.4+
    */
-  get localizedName(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 3713469564161502, this, []); }
-  set localizedName(value: string) { callSDK<void>("ProximityReader_a956b86ef7a76a8e", 4319073894320233, this, [value]); }
+  get localizedName(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 3713469564161502, this, []); }
+  set localizedName(value: string) { callSDK<void>("ProximityReader_90ad0eb69cc6bf4a", 4319073894320233, this, [value]); }
   /**
    * let shouldSendURLOnly: Bool
    * @availability iOS 15.4+
    * @deprecated iOS 16.4
    */
-  get shouldSendURLOnly(): boolean { return callSDK<boolean>("ProximityReader_a956b86ef7a76a8e", 3162688051554068, this, []); }
+  get shouldSendURLOnly(): boolean { return callSDK<boolean>("ProximityReader_90ad0eb69cc6bf4a", 3162688051554068, this, []); }
   /**
    * init(id: String, url: URL? = nil, localizedName: String? = nil)
    * @availability iOS 16.4+
    */
-  static initIdUrlLocalizedName(id: string, url?: (string) | null, localizedName?: (string) | null): VASRequest_Merchant { return callSDK<VASRequest_Merchant>("ProximityReader_a956b86ef7a76a8e", 2748128880627169, undefined, [id, url, localizedName]); }
+  static initIdUrlLocalizedName(id: string, url?: (string) | null, localizedName?: (string) | null): VASRequest_Merchant { return callSDK<VASRequest_Merchant>("ProximityReader_90ad0eb69cc6bf4a", 2748128880627169, undefined, [id, url, localizedName]); }
   /**
    * init(id: String, url: URL? = nil, shouldSendURLOnly: Bool = false, localizedName: String? = nil)
    * @availability iOS 15.4+
    * @deprecated iOS 16.4
    */
-  static initIdUrlShouldSendURLOnlyLocalizedName(id: string, url?: (string) | null, shouldSendURLOnly?: boolean, localizedName?: (string) | null): VASRequest_Merchant { return callSDK<VASRequest_Merchant>("ProximityReader_a956b86ef7a76a8e", 3937248263933658, undefined, [id, url, shouldSendURLOnly, localizedName]); }
+  static initIdUrlShouldSendURLOnlyLocalizedName(id: string, url?: (string) | null, shouldSendURLOnly?: boolean, localizedName?: (string) | null): VASRequest_Merchant { return callSDK<VASRequest_Merchant>("ProximityReader_90ad0eb69cc6bf4a", 3937248263933658, undefined, [id, url, shouldSendURLOnly, localizedName]); }
   /**
    * let id: String
    * @availability iOS 15.4+
    */
-  get id(): string { return callSDK<string>("ProximityReader_a956b86ef7a76a8e", 3886607284908033, this, []); }
+  get id(): string { return callSDK<string>("ProximityReader_90ad0eb69cc6bf4a", 3886607284908033, this, []); }
   /**
    * let url: URL?
    * @availability iOS 15.4+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("ProximityReader_a956b86ef7a76a8e", 304849620794557, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("ProximityReader_90ad0eb69cc6bf4a", 304849620794557, this, []); }
   declare readonly $type: { "s:15ProximityReader10VASRequestC8MerchantV": true };
 }
 
@@ -3358,101 +3358,101 @@ export class VASRequest_Merchant extends SDKHandle {
  */
 export type VASRequest_Merchant_ID = string;
 
-registerSDKClass("ProximityReader.CustomerEngagement", CustomerEngagement, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagement.Address", CustomerEngagement_Address, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagement.CustomerInfo", CustomerEngagement_CustomerInfo, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCart", CustomerEngagement_ShoppingCart, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCart.Item", CustomerEngagement_ShoppingCart_Item, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCart.Summary", CustomerEngagement_ShoppingCart_Summary, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCart.Summary.LineItem", CustomerEngagement_ShoppingCart_Summary_LineItem, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCart.Summary.LineItem.Value", CustomerEngagement_ShoppingCart_Summary_LineItem_Value, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCartToken", CustomerEngagement_ShoppingCartToken, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagement.SignUp", CustomerEngagement_SignUp, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagement.Token", CustomerEngagement_Token, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagementSession", CustomerEngagementSession, { module: "ProximityReader_a956b86ef7a76a8e", properties: {}, methods: {"requestCustomerInfo":{"id":1833588155638204},"updateStatus":{"id":2320778113584225},"requestSignup":{"id":4162872217091429},"requestAddress":{"id":3046648279970431},"requestPayment":{"id":3232258803173942,"hints":[null,null,{"protocol":"c:objc(pl)PKPaymentAuthorizationControllerDelegate"}]},"updateShoppingCart":{"id":3223793723425389},"open":{"id":432645616734156},"close":{"id":4207303737999748},"addPass":{"id":1798285779201745}} });
-registerSDKClass("ProximityReader.CustomerEngagementSession.Configuration", CustomerEngagementSession_Configuration, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagementSession.CustomerConfiguration", CustomerEngagementSession_CustomerConfiguration, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.CustomerEngagementSession.Token", CustomerEngagementSession_Token, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDocumentAnyOfDataRequest", MobileDocumentAnyOfDataRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {}, methods: {"addRequest":{"id":4041922150639328}} });
-registerSDKClass("ProximityReader.MobileDocumentAnyOfDataRequest.Response", MobileDocumentAnyOfDataRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDocumentAnyOfRawDataRequest", MobileDocumentAnyOfRawDataRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {}, methods: {"addRequest":{"id":1593302854909658}} });
-registerSDKClass("ProximityReader.MobileDocumentAnyOfRawDataRequest.Response", MobileDocumentAnyOfRawDataRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement", CustomerEngagement, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement.Address", CustomerEngagement_Address, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement.CustomerInfo", CustomerEngagement_CustomerInfo, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCart", CustomerEngagement_ShoppingCart, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCart.Item", CustomerEngagement_ShoppingCart_Item, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCart.Summary", CustomerEngagement_ShoppingCart_Summary, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCart.Summary.LineItem", CustomerEngagement_ShoppingCart_Summary_LineItem, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCart.Summary.LineItem.Value", CustomerEngagement_ShoppingCart_Summary_LineItem_Value, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement.ShoppingCartToken", CustomerEngagement_ShoppingCartToken, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement.SignUp", CustomerEngagement_SignUp, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagement.Token", CustomerEngagement_Token, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagementSession", CustomerEngagementSession, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {}, methods: {"requestCustomerInfo":{"id":1833588155638204},"updateStatus":{"id":2320778113584225},"requestSignup":{"id":4162872217091429},"requestAddress":{"id":3046648279970431},"requestPayment":{"id":3232258803173942,"hints":[null,null,{"protocol":"c:objc(pl)PKPaymentAuthorizationControllerDelegate"}]},"updateShoppingCart":{"id":3223793723425389},"open":{"id":432645616734156},"close":{"id":4207303737999748},"addPass":{"id":1798285779201745}} });
+registerSDKClass("ProximityReader.CustomerEngagementSession.Configuration", CustomerEngagementSession_Configuration, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagementSession.CustomerConfiguration", CustomerEngagementSession_CustomerConfiguration, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.CustomerEngagementSession.Token", CustomerEngagementSession_Token, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentAnyOfDataRequest", MobileDocumentAnyOfDataRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {}, methods: {"addRequest":{"id":4041922150639328}} });
+registerSDKClass("ProximityReader.MobileDocumentAnyOfDataRequest.Response", MobileDocumentAnyOfDataRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentAnyOfRawDataRequest", MobileDocumentAnyOfRawDataRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {}, methods: {"addRequest":{"id":1593302854909658}} });
+registerSDKClass("ProximityReader.MobileDocumentAnyOfRawDataRequest.Response", MobileDocumentAnyOfRawDataRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:15ProximityReader25MobileDocumentDataRequestP", {});
 registerSDKProtocol("s:15ProximityReader26MobileDocumentDataResponseP", {});
-registerSDKClass("ProximityReader.MobileDocumentDisplayRequest", MobileDocumentDisplayRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDocumentDisplayRequest.Element", MobileDocumentDisplayRequest_Element, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDocumentDisplayRequest.Options", MobileDocumentDisplayRequest_Options, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDocumentDisplayRequest.Options.DocumentType", MobileDocumentDisplayRequest_Options_DocumentType, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDocumentDisplayRequest.Options.ValidationMode", MobileDocumentDisplayRequest_Options_ValidationMode, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDocumentDisplayRequest.Response", MobileDocumentDisplayRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDocumentHolderName", MobileDocumentHolderName, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentDisplayRequest", MobileDocumentDisplayRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentDisplayRequest.Element", MobileDocumentDisplayRequest_Element, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentDisplayRequest.Options", MobileDocumentDisplayRequest_Options, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentDisplayRequest.Options.DocumentType", MobileDocumentDisplayRequest_Options_DocumentType, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentDisplayRequest.Options.ValidationMode", MobileDocumentDisplayRequest_Options_ValidationMode, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentDisplayRequest.Response", MobileDocumentDisplayRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentHolderName", MobileDocumentHolderName, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:15ProximityReader28MobileDocumentRawDataRequestP", {});
-registerSDKClass("ProximityReader.MobileDocumentReader", MobileDocumentReader, { module: "ProximityReader_a956b86ef7a76a8e", properties: {}, methods: {"prepare":{"id":3656097607051905}} });
-registerSDKClass("ProximityReader.MobileDocumentReader.Configuration", MobileDocumentReader_Configuration, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDocumentReader.Token", MobileDocumentReader_Token, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDocumentReaderSession", MobileDocumentReaderSession, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentReader", MobileDocumentReader, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {}, methods: {"prepare":{"id":3656097607051905}} });
+registerSDKClass("ProximityReader.MobileDocumentReader.Configuration", MobileDocumentReader_Configuration, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentReader.Token", MobileDocumentReader_Token, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDocumentReaderSession", MobileDocumentReaderSession, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("s:15ProximityReader21MobileDocumentRequestP", {});
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest", MobileDriversLicenseDataRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Element", MobileDriversLicenseDataRequest_Element, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response", MobileDriversLicenseDataRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements", MobileDriversLicenseDataRequest_Response_DocumentElements, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege", MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege.VehicleClass", MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleClass, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege.VehicleEndorsement", MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleEndorsement, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege.VehicleRestriction", MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleRestriction, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.DrivingPrivilege", MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.DrivingPrivilege.Code", MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege_Code, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.IssuingAuthority", MobileDriversLicenseDataRequest_Response_DocumentElements_IssuingAuthority, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDisplayRequest", MobileDriversLicenseDisplayRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDisplayRequest.Element", MobileDriversLicenseDisplayRequest_Element, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDisplayRequest.Options", MobileDriversLicenseDisplayRequest_Options, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDisplayRequest.Options.ValidationMode", MobileDriversLicenseDisplayRequest_Options_ValidationMode, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseDisplayRequest.Response", MobileDriversLicenseDisplayRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseRawDataRequest", MobileDriversLicenseRawDataRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseRawDataRequest.Element", MobileDriversLicenseRawDataRequest_Element, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileDriversLicenseRawDataRequest.Response", MobileDriversLicenseRawDataRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardDataRequest", MobileNationalIDCardDataRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardDataRequest.Element", MobileNationalIDCardDataRequest_Element, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardDataRequest.Response", MobileNationalIDCardDataRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardDataRequest.Response.DocumentElements", MobileNationalIDCardDataRequest_Response_DocumentElements, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardDisplayRequest", MobileNationalIDCardDisplayRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardDisplayRequest.Element", MobileNationalIDCardDisplayRequest_Element, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardDisplayRequest.Options", MobileNationalIDCardDisplayRequest_Options, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardDisplayRequest.Options.ValidationMode", MobileNationalIDCardDisplayRequest_Options_ValidationMode, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardDisplayRequest.Response", MobileNationalIDCardDisplayRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardRawDataRequest", MobileNationalIDCardRawDataRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardRawDataRequest.Element", MobileNationalIDCardRawDataRequest_Element, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobileNationalIDCardRawDataRequest.Response", MobileNationalIDCardRawDataRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobilePhotoIDDataRequest", MobilePhotoIDDataRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobilePhotoIDDataRequest.Element", MobilePhotoIDDataRequest_Element, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobilePhotoIDDataRequest.Response", MobilePhotoIDDataRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobilePhotoIDDataRequest.Response.DocumentElements", MobilePhotoIDDataRequest_Response_DocumentElements, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobilePhotoIDDataRequest.Response.DocumentElements.IssuingAuthority", MobilePhotoIDDataRequest_Response_DocumentElements_IssuingAuthority, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobilePhotoIDRawDataRequest", MobilePhotoIDRawDataRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobilePhotoIDRawDataRequest.Element", MobilePhotoIDRawDataRequest_Element, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.MobilePhotoIDRawDataRequest.Response", MobilePhotoIDRawDataRequest_Response, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.PaymentCardReader", PaymentCardReader, { module: "ProximityReader_a956b86ef7a76a8e", properties: {}, methods: {"fetchPaymentCardReaderStore":{"id":3412808807764615},"linkAccount":{"id":642549233497489},"relinkAccount":{"id":614180987425138},"isAccountLinked":{"id":1994452083685880},"prepareStoreAndForward":{"id":3865841887439376},"prepareUsingUpdateHandler":{"id":930442496285862,"hints":[null,{"callback":{"out":[]}}]},"prepareUsing":{"id":1097617906398035}} });
-registerSDKClass("ProximityReader.PaymentCardReader.Event", PaymentCardReader_Event, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.PaymentCardReader.Options", PaymentCardReader_Options, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.PaymentCardReader.UpdateEvent", PaymentCardReader_UpdateEvent, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.PaymentCardReaderError", PaymentCardReaderError, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.PaymentCardReaderSession", PaymentCardReaderSession, { module: "ProximityReader_a956b86ef7a76a8e", properties: {}, methods: {"readPaymentCardVasRequestStopOnVASResultEventHandler":{"id":1576027116619778,"hints":[null,null,null,{"callback":{"out":[]}}]},"readPaymentCardVasRequestStopOnVASResult":{"id":629551685142324},"readPaymentCardEventHandler":{"id":1248597668380765,"hints":[null,{"callback":{"out":[]}}]},"readPaymentCardEventHandler79723":{"id":2955072062867823,"hints":[null,{"callback":{"out":[]}}]},"readPaymentCard":{"id":213062609027339},"readPaymentCard78689":{"id":1155465807065494},"cancelRead":{"id":3366426422835192},"capturePIN":{"id":1635554293806558},"readVASEventHandler":{"id":2356440566155821,"hints":[null,{"callback":{"out":[]}}]},"readVAS":{"id":434430243801298}} });
-registerSDKClass("ProximityReader.PaymentCardReaderSession.ReadError", PaymentCardReaderSession_ReadError, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.PaymentCardReaderStore", PaymentCardReaderStore, { module: "ProximityReader_a956b86ef7a76a8e", properties: {}, methods: {"fetchStoredPaymentCardReadResultBatch":{"id":807530723942567},"fetchStoredPaymentCardReadResultCount":{"id":3687652026481827},"resolveBatch":{"id":752578635376725},"resetBatchState":{"id":4031554681422582}} });
-registerSDKClass("ProximityReader.PaymentCardReaderStore.StoreError", PaymentCardReaderStore_StoreError, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.PaymentCardReadResult", PaymentCardReadResult, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.PaymentCardTransactionRequest", PaymentCardTransactionRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.PaymentCardTransactionRequest.TransactionAmountDescription", PaymentCardTransactionRequest_TransactionAmountDescription, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.PaymentCardVerificationRequest", PaymentCardVerificationRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.ProximityReaderDiscovery", ProximityReaderDiscovery, { module: "ProximityReader_a956b86ef7a76a8e", properties: {}, methods: {"presentContent":{"id":807891844745486},"content":{"id":1749137223064011}} });
-registerSDKClass("ProximityReader.ProximityReaderDiscovery.Content", ProximityReaderDiscovery_Content, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.ProximityReaderDiscovery.Topic", ProximityReaderDiscovery_Topic, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.StoreAndForwardBatch", StoreAndForwardBatch, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.StoreAndForwardBatch.StoredPaymentCardReadResult", StoreAndForwardBatch_StoredPaymentCardReadResult, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.StoreAndForwardPaymentCardReaderSession", StoreAndForwardPaymentCardReaderSession, { module: "ProximityReader_a956b86ef7a76a8e", properties: {}, methods: {"status":{"id":867428069014015},"decline":{"id":2526072094589084}} });
-registerSDKClass("ProximityReader.StoreAndForwardStatus", StoreAndForwardStatus, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.VASReadResult", VASReadResult, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.VASReadResult.ReadEntry", VASReadResult_ReadEntry, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.VASRequest", VASRequest, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ProximityReader.VASRequest.Merchant", VASRequest_Merchant, { module: "ProximityReader_a956b86ef7a76a8e", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest", MobileDriversLicenseDataRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Element", MobileDriversLicenseDataRequest_Element, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response", MobileDriversLicenseDataRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements", MobileDriversLicenseDataRequest_Response_DocumentElements, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege", MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege.VehicleClass", MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleClass, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege.VehicleEndorsement", MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleEndorsement, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.AAMVADrivingPrivilege.VehicleRestriction", MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleRestriction, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.DrivingPrivilege", MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.DrivingPrivilege.Code", MobileDriversLicenseDataRequest_Response_DocumentElements_DrivingPrivilege_Code, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDataRequest.Response.DocumentElements.IssuingAuthority", MobileDriversLicenseDataRequest_Response_DocumentElements_IssuingAuthority, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDisplayRequest", MobileDriversLicenseDisplayRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDisplayRequest.Element", MobileDriversLicenseDisplayRequest_Element, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDisplayRequest.Options", MobileDriversLicenseDisplayRequest_Options, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDisplayRequest.Options.ValidationMode", MobileDriversLicenseDisplayRequest_Options_ValidationMode, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseDisplayRequest.Response", MobileDriversLicenseDisplayRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseRawDataRequest", MobileDriversLicenseRawDataRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseRawDataRequest.Element", MobileDriversLicenseRawDataRequest_Element, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileDriversLicenseRawDataRequest.Response", MobileDriversLicenseRawDataRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardDataRequest", MobileNationalIDCardDataRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardDataRequest.Element", MobileNationalIDCardDataRequest_Element, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardDataRequest.Response", MobileNationalIDCardDataRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardDataRequest.Response.DocumentElements", MobileNationalIDCardDataRequest_Response_DocumentElements, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardDisplayRequest", MobileNationalIDCardDisplayRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardDisplayRequest.Element", MobileNationalIDCardDisplayRequest_Element, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardDisplayRequest.Options", MobileNationalIDCardDisplayRequest_Options, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardDisplayRequest.Options.ValidationMode", MobileNationalIDCardDisplayRequest_Options_ValidationMode, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardDisplayRequest.Response", MobileNationalIDCardDisplayRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardRawDataRequest", MobileNationalIDCardRawDataRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardRawDataRequest.Element", MobileNationalIDCardRawDataRequest_Element, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobileNationalIDCardRawDataRequest.Response", MobileNationalIDCardRawDataRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobilePhotoIDDataRequest", MobilePhotoIDDataRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobilePhotoIDDataRequest.Element", MobilePhotoIDDataRequest_Element, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobilePhotoIDDataRequest.Response", MobilePhotoIDDataRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobilePhotoIDDataRequest.Response.DocumentElements", MobilePhotoIDDataRequest_Response_DocumentElements, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobilePhotoIDDataRequest.Response.DocumentElements.IssuingAuthority", MobilePhotoIDDataRequest_Response_DocumentElements_IssuingAuthority, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobilePhotoIDRawDataRequest", MobilePhotoIDRawDataRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobilePhotoIDRawDataRequest.Element", MobilePhotoIDRawDataRequest_Element, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.MobilePhotoIDRawDataRequest.Response", MobilePhotoIDRawDataRequest_Response, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.PaymentCardReader", PaymentCardReader, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {}, methods: {"fetchPaymentCardReaderStore":{"id":3412808807764615},"linkAccount":{"id":642549233497489},"relinkAccount":{"id":614180987425138},"isAccountLinked":{"id":1994452083685880},"prepareStoreAndForward":{"id":3865841887439376},"prepareUsingUpdateHandler":{"id":930442496285862,"hints":[null,{"callback":{"out":[]}}]},"prepareUsing":{"id":1097617906398035}} });
+registerSDKClass("ProximityReader.PaymentCardReader.Event", PaymentCardReader_Event, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.PaymentCardReader.Options", PaymentCardReader_Options, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.PaymentCardReader.UpdateEvent", PaymentCardReader_UpdateEvent, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.PaymentCardReaderError", PaymentCardReaderError, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.PaymentCardReaderSession", PaymentCardReaderSession, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {}, methods: {"readPaymentCardVasRequestStopOnVASResultEventHandler":{"id":1576027116619778,"hints":[null,null,null,{"callback":{"out":[]}}]},"readPaymentCardVasRequestStopOnVASResult":{"id":629551685142324},"readPaymentCardEventHandler":{"id":1248597668380765,"hints":[null,{"callback":{"out":[]}}]},"readPaymentCardEventHandler79723":{"id":2955072062867823,"hints":[null,{"callback":{"out":[]}}]},"readPaymentCard":{"id":213062609027339},"readPaymentCard78689":{"id":1155465807065494},"cancelRead":{"id":3366426422835192},"capturePIN":{"id":1635554293806558},"readVASEventHandler":{"id":2356440566155821,"hints":[null,{"callback":{"out":[]}}]},"readVAS":{"id":434430243801298}} });
+registerSDKClass("ProximityReader.PaymentCardReaderSession.ReadError", PaymentCardReaderSession_ReadError, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.PaymentCardReaderStore", PaymentCardReaderStore, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {}, methods: {"fetchStoredPaymentCardReadResultBatch":{"id":807530723942567},"fetchStoredPaymentCardReadResultCount":{"id":3687652026481827},"resolveBatch":{"id":752578635376725},"resetBatchState":{"id":4031554681422582}} });
+registerSDKClass("ProximityReader.PaymentCardReaderStore.StoreError", PaymentCardReaderStore_StoreError, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.PaymentCardReadResult", PaymentCardReadResult, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.PaymentCardTransactionRequest", PaymentCardTransactionRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.PaymentCardTransactionRequest.TransactionAmountDescription", PaymentCardTransactionRequest_TransactionAmountDescription, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.PaymentCardVerificationRequest", PaymentCardVerificationRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.ProximityReaderDiscovery", ProximityReaderDiscovery, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {}, methods: {"presentContent":{"id":807891844745486},"content":{"id":1749137223064011}} });
+registerSDKClass("ProximityReader.ProximityReaderDiscovery.Content", ProximityReaderDiscovery_Content, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.ProximityReaderDiscovery.Topic", ProximityReaderDiscovery_Topic, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.StoreAndForwardBatch", StoreAndForwardBatch, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.StoreAndForwardBatch.StoredPaymentCardReadResult", StoreAndForwardBatch_StoredPaymentCardReadResult, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.StoreAndForwardPaymentCardReaderSession", StoreAndForwardPaymentCardReaderSession, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {}, methods: {"status":{"id":867428069014015},"decline":{"id":2526072094589084}} });
+registerSDKClass("ProximityReader.StoreAndForwardStatus", StoreAndForwardStatus, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.VASReadResult", VASReadResult, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.VASReadResult.ReadEntry", VASReadResult_ReadEntry, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.VASRequest", VASRequest, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ProximityReader.VASRequest.Merchant", VASRequest_Merchant, { module: "ProximityReader_90ad0eb69cc6bf4a", properties: {} });
 registerSDKProtocol("c:objc(pl)PKPaymentAuthorizationControllerDelegate", {"paymentAuthorizationControllerDidFinish":"paymentAuthorizationControllerDidFinish(_:)","paymentAuthorizationControllerDidAuthorizePayment":"paymentAuthorizationController(_:didAuthorizePayment:)","paymentAuthorizationControllerDidAuthorizePaymentCompletion":"paymentAuthorizationController(_:didAuthorizePayment:completion:)","paymentAuthorizationControllerWillAuthorizePayment":"paymentAuthorizationControllerWillAuthorizePayment(_:)","paymentAuthorizationControllerDidRequestMerchantSessionUpdateController":"paymentAuthorizationControllerDidRequestMerchantSessionUpdate(controller:)","paymentAuthorizationControllerDidChangeCouponCode":"paymentAuthorizationController(_:didChangeCouponCode:)","paymentAuthorizationControllerDidSelectShippingMethod":"paymentAuthorizationController(_:didSelectShippingMethod:)","paymentAuthorizationControllerDidSelectShippingContact":"paymentAuthorizationController(_:didSelectShippingContact:)","paymentAuthorizationControllerDidSelectPaymentMethod":"paymentAuthorizationController(_:didSelectPaymentMethod:)","paymentAuthorizationControllerDidSelectShippingMethodCompletion":"paymentAuthorizationController(_:didSelectShippingMethod:completion:)","paymentAuthorizationControllerDidSelectShippingContactCompletion":"paymentAuthorizationController(_:didSelectShippingContact:completion:)","paymentAuthorizationControllerDidSelectPaymentMethodCompletion":"paymentAuthorizationController(_:didSelectPaymentMethod:completion:)","presentationWindowFor":"presentationWindow(for:)"});

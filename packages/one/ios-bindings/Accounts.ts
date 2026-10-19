@@ -19,47 +19,47 @@ export class ACAccount extends SDKHandle {
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  static init(type?: (ACAccountType) | null): ACAccount { return callSDK<ACAccount>("Accounts_a956b86ef7a76a8e", 3553497133647124, undefined, [type]); }
+  static init(type?: (ACAccountType) | null): ACAccount { return callSDK<ACAccount>("Accounts_90ad0eb69cc6bf4a", 3553497133647124, undefined, [type]); }
   /**
    * var accountDescription: String! { get set }
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  get accountDescription(): (string) | null { return callSDK<(string) | null>("Accounts_a956b86ef7a76a8e", 3793422184587810, this, []); }
-  set accountDescription(value: (string) | null) { callSDK<void>("Accounts_a956b86ef7a76a8e", 1094570912781220, this, [value]); }
+  get accountDescription(): (string) | null { return callSDK<(string) | null>("Accounts_90ad0eb69cc6bf4a", 3793422184587810, this, []); }
+  set accountDescription(value: (string) | null) { callSDK<void>("Accounts_90ad0eb69cc6bf4a", 1094570912781220, this, [value]); }
   /**
    * var accountType: ACAccountType! { get set }
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  get accountType(): (ACAccountType) | null { return callSDK<(ACAccountType) | null>("Accounts_a956b86ef7a76a8e", 3193494046219139, this, []); }
-  set accountType(value: (ACAccountType) | null) { callSDK<void>("Accounts_a956b86ef7a76a8e", 1535889853684466, this, [value]); }
+  get accountType(): (ACAccountType) | null { return callSDK<(ACAccountType) | null>("Accounts_90ad0eb69cc6bf4a", 3193494046219139, this, []); }
+  set accountType(value: (ACAccountType) | null) { callSDK<void>("Accounts_90ad0eb69cc6bf4a", 1535889853684466, this, [value]); }
   /**
    * var credential: ACAccountCredential! { get set }
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  get credential(): $SDK0 { return callSDK<$SDK0>("Accounts_a956b86ef7a76a8e", 2489381869882901, this, []); }
-  set credential(value: $SDK0) { callSDK<void>("Accounts_a956b86ef7a76a8e", 2892676595699668, this, [value]); }
+  get credential(): $SDK0 { return callSDK<$SDK0>("Accounts_90ad0eb69cc6bf4a", 2489381869882901, this, []); }
+  set credential(value: $SDK0) { callSDK<void>("Accounts_90ad0eb69cc6bf4a", 2892676595699668, this, [value]); }
   /**
    * weak var identifier: NSString! { get }
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  get identifier(): (_Foundation_NSString) | null { return callSDK<(_Foundation_NSString) | null>("Accounts_a956b86ef7a76a8e", 2209586596200436, this, []); }
+  get identifier(): (_Foundation_NSString) | null { return callSDK<(_Foundation_NSString) | null>("Accounts_90ad0eb69cc6bf4a", 2209586596200436, this, []); }
   /**
    * var userFullName: String! { get }
    * @availability iOS 7.0+
    * @deprecated iOS 15.0
    */
-  get userFullName(): (string) | null { return callSDK<(string) | null>("Accounts_a956b86ef7a76a8e", 94016183291278, this, []); }
+  get userFullName(): (string) | null { return callSDK<(string) | null>("Accounts_90ad0eb69cc6bf4a", 94016183291278, this, []); }
   /**
    * var username: String! { get set }
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  get username(): (string) | null { return callSDK<(string) | null>("Accounts_a956b86ef7a76a8e", 171930232256420, this, []); }
-  set username(value: (string) | null) { callSDK<void>("Accounts_a956b86ef7a76a8e", 2317682055580322, this, [value]); }
+  get username(): (string) | null { return callSDK<(string) | null>("Accounts_90ad0eb69cc6bf4a", 171930232256420, this, []); }
+  set username(value: (string) | null) { callSDK<void>("Accounts_90ad0eb69cc6bf4a", 2317682055580322, this, [value]); }
   declare readonly $type: { "c:objc(cs)ACAccount": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accountDescription": true; "accountType": true; "credential": true; "identifier": true; "userFullName": true; "username": true };
 }
@@ -75,20 +75,20 @@ export class ACAccountCredential extends SDKHandle {
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  static initOAuth2TokenRefreshTokenExpiryDate(token?: (string) | null, refreshToken?: (string) | null, expiryDate?: (globalThis.Date) | null): ACAccountCredential { return callSDK<ACAccountCredential>("Accounts_a956b86ef7a76a8e", 4499833021511138, undefined, [token, refreshToken, expiryDate]); }
+  static initOAuth2TokenRefreshTokenExpiryDate(token?: (string) | null, refreshToken?: (string) | null, expiryDate?: (globalThis.Date) | null): ACAccountCredential { return callSDK<ACAccountCredential>("Accounts_90ad0eb69cc6bf4a", 4499833021511138, undefined, [token, refreshToken, expiryDate]); }
   /**
    * init!(oAuthToken token: String!, tokenSecret secret: String!)
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  static initOAuthTokenTokenSecret(token?: (string) | null, secret?: (string) | null): ACAccountCredential { return callSDK<ACAccountCredential>("Accounts_a956b86ef7a76a8e", 1708576362147674, undefined, [token, secret]); }
+  static initOAuthTokenTokenSecret(token?: (string) | null, secret?: (string) | null): ACAccountCredential { return callSDK<ACAccountCredential>("Accounts_90ad0eb69cc6bf4a", 1708576362147674, undefined, [token, secret]); }
   /**
    * var oauthToken: String! { get set }
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  get oauthToken(): (string) | null { return callSDK<(string) | null>("Accounts_a956b86ef7a76a8e", 2403044429554519, this, []); }
-  set oauthToken(value: (string) | null) { callSDK<void>("Accounts_a956b86ef7a76a8e", 1669743281131409, this, [value]); }
+  get oauthToken(): (string) | null { return callSDK<(string) | null>("Accounts_90ad0eb69cc6bf4a", 2403044429554519, this, []); }
+  set oauthToken(value: (string) | null) { callSDK<void>("Accounts_90ad0eb69cc6bf4a", 1669743281131409, this, [value]); }
   declare readonly $type: { "c:objc(cs)ACAccountCredential": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "oauthToken": true };
 }
@@ -98,7 +98,7 @@ export type ACAccountCredentialRenewResult = "renewed" | "rejected" | "failed";
 
 export const ACAccountCredentialRenewResult = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (ACAccountCredentialRenewResult) | null { return callSDK<(ACAccountCredentialRenewResult) | null>("Accounts_a956b86ef7a76a8e", 466297099788467, undefined, [rawValue]); }
+  init(rawValue: number): (ACAccountCredentialRenewResult) | null { return callSDK<(ACAccountCredentialRenewResult) | null>("Accounts_90ad0eb69cc6bf4a", 466297099788467, undefined, [rawValue]); }
 };
 
 /**
@@ -112,51 +112,51 @@ export class ACAccountStore extends SDKHandle {
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  accountType(typeIdentifier?: (string) | null): (ACAccountType) | null { return callSDK<(ACAccountType) | null>("Accounts_a956b86ef7a76a8e", 2974120021048477, this, [typeIdentifier]); }
+  accountType(typeIdentifier?: (string) | null): (ACAccountType) | null { return callSDK<(ACAccountType) | null>("Accounts_90ad0eb69cc6bf4a", 2974120021048477, this, [typeIdentifier]); }
   /**
    * func account(withIdentifier identifier: String!) -> ACAccount!
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  account(identifier?: (string) | null): (ACAccount) | null { return callSDK<(ACAccount) | null>("Accounts_a956b86ef7a76a8e", 2162227077064064, this, [identifier]); }
+  account(identifier?: (string) | null): (ACAccount) | null { return callSDK<(ACAccount) | null>("Accounts_90ad0eb69cc6bf4a", 2162227077064064, this, [identifier]); }
   /**
    * func accounts(with accountType: ACAccountType!) -> [Any]!
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  accountsWith(accountType?: (ACAccountType) | null): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("Accounts_a956b86ef7a76a8e", 1455570969201334, this, [accountType]); }
+  accountsWith(accountType?: (ACAccountType) | null): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("Accounts_90ad0eb69cc6bf4a", 1455570969201334, this, [accountType]); }
   /** init() */
-  static init(): ACAccountStore { return callSDK<ACAccountStore>("Accounts_a956b86ef7a76a8e", 495290289651367, undefined, []); }
+  static init(): ACAccountStore { return callSDK<ACAccountStore>("Accounts_90ad0eb69cc6bf4a", 495290289651367, undefined, []); }
   /**
    * func removeAccount(_ account: ACAccount!) async throws -> Bool
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  removeAccount(account?: (ACAccount) | null, completionHandler?: $SDK3): void { return callSDK<void>("Accounts_a956b86ef7a76a8e", 4445685141755781, this, [account, completionHandler], [null,{"callback":{"out":[]}}]); }
+  removeAccount(account?: (ACAccount) | null, completionHandler?: $SDK3): void { return callSDK<void>("Accounts_90ad0eb69cc6bf4a", 4445685141755781, this, [account, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func renewCredentials(for account: ACAccount!) async throws -> ACAccountCredentialRenewResult
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  renewCredentials(account?: (ACAccount) | null, completionHandler?: (((arg0: ACAccountCredentialRenewResult, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("Accounts_a956b86ef7a76a8e", 125778331502682, this, [account, completionHandler], [null,{"callback":{"out":[]}}]); }
+  renewCredentials(account?: (ACAccount) | null, completionHandler?: (((arg0: ACAccountCredentialRenewResult, arg1: (NativeError) | null) => void)) | null): void { return callSDK<void>("Accounts_90ad0eb69cc6bf4a", 125778331502682, this, [account, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func requestAccessToAccounts(with accountType: ACAccountType!, options: [AnyHashable : Any]! = [:]) async throws -> Bool
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  requestAccessToAccounts(accountType?: (ACAccountType) | null, options?: (NativeMap<unknown, unknown>) | null, completion?: $SDK3): void { return callSDK<void>("Accounts_a956b86ef7a76a8e", 2197893375044261, this, [accountType, options, completion], [null,null,{"callback":{"out":[]}}]); }
+  requestAccessToAccounts(accountType?: (ACAccountType) | null, options?: (NativeMap<unknown, unknown>) | null, completion?: $SDK3): void { return callSDK<void>("Accounts_90ad0eb69cc6bf4a", 2197893375044261, this, [accountType, options, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func saveAccount(_ account: ACAccount!) async throws -> Bool
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  saveAccount(account?: (ACAccount) | null, completionHandler?: $SDK3): void { return callSDK<void>("Accounts_a956b86ef7a76a8e", 1777167095027901, this, [account, completionHandler], [null,{"callback":{"out":[]}}]); }
+  saveAccount(account?: (ACAccount) | null, completionHandler?: $SDK3): void { return callSDK<void>("Accounts_90ad0eb69cc6bf4a", 1777167095027901, this, [account, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * weak var accounts: NSArray! { get }
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  get accounts(): (_Foundation_NSArray) | null { return callSDK<(_Foundation_NSArray) | null>("Accounts_a956b86ef7a76a8e", 1228797747336229, this, []); }
+  get accounts(): (_Foundation_NSArray) | null { return callSDK<(_Foundation_NSArray) | null>("Accounts_90ad0eb69cc6bf4a", 1228797747336229, this, []); }
   declare readonly $type: { "c:objc(cs)ACAccountStore": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accounts": true };
 }
@@ -180,25 +180,25 @@ export type ACAccountStoreSaveCompletionHandler = $SDK8;
  */
 export class ACAccountType extends SDKHandle {
   /** init() */
-  static init(): ACAccountType { return callSDK<ACAccountType>("Accounts_a956b86ef7a76a8e", 1172765484620025, undefined, []); }
+  static init(): ACAccountType { return callSDK<ACAccountType>("Accounts_90ad0eb69cc6bf4a", 1172765484620025, undefined, []); }
   /**
    * var accessGranted: Bool { get }
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  get accessGranted(): boolean { return callSDK<boolean>("Accounts_a956b86ef7a76a8e", 1314557414031154, this, []); }
+  get accessGranted(): boolean { return callSDK<boolean>("Accounts_90ad0eb69cc6bf4a", 1314557414031154, this, []); }
   /**
    * var accountTypeDescription: String! { get }
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  get accountTypeDescription(): (string) | null { return callSDK<(string) | null>("Accounts_a956b86ef7a76a8e", 4099484420789305, this, []); }
+  get accountTypeDescription(): (string) | null { return callSDK<(string) | null>("Accounts_90ad0eb69cc6bf4a", 4099484420789305, this, []); }
   /**
    * var identifier: String! { get }
    * @availability iOS 6.0+
    * @deprecated iOS 15.0
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("Accounts_a956b86ef7a76a8e", 2473589563226600, this, []); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("Accounts_90ad0eb69cc6bf4a", 2473589563226600, this, []); }
   declare readonly $type: { "c:objc(cs)ACAccountType": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessGranted": true; "accountTypeDescription": true; "identifier": true };
 }
@@ -208,12 +208,12 @@ export type ACErrorCode = (number & {});
 
 export const ACErrorCode = {
   /** init(rawValue: UInt32) */
-  initRawValue(rawValue: number): ACErrorCode { return callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 2490737192196829, undefined, [rawValue]); },
+  initRawValue(rawValue: number): ACErrorCode { return callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 2490737192196829, undefined, [rawValue]); },
   /** var rawValue: UInt32 */
-  getRawValue($self: ACErrorCode): number { return callSDK<number>("Accounts_a956b86ef7a76a8e", 4183102960014801, $self, []); },
-  setRawValue($self: ACErrorCode, value: number): void { return callSDK<void>("Accounts_a956b86ef7a76a8e", 4502958155516088, $self, [value]); },
+  getRawValue($self: ACErrorCode): number { return callSDK<number>("Accounts_90ad0eb69cc6bf4a", 4183102960014801, $self, []); },
+  setRawValue($self: ACErrorCode, value: number): void { return callSDK<void>("Accounts_90ad0eb69cc6bf4a", 4502958155516088, $self, [value]); },
   /** init(_ rawValue: UInt32) */
-  init(rawValue: number): ACErrorCode { return callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 2459401058121998, undefined, [rawValue]); }
+  init(rawValue: number): ACErrorCode { return callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 2459401058121998, undefined, [rawValue]); }
 };
 
 export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
@@ -224,7 +224,7 @@ export const NSNotification_Name = {
    * @availability iOS 5.0+
    * @deprecated iOS 14.0
    */
-  get ACAccountStoreDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accounts_a956b86ef7a76a8e", 657163946974239, undefined, []); }
+  get ACAccountStoreDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accounts_90ad0eb69cc6bf4a", 657163946974239, undefined, []); }
 };
 
 /**
@@ -232,154 +232,154 @@ export const NSNotification_Name = {
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const ACAccountTypeIdentifierFacebook: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 2631769559816292, undefined, []);
+export const ACAccountTypeIdentifierFacebook: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 2631769559816292, undefined, []);
 
 /**
  * let ACAccountTypeIdentifierSinaWeibo: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const ACAccountTypeIdentifierSinaWeibo: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 2943400937616164, undefined, []);
+export const ACAccountTypeIdentifierSinaWeibo: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 2943400937616164, undefined, []);
 
 /**
  * let ACAccountTypeIdentifierTencentWeibo: String
  * @availability iOS 7.0+
  * @deprecated iOS 11.0
  */
-export const ACAccountTypeIdentifierTencentWeibo: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 423507752428795, undefined, []);
+export const ACAccountTypeIdentifierTencentWeibo: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 423507752428795, undefined, []);
 
 /**
  * let ACAccountTypeIdentifierTwitter: String
  * @availability iOS 5.0+
  * @deprecated iOS 11.0
  */
-export const ACAccountTypeIdentifierTwitter: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 3710604697092904, undefined, []);
+export const ACAccountTypeIdentifierTwitter: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 3710604697092904, undefined, []);
 
 /**
  * let ACErrorDomain: String
  * @availability iOS 5.0+
  */
-export const ACErrorDomain: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 1443816961248725, undefined, []);
+export const ACErrorDomain: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 1443816961248725, undefined, []);
 
 /**
  * let ACFacebookAppIdKey: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const ACFacebookAppIdKey: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 4481794683610489, undefined, []);
+export const ACFacebookAppIdKey: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 4481794683610489, undefined, []);
 
 /**
  * let ACFacebookAudienceEveryone: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const ACFacebookAudienceEveryone: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 2322268413944302, undefined, []);
+export const ACFacebookAudienceEveryone: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 2322268413944302, undefined, []);
 
 /**
  * let ACFacebookAudienceFriends: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const ACFacebookAudienceFriends: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 316745180059058, undefined, []);
+export const ACFacebookAudienceFriends: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 316745180059058, undefined, []);
 
 /**
  * let ACFacebookAudienceKey: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const ACFacebookAudienceKey: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 115660888197396, undefined, []);
+export const ACFacebookAudienceKey: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 115660888197396, undefined, []);
 
 /**
  * let ACFacebookAudienceOnlyMe: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const ACFacebookAudienceOnlyMe: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 3249126893946142, undefined, []);
+export const ACFacebookAudienceOnlyMe: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 3249126893946142, undefined, []);
 
 /**
  * let ACFacebookPermissionsKey: String
  * @availability iOS 6.0+
  * @deprecated iOS 11.0
  */
-export const ACFacebookPermissionsKey: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 4149410411212125, undefined, []);
+export const ACFacebookPermissionsKey: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 4149410411212125, undefined, []);
 
 /**
  * let ACTencentWeiboAppIdKey: String
  * @availability iOS 7.0+
  * @deprecated iOS 11.0
  */
-export const ACTencentWeiboAppIdKey: string = callSDK<string>("Accounts_a956b86ef7a76a8e", 1415542681020324, undefined, []);
+export const ACTencentWeiboAppIdKey: string = callSDK<string>("Accounts_90ad0eb69cc6bf4a", 1415542681020324, undefined, []);
 
 /** var ACErrorAccessDeniedByProtectionPolicy: ACErrorCode { get } */
-export const ACErrorAccessDeniedByProtectionPolicy: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 3895832389407898, undefined, []);
+export const ACErrorAccessDeniedByProtectionPolicy: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 3895832389407898, undefined, []);
 
 /** var ACErrorAccessInfoInvalid: ACErrorCode { get } */
-export const ACErrorAccessInfoInvalid: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 1194513357224749, undefined, []);
+export const ACErrorAccessInfoInvalid: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 1194513357224749, undefined, []);
 
 /** var ACErrorAccountAlreadyExists: ACErrorCode { get } */
-export const ACErrorAccountAlreadyExists: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 3637832104203444, undefined, []);
+export const ACErrorAccountAlreadyExists: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 3637832104203444, undefined, []);
 
 /** var ACErrorAccountAuthenticationFailed: ACErrorCode { get } */
-export const ACErrorAccountAuthenticationFailed: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 2361885605954108, undefined, []);
+export const ACErrorAccountAuthenticationFailed: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 2361885605954108, undefined, []);
 
 /** var ACErrorAccountMissingRequiredProperty: ACErrorCode { get } */
-export const ACErrorAccountMissingRequiredProperty: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 606896292161046, undefined, []);
+export const ACErrorAccountMissingRequiredProperty: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 606896292161046, undefined, []);
 
 /** var ACErrorAccountNotFound: ACErrorCode { get } */
-export const ACErrorAccountNotFound: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 2869932648574568, undefined, []);
+export const ACErrorAccountNotFound: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 2869932648574568, undefined, []);
 
 /** var ACErrorAccountTypeInvalid: ACErrorCode { get } */
-export const ACErrorAccountTypeInvalid: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 1503829951526884, undefined, []);
+export const ACErrorAccountTypeInvalid: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 1503829951526884, undefined, []);
 
 /** var ACErrorClientPermissionDenied: ACErrorCode { get } */
-export const ACErrorClientPermissionDenied: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 4061487167828291, undefined, []);
+export const ACErrorClientPermissionDenied: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 4061487167828291, undefined, []);
 
 /** var ACErrorCoreDataSaveFailed: ACErrorCode { get } */
-export const ACErrorCoreDataSaveFailed: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 3359384138069367, undefined, []);
+export const ACErrorCoreDataSaveFailed: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 3359384138069367, undefined, []);
 
 /** var ACErrorCredentialItemNotExpired: ACErrorCode { get } */
-export const ACErrorCredentialItemNotExpired: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 594709819764571, undefined, []);
+export const ACErrorCredentialItemNotExpired: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 594709819764571, undefined, []);
 
 /** var ACErrorCredentialItemNotFound: ACErrorCode { get } */
-export const ACErrorCredentialItemNotFound: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 3240835936357192, undefined, []);
+export const ACErrorCredentialItemNotFound: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 3240835936357192, undefined, []);
 
 /** var ACErrorCredentialNotFound: ACErrorCode { get } */
-export const ACErrorCredentialNotFound: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 4011593705562035, undefined, []);
+export const ACErrorCredentialNotFound: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 4011593705562035, undefined, []);
 
 /** var ACErrorDeniedByPlugin: ACErrorCode { get } */
-export const ACErrorDeniedByPlugin: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 1877356499193992, undefined, []);
+export const ACErrorDeniedByPlugin: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 1877356499193992, undefined, []);
 
 /** var ACErrorFailedSerializingAccountInfo: ACErrorCode { get } */
-export const ACErrorFailedSerializingAccountInfo: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 3923751183621473, undefined, []);
+export const ACErrorFailedSerializingAccountInfo: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 3923751183621473, undefined, []);
 
 /** var ACErrorFetchCredentialFailed: ACErrorCode { get } */
-export const ACErrorFetchCredentialFailed: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 3472972998974548, undefined, []);
+export const ACErrorFetchCredentialFailed: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 3472972998974548, undefined, []);
 
 /** var ACErrorInvalidClientBundleID: ACErrorCode { get } */
-export const ACErrorInvalidClientBundleID: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 1158092962802457, undefined, []);
+export const ACErrorInvalidClientBundleID: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 1158092962802457, undefined, []);
 
 /** var ACErrorInvalidCommand: ACErrorCode { get } */
-export const ACErrorInvalidCommand: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 1483557148361869, undefined, []);
+export const ACErrorInvalidCommand: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 1483557148361869, undefined, []);
 
 /** var ACErrorMissingTransportMessageID: ACErrorCode { get } */
-export const ACErrorMissingTransportMessageID: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 173924297052666, undefined, []);
+export const ACErrorMissingTransportMessageID: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 173924297052666, undefined, []);
 
 /** var ACErrorPermissionDenied: ACErrorCode { get } */
-export const ACErrorPermissionDenied: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 687430512440421, undefined, []);
+export const ACErrorPermissionDenied: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 687430512440421, undefined, []);
 
 /** var ACErrorRemoveCredentialFailed: ACErrorCode { get } */
-export const ACErrorRemoveCredentialFailed: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 550089138183677, undefined, []);
+export const ACErrorRemoveCredentialFailed: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 550089138183677, undefined, []);
 
 /** var ACErrorStoreCredentialFailed: ACErrorCode { get } */
-export const ACErrorStoreCredentialFailed: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 2585417734829162, undefined, []);
+export const ACErrorStoreCredentialFailed: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 2585417734829162, undefined, []);
 
 /** var ACErrorUnknown: ACErrorCode { get } */
-export const ACErrorUnknown: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 3767130070225315, undefined, []);
+export const ACErrorUnknown: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 3767130070225315, undefined, []);
 
 /** var ACErrorUpdatingNonexistentAccount: ACErrorCode { get } */
-export const ACErrorUpdatingNonexistentAccount: ACErrorCode = callSDK<ACErrorCode>("Accounts_a956b86ef7a76a8e", 84025798832790, undefined, []);
+export const ACErrorUpdatingNonexistentAccount: ACErrorCode = callSDK<ACErrorCode>("Accounts_90ad0eb69cc6bf4a", 84025798832790, undefined, []);
 
-registerSDKClass("ACAccount", ACAccount, { module: "Accounts_a956b86ef7a76a8e", properties: {"accountDescription":3793422184587810,"accountType":3193494046219139,"credential":2489381869882901,"identifier":2209586596200436,"userFullName":94016183291278,"username":171930232256420} });
-registerSDKClass("ACAccountCredential", ACAccountCredential, { module: "Accounts_a956b86ef7a76a8e", properties: {"oauthToken":2403044429554519} });
-registerSDKClass("ACAccountStore", ACAccountStore, { module: "Accounts_a956b86ef7a76a8e", properties: {"accounts":1228797747336229}, methods: {"accountType":{"id":2974120021048477},"account":{"id":2162227077064064},"accountsWith":{"id":1455570969201334},"removeAccount":{"id":4445685141755781,"hints":[null,{"callback":{"out":[]}}]},"renewCredentials":{"id":125778331502682,"hints":[null,{"callback":{"out":[]}}]},"requestAccessToAccounts":{"id":2197893375044261,"hints":[null,null,{"callback":{"out":[]}}]},"saveAccount":{"id":1777167095027901,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("ACAccountType", ACAccountType, { module: "Accounts_a956b86ef7a76a8e", properties: {"accessGranted":1314557414031154,"accountTypeDescription":4099484420789305,"identifier":2473589563226600} });
+registerSDKClass("ACAccount", ACAccount, { module: "Accounts_90ad0eb69cc6bf4a", properties: {"accountDescription":3793422184587810,"accountType":3193494046219139,"credential":2489381869882901,"identifier":2209586596200436,"userFullName":94016183291278,"username":171930232256420} });
+registerSDKClass("ACAccountCredential", ACAccountCredential, { module: "Accounts_90ad0eb69cc6bf4a", properties: {"oauthToken":2403044429554519} });
+registerSDKClass("ACAccountStore", ACAccountStore, { module: "Accounts_90ad0eb69cc6bf4a", properties: {"accounts":1228797747336229}, methods: {"accountType":{"id":2974120021048477},"account":{"id":2162227077064064},"accountsWith":{"id":1455570969201334},"removeAccount":{"id":4445685141755781,"hints":[null,{"callback":{"out":[]}}]},"renewCredentials":{"id":125778331502682,"hints":[null,{"callback":{"out":[]}}]},"requestAccessToAccounts":{"id":2197893375044261,"hints":[null,null,{"callback":{"out":[]}}]},"saveAccount":{"id":1777167095027901,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("ACAccountType", ACAccountType, { module: "Accounts_90ad0eb69cc6bf4a", properties: {"accessGranted":1314557414031154,"accountTypeDescription":4099484420789305,"identifier":2473589563226600} });

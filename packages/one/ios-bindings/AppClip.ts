@@ -11,12 +11,12 @@ export class APActivationPayload extends SDKHandle {
    * func confirmAcquired(in region: CLRegion) async throws -> Bool
    * @availability iOS 14.0+
    */
-  confirmAcquired(region: _CoreLocation_CLRegion, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("AppClip_a956b86ef7a76a8e", 2958903184509005, this, [region, completionHandler], [null,{"callback":{"out":[]}}]); }
+  confirmAcquired(region: _CoreLocation_CLRegion, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void { return callSDK<void>("AppClip_90ad0eb69cc6bf4a", 2958903184509005, this, [region, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var url: URL? { get }
    * @availability iOS 14.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("AppClip_a956b86ef7a76a8e", 2110169799468225, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("AppClip_90ad0eb69cc6bf4a", 2110169799468225, this, []); }
   declare readonly $type: { "c:objc(cs)APActivationPayload": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true };
 }
@@ -30,17 +30,17 @@ export class APActivationPayloadError extends SDKHandle {
    * static var disallowed: APActivationPayloadError.Code { get }
    * @availability iOS 14.0+
    */
-  static get disallowed(): APActivationPayloadError_Code { return callSDK<APActivationPayloadError_Code>("AppClip_a956b86ef7a76a8e", 704426474045448, undefined, []); }
+  static get disallowed(): APActivationPayloadError_Code { return callSDK<APActivationPayloadError_Code>("AppClip_90ad0eb69cc6bf4a", 704426474045448, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 14.0+
    */
-  static get errorDomain(): string { return callSDK<string>("AppClip_a956b86ef7a76a8e", 3404006832441122, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("AppClip_90ad0eb69cc6bf4a", 3404006832441122, undefined, []); }
   /**
    * static var doesNotMatch: APActivationPayloadError.Code { get }
    * @availability iOS 14.0+
    */
-  static get doesNotMatch(): APActivationPayloadError_Code { return callSDK<APActivationPayloadError_Code>("AppClip_a956b86ef7a76a8e", 2227844825963538, undefined, []); }
+  static get doesNotMatch(): APActivationPayloadError_Code { return callSDK<APActivationPayloadError_Code>("AppClip_90ad0eb69cc6bf4a", 2227844825963538, undefined, []); }
   declare readonly $type: { "s:SC28APActivationPayloadErrorCodeLeV": true };
 }
 
@@ -55,7 +55,7 @@ export const APActivationPayloadError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (APActivationPayloadError_Code) | null { return callSDK<(APActivationPayloadError_Code) | null>("AppClip_a956b86ef7a76a8e", 3074774626680160, undefined, [rawValue]); }
+  init(rawValue: number): (APActivationPayloadError_Code) | null { return callSDK<(APActivationPayloadError_Code) | null>("AppClip_90ad0eb69cc6bf4a", 3074774626680160, undefined, [rawValue]); }
 };
 
 export class NSUserActivity extends SDKHandle {
@@ -63,7 +63,7 @@ export class NSUserActivity extends SDKHandle {
    * var appClipActivationPayload: APActivationPayload? { get }
    * @availability iOS 14.0+
    */
-  get appClipActivationPayload(): (APActivationPayload) | null { return callSDK<(APActivationPayload) | null>("AppClip_a956b86ef7a76a8e", 3132321126686244, this, []); }
+  get appClipActivationPayload(): (APActivationPayload) | null { return callSDK<(APActivationPayload) | null>("AppClip_90ad0eb69cc6bf4a", 3132321126686244, this, []); }
   declare readonly $type: { "c:objc(cs)NSUserActivity": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "appClipActivationPayload": true };
 }
@@ -72,8 +72,8 @@ export class NSUserActivity extends SDKHandle {
  * let APActivationPayloadErrorDomain: String
  * @availability iOS 14.0+
  */
-export const APActivationPayloadErrorDomain: string = callSDK<string>("AppClip_a956b86ef7a76a8e", 693725606982208, undefined, []);
+export const APActivationPayloadErrorDomain: string = callSDK<string>("AppClip_90ad0eb69cc6bf4a", 693725606982208, undefined, []);
 
-registerSDKClass("APActivationPayload", APActivationPayload, { module: "AppClip_a956b86ef7a76a8e", properties: {"url":2110169799468225}, methods: {"confirmAcquired":{"id":2958903184509005,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("AppClip.APActivationPayloadError", APActivationPayloadError, { module: "AppClip_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("NSUserActivity", NSUserActivity, { module: "AppClip_a956b86ef7a76a8e", properties: {"appClipActivationPayload":3132321126686244} }, true);
+registerSDKClass("APActivationPayload", APActivationPayload, { module: "AppClip_90ad0eb69cc6bf4a", properties: {"url":2110169799468225}, methods: {"confirmAcquired":{"id":2958903184509005,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("AppClip.APActivationPayloadError", APActivationPayloadError, { module: "AppClip_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("NSUserActivity", NSUserActivity, { module: "AppClip_90ad0eb69cc6bf4a", properties: {"appClipActivationPayload":3132321126686244} }, true);

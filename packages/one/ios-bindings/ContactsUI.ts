@@ -41,37 +41,37 @@ export interface CNContactPickerDelegate {
  */
 export class CNContactPickerViewController extends SDKHandle {
   /** init() */
-  static init(): CNContactPickerViewController { return callSDK<CNContactPickerViewController>("ContactsUI_a956b86ef7a76a8e", 223964521103988, undefined, []); }
+  static init(): CNContactPickerViewController { return callSDK<CNContactPickerViewController>("ContactsUI_90ad0eb69cc6bf4a", 223964521103988, undefined, []); }
   /**
    * weak var delegate: (any CNContactPickerDelegate)? { get set }
    * @availability iOS 9.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ContactsUI_a956b86ef7a76a8e", 3467947102258747, this, []); }
-  set delegate(value: (Implements<CNContactPickerDelegate> | SDKHandle) | null) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 3284991072646667, this, [value], [{"protocol":"c:objc(pl)CNContactPickerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ContactsUI_90ad0eb69cc6bf4a", 3467947102258747, this, []); }
+  set delegate(value: (Implements<CNContactPickerDelegate> | SDKHandle) | null) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 3284991072646667, this, [value], [{"protocol":"c:objc(pl)CNContactPickerDelegate"}]); }
   /**
    * var displayedPropertyKeys: [String]? { get set }
    * @availability iOS 9.0+
    */
-  get displayedPropertyKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("ContactsUI_a956b86ef7a76a8e", 4303692166567386, this, []); }
-  set displayedPropertyKeys(value: (Array<string>) | null) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 4259795231850494, this, [value]); }
+  get displayedPropertyKeys(): (Array<string>) | null { return callSDK<(Array<string>) | null>("ContactsUI_90ad0eb69cc6bf4a", 4303692166567386, this, []); }
+  set displayedPropertyKeys(value: (Array<string>) | null) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 4259795231850494, this, [value]); }
   /**
    * @NSCopying var predicateForEnablingContact: NSPredicate? { get set }
    * @availability iOS 9.0+
    */
-  get predicateForEnablingContact(): $SDK3 { return callSDK<$SDK3>("ContactsUI_a956b86ef7a76a8e", 1155522423485766, this, []); }
-  set predicateForEnablingContact(value: $SDK3) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 661538639334980, this, [value]); }
+  get predicateForEnablingContact(): $SDK3 { return callSDK<$SDK3>("ContactsUI_90ad0eb69cc6bf4a", 1155522423485766, this, []); }
+  set predicateForEnablingContact(value: $SDK3) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 661538639334980, this, [value]); }
   /**
    * @NSCopying var predicateForSelectionOfContact: NSPredicate? { get set }
    * @availability iOS 9.0+
    */
-  get predicateForSelectionOfContact(): $SDK3 { return callSDK<$SDK3>("ContactsUI_a956b86ef7a76a8e", 883797493335973, this, []); }
-  set predicateForSelectionOfContact(value: $SDK3) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 3152594006732429, this, [value]); }
+  get predicateForSelectionOfContact(): $SDK3 { return callSDK<$SDK3>("ContactsUI_90ad0eb69cc6bf4a", 883797493335973, this, []); }
+  set predicateForSelectionOfContact(value: $SDK3) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 3152594006732429, this, [value]); }
   /**
    * @NSCopying var predicateForSelectionOfProperty: NSPredicate? { get set }
    * @availability iOS 9.0+
    */
-  get predicateForSelectionOfProperty(): $SDK3 { return callSDK<$SDK3>("ContactsUI_a956b86ef7a76a8e", 3621623127178419, this, []); }
-  set predicateForSelectionOfProperty(value: $SDK3) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 1273917586414320, this, [value]); }
+  get predicateForSelectionOfProperty(): $SDK3 { return callSDK<$SDK3>("ContactsUI_90ad0eb69cc6bf4a", 3621623127178419, this, []); }
+  set predicateForSelectionOfProperty(value: $SDK3) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 1273917586414320, this, [value]); }
   declare readonly $type: { "c:objc(cs)CNContactPickerViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "displayedPropertyKeys": true; "predicateForEnablingContact": true; "predicateForSelectionOfContact": true; "predicateForSelectionOfProperty": true };
 }
@@ -85,92 +85,92 @@ export class CNContactViewController extends SDKHandle {
    * class func descriptorForRequiredKeys() -> any CNKeyDescriptor
    * @availability iOS 9.0+
    */
-  static descriptorForRequiredKeys(): SDKHandle { return callSDK<SDKHandle>("ContactsUI_a956b86ef7a76a8e", 12848217632172, undefined, []); }
+  static descriptorForRequiredKeys(): SDKHandle { return callSDK<SDKHandle>("ContactsUI_90ad0eb69cc6bf4a", 12848217632172, undefined, []); }
   /**
    * convenience init(for contact: CNContact)
    * @availability iOS 9.0+
    */
-  static initFor(contact: _Contacts_CNContact): CNContactViewController { return callSDK<CNContactViewController>("ContactsUI_a956b86ef7a76a8e", 3488043838354257, undefined, [contact]); }
+  static initFor(contact: _Contacts_CNContact): CNContactViewController { return callSDK<CNContactViewController>("ContactsUI_90ad0eb69cc6bf4a", 3488043838354257, undefined, [contact]); }
   /**
    * convenience init(forNewContact contact: CNContact?)
    * @availability iOS 9.0+
    */
-  static initForNewContact(contact?: $SDK4): CNContactViewController { return callSDK<CNContactViewController>("ContactsUI_a956b86ef7a76a8e", 2828132640611291, undefined, [contact]); }
+  static initForNewContact(contact?: $SDK4): CNContactViewController { return callSDK<CNContactViewController>("ContactsUI_90ad0eb69cc6bf4a", 2828132640611291, undefined, [contact]); }
   /**
    * convenience init(forUnknownContact contact: CNContact)
    * @availability iOS 9.0+
    */
-  static initForUnknownContact(contact: _Contacts_CNContact): CNContactViewController { return callSDK<CNContactViewController>("ContactsUI_a956b86ef7a76a8e", 1814184817664964, undefined, [contact]); }
+  static initForUnknownContact(contact: _Contacts_CNContact): CNContactViewController { return callSDK<CNContactViewController>("ContactsUI_90ad0eb69cc6bf4a", 1814184817664964, undefined, [contact]); }
   /**
    * func highlightProperty(withKey key: String, identifier: String?)
    * @availability iOS 9.0+
    */
-  highlightProperty(key: string, identifier?: (string) | null): void { return callSDK<void>("ContactsUI_a956b86ef7a76a8e", 1007584855239806, this, [key, identifier]); }
+  highlightProperty(key: string, identifier?: (string) | null): void { return callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 1007584855239806, this, [key, identifier]); }
   /**
    * var allowsActions: Bool { get set }
    * @availability iOS 9.0+
    */
-  get allowsActions(): boolean { return callSDK<boolean>("ContactsUI_a956b86ef7a76a8e", 3183973253102224, this, []); }
-  set allowsActions(value: boolean) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 4224931670881719, this, [value]); }
+  get allowsActions(): boolean { return callSDK<boolean>("ContactsUI_90ad0eb69cc6bf4a", 3183973253102224, this, []); }
+  set allowsActions(value: boolean) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 4224931670881719, this, [value]); }
   /**
    * var allowsEditing: Bool { get set }
    * @availability iOS 9.0+
    */
-  get allowsEditing(): boolean { return callSDK<boolean>("ContactsUI_a956b86ef7a76a8e", 114982703437453, this, []); }
-  set allowsEditing(value: boolean) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 171964140673477, this, [value]); }
+  get allowsEditing(): boolean { return callSDK<boolean>("ContactsUI_90ad0eb69cc6bf4a", 114982703437453, this, []); }
+  set allowsEditing(value: boolean) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 171964140673477, this, [value]); }
   /**
    * var alternateName: String? { get set }
    * @availability iOS 9.0+
    */
-  get alternateName(): (string) | null { return callSDK<(string) | null>("ContactsUI_a956b86ef7a76a8e", 4098452112179473, this, []); }
-  set alternateName(value: (string) | null) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 3575611337337181, this, [value]); }
+  get alternateName(): (string) | null { return callSDK<(string) | null>("ContactsUI_90ad0eb69cc6bf4a", 4098452112179473, this, []); }
+  set alternateName(value: (string) | null) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 3575611337337181, this, [value]); }
   /**
    * var contact: CNContact { get }
    * @availability iOS 9.0+
    */
-  get contact(): _Contacts_CNContact { return callSDK<_Contacts_CNContact>("ContactsUI_a956b86ef7a76a8e", 1979214629067638, this, []); }
+  get contact(): _Contacts_CNContact { return callSDK<_Contacts_CNContact>("ContactsUI_90ad0eb69cc6bf4a", 1979214629067638, this, []); }
   /**
    * var contactStore: CNContactStore? { get set }
    * @availability iOS 9.0+
    */
-  get contactStore(): $SDK5 { return callSDK<$SDK5>("ContactsUI_a956b86ef7a76a8e", 4170758864273045, this, []); }
-  set contactStore(value: $SDK5) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 1197000160237855, this, [value]); }
+  get contactStore(): $SDK5 { return callSDK<$SDK5>("ContactsUI_90ad0eb69cc6bf4a", 4170758864273045, this, []); }
+  set contactStore(value: $SDK5) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 1197000160237855, this, [value]); }
   /**
    * weak var delegate: (any CNContactViewControllerDelegate)? { get set }
    * @availability iOS 9.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ContactsUI_a956b86ef7a76a8e", 2516355782640463, this, []); }
-  set delegate(value: (Implements<CNContactViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 1601434107798174, this, [value], [{"protocol":"c:objc(pl)CNContactViewControllerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ContactsUI_90ad0eb69cc6bf4a", 2516355782640463, this, []); }
+  set delegate(value: (Implements<CNContactViewControllerDelegate> | SDKHandle) | null) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 1601434107798174, this, [value], [{"protocol":"c:objc(pl)CNContactViewControllerDelegate"}]); }
   /**
    * var displayedPropertyKeys: [Any]? { get set }
    * @availability iOS 9.0+
    */
-  get displayedPropertyKeys(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("ContactsUI_a956b86ef7a76a8e", 3854067601428720, this, []); }
-  set displayedPropertyKeys(value: (Array<unknown>) | null) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 1978848472592418, this, [value]); }
+  get displayedPropertyKeys(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("ContactsUI_90ad0eb69cc6bf4a", 3854067601428720, this, []); }
+  set displayedPropertyKeys(value: (Array<unknown>) | null) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 1978848472592418, this, [value]); }
   /**
    * var message: String? { get set }
    * @availability iOS 9.0+
    */
-  get message(): (string) | null { return callSDK<(string) | null>("ContactsUI_a956b86ef7a76a8e", 1011998319865372, this, []); }
-  set message(value: (string) | null) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 1918713645044373, this, [value]); }
+  get message(): (string) | null { return callSDK<(string) | null>("ContactsUI_90ad0eb69cc6bf4a", 1011998319865372, this, []); }
+  set message(value: (string) | null) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 1918713645044373, this, [value]); }
   /**
    * var parentContainer: CNContainer? { get set }
    * @availability iOS 9.0+
    */
-  get parentContainer(): $SDK7 { return callSDK<$SDK7>("ContactsUI_a956b86ef7a76a8e", 2490679675039315, this, []); }
-  set parentContainer(value: $SDK7) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 3626332760161353, this, [value]); }
+  get parentContainer(): $SDK7 { return callSDK<$SDK7>("ContactsUI_90ad0eb69cc6bf4a", 2490679675039315, this, []); }
+  set parentContainer(value: $SDK7) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 3626332760161353, this, [value]); }
   /**
    * var parentGroup: CNGroup? { get set }
    * @availability iOS 9.0+
    */
-  get parentGroup(): (_Contacts_CNGroup) | null { return callSDK<(_Contacts_CNGroup) | null>("ContactsUI_a956b86ef7a76a8e", 1538971917343354, this, []); }
-  set parentGroup(value: (_Contacts_CNGroup) | null) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 1345245787333597, this, [value]); }
+  get parentGroup(): (_Contacts_CNGroup) | null { return callSDK<(_Contacts_CNGroup) | null>("ContactsUI_90ad0eb69cc6bf4a", 1538971917343354, this, []); }
+  set parentGroup(value: (_Contacts_CNGroup) | null) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 1345245787333597, this, [value]); }
   /**
    * var shouldShowLinkedContacts: Bool { get set }
    * @availability iOS 9.0+
    */
-  get shouldShowLinkedContacts(): boolean { return callSDK<boolean>("ContactsUI_a956b86ef7a76a8e", 2493231027143418, this, []); }
-  set shouldShowLinkedContacts(value: boolean) { callSDK<void>("ContactsUI_a956b86ef7a76a8e", 179762410224945, this, [value]); }
+  get shouldShowLinkedContacts(): boolean { return callSDK<boolean>("ContactsUI_90ad0eb69cc6bf4a", 2493231027143418, this, []); }
+  set shouldShowLinkedContacts(value: boolean) { callSDK<void>("ContactsUI_90ad0eb69cc6bf4a", 179762410224945, this, [value]); }
   declare readonly $type: { "c:objc(cs)CNContactViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsActions": true; "allowsEditing": true; "alternateName": true; "contact": true; "contactStore": true; "delegate": true; "displayedPropertyKeys": true; "message": true; "parentContainer": true; "parentGroup": true; "shouldShowLinkedContacts": true };
 }
@@ -192,7 +192,7 @@ export class CNMutableContact extends SDKHandle {
    * override dynamic var id: UUID { get }
    * @availability iOS 16.0+
    */
-  get id(): string { return callSDK<string>("ContactsUI_a956b86ef7a76a8e", 3827901808272944, this, []); }
+  get id(): string { return callSDK<string>("ContactsUI_90ad0eb69cc6bf4a", 3827901808272944, this, []); }
   declare readonly $type: { "c:objc(cs)CNMutableContact": true; "c:objc(cs)CNContact": true; "c:objc(cs)NSObject": true };
 }
 
@@ -205,7 +205,7 @@ export class ContactAccessButton extends SDKHandle {
    * @MainActor @preconcurrency init(queryString query: String, ignoredEmails: Set<String>? = nil, ignoredPhoneNumbers: Set<String>? = nil, approvalCallback: (([String]) -> Void)? = nil)
    * @availability iOS 18.0+
    */
-  static init(query: string, ignoredEmails?: (Array<string>) | null, ignoredPhoneNumbers?: (Array<string>) | null, approvalCallback?: (((arg0: Array<string>) => void)) | null): Promise<ContactAccessButton> { return callSDKAsync<ContactAccessButton>("ContactsUI_a956b86ef7a76a8e", 1535732794472090, undefined, [query, ignoredEmails, ignoredPhoneNumbers, approvalCallback], [null,null,null,{"callback":{"out":[]}}]); }
+  static init(query: string, ignoredEmails?: (Array<string>) | null, ignoredPhoneNumbers?: (Array<string>) | null, approvalCallback?: (((arg0: Array<string>) => void)) | null): Promise<ContactAccessButton> { return callSDKAsync<ContactAccessButton>("ContactsUI_90ad0eb69cc6bf4a", 1535732794472090, undefined, [query, ignoredEmails, ignoredPhoneNumbers, approvalCallback], [null,null,null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "s:10ContactsUI19ContactAccessButtonV": true };
 }
 
@@ -226,12 +226,12 @@ export const ContactAccessButton_Caption = {
    * init?(rawValue: String)
    * @availability iOS 18.0+
    */
-  init(rawValue: string): Promise<(ContactAccessButton_Caption) | null> { return callSDKAsync<(ContactAccessButton_Caption) | null>("ContactsUI_a956b86ef7a76a8e", 1509478926725393, undefined, [rawValue]); },
+  init(rawValue: string): Promise<(ContactAccessButton_Caption) | null> { return callSDKAsync<(ContactAccessButton_Caption) | null>("ContactsUI_90ad0eb69cc6bf4a", 1509478926725393, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: ContactAccessButton_Caption): Promise<string> { return callSDKAsync<string>("ContactsUI_a956b86ef7a76a8e", 2472040650633587, $self, []); }
+  getRawValue($self: ContactAccessButton_Caption): Promise<string> { return callSDKAsync<string>("ContactsUI_90ad0eb69cc6bf4a", 2472040650633587, $self, []); }
 };
 
 /**
@@ -249,12 +249,12 @@ export class ContactAccessButton_Style extends SDKHandle {
    * init(imageTrailingEdgePadding: CGFloat? = nil, imageWidth: CGFloat? = nil, imageColor: Color? = nil)
    * @availability iOS 18.0+
    */
-  static init(imageTrailingEdgePadding?: (number) | null, imageWidth?: (number) | null, imageColor?: (_SwiftUICore_Color) | null): Promise<ContactAccessButton_Style> { return callSDKAsync<ContactAccessButton_Style>("ContactsUI_a956b86ef7a76a8e", 1492218466339692, undefined, [imageTrailingEdgePadding, imageWidth, imageColor]); }
+  static init(imageTrailingEdgePadding?: (number) | null, imageWidth?: (number) | null, imageColor?: (_SwiftUICore_Color) | null): Promise<ContactAccessButton_Style> { return callSDKAsync<ContactAccessButton_Style>("ContactsUI_90ad0eb69cc6bf4a", 1492218466339692, undefined, [imageTrailingEdgePadding, imageWidth, imageColor]); }
   /**
    * static let automatic: ContactAccessButton.Style
    * @availability iOS 18.0+
    */
-  static get automatic(): Promise<ContactAccessButton_Style> { return callSDKAsync<ContactAccessButton_Style>("ContactsUI_a956b86ef7a76a8e", 1841717599677837, undefined, []); }
+  static get automatic(): Promise<ContactAccessButton_Style> { return callSDKAsync<ContactAccessButton_Style>("ContactsUI_90ad0eb69cc6bf4a", 1841717599677837, undefined, []); }
   declare readonly $type: { "s:10ContactsUI19ContactAccessButtonV5StyleV": true };
 }
 
@@ -263,15 +263,15 @@ export class UIApplicationShortcutIcon extends SDKHandle {
    * convenience init(contact: CNContact)
    * @availability iOS 9.0+
    */
-  static init(contact: _Contacts_CNContact): _UIKit_UIApplicationShortcutIcon { return callSDK<_UIKit_UIApplicationShortcutIcon>("ContactsUI_a956b86ef7a76a8e", 881680107437894, undefined, [contact]); }
+  static init(contact: _Contacts_CNContact): _UIKit_UIApplicationShortcutIcon { return callSDK<_UIKit_UIApplicationShortcutIcon>("ContactsUI_90ad0eb69cc6bf4a", 881680107437894, undefined, [contact]); }
   declare readonly $type: { "c:objc(cs)UIApplicationShortcutIcon": true; "c:objc(cs)NSObject": true };
 }
 
 registerSDKProtocol("c:objc(pl)CNContactPickerDelegate", {"contactPickerDidCancel":"contactPickerDidCancel(_:)","contactPickerDidSelect":"contactPicker(_:didSelect:)","contactPickerDidSelectContactProperties":"contactPicker(_:didSelectContactProperties:)"});
-registerSDKClass("CNContactPickerViewController", CNContactPickerViewController, { module: "ContactsUI_a956b86ef7a76a8e", properties: {"delegate":3467947102258747,"displayedPropertyKeys":4303692166567386,"predicateForEnablingContact":1155522423485766,"predicateForSelectionOfContact":883797493335973,"predicateForSelectionOfProperty":3621623127178419} });
-registerSDKClass("CNContactViewController", CNContactViewController, { module: "ContactsUI_a956b86ef7a76a8e", properties: {"allowsActions":3183973253102224,"allowsEditing":114982703437453,"alternateName":4098452112179473,"contact":1979214629067638,"contactStore":4170758864273045,"delegate":2516355782640463,"displayedPropertyKeys":3854067601428720,"message":1011998319865372,"parentContainer":2490679675039315,"parentGroup":1538971917343354,"shouldShowLinkedContacts":2493231027143418}, methods: {"highlightProperty":{"id":1007584855239806}} });
+registerSDKClass("CNContactPickerViewController", CNContactPickerViewController, { module: "ContactsUI_90ad0eb69cc6bf4a", properties: {"delegate":3467947102258747,"displayedPropertyKeys":4303692166567386,"predicateForEnablingContact":1155522423485766,"predicateForSelectionOfContact":883797493335973,"predicateForSelectionOfProperty":3621623127178419} });
+registerSDKClass("CNContactViewController", CNContactViewController, { module: "ContactsUI_90ad0eb69cc6bf4a", properties: {"allowsActions":3183973253102224,"allowsEditing":114982703437453,"alternateName":4098452112179473,"contact":1979214629067638,"contactStore":4170758864273045,"delegate":2516355782640463,"displayedPropertyKeys":3854067601428720,"message":1011998319865372,"parentContainer":2490679675039315,"parentGroup":1538971917343354,"shouldShowLinkedContacts":2493231027143418}, methods: {"highlightProperty":{"id":1007584855239806}} });
 registerSDKProtocol("c:objc(pl)CNContactViewControllerDelegate", {"contactViewControllerDidCompleteWith":"contactViewController(_:didCompleteWith:)"});
-registerSDKClass("CNMutableContact", CNMutableContact, { module: "ContactsUI_a956b86ef7a76a8e", properties: {} }, true);
-registerSDKClass("ContactsUI.ContactAccessButton", ContactAccessButton, { module: "ContactsUI_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("ContactsUI.ContactAccessButton.Style", ContactAccessButton_Style, { module: "ContactsUI_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("UIApplicationShortcutIcon", UIApplicationShortcutIcon, { module: "ContactsUI_a956b86ef7a76a8e", properties: {} }, true);
+registerSDKClass("CNMutableContact", CNMutableContact, { module: "ContactsUI_90ad0eb69cc6bf4a", properties: {} }, true);
+registerSDKClass("ContactsUI.ContactAccessButton", ContactAccessButton, { module: "ContactsUI_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("ContactsUI.ContactAccessButton.Style", ContactAccessButton_Style, { module: "ContactsUI_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("UIApplicationShortcutIcon", UIApplicationShortcutIcon, { module: "ContactsUI_90ad0eb69cc6bf4a", properties: {} }, true);

@@ -20,62 +20,62 @@ type $SDK6 = { top: number; left: number; bottom: number; right: number };
  */
 export class MSConversation extends SDKHandle {
   /** init() */
-  static init(): MSConversation { return callSDK<MSConversation>("Messages_a956b86ef7a76a8e", 4155906808592993, undefined, []); }
+  static init(): MSConversation { return callSDK<MSConversation>("Messages_90ad0eb69cc6bf4a", 4155906808592993, undefined, []); }
   /**
    * func insertAttachment(_ URL: URL, withAlternateFilename filename: String?) async throws
    * @availability iOS 10.0+
    */
-  insertAttachment(URL: string, filename?: (string) | null, completionHandler?: $SDK0): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 2171632088484504, this, [URL, filename, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  insertAttachment(URL: string, filename?: (string) | null, completionHandler?: $SDK0): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 2171632088484504, this, [URL, filename, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func insert(_ message: MSMessage) async throws
    * @availability iOS 10.0+
    */
-  insertCompletionHandler(message: MSMessage, completionHandler?: $SDK0): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 2643683099210620, this, [message, completionHandler], [null,{"callback":{"out":[]}}]); }
+  insertCompletionHandler(message: MSMessage, completionHandler?: $SDK0): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 2643683099210620, this, [message, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func insert(_ sticker: MSSticker) async throws
    * @availability iOS 10.0+
    */
-  insertCompletionHandler47219(sticker: MSSticker, completionHandler?: $SDK0): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 3667196134814813, this, [sticker, completionHandler], [null,{"callback":{"out":[]}}]); }
+  insertCompletionHandler47219(sticker: MSSticker, completionHandler?: $SDK0): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 3667196134814813, this, [sticker, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func insertText(_ text: String) async throws
    * @availability iOS 10.0+
    */
-  insertText(text: string, completionHandler?: $SDK0): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 787275104335473, this, [text, completionHandler], [null,{"callback":{"out":[]}}]); }
+  insertText(text: string, completionHandler?: $SDK0): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 787275104335473, this, [text, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func sendAttachment(_ URL: URL, withAlternateFilename filename: String?) async throws
    * @availability iOS 11.0+
    */
-  sendAttachment(URL: string, filename?: (string) | null, completionHandler?: $SDK0): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 1893158874776152, this, [URL, filename, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  sendAttachment(URL: string, filename?: (string) | null, completionHandler?: $SDK0): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 1893158874776152, this, [URL, filename, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func send(_ message: MSMessage) async throws
    * @availability iOS 11.0+
    */
-  sendCompletionHandler(message: MSMessage, completionHandler?: $SDK0): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 3833970599387617, this, [message, completionHandler], [null,{"callback":{"out":[]}}]); }
+  sendCompletionHandler(message: MSMessage, completionHandler?: $SDK0): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 3833970599387617, this, [message, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func send(_ sticker: MSSticker) async throws
    * @availability iOS 11.0+
    */
-  sendCompletionHandler39136(sticker: MSSticker, completionHandler?: $SDK0): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 2996644585585020, this, [sticker, completionHandler], [null,{"callback":{"out":[]}}]); }
+  sendCompletionHandler39136(sticker: MSSticker, completionHandler?: $SDK0): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 2996644585585020, this, [sticker, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func sendText(_ text: String) async throws
    * @availability iOS 11.0+
    */
-  sendText(text: string, completionHandler?: $SDK0): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 3244275511477193, this, [text, completionHandler], [null,{"callback":{"out":[]}}]); }
+  sendText(text: string, completionHandler?: $SDK0): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 3244275511477193, this, [text, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var localParticipantIdentifier: UUID { get }
    * @availability iOS 10.0+
    */
-  get localParticipantIdentifier(): string { return callSDK<string>("Messages_a956b86ef7a76a8e", 2432507118946060, this, []); }
+  get localParticipantIdentifier(): string { return callSDK<string>("Messages_90ad0eb69cc6bf4a", 2432507118946060, this, []); }
   /**
    * var remoteParticipantIdentifiers: [UUID] { get }
    * @availability iOS 10.0+
    */
-  get remoteParticipantIdentifiers(): Array<string> { return callSDK<Array<string>>("Messages_a956b86ef7a76a8e", 643008480594738, this, []); }
+  get remoteParticipantIdentifiers(): Array<string> { return callSDK<Array<string>>("Messages_90ad0eb69cc6bf4a", 643008480594738, this, []); }
   /**
    * var selectedMessage: MSMessage? { get }
    * @availability iOS 10.0+
    */
-  get selectedMessage(): (MSMessage) | null { return callSDK<(MSMessage) | null>("Messages_a956b86ef7a76a8e", 2168387481618224, this, []); }
+  get selectedMessage(): (MSMessage) | null { return callSDK<(MSMessage) | null>("Messages_90ad0eb69cc6bf4a", 2168387481618224, this, []); }
   declare readonly $type: { "c:objc(cs)MSConversation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "localParticipantIdentifier": true; "remoteParticipantIdentifiers": true; "selectedMessage": true };
 }
@@ -89,13 +89,13 @@ export class MSCriticalMessage extends SDKHandle {
    * init(messageText: String)
    * @availability iOS 18.2+
    */
-  static init(messageText: string): MSCriticalMessage { return callSDK<MSCriticalMessage>("Messages_a956b86ef7a76a8e", 172165395757667, undefined, [messageText]); }
+  static init(messageText: string): MSCriticalMessage { return callSDK<MSCriticalMessage>("Messages_90ad0eb69cc6bf4a", 172165395757667, undefined, [messageText]); }
   /**
    * var messageText: String
    * @availability iOS 18.2+
    */
-  get messageText(): string { return callSDK<string>("Messages_a956b86ef7a76a8e", 2035264490112523, this, []); }
-  set messageText(value: string) { callSDK<void>("Messages_a956b86ef7a76a8e", 1292116607228189, this, [value]); }
+  get messageText(): string { return callSDK<string>("Messages_90ad0eb69cc6bf4a", 2035264490112523, this, []); }
+  set messageText(value: string) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 1292116607228189, this, [value]); }
   declare readonly $type: { "s:8Messages17MSCriticalMessageV": true };
 }
 
@@ -110,12 +110,12 @@ export const MSCriticalMessagingAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 18.2+
    */
-  init(rawValue: number): (MSCriticalMessagingAuthorizationStatus) | null { return callSDK<(MSCriticalMessagingAuthorizationStatus) | null>("Messages_a956b86ef7a76a8e", 2455683734760459, undefined, [rawValue]); },
+  init(rawValue: number): (MSCriticalMessagingAuthorizationStatus) | null { return callSDK<(MSCriticalMessagingAuthorizationStatus) | null>("Messages_90ad0eb69cc6bf4a", 2455683734760459, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 18.2+
    */
-  getRawValue($self: MSCriticalMessagingAuthorizationStatus): number { return callSDK<number>("Messages_a956b86ef7a76a8e", 2233401256073928, $self, []); }
+  getRawValue($self: MSCriticalMessagingAuthorizationStatus): number { return callSDK<number>("Messages_90ad0eb69cc6bf4a", 2233401256073928, $self, []); }
 };
 
 /**
@@ -135,27 +135,27 @@ export const MSCriticalMessagingError = {
    * static var errorDomain: String { get }
    * @availability iOS 18.2+
    */
-  get errorDomain(): string { return callSDK<string>("Messages_a956b86ef7a76a8e", 1404137486726389, undefined, []); },
+  get errorDomain(): string { return callSDK<string>("Messages_90ad0eb69cc6bf4a", 1404137486726389, undefined, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 18.2+
    */
-  getErrorDescription($self: MSCriticalMessagingError): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 1438884429538232, $self, []); },
+  getErrorDescription($self: MSCriticalMessagingError): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 1438884429538232, $self, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 18.2+
    */
-  init(rawValue: number): (MSCriticalMessagingError) | null { return callSDK<(MSCriticalMessagingError) | null>("Messages_a956b86ef7a76a8e", 4035066702955608, undefined, [rawValue]); },
+  init(rawValue: number): (MSCriticalMessagingError) | null { return callSDK<(MSCriticalMessagingError) | null>("Messages_90ad0eb69cc6bf4a", 4035066702955608, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 18.2+
    */
-  getRawValue($self: MSCriticalMessagingError): number { return callSDK<number>("Messages_a956b86ef7a76a8e", 1117340608295625, $self, []); },
+  getRawValue($self: MSCriticalMessagingError): number { return callSDK<number>("Messages_90ad0eb69cc6bf4a", 1117340608295625, $self, []); },
   /**
    * var errorCode: Int { get }
    * @availability iOS 18.2+
    */
-  getErrorCode($self: MSCriticalMessagingError): number { return callSDK<number>("Messages_a956b86ef7a76a8e", 3387718416558249, $self, []); }
+  getErrorCode($self: MSCriticalMessagingError): number { return callSDK<number>("Messages_90ad0eb69cc6bf4a", 3387718416558249, $self, []); }
 };
 
 /**
@@ -173,27 +173,27 @@ export class MSCriticalSMSMessenger extends SDKHandle {
    * override dynamic init()
    * @availability iOS 18.2+
    */
-  static init(): MSCriticalSMSMessenger { return callSDK<MSCriticalSMSMessenger>("Messages_a956b86ef7a76a8e", 1819070116958821, undefined, []); }
+  static init(): MSCriticalSMSMessenger { return callSDK<MSCriticalSMSMessenger>("Messages_90ad0eb69cc6bf4a", 1819070116958821, undefined, []); }
   /**
    * func requestAuthorization(for recipients: [MSRecipient]) async throws -> [MSRecipient : MSCriticalMessagingAuthorizationStatus]
    * @availability iOS 18.2+
    */
-  requestAuthorization(recipients: Array<MSRecipient>): Promise<$SDK1> { return callSDKAsync<$SDK1>("Messages_a956b86ef7a76a8e", 1308457404643364, this, [recipients]); }
+  requestAuthorization(recipients: Array<MSRecipient>): Promise<$SDK1> { return callSDKAsync<$SDK1>("Messages_90ad0eb69cc6bf4a", 1308457404643364, this, [recipients]); }
   /**
    * func checkAuthorizationStatus(for recipients: [MSRecipient]) async throws -> [MSRecipient : MSCriticalMessagingAuthorizationStatus]
    * @availability iOS 18.2+
    */
-  checkAuthorizationStatus(recipients: Array<MSRecipient>): Promise<$SDK1> { return callSDKAsync<$SDK1>("Messages_a956b86ef7a76a8e", 2943005721264005, this, [recipients]); }
+  checkAuthorizationStatus(recipients: Array<MSRecipient>): Promise<$SDK1> { return callSDKAsync<$SDK1>("Messages_90ad0eb69cc6bf4a", 2943005721264005, this, [recipients]); }
   /**
    * var maximumCriticalMessagingRecipients: Int { get }
    * @availability iOS 18.2+
    */
-  get maximumCriticalMessagingRecipients(): number { return callSDK<number>("Messages_a956b86ef7a76a8e", 393703526238814, this, []); }
+  get maximumCriticalMessagingRecipients(): number { return callSDK<number>("Messages_90ad0eb69cc6bf4a", 393703526238814, this, []); }
   /**
    * func send(_ message: MSCriticalMessage, to recipient: MSRecipient) async throws -> Bool
    * @availability iOS 18.2+
    */
-  send(message: MSCriticalMessage, recipient: MSRecipient): Promise<boolean> { return callSDKAsync<boolean>("Messages_a956b86ef7a76a8e", 1597715023839851, this, [message, recipient]); }
+  send(message: MSCriticalMessage, recipient: MSRecipient): Promise<boolean> { return callSDKAsync<boolean>("Messages_90ad0eb69cc6bf4a", 1597715023839851, this, [message, recipient]); }
   declare readonly $type: { "c:@M@Messages@objc(cs)MSCriticalSMSMessenger": true; "c:objc(cs)NSObject": true };
 }
 
@@ -206,63 +206,63 @@ export class MSMessage extends SDKHandle {
    * init()
    * @availability iOS 10.0+
    */
-  static init(): MSMessage { return callSDK<MSMessage>("Messages_a956b86ef7a76a8e", 1800515791183269, undefined, []); }
+  static init(): MSMessage { return callSDK<MSMessage>("Messages_90ad0eb69cc6bf4a", 1800515791183269, undefined, []); }
   /**
    * init(session: MSSession)
    * @availability iOS 10.0+
    */
-  static initSession(session: MSSession): MSMessage { return callSDK<MSMessage>("Messages_a956b86ef7a76a8e", 156179830702471, undefined, [session]); }
+  static initSession(session: MSSession): MSMessage { return callSDK<MSMessage>("Messages_90ad0eb69cc6bf4a", 156179830702471, undefined, [session]); }
   /**
    * var url: URL? { get set }
    * @availability iOS 10.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 1628345970176687, this, []); }
-  set url(value: (string) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 3002379187949346, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 1628345970176687, this, []); }
+  set url(value: (string) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 3002379187949346, this, [value]); }
   /**
    * var accessibilityLabel: String? { get set }
    * @availability iOS 10.0+
    */
-  get accessibilityLabel(): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 851631909716092, this, []); }
-  set accessibilityLabel(value: (string) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 2242824019855401, this, [value]); }
+  get accessibilityLabel(): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 851631909716092, this, []); }
+  set accessibilityLabel(value: (string) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 2242824019855401, this, [value]); }
   /**
    * var error: (any Error)? { get set }
    * @availability iOS 10.0+
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("Messages_a956b86ef7a76a8e", 2471050625679071, this, []); }
-  set error(value: (NativeError) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 1790546060839632, this, [value]); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("Messages_90ad0eb69cc6bf4a", 2471050625679071, this, []); }
+  set error(value: (NativeError) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 1790546060839632, this, [value]); }
   /**
    * @NSCopying var layout: MSMessageLayout? { get set }
    * @availability iOS 10.0+
    */
-  get layout(): (MSMessageLayout) | null { return callSDK<(MSMessageLayout) | null>("Messages_a956b86ef7a76a8e", 965298892275234, this, []); }
-  set layout(value: (MSMessageLayout) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 3217266911233253, this, [value]); }
+  get layout(): (MSMessageLayout) | null { return callSDK<(MSMessageLayout) | null>("Messages_90ad0eb69cc6bf4a", 965298892275234, this, []); }
+  set layout(value: (MSMessageLayout) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 3217266911233253, this, [value]); }
   /**
    * var isPending: Bool { get }
    * @availability iOS 11.0+
    */
-  get isPending(): boolean { return callSDK<boolean>("Messages_a956b86ef7a76a8e", 2723092292165697, this, []); }
+  get isPending(): boolean { return callSDK<boolean>("Messages_90ad0eb69cc6bf4a", 2723092292165697, this, []); }
   /**
    * var senderParticipantIdentifier: UUID { get }
    * @availability iOS 10.0+
    */
-  get senderParticipantIdentifier(): string { return callSDK<string>("Messages_a956b86ef7a76a8e", 3820462857171017, this, []); }
+  get senderParticipantIdentifier(): string { return callSDK<string>("Messages_90ad0eb69cc6bf4a", 3820462857171017, this, []); }
   /**
    * var session: MSSession? { get }
    * @availability iOS 10.0+
    */
-  get session(): (MSSession) | null { return callSDK<(MSSession) | null>("Messages_a956b86ef7a76a8e", 3197105770317034, this, []); }
+  get session(): (MSSession) | null { return callSDK<(MSSession) | null>("Messages_90ad0eb69cc6bf4a", 3197105770317034, this, []); }
   /**
    * var shouldExpire: Bool { get set }
    * @availability iOS 10.0+
    */
-  get shouldExpire(): boolean { return callSDK<boolean>("Messages_a956b86ef7a76a8e", 1653844258284969, this, []); }
-  set shouldExpire(value: boolean) { callSDK<void>("Messages_a956b86ef7a76a8e", 3067358664109901, this, [value]); }
+  get shouldExpire(): boolean { return callSDK<boolean>("Messages_90ad0eb69cc6bf4a", 1653844258284969, this, []); }
+  set shouldExpire(value: boolean) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 3067358664109901, this, [value]); }
   /**
    * var summaryText: String? { get set }
    * @availability iOS 10.0+
    */
-  get summaryText(): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 3503658451998881, this, []); }
-  set summaryText(value: (string) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 4242699083482205, this, [value]); }
+  get summaryText(): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 3503658451998881, this, []); }
+  set summaryText(value: (string) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 4242699083482205, this, [value]); }
   declare readonly $type: { "c:objc(cs)MSMessage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "accessibilityLabel": true; "error": true; "layout": true; "isPending": true; "senderParticipantIdentifier": true; "session": true; "shouldExpire": true; "summaryText": true };
 }
@@ -278,7 +278,7 @@ export const MSMessageErrorCode = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MSMessageErrorCode) | null { return callSDK<(MSMessageErrorCode) | null>("Messages_a956b86ef7a76a8e", 3908940846598693, undefined, [rawValue]); }
+  init(rawValue: number): (MSMessageErrorCode) | null { return callSDK<(MSMessageErrorCode) | null>("Messages_90ad0eb69cc6bf4a", 3908940846598693, undefined, [rawValue]); }
 };
 
 /**
@@ -287,7 +287,7 @@ export const MSMessageErrorCode = {
  */
 export class MSMessageLayout extends SDKHandle {
   /** init() */
-  static init(): MSMessageLayout { return callSDK<MSMessageLayout>("Messages_a956b86ef7a76a8e", 2966214112311200, undefined, []); }
+  static init(): MSMessageLayout { return callSDK<MSMessageLayout>("Messages_90ad0eb69cc6bf4a", 2966214112311200, undefined, []); }
   declare readonly $type: { "c:objc(cs)MSMessageLayout": true; "c:objc(cs)NSObject": true };
 }
 
@@ -300,12 +300,12 @@ export class MSMessageLiveLayout extends (MSMessageLayout as unknown as Omit<typ
    * init(alternateLayout: MSMessageTemplateLayout)
    * @availability iOS 11.0+
    */
-  static init(alternateLayout: MSMessageTemplateLayout): MSMessageLiveLayout { return callSDK<MSMessageLiveLayout>("Messages_a956b86ef7a76a8e", 18570167973772, undefined, [alternateLayout]); }
+  static init(alternateLayout: MSMessageTemplateLayout): MSMessageLiveLayout { return callSDK<MSMessageLiveLayout>("Messages_90ad0eb69cc6bf4a", 18570167973772, undefined, [alternateLayout]); }
   /**
    * var alternateLayout: MSMessageTemplateLayout { get }
    * @availability iOS 11.0+
    */
-  get alternateLayout(): MSMessageTemplateLayout { return callSDK<MSMessageTemplateLayout>("Messages_a956b86ef7a76a8e", 2199214125069015, this, []); }
+  get alternateLayout(): MSMessageTemplateLayout { return callSDK<MSMessageTemplateLayout>("Messages_90ad0eb69cc6bf4a", 2199214125069015, this, []); }
   declare readonly $type: { "c:objc(cs)MSMessageLiveLayout": true; "c:objc(cs)MSMessageLayout": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alternateLayout": true };
 }
@@ -321,7 +321,7 @@ export const MSMessagesAppPresentationContext = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (MSMessagesAppPresentationContext) | null { return callSDK<(MSMessagesAppPresentationContext) | null>("Messages_a956b86ef7a76a8e", 3981982642475994, undefined, [rawValue]); }
+  init(rawValue: number): (MSMessagesAppPresentationContext) | null { return callSDK<(MSMessagesAppPresentationContext) | null>("Messages_90ad0eb69cc6bf4a", 3981982642475994, undefined, [rawValue]); }
 };
 
 /**
@@ -335,7 +335,7 @@ export const MSMessagesAppPresentationStyle = {
    * init?(rawValue: UInt)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MSMessagesAppPresentationStyle) | null { return callSDK<(MSMessagesAppPresentationStyle) | null>("Messages_a956b86ef7a76a8e", 2387450347136391, undefined, [rawValue]); }
+  init(rawValue: number): (MSMessagesAppPresentationStyle) | null { return callSDK<(MSMessagesAppPresentationStyle) | null>("Messages_90ad0eb69cc6bf4a", 2387450347136391, undefined, [rawValue]); }
 };
 
 /**
@@ -364,84 +364,84 @@ export class MSMessagesAppViewController extends SDKHandle {
    * func didBecomeActive(with conversation: MSConversation)
    * @availability iOS 10.0+
    */
-  didBecomeActive(conversation: MSConversation): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 161038483434293, this, [conversation]); }
+  didBecomeActive(conversation: MSConversation): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 161038483434293, this, [conversation]); }
   /**
    * func didCancelSending(_ message: MSMessage, conversation: MSConversation)
    * @availability iOS 10.0+
    */
-  didCancelSending(message: MSMessage, conversation: MSConversation): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 2163540388076372, this, [message, conversation]); }
+  didCancelSending(message: MSMessage, conversation: MSConversation): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 2163540388076372, this, [message, conversation]); }
   /**
    * func didReceive(_ message: MSMessage, conversation: MSConversation)
    * @availability iOS 10.0+
    */
-  didReceive(message: MSMessage, conversation: MSConversation): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 1948040868619473, this, [message, conversation]); }
+  didReceive(message: MSMessage, conversation: MSConversation): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 1948040868619473, this, [message, conversation]); }
   /**
    * func didResignActive(with conversation: MSConversation)
    * @availability iOS 10.0+
    */
-  didResignActive(conversation: MSConversation): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 802536648798618, this, [conversation]); }
+  didResignActive(conversation: MSConversation): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 802536648798618, this, [conversation]); }
   /**
    * func didSelect(_ message: MSMessage, conversation: MSConversation)
    * @availability iOS 10.0+
    */
-  didSelect(message: MSMessage, conversation: MSConversation): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 2401519397280993, this, [message, conversation]); }
+  didSelect(message: MSMessage, conversation: MSConversation): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 2401519397280993, this, [message, conversation]); }
   /**
    * func didStartSending(_ message: MSMessage, conversation: MSConversation)
    * @availability iOS 10.0+
    */
-  didStartSending(message: MSMessage, conversation: MSConversation): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 3397532518231510, this, [message, conversation]); }
+  didStartSending(message: MSMessage, conversation: MSConversation): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 3397532518231510, this, [message, conversation]); }
   /**
    * func didTransition(to presentationStyle: MSMessagesAppPresentationStyle)
    * @availability iOS 10.0+
    */
-  didTransition(presentationStyle: MSMessagesAppPresentationStyle): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 795259472899713, this, [presentationStyle]); }
+  didTransition(presentationStyle: MSMessagesAppPresentationStyle): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 795259472899713, this, [presentationStyle]); }
   /**
    * func dismiss()
    * @availability iOS 10.0+
    */
-  dismiss(): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 4366852890102092, this, []); }
+  dismiss(): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 4366852890102092, this, []); }
   /** init() */
-  static init(): MSMessagesAppViewController { return callSDK<MSMessagesAppViewController>("Messages_a956b86ef7a76a8e", 3570166439173891, undefined, []); }
+  static init(): MSMessagesAppViewController { return callSDK<MSMessagesAppViewController>("Messages_90ad0eb69cc6bf4a", 3570166439173891, undefined, []); }
   /**
    * func requestPresentationStyle(_ presentationStyle: MSMessagesAppPresentationStyle)
    * @availability iOS 10.0+
    */
-  requestPresentationStyle(presentationStyle: MSMessagesAppPresentationStyle): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 3753197809667892, this, [presentationStyle]); }
+  requestPresentationStyle(presentationStyle: MSMessagesAppPresentationStyle): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 3753197809667892, this, [presentationStyle]); }
   /**
    * func willBecomeActive(with conversation: MSConversation)
    * @availability iOS 10.0+
    */
-  willBecomeActive(conversation: MSConversation): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 2771186404848072, this, [conversation]); }
+  willBecomeActive(conversation: MSConversation): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 2771186404848072, this, [conversation]); }
   /**
    * func willResignActive(with conversation: MSConversation)
    * @availability iOS 10.0+
    */
-  willResignActive(conversation: MSConversation): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 824156752571692, this, [conversation]); }
+  willResignActive(conversation: MSConversation): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 824156752571692, this, [conversation]); }
   /**
    * func willSelect(_ message: MSMessage, conversation: MSConversation)
    * @availability iOS 10.0+
    */
-  willSelect(message: MSMessage, conversation: MSConversation): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 309753215273936, this, [message, conversation]); }
+  willSelect(message: MSMessage, conversation: MSConversation): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 309753215273936, this, [message, conversation]); }
   /**
    * func willTransition(to presentationStyle: MSMessagesAppPresentationStyle)
    * @availability iOS 10.0+
    */
-  willTransition(presentationStyle: MSMessagesAppPresentationStyle): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 1920360315965030, this, [presentationStyle]); }
+  willTransition(presentationStyle: MSMessagesAppPresentationStyle): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 1920360315965030, this, [presentationStyle]); }
   /**
    * var activeConversation: MSConversation? { get }
    * @availability iOS 10.0+
    */
-  get activeConversation(): (MSConversation) | null { return callSDK<(MSConversation) | null>("Messages_a956b86ef7a76a8e", 4447903326019742, this, []); }
+  get activeConversation(): (MSConversation) | null { return callSDK<(MSConversation) | null>("Messages_90ad0eb69cc6bf4a", 4447903326019742, this, []); }
   /**
    * var presentationContext: MSMessagesAppPresentationContext { get }
    * @availability iOS 12.0+
    */
-  get presentationContext(): MSMessagesAppPresentationContext { return callSDK<MSMessagesAppPresentationContext>("Messages_a956b86ef7a76a8e", 4447940958294297, this, []); }
+  get presentationContext(): MSMessagesAppPresentationContext { return callSDK<MSMessagesAppPresentationContext>("Messages_90ad0eb69cc6bf4a", 4447940958294297, this, []); }
   /**
    * var presentationStyle: MSMessagesAppPresentationStyle { get }
    * @availability iOS 10.0+
    */
-  get presentationStyle(): MSMessagesAppPresentationStyle { return callSDK<MSMessagesAppPresentationStyle>("Messages_a956b86ef7a76a8e", 3054988090050067, this, []); }
+  get presentationStyle(): MSMessagesAppPresentationStyle { return callSDK<MSMessagesAppPresentationStyle>("Messages_90ad0eb69cc6bf4a", 3054988090050067, this, []); }
   declare readonly $type: { "c:objc(cs)MSMessagesAppViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activeConversation": true; "presentationContext": true; "presentationStyle": true };
 }
@@ -452,55 +452,55 @@ export class MSMessagesAppViewController extends SDKHandle {
  */
 export class MSMessageTemplateLayout extends (MSMessageLayout as unknown as Omit<typeof MSMessageLayout, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MSMessageLayout)) {
   /** init() */
-  static init(): MSMessageTemplateLayout { return callSDK<MSMessageTemplateLayout>("Messages_a956b86ef7a76a8e", 1336862760178122, undefined, []); }
+  static init(): MSMessageTemplateLayout { return callSDK<MSMessageTemplateLayout>("Messages_90ad0eb69cc6bf4a", 1336862760178122, undefined, []); }
   /**
    * var caption: String? { get set }
    * @availability iOS 10.0+
    */
-  get caption(): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 1733512985522167, this, []); }
-  set caption(value: (string) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 4050103672205232, this, [value]); }
+  get caption(): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 1733512985522167, this, []); }
+  set caption(value: (string) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 4050103672205232, this, [value]); }
   /**
    * var image: UIImage? { get set }
    * @availability iOS 10.0+
    */
-  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("Messages_a956b86ef7a76a8e", 2596417747624457, this, []); }
-  set image(value: (_UIKit_UIImage) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 3522466796524091, this, [value]); }
+  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("Messages_90ad0eb69cc6bf4a", 2596417747624457, this, []); }
+  set image(value: (_UIKit_UIImage) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 3522466796524091, this, [value]); }
   /**
    * var imageSubtitle: String? { get set }
    * @availability iOS 10.0+
    */
-  get imageSubtitle(): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 2498301314856756, this, []); }
-  set imageSubtitle(value: (string) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 1832979842806812, this, [value]); }
+  get imageSubtitle(): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 2498301314856756, this, []); }
+  set imageSubtitle(value: (string) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 1832979842806812, this, [value]); }
   /**
    * var imageTitle: String? { get set }
    * @availability iOS 10.0+
    */
-  get imageTitle(): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 2248135256077042, this, []); }
-  set imageTitle(value: (string) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 2741159981251371, this, [value]); }
+  get imageTitle(): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 2248135256077042, this, []); }
+  set imageTitle(value: (string) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 2741159981251371, this, [value]); }
   /**
    * var mediaFileURL: URL? { get set }
    * @availability iOS 10.0+
    */
-  get mediaFileURL(): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 105812588780788, this, []); }
-  set mediaFileURL(value: (string) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 2187938740002308, this, [value]); }
+  get mediaFileURL(): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 105812588780788, this, []); }
+  set mediaFileURL(value: (string) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 2187938740002308, this, [value]); }
   /**
    * var subcaption: String? { get set }
    * @availability iOS 10.0+
    */
-  get subcaption(): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 2691827402290785, this, []); }
-  set subcaption(value: (string) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 1095156486669532, this, [value]); }
+  get subcaption(): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 2691827402290785, this, []); }
+  set subcaption(value: (string) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 1095156486669532, this, [value]); }
   /**
    * var trailingCaption: String? { get set }
    * @availability iOS 10.0+
    */
-  get trailingCaption(): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 2648954862496579, this, []); }
-  set trailingCaption(value: (string) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 1829273001980661, this, [value]); }
+  get trailingCaption(): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 2648954862496579, this, []); }
+  set trailingCaption(value: (string) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 1829273001980661, this, [value]); }
   /**
    * var trailingSubcaption: String? { get set }
    * @availability iOS 10.0+
    */
-  get trailingSubcaption(): (string) | null { return callSDK<(string) | null>("Messages_a956b86ef7a76a8e", 2509689669059230, this, []); }
-  set trailingSubcaption(value: (string) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 220024127176742, this, [value]); }
+  get trailingSubcaption(): (string) | null { return callSDK<(string) | null>("Messages_90ad0eb69cc6bf4a", 2509689669059230, this, []); }
+  set trailingSubcaption(value: (string) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 220024127176742, this, [value]); }
   declare readonly $type: { "c:objc(cs)MSMessageTemplateLayout": true; "c:objc(cs)MSMessageLayout": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "caption": true; "image": true; "imageSubtitle": true; "imageTitle": true; "mediaFileURL": true; "subcaption": true; "trailingCaption": true; "trailingSubcaption": true };
 }
@@ -514,13 +514,13 @@ export class MSRecipient extends SDKHandle {
    * init(phoneNumber: String)
    * @availability iOS 18.2+
    */
-  static init(phoneNumber: string): MSRecipient { return callSDK<MSRecipient>("Messages_a956b86ef7a76a8e", 3230759105521764, undefined, [phoneNumber]); }
+  static init(phoneNumber: string): MSRecipient { return callSDK<MSRecipient>("Messages_90ad0eb69cc6bf4a", 3230759105521764, undefined, [phoneNumber]); }
   /**
    * var phoneNumber: String
    * @availability iOS 18.2+
    */
-  get phoneNumber(): string { return callSDK<string>("Messages_a956b86ef7a76a8e", 4055793156651289, this, []); }
-  set phoneNumber(value: string) { callSDK<void>("Messages_a956b86ef7a76a8e", 1694697719532000, this, [value]); }
+  get phoneNumber(): string { return callSDK<string>("Messages_90ad0eb69cc6bf4a", 4055793156651289, this, []); }
+  set phoneNumber(value: string) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 1694697719532000, this, [value]); }
   declare readonly $type: { "s:8Messages11MSRecipientV": true };
 }
 
@@ -530,7 +530,7 @@ export class MSRecipient extends SDKHandle {
  */
 export class MSSession extends SDKHandle {
   /** init() */
-  static init(): MSSession { return callSDK<MSSession>("Messages_a956b86ef7a76a8e", 3963695321030891, undefined, []); }
+  static init(): MSSession { return callSDK<MSSession>("Messages_90ad0eb69cc6bf4a", 3963695321030891, undefined, []); }
   declare readonly $type: { "c:objc(cs)MSSession": true; "c:objc(cs)NSObject": true };
 }
 
@@ -543,17 +543,17 @@ export class MSSticker extends SDKHandle {
    * init(contentsOfFileURL fileURL: URL, localizedDescription: String) throws
    * @availability iOS 10.0+
    */
-  static init(fileURL: string, localizedDescription: string): MSSticker { return callSDK<MSSticker>("Messages_a956b86ef7a76a8e", 3800623461153124, undefined, [fileURL, localizedDescription]); }
+  static init(fileURL: string, localizedDescription: string): MSSticker { return callSDK<MSSticker>("Messages_90ad0eb69cc6bf4a", 3800623461153124, undefined, [fileURL, localizedDescription]); }
   /**
    * var imageFileURL: URL { get }
    * @availability iOS 10.0+
    */
-  get imageFileURL(): string { return callSDK<string>("Messages_a956b86ef7a76a8e", 1250176313076592, this, []); }
+  get imageFileURL(): string { return callSDK<string>("Messages_90ad0eb69cc6bf4a", 1250176313076592, this, []); }
   /**
    * var localizedDescription: String { get }
    * @availability iOS 10.0+
    */
-  get localizedDescription(): string { return callSDK<string>("Messages_a956b86ef7a76a8e", 3413961216795724, this, []); }
+  get localizedDescription(): string { return callSDK<string>("Messages_90ad0eb69cc6bf4a", 3413961216795724, this, []); }
   declare readonly $type: { "c:objc(cs)MSSticker": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "imageFileURL": true; "localizedDescription": true };
 }
@@ -567,45 +567,45 @@ export class MSStickerBrowserView extends SDKHandle {
    * init(frame: CGRect)
    * @availability iOS 10.0+
    */
-  static initFrame(frame: $SDK4): MSStickerBrowserView { return callSDK<MSStickerBrowserView>("Messages_a956b86ef7a76a8e", 4301604571772569, undefined, [frame]); }
+  static initFrame(frame: $SDK4): MSStickerBrowserView { return callSDK<MSStickerBrowserView>("Messages_90ad0eb69cc6bf4a", 4301604571772569, undefined, [frame]); }
   /**
    * init(frame: CGRect, stickerSize: MSStickerSize)
    * @availability iOS 10.0+
    */
-  static initFrameStickerSize(frame: $SDK4, stickerSize: MSStickerSize): MSStickerBrowserView { return callSDK<MSStickerBrowserView>("Messages_a956b86ef7a76a8e", 2857146825213291, undefined, [frame, stickerSize]); }
+  static initFrameStickerSize(frame: $SDK4, stickerSize: MSStickerSize): MSStickerBrowserView { return callSDK<MSStickerBrowserView>("Messages_90ad0eb69cc6bf4a", 2857146825213291, undefined, [frame, stickerSize]); }
   /**
    * func reloadData()
    * @availability iOS 10.0+
    */
-  reloadData(): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 4306499499128647, this, []); }
+  reloadData(): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 4306499499128647, this, []); }
   /**
    * func setContentOffset(_ contentOffset: CGPoint, animated: Bool)
    * @availability iOS 10.0+
    */
-  setContentOffset(contentOffset: $SDK5, animated: boolean): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 2225356149435826, this, [contentOffset, animated]); }
+  setContentOffset(contentOffset: $SDK5, animated: boolean): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 2225356149435826, this, [contentOffset, animated]); }
   /**
    * var contentInset: UIEdgeInsets { get set }
    * @availability iOS 10.0+
    */
-  get contentInset(): $SDK6 { return callSDK<$SDK6>("Messages_a956b86ef7a76a8e", 846083471008264, this, []); }
-  set contentInset(value: $SDK6) { callSDK<void>("Messages_a956b86ef7a76a8e", 4230010440664545, this, [value]); }
+  get contentInset(): $SDK6 { return callSDK<$SDK6>("Messages_90ad0eb69cc6bf4a", 846083471008264, this, []); }
+  set contentInset(value: $SDK6) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 4230010440664545, this, [value]); }
   /**
    * var contentOffset: CGPoint { get set }
    * @availability iOS 10.0+
    */
-  get contentOffset(): $SDK5 { return callSDK<$SDK5>("Messages_a956b86ef7a76a8e", 2731249307884113, this, []); }
-  set contentOffset(value: $SDK5) { callSDK<void>("Messages_a956b86ef7a76a8e", 1796993941290648, this, [value]); }
+  get contentOffset(): $SDK5 { return callSDK<$SDK5>("Messages_90ad0eb69cc6bf4a", 2731249307884113, this, []); }
+  set contentOffset(value: $SDK5) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 1796993941290648, this, [value]); }
   /**
    * weak var dataSource: (any MSStickerBrowserViewDataSource)? { get set }
    * @availability iOS 10.0+
    */
-  get dataSource(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Messages_a956b86ef7a76a8e", 1201133188691608, this, []); }
-  set dataSource(value: (SDKHandle) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 925456449490346, this, [value]); }
+  get dataSource(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Messages_90ad0eb69cc6bf4a", 1201133188691608, this, []); }
+  set dataSource(value: (SDKHandle) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 925456449490346, this, [value]); }
   /**
    * var stickerSize: MSStickerSize { get }
    * @availability iOS 10.0+
    */
-  get stickerSize(): MSStickerSize { return callSDK<MSStickerSize>("Messages_a956b86ef7a76a8e", 3891224605272441, this, []); }
+  get stickerSize(): MSStickerSize { return callSDK<MSStickerSize>("Messages_90ad0eb69cc6bf4a", 3891224605272441, this, []); }
   declare readonly $type: { "c:objc(cs)MSStickerBrowserView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentInset": true; "contentOffset": true; "dataSource": true; "stickerSize": true };
 }
@@ -619,17 +619,17 @@ export class MSStickerBrowserViewController extends SDKHandle {
    * init(stickerSize: MSStickerSize)
    * @availability iOS 10.0+
    */
-  static init(stickerSize: MSStickerSize): MSStickerBrowserViewController { return callSDK<MSStickerBrowserViewController>("Messages_a956b86ef7a76a8e", 2217184768664511, undefined, [stickerSize]); }
+  static init(stickerSize: MSStickerSize): MSStickerBrowserViewController { return callSDK<MSStickerBrowserViewController>("Messages_90ad0eb69cc6bf4a", 2217184768664511, undefined, [stickerSize]); }
   /**
    * var stickerBrowserView: MSStickerBrowserView { get }
    * @availability iOS 10.0+
    */
-  get stickerBrowserView(): MSStickerBrowserView { return callSDK<MSStickerBrowserView>("Messages_a956b86ef7a76a8e", 2706304519190232, this, []); }
+  get stickerBrowserView(): MSStickerBrowserView { return callSDK<MSStickerBrowserView>("Messages_90ad0eb69cc6bf4a", 2706304519190232, this, []); }
   /**
    * var stickerSize: MSStickerSize { get }
    * @availability iOS 10.0+
    */
-  get stickerSize(): MSStickerSize { return callSDK<MSStickerSize>("Messages_a956b86ef7a76a8e", 249213220431366, this, []); }
+  get stickerSize(): MSStickerSize { return callSDK<MSStickerSize>("Messages_90ad0eb69cc6bf4a", 249213220431366, this, []); }
   declare readonly $type: { "c:objc(cs)MSStickerBrowserViewController": true; "c:objc(cs)UIViewController": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "stickerBrowserView": true; "stickerSize": true };
 }
@@ -662,7 +662,7 @@ export const MSStickerSize = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (MSStickerSize) | null { return callSDK<(MSStickerSize) | null>("Messages_a956b86ef7a76a8e", 1429826840744275, undefined, [rawValue]); }
+  init(rawValue: number): (MSStickerSize) | null { return callSDK<(MSStickerSize) | null>("Messages_90ad0eb69cc6bf4a", 1429826840744275, undefined, [rawValue]); }
 };
 
 /**
@@ -674,33 +674,33 @@ export class MSStickerView extends SDKHandle {
    * init(frame: CGRect, sticker: MSSticker?)
    * @availability iOS 10.0+
    */
-  static init(frame: $SDK4, sticker?: (MSSticker) | null): MSStickerView { return callSDK<MSStickerView>("Messages_a956b86ef7a76a8e", 1503087477434811, undefined, [frame, sticker]); }
+  static init(frame: $SDK4, sticker?: (MSSticker) | null): MSStickerView { return callSDK<MSStickerView>("Messages_90ad0eb69cc6bf4a", 1503087477434811, undefined, [frame, sticker]); }
   /**
    * func isAnimating() -> Bool
    * @availability iOS 10.0+
    */
-  isAnimating(): boolean { return callSDK<boolean>("Messages_a956b86ef7a76a8e", 1204571763930659, this, []); }
+  isAnimating(): boolean { return callSDK<boolean>("Messages_90ad0eb69cc6bf4a", 1204571763930659, this, []); }
   /**
    * func startAnimating()
    * @availability iOS 10.0+
    */
-  startAnimating(): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 1188949450128249, this, []); }
+  startAnimating(): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 1188949450128249, this, []); }
   /**
    * func stopAnimating()
    * @availability iOS 10.0+
    */
-  stopAnimating(): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 1140233204639281, this, []); }
+  stopAnimating(): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 1140233204639281, this, []); }
   /**
    * var animationDuration: TimeInterval { get }
    * @availability iOS 10.0+
    */
-  get animationDuration(): number { return callSDK<number>("Messages_a956b86ef7a76a8e", 1825788453460152, this, []); }
+  get animationDuration(): number { return callSDK<number>("Messages_90ad0eb69cc6bf4a", 1825788453460152, this, []); }
   /**
    * var sticker: MSSticker? { get set }
    * @availability iOS 10.0+
    */
-  get sticker(): (MSSticker) | null { return callSDK<(MSSticker) | null>("Messages_a956b86ef7a76a8e", 4449229628826199, this, []); }
-  set sticker(value: (MSSticker) | null) { callSDK<void>("Messages_a956b86ef7a76a8e", 1030697479096243, this, [value]); }
+  get sticker(): (MSSticker) | null { return callSDK<(MSSticker) | null>("Messages_90ad0eb69cc6bf4a", 4449229628826199, this, []); }
+  set sticker(value: (MSSticker) | null) { callSDK<void>("Messages_90ad0eb69cc6bf4a", 1030697479096243, this, [value]); }
   declare readonly $type: { "c:objc(cs)MSStickerView": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "animationDuration": true; "sticker": true };
 }
@@ -714,22 +714,22 @@ export class MSUPIRequest extends SDKHandle {
    * init(validationToken: String, recipients: [String])
    * @availability iOS 27.0+
    */
-  static init(validationToken: string, recipients: Array<string>): MSUPIRequest { return callSDK<MSUPIRequest>("Messages_a956b86ef7a76a8e", 128383906568474, undefined, [validationToken, recipients]); }
+  static init(validationToken: string, recipients: Array<string>): MSUPIRequest { return callSDK<MSUPIRequest>("Messages_90ad0eb69cc6bf4a", 128383906568474, undefined, [validationToken, recipients]); }
   /**
    * func send() async -> Bool
    * @availability iOS 27.0+
    */
-  send(completionHandler: ((arg0: boolean) => void)): void { return callSDK<void>("Messages_a956b86ef7a76a8e", 3312054836084135, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  send(completionHandler: ((arg0: boolean) => void)): void { return callSDK<void>("Messages_90ad0eb69cc6bf4a", 3312054836084135, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var recipients: [String] { get }
    * @availability iOS 27.0+
    */
-  get recipients(): Array<string> { return callSDK<Array<string>>("Messages_a956b86ef7a76a8e", 3844727244458941, this, []); }
+  get recipients(): Array<string> { return callSDK<Array<string>>("Messages_90ad0eb69cc6bf4a", 3844727244458941, this, []); }
   /**
    * var validationToken: String { get }
    * @availability iOS 27.0+
    */
-  get validationToken(): string { return callSDK<string>("Messages_a956b86ef7a76a8e", 3147272889690740, this, []); }
+  get validationToken(): string { return callSDK<string>("Messages_90ad0eb69cc6bf4a", 3147272889690740, this, []); }
   declare readonly $type: { "c:objc(cs)MSUPIRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "recipients": true; "validationToken": true };
 }
@@ -738,28 +738,28 @@ export class MSUPIRequest extends SDKHandle {
  * let MSMessagesErrorDomain: String
  * @availability iOS 10.0+
  */
-export const MSMessagesErrorDomain: string = callSDK<string>("Messages_a956b86ef7a76a8e", 920916359063966, undefined, []);
+export const MSMessagesErrorDomain: string = callSDK<string>("Messages_90ad0eb69cc6bf4a", 920916359063966, undefined, []);
 
 /**
  * let MSStickersErrorDomain: String
  * @availability iOS 10.0+
  */
-export const MSStickersErrorDomain: string = callSDK<string>("Messages_a956b86ef7a76a8e", 909758690326042, undefined, []);
+export const MSStickersErrorDomain: string = callSDK<string>("Messages_90ad0eb69cc6bf4a", 909758690326042, undefined, []);
 
-registerSDKClass("MSConversation", MSConversation, { module: "Messages_a956b86ef7a76a8e", properties: {"localParticipantIdentifier":2432507118946060,"remoteParticipantIdentifiers":643008480594738,"selectedMessage":2168387481618224}, methods: {"insertAttachment":{"id":2171632088484504,"hints":[null,null,{"callback":{"out":[]}}]},"insertCompletionHandler":{"id":2643683099210620,"hints":[null,{"callback":{"out":[]}}]},"insertCompletionHandler47219":{"id":3667196134814813,"hints":[null,{"callback":{"out":[]}}]},"insertText":{"id":787275104335473,"hints":[null,{"callback":{"out":[]}}]},"sendAttachment":{"id":1893158874776152,"hints":[null,null,{"callback":{"out":[]}}]},"sendCompletionHandler":{"id":3833970599387617,"hints":[null,{"callback":{"out":[]}}]},"sendCompletionHandler39136":{"id":2996644585585020,"hints":[null,{"callback":{"out":[]}}]},"sendText":{"id":3244275511477193,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("Messages.MSCriticalMessage", MSCriticalMessage, { module: "Messages_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("Messages.MSCriticalSMSMessenger", MSCriticalSMSMessenger, { module: "Messages_a956b86ef7a76a8e", properties: {}, methods: {"requestAuthorization":{"id":1308457404643364},"checkAuthorizationStatus":{"id":2943005721264005},"send":{"id":1597715023839851}} });
-registerSDKClass("MSMessage", MSMessage, { module: "Messages_a956b86ef7a76a8e", properties: {"url":1628345970176687,"accessibilityLabel":851631909716092,"error":2471050625679071,"layout":965298892275234,"isPending":2723092292165697,"senderParticipantIdentifier":3820462857171017,"session":3197105770317034,"shouldExpire":1653844258284969,"summaryText":3503658451998881} });
-registerSDKClass("MSMessageLayout", MSMessageLayout, { module: "Messages_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("MSMessageLiveLayout", MSMessageLiveLayout, { module: "Messages_a956b86ef7a76a8e", properties: {"alternateLayout":2199214125069015} });
+registerSDKClass("MSConversation", MSConversation, { module: "Messages_90ad0eb69cc6bf4a", properties: {"localParticipantIdentifier":2432507118946060,"remoteParticipantIdentifiers":643008480594738,"selectedMessage":2168387481618224}, methods: {"insertAttachment":{"id":2171632088484504,"hints":[null,null,{"callback":{"out":[]}}]},"insertCompletionHandler":{"id":2643683099210620,"hints":[null,{"callback":{"out":[]}}]},"insertCompletionHandler47219":{"id":3667196134814813,"hints":[null,{"callback":{"out":[]}}]},"insertText":{"id":787275104335473,"hints":[null,{"callback":{"out":[]}}]},"sendAttachment":{"id":1893158874776152,"hints":[null,null,{"callback":{"out":[]}}]},"sendCompletionHandler":{"id":3833970599387617,"hints":[null,{"callback":{"out":[]}}]},"sendCompletionHandler39136":{"id":2996644585585020,"hints":[null,{"callback":{"out":[]}}]},"sendText":{"id":3244275511477193,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("Messages.MSCriticalMessage", MSCriticalMessage, { module: "Messages_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("Messages.MSCriticalSMSMessenger", MSCriticalSMSMessenger, { module: "Messages_90ad0eb69cc6bf4a", properties: {}, methods: {"requestAuthorization":{"id":1308457404643364},"checkAuthorizationStatus":{"id":2943005721264005},"send":{"id":1597715023839851}} });
+registerSDKClass("MSMessage", MSMessage, { module: "Messages_90ad0eb69cc6bf4a", properties: {"url":1628345970176687,"accessibilityLabel":851631909716092,"error":2471050625679071,"layout":965298892275234,"isPending":2723092292165697,"senderParticipantIdentifier":3820462857171017,"session":3197105770317034,"shouldExpire":1653844258284969,"summaryText":3503658451998881} });
+registerSDKClass("MSMessageLayout", MSMessageLayout, { module: "Messages_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("MSMessageLiveLayout", MSMessageLiveLayout, { module: "Messages_90ad0eb69cc6bf4a", properties: {"alternateLayout":2199214125069015} });
 registerSDKProtocol("c:objc(pl)MSMessagesAppTranscriptPresentation", {"contentSizeThatFits":"contentSizeThatFits(_:)","invalidateMessageTintColor":"invalidateMessageTintColor()"});
-registerSDKClass("MSMessagesAppViewController", MSMessagesAppViewController, { module: "Messages_a956b86ef7a76a8e", properties: {"activeConversation":4447903326019742,"presentationContext":4447940958294297,"presentationStyle":3054988090050067}, methods: {"didBecomeActive":{"id":161038483434293},"didCancelSending":{"id":2163540388076372},"didReceive":{"id":1948040868619473},"didResignActive":{"id":802536648798618},"didSelect":{"id":2401519397280993},"didStartSending":{"id":3397532518231510},"didTransition":{"id":795259472899713},"dismiss":{"id":4366852890102092},"requestPresentationStyle":{"id":3753197809667892},"willBecomeActive":{"id":2771186404848072},"willResignActive":{"id":824156752571692},"willSelect":{"id":309753215273936},"willTransition":{"id":1920360315965030}} });
-registerSDKClass("MSMessageTemplateLayout", MSMessageTemplateLayout, { module: "Messages_a956b86ef7a76a8e", properties: {"caption":1733512985522167,"image":2596417747624457,"imageSubtitle":2498301314856756,"imageTitle":2248135256077042,"mediaFileURL":105812588780788,"subcaption":2691827402290785,"trailingCaption":2648954862496579,"trailingSubcaption":2509689669059230} });
-registerSDKClass("Messages.MSRecipient", MSRecipient, { module: "Messages_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("MSSession", MSSession, { module: "Messages_a956b86ef7a76a8e", properties: {} });
-registerSDKClass("MSSticker", MSSticker, { module: "Messages_a956b86ef7a76a8e", properties: {"imageFileURL":1250176313076592,"localizedDescription":3413961216795724} });
-registerSDKClass("MSStickerBrowserView", MSStickerBrowserView, { module: "Messages_a956b86ef7a76a8e", properties: {"contentInset":846083471008264,"contentOffset":2731249307884113,"dataSource":1201133188691608,"stickerSize":3891224605272441}, methods: {"reloadData":{"id":4306499499128647},"setContentOffset":{"id":2225356149435826}} });
-registerSDKClass("MSStickerBrowserViewController", MSStickerBrowserViewController, { module: "Messages_a956b86ef7a76a8e", properties: {"stickerBrowserView":2706304519190232,"stickerSize":249213220431366} });
+registerSDKClass("MSMessagesAppViewController", MSMessagesAppViewController, { module: "Messages_90ad0eb69cc6bf4a", properties: {"activeConversation":4447903326019742,"presentationContext":4447940958294297,"presentationStyle":3054988090050067}, methods: {"didBecomeActive":{"id":161038483434293},"didCancelSending":{"id":2163540388076372},"didReceive":{"id":1948040868619473},"didResignActive":{"id":802536648798618},"didSelect":{"id":2401519397280993},"didStartSending":{"id":3397532518231510},"didTransition":{"id":795259472899713},"dismiss":{"id":4366852890102092},"requestPresentationStyle":{"id":3753197809667892},"willBecomeActive":{"id":2771186404848072},"willResignActive":{"id":824156752571692},"willSelect":{"id":309753215273936},"willTransition":{"id":1920360315965030}} });
+registerSDKClass("MSMessageTemplateLayout", MSMessageTemplateLayout, { module: "Messages_90ad0eb69cc6bf4a", properties: {"caption":1733512985522167,"image":2596417747624457,"imageSubtitle":2498301314856756,"imageTitle":2248135256077042,"mediaFileURL":105812588780788,"subcaption":2691827402290785,"trailingCaption":2648954862496579,"trailingSubcaption":2509689669059230} });
+registerSDKClass("Messages.MSRecipient", MSRecipient, { module: "Messages_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("MSSession", MSSession, { module: "Messages_90ad0eb69cc6bf4a", properties: {} });
+registerSDKClass("MSSticker", MSSticker, { module: "Messages_90ad0eb69cc6bf4a", properties: {"imageFileURL":1250176313076592,"localizedDescription":3413961216795724} });
+registerSDKClass("MSStickerBrowserView", MSStickerBrowserView, { module: "Messages_90ad0eb69cc6bf4a", properties: {"contentInset":846083471008264,"contentOffset":2731249307884113,"dataSource":1201133188691608,"stickerSize":3891224605272441}, methods: {"reloadData":{"id":4306499499128647},"setContentOffset":{"id":2225356149435826}} });
+registerSDKClass("MSStickerBrowserViewController", MSStickerBrowserViewController, { module: "Messages_90ad0eb69cc6bf4a", properties: {"stickerBrowserView":2706304519190232,"stickerSize":249213220431366} });
 registerSDKProtocol("c:objc(pl)MSStickerBrowserViewDataSource", {"numberOfStickersIn":"numberOfStickers(in:)","stickerBrowserViewStickerAt":"stickerBrowserView(_:stickerAt:)"});
-registerSDKClass("MSStickerView", MSStickerView, { module: "Messages_a956b86ef7a76a8e", properties: {"animationDuration":1825788453460152,"sticker":4449229628826199}, methods: {"isAnimating":{"id":1204571763930659},"startAnimating":{"id":1188949450128249},"stopAnimating":{"id":1140233204639281}} });
-registerSDKClass("MSUPIRequest", MSUPIRequest, { module: "Messages_a956b86ef7a76a8e", properties: {"recipients":3844727244458941,"validationToken":3147272889690740}, methods: {"send":{"id":3312054836084135,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("MSStickerView", MSStickerView, { module: "Messages_90ad0eb69cc6bf4a", properties: {"animationDuration":1825788453460152,"sticker":4449229628826199}, methods: {"isAnimating":{"id":1204571763930659},"startAnimating":{"id":1188949450128249},"stopAnimating":{"id":1140233204639281}} });
+registerSDKClass("MSUPIRequest", MSUPIRequest, { module: "Messages_90ad0eb69cc6bf4a", properties: {"recipients":3844727244458941,"validationToken":3147272889690740}, methods: {"send":{"id":3312054836084135,"hints":[{"callback":{"out":[]}}]}} });
