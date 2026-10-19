@@ -890,6 +890,17 @@ export const components = [
   {
     name: 'OneNativeOverlay',
     publicName: 'Overlay',
+    host: {
+      modifier: 'overlay',
+      childStack: 'Group',
+      arguments: { alignment: 'alignment' },
+      marker: { label: 'content', slot: 'OneNativeOverlayContent' },
+      viewSlot: { name: 'slotName', values: 'slotValues', event: 'onNativeSDKEvent' },
+      initial: { slotValues: '"[]"' },
+      layout: 'measured',
+      scheme: true,
+      skipEmptyStyle: true,
+    },
     props: {
       alignment: 'string',
       slotName: 'string',
@@ -915,6 +926,12 @@ export const components = [
   {
     name: 'OneNativeOverlayContent',
     publicName: 'OverlayContent',
+    host: {
+      view: 'Group',
+      children: 'content',
+      layout: 'marker',
+      skipEmptyStyle: true,
+    },
     props: {},
     events: {},
     enumProps: {},

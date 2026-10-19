@@ -25,6 +25,14 @@ export type HostRecipe = {
   // SwiftUI presents outside the surface while the binding is true. `modifiers` apply to
   // the presented content, `@prop` as below
   presented?: { label: string; slot: string; modifiers?: readonly string[] }
+  // a marker child React mounts among the children, captured out of the published
+  // content: the builder `label` shows its composed content, the last mounted wins,
+  // and the builder shows nothing while no marker is mounted
+  marker?: { label: string; slot: string }
+  // while the `name` prop is non-empty, the host applies the generated ViewSlot with
+  // that name to the base instead of the SDK call, with the marker as its content.
+  // slot events reach React through `event`
+  viewSlot?: { name: string; values: string; event: string }
   // a data label that takes identified items React sends as JSON in `prop`, each
   // { id } plus, with `children`, that key path's label and its nested items. the
   // children builder runs per item and shows the `slot` rows whose `key` prop is the
@@ -71,8 +79,9 @@ export type HostRecipe = {
   // that argument's converted value and `@prop` the prop's model value
   modifiers?: readonly string[]
   // leaf: no children; container: lays out in its parent's box; measured: reports the
-  // height SwiftUI measured to Yoga while standalone
-  layout: 'leaf' | 'container' | 'measured'
+  // height SwiftUI measured to Yoga while standalone; marker: captured out of its
+  // parent's content, laid out absolutely through the shared slot node
+  layout: 'leaf' | 'container' | 'measured' | 'marker'
   // measured only while the height is not set from React
   boundedHeight?: boolean
   // measured only while this Swift condition holds; `@prop` is the prop's model value
@@ -136,6 +145,7 @@ type HostComponent = {
   props: Record<string, string>
   events?: Record<string, Record<string, string>>
   commands?: Record<string, Record<string, string>>
+  swiftStyle?: boolean
   host?: HostRecipe | KeyedRecipe | SlotRecipe
 }
 
@@ -473,6 +483,7 @@ export function emitContainerHosts(
           ...(recipe.action ? [recipe.action.label] : []),
           ...(recipe.selection ? [recipe.selection.label] : []),
           ...(recipe.builder ? [recipe.builder.label] : []),
+          ...(recipe.marker ? [recipe.marker.label] : []),
           ...(recipe.items ? [recipe.items.label, ...(recipe.items.children ? [recipe.items.children] : [])] : []),
           ...(recipe.columns ? [recipe.columns.label] : []),
           ...(recipe.presented ? [recipe.presented.label] : []),
@@ -564,6 +575,24 @@ export function emitContainerHosts(
     const presentedSlot = presented && components.find((c) => c.name === presented.slot)?.host
     if (presented && (!presentedSlot || !('slot' in presentedSlot)))
       fail(`presented slot ${presented.slot} has no slot host`)
+    const marker = recipe.marker
+    const viewSlot = recipe.viewSlot
+    const markerComponent = marker && components.find((c) => c.name === marker.slot)
+    if (marker && !markerComponent) fail(`marker slot ${marker.slot} names no component`)
+    const markerHost = markerComponent?.host
+    if (markerHost && 'slot' in markerHost) fail(`marker slot ${marker!.slot} is presented, not composed`)
+    if (markerHost && 'keys' in markerHost) fail(`marker slot ${marker!.slot} is a data row, not a marker`)
+    if (markerHost && (markerHost as HostRecipe).layout !== 'marker')
+      fail(`marker slot ${marker!.slot} has no marker layout`)
+    if (!markerHost && marker) fail(`marker slot ${marker.slot} has no host`)
+    if (marker && recipe.layout === 'leaf') fail('a leaf holds no marker')
+    if (marker && recipe.items) fail('a host captures a marker or keyed rows, not both')
+    if (recipe.layout === 'marker' && !components.some((c) => c.host !== undefined && 'marker' in c.host && (c.host as HostRecipe).marker?.slot === name))
+      fail('a marker layout is captured by a host naming it as its marker slot')
+    if (viewSlot && !marker) fail('a ViewSlot fallback shows the marker')
+    if (viewSlot && recipe.surface) fail('a ViewSlot fallback replaces the modifier, not a surface')
+    for (const prop of viewSlot ? [viewSlot.name, viewSlot.values] : [])
+      if (component.props[prop] !== 'string') fail(`slot prop ${prop} must be a string`)
     // the content React mounted for the presentation, sized by SwiftUI
     const presentedBody = presented
       ? `if let content = model.content {\n  OneNativeSlot(content: content, mode: .presented, onLayout: { frame in\n    if model.active && model.controlled.value { model.onLayout?(frame) }\n  }, measuredWidth: model.measuredWidth, measuredHeight: model.measuredHeight)${(presented.modifiers ?? []).map((modifier) => `\n  ${model(modifier)}`).join('')}\n}`
@@ -635,6 +664,11 @@ export function emitContainerHosts(
           // a presentation shows only once its content is mounted
           swift: `Binding(get: { model.controlled.value${presented ? ' && model.content != nil' : ''} }, set: { value in model.change(value) })`,
         }
+      }
+      if (label === marker?.label) {
+        if (!/^(@escaping )?\(\) -> \w+$/.test(parameter.type))
+          fail(`${label}: ${parameter.type} is not a builder the marker can fill`)
+        return { label, prop: '', closure: true, swift: 'if let marker = model.marker { marker }' }
       }
       const shown = recipe.labels?.[label]
       if (shown) {
@@ -934,6 +968,11 @@ ${cases.join('\n')}
       : unsorted
         ? `Group {\n  if model.${recipe.columns!.sortable} {\n    ${indent(full.call, 4)}\n  } else {\n    ${indent(unsorted.call, 4)}\n  }\n}`
         : full.call
+    // while the slot name is empty the SDK call shows; otherwise the generated
+    // ViewSlot applies to the same base, with the marker as its content
+    const slotted = viewSlot
+      ? `Group {\n  if model.${viewSlot.name}.isEmpty {\n    ${indent(variants, 4)}\n  } else {\n    ${indent(`${contentBody}\n.oneNativeViewSlot(model.${viewSlot.name}, values: model.${viewSlot.values}, emit: model.emitSDKEvent) {\n  model.marker ?? AnyView(EmptyView())\n}`, 4)}\n  }\n}`
+      : variants
     const version = Math.max(
       ...[full, ...(omitted.length ? [callFor(omitted)] : []), ...(unsorted ? [unsorted] : [])].map(
         ({ initializer }) => ios(initializer)
@@ -942,13 +981,13 @@ ${cases.join('\n')}
     )
     const guarded = sdkGuard(
       version,
-      `  if #available(iOS ${version}, *) {\n    ${indent(variants, 4)}\n  } else {\n    EmptyView()\n  }`,
+      `  if #available(iOS ${version}, *) {\n    ${indent(slotted, 4)}\n  } else {\n    EmptyView()\n  }`,
       '  EmptyView()'
     )
     const gated =
       version > floor
         ? `Group {${guarded.startsWith('\n') ? guarded : `\n${guarded}\n`}}`
-        : variants
+        : slotted
     const converted = (label: string) => {
       const value = full.values.find((v) => v.label === label)
       if (!value || value.closure)
@@ -1108,6 +1147,15 @@ ${cases.join('\n')}
     const bindingField = Object.keys(bindingEvent)[0]
     if (binding && Object.keys(bindingEvent).join(',') !== `${bindingField},eventCount,revision`)
       fail(`${binding.event} must carry the value, eventCount and revision`)
+    const slotEvent = viewSlot
+      ? (component.events?.[viewSlot.event] ?? fail(`slot event ${viewSlot.event} is not in the spec`))
+      : {}
+    if (
+      viewSlot &&
+      (Object.keys(slotEvent).join(',') !== 'name,value' ||
+        Object.values(slotEvent).some((type) => type !== 'string'))
+    )
+      fail(`${viewSlot.event} must carry the slot name and value`)
     const selection = recipe.selection
     if (selection && binding) fail('a host takes a binding or a selection, not both')
     const selected = selection ? [selection.prop, selection.controlled] : []
@@ -1125,6 +1173,8 @@ ${cases.join('\n')}
     )
     const leaf = recipe.layout === 'leaf'
     const measured = recipe.layout === 'measured'
+    const markerLayout = recipe.layout === 'marker'
+    const hasSwiftStyle = component.swiftStyle === true
     const scheme = recipe.scheme === true
     // a model starts at the SDK's default, so a recycled host never holds a value its
     // conversion rejects
@@ -1174,7 +1224,8 @@ ${cases.join('\n')}
     if (columns && !items) fail('columns show the items')
     if (columns && component.props[columns.prop] !== 'string') fail(`columns prop ${columns.prop} must be a string`)
     const hasModel =
-      fields.length > 0 || measured || binding !== undefined || selection !== undefined || context !== undefined ||
+      fields.length > 0 || measured || marker !== undefined || viewSlot !== undefined ||
+      binding !== undefined || selection !== undefined || context !== undefined ||
       action !== undefined || accessible
     const contentFields = [
       ...(hasModel ? [`  @ObservedObject var model: ${short}Model`] : []),
@@ -1214,6 +1265,34 @@ ${cases.join('\n')}
       ? (recipe.initial?.[binding.prop] ?? (boundType === 'Bool' ? 'false' : boundType === 'Double' ? '0' : '""'))
       : ''
     const configured = fields
+    const viewFields = [
+      ...(binding ? [`  public var onChange: ((${boundType}, Int, Int) -> Void)?`] : []),
+      ...(selection ? ['  public var onSelectionChange: ((String) -> Void)?'] : []),
+      ...(action ? ['  public var onAction: ((Int) -> Void)?'] : []),
+      ...(measured ? ['  public var onMeasure: ((CGFloat) -> Void)?'] : []),
+      ...(viewSlot ? ['  public var onSDKEvent: ((String, String) -> Void)?'] : []),
+      ...(contextValues.length
+        ? [`  public var onContext: ((${contextFields.map((f) => f.kind).join(', ')}) -> Void)?`]
+        : []),
+      ...(hasModel ? [`  private let model: ${short}Model`] : []),
+      ...(environment ? ['  private let environment: OneNativeEnvironmentModel'] : []),
+      ...(scheme
+        ? [
+            '  private let bridge: OneNativeSchemeBridge',
+            '  private var traitRegistration: NSObjectProtocol?',
+          ]
+        : []),
+      ...(marker ? ['  private var markers: [UIView] = []'] : []),
+    ]
+    const initLines = [
+      ...(hasModel ? [`    let model = ${short}Model()`, '    self.model = model'] : []),
+      ...(environment
+        ? ['    let environment = OneNativeEnvironmentModel()', '    self.environment = environment']
+        : []),
+      ...(scheme
+        ? ['    let bridge = OneNativeSchemeBridge()', '    self.bridge = bridge']
+        : []),
+    ]
     const swift = `${header}import SwiftUI
 import UIKit
 ${
@@ -1258,6 +1337,16 @@ ${[
   ...(binding ? [`  @Published var controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
   ...fields.map(({ prop, kind, initial }) => `  @Published var ${prop}: ${kind} = ${initial}`),
   ...(measured ? ['  var onHeight: ((CGFloat) -> Void)?'] : []),
+  ...(marker ? ['  @Published var marker: AnyView?'] : []),
+  ...(viewSlot
+    ? [
+        '  var onSDKEvent: ((String, String) -> Void)?',
+        '',
+        '  func emitSDKEvent(_ name: String, _ value: String) {',
+        '    onSDKEvent?(name, value)',
+        '  }',
+      ]
+    : []),
   ...(presented
     ? [
         '  @Published var content: UIView?',
@@ -1453,37 +1542,10 @@ ${contentFields.join('\n')}
 ${conversions.length ? `\n${conversions.join('\n\n')}\n` : ''}
 @objcMembers
 public final class ${name}View: ${leaf ? 'OneNativeStyledLeafView' : 'OneNativeContainerView'} {
-${[
-  ...(binding ? [`  public var onChange: ((${boundType}, Int, Int) -> Void)?`] : []),
-  ...(selection ? ['  public var onSelectionChange: ((String) -> Void)?'] : []),
-  ...(action ? ['  public var onAction: ((Int) -> Void)?'] : []),
-  ...(measured ? ['  public var onMeasure: ((CGFloat) -> Void)?'] : []),
-  ...(contextValues.length
-    ? [`  public var onContext: ((${contextFields.map((f) => f.kind).join(', ')}) -> Void)?`]
-    : []),
-  ...(hasModel ? [`  private let model: ${short}Model`] : []),
-  ...(environment ? ['  private let environment: OneNativeEnvironmentModel'] : []),
-  ...(scheme
-    ? [
-        '  private let bridge: OneNativeSchemeBridge',
-        '  private var traitRegistration: NSObjectProtocol?',
-      ]
-    : []),
-].join('\n')}
-
-  public init() {
-${[
-  ...(hasModel ? [`    let model = ${short}Model()`, '    self.model = model'] : []),
-  ...(environment
-    ? ['    let environment = OneNativeEnvironmentModel()', '    self.environment = environment']
-    : []),
-  ...(scheme
-    ? ['    let bridge = OneNativeSchemeBridge()', '    self.bridge = bridge']
-    : []),
-].join('\n')}
-    super.init(styled: { ${leaf ? 'style' : 'children, style, standalone'} in
+${viewFields.length ? `${viewFields.join('\n')}\n\n` : ''}  public init() {
+${initLines.length ? `${initLines.join('\n')}\n` : ''}    super.init(styled: { ${leaf ? 'style' : 'children, style, standalone'} in
       AnyView(${short}Content(${contentArguments}))
-    })${selection ? '\n    model.onSelectionChange = { [weak self] selection in\n      self?.onSelectionChange?(selection)\n    }' : ''}${binding ? '\n    model.onChange = { [weak self] value, count, revision in\n      self?.onChange?(value, count, revision)\n    }' : ''}${action ? '\n    model.onAction = { [weak self] count in self?.onAction?(count) }' : ''}${measured ? '\n    model.onHeight = { [weak self] height in self?.onMeasure?(height) }' : ''}${
+    })${selection ? '\n    model.onSelectionChange = { [weak self] selection in\n      self?.onSelectionChange?(selection)\n    }' : ''}${binding ? '\n    model.onChange = { [weak self] value, count, revision in\n      self?.onChange?(value, count, revision)\n    }' : ''}${action ? '\n    model.onAction = { [weak self] count in self?.onAction?(count) }' : ''}${measured ? '\n    model.onHeight = { [weak self] height in self?.onMeasure?(height) }' : ''}${viewSlot ? '\n    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }' : ''}${
       contextValues.length
         ? `\n    model.onContext = { [weak self] context in\n      self?.onContext?(${contextFields.map((f) => `context.${f.name}`).join(', ')})\n    }`
         : ''
@@ -1627,6 +1689,38 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
 `
         : ''
     }${
+      marker
+        ? `
+  public override func propagateActive(_ active: Bool) {
+    super.propagateActive(active)
+    // markers stay out of childViews so SwiftUI can position their content.
+    for marker in markers { (marker as? OneNativeComposable)?.propagateActive(active) }
+  }
+
+  // a marker carries its own subtree, so it is captured rather than published with
+  // the base content. anything else is base content.
+  public override func insertChild(_ child: UIView, at index: Int) {
+    guard child is ${marker.slot}View else {
+      super.insertChild(child, at: index)
+      return
+    }
+    markers.append(child)
+    (child as? OneNativeComposable)?.composeInto(self)
+    model.marker = (child as? OneNativeComposable)?.compositionContent()
+  }
+
+  public override func removeChild(_ child: UIView) {
+    guard markers.contains(where: { $0 === child }) else {
+      super.removeChild(child)
+      return
+    }
+    markers.removeAll { $0 === child }
+    (child as? OneNativeComposable)?.decompose()
+    model.marker = (markers.last as? OneNativeComposable)?.compositionContent()
+  }
+`
+        : ''
+    }${
       recipe.rowModifiers
         ? `
   @nonobjc override func isRowModifier(_ name: String) -> Bool {
@@ -1635,10 +1729,17 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
 `
         : ''
     }${
-      (hasModel && fields.length) || environment || binding || selection || context || accessible
+      (hasModel && fields.length) || environment || binding || selection || context || accessible || marker
         ? `
   public override func reset() {
 ${[
+  ...(marker
+    ? [
+        '    for marker in markers { (marker as? OneNativeComposable)?.decompose() }',
+        '    markers.removeAll()',
+        '    model.marker = nil',
+      ]
+    : []),
   ...(binding ? ['    model.active = false', `    model.controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
   ...(presented
     ? [
@@ -1717,7 +1818,7 @@ ${[
 #import <React/RCTView.h>
 #import "One-Swift.h"
 #import "OneNativeContainerStyle.h"
-${measured ? `#import "${name}ShadowNode.h"` : '#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>'}
+${measured || markerLayout ? `#import "${name}ShadowNode.h"` : '#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>'}
 #import <React/RCTConversions.h>${contextMethods.length ? '\n#import <react/renderer/components/OneNativeSpec/RCTComponentViewHelpers.h>' : ''}${presented ? `\n#import "${presented.slot}ComponentView.h"` : ''}
 
 using namespace facebook::react;
@@ -1736,17 +1837,16 @@ ${contextMethods.length ? `\n@interface ${name}ComponentView () <RCT${name}ViewP
     _nativeView = [${name}View new];
 ${
   leaf
-    ? `    __weak ${name}ComponentView *weakSelf = self;
+    ? `${hasSwiftStyle ? `    __weak ${name}ComponentView *weakSelf = self;
     _nativeView.onSwiftStyleEvent = ^(NSString *name, NSString *value) {
       ${name}ComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const ${name}EventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
     };
-`
+` : ''}`
     : `    self.container = _nativeView;
-    OneNativeForwardSwiftStyleEvents<${name}EventEmitter>(self);
-`
+${hasSwiftStyle ? `    OneNativeForwardSwiftStyleEvents<${name}EventEmitter>(self);\n` : ''}`
 }    self.contentView = _nativeView;
 ${
   selection
@@ -1800,6 +1900,17 @@ ${
     };
 `
     : ''
+}${
+  viewSlot
+    ? `    __weak ${name}ComponentView *weakSlot = self;
+    _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
+      ${name}ComponentView *strongSelf = weakSlot;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const ${name}EventEmitter>(strongSelf->_eventEmitter);
+      emitter->${viewSlot.event}({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
+`
+    : ''
 }  }
   return self;
 }
@@ -1830,8 +1941,7 @@ ${
     : ''
 }
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
-  const auto &next = *std::static_pointer_cast<const ${name}Props>(props);
-${
+${hasSwiftStyle || objcConfigured.length || environment || accessible ? `  const auto &next = *std::static_pointer_cast<const ${name}Props>(props);\n` : ''}${
   accessible
     ? `  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
     hint:RCTNSStringFromString(next.accessibilityHint)
@@ -1839,8 +1949,7 @@ ${
     identifier:RCTNSStringFromString(next.testId)];
 `
     : ''
-}  [_nativeView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
-${
+}${hasSwiftStyle ? '  [_nativeView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];\n' : ''}${
   recipe.boundedHeight
     ? `  const auto height = next.yogaStyle.dimension(facebook::yoga::Dimension::Height);
   const bool boundedHeight = !height.isUndefined() && !height.isAuto();
@@ -1896,6 +2005,32 @@ namespace facebook::react {
 extern const char ${name}ComponentName[];
 using ${name}ShadowNode = OneNativeMeasuredShadowNode<${name}ComponentName, ${name}Props, ${name}EventEmitter>;
 using ${name}ComponentDescriptor = OneNativeMeasuredComponentDescriptor<${name}ShadowNode>;
+}
+#endif
+`
+      )
+      outputs.set(
+        `cpp/${name}ShadowNode.cpp`,
+        `${header}#include "${name}ShadowNode.h"
+
+namespace facebook::react {
+extern const char ${name}ComponentName[] = "${name}";
+}
+`
+      )
+    }
+    if (markerLayout) {
+      outputs.set(
+        `cpp/${name}ShadowNode.h`,
+        `${header}#pragma once
+#ifdef __cplusplus
+#include <react/renderer/components/OneNativeSpec/EventEmitters.h>
+#include <react/renderer/components/OneNativeSpec/Props.h>
+#include "OneNativeSlotShadowNode.h"
+namespace facebook::react {
+extern const char ${name}ComponentName[];
+using ${name}ShadowNode = OneNativeSlotShadowNode<${name}ComponentName, ${name}Props, ${name}EventEmitter>;
+using ${name}ComponentDescriptor = OneNativeSlotComponentDescriptor<${name}ShadowNode>;
 }
 #endif
 `
