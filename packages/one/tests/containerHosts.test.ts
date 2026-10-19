@@ -453,6 +453,18 @@ describe('paged hosts', () => {
     expect(mm).toContain('_pagesDirty = NO')
   })
 
+  it('refuses composition so windowless pages never silently drop frame updates', () => {
+    const outputs = emitPaged([pagedHost, pageSlot])
+    const swift = outputs.get('ios/Generated/OneNativeSwiftPagerView.swift')!
+    expect(swift).toContain('public override func compositionContent() -> AnyView {')
+    expect(swift).toContain('public override func composeInto(_ parent: OneNativeCompositionParent) {')
+    expect(swift).toContain('preconditionFailure("OneNativeSwiftPager renders standalone, not composed")')
+    // the standalone path is untouched: its own window, slot and callbacks stand.
+    expect(swift).toContain('model.host = self')
+    expect(swift).toContain('layoutHost: model.host')
+    expect(swift).toContain('public override func setActive(_ active: Bool) { model.active = active }')
+  })
+
   it('rejects pages without a controlled selection or beside other content', () => {
     const { binding: _, ...noBinding } = pagedHost.host as typeof pagedHost.host & {
       binding?: unknown

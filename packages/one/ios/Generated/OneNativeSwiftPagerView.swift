@@ -89,6 +89,17 @@ public final class OneNativeSwiftPagerView: OneNativeContainerView {
     if topologyChanged { model.pageRevision += 1 }
   }
 
+  // pages measure against the host's own window, which a composed container
+  // deliberately leaves unset, so a pager renders standalone and refuses to
+  // publish into a parent's tree instead of silently dropping frame updates.
+  public override func compositionContent() -> AnyView {
+    preconditionFailure("OneNativeSwiftPager renders standalone, not composed")
+  }
+
+  public override func composeInto(_ parent: OneNativeCompositionParent) {
+    preconditionFailure("OneNativeSwiftPager renders standalone, not composed")
+  }
+
   public override func reset() {
     model.active = false
     model.controlled = OneNativeControlled<String>("")

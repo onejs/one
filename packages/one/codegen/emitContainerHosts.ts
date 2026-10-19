@@ -1940,6 +1940,17 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
     }
     if topologyChanged { model.pageRevision += 1 }
   }
+
+  // pages measure against the host's own window, which a composed container
+  // deliberately leaves unset, so a pager renders standalone and refuses to
+  // publish into a parent's tree instead of silently dropping frame updates.
+  public override func compositionContent() -> AnyView {
+    preconditionFailure("${name} renders standalone, not composed")
+  }
+
+  public override func composeInto(_ parent: OneNativeCompositionParent) {
+    preconditionFailure("${name} renders standalone, not composed")
+  }
 `
         : ''
     }${
