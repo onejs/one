@@ -83,7 +83,7 @@ jobs:
           set -o pipefail
           # use timeout to force-kill tests if they hang (20 min should be plenty)
           # capture output to check if tests passed even if timeout kills hanging cleanup
-          timeout --signal=KILL 1200 bun run test 2>&1 | tee test-output.log || {
+          timeout --signal=KILL 1200 bun run test:ci 2>&1 | tee test-output.log || {
             exit_code=$?
             if [ $exit_code -eq 137 ]; then
               echo "Process killed after timeout - checking if tests passed..."
