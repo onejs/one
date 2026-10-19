@@ -1299,7 +1299,7 @@ extension View {
       case "clear": self.accentColor(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.accentColor(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.accentColor(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid accentColor: \(value)")
+    default: self.accentColor(oneNativeSDKValueColor(value, "accentColor") as SwiftUI.Color?)
     }
   }
 
@@ -1390,7 +1390,7 @@ extension View {
       case "isModal": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityAddTraits: \(value)")
+    default: self.accessibilityAddTraits(oneNativeSDKValueAccessibilityTraits(value, "accessibilityAddTraits"))
     }
   }
 
@@ -1805,7 +1805,7 @@ extension View {
       case "isModal": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityRemoveTraits: \(value)")
+    default: self.accessibilityRemoveTraits(oneNativeSDKValueAccessibilityTraits(value, "accessibilityRemoveTraits"))
     }
   }
 
@@ -1982,7 +1982,7 @@ extension View {
       case "isModal": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityWithAddTraits: \(value)")
+    default: self.accessibility(addTraits: oneNativeSDKValueAccessibilityTraits(value, "accessibilityWithAddTraits"))
     }
   }
 
@@ -2023,7 +2023,7 @@ extension View {
       case "isModal": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityWithRemoveTraits: \(value)")
+    default: self.accessibility(removeTraits: oneNativeSDKValueAccessibilityTraits(value, "accessibilityWithRemoveTraits"))
     }
   }
 
@@ -2204,7 +2204,7 @@ extension View {
       case "easeIn": self.animation(SwiftUI.Animation.easeIn as SwiftUI.Animation?)
       case "easeOut": self.animation(SwiftUI.Animation.easeOut as SwiftUI.Animation?)
       case "linear": self.animation(SwiftUI.Animation.linear as SwiftUI.Animation?)
-    default: let _ = preconditionFailure("invalid animation: \(value)")
+    default: self.animation(oneNativeSDKValueAnimation(value, "animation") as SwiftUI.Animation?)
     }
   }
 
@@ -2520,7 +2520,7 @@ self
       case "capsule": self.buttonBorderShape(SwiftUI.ButtonBorderShape.capsule)
       case "roundedRectangle": self.buttonBorderShape(SwiftUI.ButtonBorderShape.roundedRectangle)
       case "circle": self.buttonBorderShape(SwiftUI.ButtonBorderShape.circle)
-    default: let _ = preconditionFailure("invalid buttonBorderShape: \(value)")
+    default: self.buttonBorderShape(oneNativeSDKValueButtonBorderShape(value, "buttonBorderShape"))
     }
   }
 
@@ -2629,7 +2629,7 @@ self
       case "clear": self.colorMultiply(SwiftUI.Color.clear)
       case "primary": self.colorMultiply(SwiftUI.Color.primary)
       case "secondary": self.colorMultiply(SwiftUI.Color.secondary)
-    default: let _ = preconditionFailure("invalid colorMultiply: \(value)")
+    default: self.colorMultiply(oneNativeSDKValueColor(value, "colorMultiply"))
     }
   }
 
@@ -2891,7 +2891,7 @@ self
       case "identity": self.contentTransition(SwiftUI.ContentTransition.identity)
       case "opacity": self.contentTransition(SwiftUI.ContentTransition.opacity)
       case "interpolate": self.contentTransition(SwiftUI.ContentTransition.interpolate)
-    default: let _ = preconditionFailure("invalid contentTransition: \(value)")
+    default: self.contentTransition(oneNativeSDKValueContentTransition(value, "contentTransition"))
     }
   }
 
@@ -3496,7 +3496,7 @@ self
       case "ultraThin": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThin as SwiftUI.Material?)
       case "ultraThick": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThick as SwiftUI.Material?)
       case "bar": self.environment(\.backgroundMaterial, SwiftUI.Material.bar as SwiftUI.Material?)
-    default: let _ = preconditionFailure("invalid environmentBackgroundMaterial: \(value)")
+    default: self.environment(\.backgroundMaterial, oneNativeSDKValueMaterial(value, "environmentBackgroundMaterial") as SwiftUI.Material?)
     }
   }
 
@@ -3544,7 +3544,7 @@ self
       case "identity": self.environment(\.contentTransition, SwiftUI.ContentTransition.identity)
       case "opacity": self.environment(\.contentTransition, SwiftUI.ContentTransition.opacity)
       case "interpolate": self.environment(\.contentTransition, SwiftUI.ContentTransition.interpolate)
-    default: let _ = preconditionFailure("invalid environmentContentTransition: \(value)")
+    default: self.environment(\.contentTransition, oneNativeSDKValueContentTransition(value, "environmentContentTransition"))
     }
   }
 
@@ -3621,7 +3621,7 @@ self
       case "caption": self.environment(\.font, SwiftUI.Font.caption as SwiftUI.Font?)
       case "caption2": self.environment(\.font, SwiftUI.Font.caption2 as SwiftUI.Font?)
       case "default": if #available(iOS 26, *) { self.environment(\.font, SwiftUI.Font.default as SwiftUI.Font?) } else { self }
-    default: let _ = preconditionFailure("invalid environmentFont: \(value)")
+    default: self.environment(\.font, oneNativeSDKValueFont(value, "environmentFont") as SwiftUI.Font?)
     }
   }
 
@@ -3739,7 +3739,7 @@ self
       case "normal": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.normal as Foundation.AttributedString.LineHeight?) } else { self }
       case "tight": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.tight as Foundation.AttributedString.LineHeight?) } else { self }
       case "loose": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.loose as Foundation.AttributedString.LineHeight?) } else { self }
-    default: let _ = preconditionFailure("invalid environmentLineHeight: \(value)")
+    default: if #available(iOS 26, *) { self.environment(\.lineHeight, oneNativeSDKValueAttributedStringLineHeight(value, "environmentLineHeight") as Foundation.AttributedString.LineHeight?) } else { self }
     }
   }
 
@@ -4381,7 +4381,7 @@ if #available(iOS 13, *) {
       case "caption": self.font(SwiftUI.Font.caption as SwiftUI.Font?)
       case "caption2": self.font(SwiftUI.Font.caption2 as SwiftUI.Font?)
       case "default": if #available(iOS 26, *) { self.font(SwiftUI.Font.default as SwiftUI.Font?) } else { self }
-    default: let _ = preconditionFailure("invalid font: \(value)")
+    default: self.font(oneNativeSDKValueFont(value, "font") as SwiftUI.Font?)
     }
   }
 
@@ -4445,7 +4445,7 @@ if #available(iOS 13, *) {
       case "clear": self.foregroundColor(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.foregroundColor(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.foregroundColor(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid foregroundColor: \(value)")
+    default: self.foregroundColor(oneNativeSDKValueColor(value, "foregroundColor") as SwiftUI.Color?)
     }
   }
 
@@ -4679,7 +4679,7 @@ if #available(iOS 13, *) {
       case "regular": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.regular) } else { self }
       case "clear": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.clear) } else { self }
       case "identity": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.identity) } else { self }
-    default: let _ = preconditionFailure("invalid glassEffectWithGlass: \(value)")
+    default: if #available(iOS 26, *) { self.glassEffect(oneNativeSDKValueGlass(value, "glassEffectWithGlass")) } else { self }
     }
   }
 
@@ -4885,7 +4885,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
     switch value {
 
       case "zero": self.hueRotation(SwiftUI.Angle.zero)
-    default: let _ = preconditionFailure("invalid hueRotation: \(value)")
+    default: self.hueRotation(oneNativeSDKValueAngle(value, "hueRotation"))
     }
   }
 
@@ -5003,7 +5003,17 @@ self
     switch value {
 
       case "page": self.indexViewStyle(.page)
-    default: let _ = preconditionFailure("invalid indexViewStyle: \(value)")
+    default:
+      let record = OneNativeSDKRecord(value, "indexViewStyle")
+      switch record.kind {
+      case "page":
+        switch record.overload([(labels: [], required: []), (labels: ["backgroundDisplayMode"], required: ["backgroundDisplayMode"])], chain: []) {
+        case 0: self.indexViewStyle(.page)
+        case 1: self.indexViewStyle(.page(backgroundDisplayMode: record.fields["backgroundDisplayMode"].map { oneNativeSDKValuePageIndexViewStyleBackgroundDisplayMode($0, record.context + ".backgroundDisplayMode") }!))
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+      }
     }
   }
 
@@ -5335,7 +5345,7 @@ self
       case "normal": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.normal as Foundation.AttributedString.LineHeight?) } else { self }
       case "tight": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.tight as Foundation.AttributedString.LineHeight?) } else { self }
       case "loose": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.loose as Foundation.AttributedString.LineHeight?) } else { self }
-    default: let _ = preconditionFailure("invalid lineHeight: \(value)")
+    default: if #available(iOS 26, *) { self.lineHeight(oneNativeSDKValueAttributedStringLineHeight(value, "lineHeight") as Foundation.AttributedString.LineHeight?) } else { self }
     }
   }
 
@@ -5393,7 +5403,7 @@ self
       case "clear": self.listItemTint(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.listItemTint(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.listItemTint(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid listItemTintWithOptionalColor: \(value)")
+    default: self.listItemTint(oneNativeSDKValueColor(value, "listItemTintWithOptionalColor") as SwiftUI.Color?)
     }
   }
 
@@ -5401,7 +5411,7 @@ self
     switch value {
       case "null": self.listItemTint(nil as SwiftUI.ListItemTint?)
       case "monochrome": self.listItemTint(SwiftUI.ListItemTint.monochrome as SwiftUI.ListItemTint?)
-    default: let _ = preconditionFailure("invalid listItemTintWithOptionalListItemTint: \(value)")
+    default: self.listItemTint(oneNativeSDKValueListItemTint(value, "listItemTintWithOptionalListItemTint") as SwiftUI.ListItemTint?)
     }
   }
 
@@ -5492,7 +5502,7 @@ self
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid listRowSeparatorTint.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "listRowSeparatorTint.color")
       }
     }()
     let argument1: SwiftUI.VerticalEdge.Set = {
@@ -5610,7 +5620,7 @@ self
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid listSectionSeparatorTint.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "listSectionSeparatorTint.color")
       }
     }()
     let argument1: SwiftUI.VerticalEdge.Set = {
@@ -5636,7 +5646,7 @@ self
 
       case "default": self.listSectionSpacing(SwiftUI.ListSectionSpacing.default)
       case "compact": self.listSectionSpacing(SwiftUI.ListSectionSpacing.compact)
-    default: let _ = preconditionFailure("invalid listSectionSpacingWithListSectionSpacing: \(value)")
+    default: self.listSectionSpacing(oneNativeSDKValueListSectionSpacing(value, "listSectionSpacingWithListSectionSpacing"))
     }
   }
 
@@ -5751,7 +5761,7 @@ self
       case "callout": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.callout as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
       case "sheet": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.sheet as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
       case "caption": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.caption as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
-    default: let _ = preconditionFailure("invalid mapFeatureSelectionAccessory: \(value)")
+    default: if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(oneNativeSDKValueMapItemDetailSelectionAccessoryStyle(value, "mapFeatureSelectionAccessory") as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
     }
   }
 
@@ -5842,7 +5852,7 @@ self
       case "standard": self.mapStyle(_MapKit_SwiftUI.MapStyle.standard)
       case "imagery": self.mapStyle(_MapKit_SwiftUI.MapStyle.imagery)
       case "hybrid": self.mapStyle(_MapKit_SwiftUI.MapStyle.hybrid)
-    default: let _ = preconditionFailure("invalid mapStyle: \(value)")
+    default: self.mapStyle(oneNativeSDKValueMapStyle(value, "mapStyle"))
     }
   }
 
@@ -6696,7 +6706,7 @@ self
 
       case "automatic": self.paletteSelectionEffect(SwiftUI.PaletteSelectionEffect.automatic)
       case "custom": self.paletteSelectionEffect(SwiftUI.PaletteSelectionEffect.custom)
-    default: let _ = preconditionFailure("invalid paletteSelectionEffect: \(value)")
+    default: self.paletteSelectionEffect(oneNativeSDKValuePaletteSelectionEffect(value, "paletteSelectionEffect"))
     }
   }
 
@@ -7136,7 +7146,7 @@ self
       case "automatic": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.automatic)
       case "enabled": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.enabled)
       case "disabled": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.disabled)
-    default: let _ = preconditionFailure("invalid presentationBackgroundInteraction: \(value)")
+    default: self.presentationBackgroundInteraction(oneNativeSDKValuePresentationBackgroundInteraction(value, "presentationBackgroundInteraction"))
     }
   }
 
@@ -7551,7 +7561,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       guard let raw = values[0] else { preconditionFailure("missing rotationEffect.angle") }
       switch raw {
       case "zero": return SwiftUI.Angle.zero
-      default: preconditionFailure("invalid rotationEffect.angle: \(raw)")
+      default: return oneNativeSDKValueAngle(raw, "rotationEffect.angle")
       }
     }()
     let argument1: SwiftUI.UnitPoint = {
@@ -7959,7 +7969,7 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
     switch value {
 
       case "automatic": self.searchDictationBehavior(SwiftUI.TextInputDictationBehavior.automatic)
-    default: let _ = preconditionFailure("invalid searchDictationBehavior: \(value)")
+    default: self.searchDictationBehavior(oneNativeSDKValueTextInputDictationBehavior(value, "searchDictationBehavior"))
     }
   }
 
@@ -8105,7 +8115,7 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
 if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
         preconditionFailure("unavailable sensoryFeedback.feedback: \(raw)")
       case "impact": return SwiftUI.SensoryFeedback.impact
-      default: preconditionFailure("invalid sensoryFeedback.feedback: \(raw)")
+      default: return oneNativeSDKValueSensoryFeedback(raw, "sensoryFeedback.feedback")
       }
     }()
     let argument1: Swift.String = {
@@ -8144,7 +8154,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid shadow.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "shadow.color")
       }
     }()
     let argument1: CoreFoundation.CGFloat = {
@@ -8418,7 +8428,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid strikethrough.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "strikethrough.color")
       }
     }()
     self.strikethrough(argument0, pattern: argument1, color: argument2)
@@ -8841,7 +8851,32 @@ self
       case "page": self.tabViewStyle(.page)
       case "tabBarOnly": if #available(iOS 18, *) { self.tabViewStyle(.tabBarOnly) } else { self }
       case "automatic": self.tabViewStyle(.automatic)
-    default: let _ = preconditionFailure("invalid tabViewStyle: \(value)")
+    default:
+      let record = OneNativeSDKRecord(value, "tabViewStyle")
+      switch record.kind {
+      case "sidebarAdaptable":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: if #available(iOS 18, *) { self.tabViewStyle(.sidebarAdaptable) } else { self }
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "page":
+        switch record.overload([(labels: [], required: []), (labels: ["indexDisplayMode"], required: ["indexDisplayMode"])], chain: []) {
+        case 0: self.tabViewStyle(.page)
+        case 1: self.tabViewStyle(.page(indexDisplayMode: record.fields["indexDisplayMode"].map { oneNativeSDKValuePageTabViewStyleIndexDisplayMode($0, record.context + ".indexDisplayMode") }!))
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "tabBarOnly":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: if #available(iOS 18, *) { self.tabViewStyle(.tabBarOnly) } else { self }
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "automatic":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: self.tabViewStyle(.automatic)
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+      }
     }
   }
 
@@ -9120,7 +9155,7 @@ if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Se
       case "clear": self.tint(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.tint(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.tint(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid tintWithOptionalColor: \(value)")
+    default: self.tint(oneNativeSDKValueColor(value, "tintWithOptionalColor") as SwiftUI.Color?)
     }
   }
 
@@ -9742,7 +9777,7 @@ self
       case "slide": self.transition(SwiftUI.AnyTransition.slide)
       case "identity": self.transition(SwiftUI.AnyTransition.identity)
       case "scale": self.transition(SwiftUI.AnyTransition.scale)
-    default: let _ = preconditionFailure("invalid transition: \(value)")
+    default: self.transition(oneNativeSDKValueAnyTransition(value, "transition"))
     }
   }
 
@@ -9864,7 +9899,7 @@ self
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid underline.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "underline.color")
       }
     }()
     self.underline(argument0, pattern: argument1, color: argument2)

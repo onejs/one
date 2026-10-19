@@ -2,6 +2,7 @@ import type { StyleField } from './catalog'
 import type { DerivedModifier, DerivedViewSlot, EventValueSchema } from './deriveSDK'
 import { eventValueType } from './emitControls'
 import { sdkGuard } from './sdkGuard'
+import { callArguments, collectValues, emitValueDecoders, hasRecords, recordSwitchSwift, valueKey, valueShapesTS, valueValidatorTS } from './emitValues'
 
 const eventValueSwift = (value: EventValueSchema, expression: string): string => {
   if (value.kind === 'number') return `Double(${expression})`
@@ -48,16 +49,13 @@ export function emitStyle(
   derived: readonly DerivedModifier[],
   slots: readonly DerivedViewSlot[]
 ) {
-  // withAnimation takes the same SDK Animation values as the animation modifier.
+  // withAnimation and PhaseAnimator take the same SDK Animation values as the animation modifier.
   const animation = derived.find((modifier) => modifier.name === 'animation' && modifier.kind === 'optionalEnum')
-  if (!animation?.cases) throw new Error('the SDK inventory derived no animation modifier cases')
-  outputs.set('ios/Generated/OneNativeAnimationValues.swift', header + `import SwiftUI
-
+  if (!animation?.value) throw new Error('the SDK inventory derived no animation modifier value')
+  const values = collectValues(derived)
+  outputs.set('ios/Generated/OneNativeAnimationValues.swift', header + emitValueDecoders(values) + `
 func oneNativeAnimation(named name: String) -> SwiftUI.Animation {
-  switch name {
-${animation.cases.map((item) => `    case ${JSON.stringify(item.name)}:${item.ios > 17 ? `\n${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return SwiftUI.Animation.${item.name} }`, '')}\n      preconditionFailure("unavailable animation: \\(name)")` : ` return SwiftUI.Animation.${item.name}`}`).join('\n')}
-    default: preconditionFailure("invalid animation: \\(name)")
-  }
+  oneNativeSDKValue${valueKey(animation.value.type)}(name, "animation")
 }
 `)
   outputs.set('src/platform/generated/viewSlots.ts', header + `import type { SDKEventValueShape } from './swiftStyleNative'
@@ -315,7 +313,7 @@ ${modifier.cases!.map((field) => `    case ${JSON.stringify(field.name)}:
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
       switch raw {
 ${cases}
-      default: preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)")
+      default: ${hasRecords(argument.value) ? `return oneNativeSDKValue${valueKey(argument.value!.type)}(raw, "${modifier.name}.${argument.field}")` : `preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)")`}
       }
     }()`
           }
@@ -1034,7 +1032,18 @@ ${modifier.cases
     return `      case ${JSON.stringify(item.name)}:${call.startsWith('\n') ? '' : ' '}${call}`
   })
   .join('\n')}
-    default: let _ = preconditionFailure("invalid ${modifier.name}: \\(value)")
+    default:${modifier.factories?.length
+  ? `\n      let record = OneNativeSDKRecord(value, "${modifier.name}")\n${recordSwitchSwift({
+    cases: modifier.cases, factories: modifier.factories, chain: [], record: 'record',
+    context: 'record.context', indent: '      ', failure: (message) => `let _ = preconditionFailure(${message})`,
+    call: (name, version, factory) => {
+      const call = apply(`.${name}${factory ? `(${callArguments(factory, 'record', 'record.context')})` : ''}`, Math.max(modifier.ios, version))
+      return call.startsWith('\n') ? call : ` ${call}`
+    },
+  })}`
+  : hasRecords(modifier.value)
+    ? ` ${apply(`oneNativeSDKValue${valueKey(modifier.value!.type)}(value, "${modifier.name}")${modifier.kind === 'optionalEnum' ? ` as ${modifier.type}` : ''}`, modifier.ios)}`
+    : ` let _ = preconditionFailure("invalid ${modifier.name}: \\(value)")`}
     }
   }`
       }
@@ -1097,7 +1106,7 @@ ${parsed.replace(/[ \t]+$/gm, '')}
     header +
       `import { NativeModules, processColor, type ColorValue, type ProcessedColorValue } from 'react-native'
 import { animatorStyleNative, animatorStyleOf } from '../animatorStyle'
-import type { OneNativeStyle } from './controlTypes'
+import type { OneNativeStyle, SDKAnimationValue } from './controlTypes'
 
 export type OneNativeStyleNative = Readonly<{
 ${styleFields
@@ -1137,7 +1146,17 @@ const sdkSessionRequests: Record<string, { inputField: string; outputFields: rea
 const sdkAsyncObjectRequestBindings: Record<string, string> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'asyncObjectRequest').map((modifier) => [modifier.name, modifier.predicateLabel])))}
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
-const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; unique?: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, unique, fields, eventValue }) => ({ field, kind, optional, ...(unique ? { unique } : {}), ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
+const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; unique?: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape; value?: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, unique, fields, eventValue, value }) => ({ field, kind, optional, ...(unique ? { unique } : {}), ...(kind === 'enum' && hasRecords(value) ? { value: valueKey(value!.type) } : {}), ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
+// SDK values a modifier takes as a case name or a record, by modifier name.
+const sdkModifierValues: Record<string, string> = ${JSON.stringify(Object.fromEntries(derived.flatMap((modifier) =>
+  modifier.kind === 'style' && modifier.factories?.length ? [[modifier.name, `style:${modifier.name}`]]
+    : hasRecords(modifier.value) ? [[modifier.name, valueKey(modifier.value!.type)]] : [])))}
+${valueValidatorTS(valueShapesTS(values, derived))}
+
+// the text withAnimation and PhaseAnimator hand native for an SDK Animation.
+export function encodeSDKAnimation(value: SDKAnimationValue, context = 'animation'): string {
+  return sdkValueText(value, ${JSON.stringify(valueKey(animation.value.type))}, context)
+}
 
 export function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
   if (shape.kind === 'optional') return value === null || validSDKEventValue(value, shape.value)
@@ -1250,6 +1269,7 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
           }
           if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isFinite(item))) throw new Error(name + '.' + argument.field + ' must be finite')
           if (argument.kind === 'boolean' && typeof item !== 'boolean') throw new Error(name + '.' + argument.field + ' must be a boolean')
+          if (argument.value && typeof item === 'object' && item !== null) return sdkValueText(item, argument.value, name + '.' + argument.field)
           if ((argument.kind === 'string' || argument.kind === 'url' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
           if ((argument.kind === 'stringArray' || argument.kind === 'stringSet') && (!Array.isArray(item) || item.some((element) => typeof element !== 'string'))) throw new Error(name + '.' + argument.field + ' must be a string array')
           if (argument.unique && new Set(item as string[]).size !== (item as string[]).length) throw new Error(name + '.' + argument.field + ' must contain distinct strings')
@@ -1493,6 +1513,10 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
           record.longitude < -180 || record.longitude > 180)
           throw new Error(name + ' must have a presentation binding and valid coordinates')
         sdkModifiers.push([name, JSON.stringify([String(binding.value), String(record.latitude), String(record.longitude)])])
+        continue
+      }
+      if (Object.hasOwn(sdkModifierValues, name) && typeof value === 'object' && value !== null) {
+        sdkModifiers.push([name, sdkValueText(value, sdkModifierValues[name], name)])
         continue
       }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')

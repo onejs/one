@@ -9,6 +9,7 @@ import type {
 } from './controlTypes'
 import { deriveLeafSwift } from './derive'
 import type { DerivedModifier, EventValueSchema } from './deriveSDK'
+import { collectValues, hasRecords, recordTS, valueKey, valueTypesTS } from './emitValues'
 import type { Declaration } from './inventory'
 
 const swiftScalar = (type: ActionPayloadType) =>
@@ -150,7 +151,11 @@ ${styleFields
       kind: 'string' as const,
       derived: true as const,
       publicType:
-        modifier.kind === 'event'
+        modifier.kind === 'style' && modifier.factories?.length
+          ? `SDK${upper(modifier.name)} | ${recordTS(modifier.cases!, modifier.factories, [])}`
+        : hasRecords(modifier.value)
+          ? `SDK${upper(modifier.name)} | SDK${valueKey(modifier.value!.type)}Record${modifier.kind === 'optionalEnum' ? ' | null' : ''}`
+        : modifier.kind === 'event'
           ? '() => void'
           : modifier.kind === 'visualEffect'
             ? `Readonly<{ kind: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}; value: number }>`
@@ -247,7 +252,7 @@ ${styleFields
                     : modifier.kind === 'asyncObjectRequest'
                       ? `Readonly<{ ${modifier.predicateLabel}: Readonly<{ value: boolean; onChange: (value: boolean) => void }>; latitude: number; longitude: number }>`
                     : modifier.kind === 'record'
-                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'bindingOptionalURL' ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>' : argument.kind === 'eventStruct' ? `(value: ${eventValueType(argument.eventValue!)}) => void` : argument.kind === 'classUpdate' || argument.kind === 'structUpdate' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}?: ${field.type === 'Swift.Bool' ? 'boolean' : field.type.endsWith('?') ? 'string | null' : 'string'}`).join('; ')} }>` : argument.kind === 'resultURL' || argument.kind === 'resultURLArray' ? `(result: Readonly<{ success: ${argument.kind === 'resultURL' ? 'string' : 'readonly string[]'} } | { failure: string }>) => void` : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
+                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? `${argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}${hasRecords(argument.value) ? ` | SDK${valueKey(argument.value!.type)}Record` : ''}` : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'bindingOptionalURL' ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>' : argument.kind === 'eventStruct' ? `(value: ${eventValueType(argument.eventValue!)}) => void` : argument.kind === 'classUpdate' || argument.kind === 'structUpdate' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}?: ${field.type === 'Swift.Bool' ? 'boolean' : field.type.endsWith('?') ? 'string | null' : 'string'}`).join('; ')} }>` : argument.kind === 'resultURL' || argument.kind === 'resultURLArray' ? `(result: Readonly<{ success: ${argument.kind === 'resultURL' ? 'string' : 'readonly string[]'} } | { failure: string }>) => void` : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
                       : modifier.kind === 'style' ? undefined
                       : modifier.kind === 'url' ? 'string'
               : modifier.kind === 'string' ? undefined : modifier.kind,
@@ -285,6 +290,7 @@ ${publicStyleFields
 export type ${styleAlias(field)} = (typeof ${styleValuesName(field)})[number]`
   )
   .join('\n')}
+${valueTypesTS(collectValues(derivedModifiers))}
 
 export interface OneNativeStyle {
 ${publicStyleFields.map((field) => `  ${field.name}?: ${styleFieldType(field)}`).join('\n')}

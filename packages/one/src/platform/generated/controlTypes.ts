@@ -1691,6 +1691,746 @@ export const sdkWritingToolsBehaviorValues = [
   'disabled',
 ] as const
 export type SDKWritingToolsBehavior = (typeof sdkWritingToolsBehaviorValues)[number]
+export type SDKAccessibilityTraitsRecord = Readonly<{
+  kind:
+    | 'isButton'
+    | 'isHeader'
+    | 'isSelected'
+    | 'isLink'
+    | 'isSearchField'
+    | 'isImage'
+    | 'playsSound'
+    | 'isKeyboardKey'
+    | 'isStaticText'
+    | 'isSummaryElement'
+    | 'updatesFrequently'
+    | 'startsMediaSession'
+    | 'allowsDirectInteraction'
+    | 'causesPageTurn'
+    | 'isModal'
+    | 'isToggle'
+    | 'isTabBar'
+  union?: SDKAccessibilityTraitsValue
+  intersection?: SDKAccessibilityTraitsValue
+  symmetricDifference?: SDKAccessibilityTraitsValue
+}>
+export type SDKAccessibilityTraitsValue =
+  | 'isButton'
+  | 'isHeader'
+  | 'isSelected'
+  | 'isLink'
+  | 'isSearchField'
+  | 'isImage'
+  | 'playsSound'
+  | 'isKeyboardKey'
+  | 'isStaticText'
+  | 'isSummaryElement'
+  | 'updatesFrequently'
+  | 'startsMediaSession'
+  | 'allowsDirectInteraction'
+  | 'causesPageTurn'
+  | 'isModal'
+  | 'isToggle'
+  | 'isTabBar'
+  | SDKAccessibilityTraitsRecord
+export type SDKAngleRecord =
+  | Readonly<{ kind: 'zero' }>
+  | Readonly<{ kind: 'radians'; radians: number }>
+  | Readonly<{ kind: 'degrees'; degrees: number }>
+export type SDKAngleValue = 'zero' | SDKAngleRecord
+export type SDKAnimationRecord =
+  | Readonly<{
+      kind:
+        | 'default'
+        | 'interpolatingSpring'
+        | 'spring'
+        | 'interactiveSpring'
+        | 'smooth'
+        | 'snappy'
+        | 'bouncy'
+        | 'easeInOut'
+        | 'easeIn'
+        | 'easeOut'
+        | 'linear'
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'timingCurve'
+      curve: SDKUnitCurveValue
+      duration: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'spring'
+      spring: SDKSpringValue
+      blendDuration?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'interpolatingSpring'
+      spring: SDKSpringValue
+      initialVelocity?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'interpolatingSpring'
+      mass?: number
+      stiffness: number
+      damping: number
+      initialVelocity?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'interpolatingSpring'
+      duration?: number
+      bounce?: number
+      initialVelocity?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'spring'
+      duration?: number
+      bounce?: number
+      blendDuration?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'spring'
+      response?: number
+      dampingFraction?: number
+      blendDuration?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'interactiveSpring'
+      response?: number
+      dampingFraction?: number
+      blendDuration?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'interactiveSpring'
+      duration?: number
+      extraBounce?: number
+      blendDuration?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'smooth'
+      duration?: number
+      extraBounce?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'snappy'
+      duration?: number
+      extraBounce?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'bouncy'
+      duration?: number
+      extraBounce?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'easeInOut'
+      duration: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'easeIn'
+      duration: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'easeOut'
+      duration: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'linear'
+      duration: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+  | Readonly<{
+      kind: 'timingCurve'
+      p1x: number
+      p1y: number
+      p2x: number
+      p2y: number
+      duration?: number
+      speed?: number
+      logicallyComplete?: number
+      delay?: number
+      repeatCount?: Readonly<{ repeatCount: number; autoreverses?: boolean }>
+      repeatForever?: Readonly<{ autoreverses?: boolean }>
+    }>
+export type SDKAnimationValue =
+  | 'default'
+  | 'interpolatingSpring'
+  | 'spring'
+  | 'interactiveSpring'
+  | 'smooth'
+  | 'snappy'
+  | 'bouncy'
+  | 'easeInOut'
+  | 'easeIn'
+  | 'easeOut'
+  | 'linear'
+  | SDKAnimationRecord
+export type SDKAnyTransitionRecord =
+  | Readonly<{
+      kind: 'opacity' | 'slide' | 'identity' | 'scale'
+      combined?: SDKAnyTransitionValue
+    }>
+  | Readonly<{ kind: 'offset'; x?: number; y?: number; combined?: SDKAnyTransitionValue }>
+  | Readonly<{ kind: 'move'; edge: SDKEdgeValue; combined?: SDKAnyTransitionValue }>
+  | Readonly<{
+      kind: 'asymmetric'
+      insertion: SDKAnyTransitionValue
+      removal: SDKAnyTransitionValue
+      combined?: SDKAnyTransitionValue
+    }>
+  | Readonly<{ kind: 'push'; from: SDKEdgeValue; combined?: SDKAnyTransitionValue }>
+  | Readonly<{
+      kind: 'scale'
+      scale: number
+      anchor?: SDKUnitPointValue
+      combined?: SDKAnyTransitionValue
+    }>
+export type SDKAnyTransitionValue =
+  | 'opacity'
+  | 'slide'
+  | 'identity'
+  | 'scale'
+  | SDKAnyTransitionRecord
+export type SDKAttributedStringLineHeightRecord =
+  | Readonly<{ kind: 'variable' | 'normal' | 'tight' | 'loose' }>
+  | Readonly<{ kind: 'multiple'; factor: number }>
+  | Readonly<{ kind: 'leading'; increase: number }>
+  | Readonly<{ kind: 'exact'; points: number }>
+export type SDKAttributedStringLineHeightValue =
+  | 'variable'
+  | 'normal'
+  | 'tight'
+  | 'loose'
+  | SDKAttributedStringLineHeightRecord
+export type SDKButtonBorderShapeRecord =
+  | Readonly<{ kind: 'automatic' | 'capsule' | 'roundedRectangle' | 'circle' }>
+  | Readonly<{ kind: 'roundedRectangle'; radius: number }>
+export type SDKButtonBorderShapeValue =
+  | 'automatic'
+  | 'capsule'
+  | 'roundedRectangle'
+  | 'circle'
+  | SDKButtonBorderShapeRecord
+export type SDKColorRecord = Readonly<{
+  kind:
+    | 'accentColor'
+    | 'red'
+    | 'orange'
+    | 'yellow'
+    | 'green'
+    | 'mint'
+    | 'teal'
+    | 'cyan'
+    | 'blue'
+    | 'indigo'
+    | 'purple'
+    | 'pink'
+    | 'brown'
+    | 'white'
+    | 'gray'
+    | 'black'
+    | 'clear'
+    | 'primary'
+    | 'secondary'
+  exposureAdjust?: number
+  opacity?: number
+  mix?: Readonly<{ with: SDKColorValue; by: number; in?: SDKGradientColorSpaceValue }>
+}>
+export type SDKColorValue =
+  | 'accentColor'
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'mint'
+  | 'teal'
+  | 'cyan'
+  | 'blue'
+  | 'indigo'
+  | 'purple'
+  | 'pink'
+  | 'brown'
+  | 'white'
+  | 'gray'
+  | 'black'
+  | 'clear'
+  | 'primary'
+  | 'secondary'
+  | SDKColorRecord
+export type SDKContentTransitionRecord =
+  | Readonly<{ kind: 'symbolEffect' | 'identity' | 'opacity' | 'interpolate' }>
+  | Readonly<{ kind: 'numericText'; countsDown?: boolean }>
+  | Readonly<{ kind: 'numericText'; value: number }>
+export type SDKContentTransitionValue =
+  | 'symbolEffect'
+  | 'identity'
+  | 'opacity'
+  | 'interpolate'
+  | SDKContentTransitionRecord
+export type SDKEdgeValue = 'top' | 'leading' | 'bottom' | 'trailing'
+export type SDKFontRecord =
+  | Readonly<{
+      kind:
+        | 'largeTitle'
+        | 'title'
+        | 'title2'
+        | 'title3'
+        | 'headline'
+        | 'subheadline'
+        | 'body'
+        | 'callout'
+        | 'footnote'
+        | 'caption'
+        | 'caption2'
+        | 'default'
+      monospacedDigit?: true
+      width?: SDKFontWidthValue
+      leading?: SDKFontLeadingValue
+      pointSize?: number
+      scaled?: number
+    }>
+  | Readonly<{
+      kind: 'system'
+      style: SDKFontTextStyleValue
+      design?: SDKFontDesignValue
+      monospacedDigit?: true
+      width?: SDKFontWidthValue
+      leading?: SDKFontLeadingValue
+      pointSize?: number
+      scaled?: number
+    }>
+  | Readonly<{
+      kind: 'system'
+      size: number
+      weight?: SDKFontWeightValue
+      design?: SDKFontDesignValue
+      monospacedDigit?: true
+      width?: SDKFontWidthValue
+      leading?: SDKFontLeadingValue
+      pointSize?: number
+      scaled?: number
+    }>
+export type SDKFontValue =
+  | 'largeTitle'
+  | 'title'
+  | 'title2'
+  | 'title3'
+  | 'headline'
+  | 'subheadline'
+  | 'body'
+  | 'callout'
+  | 'footnote'
+  | 'caption'
+  | 'caption2'
+  | 'default'
+  | SDKFontRecord
+export type SDKFontDesignValue = 'default' | 'serif' | 'rounded' | 'monospaced'
+export type SDKFontLeadingValue = 'standard' | 'tight' | 'loose'
+export type SDKFontTextStyleValue =
+  | 'largeTitle'
+  | 'title'
+  | 'title2'
+  | 'title3'
+  | 'headline'
+  | 'subheadline'
+  | 'body'
+  | 'callout'
+  | 'footnote'
+  | 'caption'
+  | 'caption2'
+export type SDKFontWeightValue =
+  | 'ultraLight'
+  | 'thin'
+  | 'light'
+  | 'regular'
+  | 'medium'
+  | 'semibold'
+  | 'bold'
+  | 'heavy'
+  | 'black'
+export type SDKFontWidthValue = 'compressed' | 'condensed' | 'standard' | 'expanded'
+export type SDKGlassRecord = Readonly<{
+  kind: 'regular' | 'clear' | 'identity'
+  interactive?: Readonly<{ isEnabled?: boolean }>
+}>
+export type SDKGlassValue = 'regular' | 'clear' | 'identity' | SDKGlassRecord
+export type SDKGradientColorSpaceValue = 'device' | 'perceptual'
+export type SDKListItemTintRecord =
+  | Readonly<{ kind: 'monochrome' }>
+  | Readonly<{ kind: 'fixed'; tint: SDKColorValue }>
+  | Readonly<{ kind: 'preferred'; tint: SDKColorValue }>
+export type SDKListItemTintValue = 'monochrome' | SDKListItemTintRecord
+export type SDKListSectionSpacingRecord =
+  | Readonly<{ kind: 'default' | 'compact' }>
+  | Readonly<{ kind: 'custom'; spacing: number }>
+export type SDKListSectionSpacingValue =
+  | 'default'
+  | 'compact'
+  | SDKListSectionSpacingRecord
+export type SDKMKPointOfInterestCategoryValue =
+  | 'airport'
+  | 'airportTerminal'
+  | 'amusementPark'
+  | 'animalService'
+  | 'aquarium'
+  | 'atm'
+  | 'automotiveDealership'
+  | 'automotiveRepair'
+  | 'bakery'
+  | 'bank'
+  | 'baseball'
+  | 'basketball'
+  | 'beach'
+  | 'beauty'
+  | 'bowling'
+  | 'brewery'
+  | 'cafe'
+  | 'campground'
+  | 'carRental'
+  | 'castle'
+  | 'commercialVehicleDealership'
+  | 'conventionCenter'
+  | 'distillery'
+  | 'evCharger'
+  | 'fairground'
+  | 'fireStation'
+  | 'fishing'
+  | 'fitnessCenter'
+  | 'foodMarket'
+  | 'fortress'
+  | 'gasStation'
+  | 'goKart'
+  | 'golf'
+  | 'hiking'
+  | 'hospital'
+  | 'hotel'
+  | 'informationBooth'
+  | 'kayaking'
+  | 'landmark'
+  | 'laundry'
+  | 'library'
+  | 'mailbox'
+  | 'marina'
+  | 'miniGolf'
+  | 'motorbikeDealership'
+  | 'movieTheater'
+  | 'museum'
+  | 'musicVenue'
+  | 'nationalMonument'
+  | 'nationalPark'
+  | 'nightlife'
+  | 'park'
+  | 'parking'
+  | 'pharmacy'
+  | 'picnicArea'
+  | 'planetarium'
+  | 'police'
+  | 'postOffice'
+  | 'publicTransport'
+  | 'rangerStation'
+  | 'restArea'
+  | 'restaurant'
+  | 'restroom'
+  | 'rockClimbing'
+  | 'rvPark'
+  | 'scenicView'
+  | 'school'
+  | 'skatePark'
+  | 'skating'
+  | 'skiing'
+  | 'soccer'
+  | 'spa'
+  | 'stadium'
+  | 'store'
+  | 'surfing'
+  | 'swimming'
+  | 'tennis'
+  | 'theater'
+  | 'ticketOffice'
+  | 'university'
+  | 'visitorCenter'
+  | 'volleyball'
+  | 'winery'
+  | 'zoo'
+export type SDKMapItemDetailSelectionAccessoryStyleRecord =
+  | Readonly<{ kind: 'automatic' | 'callout' | 'sheet' | 'caption' }>
+  | Readonly<{
+      kind: 'callout'
+      style?: SDKMapItemDetailSelectionAccessoryStyleCalloutStyleValue
+    }>
+export type SDKMapItemDetailSelectionAccessoryStyleValue =
+  | 'automatic'
+  | 'callout'
+  | 'sheet'
+  | 'caption'
+  | SDKMapItemDetailSelectionAccessoryStyleRecord
+export type SDKMapItemDetailSelectionAccessoryStyleCalloutStyleValue =
+  | 'automatic'
+  | 'full'
+  | 'compact'
+export type SDKMapStyleRecord =
+  | Readonly<{ kind: 'standard' | 'imagery' | 'hybrid' }>
+  | Readonly<{
+      kind: 'standard'
+      elevation?: SDKMapStyleElevationValue
+      emphasis?: SDKMapStyleStandardEmphasisValue
+      pointsOfInterest?: SDKPointOfInterestCategoriesValue
+      showsTraffic?: boolean
+    }>
+  | Readonly<{ kind: 'imagery'; elevation?: SDKMapStyleElevationValue }>
+  | Readonly<{
+      kind: 'hybrid'
+      elevation?: SDKMapStyleElevationValue
+      pointsOfInterest?: SDKPointOfInterestCategoriesValue
+      showsTraffic?: boolean
+    }>
+export type SDKMapStyleValue = 'standard' | 'imagery' | 'hybrid' | SDKMapStyleRecord
+export type SDKMapStyleElevationValue = 'automatic' | 'flat' | 'realistic'
+export type SDKMapStyleStandardEmphasisValue = 'automatic' | 'muted'
+export type SDKMaterialRecord = Readonly<{
+  kind: 'regular' | 'thick' | 'thin' | 'ultraThin' | 'ultraThick' | 'bar'
+  materialActiveAppearance?: SDKMaterialActiveAppearanceValue
+}>
+export type SDKMaterialValue =
+  | 'regular'
+  | 'thick'
+  | 'thin'
+  | 'ultraThin'
+  | 'ultraThick'
+  | 'bar'
+  | SDKMaterialRecord
+export type SDKMaterialActiveAppearanceValue = 'automatic' | 'active' | 'matchWindow'
+export type SDKPageIndexViewStyleBackgroundDisplayModeValue =
+  | 'automatic'
+  | 'interactive'
+  | 'always'
+  | 'never'
+export type SDKPageTabViewStyleIndexDisplayModeValue = 'automatic' | 'always' | 'never'
+export type SDKPaletteSelectionEffectRecord =
+  | Readonly<{ kind: 'automatic' | 'custom' }>
+  | Readonly<{ kind: 'symbolVariant'; variant: SDKSymbolVariantsValue }>
+export type SDKPaletteSelectionEffectValue =
+  | 'automatic'
+  | 'custom'
+  | SDKPaletteSelectionEffectRecord
+export type SDKPointOfInterestCategoriesRecord =
+  | Readonly<{ kind: 'all' | 'excludingAll' }>
+  | Readonly<{ kind: 'including'; categories: SDKMKPointOfInterestCategoryValue }>
+  | Readonly<{ kind: 'excluding'; categories: SDKMKPointOfInterestCategoryValue }>
+export type SDKPointOfInterestCategoriesValue =
+  | 'all'
+  | 'excludingAll'
+  | SDKPointOfInterestCategoriesRecord
+export type SDKPresentationBackgroundInteractionRecord =
+  | Readonly<{ kind: 'automatic' | 'enabled' | 'disabled' }>
+  | Readonly<{ kind: 'enabled'; upThrough: SDKPresentationDetentValue }>
+export type SDKPresentationBackgroundInteractionValue =
+  | 'automatic'
+  | 'enabled'
+  | 'disabled'
+  | SDKPresentationBackgroundInteractionRecord
+export type SDKPresentationDetentRecord =
+  | Readonly<{ kind: 'medium' | 'large' }>
+  | Readonly<{ kind: 'fraction'; fraction: number }>
+  | Readonly<{ kind: 'height'; height: number }>
+export type SDKPresentationDetentValue = 'medium' | 'large' | SDKPresentationDetentRecord
+export type SDKSensoryFeedbackRecord =
+  | Readonly<{
+      kind:
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'selection'
+        | 'increase'
+        | 'decrease'
+        | 'start'
+        | 'stop'
+        | 'alignment'
+        | 'levelChange'
+        | 'pathComplete'
+        | 'impact'
+    }>
+  | Readonly<{
+      kind: 'impact'
+      weight?: SDKSensoryFeedbackWeightValue
+      intensity?: number
+    }>
+  | Readonly<{
+      kind: 'impact'
+      flexibility: SDKSensoryFeedbackFlexibilityValue
+      intensity?: number
+    }>
+  | Readonly<{ kind: 'selection'; feedback: SDKSensoryFeedbackSelectionFeedbackValue }>
+  | Readonly<{ kind: 'press'; feedback: SDKSensoryFeedbackPressFeedbackValue }>
+  | Readonly<{ kind: 'release'; feedback: SDKSensoryFeedbackReleaseFeedbackValue }>
+export type SDKSensoryFeedbackValue =
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'selection'
+  | 'increase'
+  | 'decrease'
+  | 'start'
+  | 'stop'
+  | 'alignment'
+  | 'levelChange'
+  | 'pathComplete'
+  | 'impact'
+  | SDKSensoryFeedbackRecord
+export type SDKSensoryFeedbackFlexibilityValue = 'rigid' | 'solid' | 'soft'
+export type SDKSensoryFeedbackPressFeedbackValue =
+  | 'button'
+  | 'buttonIconOnly'
+  | 'slider'
+  | 'toggle'
+  | 'tab'
+export type SDKSensoryFeedbackReleaseFeedbackValue = 'slider'
+export type SDKSensoryFeedbackSelectionFeedbackValue =
+  | 'maximum'
+  | 'minimum'
+  | 'on'
+  | 'off'
+export type SDKSensoryFeedbackWeightValue = 'light' | 'medium' | 'heavy'
+export type SDKSpringRecord =
+  | Readonly<{ kind: 'smooth' | 'snappy' | 'bouncy' }>
+  | Readonly<{ kind: 'smooth'; duration?: number; extraBounce?: number }>
+  | Readonly<{ kind: 'snappy'; duration?: number; extraBounce?: number }>
+  | Readonly<{ kind: 'bouncy'; duration?: number; extraBounce?: number }>
+export type SDKSpringValue = 'smooth' | 'snappy' | 'bouncy' | SDKSpringRecord
+export type SDKSymbolVariantsValue =
+  | 'none'
+  | 'circle'
+  | 'square'
+  | 'rectangle'
+  | 'fill'
+  | 'slash'
+export type SDKTextInputDictationActivationValue = 'onSelect' | 'onLook'
+export type SDKTextInputDictationBehaviorRecord =
+  | Readonly<{ kind: 'automatic' }>
+  | Readonly<{ kind: 'inline'; activation: SDKTextInputDictationActivationValue }>
+export type SDKTextInputDictationBehaviorValue =
+  | 'automatic'
+  | SDKTextInputDictationBehaviorRecord
+export type SDKUnitCurveRecord =
+  | Readonly<{
+      kind:
+        | 'easeInEaseOut'
+        | 'easeInOut'
+        | 'easeIn'
+        | 'easeOut'
+        | 'circularEaseIn'
+        | 'circularEaseOut'
+        | 'circularEaseInOut'
+        | 'linear'
+    }>
+  | Readonly<{
+      kind: 'bezier'
+      startControlPoint: SDKUnitPointValue
+      endControlPoint: SDKUnitPointValue
+    }>
+export type SDKUnitCurveValue =
+  | 'easeInEaseOut'
+  | 'easeInOut'
+  | 'easeIn'
+  | 'easeOut'
+  | 'circularEaseIn'
+  | 'circularEaseOut'
+  | 'circularEaseInOut'
+  | 'linear'
+  | SDKUnitCurveRecord
+export type SDKUnitPointValue =
+  | 'zero'
+  | 'center'
+  | 'leading'
+  | 'trailing'
+  | 'top'
+  | 'bottom'
+  | 'topLeading'
+  | 'topTrailing'
+  | 'bottomLeading'
+  | 'bottomTrailing'
 
 export interface OneNativeStyle {
   fontSize?: number
@@ -1722,7 +2462,7 @@ export interface OneNativeStyle {
   glassEffectTint?: ColorValue
   glassEffectShape?: GlassEffectShape
   material?: Material
-  accentColor?: SDKAccentColor | null
+  accentColor?: SDKAccentColor | SDKColorRecord | null
   accessibilityAction?: () => void
   accessibilityActionWithAppIntent?: string
   accessibilityActivationPointWithActivationPointAndIsEnabled?: Readonly<{
@@ -1740,7 +2480,7 @@ export interface OneNativeStyle {
     isEnabled: boolean
   }>
   accessibilityActivationPointWithUnitPoint?: SDKAccessibilityActivationPointWithUnitPoint
-  accessibilityAddTraits?: SDKAccessibilityAddTraits
+  accessibilityAddTraits?: SDKAccessibilityAddTraits | SDKAccessibilityTraitsRecord
   accessibilityAdjustableAction?: (value: 'increment' | 'decrement') => void
   accessibilityChartDescriptor?: Readonly<{
     title?: string
@@ -1852,7 +2592,7 @@ export interface OneNativeStyle {
   }>
   accessibilityLabelWithText?: string
   accessibilityLinkedGroup?: Readonly<{ id: string }>
-  accessibilityRemoveTraits?: SDKAccessibilityRemoveTraits
+  accessibilityRemoveTraits?: SDKAccessibilityRemoveTraits | SDKAccessibilityTraitsRecord
   accessibilityRespondsToUserInteractionWithBool?: boolean
   accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled?: Readonly<{
     respondsToUserInteraction: boolean
@@ -1871,12 +2611,16 @@ export interface OneNativeStyle {
     isEnabled: boolean
   }>
   accessibilityWithActivationPoint?: SDKAccessibilityWithActivationPoint
-  accessibilityWithAddTraits?: SDKAccessibilityWithAddTraits
+  accessibilityWithAddTraits?:
+    | SDKAccessibilityWithAddTraits
+    | SDKAccessibilityTraitsRecord
   accessibilityWithHidden?: boolean
   accessibilityWithHint?: string
   accessibilityWithIdentifier?: string
   accessibilityWithLabel?: string
-  accessibilityWithRemoveTraits?: SDKAccessibilityWithRemoveTraits
+  accessibilityWithRemoveTraits?:
+    | SDKAccessibilityWithRemoveTraits
+    | SDKAccessibilityTraitsRecord
   accessibilityWithSortPriority?: number
   accessibilityWithValue?: string
   accessibilityZoomAction?: (value: {
@@ -1915,7 +2659,7 @@ export interface OneNativeStyle {
     origin: { x: number; y: number }
     size: { width: number; height: number }
   }) => void
-  animation?: SDKAnimation | null
+  animation?: SDKAnimation | SDKAnimationRecord | null
   appEntityIdentifier?: string | null
   appEntityUIElements?: string
   appStoreMerchandising?: Readonly<{
@@ -1949,7 +2693,7 @@ export interface OneNativeStyle {
   blur?: Readonly<{ radius: number; opaque: boolean }>
   bold?: boolean
   brightness?: number
-  buttonBorderShape?: SDKButtonBorderShape
+  buttonBorderShape?: SDKButtonBorderShape | SDKButtonBorderShapeRecord
   buttonRepeatBehavior?: SDKButtonRepeatBehavior
   buttonSizing?: SDKButtonSizing
   buttonStyle?: SDKButtonStyle
@@ -1957,7 +2701,7 @@ export interface OneNativeStyle {
   clipShape?: SDKClipShape
   colorEffect?: Readonly<{ shader: string; isEnabled: boolean }>
   colorInvert?: boolean
-  colorMultiply?: SDKColorMultiply
+  colorMultiply?: SDKColorMultiply | SDKColorRecord
   colorScheme?: SDKColorScheme
   compositingGroup?: boolean
   containerCornerOffset?: Readonly<{
@@ -2017,7 +2761,7 @@ export interface OneNativeStyle {
     placement: 'automatic' | 'scrollContent' | 'scrollIndicators'
   }>
   contentShape?: SDKContentShape
-  contentTransition?: SDKContentTransition
+  contentTransition?: SDKContentTransition | SDKContentTransitionRecord
   contrast?: number
   controlGroupStyle?: SDKControlGroupStyle
   controlSize?: SDKControlSize
@@ -2125,12 +2869,17 @@ export interface OneNativeStyle {
   environmentAllowsTightening?: boolean
   environmentAppearsActive?: boolean
   environmentAutocorrectionDisabled?: boolean
-  environmentBackgroundMaterial?: SDKEnvironmentBackgroundMaterial | null
+  environmentBackgroundMaterial?:
+    | SDKEnvironmentBackgroundMaterial
+    | SDKMaterialRecord
+    | null
   environmentBackgroundProminence?: SDKEnvironmentBackgroundProminence
   environmentBadgeProminence?: SDKEnvironmentBadgeProminence
   environmentCalendar?: SDKEnvironmentCalendar
   environmentColorScheme?: SDKEnvironmentColorScheme
-  environmentContentTransition?: SDKEnvironmentContentTransition
+  environmentContentTransition?:
+    | SDKEnvironmentContentTransition
+    | SDKContentTransitionRecord
   environmentContentTransitionAddsDrawingGroup?: boolean
   environmentControlSize?: SDKEnvironmentControlSize
   environmentDefaultMinListHeaderHeight?: number | null
@@ -2138,7 +2887,7 @@ export interface OneNativeStyle {
   environmentDisableAutocorrection?: boolean | null
   environmentDisplayScale?: number
   environmentDynamicTypeSize?: SDKEnvironmentDynamicTypeSize
-  environmentFont?: SDKEnvironmentFont | null
+  environmentFont?: SDKEnvironmentFont | SDKFontRecord | null
   environmentHeaderProminence?: SDKEnvironmentHeaderProminence
   environmentHorizontalScrollBounceBehavior?: SDKEnvironmentHorizontalScrollBounceBehavior
   environmentHorizontalScrollIndicatorVisibility?: SDKEnvironmentHorizontalScrollIndicatorVisibility
@@ -2153,7 +2902,10 @@ export interface OneNativeStyle {
   environmentLabelsVisibility?: SDKEnvironmentLabelsVisibility
   environmentLayoutDirection?: SDKEnvironmentLayoutDirection
   environmentLegibilityWeight?: SDKEnvironmentLegibilityWeight | null
-  environmentLineHeight?: SDKEnvironmentLineHeight | null
+  environmentLineHeight?:
+    | SDKEnvironmentLineHeight
+    | SDKAttributedStringLineHeightRecord
+    | null
   environmentLineLimit?: number | null
   environmentLineSpacing?: number
   environmentLocale?: SDKEnvironmentLocale
@@ -2232,11 +2984,11 @@ export interface OneNativeStyle {
   focusedSceneValue?: string
   focusedValue?: string
   focusEffectDisabled?: boolean
-  font?: SDKFont | null
+  font?: SDKFont | SDKFontRecord | null
   fontDesignWithOptionalDesign?: SDKFontDesignWithOptionalDesign | null
   fontWeightWithOptionalWeight?: SDKFontWeightWithOptionalWeight | null
   fontWidth?: SDKFontWidth | null
-  foregroundColor?: SDKForegroundColor | null
+  foregroundColor?: SDKForegroundColor | SDKColorRecord | null
   formStyle?: SDKFormStyle
   frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment?: Readonly<{
     minWidth: number | null
@@ -2321,7 +3073,7 @@ export interface OneNativeStyle {
   glassEffectID?: Readonly<{ id: string | null }>
   glassEffectTransition?: SDKGlassEffectTransition
   glassEffectUnion?: Readonly<{ id: string | null }>
-  glassEffectWithGlass?: SDKGlassEffectWithGlass
+  glassEffectWithGlass?: SDKGlassEffectWithGlass | SDKGlassRecord
   grayscale?: number
   gridCellAnchor?: SDKGridCellAnchor
   gridCellColumns?: number
@@ -2372,7 +3124,7 @@ export interface OneNativeStyle {
   hoverEffectDisabled?: boolean
   hoverEffectWithHoverEffect?: SDKHoverEffectWithHoverEffect
   hoverEffectWithHoverEffectFromSwiftUICore?: SDKHoverEffectWithHoverEffectFromSwiftUICore
-  hueRotation?: SDKHueRotation
+  hueRotation?: SDKHueRotation | SDKAngleRecord
   id?: string
   ignoresSafeAreaWithRegionsAndEdgesAndAlignment?: Readonly<{
     regions: 'container' | 'keyboard' | 'all'
@@ -2402,7 +3154,13 @@ export interface OneNativeStyle {
     simulatesAskToBuyInSandbox?: boolean
     introductoryOfferEligibility?: string
   }>
-  indexViewStyle?: SDKIndexViewStyle
+  indexViewStyle?:
+    | SDKIndexViewStyle
+    | Readonly<{ kind: 'page' }>
+    | Readonly<{
+        kind: 'page'
+        backgroundDisplayMode: SDKPageIndexViewStyleBackgroundDisplayModeValue
+      }>
   inspectorColumnWidthWithCGFloat?: number
   inspectorColumnWidthWithMinAndIdealAndMax?: Readonly<{
     min: number | null
@@ -2493,12 +3251,15 @@ export interface OneNativeStyle {
   layoutDirectionBehavior?: SDKLayoutDirectionBehavior
   layoutPriority?: number
   layoutValue?: string
-  lineHeight?: SDKLineHeight | null
+  lineHeight?: SDKLineHeight | SDKAttributedStringLineHeightRecord | null
   lineLimitWithLimitAndReservesSpace?: Readonly<{ limit: number; reservesSpace: boolean }>
   lineLimitWithOptionalInt?: number | null
   lineSpacing?: number
-  listItemTintWithOptionalColor?: SDKListItemTintWithOptionalColor | null
-  listItemTintWithOptionalListItemTint?: SDKListItemTintWithOptionalListItemTint | null
+  listItemTintWithOptionalColor?: SDKListItemTintWithOptionalColor | SDKColorRecord | null
+  listItemTintWithOptionalListItemTint?:
+    | SDKListItemTintWithOptionalListItemTint
+    | SDKListItemTintRecord
+    | null
   listRowInsets?: Readonly<{
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
     length: number | null
@@ -2528,6 +3289,7 @@ export interface OneNativeStyle {
       | 'clear'
       | 'primary'
       | 'secondary'
+      | SDKColorRecord
       | null
     edges: 'top' | 'bottom' | 'all'
   }>
@@ -2562,11 +3324,14 @@ export interface OneNativeStyle {
       | 'clear'
       | 'primary'
       | 'secondary'
+      | SDKColorRecord
       | null
     edges: 'top' | 'bottom' | 'all'
   }>
   listSectionSpacingWithCGFloat?: number
-  listSectionSpacingWithListSectionSpacing?: SDKListSectionSpacingWithListSectionSpacing
+  listSectionSpacingWithListSectionSpacing?:
+    | SDKListSectionSpacingWithListSectionSpacing
+    | SDKListSectionSpacingRecord
   listStyle?: SDKListStyle
   lookAroundViewer?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
@@ -2588,7 +3353,10 @@ export interface OneNativeStyle {
     frames: readonly Readonly<{ value: number; duration: number }>[]
   }>
   mapControlVisibility?: SDKMapControlVisibility
-  mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null
+  mapFeatureSelectionAccessory?:
+    | SDKMapFeatureSelectionAccessory
+    | SDKMapItemDetailSelectionAccessoryStyleRecord
+    | null
   mapFeatureSelectionContent?: string
   mapFeatureSelectionDisabled?: boolean
   mapItemDetailPopoverWithCurrentLocation?: Readonly<{
@@ -2602,7 +3370,7 @@ export interface OneNativeStyle {
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   }>
   mapScope?: boolean
-  mapStyle?: SDKMapStyle
+  mapStyle?: SDKMapStyle | SDKMapStyleRecord
   matchedGeometryEffect?: Readonly<{ id: string }>
   matchedTransitionSource?: Readonly<{ id: string }>
   materialActiveAppearance?: SDKMaterialActiveAppearance
@@ -2847,7 +3615,7 @@ export interface OneNativeStyle {
   onTapGestureWithPerform?: (value: { x: number; y: number }) => void
   onTapGestureWithPerformFromSwiftUICore?: () => void
   paddingWithSet?: SDKPaddingWithSet
-  paletteSelectionEffect?: SDKPaletteSelectionEffect
+  paletteSelectionEffect?: SDKPaletteSelectionEffect | SDKPaletteSelectionEffectRecord
   pasteDestination?: (value: readonly string[]) => void
   payLaterViewAction?: SDKPayLaterViewAction
   payLaterViewDisplayStyle?: SDKPayLaterViewDisplayStyle
@@ -2901,7 +3669,9 @@ export interface OneNativeStyle {
   preferredSubscriptionOffer?: string
   preferredSubscriptionPricingTerms?: number
   presentationBackground?: SDKPresentationBackground
-  presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction
+  presentationBackgroundInteraction?:
+    | SDKPresentationBackgroundInteraction
+    | SDKPresentationBackgroundInteractionRecord
   presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation?: Readonly<{
     horizontalAdaptation: 'automatic' | 'none' | 'popover' | 'sheet' | 'fullScreenCover'
     verticalAdaptation: 'automatic' | 'none' | 'popover' | 'sheet' | 'fullScreenCover'
@@ -2976,7 +3746,7 @@ export interface OneNativeStyle {
     perspective: number
   }>
   rotationEffect?: Readonly<{
-    angle: 'zero'
+    angle: 'zero' | SDKAngleRecord
     anchor:
       | 'zero'
       | 'center'
@@ -3062,7 +3832,9 @@ export interface OneNativeStyle {
   scrollTransition?: Readonly<{ kind: 'opacity' | 'scaleEffect'; value: number }>
   searchable?: Readonly<{ value: string; onChange: (value: string) => void }>
   searchCompletion?: string
-  searchDictationBehavior?: SDKSearchDictationBehavior
+  searchDictationBehavior?:
+    | SDKSearchDictationBehavior
+    | SDKTextInputDictationBehaviorRecord
   searchFocused?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   searchPresentationToolbarBehavior?: SDKSearchPresentationToolbarBehavior
   searchSelection?: Readonly<{
@@ -3091,6 +3863,7 @@ export interface OneNativeStyle {
       | 'levelChange'
       | 'pathComplete'
       | 'impact'
+      | SDKSensoryFeedbackRecord
     trigger: string
   }>
   shadow?: Readonly<{
@@ -3114,6 +3887,7 @@ export interface OneNativeStyle {
       | 'clear'
       | 'primary'
       | 'secondary'
+      | SDKColorRecord
     radius: number
     x: number
     y: number
@@ -3239,6 +4013,7 @@ export interface OneNativeStyle {
       | 'clear'
       | 'primary'
       | 'secondary'
+      | SDKColorRecord
       | null
   }>
   submitLabel?: SDKSubmitLabel
@@ -3333,7 +4108,13 @@ export interface OneNativeStyle {
     onChange: (value: string) => void
   }>
   tabViewSearchActivation?: SDKTabViewSearchActivation
-  tabViewStyle?: SDKTabViewStyle
+  tabViewStyle?:
+    | SDKTabViewStyle
+    | Readonly<{ kind: 'sidebarAdaptable' | 'page' | 'tabBarOnly' | 'automatic' }>
+    | Readonly<{
+        kind: 'page'
+        indexDisplayMode: SDKPageTabViewStyleIndexDisplayModeValue
+      }>
   tag?: string
   task?: () => void | Promise<void>
   textCase?: SDKTextCase | null
@@ -3350,7 +4131,7 @@ export interface OneNativeStyle {
   textScale?: Readonly<{ scale: 'default' | 'secondary'; isEnabled: boolean }>
   textSelection?: SDKTextSelection
   textSelectionAffinity?: SDKTextSelectionAffinity
-  tintWithOptionalColor?: SDKTintWithOptionalColor | null
+  tintWithOptionalColor?: SDKTintWithOptionalColor | SDKColorRecord | null
   toggleStyle?: SDKToggleStyle
   toolbarBackground?: Readonly<{
     visibility: 'automatic' | 'visible' | 'hidden'
@@ -3429,7 +4210,7 @@ export interface OneNativeStyle {
   transformEnvironmentMinimumScaleFactor?: number
   transformEnvironmentSystemPrefersReducedResourceUsage?: boolean
   transformPreferencePreferredColorScheme?: SDKTransformPreferencePreferredColorScheme | null
-  transition?: SDKTransition
+  transition?: SDKTransition | SDKAnyTransitionRecord
   translationPresentation?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     text: string
@@ -3468,6 +4249,7 @@ export interface OneNativeStyle {
       | 'clear'
       | 'primary'
       | 'secondary'
+      | SDKColorRecord
       | null
   }>
   unredacted?: boolean

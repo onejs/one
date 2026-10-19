@@ -1,3 +1,4 @@
+import { collectValues, valueKey } from './emitValues'
 import { containerComponents, contentComponents, emitContainers, environmentMethods } from './emitContainers'
 import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { animatorComponents, emitAnimators } from './emitAnimators'
@@ -917,6 +918,8 @@ const manifest = {
   enums,
   modifiers: methods,
   derivedModifiers,
+  // SDK value types once each; modifiers, arguments and parameters name them by key.
+  values: Object.fromEntries(collectValues(derivedModifiers)),
   // the hill-climb sets codegen/coverage.ts reports against: bound view types and
   // view modifier names per SDK module, collected at every selection site above.
   coverage: {
@@ -941,7 +944,8 @@ const manifest = {
       ios: ios(d),
     })),
 }
-outputs.set('codegen/swiftui-manifest.json', JSON.stringify(manifest, null, 2) + '\n')
+outputs.set('codegen/swiftui-manifest.json', JSON.stringify(manifest, (key, value) =>
+  key === 'value' && value?.factories ? valueKey(value.type) : value, 2) + '\n')
 const packagePath = join(root, 'package.json')
 const packageMetadata = JSON.parse(readFileSync(packagePath, 'utf8'))
 packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(

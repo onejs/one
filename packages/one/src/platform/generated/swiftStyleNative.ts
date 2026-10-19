@@ -7,7 +7,7 @@ import {
   type ProcessedColorValue,
 } from 'react-native'
 import { animatorStyleNative, animatorStyleOf } from '../animatorStyle'
-import type { OneNativeStyle } from './controlTypes'
+import type { OneNativeStyle, SDKAnimationValue } from './controlTypes'
 
 export type OneNativeStyleNative = Readonly<{
   fontSize?: number
@@ -1555,6 +1555,7 @@ const sdkRecords: Record<
     unique?: boolean
     fields?: readonly { name: string; type: string; integer: boolean }[]
     eventValue?: SDKEventValueShape
+    value?: string
   }[]
 > = {
   accessibilityActivationPointWithActivationPointAndIsEnabled: [
@@ -1825,7 +1826,7 @@ const sdkRecords: Record<
     { field: 'edges', kind: 'enum', optional: false },
   ],
   listRowSeparatorTint: [
-    { field: 'color', kind: 'enum', optional: true },
+    { field: 'color', kind: 'enum', optional: true, value: 'Color' },
     { field: 'edges', kind: 'enum', optional: false },
   ],
   listSectionMargins: [
@@ -1837,7 +1838,7 @@ const sdkRecords: Record<
     { field: 'edges', kind: 'enum', optional: false },
   ],
   listSectionSeparatorTint: [
-    { field: 'color', kind: 'enum', optional: true },
+    { field: 'color', kind: 'enum', optional: true, value: 'Color' },
     { field: 'edges', kind: 'enum', optional: false },
   ],
   manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID: [
@@ -2033,7 +2034,7 @@ const sdkRecords: Record<
     { field: 'perspective', kind: 'number', optional: false },
   ],
   rotationEffect: [
-    { field: 'angle', kind: 'enum', optional: false },
+    { field: 'angle', kind: 'enum', optional: false, value: 'Angle' },
     { field: 'anchor', kind: 'enum', optional: false },
   ],
   scaleEffectWithSAndAnchor: [
@@ -2070,11 +2071,11 @@ const sdkRecords: Record<
     { field: 'placements', kind: 'enum', optional: false },
   ],
   sensoryFeedback: [
-    { field: 'feedback', kind: 'enum', optional: false },
+    { field: 'feedback', kind: 'enum', optional: false, value: 'SensoryFeedback' },
     { field: 'trigger', kind: 'string', optional: false },
   ],
   shadow: [
-    { field: 'color', kind: 'enum', optional: false },
+    { field: 'color', kind: 'enum', optional: false, value: 'Color' },
     { field: 'radius', kind: 'number', optional: false },
     { field: 'x', kind: 'number', optional: false },
     { field: 'y', kind: 'number', optional: false },
@@ -2086,7 +2087,7 @@ const sdkRecords: Record<
   strikethrough: [
     { field: 'isActive', kind: 'boolean', optional: false },
     { field: 'pattern', kind: 'enum', optional: false },
-    { field: 'color', kind: 'enum', optional: true },
+    { field: 'color', kind: 'enum', optional: true, value: 'Color' },
   ],
   subscriptionOfferViewButtonVisibility: [
     { field: 'visibility', kind: 'enum', optional: false },
@@ -2179,7 +2180,7 @@ const sdkRecords: Record<
   underline: [
     { field: 'isActive', kind: 'boolean', optional: false },
     { field: 'pattern', kind: 'enum', optional: false },
-    { field: 'color', kind: 'enum', optional: true },
+    { field: 'color', kind: 'enum', optional: true, value: 'Color' },
   ],
   userActivity: [
     { field: 'activityType', kind: 'string', optional: false },
@@ -2204,6 +2205,1045 @@ const sdkRecords: Record<
     { field: 'workout', kind: 'string', optional: false },
     { field: 'isPresented', kind: 'bindingBoolean', optional: false },
   ],
+}
+// SDK values a modifier takes as a case name or a record, by modifier name.
+const sdkModifierValues: Record<string, string> = {
+  accentColor: 'Color',
+  accessibilityAddTraits: 'AccessibilityTraits',
+  accessibilityRemoveTraits: 'AccessibilityTraits',
+  accessibilityWithAddTraits: 'AccessibilityTraits',
+  accessibilityWithRemoveTraits: 'AccessibilityTraits',
+  animation: 'Animation',
+  buttonBorderShape: 'ButtonBorderShape',
+  colorMultiply: 'Color',
+  contentTransition: 'ContentTransition',
+  environmentBackgroundMaterial: 'Material',
+  environmentContentTransition: 'ContentTransition',
+  environmentFont: 'Font',
+  environmentLineHeight: 'AttributedStringLineHeight',
+  font: 'Font',
+  foregroundColor: 'Color',
+  glassEffectWithGlass: 'Glass',
+  hueRotation: 'Angle',
+  indexViewStyle: 'style:indexViewStyle',
+  lineHeight: 'AttributedStringLineHeight',
+  listItemTintWithOptionalColor: 'Color',
+  listItemTintWithOptionalListItemTint: 'ListItemTint',
+  listSectionSpacingWithListSectionSpacing: 'ListSectionSpacing',
+  mapFeatureSelectionAccessory: 'MapItemDetailSelectionAccessoryStyle',
+  mapStyle: 'MapStyle',
+  paletteSelectionEffect: 'PaletteSelectionEffect',
+  presentationBackgroundInteraction: 'PresentationBackgroundInteraction',
+  searchDictationBehavior: 'TextInputDictationBehavior',
+  tabViewStyle: 'style:tabViewStyle',
+  tintWithOptionalColor: 'Color',
+  transition: 'AnyTransition',
+}
+type SDKValueParameter = {
+  field: string
+  kind: string
+  optional?: true
+  integer?: true
+  value?: string
+}
+type SDKValueShape = {
+  cases: readonly string[]
+  factories: readonly { name: string; parameters: readonly SDKValueParameter[] }[]
+  chain: readonly {
+    name: string
+    form: string
+    parameters: readonly SDKValueParameter[]
+  }[]
+}
+const sdkValueShapes: Record<string, SDKValueShape> = {
+  AccessibilityTraits: {
+    cases: [
+      'isButton',
+      'isHeader',
+      'isSelected',
+      'isLink',
+      'isSearchField',
+      'isImage',
+      'playsSound',
+      'isKeyboardKey',
+      'isStaticText',
+      'isSummaryElement',
+      'updatesFrequently',
+      'startsMediaSession',
+      'allowsDirectInteraction',
+      'causesPageTurn',
+      'isModal',
+      'isToggle',
+      'isTabBar',
+    ],
+    factories: [],
+    chain: [
+      {
+        name: 'union',
+        form: 'scalar',
+        parameters: [{ field: 'other', kind: 'enum', value: 'AccessibilityTraits' }],
+      },
+      {
+        name: 'intersection',
+        form: 'scalar',
+        parameters: [{ field: 'other', kind: 'enum', value: 'AccessibilityTraits' }],
+      },
+      {
+        name: 'symmetricDifference',
+        form: 'scalar',
+        parameters: [{ field: 'other', kind: 'enum', value: 'AccessibilityTraits' }],
+      },
+    ],
+  },
+  Angle: {
+    cases: ['zero'],
+    factories: [
+      { name: 'radians', parameters: [{ field: 'radians', kind: 'number' }] },
+      { name: 'degrees', parameters: [{ field: 'degrees', kind: 'number' }] },
+    ],
+    chain: [],
+  },
+  Animation: {
+    cases: [
+      'default',
+      'interpolatingSpring',
+      'spring',
+      'interactiveSpring',
+      'smooth',
+      'snappy',
+      'bouncy',
+      'easeInOut',
+      'easeIn',
+      'easeOut',
+      'linear',
+    ],
+    factories: [
+      {
+        name: 'timingCurve',
+        parameters: [
+          { field: 'curve', kind: 'enum', value: 'UnitCurve' },
+          { field: 'duration', kind: 'number' },
+        ],
+      },
+      {
+        name: 'spring',
+        parameters: [
+          { field: 'spring', kind: 'enum', value: 'Spring' },
+          { field: 'blendDuration', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'interpolatingSpring',
+        parameters: [
+          { field: 'spring', kind: 'enum', value: 'Spring' },
+          { field: 'initialVelocity', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'interpolatingSpring',
+        parameters: [
+          { field: 'mass', kind: 'number', optional: true },
+          { field: 'stiffness', kind: 'number' },
+          { field: 'damping', kind: 'number' },
+          { field: 'initialVelocity', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'interpolatingSpring',
+        parameters: [
+          { field: 'duration', kind: 'number', optional: true },
+          { field: 'bounce', kind: 'number', optional: true },
+          { field: 'initialVelocity', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'spring',
+        parameters: [
+          { field: 'duration', kind: 'number', optional: true },
+          { field: 'bounce', kind: 'number', optional: true },
+          { field: 'blendDuration', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'spring',
+        parameters: [
+          { field: 'response', kind: 'number', optional: true },
+          { field: 'dampingFraction', kind: 'number', optional: true },
+          { field: 'blendDuration', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'interactiveSpring',
+        parameters: [
+          { field: 'response', kind: 'number', optional: true },
+          { field: 'dampingFraction', kind: 'number', optional: true },
+          { field: 'blendDuration', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'interactiveSpring',
+        parameters: [
+          { field: 'duration', kind: 'number', optional: true },
+          { field: 'extraBounce', kind: 'number', optional: true },
+          { field: 'blendDuration', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'smooth',
+        parameters: [
+          { field: 'duration', kind: 'number', optional: true },
+          { field: 'extraBounce', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'snappy',
+        parameters: [
+          { field: 'duration', kind: 'number', optional: true },
+          { field: 'extraBounce', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'bouncy',
+        parameters: [
+          { field: 'duration', kind: 'number', optional: true },
+          { field: 'extraBounce', kind: 'number', optional: true },
+        ],
+      },
+      { name: 'easeInOut', parameters: [{ field: 'duration', kind: 'number' }] },
+      { name: 'easeIn', parameters: [{ field: 'duration', kind: 'number' }] },
+      { name: 'easeOut', parameters: [{ field: 'duration', kind: 'number' }] },
+      { name: 'linear', parameters: [{ field: 'duration', kind: 'number' }] },
+      {
+        name: 'timingCurve',
+        parameters: [
+          { field: 'p1x', kind: 'number' },
+          { field: 'p1y', kind: 'number' },
+          { field: 'p2x', kind: 'number' },
+          { field: 'p2y', kind: 'number' },
+          { field: 'duration', kind: 'number', optional: true },
+        ],
+      },
+    ],
+    chain: [
+      { name: 'speed', form: 'scalar', parameters: [{ field: 'speed', kind: 'number' }] },
+      {
+        name: 'logicallyComplete',
+        form: 'scalar',
+        parameters: [{ field: 'after', kind: 'number' }],
+      },
+      { name: 'delay', form: 'scalar', parameters: [{ field: 'delay', kind: 'number' }] },
+      {
+        name: 'repeatCount',
+        form: 'object',
+        parameters: [
+          { field: 'repeatCount', kind: 'number', integer: true },
+          { field: 'autoreverses', kind: 'boolean', optional: true },
+        ],
+      },
+      {
+        name: 'repeatForever',
+        form: 'object',
+        parameters: [{ field: 'autoreverses', kind: 'boolean', optional: true }],
+      },
+    ],
+  },
+  AnyTransition: {
+    cases: ['opacity', 'slide', 'identity', 'scale'],
+    factories: [
+      {
+        name: 'offset',
+        parameters: [
+          { field: 'x', kind: 'number', optional: true },
+          { field: 'y', kind: 'number', optional: true },
+        ],
+      },
+      { name: 'move', parameters: [{ field: 'edge', kind: 'enum', value: 'Edge' }] },
+      {
+        name: 'asymmetric',
+        parameters: [
+          { field: 'insertion', kind: 'enum', value: 'AnyTransition' },
+          { field: 'removal', kind: 'enum', value: 'AnyTransition' },
+        ],
+      },
+      { name: 'push', parameters: [{ field: 'from', kind: 'enum', value: 'Edge' }] },
+      {
+        name: 'scale',
+        parameters: [
+          { field: 'scale', kind: 'number' },
+          { field: 'anchor', kind: 'enum', optional: true, value: 'UnitPoint' },
+        ],
+      },
+    ],
+    chain: [
+      {
+        name: 'combined',
+        form: 'scalar',
+        parameters: [{ field: 'with', kind: 'enum', value: 'AnyTransition' }],
+      },
+    ],
+  },
+  AttributedStringLineHeight: {
+    cases: ['variable', 'normal', 'tight', 'loose'],
+    factories: [
+      { name: 'multiple', parameters: [{ field: 'factor', kind: 'number' }] },
+      { name: 'leading', parameters: [{ field: 'increase', kind: 'number' }] },
+      { name: 'exact', parameters: [{ field: 'points', kind: 'number' }] },
+    ],
+    chain: [],
+  },
+  ButtonBorderShape: {
+    cases: ['automatic', 'capsule', 'roundedRectangle', 'circle'],
+    factories: [
+      { name: 'roundedRectangle', parameters: [{ field: 'radius', kind: 'number' }] },
+    ],
+    chain: [],
+  },
+  Color: {
+    cases: [
+      'accentColor',
+      'red',
+      'orange',
+      'yellow',
+      'green',
+      'mint',
+      'teal',
+      'cyan',
+      'blue',
+      'indigo',
+      'purple',
+      'pink',
+      'brown',
+      'white',
+      'gray',
+      'black',
+      'clear',
+      'primary',
+      'secondary',
+    ],
+    factories: [],
+    chain: [
+      {
+        name: 'exposureAdjust',
+        form: 'scalar',
+        parameters: [{ field: 'stops', kind: 'number' }],
+      },
+      {
+        name: 'opacity',
+        form: 'scalar',
+        parameters: [{ field: 'opacity', kind: 'number' }],
+      },
+      {
+        name: 'mix',
+        form: 'object',
+        parameters: [
+          { field: 'with', kind: 'enum', value: 'Color' },
+          { field: 'by', kind: 'number' },
+          { field: 'in', kind: 'enum', optional: true, value: 'GradientColorSpace' },
+        ],
+      },
+    ],
+  },
+  ContentTransition: {
+    cases: ['symbolEffect', 'identity', 'opacity', 'interpolate'],
+    factories: [
+      {
+        name: 'numericText',
+        parameters: [{ field: 'countsDown', kind: 'boolean', optional: true }],
+      },
+      { name: 'numericText', parameters: [{ field: 'value', kind: 'number' }] },
+    ],
+    chain: [],
+  },
+  Edge: { cases: ['top', 'leading', 'bottom', 'trailing'], factories: [], chain: [] },
+  Font: {
+    cases: [
+      'largeTitle',
+      'title',
+      'title2',
+      'title3',
+      'headline',
+      'subheadline',
+      'body',
+      'callout',
+      'footnote',
+      'caption',
+      'caption2',
+      'default',
+    ],
+    factories: [
+      {
+        name: 'system',
+        parameters: [
+          { field: 'style', kind: 'enum', value: 'FontTextStyle' },
+          { field: 'design', kind: 'enum', optional: true, value: 'FontDesign' },
+        ],
+      },
+      {
+        name: 'system',
+        parameters: [
+          { field: 'size', kind: 'number' },
+          { field: 'weight', kind: 'enum', optional: true, value: 'FontWeight' },
+          { field: 'design', kind: 'enum', optional: true, value: 'FontDesign' },
+        ],
+      },
+    ],
+    chain: [
+      { name: 'monospacedDigit', form: 'flag', parameters: [] },
+      {
+        name: 'width',
+        form: 'scalar',
+        parameters: [{ field: 'width', kind: 'enum', value: 'FontWidth' }],
+      },
+      {
+        name: 'leading',
+        form: 'scalar',
+        parameters: [{ field: 'leading', kind: 'enum', value: 'FontLeading' }],
+      },
+      {
+        name: 'pointSize',
+        form: 'scalar',
+        parameters: [{ field: 'size', kind: 'number' }],
+      },
+      { name: 'scaled', form: 'scalar', parameters: [{ field: 'by', kind: 'number' }] },
+    ],
+  },
+  FontDesign: {
+    cases: ['default', 'serif', 'rounded', 'monospaced'],
+    factories: [],
+    chain: [],
+  },
+  FontLeading: { cases: ['standard', 'tight', 'loose'], factories: [], chain: [] },
+  FontTextStyle: {
+    cases: [
+      'largeTitle',
+      'title',
+      'title2',
+      'title3',
+      'headline',
+      'subheadline',
+      'body',
+      'callout',
+      'footnote',
+      'caption',
+      'caption2',
+    ],
+    factories: [],
+    chain: [],
+  },
+  FontWeight: {
+    cases: [
+      'ultraLight',
+      'thin',
+      'light',
+      'regular',
+      'medium',
+      'semibold',
+      'bold',
+      'heavy',
+      'black',
+    ],
+    factories: [],
+    chain: [],
+  },
+  FontWidth: {
+    cases: ['compressed', 'condensed', 'standard', 'expanded'],
+    factories: [],
+    chain: [],
+  },
+  Glass: {
+    cases: ['regular', 'clear', 'identity'],
+    factories: [],
+    chain: [
+      {
+        name: 'interactive',
+        form: 'object',
+        parameters: [{ field: 'isEnabled', kind: 'boolean', optional: true }],
+      },
+    ],
+  },
+  GradientColorSpace: { cases: ['device', 'perceptual'], factories: [], chain: [] },
+  ListItemTint: {
+    cases: ['monochrome'],
+    factories: [
+      { name: 'fixed', parameters: [{ field: 'tint', kind: 'enum', value: 'Color' }] },
+      {
+        name: 'preferred',
+        parameters: [{ field: 'tint', kind: 'enum', value: 'Color' }],
+      },
+    ],
+    chain: [],
+  },
+  ListSectionSpacing: {
+    cases: ['default', 'compact'],
+    factories: [{ name: 'custom', parameters: [{ field: 'spacing', kind: 'number' }] }],
+    chain: [],
+  },
+  MKPointOfInterestCategory: {
+    cases: [
+      'airport',
+      'airportTerminal',
+      'amusementPark',
+      'animalService',
+      'aquarium',
+      'atm',
+      'automotiveDealership',
+      'automotiveRepair',
+      'bakery',
+      'bank',
+      'baseball',
+      'basketball',
+      'beach',
+      'beauty',
+      'bowling',
+      'brewery',
+      'cafe',
+      'campground',
+      'carRental',
+      'castle',
+      'commercialVehicleDealership',
+      'conventionCenter',
+      'distillery',
+      'evCharger',
+      'fairground',
+      'fireStation',
+      'fishing',
+      'fitnessCenter',
+      'foodMarket',
+      'fortress',
+      'gasStation',
+      'goKart',
+      'golf',
+      'hiking',
+      'hospital',
+      'hotel',
+      'informationBooth',
+      'kayaking',
+      'landmark',
+      'laundry',
+      'library',
+      'mailbox',
+      'marina',
+      'miniGolf',
+      'motorbikeDealership',
+      'movieTheater',
+      'museum',
+      'musicVenue',
+      'nationalMonument',
+      'nationalPark',
+      'nightlife',
+      'park',
+      'parking',
+      'pharmacy',
+      'picnicArea',
+      'planetarium',
+      'police',
+      'postOffice',
+      'publicTransport',
+      'rangerStation',
+      'restArea',
+      'restaurant',
+      'restroom',
+      'rockClimbing',
+      'rvPark',
+      'scenicView',
+      'school',
+      'skatePark',
+      'skating',
+      'skiing',
+      'soccer',
+      'spa',
+      'stadium',
+      'store',
+      'surfing',
+      'swimming',
+      'tennis',
+      'theater',
+      'ticketOffice',
+      'university',
+      'visitorCenter',
+      'volleyball',
+      'winery',
+      'zoo',
+    ],
+    factories: [],
+    chain: [],
+  },
+  MapItemDetailSelectionAccessoryStyle: {
+    cases: ['automatic', 'callout', 'sheet', 'caption'],
+    factories: [
+      {
+        name: 'callout',
+        parameters: [
+          {
+            field: 'style',
+            kind: 'enum',
+            optional: true,
+            value: 'MapItemDetailSelectionAccessoryStyleCalloutStyle',
+          },
+        ],
+      },
+    ],
+    chain: [],
+  },
+  MapItemDetailSelectionAccessoryStyleCalloutStyle: {
+    cases: ['automatic', 'full', 'compact'],
+    factories: [],
+    chain: [],
+  },
+  MapStyle: {
+    cases: ['standard', 'imagery', 'hybrid'],
+    factories: [
+      {
+        name: 'standard',
+        parameters: [
+          {
+            field: 'elevation',
+            kind: 'enum',
+            optional: true,
+            value: 'MapStyleElevation',
+          },
+          {
+            field: 'emphasis',
+            kind: 'enum',
+            optional: true,
+            value: 'MapStyleStandardEmphasis',
+          },
+          {
+            field: 'pointsOfInterest',
+            kind: 'enum',
+            optional: true,
+            value: 'PointOfInterestCategories',
+          },
+          { field: 'showsTraffic', kind: 'boolean', optional: true },
+        ],
+      },
+      {
+        name: 'imagery',
+        parameters: [
+          {
+            field: 'elevation',
+            kind: 'enum',
+            optional: true,
+            value: 'MapStyleElevation',
+          },
+        ],
+      },
+      {
+        name: 'hybrid',
+        parameters: [
+          {
+            field: 'elevation',
+            kind: 'enum',
+            optional: true,
+            value: 'MapStyleElevation',
+          },
+          {
+            field: 'pointsOfInterest',
+            kind: 'enum',
+            optional: true,
+            value: 'PointOfInterestCategories',
+          },
+          { field: 'showsTraffic', kind: 'boolean', optional: true },
+        ],
+      },
+    ],
+    chain: [],
+  },
+  MapStyleElevation: {
+    cases: ['automatic', 'flat', 'realistic'],
+    factories: [],
+    chain: [],
+  },
+  MapStyleStandardEmphasis: { cases: ['automatic', 'muted'], factories: [], chain: [] },
+  Material: {
+    cases: ['regular', 'thick', 'thin', 'ultraThin', 'ultraThick', 'bar'],
+    factories: [],
+    chain: [
+      {
+        name: 'materialActiveAppearance',
+        form: 'scalar',
+        parameters: [
+          { field: 'appearance', kind: 'enum', value: 'MaterialActiveAppearance' },
+        ],
+      },
+    ],
+  },
+  MaterialActiveAppearance: {
+    cases: ['automatic', 'active', 'matchWindow'],
+    factories: [],
+    chain: [],
+  },
+  PageIndexViewStyleBackgroundDisplayMode: {
+    cases: ['automatic', 'interactive', 'always', 'never'],
+    factories: [],
+    chain: [],
+  },
+  PageTabViewStyleIndexDisplayMode: {
+    cases: ['automatic', 'always', 'never'],
+    factories: [],
+    chain: [],
+  },
+  PaletteSelectionEffect: {
+    cases: ['automatic', 'custom'],
+    factories: [
+      {
+        name: 'symbolVariant',
+        parameters: [{ field: 'variant', kind: 'enum', value: 'SymbolVariants' }],
+      },
+    ],
+    chain: [],
+  },
+  PointOfInterestCategories: {
+    cases: ['all', 'excludingAll'],
+    factories: [
+      {
+        name: 'including',
+        parameters: [
+          { field: 'categories', kind: 'enum', value: 'MKPointOfInterestCategory' },
+        ],
+      },
+      {
+        name: 'excluding',
+        parameters: [
+          { field: 'categories', kind: 'enum', value: 'MKPointOfInterestCategory' },
+        ],
+      },
+    ],
+    chain: [],
+  },
+  PresentationBackgroundInteraction: {
+    cases: ['automatic', 'enabled', 'disabled'],
+    factories: [
+      {
+        name: 'enabled',
+        parameters: [{ field: 'upThrough', kind: 'enum', value: 'PresentationDetent' }],
+      },
+    ],
+    chain: [],
+  },
+  PresentationDetent: {
+    cases: ['medium', 'large'],
+    factories: [
+      { name: 'fraction', parameters: [{ field: 'fraction', kind: 'number' }] },
+      { name: 'height', parameters: [{ field: 'height', kind: 'number' }] },
+    ],
+    chain: [],
+  },
+  SensoryFeedback: {
+    cases: [
+      'success',
+      'warning',
+      'error',
+      'selection',
+      'increase',
+      'decrease',
+      'start',
+      'stop',
+      'alignment',
+      'levelChange',
+      'pathComplete',
+      'impact',
+    ],
+    factories: [
+      {
+        name: 'impact',
+        parameters: [
+          {
+            field: 'weight',
+            kind: 'enum',
+            optional: true,
+            value: 'SensoryFeedbackWeight',
+          },
+          { field: 'intensity', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'impact',
+        parameters: [
+          { field: 'flexibility', kind: 'enum', value: 'SensoryFeedbackFlexibility' },
+          { field: 'intensity', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'selection',
+        parameters: [
+          { field: 'feedback', kind: 'enum', value: 'SensoryFeedbackSelectionFeedback' },
+        ],
+      },
+      {
+        name: 'press',
+        parameters: [
+          { field: 'feedback', kind: 'enum', value: 'SensoryFeedbackPressFeedback' },
+        ],
+      },
+      {
+        name: 'release',
+        parameters: [
+          { field: 'feedback', kind: 'enum', value: 'SensoryFeedbackReleaseFeedback' },
+        ],
+      },
+    ],
+    chain: [],
+  },
+  SensoryFeedbackFlexibility: {
+    cases: ['rigid', 'solid', 'soft'],
+    factories: [],
+    chain: [],
+  },
+  SensoryFeedbackPressFeedback: {
+    cases: ['button', 'buttonIconOnly', 'slider', 'toggle', 'tab'],
+    factories: [],
+    chain: [],
+  },
+  SensoryFeedbackReleaseFeedback: { cases: ['slider'], factories: [], chain: [] },
+  SensoryFeedbackSelectionFeedback: {
+    cases: ['maximum', 'minimum', 'on', 'off'],
+    factories: [],
+    chain: [],
+  },
+  SensoryFeedbackWeight: {
+    cases: ['light', 'medium', 'heavy'],
+    factories: [],
+    chain: [],
+  },
+  Spring: {
+    cases: ['smooth', 'snappy', 'bouncy'],
+    factories: [
+      {
+        name: 'smooth',
+        parameters: [
+          { field: 'duration', kind: 'number', optional: true },
+          { field: 'extraBounce', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'snappy',
+        parameters: [
+          { field: 'duration', kind: 'number', optional: true },
+          { field: 'extraBounce', kind: 'number', optional: true },
+        ],
+      },
+      {
+        name: 'bouncy',
+        parameters: [
+          { field: 'duration', kind: 'number', optional: true },
+          { field: 'extraBounce', kind: 'number', optional: true },
+        ],
+      },
+    ],
+    chain: [],
+  },
+  SymbolVariants: {
+    cases: ['none', 'circle', 'square', 'rectangle', 'fill', 'slash'],
+    factories: [],
+    chain: [],
+  },
+  TextInputDictationActivation: {
+    cases: ['onSelect', 'onLook'],
+    factories: [],
+    chain: [],
+  },
+  TextInputDictationBehavior: {
+    cases: ['automatic'],
+    factories: [
+      {
+        name: 'inline',
+        parameters: [
+          { field: 'activation', kind: 'enum', value: 'TextInputDictationActivation' },
+        ],
+      },
+    ],
+    chain: [],
+  },
+  UnitCurve: {
+    cases: [
+      'easeInEaseOut',
+      'easeInOut',
+      'easeIn',
+      'easeOut',
+      'circularEaseIn',
+      'circularEaseOut',
+      'circularEaseInOut',
+      'linear',
+    ],
+    factories: [
+      {
+        name: 'bezier',
+        parameters: [
+          { field: 'startControlPoint', kind: 'enum', value: 'UnitPoint' },
+          { field: 'endControlPoint', kind: 'enum', value: 'UnitPoint' },
+        ],
+      },
+    ],
+    chain: [],
+  },
+  UnitPoint: {
+    cases: [
+      'zero',
+      'center',
+      'leading',
+      'trailing',
+      'top',
+      'bottom',
+      'topLeading',
+      'topTrailing',
+      'bottomLeading',
+      'bottomTrailing',
+    ],
+    factories: [],
+    chain: [],
+  },
+  'style:indexViewStyle': {
+    cases: ['page'],
+    factories: [
+      {
+        name: 'page',
+        parameters: [
+          {
+            field: 'backgroundDisplayMode',
+            kind: 'enum',
+            value: 'PageIndexViewStyleBackgroundDisplayMode',
+          },
+        ],
+      },
+    ],
+    chain: [],
+  },
+  'style:tabViewStyle': {
+    cases: ['sidebarAdaptable', 'page', 'tabBarOnly', 'automatic'],
+    factories: [
+      {
+        name: 'page',
+        parameters: [
+          {
+            field: 'indexDisplayMode',
+            kind: 'enum',
+            value: 'PageTabViewStyleIndexDisplayMode',
+          },
+        ],
+      },
+    ],
+    chain: [],
+  },
+}
+
+function checkSDKParameter(
+  value: unknown,
+  parameter: SDKValueParameter,
+  context: string
+) {
+  if (parameter.kind === 'number') {
+    if (
+      typeof value !== 'number' ||
+      !Number.isFinite(value) ||
+      (parameter.integer && !Number.isSafeInteger(value))
+    )
+      throw new Error(
+        context + (parameter.integer ? ' must be an integer' : ' must be finite')
+      )
+  } else if (parameter.kind === 'boolean') {
+    if (typeof value !== 'boolean') throw new Error(context + ' must be a boolean')
+  } else checkSDKValue(value, parameter.value!, context)
+}
+
+function checkSDKParameters(
+  record: Record<string, unknown>,
+  given: readonly string[],
+  parameters: readonly SDKValueParameter[],
+  context: string
+) {
+  for (const parameter of parameters)
+    if (given.includes(parameter.field))
+      checkSDKParameter(
+        record[parameter.field],
+        parameter,
+        context + '.' + parameter.field
+      )
+}
+
+const fitsSDKOverload = (
+  given: readonly string[],
+  parameters: readonly SDKValueParameter[]
+) =>
+  given.every((key) => parameters.some((parameter) => parameter.field === key)) &&
+  parameters.every((parameter) => parameter.optional || given.includes(parameter.field))
+
+function checkSDKValue(value: unknown, key: string, context: string) {
+  const shape = sdkValueShapes[key]
+  if (typeof value === 'string') {
+    if (!shape.cases.includes(value))
+      throw new Error(
+        context + ' must be one of ' + shape.cases.join(', ') + ' or a record'
+      )
+    return
+  }
+  if (
+    !value ||
+    typeof value !== 'object' ||
+    Array.isArray(value) ||
+    typeof (value as { kind?: unknown }).kind !== 'string'
+  )
+    throw new Error(context + ' must be a case name or a record with a kind')
+  const record = value as Record<string, unknown>
+  const kind = record.kind as string
+  const chained = new Set(shape.chain.map((method) => method.name))
+  const given = Object.keys(record).filter(
+    (field) => field !== 'kind' && !chained.has(field)
+  )
+  const overloads = [
+    ...(shape.cases.includes(kind) ? [[]] : []),
+    ...shape.factories
+      .filter((factory) => factory.name === kind)
+      .map((factory) => factory.parameters),
+  ].filter((parameters) => fitsSDKOverload(given, parameters))
+  const fewest = Math.min(...overloads.map((parameters) => parameters.length))
+  const best = overloads.filter((parameters) => parameters.length === fewest)
+  if (best.length !== 1)
+    throw new Error(
+      context +
+        ' has ' +
+        (best.length ? 'more than one ' : 'no ') +
+        kind +
+        ' taking ' +
+        (given.join(', ') || 'no parameters')
+    )
+  checkSDKParameters(record, given, best[0], context)
+  for (const method of shape.chain) {
+    if (!Object.hasOwn(record, method.name)) continue
+    const item = record[method.name]
+    const name = context + '.' + method.name
+    if (method.form === 'flag') {
+      if (item !== true) throw new Error(name + ' must be true')
+    } else if (method.form === 'scalar')
+      checkSDKParameter(item, method.parameters[0], name)
+    else {
+      if (!item || typeof item !== 'object' || Array.isArray(item))
+        throw new Error(name + ' must be a record')
+      const fields = Object.keys(item)
+      if (!fitsSDKOverload(fields, method.parameters))
+        throw new Error(
+          name +
+            ' takes ' +
+            method.parameters.map((parameter) => parameter.field).join(', ')
+        )
+      checkSDKParameters(item as Record<string, unknown>, fields, method.parameters, name)
+    }
+  }
+}
+
+// validates an SDK value and returns the text native decodes: the case name, or the record
+// as JSON.
+export function sdkValueText(value: unknown, key: string, context: string): string {
+  checkSDKValue(value, key, context)
+  return typeof value === 'string' ? value : JSON.stringify(value)
+}
+
+// the text withAnimation and PhaseAnimator hand native for an SDK Animation.
+export function encodeSDKAnimation(
+  value: SDKAnimationValue,
+  context = 'animation'
+): string {
+  return sdkValueText(value, 'Animation', context)
 }
 
 export function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
@@ -2400,6 +3440,8 @@ export function swiftStyleNative(
             throw new Error(name + '.' + argument.field + ' must be finite')
           if (argument.kind === 'boolean' && typeof item !== 'boolean')
             throw new Error(name + '.' + argument.field + ' must be a boolean')
+          if (argument.value && typeof item === 'object' && item !== null)
+            return sdkValueText(item, argument.value, name + '.' + argument.field)
           if (
             (argument.kind === 'string' ||
               argument.kind === 'url' ||
@@ -2823,6 +3865,14 @@ export function swiftStyleNative(
             String(record.longitude),
           ]),
         ])
+        continue
+      }
+      if (
+        Object.hasOwn(sdkModifierValues, name) &&
+        typeof value === 'object' &&
+        value !== null
+      ) {
+        sdkModifiers.push([name, sdkValueText(value, sdkModifierValues[name], name)])
         continue
       }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
