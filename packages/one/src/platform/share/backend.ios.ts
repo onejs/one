@@ -59,37 +59,24 @@ async function share(items: ShareItem[]): Promise<ShareResult> {
       await popover.setSourceRect({x: bounds.x + bounds.width / 2, y: bounds.y + bounds.height / 2, width: 1, height: 1})
     }
     return await new Promise<ShareResult>((resolve, reject) => {
-      let settled = false
       let finishing = false
-      let timer: ReturnType<typeof setTimeout> | undefined
-      const rejectOnce = (error: unknown) => {
-        if (settled) return
-        settled = true
-        clearTimeout(timer)
-        reject(error)
-      }
+      // uikit drops a dismissal requested while the presentation is still in
+      // flight, and attaching can take most of a second on a first share.
+      let presented: () => void
+      const presentation = new Promise<void>((done) => { presented = done })
       void controller.setCompletionWithItemsHandler((activityType, completed, _items, error) => {
         void (async () => {
-          if (settled || finishing || (!completed && activityType !== null && await controller.presentingViewController !== null)) return
+          if (finishing || (!completed && activityType !== null && await controller.presentingViewController !== null)) return
           finishing = true
+          await presentation
           // settle only after dismissal, so the next share can present immediately.
           await new Promise<void>((done, failed) => {
             controller.dismiss(true, done).catch(failed)
           })
-          if (settled) return
-          settled = true
-          clearTimeout(timer)
           if (error) reject(failure('FAILED', new NSError(error.$handle).localizedDescription))
           else resolve({ completed, activityType: activityType ?? undefined })
-        })().catch(rejectOnce)
-      }).then(() => presenter.present(controller, true)).then(() => {
-        if (settled) return
-        timer = setTimeout(() => {
-          void controller.presentingViewController.then((attached) => {
-            if (!attached) rejectOnce(failure('PRESENTATION', 'there is no active view controller to present from'))
-          }).catch(rejectOnce)
-        }, 1000)
-      }).catch(rejectOnce)
+        })().catch(reject)
+      }).then(() => presenter.present(controller, true, () => presented())).catch(reject)
     })
   } finally {
     busy = false
