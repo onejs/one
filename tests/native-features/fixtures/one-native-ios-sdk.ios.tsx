@@ -37,6 +37,7 @@ export default function OneNativeIosSdk() {
     await settle(report, 'HealthStatus', async () => {
       const steps = HKObjectType.quantityType(HKQuantityTypeIdentifier.stepCount)
       if (!steps) return 'no step type'
+      report('HealthInheritedMethod', `requiresPerObjectAuthorization=${steps.requiresPerObjectAuthorization()}`)
       return `${steps.identifier} ${HKHealthStore.init().authorizationStatus(steps)}`
     })
     await settle(report, 'Weather', async () => (await WeatherService.shared.attribution).serviceName)
@@ -44,14 +45,14 @@ export default function OneNativeIosSdk() {
     report('ModelAvailable', String(model.isAvailable))
     if (model.isAvailable) {
       await settle(report, 'Model', async () => {
-        const session = LanguageModelSession.initModelInstructions417(undefined, 'Answer in one word.')
-        const response = await session.respondToOptions432('What color is a clear daytime sky?')
+        const session = LanguageModelSession.initModelInstructions81584(undefined, 'Answer in one word.')
+        const response = await session.respondToOptions26720('What color is a clear daytime sky?')
         return `${String(response.content)} (${response.rawContent.jsonString})`
       })
       // the caller picks the generic Content type, so the model answers as an Int
       await settle(report, 'ModelInt', async () => {
-        const session = LanguageModelSession.initModelInstructions417(undefined, 'Answer with a number.')
-        const response = await session.respondToGeneratingOptionsContextOptionsMetadata424('How many legs does a spider have?', 'Int')
+        const session = LanguageModelSession.initModelInstructions81584(undefined, 'Answer with a number.')
+        const response = await session.respondToGeneratingOptionsContextOptionsMetadata53237('How many legs does a spider have?', 'Int')
         return `${typeof response.content} ${String(response.content)} (${response.rawContent.jsonString})`
       })
     }
