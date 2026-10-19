@@ -584,7 +584,7 @@ as rows inside a container.
 `Button` needs a `label`, a `systemImage`, or children. With only a `systemImage` it
 renders the bare symbol with no title spacing reserved, centered in the button
 frame. With children, the children are the label view (`Button(action:) { label }`)
-and the `label`, `systemImage`, and `subtitle` props must be omitted; passing both
+and the `label` and `systemImage` props must be omitted; passing both
 is a validation error. `Text` stays text-only and never takes children. `buttonRole`
 is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
 `buttonRole` because React Native's `ViewProps` already owns `role` for the
@@ -592,10 +592,7 @@ accessibility role. `confirm` and `close` need iOS 26. The `buttonStyle`
 modifier in `swiftStyle` is `automatic`, `plain`, `borderless`, `bordered`, `borderedProminent`, `glass`,
 or `glassProminent`; the two `glass` styles need iOS 26. Values above the
 runtime version throw from the adapter. `onPress` does
-not fire while `swiftStyle.disabled` is true. `disclosureIndicator` shapes the button as the row iOS uses
-for something that opens: the label, a `Spacer`, and a trailing secondary chevron,
-filling the width the button is given. It is what makes a `Button` inside a `One.iOS.Form`
-read as "Change flight >".
+not fire while `swiftStyle.disabled` is true.
 
 `ProgressView` shows determinate progress when `value` is set and an
 indeterminate spinner when it is omitted. `total` defaults to 1 and must be
