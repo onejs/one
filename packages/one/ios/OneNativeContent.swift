@@ -131,35 +131,13 @@ final class OneNativeCellSource: NSObject {
   func register(_ content: OneNativeContentView, item: Int) {
     if let current = self.content(item), current !== content { return }
     contents.setObject(content, forKey: NSNumber(value: item))
-    show(content, item: item)
+    for cell in visibleCells where cell.item == item { cell.show(content) }
   }
 
   func unregister(_ content: OneNativeContentView, item: Int) {
     guard self.content(item) === content else { return }
     contents.removeObject(forKey: NSNumber(value: item))
-    show(nil, item: item)
-  }
-
-  private func show(_ content: OneNativeContentView?, item: Int) {
-    var shown = false
-    for cell in visibleCells where cell.item == item {
-      cell.show(content)
-      shown = true
-    }
-    if shown { announce() }
-  }
-
-  // accessibility clients keep a visible cell's elements until told its layout changed, so
-  // content that comes or goes there is announced once per turn. reuse while scrolling is not
-  private var announcing = false
-
-  private func announce() {
-    guard !announcing else { return }
-    announcing = true
-    DispatchQueue.main.async { [weak self] in
-      self?.announcing = false
-      UIAccessibility.post(notification: .layoutChanged, argument: nil)
-    }
+    for cell in visibleCells where cell.item == item { cell.show(nil) }
   }
 
   // a cell's own self-sizing invalidation stops applying after its first changes, so a
