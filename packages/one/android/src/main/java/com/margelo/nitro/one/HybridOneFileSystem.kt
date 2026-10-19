@@ -32,6 +32,7 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     private val handles = ConcurrentHashMap<Int, RandomAccessFile>()
     private val assetHandles = ConcurrentHashMap<Int, AssetHandle>()
     private val nextHandle = AtomicInteger(1)
+    private val hexDigits = "0123456789ABCDEF"
 
     private class AssetHandle(var offset: Long, val bytes: ByteArray)
 
@@ -121,56 +122,32 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     }
 
     override fun readText(uri: String): String = sync("readText") {
-        if (isAssetUri(uri)) {
-            val path = assetPath(uri)
-            if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem: expected a file")
-            return@sync strictText(assetBytes(path))
-        }
+        if (isAssetUri(uri)) return@sync strictText(assetFileBytes(uri))
         readStrictText(contentFile(uri))
     }
 
     override fun readTextAsync(uri: String): Promise<String> = query("readText") {
-        if (isAssetUri(uri)) {
-            val path = assetPath(uri)
-            if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem: expected a file")
-            return@query strictText(assetBytes(path))
-        }
+        if (isAssetUri(uri)) return@query strictText(assetFileBytes(uri))
         readStrictText(contentFile(uri))
     }
 
     override fun readData(uri: String): ArrayBuffer = sync("readData") {
-        if (isAssetUri(uri)) {
-            val path = assetPath(uri)
-            if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem: expected a file")
-            return@sync ArrayBuffer.copy(assetBytes(path))
-        }
+        if (isAssetUri(uri)) return@sync ArrayBuffer.copy(assetFileBytes(uri))
         ArrayBuffer.copy(contentFile(uri).readBytes())
     }
 
     override fun readDataAsync(uri: String): Promise<ArrayBuffer> = query("readData") {
-        if (isAssetUri(uri)) {
-            val path = assetPath(uri)
-            if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem: expected a file")
-            return@query ArrayBuffer.copy(assetBytes(path))
-        }
+        if (isAssetUri(uri)) return@query ArrayBuffer.copy(assetFileBytes(uri))
         ArrayBuffer.copy(contentFile(uri).readBytes())
     }
 
     override fun readBase64(uri: String): String = sync("readBase64") {
-        if (isAssetUri(uri)) {
-            val path = assetPath(uri)
-            if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem: expected a file")
-            return@sync Base64.encodeToString(assetBytes(path), Base64.NO_WRAP)
-        }
+        if (isAssetUri(uri)) return@sync Base64.encodeToString(assetFileBytes(uri), Base64.NO_WRAP)
         Base64.encodeToString(contentFile(uri).readBytes(), Base64.NO_WRAP)
     }
 
     override fun readBase64Async(uri: String): Promise<String> = query("readBase64") {
-        if (isAssetUri(uri)) {
-            val path = assetPath(uri)
-            if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem: expected a file")
-            return@query Base64.encodeToString(assetBytes(path), Base64.NO_WRAP)
-        }
+        if (isAssetUri(uri)) return@query Base64.encodeToString(assetFileBytes(uri), Base64.NO_WRAP)
         Base64.encodeToString(contentFile(uri).readBytes(), Base64.NO_WRAP)
     }
 
@@ -362,7 +339,7 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
             }
             return@sync names.sorted().map {
                 val child = if (path.isEmpty()) it else "$path/$it"
-                ListedEntry(it, "asset:///$child", isAssetDirectory(child))
+                ListedEntry(it, assetChildUri(child), isAssetDirectory(child))
             }.toTypedArray()
         }
         children(file(uri)).map { ListedEntry(it.name, Uri.fromFile(it).toString(), it.isDirectory) }
@@ -606,8 +583,12 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
     private fun assetPath(value: String): String {
         try {
             val uri = URI(value)
-            require(uri.scheme == "asset" &&
-                (uri.host == null || uri.host.isEmpty()) &&
+            // opaque ('asset:relative') has no path; raw authority (not host, which parses
+            // null for 'asset://evil:bad/...') must be empty; the multi-arg ctor below
+            // re-quotes '%' so getPath decodes exactly once.
+            require(!uri.isOpaque &&
+                uri.scheme == "asset" &&
+                (uri.authority == null || uri.authority.isEmpty()) &&
                 uri.query == null && uri.fragment == null &&
                 (uri.path == null || uri.path.isEmpty() || uri.path.startsWith("/")))
             if (uri.path == null || uri.path.isEmpty()) return ""
@@ -617,6 +598,27 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
         } catch (error: Exception) {
             throw OneNativeError("E_FILE_URI", "FileSystem: expected an absolute file URI")
         }
+    }
+
+    private fun assetChildUri(child: String): String =
+        "asset:///" + child.split('/').joinToString("/") { encodeAssetSegment(it) }
+
+    // rfc 3986 unreserved only; every other byte (including '%' and non-ascii)
+    // becomes %XX so listed names survive uri re-entry and decode to the exact asset path.
+    private fun encodeAssetSegment(segment: String): String {
+        val out = StringBuilder(segment.length)
+        segment.toByteArray(Charsets.UTF_8).forEach { byte ->
+            val code = byte.toInt() and 0xFF
+            if (code in '0'.code..'9'.code || code in 'A'.code..'Z'.code ||
+                code in 'a'.code..'z'.code || code == '-'.code || code == '_'.code ||
+                code == '.'.code || code == '~'.code
+            ) {
+                out.append(code.toChar())
+            } else {
+                out.append('%').append(hexDigits[code shr 4]).append(hexDigits[code and 0x0F])
+            }
+        }
+        return out.toString()
     }
 
     private fun readOnly(): Nothing {
@@ -639,6 +641,12 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
         } catch (error: Exception) {
             throw ErrnoException("read", OsConstants.ENOENT)
         }
+    }
+
+    private fun assetFileBytes(uri: String): ByteArray {
+        val path = assetPath(uri)
+        if (isAssetDirectory(path)) throw OneNativeError("E_FILE_FAILED", "FileSystem: expected a file")
+        return assetBytes(path)
     }
 
     private fun assetLength(path: String): Long {
