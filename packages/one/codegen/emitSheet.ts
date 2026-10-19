@@ -374,7 +374,7 @@ struct OneNativeSheetRoot: View {
         if model.active && model.controlled.value { model.onLayout?(frame) }
       }, onWindowChange: { identity, attached in
         model.presentedWindowChanged(identity, attached: attached)
-      }, measuredHeight: model.measuredHeight)
+      }, measuredHeight: model.presentationSizing == "fitted" ? model.measuredHeight : 0)
       .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
   }
