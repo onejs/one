@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
-import type { SDKAnimation } from './generated/controlTypes'
+import type { SDKAnimationValue } from './generated/controlTypes'
 
 // SwiftUI PhaseAnimator(_:trigger:content:animation:) and
 // PhaseAnimator(_:content:animation:). children is the content closure. Without
@@ -11,7 +11,7 @@ export interface PhaseAnimatorProps<Phase> extends Omit<ViewProps, 'children'> {
   trigger?: unknown
   // the animation into each phase, or null to change without animation.
   // SwiftUI's default is .default for every phase.
-  animation?: (phase: Phase) => SDKAnimation | null
+  animation?: (phase: Phase) => SDKAnimationValue | null
   children: (phase: Phase) => ReactNode
 }
 

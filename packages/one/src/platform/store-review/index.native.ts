@@ -1,16 +1,12 @@
 import { Platform } from 'react-native'
-import { NitroModules } from 'react-native-nitro-modules'
+import { storeReviewNative } from './backend'
 import { rethrowNativeError } from '../nativeError'
-import type { OneStoreReview } from '../specs/OneStoreReview.nitro'
 import { StoreReview as unavailableStoreReview } from './unavailable'
-
-let hybrid: OneStoreReview | undefined
 
 function requestReview(): Promise<void> {
   if (Platform.OS !== 'ios' && Platform.OS !== 'android')
     throw new Error('StoreReview requires a native build')
-  hybrid ??= NitroModules.createHybridObject<OneStoreReview>('OneStoreReview')
-  return hybrid.requestReview().catch(rethrowNativeError)
+  return storeReviewNative().requestReview().catch(rethrowNativeError)
 }
 
 const nativeStoreReview = Object.freeze({ requestReview })

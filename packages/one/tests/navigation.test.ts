@@ -108,11 +108,11 @@ describe('Swift.NavigationStack', () => {
   it('cannot be a child of a measured host', () => {
     expect(() =>
       render(
-        createElement(Containers.Host, {
+        createElement(Containers.VStack, {
           children: stack(createElement('View', {})),
         })
       )
-    ).toThrow('Swift.NavigationStack cannot be a child of Swift.Host')
+    ).toThrow('Swift.NavigationStack cannot be a child of Swift.VStack')
   })
 })
 

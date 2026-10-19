@@ -134,42 +134,6 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid SpringLoadingBehavior: \(value)")
     }
   }
-  static func submitLabel(_ value: String) -> SubmitLabel {
-    switch value {
-    case "done":
-      return .done
-    case "go":
-      return .go
-    case "send":
-      return .send
-    case "join":
-      return .join
-    case "route":
-      return .route
-    case "search":
-      return .search
-    case "return":
-      return .return
-    case "next":
-      return .next
-    case "continue":
-      return .continue
-    default: preconditionFailure("invalid SubmitLabel: \(value)")
-    }
-  }
-  static func textInputAutocapitalization(_ value: String) -> TextInputAutocapitalization {
-    switch value {
-    case "never":
-      return .never
-    case "words":
-      return .words
-    case "sentences":
-      return .sentences
-    case "characters":
-      return .characters
-    default: preconditionFailure("invalid TextInputAutocapitalization: \(value)")
-    }
-  }
   static func axis(_ value: String) -> Axis {
     switch value {
     case "horizontal":
@@ -270,47 +234,6 @@ enum OneNativeGenerated {
     case "extraLarge":
       return .extraLarge
     default: preconditionFailure("invalid ControlSize: \(value)")
-    }
-  }
-  static func symbolRenderingMode(_ value: String) -> SymbolRenderingMode {
-    switch value {
-    case "monochrome":
-      return .monochrome
-    case "multicolor":
-      return .multicolor
-    case "hierarchical":
-      return .hierarchical
-    case "palette":
-      return .palette
-    default: preconditionFailure("invalid SymbolRenderingMode: \(value)")
-    }
-  }
-  static func symbolVariants(_ value: String) -> SymbolVariants {
-    switch value {
-    case "none":
-      return .none
-    case "circle":
-      return .circle
-    case "square":
-      return .square
-    case "rectangle":
-      return .rectangle
-    case "fill":
-      return .fill
-    case "slash":
-      return .slash
-    default: preconditionFailure("invalid SymbolVariants: \(value)")
-    }
-  }
-  static func imageScale(_ value: String) -> Image.Scale {
-    switch value {
-    case "small":
-      return .small
-    case "medium":
-      return .medium
-    case "large":
-      return .large
-    default: preconditionFailure("invalid ImageScale: \(value)")
     }
   }
   static func photosPickerSelectionBehavior(_ value: String) -> PhotosPickerSelectionBehavior {
@@ -499,57 +422,6 @@ extension View {
   @ViewBuilder func oneNativePresentationDragIndicator(_ value: String) -> some View {
     if value.isEmpty { self } else { self.presentationDragIndicator(OneNativeGenerated.visibility(value)) }
   }
-  @ViewBuilder func oneNativePickerStyle(_ value: String) -> some View {
-    switch value {
-    case "wheel":
-      self.pickerStyle(.wheel)
-    case "inline":
-      self.pickerStyle(.inline)
-    case "automatic":
-      self.pickerStyle(.automatic)
-    case "segmented":
-      self.pickerStyle(.segmented)
-    case "tabs":
-
-#if ONE_IOS_27_SDK
-      if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { let _ = preconditionFailure("PickerStyle.tabs requires iOS 27"); self }
-#else
-      let _ = preconditionFailure("PickerStyle.tabs requires iOS 27"); self
-#endif
-
-    case "palette":
-      self.pickerStyle(.palette)
-    case "navigationLink":
-      self.pickerStyle(.navigationLink)
-    case "menu":
-      self.pickerStyle(.menu)
-    default: let _ = preconditionFailure("invalid PickerStyle: \(value)"); self
-    }
-  }
-  @ViewBuilder func oneNativeDatePickerStyle(_ value: String) -> some View {
-    switch value {
-    case "wheel":
-      self.datePickerStyle(.wheel)
-    case "automatic":
-      self.datePickerStyle(.automatic)
-    case "graphical":
-      self.datePickerStyle(.graphical)
-    case "compact":
-      self.datePickerStyle(.compact)
-    default: let _ = preconditionFailure("invalid DatePickerStyle: \(value)"); self
-    }
-  }
-  @ViewBuilder func oneNativeToggleStyle(_ value: String) -> some View {
-    switch value {
-    case "button":
-      self.toggleStyle(.button)
-    case "automatic":
-      self.toggleStyle(.automatic)
-    case "switch":
-      self.toggleStyle(.switch)
-    default: let _ = preconditionFailure("invalid ToggleStyle: \(value)"); self
-    }
-  }
   @ViewBuilder func oneNativeMenuActionDismissBehavior(_ value: String) -> some View {
     if value.isEmpty { self } else { self.menuActionDismissBehavior(OneNativeGenerated.menuActionDismissBehavior(value)) }
   }
@@ -581,53 +453,6 @@ extension View {
     default: let _ = preconditionFailure("invalid TabViewStyle: \(value)"); self
     }
   }
-  @ViewBuilder func oneNativeButtonStyle(_ value: String) -> some View {
-    switch value {
-    case "automatic":
-      self.buttonStyle(.automatic)
-    case "glass":
-      if #available(iOS 26, *) { self.buttonStyle(.glass) } else { let _ = preconditionFailure("PrimitiveButtonStyle.glass requires iOS 26"); self }
-    case "borderless":
-      self.buttonStyle(.borderless)
-    case "glassProminent":
-      if #available(iOS 26, *) { self.buttonStyle(.glassProminent) } else { let _ = preconditionFailure("PrimitiveButtonStyle.glassProminent requires iOS 26"); self }
-    case "plain":
-      self.buttonStyle(.plain)
-    case "bordered":
-      self.buttonStyle(.bordered)
-    case "borderedProminent":
-      self.buttonStyle(.borderedProminent)
-    default: let _ = preconditionFailure("invalid PrimitiveButtonStyle: \(value)"); self
-    }
-  }
-  @ViewBuilder func oneNativeProgressViewStyle(_ value: String) -> some View {
-    switch value {
-    case "linear":
-      self.progressViewStyle(.linear)
-    case "circular":
-      self.progressViewStyle(.circular)
-    case "automatic":
-      self.progressViewStyle(.automatic)
-    default: let _ = preconditionFailure("invalid ProgressViewStyle: \(value)"); self
-    }
-  }
-  @ViewBuilder func oneNativeGaugeStyle(_ value: String) -> some View {
-    switch value {
-    case "accessoryCircularCapacity":
-      self.gaugeStyle(.accessoryCircularCapacity)
-    case "linearCapacity":
-      self.gaugeStyle(.linearCapacity)
-    case "accessoryLinear":
-      self.gaugeStyle(.accessoryLinear)
-    case "accessoryLinearCapacity":
-      self.gaugeStyle(.accessoryLinearCapacity)
-    case "automatic":
-      self.gaugeStyle(.automatic)
-    case "accessoryCircular":
-      self.gaugeStyle(.accessoryCircular)
-    default: let _ = preconditionFailure("invalid GaugeStyle: \(value)"); self
-    }
-  }
   @ViewBuilder func oneNativeListStyle(_ value: String) -> some View {
     switch value {
     case "automatic":
@@ -644,40 +469,6 @@ extension View {
       self.listStyle(.plain)
     default: let _ = preconditionFailure("invalid ListStyle: \(value)"); self
     }
-  }
-  @ViewBuilder func oneNativeTextFieldStyle(_ value: String) -> some View {
-    switch value {
-    case "automatic":
-      self.textFieldStyle(.automatic)
-    case "roundedBorder":
-      self.textFieldStyle(.roundedBorder)
-    case "bordered":
-
-#if ONE_IOS_27_SDK
-      if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { let _ = preconditionFailure("TextFieldStyle.bordered requires iOS 27"); self }
-#else
-      let _ = preconditionFailure("TextFieldStyle.bordered requires iOS 27"); self
-#endif
-
-    case "plain":
-      self.textFieldStyle(.plain)
-    default: let _ = preconditionFailure("invalid TextFieldStyle: \(value)"); self
-    }
-  }
-  @ViewBuilder func oneNativeSubmitLabel(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.submitLabel(OneNativeGenerated.submitLabel(value)) }
-  }
-  @ViewBuilder func oneNativeTextInputAutocapitalization(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.textInputAutocapitalization(OneNativeGenerated.textInputAutocapitalization(value)) }
-  }
-  @ViewBuilder func oneNativeSymbolRenderingMode(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.symbolRenderingMode(OneNativeGenerated.symbolRenderingMode(value)) }
-  }
-  @ViewBuilder func oneNativeSymbolVariant(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.symbolVariant(OneNativeGenerated.symbolVariants(value)) }
-  }
-  @ViewBuilder func oneNativeImageScale(_ value: String) -> some View {
-    if value.isEmpty { self } else { self.imageScale(OneNativeGenerated.imageScale(value)) }
   }
   @ViewBuilder func oneNativeWebViewBackForwardNavigationGestures(_ value: String) -> some View {
     if #available(iOS 26, *) {

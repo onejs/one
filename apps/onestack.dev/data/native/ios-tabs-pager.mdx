@@ -1,20 +1,20 @@
 ---
-title: iOS Tabs and Pager
-description: SwiftUI Tabs, Tab, TabSection, tab slots, bottom accessory, and Pager under One.iOS
+title: iOS TabView and Pager
+description: SwiftUI TabView, Tab, TabSection, tab slots, bottom accessory, and Pager under One.iOS
 ---
 
 <NativeHero
   src="/native/ios-tabs.webp"
-  alt="One.iOS Tabs with a glass tab bar, a badge, a search tab, and a now playing accessory"
+  alt="One.iOS TabView with a glass tab bar, a badge, a search tab, and a now playing accessory"
 />
 
-`One.iOS` tab navigation and swipe paging are SwiftUI's own. `Tabs` is a
+`One.iOS` tab navigation and swipe paging are SwiftUI's own. `TabView` is a
 controlled tab view of `Tab` pages, with `TabSection` groups for the iPad
 sidebar, `TabViewSlot` and `TabViewBottomAccessory` content around the bar, and
 an optional `Toolbar`. `Pager` is a tab view without the bar: people swipe
 between `Page` children.
 
-Reach for `Tabs` for top-level navigation with a bar, and `Pager` for swipe
+Reach for `TabView` for top-level navigation with a bar, and `Pager` for swipe
 flows with no chrome. `selection` must name a mounted page tab, or both
 throw. Every view here throws on web and Android.
 
@@ -33,12 +33,12 @@ function Library({ openComposer }: { openComposer: () => void }) {
   const [tab, setTab] = useState('feed')
 
   return (
-    <One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
-      <One.iOS.Tab id="feed" title="Feed" systemImage="house">
+    <One.iOS.TabView selection={tab} onSelectionChange={setTab}>
+      <One.iOS.Tab value="feed" titleKey="Feed" systemImage="house">
         <FeedScreen />
       </One.iOS.Tab>
-      <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
-    </One.iOS.Tabs>
+      <One.iOS.Tab value="new" titleKey="New" systemImage="plus" onPress={openComposer} />
+    </One.iOS.TabView>
   )
 }
 ```
@@ -49,7 +49,7 @@ tab.
 
 ## How it works
 
-Selection is a controlled string id with an event count and a revision. A
+Selection is a controlled tab value with an event count and a revision. A
 native tab change bumps the count and reports the new id; JavaScript calls the
 change handler and acknowledges the event. Raising `revision` with a new
 selection moves the tab view from the outside. Action tabs and section header
@@ -62,9 +62,9 @@ legacy `TabView`. Sections, tab modifiers, styles, and customization need iOS
 18. Tab customization edits persist as JSON: pass `onCustomizationChange` to
 bind it, persist the reported string, and pass it back as `customization`.
 
-## Tabs
+## TabView
 
-`Tabs` is a SwiftUI tab view. Only `Tab`, `TabSection`, `TabViewSlot`,
+`TabView` is a SwiftUI tab view. Only `Tab`, `TabSection`, `TabViewSlot`,
 `TabViewBottomAccessory`, and one `Toolbar` may be its direct children.
 
 ```tsx
@@ -76,27 +76,27 @@ function Home({ openComposer }: { openComposer: () => void }) {
   const [tab, setTab] = useState('feed')
 
   return (
-    <One.iOS.Tabs
+    <One.iOS.TabView
       selection={tab}
       onSelectionChange={setTab}
-      onReselect={(id) => console.log('reselected', id)}
+      onReselect={(value) => console.log('reselected', value)}
     >
-      <One.iOS.Tab id="feed" title="Feed" systemImage="house">
+      <One.iOS.Tab value="feed" titleKey="Feed" systemImage="house">
         <Text>Your feed.</Text>
       </One.iOS.Tab>
-      <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
-    </One.iOS.Tabs>
+      <One.iOS.Tab value="new" titleKey="New" systemImage="plus" onPress={openComposer} />
+    </One.iOS.TabView>
   )
 }
 ```
 
 <PropsTable
   title="Props"
-  source="types.ts#TabsProps"
+  source="types.ts#TabViewProps"
   data={[
-    { name: 'selection', required: true, type: 'string', description: 'The id of the selected page tab.' },
-    { name: 'onSelectionChange', required: true, type: '(id: string) => void', description: 'A native tab change, with the new id.' },
-    { name: 'onReselect', type: '(id: string) => void', description: 'A tap on the selected tab outside a TabSection, with its id.' },
+    { name: 'selection', required: true, type: 'string', description: 'The value of the selected page tab.' },
+    { name: 'onSelectionChange', required: true, type: '(value: string) => void', description: 'A native tab change, with the new value.' },
+    { name: 'onReselect', type: '(value: string) => void', description: 'A tap on the selected tab outside a TabSection, with its value.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'tabViewStyle', type: 'TabViewStyle', default: '"automatic"', description: 'automatic, sidebarAdaptable, tabBarOnly, or page.' },
     { name: 'tabBarVisibility', type: 'Visibility', default: '"automatic"', description: 'The tab bar on every page: automatic, visible, or hidden.' },
@@ -110,7 +110,7 @@ function Home({ openComposer }: { openComposer: () => void }) {
 ## Tab
 
 `Tab` is one tab. It takes either children, as a page, or `onPress`, as an
-action tab, never both. Ids must be unique and nonempty, and `systemImage`
+action tab, never both. Values must be unique and nonempty, and `systemImage`
 and `image` are mutually exclusive.
 
 ```tsx
@@ -119,7 +119,7 @@ import { One } from 'one'
 
 function SearchTab() {
   return (
-    <One.iOS.Tab id="search" title="Search" systemImage="star" role="search" badge={3}>
+    <One.iOS.Tab value="search" titleKey="Search" systemImage="star" role="search" badge={3}>
       <Text>Search results.</Text>
     </One.iOS.Tab>
   )
@@ -130,8 +130,8 @@ function SearchTab() {
   title="Props"
   source="types.ts#TabProps"
   data={[
-    { name: 'id', required: true, type: 'string', description: 'Identifies the tab in selection.' },
-    { name: 'title', required: true, type: 'string', description: 'The tab label.' },
+    { name: 'value', required: true, type: 'string', description: 'Identifies the tab in selection.' },
+    { name: 'titleKey', required: true, type: 'string', description: 'The tab label.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', description: 'An SF Symbol. Not with image.' },
     { name: 'image', type: 'string', description: 'An asset catalog image. Not with systemImage.' },
     { name: 'labelStyle', type: 'SDKLabelStyle', description: 'iconOnly keeps the title for VoiceOver only.' },
@@ -175,17 +175,17 @@ import { useState } from 'react'
 import { Text } from 'react-native'
 import { One } from 'one'
 
-function LibraryTabs() {
+function LibraryTabView() {
   const [tab, setTab] = useState('songs')
 
   return (
-    <One.iOS.Tabs tabViewStyle="sidebarAdaptable" selection={tab} onSelectionChange={setTab}>
+    <One.iOS.TabView tabViewStyle="sidebarAdaptable" selection={tab} onSelectionChange={setTab}>
       <One.iOS.TabSection id="music" title="Music">
-        <One.iOS.Tab id="songs" title="Songs" systemImage="star">
+        <One.iOS.Tab value="songs" titleKey="Songs" systemImage="star">
           <Text>Your songs.</Text>
         </One.iOS.Tab>
       </One.iOS.TabSection>
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }
 ```
@@ -205,7 +205,7 @@ function LibraryTabs() {
 ## TabViewSlot
 
 `TabViewSlot` fills a named tab view slot with React Native content. Place it
-directly inside `Tabs`, alongside the `Tab` children. Each name may appear
+directly inside `TabView`, alongside the `Tab` children. Each name may appear
 once, the height must be above zero, and the slot keeps its declared height
 and React Native event handlers as selection changes.
 
@@ -214,15 +214,15 @@ import { useState } from 'react'
 import { Pressable, Text } from 'react-native'
 import { One } from 'one'
 
-function PlayerTabs({ openPlayer }: { openPlayer: () => void }) {
+function PlayerTabView({ openPlayer }: { openPlayer: () => void }) {
   const [tab, setTab] = useState('home')
 
   return (
-    <One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
-      <One.iOS.Tab id="home" title="Home" systemImage="house">
+    <One.iOS.TabView selection={tab} onSelectionChange={setTab}>
+      <One.iOS.Tab value="home" titleKey="Home" systemImage="house">
         <Text>Home.</Text>
       </One.iOS.Tab>
-      <One.iOS.Tab id="other" title="Other" systemImage="star">
+      <One.iOS.Tab value="other" titleKey="Other" systemImage="star">
         <Text>Other.</Text>
       </One.iOS.Tab>
       <One.iOS.TabViewSlot name="tabViewBottomAccessory" height={50}>
@@ -230,7 +230,7 @@ function PlayerTabs({ openPlayer }: { openPlayer: () => void }) {
           <Text>Open player</Text>
         </Pressable>
       </One.iOS.TabViewSlot>
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }
 ```
@@ -248,15 +248,15 @@ import { useState } from 'react'
 import { Pressable, Text } from 'react-native'
 import { One } from 'one'
 
-function SidebarTabs({ openSearch, openSettings, openProfile }: { openSearch: () => void; openSettings: () => void; openProfile: () => void }) {
+function SidebarTabView({ openSearch, openSettings, openProfile }: { openSearch: () => void; openSettings: () => void; openProfile: () => void }) {
   const [tab, setTab] = useState('home')
 
   return (
-    <One.iOS.Tabs tabViewStyle="sidebarAdaptable" selection={tab} onSelectionChange={setTab}>
-      <One.iOS.Tab id="home" title="Home" systemImage="house">
+    <One.iOS.TabView tabViewStyle="sidebarAdaptable" selection={tab} onSelectionChange={setTab}>
+      <One.iOS.Tab value="home" titleKey="Home" systemImage="house">
         <Text>Home.</Text>
       </One.iOS.Tab>
-      <One.iOS.Tab id="other" title="Other" systemImage="star">
+      <One.iOS.Tab value="other" titleKey="Other" systemImage="star">
         <Text>Other.</Text>
       </One.iOS.Tab>
       <One.iOS.TabViewSlot name="tabViewSidebarHeader" height={44}>
@@ -274,7 +274,7 @@ function SidebarTabs({ openSearch, openSettings, openProfile }: { openSearch: ()
           <Text>Profile</Text>
         </Pressable>
       </One.iOS.TabViewSlot>
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }
 ```
@@ -292,7 +292,7 @@ function SidebarTabs({ openSearch, openSettings, openProfile }: { openSearch: ()
 ## TabViewBottomAccessory
 
 `TabViewBottomAccessory` sits above the tab bar, like a music player's now
-playing bar. It needs iOS 26, and `Tabs` takes one. It needs `children`,
+playing bar. It needs iOS 26, and `TabView` takes one. It needs `children`,
 `inline`, or `expanded`; a missing layout falls back to the others.
 
 ```tsx
@@ -304,15 +304,15 @@ function PlayerBar() {
   const [tab, setTab] = useState('home')
 
   return (
-    <One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
-      <One.iOS.Tab id="home" title="Home" systemImage="house">
+    <One.iOS.TabView selection={tab} onSelectionChange={setTab}>
+      <One.iOS.Tab value="home" titleKey="Home" systemImage="house">
         <Text>Home.</Text>
       </One.iOS.Tab>
       <One.iOS.TabViewBottomAccessory
         inline={<Text>Evening Tide</Text>}
         expanded={<Text>Evening Tide, The Harbor Lights</Text>}
       />
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }
 ```
@@ -334,6 +334,9 @@ function PlayerBar() {
 must be `Page` elements with unique nonempty ids, and `selection` must name a
 mounted page. For a pager on both platforms, use
 [One.UI.Pager](/native/ui-pager).
+
+Use `indexDisplayMode="always"` to show page indicators, `"never"` to hide them,
+or `"automatic"` to let SwiftUI choose. The default is `"automatic"`.
 
 ```tsx
 import { useState } from 'react'
@@ -361,6 +364,7 @@ function Onboarding() {
   source="groupTypes.ts#PagerProps"
   data={[
     { name: 'selection', required: true, type: 'string', description: 'The id of the shown page.' },
+    { name: 'indexDisplayMode', type: 'SDKPageTabViewStyleIndexDisplayModeValue', default: "'automatic'", description: 'When SwiftUI shows page indicators: automatic, always, or never.' },
     { name: 'onSelectionChange', required: true, type: '(id: string) => void', description: 'A swipe to another page.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Page elements.' },
@@ -385,11 +389,19 @@ function Onboarding() {
 | Sidebar | iPad sidebar | None | None |
 | Paging | Swipe pages | None | None |
 
+In the Peach simulator `TabView` draws the floating tab bar and honours
+`swiftStyle={{ tabBarMinimizeBehavior }}`: the bar collapses as the page
+scrolls down, and a tap on it expands it again. The `page` tab view style and
+the iPad sidebar are not drawn there, so Peach throws for them.
+
 ## Limits and gotchas
 
-- **Selection must name a mounted page.** Both `Tabs` and `Pager` throw
+- **`tabBarMinimizeBehavior` follows the page's first scroll view.** One names a
+  page's first React Native `ScrollView` (or list) as the tab bar's content
+  scroll view, so the bar minimizes as it scrolls with no extra wiring.
+- **Selection must name a mounted page.** Both `TabView` and `Pager` throw
   otherwise, and an action tab never becomes the selection.
-- **Tabs take markers only.** Anything but `Tab`, `TabSection`,
+- **TabView takes markers only.** Anything but `Tab`, `TabSection`,
   `TabViewSlot`, `TabViewBottomAccessory`, and one `Toolbar` as direct
   children throws; markers rendered anywhere else throw too.
 - **A tab is a page or an action.** Exactly one of children and `onPress`,

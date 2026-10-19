@@ -1,6 +1,6 @@
 import type { HybridObject } from 'react-native-nitro-modules'
 
-export interface OneAppIcon extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
+export interface OneAppIcon extends HybridObject<{ android: 'kotlin' }> {
   isSupported(): Promise<boolean>
   getCurrentName(): Promise<string | undefined>
   setIcon(name?: string): Promise<void>

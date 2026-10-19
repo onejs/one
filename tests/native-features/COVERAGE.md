@@ -44,30 +44,37 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Contacts` | contacts, e2e:one-native-contact-ui | native-modules:unavailable | missing |  |
 | `One.Calendar` | calendar | native-modules:unavailable | missing |  |
 | `One.iOS.ArrangementView` | arrangement | n/a | OneSwiftArrangementLibraryCase | closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved |
-| `One.iOS.Tabs` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
-| `One.iOS.Tab` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
-| `One.iOS.TabSection` | e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
-| `One.iOS.TabViewBottomAccessory` | e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
-| `One.iOS.TabViewSlot` | tab-slot, tab-sidebar | n/a | OneSwiftTabsLibraryCase |  |
+| `One.iOS.TabView` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a | OneSwiftTabViewLibraryCase |  |
+| `One.iOS.Tab` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a | OneSwiftTabViewLibraryCase |  |
+| `One.iOS.TabSection` | e2e:one-native-tabview | n/a | OneSwiftTabViewLibraryCase |  |
+| `One.iOS.TabViewBottomAccessory` | e2e:one-native-tabview | n/a | OneSwiftTabViewLibraryCase |  |
+| `One.iOS.TabViewSlot` | tab-slot, tab-sidebar | n/a | OneSwiftTabViewLibraryCase |  |
 | `One.iOS.Menu` | tabs-menu, menu-primary-action, menu-picker | n/a | OneSwiftMenusLibraryCase | primaryAction short tap, long-press menu, item callback, disabled behavior, plain Menu tap, and Picker selection with native checkmarks in Menu and ContextMenu proven on iOS 27; context previews unbound |
 | `One.iOS.ContextMenu` | cover-context, menu-picker | n/a | OneSwiftMenusLibraryCase |  |
 | `One.iOS.Sheet` | sheets, navigation | n/a | OneSwiftPresentationsLibraryCase |  |
 | `One.iOS.FullScreenCover` | cover-context | n/a | OneSwiftPresentationsLibraryCase |  |
 | `One.iOS.Popover` | popover | n/a | OneSwiftPresentationsLibraryCase |  |
-| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, control-size, containers, disclosure-group, control-group, view-that-fits, accessibility | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase |  |
-| `One.iOS.HStack` | glass-container, building-blocks, tab-slot, accessibility, e2e:one-native-tabview | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftListsLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase |  |
-| `One.iOS.VStack` | groups, accessibility, e2e:one-native-scroll-reader | n/a | OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftListsLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftSignInWithAppleLibraryCase |  |
+| `One.iOS.HStack` | host, containers, glass-container, building-blocks, tab-slot, accessibility, ui-icon, e2e:one-native-tabview | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftListsLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase |  |
+| `One.iOS.VStack` | dialogs, dialogs-lifecycle, host, control-size, groups, view-slot, disclosure-group, control-group, view-that-fits, accessibility, e2e:one-native-scroll-reader | n/a | OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftListsLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftSignInWithAppleLibraryCase |  |
 | `One.iOS.ZStack` | building-blocks, disclosure-group | n/a | OneSwiftLayoutContainersLibraryCase |  |
 | `One.iOS.Form` | containers, popover, accessibility | n/a | OneNativeFormLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftTextEditorLibraryCase |  |
 | `One.iOS.Section` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, groups, swipe-actions, edit-button, popover, accessibility, e2e:one-native-edit-button | n/a | OneNativeFormLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftListsLibraryCase, OneSwiftTextEditorLibraryCase | spacing, margins, and header prominence proven in insetGrouped List on iPhone; other section modifiers and Form behavior unproven |
 | `One.iOS.Glass` | building-blocks | n/a | OneSwiftGlassLibraryCase |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a | OneSwiftGlassLibraryCase |  |
 | `One.iOS.GeometryReader` | e2e:one-native-geometry-reader | n/a | missing |  |
+| `One.iOS.TimelineView` | e2e:one-native-timeline-view, e2e:one-native-canvas | n/a | missing |  |
+| `One.iOS.OutlineGroup` | e2e:one-native-outline-group | n/a | missing |  |
+| `One.iOS.Table` | e2e:one-native-table | n/a | missing |  |
+| `One.iOS.Canvas` | e2e:one-native-canvas | n/a | missing |  |
+| `One.iOS.Angle` | e2e:one-native-canvas | n/a | missing |  |
+| `One.iOS.Path` | e2e:one-native-canvas | n/a | missing |  |
+| `One.iOS.Shading` | e2e:one-native-canvas | n/a | missing |  |
+| `One.iOS.Gradient` | e2e:one-native-canvas | n/a | missing |  |
 | `One.iOS.LabeledContent` | building-blocks | n/a | OneNativeFormLayoutLibraryCase |  |
 | `One.iOS.Button` | leaves, host, control-size, containers, lists, list-row-background, groups, grids, glass-container, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, navigation-split-view, e2e:one-native-tabview, e2e:one-native-button | n/a | OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPresentationsLibraryCase, OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Spacer` | building-blocks | n/a | OneNativeFormLayoutLibraryCase, OneSwiftListsLibraryCase |  |
 | `One.iOS.Slot` | containers | n/a | OneSwiftGlassLibraryCase |  |
-| `One.iOS.List` | lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, groups, swipe-actions, edit-button, navigation-split-view, e2e:one-native-edit-button | n/a | OneSwiftListsLibraryCase | Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven |
+| `One.iOS.List` | lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, groups, swipe-actions, edit-button, navigation-split-view, e2e:one-native-edit-button, e2e:one-native-outline-group | n/a | OneSwiftListsLibraryCase | Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven |
 | `One.iOS.ScrollView` | lists, list-row-background, scroll-search-refresh, editors, grids, e2e:one-native-scroll-reader | n/a | OneSwiftLazyStacksLibraryCase, OneSwiftScrollViewportLibraryCase | vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, standalone search hosting, horizontal/both axes, and other modifiers unproven |
 | `One.iOS.ScrollViewReader` | e2e:one-native-scroll-reader | n/a | missing |  |
 | `One.iOS.LazyVStack` | lists, list-row-background, scroll-search-refresh | n/a | OneSwiftLazyStacksLibraryCase |  |
@@ -79,6 +86,10 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ControlGroup` | groups, control-group | n/a | OneSwiftListsLibraryCase |  |
 | `One.iOS.DisclosureGroup` | groups, disclosure-group | n/a | OneSwiftDisclosureGroupLibraryCase |  |
 | `One.iOS.Divider` | groups | n/a | OneSwiftLayoutContainersLibraryCase |  |
+| `One.iOS.UIKitView` | uikit-content | n/a | missing | calendar view identity and accessibility proven; collection, table and stack integration suite unrun |
+| `One.iOS.UIKitContent` | uikit-content | n/a | missing | collection, table and stack fixture registered; iOS Fabric layout, reuse, touches and accessibility unproven |
+| `One.iOS.collectionCellSource` | uikit-content | n/a | missing | collection fixture registered; iOS cell sizing, updates and reuse unproven |
+| `One.iOS.tableCellSource` | uikit-content | n/a | missing | table fixture registered; iOS row sizing, updates and reuse unproven |
 | `One.iOS.Link` | groups | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Group` | groups | n/a | OneSwiftLayoutContainersLibraryCase |  |
 | `One.iOS.GroupBox` | group-box | n/a | OneSwiftLayoutContainersLibraryCase |  |
@@ -110,8 +121,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Slider` | pickers, forms, e2e:one-native-animation | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.PasteButton` | paste-button | n/a | OneSwiftPasteEditLibraryCase |  |
-| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view, e2e:one-native-edit-button, e2e:one-native-map-controls, e2e:one-native-geometry-reader, e2e:one-native-scroll-reader, e2e:one-native-animators | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
-| `One.iOS.Label` | leaves, containers | n/a | OneSwiftTextActionsLibraryCase |  |
+| `One.iOS.Text` | pickers, picker-palette, forms, containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, swift-gestures, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation, navigation-split-view, e2e:one-native-edit-button, e2e:one-native-button, e2e:one-native-map-controls, e2e:one-native-geometry-reader, e2e:one-native-timeline-view, e2e:one-native-outline-group, e2e:one-native-table, e2e:one-native-scroll-reader, e2e:one-native-animators | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
+| `One.iOS.Label` | leaves, containers, e2e:one-native-outline-group | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.ProgressView` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Gauge` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Image` | leaves, groups, ui-icon | n/a | OneNativeIconLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftTextActionsLibraryCase |  |

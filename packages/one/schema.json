@@ -256,7 +256,16 @@
           "type": "Double"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -282,7 +291,16 @@
           "type": "Double"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -311,7 +329,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -340,7 +367,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -369,10 +405,19 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
-        "kind": "container"
+        "kind": "measured"
       },
       "slots": [
         {
@@ -382,7 +427,7 @@
           "layout": "composed"
         }
       ],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeGridRow",
@@ -392,7 +437,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -422,7 +476,16 @@
           "enum": "ControlGroupStyle"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -465,6 +528,14 @@
           "revision": {
             "type": "Int32"
           }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
         }
       },
       "controlled": {
@@ -489,7 +560,16 @@
       "name": "OneNativeDivider",
       "publicName": "Divider",
       "props": {},
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -508,7 +588,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -527,7 +616,16 @@
       "name": "OneNativeGroup",
       "publicName": "Group",
       "props": {},
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -568,7 +666,7 @@
       },
       "actions": [],
       "layout": {
-        "kind": "container"
+        "kind": "measured"
       },
       "slots": [
         {
@@ -578,7 +676,7 @@
           "layout": "composed"
         }
       ],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeOverlayContent",
@@ -649,6 +747,9 @@
       "publicName": "Pager",
       "props": {
         "selection": {
+          "type": "string"
+        },
+        "indexDisplayMode": {
           "type": "string"
         },
         "acknowledgedEvent": {
@@ -1020,16 +1121,6 @@
         },
         "label": {
           "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
-        },
-        "options": {
-          "type": "ReadonlyArray<PickerOption>"
-        },
-        "pickerStyle": {
-          "type": "string",
-          "enum": "PickerStyle"
         }
       },
       "events": {
@@ -1061,7 +1152,14 @@
       "layout": {
         "kind": "measured"
       },
-      "slots": [],
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
       "interfaceOnly": true
     },
     {
@@ -1080,9 +1178,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "minimumDate": {
           "type": "Double"
         },
@@ -1091,10 +1186,6 @@
         },
         "displayedComponents": {
           "type": "string"
-        },
-        "datePickerStyle": {
-          "type": "string",
-          "enum": "DatePickerStyle"
         }
       },
       "events": {
@@ -1144,9 +1235,6 @@
         },
         "label": {
           "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
         },
         "supportsOpacity": {
           "type": "boolean"
@@ -1199,9 +1287,6 @@
         },
         "label": {
           "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
         },
         "minimumDate": {
           "type": "Double"
@@ -1261,15 +1346,8 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "systemImage": {
           "type": "string"
-        },
-        "toggleStyle": {
-          "type": "string",
-          "enum": "ToggleStyle"
         }
       },
       "events": {
@@ -1323,9 +1401,6 @@
         },
         "label": {
           "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
         },
         "minimumValue": {
           "type": "Double"
@@ -1401,9 +1476,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "minimumValue": {
           "type": "Double"
         },
@@ -1450,11 +1522,7 @@
     {
       "name": "OneNativePasteButton",
       "publicName": "PasteButton",
-      "props": {
-        "disabled": {
-          "type": "boolean"
-        }
-      },
+      "props": {},
       "events": {
         "onNativeSDKEvent": {
           "name": {
@@ -1517,9 +1585,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "systemImage": {
           "type": "string"
         }
@@ -1548,9 +1613,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "value": {
           "type": "Double"
         },
@@ -1559,10 +1621,6 @@
         },
         "indeterminate": {
           "type": "boolean"
-        },
-        "progressViewStyle": {
-          "type": "string",
-          "enum": "ProgressViewStyle"
         }
       },
       "events": {
@@ -1589,9 +1647,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "value": {
           "type": "Double"
         },
@@ -1609,10 +1664,6 @@
         },
         "maximumValueLabel": {
           "type": "string"
-        },
-        "gaugeStyle": {
-          "type": "string",
-          "enum": "GaugeStyle"
         }
       },
       "events": {
@@ -1645,26 +1696,11 @@
         "renderingMode": {
           "type": "string"
         },
-        "symbolRenderingMode": {
-          "type": "string",
-          "enum": "SymbolRenderingMode"
-        },
-        "symbolVariant": {
-          "type": "string",
-          "enum": "SymbolVariants"
-        },
-        "imageScale": {
-          "type": "string",
-          "enum": "ImageScale"
-        },
         "variableValue": {
           "type": "Double"
         },
         "hasVariableValue": {
           "type": "boolean"
-        },
-        "colorRole": {
-          "type": "string"
         },
         "resizable": {
           "type": "boolean"
@@ -1693,9 +1729,6 @@
       "props": {
         "label": {
           "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
         },
         "systemImage": {
           "type": "string"
@@ -2289,9 +2322,6 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "systemImage": {
           "type": "string"
         },
@@ -2638,13 +2668,6 @@
         "label": {
           "type": "string",
           "enum": "PayWithApplePayButtonLabel"
-        },
-        "payWithApplePayButtonStyle": {
-          "type": "string",
-          "enum": "PayWithApplePayButtonStyle"
-        },
-        "disabled": {
-          "type": "boolean"
         }
       },
       "events": {
@@ -2677,15 +2700,7 @@
     {
       "name": "OneNativeAddPassToWalletButton",
       "publicName": "AddPassToWalletButton",
-      "props": {
-        "addPassToWalletButtonStyle": {
-          "type": "string",
-          "enum": "AddPassToWalletButtonStyle"
-        },
-        "disabled": {
-          "type": "boolean"
-        }
-      },
+      "props": {},
       "events": {
         "onNativeSDKEvent": {
           "name": {
@@ -2864,31 +2879,7 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "prompt": {
-          "type": "string"
-        },
-        "textFieldStyle": {
-          "type": "string",
-          "enum": "TextFieldStyle"
-        },
-        "submitLabel": {
-          "type": "string",
-          "enum": "SubmitLabel"
-        },
-        "textInputAutocapitalization": {
-          "type": "string",
-          "enum": "TextInputAutocapitalization"
-        },
-        "autocorrectionDisabled": {
-          "type": "boolean"
-        },
-        "keyboardType": {
-          "type": "string"
-        },
-        "textContentType": {
           "type": "string"
         },
         "axis": {
@@ -2978,31 +2969,7 @@
         "label": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
-        },
         "prompt": {
-          "type": "string"
-        },
-        "textFieldStyle": {
-          "type": "string",
-          "enum": "TextFieldStyle"
-        },
-        "submitLabel": {
-          "type": "string",
-          "enum": "SubmitLabel"
-        },
-        "textInputAutocapitalization": {
-          "type": "string",
-          "enum": "TextInputAutocapitalization"
-        },
-        "autocorrectionDisabled": {
-          "type": "boolean"
-        },
-        "keyboardType": {
-          "type": "string"
-        },
-        "textContentType": {
           "type": "string"
         }
       },
@@ -3084,22 +3051,6 @@
         },
         "focusRevision": {
           "type": "Int32"
-        },
-        "disabled": {
-          "type": "boolean"
-        },
-        "textInputAutocapitalization": {
-          "type": "string",
-          "enum": "TextInputAutocapitalization"
-        },
-        "autocorrectionDisabled": {
-          "type": "boolean"
-        },
-        "keyboardType": {
-          "type": "string"
-        },
-        "textContentType": {
-          "type": "string"
         }
       },
       "events": {
@@ -3751,14 +3702,8 @@
         "revision": {
           "type": "Int32"
         },
-        "presentationId": {
-          "type": "Int32"
-        },
         "detents": {
           "type": "ReadonlyArray<NativeSheetDetent>"
-        },
-        "fitToContents": {
-          "type": "boolean"
         },
         "selectedDetentType": {
           "type": "string"
@@ -3821,14 +3766,6 @@
             "type": "Int32"
           }
         },
-        "onNativeSheetDidDismiss": {
-          "revision": {
-            "type": "Int32"
-          },
-          "presentationId": {
-            "type": "Int32"
-          }
-        },
         "onNativeSheetDetentChange": {
           "type": {
             "type": "string"
@@ -3883,38 +3820,63 @@
       "interfaceOnly": true
     },
     {
-      "name": "OneNativeHost",
-      "publicName": "Host",
+      "name": "OneNativeHStack",
+      "publicName": "HStack",
       "props": {
-        "axis": {
-          "type": "string"
+        "alignment": {
+          "type": "string",
+          "enum": "VerticalAlignment"
         },
         "spacing": {
           "type": "Double"
-        },
-        "alignment": {
-          "type": "string"
-        },
-        "colorScheme": {
-          "type": "string"
-        },
-        "dynamicTypeSize": {
-          "type": "string"
-        },
-        "controlSize": {
-          "type": "string"
-        },
-        "locale": {
-          "type": "string"
-        },
-        "tint": {
-          "type": "ColorValue"
-        },
-        "isEnabled": {
-          "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeVStack",
+      "publicName": "VStack",
+      "props": {
+        "alignment": {
+          "type": "string",
+          "enum": "HorizontalAlignment"
+        },
+        "spacing": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -3937,7 +3899,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -3960,7 +3931,16 @@
           "type": "Double"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -3994,7 +3974,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -4058,7 +4047,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -4081,7 +4079,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -4104,7 +4111,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -4167,6 +4183,14 @@
           "safeAreaTrailing": {
             "type": "Double"
           }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
         }
       },
       "actions": [],
@@ -4187,7 +4211,16 @@
       "name": "OneNativeScrollViewReader",
       "publicName": "ScrollViewReader",
       "props": {},
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "commands": {
         "scrollTo": {
           "scrollID": {
@@ -4219,6 +4252,193 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeTimelineView",
+      "publicName": "TimelineView",
+      "props": {
+        "schedule": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "Double"
+        },
+        "interval": {
+          "type": "Double"
+        },
+        "dates": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeTimelineViewTick": {
+          "time": {
+            "type": "Double"
+          },
+          "cadence": {
+            "type": "string"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeOutlineGroup",
+      "publicName": "OutlineGroup",
+      "props": {
+        "tree": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "rows",
+          "content": "OneNativeOutlineRow",
+          "cardinality": "many",
+          "key": "rowId",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeTable",
+      "publicName": "Table",
+      "props": {
+        "rows": {
+          "type": "string"
+        },
+        "columns": {
+          "type": "string"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        }
+      },
+      "events": {
+        "onNativeTableSortChange": {
+          "sort": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "controlled": {
+        "value": "sort",
+        "event": "onNativeTableSortChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "cells",
+          "content": "OneNativeTableCell",
+          "cardinality": "many",
+          "key": "rowId",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeCanvas",
+      "publicName": "Canvas",
+      "props": {
+        "ops": {
+          "type": "string"
+        },
+        "opaque": {
+          "type": "boolean"
+        },
+        "colorMode": {
+          "type": "string"
+        },
+        "rendersAsynchronously": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeCanvasSizeChange": {
+          "width": {
+            "type": "Double"
+          },
+          "height": {
+            "type": "Double"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeGlassEffectContainer",
       "publicName": "GlassEffectContainer",
       "props": {
@@ -4229,7 +4449,16 @@
           "type": "boolean"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -4248,28 +4477,9 @@
       "name": "OneNativeButton",
       "publicName": "Button",
       "props": {
-        "label": {
-          "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
-        },
-        "subtitle": {
-          "type": "string"
-        },
-        "systemImage": {
-          "type": "string"
-        },
         "buttonRole": {
           "type": "string",
           "enum": "ButtonRole"
-        },
-        "buttonStyle": {
-          "type": "string",
-          "enum": "PrimitiveButtonStyle"
-        },
-        "disclosureIndicator": {
-          "type": "boolean"
         }
       },
       "events": {
@@ -4310,9 +4520,6 @@
       "name": "OneNativeGlass",
       "publicName": "Glass",
       "props": {
-        "material": {
-          "type": "string"
-        },
         "glassEffect": {
           "type": "string"
         },
@@ -4327,12 +4534,18 @@
         },
         "tint": {
           "type": "ColorValue"
-        },
-        "colorScheme": {
-          "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -4348,8 +4561,8 @@
       "interfaceOnly": false
     },
     {
-      "name": "OneNativeTabs",
-      "publicName": "Tabs",
+      "name": "OneNativeTabView",
+      "publicName": "TabView",
       "props": {
         "selection": {
           "type": "string"
@@ -4379,7 +4592,7 @@
         }
       },
       "events": {
-        "onNativeTabsSelectionChange": {
+        "onNativeTabViewSelectionChange": {
           "selection": {
             "type": "string"
           },
@@ -4390,12 +4603,12 @@
             "type": "Int32"
           }
         },
-        "onNativeTabsAction": {
+        "onNativeTabViewAction": {
           "tabId": {
             "type": "string"
           }
         },
-        "onNativeTabsCustomizationChange": {
+        "onNativeTabViewCustomizationChange": {
           "customization": {
             "type": "string"
           }
@@ -4411,7 +4624,7 @@
       },
       "controlled": {
         "value": "selection",
-        "event": "onNativeTabsSelectionChange"
+        "event": "onNativeTabViewSelectionChange"
       },
       "actions": [],
       "layout": {
@@ -4713,6 +4926,55 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeTableCell",
+      "publicName": null,
+      "props": {
+        "rowId": {
+          "type": "string"
+        },
+        "columnId": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeOutlineRow",
+      "publicName": null,
+      "props": {
+        "rowId": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativePopover",
       "publicName": "Popover",
       "props": {
@@ -4732,12 +4994,6 @@
         "presentationCompactAdaptation": {
           "type": "string",
           "enum": "PresentationAdaptation"
-        },
-        "contentWidth": {
-          "type": "Double"
-        },
-        "contentHeight": {
-          "type": "Double"
         }
       },
       "events": {
@@ -4750,6 +5006,14 @@
           },
           "revision": {
             "type": "Int32"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
           }
         }
       },
@@ -4869,16 +5133,6 @@
     }
   ],
   "payloads": {
-    "PickerOption": {
-      "fields": {
-        "value": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        }
-      }
-    },
     "DialogAction": {
       "fields": {
         "id": {
@@ -5115,27 +5369,6 @@
       "visible": 15,
       "hidden": 15
     },
-    "PickerStyle": {
-      "wheel": 13,
-      "inline": 14,
-      "automatic": 13,
-      "segmented": 13,
-      "tabs": 27,
-      "palette": 17,
-      "navigationLink": 16,
-      "menu": 14
-    },
-    "DatePickerStyle": {
-      "wheel": 13,
-      "automatic": 13,
-      "graphical": 14,
-      "compact": 14
-    },
-    "ToggleStyle": {
-      "button": 15,
-      "automatic": 13,
-      "switch": 13
-    },
     "MenuActionDismissBehavior": {
       "automatic": 16.4,
       "enabled": 16.4,
@@ -5189,51 +5422,6 @@
       "menu": 16.4,
       "compactMenu": 16.4
     },
-    "PrimitiveButtonStyle": {
-      "automatic": 13,
-      "glass": 26,
-      "borderless": 13,
-      "glassProminent": 26,
-      "plain": 13,
-      "bordered": 15,
-      "borderedProminent": 15
-    },
-    "ProgressViewStyle": {
-      "linear": 14,
-      "circular": 14,
-      "automatic": 14
-    },
-    "GaugeStyle": {
-      "accessoryCircularCapacity": 16,
-      "linearCapacity": 16,
-      "accessoryLinear": 16,
-      "accessoryLinearCapacity": 16,
-      "automatic": 16,
-      "accessoryCircular": 16
-    },
-    "TextFieldStyle": {
-      "automatic": 13,
-      "roundedBorder": 13,
-      "bordered": 27,
-      "plain": 13
-    },
-    "SubmitLabel": {
-      "done": 15,
-      "go": 15,
-      "send": 15,
-      "join": 15,
-      "route": 15,
-      "search": 15,
-      "return": 15,
-      "next": 15,
-      "continue": 15
-    },
-    "TextInputAutocapitalization": {
-      "never": 15,
-      "words": 15,
-      "sentences": 15,
-      "characters": 15
-    },
     "Axis": {
       "horizontal": 13,
       "vertical": 13
@@ -5280,25 +5468,6 @@
       "regular": 15,
       "large": 15,
       "extraLarge": 17
-    },
-    "SymbolRenderingMode": {
-      "monochrome": 15,
-      "multicolor": 15,
-      "hierarchical": 15,
-      "palette": 15
-    },
-    "SymbolVariants": {
-      "none": 15,
-      "circle": 15,
-      "square": 15,
-      "rectangle": 15,
-      "fill": 15,
-      "slash": 15
-    },
-    "ImageScale": {
-      "small": 13,
-      "medium": 13,
-      "large": 13
     },
     "PhotosPickerSelectionBehavior": {
       "default": 16,
@@ -5364,16 +5533,6 @@
     "SpacerSizing": {
       "flexible": 26,
       "fixed": 26
-    },
-    "PayWithApplePayButtonStyle": {
-      "white": 16,
-      "whiteOutline": 16,
-      "black": 16,
-      "automatic": 16
-    },
-    "AddPassToWalletButtonStyle": {
-      "black": 16,
-      "blackOutline": 16
     },
     "PayWithApplePayButtonLabel": {
       "plain": 16,

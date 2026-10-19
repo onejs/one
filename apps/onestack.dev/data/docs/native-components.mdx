@@ -22,7 +22,7 @@ its props, events, child slots, and version limits.
 | Text | [TextField, SecureField, and TextEditor](/native/ios-text-fields) |
 | Selection | [Picker, DatePicker, and ColorPicker](/native/ios-pickers) |
 | Presentation | [Sheet, FullScreenCover, Popover, Alert, and ConfirmationDialog](/native/ios-presentations) |
-| Tabs | [Tabs, Tab, TabSection, TabViewSlot, TabViewBottomAccessory, Pager, and Page](/native/ios-tabs-pager) |
+| TabView | [TabView, Tab, TabSection, TabViewSlot, TabViewBottomAccessory, Pager, and Page](/native/ios-tabs-pager) |
 | Navigation | [NavigationStack, Toolbar, ToolbarItem, ToolbarItemGroup, and ToolbarSpacer](/native/ios-navigation) |
 | Indicators | [ProgressView and Gauge](/native/ios-progress-gauges) |
 | Content | [Text, Label, Image, AsyncImage, VideoPlayer, LivePhotoView, PhotosPicker, WebView, Map, QuickLook, FileImporter, and ContentUnavailableView](/native/ios-media) |
@@ -50,8 +50,7 @@ export function Volume() {
       label="Volume"
       value={volume}
       onValueChange={setVolume}
-      minimumValue={0}
-      maximumValue={1}
+      in={[0, 1]}
     />
   )
 }
@@ -72,16 +71,28 @@ const level = useNativeState(0)
 <One.iOS.Slider label="Level" value={level} onValueChange={() => {}} />
 
 One.iOS.withAnimation('spring', () => level.set(100), () => console.log('done'))
+
+One.iOS.withAnimation({ kind: 'easeOut', duration: 2 }, () => level.set(0))
+One.iOS.withAnimation(
+  { kind: 'spring', response: 0.35, dampingFraction: 0.8 },
+  () => level.set(100)
+)
 ```
 
-The animation is one of SwiftUI's named animations (`default`, `spring`,
-`smooth`, `snappy`, `bouncy`, `easeInOut`, `linear`, and the rest), or `null`
-to apply the writes without animation. The optional completion runs when the
+The animation accepts SwiftUI's named animations (`default`, `spring`,
+`smooth`, `snappy`, `bouncy`, `easeInOut`, `linear`, and the rest), a record
+with a factory `kind` and its parameters, or `null` to apply the writes without
+animation. Durations and spring response times are in seconds. The same
+animation values work in `swiftStyle.animation` and the animation callback of
+`One.iOS.PhaseAnimator`. The body must write `useNativeState` handles; ordinary
+React state updates do not join the native animation transaction.
+
+The optional completion runs when the
 animation is logically complete, or when it is removed if the fourth argument
 is `'removed'`. A body that throws applies its writes without animation and
 skips the completion. A call inside another body throws.
 
-`One.iOS.Tabs` and `NavigationStack` are explicit native composition APIs.
+`One.iOS.TabView` and `NavigationStack` are explicit native composition APIs.
 Use the router's [Tabs](/docs/components-Tabs) and
 [Stack](/docs/components-Stack) to navigate file routes. Routed stacks also
 have a [header and toolbar API](/docs/components-Stack).

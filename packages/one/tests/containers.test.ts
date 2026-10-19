@@ -85,6 +85,35 @@ describe('container surface', () => {
     expect(onChange).toHaveBeenCalledWith('favorites')
   })
 
+  it('keeps omitted slot options null apart from zero and false', () => {
+    const child = createElement(Containers.ViewSlot.Content, { children: null })
+    const values = (name: string, options?: object) =>
+      JSON.parse(
+        render(Containers.ViewSlot, { name, options, children: child }).props.slotValues
+      )
+    expect(values('safeAreaInsetWithVerticalEdge', { edge: 'bottom' })).toEqual([
+      'bottom',
+      null,
+      null,
+    ])
+    expect(values('safeAreaInsetWithVerticalEdge', { edge: 'bottom', spacing: 0 })).toEqual([
+      'bottom',
+      null,
+      '0',
+    ])
+    expect(
+      values('safeAreaInsetWithVerticalEdge', { edge: 'bottom', alignment: 'leading', spacing: 8 })
+    ).toEqual(['bottom', 'leading', '8'])
+    expect(values('swipeActions')).toEqual([null, null])
+    expect(values('swipeActions', { allowsFullSwipe: false })).toEqual([null, 'false'])
+    expect(() => values('safeAreaInsetWithVerticalEdge', {})).toThrow(
+      'safeAreaInsetWithVerticalEdge.edge must be a declared SDK case'
+    )
+    expect(() =>
+      values('safeAreaInsetWithVerticalEdge', { edge: 'bottom', alignment: 'diagonal' })
+    ).toThrow('safeAreaInsetWithVerticalEdge.alignment must be a declared SDK case')
+  })
+
   it('throws for every container without the native build', () => {
     // HStack and VStack are Host with the axis fixed, so they carry no component of their
     // own and the catalog does not list them.
@@ -130,7 +159,8 @@ describe('form sizing', () => {
 })
 
 // a control field the emitted schema drops is a prop that does nothing at all, so the
-// catalog and the generated schema must agree field for field.
+// catalog and the generated schema must agree field for field, except public-only
+// fields whose derived scalars carry them across the wire instead.
 describe('control fields', () => {
   it('emits every catalog field as a schema prop', () => {
     for (const control of controls) {
@@ -138,19 +168,31 @@ describe('control fields', () => {
         (candidate: { publicName: string }) => candidate.publicName === control.name
       )
       expect(entry, control.name).toBeTruthy()
-      for (const [field, spec] of Object.entries(control.fields))
-        if ((spec as { type: string }).type !== 'objects')
-          expect(entry.props, `${control.name}.${field}`).toHaveProperty(field)
+      for (const [field, spec] of Object.entries(control.fields)) {
+        const flags = spec as { type: string; noNative?: true }
+        if (flags.type === 'objects' || flags.noNative) continue
+        expect(entry.props, `${control.name}.${field}`).toHaveProperty(field)
+      }
+    }
+  })
+
+  it('carries each public-only field through derived native scalars', () => {
+    for (const control of controls) {
+      const fields = Object.entries(control.fields) as [
+        string,
+        { noNative?: true; derived?: boolean },
+      ][]
+      if (!fields.some(([, spec]) => spec.noNative)) continue
+      const scalars = fields.filter(([, spec]) => spec.derived).map(([field]) => field)
+      expect(scalars, `${control.name} derived scalars`).not.toHaveLength(0)
     }
   })
 })
 
-// controlSize is a SwiftUI environment override on Host and Form, never a Button prop.
+// controlSize is a SwiftUI environment override on Form, and a swiftStyle modifier on a
+// stack, never a Button prop.
 describe('environment control size', () => {
-  it('declares controlSize on Host and Form', () => {
-    expect(component('Host').props).toMatchObject({
-      controlSize: { type: 'string' },
-    })
+  it('declares controlSize on Form', () => {
     expect(component('Form').props).toMatchObject({
       controlSize: { type: 'string' },
     })
@@ -167,25 +209,13 @@ describe('environment control size', () => {
   })
 
   it('passes controlSize through to the native view, empty by default', () => {
-    // Host renders the shared stack wrapper, so the host element is one level down.
-    const host = (props: object) => {
-      const element = render(Containers.Host, props)
-      return element.type(element.props)
-    }
-    expect(host({ children: null, controlSize: 'small' }).props).toMatchObject({
-      controlSize: 'small',
-    })
+    expect(render(Containers.Form, { children: null, controlSize: 'small' }).props.controlSize).toBe(
+      'small'
+    )
     expect(render(Containers.Form, { children: null }).props.controlSize).toBe('')
   })
 
   it('rejects a size SwiftUI never defined', () => {
-    const host = (props: object) => {
-      const element = render(Containers.Host, props)
-      return () => element.type(element.props)
-    }
-    expect(() => host({ children: null, controlSize: 'huge' })()).toThrow(
-      'Unknown SwiftUI ControlSize: huge'
-    )
     expect(() =>
       render(Containers.Form, { children: null, controlSize: 'huge' })
     ).toThrow('Unknown SwiftUI ControlSize: huge')

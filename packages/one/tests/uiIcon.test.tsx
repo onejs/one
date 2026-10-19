@@ -3,7 +3,11 @@ import { beforeAll, describe, expect, test, vi } from 'vitest'
 
 vi.mock('react-native', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-native')>()
-  return { Platform: { OS: 'ios', Version: '27.0' }, StyleSheet: actual.StyleSheet }
+  return {
+    Platform: { OS: 'ios', Version: '27.0' },
+    PlatformColor: (name: string) => ({ semantic: [name] }),
+    StyleSheet: actual.StyleSheet,
+  }
 })
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', async () => {
   const { createElement } = await import('react')
@@ -56,12 +60,13 @@ describe('One.UI.Icon', () => {
       throw new Error('expected platform icon elements')
 
     expect(ios.type).toBe(Image)
-    expect(ios.props.colorRole).toBe('accent')
+    expect(ios.props.colorRole).toBeUndefined()
     expect(ios.props.swiftStyle).toEqual({
       fontSize: 20,
       width: 20,
       height: 20,
       foregroundStyle: undefined,
+      foregroundColor: 'accentColor',
     })
     expect(ios.props.style).toEqual([{ width: 20, height: 20 }, undefined])
     expect(android.props.colorRole).toBe('secondary')
@@ -108,7 +113,11 @@ describe('One.UI.Icon', () => {
     )
       throw new Error('expected platform icon elements')
 
-    expect(ios.props.colorRole).toBe('primary')
+    expect(ios.props.colorRole).toBeUndefined()
+    expect(ios.props.swiftStyle).toMatchObject({
+      foregroundStyle: { semantic: ['label'] },
+    })
+    expect(ios.props.swiftStyle.foregroundColor).toBeUndefined()
     expect(android.props.colorRole).toBe('primary')
   })
 
@@ -163,7 +172,7 @@ describe('One.UI.Icon', () => {
 
   test('rejects an invalid iOS role before it reaches Swift', () => {
     expect(() =>
-      Reflect.apply(Image, null, [{ systemName: 'star', colorRole: 'not-a-role' }])
+      Reflect.apply(IOSIcon, null, [{ icons: elements, colorRole: 'not-a-role' }])
     ).toThrow(/colorRole/)
   })
 

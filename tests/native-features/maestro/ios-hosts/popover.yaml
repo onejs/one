@@ -1,0 +1,52 @@
+appId: dev.vxrn.native.tests
+name: popover
+---
+# the trigger composes inline and the body is presented outside the surface
+# the shared open step taps a link dialog's Open, which lands on the fixture's Open
+# chip, and a presented popover hides the screen behind it, so the anchor is either
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-popover
+      ANCHOR: "Taps: 0|Popover body"
+- runFlow:
+    when:
+      visible:
+        id: one-native-popover-body
+    commands:
+      - tapOn:
+          id: one-native-popover-close
+- extendedWaitUntil:
+    visible: "Open: false"
+    timeout: 10000
+- assertNotVisible:
+    id: one-native-popover-body
+# the trigger reports the height SwiftUI measured
+- assertNotVisible: "Trigger: 0"
+- tapOn: "Trigger"
+- extendedWaitUntil:
+    visible:
+      id: one-native-popover-body
+    timeout: 10000
+- takeScreenshot: popover-open
+# React content inside the presentation takes touches. the screen behind a presented
+# popover is hidden from accessibility, so its counters are read after it closes
+- tapOn:
+    id: one-native-popover-tap
+# React closes it through the controlled binding
+- tapOn:
+    id: one-native-popover-close
+- extendedWaitUntil:
+    notVisible:
+      id: one-native-popover-body
+    timeout: 10000
+- assertVisible: "Open: false"
+- assertVisible: "Taps: 1"
+# a popover inside a form row presents too
+- tapOn: "Section trigger"
+- extendedWaitUntil:
+    visible:
+      id: one-native-popover-section-body
+    timeout: 10000
+- assertVisible: "Section body"
+- takeScreenshot: popover-section

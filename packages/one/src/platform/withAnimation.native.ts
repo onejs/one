@@ -1,11 +1,12 @@
-import { sdkAnimationValues, type SDKAnimation } from './generated/controlTypes'
+import type { SDKAnimationValue } from './generated/controlTypes'
+import { encodeSDKAnimation } from './generated/swiftStyleNative'
 import { getNativeSyncFactory } from './syncNative'
 import type { WithAnimationCompletionCriteria } from './types'
 
 type NativeAnimation = {
   begin(): void
   commit(
-    animation: SDKAnimation | null,
+    animation: string | null,
     completionCriteria: WithAnimationCompletionCriteria,
     completion?: () => void
   ): void
@@ -20,10 +21,6 @@ function isNativeAnimation(value: unknown): value is NativeAnimation {
   )
 }
 
-function isSDKAnimation(value: unknown): value is SDKAnimation {
-  return sdkAnimationValues.some((name) => name === value)
-}
-
 let animating = false
 
 // SwiftUI's withAnimation(_:completionCriteria:_:completion:). every
@@ -32,14 +29,14 @@ let animating = false
 // without animation. a body that throws applies its writes without animation
 // and skips completion.
 export function withAnimation(
-  animation: SDKAnimation | null,
+  animation: SDKAnimationValue | null,
   body: () => void,
   completion?: () => void,
   completionCriteria: WithAnimationCompletionCriteria = 'logicallyComplete'
 ): void {
-  if (animation !== null && !isSDKAnimation(animation)) {
-    throw new Error(`Swift.withAnimation animation must be null or one of ${sdkAnimationValues.join(', ')}`)
-  }
+  const payload = animation === null
+    ? null
+    : encodeSDKAnimation(animation, 'Swift.withAnimation animation')
   if (typeof body !== 'function') throw new Error('Swift.withAnimation body must be a function')
   if (completion !== undefined && typeof completion !== 'function') {
     throw new Error('Swift.withAnimation completion must be a function')
@@ -53,14 +50,18 @@ export function withAnimation(
   const native = Reflect.get(globalThis, '__OneNativeAnimation')
   if (!isNativeAnimation(native)) throw new Error('Swift.withAnimation requires the OneNative iOS module')
   animating = true
-  native.begin()
+  let began = false
   let completed = false
   try {
+    native.begin()
+    began = true
     body()
     completed = true
   } finally {
     animating = false
-    if (completed) native.commit(animation, completionCriteria, completion)
-    else native.commit(null, completionCriteria)
+    if (began) {
+      if (completed) native.commit(payload, completionCriteria, completion)
+      else native.commit(null, completionCriteria)
+    }
   }
 }

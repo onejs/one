@@ -1,0 +1,27 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-share
+- tapOn:
+    text: 'Open'
+    optional: true
+- assertVisible: 'Status: idle'
+- tapOn:
+    id: one-native-share-run
+- assertVisible: 'Copy'
+- tapOn:
+    point: '17%,89%'
+- assertVisible: 'Save to Files'
+- swipe:
+    start: 50%, 50%
+    end: 50%, 95%
+    duration: 500
+- assertVisible: 'Status: passed'
+- assertVisible: 'Busy: E_SHARE_BUSY'
+- assertVisible: 'Result: text=true; activity=com.apple.UIKit.activity.CopyToPasteboard; file=false; empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS'

@@ -1,0 +1,42 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-app-icon
+- tapOn:
+    text: 'Open'
+    optional: true
+- extendedWaitUntil:
+    visible: 'Supported: true'
+    timeout: 30000
+- assertVisible: 'Startup support: true'
+- tapOn:
+    id: one-native-app-icon-invalid
+- assertVisible: 'Icon result: invalid:E_APP_ICON_INPUT'
+- tapOn:
+    id: one-native-app-icon-primary
+- tapOn:
+    text: OK
+    optional: true
+- extendedWaitUntil:
+    visible: 'Current icon: primary'
+    timeout: 15000
+- tapOn:
+    id: one-native-app-icon-alternate
+- tapOn: OK
+- extendedWaitUntil:
+    visible: 'Current icon: TestAlternate'
+    timeout: 15000
+- assertVisible: 'Icon result: changed'
+- tapOn:
+    id: one-native-app-icon-primary
+- tapOn: OK
+- extendedWaitUntil:
+    visible: 'Current icon: primary'
+    timeout: 15000
+- assertVisible: 'Icon result: changed'

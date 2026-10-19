@@ -48,7 +48,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.label)
-    payWithApplePayButtonStyle:RCTNSStringFromString(next.payWithApplePayButtonStyle) disabled:next.disabled];
+    ];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test

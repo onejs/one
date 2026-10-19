@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { readFileSync } from 'node:fs'
 import { transformSync } from '@babel/core'
 import { describe, expect, it } from 'vitest'
 import oneBabelPreset, { buildOneBabelPlugins } from './index'
@@ -30,6 +31,33 @@ describe('one/babel-preset integration', () => {
     projectRoot,
     oneViteMetroBabelConfig: true,
   }
+
+  it.each(['ts', 'tsx'])('erases generated SDK type-only fields in %s modules', (extension) => {
+    const source = readFileSync(
+      path.join(projectRoot, 'ios-bindings/AppTrackingTransparency.ts'),
+      'utf8'
+    )
+    const result = transformSync(source, {
+      filename: path.join(projectRoot, `node_modules/one/ios-bindings/Framework.${extension}`),
+      cwd: projectRoot,
+      presets: [presetWithBase],
+      caller: metroViteCaller,
+    })
+    const calls: unknown[][] = []
+    const exports: Record<string, any> = {}
+    new Function('exports', 'require', result?.code ?? '')(exports, (name: string) => {
+      if (name !== 'one/ios-runtime') return require(name)
+      return {
+        SDKHandle: class {},
+        callSDK: (...args: unknown[]) => { calls.push(args); return 'authorized' },
+        registerSDKClass() {},
+      }
+    })
+    const Manager = exports.ATTrackingManager
+    expect(new Manager()).not.toHaveProperty('$type')
+    expect(Manager.trackingAuthorizationStatus).toBe('authorized')
+    expect(calls).toHaveLength(1)
+  })
 
   it('runs against a route file without throwing', () => {
     const code = `

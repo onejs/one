@@ -40,12 +40,11 @@ export function IosActionsScene() {
             label={`Guests: ${guests}`}
             value={guests}
             onValueChange={setGuests}
-            minimumValue={1}
-            maximumValue={8}
+            in={[1, 8]}
           />
         </One.iOS.Section>
         <One.iOS.Section>
-          <One.iOS.Button label="Save" buttonStyle="borderedProminent" />
+          <One.iOS.Button label="Save" swiftStyle={{ buttonStyle: 'borderedProminent' }} />
         </One.iOS.Section>
       </One.iOS.Form>
     </View>

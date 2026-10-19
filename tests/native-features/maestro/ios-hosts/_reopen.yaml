@@ -1,0 +1,14 @@
+appId: dev.vxrn.native.tests
+---
+# back to the index through the native back button, then re-enter the route
+- tapOn: "index"
+- extendedWaitUntil:
+    visible: "One Native Test Suite"
+    timeout: 15000
+- openLink: ${ROUTE}
+- tapOn:
+    text: "Open"
+    optional: true
+- extendedWaitUntil:
+    visible: ${ANCHOR}
+    timeout: 15000

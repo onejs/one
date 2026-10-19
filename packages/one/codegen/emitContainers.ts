@@ -31,17 +31,30 @@ export const environmentMethods = [
 ]
 
 export const containerComponents = [
+  // the stacks take SwiftUI's arguments and defaults: a cross-axis alignment from the
+  // stack's own alignment type, and the system spacing while spacing is unset. only a
+  // standalone stack fills the width React Native gives it.
   {
-    name: 'OneNativeHost',
-    publicName: 'Host',
-    props: {
-      axis: 'string',
-      spacing: 'Double',
-      alignment: 'string',
-      ...environmentProps,
-    },
-    events: {},
-    enumProps: {},
+    name: 'OneNativeHStack',
+    publicName: 'HStack',
+    host: { view: 'HStack', arguments: { alignment: 'alignment', spacing: 'spacing' }, children: 'content', accessible: 'container', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil)'], layout: 'measured' },
+    props: { alignment: 'string', spacing: 'Double' },
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
+    enumProps: { alignment: 'VerticalAlignment' },
+    layout: { kind: 'measured' },
+    slots: [composedContent],
+    // the measured height needs a hand-written shadow node, state and descriptor.
+    interfaceOnly: true,
+  },
+  {
+    name: 'OneNativeVStack',
+    publicName: 'VStack',
+    host: { view: 'VStack', arguments: { alignment: 'alignment', spacing: 'spacing' }, children: 'content', accessible: 'container', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil)'], layout: 'measured' },
+    props: { alignment: 'string', spacing: 'Double' },
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
+    enumProps: { alignment: 'HorizontalAlignment' },
     layout: { kind: 'measured' },
     slots: [composedContent],
     // the measured height needs a hand-written shadow node, state and descriptor.
@@ -50,8 +63,10 @@ export const containerComponents = [
   {
     name: 'OneNativeZStack',
     publicName: 'ZStack',
+    host: { view: 'ZStack', arguments: { alignment: 'alignment' }, children: 'content', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: $alignment)'], layout: 'measured' },
     props: { alignment: 'string' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'measured' },
     slots: [composedContent],
@@ -61,8 +76,10 @@ export const containerComponents = [
   {
     name: 'OneNativeSpacer',
     publicName: 'Spacer',
+    host: { view: 'Spacer', arguments: { minLength: 'minLength' }, layout: 'leaf' },
     props: { minLength: 'Double' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     // a spacer holds nothing; it takes the free space its parent stack offers.
@@ -72,8 +89,11 @@ export const containerComponents = [
   {
     name: 'OneNativeForm',
     publicName: 'Form',
+    host: { view: 'Form', children: 'content', initial: { sizing: '"fill"' }, measuredWhen: '@sizing == "content"', screenInsetsWhen: '@sizing == "fill"', environment: true, layout: 'measured' },
     props: { sizing: 'string', ...environmentProps },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    // scroll modifiers such as scrollContentBackground reach the Form through swiftStyle.
+    swiftStyle: true,
     enumProps: {},
     // fill takes the box React Native gave it; content reports the height SwiftUI
     // measured back to Yoga, so a form in a sheet wraps its rows.
@@ -85,6 +105,7 @@ export const containerComponents = [
   {
     name: 'OneNativeSection',
     publicName: 'Section',
+    host: { view: 'Section', arguments: { header: 'title', footer: 'footer' }, children: 'content', layout: 'container', rowModifiers: 'name.hasPrefix("listSection") || name == "headerProminence"' },
     props: { title: 'string', footer: 'string' },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
@@ -96,8 +117,10 @@ export const containerComponents = [
   {
     name: 'OneNativeLabeledContent',
     publicName: 'LabeledContent',
+    host: { view: 'LabeledContent', labels: { label: { title: 'label', systemImage: 'systemImage' } }, children: 'content', childrenFallback: 'value', childStack: 'HStack(spacing: 0)', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'], layout: 'measured' },
     props: { label: 'string', value: 'string', systemImage: 'string' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     // a row has an ideal height SwiftUI knows, so standalone it measures like a host.
     layout: { kind: 'measured' },
@@ -108,8 +131,10 @@ export const containerComponents = [
   {
     name: 'OneNativeGroupBox',
     publicName: 'GroupBox',
+    host: { view: 'GroupBox', arguments: { label: 'label' }, omitWhenEmpty: ['label'], children: 'content', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'], layout: 'measured', scheme: true },
     props: { label: 'string' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'measured' },
     slots: [composedContent],
@@ -118,8 +143,10 @@ export const containerComponents = [
   {
     name: 'OneNativeViewThatFits',
     publicName: 'ViewThatFits',
+    host: { view: 'ViewThatFits', arguments: { in: 'axes' }, aliases: { axes: { both: '[.horizontal, .vertical]' } }, children: 'content', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'], layout: 'measured', boundedHeight: true, scheme: true },
     props: { axes: 'string' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'measured' },
     slots: [composedContent],
@@ -151,8 +178,19 @@ export const containerComponents = [
         safeAreaBottom: 'Double',
         safeAreaTrailing: 'Double',
       },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
     },
+    swiftStyle: true,
     enumProps: {},
+    host: {
+      view: 'GeometryReader',
+      children: 'content',
+      context: {
+        event: 'onNativeGeometryReaderChange',
+        values: { '': 'frame(in: .global)', local: 'frame(in: .local)', size: 'size', safeArea: 'safeAreaInsets' },
+      },
+      layout: 'container',
+    },
     layout: { kind: 'container' },
     slots: [composedContent],
     interfaceOnly: false,
@@ -165,20 +203,171 @@ export const containerComponents = [
     // transport for proxy.scrollTo(id, anchor:), run on the proxy SwiftUI handed
     // the native builder. hasAnchor false is the SDK's nil anchor.
     props: {},
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     commands: {
       scrollTo: { scrollID: 'string', hasAnchor: 'boolean', anchorX: 'Double', anchorY: 'Double' },
     },
     enumProps: {},
+    host: {
+      view: 'ScrollViewReader',
+      children: 'content',
+      context: { commands: { scrollTo: 'scrollTo' } },
+      layout: 'container',
+      scheme: true,
+    },
     layout: { kind: 'container' },
     slots: [composedContent],
     interfaceOnly: false,
   },
   {
+    name: 'OneNativeTimelineView',
+    publicName: 'TimelineView',
+    // native owns the schedule and SwiftUI's TimelineView; its content closure runs in
+    // JavaScript with the context date and cadence each entry reports. the props below
+    // are private transport for the schedule: periodic starts at startDate (ms since the
+    // epoch) and steps by interval seconds, and explicit lists its dates as a JSON array
+    // of ms. the event is private transport for the context, not a public observer.
+    props: { schedule: 'string', startDate: 'Double', interval: 'Double', dates: 'string' },
+    events: {
+      onNativeTimelineViewTick: { time: 'Double', cadence: 'string' },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    swiftStyle: true,
+    enumProps: {},
+    host: {
+      view: 'TimelineView',
+      builder: {
+        label: '_',
+        prop: 'schedule',
+        members: ['everyMinute', 'periodic', 'explicit'],
+        arguments: { from: 'startDate', by: 'interval', _: 'dates' },
+      },
+      children: 'content',
+      context: { event: 'onNativeTimelineViewTick', values: { time: 'date', cadence: 'cadence' } },
+      modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'],
+      layout: 'measured',
+      scheme: true,
+    },
+    // a timeline sizes to its content like a labeled row, so it measures like a host.
+    layout: { kind: 'measured' },
+    slots: [composedContent],
+    interfaceOnly: true,
+  },
+  {
+    name: 'OneNativeOutlineGroup',
+    publicName: 'OutlineGroup',
+    // SwiftUI's OutlineGroup over a tree. the tree prop is private transport for its
+    // shape: a JSON array of { id, children } nodes, children null for a leaf. the row
+    // content is React's closure result per node, mounted as OneNativeOutlineRow
+    // children and looked up by id when SwiftUI builds a row.
+    props: { tree: 'string' },
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
+    enumProps: {},
+    host: {
+      view: 'OutlineGroup',
+      items: { label: '_', prop: 'tree', children: 'children', slot: 'OneNativeOutlineRow', key: 'rowId' },
+      children: 'content',
+      initial: { tree: '"[]"' },
+      layout: 'container',
+      scheme: true,
+    },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'rows',
+        content: 'OneNativeOutlineRow',
+        cardinality: 'many',
+        key: 'rowId',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeTable',
+    publicName: 'Table',
+    // SwiftUI's Table over rows and columns. rows and columns are private transport for
+    // their shape: JSON arrays of { id } and { id, title }. the cell content is React's
+    // closure result per row and column, mounted as OneNativeTableCell children and
+    // looked up by ids when SwiftUI builds a cell. sort is the JSON { column, ascending }
+    // of the sorted column, empty while none is; sortable adds the sort headers. native
+    // reports a header tap and React re-sorts the rows, so the order stays React's.
+    props: {
+      rows: 'string',
+      columns: 'string',
+      sortable: 'boolean',
+      sort: 'string',
+      acknowledgedEvent: 'Int32',
+      revision: 'Int32',
+    },
+    events: {
+      onNativeTableSortChange: { sort: 'string', eventCount: 'Int32', revision: 'Int32' },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    swiftStyle: true,
+    enumProps: {},
+    controlled: { value: 'sort', event: 'onNativeTableSortChange' },
+    host: {
+      view: 'Table',
+      items: { label: '_', prop: 'rows', slot: 'OneNativeTableCell', key: 'rowId' },
+      columns: {
+        label: 'columns',
+        prop: 'columns',
+        each: 'TableColumnForEach',
+        column: 'TableColumn',
+        key: 'columnId',
+        sortUsing: 'sortUsing',
+        sortable: 'sortable',
+      },
+      binding: { label: 'sortOrder', prop: 'sort', event: 'onNativeTableSortChange' },
+      initial: { rows: '"[]"', columns: '"[]"' },
+      layout: 'container',
+      scheme: true,
+    },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'cells',
+        content: 'OneNativeTableCell',
+        cardinality: 'many',
+        key: 'rowId',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeCanvas',
+    publicName: 'Canvas',
+    // SwiftUI's Canvas. its renderer closure cannot cross the bridge, so React records
+    // the GraphicsContext calls it makes into the ops JSON and native replays them on
+    // the real context. the size event is private transport for the canvas's laid out
+    // size, which the renderer is run with.
+    props: {
+      ops: 'string',
+      opaque: 'boolean',
+      colorMode: 'string',
+      rendersAsynchronously: 'boolean',
+    },
+    events: {
+      onNativeCanvasSizeChange: { width: 'Double', height: 'Double' },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    swiftStyle: true,
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [],
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeGlassEffectContainer',
     publicName: 'GlassEffectContainer',
+    host: { view: 'GlassEffectContainer', arguments: { spacing: 'spacing' }, children: 'content', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'], layout: 'measured', scheme: true },
     props: { spacing: 'Double', hasSpacing: 'boolean' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'measured' },
     slots: [composedContent],
@@ -187,27 +376,25 @@ export const containerComponents = [
   {
     name: 'OneNativeButton',
     publicName: 'Button',
-    // a button is a measured container: with children they are the label view, without
-    // them the label props render text the way the leaf control did. the view and the
-    // adapter are hand-written like every other container; the spec and schema stay
-    // generated so the Fabric contract cannot drift.
-    props: {
-      label: 'string',
-      disabled: 'boolean',
-      subtitle: 'string',
-      systemImage: 'string',
-      buttonRole: 'string',
-      buttonStyle: 'string',
-      disclosureIndicator: 'boolean',
+    // a button is a measured container whose children are the SDK Button's label. React
+    // builds the label its label props describe from the same children; buttonStyle and
+    // disabled come from swiftStyle like any other modifier.
+    host: {
+      view: 'Button',
+      arguments: { role: 'buttonRole' },
+      action: { label: 'action', event: 'onNativeButtonPress' },
+      children: 'label',
+      childStack: 'HStack(spacing: 0)',
+      accessible: true,
+      modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'],
+      layout: 'measured',
     },
+    props: { buttonRole: 'string' },
     events: {
       onNativeButtonPress: { eventCount: 'Int32' },
       onNativeSDKEvent: { name: 'string', value: 'string' },
     },
-    enumProps: {
-      buttonRole: 'ButtonRole',
-      buttonStyle: 'PrimitiveButtonStyle',
-    },
+    enumProps: { buttonRole: 'ButtonRole' },
     actions: [{ publicProp: 'onPress', event: 'onNativeButtonPress' }],
     layout: { kind: 'measured' },
     slots: [composedContent],
@@ -220,26 +407,35 @@ export const containerComponents = [
   {
     name: 'OneNativeGlass',
     publicName: 'Glass',
-    // a glass surface takes the box React Native gave it.
+    // a glass surface takes the box React Native gave it, behind the children it lays out
+    // from the top leading corner. material and color scheme reach it through swiftStyle.
+    host: {
+      modifier: 'glassEffect',
+      surface: true,
+      childStack: 'VStack(alignment: .leading, spacing: 0)',
+      arguments: { _: 'glassEffect' },
+      chains: { _: { interactive: 'interactive', tint: 'tint' } },
+      builder: { label: 'in', prop: 'shape', members: ['capsule', 'circle', 'ellipse', 'rect', 'containerRelative'], arguments: { cornerRadius: 'cornerRadius' }, optional: true },
+      modifiers: ['.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)'],
+      layout: 'container',
+    },
     props: {
-      material: 'string?',
       glassEffect: 'string?',
       interactive: 'boolean?',
       shape: 'string?',
       cornerRadius: 'Double?',
       tint: 'ColorValue?',
-      // the appearance the glass draws in, like a host's; tint stays the glass's own.
-      colorScheme: environmentProps.colorScheme,
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [composedContent],
     interfaceOnly: false,
   },
   {
-    name: 'OneNativeTabs',
-    publicName: 'Tabs',
+    name: 'OneNativeTabView',
+    publicName: 'TabView',
     props: {
       selection: 'string',
       tabViewStyle: 'string',
@@ -252,14 +448,14 @@ export const containerComponents = [
       revision: 'Int32',
     },
     events: {
-      onNativeTabsSelectionChange: { selection: 'string', eventCount: 'Int32', revision: 'Int32' },
+      onNativeTabViewSelectionChange: { selection: 'string', eventCount: 'Int32', revision: 'Int32' },
       // pressing an action tab is not a state change, so it carries no controlled event.
-      onNativeTabsAction: { tabId: 'string' },
-      onNativeTabsCustomizationChange: { customization: 'string' },
+      onNativeTabViewAction: { tabId: 'string' },
+      onNativeTabViewCustomizationChange: { customization: 'string' },
       onNativeSDKEvent: { name: 'string', value: 'string' },
     },
     enumProps: { tabViewStyle: 'TabViewStyle', tabBarVisibility: 'Visibility' },
-    controlled: { value: 'selection', event: 'onNativeTabsSelectionChange' },
+    controlled: { value: 'selection', event: 'onNativeTabViewSelectionChange' },
     layout: { kind: 'container' },
     slots: [
       {
@@ -453,10 +649,33 @@ export const contentComponents = [
     swiftStyle: true,
     interfaceOnly: false,
   },
+  {
+    name: 'OneNativeTableCell',
+    publicName: null,
+    props: { rowId: 'string', columnId: 'string' },
+    events: {},
+    enumProps: {},
+    host: { keys: ['rowId', 'columnId'] },
+    layout: { kind: 'container' },
+    slots: [composedContent],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeOutlineRow',
+    publicName: null,
+    props: { rowId: 'string' },
+    events: {},
+    enumProps: {},
+    host: { keys: ['rowId'] },
+    layout: { kind: 'container' },
+    slots: [composedContent],
+    interfaceOnly: false,
+  },
 ] as const
 
-export const hostAxes = ['vertical', 'horizontal'] as const
-export const hostAlignments = ['leading', 'center', 'trailing'] as const
+// the static members of SwiftUI's VerticalAlignment and HorizontalAlignment
+export const hStackAlignments = ['top', 'center', 'bottom', 'firstTextBaseline', 'lastTextBaseline'] as const
+export const vStackAlignments = ['leading', 'center', 'trailing', 'listRowSeparatorLeading', 'listRowSeparatorTrailing'] as const
 export const zStackAlignments = [
   'topLeading',
   'top',
@@ -533,8 +752,8 @@ import type { GlassEffect, GlassEffectShape, Material, OneNativeStyle, OneNative
 import type * as Styles from './swiftui'
 import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarItemPlacement } from './swiftui'
 import type { SFSymbolName } from './sfSymbolNames'
-export type HostAxis = ${hostAxes.map((axis) => JSON.stringify(axis)).join(' | ')}
-export type HostAlignment = ${hostAlignments.map((value) => JSON.stringify(value)).join(' | ')}
+export type HStackAlignment = ${hStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
+export type VStackAlignment = ${vStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export type ZStackAlignment = ${zStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export interface EnvironmentProps {
   colorScheme?: ColorScheme
@@ -544,23 +763,31 @@ export interface EnvironmentProps {
   tint?: ColorValue
   isEnabled?: boolean
 }
-export interface HostProps extends ViewProps, EnvironmentProps {
-  axis?: HostAxis
+export interface HStackProps extends ViewProps {
+  alignment?: HStackAlignment
   spacing?: number
-  alignment?: HostAlignment
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
-export type StackProps = Omit<HostProps, 'axis'>
+export interface VStackProps extends ViewProps {
+  alignment?: VStackAlignment
+  spacing?: number
+  swiftStyle?: OneNativeStyle
+  children: ReactNode
+}
 export interface ZStackProps extends ViewProps {
   alignment?: ZStackAlignment
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SpacerProps extends ViewProps {
   minLength?: number
+  swiftStyle?: OneNativeStyle
 }
 export type FormSizing = 'fill' | 'content'
 export interface FormProps extends ViewProps, EnvironmentProps {
   sizing?: FormSizing
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SectionProps extends ViewProps {
@@ -573,17 +800,14 @@ export interface LabeledContentProps extends ViewProps {
   label: string
   value?: string
   systemImage?: SFSymbolName | ''
+  swiftStyle?: OneNativeStyle
   children?: ReactNode
 }
 export interface ButtonProps extends OneNativeViewProps {
   onPress?: () => void
   label?: string
-  disabled?: boolean
-  subtitle?: string
   systemImage?: SFSymbolName | ''
   buttonRole?: Styles.ButtonRole | ''
-  buttonStyle?: Styles.PrimitiveButtonStyle
-  disclosureIndicator?: boolean
   children?: ReactNode
 }
 export interface GlassProps extends ViewProps {
@@ -594,6 +818,7 @@ export interface GlassProps extends ViewProps {
   cornerRadius?: number
   tint?: ColorValue
   colorScheme?: ColorScheme
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SlotProps extends ViewProps {
@@ -636,8 +861,8 @@ export interface ToolbarSpacerProps extends ViewProps {
   sizing?: SpacerSizing
   placement?: ToolbarItemPlacement
 }
-export const hostAxes = [${hostAxes.map((axis) => JSON.stringify(axis)).join(', ')}] as const
-export const hostAlignments = [${hostAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
+export const hStackAlignments = [${hStackAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
+export const vStackAlignments = [${vStackAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
 export const zStackAlignments = [${zStackAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
 `
   )

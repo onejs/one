@@ -61,6 +61,7 @@
     "site:serve": "cd apps/onestack.dev && bun run serve --host 0.0.0.0 --port 3000",
     "start": "cd examples/one-basic && bun run dev",
     "test": "bun run turbo:run test --concurrency=4",
+    "test:ci": "bun run turbo:run test --concurrency=4 --filter='!one' && bun run turbo:run test --concurrency=4 --filter=one",
     "tray": "cd apps/one-tray && bun run tray",
     "test:native": "./scripts/test-ios.sh",
     "test-ios": "./scripts/test-ios.sh",

@@ -1,0 +1,26 @@
+appId: dev.vxrn.native.tests
+name: group-box
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-group-box
+      ANCHOR: "Box taps: 0"
+- assertVisible: "Account"
+- assertVisible: "Inner value"
+- assertVisible: "Run inner"
+- assertVisible: "No title content"
+- assertVisible:
+    id: one-native-group-box-labeled
+- assertVisible:
+    id: one-native-group-box-unlabeled
+- assertVisible: { text: "Inner value", below: { text: "Account" } }
+- assertVisible: { text: "No title content", below: { text: "Run inner" } }
+- takeScreenshot: group-box-initial
+- tapOn: "Run inner"
+- assertVisible: "Box taps: 1"
+- tapOn:
+    id: one-native-group-box-rename
+- assertVisible: "Updated account"
+- assertNotVisible: "Account"
+- takeScreenshot: group-box-renamed

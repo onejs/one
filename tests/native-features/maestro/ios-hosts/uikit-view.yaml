@@ -1,0 +1,26 @@
+appId: dev.vxrn.native.tests
+name: uikit-view
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-uikit-view
+      ANCHOR: "Standalone day: none"
+- assertVisible: "Composed day: none"
+- assertVisible:
+    id: one-native-uikit-view-standalone
+- assertVisible:
+    id: one-native-uikit-view-composed
+# month header text, e.g. "October 2026"
+- assertVisible: ".*20\\d\\d.*"
+- takeScreenshot: uikit-view-initial
+# day 15 in the standalone (first) calendar, then in the composed (second) one
+- tapOn:
+    text: "15"
+    index: 0
+- assertVisible: "Standalone day: 15"
+- tapOn:
+    text: "15"
+    index: 1
+- assertVisible: "Composed day: 15"
+- takeScreenshot: uikit-view-selected

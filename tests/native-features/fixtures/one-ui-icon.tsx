@@ -1,5 +1,5 @@
 import { Component, useState, type ComponentProps, type ReactNode } from 'react'
-import { Platform, Pressable, Text, View } from 'react-native'
+import { Platform, PlatformColor, Pressable, Text, View } from 'react-native'
 import { One } from 'one'
 
 class Rejection extends Component<{ children: ReactNode }, { error: string }> {
@@ -107,8 +107,12 @@ export default function OneUIIcon() {
           <One.iOS.Image
             systemName="square.fill"
             accessibilityLabel="Reference danger"
-            colorRole="danger"
-            swiftStyle={{ fontSize: 40, width: 40, height: 40 }}
+            swiftStyle={{
+              fontSize: 40,
+              width: 40,
+              height: 40,
+              foregroundStyle: PlatformColor('systemRed'),
+            }}
             style={{ width: 40, height: 40 }}
           />
         )}
@@ -120,6 +124,33 @@ export default function OneUIIcon() {
           color="#12B85A"
         />
       </View>
+      <Text>Roles left to right: primary secondary tertiary accent danger</Text>
+      <View style={{ flexDirection: 'row', gap: 16 }}>
+        {(['primary', 'secondary', 'tertiary', 'accent', 'danger'] as const).map((role) => (
+          <One.UI.Icon
+            key={role}
+            icons={icons(
+              image(`Icon role ${role}`, { fontSize: 32 }),
+              androidIcon(`icon-role-${role}`, `Icon role ${role}`, 32)
+            )}
+            colorRole={role}
+          />
+        ))}
+      </View>
+      {Platform.OS === 'android' ? null : (
+        <>
+          <Text>Custom purple ancestor accent; the accent icon below is purple, not blue</Text>
+          <One.iOS.HStack swiftStyle={{ accentColor: 'purple' }}>
+            <One.UI.Icon
+              icons={icons(
+                image('Icon custom accent', { fontSize: 40 }),
+                androidIcon('icon-custom-accent', 'Icon custom accent', 40)
+              )}
+              colorRole="accent"
+            />
+          </One.iOS.HStack>
+        </>
+      )}
       <View
         testID="icon-decoration-frame"
         collapsable={false}

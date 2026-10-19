@@ -16,7 +16,7 @@ export default function OneNativeButton() {
       <One.iOS.Button
         testID="one-native-button-bordered"
         label="Bordered"
-        buttonStyle="bordered"
+        swiftStyle={{ buttonStyle: 'bordered' }}
         onPress={() => press('bordered')}
       />
       <GestureHandlerRootView style={styles.gestureRoot}>
@@ -26,6 +26,32 @@ export default function OneNativeButton() {
           onPress={() => press('gesture-root')}
         />
       </GestureHandlerRootView>
+      <One.iOS.Button
+        testID="one-native-button-icon-only"
+        systemImage="star"
+        onPress={() => press('icon-only')}
+      />
+      <One.iOS.Button
+        testID="one-native-button-label-image"
+        label="Add"
+        systemImage="plus"
+        onPress={() => press('label-image')}
+      />
+      <One.iOS.Button testID="one-native-button-children" onPress={() => press('children')}>
+        <One.iOS.Text text="Custom label" />
+      </One.iOS.Button>
+      <One.iOS.Button
+        testID="one-native-button-destructive"
+        label="Delete"
+        buttonRole="destructive"
+        onPress={() => press('destructive')}
+      />
+      <One.iOS.Button
+        testID="one-native-button-cancel"
+        label="Cancel"
+        buttonRole="cancel"
+        onPress={() => press('cancel')}
+      />
       <Text testID="one-native-button-state">{`button:${state.name} count:${state.count}`}</Text>
     </View>
   )

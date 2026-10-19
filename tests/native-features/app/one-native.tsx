@@ -237,7 +237,7 @@ export default function OneNativeScreen() {
         </Pressable>
       </View>
 
-      <One.iOS.Tabs
+      <One.iOS.TabView
         selection={selection}
         swiftStyle={iosVersion >= 26 ? { tabBarMinimizeBehavior: 'never' } : undefined}
         onSelectionChange={(id) => {
@@ -250,8 +250,8 @@ export default function OneNativeScreen() {
         {tabOrder.map((id) => (
           <One.iOS.Tab
             key={id}
-            id={id}
-            title={titles[id]}
+            value={id}
+            titleKey={titles[id]}
             systemImage={images[id]}
             badge={id === FIRST ? '2' : undefined}
             role={id === SECOND && searchRole ? 'search' : undefined}
@@ -287,15 +287,15 @@ export default function OneNativeScreen() {
         ))}
         {actionTab && !searchRole ? (
           <One.iOS.Tab
-            id="compose"
-            title="Compose"
+            value="compose"
+            titleKey="Compose"
             systemImage="plus"
             role="search"
             testID="one-native-tab-compose"
             onPress={() => setActionPresses((count) => count + 1)}
           />
         ) : null}
-      </One.iOS.Tabs>
+      </One.iOS.TabView>
     </View>
   )
 }

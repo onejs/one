@@ -351,30 +351,98 @@ private struct OneNativeSDKPhotosPickerTransfer: ViewModifier {
 }
 
 public struct OneNativeStyle: Equatable {
-  public var fontSize: CGFloat?
+  public var fontSize: CGFloat? {
+    get { fontSizeSource.map { CGFloat(oneNativeStyleFieldNumber($0, "fontSize")) } }
+    set { fontSizeSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var fontSizeSource: OneNativeStyleNumber?
   public var fontWeight: String?
   public var fontDesign: String?
   public var textStyle: String?
   public var foregroundStyle: UIColor?
   public var tint: UIColor?
   public var background: UIColor?
-  public var padding: CGFloat?
-  public var paddingTop: CGFloat?
-  public var paddingLeading: CGFloat?
-  public var paddingBottom: CGFloat?
-  public var paddingTrailing: CGFloat?
-  public var width: CGFloat?
-  public var height: CGFloat?
-  public var minWidth: CGFloat?
-  public var idealWidth: CGFloat?
-  public var maxWidth: CGFloat?
-  public var minHeight: CGFloat?
-  public var idealHeight: CGFloat?
-  public var maxHeight: CGFloat?
-  public var cornerRadius: CGFloat?
-  public var opacity: CGFloat?
+  public var padding: CGFloat? {
+    get { paddingSource.map { CGFloat(oneNativeStyleFieldNumber($0, "padding")) } }
+    set { paddingSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var paddingSource: OneNativeStyleNumber?
+  public var paddingTop: CGFloat? {
+    get { paddingTopSource.map { CGFloat(oneNativeStyleFieldNumber($0, "paddingTop")) } }
+    set { paddingTopSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var paddingTopSource: OneNativeStyleNumber?
+  public var paddingLeading: CGFloat? {
+    get { paddingLeadingSource.map { CGFloat(oneNativeStyleFieldNumber($0, "paddingLeading")) } }
+    set { paddingLeadingSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var paddingLeadingSource: OneNativeStyleNumber?
+  public var paddingBottom: CGFloat? {
+    get { paddingBottomSource.map { CGFloat(oneNativeStyleFieldNumber($0, "paddingBottom")) } }
+    set { paddingBottomSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var paddingBottomSource: OneNativeStyleNumber?
+  public var paddingTrailing: CGFloat? {
+    get { paddingTrailingSource.map { CGFloat(oneNativeStyleFieldNumber($0, "paddingTrailing")) } }
+    set { paddingTrailingSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var paddingTrailingSource: OneNativeStyleNumber?
+  public var width: CGFloat? {
+    get { widthSource.map { CGFloat(oneNativeStyleFieldNumber($0, "width")) } }
+    set { widthSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var widthSource: OneNativeStyleNumber?
+  public var height: CGFloat? {
+    get { heightSource.map { CGFloat(oneNativeStyleFieldNumber($0, "height")) } }
+    set { heightSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var heightSource: OneNativeStyleNumber?
+  public var minWidth: CGFloat? {
+    get { minWidthSource.map { CGFloat(oneNativeStyleFieldNumber($0, "minWidth")) } }
+    set { minWidthSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var minWidthSource: OneNativeStyleNumber?
+  public var idealWidth: CGFloat? {
+    get { idealWidthSource.map { CGFloat(oneNativeStyleFieldNumber($0, "idealWidth")) } }
+    set { idealWidthSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var idealWidthSource: OneNativeStyleNumber?
+  public var maxWidth: CGFloat? {
+    get { maxWidthSource.map { CGFloat(oneNativeStyleFieldNumber($0, "maxWidth")) } }
+    set { maxWidthSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var maxWidthSource: OneNativeStyleNumber?
+  public var minHeight: CGFloat? {
+    get { minHeightSource.map { CGFloat(oneNativeStyleFieldNumber($0, "minHeight")) } }
+    set { minHeightSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var minHeightSource: OneNativeStyleNumber?
+  public var idealHeight: CGFloat? {
+    get { idealHeightSource.map { CGFloat(oneNativeStyleFieldNumber($0, "idealHeight")) } }
+    set { idealHeightSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var idealHeightSource: OneNativeStyleNumber?
+  public var maxHeight: CGFloat? {
+    get { maxHeightSource.map { CGFloat(oneNativeStyleFieldNumber($0, "maxHeight")) } }
+    set { maxHeightSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var maxHeightSource: OneNativeStyleNumber?
+  public var cornerRadius: CGFloat? {
+    get { cornerRadiusSource.map { CGFloat(oneNativeStyleFieldNumber($0, "cornerRadius")) } }
+    set { cornerRadiusSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var cornerRadiusSource: OneNativeStyleNumber?
+  public var opacity: CGFloat? {
+    get { opacitySource.map { CGFloat(oneNativeStyleFieldNumber($0, "opacity")) } }
+    set { opacitySource = newValue.map { .literal(Double($0)) } }
+  }
+  private var opacitySource: OneNativeStyleNumber?
   public var borderColor: UIColor?
-  public var borderWidth: CGFloat?
+  public var borderWidth: CGFloat? {
+    get { borderWidthSource.map { CGFloat(oneNativeStyleFieldNumber($0, "borderWidth")) } }
+    set { borderWidthSource = newValue.map { .literal(Double($0)) } }
+  }
+  private var borderWidthSource: OneNativeStyleNumber?
   public var glassEffect: String?
   public var glassEffectInteractive: Bool?
   public var glassEffectTint: UIColor?
@@ -386,30 +454,30 @@ public struct OneNativeStyle: Equatable {
   public init() {}
 
   public init(dictionary: [String: Any]) {
-    if let v = dictionary["fontSize"] as? Double { self.fontSize = CGFloat(v) }
+    if let v = dictionary["fontSize"] as? Double { self.fontSizeSource = .literal(v) }
     if let v = dictionary["fontWeight"] as? String, !v.isEmpty { self.fontWeight = v }
     if let v = dictionary["fontDesign"] as? String, !v.isEmpty { self.fontDesign = v }
     if let v = dictionary["textStyle"] as? String, !v.isEmpty { self.textStyle = v }
     if let v = dictionary["foregroundStyle"] as? UIColor { self.foregroundStyle = v }
     if let v = dictionary["tint"] as? UIColor { self.tint = v }
     if let v = dictionary["background"] as? UIColor { self.background = v }
-    if let v = dictionary["padding"] as? Double { self.padding = CGFloat(v) }
-    if let v = dictionary["paddingTop"] as? Double { self.paddingTop = CGFloat(v) }
-    if let v = dictionary["paddingLeading"] as? Double { self.paddingLeading = CGFloat(v) }
-    if let v = dictionary["paddingBottom"] as? Double { self.paddingBottom = CGFloat(v) }
-    if let v = dictionary["paddingTrailing"] as? Double { self.paddingTrailing = CGFloat(v) }
-    if let v = dictionary["width"] as? Double { self.width = CGFloat(v) }
-    if let v = dictionary["height"] as? Double { self.height = CGFloat(v) }
-    if let v = dictionary["minWidth"] as? Double { self.minWidth = CGFloat(v) }
-    if let v = dictionary["idealWidth"] as? Double { self.idealWidth = CGFloat(v) }
-    if let v = dictionary["maxWidth"] as? Double { self.maxWidth = CGFloat(v) }
-    if let v = dictionary["minHeight"] as? Double { self.minHeight = CGFloat(v) }
-    if let v = dictionary["idealHeight"] as? Double { self.idealHeight = CGFloat(v) }
-    if let v = dictionary["maxHeight"] as? Double { self.maxHeight = CGFloat(v) }
-    if let v = dictionary["cornerRadius"] as? Double { self.cornerRadius = CGFloat(v) }
-    if let v = dictionary["opacity"] as? Double { self.opacity = CGFloat(v) }
+    if let v = dictionary["padding"] as? Double { self.paddingSource = .literal(v) }
+    if let v = dictionary["paddingTop"] as? Double { self.paddingTopSource = .literal(v) }
+    if let v = dictionary["paddingLeading"] as? Double { self.paddingLeadingSource = .literal(v) }
+    if let v = dictionary["paddingBottom"] as? Double { self.paddingBottomSource = .literal(v) }
+    if let v = dictionary["paddingTrailing"] as? Double { self.paddingTrailingSource = .literal(v) }
+    if let v = dictionary["width"] as? Double { self.widthSource = .literal(v) }
+    if let v = dictionary["height"] as? Double { self.heightSource = .literal(v) }
+    if let v = dictionary["minWidth"] as? Double { self.minWidthSource = .literal(v) }
+    if let v = dictionary["idealWidth"] as? Double { self.idealWidthSource = .literal(v) }
+    if let v = dictionary["maxWidth"] as? Double { self.maxWidthSource = .literal(v) }
+    if let v = dictionary["minHeight"] as? Double { self.minHeightSource = .literal(v) }
+    if let v = dictionary["idealHeight"] as? Double { self.idealHeightSource = .literal(v) }
+    if let v = dictionary["maxHeight"] as? Double { self.maxHeightSource = .literal(v) }
+    if let v = dictionary["cornerRadius"] as? Double { self.cornerRadiusSource = .literal(v) }
+    if let v = dictionary["opacity"] as? Double { self.opacitySource = .literal(v) }
     if let v = dictionary["borderColor"] as? UIColor { self.borderColor = v }
-    if let v = dictionary["borderWidth"] as? Double { self.borderWidth = CGFloat(v) }
+    if let v = dictionary["borderWidth"] as? Double { self.borderWidthSource = .literal(v) }
     if let v = dictionary["glassEffect"] as? String, !v.isEmpty { self.glassEffect = v }
     if let v = dictionary["glassEffectInteractive"] as? Bool { self.glassEffectInteractive = v }
     if let v = dictionary["glassEffectTint"] as? UIColor { self.glassEffectTint = v }
@@ -420,6 +488,35 @@ public struct OneNativeStyle: Equatable {
         let pairs = try? JSONDecoder().decode([[String]].self, from: data),
         pairs.allSatisfy({ $0.count == 2 }) else {
         preconditionFailure("invalid sdk modifiers")
+      }
+      // number fields fed by native state ride one private pair of field to entry id.
+      if let states = pairs.first(where: { $0[0] == "oneNativeState" }) {
+        guard let data = states[1].data(using: .utf8),
+          let ids = try? JSONDecoder().decode([String: Int32].self, from: data) else {
+          preconditionFailure("invalid native state style fields")
+        }
+        for (field, id) in ids {
+          switch field {
+          case "fontSize": fontSizeSource = .state(id)
+          case "padding": paddingSource = .state(id)
+          case "paddingTop": paddingTopSource = .state(id)
+          case "paddingLeading": paddingLeadingSource = .state(id)
+          case "paddingBottom": paddingBottomSource = .state(id)
+          case "paddingTrailing": paddingTrailingSource = .state(id)
+          case "width": widthSource = .state(id)
+          case "height": heightSource = .state(id)
+          case "minWidth": minWidthSource = .state(id)
+          case "idealWidth": idealWidthSource = .state(id)
+          case "maxWidth": maxWidthSource = .state(id)
+          case "minHeight": minHeightSource = .state(id)
+          case "idealHeight": idealHeightSource = .state(id)
+          case "maxHeight": maxHeightSource = .state(id)
+          case "cornerRadius": cornerRadiusSource = .state(id)
+          case "opacity": opacitySource = .state(id)
+          case "borderWidth": borderWidthSource = .state(id)
+          default: preconditionFailure("invalid native state style field: \(field)")
+          }
+        }
       }
       // a PhaseAnimator or KeyframeAnimator child's styles ride one private pair.
       if let index = pairs.firstIndex(where: { $0[0] == "oneNativeAnimator" }) {
@@ -432,9 +529,9 @@ public struct OneNativeStyle: Equatable {
           base["sdkModifiers"] = String(decoding: try! JSONEncoder().encode(rest), as: UTF8.self)
         }
         animator = OneNativeAnimatorStyle(json: payload, base: base)
-        sdkModifiers = rest
+        sdkModifiers = rest.filter { $0[0] != "oneNativeState" }
       } else {
-        sdkModifiers = pairs
+        sdkModifiers = pairs.filter { $0[0] != "oneNativeState" }
       }
     }
   }
@@ -759,8 +856,11 @@ extension View {
       case "layoutPriority": view = AnyView(view.oneNativeSDKLayoutPriority(value, emit: emit))
       case "layoutValue": view = AnyView(view.oneNativeSDKLayoutValue(value, emit: emit))
       case "lineHeight": view = AnyView(view.oneNativeSDKLineHeight(value, emit: emit))
+      case "lineLimitWithClosedRange": view = AnyView(view.oneNativeSDKLineLimitWithClosedRange(value, emit: emit))
       case "lineLimitWithLimitAndReservesSpace": view = AnyView(view.oneNativeSDKLineLimitWithLimitAndReservesSpace(value, emit: emit))
       case "lineLimitWithOptionalInt": view = AnyView(view.oneNativeSDKLineLimitWithOptionalInt(value, emit: emit))
+      case "lineLimitWithPartialRangeFrom": view = AnyView(view.oneNativeSDKLineLimitWithPartialRangeFrom(value, emit: emit))
+      case "lineLimitWithPartialRangeThrough": view = AnyView(view.oneNativeSDKLineLimitWithPartialRangeThrough(value, emit: emit))
       case "lineSpacing": view = AnyView(view.oneNativeSDKLineSpacing(value, emit: emit))
       case "listItemTintWithOptionalColor": view = AnyView(view.oneNativeSDKListItemTintWithOptionalColor(value, emit: emit))
       case "listItemTintWithOptionalListItemTint": view = AnyView(view.oneNativeSDKListItemTintWithOptionalListItemTint(value, emit: emit))
@@ -1299,7 +1399,7 @@ extension View {
       case "clear": self.accentColor(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.accentColor(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.accentColor(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid accentColor: \(value)")
+    default: self.accentColor(oneNativeSDKValueColor(value, "accentColor") as SwiftUI.Color?)
     }
   }
 
@@ -1390,7 +1490,7 @@ extension View {
       case "isModal": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityAddTraits: \(value)")
+    default: self.accessibilityAddTraits(oneNativeSDKValueAccessibilityTraits(value, "accessibilityAddTraits"))
     }
   }
 
@@ -1805,7 +1905,7 @@ extension View {
       case "isModal": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityRemoveTraits: \(value)")
+    default: self.accessibilityRemoveTraits(oneNativeSDKValueAccessibilityTraits(value, "accessibilityRemoveTraits"))
     }
   }
 
@@ -1900,7 +2000,7 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilitySortPriority(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.accessibilitySortPriority(number)
       } else { preconditionFailure("invalid accessibilitySortPriority: \(value)") }
   }
@@ -1982,7 +2082,7 @@ extension View {
       case "isModal": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityWithAddTraits: \(value)")
+    default: self.accessibility(addTraits: oneNativeSDKValueAccessibilityTraits(value, "accessibilityWithAddTraits"))
     }
   }
 
@@ -2023,12 +2123,12 @@ extension View {
       case "isModal": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isTabBar)
-    default: let _ = preconditionFailure("invalid accessibilityWithRemoveTraits: \(value)")
+    default: self.accessibility(removeTraits: oneNativeSDKValueAccessibilityTraits(value, "accessibilityWithRemoveTraits"))
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityWithSortPriority(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.accessibility(sortPriority: number)
       } else { preconditionFailure("invalid accessibilityWithSortPriority: \(value)") }
   }
@@ -2111,7 +2211,7 @@ extension View {
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing alignmentGuideWithHorizontalAlignment.computeValue") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithHorizontalAlignment.computeValue: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithHorizontalAlignment.computeValue: \(raw)") }
       return CGFloat(number)
     }()
     self.alignmentGuide(argument0, computeValue: { (_: SwiftUI.ViewDimensions) in argument1 })
@@ -2137,7 +2237,7 @@ extension View {
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing alignmentGuideWithVerticalAlignment.computeValue") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithVerticalAlignment.computeValue: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithVerticalAlignment.computeValue: \(raw)") }
       return CGFloat(number)
     }()
     self.alignmentGuide(argument0, computeValue: { (_: SwiftUI.ViewDimensions) in argument1 })
@@ -2204,7 +2304,7 @@ extension View {
       case "easeIn": self.animation(SwiftUI.Animation.easeIn as SwiftUI.Animation?)
       case "easeOut": self.animation(SwiftUI.Animation.easeOut as SwiftUI.Animation?)
       case "linear": self.animation(SwiftUI.Animation.linear as SwiftUI.Animation?)
-    default: let _ = preconditionFailure("invalid animation: \(value)")
+    default: self.animation(oneNativeSDKValueAnimation(value, "animation") as SwiftUI.Animation?)
     }
   }
 
@@ -2304,7 +2404,7 @@ extension View {
     }()
     let argument0: CoreFoundation.CGFloat? = {
       guard let raw = values[0] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid aspectRatio.aspectRatio: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid aspectRatio.aspectRatio: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: SwiftUI.ContentMode = {
@@ -2449,7 +2549,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKBaselineOffset(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.baselineOffset(CGFloat(number))
       } else { preconditionFailure("invalid baselineOffset: \(value)") }
   }
@@ -2491,7 +2591,7 @@ self
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing blur.radius") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid blur.radius: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid blur.radius: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: Swift.Bool = {
@@ -2508,7 +2608,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKBrightness(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.brightness(number)
       } else { preconditionFailure("invalid brightness: \(value)") }
   }
@@ -2520,7 +2620,7 @@ self
       case "capsule": self.buttonBorderShape(SwiftUI.ButtonBorderShape.capsule)
       case "roundedRectangle": self.buttonBorderShape(SwiftUI.ButtonBorderShape.roundedRectangle)
       case "circle": self.buttonBorderShape(SwiftUI.ButtonBorderShape.circle)
-    default: let _ = preconditionFailure("invalid buttonBorderShape: \(value)")
+    default: self.buttonBorderShape(oneNativeSDKValueButtonBorderShape(value, "buttonBorderShape"))
     }
   }
 
@@ -2629,7 +2729,7 @@ self
       case "clear": self.colorMultiply(SwiftUI.Color.clear)
       case "primary": self.colorMultiply(SwiftUI.Color.primary)
       case "secondary": self.colorMultiply(SwiftUI.Color.secondary)
-    default: let _ = preconditionFailure("invalid colorMultiply: \(value)")
+    default: self.colorMultiply(oneNativeSDKValueColor(value, "colorMultiply"))
     }
   }
 
@@ -2743,7 +2843,7 @@ self
     }()
     let argument3: CoreFoundation.CGFloat = {
       guard let raw = values[3] else { preconditionFailure("missing containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.spacing") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.spacing: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.spacing: \(raw)") }
       return CGFloat(number)
     }()
     let argument4: SwiftUI.Alignment = {
@@ -2825,7 +2925,7 @@ self
     }()
     let argument1: CoreFoundation.CGFloat? = {
       guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid contentMarginsWithEdgesAndLengthAndPlacement.length: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid contentMarginsWithEdgesAndLengthAndPlacement.length: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: SwiftUI.ContentMarginPlacement = {
@@ -2849,7 +2949,7 @@ self
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing contentMarginsWithLengthAndPlacement.length") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid contentMarginsWithLengthAndPlacement.length: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid contentMarginsWithLengthAndPlacement.length: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: SwiftUI.ContentMarginPlacement = {
@@ -2891,12 +2991,12 @@ self
       case "identity": self.contentTransition(SwiftUI.ContentTransition.identity)
       case "opacity": self.contentTransition(SwiftUI.ContentTransition.opacity)
       case "interpolate": self.contentTransition(SwiftUI.ContentTransition.interpolate)
-    default: let _ = preconditionFailure("invalid contentTransition: \(value)")
+    default: self.contentTransition(oneNativeSDKValueContentTransition(value, "contentTransition"))
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKContrast(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.contrast(number)
       } else { preconditionFailure("invalid contrast: \(value)") }
   }
@@ -2961,7 +3061,7 @@ self
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing cornerRadiusWithRadiusAndAntialiased.radius") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid cornerRadiusWithRadiusAndAntialiased.radius: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid cornerRadiusWithRadiusAndAntialiased.radius: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: Swift.Bool = {
@@ -3496,7 +3596,7 @@ self
       case "ultraThin": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThin as SwiftUI.Material?)
       case "ultraThick": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThick as SwiftUI.Material?)
       case "bar": self.environment(\.backgroundMaterial, SwiftUI.Material.bar as SwiftUI.Material?)
-    default: let _ = preconditionFailure("invalid environmentBackgroundMaterial: \(value)")
+    default: self.environment(\.backgroundMaterial, oneNativeSDKValueMaterial(value, "environmentBackgroundMaterial") as SwiftUI.Material?)
     }
   }
 
@@ -3544,7 +3644,7 @@ self
       case "identity": self.environment(\.contentTransition, SwiftUI.ContentTransition.identity)
       case "opacity": self.environment(\.contentTransition, SwiftUI.ContentTransition.opacity)
       case "interpolate": self.environment(\.contentTransition, SwiftUI.ContentTransition.interpolate)
-    default: let _ = preconditionFailure("invalid environmentContentTransition: \(value)")
+    default: self.environment(\.contentTransition, oneNativeSDKValueContentTransition(value, "environmentContentTransition"))
     }
   }
 
@@ -3566,13 +3666,13 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentDefaultMinListHeaderHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.environment(\.defaultMinListHeaderHeight, nil as CoreFoundation.CGFloat?) } else { if let number = Double(value), number.isFinite {
+    if value == "null" { self.environment(\.defaultMinListHeaderHeight, nil as CoreFoundation.CGFloat?) } else { if let number = oneNativeStyleNumber(value), number.isFinite {
       self.environment(\.defaultMinListHeaderHeight, CGFloat(number))
     } else { preconditionFailure("invalid environmentDefaultMinListHeaderHeight: \(value)") } }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentDefaultMinListRowHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.environment(\.defaultMinListRowHeight, CGFloat(number))
       } else { preconditionFailure("invalid environmentDefaultMinListRowHeight: \(value)") }
   }
@@ -3582,7 +3682,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentDisplayScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.environment(\.displayScale, CGFloat(number))
       } else { preconditionFailure("invalid environmentDisplayScale: \(value)") }
   }
@@ -3621,7 +3721,7 @@ self
       case "caption": self.environment(\.font, SwiftUI.Font.caption as SwiftUI.Font?)
       case "caption2": self.environment(\.font, SwiftUI.Font.caption2 as SwiftUI.Font?)
       case "default": if #available(iOS 26, *) { self.environment(\.font, SwiftUI.Font.default as SwiftUI.Font?) } else { self }
-    default: let _ = preconditionFailure("invalid environmentFont: \(value)")
+    default: self.environment(\.font, oneNativeSDKValueFont(value, "environmentFont") as SwiftUI.Font?)
     }
   }
 
@@ -3739,7 +3839,7 @@ self
       case "normal": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.normal as Foundation.AttributedString.LineHeight?) } else { self }
       case "tight": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.tight as Foundation.AttributedString.LineHeight?) } else { self }
       case "loose": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.loose as Foundation.AttributedString.LineHeight?) } else { self }
-    default: let _ = preconditionFailure("invalid environmentLineHeight: \(value)")
+    default: if #available(iOS 26, *) { self.environment(\.lineHeight, oneNativeSDKValueAttributedStringLineHeight(value, "environmentLineHeight") as Foundation.AttributedString.LineHeight?) } else { self }
     }
   }
 
@@ -3750,7 +3850,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.environment(\.lineSpacing, CGFloat(number))
       } else { preconditionFailure("invalid environmentLineSpacing: \(value)") }
   }
@@ -3795,7 +3895,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentMinimumScaleFactor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.environment(\.minimumScaleFactor, CGFloat(number))
       } else { preconditionFailure("invalid environmentMinimumScaleFactor: \(value)") }
   }
@@ -4381,7 +4481,7 @@ if #available(iOS 13, *) {
       case "caption": self.font(SwiftUI.Font.caption as SwiftUI.Font?)
       case "caption2": self.font(SwiftUI.Font.caption2 as SwiftUI.Font?)
       case "default": if #available(iOS 26, *) { self.font(SwiftUI.Font.default as SwiftUI.Font?) } else { self }
-    default: let _ = preconditionFailure("invalid font: \(value)")
+    default: self.font(oneNativeSDKValueFont(value, "font") as SwiftUI.Font?)
     }
   }
 
@@ -4445,7 +4545,7 @@ if #available(iOS 13, *) {
       case "clear": self.foregroundColor(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.foregroundColor(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.foregroundColor(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid foregroundColor: \(value)")
+    default: self.foregroundColor(oneNativeSDKValueColor(value, "foregroundColor") as SwiftUI.Color?)
     }
   }
 
@@ -4468,32 +4568,32 @@ if #available(iOS 13, *) {
     }()
     let argument0: CoreFoundation.CGFloat? = {
       guard let raw = values[0] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minWidth: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minWidth: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat? = {
       guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealWidth: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealWidth: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: CoreFoundation.CGFloat? = {
       guard let raw = values[2] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxWidth: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxWidth: \(raw)") }
       return CGFloat(number)
     }()
     let argument3: CoreFoundation.CGFloat? = {
       guard let raw = values[3] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minHeight: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minHeight: \(raw)") }
       return CGFloat(number)
     }()
     let argument4: CoreFoundation.CGFloat? = {
       guard let raw = values[4] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealHeight: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealHeight: \(raw)") }
       return CGFloat(number)
     }()
     let argument5: CoreFoundation.CGFloat? = {
       guard let raw = values[5] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxHeight: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxHeight: \(raw)") }
       return CGFloat(number)
     }()
     let argument6: SwiftUI.Alignment = {
@@ -4534,12 +4634,12 @@ if #available(iOS 13, *) {
     }()
     let argument0: CoreFoundation.CGFloat? = {
       guard let raw = values[0] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.width: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.width: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat? = {
       guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.height: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.height: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: SwiftUI.Alignment = {
@@ -4585,44 +4685,118 @@ if #available(iOS 13, *) {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    switch value {
+    let record = OneNativeSDKRecord(value, "gesture")
+    switch record.kind {
     case "drag":
-      self.gesture(SwiftUI.DragGesture().onEnded({ item in
-        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+      let binding = OneNativeDragBinding(record)
+      let changed = record.boolean("onChanged") == true
+      if changed || binding != nil {
+        self.modifier(OneNativeDragHost(attachment: .gesture, gesture: SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "gesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)), binding: binding, changed: changed ? { item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.drag event") }
+        emit("gesture.onChanged", encoded)
+      } : nil, ended: { item, snapTarget in
+        var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        if let snapTarget { payload["snapTarget"] = snapTarget }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.drag event") }
         emit("gesture", encoded)
       }))
+      } else {
+        self.gesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "gesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.drag event") }
+        emit("gesture", encoded)
+      }))
+      }
     case "longPress":
-      self.gesture(SwiftUI.LongPressGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.gesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onChanged({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.longPress event") }
+        emit("gesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = item
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.longPress event") }
         emit("gesture", encoded)
       }))
+      } else {
+        self.gesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.longPress event") }
+        emit("gesture", encoded)
+      }))
+      }
     case "magnify":
-      self.gesture(SwiftUI.MagnifyGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.gesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onChanged({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.magnify event") }
+        emit("gesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.magnify event") }
         emit("gesture", encoded)
       }))
+      } else {
+        self.gesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.magnify event") }
+        emit("gesture", encoded)
+      }))
+      }
     case "rotate":
-      self.gesture(SwiftUI.RotateGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.gesture(SwiftUI.RotateGesture().onChanged({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.rotate event") }
+        emit("gesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.rotate event") }
         emit("gesture", encoded)
       }))
+      } else {
+        self.gesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.rotate event") }
+        emit("gesture", encoded)
+      }))
+      }
     case "spatialTap":
-      self.gesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.gesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "gesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onChanged({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.spatialTap event") }
+        emit("gesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.spatialTap event") }
         emit("gesture", encoded)
       }))
+      } else {
+        self.gesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "gesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.spatialTap event") }
+        emit("gesture", encoded)
+      }))
+      }
     case "tap":
-      self.gesture(SwiftUI.TapGesture().onEnded({ _ in emit("gesture", "") }))
+      self.gesture(SwiftUI.TapGesture(count: (record.integer("count") ?? 1)).onEnded({ _ in emit("gesture", "") }))
     default: let _ = preconditionFailure("invalid gesture: \(value)")
     }
   }
@@ -4679,12 +4853,12 @@ if #available(iOS 13, *) {
       case "regular": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.regular) } else { self }
       case "clear": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.clear) } else { self }
       case "identity": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.identity) } else { self }
-    default: let _ = preconditionFailure("invalid glassEffectWithGlass: \(value)")
+    default: if #available(iOS 26, *) { self.glassEffect(oneNativeSDKValueGlass(value, "glassEffectWithGlass")) } else { self }
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKGrayscale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.grayscale(number)
       } else { preconditionFailure("invalid grayscale: \(value)") }
   }
@@ -4814,44 +4988,118 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKHighPriorityGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    switch value {
+    let record = OneNativeSDKRecord(value, "highPriorityGesture")
+    switch record.kind {
     case "drag":
-      self.highPriorityGesture(SwiftUI.DragGesture().onEnded({ item in
-        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+      let binding = OneNativeDragBinding(record)
+      let changed = record.boolean("onChanged") == true
+      if changed || binding != nil {
+        self.modifier(OneNativeDragHost(attachment: .highPriorityGesture, gesture: SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "highPriorityGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)), binding: binding, changed: changed ? { item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.drag event") }
+        emit("highPriorityGesture.onChanged", encoded)
+      } : nil, ended: { item, snapTarget in
+        var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        if let snapTarget { payload["snapTarget"] = snapTarget }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.drag event") }
         emit("highPriorityGesture", encoded)
       }))
+      } else {
+        self.highPriorityGesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "highPriorityGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.drag event") }
+        emit("highPriorityGesture", encoded)
+      }))
+      }
     case "longPress":
-      self.highPriorityGesture(SwiftUI.LongPressGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.highPriorityGesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onChanged({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.longPress event") }
+        emit("highPriorityGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = item
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.longPress event") }
         emit("highPriorityGesture", encoded)
       }))
+      } else {
+        self.highPriorityGesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.longPress event") }
+        emit("highPriorityGesture", encoded)
+      }))
+      }
     case "magnify":
-      self.highPriorityGesture(SwiftUI.MagnifyGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.highPriorityGesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onChanged({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.magnify event") }
+        emit("highPriorityGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.magnify event") }
         emit("highPriorityGesture", encoded)
       }))
+      } else {
+        self.highPriorityGesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.magnify event") }
+        emit("highPriorityGesture", encoded)
+      }))
+      }
     case "rotate":
-      self.highPriorityGesture(SwiftUI.RotateGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.highPriorityGesture(SwiftUI.RotateGesture().onChanged({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.rotate event") }
+        emit("highPriorityGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.rotate event") }
         emit("highPriorityGesture", encoded)
       }))
+      } else {
+        self.highPriorityGesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.rotate event") }
+        emit("highPriorityGesture", encoded)
+      }))
+      }
     case "spatialTap":
-      self.highPriorityGesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.highPriorityGesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "highPriorityGesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onChanged({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.spatialTap event") }
+        emit("highPriorityGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.spatialTap event") }
         emit("highPriorityGesture", encoded)
       }))
+      } else {
+        self.highPriorityGesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "highPriorityGesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.spatialTap event") }
+        emit("highPriorityGesture", encoded)
+      }))
+      }
     case "tap":
-      self.highPriorityGesture(SwiftUI.TapGesture().onEnded({ _ in emit("highPriorityGesture", "") }))
+      self.highPriorityGesture(SwiftUI.TapGesture(count: (record.integer("count") ?? 1)).onEnded({ _ in emit("highPriorityGesture", "") }))
     default: let _ = preconditionFailure("invalid highPriorityGesture: \(value)")
     }
   }
@@ -4885,7 +5133,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
     switch value {
 
       case "zero": self.hueRotation(SwiftUI.Angle.zero)
-    default: let _ = preconditionFailure("invalid hueRotation: \(value)")
+    default: self.hueRotation(oneNativeSDKValueAngle(value, "hueRotation"))
     }
   }
 
@@ -5003,12 +5251,22 @@ self
     switch value {
 
       case "page": self.indexViewStyle(.page)
-    default: let _ = preconditionFailure("invalid indexViewStyle: \(value)")
+    default:
+      let record = OneNativeSDKRecord(value, "indexViewStyle")
+      switch record.kind {
+      case "page":
+        switch record.overload([(labels: [], required: []), (labels: ["backgroundDisplayMode"], required: ["backgroundDisplayMode"])], chain: []) {
+        case 0: self.indexViewStyle(.page)
+        case 1: self.indexViewStyle(.page(backgroundDisplayMode: record.fields["backgroundDisplayMode"].map { oneNativeSDKValuePageIndexViewStyleBackgroundDisplayMode($0, record.context + ".backgroundDisplayMode") }!))
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+      }
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKInspectorColumnWidthWithCGFloat(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.inspectorColumnWidth(CGFloat(number))
       } else { preconditionFailure("invalid inspectorColumnWidthWithCGFloat: \(value)") }
   }
@@ -5022,17 +5280,17 @@ self
     }()
     let argument0: CoreFoundation.CGFloat? = {
       guard let raw = values[0] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.min: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.min: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing inspectorColumnWidthWithMinAndIdealAndMax.ideal") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.ideal: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.ideal: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: CoreFoundation.CGFloat? = {
       guard let raw = values[2] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.max: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid inspectorColumnWidthWithMinAndIdealAndMax.max: \(raw)") }
       return CGFloat(number)
     }()
     self.inspectorColumnWidth(min: argument0, ideal: argument1, max: argument2)
@@ -5062,7 +5320,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKKerning(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.kerning(CGFloat(number))
       } else { preconditionFailure("invalid kerning: \(value)") }
   }
@@ -5236,13 +5494,13 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLabelIconToTitleSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         if #available(iOS 26, *) { self.labelIconToTitleSpacing(CGFloat(number)) } else { self }
       } else { preconditionFailure("invalid labelIconToTitleSpacing: \(value)") }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLabelReservedIconWidth(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         if #available(iOS 26, *) { self.labelReservedIconWidth(CGFloat(number)) } else { self }
       } else { preconditionFailure("invalid labelReservedIconWidth: \(value)") }
   }
@@ -5310,7 +5568,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLayoutPriority(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.layoutPriority(number)
       } else { preconditionFailure("invalid layoutPriority: \(value)") }
   }
@@ -5335,8 +5593,27 @@ self
       case "normal": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.normal as Foundation.AttributedString.LineHeight?) } else { self }
       case "tight": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.tight as Foundation.AttributedString.LineHeight?) } else { self }
       case "loose": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.loose as Foundation.AttributedString.LineHeight?) } else { self }
-    default: let _ = preconditionFailure("invalid lineHeight: \(value)")
+    default: if #available(iOS 26, *) { self.lineHeight(oneNativeSDKValueAttributedStringLineHeight(value, "lineHeight") as Foundation.AttributedString.LineHeight?) } else { self }
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLineLimitWithClosedRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid lineLimitWithClosedRange: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.ClosedRange<Swift.Int> = {
+      guard let raw = values[0] else { preconditionFailure("missing lineLimitWithClosedRange.limit") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["lower"], field0.isFinite, Int(exactly: field0) != nil,
+        let field1 = decoded["upper"], field1.isFinite, Int(exactly: field1) != nil,
+        field0 <= field1 else { preconditionFailure("invalid lineLimitWithClosedRange.limit: \(raw)") }
+      return Int(field0)...Int(field1)
+    }()
+    self.lineLimit(argument0)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLineLimitWithLimitAndReservesSpace(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5365,8 +5642,42 @@ self
     } else { preconditionFailure("invalid lineLimitWithOptionalInt: \(value)") } }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKLineLimitWithPartialRangeFrom(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid lineLimitWithPartialRangeFrom: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.PartialRangeFrom<Swift.Int> = {
+      guard let raw = values[0] else { preconditionFailure("missing lineLimitWithPartialRangeFrom.limit") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["lower"], field0.isFinite, Int(exactly: field0) != nil else { preconditionFailure("invalid lineLimitWithPartialRangeFrom.limit: \(raw)") }
+      return Int(field0)...
+    }()
+    self.lineLimit(argument0)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLineLimitWithPartialRangeThrough(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid lineLimitWithPartialRangeThrough: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.PartialRangeThrough<Swift.Int> = {
+      guard let raw = values[0] else { preconditionFailure("missing lineLimitWithPartialRangeThrough.limit") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["upper"], field0.isFinite, Int(exactly: field0) != nil else { preconditionFailure("invalid lineLimitWithPartialRangeThrough.limit: \(raw)") }
+      return ...Int(field0)
+    }()
+    self.lineLimit(argument0)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.lineSpacing(CGFloat(number))
       } else { preconditionFailure("invalid lineSpacing: \(value)") }
   }
@@ -5393,7 +5704,7 @@ self
       case "clear": self.listItemTint(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.listItemTint(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.listItemTint(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid listItemTintWithOptionalColor: \(value)")
+    default: self.listItemTint(oneNativeSDKValueColor(value, "listItemTintWithOptionalColor") as SwiftUI.Color?)
     }
   }
 
@@ -5401,7 +5712,7 @@ self
     switch value {
       case "null": self.listItemTint(nil as SwiftUI.ListItemTint?)
       case "monochrome": self.listItemTint(SwiftUI.ListItemTint.monochrome as SwiftUI.ListItemTint?)
-    default: let _ = preconditionFailure("invalid listItemTintWithOptionalListItemTint: \(value)")
+    default: self.listItemTint(oneNativeSDKValueListItemTint(value, "listItemTintWithOptionalListItemTint") as SwiftUI.ListItemTint?)
     }
   }
 
@@ -5428,7 +5739,7 @@ self
     }()
     let argument1: CoreFoundation.CGFloat? = {
       guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid listRowInsets.length: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid listRowInsets.length: \(raw)") }
       return CGFloat(number)
     }()
     self.listRowInsets(argument0, argument1)
@@ -5492,7 +5803,7 @@ self
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid listRowSeparatorTint.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "listRowSeparatorTint.color")
       }
     }()
     let argument1: SwiftUI.VerticalEdge.Set = {
@@ -5508,7 +5819,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKListRowSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.listRowSpacing(nil as CoreFoundation.CGFloat?) } else { if let number = Double(value), number.isFinite {
+    if value == "null" { self.listRowSpacing(nil as CoreFoundation.CGFloat?) } else { if let number = oneNativeStyleNumber(value), number.isFinite {
       self.listRowSpacing(CGFloat(number))
     } else { preconditionFailure("invalid listRowSpacing: \(value)") } }
   }
@@ -5546,7 +5857,7 @@ self
     }()
     let argument1: CoreFoundation.CGFloat? = {
       guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid listSectionMargins.length: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid listSectionMargins.length: \(raw)") }
       return CGFloat(number)
     }()
     self.listSectionMargins(argument0, argument1)
@@ -5610,7 +5921,7 @@ self
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid listSectionSeparatorTint.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "listSectionSeparatorTint.color")
       }
     }()
     let argument1: SwiftUI.VerticalEdge.Set = {
@@ -5626,7 +5937,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKListSectionSpacingWithCGFloat(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.listSectionSpacing(CGFloat(number))
       } else { preconditionFailure("invalid listSectionSpacingWithCGFloat: \(value)") }
   }
@@ -5636,7 +5947,7 @@ self
 
       case "default": self.listSectionSpacing(SwiftUI.ListSectionSpacing.default)
       case "compact": self.listSectionSpacing(SwiftUI.ListSectionSpacing.compact)
-    default: let _ = preconditionFailure("invalid listSectionSpacingWithListSectionSpacing: \(value)")
+    default: self.listSectionSpacing(oneNativeSDKValueListSectionSpacing(value, "listSectionSpacingWithListSectionSpacing"))
     }
   }
 
@@ -5751,7 +6062,7 @@ self
       case "callout": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.callout as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
       case "sheet": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.sheet as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
       case "caption": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.caption as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
-    default: let _ = preconditionFailure("invalid mapFeatureSelectionAccessory: \(value)")
+    default: if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(oneNativeSDKValueMapItemDetailSelectionAccessoryStyle(value, "mapFeatureSelectionAccessory") as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
     }
   }
 
@@ -5842,7 +6153,7 @@ self
       case "standard": self.mapStyle(_MapKit_SwiftUI.MapStyle.standard)
       case "imagery": self.mapStyle(_MapKit_SwiftUI.MapStyle.imagery)
       case "hybrid": self.mapStyle(_MapKit_SwiftUI.MapStyle.hybrid)
-    default: let _ = preconditionFailure("invalid mapStyle: \(value)")
+    default: self.mapStyle(oneNativeSDKValueMapStyle(value, "mapStyle"))
     }
   }
 
@@ -5927,7 +6238,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMinimumScaleFactor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.minimumScaleFactor(CGFloat(number))
       } else { preconditionFailure("invalid minimumScaleFactor: \(value)") }
   }
@@ -6135,7 +6446,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKNavigationSplitViewColumnWidthWithCGFloat(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.navigationSplitViewColumnWidth(CGFloat(number))
       } else { preconditionFailure("invalid navigationSplitViewColumnWidthWithCGFloat: \(value)") }
   }
@@ -6149,17 +6460,17 @@ self
     }()
     let argument0: CoreFoundation.CGFloat? = {
       guard let raw = values[0] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.min: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.min: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing navigationSplitViewColumnWidthWithMinAndIdealAndMax.ideal") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.ideal: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.ideal: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: CoreFoundation.CGFloat? = {
       guard let raw = values[2] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.max: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid navigationSplitViewColumnWidthWithMinAndIdealAndMax.max: \(raw)") }
       return CGFloat(number)
     }()
     self.navigationSplitViewColumnWidth(min: argument0, ideal: argument1, max: argument2)
@@ -6226,12 +6537,12 @@ self
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing offset.x") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid offset.x: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid offset.x: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing offset.y") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid offset.y: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid offset.y: \(raw)") }
       return CGFloat(number)
     }()
     self.offset(x: argument0, y: argument1)
@@ -6696,7 +7007,7 @@ self
 
       case "automatic": self.paletteSelectionEffect(SwiftUI.PaletteSelectionEffect.automatic)
       case "custom": self.paletteSelectionEffect(SwiftUI.PaletteSelectionEffect.custom)
-    default: let _ = preconditionFailure("invalid paletteSelectionEffect: \(value)")
+    default: self.paletteSelectionEffect(oneNativeSDKValuePaletteSelectionEffect(value, "paletteSelectionEffect"))
     }
   }
 
@@ -7025,12 +7336,12 @@ self
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing position.x") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid position.x: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid position.x: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing position.y") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid position.y: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid position.y: \(raw)") }
       return CGFloat(number)
     }()
     self.position(x: argument0, y: argument1)
@@ -7136,7 +7447,7 @@ self
       case "automatic": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.automatic)
       case "enabled": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.enabled)
       case "disabled": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.disabled)
-    default: let _ = preconditionFailure("invalid presentationBackgroundInteraction: \(value)")
+    default: self.presentationBackgroundInteraction(oneNativeSDKValuePresentationBackgroundInteraction(value, "presentationBackgroundInteraction"))
     }
   }
 
@@ -7195,7 +7506,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPresentationCornerRadius(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.presentationCornerRadius(nil as CoreFoundation.CGFloat?) } else { if let number = Double(value), number.isFinite {
+    if value == "null" { self.presentationCornerRadius(nil as CoreFoundation.CGFloat?) } else { if let number = oneNativeStyleNumber(value), number.isFinite {
       self.presentationCornerRadius(CGFloat(number))
     } else { preconditionFailure("invalid presentationCornerRadius: \(value)") } }
   }
@@ -7529,12 +7840,12 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     }()
     let argument3: CoreFoundation.CGFloat = {
       guard let raw = values[3] else { preconditionFailure("missing rotation3DEffect.anchorZ") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid rotation3DEffect.anchorZ: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid rotation3DEffect.anchorZ: \(raw)") }
       return CGFloat(number)
     }()
     let argument4: CoreFoundation.CGFloat = {
       guard let raw = values[4] else { preconditionFailure("missing rotation3DEffect.perspective") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid rotation3DEffect.perspective: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid rotation3DEffect.perspective: \(raw)") }
       return CGFloat(number)
     }()
     self.rotation3DEffect(argument0, axis: argument1, anchor: argument2, anchorZ: argument3, perspective: argument4)
@@ -7551,7 +7862,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       guard let raw = values[0] else { preconditionFailure("missing rotationEffect.angle") }
       switch raw {
       case "zero": return SwiftUI.Angle.zero
-      default: preconditionFailure("invalid rotationEffect.angle: \(raw)")
+      default: return oneNativeSDKValueAngle(raw, "rotationEffect.angle")
       }
     }()
     let argument1: SwiftUI.UnitPoint = {
@@ -7574,7 +7885,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSafeAreaPaddingWithCGFloat(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.safeAreaPadding(CGFloat(number))
       } else { preconditionFailure("invalid safeAreaPaddingWithCGFloat: \(value)") }
   }
@@ -7594,7 +7905,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSaturation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.saturation(number)
       } else { preconditionFailure("invalid saturation: \(value)") }
   }
@@ -7618,7 +7929,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing scaleEffectWithSAndAnchor.s") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithSAndAnchor.s: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithSAndAnchor.s: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: SwiftUI.UnitPoint = {
@@ -7649,12 +7960,12 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
     }()
     let argument0: CoreFoundation.CGFloat = {
       guard let raw = values[0] else { preconditionFailure("missing scaleEffectWithXAndYAndAnchor.x") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithXAndYAndAnchor.x: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithXAndYAndAnchor.x: \(raw)") }
       return CGFloat(number)
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing scaleEffectWithXAndYAndAnchor.y") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithXAndYAndAnchor.y: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithXAndYAndAnchor.y: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: SwiftUI.UnitPoint = {
@@ -7959,7 +8270,7 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
     switch value {
 
       case "automatic": self.searchDictationBehavior(SwiftUI.TextInputDictationBehavior.automatic)
-    default: let _ = preconditionFailure("invalid searchDictationBehavior: \(value)")
+    default: self.searchDictationBehavior(oneNativeSDKValueTextInputDictationBehavior(value, "searchDictationBehavior"))
     }
   }
 
@@ -8105,7 +8416,7 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
 if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
         preconditionFailure("unavailable sensoryFeedback.feedback: \(raw)")
       case "impact": return SwiftUI.SensoryFeedback.impact
-      default: preconditionFailure("invalid sensoryFeedback.feedback: \(raw)")
+      default: return oneNativeSDKValueSensoryFeedback(raw, "sensoryFeedback.feedback")
       }
     }()
     let argument1: Swift.String = {
@@ -8144,22 +8455,22 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid shadow.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "shadow.color")
       }
     }()
     let argument1: CoreFoundation.CGFloat = {
       guard let raw = values[1] else { preconditionFailure("missing shadow.radius") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid shadow.radius: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid shadow.radius: \(raw)") }
       return CGFloat(number)
     }()
     let argument2: CoreFoundation.CGFloat = {
       guard let raw = values[2] else { preconditionFailure("missing shadow.x") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid shadow.x: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid shadow.x: \(raw)") }
       return CGFloat(number)
     }()
     let argument3: CoreFoundation.CGFloat = {
       guard let raw = values[3] else { preconditionFailure("missing shadow.y") }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid shadow.y: \(raw)") }
+      guard let number = oneNativeStyleNumber(raw), number.isFinite else { preconditionFailure("invalid shadow.y: \(raw)") }
       return CGFloat(number)
     }()
     self.shadow(color: argument0, radius: argument1, x: argument2, y: argument3)
@@ -8189,44 +8500,118 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSimultaneousGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    switch value {
+    let record = OneNativeSDKRecord(value, "simultaneousGesture")
+    switch record.kind {
     case "drag":
-      self.simultaneousGesture(SwiftUI.DragGesture().onEnded({ item in
-        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+      let binding = OneNativeDragBinding(record)
+      let changed = record.boolean("onChanged") == true
+      if changed || binding != nil {
+        self.modifier(OneNativeDragHost(attachment: .simultaneousGesture, gesture: SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "simultaneousGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)), binding: binding, changed: changed ? { item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.drag event") }
+        emit("simultaneousGesture.onChanged", encoded)
+      } : nil, ended: { item, snapTarget in
+        var payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        if let snapTarget { payload["snapTarget"] = snapTarget }
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.drag event") }
         emit("simultaneousGesture", encoded)
       }))
+      } else {
+        self.simultaneousGesture(SwiftUI.DragGesture(minimumDistance: (record.number("minimumDistance").map { CoreFoundation.CGFloat($0) } ?? 10), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "simultaneousGesture.drag" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any]), "translation": (["width": Double(item.translation.width), "height": Double(item.translation.height)] as [String: Any]), "velocity": (["width": Double(item.velocity.width), "height": Double(item.velocity.height)] as [String: Any]), "predictedEndLocation": (["x": Double(item.predictedEndLocation.x), "y": Double(item.predictedEndLocation.y)] as [String: Any]), "predictedEndTranslation": (["width": Double(item.predictedEndTranslation.width), "height": Double(item.predictedEndTranslation.height)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.drag event") }
+        emit("simultaneousGesture", encoded)
+      }))
+      }
     case "longPress":
-      self.simultaneousGesture(SwiftUI.LongPressGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.simultaneousGesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onChanged({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.longPress event") }
+        emit("simultaneousGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = item
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.longPress event") }
         emit("simultaneousGesture", encoded)
       }))
+      } else {
+        self.simultaneousGesture(SwiftUI.LongPressGesture(minimumDuration: (record.number("minimumDuration") ?? 0.5), maximumDistance: (record.number("maximumDistance").map { CoreFoundation.CGFloat($0) } ?? 10)).onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.longPress event") }
+        emit("simultaneousGesture", encoded)
+      }))
+      }
     case "magnify":
-      self.simultaneousGesture(SwiftUI.MagnifyGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.simultaneousGesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onChanged({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.magnify event") }
+        emit("simultaneousGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.magnify event") }
         emit("simultaneousGesture", encoded)
       }))
+      } else {
+        self.simultaneousGesture(SwiftUI.MagnifyGesture(minimumScaleDelta: (record.number("minimumScaleDelta").map { CoreFoundation.CGFloat($0) } ?? 0.01)).onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.magnify event") }
+        emit("simultaneousGesture", encoded)
+      }))
+      }
     case "rotate":
-      self.simultaneousGesture(SwiftUI.RotateGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.simultaneousGesture(SwiftUI.RotateGesture().onChanged({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.rotate event") }
+        emit("simultaneousGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.rotate event") }
         emit("simultaneousGesture", encoded)
       }))
+      } else {
+        self.simultaneousGesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.rotate event") }
+        emit("simultaneousGesture", encoded)
+      }))
+      }
     case "spatialTap":
-      self.simultaneousGesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+      if record.boolean("onChanged") == true {
+        self.simultaneousGesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "simultaneousGesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onChanged({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.spatialTap event") }
+        emit("simultaneousGesture.onChanged", encoded)
+      }).onEnded({ item in
         let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
         guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.spatialTap event") }
         emit("simultaneousGesture", encoded)
       }))
+      } else {
+        self.simultaneousGesture(SwiftUI.SpatialTapGesture(count: (record.integer("count") ?? 1), coordinateSpace: (record.fields["coordinateSpace"].map { oneNativeSDKValueCoordinateSpace($0, "simultaneousGesture.spatialTap" + ".coordinateSpace") } ?? SwiftUI.CoordinateSpace.local)).onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.spatialTap event") }
+        emit("simultaneousGesture", encoded)
+      }))
+      }
     case "tap":
-      self.simultaneousGesture(SwiftUI.TapGesture().onEnded({ _ in emit("simultaneousGesture", "") }))
+      self.simultaneousGesture(SwiftUI.TapGesture(count: (record.integer("count") ?? 1)).onEnded({ _ in emit("simultaneousGesture", "") }))
     default: let _ = preconditionFailure("invalid simultaneousGesture: \(value)")
     }
   }
@@ -8252,7 +8637,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSpeechAdjustedPitch(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.speechAdjustedPitch(number)
       } else { preconditionFailure("invalid speechAdjustedPitch: \(value)") }
   }
@@ -8418,7 +8803,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid strikethrough.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "strikethrough.color")
       }
     }()
     self.strikethrough(argument0, pattern: argument1, color: argument2)
@@ -8841,7 +9226,32 @@ self
       case "page": self.tabViewStyle(.page)
       case "tabBarOnly": if #available(iOS 18, *) { self.tabViewStyle(.tabBarOnly) } else { self }
       case "automatic": self.tabViewStyle(.automatic)
-    default: let _ = preconditionFailure("invalid tabViewStyle: \(value)")
+    default:
+      let record = OneNativeSDKRecord(value, "tabViewStyle")
+      switch record.kind {
+      case "sidebarAdaptable":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: if #available(iOS 18, *) { self.tabViewStyle(.sidebarAdaptable) } else { self }
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "page":
+        switch record.overload([(labels: [], required: []), (labels: ["indexDisplayMode"], required: ["indexDisplayMode"])], chain: []) {
+        case 0: self.tabViewStyle(.page)
+        case 1: self.tabViewStyle(.page(indexDisplayMode: record.fields["indexDisplayMode"].map { oneNativeSDKValuePageTabViewStyleIndexDisplayMode($0, record.context + ".indexDisplayMode") }!))
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "tabBarOnly":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: if #available(iOS 18, *) { self.tabViewStyle(.tabBarOnly) } else { self }
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      case "automatic":
+        switch record.overload([(labels: [], required: [])], chain: []) {
+        case 0: self.tabViewStyle(.automatic)
+        default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+        }
+      default: let _ = preconditionFailure("invalid \(record.context): \(record.kind)")
+      }
     }
   }
 
@@ -9120,7 +9530,7 @@ if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Se
       case "clear": self.tint(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.tint(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.tint(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: let _ = preconditionFailure("invalid tintWithOptionalColor: \(value)")
+    default: self.tint(oneNativeSDKValueColor(value, "tintWithOptionalColor") as SwiftUI.Color?)
     }
   }
 
@@ -9536,7 +9946,7 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTracking(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.tracking(CGFloat(number))
       } else { preconditionFailure("invalid tracking: \(value)") }
   }
@@ -9662,13 +10072,13 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentDefaultMinListRowHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.transformEnvironment(\.defaultMinListRowHeight, transform: { environmentValue in environmentValue += CGFloat(number) })
       } else { preconditionFailure("invalid transformEnvironmentDefaultMinListRowHeight: \(value)") }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentDisplayScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.transformEnvironment(\.displayScale, transform: { environmentValue in environmentValue += CGFloat(number) })
       } else { preconditionFailure("invalid transformEnvironmentDisplayScale: \(value)") }
   }
@@ -9704,13 +10114,13 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.transformEnvironment(\.lineSpacing, transform: { environmentValue in environmentValue += CGFloat(number) })
       } else { preconditionFailure("invalid transformEnvironmentLineSpacing: \(value)") }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentMinimumScaleFactor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.transformEnvironment(\.minimumScaleFactor, transform: { environmentValue in environmentValue += CGFloat(number) })
       } else { preconditionFailure("invalid transformEnvironmentMinimumScaleFactor: \(value)") }
   }
@@ -9742,7 +10152,7 @@ self
       case "slide": self.transition(SwiftUI.AnyTransition.slide)
       case "identity": self.transition(SwiftUI.AnyTransition.identity)
       case "scale": self.transition(SwiftUI.AnyTransition.scale)
-    default: let _ = preconditionFailure("invalid transition: \(value)")
+    default: self.transition(oneNativeSDKValueAnyTransition(value, "transition"))
     }
   }
 
@@ -9864,7 +10274,7 @@ self
       case "clear": return SwiftUI.Color.clear
       case "primary": return SwiftUI.Color.primary
       case "secondary": return SwiftUI.Color.secondary
-      default: preconditionFailure("invalid underline.color: \(raw)")
+      default: return oneNativeSDKValueColor(raw, "underline.color")
       }
     }()
     self.underline(argument0, pattern: argument1, color: argument2)
@@ -10128,7 +10538,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKZIndex(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if let number = Double(value), number.isFinite {
+      if let number = oneNativeStyleNumber(value), number.isFinite {
         self.zIndex(number)
       } else { preconditionFailure("invalid zIndex: \(value)") }
   }

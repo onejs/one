@@ -32,9 +32,9 @@ order and position. Full definitions are in the header of `../fixtures/tab-bar-o
 
 ## The fixture renders full screen
 
-The `one-native` conformance fixture wraps `Swift.Tabs` in a 16pt-padded card, so SwiftUI lays
+The `one-native` conformance fixture wraps `Swift.TabView` in a 16pt-padded card, so SwiftUI lays
 the bar out in a 361pt-wide container and every absolute x is shifted. This oracle's fixture has
-no container: `Swift.Tabs` fills the window, so an x here is a real screen coordinate, directly
+no container: `Swift.TabView` fills the window, so an x here is a real screen coordinate, directly
 comparable to a full-screen model like peach's. The earlier `/tmp/one-native-actiontab` captures
 are NOT comparable to this table in absolute terms.
 
@@ -154,7 +154,7 @@ Skipped, with the reason each cannot interact:
 - Ink boxes are ink, not frames. A glyph's ink box is the painted pixels of the SF Symbol, which
   is smaller than the frame SwiftUI lays out for it, and a label's ink box is the painted text,
   which depends on the string. Compare ink to ink, never ink to a layout constant.
-- `title: ''` is how an icon-only tab is expressed, because `TabProps.title` is required. That is
+- `titleKey: ''` is how an icon-only tab is expressed, because `TabProps.titleKey` is required. That is
   not the same thing as a SwiftUI `Tab` built without a label, and the cell is labelled as what
   it is.
 
@@ -364,7 +364,7 @@ frames. The two methods share no step; where they disagree, the step reading is 
 TESTED: a positive control proves the prop is threaded and read, since a bogus value raises
 `Unknown SwiftUI TabBarMinimizeBehavior` out of `assertSwiftUIValue` in
 `packages/one/src/platform/generated/swiftui.ts`, and the device is iOS 26 so nothing is version
-gated. READ: `OneNativeTabsView.swift:122` applies `.oneNativeTabBarMinimizeBehavior`, and each tab
+gated. READ: `OneNativeTabViewView.swift:122` applies `.oneNativeTabBarMinimizeBehavior`, and each tab
 hosts `OneNativeSlot(content: page.view)` where `page.view` is a `UIView`. There is no SwiftUI
 `ScrollView` anywhere in the hierarchy, and `one` exposes no native scroll container.
 

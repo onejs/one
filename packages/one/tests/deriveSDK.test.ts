@@ -153,6 +153,28 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('keeps numeric range overloads beside scalar lineLimit variants', () => {
+    expect(deriveModifiers([
+      method('lineLimit', 'SwiftUICore', [{ label: '_', name: 'limit', type: 'Swift.Int?' }]),
+      method('lineLimit', 'SwiftUICore', [{ label: '_', name: 'limit', type: 'Swift.ClosedRange<Swift.Int>' }]),
+      method('lineLimit', 'SwiftUICore', [{ label: '_', name: 'limit', type: 'Swift.PartialRangeFrom<Swift.Int>' }]),
+    ], 27, [])).toEqual([
+      { name: 'lineLimitWithClosedRange', sdkName: 'lineLimit', module: 'SwiftUICore',
+        kind: 'record', type: '', ios: 0, aliasSuffix: 'ClosedRange',
+        arguments: [{ field: 'limit', label: '_', kind: 'numericRange',
+          type: 'Swift.ClosedRange<Swift.Int>', optional: false,
+          fields: [{ name: 'lower', label: 'lower', type: 'Swift.Int' },
+            { name: 'upper', label: 'upper', type: 'Swift.Int' }] }] },
+      { name: 'lineLimitWithOptionalInt', sdkName: 'lineLimit', module: 'SwiftUICore',
+        kind: 'optionalNumber', type: 'Swift.Int?', ios: 0 },
+      { name: 'lineLimitWithPartialRangeFrom', sdkName: 'lineLimit', module: 'SwiftUICore',
+        kind: 'record', type: '', ios: 0, aliasSuffix: 'PartialRangeFrom',
+        arguments: [{ field: 'limit', label: '_', kind: 'numericRange',
+          type: 'Swift.PartialRangeFrom<Swift.Int>', optional: false,
+          fields: [{ name: 'lower', label: 'lower', type: 'Swift.Int' }] }] },
+    ])
+  })
+
   it('derives a string backed SDK value from its public raw value initializer', () => {
     expect(deriveModifiers([
       method('previewDevice', 'SwiftUI', [{ label: '_', name: 'device', type: 'SwiftUI.PreviewDevice?' }]),
@@ -898,11 +920,16 @@ describe('SDK view slots', () => {
         { label: 'for', name: 'placement', type: 'SwiftUI.ContentToolbarPlacement' }, content,
       ]), requirements: requirement },
       { ...method('placement', 'SwiftUI'), kind: 'static', owner: 'ContentToolbarPlacement', type: 'SwiftUI.ContentToolbarPlacement' },
+      { ...method('leading', 'SwiftUICore'), kind: 'static', owner: 'HorizontalEdge', type: 'HorizontalEdge' },
+      { ...method('trailing', 'SwiftUICore'), kind: 'static', owner: 'HorizontalEdge', type: 'HorizontalEdge' },
     ], 27)).toEqual([
       { name: 'accessibilityChildren', module: 'SwiftUI', label: 'children', ios: 0, arguments: [] },
       { name: 'contentToolbar', module: 'SwiftUI', label: 'content', ios: 0, arguments: [{ field: 'placement', label: 'for', type: 'SwiftUI.ContentToolbarPlacement', kind: 'enum', optional: false, cases: [{ name: 'placement', ios: 0 }] }] },
       { name: 'searchSuggestions', module: 'SwiftUI', label: '_', ios: 0, arguments: [] },
-      { name: 'swipeActions', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
+      { name: 'swipeActions', module: 'SwiftUI', label: 'content', ios: 0, arguments: [
+        { field: 'edge', label: 'edge', type: 'SwiftUICore.HorizontalEdge', kind: 'enum', optional: false, cases: [{ name: 'leading', ios: 0 }, { name: 'trailing', ios: 0 }], defaulted: true },
+        { field: 'allowsFullSwipe', label: 'allowsFullSwipe', type: 'Swift.Bool', kind: 'boolean', optional: false, defaulted: true },
+      ] },
       { name: 'tabViewBottomAccessory', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
       { name: 'tabViewBottomAccessoryWithBool', sdkName: 'tabViewBottomAccessory', module: 'SwiftUI', label: 'content', ios: 0, arguments: [
         { field: 'isEnabled', label: 'isEnabled', type: 'Swift.Bool', kind: 'boolean', optional: false },
@@ -916,16 +943,78 @@ describe('SDK view slots', () => {
     const requirements = ['V : SwiftUICore.View']
     expect(deriveViewSlots([
       { ...method('safeAreaInset', 'SwiftUICore', [
-        { label: 'edge', name: 'edge', type: 'SwiftUICore.VerticalEdge' }, content,
+        { label: 'edge', name: 'edge', type: 'SwiftUICore.VerticalEdge' },
+        { label: 'alignment', name: 'alignment', type: 'SwiftUICore.HorizontalAlignment', defaultValue: '.center' },
+        { label: 'spacing', name: 'spacing', type: 'CoreFoundation.CGFloat?', defaultValue: 'nil' },
+        content,
       ]), requirements },
       { ...method('safeAreaInset', 'SwiftUICore', [
-        { label: 'edge', name: 'edge', type: 'SwiftUICore.HorizontalEdge' }, content,
+        { label: 'edge', name: 'edge', type: 'SwiftUICore.HorizontalEdge' },
+        { label: 'alignment', name: 'alignment', type: 'SwiftUICore.VerticalAlignment', defaultValue: '.center' },
+        { label: 'spacing', name: 'spacing', type: 'CoreFoundation.CGFloat?', defaultValue: 'nil' },
+        content,
       ]), requirements },
       { ...method('top', 'SwiftUICore'), kind: 'static', owner: 'VerticalEdge', type: 'VerticalEdge' },
       { ...method('leading', 'SwiftUICore'), kind: 'static', owner: 'HorizontalEdge', type: 'HorizontalEdge' },
+      { ...method('center', 'SwiftUICore'), kind: 'static', owner: 'HorizontalAlignment', type: 'HorizontalAlignment' },
+      { ...method('center', 'SwiftUICore'), kind: 'static', owner: 'VerticalAlignment', type: 'VerticalAlignment' },
     ], 27)).toEqual([
-      { name: 'safeAreaInsetWithHorizontalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [{ field: 'edge', label: 'edge', type: 'SwiftUICore.HorizontalEdge', kind: 'enum', optional: false, cases: [{ name: 'leading', ios: 0 }] }] },
-      { name: 'safeAreaInsetWithVerticalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [{ field: 'edge', label: 'edge', type: 'SwiftUICore.VerticalEdge', kind: 'enum', optional: false, cases: [{ name: 'top', ios: 0 }] }] },
+      { name: 'safeAreaInsetWithHorizontalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [
+        { field: 'edge', label: 'edge', type: 'SwiftUICore.HorizontalEdge', kind: 'enum', optional: false, cases: [{ name: 'leading', ios: 0 }] },
+        { field: 'alignment', label: 'alignment', type: 'SwiftUICore.VerticalAlignment', kind: 'enum', optional: false, cases: [{ name: 'center', ios: 0 }], defaulted: true },
+        { field: 'spacing', label: 'spacing', type: 'CoreFoundation.CGFloat?', kind: 'number', optional: true, defaulted: true },
+      ] },
+      { name: 'safeAreaInsetWithVerticalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [
+        { field: 'edge', label: 'edge', type: 'SwiftUICore.VerticalEdge', kind: 'enum', optional: false, cases: [{ name: 'top', ios: 0 }] },
+        { field: 'alignment', label: 'alignment', type: 'SwiftUICore.HorizontalAlignment', kind: 'enum', optional: false, cases: [{ name: 'center', ios: 0 }], defaulted: true },
+        { field: 'spacing', label: 'spacing', type: 'CoreFoundation.CGFloat?', kind: 'number', optional: true, defaulted: true },
+      ] },
+    ])
+  })
+
+  it('keeps defaulted bridgeable arguments and rejects the rest', () => {
+    expect(deriveViewSlots([
+      { ...method('popover', 'SwiftUI', [
+        { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+        { label: 'attachmentAnchor', name: 'attachmentAnchor', type: 'SwiftUI.PopoverAttachmentAnchor', defaultValue: '.rect(.bounds)' },
+        { label: 'arrowEdge', name: 'arrowEdge', type: 'SwiftUICore.Edge?', defaultValue: 'nil' },
+        { label: 'content', name: 'content', type: '@escaping () -> Content' },
+      ]), requirements: ['Content : SwiftUICore.View'] },
+      { ...method('top', 'SwiftUICore'), kind: 'static', owner: 'Edge', type: 'Edge' },
+      { ...method('bottom', 'SwiftUICore'), kind: 'static', owner: 'Edge', type: 'Edge' },
+    ], 27)).toEqual([{
+      name: 'popover', module: 'SwiftUI', label: 'content', ios: 0,
+      arguments: [
+        { field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false },
+        { field: 'arrowEdge', label: 'arrowEdge', type: 'SwiftUICore.Edge?', kind: 'enum', optional: true, cases: [{ name: 'top', ios: 0 }, { name: 'bottom', ios: 0 }], defaulted: true },
+      ],
+    }])
+  })
+
+  it('rejects defaulted arguments newer than the slot', () => {
+    expect(deriveViewSlots([
+      { ...method('overlay', 'SwiftUICore', [
+        { label: 'alignment', name: 'alignment', type: 'SwiftUICore.Alignment', defaultValue: '.center' },
+        { label: 'content', name: 'content', type: '() -> V' },
+      ]), requirements: ['V : SwiftUICore.View'] },
+      { ...method('Alignment', 'SwiftUICore'), kind: 'struct', owner: '', attributes: ['@available(iOS 18, *)'] },
+      { ...method('center', 'SwiftUICore'), kind: 'static', owner: 'Alignment', type: 'Alignment' },
+    ], 27)).toEqual([
+      { name: 'overlay', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [] },
+    ])
+  })
+
+  it('keeps required arguments only past three presence branches', () => {
+    expect(deriveViewSlots([
+      { ...method('overlay', 'SwiftUICore', [
+        { label: 'a', name: 'a', type: 'Swift.Bool', defaultValue: 'true' },
+        { label: 'b', name: 'b', type: 'Swift.Bool', defaultValue: 'true' },
+        { label: 'c', name: 'c', type: 'Swift.Bool', defaultValue: 'true' },
+        { label: 'd', name: 'd', type: 'Swift.Bool', defaultValue: 'true' },
+        { label: 'content', name: 'content', type: '() -> V' },
+      ]), requirements: ['V : SwiftUICore.View'] },
+    ], 27)).toEqual([
+      { name: 'overlay', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [] },
     ])
   })
 

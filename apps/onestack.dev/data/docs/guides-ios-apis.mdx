@@ -1,0 +1,68 @@
+---
+title: Calling iOS APIs
+description: Find generated bindings for Apple's iOS frameworks.
+---
+
+The [iOS API reference](/ios-reference) lists the frameworks, types and members included in One's generated SDK bindings. It lives separately from these guides because it is regenerated from the same SDK symbol graphs and binding entries as the native code.
+
+Start with a framework such as [CoreBluetooth](/ios-reference/CoreBluetooth), then choose a type such as [CBCentralManager](/ios-reference/CoreBluetooth/CBCentralManager). Each type page shows its Swift declarations, available TypeScript call shapes, iOS availability and any SDK documentation comments. Search the reference sidebar to find a type across frameworks.
+
+Coverage describes the generated snapshot. A framework page also lists skipped declarations and explains why each is unavailable. Check the declaration's iOS version before calling it. Your app still needs Apple's required permissions, usage descriptions and entitlements.
+
+For APIs with output parameters, leave those parameters out of the call. The returned object contains `$ret` for the return value and `$out` for the named output values.
+
+## Background method calls
+
+Use `callSDKMethodAsync` from `one/ios-runtime` to await an instance method that does blocking native work. It keeps the generated method's argument and return types:
+
+```tsx
+import type { CNContactStore, CNSaveRequest } from 'one/ios/Contacts'
+import { callSDKMethodAsync } from 'one/ios-runtime'
+
+async function saveContacts(store: CNContactStore, request: CNSaveRequest) {
+  await callSDKMethodAsync(store, 'execute', request)
+}
+```
+
+A synchronous method runs on a background queue when it has no main actor requirement. Main actor methods and native async methods retain their declared execution rules. Choose a background call only for APIs that support background access. Methods requiring synchronous JavaScript callbacks are rejected before native execution.
+
+Native failures throw an `Error` with `code: 'E_SDK'`, the original NSError `domain`, and its numeric `nativeCode`. Use these fields to classify a failure independently of its localized message. Calls, returned functions, and subscription errors preserve the same metadata.
+
+## React state from native objects
+
+Two hooks from `one/ios-runtime` turn changing native values into React state. Each returns `{ status, value, error }`, where `status` is `'pending'`, `'value'` or `'error'`. Subscriptions start when the component mounts and stop when it unmounts or its arguments change.
+
+`useSDKProperty(object, property)` rerenders when a native property changes:
+
+```tsx
+import { Text } from 'react-native'
+import { Progress } from 'one/ios/Foundation'
+import { useSDKProperty } from 'one/ios-runtime'
+
+function DownloadProgress({ progress }: { progress: Progress }) {
+  const state = useSDKProperty(progress, 'fractionCompleted')
+  return <Text>{state.value ?? 0}</Text>
+}
+```
+
+The generator chooses how to watch each property. Objective-C properties use key-value observing, and properties of Swift classes that adopt `Observable` use Observation tracking. TypeScript only accepts properties that can be watched one of these ways. Key-value observing reports a change only when the framework sends one, so check Apple's documentation to see whether a property supports it.
+
+`useSDKSequence(handle)` follows an `AsyncSequence` or a Combine publisher and holds its latest element:
+
+```tsx
+import { Text } from 'react-native'
+import { NotificationCenter, NSNotification_Name } from 'one/ios/Foundation'
+import { useSDKSequence } from 'one/ios-runtime'
+
+const name = NSNotification_Name.init('app.refresh')
+const notifications = NotificationCenter.default.notifications(name)
+
+function LastRefresh() {
+  const state = useSDKSequence(notifications)
+  return <Text>{state.status === 'value' ? String(state.value.object) : 'waiting'}</Text>
+}
+```
+
+The element type comes from the declaration, so `state.value` above is a `Notification`. An async sequence keeps iterating while no component listens, and a remounted component starts from its latest element. A publisher subscription starts fresh on each mount. Keep a handle you create in `useMemo` or module scope; a new handle on every render starts a new subscription. Pass `null` or `undefined` to leave the hook pending.
+
+For app setup and custom native modules, see [One Native setup](/docs/native-setup) and [Swift and Kotlin](/docs/native-source).

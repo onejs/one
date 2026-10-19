@@ -25,6 +25,14 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
+  'iOS.UIKitView':
+    'calendar view identity and accessibility proven; collection, table and stack integration suite unrun',
+  'iOS.UIKitContent':
+    'collection, table and stack fixture registered; iOS Fabric layout, reuse, touches and accessibility unproven',
+  'iOS.collectionCellSource':
+    'collection fixture registered; iOS cell sizing, updates and reuse unproven',
+  'iOS.tableCellSource':
+    'table fixture registered; iOS row sizing, updates and reuse unproven',
   usePreventScreenCapture:
     'Android 37 emulator mount/unmount and manual-hold overlap proven with FLAG_SECURE pixels; iOS suite steps unrun',
   'Android.BasicAlertDialog':
@@ -127,7 +135,7 @@ const read = (path: string) => readFileSync(join(fixtureRoot, path), 'utf8')
 
 // a suite's proof surface is the route it opens, a file or a directory, plus
 // every fixture it reaches through relative imports
-function routeSource(route: string): string {
+function routeSource(route: string, platform: Platform): string {
   const entry = join(fixtureRoot, 'app', route)
   const files = existsSync(`${entry}.tsx`)
     ? [`${entry}.tsx`]
@@ -143,9 +151,19 @@ function routeSource(route: string): string {
     sources.push(source)
     for (const [, specifier] of source.matchAll(/from '(\.\.?\/[^']+)'/g)) {
       const base = join(dirname(file), specifier)
-      for (const ext of ['.tsx', '.native.tsx', '.ts', '/index.tsx']) {
-        if (existsSync(`${base}${ext}`)) visit(`${base}${ext}`)
-      }
+      const extensions = [
+        `.${platform}.tsx`,
+        `.${platform}.ts`,
+        '.native.tsx',
+        '.native.ts',
+        '.tsx',
+        '.ts',
+        `/index.${platform}.tsx`,
+        '/index.native.tsx',
+        '/index.tsx',
+      ]
+      const resolved = extensions.map((ext) => `${base}${ext}`).find(existsSync)
+      if (resolved) visit(resolved)
     }
   }
   files.forEach(visit)
@@ -250,7 +268,7 @@ test('every One namespace member has a conformance fixture reference or a docume
     ['android', androidSuites()],
   ] as const) {
     for (const { suite, route } of suites) {
-      const used = exportsUsed(routeSource(route))
+      const used = exportsUsed(routeSource(route, platform))
       // controlled input checks do not replace the dedicated hook lifetime suite.
       if (platform === 'android' && route === 'one-ui-text-input')
         used.delete('useNativeState')

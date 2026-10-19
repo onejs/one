@@ -1,0 +1,18 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-calendar
+- tapOn:
+    text: 'Open'
+    optional: true
+- assertVisible: 'Reminders permission: fullAccess'
+- tapOn:
+    id: one-native-reminders-run
+- assertVisible: 'Reminders status: done'
+- assertVisible: 'Reminders result: before=none; matched=true; completedHidden=true; updated=true; removed=true; notFound=E_REMINDERS_NOT_FOUND; invalid=E_REMINDERS_INPUT; invalidLimit=E_REMINDERS_INPUT; recurrenceListed=true; recurrenceRemoved=true; invalidRecurrence=E_REMINDERS_INPUT'

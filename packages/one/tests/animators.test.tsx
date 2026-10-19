@@ -71,7 +71,9 @@ describe('PhaseAnimator', () => {
     const renderer = mount(
       <Animators.PhaseAnimator
         phases={[0, 1, 2]}
-        animation={(phase) => (phase === 2 ? null : 'snappy')}
+        animation={(phase) => phase === 2 ? null : phase === 1
+          ? { kind: 'easeOut', duration: 0.75 }
+          : 'snappy'}
       >
         {(phase) => (
           <Box
@@ -83,7 +85,9 @@ describe('PhaseAnimator', () => {
       </Animators.PhaseAnimator>
     )
     const native = stub(renderer, 'OneNativePhaseAnimator')
-    expect(JSON.parse(native.props.animations)).toEqual(['snappy', 'snappy', null])
+    expect(JSON.parse(native.props.animations)).toEqual([
+      'snappy', '{"kind":"easeOut","duration":0.75}', null,
+    ])
     expect(native.props.hasTrigger).toBe(false)
     const box = renderer.root.findByType(Box)
     // callbacks come from the first evaluation and visible fields are phase 0's.

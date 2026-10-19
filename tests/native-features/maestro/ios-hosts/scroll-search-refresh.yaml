@@ -1,0 +1,48 @@
+appId: dev.vxrn.native.tests
+name: scroll-search-refresh
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-scroll-search-refresh
+      ANCHOR: "Refresh: 0 started, 0 completed"
+- assertVisible: "Apple"
+- assertVisible: "Query: "
+- takeScreenshot: scroll-search-refresh-initial
+# pull to refresh inside the native ScrollView (screen 45% -> 80%)
+- swipe:
+    start: "201,457"
+    end: "201,722"
+    duration: 800
+- assertVisible: "Refresh: 1 started, 0 completed"
+- takeScreenshot: scroll-search-refresh-pending
+- tapOn:
+    id: one-native-scroll-refresh-release
+- assertVisible: "Refresh: 1 started, 1 completed"
+- swipe:
+    start: "201,457"
+    end: "201,722"
+    duration: 800
+- assertVisible: "Refresh: 2 started, 1 completed"
+- tapOn:
+    id: one-native-scroll-refresh-release
+- assertVisible: "Refresh: 2 started, 2 completed"
+# controlled search from React
+- tapOn:
+    id: one-native-scroll-search-external
+- assertVisible: "Query: pear"
+- assertVisible: "Pear"
+- assertNotVisible: "Apple"
+- takeScreenshot: scroll-search-refresh-external
+- tapOn:
+    id: one-native-scroll-search-clear
+- assertVisible: "Apple"
+- assertNotVisible: "Query: pear"
+# native search edit
+- tapOn: "Search"
+- inputText: "pea"
+- assertVisible: "Query: pea"
+- assertVisible: "Pear"
+- assertVisible: "Peach"
+- assertNotVisible: "Apple"
+- takeScreenshot: scroll-search-refresh-typed

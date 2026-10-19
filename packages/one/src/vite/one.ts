@@ -36,6 +36,7 @@ import { imageDataPlugin } from './plugins/imageDataPlugin'
 import { createRouteModuleHmrPlugin } from './plugins/routeModuleHmrPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
 import { swiftPackagePlugin } from './plugins/swiftPackagePlugin'
+import { iosSdkPlugin } from './plugins/iosSdkPlugin'
 import { kotlinSourcePlugin } from './plugins/kotlinSourcePlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
@@ -951,6 +952,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         // last, so an app plugin that compiles .swift itself (a simulator) wins
         swiftPackagePlugin(platform, root),
         kotlinSourcePlugin(platform, root),
+        iosSdkPlugin(platform, root),
       ]
     }
     ;(globalThis as any).__vxrnNativeUserDefine = {

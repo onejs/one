@@ -1,13 +1,18 @@
+import { collectValues, valueKey } from './emitValues'
 import { containerComponents, contentComponents, emitContainers, environmentMethods } from './emitContainers'
 import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { animatorComponents, emitAnimators } from './emitAnimators'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls as curatedControls } from './controlCatalog'
 import { emitControls } from './emitControls'
+import { emitContainerHosts } from './emitContainerHosts'
 import { emitStyle } from './emitStyle'
 import { sdkGuard } from './sdkGuard'
 import { deriveModifiers, deriveViewSlots, deriveViews } from './deriveSDK'
 import { emitMenuValidator } from './menuValidator'
+import { emitMenuHost } from './emitMenuHost'
+import { emitNavigationHost } from './emitNavigation'
+import { emitTabViewHost } from './emitTabViewHost'
 import {
   readInventory,
   ios,
@@ -380,7 +385,7 @@ for (const slot of derivedViewSlots) {
             (d.requirements?.includes(`${/^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$/.exec(parameter.type)?.[1]} : SwiftUICore.View`) ?? false))) &&
     d.parameters.filter((parameter, index) => index !== d.parameters.length - 1 &&
       parameter.defaultValue === undefined).map((parameter) => parameter.type).join('|') ===
-      slot.arguments.map((argument) => argument.type).join('|'))
+      slot.arguments.filter((argument) => !argument.defaulted).map((argument) => argument.type).join('|'))
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
   coverGeneratedModifier(declaration)
@@ -452,9 +457,10 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
   derivedModifiers,
   controls
 ) ?? { schema: [], payloads: {} }
-emitSheet(header, outputs)
+emitSheet(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
 emitContainers(header, outputs, styleFields)
-emitPopover(header, outputs)
+emitContainerHosts(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS, [...components, ...containerComponents, ...contentComponents, ...popoverComponents] as never)
+emitPopover(header, outputs, styleFields)
 emitAnimators(header, outputs)
 emitStyle(header, outputs, styleFields, derivedModifiers, derivedViewSlots)
 // the sync-state TurboModule spec: pod-install and gradle codegen read it from
@@ -884,6 +890,9 @@ ${Object.entries(nativeFields)
 #endif
 `
 )
+emitMenuHost(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
+emitNavigationHost(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
+emitTabViewHost(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS)
 const manifest = {
   // the ceiling, not the local toolchain: output must be identical on every SDK at or above it.
   sdk: String(MAXIMUM_IOS),
@@ -909,6 +918,8 @@ const manifest = {
   enums,
   modifiers: methods,
   derivedModifiers,
+  // SDK value types once each; modifiers, arguments and parameters name them by key.
+  values: Object.fromEntries(collectValues(derivedModifiers)),
   // the hill-climb sets codegen/coverage.ts reports against: bound view types and
   // view modifier names per SDK module, collected at every selection site above.
   coverage: {
@@ -933,7 +944,8 @@ const manifest = {
       ios: ios(d),
     })),
 }
-outputs.set('codegen/swiftui-manifest.json', JSON.stringify(manifest, null, 2) + '\n')
+outputs.set('codegen/swiftui-manifest.json', JSON.stringify(manifest, (key, value) =>
+  key === 'value' && value?.factories ? valueKey(value.type) : value, 2) + '\n')
 const packagePath = join(root, 'package.json')
 const packageMetadata = JSON.parse(readFileSync(packagePath, 'utf8'))
 packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
@@ -1032,6 +1044,8 @@ run(swiftc, [
   sdk,
   '-target',
   `arm64-apple-ios${MINIMUM_IOS}.0-simulator`,
+  // top-level UIKit content hosts use the fixed sdk runtime's error types.
+  join(root, 'ios/SDK/OneSDKRuntime.swift'),
   ...['ios', 'ios/Generated'].flatMap((dir) =>
     readdirSync(join(root, dir))
       .filter((file) => file.endsWith('.swift'))

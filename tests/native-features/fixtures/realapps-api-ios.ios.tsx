@@ -5,18 +5,18 @@ import { Action, Boundary, Results, assert, useResults, type Report } from './re
 
 import { iosAPIs } from './realapps-api-coverage'
 
-function NativeTabs({ report }: { report: Report }) {
+function NativeTabView({ report }: { report: Report }) {
   const [selection, setSelection] = useState('first')
   const record = (api: string) =>
     report(api, 'passed', { action: 'native press', selection })
   return (
-    <One.iOS.Tabs
+    <One.iOS.TabView
       testID="realapps-api-native-tabs"
       selection={selection}
       onSelectionChange={(next) => {
         setSelection(next)
         report(
-          'One.iOS.Tabs',
+          'One.iOS.TabView',
           'passed',
           { selection: next },
           'native selection callback; runner returns to first'
@@ -30,12 +30,12 @@ function NativeTabs({ report }: { report: Report }) {
       }}
       style={{ height: 320 }}
     >
-      <One.iOS.Tab id="first" title="First" systemImage="1.circle">
+      <One.iOS.Tab value="first" titleKey="First" systemImage="1.circle">
         <View>
           <Text testID="realapps-api-tab-first">First native tab</Text>
         </View>
       </One.iOS.Tab>
-      <One.iOS.Tab id="second" title="Second" systemImage="2.circle">
+      <One.iOS.Tab value="second" titleKey="Second" systemImage="2.circle">
         <View>
           <Text testID="realapps-api-tab-second">Second native tab</Text>
         </View>
@@ -64,7 +64,7 @@ function NativeTabs({ report }: { report: Report }) {
           />
         </One.iOS.ToolbarItemGroup>
       </One.iOS.Toolbar>
-    </One.iOS.Tabs>
+    </One.iOS.TabView>
   )
 }
 
@@ -92,7 +92,7 @@ export default function IOSPrimitives() {
       </View>
       {scene === 'leaves' ? (
         <ScrollView contentContainerStyle={{ padding: 12, gap: 12 }}>
-          <One.iOS.Host
+          <One.iOS.VStack
             style={{ height: 50 }}
             onLayout={({ nativeEvent }) =>
               report(
@@ -104,7 +104,7 @@ export default function IOSPrimitives() {
             }
           >
             <One.iOS.Text text="Matrix SwiftUI text" testID="realapps-api-swift-text" />
-          </One.iOS.Host>
+          </One.iOS.VStack>
           <View
             testID="realapps-api-color"
             style={{ height: 40, backgroundColor: One.iOS.Color.systemBlue }}
@@ -118,16 +118,16 @@ export default function IOSPrimitives() {
             }
           />
           <Boundary api="One.iOS.Button" report={report}>
-            <One.iOS.Host style={{ height: 70 }}>
+            <One.iOS.VStack style={{ height: 70 }}>
               <One.iOS.Button
                 label="Native button"
                 testID="realapps-api-native-button"
                 onPress={() => report('One.iOS.Button', 'passed', { pressed: true })}
               />
-            </One.iOS.Host>
+            </One.iOS.VStack>
           </Boundary>
           <Boundary api="One.iOS.Image" report={report}>
-            <One.iOS.Host
+            <One.iOS.VStack
               style={{ height: 60 }}
               onLayout={({ nativeEvent }) =>
                 report(
@@ -145,7 +145,7 @@ export default function IOSPrimitives() {
                 systemName="checkmark.circle.fill"
                 testID="realapps-api-symbol"
               />
-            </One.iOS.Host>
+            </One.iOS.VStack>
           </Boundary>
           <Boundary api="One.iOS.Glass" report={report}>
             <View style={{ height: 90, backgroundColor: '#48a' }}>
@@ -176,7 +176,7 @@ export default function IOSPrimitives() {
             Toggle native glass
           </Action>
           <Boundary api="One.iOS.SignInWithAppleButton" report={report}>
-            <One.iOS.Host style={{ height: 60 }}>
+            <One.iOS.VStack style={{ height: 60 }}>
               <One.iOS.SignInWithAppleButton
                 testID="realapps-api-apple-signin"
                 label="signIn"
@@ -199,7 +199,7 @@ export default function IOSPrimitives() {
                   )
                 }
               />
-            </One.iOS.Host>
+            </One.iOS.VStack>
           </Boundary>
           <Boundary api="One.iOS.ZoomTransitionSource" report={report}>
             <One.iOS.ZoomTransitionSource identifier="realapps-api-zoom">
@@ -215,8 +215,8 @@ export default function IOSPrimitives() {
         </ScrollView>
       ) : null}
       {scene === 'tabs' ? (
-        <Boundary api="One.iOS.Tabs" report={report}>
-          <NativeTabs report={report} />
+        <Boundary api="One.iOS.TabView" report={report}>
+          <NativeTabView report={report} />
         </Boundary>
       ) : null}
       {scene === 'split' ? (

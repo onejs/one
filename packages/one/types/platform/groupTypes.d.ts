@@ -1,44 +1,68 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
+import type { SDKHandle } from './sdk/wire';
 import type { ZStackAlignment } from './generated/containerTypes';
 import type { SFSymbolName } from './generated/sfSymbolNames';
 import type { ControlGroupStyle } from './generated/swiftui';
+import type { OneNativeStyle, SDKPageTabViewStyleIndexDisplayModeValue } from './generated/controlTypes';
 import type { ViewSlotConfiguration } from './generated/viewSlots';
+import type { UICollectionViewDiffableDataSource, UITableViewDiffableDataSource, UIView } from 'one/ios/UIKit';
 export declare const swipeActionsEdges: readonly ['leading', 'trailing'];
 export type SwipeActionsEdge = (typeof swipeActionsEdges)[number];
 export interface ControlGroupProps extends ViewProps {
+    swiftStyle?: OneNativeStyle;
     label?: string;
     systemImage?: SFSymbolName | '';
     controlGroupStyle?: ControlGroupStyle;
     children: ReactNode;
 }
 export interface DisclosureGroupProps extends ViewProps {
+    swiftStyle?: OneNativeStyle;
     label: string;
     isExpanded: boolean;
     onIsExpandedChange: (isExpanded: boolean) => void;
     revision?: number;
     children: ReactNode;
 }
-export type DividerProps = ViewProps;
+export interface UIKitViewProps extends ViewProps {
+    view: SDKHandle;
+}
+export type UIKitContentSource = UICollectionViewDiffableDataSource<number, number> | UITableViewDiffableDataSource<number, number>;
+export interface UIKitContentProps extends ViewProps {
+    children: ReactNode;
+    onView?: (view: UIView) => void;
+    source?: UIKitContentSource;
+    item?: number;
+    height?: number;
+    estimatedHeight?: number;
+}
+export interface DividerProps extends ViewProps {
+    swiftStyle?: OneNativeStyle;
+}
 export interface LinkProps extends ViewProps {
+    swiftStyle?: OneNativeStyle;
     destination: string;
     label?: string;
     children?: ReactNode;
 }
 export interface GroupProps extends ViewProps {
+    swiftStyle?: OneNativeStyle;
     children: ReactNode;
 }
 export interface GroupBoxProps extends ViewProps {
+    swiftStyle?: OneNativeStyle;
     label?: string;
     children?: ReactNode;
 }
 export interface ViewThatFitsProps extends ViewProps {
+    swiftStyle?: OneNativeStyle;
     axes?: ViewThatFitsAxes;
     children: ReactNode;
 }
 export declare const viewThatFitsAxes: readonly ['horizontal', 'vertical', 'both'];
 export type ViewThatFitsAxes = (typeof viewThatFitsAxes)[number];
 export interface GlassEffectContainerProps extends ViewProps {
+    swiftStyle?: OneNativeStyle;
     spacing?: number;
     children: ReactNode;
 }
@@ -64,7 +88,27 @@ export interface GeometryProxy {
     frame(coordinateSpace: 'global' | 'local'): GeometryProxyFrame;
 }
 export interface GeometryReaderProps extends Omit<ViewProps, 'children'> {
+    swiftStyle?: OneNativeStyle;
     children: (geometry: GeometryProxy) => ReactNode;
+}
+export type TimelineSchedule = 'everyMinute' | {
+    type: 'periodic';
+    from: Date;
+    by: number;
+} | {
+    type: 'explicit';
+    dates: readonly Date[];
+};
+export declare const timelineCadences: readonly ['live', 'seconds', 'minutes'];
+export type TimelineCadence = (typeof timelineCadences)[number];
+export interface TimelineViewContext {
+    readonly date: Date;
+    readonly cadence: TimelineCadence;
+}
+export interface TimelineViewProps extends Omit<ViewProps, 'children'> {
+    swiftStyle?: OneNativeStyle;
+    schedule: TimelineSchedule;
+    children: (context: TimelineViewContext) => ReactNode;
 }
 export interface OverlayProps extends ViewProps {
     alignment?: ZStackAlignment;
@@ -91,6 +135,7 @@ export interface PageProps {
 }
 export interface PagerProps extends ViewProps {
     selection: string;
+    indexDisplayMode?: SDKPageTabViewStyleIndexDisplayModeValue;
     onSelectionChange: (id: string) => void;
     revision?: number;
     children: ReactNode;

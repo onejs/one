@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "description": "One is a React framework for web, iOS, and Android apps.",
   "license": "BSD-3-Clause",
   "sideEffects": [
@@ -35,6 +35,18 @@
       "types": "./types/ui/index.d.ts",
       "import": "./dist/esm/ui/index.mjs",
       "require": "./dist/cjs/ui/index.cjs"
+    },
+    "./ios/*": {
+      "types": "./ios-types/*.d.ts"
+    },
+    "./ios-runtime": {
+      "react-native": {
+        "types": "./types/ios-runtime.native.d.ts",
+        "default": "./dist/esm/ios-runtime.native.js"
+      },
+      "types": "./types/ios-runtime.d.ts",
+      "import": "./dist/esm/ios-runtime.mjs",
+      "require": "./dist/cjs/ios-runtime.cjs"
     },
     "./vite": {
       "types": "./types/vite.d.ts",
@@ -184,6 +196,8 @@
   "files": [
     "src",
     "types",
+    "ios-types",
+    "ios-bindings",
     "dist",
     "devtools",
     "vendor",
@@ -208,7 +222,7 @@
     "schema.json"
   ],
   "scripts": {
-    "build": "tamagui-build && bun codegen/staticSpecs.ts",
+    "build": "tamagui-build && bun codegen/staticSpecs.ts && bun codegen/sdk/build.ts",
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
@@ -218,6 +232,7 @@
     "typecheck": "tsc --noEmit",
     "watch": "tamagui-build --watch",
     "generate": "bun codegen/generate.ts",
+    "generate:ios-types": "bun codegen/sdk/declarations.ts",
     "generate:check": "bun codegen/generate.ts --check",
     "nitrogen": "nitrogen",
     "coverage": "bun codegen/coverage.ts",
@@ -440,6 +455,8 @@
         "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
         "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",
         "OneNativeCamera": "OneNativeCameraComponentView",
+        "OneNativeUIKitHost": "OneNativeUIKitHostComponentView",
+        "OneNativeContent": "OneNativeContentComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
         "OneNativeList": "OneNativeListComponentView",
@@ -526,7 +543,8 @@
         "OneNativeSubscriptionStoreView": "OneNativeSubscriptionStoreViewComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView",
-        "OneNativeHost": "OneNativeHostComponentView",
+        "OneNativeHStack": "OneNativeHStackComponentView",
+        "OneNativeVStack": "OneNativeVStackComponentView",
         "OneNativeZStack": "OneNativeZStackComponentView",
         "OneNativeSpacer": "OneNativeSpacerComponentView",
         "OneNativeForm": "OneNativeFormComponentView",
@@ -536,10 +554,14 @@
         "OneNativeViewThatFits": "OneNativeViewThatFitsComponentView",
         "OneNativeGeometryReader": "OneNativeGeometryReaderComponentView",
         "OneNativeScrollViewReader": "OneNativeScrollViewReaderComponentView",
+        "OneNativeTimelineView": "OneNativeTimelineViewComponentView",
+        "OneNativeOutlineGroup": "OneNativeOutlineGroupComponentView",
+        "OneNativeTable": "OneNativeTableComponentView",
+        "OneNativeCanvas": "OneNativeCanvasComponentView",
         "OneNativeGlassEffectContainer": "OneNativeGlassEffectContainerComponentView",
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeGlass": "OneNativeGlassComponentView",
-        "OneNativeTabs": "OneNativeTabsComponentView",
+        "OneNativeTabView": "OneNativeTabViewComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativeNavigationStack": "OneNativeNavigationStackComponentView",
         "OneNativeNavigationSplitView": "OneNativeNavigationSplitViewComponentView",
@@ -549,6 +571,8 @@
         "OneNativeToolbarSpacer": "OneNativeToolbarSpacerComponentView",
         "OneNativeNavigationStackContent": "OneNativeNavigationStackContentComponentView",
         "OneNativeNavigationSplitViewColumn": "OneNativeNavigationSplitViewColumnComponentView",
+        "OneNativeTableCell": "OneNativeTableCellComponentView",
+        "OneNativeOutlineRow": "OneNativeOutlineRowComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
         "OneNativePopoverContent": "OneNativePopoverContentComponentView",
         "OneNativePhaseAnimator": "OneNativePhaseAnimatorComponentView",

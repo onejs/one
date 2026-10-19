@@ -147,10 +147,53 @@ function expoProject() {
     join(scopedDirectory, 'config-plugins'),
     'dir'
   )
+  // the plugin writes the sdk bindings with the app's one package
+  const oneRoot = createRequire(import.meta.url).resolve('one/package.json')
+  symlinkSync(oneRoot.slice(0, -'/package.json'.length), join(projectRoot, 'node_modules', 'one'), 'dir')
   return projectRoot
 }
 
 describe('vxrn/expo-plugin', () => {
+  it('prebuilds an app without SDK imports when Xcode is unavailable', () => {
+    const projectRoot = expoProject()
+    const iosRoot = join(projectRoot, 'ios')
+    mkdirSync(iosRoot)
+    writeFileSync(join(iosRoot, 'Podfile'), podfile)
+    const output = execFileSync(process.execPath, ['--input-type=module', '-e', `
+      import withVxrn from ${JSON.stringify(new URL('../../expo-plugin.cjs', import.meta.url).href)}
+      const projectRoot = process.argv[1]
+      const config = withVxrn({ name: 'TestApp', slug: 'test-app', _internal: { projectRoot } })
+      await config.mods.ios.dangerous({
+        ...config,
+        modRequest: {
+          projectRoot, platformProjectRoot: projectRoot + '/ios',
+          platform: 'ios', modName: 'dangerous', projectName: 'TestApp', introspect: false,
+        },
+        modResults: {},
+      })
+    `, projectRoot], { env: { ...process.env, PATH: '' }, encoding: 'utf8' })
+    expect(output).toBe('')
+    expect(existsSync(join(iosRoot, 'OneSwiftPackages', 'OneSDKBindings'))).toBe(false)
+    expect(readFileSync(join(iosRoot, 'Podfile'), 'utf8')).toContain('[vxrn/one] fmt c++17 fix')
+  })
+
+  it('raises the ios deployment target to the one the One pod requires', async () => {
+    const projectRoot = expoProject()
+    const config = withVxrn({ name: 'TestApp', slug: 'test-app', _internal: { projectRoot } })
+    const run = async (modResults) =>
+      (await config.mods.ios.podfileProperties({
+        ...config,
+        modRequest: { projectRoot, platform: 'ios', modName: 'podfileProperties', projectName: 'TestApp', introspect: false },
+        modResults,
+      })).modResults['ios.deploymentTarget']
+    const { minimumVersion } = JSON.parse(
+      readFileSync(join(projectRoot, 'node_modules/one/schema.json'), 'utf8')
+    )
+    expect(await run({})).toBe(`${minimumVersion}.0`)
+    expect(await run({ 'ios.deploymentTarget': '16.4' })).toBe(`${minimumVersion}.0`)
+    expect(await run({ 'ios.deploymentTarget': '99.0' })).toBe('99.0')
+  })
+
   it('combines background location and audio modes', async () => {
     const projectRoot = expoProject()
     const config = withVxrn(

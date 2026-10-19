@@ -1,0 +1,40 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-document-picker
+- tapOn:
+    text: 'Open'
+    optional: true
+- assertVisible: 'Result: idle'
+- tapOn:
+    id: one-native-document-picker-single
+- extendedWaitUntil:
+    notVisible:
+      id: one-native-document-picker-screen
+    timeout: 10000
+# drag the sheet edge; the Files content scrolls independently.
+- swipe:
+    start: 201,70
+    end: 201,750
+    duration: 500
+- assertVisible: 'Result: canceled'
+- assertVisible: 'Assets: 0'
+- tapOn:
+    id: one-native-document-picker-multiple
+- extendedWaitUntil:
+    notVisible:
+      id: one-native-document-picker-screen
+    timeout: 10000
+# the sheet edge dismisses; dragging the content only scrolls Files.
+- swipe:
+    start: 201,70
+    end: 201,750
+    duration: 500
+- assertVisible: 'Result: canceled'
+- assertVisible: 'Assets: 0'

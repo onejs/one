@@ -1,0 +1,14 @@
+appId: dev.vxrn.native.tests
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible: "One Native Test Suite"
+    timeout: 120000
+- openLink: ${ROUTE}
+- tapOn:
+    text: "Open"
+    optional: true
+- extendedWaitUntil:
+    visible: ${ANCHOR}
+    timeout: 30000

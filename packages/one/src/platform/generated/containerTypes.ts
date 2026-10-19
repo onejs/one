@@ -18,8 +18,18 @@ import type {
   ToolbarItemPlacement,
 } from './swiftui'
 import type { SFSymbolName } from './sfSymbolNames'
-export type HostAxis = 'vertical' | 'horizontal'
-export type HostAlignment = 'leading' | 'center' | 'trailing'
+export type HStackAlignment =
+  | 'top'
+  | 'center'
+  | 'bottom'
+  | 'firstTextBaseline'
+  | 'lastTextBaseline'
+export type VStackAlignment =
+  | 'leading'
+  | 'center'
+  | 'trailing'
+  | 'listRowSeparatorLeading'
+  | 'listRowSeparatorTrailing'
 export type ZStackAlignment =
   | 'topLeading'
   | 'top'
@@ -38,23 +48,31 @@ export interface EnvironmentProps {
   tint?: ColorValue
   isEnabled?: boolean
 }
-export interface HostProps extends ViewProps, EnvironmentProps {
-  axis?: HostAxis
+export interface HStackProps extends ViewProps {
+  alignment?: HStackAlignment
   spacing?: number
-  alignment?: HostAlignment
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
-export type StackProps = Omit<HostProps, 'axis'>
+export interface VStackProps extends ViewProps {
+  alignment?: VStackAlignment
+  spacing?: number
+  swiftStyle?: OneNativeStyle
+  children: ReactNode
+}
 export interface ZStackProps extends ViewProps {
   alignment?: ZStackAlignment
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SpacerProps extends ViewProps {
   minLength?: number
+  swiftStyle?: OneNativeStyle
 }
 export type FormSizing = 'fill' | 'content'
 export interface FormProps extends ViewProps, EnvironmentProps {
   sizing?: FormSizing
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SectionProps extends ViewProps {
@@ -67,17 +85,14 @@ export interface LabeledContentProps extends ViewProps {
   label: string
   value?: string
   systemImage?: SFSymbolName | ''
+  swiftStyle?: OneNativeStyle
   children?: ReactNode
 }
 export interface ButtonProps extends OneNativeViewProps {
   onPress?: () => void
   label?: string
-  disabled?: boolean
-  subtitle?: string
   systemImage?: SFSymbolName | ''
   buttonRole?: Styles.ButtonRole | ''
-  buttonStyle?: Styles.PrimitiveButtonStyle
-  disclosureIndicator?: boolean
   children?: ReactNode
 }
 export interface GlassProps extends ViewProps {
@@ -88,6 +103,7 @@ export interface GlassProps extends ViewProps {
   cornerRadius?: number
   tint?: ColorValue
   colorScheme?: ColorScheme
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SlotProps extends ViewProps {
@@ -134,8 +150,20 @@ export interface ToolbarSpacerProps extends ViewProps {
   sizing?: SpacerSizing
   placement?: ToolbarItemPlacement
 }
-export const hostAxes = ['vertical', 'horizontal'] as const
-export const hostAlignments = ['leading', 'center', 'trailing'] as const
+export const hStackAlignments = [
+  'top',
+  'center',
+  'bottom',
+  'firstTextBaseline',
+  'lastTextBaseline',
+] as const
+export const vStackAlignments = [
+  'leading',
+  'center',
+  'trailing',
+  'listRowSeparatorLeading',
+  'listRowSeparatorTrailing',
+] as const
 export const zStackAlignments = [
   'topLeading',
   'top',

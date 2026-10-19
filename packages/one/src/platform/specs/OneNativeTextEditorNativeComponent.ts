@@ -49,11 +49,6 @@ interface NativeProps extends ViewProps {
   focused: boolean
   acknowledgedFocusEvent: Int32
   focusRevision: Int32
-  disabled: boolean
-  textInputAutocapitalization: string
-  autocorrectionDisabled: boolean
-  keyboardType: string
-  textContentType: string
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeTextEditorValueChange?: DirectEventHandler<

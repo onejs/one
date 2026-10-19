@@ -97,8 +97,12 @@ export default function OneNativeClipboard() {
           testID="one-native-clipboard-set-image"
           style={styles.chip}
           onPress={async () => {
-            await One.Clipboard.setImage(probeImage)
-            setImage('set')
+            try {
+              await One.Clipboard.setImage(probeImage)
+              setImage('set')
+            } catch (error) {
+              setImage(`error:${error instanceof Error ? error.message : String(error)}`)
+            }
           }}
         >
           <Text>Set probe image</Text>

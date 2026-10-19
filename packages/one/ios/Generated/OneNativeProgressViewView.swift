@@ -5,11 +5,9 @@ import UIKit
 
 private final class ProgressViewModel: ObservableObject {
   @Published var label: String = ""
-  @Published var disabled: Bool = false
   @Published var value: Double = 0
   @Published var total: Double = 1
   @Published var indeterminate: Bool = false
-  @Published var progressViewStyle: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -38,13 +36,11 @@ private final class ProgressViewModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ label: String, disabled: Bool, value: Double, total: Double, indeterminate: Bool, progressViewStyle: String) {
+  public func configure(_ label: String, value: Double, total: Double, indeterminate: Bool) {
     if model.label != label { model.label = label }
-    if model.disabled != disabled { model.disabled = disabled }
     if model.value != value { model.value = value }
     if model.total != total { model.total = total }
     if model.indeterminate != indeterminate { model.indeterminate = indeterminate }
-    if model.progressViewStyle != progressViewStyle { model.progressViewStyle = progressViewStyle }
   }
 
 
@@ -93,8 +89,6 @@ private struct ProgressViewContent: View {
           ProgressView(value: model.value, total: model.total) { Text(model.label) }
         }
       }
-      .oneNativeProgressViewStyle(model.progressViewStyle)
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

@@ -1,6 +1,7 @@
 const fs = require('node:fs')
 const { createRequire } = require('node:module')
 const path = require('node:path')
+const { pathToFileURL } = require('node:url')
 const nativeProjectPatches = require('./native-project-patches.cjs')
 
 // options: { notifications: { push?: boolean, mode?: 'development' | 'production' } }
@@ -50,6 +51,7 @@ module.exports = function withVxrn(config, options = {}) {
     withMainActivity,
     withMainApplication,
     withPlugins,
+    withPodfileProperties,
     withXcodeProject,
   } = projectRequire('@expo/config-plugins')
 
@@ -673,6 +675,72 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     return { sources: sources.length, hasViews }
   }
 
+  const injectSwiftPackagesPodfile = (platformProjectRoot) => {
+    const podfilePath = path.join(platformProjectRoot, 'Podfile')
+    if (!fs.existsSync(podfilePath)) return
+    const podfile = fs.readFileSync(podfilePath, 'utf8')
+    fs.writeFileSync(
+      podfilePath,
+      nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(podfile),
+      'utf8'
+    )
+  }
+
+  // the sdk pod and typescript facades one prebuild writes, from the same
+  // generator: writeAppSdkPod in the one package's built sdk.
+  const writeExpoSdkBindings = async () => {
+    let appModule
+    try {
+      appModule = path.join(
+        path.dirname(projectRequire.resolve('one/package.json')),
+        'dist',
+        'sdk',
+        'app.mjs'
+      )
+    } catch (error) {
+      throw new Error(`[vxrn/expo-plugin] cannot resolve the one package: ${error.message}`)
+    }
+    const { writeAppSdkPod } = await import(pathToFileURL(appModule).href)
+    return writeAppSdkPod(projectRoot)
+  }
+
+  // expo's default ios deployment target sits below the one the One pod
+  // requires, so pod install would refuse One until it is raised.
+  const deploymentTargetPlugins = [
+    [
+      withPodfileProperties,
+      (nextConfig) => {
+        const { minimumVersion } = JSON.parse(
+          fs.readFileSync(
+            path.join(path.dirname(projectRequire.resolve('one/package.json')), 'schema.json'),
+            'utf8'
+          )
+        )
+        const current = parseFloat(nextConfig.modResults['ios.deploymentTarget'] ?? '0')
+        if (!(current >= minimumVersion)) {
+          nextConfig.modResults['ios.deploymentTarget'] = `${minimumVersion}.0`
+        }
+        return nextConfig
+      },
+    ],
+  ]
+
+  const sdkBindingsPlugins = [
+    [
+      withDangerousMod,
+      [
+        'ios',
+        async (nextConfig) => {
+          const frameworks = await writeExpoSdkBindings()
+          if (frameworks.length > 0) {
+            injectSwiftPackagesPodfile(nextConfig.modRequest.platformProjectRoot)
+          }
+          return nextConfig
+        },
+      ],
+    ],
+  ]
+
   const nativeSourcePlugins = !nativeSource
     ? []
     : [
@@ -684,14 +752,7 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
               const { platformProjectRoot } = nextConfig.modRequest
               const contract = await loadNativeSourceContract()
               const count = writeExpoSwiftPackages({ platformProjectRoot, contract })
-              if (count > 0) {
-                const podfilePath = path.join(platformProjectRoot, 'Podfile')
-                if (fs.existsSync(podfilePath)) {
-                  let podfile = fs.readFileSync(podfilePath, 'utf8')
-                  podfile = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(podfile)
-                  fs.writeFileSync(podfilePath, podfile, 'utf8')
-                }
-              }
+              if (count > 0) injectSwiftPackagesPodfile(platformProjectRoot)
               return nextConfig
             },
           ],
@@ -781,6 +842,8 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     ...notificationPlugins,
     ...updatesPlugins,
     ...launchScreenPlugins,
+    ...deploymentTargetPlugins,
+    ...sdkBindingsPlugins,
     ...nativeSourcePlugins,
     [
       withXcodeProject,

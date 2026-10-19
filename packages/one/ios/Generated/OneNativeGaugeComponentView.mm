@@ -42,7 +42,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.label)
-    disabled:next.disabled value:next.value minimumValue:next.minimumValue maximumValue:next.maximumValue currentValueLabel:RCTNSStringFromString(next.currentValueLabel) minimumValueLabel:RCTNSStringFromString(next.minimumValueLabel) maximumValueLabel:RCTNSStringFromString(next.maximumValueLabel) gaugeStyle:RCTNSStringFromString(next.gaugeStyle)];
+    value:next.value minimumValue:next.minimumValue maximumValue:next.maximumValue currentValueLabel:RCTNSStringFromString(next.currentValueLabel) minimumValueLabel:RCTNSStringFromString(next.minimumValueLabel) maximumValueLabel:RCTNSStringFromString(next.maximumValueLabel)];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test

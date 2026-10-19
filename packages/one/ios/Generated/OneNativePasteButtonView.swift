@@ -4,7 +4,7 @@ import SwiftUI
 import UIKit
 
 private final class PasteButtonModel: ObservableObject {
-  @Published var disabled: Bool = false
+
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -14,7 +14,7 @@ private final class PasteButtonModel: ObservableObject {
   var onPaste: ((String, Int) -> Void)?
   private var pasteCount = 0
   func paste(_ values: String) {
-    guard active, !disabled else { return }
+    guard active else { return }
     pasteCount += 1
     onPaste?(values, pasteCount)
   }
@@ -41,8 +41,8 @@ private final class PasteButtonModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ disabled: Bool) {
-    if model.disabled != disabled { model.disabled = disabled }
+  public func configure() {
+
   }
 
 
@@ -90,7 +90,6 @@ private struct PasteButtonContent: View {
         let encoded = String(data: data, encoding: .utf8) else { return }
       model.paste(encoded)
     }
-      .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }

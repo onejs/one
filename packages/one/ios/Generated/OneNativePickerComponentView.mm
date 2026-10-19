@@ -9,14 +9,13 @@
 #import <React/RCTConversions.h>
 #import "OneNativeStyleDictionary.h"
 using namespace facebook::react;
-@implementation OneNativePickerComponentView { OneNativePickerView *_nativeView; OneNativeMeasuredHeight *_measured; BOOL _optionsDirty; }
+@implementation OneNativePickerComponentView { OneNativePickerView *_nativeView; OneNativeMeasuredHeight *_measured; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativePickerComponentDescriptor>(); }
 - (NSObject *)accessibilityElement { return _nativeView; }
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativePickerProps>();
-    _optionsDirty = YES;
     _measured = [OneNativeMeasuredHeight new];
     _nativeView = [OneNativePickerView new]; self.contentView = _nativeView;
     __weak OneNativePickerComponentView *weakSelf = self;
@@ -41,17 +40,7 @@ using namespace facebook::react;
 }
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativePickerProps>(props);
-  const auto &previous = *std::static_pointer_cast<const OneNativePickerProps>(_props);
-  bool optionsChanged = _optionsDirty || previous.options.size() != next.options.size();
-  if (!optionsChanged) for (size_t i = 0; i < next.options.size(); i++) {
-    if (previous.options[i].value != next.options[i].value || previous.options[i].label != next.options[i].label) { optionsChanged = true; break; }
-  }
-  if (optionsChanged) {
-    NSMutableArray *options = [NSMutableArray new];
-    for (const auto &item : next.options) [options addObject:@{@"value": RCTNSStringFromString(item.value), @"label": RCTNSStringFromString(item.label)}];
-    [_nativeView setOptions:options];
-    _optionsDirty = NO;
-  }
+
 
   [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
     hint:RCTNSStringFromString(next.accessibilityHint)
@@ -59,7 +48,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.value)
-    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled pickerStyle:RCTNSStringFromString(next.pickerStyle)];
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label)];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test
@@ -68,5 +57,17 @@ using namespace facebook::react;
   self.accessibilityIdentifier = nil;
   _nativeView.accessibilityIdentifier = nil;
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; _optionsDirty = YES; }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }
+- (UIView *)composableFor:(UIView<RCTComponentViewProtocol> *)child {
+  UIView *content = [child isKindOfClass:RCTViewComponentView.class] ? ((RCTViewComponentView *)child).contentView : nil;
+  if (content == nil)
+    [NSException raise:@"OneNativeInvalidChild" format:@"One.iOS.Picker requires One Native children"];
+  return content;
+}
+- (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  [_nativeView insertChild:[self composableFor:child] at:index];
+}
+- (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  [_nativeView removeChild:[self composableFor:child]];
+}
 @end

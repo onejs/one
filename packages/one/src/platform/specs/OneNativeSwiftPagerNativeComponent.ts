@@ -6,6 +6,7 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 
 interface NativeProps extends ViewProps {
   selection: string
+  indexDisplayMode: string
   acknowledgedEvent: Int32
   revision: Int32
   onNativePagerSelectionChange?: DirectEventHandler<

@@ -1,0 +1,80 @@
+appId: dev.vxrn.native.tests
+name: containers
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-containers
+      ANCHOR: "Standalone text"
+- assertVisible: "Standalone label"
+- assertVisible: "Details"
+- assertVisible: "Composed text"
+- assertVisible: "Composed label"
+- assertVisible: "Notify"
+- assertVisible:
+    id: one-native-container-slot
+- assertVisible: "Form: 370 x \\d+"
+- assertVisible: "IsOn: false"
+- assertVisible: "Slot taps: 0"
+- takeScreenshot: containers-one-section
+# rn slot inside a swiftui Section takes a tap
+- tapOn:
+    id: one-native-container-slot
+- assertVisible: "Slot taps: 1"
+# composed Toggle two containers deep: press the switch knob (row right edge - 25)
+- tapOn:
+    point: "345,444"
+- assertVisible: "IsOn: true"
+- takeScreenshot: containers-toggled
+# section footer prop change
+- tapOn:
+    id: one-native-container-footer
+- assertVisible: "Two of two"
+- takeScreenshot: containers-footer
+- tapOn:
+    id: one-native-container-footer
+- assertNotVisible: "Two of two"
+# a Section mounted later joins the Form
+- tapOn:
+    id: one-native-container-extra
+- assertVisible: "More"
+- assertVisible: "Section button"
+- takeScreenshot: containers-two-sections
+- tapOn: "Section button"
+- assertVisible: "Section taps: 1"
+- assertVisible: "In host"
+- tapOn: "Host button"
+- assertVisible: "Host taps: 1"
+- tapOn:
+    id: one-native-container-nested-slot
+- assertVisible: "Nested taps: 1"
+- takeScreenshot: containers-nested-tapped
+# removing the Section takes its rows with it
+- tapOn:
+    id: one-native-container-extra
+- assertNotVisible: "More"
+- assertNotVisible: "Section button"
+- assertNotVisible: "Host button"
+- assertNotVisible:
+    id: one-native-container-nested-slot
+# recycle twice: back to index, re-enter, fresh Form, toggle still emits
+- repeat:
+    times: 2
+    commands:
+      - tapOn: "index"
+      - extendedWaitUntil:
+          visible: "One Native Test Suite"
+          timeout: 15000
+      - openLink: nativefeatures://app/one-native-containers
+      - tapOn:
+          text: "Open"
+          optional: true
+      - extendedWaitUntil:
+          visible: "IsOn: false"
+          timeout: 15000
+      - assertVisible: "Details"
+      - assertVisible: "Composed text"
+      - tapOn:
+          point: "345,444"
+      - assertVisible: "IsOn: true"
+- takeScreenshot: containers-recycled

@@ -14,49 +14,21 @@ export const handwrittenComponents = [
   'OneNativeArrangementView',
   'OneNativeArrangementSlot',
   'OneNativeCamera',
+  'OneNativeUIKitHost',
+  'OneNativeContent',
 ] as const
 
 export const modifiers = [
   { name: 'menuOrder', type: 'MenuOrder' },
   { name: 'presentationCompactAdaptation', type: 'PresentationAdaptation' },
   { name: 'presentationDragIndicator', type: 'Visibility', module: 'SwiftUICore' },
-  { name: 'pickerStyle', type: 'PickerStyle' },
-  { name: 'datePickerStyle', type: 'DatePickerStyle' },
-  { name: 'toggleStyle', type: 'ToggleStyle' },
   {
     name: 'menuActionDismissBehavior',
     type: 'MenuActionDismissBehavior',
   },
   { name: 'controlGroupStyle', type: 'ControlGroupStyle' },
   { name: 'tabViewStyle', type: 'TabViewStyle' },
-  { name: 'buttonStyle', type: 'PrimitiveButtonStyle' },
-  { name: 'progressViewStyle', type: 'ProgressViewStyle' },
-  { name: 'gaugeStyle', type: 'GaugeStyle' },
   { name: 'listStyle', type: 'ListStyle' },
-  { name: 'textFieldStyle', type: 'TextFieldStyle' },
-  { name: 'submitLabel', type: 'SubmitLabel' },
-  {
-    name: 'textInputAutocapitalization',
-    type: 'TextInputAutocapitalization',
-    optional: true,
-  },
-  {
-    name: 'symbolRenderingMode',
-    type: 'SymbolRenderingMode',
-    module: 'SwiftUICore',
-    optional: true,
-  },
-  {
-    name: 'symbolVariant',
-    type: 'SymbolVariants',
-    module: 'SwiftUICore',
-  },
-  {
-    name: 'imageScale',
-    type: 'ImageScale',
-    swiftType: 'Image.Scale',
-    module: 'SwiftUICore',
-  },
   {
     name: 'webViewBackForwardNavigationGestures',
     type: 'BackForwardNavigationGesturesBehavior',
@@ -93,6 +65,499 @@ export const menuMethods = [
     requirements: ['MenuItems : SwiftUICore.View'],
   },
 ] as const
+
+// the menu root's fixed SDK surface beyond the node constructors: the
+// primary-action Menu initializer, and the three style applications the host
+// and its picker apply. the plain Menu initializer is the submenu node's
+// constructor, reused rather than restated. each style pairs the View modifier
+// (with the requirement that selects its overload) and the style member.
+// configureArgs is the view configure selector in order: Swift label to the
+// spec prop that fills it and the exact spec type the fixed model reads.
+export const menuRoot = {
+  constructors: [
+    {
+      type: 'Menu',
+      parameters: [
+        { label: 'content', type: '() -> Content' },
+        { label: 'label', type: '() -> Label' },
+        { label: 'primaryAction', type: '@escaping () -> Swift.Void' },
+      ],
+      requirements: [],
+    },
+  ],
+  styles: [
+    {
+      modifier: 'menuStyle',
+      requirement: 'S : SwiftUI.MenuStyle',
+      member: 'button',
+      owner: 'SwiftUI.MenuStyle',
+      type: 'SwiftUI.ButtonMenuStyle',
+    },
+    {
+      modifier: 'buttonStyle',
+      requirement: 'S : SwiftUI.PrimitiveButtonStyle',
+      member: 'plain',
+      owner: 'SwiftUI.PrimitiveButtonStyle',
+      type: 'SwiftUI.PlainButtonStyle',
+    },
+    {
+      modifier: 'pickerStyle',
+      requirement: 'S : SwiftUI.PickerStyle',
+      member: 'menu',
+      owner: 'SwiftUI.PickerStyle',
+      type: 'SwiftUI.MenuPickerStyle',
+    },
+  ],
+  configureArgs: [
+    { label: '_', prop: 'triggerLabel', type: 'string' },
+    { label: 'disabled', prop: 'disabled', type: 'boolean' },
+    { label: 'hasPrimaryAction', prop: 'hasPrimaryAction', type: 'boolean' },
+    { label: 'menuOrder', prop: 'menuOrder', type: 'string' },
+    { label: 'menuActionDismissBehavior', prop: 'menuActionDismissBehavior', type: 'string' },
+    { label: 'presentation', prop: 'presentation', type: 'string' },
+    { label: 'acknowledgedEvent', prop: 'acknowledgedEvent', type: 'Int32' },
+    { label: 'pickerAcknowledgedEvent', prop: 'pickerAcknowledgedEvent', type: 'Int32' },
+    { label: 'revision', prop: 'revision', type: 'Int32' },
+  ],
+} as const
+
+// the navigation host's fixed SDK surface: the root-only NavigationStack
+// initializer, the ToolbarContent toolbar modifier, and the four toolbar entry
+// initializers. the spacer carries a gate because it ships above the floor;
+// the gate version is read from the SDK, not restated here. markers lists the
+// three toolbar marker components: each configures the shared marker shape
+// with fixed literals where the sender sends nothing and spec props with
+// their exact expected types elsewhere, plus whether it styles and reports.
+export const navigationHost = {
+  stack: {
+    type: 'NavigationStack',
+    parameters: [{ label: 'root', type: '() -> Root' }],
+  },
+  toolbar: {
+    name: 'toolbar',
+    parameters: [{ label: 'content', type: '() -> Content' }],
+    requirements: ['Content : SwiftUI.ToolbarContent'],
+  },
+  entries: [
+    {
+      kind: 'item',
+      type: 'ToolbarItem',
+      parameters: [
+        { label: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
+        { label: 'content', type: '() -> Content' },
+      ],
+    },
+    {
+      kind: 'group',
+      type: 'ToolbarItemGroup',
+      parameters: [
+        { label: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
+        { label: 'content', type: '() -> Content' },
+      ],
+    },
+    {
+      kind: 'labelledGroup',
+      type: 'ToolbarItemGroup',
+      parameters: [
+        { label: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
+        { label: 'content', type: '() -> C' },
+        { label: 'label', type: '() -> L' },
+      ],
+    },
+    {
+      kind: 'spacer',
+      type: 'ToolbarSpacer',
+      parameters: [
+        { label: '_', type: 'SwiftUI.SpacerSizing' },
+        { label: 'placement', type: 'SwiftUI.ToolbarItemPlacement' },
+      ],
+      gated: true,
+    },
+  ],
+  markers: [
+    {
+      component: 'OneNativeToolbarItem',
+      kind: 'item',
+      args: [
+        { label: 'kind', fixed: '@"item"' },
+        { label: 'placement', prop: 'placement', type: 'string' },
+        { label: 'sizing', fixed: '@"flexible"' },
+        { label: 'label', fixed: '@""' },
+        { label: 'systemImage', fixed: '@""' },
+      ],
+      style: true,
+      sdkEvent: true,
+    },
+    {
+      component: 'OneNativeToolbarItemGroup',
+      kind: 'group',
+      args: [
+        { label: 'kind', fixed: '@"group"' },
+        { label: 'placement', prop: 'placement', type: 'string' },
+        { label: 'sizing', fixed: '@"flexible"' },
+        { label: 'label', prop: 'label', type: 'string' },
+        { label: 'systemImage', prop: 'systemImage', type: 'string' },
+      ],
+      style: true,
+      sdkEvent: true,
+    },
+    {
+      component: 'OneNativeToolbarSpacer',
+      kind: 'spacer',
+      args: [
+        { label: 'kind', fixed: '@"spacer"' },
+        { label: 'placement', prop: 'placement', type: 'string' },
+        { label: 'sizing', prop: 'sizing', type: 'string' },
+        { label: 'label', fixed: '@""' },
+        { label: 'systemImage', fixed: '@""' },
+      ],
+      style: false,
+      sdkEvent: false,
+    },
+  ],
+  split: {
+    initializers: [
+      {
+        columns: 3,
+        gated: false,
+        parameters: [
+          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
+          { label: 'sidebar', type: '() -> Sidebar' },
+          { label: 'content', type: '() -> Content' },
+          { label: 'detail', type: '() -> Detail' },
+        ],
+      },
+      {
+        columns: 2,
+        gated: false,
+        parameters: [
+          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
+          { label: 'sidebar', type: '() -> Sidebar' },
+          { label: 'detail', type: '() -> Detail' },
+        ],
+      },
+      {
+        columns: 3,
+        gated: true,
+        parameters: [
+          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
+          { label: 'preferredCompactColumn', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewColumn>' },
+          { label: 'sidebar', type: '() -> Sidebar' },
+          { label: 'content', type: '() -> Content' },
+          { label: 'detail', type: '() -> Detail' },
+        ],
+      },
+      {
+        columns: 2,
+        gated: true,
+        parameters: [
+          { label: 'columnVisibility', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewVisibility>' },
+          { label: 'preferredCompactColumn', type: 'SwiftUICore.Binding<SwiftUI.NavigationSplitViewColumn>' },
+          { label: 'sidebar', type: '() -> Sidebar' },
+          { label: 'detail', type: '() -> Detail' },
+        ],
+      },
+    ],
+    visibility: {
+      type: 'NavigationSplitViewVisibility',
+      default: 'automatic',
+      members: ['all', 'doubleColumn', 'detailOnly', 'automatic'],
+    },
+    compactColumn: {
+      type: 'NavigationSplitViewColumn',
+      default: 'sidebar',
+      members: ['sidebar', 'content', 'detail'],
+    },
+    configure: [
+      { label: 'columnVisibility', prop: 'columnVisibility', type: 'string' },
+      { label: 'columnVisibilityIsControlled', prop: 'columnVisibilityIsControlled', type: 'boolean' },
+      { label: 'preferredCompactColumn', prop: 'preferredCompactColumn', type: 'string' },
+      { label: 'preferredCompactColumnIsControlled', prop: 'preferredCompactColumnIsControlled', type: 'boolean' },
+    ],
+    column: {
+      component: 'OneNativeNavigationSplitViewColumn',
+      column: { label: 'column', prop: 'column', type: 'string' },
+    },
+  },
+} as const
+
+// the tab view host's fixed SDK surface: the modern and legacy TabView
+// initializers, the String TabSection initializer, the TabViewCustomization
+// Codable round-trip, the tabView and bar-visibility View modifiers, every
+// TabContent method the tabs and sections call, the four label styles, and
+// the toolbar, accessory, and container placements. ios is the exact SDK
+// version each declaration ships; floor marks the call sites no availability
+// gate covers, which must stay at or below it. the Tab initializer is the
+// tabConstructor above, reused rather than restated; tabViewStyle, the tab
+// enums, the NavigationStack and toolbar content inside each tab, and the
+// view slots come from their own mappings. generic views (Text, Label,
+// Button, ForEach) and universal modifiers (tag, badge, background) stay
+// unvalidated the way Menu and Navigation leave them. UIKit (the tab bar
+// controller delegate interception and scroll view naming) ships no scanned
+// inventory and stays explicit semantic mapping in the emitter.
+export const tabViewHost = {
+  view: {
+    type: 'TabView',
+    parameters: [
+      { label: 'selection', type: 'SwiftUICore.Binding<SelectionValue>' },
+      { label: 'content', type: '() -> C' },
+    ],
+    ios: 18,
+  },
+  // deprecated but still shipped: the pre-18 path resolves here, so selection
+  // is present-based rather than available-based.
+  legacyView: {
+    type: 'TabView',
+    parameters: [
+      { label: 'selection', type: 'SwiftUICore.Binding<SelectionValue>?' },
+      { label: 'content', type: '() -> Content' },
+    ],
+    ios: 13,
+    floor: true,
+  },
+  section: {
+    type: 'TabSection',
+    parameters: [
+      { label: '_', type: 'S' },
+      { label: 'content', type: '() -> Content' },
+    ],
+    requirements: [
+      'Content : SwiftUI.TabContent',
+      'SelectionValue : Swift.Hashable',
+      'Header == SwiftUICore.Text',
+      'Footer == SwiftUICore.EmptyView',
+      'S : Swift.StringProtocol',
+    ],
+    ios: 18,
+  },
+  customization: {
+    type: 'TabViewCustomization',
+    init: { parameters: [] as const },
+    encode: {
+      name: 'encode',
+      parameters: [{ label: 'to', type: 'any Swift.Encoder' }],
+    },
+    decode: {
+      parameters: [{ label: 'from', type: 'any Swift.Decoder' }],
+    },
+    ios: 18,
+  },
+  modifiers: [
+    {
+      name: 'tabViewCustomization',
+      parameters: [{ label: '_', type: 'SwiftUICore.Binding<SwiftUI.TabViewCustomization>?' }],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'tabViewBottomAccessory',
+      parameters: [
+        { label: 'isEnabled', type: 'Swift.Bool' },
+        { label: 'content', type: '() -> Content' },
+      ],
+      requirements: ['Content : SwiftUICore.View'],
+      ios: 26.1,
+    },
+    {
+      name: 'toolbarVisibility',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Visibility' },
+        { label: 'for', type: 'SwiftUI.ToolbarPlacement' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'labelStyle',
+      parameters: [{ label: '_', type: 'S' }],
+      requirements: ['S : SwiftUI.LabelStyle'],
+      ios: 14,
+      floor: true,
+    },
+    {
+      name: 'containerBackground',
+      parameters: [
+        { label: '_', type: 'S' },
+        { label: 'for', type: 'SwiftUI.ContainerBackgroundPlacement' },
+      ],
+      requirements: ['S : SwiftUICore.ShapeStyle'],
+      ios: 17,
+    },
+  ],
+  // deprecated but still shipped: the pre-18 path resolves here.
+  legacyModifiers: [
+    {
+      name: 'toolbar',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Visibility' },
+        { label: 'for', type: 'SwiftUI.ToolbarPlacement' },
+      ],
+      requirements: [],
+      ios: 16,
+      floor: true,
+    },
+    {
+      name: 'tabItem',
+      parameters: [{ label: '_', type: '() -> V' }],
+      requirements: ['V : SwiftUICore.View'],
+      ios: 13,
+      floor: true,
+    },
+  ],
+  // every TabContent method the emitted tabs and sections call. the SDK
+  // declares the placement pairs variadic (for placements: ...); the
+  // extractor spells one `for`, which every call arity resolves to.
+  tabContent: [
+    { name: 'badge', parameters: [{ label: '_', type: 'SwiftUICore.Text?' }], requirements: [], ios: 18 },
+    { name: 'hidden', parameters: [{ label: '_', type: 'Swift.Bool' }], requirements: [], ios: 18 },
+    {
+      name: 'accessibilityLabel',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Text' },
+        { label: 'isEnabled', type: 'Swift.Bool' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'accessibilityHint',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Text' },
+        { label: 'isEnabled', type: 'Swift.Bool' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'accessibilityValue',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Text' },
+        { label: 'isEnabled', type: 'Swift.Bool' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'accessibilityIdentifier',
+      parameters: [
+        { label: '_', type: 'Swift.String' },
+        { label: 'isEnabled', type: 'Swift.Bool' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    { name: 'disabled', parameters: [{ label: '_', type: 'Swift.Bool' }], requirements: [], ios: 18.4 },
+    { name: 'customizationID', parameters: [{ label: '_', type: 'Swift.String' }], requirements: [], ios: 18 },
+    {
+      name: 'customizationBehavior',
+      parameters: [
+        { label: '_', type: 'SwiftUI.TabCustomizationBehavior' },
+        { label: 'for', type: 'SwiftUI.AdaptableTabBarPlacement' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'defaultVisibility',
+      parameters: [
+        { label: '_', type: 'SwiftUICore.Visibility' },
+        { label: 'for', type: 'SwiftUI.AdaptableTabBarPlacement' },
+      ],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'springLoadingBehavior',
+      parameters: [{ label: '_', type: 'SwiftUI.SpringLoadingBehavior' }],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'tabPlacement',
+      parameters: [{ label: '_', type: 'SwiftUI.TabPlacement' }],
+      requirements: [],
+      ios: 18,
+    },
+    {
+      name: 'sectionActions',
+      parameters: [{ label: 'content', type: '() -> Content' }],
+      requirements: ['Content : SwiftUICore.View'],
+      ios: 18,
+    },
+    {
+      name: 'defaultSectionExpansion',
+      parameters: [{ label: '_', type: 'SwiftUI.TabSectionExpansion' }],
+      requirements: [],
+      ios: 27,
+    },
+    {
+      name: 'help',
+      parameters: [{ label: '_', type: 'SwiftUICore.Text' }],
+      requirements: [],
+      ios: 27,
+    },
+  ],
+  labelStyles: [
+    { member: 'automatic', type: 'SwiftUI.DefaultLabelStyle', ios: 14 },
+    { member: 'iconOnly', type: 'SwiftUI.IconOnlyLabelStyle', ios: 14 },
+    { member: 'titleAndIcon', type: 'SwiftUI.TitleAndIconLabelStyle', ios: 14.5 },
+    { member: 'titleOnly', type: 'SwiftUI.TitleOnlyLabelStyle', ios: 14 },
+  ],
+  placements: {
+    tabBar: { owner: 'ToolbarPlacement', member: 'tabBar', type: 'SwiftUI.ToolbarPlacement', ios: 16, floor: true },
+    navigation: {
+      owner: 'ContainerBackgroundPlacement',
+      member: 'navigation',
+      type: 'SwiftUI.ContainerBackgroundPlacement',
+      ios: 18,
+    },
+    accessory: {
+      owner: 'TabViewBottomAccessoryPlacement',
+      members: ['inline', 'expanded'],
+      type: 'TabViewBottomAccessoryPlacement',
+      ios: 26,
+    },
+    accessoryEnvironment: {
+      owner: 'SwiftUICore.EnvironmentValues',
+      name: 'tabViewBottomAccessoryPlacement',
+      type: 'SwiftUI.TabViewBottomAccessoryPlacement?',
+      ios: 26,
+    },
+  },
+  // the view configure selector in order: Swift label to the spec prop that
+  // fills it and the exact spec type the model reads.
+  configure: [
+    { label: 'tabViewStyle', prop: 'tabViewStyle', type: 'string' },
+    { label: 'tabBarVisibility', prop: 'tabBarVisibility', type: 'string' },
+    { label: 'customization', prop: 'customization', type: 'string' },
+    { label: 'customizable', prop: 'customizable', type: 'boolean' },
+    { label: 'bottomAccessoryEnabled', prop: 'bottomAccessoryEnabled', type: 'boolean' },
+  ],
+  selection: [
+    { label: '_', prop: 'selection', type: 'string' },
+    { label: 'acknowledgedEvent', prop: 'acknowledgedEvent', type: 'Int32' },
+    { label: 'revision', prop: 'revision', type: 'Int32' },
+  ],
+  // the page item the Fabric glue builds per mounted Tab: item initializer
+  // label to the spec prop that fills it and the exact spec type it reads,
+  // where `page` is the mounted Tab view; the id reads page.tabId, the role
+  // reads page.tabRole, and the view and layout callback close the selector.
+  tab: {
+    component: 'OneNativeTab',
+    args: [
+      { label: 'id', prop: 'tabId', type: 'string' },
+      { label: 'kind', prop: 'kind', type: 'string' },
+      { label: 'title', prop: 'title', type: 'string' },
+      { label: 'systemImage', prop: 'systemImage', type: 'string' },
+      { label: 'badge', prop: 'badge', type: 'string' },
+      { label: 'role', prop: 'tabRole', type: 'string' },
+      { label: 'slotHeight', prop: 'slotHeight', type: 'Double' },
+      { label: 'tabModifiers', prop: 'tabModifiers', type: 'string' },
+    ],
+    style: true,
+    sdkEvent: true,
+  },
+} as const
 export const styleModifiers = [
   {
     name: 'font',
@@ -222,9 +687,6 @@ export const styleFields: readonly StyleField[] = [
 export const enumTypes = [
   'MenuOrder',
   'Visibility',
-  'PickerStyle',
-  'DatePickerStyle',
-  'ToggleStyle',
   'MenuActionDismissBehavior',
   'TabViewStyle',
   'ButtonRole',
@@ -235,12 +697,6 @@ export const enumTypes = [
   'TabSectionExpansion',
   'SpringLoadingBehavior',
   'ControlGroupStyle',
-  'PrimitiveButtonStyle',
-  'ProgressViewStyle',
-  'GaugeStyle',
-  'TextFieldStyle',
-  'SubmitLabel',
-  'TextInputAutocapitalization',
   'Axis',
   'Edge',
   'PresentationAdaptation',
@@ -248,9 +704,6 @@ export const enumTypes = [
   'ColorScheme',
   'DynamicTypeSize',
   'ControlSize',
-  'SymbolRenderingMode',
-  'SymbolVariants',
-  'ImageScale',
   'PhotosPickerSelectionBehavior',
   'EncodingDisambiguationPolicy',
   'BackForwardNavigationGesturesBehavior',
@@ -263,12 +716,7 @@ export const enumTypes = [
   // because deprecation lands in newer SDKs first.
   'ToolbarItemPlacement',
   'SpacerSizing',
-  // PassKit button artwork: the style structs and the buy/book/checkout label list.
-  // the style modifiers take these structs as concrete parameters rather than through a
-  // generic Style protocol, so the recipes map cases by hand and only the value types
-  // are listed here.
-  'PayWithApplePayButtonStyle',
-  'AddPassToWalletButtonStyle',
+  // the PassKit buy/book/checkout label list the Apple Pay button takes as an argument.
   'PayWithApplePayButtonLabel',
 ]
 export const fields = {
@@ -543,6 +991,16 @@ export const components = [
   {
     name: 'OneNativeList',
     publicName: 'List',
+    host: {
+      view: 'List',
+      selection: { label: 'selection', prop: 'selection', controlled: 'selectionIsControlled', event: 'onNativeListSelectionChange' },
+      types: { selection: 'Set<' },
+      children: 'content',
+      initial: { listStyle: '"automatic"' },
+      modifiers: ['.oneNativeListStyle(@listStyle)'],
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       listStyle: 'string',
       selection: 'string',
@@ -568,6 +1026,15 @@ export const components = [
   {
     name: 'OneNativeScrollView',
     publicName: 'ScrollView',
+    host: {
+      view: 'ScrollView',
+      arguments: { _: 'axes', showsIndicators: 'showsIndicators' },
+      aliases: { axes: { both: '[.horizontal, .vertical]' } },
+      children: 'content',
+      childModifier: '.scrollTargetLayout()',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       axes: 'string',
       showsIndicators: 'boolean',
@@ -589,11 +1056,19 @@ export const components = [
   {
     name: 'OneNativeLazyVStack',
     publicName: 'LazyVStack',
+    host: {
+      view: 'LazyVStack',
+      arguments: { alignment: 'alignment', spacing: 'spacing' },
+      children: 'content',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       alignment: 'string',
       spacing: 'Double',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -609,11 +1084,19 @@ export const components = [
   {
     name: 'OneNativeLazyHStack',
     publicName: 'LazyHStack',
+    host: {
+      view: 'LazyHStack',
+      arguments: { alignment: 'alignment', spacing: 'spacing' },
+      children: 'content',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       alignment: 'string',
       spacing: 'Double',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -631,12 +1114,22 @@ export const components = [
     // an associated-value size has no Fabric prop shape.
     name: 'OneNativeLazyVGrid',
     publicName: 'LazyVGrid',
+    host: {
+      view: 'LazyVGrid',
+      arguments: { alignment: 'alignment', spacing: 'spacing' },
+      values: { columns: 'OneNativeGridValues.items(@columns, "Swift.LazyVGrid")' },
+      initial: { columns: '"[]"' },
+      children: 'content',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       columns: 'string',
       alignment: 'string',
       spacing: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -652,12 +1145,22 @@ export const components = [
   {
     name: 'OneNativeLazyHGrid',
     publicName: 'LazyHGrid',
+    host: {
+      view: 'LazyHGrid',
+      arguments: { alignment: 'alignment', spacing: 'spacing' },
+      values: { rows: 'OneNativeGridValues.items(@rows, "Swift.LazyHGrid")' },
+      initial: { rows: '"[]"' },
+      children: 'content',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       rows: 'string',
       alignment: 'string',
       spacing: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -673,14 +1176,27 @@ export const components = [
   {
     name: 'OneNativeGrid',
     publicName: 'Grid',
+    host: {
+      view: 'Grid',
+      arguments: {
+        alignment: 'alignment',
+        horizontalSpacing: 'horizontalSpacing',
+        verticalSpacing: 'verticalSpacing',
+      },
+      children: 'content',
+      layout: 'measured',
+      scheme: true,
+    },
     props: {
       alignment: 'string',
       horizontalSpacing: 'string',
       verticalSpacing: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
-    layout: { kind: 'container' },
+    // standalone, a grid reports the height SwiftUI measured back to Yoga.
+    layout: { kind: 'measured' },
     slots: [
       {
         name: 'content',
@@ -689,16 +1205,25 @@ export const components = [
         layout: 'composed',
       },
     ],
-    interfaceOnly: false,
+    // the measured height needs a hand-written shadow node, state and descriptor.
+    interfaceOnly: true,
   },
   {
     // a row of cells inside a Grid; a Grid child that is not a row spans every column.
     name: 'OneNativeGridRow',
     publicName: 'GridRow',
+    host: {
+      view: 'GridRow',
+      arguments: { alignment: 'alignment' },
+      children: 'content',
+      layout: 'container',
+      skipEmptyStyle: true,
+    },
     props: {
       alignment: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -714,12 +1239,26 @@ export const components = [
   {
     name: 'OneNativeControlGroup',
     publicName: 'ControlGroup',
+    host: {
+      view: 'ControlGroup',
+      labels: { label: { title: 'label', systemImage: 'systemImage' } },
+      initial: { controlGroupStyle: '"automatic"' },
+      children: 'content',
+      modifiers: [
+        '.oneNativeControlGroupStyle(@controlGroupStyle)',
+        '.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)',
+      ],
+      layout: 'measured',
+      boundedHeight: true,
+      scheme: true,
+    },
     props: {
       label: 'string',
       systemImage: 'string',
       controlGroupStyle: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: { controlGroupStyle: 'ControlGroupStyle' },
     layout: { kind: 'measured' },
     slots: [
@@ -735,6 +1274,16 @@ export const components = [
   {
     name: 'OneNativeDisclosureGroup',
     publicName: 'DisclosureGroup',
+    host: {
+      view: 'DisclosureGroup',
+      binding: { label: 'isExpanded', prop: 'isExpanded', event: 'onNativeDisclosureGroupIsExpandedChange' },
+      arguments: { label: 'label' },
+      children: 'content',
+      modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'],
+      layout: 'measured',
+      boundedHeight: true,
+      scheme: true,
+    },
     props: {
       label: 'string',
       isExpanded: 'boolean',
@@ -747,7 +1296,9 @@ export const components = [
         eventCount: 'Int32',
         revision: 'Int32',
       },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
     },
+    swiftStyle: true,
     enumProps: {},
     controlled: {
       value: 'isExpanded',
@@ -767,8 +1318,10 @@ export const components = [
   {
     name: 'OneNativeDivider',
     publicName: 'Divider',
+    host: { view: 'Divider', layout: 'leaf' },
     props: {},
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [],
@@ -777,11 +1330,20 @@ export const components = [
   {
     name: 'OneNativeLink',
     publicName: 'Link',
+    host: {
+      view: 'Link',
+      arguments: { destination: 'destination' },
+      children: 'label',
+      childrenFallback: 'label',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       destination: 'string',
       label: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -797,8 +1359,16 @@ export const components = [
   {
     name: 'OneNativeGroup',
     publicName: 'Group',
+    host: {
+      view: 'Group',
+      children: 'content',
+      layout: 'container',
+      scheme: true,
+      skipEmptyStyle: true,
+    },
     props: {},
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -814,6 +1384,17 @@ export const components = [
   {
     name: 'OneNativeOverlay',
     publicName: 'Overlay',
+    host: {
+      modifier: 'overlay',
+      childStack: 'Group',
+      arguments: { alignment: 'alignment' },
+      marker: { label: 'content', slot: 'OneNativeOverlayContent' },
+      viewSlot: { name: 'slotName', values: 'slotValues', event: 'onNativeSDKEvent' },
+      initial: { slotValues: '"[]"' },
+      layout: 'measured',
+      scheme: true,
+      skipEmptyStyle: true,
+    },
     props: {
       alignment: 'string',
       slotName: 'string',
@@ -823,7 +1404,8 @@ export const components = [
       onNativeSDKEvent: { name: 'string', value: 'string' },
     },
     enumProps: {},
-    layout: { kind: 'container' },
+    // standalone, the overlay and the ViewSlot behind it report the height SwiftUI measured back to Yoga.
+    layout: { kind: 'measured' },
     slots: [
       {
         name: 'content',
@@ -832,11 +1414,18 @@ export const components = [
         layout: 'composed',
       },
     ],
-    interfaceOnly: false,
+    // the measured height needs a hand-written shadow node, state and descriptor.
+    interfaceOnly: true,
   },
   {
     name: 'OneNativeOverlayContent',
     publicName: 'OverlayContent',
+    host: {
+      view: 'Group',
+      children: 'content',
+      layout: 'marker',
+      skipEmptyStyle: true,
+    },
     props: {},
     events: {},
     enumProps: {},
@@ -854,6 +1443,23 @@ export const components = [
   {
     name: 'OneNativeSwipeActions',
     publicName: 'SwipeActions',
+    host: {
+      modifier: 'swipeActions',
+      childStack: 'Group',
+      marker: {
+        label: 'content',
+        slot: 'OneNativeSwipeActionsActions',
+        key: {
+          prop: 'edge',
+          label: 'edge',
+          cases: ['leading', 'trailing'],
+          values: { allowsFullSwipe: 'allowsFullSwipe' },
+        },
+      },
+      layout: 'container',
+      scheme: true,
+      skipEmptyStyle: true,
+    },
     props: {},
     events: {},
     enumProps: {},
@@ -871,6 +1477,13 @@ export const components = [
   {
     name: 'OneNativeSwipeActionsActions',
     publicName: 'SwipeActionsActions',
+    host: {
+      view: 'Group',
+      children: 'content',
+      initial: { edge: '"trailing"', allowsFullSwipe: 'true' },
+      layout: 'marker',
+      skipEmptyStyle: true,
+    },
     props: {
       edge: 'string',
       allowsFullSwipe: 'boolean',
@@ -891,8 +1504,36 @@ export const components = [
   {
     name: 'OneNativeSwiftPager',
     publicName: 'Pager',
+    host: {
+      view: 'TabView',
+      binding: { label: 'selection', prop: 'selection', event: 'onNativePagerSelectionChange' },
+      pages: {
+        label: 'content',
+        slot: 'OneNativeTab',
+        key: 'tabId',
+        item: 'OneNativeTabItem',
+        header: 'OneNativeTabViewComponentView.h',
+        fields: {
+          kind: '@"page"',
+          title: '@""',
+          systemImage: '@""',
+          badge: '@""',
+          role: '@""',
+          slotHeight: '0',
+          tabModifiers: '@"{}"',
+        },
+      },
+      initial: { indexDisplayMode: '"automatic"' },
+      modifiers: [
+        '.tabViewStyle(.page(indexDisplayMode: oneNativeSDKValuePageTabViewStyleIndexDisplayMode(@indexDisplayMode, "Pager.indexDisplayMode")))',
+      ],
+      layout: 'container',
+      scheme: true,
+      skipEmptyStyle: true,
+    },
     props: {
       selection: 'string',
+      indexDisplayMode: 'string',
       acknowledgedEvent: 'Int32',
       revision: 'Int32',
     },

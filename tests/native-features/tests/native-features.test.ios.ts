@@ -1247,6 +1247,128 @@ describe('one native integration tests', () => {
     })
   })
 
+  // -- timeline view (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Timeline View', () => {
+    test('periodic schedule delivers entries from native', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-timeline-view')
+      const view = await waitForElement(driver, 'one-native-timeline-view-periodic', {
+        timeout: 30_000,
+      })
+      expect(await view.isDisplayed()).toBe(true)
+
+      const status = await waitForElement(driver, 'one-native-timeline-view-status')
+      await status.waitUntil(
+        async () => {
+          const match = (await status.getText()).match(/Entries: (\d+)/)
+          return match !== null && Number(match[1]) >= 3
+        },
+        { timeout: 15_000, timeoutMsg: 'periodic timeline did not deliver three entries' }
+      )
+
+      await captureScreenshot(driver, 'one-native-timeline-view-periodic')
+    })
+
+    test('explicit schedule settles on its last past date', sharedTestOptions, async () => {
+      const view = await waitForElement(driver, 'one-native-timeline-view-explicit')
+      await view.waitUntil(
+        async () => (await view.getText()).includes('2026-10-12T11:00:00.000Z'),
+        { timeout: 10_000, timeoutMsg: 'explicit timeline did not show its last date' }
+      )
+    })
+
+    test('an invalid schedule throws instead of mounting', sharedTestOptions, async () => {
+      const invalid = await waitForElement(driver, 'one-native-timeline-view-invalid')
+      await invalid.click()
+      await dismissExpectedRenderError(driver, 'Swift.TimelineView schedule must be')
+      const error = await waitForElement(driver, 'one-native-timeline-view-schedule-error')
+      expect(await error.getText()).toContain('schedule must be')
+    })
+  })
+
+  // -- outline group (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Outline Group', () => {
+    test('tree rows mount and a branch discloses its children', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-outline-group')
+      const list = await waitForElement(driver, 'one-native-outline-group-list', {
+        timeout: 30_000,
+      })
+      expect(await list.isDisplayed()).toBe(true)
+      const documents = await waitForElement(driver, 'Documents')
+      expect(await documents.isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-outline-group-collapsed')
+
+      await documents.click()
+      const reports = await waitForElement(driver, 'Reports')
+      expect(await reports.isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-outline-group-expanded')
+    })
+
+    test('adding a child to a leaf gives it a disclosure row', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-outline-group-add')).click()
+      const photos = await waitForElement(driver, 'Photos')
+      await photos.click()
+      const trip = await waitForElement(driver, 'Trip')
+      expect(await trip.isDisplayed()).toBe(true)
+    })
+
+    test('a repeated id throws instead of mounting', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-outline-group-invalid')).click()
+      await dismissExpectedRenderError(driver, 'Swift.OutlineGroup item id x appears twice')
+      const error = await waitForElement(driver, 'one-native-outline-group-id-error')
+      expect(await error.getText()).toContain('appears twice')
+    })
+  })
+
+  // -- table (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Table', () => {
+    test('the first column draws one cell per row', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-table')
+      const table = await waitForElement(driver, 'one-native-table-table', { timeout: 30_000 })
+      expect(await table.isDisplayed()).toBe(true)
+      for (const name of ['Ada', 'Bo', 'Cy']) {
+        expect(await (await waitForElement(driver, name)).isDisplayed()).toBe(true)
+      }
+      await captureScreenshot(driver, 'one-native-table-ascending')
+    })
+
+    test('the controlled sort prop and re-sorted rows reach the table', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-table-descending')).click()
+      const status = await waitForElement(driver, 'one-native-table-status')
+      expect(await status.getText()).toContain('sort: name descending')
+      expect(await (await waitForElement(driver, 'Cy')).isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-table-descending')
+    })
+
+    test('a repeated column id throws instead of mounting', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-table-invalid')).click()
+      await dismissExpectedRenderError(driver, 'Swift.Table column id a appears twice')
+      const error = await waitForElement(driver, 'one-native-table-column-error')
+      expect(await error.getText()).toContain('appears twice')
+    })
+  })
+
+  // -- canvas (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Canvas', () => {
+    test('the canvases mount at the size native reports', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-canvas')
+      const scene = await waitForElement(driver, 'one-native-canvas-scene', { timeout: 30_000 })
+      expect(await scene.isDisplayed()).toBe(true)
+      expect(await (await waitForElement(driver, 'one-native-canvas-clock')).isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-canvas')
+    })
+
+    test('an opacity SwiftUI would reject throws instead of drawing', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-canvas-invalid')).click()
+      await dismissExpectedRenderError(driver, 'opacity must be between 0 and 1')
+      const error = await waitForElement(driver, 'one-native-canvas-opacity-error')
+      expect(await error.getText()).toContain('between 0 and 1')
+    })
+  })
+
   // -- scroll view reader: proxy.scrollTo moves the SwiftUI scroll view that
   // reports its content offset through the SDK's onScrollGeometryChange --
 

@@ -12,9 +12,10 @@ export type DerivedArgument = {
   label: string
   type: string
   sdkType?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate' | 'structUpdate'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'numericRange' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate' | 'structUpdate'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
+  value?: DerivedValue
   fields?: readonly { name: string; label: string; type: string; ios?: number }[]
   wrappedType?: string
   scalarConstructor?: { label: string; type: string; failable?: boolean }
@@ -45,6 +46,7 @@ export type DerivedModifier = {
   scalarConstructor?: { label: string; type: string; failable?: boolean }
   swiftExpression?: string
   cases?: readonly { name: string; ios: number }[]
+  value?: DerivedValue
   associatedCases?: readonly { name: string; values: readonly EventValueSchema[] }[]
   eventValue?: EventValueSchema
   eventInputType?: string
@@ -71,7 +73,7 @@ export type DerivedModifier = {
   eventPair?: true
   eventInputs?: readonly string[]
   visualPhase?: true
-  gestureOptions?: readonly { name: string; type: string; ios: number; eventValue?: EventValueSchema }[]
+  gestureOptions?: readonly { name: string; type: string; ios: number; options: readonly DerivedFactoryParameter[]; changed?: true; eventValue?: EventValueSchema }[]
   transformMember?: string
   environmentKey?: string
   environmentTransform?: 'toggle' | 'add'
@@ -94,12 +96,108 @@ export type DerivedModifier = {
   constructorParameter?: { type: string; label: string }
   fixedParameter?: { index: number; label: string; type: string; expression: string }
   arguments?: readonly DerivedArgument[]
+  factories?: readonly DerivedFactory[]
 }
 
-const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
+// a value type's parameterized static factories, such as Animation.spring(duration:bounce:),
+// and the instance methods returning the type, such as Animation.delay(_:). JavaScript names
+// a factory or case in a record's kind field and passes the parameters by label; the
+// overload with the fewest parameters that takes every given label is called.
+export type DerivedFactory = {
+  name: string
+  ios: number
+  parameters: readonly DerivedFactoryParameter[]
+}
+
+export type DerivedFactoryParameter = {
+  field: string
+  label: string
+  type: string
+  kind: 'number' | 'boolean' | 'enum'
+  defaultValue?: string
+  value?: DerivedValue
+}
+
+export type DerivedValue = {
+  type: string
+  ios: number
+  cases: readonly { name: string; ios: number }[]
+  factories: readonly DerivedFactory[]
+  chain: readonly DerivedFactory[]
+}
+
+export const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
   const affineFields = ['a', 'b', 'c', 'd', 'tx', 'ty'].map((name) =>
     ({ name, label: name, type: 'CoreFoundation.CGFloat' }))
-  return (type: string, preferNumeric = false): Omit<DerivedArgument, 'field' | 'label'> | undefined => {
+  const factoryValues = new Map<string, DerivedValue | undefined>()
+  // the availability of the type itself, which its decoder carries.
+  const typeIOS = (type: string) => {
+    const [module, ...parts] = type.replace(/\?$/, '').split('.')
+    const declaration = inventory.find((d) => d.module === module &&
+      ['struct', 'enum', 'class'].includes(d.kind) && d.owner === parts.slice(0, -1).join('.') &&
+      d.name === parts.at(-1) && present(d))
+    return declaration ? ios(declaration) : 17
+  }
+  const factoryNumberTypes = ['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat', 'Foundation.TimeInterval']
+  // a parameter bridges when JavaScript can spell it: a number, a boolean, or a value with
+  // cases. a default is kept only when it is a literal or one of the value's cases.
+  const factoryParameterOf = (parameter: Declaration['parameters'][number], depth: number): DerivedFactoryParameter | undefined => {
+    const field = parameter.label === '_' ? parameter.name : parameter.label
+    const base = { field, label: parameter.label, type: parameter.type }
+    if (factoryNumberTypes.includes(parameter.type)) {
+      if (parameter.defaultValue !== undefined && !/^-?\d+(?:\.\d+)?$/.test(parameter.defaultValue)) return
+      return { ...base, kind: 'number', ...(parameter.defaultValue !== undefined ? { defaultValue: parameter.defaultValue } : {}) }
+    }
+    if (parameter.type === 'Swift.Bool') {
+      if (parameter.defaultValue !== undefined && !/^(?:true|false)$/.test(parameter.defaultValue)) return
+      return { ...base, kind: 'boolean', ...(parameter.defaultValue !== undefined ? { defaultValue: parameter.defaultValue } : {}) }
+    }
+    const value = valueOf(parameter.type, false, depth + 1)
+    if (value?.kind !== 'enum' || value.optional) return
+    if (parameter.defaultValue !== undefined &&
+      !value.cases!.some((item) => `.${item.name}` === parameter.defaultValue)) return
+    return { ...base, kind: 'enum',
+      value: value.value ?? { type: parameter.type, ios: typeIOS(parameter.type), cases: value.cases!, factories: [], chain: [] },
+      ...(parameter.defaultValue !== undefined ? { defaultValue: parameter.defaultValue } : {}) }
+  }
+  const factoriesOf = (declarations: readonly Declaration[], depth: number) => {
+    const factories = declarations.flatMap((d) => {
+      const parameters = d.parameters.map((parameter) => factoryParameterOf(parameter, depth))
+      if (parameters.some((parameter) => !parameter)) return []
+      const fields = parameters.map((parameter) => parameter!.field)
+      if (new Set(fields).size !== fields.length || fields.includes('kind')) return []
+      return [{ name: d.name, ios: ios(d), parameters: parameters as DerivedFactoryParameter[] }]
+    })
+    const signature = (factory: DerivedFactory) =>
+      `${factory.name}(${factory.parameters.map((parameter) => parameter.field).sort().join(',')})`
+    return factories.filter((factory) =>
+      factories.filter((other) => signature(other) === signature(factory)).length === 1)
+  }
+  // nested values stop at a depth of two: Animation.spring(_ spring: Spring) reaches
+  // Spring.smooth(duration:), and Spring's own parameters stay scalar.
+  const factoryValueOf = (module: string, owner: string, baseType: string, cases: readonly { name: string; ios: number }[], depth: number) => {
+    if (depth > 2) return
+    const key = `${depth}:${baseType}`
+    if (factoryValues.has(key)) return factoryValues.get(key)
+    factoryValues.set(key, undefined)
+    const returnsSelf = (d: Declaration) => {
+      const type = d.type?.replace(/\?$/, '')
+      return type === owner || type === baseType
+    }
+    const members = inventory.filter((d) =>
+      ((d.module === module && d.owner === owner) || d.owner === baseType) &&
+      d.kind === 'func' && !d.generic && !d.requirements?.length && returnsSelf(d) && !d.type?.endsWith('?') &&
+      /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling)
+    const factories = factoriesOf(members.filter((d) => d.isStatic && d.parameters.length > 0), depth)
+    const factoryFields = new Set(factories.flatMap((factory) => factory.parameters.map((parameter) => parameter.field)))
+    const chained = factoriesOf(members.filter((d) => !d.isStatic), depth)
+      .filter((method) => !factoryFields.has(method.name) && method.name !== 'kind')
+    const chain = chained.filter((method) => chained.filter((other) => other.name === method.name).length === 1)
+    const value = factories.length || chain.length ? { type: baseType, ios: typeIOS(baseType), cases, factories, chain } : undefined
+    factoryValues.set(key, value)
+    return value
+  }
+  const valueOf = (type: string, preferNumeric = false, depth = 0): Omit<DerivedArgument, 'field' | 'label'> | undefined => {
     const optional = type.endsWith('?')
     const baseType = type.replace(/\?$/, '')
     if (baseType === 'CoreFoundation.CGAffineTransform')
@@ -161,6 +259,14 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
       })
       if (fields.length && fields.every(Boolean))
         return { kind: 'numericTuple', type, optional, fields: fields as NonNullable<DerivedArgument['fields']> }
+    }
+    const range = /^Swift\.(ClosedRange|Range|PartialRangeFrom|PartialRangeThrough|PartialRangeUpTo)<(.+)>$/.exec(baseType)
+    if (range && numericType(range[2])) {
+      const names = range[1] === 'ClosedRange' || range[1] === 'Range'
+        ? ['lower', 'upper']
+        : range[1] === 'PartialRangeFrom' ? ['lower'] : ['upper']
+      return { kind: 'numericRange', type, optional,
+        fields: names.map((name) => ({ name, label: name, type: range[2] })) }
     }
     if (!/^[A-Za-z_]\w*\.[A-Za-z][\w.]*$/.test(baseType)) return
     const [module, ...owner] = baseType.split('.')
@@ -272,11 +378,16 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
       }
       return
     }
-    return { kind: 'enum', type, optional, cases }
+    const value = factoryValueOf(module, owner.join('.'), baseType, cases, depth)
+    return { kind: 'enum', type, optional, cases, ...(value ? { value } : {}) }
   }
+  return Object.assign(valueOf, {
+    parameterOf: (parameter: Declaration['parameters'][number]) => factoryParameterOf(parameter, 0),
+    factoriesOf: (declarations: readonly Declaration[]) => factoriesOf(declarations, 0),
+  })
 }
 
-export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
+export type DerivedSlotArgument = (DerivedArgument & { defaulted?: true }) | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
 export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; closureInputs?: readonly string[]; contentWrapper?: string; preferenceKey?: string; preferenceEvent?: EventValueSchema; arguments: readonly DerivedSlotArgument[] }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
@@ -316,6 +427,13 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     const generic = /^SwiftUICore\.Binding<([A-Za-z_]\w*)>$/.exec(type)?.[1]
     return Boolean(generic && d.requirements?.includes(`${generic} : Swift.Hashable`))
   }
+  const valueTypeIOS = (type: string) => {
+    const [module, ...owner] = type.replace(/\?$/, '').split('.')
+    const declaration = inventory.find((d) => d.module === module &&
+      ['struct', 'enum', 'class'].includes(d.kind) &&
+      d.owner === owner.slice(0, -1).join('.') && d.name === owner.at(-1) && present(d))
+    return declaration ? ios(declaration) : 0
+  }
   const slots = inventory.filter((d) => {
     const builders = d.parameters.filter((parameter) => isContent(d, parameter))
     return (
@@ -351,16 +469,32 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     const directSuffix = declarations.length > 1 && directValue
       ? `With${content.label === '_' ? content.type.replace(/\?$/, '') : content.label[0].toUpperCase() + content.label.slice(1)}`
       : suffix
+    const slotIOS = Math.max(ios(slot), contentWrapper?.ios ?? 0)
+    // defaulted scalar and enum arguments stay optional: omission keeps the SDK
+    // default while names built from required parameters never change. anything
+    // else (closures, bindings, unbridgeable values, newer-than-slot types) is
+    // rejected before emission instead of inventing a native default.
+    const defaulted = slot.parameters.filter((parameter) => {
+      if (parameter === content || parameter.defaultValue === undefined) return false
+      const value = valueOf(parameter.type)
+      return Boolean(value && ['boolean', 'number', 'enum'].includes(value.kind) &&
+        valueTypeIOS(parameter.type) <= slotIOS &&
+        (!value.optional || parameter.defaultValue === 'nil'))
+    })
+    // presence branches double per non-nilable defaulted argument; beyond three
+    // the slot keeps its required arguments only.
+    const kept = defaulted.filter((parameter) => !valueOf(parameter.type)!.optional).length > 3 ? [] : defaulted
     return { name: `${slot.name}${directSuffix}`, ...(directSuffix ? { sdkName: slot.name } : {}), module: slot.module,
-      label: content.label, ios: Math.max(ios(slot), contentWrapper?.ios ?? 0),
+      label: content.label, ios: slotIOS,
       ...(contentWrapper ? { contentWrapper: contentWrapper.type } : {}),
       ...(directValue ? { directValue: true as const } : {}),
       ...(closureInputs ? { closureInputs } : {}),
       arguments: slot.parameters.filter((parameter) =>
-        parameter !== content && parameter.defaultValue === undefined)
+        parameter !== content && (parameter.defaultValue === undefined || kept.includes(parameter)))
         .map((parameter) => parameter.type === 'SwiftUICore.Binding<Swift.Bool>' || isStringBinding(slot, parameter.type)
           ? { field: parameter.name, label: parameter.label, type: parameter.type, kind: parameter.type === 'SwiftUICore.Binding<Swift.Bool>' ? 'bindingBoolean' as const : 'bindingString' as const, optional: false as const }
-          : { ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }) }
+          : { ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label,
+            ...(parameter.defaultValue !== undefined ? { defaulted: true as const } : {}) }) }
   }))
   const preferenceMethods = inventory.filter((method) =>
     method.kind === 'func' && method.module === 'SwiftUICore' &&
@@ -409,7 +543,9 @@ export function deriveModifiers(
   const urlResultOf = (type: string) =>
     (/^@escaping \((?:_ [A-Za-z]\w*: )?Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void$/.exec(type) ??
       /^\(\(Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void\)\?$/.exec(type))?.[1]
-  const eventValueOf = (type: string, version: number, seen = new Set<string>()): EventValueSchema | undefined => {
+  // computed fields are read only for gesture values: the inventory does not mark async or
+  // throwing getters, such as StoreKit's Product.latestTransaction.
+  const eventValueOf = (type: string, version: number, seen = new Set<string>(), computedFields = false): EventValueSchema | undefined => {
     const result = /^Swift\.Result<(.+), any Swift\.Error>$/.exec(type)
     if (result) {
       const value = eventValueOf(result[1], version, seen)
@@ -494,9 +630,16 @@ export function deriveModifiers(
       return raw ? { kind: 'object', fields: [{ name: 'rawValue',
         value: { kind: raw.type === 'Swift.String' ? 'string' : 'number' } }] } : undefined
     }
-    const fields = inventory.filter((d) => d.module === module && (d.owner === owner || d.owner === type) &&
-      d.kind === 'var' && d.stored && present(d) && ios(d) <= version)
-    if (!fields.length || new Set(fields.map((field) => field.name)).size !== fields.length) return
+    const members = inventory.filter((d) => d.module === module && (d.owner === owner || d.owner === type) &&
+      d.kind === 'var' && present(d) && ios(d) <= version)
+    const stored = members.filter((d) => d.stored)
+    if (!stored.length || new Set(stored.map((field) => field.name)).size !== stored.length) return
+    // public computed fields read like stored ones, such as DragGesture.Value.velocity. a
+    // name declared more than once is left out rather than guessed.
+    const computed = computedFields
+      ? members.filter((d) => !d.stored && !stored.some((field) => field.name === d.name))
+      : []
+    const fields = [...stored, ...computed.filter((d) => computed.filter((other) => other.name === d.name).length === 1)]
     const next = new Set([...seen, type])
     const mapped = fields.flatMap((field) => {
       const value = eventValueOf(field.type ?? '', version, next)
@@ -560,23 +703,47 @@ export function deriveModifiers(
       ? cases
       : undefined
   }
+  // the parameterized members beside styleCases, such as TabViewStyle.page(indexDisplayMode:).
+  const styleFactories = (style: string) => {
+    const factories = valueOf.factoriesOf(inventory.filter((d) =>
+      d.kind === 'func' && d.isStatic && d.owner === style && d.parameters.length > 0 &&
+      d.requirements?.length === 1 && d.requirements[0] === `Self == ${d.type}` &&
+      /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling))
+    return factories.length ? { factories } : {}
+  }
+  const changed = inventory.some((d) => d.module === 'SwiftUICore' && d.owner.split('.').at(-1) === 'Gesture' &&
+    d.kind === 'func' && d.name === 'onChanged' && present(d) &&
+    d.requirements?.length === 1 && d.requirements[0] === 'Self.Value : Swift.Equatable')
   const gestureOptions = inventory.filter((d) => d.kind === 'struct' && d.owner === '' &&
     !d.generic && /^[A-Z]/.test(d.name) &&
     d.inheritedTypes?.includes('SwiftUICore.Gesture') && present(d) && ios(d) <= ceiling)
     .flatMap((gesture) => {
-      const constructor = inventory.find((d) => d.module === gesture.module &&
+      // the earliest initializer, so options never raise the gesture's availability, then the
+      // one with the most options JavaScript can spell. the rest keep their defaults.
+      const constructor = inventory.filter((d) => d.module === gesture.module &&
         (d.owner === gesture.name || d.owner === `${gesture.module}.${gesture.name}`) &&
         d.kind === 'init' && d.parameters.every((parameter) => parameter.defaultValue !== undefined) &&
         present(d) && ios(d) <= ceiling)
+        .map((d) => ({ declaration: d, options: d.parameters.flatMap((parameter) => {
+          const option = valueOf.parameterOf(parameter)
+          return option && !['kind', 'onChanged', 'onEnded'].includes(option.field) ? [option] : []
+        }) }))
+        .sort((a, b) => ios(a.declaration) - ios(b.declaration) || b.options.length - a.options.length)[0]
       if (!constructor) return []
       const eventValue = gesture.name === 'LongPressGesture'
         ? { kind: 'boolean' as const }
         : gesture.name === 'TapGesture'
           ? undefined
-          : eventValueOf(`${gesture.module}.${gesture.name}.Value`, Math.max(ios(gesture), ios(constructor)))
+          : eventValueOf(`${gesture.module}.${gesture.name}.Value`, Math.max(ios(gesture), ios(constructor.declaration)), undefined, true)
       if (!eventValue && gesture.name !== 'TapGesture') return []
+      // Gesture.onChanged requires an Equatable Value; LongPressGesture's Value is Bool.
+      const changes = changed && (gesture.name === 'LongPressGesture' || inventory.some((d) =>
+        d.module === gesture.module && d.kind === 'struct' && d.name === 'Value' &&
+        (d.owner === gesture.name || d.owner === `${gesture.module}.${gesture.name}`) &&
+        d.inheritedTypes?.includes('Swift.Equatable') && present(d)))
       return [{ name: gesture.name[0].toLowerCase() + gesture.name.slice(1).replace(/Gesture$/, ''),
-        type: `${gesture.module}.${gesture.name}`, ios: Math.max(ios(gesture), ios(constructor)),
+        type: `${gesture.module}.${gesture.name}`, ios: Math.max(ios(gesture), ios(constructor.declaration)),
+        options: constructor.options, ...(changes ? { changed: true as const } : {}),
         ...(eventValue ? { eventValue } : {}) }]
     })
     .sort((a, b) => a.name.localeCompare(b.name))
@@ -635,7 +802,7 @@ export function deriveModifiers(
         ...(field.module.startsWith('_') ? { framework: field.module.slice(1, -'_SwiftUI'.length) } : {}),
         ...(value.scalarConstructor ? { scalarConstructor: value.scalarConstructor } : {}),
         ...(value.swiftExpression ? { swiftExpression: value.swiftExpression } : {}),
-        ...(value.cases ? { cases: value.cases } : {}),
+        ...(value.cases ? { cases: value.cases } : {}), ...(value.value ? { value: value.value } : {}),
       })
       if (transformEnvironmentMethod && !value.optional &&
         (value.kind === 'boolean' || value.kind === 'number' && field.type !== 'Swift.Int'))
@@ -1357,7 +1524,8 @@ export function deriveModifiers(
           (((styleRequirement[1] === 'S' || style === 'SwiftUICore.InsettableShape') && method.parameters.length === 1) || (style === 'SwiftUICore.Shape' &&
             method.parameters.slice(1).every((parameter) => parameter.defaultValue !== undefined)))) {
           const cases = styleCases(style === 'SwiftUICore.InsettableShape' ? 'SwiftUICore.Shape' : style)
-          if (cases) return [{ name, module: method.module, kind: 'style', type: styleRequirement[1], ios: ios(method), cases, ...framework }]
+          if (cases) return [{ name, module: method.module, kind: 'style', type: styleRequirement[1], ios: ios(method), cases,
+            ...styleFactories(style === 'SwiftUICore.InsettableShape' ? 'SwiftUICore.Shape' : style), ...framework }]
         }
         const hashable = /^([A-Za-z_]\w*) : Swift.Hashable$/.exec(method.requirements[0])?.[1]
         const equatable = /^([A-Za-z_]\w*) : Swift.Equatable$/.exec(method.requirements[0])?.[1]
@@ -1594,6 +1762,7 @@ export function deriveModifiers(
       if (defaultedCase?.kind === 'enum' && defaultedCase.cases)
         return [{ name, module: method.module, kind: defaultedCase.optional ? 'optionalEnum' : 'string',
           type: method.parameters[0].type, cases: defaultedCase.cases, ios: ios(method),
+          ...(defaultedCase.value ? { value: defaultedCase.value } : {}),
           ...(method.parameters[0].label === '_' ? {} : { label: method.parameters[0].label }),
           ...framework }]
       if (method.parameters.length === 0 ||
@@ -1829,9 +1998,11 @@ export function deriveModifiers(
         const owners = [...new Set(inventory.filter((declaration) =>
           declaration.kind === 'static' && declaration.owner.split('.').at(-1) === opaqueProtocol &&
           present(declaration) && ios(declaration) <= ceiling).map((declaration) => declaration.owner))]
-        const cases = styleCases(opaqueProtocol.includes('.') ? opaqueProtocol : `${method.module}.${opaqueProtocol}`) ??
-          (owners.length === 1 ? styleCases(owners[0]) : undefined)
-        if (cases) return [{ name, module: method.module, kind: 'style', type, ios: ios(method), cases, ...framework,
+        const styleOwner = styleCases(opaqueProtocol.includes('.') ? opaqueProtocol : `${method.module}.${opaqueProtocol}`)
+          ? opaqueProtocol.includes('.') ? opaqueProtocol : `${method.module}.${opaqueProtocol}`
+          : owners.length === 1 ? owners[0] : undefined
+        const cases = styleOwner ? styleCases(styleOwner) : undefined
+        if (cases) return [{ name, module: method.module, kind: 'style', type, ios: ios(method), cases, ...styleFactories(styleOwner!), ...framework,
           ...(label === '_' ? {} : { label }) }]
       }
       const value = valueOf(type)
@@ -1852,6 +2023,13 @@ export function deriveModifiers(
       if (value.kind === 'numericStruct' || value.kind === 'numericTuple')
         return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
           arguments: [{ ...value, field: method.parameters[0].name || 'value', label }], ...framework }]
+      if (value.kind === 'numericRange') {
+        const rangeKind = /^Swift\.(ClosedRange|Range|PartialRangeFrom|PartialRangeThrough|PartialRangeUpTo)</.exec(
+          value.type.replace(/\?$/, ''))?.[1] ?? 'Range'
+        return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+          aliasSuffix: rangeKind,
+          arguments: [{ ...value, field: method.parameters[0].name || 'value', label }], ...framework }]
+      }
       const kind = value.kind === 'enum'
         ? value.optional ? 'optionalEnum' : 'string'
         : value.kind === 'url'
@@ -1862,7 +2040,7 @@ export function deriveModifiers(
       return [{ name, module: method.module, kind, type, ios: ios(method), ...framework,
         ...(value.scalarConstructor ? { scalarConstructor: value.scalarConstructor } : {}),
         ...(value.swiftExpression ? { swiftExpression: value.swiftExpression } : {}),
-        ...(value.cases ? { cases: value.cases } : {}), ...(label === '_' ? {} : { label }) }]
+        ...(value.cases ? { cases: value.cases } : {}), ...(value.value ? { value: value.value } : {}), ...(label === '_' ? {} : { label }) }]
     })
     for (const candidate of candidates) {
       if (candidate.kind !== 'string' || !candidate.cases) continue

@@ -1,4 +1,4 @@
-import { NitroModules } from 'react-native-nitro-modules'
+import { contactsNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
 import type {
   ContactChanges,
@@ -7,16 +7,15 @@ import type {
   ContactPostalAddress,
   ContactPostalAddressInput,
   ContactsPermissionStatus,
-  OneContacts,
 } from '../specs/OneContacts.nitro'
 
-export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus }
-
-let hybrid: OneContacts | undefined
-
-function native(): OneContacts {
-  hybrid ??= NitroModules.createHybridObject<OneContacts>('OneContacts')
-  return hybrid
+export type {
+  ContactChanges,
+  ContactInfo,
+  ContactInput,
+  ContactPostalAddress,
+  ContactPostalAddressInput,
+  ContactsPermissionStatus,
 }
 
 function getPermissionStatus(): ContactsPermissionStatus {

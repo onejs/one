@@ -1,14 +1,51 @@
-import type { ViewProps } from 'react-native';
-import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes';
+import type { ProcessedColorValue, ViewProps } from 'react-native';
+import type { DirectEventHandler, Int32, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
+type OneNativeStyleNative = Readonly<{
+    fontSize?: WithDefault<Double, -1>;
+    fontWeight?: string;
+    fontDesign?: string;
+    textStyle?: string;
+    foregroundStyle?: ProcessedColorValue;
+    tint?: ProcessedColorValue;
+    background?: ProcessedColorValue;
+    padding?: WithDefault<Double, -1>;
+    paddingTop?: WithDefault<Double, -1>;
+    paddingLeading?: WithDefault<Double, -1>;
+    paddingBottom?: WithDefault<Double, -1>;
+    paddingTrailing?: WithDefault<Double, -1>;
+    width?: WithDefault<Double, -1>;
+    height?: WithDefault<Double, -1>;
+    minWidth?: WithDefault<Double, -1>;
+    idealWidth?: WithDefault<Double, -1>;
+    maxWidth?: WithDefault<Double, -1>;
+    minHeight?: WithDefault<Double, -1>;
+    idealHeight?: WithDefault<Double, -1>;
+    maxHeight?: WithDefault<Double, -1>;
+    cornerRadius?: WithDefault<Double, -1>;
+    opacity?: WithDefault<Double, -1>;
+    borderColor?: ProcessedColorValue;
+    borderWidth?: WithDefault<Double, -1>;
+    glassEffect?: string;
+    glassEffectInteractive?: boolean;
+    glassEffectTint?: ProcessedColorValue;
+    glassEffectShape?: string;
+    material?: string;
+    sdkModifiers?: string;
+}>;
 interface NativeProps extends ViewProps {
     label: string;
     isExpanded: boolean;
     acknowledgedEvent: Int32;
     revision: Int32;
+    swiftStyle?: OneNativeStyleNative;
     onNativeDisclosureGroupIsExpandedChange?: DirectEventHandler<Readonly<{
         value: boolean;
         eventCount: Int32;
         revision: Int32;
+    }>>;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
     }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;

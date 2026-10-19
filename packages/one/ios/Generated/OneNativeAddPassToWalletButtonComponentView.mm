@@ -47,8 +47,6 @@ using namespace facebook::react;
     value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
-  [_nativeView configure:RCTNSStringFromString(next.addPassToWalletButtonStyle)
-    disabled:next.disabled];
 
   [super updateProps:props oldProps:oldProps];
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test

@@ -9,7 +9,7 @@ description: SwiftUI Group, GroupBox, disclosure, glass, overlay, slot, and swip
 />
 
 `One.iOS` grouping, disclosure, glass, and modifier slot views are SwiftUI's
-own: `Group`, `GroupBox`, `ViewThatFits`, `GeometryReader`, `ControlGroup`,
+own: `Group`, `GroupBox`, `ViewThatFits`, `GeometryReader`, `TimelineView`, `Canvas`, `ControlGroup`,
 `DisclosureGroup`, `Divider`, `Link`, `LabeledContent`, `Glass`,
 `GlassEffectContainer`, `Overlay`, `ViewSlot`, and `SwipeActions`. They group
 related rows and controls, adapt to available space, and attach native content
@@ -82,6 +82,7 @@ function Pair() {
   title="Props"
   source="groupTypes.ts#GroupProps"
   data={[
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The grouped views.' },
   ]}
 />
@@ -109,6 +110,7 @@ function Account() {
   source="groupTypes.ts#GroupBoxProps"
   data={[
     { name: 'label', type: 'string', description: 'The title. Omit it for an unlabeled box.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', type: 'ReactNode', description: 'The boxed content.' },
   ]}
 />
@@ -140,6 +142,7 @@ function AdaptiveAction({ run }: { run: () => void }) {
   source="groupTypes.ts#ViewThatFitsProps"
   data={[
     { name: 'axes', type: 'ViewThatFitsAxes', default: '"both"', description: 'horizontal, vertical, or both: the dimensions tested for fit.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Candidates, most preferred first.' },
   ]}
 />
@@ -177,6 +180,7 @@ updating React state outside its native content.
   title="Props"
   source="groupTypes.ts#GeometryReaderProps"
   data={[
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: '(geometry: GeometryProxy) => ReactNode', description: 'The content closure, run with the native geometry snapshot.' },
   ]}
 />
@@ -188,6 +192,122 @@ updating React state outside its native content.
     { name: 'size', type: 'GeometryProxySize', description: 'The reader size: { width, height }.' },
     { name: 'safeAreaInsets', type: 'GeometryProxySafeAreaInsets', description: 'The safe-area insets: { top, leading, bottom, trailing }.' },
     { name: 'frame', type: "(coordinateSpace: 'global' | 'local') => GeometryProxyFrame", description: 'SwiftUI frame(in:), using a global or local coordinate-space argument.' },
+  ]}
+/>
+
+## TimelineView
+
+`TimelineView` re-runs its content as time passes. Native owns the schedule, so
+SwiftUI decides when each entry is due; every entry's `date` and `cadence`
+reach your function, which returns the content for that moment. Reach for it
+for clocks, countdowns, and anything that should refresh on a clock instead of
+on state. Nothing renders until the first entry, which arrives as the view
+appears, and the view sizes to its content. A non-function child throws.
+
+```tsx
+import { One } from 'one'
+
+function Clock() {
+  return (
+    <One.iOS.TimelineView schedule="everyMinute">
+      {({ date }) => (
+        <One.iOS.Text text={date.toLocaleTimeString([], { timeStyle: 'short' })} />
+      )}
+    </One.iOS.TimelineView>
+  )
+}
+```
+
+`schedule` takes `'everyMinute'`, `{ type: 'periodic', from, by }` with `by` in
+seconds, or `{ type: 'explicit', dates }`. These are SwiftUI's `.everyMinute`,
+`.periodic(from:by:)` and `.explicit(_:)`. The animation schedule is not bound.
+SwiftUI ends an explicit timeline at its last date, so the content runs for each
+date but the last.
+`cadence` is `'live'`, `'seconds'`, or `'minutes'`: how often SwiftUI expects to
+refresh. SwiftUI lowers it when fast updates are not needed, so a clock can
+leave out its seconds when the cadence is `'minutes'`.
+
+<PropsTable
+  title="Props"
+  source="groupTypes.ts#TimelineViewProps"
+  data={[
+    { name: 'schedule', required: true, type: 'TimelineSchedule', description: "'everyMinute', { type: 'periodic', from: Date, by: number }, or { type: 'explicit', dates: Date[] }." },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
+    { name: 'children', required: true, type: '(context: TimelineViewContext) => ReactNode', description: 'The content closure, run with the date and cadence of each entry.' },
+  ]}
+/>
+
+<PropsTable
+  title="TimelineViewContext"
+  source="groupTypes.ts#TimelineViewContext"
+  data={[
+    { name: 'date', type: 'Date', description: 'The date of the entry the content is drawn for.' },
+    { name: 'cadence', type: 'TimelineCadence', description: "How often SwiftUI expects to refresh the content: 'live', 'seconds', or 'minutes'." },
+  ]}
+/>
+
+## Canvas
+
+`Canvas` is SwiftUI's immediate-mode 2D drawing view. Its function child gets
+`(context, size)` and draws with the same calls as SwiftUI's `GraphicsContext`:
+`fill`, `stroke`, `draw`, `clip`, `translateBy`, `scaleBy`, `rotate`, `opacity`,
+`blendMode`, and `drawLayer`. Reach for it for charts, gauges, sparklines and
+anything custom that would be too many views. The canvas fills the box it is
+given, as SwiftUI's does, so give it a height with `style`; inside a SwiftUI
+container such as `TimelineView`, give it one with `swiftStyle={{ height }}`.
+
+React runs your function and records each call; native then replays the calls on
+the real `GraphicsContext`. Nothing is drawn until native has laid the canvas out
+and reported its size, so the first frame is blank. The function runs again when
+the size or the state it reads changes. Put a canvas in a `TimelineView` to
+animate it.
+
+```tsx
+import { One } from 'one'
+
+const { Canvas, Path, Shading } = One.iOS
+
+function Ring({ progress }: { progress: number }) {
+  return (
+    <Canvas style={{ height: 120 }}>
+      {(context, size) => {
+        const center = { x: size.width / 2, y: size.height / 2 }
+        const arc = new Path()
+        arc.addArc(center, 40, One.iOS.Angle.degrees(-90), One.iOS.Angle.degrees(-90 + 360 * progress), false)
+        context.stroke(arc, Shading.color('#3E63DD'), { lineWidth: 8, lineCap: 'round' })
+        context.draw({ text: `${Math.round(progress * 100)}%`, fontSize: 20, fontWeight: 'bold' }, { at: center })
+      }}
+    </Canvas>
+  )
+}
+```
+
+`Path` is a value builder that mirrors SwiftUI's `Path`: `move`, `addLine`,
+`addQuadCurve`, `addCurve`, `addArc`, `addRect`, `addRoundedRect`, `addEllipse`,
+and `closeSubpath`, with `Path.rect`, `Path.ellipse` and `Path.roundedRect` for
+the common shapes. `Angle.degrees` and `Angle.radians` make angles. `Shading`
+takes `color`, `linearGradient` and `radialGradient`, built from a `Gradient` of
+colors or color stops. `draw` takes text `{ text, fontSize, fontWeight, color }`
+or an SF Symbol `{ systemName, color }`, placed `{ at, anchor }` or `{ in }` a
+rectangle. `stroke` takes a line width or `{ lineWidth, lineCap, lineJoin,
+miterLimit, dash, dashPhase }`, and `fill` and `clip` take `{ eoFill,
+antialiased }`.
+
+Anything SwiftUI would reject throws: a path call that needs a current point
+before there is one, a negative line width, an opacity outside 0 to 1, a
+non-finite number, an unknown blend mode or a color that does not parse. Images
+are not bound yet. Standalone `Shape` views are a separate view; `Path` is
+shared with them.
+
+<PropsTable
+  title="Props"
+  source="canvas.ts#CanvasProps"
+  data={[
+    { name: 'opaque', type: 'boolean', default: 'false', description: 'Tells SwiftUI the canvas draws every pixel, so it can skip blending.' },
+    { name: 'colorMode', type: 'CanvasColorMode', default: "'nonLinear'", description: "The color space the canvas draws in: 'nonLinear', 'linear', or 'extendedLinear'." },
+    { name: 'rendersAsynchronously', type: 'boolean', default: 'false', description: 'Lets SwiftUI draw the canvas off the main thread.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
+    { name: 'children', required: true, type: '(context: GraphicsContext, size: CanvasSize) => void', description: 'The renderer, run with the context and the canvas size.' },
   ]}
 />
 
@@ -217,6 +337,7 @@ function Zoom({ zoomIn, zoomOut }: { zoomIn: () => void; zoomOut: () => void }) 
     { name: 'label', type: 'string', default: '""', description: 'The group title.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol for the title.' },
     { name: 'controlGroupStyle', type: 'ControlGroupStyle', default: '"automatic"', description: 'automatic, palette, navigation, menu, or compactMenu.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The controls.' },
   ]}
 />
@@ -251,14 +372,15 @@ function Advanced() {
     { name: 'isExpanded', required: true, type: 'boolean', description: 'Whether the content shows.' },
     { name: 'onIsExpandedChange', required: true, type: '(isExpanded: boolean) => void', description: 'A native tap, with the new state.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isExpanded to reset it from outside.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The content shown when expanded.' },
   ]}
 />
 
 ## Divider
 
-`Divider` draws a hairline between rows. It takes view props only, holds no
-content, and must be inside a native container.
+`Divider` draws a hairline between rows. It takes view props and `swiftStyle`,
+holds no content, and must be inside a native container.
 
 ```tsx
 import { One } from 'one'
@@ -294,6 +416,7 @@ function Docs() {
   data={[
     { name: 'destination', required: true, type: 'string', description: 'The URL to open.' },
     { name: 'label', type: 'string', description: 'The link text.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', type: 'ReactNode', description: 'Custom content in place of label.' },
   ]}
 />
@@ -319,6 +442,7 @@ function Storage() {
     { name: 'label', required: true, type: 'string', description: 'The row title.' },
     { name: 'value', type: 'string', description: 'The trailing value.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', description: 'An SF Symbol before the title.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', type: 'ReactNode', description: 'A custom value view in place of value.' },
   ]}
 />
@@ -354,6 +478,7 @@ function GlassCard() {
     { name: 'interactive', type: 'boolean', default: 'false', description: 'Reacts to touches.' },
     { name: 'tint', type: 'ColorValue', description: 'Tints the glass.' },
     { name: 'colorScheme', type: 'ColorScheme', description: 'light or dark for the effect.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The content on the glass.' },
   ]}
 />
@@ -384,6 +509,7 @@ function GlassBar({ add, filter }: { add: () => void; filter: () => void }) {
   source="groupTypes.ts#GlassEffectContainerProps"
   data={[
     { name: 'spacing', type: 'number', description: 'How close glass shapes must be to merge.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Views with glass effects.' },
   ]}
 />
@@ -437,7 +563,7 @@ function Badged({ open }: { open: () => void }) {
 accessibility, and the rest) and `options` carries that slot's parameters.
 `ViewSlot.Content` marks the slot subtree, exactly one per slot. Unknown names
 and slots newer than the device iOS throw. The slot content can contain
-interactive native controls.
+interactive native controls. Like a `ZStack`, a standalone `ViewSlot` or `Overlay` reports the height SwiftUI measured to React Native.
 
 ```tsx
 import { One } from 'one'
@@ -460,6 +586,12 @@ For a side inset, use `name="safeAreaInsetWithHorizontalEdge"` with
 or `options={{ edge: 'bottom' }}`, and `safeAreaBarWithHorizontalEdge` accepts
 `options={{ edge: 'leading' }}` or `options={{ edge: 'trailing' }}`. Put the
 bar's native controls in `ViewSlot.Content`.
+
+Slots also expose supported optional SwiftUI arguments. For example,
+`safeAreaInsetWithVerticalEdge` accepts
+`options={{ edge: 'bottom', alignment: 'trailing', spacing: 0 }}`. Omitting
+`alignment` or `spacing` keeps SwiftUI's defaults; `spacing: 0` explicitly
+removes the gap. The generated options type lists the arguments for each slot.
 
 ## SwipeActions, SwipeActions.Actions
 

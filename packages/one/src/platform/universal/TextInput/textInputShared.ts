@@ -4,7 +4,7 @@ import type {
   ReturnKeyTypeOptions,
 } from 'react-native'
 
-import type { KeyboardType, TextContentType } from '../../textTypes'
+import type { SDKKeyboardType, SDKSubmitLabel, SDKTextContentType } from '../../generated/controlTypes'
 import type { TextInputProps } from './textInputTypes'
 
 // shared mappings for the universal TextInput, mirroring Expo's utils plus
@@ -66,10 +66,10 @@ export function enterKeyHintToReturnKeyType(
   }
 }
 
-// web autocomplete tokens to the UIKit content types our spec carries (see
-// textTypes.ts). unmapped tokens apply nothing: the native converter fails
-// loudly on unknown values, so unlike Expo this never passes one through.
-const autoCompleteMap: Record<string, TextContentType> = {
+// web autocomplete tokens to the swiftStyle textContentType values, with off as
+// null. unmapped tokens apply nothing: swiftStyle rejects unknown values, so
+// unlike Expo this never passes one through.
+const autoCompleteMap: Record<string, SDKTextContentType | null> = {
   'additional-name': 'middleName',
   'address-line1': 'streetAddressLine1',
   'address-line2': 'streetAddressLine2',
@@ -99,7 +99,7 @@ const autoCompleteMap: Record<string, TextContentType> = {
   name: 'name',
   'new-password': 'newPassword',
   nickname: 'nickname',
-  off: 'none',
+  off: null,
   'one-time-code': 'oneTimeCode',
   organization: 'organizationName',
   'organization-title': 'jobTitle',
@@ -119,20 +119,20 @@ const autoCompleteMap: Record<string, TextContentType> = {
 
 export function autoCompleteToTextContentType(
   autoComplete: string | undefined
-): TextContentType | undefined {
+): SDKTextContentType | null | undefined {
   if (!autoComplete) return undefined
   return autoCompleteMap[autoComplete]
 }
 
-// UIKit keyboard type names carried by the OneNativeTextField spec.
-export function iosKeyboardType(value: KeyboardTypeOptions): KeyboardType {
+// swiftStyle keyboardType names, spelled as SwiftUI's UIKeyboardType cases.
+export function iosKeyboardType(value: KeyboardTypeOptions): SDKKeyboardType {
   switch (value) {
     case 'ascii-capable':
       return 'asciiCapable'
     case 'numbers-and-punctuation':
       return 'numbersAndPunctuation'
     case 'url':
-      return 'url'
+      return 'URL'
     case 'number-pad':
       return 'numberPad'
     case 'phone-pad':
@@ -154,19 +154,8 @@ export function iosKeyboardType(value: KeyboardTypeOptions): KeyboardType {
   }
 }
 
-// SwiftUI submit label names carried by the OneNativeTextField spec.
-export type IosSubmitLabel =
-  | 'done'
-  | 'go'
-  | 'send'
-  | 'join'
-  | 'route'
-  | 'search'
-  | 'return'
-  | 'next'
-  | 'continue'
-
-export function iosSubmitLabel(value: ReturnKeyTypeOptions): IosSubmitLabel {
+// swiftStyle submitLabel names, spelled as SwiftUI's SubmitLabel cases.
+export function iosSubmitLabel(value: ReturnKeyTypeOptions): SDKSubmitLabel {
   if (value === 'google' || value === 'yahoo') return 'search'
   if (
     value === 'default' ||
@@ -176,7 +165,7 @@ export function iosSubmitLabel(value: ReturnKeyTypeOptions): IosSubmitLabel {
   ) {
     return 'return'
   }
-  return value as IosSubmitLabel
+  return value as SDKSubmitLabel
 }
 
 // keyboard type names carried by the Compose textfield node.

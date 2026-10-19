@@ -1,6 +1,5 @@
-import { NitroModules } from 'react-native-nitro-modules'
+import { brightnessNative as native } from './backend'
 import { rethrowNativeError } from '../nativeError'
-import type { OneBrightness } from '../specs/OneBrightness.nitro'
 import type {
   BrightnessEvent,
   BrightnessMode,
@@ -20,17 +19,6 @@ export type {
   BrightnessPermissionStatus,
   BrightnessSubscription,
 } from './types'
-
-// screen brightness matching expo-brightness, backed by the OneBrightness
-// nitro hybrid object (created on first use and cached). the first listener
-// starts the native observer, so the first event can never race the
-// subscription.
-let hybrid: OneBrightness | undefined
-
-function native(): OneBrightness {
-  hybrid ??= NitroModules.createHybridObject<OneBrightness>('OneBrightness')
-  return hybrid
-}
 
 function get(): Promise<number> {
   return native().get().catch(rethrowNativeError)

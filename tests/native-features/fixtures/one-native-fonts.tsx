@@ -89,7 +89,7 @@ export default function OneNativeFonts() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, padding: 16 },
+  screen: { flex: 1, padding: 16, backgroundColor: '#FFFFFF' },
   chip: { padding: 12, backgroundColor: '#eee', borderRadius: 8 },
-  sample: { fontSize: 72 },
+  sample: { fontSize: 72, color: '#000000' },
 })

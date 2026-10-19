@@ -2,17 +2,6 @@
 // edit the generator or catalog, then regenerate.
 export type MenuOrder = 'automatic' | 'priority' | 'fixed'
 export type Visibility = 'automatic' | 'visible' | 'hidden'
-export type PickerStyle =
-  | 'wheel'
-  | 'inline'
-  | 'automatic'
-  | 'segmented'
-  | 'tabs'
-  | 'palette'
-  | 'navigationLink'
-  | 'menu'
-export type DatePickerStyle = 'wheel' | 'automatic' | 'graphical' | 'compact'
-export type ToggleStyle = 'button' | 'automatic' | 'switch'
 export type MenuActionDismissBehavior = 'automatic' | 'enabled' | 'disabled'
 export type TabViewStyle = 'sidebarAdaptable' | 'page' | 'tabBarOnly' | 'automatic'
 export type ButtonRole = 'destructive' | 'cancel' | 'confirm' | 'close'
@@ -28,34 +17,6 @@ export type ControlGroupStyle =
   | 'navigation'
   | 'menu'
   | 'compactMenu'
-export type PrimitiveButtonStyle =
-  | 'automatic'
-  | 'glass'
-  | 'borderless'
-  | 'glassProminent'
-  | 'plain'
-  | 'bordered'
-  | 'borderedProminent'
-export type ProgressViewStyle = 'linear' | 'circular' | 'automatic'
-export type GaugeStyle =
-  | 'accessoryCircularCapacity'
-  | 'linearCapacity'
-  | 'accessoryLinear'
-  | 'accessoryLinearCapacity'
-  | 'automatic'
-  | 'accessoryCircular'
-export type TextFieldStyle = 'automatic' | 'roundedBorder' | 'bordered' | 'plain'
-export type SubmitLabel =
-  | 'done'
-  | 'go'
-  | 'send'
-  | 'join'
-  | 'route'
-  | 'search'
-  | 'return'
-  | 'next'
-  | 'continue'
-export type TextInputAutocapitalization = 'never' | 'words' | 'sentences' | 'characters'
 export type Axis = 'horizontal' | 'vertical'
 export type Edge = 'top' | 'leading' | 'bottom' | 'trailing'
 export type PresentationAdaptation =
@@ -80,9 +41,6 @@ export type DynamicTypeSize =
   | 'accessibility4'
   | 'accessibility5'
 export type ControlSize = 'mini' | 'small' | 'regular' | 'large' | 'extraLarge'
-export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette'
-export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash'
-export type ImageScale = 'small' | 'medium' | 'large'
 export type PhotosPickerSelectionBehavior =
   | 'default'
   | 'ordered'
@@ -122,8 +80,6 @@ export type ToolbarItemPlacement =
   | 'subtitle'
   | 'largeSubtitle'
 export type SpacerSizing = 'flexible' | 'fixed'
-export type PayWithApplePayButtonStyle = 'white' | 'whiteOutline' | 'black' | 'automatic'
-export type AddPassToWalletButtonStyle = 'black' | 'blackOutline'
 export type PayWithApplePayButtonLabel =
   | 'plain'
   | 'buy'
@@ -152,27 +108,6 @@ export const swiftUIValues = {
     automatic: 15,
     visible: 15,
     hidden: 15,
-  },
-  PickerStyle: {
-    wheel: 13,
-    inline: 14,
-    automatic: 13,
-    segmented: 13,
-    tabs: 27,
-    palette: 17,
-    navigationLink: 16,
-    menu: 14,
-  },
-  DatePickerStyle: {
-    wheel: 13,
-    automatic: 13,
-    graphical: 14,
-    compact: 14,
-  },
-  ToggleStyle: {
-    button: 15,
-    automatic: 13,
-    switch: 13,
   },
   MenuActionDismissBehavior: {
     automatic: 16.4,
@@ -227,51 +162,6 @@ export const swiftUIValues = {
     menu: 16.4,
     compactMenu: 16.4,
   },
-  PrimitiveButtonStyle: {
-    automatic: 13,
-    glass: 26,
-    borderless: 13,
-    glassProminent: 26,
-    plain: 13,
-    bordered: 15,
-    borderedProminent: 15,
-  },
-  ProgressViewStyle: {
-    linear: 14,
-    circular: 14,
-    automatic: 14,
-  },
-  GaugeStyle: {
-    accessoryCircularCapacity: 16,
-    linearCapacity: 16,
-    accessoryLinear: 16,
-    accessoryLinearCapacity: 16,
-    automatic: 16,
-    accessoryCircular: 16,
-  },
-  TextFieldStyle: {
-    automatic: 13,
-    roundedBorder: 13,
-    bordered: 27,
-    plain: 13,
-  },
-  SubmitLabel: {
-    done: 15,
-    go: 15,
-    send: 15,
-    join: 15,
-    route: 15,
-    search: 15,
-    return: 15,
-    next: 15,
-    continue: 15,
-  },
-  TextInputAutocapitalization: {
-    never: 15,
-    words: 15,
-    sentences: 15,
-    characters: 15,
-  },
   Axis: {
     horizontal: 13,
     vertical: 13,
@@ -318,25 +208,6 @@ export const swiftUIValues = {
     regular: 15,
     large: 15,
     extraLarge: 17,
-  },
-  SymbolRenderingMode: {
-    monochrome: 15,
-    multicolor: 15,
-    hierarchical: 15,
-    palette: 15,
-  },
-  SymbolVariants: {
-    none: 15,
-    circle: 15,
-    square: 15,
-    rectangle: 15,
-    fill: 15,
-    slash: 15,
-  },
-  ImageScale: {
-    small: 13,
-    medium: 13,
-    large: 13,
   },
   PhotosPickerSelectionBehavior: {
     default: 16,
@@ -402,16 +273,6 @@ export const swiftUIValues = {
   SpacerSizing: {
     flexible: 26,
     fixed: 26,
-  },
-  PayWithApplePayButtonStyle: {
-    white: 16,
-    whiteOutline: 16,
-    black: 16,
-    automatic: 16,
-  },
-  AddPassToWalletButtonStyle: {
-    black: 16,
-    blackOutline: 16,
   },
   PayWithApplePayButtonLabel: {
     plain: 16,
