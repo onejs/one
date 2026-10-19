@@ -68,8 +68,9 @@ function synthesized(graph: Graph): Synthesized[] {
 // maps synthesized init usrs to skip reasons. a class that declares custom
 // initializers omits its synthesized init as cannot-prove unless natively
 // proven; the rest batch into one header-aware clang probe per framework,
-// where #line names each function so its errors map back to its init. any
-// error that is not an unavailable init fails loudly instead of guessing.
+// where #line names each function so its errors map back to its init. an
+// unavailable init drops with that reason, a name the module does not expose
+// omits as cannot-probe, and anything else fails loudly instead of guessing.
 export function checkInheritedInits(
   module: string,
   graph: Graph,
@@ -93,7 +94,12 @@ export function checkInheritedInits(
   for (const error of errors) {
     const match = /^one-sdk-init-(\d+):\d+:\d+: error: (.*)$/.exec(error)
     const init = match ? pending[Number(match[1])] : undefined
-    if (!init || !/unavailable/i.test(match[2])) throw new Error(`unexplained inherited-init error for ${module}: ${error}`)
+    if (!init) throw new Error(`unexplained inherited-init error for ${module}: ${error}`)
+    if (/use of undeclared identifier|unknown receiver|unknown type name/.test(match[2])) {
+      if (!rejected.has(init.usr)) rejected.set(init.usr, `inherited init: cannot probe (${match[2].slice(0, 120)})`)
+      continue
+    }
+    if (!/unavailable/i.test(match[2])) throw new Error(`unexplained inherited-init error for ${module}: ${error}`)
     if (!rejected.has(init.usr)) rejected.set(init.usr, `inherited init: clang: ${match[2]}`)
   }
   return rejected

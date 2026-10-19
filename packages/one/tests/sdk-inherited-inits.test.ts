@@ -92,9 +92,16 @@ describe('checkInheritedInits', () => {
     expect(runner).toHaveBeenCalledTimes(1)
   })
 
+  it('omits a name the module does not expose as cannot-probe', () => {
+    const graph = graphWith([cls(OWNER, 'TestLabeled'), init(SYNTH, 'TestLabeled', true)], [[SYNTH, OWNER]])
+    const runner: ClangRunner = () => ({ status: 1, stderr: `one-sdk-init-0:2:19: error: use of undeclared identifier 'TestLabeled'\n` })
+    const rejected = checkInheritedInits('Contacts', graph, { runner, sdk: '/mock' })
+    expect(rejected.get(SYNTH)).toContain('cannot probe')
+  })
+
   it('fails loudly on an unexplained compiler error', () => {
     const graph = graphWith([cls(OWNER, 'TestLabeled'), init(SYNTH, 'TestLabeled', true)], [[SYNTH, OWNER]])
-    const runner: ClangRunner = () => ({ status: 1, stderr: `one-sdk-init-0:2:19: error: unknown type name 'TestLabeled'\n` })
+    const runner: ClangRunner = () => ({ status: 1, stderr: `one-sdk-init-0:2:19: error: expected expression\n` })
     expect(() => checkInheritedInits('Contacts', graph, { runner, sdk: '/mock' })).toThrow('unexplained')
   })
 
