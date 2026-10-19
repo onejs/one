@@ -2067,11 +2067,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => id(n, 'one-native-sheet-counter')?.AXLabel === '1'
     )
     tap({ id: 'one-native-sheet-input' })
-    await typeInto(
-      'RN sheet input',
-      retainedText,
-      (n) => nativeTextField(n, 'one-native-sheet-input')?.AXValue
-    )
+    await softType('RN sheet input', retainedText)
     await wait('RN sheet input accepts text', retained)
     screenshot('sheet-input.png')
     tap({ id: 'one-native-sheet-close' })
