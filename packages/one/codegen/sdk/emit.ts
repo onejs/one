@@ -106,10 +106,10 @@ function observedGetter(e: Entry) {
   return `let o: ${swiftType(e.receiver!)} = try c.receiver(); return c.out(o.${member(e.name)})`
 }
 
-function containsFunction(type: SwiftType): boolean {
-  if (type.k === 'function') return true
-  if (type.k === 'array' || type.k === 'optional') return containsFunction(type.t)
-  if (type.k === 'dictionary') return containsFunction(type.value)
+function needsOutputConversion(type: SwiftType): boolean {
+  if (type.k === 'function' || type.k === 'tuple') return true
+  if (type.k === 'array' || type.k === 'optional') return needsOutputConversion(type.t)
+  if (type.k === 'dictionary') return needsOutputConversion(type.value)
   return false
 }
 
@@ -132,9 +132,20 @@ function usesObjcOpen(type: SwiftType, open: Set<string>): boolean {
 
 // keep the native function typed until its arguments and result have crossed the wire.
 export function outputValue(type: SwiftType, value: string): string {
-  if (!containsFunction(type)) return value
+  if (!needsOutputConversion(type)) return value
   if (type.k === 'optional' || type.k === 'array') return `(${value}).map { v in ${outputValue(type.t, 'v')} }`
   if (type.k === 'dictionary') return `(${value}).mapValues { v in ${outputValue(type.value, 'v')} }`
+  if (type.k === 'tuple') {
+    if (!type.items.length) return 'c.void'
+    const values = type.items.map((item, i) => `c.out(${outputValue(item.t, `v.${i}`)})`)
+    const named = type.items.every((item) => item.label)
+    const encoded = named
+      ? `[${values.map((v, i) => `${JSON.stringify(type.items[i].label)}: ${v}`).join(', ')}] as [String: Any]`
+      : `[${values.join(', ')}] as [Any]`
+    // evaluate a getter or async result once and preserve each element's
+    // declared class type through out's class-preserving overload.
+    return `({ (v: ${swiftType(type)}) in ${encoded} })(${value})`
+  }
   if (type.k !== 'function') return value
   const args = type.params.map((p, i) => {
     const callback = functionOf(p.t)
@@ -707,7 +718,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       if (syncCallbacks) lines.push('try c.checkCallbacks()')
       if (mutating) lines.push(writeBack)
       lines.push('return c.void')
-    } else if (unmanaged || mutating || syncCallbacks || returnType && containsFunction(returnType)) {
+    } else if (unmanaged || mutating || syncCallbacks || returnType && needsOutputConversion(returnType)) {
       lines.push(`let r = ${effects}${call}`)
       if (syncCallbacks) lines.push('try c.checkCallbacks()')
       if (mutating) lines.push(writeBack)

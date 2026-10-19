@@ -684,6 +684,9 @@ public enum OneSDKConvert {
     if t == Int.self, let v = value as? Int { return Double(v) }
     if t == CGFloat.self, let v = value as? CGFloat { return Double(v) }
     if t == Float.self, let v = value as? Float { return Double(v) }
+    // tuple lowering encodes typed elements before their container crosses.
+    // preserve those handles rather than wrapping an already encoded box.
+    if let box = value as? OneSDKHandleBox { return box }
     if let optional = value as? OneSDKOptional {
       return to(optional.unwrapped, call)
     }
