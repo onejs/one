@@ -6,7 +6,7 @@ import type { DocMember, DocType, FrameworkSummary, FrameworkDoc } from './doc-t
 import { frameworkGroups, frameworkSummaries } from './doc-frameworks'
 import { loadGraph, sdkModules, sdkVersion, type Symbol } from './graph'
 import { Bridge, buildIndex, collectFacts } from './bridge'
-import { facadeCallFormatter } from './emit-ts'
+import { emitFacade, facadeCallFormatter } from './emit-ts'
 
 type DocumentedSymbol = Symbol & { docComment?: { lines: { text: string }[] } }
 
@@ -85,12 +85,24 @@ function referenceBridge() {
     )
   ))
 }
+// ids the facade actually publishes, read from its own output. an entry the
+// facade never emits (a protocol requirement, a typealias member, an unknown
+// owner) keeps its swift declaration but advertises no typescript call. entry
+// ids are unique signature hashes, so a whole-number match is the entry.
+function publishedIds(module: string, entries: Entry[], skipped: Skipped[]): Set<number> {
+  const facade = emitFacade({ module, entries, skipped }, referenceBridge())
+  const ids = new Set<number>()
+  for (const match of facade.matchAll(/\b\d+\b/g)) ids.add(Number(match[0]))
+  return ids
+}
 export function typescriptCallShape(entry: Entry): string | undefined {
   const module = entry.owner?.split('.')[0] ?? ''
-  return facadeCallFormatter(
+  const shape = facadeCallFormatter(
     { module, entries: [entry], skipped: [] },
     referenceBridge()
   )(entry)
+  if (!publishedIds(module, [entry], []).has(entry.id)) return undefined
+  return shape
 }
 
 export function emitFrameworkDocs(
@@ -106,6 +118,8 @@ export function emitFrameworkDocs(
     callShape === typescriptCallShape
       ? facadeCallFormatter({ module, entries, skipped }, referenceBridge())
       : callShape
+  const published =
+    callShape === typescriptCallShape ? publishedIds(module, entries, skipped) : undefined
   const symbols = new Map(
     graph.symbols.map((s) => [s.identifier.precise, s as DocumentedSymbol])
   )
@@ -122,9 +136,10 @@ export function emitFrameworkDocs(
   }
   const globals: DocMember[] = []
   for (const entry of entries) {
+    const typescript = formatCall(entry)
     const doc = {
       ...describe(symbols.get(entry.usr), entry.name, entry.kind),
-      typescript: formatCall(entry),
+      typescript: published && !published.has(entry.id) ? undefined : typescript,
       out: entry.params.some((p) => p.out || p.inout)
         ? entry.params.filter((p) => p.out || p.inout).map((p) => p.name)
         : undefined,
