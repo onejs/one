@@ -531,9 +531,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2F2F7',
   },
   interruptButton: {
-    position: 'absolute',
-    bottom: 8,
-    left: 12,
+    alignSelf: 'flex-start',
     padding: 8,
     borderRadius: 6,
     backgroundColor: '#5856D6',
