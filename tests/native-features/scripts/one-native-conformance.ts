@@ -392,10 +392,9 @@ const has = (nodes: Node[], text: string) =>
   labels(nodes).some((label) => label.includes(text))
 const id = (nodes: Node[], value: string) =>
   nodes.find((node) => node.AXUniqueId === value)
-// native hosts share their testID with their group; only the editable control owns the value.
 // content with this id that a person or VoiceOver could still reach: any match with a size,
-// a label, children or actions. iOS can keep an emptied cell's old element in its
-// accessibility cache, with no size and no label, after the view itself is gone
+// a label, value, title, help, children or actions. iOS can keep an emptied cell's old
+// element in its accessibility cache, with none of those, after the view itself is gone
 export const contentRetained = (nodes: Node[], testID: string) =>
   nodes.some(
     (node) =>
@@ -403,9 +402,13 @@ export const contentRetained = (nodes: Node[], testID: string) =>
       ((node.frame?.width ?? 0) > 0 ||
         (node.frame?.height ?? 0) > 0 ||
         Boolean(node.AXLabel) ||
+        (node.AXValue !== undefined && node.AXValue !== null && node.AXValue !== '') ||
+        Boolean(node.title) ||
+        Boolean(node.help) ||
         (node.children?.length ?? 0) > 0 ||
         ((node.custom_actions as unknown[] | undefined)?.length ?? 0) > 0)
   )
+// native hosts share their testID with their group; only the editable control owns the value.
 export const nativeTextField = (nodes: Node[], testID: string) => {
   const fields = nodes.filter(
     (node) =>
