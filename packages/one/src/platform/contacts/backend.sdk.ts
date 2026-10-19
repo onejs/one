@@ -9,6 +9,7 @@ import {
   CNContactPhoneNumbersKey,
   CNContactPostalAddressesKey,
   CNContactStore,
+  CNErrorDomain,
   CNLabelHome,
   CNLabelPhoneNumberMain,
   CNLabeledValue,
@@ -197,24 +198,25 @@ function mutableCopyOf(contact: CNContact): CNMutableContact {
   return new CNMutableContact(copied.$handle)
 }
 
-// a failed fetch or save cannot carry its native code, so re-query by
-// identifier: an empty answer means the record is gone.
-async function classifySaveError(
+// CNError.Code.recordDoesNotExist raw value, read off the real Contacts
+// framework on macOS; the structured-error seam carries it as nativeCode.
+const RECORD_DOES_NOT_EXIST = 200
+
+function isRecordGone(cause: unknown): boolean {
+  if (typeof cause !== 'object' || cause === null) return false
+  const { domain, nativeCode } = cause as { domain?: unknown; nativeCode?: unknown }
+  return domain === CNErrorDomain && nativeCode === RECORD_DOES_NOT_EXIST
+}
+
+// native failures classify off their own metadata; absent metadata (before
+// the structured-error seam) keeps the save/delete code, never not-found.
+function saveFailure(
   verb: 'update' | 'delete',
   code: 'E_CONTACTS_SAVE' | 'E_CONTACTS_DELETE',
-  identifier: string,
   cause: unknown
-): Promise<Error> {
-  try {
-    const matches = CNContactStore.init().unifiedContacts(
-      CNContact.predicateForContactsWithIdentifiers([identifier]),
-      KEYS
-    )
-    if (!matches.length) {
-      return failure(verb, 'E_CONTACTS_NOT_FOUND', detail(cause, 'the contact no longer exists'))
-    }
-  } catch {
-    // fall through to the save/delete code below
+): Error {
+  if (isRecordGone(cause)) {
+    return failure(verb, 'E_CONTACTS_NOT_FOUND', detail(cause, 'the contact no longer exists'))
   }
   return failure(verb, code, detail(cause, 'could not save the contact'))
 }
@@ -425,7 +427,7 @@ async function update(identifier: string, changes: ContactChanges): Promise<Cont
   try {
     stored = store.unifiedContact(identifier, KEYS)
   } catch (error) {
-    throw await classifySaveError('update', 'E_CONTACTS_SAVE', identifier, error)
+    throw saveFailure('update', 'E_CONTACTS_SAVE', error)
   }
   const contact = mutableCopyOf(stored)
   if (changes.givenName !== undefined || changes.familyName !== undefined) {
@@ -454,7 +456,7 @@ async function update(identifier: string, changes: ContactChanges): Promise<Cont
   try {
     store.execute(request)
   } catch (error) {
-    throw await classifySaveError('update', 'E_CONTACTS_SAVE', identifier, error)
+    throw saveFailure('update', 'E_CONTACTS_SAVE', error)
   }
   return readContact(contact)
 }
@@ -470,14 +472,14 @@ async function remove(identifier: string): Promise<void> {
   try {
     stored = store.unifiedContact(identifier, KEYS)
   } catch (error) {
-    throw await classifySaveError('delete', 'E_CONTACTS_DELETE', identifier, error)
+    throw saveFailure('delete', 'E_CONTACTS_DELETE', error)
   }
   const request = CNSaveRequest.init()
   request.delete(mutableCopyOf(stored))
   try {
     store.execute(request)
   } catch (error) {
-    throw await classifySaveError('delete', 'E_CONTACTS_DELETE', identifier, error)
+    throw saveFailure('delete', 'E_CONTACTS_DELETE', error)
   }
 }
 
