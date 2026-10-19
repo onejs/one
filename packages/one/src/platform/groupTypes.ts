@@ -4,7 +4,10 @@ import type { SDKHandle } from './sdk/wire'
 import type { ZStackAlignment } from './generated/containerTypes'
 import type { SFSymbolName } from './generated/sfSymbolNames'
 import type { ControlGroupStyle } from './generated/swiftui'
-import type { OneNativeStyle } from './generated/controlTypes'
+import type {
+  OneNativeStyle,
+  SDKPageTabViewStyleIndexDisplayModeValue,
+} from './generated/controlTypes'
 import type { ViewSlotConfiguration } from './generated/viewSlots'
 import type {
   UICollectionViewDiffableDataSource,
@@ -188,6 +191,7 @@ export interface PageProps {
 
 export interface PagerProps extends ViewProps {
   selection: string
+  indexDisplayMode?: SDKPageTabViewStyleIndexDisplayModeValue
   onSelectionChange: (id: string) => void
   revision?: number
   children: ReactNode

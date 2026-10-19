@@ -1523,13 +1523,17 @@ export const components = [
           tabModifiers: '@"{}"',
         },
       },
-      modifiers: ['.tabViewStyle(.page)'],
+      initial: { indexDisplayMode: '"automatic"' },
+      modifiers: [
+        '.tabViewStyle(.page(indexDisplayMode: oneNativeSDKValuePageTabViewStyleIndexDisplayMode(@indexDisplayMode, "Pager.indexDisplayMode")))',
+      ],
       layout: 'container',
       scheme: true,
       skipEmptyStyle: true,
     },
     props: {
       selection: 'string',
+      indexDisplayMode: 'string',
       acknowledgedEvent: 'Int32',
       revision: 'Int32',
     },

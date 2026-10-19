@@ -749,6 +749,9 @@
         "selection": {
           "type": "string"
         },
+        "indexDisplayMode": {
+          "type": "string"
+        },
         "acknowledgedEvent": {
           "type": "Int32"
         },

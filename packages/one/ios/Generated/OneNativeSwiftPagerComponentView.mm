@@ -82,7 +82,8 @@ using namespace facebook::react;
   const auto &next = *std::static_pointer_cast<const OneNativeSwiftPagerProps>(props);
   [_nativeView configureWithSelection:RCTNSStringFromString(next.selection)
       acknowledgedEvent:next.acknowledgedEvent
-      revision:next.revision];
+      revision:next.revision
+      indexDisplayMode:RCTNSStringFromString(next.indexDisplayMode)];
   [super updateProps:props oldProps:oldProps];
 }
 

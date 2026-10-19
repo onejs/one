@@ -335,6 +335,9 @@ must be `Page` elements with unique nonempty ids, and `selection` must name a
 mounted page. For a pager on both platforms, use
 [One.UI.Pager](/native/ui-pager).
 
+Use `indexDisplayMode="always"` to show page indicators, `"never"` to hide them,
+or `"automatic"` to let SwiftUI choose. The default is `"automatic"`.
+
 ```tsx
 import { useState } from 'react'
 import { Text } from 'react-native'
@@ -361,6 +364,7 @@ function Onboarding() {
   source="groupTypes.ts#PagerProps"
   data={[
     { name: 'selection', required: true, type: 'string', description: 'The id of the shown page.' },
+    { name: 'indexDisplayMode', type: "'automatic' | 'always' | 'never'", default: "'automatic'", description: 'When SwiftUI shows page indicators.' },
     { name: 'onSelectionChange', required: true, type: '(id: string) => void', description: 'A swipe to another page.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Page elements.' },

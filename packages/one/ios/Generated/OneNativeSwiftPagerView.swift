@@ -5,6 +5,7 @@ import UIKit
 
 private final class SwiftPagerModel: ObservableObject {
   @Published var controlled = OneNativeControlled<String>("")
+  @Published var indexDisplayMode: String = "automatic"
   @Published var pages: [OneNativeTabItem] = []
   @Published var pageRevision = 0
   weak var host: UIView?
@@ -32,7 +33,7 @@ private struct SwiftPagerContent: View {
           .tag(page.id)
       }
     })
-    .tabViewStyle(.page)
+    .tabViewStyle(.page(indexDisplayMode: oneNativeSDKValuePageTabViewStyleIndexDisplayMode(model.indexDisplayMode, "Pager.indexDisplayMode")))
     .id(model.pageRevision)
     .oneNativeContainerStyle(style, skipWhenEmpty: true)
     .oneNativeScheme(standalone, bridge.scheme)
@@ -71,8 +72,9 @@ public final class OneNativeSwiftPagerView: OneNativeContainerView {
     super.didMoveToWindow()
   }
 
-  public func configure(selection: String, acknowledgedEvent: Int, revision: Int) {
+  public func configure(selection: String, acknowledgedEvent: Int, revision: Int, indexDisplayMode: String) {
     if let next = model.controlled.applying(selection, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
+    if model.indexDisplayMode != indexDisplayMode { model.indexDisplayMode = indexDisplayMode }
   }
 
   public override func setActive(_ active: Bool) { model.active = active }
@@ -103,6 +105,7 @@ public final class OneNativeSwiftPagerView: OneNativeContainerView {
   public override func reset() {
     model.active = false
     model.controlled = OneNativeControlled<String>("")
+    model.indexDisplayMode = "automatic"
     model.pages = []
     model.pageRevision = 0
     super.reset()

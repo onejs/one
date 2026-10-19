@@ -7,6 +7,9 @@ export default function OneNativeGroups() {
   const [expanded, setExpanded] = useState(false)
   const [groupTaps, setGroupTaps] = useState(0)
   const [page, setPage] = useState('a')
+  const [indexDisplayMode, setIndexDisplayMode] = useState<
+    'automatic' | 'always' | 'never'
+  >('automatic')
   const [pinTaps, setPinTaps] = useState(0)
   const [deleteTaps, setDeleteTaps] = useState(0)
   const [iconTaps, setIconTaps] = useState(0)
@@ -35,6 +38,17 @@ export default function OneNativeGroups() {
           <Text style={{ color: textColor }}>
             {refuse ? 'Refusing' : 'Accepting'}
           </Text>
+        </Pressable>
+        <Pressable
+          testID="one-native-pager-index-mode"
+          style={[styles.chip, { backgroundColor: chipColor }]}
+          onPress={() =>
+            setIndexDisplayMode((mode) =>
+              mode === 'automatic' ? 'always' : mode === 'always' ? 'never' : 'automatic'
+            )
+          }
+        >
+          <Text style={{ color: textColor }}>{`Index: ${indexDisplayMode}`}</Text>
         </Pressable>
       </View>
 
@@ -81,7 +95,12 @@ export default function OneNativeGroups() {
         />
       </One.iOS.VStack>
 
-      <One.iOS.Pager selection={page} onSelectionChange={setPage} style={styles.pager}>
+      <One.iOS.Pager
+        selection={page}
+        indexDisplayMode={indexDisplayMode}
+        onSelectionChange={setPage}
+        style={styles.pager}
+      >
         <One.iOS.Page id="a">
           <Text testID="one-native-pager-a" style={{ color: textColor }}>
             Page A
