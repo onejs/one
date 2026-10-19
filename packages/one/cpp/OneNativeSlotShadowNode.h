@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <react/renderer/components/view/ConcreteViewShadowNode.h>
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
+#include <react/renderer/core/LayoutContext.h>
 
 namespace facebook::react {
 
